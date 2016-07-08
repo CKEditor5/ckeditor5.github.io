@@ -5,22 +5,17 @@
 
 'use strict';
 
-// Impromptu namespace for the sample.
-var _ = {
-	isCompatible: navigator.userAgent.toLowerCase().indexOf( 'chrome' ) != -1
-};
-
 ( function() {
-	if ( !_.isCompatible ) {
-		// Display the message of shame.
-		document.addEventListener( 'DOMContentLoaded', function() {
+	// Impromptu namespace for the sample.
+	var _ = {
+		showCompatibilityMessage: function() {
 			var editorElement = document.querySelector( '#editor' );
 			var message = document.createElement( 'p' );
 
 			message.innerHTML = '\
 				<h2>That\'s a shame...</h2>\
-				<p>We\'re not proud of this but this early developer preview of the editor<br/>\
-				works in <a href="https://www.google.com/chrome/">Google Chrome</a> only.</p>\
+				<p>We\'re not proud of this but this early developer preview does not work in your web browser.</p>\
+				<p>Please consider using <a href="https://www.google.com/chrome/">Google Chrome</a> instead.</p>\
 				<p>We\'re terribly sorry.</p>\
 			';
 
@@ -28,6 +23,6 @@ var _ = {
 
 			editorElement.style.display = 'none';
 			editorElement.parentNode.insertBefore( message, editorElement );
-		} );
-	}
-} )();
+		}
+	};
+} );

@@ -57,22 +57,17 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 
 	<script>
 
-		// Google Chrome only at the moment. Sorry.
-		if ( _.isCompatible ) {
-			ClassicEditor.create( document.querySelector( '#editor' ), {
-				toolbar: [ 'headings', 'bold', 'italic', 'undo', 'redo' ]
-			} )
-			.then( editor => {
-				console.log( 'Editor was initialized', editor );
-				console.log( 'You can now play with it using global `editor` and `editable` variables.' );
+		( function() {
+			'use strict';
 
-				window.editor = editor;
-				window.editable = editable = editor.editing.view.getRoot();
-			} )
-			.catch( err => {
-				console.error( err.stack );
-			} );
-		}
+			try {
+				ClassicEditor.create( document.querySelector( '#editor' ), {
+					toolbar: [ 'headings', 'bold', 'italic', 'undo', 'redo' ]
+				} );
+			} catch( e ) {
+				_.showCompatibilityMessage();
+			}
+		} )();
 
 	</script>
 </body>
