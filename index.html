@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or http://ckeditor.com/license
+-->
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CKEditor 5 Developer Preview (0.1.0)</title>
+	<script src="lib/ckeditor5/0.1.0/ckeditor.min.js"></script>
+	<script src="js/app.js"></script>
+	<link rel="stylesheet" href="lib/ckeditor5/0.1.0/ckeditor.min.css">
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+	<header>
+		<a href="/" title="CKEditor 5 Developer Preview (0.1.0)"><img src="img/logo.svg" alt="CKEditor 5" /></a>
+		<h1>Developer Preview (0.1.0)</h1>
+		<p>
+			This is the very first demo–able version of <a href="#">CKEditor 5</a>,<br/>
+			the new exciting something something something for the web.<br/>
+			Read more in the <a href="#">“Title of the blog post”</a>.
+		</p>
+	</header>
+
+	<main>
+		<div class="editor-area">
+			<div id="editor">
+				<h2>Isto modo ne improbos quidem, si essent boni viri.</h2>
+				<p>
+					Iam id ipsum absurdum, maximum malum neglegi. Deinde disputat, <strong>quod cuiusque</strong> generis animantium, curiosorum.
+				</p>
+				<p>
+					Istam voluptatem <em>perpetuam quis potest</em> praestare sapienti? Et nunc “quidem quod eam tuetur”,
+					ut de vite potissimum loquar, est id extrinsecus;
+				</p>
+			</div>
+		</div>
+	</main>
+
+	<footer>
+		<nav>
+			<ul>
+				<li>
+					<a href="https://github.com/ckeditor/ckeditor5" title="Visit Project's GitHub page">
+						<img src="img/gh.svg" alt="GitHub" /> CKEditor 5 on GitHub
+					</a>
+				</li>
+				<li>
+					<a href="http://www.facebook.com/ckeditor" title="Like Us on Facebook">Like Us</a>
+					/
+					<a href="http://twitter.com/ckeditor" title="Follow Us on Twitter">Follow Us</a>
+				</li>
+			</ul>
+		</nav>
+	</footer>
+
+	<script>
+
+		ClassicEditor.create( document.querySelector( '#editor' ), {
+			toolbar: [ 'headings', 'bold', 'italic', 'undo', 'redo' ]
+		} )
+		.then( editor => {
+			console.log( 'Editor was initialized', editor );
+			console.log( 'You can now play with it using global `editor` and `editable` variables.' );
+
+			window.editor = editor;
+			window.editable = editable = editor.editing.view.getRoot();
+		} )
+		.catch( err => {
+			console.error( err.stack );
+		} );
+
+	</script>
+</body>
+</html>

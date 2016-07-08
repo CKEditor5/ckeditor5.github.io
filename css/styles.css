@@ -1,0 +1,128 @@
+/*
+ * Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md or http://ckeditor.com/license
+ */
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,500);
+
+body, html {
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
+	line-height: 1.5;
+	text-align: center;
+	font-family: 'Roboto', sans-serif;
+	background: url( ../img/bg.jpg ) calc(50% + 100px) top no-repeat #201F24;
+	color: #fff;
+	font-weight: 100;
+}
+
+a {
+	color: #88d01c;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/* Responsive design failsafe */
+header > h1,
+header > p,
+.editor-area,
+footer {
+	padding: 0 2em;
+}
+
+/* ---- Header --------------------------------------------------- */
+header > h1 {
+	font-weight: 100;
+	font-size: 2.4em;
+	margin: 0;
+}
+
+header > a {
+	display: block;
+	padding: 45px 0;
+	margin: 0 0 3em;
+	background-color: rgba(39, 39, 41, 0.62);
+}
+
+header > a img {
+	vertical-align: middle;
+}
+
+header > p {
+	margin: 1em 0 3em;
+	font-size: 1.2em;
+	letter-spacing: 1px;
+}
+
+/* ---- CKEditor --------------------------------------------------- */
+.editor-area {
+	color: #333;
+	position: relative;
+}
+
+.editor-area:after {
+	content: '';
+	position: absolute;
+	z-index: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 50%;
+
+	background: linear-gradient(to bottom, rgba(39, 39, 41, 0.62) 0%, rgba(39, 39, 41, 0) 100% );
+}
+
+.ck-editor,
+.message {
+	position: relative;
+	z-index: 1;
+	max-width: 720px;
+	margin: 0 auto;
+	text-align: left;
+}
+
+.ck-editor .ck-editor__editable_inline {
+	padding: 1em 2em;
+}
+
+.ck-editor .ck-editor__editable_inline h2 {
+	font-weight: 500;
+}
+
+/* ---- Footer --------------------------------------------------- */
+footer nav ul {
+	margin: 3em 0;
+	padding: 0;
+}
+
+footer nav ul li {
+	list-style-type: none;
+	display: inline-block;
+}
+
+footer nav ul li + li {
+	margin-left: 4em;
+}
+
+footer nav a {
+	color: #fff;
+	text-decoration: none;
+	font-weight: 500;
+}
+
+footer nav a img {
+	vertical-align: top;
+	margin-right: .4em
+}
+
+/* ---- Message --------------------------------------------------- */
+.message {
+	background: #fff;
+	color: #333;
+	padding: 2em;
+	text-align: center;
+}
