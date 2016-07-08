@@ -57,19 +57,22 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 
 	<script>
 
-		ClassicEditor.create( document.querySelector( '#editor' ), {
-			toolbar: [ 'headings', 'bold', 'italic', 'undo', 'redo' ]
-		} )
-		.then( editor => {
-			console.log( 'Editor was initialized', editor );
-			console.log( 'You can now play with it using global `editor` and `editable` variables.' );
+		// Google Chrome only. Sorry.
+		if ( isCompatible ) {
+			ClassicEditor.create( document.querySelector( '#editor' ), {
+				toolbar: [ 'headings', 'bold', 'italic', 'undo', 'redo' ]
+			} )
+			.then( editor => {
+				console.log( 'Editor was initialized', editor );
+				console.log( 'You can now play with it using global `editor` and `editable` variables.' );
 
-			window.editor = editor;
-			window.editable = editable = editor.editing.view.getRoot();
-		} )
-		.catch( err => {
-			console.error( err.stack );
-		} );
+				window.editor = editor;
+				window.editable = editable = editor.editing.view.getRoot();
+			} )
+			.catch( err => {
+				console.error( err.stack );
+			} );
+		}
 
 	</script>
 </body>

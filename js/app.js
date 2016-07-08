@@ -5,8 +5,10 @@
 
 'use strict';
 
-// Display the message of shame.
-if ( navigator.userAgent.toLowerCase().indexOf( 'chrome' ) === -1 ) {
+var isCompatible = navigator.userAgent.toLowerCase().indexOf( 'chrome' ) != -1;
+
+if ( !isCompatible ) {
+	// Display the message of shame.
 	document.addEventListener( 'DOMContentLoaded', function() {
 		var editorElement = document.querySelector( '#editor' );
 		var message = document.createElement( 'p' );
