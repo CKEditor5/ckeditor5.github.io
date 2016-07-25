@@ -90,6 +90,11 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 			try {
 				ClassicEditor.create( document.querySelector( '#editor' ), {
 					toolbar: [ 'headings', 'bold', 'italic', 'undo', 'redo' ]
+				} ).then( function( editor ) {
+					window.editor = editor;
+				} )
+				.catch( function( err ) {
+					console.error( err.stack );
 				} );
 			} catch( e ) {
 				_.showCompatibilityMessage();
