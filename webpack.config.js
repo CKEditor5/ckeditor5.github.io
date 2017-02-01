@@ -27,10 +27,14 @@ module.exports = {
 		rules: [
 			{
 				test: /\.js$/,
-				loader: 'babel-loader',
-				query: {
-					presets: [ require( 'babel-preset-es2015' ) ]
-				}
+				use: [
+					{
+						loader: 'babel-loader',
+						query: {
+							presets: [ require( 'babel-preset-es2015' ) ]
+						}
+					}
+				]
 			},
 			{
 				// test: **/ckeditor5-*/theme/icons/*.svg
@@ -40,7 +44,16 @@ module.exports = {
 			{
 				// test: **/ckeditor5-*/theme/**/*.scss
 				test: /\.scss$/,
-				use: [ 'style-loader', 'css-loader', 'sass-loader' ]
+				use: [
+					'style-loader',
+					{
+						loader: 'css-loader',
+						options: {
+							minimize: true
+						}
+					},
+					'sass-loader'
+				]
 			}
 		]
 	},
