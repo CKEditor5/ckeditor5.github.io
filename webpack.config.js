@@ -7,13 +7,16 @@
 'use strict';
 
 const path = require( 'path' );
-const BabiliPlugin = require( 'babili-webpack-plugin' );
+const UglifyJsPlugin = require( 'webpack' ).optimize.UglifyJsPlugin;
 
 module.exports = {
 	context: __dirname,
 	target: 'web',
 
-	entry: './js/app',
+	entry: [
+		'babel-polyfill',
+		'./js/app'
+	],
 
 	output: {
 		path: './js',
@@ -22,6 +25,13 @@ module.exports = {
 
 	module: {
 		rules: [
+			{
+				test: /\.js$/,
+				loader: 'babel-loader',
+				query: {
+					presets: [ require( 'babel-preset-es2015' ) ]
+				}
+			},
 			{
 				// test: **/ckeditor5-*/theme/icons/*.svg
 				test: /ckeditor5-[^/]+\/theme\/icons\/[^/]+\.svg$/,
@@ -43,7 +53,7 @@ module.exports = {
 	},
 
 	plugins: [
-		new BabiliPlugin()
+		new UglifyJsPlugin()
 	],
 
 	devtool: 'source-map',
