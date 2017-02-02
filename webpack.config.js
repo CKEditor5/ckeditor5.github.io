@@ -14,7 +14,7 @@ module.exports = {
 	target: 'web',
 
 	entry: [
-		'babel-polyfill',
+		'regenerator-runtime/runtime',
 		'./js/app'
 	],
 
