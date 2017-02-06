@@ -1,26 +1,64 @@
 /**
- * @license Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  */
 
-'use strict';
+import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classic';
+import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat';
+import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
+import Clipboard from '@ckeditor/ckeditor5-clipboard/src/clipboard';
+import Enter from '@ckeditor/ckeditor5-enter/src/enter';
+import Heading from '@ckeditor/ckeditor5-heading/src/heading';
+import Image from '@ckeditor/ckeditor5-image/src/image';
+import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle/imagestyle';
+import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
+import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
+import Link from '@ckeditor/ckeditor5-link/src/link';
+import List from '@ckeditor/ckeditor5-list/src/list';
+import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
+import Typing from '@ckeditor/ckeditor5-typing/src/typing';
+import Undo from '@ckeditor/ckeditor5-undo/src/undo';
 
-// Impromptu namespace for the sample.
-var _ = {
-	showCompatibilityMessage: function() {
-		var editorElement = document.querySelector( '#editor' );
-		var message = document.createElement( 'p' );
+try {
+	ClassicEditor.create( document.querySelector( '#editor' ), {
+		plugins: [
+			Bold,
+			Clipboard,
+			Enter,
+			Heading,
+			Image,
+			ImageStyle,
+			ImageToolbar,
+			Italic,
+			Link,
+			List,
+			Paragraph,
+			Typing,
+			Undo
+		],
+		toolbar: [ 'headings', 'bold', 'italic', 'link', 'unlink', 'bulletedList', 'numberedList', 'undo', 'redo' ]
+	} ).then( function( editor ) {
+		window.editor = editor;
+	} )
+	.catch( function( err ) {
+		console.error( err.stack );
+	} );
+} catch ( e ) {
+	showCompatibilityMessage();
+}
 
-		message.innerHTML = '\
-			<h2>That\'s a shame...</h2>\
-			<p>We\'re not proud of this but this early developer preview does not work in your web browser.</p>\
-			<p>Please consider using <a href="https://www.google.com/chrome/">Google Chrome</a> instead.</p>\
-			<p>We\'re terribly sorry.</p>\
-		';
+function showCompatibilityMessage() {
+	var editorElement = document.querySelector( '#editor' );
+	var message = document.createElement( 'p' );
 
-		message.classList.add( 'message' );
+	message.innerHTML = `
+		<h2>That's a shame...</h2>
+		<p>We're not proud of this but this early developer preview does not work in your web browser.</p>
+		<p>Please consider using <a href="https://www.google.com/chrome/">Google Chrome</a> instead.</p>
+		<p>We're terribly sorry.</p>
+	`;
 
-		editorElement.style.display = 'none';
-		editorElement.parentNode.insertBefore( message, editorElement );
-	}
-};
+	message.classList.add( 'message' );
+
+	editorElement.style.display = 'none';
+	editorElement.parentNode.insertBefore( message, editorElement );
+}
