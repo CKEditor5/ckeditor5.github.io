@@ -21,6 +21,7 @@ import Undo from '@ckeditor/ckeditor5-undo/src/undo';
 try {
 	ClassicEditor.create( document.querySelector( '#editor' ), {
 		plugins: [
+			Autoformat,
 			Bold,
 			Clipboard,
 			Enter,
@@ -36,19 +37,19 @@ try {
 			Undo
 		],
 		toolbar: [ 'headings', 'bold', 'italic', 'link', 'unlink', 'bulletedList', 'numberedList', 'undo', 'redo' ]
-	} ).then( function( editor ) {
+	} ).then( ( editor ) => {
 		window.editor = editor;
 	} )
-	.catch( function( err ) {
+	.catch( ( err ) => {
 		console.error( err.stack );
 	} );
-} catch ( e ) {
+} catch ( err ) {
 	showCompatibilityMessage();
 }
 
 function showCompatibilityMessage() {
-	var editorElement = document.querySelector( '#editor' );
-	var message = document.createElement( 'p' );
+	const editorElement = document.querySelector( '#editor' );
+	const message = document.createElement( 'p' );
 
 	message.innerHTML = `
 		<h2>That's a shame...</h2>
