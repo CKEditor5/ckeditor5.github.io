@@ -9,5 +9,5 @@ npm i
 mkdir packages
 ln -s /workspace/ckeditor5/packages packages/\@ckeditor
 
-npm run bundle
+npm run build
 ```
