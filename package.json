@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Source of https://ckeditor5.github.io",
   "scripts": {
-    "build": "webpack"
+    "build": "rm -rf build/ && webpack"
   },
   "repository": {
     "type": "git",
@@ -15,16 +15,22 @@
     "url": "https://github.com/CKEditor5/ckeditor5.github.io/issues"
   },
   "homepage": "https://github.com/CKEditor5/ckeditor5.github.io#readme",
+  "dependencies": {
+    "@ckeditor/ckeditor5-autoformat": "^0.5.0",
+    "@ckeditor/ckeditor5-editor-classic": "^0.7.2",
+    "@ckeditor/ckeditor5-presets": "^0.2.1"
+  },
   "devDependencies": {
+    "@ckeditor/ckeditor5-dev-utils": "^2.5.0",
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",
-    "babel-preset-es2015": "^6.22.0",
-    "css-loader": "^0.26.1",
+    "babili-webpack-plugin": "0.0.11",
+    "css-loader": "^0.28.0",
+    "extract-text-webpack-plugin": "^2.1.0",
     "node-sass": "^4.5.0",
     "raw-loader": "^0.5.1",
-    "regenerator-runtime": "^0.10.1",
-    "sass-loader": "^4.1.1",
-    "style-loader": "^0.13.1",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.16.1",
     "webpack": "^2.2.1"
   }
 }

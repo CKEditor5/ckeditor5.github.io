@@ -7,53 +7,44 @@
 'use strict';
 
 const path = require( 'path' );
-const UglifyJsPlugin = require( 'webpack' ).optimize.UglifyJsPlugin;
+const webpack = require( 'webpack' );
+const { bundler } = require( '@ckeditor/ckeditor5-dev-utils' );
+
+const BabiliPlugin = require( 'babili-webpack-plugin' );
+const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 
 module.exports = {
-	context: __dirname,
 	target: 'web',
 
 	entry: [
-		'regenerator-runtime/runtime',
 		'./js/app'
 	],
 
 	output: {
-		path: './js',
-		filename: 'app.bundle.js'
+		path: path.resolve( __dirname, 'build' ),
+		filename: 'app.js'
 	},
 
 	module: {
 		rules: [
 			{
-				test: /\.js$/,
-				use: [
-					{
-						loader: 'babel-loader',
-						query: {
-							presets: [ require( 'babel-preset-es2015' ) ]
-						}
-					}
-				]
-			},
-			{
-				// test: **/ckeditor5-*/theme/icons/*.svg
-				test: /ckeditor5-[^/]+\/theme\/icons\/[^/]+\.svg$/,
+				test: /\.svg$/,
 				use: [ 'raw-loader' ]
 			},
 			{
-				// test: **/ckeditor5-*/theme/**/*.scss
 				test: /\.scss$/,
-				use: [
-					'style-loader',
-					{
-						loader: 'css-loader',
-						options: {
-							minimize: true
-						}
-					},
-					'sass-loader'
-				]
+				use: ExtractTextPlugin.extract( {
+					fallback: 'style-loader',
+					use: [
+						{
+							loader: 'css-loader',
+							options: {
+								minimize: true
+							}
+						},
+						'sass-loader'
+					]
+				} )
 			}
 		]
 	},
@@ -66,8 +57,13 @@ module.exports = {
 	},
 
 	plugins: [
-		new UglifyJsPlugin( {
-			sourceMap: true
+        new ExtractTextPlugin( 'styles.css' ),
+		new BabiliPlugin( null, {
+			comments: false
+		} ),
+		new webpack.BannerPlugin( {
+			banner: bundler.getLicenseBanner(),
+			raw: true
 		} )
 	],
 
