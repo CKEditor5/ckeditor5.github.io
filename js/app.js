@@ -2,12 +2,12 @@
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  */
 
-import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classic';
+import InlineEditor from '@ckeditor/ckeditor5-editor-inline/src/inline';
 import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat';
 import ArticlePreset from '@ckeditor/ckeditor5-presets/src/article';
 
 try {
-	ClassicEditor.create( document.querySelector( '#editor' ), {
+	InlineEditor.create( document.querySelector( '#editor' ), {
 		plugins: [
 			Autoformat,
 			ArticlePreset
