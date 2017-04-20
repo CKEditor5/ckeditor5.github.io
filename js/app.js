@@ -23,7 +23,10 @@ try {
 			'blockQuote',
 			'undo',
 			'redo'
-		]
+		],
+		image: {
+			toolbar: [ 'imageStyleFull', 'imageStyleSide', '|' , 'imageTextAlternative' ]
+		}
 	} ).then( ( editor ) => {
 		window.editor = editor;
 	} )
