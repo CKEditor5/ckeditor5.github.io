@@ -6,7 +6,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>CKEditor&nbsp;5 Developer Preview (v0.9.0)</title>
+	<title>CKEditor&nbsp;5 Developer Preview (v0.10.0)</title>
 	<!-- Hotjar Tracking Code for https://ckeditor5.github.io -->
 	<script>
 		(function(h,o,t,j,a,r){
@@ -18,8 +18,8 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 			a.appendChild(r);
 		})(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
 	</script>
-	<link rel="stylesheet" href="css/styles.css?0.9.0">
-	<link rel="stylesheet" href="build/styles.css?0.9.0">
+	<link rel="stylesheet" href="css/styles.css?0.10.0">
+	<link rel="stylesheet" href="build/styles.css?0.10.0">
 </head>
 <body>
 	<!-- Google Tag Manager -->
@@ -36,7 +36,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 		<div class="header__nav__wrapper">
 			<div class="header__nav__inner">
 				<nav class="header__nav__inner_left">
-					<a href="/" title="CKEditor 5 Developer Preview (v0.9.0)"><img src="img/logo.svg" alt="CKEditor 5" /></a>
+					<a href="/" title="CKEditor 5 Developer Preview (v0.10.0)"><img src="img/logo.svg" alt="CKEditor 5" /></a>
 				</nav>
 				<nav class="header__nav__inner_right">
 					<a href="https://github.com/ckeditor/ckeditor5" title="See Project GitHub Page"><img src="img/gh.svg" alt="GitHub" />GitHub</a>
@@ -46,41 +46,65 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 			</div>
 		</div>
 
-		<h1>CKEditor&nbsp;5 Developer Preview (v0.9.0)</h1>
+		<h1>CKEditor&nbsp;5 Developer Preview (v0.10.0)</h1>
 	</header>
 
 	<main>
 		<div id="editor">
-			<h2>About CKEditor&nbsp;5, v0.9.0</h2>
+			<h2>About CKEditor&nbsp;5, v0.10.0</h2>
 
-			<p>This is the <a href="https://github.com/ckeditor/ckeditor5-design/issues/176">9th developer preview</a> of <a href="https://ckeditor5.github.io">CKEditor&nbsp;5</a>.</p>
+			<p>This is the <a href="TODO">10th developer preview</a> of <a href="https://ckeditor5.github.io">CKEditor&nbsp;5</a>.</p>
+
+			<p>It is a result of <strong>3 years</strong> of intense work and over <strong>1260 closed tickets</strong>. This amazing effort was required to build the next generation editor from scratch while meeting all the challenging design goals.</p>
+
+			<h3>Design</h3>
+
+			<p>CKEditor&nbsp;5's main design goal was to create a highly extensible and flexible <strong>editing framework</strong> on top of which <strong>editing solutions</strong> will be built. We explained this design choice in <a href="https://medium.com/content-uneditable/ckeditor-5-the-future-of-rich-text-editing-2b9300f9df2c">&ldquo;CKEditor&nbsp;5: The future of rich text editing&ldquo;</a>:</p>
+
+			<blockquote><p>(…) we are changing our approach with CKEditor 5. We will no longer have only two solutions available, instead CKEditor will be seen as a framework for editing solutions. At the same time, we will be developing several out-of-the-box solutions based on it, which will be available to use in many different contexts. It will be a real “one size fits all” approach, from little requirements, to super advanced full featured applications.</p></blockquote>
+
+			<p>In order to be truly flexible, the editing framework implements minimal business logic. All features, even such basic ones like <a href="https://github.com/ckeditor/ckeditor5-typing">typing</a>, are implemented in forms of <strong>highly orthogonal and independent plugins</strong>.</p>
+
+			<p>The most important and complex part of the <a href="https://github.com/ckeditor/ckeditor5#editing-framework">editing framework</a> is the <a href="https://github.com/ckeditor/ckeditor5-engine">editing engine</a>. It is responsible for creating an MV* architecture for editing solutions and meets the following requirements.</p>
+
+			<ul>
+				<li><strong>Its custom data model supports real-time collaboration</strong> (by implementing <a href="https://en.wikipedia.org/wiki/Operational_transformation">operational transformation</a> and many other mechanisms crucial to correctly handle multiple users).</li>
+				<li><strong>The data model is a tree structure</strong> (most of the simpler solutions operate on a flat structure) which allows for implementing such a rich-text features as tables or images with rich captions.</li>
+				<li><strong>Conversion of changes applied to the model is performed by fully extensible pipelines.</strong> This allows implementing granular, composable features.</li>
+				<li><strong>The base editing operations are controlled through a schema and events.</strong></li>
+				<li>During the model to view conversion, <strong>all changes are first rendered to a virtual DOM</strong>, saving feature developers from dealing with various browser quirks.</li>
+			</ul>
+
+			<p>These are just a few most important features of CKEditor&nbsp;5's editing engine. We are now working on a documentation which will cover the entire architecture.</p>
+
+			<h3>Roadmap</h3>
 
 			<figure class="image">
 				<img src="img/sample.jpg" alt="Autumn fields" />
 				<figcaption><strong>BREAKING NEWS</strong>: We'll be ready before summer.</figcaption>
 			</figure>
 
-			<p>After nearly 3 years of building the next generation editor from scratch and closing over 1170 tickets, we created a highly <strong>extensible and flexible architecture</strong> which consists of an <strong>amazing editing framework</strong> and <strong>editing solutions</strong> that will be built on top of it.</p>
-
-			<p>We explained this design choice in <a href="https://medium.com/content-uneditable/ckeditor-5-the-future-of-rich-text-editing-2b9300f9df2c">&ldquo;CKEditor 5: The future of rich text editing&ldquo;</a>:</p>
-
-			<blockquote><p>(…) we are changing our approach with CKEditor 5. We will no longer have only two solutions available, instead CKEditor will be seen as a framework for editing solutions. At the same time, we will be developing several out-of-the-box solutions based on it, which will be available to use in many different contexts. It will be a real “one size fits all” approach, from little requirements, to super advanced full featured applications.</p></blockquote>
-
-			<h3>Notes</h3>
-
-			<p><a href="https://ckeditor5.github.io">CKEditor&nbsp;5</a> is <em>under heavy development</em> and this demo is not production-ready software. For example:</p>
+			<p><a href="https://ckeditor5.github.io">CKEditor&nbsp;5</a> is <em>under heavy development</em> and this demo is not production-ready software yet. However, with only a couple of remaining tasks we are very close to reaching the 1.0.0 alpha version:</p>
 
 			<ul>
-				<li><strong>Only Chrome, Opera and Safari are supported</strong>.</li>
-				<li>Firefox requires enabling the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/onselectionchange">&ldquo;dom.select_events.enabled&rdquo;</a> option.</li>
-				<li><a href="https://github.com/ckeditor/ckeditor5/issues/342">Support for pasting</a> is under development (content filtering is unstable).</li>
+				<li>fixing all the critical <em>bugs</em> 🐛🐛🐛,</li>
+				<li>performing the most important code refactoring and cleanup,</li>
+				<li>writing basic guides, tutorials and samples.</li>
 			</ul>
 
-			<p>It has <em>bugs</em> 🐛🐛🐛 that we are aware of &mdash; and that we will be working on in the next few iterations of the project. Stay tuned for some updates soon!</p>
+			<p>Check out the <a href="https://github.com/ckeditor/ckeditor5-design/issues/172">full roadmap to 1.0.0 and beyond</a> and stay tuned for some updates soon!</p>
 		</div>
 
 		<section id="changelog">
 			<div id="changelog__timeline">
+				<section>
+					<h2>v0.10.0</h2>
+					<time datetime="2017-05-07T21:57:04Z">May 7, 2017</time>
+					<p>
+						TODO
+					</p>
+				</section>
+
 				<section>
 					<h2>v0.9.0</h2>
 					<time datetime="2017-04-05T17:58:27Z">Apr 5, 2017</time>
