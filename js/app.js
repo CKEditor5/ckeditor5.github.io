@@ -9,8 +9,8 @@ import ArticlePreset from '@ckeditor/ckeditor5-presets/src/article';
 try {
 	ClassicEditor.create( document.querySelector( '#editor' ), {
 		plugins: [
-			Autoformat,
-			ArticlePreset
+			ArticlePreset,
+			Autoformat
 		],
 		toolbar: [
 			'headings',
@@ -34,6 +34,7 @@ try {
 		console.error( err.stack );
 	} );
 } catch ( err ) {
+	console.error( err.stack );
 	showCompatibilityMessage();
 }
 
@@ -43,9 +44,8 @@ function showCompatibilityMessage() {
 
 	message.innerHTML = `
 		<h2>That's a shame...</h2>
-		<p>We're not proud of this but this early developer preview does not work in your web browser.</p>
-		<p>Please consider using <a href="https://www.google.com/chrome/">Google Chrome</a> instead.</p>
-		<p>We're terribly sorry.</p>
+		<p>We're not proud of this but this developer preview does not work in your web browser.</p>
+		<p>If you think that this is inacceptable, please <a href="https://github.com/ckeditor/ckeditor5/issues/new">report this to us</a>.</p>
 	`;
 
 	message.classList.add( 'message' );
