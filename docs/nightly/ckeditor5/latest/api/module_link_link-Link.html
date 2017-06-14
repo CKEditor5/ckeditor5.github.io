@@ -181,25 +181,27 @@ plugins, but which doesn&apos;t <code><a href="module_core_plugin-PluginInterfac
                       </div>
                     </div>
                   </li>
-                  <li class="collapsing-list__item" data-protected="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_hidePanel">
-                      <h3><code><a href="#_hidePanel">_hidePanel</a>( [ focusEditable ] )</code></h3>
+                  <li class="collapsing-list__item" data-private="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="_getSelectedLinkElement">
+                      <h3><code><a href="#_getSelectedLinkElement">_getSelectedLinkElement</a>() &rarr;  <span><a class="collapsing-list__type" href="module_link_linkelement-LinkElement.html">LinkElement</a></span> | null</code></h3>
                       <p class="badges">
-<span class="badge badge--orange">protected</span>
+<span class="badge badge--red">private</span>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Removes the <code><a href="module_link_link-Link.html#formView">formView</a></code> from the <code><a href="module_link_link-Link.html#_balloon">_balloon</a></code>.
+                      <p class="collapsing-list__excerpt">Returns the <code><a href="module_link_linkelement-LinkElement.html">LinkElement</a></code> under
+<code><a href="module_engine_viewithdocument-Document.html">editing view&apos;s</a></code> selection or <code>null</code>
+if there&apos;s none.
                       </p>
                       <div class="collapsing-list__content">
-<p>See <code><a href="module_link_link-Link.html#_showPanel">_showPanel</a></code>.</p>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> [ focusEditable ] : Boolean</code></dt>
-                                  <dd><p>When <code>true</code>, editable focus will be restored on panel hide.</p>
-                                    <p>Defaults to <code>false</code></p>
+<p><strong>Note</strong>: For non&#x2013;collapsed selection the <code>LinkElement</code> is only returned when <strong>fully</strong>
+selected and the <strong>only</strong> element within the selection boundaries.</p>
+                        <h4>Returns</h4>
+                        <dl>
+                                  <dt><code><span><a class="collapsing-list__type" href="module_link_linkelement-LinkElement.html">LinkElement</a></span> | null</code></dt>
+                                  <dd>
                                   </dd>
-                                </dl>
+                        </dl>
                       </div>
                     </div>
                   </li>
@@ -257,30 +259,6 @@ entire link element. Otherwise, it will be attached to the selection.</p>
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_getSelectedLinkElement">
-                      <h3><code><a href="#_getSelectedLinkElement">_getSelectedLinkElement</a>() &rarr;  <span><a class="collapsing-list__type" href="module_link_linkelement-LinkElement.html">LinkElement</a></span> | null</code></h3>
-                      <p class="badges">
-<span class="badge badge--red">private</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Returns the <code><a href="module_link_linkelement-LinkElement.html">LinkElement</a></code> under
-<code><a href="module_engine_viewithdocument-Document.html">editing view&apos;s</a></code> selection or <code>null</code>
-if there&apos;s none.
-                      </p>
-                      <div class="collapsing-list__content">
-<p><strong>Note</strong>: For non&#x2013;collapsed selection the <code>LinkElement</code> is only returned when <strong>fully</strong>
-selected and the <strong>only</strong> element within the selection boundaries.</p>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code><span><a class="collapsing-list__type" href="module_link_linkelement-LinkElement.html">LinkElement</a></span> | null</code></dt>
-                                  <dd>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-private="true">
                     <div class="collapsing-list__term toggler--collapsed" id="_createForm">
                       <h3><code><a href="#_createForm">_createForm</a>() &rarr;  <span><a class="collapsing-list__type" href="module_link_ui_linkformview-LinkFormView.html">LinkFormView</a></span></code></h3>
                       <p class="badges">
@@ -297,6 +275,28 @@ selected and the <strong>only</strong> element within the selection boundaries.<
                                   <dd><p>Link form instance.</p>
                                   </dd>
                         </dl>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-protected="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="_hidePanel">
+                      <h3><code><a href="#_hidePanel">_hidePanel</a>( [ focusEditable ] )</code></h3>
+                      <p class="badges">
+<span class="badge badge--orange">protected</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Removes the <code><a href="module_link_link-Link.html#formView">formView</a></code> from the <code><a href="module_link_link-Link.html#_balloon">_balloon</a></code>.
+                      </p>
+                      <div class="collapsing-list__content">
+<p>See <code><a href="module_link_link-Link.html#_showPanel">_showPanel</a></code>.</p>
+                        <h4>Parameters</h4>
+                                <dl>
+                                  <dt><code> [ focusEditable ] : Boolean</code></dt>
+                                  <dd><p>When <code>true</code>, editable focus will be restored on panel hide.</p>
+                                    <p>Defaults to <code>false</code></p>
+                                  </dd>
+                                </dl>
                       </div>
                     </div>
                   </li>
@@ -340,66 +340,6 @@ When view is already added then try to focus it <code>focusInput</code> paramete
 <code><a href="module_link_link-Link.html#formView">formView</a></code> is visible or not.
                       </p>
                       <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="decorate">
-                      <h3><code><a href="#decorate">decorate</a>( methodName )</code></h3>
-                      <p class="badges">
-<span class="badge badge--gray">inherited</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Turns the given methods of this object into event-based ones. This means that the new method will fire an event
-(named after the method) and the original action will be plugged as a listener to that event.
-                      </p>
-                      <div class="collapsing-list__content">
-<p>This is a very simplified method decoration. Itself it doesn&apos;t change the behavior of a method (expect adding the event),
-but it allows to modify it later on by listening to the method&apos;s event.</p>
-<p>For example, in order to cancel the method execution one can stop the event:</p>
-<pre class="prettyprint source"><code>    class Foo {
-        constructor() {
-            this.decorate( &apos;method&apos; );
-        }
-
-        method() {
-            console.log( &apos;called!&apos; );
-        }
-    }
-
-    const foo = new Foo();
-    foo.on( &apos;method&apos;, ( evt ) =&gt; {
-        evt.stop();
-    }, { priority: &apos;high&apos; } );
-
-    foo.method(); // Nothing is logged.</code></pre><p>Note: we used a high priority listener here to execute this callback before the one which
-calls the orignal method (which used the default priority).</p>
-<p>It&apos;s also possible to change the return value:</p>
-<pre class="prettyprint source"><code>    foo.on( &apos;method&apos;, ( evt ) =&gt; {
-        evt.return = &apos;Foo!&apos;;
-    } );
-
-    foo.method(); // -&gt; &apos;Foo&apos;</code></pre><p>Finally, it&apos;s possible to access and modify the parameters:</p>
-<pre class="prettyprint source"><code>    method( a, b ) {
-        console.log( `${ a }, ${ b }`  );
-    }
-
-    // ...
-
-    foo.on( &apos;method&apos;, ( evt, args ) =&gt; {
-        args[ 0 ] = 3;
-
-        console.log( args[ 1 ] ); // -&gt; 2
-    }, { priority: &apos;high&apos; } );
-
-    foo.method( 1, 2 ); // -&gt; &apos;3, 2&apos;</code></pre>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> methodName : String</code></dt>
-                                  <dd><p>Name of the method to decorate.</p>
-                                  </dd>
-                                </dl>
                       </div>
                     </div>
                   </li>

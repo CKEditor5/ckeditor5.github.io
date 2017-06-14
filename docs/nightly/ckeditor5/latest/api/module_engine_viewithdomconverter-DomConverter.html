@@ -160,25 +160,24 @@ view to DOM conversion and to recognize block fillers during the DOM to view con
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="getCorrespondingDomDocumentFragment">
-                      <h3><code><a href="#getCorrespondingDomDocumentFragment">getCorrespondingDomDocumentFragment</a>( viewDocumentFragment ) &rarr;  DocumentFragment | null</code></h3>
+                    <div class="collapsing-list__term toggler--collapsed" id="getCorrespondingDomElement">
+                      <h3><code><a href="#getCorrespondingDomElement">getCorrespondingDomElement</a>( viewElement ) &rarr;  HTMLElement | null</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Gets corresponding DOM document fragment. Returns document fragment if an DOM element was
-<code><a href="module_engine_viewithdomconverter-DomConverter.html#bindDocumentFragments">bound</a></code> to the given view document fragment or <code>null</code>
-otherwise.
+                      <p class="collapsing-list__excerpt">Gets corresponding DOM element. Returns element if an DOM element was
+<code><a href="module_engine_viewithdomconverter-DomConverter.html#bindElements">bound</a></code> to the given view element or <code>null</code> otherwise.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
                                 <dl>
-                                  <dt><code> viewDocumentFragment : <span><a class="collapsing-list__type" href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></span></code></dt>
-                                  <dd><p>View document fragment.</p>
+                                  <dt><code> viewElement : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span></code></dt>
+                                  <dd><p>View element.</p>
                                   </dd>
                                 </dl>
                         <h4>Returns</h4>
                         <dl>
-                                  <dt><code>DocumentFragment | null</code></dt>
-                                  <dd><p>Corresponding document fragment or <code>null</code> if no fragment was bound.</p>
+                                  <dt><code>HTMLElement | null</code></dt>
+                                  <dd><p>Corresponding element or <code>null</code> if none element was bound.</p>
                                   </dd>
                         </dl>
                       </div>
@@ -383,6 +382,8 @@ Additionally this method omits block <code><a href="module_engine_viewithfiller.
                       <div class="collapsing-list__content">
 <p>If the position is inside a <code><a href="module_engine_viewithfiller.html">filler</a></code> which has no corresponding view node,
 position of the filler will be converted and returned.</p>
+<p>If the position is inside DOM element rendered by <code><a href="module_engine_viewithuielement-UIElement.html">UIElement</a></code>
+that position will be converted to view position before that UIElement.</p>
 <p>If structures are too different and it is not possible to find corresponding position then <code>null</code> will be returned.</p>
                         <h4>Parameters</h4>
                                 <dl>
@@ -458,6 +459,7 @@ Ranges which cannot be converted will be omitted.
                       <p class="collapsing-list__excerpt">Converts DOM to view. For all text nodes, not bound elements and document fragments new items will
 be created. For bound elements and document fragments function will return corresponding items. For
 <code><a href="module_engine_viewithfiller.html">fillers</a></code> <code>null</code> will be returned.
+For all DOM elements rendered by <code><a href="module_engine_viewithuielement-UIElement.html">UIElement</a></code> that UIElement will be returned.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -562,6 +564,31 @@ for document fragments.
                       </div>
                     </div>
                   </li>
+                  <li class="collapsing-list__item" data-public="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="getCorrespondingDomDocumentFragment">
+                      <h3><code><a href="#getCorrespondingDomDocumentFragment">getCorrespondingDomDocumentFragment</a>( viewDocumentFragment ) &rarr;  DocumentFragment | null</code></h3>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Gets corresponding DOM document fragment. Returns document fragment if an DOM element was
+<code><a href="module_engine_viewithdomconverter-DomConverter.html#bindDocumentFragments">bound</a></code> to the given view document fragment or <code>null</code>
+otherwise.
+                      </p>
+                      <div class="collapsing-list__content">
+                        <h4>Parameters</h4>
+                                <dl>
+                                  <dt><code> viewDocumentFragment : <span><a class="collapsing-list__type" href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></span></code></dt>
+                                  <dd><p>View document fragment.</p>
+                                  </dd>
+                                </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                                  <dt><code>DocumentFragment | null</code></dt>
+                                  <dd><p>Corresponding document fragment or <code>null</code> if no fragment was bound.</p>
+                                  </dd>
+                        </dl>
+                      </div>
+                    </div>
+                  </li>
                   <li class="collapsing-list__item" data-private="true">
                     <div class="collapsing-list__term toggler--collapsed" id="_getTouchingViewTextNode">
                       <h3><code><a href="#_getTouchingViewTextNode">_getTouchingViewTextNode</a>( node, getNext ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithtext-Text.html">Text</a></span></code></h3>
@@ -587,30 +614,6 @@ in the same block element. If there is no such sibling, <code>null</code> is ret
                         <dl>
                                   <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithtext-Text.html">Text</a></span></code></dt>
                                   <dd>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="getCorrespondingDomElement">
-                      <h3><code><a href="#getCorrespondingDomElement">getCorrespondingDomElement</a>( viewElement ) &rarr;  HTMLElement | null</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Gets corresponding DOM element. Returns element if an DOM element was
-<code><a href="module_engine_viewithdomconverter-DomConverter.html#bindElements">bound</a></code> to the given view element or <code>null</code> otherwise.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> viewElement : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span></code></dt>
-                                  <dd><p>View element.</p>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code>HTMLElement | null</code></dt>
-                                  <dd><p>Corresponding element or <code>null</code> if none element was bound.</p>
                                   </dd>
                         </dl>
                       </div>
@@ -706,6 +709,7 @@ bound.</p>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Gets corresponding view element. Returns element if an view element was
 <code><a href="module_engine_viewithdomconverter-DomConverter.html#bindElements">bound</a></code> to the given DOM element or <code>null</code> otherwise.
+For all DOM elements rendered by <code><a href="module_engine_viewithuielement-UIElement.html">UIElement</a></code> that UIElement will be returned.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -736,6 +740,7 @@ corresponding text node is returned based on the sibling or parent.
 to find the corresponding text node.</p>
 <p>If this is a first child in the parent and the parent is a <code><a href="module_engine_viewithdomconverter-DomConverter.html#bindElements">bound</a></code>
 element, it is used to find the corresponding text node.</p>
+<p>For all text nodes rendered by <code><a href="module_engine_viewithuielement-UIElement.html">UIElement</a></code> that UIElement will be returned.</p>
 <p>Otherwise <code>null</code> is returned.</p>
 <p>Note that for the block or inline <code><a href="module_engine_viewithfiller.html">filler</a></code> this method returns <code>null</code>.</p>
                         <h4>Parameters</h4>
@@ -749,6 +754,30 @@ element, it is used to find the corresponding text node.</p>
                                   <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithtext-Text.html">Text</a></span> | null</code></dt>
                                   <dd><p>Corresponding view text node or <code>null</code>, if it was not possible to find a
 corresponding node.</p>
+                                  </dd>
+                        </dl>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-public="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="getParentUIElement">
+                      <h3><code><a href="#getParentUIElement">getParentUIElement</a>( domNode ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithuielement-UIElement.html">UIElement</a></span> | null</code></h3>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Returns parent <code><a href="module_engine_viewithuielement-UIElement.html">UIElement</a></code> for provided DOM node. Returns null if there is no
+parent UIElement.
+                      </p>
+                      <div class="collapsing-list__content">
+                        <h4>Parameters</h4>
+                                <dl>
+                                  <dt><code> domNode : Node</code></dt>
+                                  <dd>
+                                  </dd>
+                                </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                                  <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithuielement-UIElement.html">UIElement</a></span> | null</code></dt>
+                                  <dd>
                                   </dd>
                         </dl>
                       </div>

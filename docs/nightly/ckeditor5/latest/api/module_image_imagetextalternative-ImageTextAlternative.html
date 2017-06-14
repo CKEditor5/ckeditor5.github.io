@@ -240,66 +240,6 @@ editor&apos;s <code><a href="module_ui_componentfactory-ComponentFactory.html">C
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="decorate">
-                      <h3><code><a href="#decorate">decorate</a>( methodName )</code></h3>
-                      <p class="badges">
-<span class="badge badge--gray">inherited</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Turns the given methods of this object into event-based ones. This means that the new method will fire an event
-(named after the method) and the original action will be plugged as a listener to that event.
-                      </p>
-                      <div class="collapsing-list__content">
-<p>This is a very simplified method decoration. Itself it doesn&apos;t change the behavior of a method (expect adding the event),
-but it allows to modify it later on by listening to the method&apos;s event.</p>
-<p>For example, in order to cancel the method execution one can stop the event:</p>
-<pre class="prettyprint source"><code>    class Foo {
-        constructor() {
-            this.decorate( &apos;method&apos; );
-        }
-
-        method() {
-            console.log( &apos;called!&apos; );
-        }
-    }
-
-    const foo = new Foo();
-    foo.on( &apos;method&apos;, ( evt ) =&gt; {
-        evt.stop();
-    }, { priority: &apos;high&apos; } );
-
-    foo.method(); // Nothing is logged.</code></pre><p>Note: we used a high priority listener here to execute this callback before the one which
-calls the orignal method (which used the default priority).</p>
-<p>It&apos;s also possible to change the return value:</p>
-<pre class="prettyprint source"><code>    foo.on( &apos;method&apos;, ( evt ) =&gt; {
-        evt.return = &apos;Foo!&apos;;
-    } );
-
-    foo.method(); // -&gt; &apos;Foo&apos;</code></pre><p>Finally, it&apos;s possible to access and modify the parameters:</p>
-<pre class="prettyprint source"><code>    method( a, b ) {
-        console.log( `${ a }, ${ b }`  );
-    }
-
-    // ...
-
-    foo.on( &apos;method&apos;, ( evt, args ) =&gt; {
-        args[ 0 ] = 3;
-
-        console.log( args[ 1 ] ); // -&gt; 2
-    }, { priority: &apos;high&apos; } );
-
-    foo.method( 1, 2 ); // -&gt; &apos;3, 2&apos;</code></pre>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> methodName : String</code></dt>
-                                  <dd><p>Name of the method to decorate.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
                     <div class="collapsing-list__term toggler--collapsed" id="destroy">
                       <h3><code><a href="#destroy">destroy</a>() &rarr;  null | Promise</code></h3>
                       <p class="badges">

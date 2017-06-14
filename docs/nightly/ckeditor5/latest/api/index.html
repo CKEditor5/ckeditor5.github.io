@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BaseCommand - CKEditor 5</title>
+    <title>API documentation - CKEditor 5</title>
     <link rel="stylesheet" href="../../../assets/css/styles.css" type="text/css" media="screen">
     <script src="../../../assets/js/app.js"></script>
   </head>
@@ -11,7 +11,7 @@
     <header class="top">
       <div class="top__logo"><a class="top__logo__link" href="../index.html"><img src="../assets/img/project-logo.svg" alt="CKEditor 5"></a></div>
       <ul class="top__menu">
-        <li><a class="top__menu__item--active" href="../api/index.html">API</a></li>
+        <li><a class="top__menu__item--active" href="">API</a></li>
         <li><a href="../framework/index.html">Framework</a></li>
         <li><a href="../builds/index.html">Builds</a></li>
       </ul>
@@ -22,276 +22,9 @@
     </header>
     <main class="main">
       <section class="main__content formatted">
-        <h1><img src="../../../assets/img/cog.svg" alt="Class" title="Class">
-BaseCommand
-        </h1>
-        <p><span class="badge">class</span>
-<span class="badge badge--orange">protected</span>
-        </p>
-        <nav class="api-info-box side-box side-box--wide">
-          <dl>
-                    <dt>Hierarchy</dt>
-                    <dd>
-                      <ul class="hierarchy-list">
-                                <li><code><span><a href="module_core_command-Command.html">Command</a></span></code>
-                                  <ul>
-                                            <li><code><span><a href="module_undo_basecommand-BaseCommand.html">BaseCommand</a></span></code>
-                                            </li>
-                                  </ul>
-                                </li>
-                      </ul>
-                    </dd>
-                    <dt>Implements</dt>
-                    <dd>
-                      <ul>
-                                <li><code><span><a href="module_utils_observablemixin-Observable.html">Observable</a></span></code></li>
-                                <li><code><span><a href="module_utils_emittermixin-Emitter.html">Emitter</a></span></code></li>
-                      </ul>
-                    </dd>
-                    <dt>Mixes</dt>
-                    <dd>
-                      <ul>
-                                <li><code><span><a href="module_utils_observablemixin-ObservableMixin.html">ObservableMixin</a></span></code></li>
-                                <li><code><span><a href="module_utils_emittermixin-EmitterMixin.html">EmitterMixin</a></span></code></li>
-                      </ul>
-                    </dd>
-                    <dt>Subclasses</dt>
-                    <dd>
-                      <ul>
-                                <li><code><span><a href="module_undo_redocommand-RedoCommand.html">RedoCommand</a></span></code></li>
-                                <li><code><span><a href="module_undo_undocommand-UndoCommand.html">UndoCommand</a></span></code></li>
-                      </ul>
-                    </dd>
-          </dl>
-        </nav><p>Base class for undo feature commands: <code><a href="module_undo_undocommand-UndoCommand.html">UndoCommand</a></code> and <code><a href="module_undo_redocommand-RedoCommand.html">RedoCommand</a></code>.</p>
-        <div class="notice notice__filter api-props-filter">
-          <h4>Filtering</h4>
-          <ul>
-            <li>
-              <input type="checkbox" id="f1" value="public" checked>
-              <label for="f1"><span class="badge badge--gray">Public</span></label>
-            </li>
-            <li>
-              <input type="checkbox" id="f4" value="inherited" checked>
-              <label for="f4"><span class="badge badge--gray">Inherited</span></label>
-            </li>
-            <li>
-              <input type="checkbox" id="f2" value="protected">
-              <label for="f2"><span class="badge badge--orange">Protected</span></label>
-            </li>
-            <li>
-              <input type="checkbox" id="f3" value="private">
-              <label for="f3"><span class="badge badge--red">Private</span></label>
-            </li>
-            <li>
-              <input type="checkbox" id="f5" value="deprecated">
-              <label for="f5"><span class="badge badge--red">Deprecated</span></label>
-            </li>
-          </ul>
-        </div>
-        <h2>Properties</h2>
-        <ul class="collapsing-list collapsing-list--filtered">
-                  <li class="collapsing-list__item" data-protected="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_createdBatches">
-                      <h3><code><a href="#_createdBatches">_createdBatches</a> : <span>WeakSet.&lt;<a class="collapsing-list__type" href="module_engine_model_batch-Batch.html">Batch</a>&gt;</span></code></h3>
-                      <p class="badges">
-<span class="badge badge--orange">protected</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Stores all batches that were created by this command.</p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-protected="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_stack">
-                      <h3><code><a href="#_stack">_stack</a> : Array</code></h3>
-                      <p class="badges">
-<span class="badge badge--orange">protected</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Stack of items stored by the command. These are pairs of:</p>
-                      <div class="collapsing-list__content">
-<ul>
-<li><code><a href="module_engine_model_batch-Batch.html">batch</a></code> saved by the command,</li>
-<li><code><a href="module_engine_model_selection-Selection.html">selection</a></code> state at the moment of saving the batch.</li>
-</ul>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="editor">
-                      <h3><code><a href="#editor">editor</a> : <span><a class="collapsing-list__type" href="module_core_editor_editor-Editor.html">Editor</a></span></code></h3>
-                      <p class="badges">
-<span class="badge badge--gray">readonly</span>
-<span class="badge badge--gray">inherited</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">The editor on which this command will be used.</p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="isEnabled">
-                      <h3><code><a href="#isEnabled">isEnabled</a> : Boolean</code></h3>
-                      <p class="badges">
-<span class="badge badge--gray">readonly</span>
-<span class="badge badge--gray">inherited</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Flag indicating whether a command is enabled or disabled.
-A disabled command should do nothing when executed.</p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="value">
-                      <h3><code><a href="#value">value</a></code></h3>
-                      <p class="badges">
-<span class="badge badge--gray">readonly</span>
-<span class="badge badge--gray">inherited</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">The value of a command. Concrete command class should define what it represents.</p>
-                      <div class="collapsing-list__content">
-<p>For example, the <code>bold</code> command&apos;s value is whether the selection starts in a bolded text.
-And the value of the <code>link</code> command may be an object with links details.</p>
-<p>It&apos;s possible for a command to have no value (e.g. for stateless actions such as <code>uploadImage</code>).</p>
-                      </div>
-                    </div>
-                  </li>
-        </ul>
-        <h2>Methods</h2>
-        <ul class="collapsing-list collapsing-list--filtered">
-                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="constructor">
-                      <h3><code><a href="#constructor">constructor</a>( editor )</code></h3>
-                      <p class="badges">
-<span class="badge badge--gray">inherited</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Creates a new <code>Command</code> instance.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> editor : <span><a class="collapsing-list__type" href="module_core_editor_editor-Editor.html">Editor</a></span></code></dt>
-                                  <dd><p>Editor on which this command will be used.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-protected="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_restoreSelection">
-                      <h3><code><a href="#_restoreSelection">_restoreSelection</a>( ranges, isBackward )</code></h3>
-                      <p class="badges">
-<span class="badge badge--orange">protected</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Restores the <code><a href="module_engine_model_document-Document.html#selection">document selection</a></code> state after a batch was undone.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> ranges : <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span></code></dt>
-                                  <dd><p>Ranges to be restored.</p>
-                                  </dd>
-                                  <dt><code> isBackward : Boolean</code></dt>
-                                  <dd><p>A flag describing whether the restored range was selected forward or backward.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="addBatch">
-                      <h3><code><a href="#addBatch">addBatch</a>( batch )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Stores a batch in the command, together with the selection state of the <code><a href="module_engine_model_document-Document.html">document</a></code>
-created by the editor which this command is registered to.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> batch : <span><a class="collapsing-list__type" href="module_engine_model_batch-Batch.html">Batch</a></span></code></dt>
-                                  <dd><p>The batch to add.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="clearStack">
-                      <h3><code><a href="#clearStack">clearStack</a>()</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Removes all items from the stack.
-                      </p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="destroy">
-                      <h3><code><a href="#destroy">destroy</a>()</code></h3>
-                      <p class="badges">
-<span class="badge badge--gray">inherited</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Destroys the command.
-                      </p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="execute">
-                      <h3><code><a href="#execute">execute</a>()</code></h3>
-                      <p class="badges">
-<span class="badge badge--gray">inherited</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Executes the command.
-                      </p>
-                      <div class="collapsing-list__content">
-<p>A command may accept parameters. They will be passed from <code><a href="module_core_editor_editor-Editor.html#execute">execute</a></code>
-to the command.</p>
-<p>The <code>execute()</code> method will automatically abort when the command is disabled (<code><a href="module_core_command-Command.html#isEnabled">isEnabled</a></code> is <code>false</code>).
-This behavior is implemented by a high priority listener to the <code><a href="module_core_command-Command.html#execute">execute</a></code> event.</p>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="refresh">
-                      <h3><code><a href="#refresh">refresh</a>()</code></h3>
-                      <p class="badges">
-<span class="badge badge--gray">inherited</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Refreshes the command. The command should update its <code><a href="module_core_command-Command.html#isEnabled">isEnabled</a></code> and <code><a href="module_core_command-Command.html#value">value</a></code> property
-in this method.
-                      </p>
-                      <div class="collapsing-list__content">
-<p>This method is automatically called when
-<code><a href="module_engine_model_document-Document.html#changesDone">any changes are applied to the model</a></code>.</p>
-                      </div>
-                    </div>
-                  </li>
-        </ul>
+        <h1><img src="../../../assets/img/cog.svg">API documentation
+        </h1><p>What could we have here?</p>
+
       </section>
       <div class="side-navigation">
         <div class="side-navigation__wrapper">
@@ -2625,16 +2358,16 @@ in this method.
                               </li>
                       </ul>
                     </li>
-                    <li class="toggler--expanded">
+                    <li class="toggler--collapsed">
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">undo</span>
                       </div>
                       <ul>
-                              <li class="toggler--expanded">
+                              <li class="toggler--collapsed">
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
                                         <li><a href="module_undo_basecommand-BaseCommand.html">
-                                            <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>
                               </li>
@@ -3080,8 +2813,5 @@ in this method.
         </div>
       </div>
     </main>
-    <footer class="footer">
-      <p>&copy; 2017 CKSource sp. z.o.o. sp.k. All rights reserved.</p>
-    </footer>
   </body>
 </html>

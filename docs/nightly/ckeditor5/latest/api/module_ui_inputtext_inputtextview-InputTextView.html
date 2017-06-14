@@ -249,81 +249,6 @@ using <code><a href="module_ui_view-View.html#template">template</a></code> defi
                       </div>
                     </div>
                   </li>
-                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="decorate">
-                      <h3><code><a href="#decorate">decorate</a>( methodName )</code></h3>
-                      <p class="badges">
-<span class="badge badge--gray">inherited</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Turns the given methods of this object into event-based ones. This means that the new method will fire an event
-(named after the method) and the original action will be plugged as a listener to that event.
-                      </p>
-                      <div class="collapsing-list__content">
-<p>This is a very simplified method decoration. Itself it doesn&apos;t change the behavior of a method (expect adding the event),
-but it allows to modify it later on by listening to the method&apos;s event.</p>
-<p>For example, in order to cancel the method execution one can stop the event:</p>
-<pre class="prettyprint source"><code>    class Foo {
-        constructor() {
-            this.decorate( &apos;method&apos; );
-        }
-
-        method() {
-            console.log( &apos;called!&apos; );
-        }
-    }
-
-    const foo = new Foo();
-    foo.on( &apos;method&apos;, ( evt ) =&gt; {
-        evt.stop();
-    }, { priority: &apos;high&apos; } );
-
-    foo.method(); // Nothing is logged.</code></pre><p>Note: we used a high priority listener here to execute this callback before the one which
-calls the orignal method (which used the default priority).</p>
-<p>It&apos;s also possible to change the return value:</p>
-<pre class="prettyprint source"><code>    foo.on( &apos;method&apos;, ( evt ) =&gt; {
-        evt.return = &apos;Foo!&apos;;
-    } );
-
-    foo.method(); // -&gt; &apos;Foo&apos;</code></pre><p>Finally, it&apos;s possible to access and modify the parameters:</p>
-<pre class="prettyprint source"><code>    method( a, b ) {
-        console.log( `${ a }, ${ b }`  );
-    }
-
-    // ...
-
-    foo.on( &apos;method&apos;, ( evt, args ) =&gt; {
-        args[ 0 ] = 3;
-
-        console.log( args[ 1 ] ); // -&gt; 2
-    }, { priority: &apos;high&apos; } );
-
-    foo.method( 1, 2 ); // -&gt; &apos;3, 2&apos;</code></pre>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> methodName : String</code></dt>
-                                  <dd><p>Name of the method to decorate.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="bindTemplate">
-                      <h3><code><a href="#bindTemplate">bindTemplate</a>()</code></h3>
-                      <p class="badges">
-<span class="badge badge--gray">inherited</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Shorthand for <code><a href="module_ui_template-Template.html#bind">bind</a></code>, bound to <code><a href="module_ui_view-View.html">View</a></code> on the first access.
-                      </p>
-                      <div class="collapsing-list__content">
-<p>Cached <code><a href="module_ui_template-Template.html#bind">bind</a></code> object is stored in <code><a href="module_ui_view-View.html#_bindTemplate">_bindTemplate</a></code>.</p>
-                      </div>
-                    </div>
-                  </li>
                   <li class="collapsing-list__item" data-protected="true" data-inherited="true">
                     <div class="collapsing-list__term toggler--collapsed" id="_addTemplateChildren">
                       <h3><code><a href="#_addTemplateChildren">_addTemplateChildren</a>()</code></h3>
@@ -337,53 +262,6 @@ calls the orignal method (which used the default priority).</p>
 instances and automatically registers them using <code><a href="module_ui_view-View.html#addChildren">addChildren</a></code> method.
                       </p>
                       <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="createCollection">
-                      <h3><code><a href="#createCollection">createCollection</a>() &rarr;  <span><a class="collapsing-list__type" href="module_ui_viewcollection-ViewCollection.html">ViewCollection</a></span></code></h3>
-                      <p class="badges">
-<span class="badge badge--gray">inherited</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Creates a new collection of views, which can be used in this view instance,
-e.g. as a member of <code><a href="module_ui_template-TemplateDefinition.html">TemplateDefinition</a></code> children.
-                      </p>
-                      <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    class SampleView extends View {
-        constructor( locale ) {
-            super( locale );
-
-            this.items = this.createCollection();
-
-            this.template = new Template( {
-                tag: &apos;p&apos;,
-
-                // `items` collection will render here.
-                children: this.items
-            } );
-        }
-    }
-
-    const view = new SampleView( locale );
-    const anotherView = new AnotherSampleView( locale );
-
-    view.init().then( () =&gt; {
-        // Will append &lt;p&gt;&lt;/p&gt;
-        document.body.appendChild( view.element );
-
-        // `anotherView` becomes a child of the view, which is reflected in DOM
-        // &lt;p&gt;&lt;anotherView#element&gt;&lt;/p&gt;
-        view.items.add( anotherView );
-    } );</code></pre>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code><span><a class="collapsing-list__type" href="module_ui_viewcollection-ViewCollection.html">ViewCollection</a></span></code></dt>
-                                  <dd><p>A new collection of view instances.</p>
-                                  </dd>
-                        </dl>
                       </div>
                     </div>
                   </li>
@@ -456,6 +334,68 @@ and destruction (<code><a href="module_ui_view-View.html#destroy">destroy</a></c
                         <dl>
                                   <dt><code>Promise</code></dt>
                                   <dd>
+                                  </dd>
+                        </dl>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="bindTemplate">
+                      <h3><code><a href="#bindTemplate">bindTemplate</a>()</code></h3>
+                      <p class="badges">
+<span class="badge badge--gray">inherited</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Shorthand for <code><a href="module_ui_template-Template.html#bind">bind</a></code>, bound to <code><a href="module_ui_view-View.html">View</a></code> on the first access.
+                      </p>
+                      <div class="collapsing-list__content">
+<p>Cached <code><a href="module_ui_template-Template.html#bind">bind</a></code> object is stored in <code><a href="module_ui_view-View.html#_bindTemplate">_bindTemplate</a></code>.</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="createCollection">
+                      <h3><code><a href="#createCollection">createCollection</a>() &rarr;  <span><a class="collapsing-list__type" href="module_ui_viewcollection-ViewCollection.html">ViewCollection</a></span></code></h3>
+                      <p class="badges">
+<span class="badge badge--gray">inherited</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Creates a new collection of views, which can be used in this view instance,
+e.g. as a member of <code><a href="module_ui_template-TemplateDefinition.html">TemplateDefinition</a></code> children.
+                      </p>
+                      <div class="collapsing-list__content">
+<pre class="prettyprint source"><code>    class SampleView extends View {
+        constructor( locale ) {
+            super( locale );
+
+            this.items = this.createCollection();
+
+            this.template = new Template( {
+                tag: &apos;p&apos;,
+
+                // `items` collection will render here.
+                children: this.items
+            } );
+        }
+    }
+
+    const view = new SampleView( locale );
+    const anotherView = new AnotherSampleView( locale );
+
+    view.init().then( () =&gt; {
+        // Will append &lt;p&gt;&lt;/p&gt;
+        document.body.appendChild( view.element );
+
+        // `anotherView` becomes a child of the view, which is reflected in DOM
+        // &lt;p&gt;&lt;anotherView#element&gt;&lt;/p&gt;
+        view.items.add( anotherView );
+    } );</code></pre>
+                        <h4>Returns</h4>
+                        <dl>
+                                  <dt><code><span><a class="collapsing-list__type" href="module_ui_viewcollection-ViewCollection.html">ViewCollection</a></span></code></dt>
+                                  <dd><p>A new collection of view instances.</p>
                                   </dd>
                         </dl>
                       </div>

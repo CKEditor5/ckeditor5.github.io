@@ -262,14 +262,14 @@ that all the views in the collection are also ready (which can be asynchronous).
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="filter">
-                      <h3><code><a href="#filter">filter</a>( callback, callback.item, callback.index ) &rarr;  Object</code></h3>
+                    <div class="collapsing-list__term toggler--collapsed" id="find">
+                      <h3><code><a href="#find">find</a>( callback, callback.item, callback.index ) &rarr;  Object</code></h3>
                       <p class="badges">
 <span class="badge badge--gray">inherited</span>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Returns an array with items for which the <code>callback</code> returned a true value.
+                      <p class="collapsing-list__excerpt">Finds the first item in the collection for which the <code>callback</code> returns a true value.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -287,7 +287,7 @@ that all the views in the collection are also ready (which can be asynchronous).
                         <h4>Returns</h4>
                         <dl>
                                   <dt><code>Object</code></dt>
-                                  <dd><p>The array with matching items.</p>
+                                  <dd><p>The item for which <code>callback</code> returned a true value.</p>
                                   </dd>
                         </dl>
                       </div>
@@ -423,63 +423,6 @@ that all the views in the collection are also ready (which can be asynchronous).
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="decorate">
-                      <h3><code><a href="#decorate">decorate</a>( methodName )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Turns the given methods of this object into event-based ones. This means that the new method will fire an event
-(named after the method) and the original action will be plugged as a listener to that event.
-                      </p>
-                      <div class="collapsing-list__content">
-<p>This is a very simplified method decoration. Itself it doesn&apos;t change the behavior of a method (expect adding the event),
-but it allows to modify it later on by listening to the method&apos;s event.</p>
-<p>For example, in order to cancel the method execution one can stop the event:</p>
-<pre class="prettyprint source"><code>    class Foo {
-        constructor() {
-            this.decorate( &apos;method&apos; );
-        }
-
-        method() {
-            console.log( &apos;called!&apos; );
-        }
-    }
-
-    const foo = new Foo();
-    foo.on( &apos;method&apos;, ( evt ) =&gt; {
-        evt.stop();
-    }, { priority: &apos;high&apos; } );
-
-    foo.method(); // Nothing is logged.</code></pre><p>Note: we used a high priority listener here to execute this callback before the one which
-calls the orignal method (which used the default priority).</p>
-<p>It&apos;s also possible to change the return value:</p>
-<pre class="prettyprint source"><code>    foo.on( &apos;method&apos;, ( evt ) =&gt; {
-        evt.return = &apos;Foo!&apos;;
-    } );
-
-    foo.method(); // -&gt; &apos;Foo&apos;</code></pre><p>Finally, it&apos;s possible to access and modify the parameters:</p>
-<pre class="prettyprint source"><code>    method( a, b ) {
-        console.log( `${ a }, ${ b }`  );
-    }
-
-    // ...
-
-    foo.on( &apos;method&apos;, ( evt, args ) =&gt; {
-        args[ 0 ] = 3;
-
-        console.log( args[ 1 ] ); // -&gt; 2
-    }, { priority: &apos;high&apos; } );
-
-    foo.method( 1, 2 ); // -&gt; &apos;3, 2&apos;</code></pre>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> methodName : String</code></dt>
-                                  <dd><p>Name of the method to decorate.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
                     <div class="collapsing-list__term toggler--collapsed" id="delegate">
                       <h3><code><a href="#delegate">delegate</a>( events ) &rarr;  to</code></h3>
                     </div>
@@ -533,6 +476,38 @@ module:utils/emittermixin~EmitterMixin}.</p>
                       </div>
                     </div>
                   </li>
+                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="filter">
+                      <h3><code><a href="#filter">filter</a>( callback, callback.item, callback.index ) &rarr;  Object</code></h3>
+                      <p class="badges">
+<span class="badge badge--gray">inherited</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Returns an array with items for which the <code>callback</code> returned a true value.
+                      </p>
+                      <div class="collapsing-list__content">
+                        <h4>Parameters</h4>
+                                <dl>
+                                  <dt><code> callback : function</code></dt>
+                                  <dd>
+                                  </dd>
+                                  <dt><code> callback.item : Object</code></dt>
+                                  <dd>
+                                  </dd>
+                                  <dt><code> callback.index : Number</code></dt>
+                                  <dd>
+                                  </dd>
+                                </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                                  <dt><code>Object</code></dt>
+                                  <dd><p>The array with matching items.</p>
+                                  </dd>
+                        </dl>
+                      </div>
+                    </div>
+                  </li>
                   <li class="collapsing-list__item" data-public="true">
                     <div class="collapsing-list__term toggler--collapsed" id="add">
                       <h3><code><a href="#add">add</a>( view, [ index ] ) &rarr;  Promise</code></h3>
@@ -555,38 +530,6 @@ is also initialized when added.
                         <dl>
                                   <dt><code>Promise</code></dt>
                                   <dd><p>A Promise resolved when the child <code><a href="module_ui_view-View.html#init">init</a></code> is done.</p>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="find">
-                      <h3><code><a href="#find">find</a>( callback, callback.item, callback.index ) &rarr;  Object</code></h3>
-                      <p class="badges">
-<span class="badge badge--gray">inherited</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Finds the first item in the collection for which the <code>callback</code> returns a true value.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> callback : function</code></dt>
-                                  <dd>
-                                  </dd>
-                                  <dt><code> callback.item : Object</code></dt>
-                                  <dd>
-                                  </dd>
-                                  <dt><code> callback.index : Number</code></dt>
-                                  <dd>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code>Object</code></dt>
-                                  <dd><p>The item for which <code>callback</code> returned a true value.</p>
                                   </dd>
                         </dl>
                       </div>
