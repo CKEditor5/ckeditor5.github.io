@@ -141,27 +141,52 @@ trailing debounced invocation on destroy.</p>
         </ul>
         <h4>Static properties</h4>
         <ul class="collapsing-list collapsing-list--filtered">
-                  <li class="collapsing-list__item" data-public="true">
+                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
                     <div class="collapsing-list__term toggler--collapsed" id="pluginName">
-                      <h3><code><a href="#pluginName">pluginName</a></code></h3>
+                      <h3><code><a href="#pluginName">pluginName</a> : String | undefined</code></h3>
                       <p class="badges">
+<span class="badge badge--gray">readonly</span>
+<span class="badge badge--gray">inherited</span>
 <span class="badge badge--gray">static</span>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Optional name of the plugin. If set, the plugin will be available in
+<code><a href="module_core_plugincollection-PluginCollection.html#get">get</a></code> by its
+name and its constructor. If not, then only by its constructor.</p>
                       <div class="collapsing-list__content">
+<p>The name should reflect the package name + the plugin module name. E.g. <code>ckeditor5-image/src/image.js</code> plugin
+should be named <code>image/image</code>. If plugin is kept deeper in the directory structure, it&apos;s recommended to only use the module file name,
+not the whole path. So, e.g. a plugin defined in <code>ckeditor5-ui/src/notification/notification.js</code> file may be named <code>ui/notification</code>.</p>
+<p>To keep a plugin class definition tight it&apos;s recommended to define this property as a static getter:</p>
+<pre class="prettyprint source"><code>    export default class ImageCaption {
+        static get pluginName() {
+            return &apos;image/imagecaption&apos;;
+        }
+    }</code></pre>
                       </div>
                     </div>
                   </li>
-                  <li class="collapsing-list__item" data-public="true">
+                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
                     <div class="collapsing-list__term toggler--collapsed" id="requires">
-                      <h3><code><a href="#requires">requires</a></code></h3>
+                      <h3><code><a href="#requires">requires</a> : function() | undefined</code></h3>
                       <p class="badges">
+<span class="badge badge--gray">readonly</span>
+<span class="badge badge--gray">inherited</span>
 <span class="badge badge--gray">static</span>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">An array of plugins required by this plugin.</p>
                       <div class="collapsing-list__content">
+<p>To keep a plugin class definition tight it&apos;s recommended to define this property as a static getter:</p>
+<pre class="prettyprint source"><code>    import Image from &apos;./image.js&apos;;
+
+    export default class ImageCaption {
+        static get requires() {
+            return [ Image ];
+        }
+ }</code></pre>
                       </div>
                     </div>
                   </li>
@@ -282,15 +307,24 @@ doesn&apos;t fire <code>change</code> event after text style change (like bold o
                       </div>
                     </div>
                   </li>
-                  <li class="collapsing-list__item" data-public="true">
+                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
                     <div class="collapsing-list__term toggler--collapsed" id="afterInit">
-                      <h3><code><a href="#afterInit">afterInit</a>()</code></h3>
+                      <h3><code><a href="#afterInit">afterInit</a>() &rarr;  null | Promise</code></h3>
+                      <p class="badges">
+<span class="badge badge--gray">inherited</span>
+                      </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Creates toolbar components based on given configuration.
-This needs to be done when all plugins will be ready.
+                      <p class="collapsing-list__excerpt">The third (and last) stage of plugin initialization. See also <code><a href="module_core_plugin-PluginInterface.html#constructor">constructor</a></code> and <code><a href="module_core_plugin-PluginInterface.html#init">init</a></code>.
                       </p>
                       <div class="collapsing-list__content">
+<p><strong>Note:</strong> This method is optional. A plugin instance does not need to have to have it defined.</p>
+                        <h4>Returns</h4>
+                        <dl>
+                                  <dt><code>null | Promise</code></dt>
+                                  <dd>
+                                  </dd>
+                        </dl>
                       </div>
                     </div>
                   </li>
@@ -315,14 +349,27 @@ This needs to be done when all plugins will be ready.
                       </div>
                     </div>
                   </li>
-                  <li class="collapsing-list__item" data-public="true">
+                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
                     <div class="collapsing-list__term toggler--collapsed" id="init">
-                      <h3><code><a href="#init">init</a>()</code></h3>
+                      <h3><code><a href="#init">init</a>() &rarr;  null | Promise</code></h3>
+                      <p class="badges">
+<span class="badge badge--gray">inherited</span>
+                      </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">
+                      <p class="collapsing-list__excerpt">The second stage (after plugin <code><a href="module_core_plugin-PluginInterface.html#constructor">constructor</a></code>) of plugin initialization.
+Unlike the plugin constructor this method can be asynchronous.
                       </p>
                       <div class="collapsing-list__content">
+<p>A plugin&apos;s <code>init()</code> method is called after its <code><a href="module_core_plugin-PluginInterface.html#requires">dependencies</a></code> are initialized,
+so in the same order as constructors of these plugins.</p>
+<p><strong>Note:</strong> This method is optional. A plugin instance does not need to have to have it defined.</p>
+                        <h4>Returns</h4>
+                        <dl>
+                                  <dt><code>null | Promise</code></dt>
+                                  <dd>
+                                  </dd>
+                        </dl>
                       </div>
                     </div>
                   </li>
@@ -358,6 +405,32 @@ from being displayed by calling a <code>stop</code> function which is passed alo
                                 <dl>
                                   <dt><code> stop : function</code></dt>
                                   <dd><p>Calling this function prevents panel from being displayed.</p>
+                                  </dd>
+                                </dl>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="change:{attribute}">
+                      <h3><code><a href="#change:{attribute}">change:{attribute}</a>( name, value, oldValue )</code></h3>
+                      <p class="badges">
+<span class="badge badge--gray">inherited</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Fired when an attribute changed value.
+                      </p>
+                      <div class="collapsing-list__content">
+                        <h4>Parameters</h4>
+                                <dl>
+                                  <dt><code> name : String</code></dt>
+                                  <dd><p>The attribute name.</p>
+                                  </dd>
+                                  <dt><code> value : *</code></dt>
+                                  <dd><p>The new attribute value.</p>
+                                  </dd>
+                                  <dt><code> oldValue : *</code></dt>
+                                  <dd><p>The previous attribute value.</p>
                                   </dd>
                                 </dl>
                       </div>
