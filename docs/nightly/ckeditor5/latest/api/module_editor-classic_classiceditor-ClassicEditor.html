@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Toggleattributecommand - CKEditor 5</title>
+    <title>ClassicEditor - CKEditor 5</title>
     <link rel="stylesheet" href="../../../assets/css/styles.css" type="text/css" media="screen">
     <script src="../../../assets/js/app.js"></script>
   </head>
@@ -22,10 +22,27 @@
     </header>
     <main class="main">
       <section class="main__content formatted">
-        <h1><img src="../../../assets/img/box-red.svg" alt="Module" title="Module">
-core/command/toggleattributecommand
+        <h1><img src="../../../assets/img/cog.svg" alt="Class" title="Class">
+ClassicEditor
         </h1>
-        <p><span class="badge">Module</span></p>
+        <p><span class="badge">class</span>
+        </p>
+        <nav class="api-info-box side-box side-box--wide">
+          <dl>
+                    <dt>Hierarchy</dt>
+                    <dd>
+                      <ul class="hierarchy-list">
+                                <li><code><span><a href="module_core_editor_standardeditor-StandardEditor.html">StandardEditor</a></span></code>
+                                  <ul>
+                                            <li><code><span><a href="module_editor-classic_classiceditor-ClassicEditor.html">ClassicEditor</a></span></code>
+                                            </li>
+                                  </ul>
+                                </li>
+                      </ul>
+                    </dd>
+          </dl>
+        </nav><p>Classic editor. Uses inline editable and sticky toolbar, all
+enclosed in a boxed UI.</p>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
           <ul>
@@ -36,6 +53,10 @@ core/command/toggleattributecommand
             <li>
               <input type="checkbox" id="f4" value="inherited" checked>
               <label for="f4"><span class="badge badge--gray">Inherited</span></label>
+            </li>
+            <li>
+              <input type="checkbox" id="f6" value="mixed">
+              <label for="f6"><span class="badge badge--gray">Mixed</span></label>
             </li>
             <li>
               <input type="checkbox" id="f2" value="protected">
@@ -51,16 +72,214 @@ core/command/toggleattributecommand
             </li>
           </ul>
         </div>
-        <h2>Classes</h2>
+        <h2>Properties</h2>
         <ul class="collapsing-list collapsing-list--filtered">
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term" id="ToggleAttributeCommand">
-                      <h3><code><span><a href="module_core_command_toggleattributecommand-ToggleAttributeCommand.html">ToggleAttributeCommand</a></span></code></h3>
+                  <li class="collapsing-list__item" data-protected="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="_elementReplacer">
+                      <h3><code><a href="#_elementReplacer">_elementReplacer</a> : <span><a class="collapsing-list__type" href="module_utils_elementreplacer-ElementReplacer.html">ElementReplacer</a></span></code></h3>
+                      <p class="badges">
+<span class="badge badge--orange">protected</span>
+                      </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">An extension of the base <code><a href="module_core_command-Command.html">Command</a></code> class, which provides utilities for a command which toggles a single
-attribute on a text or an element. <code>ToggleAttributeCommand</code> uses <code><a href="module_engine_model_document-Document.html#selection">selection</a></code>
-to decide which nodes (if any) should be changed, and applies or removes attributes from them.</p>
+                      <p class="collapsing-list__excerpt">The element replacer instance used to hide the editor element.</p>
+                      <div class="collapsing-list__content">
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="element">
+                      <h3><code><a href="#element">element</a> : HTMLElement</code></h3>
+                      <p class="badges">
+<span class="badge badge--gray">readonly</span>
+<span class="badge badge--gray">inherited</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">The element on which the editor has been initialized.</p>
+                      <div class="collapsing-list__content">
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="keystrokes">
+                      <h3><code><a href="#keystrokes">keystrokes</a> : <span><a class="collapsing-list__type" href="module_core_editingkeystrokehandler-EditingKeystrokeHandler.html">EditingKeystrokeHandler</a></span></code></h3>
+                      <p class="badges">
+<span class="badge badge--gray">readonly</span>
+<span class="badge badge--gray">inherited</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Instance of the <code><a href="module_core_editingkeystrokehandler-EditingKeystrokeHandler.html">EditingKeystrokeHandler</a></code>.</p>
+                      <div class="collapsing-list__content">
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="ui">
+                      <h3><code><a href="#ui">ui</a> : <span><a class="collapsing-list__type" href="module_core_editor_editorui-EditorUI.html">EditorUI</a></span></code></h3>
+                      <p class="badges">
+<span class="badge badge--gray">readonly</span>
+<span class="badge badge--gray">inherited</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Editor UI instance.</p>
+                      <div class="collapsing-list__content">
+<p>This property is set by more specialized editor constructors. However, it&apos;s required
+for plugins to work (their UI-related part will try to interact with editor UI),
+so every editor class which is meant to work with default plugins should set this property.</p>
+                      </div>
+                    </div>
+                  </li>
+        </ul>
+        <h2>Methods</h2>
+        <h4>Instance methods</h4>
+        <ul class="collapsing-list collapsing-list--filtered">
+                  <li class="collapsing-list__item" data-public="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="constructor">
+                      <h3><code><a href="#constructor">constructor</a>( element, config )</code></h3>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Creates an instance of the classic editor.
+                      </p>
+                      <div class="collapsing-list__content">
+                        <h4>Parameters</h4>
+                                <dl>
+                                  <dt><code> element : HTMLElement</code></dt>
+                                  <dd><p>The DOM element that will be the source for the created editor.
+The data will be loaded from it and loaded back to it once the editor is destroyed.</p>
+                                  </dd>
+                                  <dt><code> config : Object</code></dt>
+                                  <dd><p>The editor configuration.</p>
+                                  </dd>
+                                </dl>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-public="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="destroy">
+                      <h3><code><a href="#destroy">destroy</a>() &rarr;  Promise</code></h3>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Destroys the editor instance, releasing all resources used by it.
+                      </p>
+                      <div class="collapsing-list__content">
+<p>Updates the original editor element with the data.</p>
+                        <h4>Returns</h4>
+                        <dl>
+                                  <dt><code>Promise</code></dt>
+                                  <dd>
+                                  </dd>
+                        </dl>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="getData">
+                      <h3><code><a href="#getData">getData</a>()</code></h3>
+                      <p class="badges">
+<span class="badge badge--gray">inherited</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Gets the data from the editor&apos;s main root.
+                      </p>
+                      <div class="collapsing-list__content">
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="loadDataFromEditorElement">
+                      <h3><code><a href="#loadDataFromEditorElement">loadDataFromEditorElement</a>()</code></h3>
+                      <p class="badges">
+<span class="badge badge--gray">inherited</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Loads the data from the <code><a href="module_core_editor_standardeditor-StandardEditor.html#element">editor  element</a></code> to the main root.
+                      </p>
+                      <div class="collapsing-list__content">
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="setData">
+                      <h3><code><a href="#setData">setData</a>( data )</code></h3>
+                      <p class="badges">
+<span class="badge badge--gray">inherited</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Sets the data in the editor&apos;s main root.
+                      </p>
+                      <div class="collapsing-list__content">
+                        <h4>Parameters</h4>
+                                <dl>
+                                  <dt><code> data : *</code></dt>
+                                  <dd><p>The data to load.</p>
+                                  </dd>
+                                </dl>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="updateEditorElement">
+                      <h3><code><a href="#updateEditorElement">updateEditorElement</a>()</code></h3>
+                      <p class="badges">
+<span class="badge badge--gray">inherited</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Updates the <code><a href="module_core_editor_standardeditor-StandardEditor.html#element">editor  element</a></code>&apos;s content with the data.
+                      </p>
+                      <div class="collapsing-list__content">
+                      </div>
+                    </div>
+                  </li>
+        </ul>
+        <h4>Static methods</h4>
+        <ul class="collapsing-list collapsing-list--filtered">
+                  <li class="collapsing-list__item" data-public="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="create">
+                      <h3><code><a href="#create">create</a>( element, config ) &rarr;  Promise</code></h3>
+                      <p class="badges">
+<span class="badge badge--gray">static</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Creates a classic editor instance.
+                      </p>
+                      <div class="collapsing-list__content">
+<pre class="prettyprint source"><code>    ClassicEditor.create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Delete, Enter, Typing, Paragraph, Undo, Bold, Italic ],
+        toolbar: [ &apos;bold&apos;, &apos;italic&apos;, &apos;undo&apos;, &apos;redo&apos; ]
+    } )
+    .then( editor =&gt; {
+        console.log( &apos;Editor was initialized&apos;, editor );
+    } )
+    .catch( err =&gt; {
+        console.error( err.stack );
+    } );</code></pre>
+                        <h4>Parameters</h4>
+                                <dl>
+                                  <dt><code> element : HTMLElement</code></dt>
+                                  <dd><p>See <code><a href="module_editor-classic_classiceditor-ClassicEditor.html#constructor">constructor</a></code>&apos;s parameters.</p>
+                                  </dd>
+                                  <dt><code> config : Object</code></dt>
+                                  <dd><p>See <code><a href="module_editor-classic_classiceditor-ClassicEditor.html#constructor">constructor</a></code>&apos;s parameters.</p>
+                                  </dd>
+                                </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                                  <dt><code>Promise</code></dt>
+                                  <dd><p>A promise resolved once the editor is ready.</p>
+                                  </dd>
+                                  <dt><code><span><a class="collapsing-list__type" href="module_core_editor_standardeditor-StandardEditor.html">StandardEditor</a></span></code></dt>
+                                  <dd><p>return.editor The editor instance.</p>
+                                  </dd>
+                        </dl>
+                      </div>
                     </div>
                   </li>
         </ul>
@@ -127,6 +346,15 @@ to decide which nodes (if any) should be changed, and applies or removes attribu
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">basic-styles</span>
                       </div>
                       <ul>
+                              <li class="toggler--collapsed">
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_basic-styles_attributecommand.html">attributecommand</a>
+                                </div>
+                                <ul>
+                                        <li><a href="module_basic-styles_attributecommand-AttributeCommand.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">AttributeCommand</span></div></a>
+                                        </li>
+                                </ul>
+                              </li>
                               <li class="toggler--collapsed">
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_basic-styles_bold.html">bold</a>
                                 </div>
@@ -252,7 +480,7 @@ to decide which nodes (if any) should be changed, and applies or removes attribu
                               </li>
                       </ul>
                     </li>
-                    <li class="toggler--expanded">
+                    <li class="toggler--collapsed">
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">core</span>
                       </div>
                       <ul>
@@ -289,31 +517,10 @@ to decide which nodes (if any) should be changed, and applies or removes attribu
                                         </li>
                                 </ul>
                               </li>
-                              <li class="toggler--expanded">
+                              <li class="toggler--collapsed">
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_core_command.html">command</a>
                                 </div>
                                 <ul>
-                                        <li class="toggler--collapsed">
-                                          <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">helpers</span>
-                                          </div>
-                                          <ul>
-                                                  <li><a href="module_core_command_helpers_getschemavalidranges.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">getschemavalidranges</span></div></a>
-                                                  </li>
-                                                  <li><a href="module_core_command_helpers_isattributeallowedinselection.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">isattributeallowedinselection</span></div></a>
-                                                  </li>
-                                          </ul>
-                                        </li>
-                                        <li class="toggler--expanded">
-                                          <div class="tree__item__wrapper tree__item__wrapper--active"><a class="tree__item--module tree__item__text" href="module_core_command_toggleattributecommand.html">toggleattributecommand</a>
-                                          </div>
-                                          <ul>
-                                                  <li><a href="module_core_command_toggleattributecommand-ToggleAttributeCommand.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">ToggleAttributeCommand</span></div></a>
-                                                  </li>
-                                          </ul>
-                                        </li>
                                         <li><a href="module_core_command-Command.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Command</span></div></a>
                                         </li>
@@ -393,16 +600,16 @@ to decide which nodes (if any) should be changed, and applies or removes attribu
                               </li>
                       </ul>
                     </li>
-                    <li class="toggler--collapsed">
+                    <li class="toggler--expanded">
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">editor-classic</span>
                       </div>
                       <ul>
-                              <li class="toggler--collapsed">
-                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_editor-classic_classic.html">classic</a>
+                              <li class="toggler--expanded">
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_editor-classic_classiceditor.html">classiceditor</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_editor-classic_classic-ClassicEditor.html">
-                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">ClassicEditor</span></div></a>
+                                        <li><a href="module_editor-classic_classiceditor-ClassicEditor.html">
+                                            <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--class tree__item__text">ClassicEditor</span></div></a>
                                         </li>
                                 </ul>
                               </li>
@@ -431,10 +638,10 @@ to decide which nodes (if any) should be changed, and applies or removes attribu
                       </div>
                       <ul>
                               <li class="toggler--collapsed">
-                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_editor-inline_inline.html">inline</a>
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_editor-inline_inlineeditor.html">inlineeditor</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_editor-inline_inline-InlineEditor.html">
+                                        <li><a href="module_editor-inline_inlineeditor-InlineEditor.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">InlineEditor</span></div></a>
                                         </li>
                                 </ul>

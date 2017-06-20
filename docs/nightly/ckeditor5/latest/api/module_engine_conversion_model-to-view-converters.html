@@ -39,6 +39,10 @@ engine/conversion/model-to-view-converters
               <label for="f4"><span class="badge badge--gray">Inherited</span></label>
             </li>
             <li>
+              <input type="checkbox" id="f6" value="mixed">
+              <label for="f6"><span class="badge badge--gray">Mixed</span></label>
+            </li>
+            <li>
               <input type="checkbox" id="f2" value="protected">
               <label for="f2"><span class="badge badge--orange">Protected</span></label>
             </li>
@@ -91,7 +95,7 @@ engine/conversion/model-to-view-converters
                       <p class="collapsing-list__excerpt">Function factory, creates a converter that converts node insertion changes from the model to the view.
 The view element that will be added to the view depends on passed parameter. If <code><a href="module_engine_viewithelement-Element.html">Element</a></code> was passed,
 it will be cloned and the copy will be inserted. If <code>Function</code> is provided, it is passed all the parameters of the
-dispatcher&apos;s <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#insert">insert event</a></code>.
+dispatcher&apos;s <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:insert">insert event</a></code>.
 It&apos;s expected that the function returns a <code><a href="module_engine_viewithelement-Element.html">Element</a></code>.
 The result of the function will be inserted to the view.
                       </p>
@@ -238,8 +242,8 @@ key-value attribute pair to remove. If not provided, model attributes will be re
                                   <dd><p>Function returning an object with two properties: <code>key</code> and <code>value</code>, which
 represents attribute key and attribute value to be removed from <code><a href="module_engine_viewithelement-Element.html">view element</a></code>.
 The function is passed all the parameters of the
-<code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#addAttribute">addAttribute event</a></code>
-or <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#changeAttribute">changeAttribute event</a></code>.</p>
+<code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:addAttribute">addAttribute event</a></code>
+or <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:changeAttribute">changeAttribute event</a></code>.</p>
                                   </dd>
                                 </dl>
                         <h4>Returns</h4>
@@ -315,8 +319,8 @@ on 1-to-1 basis.
                                   <dd><p>Function returning an object with two properties: <code>key</code> and <code>value</code>, which
 represents attribute key and attribute value to be set on a <code><a href="module_engine_viewithelement-Element.html">view element</a></code>.
 The function is passed all the parameters of the
-<code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#addAttribute">addAttribute</a></code>
-or <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#changeAttribute">changeAttribute</a></code> event.</p>
+<code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:addAttribute">addAttribute</a></code>
+or <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:changeAttribute">changeAttribute</a></code> event.</p>
                                   </dd>
                                 </dl>
                         <h4>Returns</h4>
@@ -344,7 +348,7 @@ view element if given attribute was removed.
 <p>The view element type that will be unwrapped depends on passed parameter.
 If <code><a href="module_engine_viewithelement-Element.html">Element</a></code> was passed, it will be used to look for similar element in the view for unwrapping.
 If <code>Function</code> is provided, it is passed all the parameters of the
-<code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#addAttribute">addAttribute event</a></code>.
+<code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:addAttribute">addAttribute event</a></code>.
 It&apos;s expected that the function returns a <code><a href="module_engine_viewithelement-Element.html">Element</a></code>.
 The result of the function will be used to look for similar element in the view for unwrapping.</p>
 <p>The converter automatically consumes corresponding value from consumables list, stops the event (see
@@ -381,7 +385,7 @@ This converter will unwrap view nodes from corresponding view range.
 <p>The view element that will be unwrapped depends on passed parameter. If <code><a href="module_engine_viewithattributeelement-AttributeElement.html">AttributeElement</a></code>
 was passed, it will be used to look for similar element in the view for unwrapping. If <code>Function</code> is provided, it is passed all
 the parameters of the
-<code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#removeMarker">removeMarker event</a></code>.
+<code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:removeMarker">removeMarker event</a></code>.
 It&apos;s expected that the function returns a <code><a href="module_engine_viewithattributeelement-AttributeElement.html">AttributeElement</a></code>. The result of
 the function will be used to look for similar element in the view for unwrapping.</p>
 <p>The converter automatically consumes corresponding value from consumables list, stops the event (see
@@ -422,7 +426,7 @@ represented as an element in the view:
         |- b {bold: true}                             |   |- ab
         |- c                                          |- c</code></pre><p>The wrapping node depends on passed parameter. If <code><a href="module_engine_viewithelement-Element.html">Element</a></code> was passed, it will be cloned and
 the copy will become the wrapping element. If <code>Function</code> is provided, it is passed attribute value and then all the parameters of the
-<code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#addAttribute">addAttribute event</a></code>.
+<code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:addAttribute">addAttribute event</a></code>.
 It&apos;s expected that the function returns a <code><a href="module_engine_viewithelement-Element.html">Element</a></code>.
 The result of the function will be the wrapping element.
 When provided <code>Function</code> does not return element, then will be no conversion.</p>
@@ -468,7 +472,7 @@ The range represents a result of search <code>ab</code> string in the model docu
         |-  b}                                        |   |- ab
         |-  c                                         |- c</code></pre><p>The wrapping node depends on passed parameter. If <code><a href="module_engine_viewithattributeelement-AttributeElement.html">AttributeElement</a></code> was passed, it
 will be cloned and the copy will become the wrapping element. If <code>Function</code> is provided, it is passed all the parameters of the
-<code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#addMarker">addMarker event</a></code>. It&apos;s expected
+<code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:addMarker">addMarker event</a></code>. It&apos;s expected
 that the function returns a <code><a href="module_engine_viewithattributeelement-AttributeElement.html">AttributeElement</a></code>. The result of the function will be the
 wrapping element. When provided <code>Function</code> does not return element, then will be no conversion.</p>
 <p>The converter automatically consumes corresponding value from consumables list, stops the event (see
@@ -554,6 +558,15 @@ a view attribute element, which will be used for wrapping.</p>
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">basic-styles</span>
                       </div>
                       <ul>
+                              <li class="toggler--collapsed">
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_basic-styles_attributecommand.html">attributecommand</a>
+                                </div>
+                                <ul>
+                                        <li><a href="module_basic-styles_attributecommand-AttributeCommand.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">AttributeCommand</span></div></a>
+                                        </li>
+                                </ul>
+                              </li>
                               <li class="toggler--collapsed">
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_basic-styles_bold.html">bold</a>
                                 </div>
@@ -720,27 +733,6 @@ a view attribute element, which will be used for wrapping.</p>
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_core_command.html">command</a>
                                 </div>
                                 <ul>
-                                        <li class="toggler--collapsed">
-                                          <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">helpers</span>
-                                          </div>
-                                          <ul>
-                                                  <li><a href="module_core_command_helpers_getschemavalidranges.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">getschemavalidranges</span></div></a>
-                                                  </li>
-                                                  <li><a href="module_core_command_helpers_isattributeallowedinselection.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">isattributeallowedinselection</span></div></a>
-                                                  </li>
-                                          </ul>
-                                        </li>
-                                        <li class="toggler--collapsed">
-                                          <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_core_command_toggleattributecommand.html">toggleattributecommand</a>
-                                          </div>
-                                          <ul>
-                                                  <li><a href="module_core_command_toggleattributecommand-ToggleAttributeCommand.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">ToggleAttributeCommand</span></div></a>
-                                                  </li>
-                                          </ul>
-                                        </li>
                                         <li><a href="module_core_command-Command.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Command</span></div></a>
                                         </li>
@@ -825,10 +817,10 @@ a view attribute element, which will be used for wrapping.</p>
                       </div>
                       <ul>
                               <li class="toggler--collapsed">
-                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_editor-classic_classic.html">classic</a>
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_editor-classic_classiceditor.html">classiceditor</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_editor-classic_classic-ClassicEditor.html">
+                                        <li><a href="module_editor-classic_classiceditor-ClassicEditor.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">ClassicEditor</span></div></a>
                                         </li>
                                 </ul>
@@ -858,10 +850,10 @@ a view attribute element, which will be used for wrapping.</p>
                       </div>
                       <ul>
                               <li class="toggler--collapsed">
-                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_editor-inline_inline.html">inline</a>
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_editor-inline_inlineeditor.html">inlineeditor</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_editor-inline_inline-InlineEditor.html">
+                                        <li><a href="module_editor-inline_inlineeditor-InlineEditor.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">InlineEditor</span></div></a>
                                         </li>
                                 </ul>

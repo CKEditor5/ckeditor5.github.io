@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Getschemavalidranges - CKEditor 5</title>
+    <title>Inlineeditor - CKEditor 5</title>
     <link rel="stylesheet" href="../../../assets/css/styles.css" type="text/css" media="screen">
     <script src="../../../assets/js/app.js"></script>
   </head>
@@ -23,7 +23,7 @@
     <main class="main">
       <section class="main__content formatted">
         <h1><img src="../../../assets/img/box-red.svg" alt="Module" title="Module">
-core/command/helpers/getschemavalidranges
+editor-inline/inlineeditor
         </h1>
         <p><span class="badge">Module</span></p>
         <div class="notice notice__filter api-props-filter">
@@ -36,6 +36,10 @@ core/command/helpers/getschemavalidranges
             <li>
               <input type="checkbox" id="f4" value="inherited" checked>
               <label for="f4"><span class="badge badge--gray">Inherited</span></label>
+            </li>
+            <li>
+              <input type="checkbox" id="f6" value="mixed">
+              <label for="f6"><span class="badge badge--gray">Mixed</span></label>
             </li>
             <li>
               <input type="checkbox" id="f2" value="protected">
@@ -51,39 +55,14 @@ core/command/helpers/getschemavalidranges
             </li>
           </ul>
         </div>
-        <h2>Functions</h2>
+        <h2>Classes</h2>
         <ul class="collapsing-list collapsing-list--filtered">
                   <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="getSchemaValidRanges">
-                      <h3><code><a href="#getSchemaValidRanges">getSchemaValidRanges</a>( attribute, ranges, schema ) &rarr;  <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span></code></h3>
-                      <p class="badges">
-<span class="badge badge--gray">static</span>
-                      </p>
+                    <div class="collapsing-list__term" id="InlineEditor">
+                      <h3><code><span><a href="module_editor-inline_inlineeditor-InlineEditor.html">InlineEditor</a></span></code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Walks through given array of ranges and removes parts of them that are not allowed by passed schema to have the
-attribute set. This is done by breaking a range in two and omitting the not allowed part.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> attribute : String</code></dt>
-                                  <dd><p>Attribute key.</p>
-                                  </dd>
-                                  <dt><code> ranges : <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span></code></dt>
-                                  <dd><p>Ranges to be validated.</p>
-                                  </dd>
-                                  <dt><code> schema : <span><a class="collapsing-list__type" href="module_engine_model_schema-Schema.html">Schema</a></span></code></dt>
-                                  <dd><p>Document schema.</p>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code><span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span></code></dt>
-                                  <dd><p>Ranges without invalid parts.</p>
-                                  </dd>
-                        </dl>
-                      </div>
+                      <p class="collapsing-list__excerpt">Inline editor. Uses an inline editable and a floating toolbar.</p>
                     </div>
                   </li>
         </ul>
@@ -150,6 +129,15 @@ attribute set. This is done by breaking a range in two and omitting the not allo
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">basic-styles</span>
                       </div>
                       <ul>
+                              <li class="toggler--collapsed">
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_basic-styles_attributecommand.html">attributecommand</a>
+                                </div>
+                                <ul>
+                                        <li><a href="module_basic-styles_attributecommand-AttributeCommand.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">AttributeCommand</span></div></a>
+                                        </li>
+                                </ul>
+                              </li>
                               <li class="toggler--collapsed">
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_basic-styles_bold.html">bold</a>
                                 </div>
@@ -275,7 +263,7 @@ attribute set. This is done by breaking a range in two and omitting the not allo
                               </li>
                       </ul>
                     </li>
-                    <li class="toggler--expanded">
+                    <li class="toggler--collapsed">
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">core</span>
                       </div>
                       <ul>
@@ -312,31 +300,10 @@ attribute set. This is done by breaking a range in two and omitting the not allo
                                         </li>
                                 </ul>
                               </li>
-                              <li class="toggler--expanded">
+                              <li class="toggler--collapsed">
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_core_command.html">command</a>
                                 </div>
                                 <ul>
-                                        <li class="toggler--expanded">
-                                          <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">helpers</span>
-                                          </div>
-                                          <ul>
-                                                  <li><a href="module_core_command_helpers_getschemavalidranges.html">
-                                                      <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--module tree__item__text">getschemavalidranges</span></div></a>
-                                                  </li>
-                                                  <li><a href="module_core_command_helpers_isattributeallowedinselection.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">isattributeallowedinselection</span></div></a>
-                                                  </li>
-                                          </ul>
-                                        </li>
-                                        <li class="toggler--collapsed">
-                                          <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_core_command_toggleattributecommand.html">toggleattributecommand</a>
-                                          </div>
-                                          <ul>
-                                                  <li><a href="module_core_command_toggleattributecommand-ToggleAttributeCommand.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">ToggleAttributeCommand</span></div></a>
-                                                  </li>
-                                          </ul>
-                                        </li>
                                         <li><a href="module_core_command-Command.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Command</span></div></a>
                                         </li>
@@ -421,10 +388,10 @@ attribute set. This is done by breaking a range in two and omitting the not allo
                       </div>
                       <ul>
                               <li class="toggler--collapsed">
-                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_editor-classic_classic.html">classic</a>
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_editor-classic_classiceditor.html">classiceditor</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_editor-classic_classic-ClassicEditor.html">
+                                        <li><a href="module_editor-classic_classiceditor-ClassicEditor.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">ClassicEditor</span></div></a>
                                         </li>
                                 </ul>
@@ -449,15 +416,15 @@ attribute set. This is done by breaking a range in two and omitting the not allo
                               </li>
                       </ul>
                     </li>
-                    <li class="toggler--collapsed">
+                    <li class="toggler--expanded">
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">editor-inline</span>
                       </div>
                       <ul>
-                              <li class="toggler--collapsed">
-                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_editor-inline_inline.html">inline</a>
+                              <li class="toggler--expanded">
+                                <div class="tree__item__wrapper tree__item__wrapper--active"><a class="tree__item--module tree__item__text" href="module_editor-inline_inlineeditor.html">inlineeditor</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_editor-inline_inline-InlineEditor.html">
+                                        <li><a href="module_editor-inline_inlineeditor-InlineEditor.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">InlineEditor</span></div></a>
                                         </li>
                                 </ul>

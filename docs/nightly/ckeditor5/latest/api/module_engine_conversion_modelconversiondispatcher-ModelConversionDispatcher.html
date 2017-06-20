@@ -36,7 +36,7 @@ or &quot;removing&quot; so one might say that we are converting &quot;changes&qu
 where we convert view nodes (the structure, not &quot;changes&quot; to the view). Note, that because changes are converted
 and not the structure itself, there is a need to have a mapping between model and the structure on which changes are
 reflected. To map elements during model to view conversion use <code><a href="module_engine_conversion_mapper-Mapper.html">Mapper</a></code>.</p>
-<p>The main use for this class is to listen to <code><a href="module_engine_model_document-Document.html#change">Document change event</a></code>, process it
+<p>The main use for this class is to listen to <code><a href="module_engine_model_document-Document.html#event:change">Document change event</a></code>, process it
 and then fire specific events telling what exactly has changed. For those events, <code>ModelConversionDispatcher</code>
 creates <code><a href="module_engine_conversion_modelconsumable-ModelConsumable.html">list of consumable values</a></code> that should be handled by event
 callbacks. Those events are listened to by model-to-view converters which convert changes done in the
@@ -46,7 +46,7 @@ especially important in callbacks that consume multiple values. See <code><a hre
 for an example of such callback.</p>
 <p>Although the primary usage for this class is the model-to-view conversion, <code>ModelConversionDispatcher</code> can be used
 to build custom data processing pipelines that converts model to anything that is needed. Existing model structure can
-be used to generate events (listening to <code><a href="module_engine_model_document-Document.html#change">Document change event</a></code> is not
+be used to generate events (listening to <code><a href="module_engine_model_document-Document.html#event:change">Document change event</a></code> is not
 required)
 and custom callbacks can be added to the events (these does not have to be limited to changes in the view).</p>
 <p>When providing your own event listeners for <code>ModelConversionDispatcher</code> keep in mind that any callback that had
@@ -118,6 +118,10 @@ of your listener callback.</p>
               <label for="f4"><span class="badge badge--gray">Inherited</span></label>
             </li>
             <li>
+              <input type="checkbox" id="f6" value="mixed">
+              <label for="f6"><span class="badge badge--gray">Mixed</span></label>
+            </li>
+            <li>
               <input type="checkbox" id="f2" value="protected">
               <label for="f2"><span class="badge badge--orange">Protected</span></label>
             </li>
@@ -187,7 +191,7 @@ of your listener callback.</p>
                       <p class="collapsing-list__excerpt">Prepares data and fires a proper event.
                       </p>
                       <div class="collapsing-list__content">
-<p>The method is crafted to take use of parameters passed in <code><a href="module_engine_model_document-Document.html#change">Document change
+<p>The method is crafted to take use of parameters passed in <code><a href="module_engine_model_document-Document.html#event:change">Document change
 event</a></code>.</p>
                         <h4>Parameters</h4>
                                 <dl>
@@ -400,7 +404,7 @@ attributes that are set on inserted nodes are treated like they were added just 
                       <p class="collapsing-list__excerpt">Starts marker-conversion.
                       </p>
                       <div class="collapsing-list__content">
-<p>Fires <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#addMarker">addMarker  event</a></code> or <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#removeMarker">removeMarker  event</a></code> based on
+<p>Fires <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:addMarker">addMarker  event</a></code> or <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:removeMarker">removeMarker  event</a></code> based on
 given <code>type</code> with data based on passed parameters.</p>
                         <h4>Parameters</h4>
                                 <dl>
@@ -425,7 +429,7 @@ given <code>type</code> with data based on passed parameters.</p>
                       <p class="collapsing-list__excerpt">Starts conversion of move-change of given <code>range</code>, that was moved from given <code>sourcePosition</code>.
                       </p>
                       <div class="collapsing-list__content">
-<p>Fires <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#remove">remove  event</a></code> and <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#insert">insert  event</a></code> based on passed parameters.</p>
+<p>Fires <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:remove">remove  event</a></code> and <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:insert">insert  event</a></code> based on passed parameters.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> sourcePosition : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
@@ -446,7 +450,7 @@ given <code>type</code> with data based on passed parameters.</p>
                       <p class="collapsing-list__excerpt">Starts conversion of remove-change of given <code>range</code>, that was removed from given <code>sourcePosition</code>.
                       </p>
                       <div class="collapsing-list__content">
-<p>Fires <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#remove">remove  event</a></code> with data based on passed values.</p>
+<p>Fires <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:remove">remove  event</a></code> with data based on passed values.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> sourcePosition : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
@@ -468,7 +472,7 @@ given <code>type</code> with data based on passed parameters.</p>
                       <p class="collapsing-list__excerpt">Starts conversion of rename-change of given <code>element</code> that had given <code>oldName</code>.
                       </p>
                       <div class="collapsing-list__content">
-<p>Fires <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#remove">remove  event</a></code> and <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#insert">insert  event</a></code> based on passed values.</p>
+<p>Fires <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:remove">remove  event</a></code> and <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:insert">insert  event</a></code> based on passed values.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> element : <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
@@ -503,8 +507,8 @@ given <code>type</code> with data based on passed parameters.</p>
         <h2>Events</h2>
         <ul class="collapsing-list collapsing-list--filtered">
                   <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="addAttribute">
-                      <h3><code><a href="#addAttribute">addAttribute</a>( data = { data.item, data.range, data.attributeKey, data.attributeOldValue, data.attributeNewValue }, consumable, conversionApi )</code></h3>
+                    <div class="collapsing-list__term toggler--collapsed" id="event:addAttribute">
+                      <h3><code><a href="#event:addAttribute">addAttribute</a>( data = { data.item, data.range, data.attributeKey, data.attributeOldValue, data.attributeNewValue }, consumable, conversionApi )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Fired when attribute has been added on a node.
@@ -550,8 +554,8 @@ the element on which attribute was added.</p>
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="addMarker">
-                      <h3><code><a href="#addMarker">addMarker</a>( data = { data.name, data.range }, consumable, conversionApi )</code></h3>
+                    <div class="collapsing-list__term toggler--collapsed" id="event:addMarker">
+                      <h3><code><a href="#event:addMarker">addMarker</a>( data = { data.name, data.range }, consumable, conversionApi )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Fired when a new marker is added to the model.
@@ -586,8 +590,8 @@ markers can be named <code>foo:abc</code>, <code>foo:bar</code>, then it is poss
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="changeAttribute">
-                      <h3><code><a href="#changeAttribute">changeAttribute</a>( data = { data.item, data.range, data.attributeKey, data.attributeOldValue, data.attributeNewValue }, consumable, conversionApi )</code></h3>
+                    <div class="collapsing-list__term toggler--collapsed" id="event:changeAttribute">
+                      <h3><code><a href="#event:changeAttribute">changeAttribute</a>( data = { data.item, data.range, data.attributeKey, data.attributeOldValue, data.attributeNewValue }, consumable, conversionApi )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Fired when attribute of a node has been changed.
@@ -633,8 +637,8 @@ the element on which attribute was changed.</p>
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="insert">
-                      <h3><code><a href="#insert">insert</a>( data = { data.item, data.range }, consumable, conversionApi )</code></h3>
+                    <div class="collapsing-list__term toggler--collapsed" id="event:insert">
+                      <h3><code><a href="#event:insert">insert</a>( data = { data.item, data.range }, consumable, conversionApi )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Fired for inserted nodes.
@@ -669,8 +673,8 @@ the element on which attribute was changed.</p>
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="remove">
-                      <h3><code><a href="#remove">remove</a>( data = { data.sourcePosition, data.range }, conversionApi )</code></h3>
+                    <div class="collapsing-list__term toggler--collapsed" id="event:remove">
+                      <h3><code><a href="#event:remove">remove</a>( data = { data.sourcePosition, data.range }, conversionApi )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Fired for removed nodes.
@@ -703,8 +707,8 @@ graveyard root}).</p>
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="removeAttribute">
-                      <h3><code><a href="#removeAttribute">removeAttribute</a>( data = { data.item, data.range, data.attributeKey, data.attributeOldValue, data.attributeNewValue }, consumable, conversionApi )</code></h3>
+                    <div class="collapsing-list__term toggler--collapsed" id="event:removeAttribute">
+                      <h3><code><a href="#event:removeAttribute">removeAttribute</a>( data = { data.item, data.range, data.attributeKey, data.attributeOldValue, data.attributeNewValue }, consumable, conversionApi )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Fired when attribute has been removed from a node.
@@ -750,8 +754,8 @@ the element from which attribute was removed.</p>
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="removeMarker">
-                      <h3><code><a href="#removeMarker">removeMarker</a>( data = { data.name, data.range }, consumable, conversionApi )</code></h3>
+                    <div class="collapsing-list__term toggler--collapsed" id="event:removeMarker">
+                      <h3><code><a href="#event:removeMarker">removeMarker</a>( data = { data.name, data.range }, consumable, conversionApi )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Fired when marker is removed from the model.
@@ -786,8 +790,8 @@ markers can be named <code>foo:abc</code>, <code>foo:bar</code>, then it is poss
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="selection">
-                      <h3><code><a href="#selection">selection</a>( selection, consumable, conversionApi )</code></h3>
+                    <div class="collapsing-list__term toggler--collapsed" id="event:selection">
+                      <h3><code><a href="#event:selection">selection</a>( selection, consumable, conversionApi )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Fired for <code><a href="module_engine_model_selection-Selection.html">selection</a></code> changes.
@@ -809,8 +813,8 @@ markers can be named <code>foo:abc</code>, <code>foo:bar</code>, then it is poss
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="selectionAttribute">
-                      <h3><code><a href="#selectionAttribute">selectionAttribute</a>( data = { data.selection, data.attributeKey, data.attributeValue }, consumable, conversionApi )</code></h3>
+                    <div class="collapsing-list__term toggler--collapsed" id="event:selectionAttribute">
+                      <h3><code><a href="#event:selectionAttribute">selectionAttribute</a>( data = { data.selection, data.attributeKey, data.attributeValue }, consumable, conversionApi )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Fired for <code><a href="module_engine_model_selection-Selection.html">selection</a></code> attributes changes.
@@ -910,6 +914,15 @@ certain attribute, i.e. <code>addAttribute:bold</code>.</p>
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">basic-styles</span>
                       </div>
                       <ul>
+                              <li class="toggler--collapsed">
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_basic-styles_attributecommand.html">attributecommand</a>
+                                </div>
+                                <ul>
+                                        <li><a href="module_basic-styles_attributecommand-AttributeCommand.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">AttributeCommand</span></div></a>
+                                        </li>
+                                </ul>
+                              </li>
                               <li class="toggler--collapsed">
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_basic-styles_bold.html">bold</a>
                                 </div>
@@ -1076,27 +1089,6 @@ certain attribute, i.e. <code>addAttribute:bold</code>.</p>
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_core_command.html">command</a>
                                 </div>
                                 <ul>
-                                        <li class="toggler--collapsed">
-                                          <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">helpers</span>
-                                          </div>
-                                          <ul>
-                                                  <li><a href="module_core_command_helpers_getschemavalidranges.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">getschemavalidranges</span></div></a>
-                                                  </li>
-                                                  <li><a href="module_core_command_helpers_isattributeallowedinselection.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">isattributeallowedinselection</span></div></a>
-                                                  </li>
-                                          </ul>
-                                        </li>
-                                        <li class="toggler--collapsed">
-                                          <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_core_command_toggleattributecommand.html">toggleattributecommand</a>
-                                          </div>
-                                          <ul>
-                                                  <li><a href="module_core_command_toggleattributecommand-ToggleAttributeCommand.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">ToggleAttributeCommand</span></div></a>
-                                                  </li>
-                                          </ul>
-                                        </li>
                                         <li><a href="module_core_command-Command.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Command</span></div></a>
                                         </li>
@@ -1181,10 +1173,10 @@ certain attribute, i.e. <code>addAttribute:bold</code>.</p>
                       </div>
                       <ul>
                               <li class="toggler--collapsed">
-                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_editor-classic_classic.html">classic</a>
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_editor-classic_classiceditor.html">classiceditor</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_editor-classic_classic-ClassicEditor.html">
+                                        <li><a href="module_editor-classic_classiceditor-ClassicEditor.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">ClassicEditor</span></div></a>
                                         </li>
                                 </ul>
@@ -1214,10 +1206,10 @@ certain attribute, i.e. <code>addAttribute:bold</code>.</p>
                       </div>
                       <ul>
                               <li class="toggler--collapsed">
-                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_editor-inline_inline.html">inline</a>
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_editor-inline_inlineeditor.html">inlineeditor</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_editor-inline_inline-InlineEditor.html">
+                                        <li><a href="module_editor-inline_inlineeditor-InlineEditor.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">InlineEditor</span></div></a>
                                         </li>
                                 </ul>

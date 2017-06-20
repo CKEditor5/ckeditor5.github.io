@@ -22,48 +22,48 @@
     </header>
     <main class="main">
       <section class="main__content formatted">
-        <h1><img src="../../../../../assets/img/book.svg">Custom builds
-        </h1><nav class="toc"><h3>In this page</h3><ol><li><a href="#Creating-custom-builds">Creating custom builds</a></li><ol><li><a href="#Forking-existing-build">Forking existing build</a></li><li><a href="#Build&#x2019;s-anatomy">Build&#x2019;s anatomy</a></li><li><a href="#Customizing-a-build">Customizing a build</a></li><ol><li><a href="#Installing-dependencies">Installing dependencies</a></li><li><a href="#Updating-build-configuration">Updating build configuration</a></li><li><a href="#Rebuilding-the-bundle">Rebuilding the bundle</a></li></ol><li><a href="#Updating-build">Updating build</a></li><li><a href="#Publishing-your-builds">Publishing your builds</a></li></ol></ol></nav><h1 id="Creating-custom-builds"><a href="#Creating-custom-builds" class="headerlink" title="Creating custom builds"></a>Creating custom builds</h1><p>In a few words, a build is a simple <a href="https://www.npmjs.com" target="_blank" rel="external">npm</a> package (usually developed in a Git repository) with a predefined set of dependencies. Out of this repository, distribution files can be generated through a build process.</p>
-<p>These are some of the reasons for creating custom builds:</p>
+        <h1><img src="../../../../../assets/img/book.svg">Creating custom builds
+        </h1><nav class="toc"><h3>In this page</h3><ol><li><a href="#Creating-custom-builds">Creating custom builds</a></li><ol><li><a href="#Forking-an-existing-build">Forking an existing build</a></li><li><a href="#Build-anatomy">Build anatomy</a></li><li><a href="#Customizing-a-build">Customizing a build</a></li><ol><li><a href="#Installing-dependencies">Installing dependencies</a></li><li><a href="#Updating-build-configuration">Updating build configuration</a></li><li><a href="#Rebuilding-the-bundle">Rebuilding the bundle</a></li></ol><li><a href="#Updating-the-build">Updating the build</a></li><li><a href="#Publishing-your-builds">Publishing your builds</a></li></ol></ol></nav><p>A build is a simple <a href="https://www.npmjs.com" target="_blank" rel="external">npm</a> package (usually developed in a Git repository) with a predefined set of dependencies. Out of this repository, distribution files can be generated through the build process.</p>
+<p>Some of the reasons for creating custom builds are:</p>
 <ul>
-<li>Adding features which are not included in the existing builds, either from third party or custom developed.</li>
+<li>Adding features which are not included in the existing builds, either from a third party or custom developed.</li>
 <li>Removing unnecessary features present in a build.</li>
-<li>Change the <a href="../../../api/TODO.html">builds/guides/integration/basic-api.html#Creators editor creator</a>.</li>
+<li>Changing the <a href="../../../api/TODO.html">builds/guides/integration/basic-api.html#Creators editor creator</a>.</li>
 <li>Changing the editor theme.</li>
 <li>Changing the localization language of the editor.</li>
-<li>Enabling bug fixes which are not part of any public release still.</li>
+<li>Enabling bug fixes which are still not a part of any public release.</li>
 </ul>
-<h2 id="Forking-existing-build"><a href="#Forking-existing-build" class="headerlink" title="Forking existing build"></a>Forking existing build</h2><p><a href="https://help.github.com/articles/fork-a-repo/" target="_blank" rel="external">Fork</a> one of the official builds (it&#x2019;ll serve as the starting point for your custom one) and then clone your fork:</p>
+<h2 id="Forking-an-existing-build"><a href="#Forking-an-existing-build" class="headerlink" title="Forking an existing build"></a>Forking an existing build</h2><p>Start with <a href="https://help.github.com/articles/fork-a-repo/" target="_blank" rel="external">forking</a> one of the official builds (it will serve as the starting point for your custom one) and then clone your fork:</p>
 <pre><code>git clone https://github.com/&lt;your-username&gt;/ckeditor5-build-classic.git
-</code></pre><p>You may optionally add the original build repository to your git remotes, to make updating easier:</p>
+</code></pre><p>To make updating easier you may optionally add the original build repository to your Git remotes:</p>
 <pre><code>git remote add upstream https://github.com/ckeditor/ckeditor5-build-classic.git
-</code></pre><p><side-box tip=""><br>    If you don&#x2019;t want to fork the official build, you can just clone it. However, you won&#x2019;t be able to commit and push your customizations back to <a href="https://github.com" target="_blank" rel="external">GitHub</a>.<br></side-box></p>
-<h2 id="Build&#x2019;s-anatomy"><a href="#Build&#x2019;s-anatomy" class="headerlink" title="Build&#x2019;s anatomy"></a>Build&#x2019;s anatomy</h2><p>Every build contains the following files:</p>
+</code></pre><p><side-box tip=""><br>    If you do not want to fork the official build, you can just clone it. However, you will not be able to commit and push your customizations back to <a href="https://github.com" target="_blank" rel="external">GitHub</a>.<br></side-box></p>
+<h2 id="Build-anatomy"><a href="#Build-anatomy" class="headerlink" title="Build anatomy"></a>Build anatomy</h2><p>Every build contains the following files:</p>
 <ul>
-<li><code>package.json</code> &#x2013; npm package&#x2019;s definition (it specifies the package name, version, dependencies, license, etc.).</li>
-<li><code>build-config.js</code> &#x2013; configuration of this particular CKEditor 5 build.</li>
-<li><code>ckeditor.js</code> &#x2013; bundler&#x2019;s &#x201C;entry file&#x201D;. A CommonJS module which tells the bundler (like <a href="https://webpack.js.org" target="_blank" rel="external">Webpack</a>) which CKEditor modules should be included in the bundle and what should that bundle export). By default, it&#x2019;s created based on the build configuration but you may also modify it manually.</li>
-<li><code>build/*</code> &#x2013; directory with ready-to-use bundles. There are two bundles:<ul>
-<li>the most optimized, ES6 one in <code>build/ckeditor.js</code>,</li>
-<li>and ES5 one in <code>build/ckeditor.compat.js</code>.</li>
+<li><code>package.json</code> &#x2013; The definition of the npm package. It specifies the package name, version, dependencies, license, etc.</li>
+<li><code>build-config.js</code> &#x2013; The configuration of this particular CKEditor 5 build.</li>
+<li><code>ckeditor.js</code> &#x2013; The bundler&#x2019;s &#x201C;entry file&#x201D;. A CommonJS module which tells the bundler (like <a href="https://webpack.js.org" target="_blank" rel="external">webpack</a>) which CKEditor modules should be included in the bundle and what should that bundle export). By default, it is created based on the build configuration but you may also modify it manually.</li>
+<li><code>build/*</code> &#x2013; The directory with ready-to-use bundles. There are two bundles:<ul>
+<li>The most optimized, ES6 one, in: <code>build/ckeditor.js</code>.</li>
+<li>The ES5 one in: <code>build/ckeditor.compat.js</code>.</li>
 </ul>
 </li>
 </ul>
 <h2 id="Customizing-a-build"><a href="#Customizing-a-build" class="headerlink" title="Customizing a build"></a>Customizing a build</h2><p>In order to customize a build you need to:</p>
 <ul>
-<li>install missing dependencies,</li>
-<li>update the <code>build-config.js</code>,</li>
-<li>updating builds (which includes updating <code>ckeditor.js</code> and editor bundles in <code>build/*</code>).</li>
+<li>Install missing dependencies.</li>
+<li>Update the <code>build-config.js</code>.</li>
+<li>Update the builds (which includes updating <code>ckeditor.js</code> and editor bundles in <code>build/*</code>).</li>
 </ul>
 <h3 id="Installing-dependencies"><a href="#Installing-dependencies" class="headerlink" title="Installing dependencies"></a>Installing dependencies</h3><p>The easiest way to install missing dependencies is by typing:</p>
 <pre><code>npm install --save &lt;package-name&gt;
 </code></pre><p>This will install the package and add it to <code>package.json</code>. You can also edit <code>package.json</code> manually.</p>
-<p><side-box tip=""><br>    Due to a non-deterministic way how npm installs packages, it&#x2019;s recommended to run <code>rm -rf node_modules &amp;&amp; npm install</code> when in doubt. This will prevent some packages to get installed more than once in <code>node_modules/</code> what might lead to broken builds.</side-box></p>
-<pre><code>You can also give [yarn](https://yarnpkg.com/lang/en/) a try.
+<p><side-box tip=""><br>    Due to a non-deterministic way how npm installs packages, it is recommended to run <code>rm -rf node_modules &amp;&amp; npm install</code> when in doubt. This will prevent some packages from getting installed more than once in <code>node_modules/</code> (which might lead to broken builds).</side-box></p>
+<pre><code>You can also give [Yarn](https://yarnpkg.com/lang/en/) a try.
 </code></pre><side-box>
 
-<h3 id="Updating-build-configuration"><a href="#Updating-build-configuration" class="headerlink" title="Updating build configuration"></a>Updating build configuration</h3><p>If you added or removed dependencies, you will also need to modify the <code>build-config.js</code> file. Based on it the bundler entry file (<code>ckeditor.js</code>) will be created. You can also opt-out from automatically creating the entry file and modify <code>ckeditor.js</code> manually which can be useful in some non-standard cases.</p>
-<p>Either way, every plugin which you want to include in the bundle should be included at this stage. You can also change the editor creator and specify editor&#x2019;s default config. For instance, your build config can look like this:</p>
+<h3 id="Updating-build-configuration"><a href="#Updating-build-configuration" class="headerlink" title="Updating build configuration"></a>Updating build configuration</h3><p>If you added or removed dependencies, you will also need to modify the <code>build-config.js</code> file. Based on it the bundler entry file (<code>ckeditor.js</code>) will be created. You can also opt out from automatically creating the entry file and modify <code>ckeditor.js</code> manually, which can be useful in some non-standard cases.</p>
+<p>Either way, every plugin that you want to include in the bundle should be included at this stage. You can also change the editor creator and specify the default editor configuration. For instance, your build configuration might look like this:</p>
 <pre><code>&apos;use strict&apos;;
 
 module.exports = {
@@ -87,19 +87,19 @@ module.exports = {
         toolbar: [ &apos;headings&apos;, &apos;bold&apos;, &apos;italic&apos;, &apos;custombutton&apos; ]
     }
 };
-</code></pre><h3 id="Rebuilding-the-bundle"><a href="#Rebuilding-the-bundle" class="headerlink" title="Rebuilding the bundle"></a>Rebuilding the bundle</h3><p>After you changed the build configuration or updated some dependencies, it&#x2019;s time to rebuild the bundle. This will run a bundler (Webpack) with a proper configuration (see <code>webpack.config.js</code> and <code>webpack.compat.config.js</code>).</p>
+</code></pre><h3 id="Rebuilding-the-bundle"><a href="#Rebuilding-the-bundle" class="headerlink" title="Rebuilding the bundle"></a>Rebuilding the bundle</h3><p>After you changed the build configuration or updated some dependencies, it is time to rebuild the bundle. This will run a bundler (webpack) with a proper configuration (see <code>webpack.config.js</code> and <code>webpack.compat.config.js</code>).</p>
 <p>If you wish to create the bundles based on the build configuration (<code>build-config.js</code>) run:</p>
 <pre><code>npm run build
 </code></pre><p>This command will update the entry file (<code>ckeditor.js</code>) and create two bundles &#x2013; <code>build/ckeditor.js</code> and <code>build/ckeditor.compat.js</code>.</p>
-<p>If you want to use to skip updating the entry file (in case you modified it manually) run:</p>
+<p>If you want to skip updating the entry file (in case you modified it manually) run:</p>
 <pre><code>npm run build-ckeditor
 npm run build-ckeditor-compat
-</code></pre><h2 id="Updating-build"><a href="#Updating-build" class="headerlink" title="Updating build"></a>Updating build</h2><p>You may decide to update your build at any time. Being it a fork of an official build, it is just a matter of merging changes that happened meanwhile in that build, by using git features:</p>
+</code></pre><h2 id="Updating-the-build"><a href="#Updating-the-build" class="headerlink" title="Updating the build"></a>Updating the build</h2><p>You may decide to update your build at any time. Since it is a fork of the official build, you can simply merge the changes that happened meanwhile in that build, using Git commands:</p>
 <pre><code>git fetch upstream
 git merge upstream/master
 </code></pre><p>You should handle eventual conflicts and verify the merged changes. After that, just follow the previous instructions for creating your build and test it.</p>
-<p><side-box tip=""><br>    It&#x2019;s recommended to run <code>rm -rf node_modules &amp;&amp; npm install</code> after you fetched changes from the upstream or updated versions of dependencies in <code>package.json</code> manually. This will prevent npm from installing packages more than once which may lead to broken builds.<br></side-box></p>
-<h2 id="Publishing-your-builds"><a href="#Publishing-your-builds" class="headerlink" title="Publishing your builds"></a>Publishing your builds</h2><p>If you think that your custom builds can be useful to others, it is a great idea to publish them in GitHub and npm. When doing so, just be sure to find nice names for them and to fit them in the <code>ckeditor5-build-(the name)</code> pattern, making it easy to find them to everyone. To avoid conflicts with other existing builds you can use <a href="https://docs.npmjs.com/misc/scope" target="_blank" rel="external">scoped packages</a>.</p>
+<p><side-box tip=""><br>    It is recommended to run <code>rm -rf node_modules &amp;&amp; npm install</code> after you fetched changes from the upstream or updated versions of dependencies in <code>package.json</code> manually. This will prevent npm from installing packages more than once (which may lead to broken builds).<br></side-box></p>
+<h2 id="Publishing-your-builds"><a href="#Publishing-your-builds" class="headerlink" title="Publishing your builds"></a>Publishing your builds</h2><p>If you think that your custom builds can be useful to others, it is a great idea to publish them on GitHub and npm. When doing so, just be sure to give them meaningful names that would fit the <code>ckeditor5-build-(the name)</code> pattern, making them easy to find. To avoid conflicts with other existing builds you can use <a href="https://docs.npmjs.com/misc/scope" target="_blank" rel="external">scoped packages</a>.</p>
 <p>After your build is out, <a href="https://twitter.com/ckeditor" target="_blank" rel="external">ping us on Twitter</a>!</p>
 </side-box>
       </section>
@@ -133,7 +133,7 @@ git merge upstream/master
                                       <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Development</span></div>
                                       <ul>
                                               <li><a href="">
-                                                  <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Custom builds</span></div></a></li>
+                                                  <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Creating custom builds</span></div></a></li>
                                       </ul>
                                     </li>
                                     <li><a href="../license-and-legal.html">

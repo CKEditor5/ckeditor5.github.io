@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ClassicEditor - CKEditor 5</title>
+    <title>InlineEditor - CKEditor 5</title>
     <link rel="stylesheet" href="../../../assets/css/styles.css" type="text/css" media="screen">
     <script src="../../../assets/js/app.js"></script>
   </head>
@@ -23,7 +23,7 @@
     <main class="main">
       <section class="main__content formatted">
         <h1><img src="../../../assets/img/cog.svg" alt="Class" title="Class">
-ClassicEditor
+InlineEditor
         </h1>
         <p><span class="badge">class</span>
         </p>
@@ -34,15 +34,14 @@ ClassicEditor
                       <ul class="hierarchy-list">
                                 <li><code><span><a href="module_core_editor_standardeditor-StandardEditor.html">StandardEditor</a></span></code>
                                   <ul>
-                                            <li><code><span><a href="module_editor-classic_classic-ClassicEditor.html">ClassicEditor</a></span></code>
+                                            <li><code><span><a href="module_editor-inline_inlineeditor-InlineEditor.html">InlineEditor</a></span></code>
                                             </li>
                                   </ul>
                                 </li>
                       </ul>
                     </dd>
           </dl>
-        </nav><p>Classic editor. Uses inline editable and sticky toolbar, all
-enclosed in a boxed UI.</p>
+        </nav><p>Inline editor. Uses an inline editable and a floating toolbar.</p>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
           <ul>
@@ -53,6 +52,10 @@ enclosed in a boxed UI.</p>
             <li>
               <input type="checkbox" id="f4" value="inherited" checked>
               <label for="f4"><span class="badge badge--gray">Inherited</span></label>
+            </li>
+            <li>
+              <input type="checkbox" id="f6" value="mixed">
+              <label for="f6"><span class="badge badge--gray">Mixed</span></label>
             </li>
             <li>
               <input type="checkbox" id="f2" value="protected">
@@ -70,19 +73,6 @@ enclosed in a boxed UI.</p>
         </div>
         <h2>Properties</h2>
         <ul class="collapsing-list collapsing-list--filtered">
-                  <li class="collapsing-list__item" data-protected="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_elementReplacer">
-                      <h3><code><a href="#_elementReplacer">_elementReplacer</a> : <span><a class="collapsing-list__type" href="module_utils_elementreplacer-ElementReplacer.html">ElementReplacer</a></span></code></h3>
-                      <p class="badges">
-<span class="badge badge--orange">protected</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">The element replacer instance used to hide the editor element.</p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
                   <li class="collapsing-list__item" data-public="true" data-inherited="true">
                     <div class="collapsing-list__term toggler--collapsed" id="element">
                       <h3><code><a href="#element">element</a> : HTMLElement</code></h3>
@@ -137,14 +127,13 @@ so every editor class which is meant to work with default plugins should set thi
                       <h3><code><a href="#constructor">constructor</a>( element, config )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Creates an instance of the classic editor.
+                      <p class="collapsing-list__excerpt">Creates an instance of the inline editor.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> element : HTMLElement</code></dt>
-                                  <dd><p>The DOM element that will be the source for the created editor.
-The data will be loaded from it and loaded back to it once the editor is destroyed.</p>
+                                  <dd><p>The DOM element that will be the source for the created editor.</p>
                                   </dd>
                                   <dt><code> config : Object</code></dt>
                                   <dd><p>The editor configuration.</p>
@@ -244,10 +233,10 @@ The data will be loaded from it and loaded back to it once the editor is destroy
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Creates a classic editor instance.
+                      <p class="collapsing-list__excerpt">Creates an inline editor instance.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    ClassicEditor.create( document.querySelector( &apos;#editor&apos; ), {
+<pre class="prettyprint source"><code>    InlineEditor.create( document.querySelector( &apos;#editor&apos; ), {
         plugins: [ Delete, Enter, Typing, Paragraph, Undo, Bold, Italic ],
         toolbar: [ &apos;bold&apos;, &apos;italic&apos;, &apos;undo&apos;, &apos;redo&apos; ]
     } )
@@ -260,10 +249,10 @@ The data will be loaded from it and loaded back to it once the editor is destroy
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> element : HTMLElement</code></dt>
-                                  <dd><p>See <code><a href="module_editor-classic_classic-ClassicEditor.html#constructor">constructor</a></code>&apos;s parameters.</p>
+                                  <dd><p>See <code><a href="module_editor-inline_inlineeditor-InlineEditor.html#constructor">constructor</a></code>&apos;s parameters.</p>
                                   </dd>
                                   <dt><code> config : Object</code></dt>
-                                  <dd><p>See <code><a href="module_editor-classic_classic-ClassicEditor.html#constructor">constructor</a></code>&apos;s parameters.</p>
+                                  <dd><p>See <code><a href="module_editor-inline_inlineeditor-InlineEditor.html#constructor">constructor</a></code>&apos;s parameters.</p>
                                   </dd>
                                 </dl>
                         <h4>Returns</h4>
@@ -342,6 +331,15 @@ The data will be loaded from it and loaded back to it once the editor is destroy
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">basic-styles</span>
                       </div>
                       <ul>
+                              <li class="toggler--collapsed">
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_basic-styles_attributecommand.html">attributecommand</a>
+                                </div>
+                                <ul>
+                                        <li><a href="module_basic-styles_attributecommand-AttributeCommand.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">AttributeCommand</span></div></a>
+                                        </li>
+                                </ul>
+                              </li>
                               <li class="toggler--collapsed">
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_basic-styles_bold.html">bold</a>
                                 </div>
@@ -508,27 +506,6 @@ The data will be loaded from it and loaded back to it once the editor is destroy
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_core_command.html">command</a>
                                 </div>
                                 <ul>
-                                        <li class="toggler--collapsed">
-                                          <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">helpers</span>
-                                          </div>
-                                          <ul>
-                                                  <li><a href="module_core_command_helpers_getschemavalidranges.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">getschemavalidranges</span></div></a>
-                                                  </li>
-                                                  <li><a href="module_core_command_helpers_isattributeallowedinselection.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">isattributeallowedinselection</span></div></a>
-                                                  </li>
-                                          </ul>
-                                        </li>
-                                        <li class="toggler--collapsed">
-                                          <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_core_command_toggleattributecommand.html">toggleattributecommand</a>
-                                          </div>
-                                          <ul>
-                                                  <li><a href="module_core_command_toggleattributecommand-ToggleAttributeCommand.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">ToggleAttributeCommand</span></div></a>
-                                                  </li>
-                                          </ul>
-                                        </li>
                                         <li><a href="module_core_command-Command.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Command</span></div></a>
                                         </li>
@@ -608,16 +585,16 @@ The data will be loaded from it and loaded back to it once the editor is destroy
                               </li>
                       </ul>
                     </li>
-                    <li class="toggler--expanded">
+                    <li class="toggler--collapsed">
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">editor-classic</span>
                       </div>
                       <ul>
-                              <li class="toggler--expanded">
-                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_editor-classic_classic.html">classic</a>
+                              <li class="toggler--collapsed">
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_editor-classic_classiceditor.html">classiceditor</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_editor-classic_classic-ClassicEditor.html">
-                                            <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--class tree__item__text">ClassicEditor</span></div></a>
+                                        <li><a href="module_editor-classic_classiceditor-ClassicEditor.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">ClassicEditor</span></div></a>
                                         </li>
                                 </ul>
                               </li>
@@ -641,16 +618,16 @@ The data will be loaded from it and loaded back to it once the editor is destroy
                               </li>
                       </ul>
                     </li>
-                    <li class="toggler--collapsed">
+                    <li class="toggler--expanded">
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">editor-inline</span>
                       </div>
                       <ul>
-                              <li class="toggler--collapsed">
-                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_editor-inline_inline.html">inline</a>
+                              <li class="toggler--expanded">
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_editor-inline_inlineeditor.html">inlineeditor</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_editor-inline_inline-InlineEditor.html">
-                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">InlineEditor</span></div></a>
+                                        <li><a href="module_editor-inline_inlineeditor-InlineEditor.html">
+                                            <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--class tree__item__text">InlineEditor</span></div></a>
                                         </li>
                                 </ul>
                               </li>
