@@ -29,10 +29,10 @@ ModelConverterBuilder
         </p><p>Provides chainable, high-level API to easily build basic model-to-view converters that are appended to given
 dispatchers. In many cases, this is the API that should be used to specify how abstract model elements and
 attributes should be represented in the view (and then later in DOM). Instances of this class are created by
-<code>(module:engine/conversion/buildmodelconverter~buildModelConverter)</code>.</p>
-<p>If you need more complex converters, see <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html">ModelConversionDispatcher</a></code>,
-<code><a href="module_engine_conversion_model-to-view-converters.html">module:engine/conversion/model-to-view-converters</a></code>, <code><a href="module_engine_conversion_modelconsumable-ModelConsumable.html">ModelConsumable</a></code>,
-<code><a href="module_engine_conversion_mapper-Mapper.html">Mapper</a></code>.</p>
+<code>module:engine/conversion/buildmodelconverter~buildModelConverter</code>.</p>
+<p>If you need more complex converters, see <a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html"><code>ModelConversionDispatcher</code></a>,
+<a href="module_engine_conversion_model-to-view-converters.html"><code>module:engine/conversion/model-to-view-converters</code></a>, <a href="module_engine_conversion_modelconsumable-ModelConsumable.html"><code>ModelConsumable</code></a>,
+<a href="module_engine_conversion_mapper-Mapper.html"><code>Mapper</code></a>.</p>
 <p>Using this API it is possible to create four kinds of converters:</p>
 <ol>
 <li><p>Model element to view element converter. This is a converter that takes the model element and represents it
@@ -49,23 +49,23 @@ correspond to model nodes had converter attribute. It is suitable for attributes
 set on model text nodes is converter to <code>strong</code> view element.</p>
 <pre class="prettyprint source"><code> buildModelConverter().for( dispatcher ).fromAttribute( &apos;bold&apos; ).toElement( &apos;strong&apos; );</code></pre></li>
 <li><p>Model marker to view element converter. This is a converter that converts markers from given group to view attribute element.
-Markers, basically, are <code><a href="module_engine_model_liverange-LiveRange.html">LiveRange</a></code> instances, that are named. In this conversion, model range is
+Markers, basically, are <a href="module_engine_model_liverange-LiveRange.html"><code>LiveRange</code></a> instances, that are named. In this conversion, model range is
 converted to view range, then that view range is wrapped (or unwrapped, if range is removed) in a view attribute element.
-To learn more about markers, see <code><a href="module_engine_model_markercollection-MarkerCollection.html">MarkerCollection</a></code>.</p>
+To learn more about markers, see <a href="module_engine_model_markercollection-MarkerCollection.html"><code>MarkerCollection</code></a>.</p>
 <pre class="prettyprint source"><code> const viewSpanSearchResult = new ViewAttributeElement( &apos;span&apos;, { class: &apos;search-result&apos; } );
  buildModelConverter().for( dispatcher ).fromMarker( &apos;searchResult&apos; ).toElement( viewSpanSearchResult );</code></pre></li>
 </ol>
 <p>It is possible to provide various different parameters for
-<code><a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html#toElement">toElement</a></code>
-and <code><a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html#toAttribute">toAttribute</a></code> methods.
+<a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html#toElement"><code>toElement</code></a>
+and <a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html#toAttribute"><code>toAttribute</code></a> methods.
 See their descriptions to learn more.</p>
-<p>It is also possible to <code><a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html#withPriority">change default priority</a></code>
+<p>It is also possible to <a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html#withPriority">change default priority</a>
 of created converters to decide which converter should be fired earlier and which later. This is useful if you have
 a general converter but also want to provide different special-case converters (i.e. given model element is converted
 always to given view element, but if it has given attribute it is converter to other view element). For this,
-use <code><a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html#withPriority">withPriority</a></code> right after <code>from...</code> method.</p>
+use <a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html#withPriority">withPriority</a> right after <code>from...</code> method.</p>
 <p>Note that <code>to...</code> methods are &quot;terminators&quot;, which means that should be the last one used in building converter.</p>
-<p>You can use <code><a href="module_engine_conversion_buildviewconverter-ViewConverterBuilder.html">ViewConverterBuilder</a></code>
+<p>You can use <a href="module_engine_conversion_buildviewconverter-ViewConverterBuilder.html"><code>ViewConverterBuilder</code></a>
 to create &quot;opposite&quot; converters - from view to model.</p>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
@@ -260,7 +260,7 @@ parameters.</p>
       .toAttribute( ( value ) =&gt; ( { key: &apos;class&apos;, value: value + &apos;-theme&apos; } ) );</code></pre></li>
 </ul>
 <p>This method creates the converter and adds it as a callback to a proper
-<code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html">conversion dispatcher</a></code> event.</p>
+<a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html">conversion dispatcher</a> event.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> [ keyOrCreator ] : String | function</code></dt>
@@ -284,26 +284,26 @@ parameters.</p>
 <p>Method accepts various ways of providing how the view element will be created. You can pass view element name as
 <code>string</code>, view element instance which will be cloned and used, or creator function which returns view element that
 will be used. Keep in mind that when you view element instance or creator function, it has to be/return a
-proper type of view element: <code><a href="module_engine_viewithcontainerelement-ContainerElement.html">ViewContainerElement</a></code> if you convert
-from element or <code><a href="module_engine_viewithattributeelement-AttributeElement.html">ViewAttributeElement</a></code> if you convert from attribute.</p>
-<pre class="prettyprint source"><code>    buildModelConverter().for( dispatcher ).fromElement( &apos;paragraph&apos; ).toElement( &apos;p&apos; );
+proper type of view element: <a href="module_engine_viewithcontainerelement-ContainerElement.html">ViewContainerElement</a> if you convert
+from element or <a href="module_engine_viewithattributeelement-AttributeElement.html">ViewAttributeElement</a> if you convert from attribute.</p>
+<pre class="prettyprint source"><code>buildModelConverter().for( dispatcher ).fromElement( &apos;paragraph&apos; ).toElement( &apos;p&apos; );
 
-    buildModelConverter().for( dispatcher ).fromElement( &apos;image&apos; ).toElement( new ViewContainerElement( &apos;img&apos; ) );
+buildModelConverter().for( dispatcher ).fromElement( &apos;image&apos; ).toElement( new ViewContainerElement( &apos;img&apos; ) );
 
-    buildModelConverter().for( dispatcher )
-        .fromElement( &apos;header&apos; )
-        .toElement( ( data ) =&gt; new ViewContainerElement( &apos;h&apos; + data.item.getAttribute( &apos;level&apos; ) ) );
+buildModelConverter().for( dispatcher )
+    .fromElement( &apos;header&apos; )
+    .toElement( ( data ) =&gt; new ViewContainerElement( &apos;h&apos; + data.item.getAttribute( &apos;level&apos; ) ) );
 
-    buildModelConverter().for( dispatcher ).fromAttribute( &apos;bold&apos; ).toElement( new ViewAttributeElement( &apos;strong&apos; ) );</code></pre><p>Creator function will be passed different values depending whether conversion is from element or from attribute:</p>
+buildModelConverter().for( dispatcher ).fromAttribute( &apos;bold&apos; ).toElement( new ViewAttributeElement( &apos;strong&apos; ) );</code></pre><p>Creator function will be passed different values depending whether conversion is from element or from attribute:</p>
 <ul>
 <li>from element: dispatcher&apos;s
-<code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:insert">insert event</a></code>
+<a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:insert">insert event</a>
 parameters will be passed,</li>
 <li>from attribute: there is one parameter and it is attribute value.</li>
 </ul>
 <p>This method also registers model selection to view selection converter, if conversion is from attribute.</p>
 <p>This method creates the converter and adds it as a callback to a proper
-<code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html">conversion dispatcher</a></code> event.</p>
+<a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html">conversion dispatcher</a> event.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> element : String | <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | function</code></dt>
@@ -326,27 +326,27 @@ created at the beginning and at the end of the range. If range is collapsed then
 <p>Method accepts various ways of providing how the view element will be created. You can pass view element name as
 <code>string</code>, view element instance which will be cloned and used, or creator function which returns view element that
 will be used. Keep in mind that when you provide view element instance or creator function, it has to be/return a
-proper type of view element: <code><a href="module_engine_viewithuielement-UIElement.html">UIElement</a></code>.</p>
-<pre class="prettyprint source"><code>    buildModelConverter().for( dispatcher ).fromMarker( &apos;search&apos; ).toStamp( &apos;span&apos; );
+proper type of view element: <a href="module_engine_viewithuielement-UIElement.html">UIElement</a>.</p>
+<pre class="prettyprint source"><code>buildModelConverter().for( dispatcher ).fromMarker( &apos;search&apos; ).toStamp( &apos;span&apos; );
 
-    buildModelConverter().for( dispatcher )
-        .fromMarker( &apos;search&apos; )
-        .toStamp( new UIElement( &apos;span&apos;, { &apos;data-name&apos;: &apos;search&apos; } ) );
+buildModelConverter().for( dispatcher )
+    .fromMarker( &apos;search&apos; )
+    .toStamp( new UIElement( &apos;span&apos;, { &apos;data-name&apos;: &apos;search&apos; } ) );
 
-    buildModelConverter().for( dispatcher )
-        .fromMarker( &apos;search&apos; )
-        .toStamp( ( data ) =&gt; new UIElement( &apos;span&apos;, { &apos;data-name&apos;: data.name ) );</code></pre><p>Creator function provides additional <code>data.isOpening</code> parameter which defined if currently converted element is
+buildModelConverter().for( dispatcher )
+    .fromMarker( &apos;search&apos; )
+    .toStamp( ( data ) =&gt; new UIElement( &apos;span&apos;, { &apos;data-name&apos;: data.name ) );</code></pre><p>Creator function provides additional <code>data.isOpening</code> parameter which defined if currently converted element is
 a beginning or end of the marker range. This makes possible to create different opening and closing stamp.</p>
-<pre class="prettyprint source"><code>    buildModelConverter().for( dispatcher )
-        .fromMarker( &apos;search&apos; )
-        .toStamp( ( data ) =&gt; {
-            if ( data.isOpening ) {
-                return new UIElement( &apos;span&apos;, { &apos;data-name&apos;: data.name, &apos;data-start&apos;: true ) );
-            }
+<pre class="prettyprint source"><code>buildModelConverter().for( dispatcher )
+    .fromMarker( &apos;search&apos; )
+    .toStamp( ( data ) =&gt; {
+        if ( data.isOpening ) {
+            return new UIElement( &apos;span&apos;, { &apos;data-name&apos;: data.name, &apos;data-start&apos;: true ) );
+        }
 
-            return new UIElement( &apos;span&apos;, { &apos;data-name&apos;: data.name, &apos;data-end&apos;: true ) );
-        }</code></pre><p>Creator function provides
-<code><a href="module_engine_conversion_buildmodelconverter-StampCreatorData.html">StampCreatorData</a></code> parameters.</p>
+        return new UIElement( &apos;span&apos;, { &apos;data-name&apos;: data.name, &apos;data-end&apos;: true ) );
+    }</code></pre><p>Creator function provides
+<a href="module_engine_conversion_buildmodelconverter-StampCreatorData.html"><code>StampCreatorData</code></a> parameters.</p>
 <p>See how markers {module:engine/model/buildviewconverter~ViewConverterBuilder#toMarker view -&gt; model serialization}
 works to find out what view element format is the best for you.</p>
                         <h4>Parameters</h4>
@@ -369,12 +369,12 @@ Default priority is <code>10</code>.
                       </p>
                       <div class="collapsing-list__content">
 <p><strong>Note:</strong> Keep in mind that event priority, that is set by this modifier, is used for attribute priority
-when <code><a href="module_engine_viewithwriter-writer.html">writer</a></code> is used. This changes how view elements are ordered,
+when <a href="module_engine_viewithwriter-writer.html"><code>writer</code></a> is used. This changes how view elements are ordered,
 i.e.: <code>&lt;strong&gt;&lt;em&gt;foo&lt;/em&gt;&lt;/strong&gt;</code> vs <code>&lt;em&gt;&lt;strong&gt;foo&lt;/strong&gt;&lt;/em&gt;</code>. Using priority you can also
 prevent node merging, i.e.: <code>&lt;span class=&quot;bold&quot;&gt;&lt;span class=&quot;theme&quot;&gt;foo&lt;/span&gt;&lt;span&gt;</code> vs <code>&lt;span class=&quot;bold theme&quot;&gt;foo&lt;/span&gt;</code>.
 If you want to prevent merging, just set different priority for both converters.</p>
-<pre class="prettyprint source"><code>    buildModelConverter().for( dispatcher ).fromAttribute( &apos;bold&apos; ).withPriority( 2 ).toElement( &apos;strong&apos; );
-    buildModelConverter().for( dispatcher ).fromAttribute( &apos;italic&apos; ).withPriority( 3 ).toElement( &apos;em&apos; );</code></pre>
+<pre class="prettyprint source"><code>buildModelConverter().for( dispatcher ).fromAttribute( &apos;bold&apos; ).withPriority( 2 ).toElement( &apos;strong&apos; );
+buildModelConverter().for( dispatcher ).fromAttribute( &apos;italic&apos; ).withPriority( 3 ).toElement( &apos;em&apos; );</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> priority : Number</code></dt>
@@ -1410,7 +1410,7 @@ If you want to prevent merging, just set different priority for both converters.
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -2666,13 +2666,13 @@ If you want to prevent merging, just set different priority for both converters.
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -2720,7 +2720,7 @@ If you want to prevent merging, just set different priority for both converters.
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

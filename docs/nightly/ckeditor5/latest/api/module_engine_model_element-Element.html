@@ -36,9 +36,9 @@ Element
                       </ul>
                     </dd>
           </dl>
-        </nav><p>Model element. Type of <code><a href="module_engine_model_node-Node.html">node</a></code> that has a <code><a href="module_engine_model_element-Element.html#name">name</a></code> and
-<code><a href="module_engine_model_element-Element.html#getChildren">child nodes</a></code>.</p>
-<p><strong>Important</strong>: see <code><a href="module_engine_model_node-Node.html">Node</a></code> to read about restrictions using <code>Element</code> and <code>Node</code> API.</p>
+        </nav><p>Model element. Type of <a href="module_engine_model_node-Node.html">node</a> that has a <a href="module_engine_model_element-Element.html#name">name</a> and
+<a href="module_engine_model_element-Element.html#getChildren">child nodes</a>.</p>
+<p><strong>Important</strong>: see <a href="module_engine_model_node-Node.html"><code>Node</code></a> to read about restrictions using <code>Element</code> and <code>Node</code> API.</p>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
           <ul>
@@ -150,7 +150,7 @@ Element
                                   <dd><p>Element&apos;s name.</p>
                                   </dd>
                                   <dt><code> [ attrs ] : Object</code></dt>
-                                  <dd><p>Element&apos;s attributes. See <code>(module:utils/tomap~toMap)</code> for a list of accepted values.</p>
+                                  <dd><p>Element&apos;s attributes. See <code>module:utils/tomap~toMap</code> for a list of accepted values.</p>
                                   </dd>
                                   <dt><code> [ children ] : <span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span> | <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a>&gt;</span></code></dt>
                                   <dd><p>One or more nodes to be inserted as children of created element.</p>
@@ -189,7 +189,7 @@ given node is not a child of this element.
                       <h3><code><a href="#appendChildren">appendChildren</a>( nodes )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt"><code><a href="module_engine_model_element-Element.html#insertChildren">Inserts</a></code> one or more nodes at the end of this element.
+                      <p class="collapsing-list__excerpt"><a href="module_engine_model_element-Element.html#insertChildren">Inserts</a> one or more nodes at the end of this element.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -292,10 +292,10 @@ element will be cloned without any child.</p>
                       <p class="collapsing-list__excerpt">Returns a descendant node by its path relative to this element.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    // &lt;this&gt;a&lt;b&gt;c&lt;/b&gt;&lt;/this&gt;
-    this.getNodeByPath( [ 0 ] );     // -&gt; &quot;a&quot;
-    this.getNodeByPath( [ 1 ] );     // -&gt; &lt;b&gt;
-    this.getNodeByPath( [ 1, 0 ] );  // -&gt; &quot;c&quot;</code></pre>
+<pre class="prettyprint source"><code>// &lt;this&gt;a&lt;b&gt;c&lt;/b&gt;&lt;/this&gt;
+this.getNodeByPath( [ 0 ] );     // -&gt; &quot;a&quot;
+this.getNodeByPath( [ 1 ] );     // -&gt; &lt;b&gt;
+this.getNodeByPath( [ 1, 0 ] );  // -&gt; &quot;c&quot;</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> relativePath : Number</code></dt>
@@ -316,7 +316,7 @@ element will be cloned without any child.</p>
                       <h3><code><a href="#insertChildren">insertChildren</a>( index, nodes )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Inserts one or more nodes at the given index and sets <code><a href="module_engine_model_node-Node.html#parent">parent</a></code> of these nodes
+                      <p class="collapsing-list__excerpt">Inserts one or more nodes at the given index and sets <a href="module_engine_model_node-Node.html#parent">parent</a> of these nodes
 to this element.
                       </p>
                       <div class="collapsing-list__content">
@@ -340,14 +340,14 @@ to this element.
                       <p class="collapsing-list__excerpt">Checks whether given model tree object is of given type.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    obj.name; // &apos;listItem&apos;
-    obj instanceof Element; // true
+<pre class="prettyprint source"><code>obj.name; // &apos;listItem&apos;
+obj instanceof Element; // true
 
-    obj.is( &apos;element&apos; ); // true
-    obj.is( &apos;listItem&apos; ); // true
-    obj.is( &apos;element&apos;, &apos;listItem&apos; ); // true
-    obj.is( &apos;text&apos; ); // false
-    obj.is( &apos;element&apos;, &apos;image&apos; ); // false</code></pre><p>Read more in <code><a href="module_engine_model_node-Node.html#is">is</a></code>.</p>
+obj.is( &apos;element&apos; ); // true
+obj.is( &apos;listItem&apos; ); // true
+obj.is( &apos;element&apos;, &apos;listItem&apos; ); // true
+obj.is( &apos;text&apos; ); // false
+obj.is( &apos;element&apos;, &apos;image&apos; ); // false</code></pre><p>Read more in <a href="module_engine_model_node-Node.html#is"><code>is</code></a>.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> type : String</code></dt>
@@ -373,18 +373,18 @@ Otherwise, it acts like the <code>name</code> parameter.</p>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Returns index of a node that occupies given offset. If given offset is too low, returns <code>0</code>. If given offset is
-too high, returns <code><a href="module_engine_model_element-Element.html#getChildIndex">index after last child</a></code>.
+too high, returns <a href="module_engine_model_element-Element.html#getChildIndex">index after last child</a>.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    const textNode = new Text( &apos;foo&apos; );
-    const pElement = new Element( &apos;p&apos; );
-    const divElement = new Element( [ textNode, pElement ] );
-    divElement.offsetToIndex( -1 ); // Returns 0, because offset is too low.
-    divElement.offsetToIndex( 0 ); // Returns 0, because offset 0 is taken by `textNode` which is at index 0.
-    divElement.offsetToIndex( 1 ); // Returns 0, because `textNode` has `offsetSize` equal to 3, so it occupies offset 1 too.
-    divElement.offsetToIndex( 2 ); // Returns 0.
-    divElement.offsetToIndex( 3 ); // Returns 1.
-    divElement.offsetToIndex( 4 ); // Returns 2. There are no nodes at offset 4, so last available index is returned.</code></pre>
+<pre class="prettyprint source"><code>const textNode = new Text( &apos;foo&apos; );
+const pElement = new Element( &apos;p&apos; );
+const divElement = new Element( [ textNode, pElement ] );
+divElement.offsetToIndex( -1 ); // Returns 0, because offset is too low.
+divElement.offsetToIndex( 0 ); // Returns 0, because offset 0 is taken by `textNode` which is at index 0.
+divElement.offsetToIndex( 1 ); // Returns 0, because `textNode` has `offsetSize` equal to 3, so it occupies offset 1 too.
+divElement.offsetToIndex( 2 ); // Returns 0.
+divElement.offsetToIndex( 3 ); // Returns 1.
+divElement.offsetToIndex( 4 ); // Returns 2. There are no nodes at offset 4, so last available index is returned.</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> offset : Number</code></dt>
@@ -406,7 +406,7 @@ too high, returns <code><a href="module_engine_model_element-Element.html#getChi
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Removes one or more nodes starting at the given index and sets
-<code><a href="module_engine_model_node-Node.html#parent">parent</a></code> of these nodes to <code>null</code>.
+<a href="module_engine_model_node-Node.html#parent">parent</a> of these nodes to <code>null</code>.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -1495,7 +1495,7 @@ Converts <code>Element</code> children to proper nodes.
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -2751,13 +2751,13 @@ Converts <code>Element</code> children to proper nodes.
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -2805,7 +2805,7 @@ Converts <code>Element</code> children to proper nodes.
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

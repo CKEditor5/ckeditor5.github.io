@@ -34,7 +34,7 @@ universal filler, this is why two types are uses:</p>
 as browsers do natively. So instead of an empty <code>&lt;p&gt;</code> there will be <code>&lt;p&gt;&lt;br&gt;&lt;/p&gt;</code>. The advantage of block filler is that
 it is transparent for the selection, so when the caret is before the <code>&lt;br&gt;</code> and user presses right arrow he will be
 moved to the next paragraph, not after the <code>&lt;br&gt;</code>. The disadvantage is that it breaks a block, so it can not be used
-in the middle of a line of text. The <code>&lt;code&gt;&amp;lt;br&amp;gt;&lt;/code&gt; filler (module:engine/view/filler~BR_FILLER)</code> can be replaced with any other
+in the middle of a line of text. The <code><code>&lt;br&gt;</code> filler (module:engine/view/filler~BR_FILLER)</code> can be replaced with any other
 character in the data output, for instance <code>non-breaking space (module:engine/view/filler~NBSP_FILLER)</code>.</p>
 </li>
 <li><p>Inline filler is a filler which does not break a line of text, so it can be used inside the text, for instance in the empty
@@ -46,7 +46,7 @@ transparent for the selection. The arrow key moves the caret between zero-width 
 code is needed to handle the caret.</p>
 </li>
 </ul>
-<p>Both inline and block fillers are handled by the <code><a href="module_engine_viewithrenderer-Renderer.html">renderer</a></code> and are not present in the
+<p>Both inline and block fillers are handled by the <a href="module_engine_viewithrenderer-Renderer.html">renderer</a> and are not present in the
 view.</p>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
@@ -138,8 +138,8 @@ It defines how the filler is created.
 if text node contains it.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    getDataWithoutFiller( document.createTextNode( INLINE_FILLER + &apos;foo&apos; ) ) == &apos;foo&apos; // true
-    getDataWithoutFiller( document.createTextNode( &apos;foo&apos; ) ) == &apos;foo&apos; // true</code></pre>
+<pre class="prettyprint source"><code>getDataWithoutFiller( document.createTextNode( INLINE_FILLER + &apos;foo&apos; ) ) == &apos;foo&apos; // true
+getDataWithoutFiller( document.createTextNode( &apos;foo&apos; ) ) == &apos;foo&apos; // true</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> domText : Text</code></dt>
@@ -187,8 +187,8 @@ the left arrow is pressed, so the filler does not break navigation.
                       <p class="collapsing-list__excerpt">Checks if the node is an instance of the block filler of the given type.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    const brFillerInstance = BR_FILLER( document );
-    isBlockFiller( brFillerInstance, BR_FILLER ); // true</code></pre>
+<pre class="prettyprint source"><code>const brFillerInstance = BR_FILLER( document );
+isBlockFiller( brFillerInstance, BR_FILLER ); // true</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> domNode : Node</code></dt>
@@ -218,8 +218,8 @@ the left arrow is pressed, so the filler does not break navigation.
                       <p class="collapsing-list__excerpt">Checks if the text node contains only the <code>inline filler (module:engine/view/filler~INLINE_FILLER)</code>.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    isInlineFiller( document.createTextNode( INLINE_FILLER ) ); // true
-    isInlineFiller( document.createTextNode( INLINE_FILLER + &apos;foo&apos; ) ); // false</code></pre>
+<pre class="prettyprint source"><code>isInlineFiller( document.createTextNode( INLINE_FILLER ) ); // true
+isInlineFiller( document.createTextNode( INLINE_FILLER + &apos;foo&apos; ) ); // false</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> domText : Text</code></dt>
@@ -261,10 +261,10 @@ It defines how the filler is created.
                       <p class="collapsing-list__excerpt">Checks if the node is a text node which starts with the <code>inline filler (module:engine/view/filler~INLINE_FILLER)</code>.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    startsWithFiller( document.createTextNode( INLINE_FILLER ) ); // true
-    startsWithFiller( document.createTextNode( INLINE_FILLER + &apos;foo&apos; ) ); // true
-    startsWithFiller( document.createTextNode( &apos;foo&apos; ) ); // false
-    startsWithFiller( document.createElement( &apos;p&apos; ) ); // false</code></pre>
+<pre class="prettyprint source"><code>startsWithFiller( document.createTextNode( INLINE_FILLER ) ); // true
+startsWithFiller( document.createTextNode( INLINE_FILLER + &apos;foo&apos; ) ); // true
+startsWithFiller( document.createTextNode( &apos;foo&apos; ) ); // false
+startsWithFiller( document.createElement( &apos;p&apos; ) ); // false</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> domNode : Node</code></dt>
@@ -1300,7 +1300,7 @@ It defines how the filler is created.
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -2556,13 +2556,13 @@ It defines how the filler is created.
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -2610,7 +2610,7 @@ It defines how the filler is created.
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

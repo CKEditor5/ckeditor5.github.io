@@ -26,17 +26,17 @@
 ModelConsumable
         </h1>
         <p><span class="badge">class</span>
-        </p><p>Manages a list of consumable values for <code><a href="module_engine_model_item-Item.html">model items</a></code>.</p>
+        </p><p>Manages a list of consumable values for <a href="module_engine_model_item-Item.html">model items</a>.</p>
 <p>Consumables are various aspects of the model. A model item can be broken down into singular properties that might be
 taken into consideration when converting that item.</p>
-<p><code>ModelConsumable</code> is used by <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html">ModelConversionDispatcher</a></code> while analyzing changed
-parts of <code><a href="module_engine_model_document-Document.html">the document</a></code>. The added / changed / removed model items are broken down
+<p><code>ModelConsumable</code> is used by <a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html"><code>ModelConversionDispatcher</code></a> while analyzing changed
+parts of <a href="module_engine_model_document-Document.html">the document</a>. The added / changed / removed model items are broken down
 into singular properties (the item itself and it&apos;s attributes). All those parts are saved in <code>ModelConsumable</code>. Then,
 during conversion, when given part of model item is converted (i.e. the view element has been inserted into the view,
 but without attributes), consumable value is removed from <code>ModelConsumable</code>.</p>
 <p>For model items, <code>ModelConsumable</code> stores consumable values of one of following types: <code>insert</code>, <code>addAttribute:&lt;attributeKey&gt;</code>,
 <code>changeAttribute:&lt;attributeKey&gt;</code>, <code>removeAttribute:&lt;attributeKey&gt;</code>.</p>
-<p>In most cases, it is enough to let <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html">ModelConversionDispatcher</a></code>
+<p>In most cases, it is enough to let <a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html"><code>ModelConversionDispatcher</code></a>
 gather consumable values, so there is no need to use</p>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
@@ -90,7 +90,7 @@ gather consumable values, so there is no need to use</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">For each <code><a href="module_engine_model_textproxy-TextProxy.html">TextProxy</a></code> added to <code>ModelConsumable</code>, this registry holds parent
+                      <p class="collapsing-list__excerpt">For each <a href="module_engine_model_textproxy-TextProxy.html"><code>TextProxy</code></a> added to <code>ModelConsumable</code>, this registry holds parent
 of that <code>TextProxy</code> and start and end indices of that <code>TextProxy</code>. This allows identification of <code>TextProxy</code>
 instances that points to the same part of the model but are different instances. Each distinct <code>TextProxy</code>
 is given unique <code>Symbol</code> which is then registered as consumable. This process is transparent for <code>ModelConsumable</code>
@@ -122,7 +122,7 @@ API user because whenever <code>TextProxy</code> is added, tested, consumed or r
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Adds a symbol for given properties that characterizes a <code><a href="module_engine_model_textproxy-TextProxy.html">TextProxy</a></code> instance.
+                      <p class="collapsing-list__excerpt">Adds a symbol for given properties that characterizes a <a href="module_engine_model_textproxy-TextProxy.html"><code>TextProxy</code></a> instance.
                       </p>
                       <div class="collapsing-list__content">
 <p>Used internally to correctly consume <code>TextProxy</code> instances.</p>
@@ -155,7 +155,7 @@ API user because whenever <code>TextProxy</code> is added, tested, consumed or r
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Gets a unique symbol for passed <code><a href="module_engine_model_textproxy-TextProxy.html">TextProxy</a></code> instance. All <code>TextProxy</code> instances that
+                      <p class="collapsing-list__excerpt">Gets a unique symbol for passed <a href="module_engine_model_textproxy-TextProxy.html"><code>TextProxy</code></a> instance. All <code>TextProxy</code> instances that
 have same parent, same start index and same end index will get the same symbol.
                       </p>
                       <div class="collapsing-list__content">
@@ -183,12 +183,12 @@ have same parent, same start index and same end index will get the same symbol.
                       <p class="collapsing-list__excerpt">Adds a consumable value to the consumables list and links it with given model item.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    modelConsumable.add( modelElement, &apos;insert&apos; ); // Add `modelElement` insertion change to consumable values.
-    modelConsumable.add( modelElement, &apos;addAttribute:bold&apos; ); // Add `bold` attribute insertion on `modelElement` change.
-    modelConsumable.add( modelElement, &apos;removeAttribute:bold&apos; ); // Add `bold` attribute removal on `modelElement` change.
-    modelConsumable.add( modelSelection, &apos;selection&apos; ); // Add `modelSelection` to consumable values.
-    modelConsumable.add( modelSelection, &apos;selectionAttribute:bold&apos; ); // Add `bold` attribute on `modelSelection` to consumables.
-    modelConsumable.add( modelRange, &apos;range&apos; ); // Add `modelRange` to consumable values.</code></pre>
+<pre class="prettyprint source"><code>modelConsumable.add( modelElement, &apos;insert&apos; ); // Add `modelElement` insertion change to consumable values.
+modelConsumable.add( modelElement, &apos;addAttribute:bold&apos; ); // Add `bold` attribute insertion on `modelElement` change.
+modelConsumable.add( modelElement, &apos;removeAttribute:bold&apos; ); // Add `bold` attribute removal on `modelElement` change.
+modelConsumable.add( modelSelection, &apos;selection&apos; ); // Add `modelSelection` to consumable values.
+modelConsumable.add( modelSelection, &apos;selectionAttribute:bold&apos; ); // Add `bold` attribute on `modelSelection` to consumables.
+modelConsumable.add( modelRange, &apos;range&apos; ); // Add `modelRange` to consumable values.</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> item : <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_selection-Selection.html">Selection</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
@@ -209,12 +209,12 @@ have same parent, same start index and same end index will get the same symbol.
                       <p class="collapsing-list__excerpt">Removes given consumable value from given model item.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    modelConsumable.consume( modelElement, &apos;insert&apos; ); // Remove `modelElement` insertion change from consumable values.
-    modelConsumable.consume( modelElement, &apos;addAttribute:bold&apos; ); // Remove `bold` attribute insertion on `modelElement` change.
-    modelConsumable.consume( modelElement, &apos;removeAttribute:bold&apos; ); // Remove `bold` attribute removal on `modelElement` change.
-    modelConsumable.consume( modelSelection, &apos;selection&apos; ); // Remove `modelSelection` from consumable values.
-    modelConsumable.consume( modelSelection, &apos;selectionAttribute:bold&apos; ); // Remove `bold` on `modelSelection` from consumables.
-    modelConsumable.consume( modelRange, &apos;range&apos; ); // Remove &apos;modelRange&apos; from consumable values.</code></pre>
+<pre class="prettyprint source"><code>modelConsumable.consume( modelElement, &apos;insert&apos; ); // Remove `modelElement` insertion change from consumable values.
+modelConsumable.consume( modelElement, &apos;addAttribute:bold&apos; ); // Remove `bold` attribute insertion on `modelElement` change.
+modelConsumable.consume( modelElement, &apos;removeAttribute:bold&apos; ); // Remove `bold` attribute removal on `modelElement` change.
+modelConsumable.consume( modelSelection, &apos;selection&apos; ); // Remove `modelSelection` from consumable values.
+modelConsumable.consume( modelSelection, &apos;selectionAttribute:bold&apos; ); // Remove `bold` on `modelSelection` from consumables.
+modelConsumable.consume( modelRange, &apos;range&apos; ); // Remove &apos;modelRange&apos; from consumable values.</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> item : <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_selection-Selection.html">Selection</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
@@ -241,12 +241,12 @@ have same parent, same start index and same end index will get the same symbol.
                       <p class="collapsing-list__excerpt">Reverts consuming of consumable value.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    modelConsumable.revert( modelElement, &apos;insert&apos; ); // Revert consuming `modelElement` insertion change.
-    modelConsumable.revert( modelElement, &apos;addAttribute:bold&apos; ); // Revert consuming `bold` attribute insert from `modelElement`.
-    modelConsumable.revert( modelElement, &apos;removeAttribute:bold&apos; ); // Revert consuming `bold` attribute remove from `modelElement`.
-    modelConsumable.revert( modelSelection, &apos;selection&apos; ); // Revert consuming `modelSelection`.
-    modelConsumable.revert( modelSelection, &apos;selectionAttribute:bold&apos; ); // Revert consuming `bold` from `modelSelection`.
-    modelConsumable.revert( modelRange, &apos;range&apos; ); // Revert consuming `modelRange`.</code></pre>
+<pre class="prettyprint source"><code>modelConsumable.revert( modelElement, &apos;insert&apos; ); // Revert consuming `modelElement` insertion change.
+modelConsumable.revert( modelElement, &apos;addAttribute:bold&apos; ); // Revert consuming `bold` attribute insert from `modelElement`.
+modelConsumable.revert( modelElement, &apos;removeAttribute:bold&apos; ); // Revert consuming `bold` attribute remove from `modelElement`.
+modelConsumable.revert( modelSelection, &apos;selection&apos; ); // Revert consuming `modelSelection`.
+modelConsumable.revert( modelSelection, &apos;selectionAttribute:bold&apos; ); // Revert consuming `bold` from `modelSelection`.
+modelConsumable.revert( modelRange, &apos;range&apos; ); // Revert consuming `modelRange`.</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> item : <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_selection-Selection.html">Selection</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
@@ -274,12 +274,12 @@ never been added.</p>
                       <p class="collapsing-list__excerpt">Tests whether there is a consumable value of given type connected with given model item.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    modelConsumable.test( modelElement, &apos;insert&apos; ); // Check for `modelElement` insertion change.
-    modelConsumable.test( modelElement, &apos;addAttribute:bold&apos; ); // Check for `bold` attribute insertion on `modelElement` change.
-    modelConsumable.test( modelElement, &apos;removeAttribute:bold&apos; ); // Check for `bold` attribute removal on `modelElement` change.
-    modelConsumable.test( modelSelection, &apos;selection&apos; ); // Check if `modelSelection` is consumable.
-    modelConsumable.test( modelSelection, &apos;selectionAttribute:bold&apos; ); // Check if `bold` on `modelSelection` is consumable.
-    modelConsumable.test( modelRange, &apos;range&apos; ); // Check if `modelRange` is consumable.</code></pre>
+<pre class="prettyprint source"><code>modelConsumable.test( modelElement, &apos;insert&apos; ); // Check for `modelElement` insertion change.
+modelConsumable.test( modelElement, &apos;addAttribute:bold&apos; ); // Check for `bold` attribute insertion on `modelElement` change.
+modelConsumable.test( modelElement, &apos;removeAttribute:bold&apos; ); // Check for `bold` attribute removal on `modelElement` change.
+modelConsumable.test( modelSelection, &apos;selection&apos; ); // Check if `modelSelection` is consumable.
+modelConsumable.test( modelSelection, &apos;selectionAttribute:bold&apos; ); // Check if `bold` on `modelSelection` is consumable.
+modelConsumable.test( modelRange, &apos;range&apos; ); // Check if `modelRange` is consumable.</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> item : <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_selection-Selection.html">Selection</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
@@ -1319,7 +1319,7 @@ already consumed or <code>true</code> if it was added and not consumed yet.</p>
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -2575,13 +2575,13 @@ already consumed or <code>true</code> if it was added and not consumed yet.</p>
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -2629,7 +2629,7 @@ already consumed or <code>true</code> if it was added and not consumed yet.</p>
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

@@ -31,7 +31,7 @@ it can be configured to make &quot;foo&quot; bold when typed <code>**foo**</code
 <p>The autoformatting operation is integrated with the undo manager,
 so the autoformatting step can be undone, if the user&apos;s intention wasn&apos;t to format the text.</p>
 <p>See the constructors documentation to learn how to create custom inline autoformatters. You can also use
-the <code><a href="module_autoformat_autoformat-Autoformat.html">Autoformat</a></code> feature which enables a set of default autoformatters
+the <a href="module_autoformat_autoformat-Autoformat.html"><code>Autoformat</code></a> feature which enables a set of default autoformatters
 (lists, headings, bold and italic).</p>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
@@ -69,7 +69,7 @@ the <code><a href="module_autoformat_autoformat-Autoformat.html">Autoformat</a><
                       <h3><code><a href="#constructor">constructor</a>( editor, testRegexpOrCallback, attributeOrCallback )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Enables autoformatting mechanism on a given <code><a href="module_core_editor_editor-Editor.html">Editor</a></code>.
+                      <p class="collapsing-list__excerpt">Enables autoformatting mechanism on a given <a href="module_core_editor_editor-Editor.html"><code>Editor</code></a>.
                       </p>
                       <div class="collapsing-list__content">
 <p>It formats the matched text by applying given model attribute or by running the provided formatting callback.
@@ -84,35 +84,35 @@ selection location) will be tested.</p>
                                   <dd><p>RegExp or callback to execute on text.
 Provided RegExp <em>must</em> have three capture groups. First and third capture groups
 should match opening/closing delimiters. Second capture group should match text to format.</p>
-<pre class="prettyprint source"><code>    // Matches `**bold text**` pattern.
-    // There are three capturing groups:
-    // - first to match starting `**` delimiter,
-    // - second to match text to format,
-    // - third to match ending `**` delimiter.
-    new InlineAutoformatEngine( editor, /(\*\*)([^\*]+?)(\*\*)$/g, &apos;bold&apos; );</code></pre><p>When function is provided instead of RegExp, it will be executed with text to match as a parameter. Function
+<pre class="prettyprint source"><code>// Matches `**bold text**` pattern.
+// There are three capturing groups:
+// - first to match starting `**` delimiter,
+// - second to match text to format,
+// - third to match ending `**` delimiter.
+new InlineAutoformatEngine( editor, /(\*\*)([^\*]+?)(\*\*)$/g, &apos;bold&apos; );</code></pre><p>When function is provided instead of RegExp, it will be executed with text to match as a parameter. Function
 should return proper &quot;ranges&quot; to delete and format.</p>
-<pre class="prettyprint source"><code>    {
-        remove: [
-            [ 0, 1 ],    // Remove first letter from the given text.
-            [ 5, 6 ]    // Remove 6th letter from the given text.
-        ],
-        format: [
-            [ 1, 5 ]    // Format all letters from 2nd to 5th.
-        ]
-    }</code></pre>
+<pre class="prettyprint source"><code>{
+    remove: [
+        [ 0, 1 ],    // Remove first letter from the given text.
+        [ 5, 6 ]    // Remove 6th letter from the given text.
+    ],
+    format: [
+        [ 1, 5 ]    // Format all letters from 2nd to 5th.
+    ]
+}</code></pre>
                                   </dd>
                                   <dt><code> attributeOrCallback : function | String</code></dt>
                                   <dd><p>Name of attribute to apply on matching text or callback for manual
 formatting.</p>
-<pre class="prettyprint source"><code>    // Use attribute name:
-    new InlineAutoformatEngine( editor, /(\*\*)([^\*]+?)(\*\*)$/g, &apos;bold&apos; );
+<pre class="prettyprint source"><code>// Use attribute name:
+new InlineAutoformatEngine( editor, /(\*\*)([^\*]+?)(\*\*)$/g, &apos;bold&apos; );
 
-    // Use formatting callback:
-    new InlineAutoformatEngine( editor, /(\*\*)([^\*]+?)(\*\*)$/g, ( batch, validRanges ) =&gt; {
-        for ( let range of validRanges ) {
-            batch.setAttribute( range, command, true );
-        }
-    } );</code></pre>
+// Use formatting callback:
+new InlineAutoformatEngine( editor, /(\*\*)([^\*]+?)(\*\*)$/g, ( batch, validRanges ) =&gt; {
+    for ( let range of validRanges ) {
+        batch.setAttribute( range, command, true );
+    }
+} );</code></pre>
                                   </dd>
                                 </dl>
                       </div>
@@ -1138,7 +1138,7 @@ formatting.</p>
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -2394,13 +2394,13 @@ formatting.</p>
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -2448,7 +2448,7 @@ formatting.</p>
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

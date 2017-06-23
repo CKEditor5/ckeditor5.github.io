@@ -27,13 +27,13 @@ Renderer
         </h1>
         <p><span class="badge">class</span>
         </p><p>Renderer updates DOM structure and selection, to make them a reflection of the view structure and selection.</p>
-<p>View nodes which may need to be rendered needs to be <code><a href="module_engine_viewithrenderer-Renderer.html#markToSync">marked</a></code>.
-Then, on <code><a href="module_engine_viewithrenderer-Renderer.html#render">render</a></code>, renderer compares the view nodes with the DOM nodes
+<p>View nodes which may need to be rendered needs to be <a href="module_engine_viewithrenderer-Renderer.html#markToSync">marked</a>.
+Then, on <a href="module_engine_viewithrenderer-Renderer.html#render">render</a>, renderer compares the view nodes with the DOM nodes
 in order to check which ones really need to be refreshed. Finally, it creates DOM nodes from these view nodes,
-<code><a href="module_engine_viewithdomconverter-DomConverter.html#bindElements">binds</a></code> them and inserts into the DOM tree.</p>
-<p>Every time <code><a href="module_engine_viewithrenderer-Renderer.html#render">render</a></code> is called, renderer additionally checks if
-<code><a href="module_engine_viewithrenderer-Renderer.html#selection">selection</a></code> needs update and updates it if so.</p>
-<p>Renderer uses <code><a href="module_engine_viewithdomconverter-DomConverter.html">DomConverter</a></code> to transform and bind nodes.</p>
+<a href="module_engine_viewithdomconverter-DomConverter.html#bindElements">binds</a> them and inserts into the DOM tree.</p>
+<p>Every time <a href="module_engine_viewithrenderer-Renderer.html#render">render</a> is called, renderer additionally checks if
+<a href="module_engine_viewithrenderer-Renderer.html#selection">selection</a> needs update and updates it if so.</p>
+<p>Renderer uses <a href="module_engine_viewithdomconverter-DomConverter.html"><code>DomConverter</code></a> to transform and bind nodes.</p>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
           <ul>
@@ -260,7 +260,7 @@ left the filler&apos;s text node. E.g. the user can be in the middle of a compos
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Checks if the inline <code><a href="module_engine_viewithfiller.html">filler</a></code> should be added.
+                      <p class="collapsing-list__excerpt">Checks if the inline <a href="module_engine_viewithfiller.html">filler</a> should be added.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Returns</h4>
@@ -344,7 +344,7 @@ left the filler&apos;s text node. E.g. the user can be in the middle of a compos
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Gets the position of the inline filler based on the current selection.
 Here, we assume that we know that the filler is needed and
-<code><a href="module_engine_viewithrenderer-Renderer.html#_isSelectionInInlineFiller">is  at  the  selection  position</a></code>, and, since it&apos;s needed,
+<a href="module_engine_viewithrenderer-Renderer.html#_isSelectionInInlineFiller">is  at  the  selection  position</a>, and, since it&apos;s needed,
 it&apos;s somewhere at the selection postion.
                       </p>
                       <div class="collapsing-list__content">
@@ -510,8 +510,8 @@ filler should be rendered.</p>
                       <h3><code><a href="#render">render</a>()</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Render method checks <code><a href="module_engine_viewithrenderer-Renderer.html#markedAttributes">markedAttributes</a></code>,
-<code><a href="module_engine_viewithrenderer-Renderer.html#markedChildren">markedChildren</a></code> and <code><a href="module_engine_viewithrenderer-Renderer.html#markedTexts">markedTexts</a></code> and updates all
+                      <p class="collapsing-list__excerpt">Render method checks <a href="module_engine_viewithrenderer-Renderer.html#markedAttributes"><code>markedAttributes</code></a>,
+<a href="module_engine_viewithrenderer-Renderer.html#markedChildren"><code>markedChildren</code></a> and <a href="module_engine_viewithrenderer-Renderer.html#markedTexts"><code>markedTexts</code></a> and updates all
 nodes which need to be updated. Then it clears all three sets. Also, every time render is called it compares and
 if needed updates the selection.
                       </p>
@@ -522,11 +522,11 @@ so it does as little as it is needed to update the DOM.</p>
 attributes which do not exist in the view element.</p>
 <p>For text nodes it updates the text string if it is different. Note that if parent element is marked as an element
 which changed child list, text node update will not be done, because it may not be possible do find a
-<code><a href="module_engine_viewithdomconverter-DomConverter.html#getCorrespondingDomText">corresponding DOM text</a></code>. The change will be handled
+<a href="module_engine_viewithdomconverter-DomConverter.html#getCorrespondingDomText">corresponding DOM text</a>. The change will be handled
 in the parent element.</p>
-<p>For elements, which child lists have changed, it calculates a <code>(module:utils/diff~diff)</code> and adds or removes children which have
+<p>For elements, which child lists have changed, it calculates a <code>module:utils/diff~diff</code> and adds or removes children which have
 changed.</p>
-<p>Rendering also handles <code><a href="module_engine_viewithfiller.html">fillers</a></code>. Especially, it checks if the inline filler is needed
+<p>Rendering also handles <a href="module_engine_viewithfiller.html">fillers</a>. Especially, it checks if the inline filler is needed
 at selection position and adds or removes it. To prevent breaking text composition inline filler will not be
 removed as long selection is in the text node which needed it at first.</p>
                       </div>
@@ -1552,7 +1552,7 @@ removed as long selection is in the text node which needed it at first.</p>
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -2808,13 +2808,13 @@ removed as long selection is in the text node which needed it at first.</p>
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -2862,7 +2862,7 @@ removed as long selection is in the text node which needed it at first.</p>
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

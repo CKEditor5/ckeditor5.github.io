@@ -28,9 +28,9 @@ DocumentFragment
         <p><span class="badge">class</span>
         </p><p>DocumentFragment represents a part of model which does not have a common root but it&apos;s top-level nodes
 can be seen as siblings. In other words, it is a detached part of model tree, without a root.</p>
-<p>DocumentFragment has own <code><a href="module_engine_model_markercollection-MarkerCollection.html">MarkerCollection</a></code>. Markers from this collection
-will be set to the <code><a href="module_engine_model_document-Document.html#markers">document markers</a></code> by a
-<code><a href="module_engine_model_writer-writer.html#insert">insert</a></code> function.</p>
+<p>DocumentFragment has own <a href="module_engine_model_markercollection-MarkerCollection.html"><code>MarkerCollection</code></a>. Markers from this collection
+will be set to the <a href="module_engine_model_document-Document.html#markers">document markers</a> by a
+<a href="module_engine_model_writer-writer.html#insert"><code>insert</code></a> function.</p>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
           <ul>
@@ -106,8 +106,8 @@ will be set to the <code><a href="module_engine_model_document-Document.html#mar
                       <h3><code><a href="#markers">markers</a> : Range}</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">DocumentFragment static markers map. This is a list of names and <code><a href="module_engine_model_range-Range.html">ranges</a></code>
-which will be set as Markers to <code><a href="module_engine_model_document-Document.html#markers">document markers collection</a></code>
+                      <p class="collapsing-list__excerpt">DocumentFragment static markers map. This is a list of names and <a href="module_engine_model_range-Range.html">ranges</a>
+which will be set as Markers to <a href="module_engine_model_document-Document.html#markers">document markers collection</a>
 when DocumentFragment will be inserted to the document.</p>
                       <div class="collapsing-list__content">
                       </div>
@@ -283,7 +283,7 @@ given node is not a child of this document fragment.
                       <h3><code><a href="#appendChildren">appendChildren</a>( nodes )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt"><code><a href="module_engine_model_documentfragment-DocumentFragment.html#insertChildren">Inserts</a></code> one or more nodes at the end of this document fragment.
+                      <p class="collapsing-list__excerpt"><a href="module_engine_model_documentfragment-DocumentFragment.html#insertChildren">Inserts</a> one or more nodes at the end of this document fragment.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -300,7 +300,7 @@ given node is not a child of this document fragment.
                       <h3><code><a href="#insertChildren">insertChildren</a>( index, nodes )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Inserts one or more nodes at the given index and sets <code><a href="module_engine_model_node-Node.html#parent">parent</a></code> of these nodes
+                      <p class="collapsing-list__excerpt">Inserts one or more nodes at the given index and sets <a href="module_engine_model_node-Node.html#parent">parent</a> of these nodes
 to this document fragment.
                       </p>
                       <div class="collapsing-list__content">
@@ -324,7 +324,7 @@ to this document fragment.
                       <p class="collapsing-list__excerpt">Checks whether given model tree object is of given type.
                       </p>
                       <div class="collapsing-list__content">
-<p>Read more in <code><a href="module_engine_model_node-Node.html#is">is</a></code>.</p>
+<p>Read more in <a href="module_engine_model_node-Node.html#is"><code>is</code></a>.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> type : String</code></dt>
@@ -350,15 +350,15 @@ to this document fragment.
                       <div class="collapsing-list__content">
 <p>Returns index of a node that occupies given offset. If given offset is too low, returns <code>0</code>. If given offset is
 too high, returns index after last child}.</p>
-<pre class="prettyprint source"><code>    const textNode = new Text( &apos;foo&apos; );
-    const pElement = new Element( &apos;p&apos; );
-    const docFrag = new DocumentFragment( [ textNode, pElement ] );
-    docFrag.offsetToIndex( -1 ); // Returns 0, because offset is too low.
-    docFrag.offsetToIndex( 0 ); // Returns 0, because offset 0 is taken by `textNode` which is at index 0.
-    docFrag.offsetToIndex( 1 ); // Returns 0, because `textNode` has `offsetSize` equal to 3, so it occupies offset 1 too.
-    docFrag.offsetToIndex( 2 ); // Returns 0.
-    docFrag.offsetToIndex( 3 ); // Returns 1.
-    docFrag.offsetToIndex( 4 ); // Returns 2. There are no nodes at offset 4, so last available index is returned.</code></pre>
+<pre class="prettyprint source"><code>const textNode = new Text( &apos;foo&apos; );
+const pElement = new Element( &apos;p&apos; );
+const docFrag = new DocumentFragment( [ textNode, pElement ] );
+docFrag.offsetToIndex( -1 ); // Returns 0, because offset is too low.
+docFrag.offsetToIndex( 0 ); // Returns 0, because offset 0 is taken by `textNode` which is at index 0.
+docFrag.offsetToIndex( 1 ); // Returns 0, because `textNode` has `offsetSize` equal to 3, so it occupies offset 1 too.
+docFrag.offsetToIndex( 2 ); // Returns 0.
+docFrag.offsetToIndex( 3 ); // Returns 1.
+docFrag.offsetToIndex( 4 ); // Returns 2. There are no nodes at offset 4, so last available index is returned.</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> offset : Number</code></dt>
@@ -380,7 +380,7 @@ too high, returns index after last child}.</p>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Removes one or more nodes starting at the given index
-and sets <code><a href="module_engine_model_node-Node.html#parent">parent</a></code> of these nodes to <code>null</code>.
+and sets <a href="module_engine_model_node-Node.html#parent">parent</a> of these nodes to <code>null</code>.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -1487,7 +1487,7 @@ Converts <code>DocumentFragment</code> children to proper nodes.
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -2743,13 +2743,13 @@ Converts <code>DocumentFragment</code> children to proper nodes.
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -2797,7 +2797,7 @@ Converts <code>DocumentFragment</code> children to proper nodes.
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

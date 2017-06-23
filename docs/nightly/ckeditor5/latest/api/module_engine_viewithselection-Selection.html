@@ -27,18 +27,18 @@ Selection
         </h1>
         <p><span class="badge">class</span>
         </p><p>Class representing selection in tree view.</p>
-<p>Selection can consist of <code><a href="module_engine_viewithrange-Range.html">ranges</a></code> that can be added using
-<code><a href="module_engine_viewithselection-Selection.html#addRange">addRange</a></code>
-and <code><a href="module_engine_viewithselection-Selection.html#setRanges">setRanges</a></code> methods.
+<p>Selection can consist of <a href="module_engine_viewithrange-Range.html">ranges</a> that can be added using
+<a href="module_engine_viewithselection-Selection.html#addRange">addRange</a>
+and <a href="module_engine_viewithselection-Selection.html#setRanges">setRanges</a> methods.
 Both methods create copies of provided ranges and store those copies internally. Further modifications to passed
 ranges will not change selection&apos;s state.
-Selection&apos;s ranges can be obtained via <code><a href="module_engine_viewithselection-Selection.html#getRanges">getRanges</a></code>,
-<code><a href="module_engine_viewithselection-Selection.html#getFirstRange">getFirstRange</a></code>
-and <code><a href="module_engine_viewithselection-Selection.html#getLastRange">getLastRange</a></code>
+Selection&apos;s ranges can be obtained via <a href="module_engine_viewithselection-Selection.html#getRanges">getRanges</a>,
+<a href="module_engine_viewithselection-Selection.html#getFirstRange">getFirstRange</a>
+and <a href="module_engine_viewithselection-Selection.html#getLastRange">getLastRange</a>
 methods, which return copies of ranges stored inside selection. Modifications made on these copies will not change
-selection&apos;s state. Similar situation occurs when getting <code><a href="module_engine_viewithselection-Selection.html#anchor">anchor</a></code>,
-<code><a href="module_engine_viewithselection-Selection.html#focus">focus</a></code>, <code><a href="module_engine_viewithselection-Selection.html#getFirstPosition">first</a></code> and
-<code><a href="module_engine_viewithselection-Selection.html#getLastPosition">last</a></code> positions - all will return copies of requested positions.</p>
+selection&apos;s state. Similar situation occurs when getting <a href="module_engine_viewithselection-Selection.html#anchor">anchor</a>,
+<a href="module_engine_viewithselection-Selection.html#focus">focus</a>, <a href="module_engine_viewithselection-Selection.html#getFirstPosition">first</a> and
+<a href="module_engine_viewithselection-Selection.html#getLastPosition">last</a> positions - all will return copies of requested positions.</p>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
           <ul>
@@ -128,7 +128,7 @@ selection&apos;s state. Similar situation occurs when getting <code><a href="mod
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Selection anchor. Anchor may be described as a position where the selection starts. Together with
-<code><a href="module_engine_viewithselection-Selection.html#focus">focus</a></code> they define the direction of selection, which is important
+<a href="module_engine_viewithselection-Selection.html#focus">focus</a> they define the direction of selection, which is important
 when expanding/shrinking selection. Anchor is always the start or end of the most recent added range.
 It may be a bit unintuitive when there are multiple ranges in selection.</p>
                       <div class="collapsing-list__content">
@@ -140,7 +140,7 @@ It may be a bit unintuitive when there are multiple ranges in selection.</p>
                       <h3><code><a href="#editableElement">editableElement</a> : <span><a class="collapsing-list__type" href="module_engine_viewitheditableelement-EditableElement.html">EditableElement</a></span> | null</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt"><code><a href="module_engine_viewitheditableelement-EditableElement.html">EditableElement</a></code> instance that contains this selection, or <code>null</code>
+                      <p class="collapsing-list__excerpt"><a href="module_engine_viewitheditableelement-EditableElement.html">EditableElement</a> instance that contains this selection, or <code>null</code>
 if the selection is not inside an editable element.</p>
                       <div class="collapsing-list__content">
                       </div>
@@ -171,7 +171,7 @@ if the selection is not inside an editable element.</p>
                       <h3><code><a href="#isBackward">isBackward</a> : Boolean</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Specifies whether the <code><a href="module_engine_viewithselection-Selection.html#focus">focus</a></code> precedes <code><a href="module_engine_viewithselection-Selection.html#anchor">anchor</a></code>.</p>
+                      <p class="collapsing-list__excerpt">Specifies whether the <a href="module_engine_viewithselection-Selection.html#focus"><code>focus</code></a> precedes <a href="module_engine_viewithselection-Selection.html#anchor"><code>anchor</code></a>.</p>
                       <div class="collapsing-list__content">
                       </div>
                     </div>
@@ -238,7 +238,7 @@ collapsed.</p>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Returns copy of the last position in the selection. Last position is the position that
-<code><a href="module_engine_viewithposition-Position.html#isAfter">is after</a></code> any other position in the selection ranges.
+<a href="module_engine_viewithposition-Position.html#isAfter">is after</a> any other position in the selection ranges.
 Returns <code>null</code> if no ranges are added to selection.
                       </p>
                       <div class="collapsing-list__content">
@@ -259,7 +259,7 @@ Returns <code>null</code> if no ranges are added to selection.
                       <p class="collapsing-list__excerpt">Sets collapsed selection in the specified location.
                       </p>
                       <div class="collapsing-list__content">
-<p>The location can be specified in the same form as <code><a href="module_engine_viewithposition-Position.html#createAt">createAt</a></code> parameters.</p>
+<p>The location can be specified in the same form as <a href="module_engine_viewithposition-Position.html#createAt"><code>createAt</code></a> parameters.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> itemOrPosition : <span><a class="collapsing-list__type" href="module_engine_viewithitem-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></dt>
@@ -267,7 +267,7 @@ Returns <code>null</code> if no ranges are added to selection.
                                   </dd>
                                   <dt><code> [ offset ] : Number | 'end' | 'before' | 'after'</code></dt>
                                   <dd><p>Offset or one of the flags. Used only when
-first parameter is a <code><a href="module_engine_viewithitem-Item.html">view item</a></code>.</p>
+first parameter is a <a href="module_engine_viewithitem-Item.html">view item</a>.</p>
                                     <p>Defaults to <code>0</code></p>
                                   </dd>
                                 </dl>
@@ -279,7 +279,7 @@ first parameter is a <code><a href="module_engine_viewithitem-Item.html">view it
                       <h3><code><a href="#collapseToEnd">collapseToEnd</a>()</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Collapses selection to the selection&apos;s <code><a href="module_engine_viewithselection-Selection.html#getLastPosition">last  position</a></code>.
+                      <p class="collapsing-list__excerpt">Collapses selection to the selection&apos;s <a href="module_engine_viewithselection-Selection.html#getLastPosition">last  position</a>.
 All ranges, besides the collapsed one, will be removed. Nothing will change if there are no ranges stored
 inside selection.
                       </p>
@@ -292,7 +292,7 @@ inside selection.
                       <h3><code><a href="#collapseToStart">collapseToStart</a>()</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Collapses selection to the selection&apos;s <code><a href="module_engine_viewithselection-Selection.html#getFirstPosition">first  position</a></code>.
+                      <p class="collapsing-list__excerpt">Collapses selection to the selection&apos;s <a href="module_engine_viewithselection-Selection.html#getFirstPosition">first  position</a>.
 All ranges, besides the collapsed one, will be removed. Nothing will change if there are no ranges stored
 inside selection.
                       </p>
@@ -311,7 +311,7 @@ inside selection.
                       <p class="collapsing-list__excerpt">Adds range to selection - creates copy of given range so it can be safely used and modified.
                       </p>
                       <div class="collapsing-list__content">
-<p>Throws <code><a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a></code> <code>view-selection-range-intersects</code> if added range intersects
+<p>Throws <a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a> <code>view-selection-range-intersects</code> if added range intersects
 with ranges already stored in selection instance.</p>
                         <h4>Parameters</h4>
                                 <dl>
@@ -328,7 +328,7 @@ with ranges already stored in selection instance.</p>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Returns copy of the first position in the selection. First position is the position that
-<code><a href="module_engine_viewithposition-Position.html#isBefore">is before</a></code> any other position in the selection ranges.
+<a href="module_engine_viewithposition-Position.html#isBefore">is before</a> any other position in the selection ranges.
 Returns <code>null</code> if no ranges are added to selection.
                       </p>
                       <div class="collapsing-list__content">
@@ -347,7 +347,7 @@ Returns <code>null</code> if no ranges are added to selection.
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Returns copy of the first range in the selection. First range is the one which
-<code><a href="module_engine_viewithrange-Range.html#start">start</a></code> position <code><a href="module_engine_viewithposition-Position.html#isBefore">is before</a></code> start
+<a href="module_engine_viewithrange-Range.html#start">start</a> position <a href="module_engine_viewithposition-Position.html#isBefore">is before</a> start
 position of all other ranges (not to confuse with the first range added to the selection).
 Returns <code>null</code> if no ranges are added to selection.
                       </p>
@@ -371,10 +371,10 @@ selection instance and you can safely operate on it.
                       </p>
                       <div class="collapsing-list__content">
 <p>Accepts a flag describing in which way the selection is made - passed range might be selected from
-<code><a href="module_engine_viewithrange-Range.html#start">start</a></code> to <code><a href="module_engine_viewithrange-Range.html#end">end</a></code>
-or from <code><a href="module_engine_viewithrange-Range.html#end">end</a></code> to <code><a href="module_engine_viewithrange-Range.html#start">start</a></code>.
-The flag is used to set <code><a href="module_engine_viewithselection-Selection.html#anchor">anchor</a></code> and <code><a href="module_engine_viewithselection-Selection.html#focus">focus</a></code> properties.</p>
-<p>Throws <code><a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a></code> <code>view-selection-range-intersects</code> if added range intersects
+<a href="module_engine_viewithrange-Range.html#start">start</a> to <a href="module_engine_viewithrange-Range.html#end">end</a>
+or from <a href="module_engine_viewithrange-Range.html#end">end</a> to <a href="module_engine_viewithrange-Range.html#start">start</a>.
+The flag is used to set <a href="module_engine_viewithselection-Selection.html#anchor">anchor</a> and <a href="module_engine_viewithselection-Selection.html#focus">focus</a> properties.</p>
+<p>Throws <a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a> <code>view-selection-range-intersects</code> if added range intersects
 with ranges already stored in Selection instance.</p>
                         <h4>Parameters</h4>
                                 <dl>
@@ -390,8 +390,8 @@ with ranges already stored in Selection instance.</p>
                       <h3><code><a href="#getLastRange">getLastRange</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithrange-Range.html">Range</a></span> | null</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Returns copy of the last range in the selection. Last range is the one which <code><a href="module_engine_viewithrange-Range.html#end">end</a></code>
-position <code><a href="module_engine_viewithposition-Position.html#isAfter">is after</a></code> end position of all other ranges (not to confuse
+                      <p class="collapsing-list__excerpt">Returns copy of the last range in the selection. Last range is the one which <a href="module_engine_viewithrange-Range.html#end">end</a>
+position <a href="module_engine_viewithposition-Position.html#isAfter">is after</a> end position of all other ranges (not to confuse
 with the last range added to the selection). Returns <code>null</code> if no ranges are added to selection.
                       </p>
                       <div class="collapsing-list__content">
@@ -426,7 +426,7 @@ with the last range added to the selection). Returns <code>null</code> if no ran
                       <h3><code><a href="#getSelectedElement">getSelectedElement</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | null</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Returns the selected element. <code><a href="module_engine_viewithelement-Element.html">Element</a></code> is considered as selected if there is only
+                      <p class="collapsing-list__excerpt">Returns the selected element. <a href="module_engine_viewithelement-Element.html">Element</a> is considered as selected if there is only
 one range in the selection, and that range contains exactly one element.
 Returns <code>null</code> if there is no selected element.
                       </p>
@@ -512,10 +512,10 @@ properly handled by screen readers).</p>
                       <h3><code><a href="#setFocus">setFocus</a>( itemOrPosition, [ offset ] )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Sets <code><a href="module_engine_viewithselection-Selection.html#focus">focus</a></code> to the specified location.
+                      <p class="collapsing-list__excerpt">Sets <a href="module_engine_viewithselection-Selection.html#focus"><code>focus</code></a> to the specified location.
                       </p>
                       <div class="collapsing-list__content">
-<p>The location can be specified in the same form as <code><a href="module_engine_viewithposition-Position.html#createAt">createAt</a></code> parameters.</p>
+<p>The location can be specified in the same form as <a href="module_engine_viewithposition-Position.html#createAt"><code>createAt</code></a> parameters.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> itemOrPosition : <span><a class="collapsing-list__type" href="module_engine_viewithitem-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></dt>
@@ -523,7 +523,7 @@ properly handled by screen readers).</p>
                                   </dd>
                                   <dt><code> [ offset ] : Number | 'end' | 'before' | 'after'</code></dt>
                                   <dd><p>Offset or one of the flags. Used only when
-first parameter is a <code><a href="module_engine_viewithitem-Item.html">view item</a></code>.</p>
+first parameter is a <a href="module_engine_viewithitem-Item.html">view item</a>.</p>
                                     <p>Defaults to <code>0</code></p>
                                   </dd>
                                 </dl>
@@ -536,8 +536,8 @@ first parameter is a <code><a href="module_engine_viewithitem-Item.html">view it
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Replaces all ranges that were added to the selection with given array of ranges. Last range of the array
-is treated like the last added range and is used to set <code><a href="module_engine_viewithselection-Selection.html#anchor">anchor</a></code> and <code><a href="module_engine_viewithselection-Selection.html#focus">focus</a></code>.
-Accepts a flag describing in which way the selection is made (see <code><a href="module_engine_viewithselection-Selection.html#addRange">addRange</a></code>).
+is treated like the last added range and is used to set <a href="module_engine_viewithselection-Selection.html#anchor">anchor</a> and <a href="module_engine_viewithselection-Selection.html#focus">focus</a>.
+Accepts a flag describing in which way the selection is made (see <a href="module_engine_viewithselection-Selection.html#addRange">addRange</a>).
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -602,7 +602,7 @@ ranges and same direction as this selection.
                       <h3><code><a href="#event:change">change</a>()</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Fired whenever selection ranges are changed through <code><a href="module_engine_viewithselection-Selection.html">Selection  API</a></code>.
+                      <p class="collapsing-list__excerpt">Fired whenever selection ranges are changed through <a href="module_engine_viewithselection-Selection.html">Selection  API</a>.
                       </p>
                       <div class="collapsing-list__content">
                       </div>
@@ -1639,7 +1639,7 @@ ranges and same direction as this selection.
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -2895,13 +2895,13 @@ ranges and same direction as this selection.
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -2949,7 +2949,7 @@ ranges and same direction as this selection.
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

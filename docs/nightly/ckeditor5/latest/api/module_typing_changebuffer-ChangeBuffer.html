@@ -27,16 +27,16 @@ ChangeBuffer
         </h1>
         <p><span class="badge">class</span>
         </p><p>Change buffer allows to group atomic changes (like characters that have been typed) into
-<code><a href="module_engine_model_batch-Batch.html">batches</a></code>.</p>
+<a href="module_engine_model_batch-Batch.html">batches</a>.</p>
 <p>Batches represent single undo steps, hence changes added to one single batch are undone together.</p>
 <p>The buffer has a configurable limit of atomic changes that it can accommodate. After the limit was
-exceeded (see <code>(~ChangeBuffer#input)</code>), a new batch is created in <code>(~ChangeBuffer#batch)</code>.</p>
+exceeded (see <code>~ChangeBuffer#input</code>), a new batch is created in <code>~ChangeBuffer#batch</code>.</p>
 <p>To use the change buffer you need to let it know about the number of changes that were added to the batch:</p>
-<pre class="prettyprint source"><code>    const buffer = new ChangeBuffer( document, LIMIT );
+<pre class="prettyprint source"><code>const buffer = new ChangeBuffer( document, LIMIT );
 
-    // Later on in your feature:
-    buffer.batch.insert( pos, insertedCharacters );
-    buffer.input( insertedCharacters.length );</code></pre>
+// Later on in your feature:
+buffer.batch.insert( pos, insertedCharacters );
+buffer.input( insertedCharacters.length );</code></pre>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
           <ul>
@@ -112,8 +112,8 @@ exceeded (see <code>(~ChangeBuffer#input)</code>), a new batch is created in <co
                       <h3><code><a href="#batch">batch</a> : <span><a class="collapsing-list__type" href="module_engine_model_batch-Batch.html">Batch</a></span></code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">The current batch to which a feature should add its deltas. Once the <code><a href="module_typing_changebuffer-ChangeBuffer.html#size">size</a></code>
-is reached or exceeds the <code><a href="module_typing_changebuffer-ChangeBuffer.html#limit">limit</a></code>, the batch is set to a new instance and the size is reset.</p>
+                      <p class="collapsing-list__excerpt">The current batch to which a feature should add its deltas. Once the <a href="module_typing_changebuffer-ChangeBuffer.html#size"><code>size</code></a>
+is reached or exceeds the <a href="module_typing_changebuffer-ChangeBuffer.html#limit"><code>limit</code></a>, the batch is set to a new instance and the size is reset.</p>
                       <div class="collapsing-list__content">
                       </div>
                     </div>
@@ -165,8 +165,8 @@ is reached or exceeds the <code><a href="module_typing_changebuffer-ChangeBuffer
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">The number of atomic changes in the buffer. Once it exceeds the <code><a href="module_typing_changebuffer-ChangeBuffer.html#limit">limit</a></code>,
-the <code><a href="module_typing_changebuffer-ChangeBuffer.html#batch">batch</a></code> is set to a new one.</p>
+                      <p class="collapsing-list__excerpt">The number of atomic changes in the buffer. Once it exceeds the <a href="module_typing_changebuffer-ChangeBuffer.html#limit"><code>limit</code></a>,
+the <a href="module_typing_changebuffer-ChangeBuffer.html#batch">batch</a> is set to a new one.</p>
                       <div class="collapsing-list__content">
                       </div>
                     </div>
@@ -233,7 +233,7 @@ the characters typed after inserting the image should be added to a different ba
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> [ ignoreLock ] : Boolean</code></dt>
-                                  <dd><p>Whether internal lock <code>(#isLocked)</code> should be ignored.</p>
+                                  <dd><p>Whether internal lock <code>#isLocked</code> should be ignored.</p>
                                   </dd>
                                 </dl>
                       </div>
@@ -255,8 +255,8 @@ the characters typed after inserting the image should be added to a different ba
                       <h3><code><a href="#input">input</a>( changeCount )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">The input number of changes into the buffer. Once the <code><a href="module_typing_changebuffer-ChangeBuffer.html#size">size</a></code> is
-reached or exceeds the <code><a href="module_typing_changebuffer-ChangeBuffer.html#limit">limit</a></code>, the batch is set to a new instance and the size is reset.
+                      <p class="collapsing-list__excerpt">The input number of changes into the buffer. Once the <a href="module_typing_changebuffer-ChangeBuffer.html#size"><code>size</code></a> is
+reached or exceeds the <a href="module_typing_changebuffer-ChangeBuffer.html#limit"><code>limit</code></a>, the batch is set to a new instance and the size is reset.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -1310,7 +1310,7 @@ reached or exceeds the <code><a href="module_typing_changebuffer-ChangeBuffer.ht
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -2566,13 +2566,13 @@ reached or exceeds the <code><a href="module_typing_changebuffer-ChangeBuffer.ht
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -2620,7 +2620,7 @@ reached or exceeds the <code><a href="module_typing_changebuffer-ChangeBuffer.ht
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

@@ -25,9 +25,9 @@
         <h1><img src="../../../assets/img/box-red.svg" alt="Module" title="Module">
 engine/conversion/model-selection-to-view-converters
         </h1>
-        <p><span class="badge">Module</span></p><p>Contains <code><a href="module_engine_model_selection-Selection.html">model selection</a></code> to
-<code><a href="module_engine_viewithselection-Selection.html">view selection</a></code> converters for
-<code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html">ModelConversionDispatcher</a></code>.</p>
+        <p><span class="badge">Module</span></p><p>Contains <a href="module_engine_model_selection-Selection.html">model selection</a> to
+<a href="module_engine_viewithselection-Selection.html">view selection</a> converters for
+<a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html"><code>ModelConversionDispatcher</code></a>.</p>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
           <ul>
@@ -68,20 +68,20 @@ engine/conversion/model-selection-to-view-converters
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Function factory, creates a converter that clears artifacts after the previous
-<code><a href="module_engine_model_selection-Selection.html">model selection</a></code> conversion. It removes all empty
-<code><a href="module_engine_viewithattributeelement-AttributeElement.html">view attribute elements</a></code> and merge sibling attributes at all start and end
+<a href="module_engine_model_selection-Selection.html">model selection</a> conversion. It removes all empty
+<a href="module_engine_viewithattributeelement-AttributeElement.html">view attribute elements</a> and merge sibling attributes at all start and end
 positions of all ranges.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>       &lt;p&gt;&lt;strong&gt;^&lt;/strong&gt;&lt;/p&gt;
-    -&gt; &lt;p&gt;^&lt;/p&gt;
+<pre class="prettyprint source"><code>   &lt;p&gt;&lt;strong&gt;^&lt;/strong&gt;&lt;/p&gt;
+-&gt; &lt;p&gt;^&lt;/p&gt;
 
-       &lt;p&gt;&lt;strong&gt;foo&lt;/strong&gt;^&lt;strong&gt;bar&lt;/strong&gt;bar&lt;/p&gt;
-    -&gt; &lt;p&gt;&lt;strong&gt;foo^bar&lt;strong&gt;bar&lt;/p&gt;
+   &lt;p&gt;&lt;strong&gt;foo&lt;/strong&gt;^&lt;strong&gt;bar&lt;/strong&gt;bar&lt;/p&gt;
+-&gt; &lt;p&gt;&lt;strong&gt;foo^bar&lt;strong&gt;bar&lt;/p&gt;
 
-       &lt;p&gt;&lt;strong&gt;foo&lt;/strong&gt;&lt;em&gt;^&lt;/em&gt;&lt;strong&gt;bar&lt;/strong&gt;bar&lt;/p&gt;
-    -&gt; &lt;p&gt;&lt;strong&gt;foo^bar&lt;strong&gt;bar&lt;/p&gt;</code></pre><p>This listener should be assigned before any converter for the new selection:</p>
-<pre class="prettyprint source"><code>    modelDispatcher.on( &apos;selection&apos;, clearAttributes() );</code></pre><p>See <code>(module:engine/conversion/model-selection-to-view-converters~convertCollapsedSelection)</code>
+   &lt;p&gt;&lt;strong&gt;foo&lt;/strong&gt;&lt;em&gt;^&lt;/em&gt;&lt;strong&gt;bar&lt;/strong&gt;bar&lt;/p&gt;
+-&gt; &lt;p&gt;&lt;strong&gt;foo^bar&lt;strong&gt;bar&lt;/p&gt;</code></pre><p>This listener should be assigned before any converter for the new selection:</p>
+<pre class="prettyprint source"><code>modelDispatcher.on( &apos;selection&apos;, clearAttributes() );</code></pre><p>See <code>module:engine/conversion/model-selection-to-view-converters~convertCollapsedSelection</code>
 which do the opposite by breaking attributes in the selection position.</p>
                         <h4>Returns</h4>
                         <dl>
@@ -101,7 +101,7 @@ which do the opposite by breaking attributes in the selection position.</p>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Function factory, creates a converter that clears fake selection marking after the previous
-<code><a href="module_engine_model_selection-Selection.html">model selection</a></code> conversion.
+<a href="module_engine_model_selection-Selection.html">model selection</a> conversion.
                       </p>
                       <div class="collapsing-list__content">
                       </div>
@@ -115,20 +115,20 @@ which do the opposite by breaking attributes in the selection position.</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Function factory, creates a converter that converts collapsed <code><a href="module_engine_model_selection-Selection.html">model selection</a></code> to
-<code><a href="module_engine_viewithselection-Selection.html">view selection</a></code>. The converter consumes appropriate value from <code>consumable</code> object,
-maps model selection position to view position and breaks <code><a href="module_engine_viewithattributeelement-AttributeElement.html">attribute elements</a></code>
+                      <p class="collapsing-list__excerpt">Function factory, creates a converter that converts collapsed <a href="module_engine_model_selection-Selection.html">model selection</a> to
+<a href="module_engine_viewithselection-Selection.html">view selection</a>. The converter consumes appropriate value from <code>consumable</code> object,
+maps model selection position to view position and breaks <a href="module_engine_viewithattributeelement-AttributeElement.html">attribute elements</a>
 at the selection position.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    modelDispatcher.on( &apos;selection&apos;, convertCollapsedSelection() );</code></pre><p>Example of view state before and after converting collapsed selection:</p>
-<pre class="prettyprint source"><code>       &lt;p&gt;&lt;strong&gt;f^oo&lt;strong&gt;bar&lt;/p&gt;
-    -&gt; &lt;p&gt;&lt;strong&gt;f&lt;/strong&gt;^&lt;strong&gt;oo&lt;/strong&gt;bar&lt;/p&gt;</code></pre><p>By breaking attribute elements like <code>&lt;strong&gt;</code>, selection is in correct element. See also complementary
+<pre class="prettyprint source"><code>modelDispatcher.on( &apos;selection&apos;, convertCollapsedSelection() );</code></pre><p>Example of view state before and after converting collapsed selection:</p>
+<pre class="prettyprint source"><code>   &lt;p&gt;&lt;strong&gt;f^oo&lt;strong&gt;bar&lt;/p&gt;
+-&gt; &lt;p&gt;&lt;strong&gt;f&lt;/strong&gt;^&lt;strong&gt;oo&lt;/strong&gt;bar&lt;/p&gt;</code></pre><p>By breaking attribute elements like <code>&lt;strong&gt;</code>, selection is in correct element. See also complementary
 <code>attribute converter (module:engine/conversion/model-selection-to-view-converters~convertSelectionAttribute)</code>
 for selection attributes,
 which wraps collapsed selection into view elements. Those converters together ensure, that selection ends up in
 appropriate attribute elements.</p>
-<p>See also <code>(module:engine/conversion/model-selection-to-view-converters~clearAttributes)</code> which does a clean-up
+<p>See also <code>module:engine/conversion/model-selection-to-view-converters~clearAttributes</code> which does a clean-up
 by merging attributes.</p>
                         <h4>Returns</h4>
                         <dl>
@@ -147,12 +147,12 @@ by merging attributes.</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Function factory, creates a converter that converts non-collapsed <code><a href="module_engine_model_selection-Selection.html">model selection</a></code> to
-<code><a href="module_engine_viewithselection-Selection.html">view selection</a></code>. The converter consumes appropriate value from <code>consumable</code> object
+                      <p class="collapsing-list__excerpt">Function factory, creates a converter that converts non-collapsed <a href="module_engine_model_selection-Selection.html">model selection</a> to
+<a href="module_engine_viewithselection-Selection.html">view selection</a>. The converter consumes appropriate value from <code>consumable</code> object
 and maps model positions from selection to view positions.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    modelDispatcher.on( &apos;selection&apos;, convertRangeSelection() );</code></pre>
+<pre class="prettyprint source"><code>modelDispatcher.on( &apos;selection&apos;, convertRangeSelection() );</code></pre>
                         <h4>Returns</h4>
                         <dl>
                                   <dt><code>function</code></dt>
@@ -170,40 +170,40 @@ and maps model positions from selection to view positions.
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Function factory, creates a converter that converts <code><a href="module_engine_model_selection-Selection.html">model selection</a></code> attributes to
-<code><a href="module_engine_viewithattributeelement-AttributeElement.html">view attribute elements</a></code>. The converter works only for collapsed selection.
+                      <p class="collapsing-list__excerpt">Function factory, creates a converter that converts <a href="module_engine_model_selection-Selection.html">model selection</a> attributes to
+<a href="module_engine_viewithattributeelement-AttributeElement.html">view attribute elements</a>. The converter works only for collapsed selection.
 The converter consumes appropriate value from <code>consumable</code> object, maps model selection position to view position and
 wraps that position into a view attribute element.
                       </p>
                       <div class="collapsing-list__content">
-<p>The wrapping node depends on passed parameter. If <code><a href="module_engine_viewithelement-Element.html">Element</a></code> was passed, it will be cloned and
+<p>The wrapping node depends on passed parameter. If <a href="module_engine_viewithelement-Element.html"><code>Element</code></a> was passed, it will be cloned and
 the copy will become the wrapping element. If <code>Function</code> is provided, it is passed all the parameters of the
-<code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:selectionAttribute">selectionAttribute event</a></code>.
-It&apos;s expected that the function returns a <code><a href="module_engine_viewithattributeelement-AttributeElement.html">AttributeElement</a></code>.
+<a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:selectionAttribute">selectionAttribute event</a>.
+It&apos;s expected that the function returns a <a href="module_engine_viewithattributeelement-AttributeElement.html"><code>AttributeElement</code></a>.
 The result of the function will be the wrapping element.</p>
-<pre class="prettyprint source"><code>    modelDispatcher.on( &apos;selectionAttribute:italic&apos;, convertSelectionAttribute( new ViewAttributeElement( &apos;em&apos; ) ) );
+<pre class="prettyprint source"><code>modelDispatcher.on( &apos;selectionAttribute:italic&apos;, convertSelectionAttribute( new ViewAttributeElement( &apos;em&apos; ) ) );
 
-    function styleElementCreator( styleValue ) {
-        if ( styleValue == &apos;important&apos; ) {
-            return new ViewAttributeElement( &apos;strong&apos;, { style: &apos;text-transform:uppercase;&apos; } );
-        } else if ( styleValue == &apos;gold&apos; ) {
-            return new ViewAttributeElement( &apos;span&apos;, { style: &apos;color:yellow;&apos; } );
-        }
+function styleElementCreator( styleValue ) {
+    if ( styleValue == &apos;important&apos; ) {
+        return new ViewAttributeElement( &apos;strong&apos;, { style: &apos;text-transform:uppercase;&apos; } );
+    } else if ( styleValue == &apos;gold&apos; ) {
+        return new ViewAttributeElement( &apos;span&apos;, { style: &apos;color:yellow;&apos; } );
     }
-    modelDispatcher.on( &apos;selectionAttribute:style&apos;, convertSelectionAttribute( styleCreator ) );</code></pre><p><strong>Note:</strong> You can use the same <code>elementCreator</code> function for this converter factory
-and <code>(module:engine/conversion/model-to-view-converters~wrapRange)</code>
+}
+modelDispatcher.on( &apos;selectionAttribute:style&apos;, convertSelectionAttribute( styleCreator ) );</code></pre><p><strong>Note:</strong> You can use the same <code>elementCreator</code> function for this converter factory
+and <code>module:engine/conversion/model-to-view-converters~wrapRange</code>
 model to view converter, as long as the <code>elementCreator</code> function uses only the first parameter (attribute value).</p>
-<pre class="prettyprint source"><code>    modelDispatcher.on( &apos;selection&apos;, convertCollapsedSelection() );
-    modelDispatcher.on( &apos;selectionAttribute:italic&apos;, convertSelectionAttribute( new ViewAttributeElement( &apos;em&apos; ) ) );
-    modelDispatcher.on( &apos;selectionAttribute:bold&apos;, convertSelectionAttribute( new ViewAttributeElement( &apos;strong&apos; ) ) );</code></pre><p>Example of view states before and after converting collapsed selection:</p>
-<pre class="prettyprint source"><code>       &lt;p&gt;&lt;em&gt;f^oo&lt;/em&gt;bar&lt;/p&gt;
-    -&gt; &lt;p&gt;&lt;em&gt;f&lt;/em&gt;^&lt;em&gt;oo&lt;/em&gt;bar&lt;/p&gt;
-    -&gt; &lt;p&gt;&lt;em&gt;f^oo&lt;/em&gt;bar&lt;/p&gt;</code></pre><p>Example of view state after converting collapsed selection. The scenario is: selection is inside bold text (<code>&lt;strong&gt;</code> element)
+<pre class="prettyprint source"><code>modelDispatcher.on( &apos;selection&apos;, convertCollapsedSelection() );
+modelDispatcher.on( &apos;selectionAttribute:italic&apos;, convertSelectionAttribute( new ViewAttributeElement( &apos;em&apos; ) ) );
+modelDispatcher.on( &apos;selectionAttribute:bold&apos;, convertSelectionAttribute( new ViewAttributeElement( &apos;strong&apos; ) ) );</code></pre><p>Example of view states before and after converting collapsed selection:</p>
+<pre class="prettyprint source"><code>   &lt;p&gt;&lt;em&gt;f^oo&lt;/em&gt;bar&lt;/p&gt;
+-&gt; &lt;p&gt;&lt;em&gt;f&lt;/em&gt;^&lt;em&gt;oo&lt;/em&gt;bar&lt;/p&gt;
+-&gt; &lt;p&gt;&lt;em&gt;f^oo&lt;/em&gt;bar&lt;/p&gt;</code></pre><p>Example of view state after converting collapsed selection. The scenario is: selection is inside bold text (<code>&lt;strong&gt;</code> element)
 but it does not have bold attribute itself and has italic attribute instead (let&apos;s assume that user turned off bold and turned
 on italic with selection collapsed):</p>
-<pre class="prettyprint source"><code>       &lt;p&gt;&lt;strong&gt;f^oo&lt;strong&gt;bar&lt;/p&gt;
-    -&gt; &lt;p&gt;&lt;strong&gt;f&lt;/strong&gt;^&lt;strong&gt;oo&lt;strong&gt;bar&lt;/p&gt;
-    -&gt; &lt;p&gt;&lt;strong&gt;f&lt;/strong&gt;&lt;em&gt;^&lt;/em&gt;&lt;strong&gt;oo&lt;/strong&gt;bar&lt;/p&gt;</code></pre><p>In first example, nothing has changed, because first <code>&lt;em&gt;</code> element got broken by <code>convertCollapsedSelection()</code> converter,
+<pre class="prettyprint source"><code>   &lt;p&gt;&lt;strong&gt;f^oo&lt;strong&gt;bar&lt;/p&gt;
+-&gt; &lt;p&gt;&lt;strong&gt;f&lt;/strong&gt;^&lt;strong&gt;oo&lt;strong&gt;bar&lt;/p&gt;
+-&gt; &lt;p&gt;&lt;strong&gt;f&lt;/strong&gt;&lt;em&gt;^&lt;/em&gt;&lt;strong&gt;oo&lt;/strong&gt;bar&lt;/p&gt;</code></pre><p>In first example, nothing has changed, because first <code>&lt;em&gt;</code> element got broken by <code>convertCollapsedSelection()</code> converter,
 but then it got wrapped-back by <code>convertSelectionAttribute()</code> converter. In second example, notice how <code>&lt;strong&gt;</code> element
 is broken to prevent putting selection in it, since selection has no <code>bold</code> attribute.</p>
                         <h4>Parameters</h4>
@@ -230,12 +230,12 @@ or function returning a view element, which will be used for wrapping.</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Performs similar conversion as <code>(module:engine/conversion/model-selection-to-view-converters~convertSelectionAttribute)</code>, but depends on a marker name of a marker in which
+                      <p class="collapsing-list__excerpt">Performs similar conversion as <code>module:engine/conversion/model-selection-to-view-converters~convertSelectionAttribute</code>, but depends on a marker name of a marker in which
 collapsed selection is placed.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    modelDispatcher.on( &apos;selectionMarker:searchResult&apos;, wrapRange( new ViewAttributeElement( &apos;span&apos;, { class: &apos;searchResult&apos; } ) ) );</code></pre><p><strong>Note:</strong> You can use the same <code>elementCreator</code> function for this converter factory
-and <code>(module:engine/conversion/model-to-view-converters~wrapRange)</code>.</p>
+<pre class="prettyprint source"><code>modelDispatcher.on( &apos;selectionMarker:searchResult&apos;, wrapRange( new ViewAttributeElement( &apos;span&apos;, { class: &apos;searchResult&apos; } ) ) );</code></pre><p><strong>Note:</strong> You can use the same <code>elementCreator</code> function for this converter factory
+and <code>module:engine/conversion/model-to-view-converters~wrapRange</code>.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> elementCreator : <span><a class="collapsing-list__type" href="module_engine_viewithattributeelement-AttributeElement.html">AttributeElement</a></span> | function</code></dt>
@@ -1272,7 +1272,7 @@ or function returning a view element, which will be used for wrapping.</p>
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -2528,13 +2528,13 @@ or function returning a view element, which will be used for wrapping.</p>
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -2582,7 +2582,7 @@ or function returning a view element, which will be used for wrapping.</p>
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

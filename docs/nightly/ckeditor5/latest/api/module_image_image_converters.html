@@ -65,7 +65,7 @@ image/image/converters
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Converter which converts <code>&lt;img&gt;</code> <code><a href="module_engine_viewithelement-Element.html">view elements</a></code> that can be hoisted.
+                      <p class="collapsing-list__excerpt">Converter which converts <code>&lt;img&gt;</code> <a href="module_engine_viewithelement-Element.html">view elements</a> that can be hoisted.
                       </p>
                       <div class="collapsing-list__content">
 <p>If an <code>&lt;img&gt;</code> view element has not been converted, this converter checks if that element could be converted in any
@@ -106,14 +106,14 @@ moves the converted element to the correct location.</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Converter which hoists <code>image</code> <code><a href="module_engine_model_element-Element.html">model elements</a></code> to allowed context.
+                      <p class="collapsing-list__excerpt">Converter which hoists <code>image</code> <a href="module_engine_model_element-Element.html">model elements</a> to allowed context.
                       </p>
                       <div class="collapsing-list__content">
-<p>Looks through all children of converted <code><a href="module_engine_viewithelement-Element.html">view element</a></code> if it
+<p>Looks through all children of converted <a href="module_engine_viewithelement-Element.html">view element</a> if it
 has been converted to model element. Breaks model element if <code>image</code> to-be-hoisted is found.</p>
-<pre class="prettyprint source"><code>    &lt;div&gt;&lt;paragraph&gt;x&lt;image src=&quot;foo.jpg&quot;&gt;&lt;/image&gt;x&lt;/paragraph&gt;&lt;/div&gt; -&gt;
-    &lt;div&gt;&lt;paragraph&gt;x&lt;/paragraph&gt;&lt;/div&gt;&lt;image src=&quot;foo.jpg&quot;&gt;&lt;/image&gt;&lt;div&gt;&lt;paragraph&gt;x&lt;/paragraph&gt;&lt;/div&gt;</code></pre><p>This works deeply, as shown in the example. This converter added for <code>paragraph</code> element will break <code>paragraph</code> element and
-pass <code><a href="module_engine_model_documentfragment-DocumentFragment.html">document fragment</a></code> in <code>data.output</code>. Then,
+<pre class="prettyprint source"><code>&lt;div&gt;&lt;paragraph&gt;x&lt;image src=&quot;foo.jpg&quot;&gt;&lt;/image&gt;x&lt;/paragraph&gt;&lt;/div&gt; -&gt;
+&lt;div&gt;&lt;paragraph&gt;x&lt;/paragraph&gt;&lt;/div&gt;&lt;image src=&quot;foo.jpg&quot;&gt;&lt;/image&gt;&lt;div&gt;&lt;paragraph&gt;x&lt;/paragraph&gt;&lt;/div&gt;</code></pre><p>This works deeply, as shown in the example. This converter added for <code>paragraph</code> element will break <code>paragraph</code> element and
+pass <a href="module_engine_model_documentfragment-DocumentFragment.html">document fragment</a> in <code>data.output</code>. Then,
 <code>div</code> will be handled by this converter and will be once again broken to hoist <code>image</code> up to the root.</p>
 <p><strong>Note:</strong> This converter should be executed only after the view element has been already converted, meaning that
 <code>data.output</code> for that view element should be already generated when this converter is fired.</p>
@@ -131,8 +131,8 @@ pass <code><a href="module_engine_model_documentfragment-DocumentFragment.html">
                       <p class="collapsing-list__excerpt">Returns function that converts image view representation:
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    &lt;figure class=&quot;image&quot;&gt;&lt;img src=&quot;...&quot; alt=&quot;...&quot;&gt;&lt;/img&gt;&lt;/figure&gt;</code></pre><p>to model representation:</p>
-<pre class="prettyprint source"><code>    &lt;image src=&quot;...&quot; alt=&quot;...&quot;&gt;&lt;/image&gt;</code></pre><p>The entire contents of <code>&lt;figure&gt;</code> except the first <code>&lt;img&gt;</code> is being converted as children
+<pre class="prettyprint source"><code>&lt;figure class=&quot;image&quot;&gt;&lt;img src=&quot;...&quot; alt=&quot;...&quot;&gt;&lt;/img&gt;&lt;/figure&gt;</code></pre><p>to model representation:</p>
+<pre class="prettyprint source"><code>&lt;image src=&quot;...&quot; alt=&quot;...&quot;&gt;&lt;/image&gt;</code></pre><p>The entire contents of <code>&lt;figure&gt;</code> except the first <code>&lt;img&gt;</code> is being converted as children
 of the <code>&lt;image&gt;</code> model element.</p>
                         <h4>Returns</h4>
                         <dl>
@@ -1163,7 +1163,7 @@ of the <code>&lt;image&gt;</code> model element.</p>
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -2419,13 +2419,13 @@ of the <code>&lt;image&gt;</code> model element.</p>
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -2473,7 +2473,7 @@ of the <code>&lt;image&gt;</code> model element.</p>
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

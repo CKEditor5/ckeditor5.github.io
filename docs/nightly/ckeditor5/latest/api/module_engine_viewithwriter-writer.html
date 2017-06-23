@@ -70,25 +70,25 @@ up to a container element.
                       </p>
                       <div class="collapsing-list__content">
 <p>In following examples <code>&lt;p&gt;</code> is a container, <code>&lt;b&gt;</code> and <code>&lt;u&gt;</code> are attribute nodes:</p>
-<pre class="prettyprint source"><code>    &lt;p&gt;foo&lt;b&gt;&lt;u&gt;bar{}&lt;/u&gt;&lt;/b&gt;&lt;/p&gt; -&gt; &lt;p&gt;foo&lt;b&gt;&lt;u&gt;bar&lt;/u&gt;&lt;/b&gt;[]&lt;/p&gt;
-    &lt;p&gt;foo&lt;b&gt;&lt;u&gt;{}bar&lt;/u&gt;&lt;/b&gt;&lt;/p&gt; -&gt; &lt;p&gt;foo{}&lt;b&gt;&lt;u&gt;bar&lt;/u&gt;&lt;/b&gt;&lt;/p&gt;
-    &lt;p&gt;foo&lt;b&gt;&lt;u&gt;b{}ar&lt;/u&gt;&lt;/b&gt;&lt;/p&gt; -&gt; &lt;p&gt;foo&lt;b&gt;&lt;u&gt;b&lt;/u&gt;&lt;/b&gt;[]&lt;b&gt;&lt;u&gt;ar&lt;/u&gt;&lt;/b&gt;&lt;/p&gt;
-    &lt;p&gt;&lt;b&gt;fo{o&lt;/b&gt;&lt;u&gt;ba}r&lt;/u&gt;&lt;/p&gt; -&gt; &lt;p&gt;&lt;b&gt;fo&lt;/b&gt;&lt;b&gt;o&lt;/b&gt;&lt;u&gt;ba&lt;/u&gt;&lt;u&gt;r&lt;/u&gt;&lt;/b&gt;&lt;/p&gt;</code></pre><p><strong>Note:</strong> <code><a href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></code> is treated like a container.</p>
-<p><strong>Note:</strong> Difference between <code><a href="module_engine_viewithwriter-writer.html#breakAttributes">breakAttributes</a></code> and
-<code><a href="module_engine_viewithwriter-writer.html#breakContainer">breakContainer</a></code> is that <code>breakAttributes</code> breaks all
-<code><a href="module_engine_viewithattributeelement-AttributeElement.html">attribute elements</a></code> that are ancestors of given <code>position</code>, up to the first
-encountered <code><a href="module_engine_viewithcontainerelement-ContainerElement.html">container element</a></code>. <code>breakContainer</code> assumes that given
+<pre class="prettyprint source"><code>&lt;p&gt;foo&lt;b&gt;&lt;u&gt;bar{}&lt;/u&gt;&lt;/b&gt;&lt;/p&gt; -&gt; &lt;p&gt;foo&lt;b&gt;&lt;u&gt;bar&lt;/u&gt;&lt;/b&gt;[]&lt;/p&gt;
+&lt;p&gt;foo&lt;b&gt;&lt;u&gt;{}bar&lt;/u&gt;&lt;/b&gt;&lt;/p&gt; -&gt; &lt;p&gt;foo{}&lt;b&gt;&lt;u&gt;bar&lt;/u&gt;&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;foo&lt;b&gt;&lt;u&gt;b{}ar&lt;/u&gt;&lt;/b&gt;&lt;/p&gt; -&gt; &lt;p&gt;foo&lt;b&gt;&lt;u&gt;b&lt;/u&gt;&lt;/b&gt;[]&lt;b&gt;&lt;u&gt;ar&lt;/u&gt;&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;fo{o&lt;/b&gt;&lt;u&gt;ba}r&lt;/u&gt;&lt;/p&gt; -&gt; &lt;p&gt;&lt;b&gt;fo&lt;/b&gt;&lt;b&gt;o&lt;/b&gt;&lt;u&gt;ba&lt;/u&gt;&lt;u&gt;r&lt;/u&gt;&lt;/b&gt;&lt;/p&gt;</code></pre><p><strong>Note:</strong> <a href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a> is treated like a container.</p>
+<p><strong>Note:</strong> Difference between <a href="module_engine_viewithwriter-writer.html#breakAttributes">breakAttributes</a> and
+<a href="module_engine_viewithwriter-writer.html#breakContainer">breakContainer</a> is that <code>breakAttributes</code> breaks all
+<a href="module_engine_viewithattributeelement-AttributeElement.html">attribute elements</a> that are ancestors of given <code>position</code>, up to the first
+encountered <a href="module_engine_viewithcontainerelement-ContainerElement.html">container element</a>. <code>breakContainer</code> assumes that given
 <code>position</code>
 is directly in container element and breaks that container element.</p>
-<p>Throws <code><a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a></code> <code>view-writer-invalid-range-container</code>
-when <code><a href="module_engine_viewithrange-Range.html#start">start</a></code>
-and <code><a href="module_engine_viewithrange-Range.html#end">end</a></code> positions of a passed range are not placed inside same parent container.</p>
-<p>Throws <code><a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a></code> <code>view-writer-cannot-break-empty-element</code>
+<p>Throws <a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a> <code>view-writer-invalid-range-container</code>
+when <a href="module_engine_viewithrange-Range.html#start">start</a>
+and <a href="module_engine_viewithrange-Range.html#end">end</a> positions of a passed range are not placed inside same parent container.</p>
+<p>Throws <a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a> <code>view-writer-cannot-break-empty-element</code>
 when trying to break attributes
-inside <code><a href="module_engine_viewithemptyelement-EmptyElement.html">EmptyElement</a></code>.</p>
-<p>Throws <code><a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a></code> <code>view-writer-cannot-break-ui-element</code>
+inside <a href="module_engine_viewithemptyelement-EmptyElement.html">EmptyElement</a>.</p>
+<p>Throws <a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a> <code>view-writer-cannot-break-ui-element</code>
 when trying to break attributes
-inside <code><a href="module_engine_viewithuielement-UIElement.html">UIElement</a></code>.</p>
+inside <a href="module_engine_viewithuielement-UIElement.html">UIElement</a>.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> positionOrRange : <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithrange-Range.html">Range</a></span></code></dt>
@@ -113,18 +113,18 @@ elements.</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Breaks <code><a href="module_engine_viewithcontainerelement-ContainerElement.html">container view element</a></code> into two, at the given position. Position
+                      <p class="collapsing-list__excerpt">Breaks <a href="module_engine_viewithcontainerelement-ContainerElement.html">container view element</a> into two, at the given position. Position
 has to be directly inside container element and cannot be in root. Does not break if position is at the beginning
 or at the end of it&apos;s parent element.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    &lt;p&gt;foo^bar&lt;/p&gt; -&gt; &lt;p&gt;foo&lt;/p&gt;&lt;p&gt;bar&lt;/p&gt;
-    &lt;div&gt;&lt;p&gt;foo&lt;/p&gt;^&lt;p&gt;bar&lt;/p&gt;&lt;/div&gt; -&gt; &lt;div&gt;&lt;p&gt;foo&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p&gt;bar&lt;/p&gt;&lt;/div&gt;
-    &lt;p&gt;^foobar&lt;/p&gt; -&gt; ^&lt;p&gt;foobar&lt;/p&gt;
-    &lt;p&gt;foobar^&lt;/p&gt; -&gt; &lt;p&gt;foobar&lt;/p&gt;^</code></pre><p><strong>Note:</strong> Difference between <code><a href="module_engine_viewithwriter-writer.html#breakAttributes">breakAttributes</a></code> and
-<code><a href="module_engine_viewithwriter-writer.html#breakContainer">breakContainer</a></code> is that <code>breakAttributes</code> breaks all
-<code><a href="module_engine_viewithattributeelement-AttributeElement.html">attribute elements</a></code> that are ancestors of given <code>position</code>, up to the first
-encountered <code><a href="module_engine_viewithcontainerelement-ContainerElement.html">container element</a></code>. <code>breakContainer</code> assumes that given
+<pre class="prettyprint source"><code>&lt;p&gt;foo^bar&lt;/p&gt; -&gt; &lt;p&gt;foo&lt;/p&gt;&lt;p&gt;bar&lt;/p&gt;
+&lt;div&gt;&lt;p&gt;foo&lt;/p&gt;^&lt;p&gt;bar&lt;/p&gt;&lt;/div&gt; -&gt; &lt;div&gt;&lt;p&gt;foo&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p&gt;bar&lt;/p&gt;&lt;/div&gt;
+&lt;p&gt;^foobar&lt;/p&gt; -&gt; ^&lt;p&gt;foobar&lt;/p&gt;
+&lt;p&gt;foobar^&lt;/p&gt; -&gt; &lt;p&gt;foobar&lt;/p&gt;^</code></pre><p><strong>Note:</strong> Difference between <a href="module_engine_viewithwriter-writer.html#breakAttributes">breakAttributes</a> and
+<a href="module_engine_viewithwriter-writer.html#breakContainer">breakContainer</a> is that <code>breakAttributes</code> breaks all
+<a href="module_engine_viewithattributeelement-AttributeElement.html">attribute elements</a> that are ancestors of given <code>position</code>, up to the first
+encountered <a href="module_engine_viewithcontainerelement-ContainerElement.html">container element</a>. <code>breakContainer</code> assumes that given
 <code>position</code>
 is directly in container element and breaks that container element.</p>
                         <h4>Parameters</h4>
@@ -151,9 +151,9 @@ is placed either before it or after it.</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Breaks given <code>range</code> on a set of <code><a href="module_engine_viewithrange-Range.html">ranges</a></code>, that each are contained within a
-<code><a href="module_engine_viewithcontainerelement-ContainerElement.html">container element</a></code>. After <code>range</code> is broken, it&apos;s &quot;pieces&quot; can
-be used by other <code><a href="module_engine_viewithwriter-writer.html">writer</a></code> methods (which expect that passed ranges are contained within
+                      <p class="collapsing-list__excerpt">Breaks given <code>range</code> on a set of <a href="module_engine_viewithrange-Range.html">ranges</a>, that each are contained within a
+<a href="module_engine_viewithcontainerelement-ContainerElement.html">container element</a>. After <code>range</code> is broken, it&apos;s &quot;pieces&quot; can
+be used by other <a href="module_engine_viewithwriter-writer.html"><code>writer</code></a> methods (which expect that passed ranges are contained within
 one container element).
                       </p>
                       <div class="collapsing-list__content">
@@ -183,8 +183,8 @@ one container element).
                       <p class="collapsing-list__excerpt">Removes matching elements from given range.
                       </p>
                       <div class="collapsing-list__content">
-<p>Throws <code><a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a></code> <code>view-writer-invalid-range-container</code> when
-<code><a href="module_engine_viewithrange-Range.html#start">start</a></code> and <code><a href="module_engine_viewithrange-Range.html#end">end</a></code> positions are not placed inside
+<p>Throws <a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a> <code>view-writer-invalid-range-container</code> when
+<a href="module_engine_viewithrange-Range.html#start">start</a> and <a href="module_engine_viewithrange-Range.html#end">end</a> positions are not placed inside
 same parent container.</p>
                         <h4>Parameters</h4>
                                 <dl>
@@ -206,19 +206,19 @@ same parent container.</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Merges <code><a href="module_engine_viewithattributeelement-AttributeElement.html">attribute elements</a></code>. It also merges text nodes if needed.
-Only <code><a href="module_engine_viewithattributeelement-AttributeElement.html#isSimilar">similar</a></code> attribute elements can be merged.
+                      <p class="collapsing-list__excerpt">Merges <a href="module_engine_viewithattributeelement-AttributeElement.html">attribute elements</a>. It also merges text nodes if needed.
+Only <a href="module_engine_viewithattributeelement-AttributeElement.html#isSimilar">similar</a> attribute elements can be merged.
                       </p>
                       <div class="collapsing-list__content">
 <p>In following examples <code>&lt;p&gt;</code> is a container and <code>&lt;b&gt;</code> is an attribute element:</p>
-<pre class="prettyprint source"><code>    &lt;p&gt;foo[]bar&lt;/p&gt; -&gt; &lt;p&gt;foo{}bar&lt;/p&gt;
-    &lt;p&gt;&lt;b&gt;foo&lt;/b&gt;[]&lt;b&gt;bar&lt;/b&gt;&lt;/p&gt; -&gt; &lt;p&gt;&lt;b&gt;foo{}bar&lt;/b&gt;&lt;/p&gt;
-    &lt;p&gt;&lt;b foo=&quot;bar&quot;&gt;a&lt;/b&gt;[]&lt;b foo=&quot;baz&quot;&gt;b&lt;/b&gt;&lt;/p&gt; -&gt; &lt;p&gt;&lt;b foo=&quot;bar&quot;&gt;a&lt;/b&gt;[]&lt;b foo=&quot;baz&quot;&gt;b&lt;/b&gt;&lt;/p&gt;</code></pre><p>It will also take care about empty attributes when merging:</p>
-<pre class="prettyprint source"><code>    &lt;p&gt;&lt;b&gt;[]&lt;/b&gt;&lt;/p&gt; -&gt; &lt;p&gt;[]&lt;/p&gt;
-    &lt;p&gt;&lt;b&gt;foo&lt;/b&gt;&lt;i&gt;[]&lt;/i&gt;&lt;b&gt;bar&lt;/b&gt;&lt;/p&gt; -&gt; &lt;p&gt;&lt;b&gt;foo{}bar&lt;/b&gt;&lt;/p&gt;</code></pre><p><strong>Note:</strong> Difference between <code><a href="module_engine_viewithwriter-writer.html#mergeAttributes">mergeAttributes</a></code> and
-<code><a href="module_engine_viewithwriter-writer.html#mergeContainers">mergeContainers</a></code> is that <code>mergeAttributes</code> merges two
-<code><a href="module_engine_viewithattributeelement-AttributeElement.html">attribute elements</a></code> or <code><a href="module_engine_viewithtext-Text.html">text nodes</a></code>
-while <code>mergeContainer</code> merges two <code><a href="module_engine_viewithcontainerelement-ContainerElement.html">container elements</a></code>.</p>
+<pre class="prettyprint source"><code>&lt;p&gt;foo[]bar&lt;/p&gt; -&gt; &lt;p&gt;foo{}bar&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;foo&lt;/b&gt;[]&lt;b&gt;bar&lt;/b&gt;&lt;/p&gt; -&gt; &lt;p&gt;&lt;b&gt;foo{}bar&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b foo=&quot;bar&quot;&gt;a&lt;/b&gt;[]&lt;b foo=&quot;baz&quot;&gt;b&lt;/b&gt;&lt;/p&gt; -&gt; &lt;p&gt;&lt;b foo=&quot;bar&quot;&gt;a&lt;/b&gt;[]&lt;b foo=&quot;baz&quot;&gt;b&lt;/b&gt;&lt;/p&gt;</code></pre><p>It will also take care about empty attributes when merging:</p>
+<pre class="prettyprint source"><code>&lt;p&gt;&lt;b&gt;[]&lt;/b&gt;&lt;/p&gt; -&gt; &lt;p&gt;[]&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;foo&lt;/b&gt;&lt;i&gt;[]&lt;/i&gt;&lt;b&gt;bar&lt;/b&gt;&lt;/p&gt; -&gt; &lt;p&gt;&lt;b&gt;foo{}bar&lt;/b&gt;&lt;/p&gt;</code></pre><p><strong>Note:</strong> Difference between <a href="module_engine_viewithwriter-writer.html#mergeAttributes">mergeAttributes</a> and
+<a href="module_engine_viewithwriter-writer.html#mergeContainers">mergeContainers</a> is that <code>mergeAttributes</code> merges two
+<a href="module_engine_viewithattributeelement-AttributeElement.html">attribute elements</a> or <a href="module_engine_viewithtext-Text.html">text nodes</a>
+while <code>mergeContainer</code> merges two <a href="module_engine_viewithcontainerelement-ContainerElement.html">container elements</a>.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> position : <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></dt>
@@ -242,15 +242,15 @@ while <code>mergeContainer</code> merges two <code><a href="module_engine_viewit
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Merges two <code><a href="module_engine_viewithcontainerelement-ContainerElement.html">container elements</a></code> that are before and after given position.
+                      <p class="collapsing-list__excerpt">Merges two <a href="module_engine_viewithcontainerelement-ContainerElement.html">container elements</a> that are before and after given position.
 Precisely, the element after the position is removed and it&apos;s contents are moved to element before the position.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    &lt;p&gt;foo&lt;/p&gt;^&lt;p&gt;bar&lt;/p&gt; -&gt; &lt;p&gt;foo^bar&lt;/p&gt;
-    &lt;div&gt;foo&lt;/div&gt;^&lt;p&gt;bar&lt;/p&gt; -&gt; &lt;div&gt;foo^bar&lt;/div&gt;</code></pre><p><strong>Note:</strong> Difference between <code><a href="module_engine_viewithwriter-writer.html#mergeAttributes">mergeAttributes</a></code> and
-<code><a href="module_engine_viewithwriter-writer.html#mergeContainers">mergeContainers</a></code> is that <code>mergeAttributes</code> merges two
-<code><a href="module_engine_viewithattributeelement-AttributeElement.html">attribute elements</a></code> or <code><a href="module_engine_viewithtext-Text.html">text nodes</a></code>
-while <code>mergeContainer</code> merges two <code><a href="module_engine_viewithcontainerelement-ContainerElement.html">container elements</a></code>.</p>
+<pre class="prettyprint source"><code>&lt;p&gt;foo&lt;/p&gt;^&lt;p&gt;bar&lt;/p&gt; -&gt; &lt;p&gt;foo^bar&lt;/p&gt;
+&lt;div&gt;foo&lt;/div&gt;^&lt;p&gt;bar&lt;/p&gt; -&gt; &lt;div&gt;foo^bar&lt;/div&gt;</code></pre><p><strong>Note:</strong> Difference between <a href="module_engine_viewithwriter-writer.html#mergeAttributes">mergeAttributes</a> and
+<a href="module_engine_viewithwriter-writer.html#mergeContainers">mergeContainers</a> is that <code>mergeAttributes</code> merges two
+<a href="module_engine_viewithattributeelement-AttributeElement.html">attribute elements</a> or <a href="module_engine_viewithtext-Text.html">text nodes</a>
+while <code>mergeContainer</code> merges two <a href="module_engine_viewithcontainerelement-ContainerElement.html">container elements</a>.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> position : <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></dt>
@@ -277,8 +277,8 @@ while <code>mergeContainer</code> merges two <code><a href="module_engine_viewit
                       <p class="collapsing-list__excerpt">Moves nodes from provided range to target position.
                       </p>
                       <div class="collapsing-list__content">
-<p>Throws <code><a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a></code> <code>view-writer-invalid-range-container</code> when
-<code><a href="module_engine_viewithrange-Range.html#start">start</a></code> and <code><a href="module_engine_viewithrange-Range.html#end">end</a></code> positions are not placed inside
+<p>Throws <a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a> <code>view-writer-invalid-range-container</code> when
+<a href="module_engine_viewithrange-Range.html#start">start</a> and <a href="module_engine_viewithrange-Range.html#end">end</a> positions are not placed inside
 same parent container.</p>
                         <h4>Parameters</h4>
                                 <dl>
@@ -293,7 +293,7 @@ same parent container.</p>
                         <dl>
                                   <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithrange-Range.html">Range</a></span></code></dt>
                                   <dd><p>Range in target container. Inserted nodes are placed between
-<code><a href="module_engine_viewithrange-Range.html#start">start</a></code> and <code><a href="module_engine_viewithrange-Range.html#end">end</a></code> positions.</p>
+<a href="module_engine_viewithrange-Range.html#start">start</a> and <a href="module_engine_viewithrange-Range.html#end">end</a> positions.</p>
                                   </dd>
                         </dl>
                       </div>
@@ -310,8 +310,8 @@ same parent container.</p>
                       <p class="collapsing-list__excerpt">Removes provided range from the container.
                       </p>
                       <div class="collapsing-list__content">
-<p>Throws <code><a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a></code> <code>view-writer-invalid-range-container</code> when
-<code><a href="module_engine_viewithrange-Range.html#start">start</a></code> and <code><a href="module_engine_viewithrange-Range.html#end">end</a></code> positions are not placed inside
+<p>Throws <a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a> <code>view-writer-invalid-range-container</code> when
+<a href="module_engine_viewithrange-Range.html#start">start</a> and <a href="module_engine_viewithrange-Range.html#end">end</a> positions are not placed inside
 same parent container.</p>
                         <h4>Parameters</h4>
                                 <dl>
@@ -337,13 +337,13 @@ to a collapsed range showing the new position.</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Wraps elements within range with provided <code><a href="module_engine_viewithattributeelement-AttributeElement.html">AttributeElement</a></code>.
+                      <p class="collapsing-list__excerpt">Wraps elements within range with provided <a href="module_engine_viewithattributeelement-AttributeElement.html">AttributeElement</a>.
                       </p>
                       <div class="collapsing-list__content">
-<p>Throws <code><a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a></code> <code>view-writer-invalid-range-container</code>
-when <code><a href="module_engine_viewithrange-Range.html#start">start</a></code>
-and <code><a href="module_engine_viewithrange-Range.html#end">end</a></code> positions are not placed inside same parent container.
-Throws <code><a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a></code> <code>view-writer-wrap-invalid-attribute</code> when passed attribute element is not
+<p>Throws <a href="module_utils_ckeditorerror-CKEditorError.html"><code>CKEditorError</code></a> <code>view-writer-invalid-range-container</code>
+when <a href="module_engine_viewithrange-Range.html#start"><code>start</code></a>
+and <a href="module_engine_viewithrange-Range.html#end"><code>end</code></a> positions are not placed inside same parent container.
+Throws <a href="module_utils_ckeditorerror-CKEditorError.html"><code>CKEditorError</code></a> <code>view-writer-wrap-invalid-attribute</code> when passed attribute element is not
 an instance of {module:engine/view/attributeelement~AttributeElement AttributeElement}.</p>
                         <h4>Parameters</h4>
                                 <dl>
@@ -1377,7 +1377,7 @@ an instance of {module:engine/view/attributeelement~AttributeElement AttributeEl
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -2633,13 +2633,13 @@ an instance of {module:engine/view/attributeelement~AttributeElement AttributeEl
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -2687,7 +2687,7 @@ an instance of {module:engine/view/attributeelement~AttributeElement AttributeEl
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

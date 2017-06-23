@@ -27,7 +27,7 @@ Marker
         </h1>
         <p><span class="badge">class</span>
         </p><p><code>Marker</code> is a continuous parts of model (like a range), is named and represent some kind of information about marked
-part of model document. In contrary to <code><a href="module_engine_model_node-Node.html">nodes</a></code>, which are building blocks of
+part of model document. In contrary to <a href="module_engine_model_node-Node.html">nodes</a>, which are building blocks of
 model document tree, markers are not stored directly in document tree. Still, they are document data, by giving
 additional meaning to the part of a model document between marker start and marker end.</p>
 <p>In this sense, markers are similar to adding and converting attributes on nodes. The difference is that attribute is
@@ -36,12 +36,12 @@ Markers on the other hand are continuous ranges and are characterised by their s
 any character in the marker is marked by the marker. For example, if a character is moved outside of marker it stops being
 &quot;special&quot; and the marker is shrunk. Similarly, when a character is moved into the marker from other place in document
 model, it starts being &quot;special&quot; and the marker is enlarged.</p>
-<p>Since markers are based on <code><a href="module_engine_model_liverange-LiveRange.html">live ranges</a></code>, for efficiency reasons, it&apos;s
+<p>Since markers are based on <a href="module_engine_model_liverange-LiveRange.html">live ranges</a>, for efficiency reasons, it&apos;s
 best to create and keep at least markers as possible.</p>
 <p>Markers can be converted to view by adding appropriate converters for
-<code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:addMarker">addMarker</a></code> and
-<code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:removeMarker">removeMarker</a></code>
-events, or by building converters for <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html">ModelConversionDispatcher</a></code>
+<a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:addMarker"><code>addMarker</code></a> and
+<a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:removeMarker"><code>removeMarker</code></a>
+events, or by building converters for <a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html"><code>ModelConversionDispatcher</code></a>
 using <code>model converter builder (module:engine/conversion/buildmodelconverter~buildModelConverter)</code>.</p>
 <p>Another upside of markers is that finding marked part of document is fast and easy. Using attributes to mark some nodes
 and then trying to find that part of document would require traversing whole document tree. Marker gives instant access
@@ -152,10 +152,10 @@ to the range which it is marking at the moment.</p>
                       <p class="collapsing-list__excerpt">Returns a range that represents current state of marker.
                       </p>
                       <div class="collapsing-list__content">
-<p>Keep in mind that returned value is a <code><a href="module_engine_model_range-Range.html">Range</a></code>, not a
-<code><a href="module_engine_model_liverange-LiveRange.html">LiveRange</a></code>. This means that it is up-to-date and relevant only
-until next model document change. Do not store values returned by this method. Instead, store <code><a href="module_engine_model_markercollection-Marker.html#name">name</a></code>
-and get <code>Marker</code> instance from <code><a href="module_engine_model_markercollection-MarkerCollection.html">MarkerCollection</a></code> every
+<p>Keep in mind that returned value is a <a href="module_engine_model_range-Range.html">Range</a>, not a
+<a href="module_engine_model_liverange-LiveRange.html">LiveRange</a>. This means that it is up-to-date and relevant only
+until next model document change. Do not store values returned by this method. Instead, store <a href="module_engine_model_markercollection-Marker.html#name"><code>name</code></a>
+and get <code>Marker</code> instance from <a href="module_engine_model_markercollection-MarkerCollection.html">MarkerCollection</a> every
 time there is a need to read marker properties. This will guarantee that the marker has not been removed and
 that it&apos;s data is up-to-date.</p>
                         <h4>Returns</h4>
@@ -192,13 +192,13 @@ that it&apos;s data is up-to-date.</p>
                       <h3><code><a href="#event:change">change</a>( oldRange )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Fired whenever <code><a href="module_engine_model_markercollection-Marker.html#_liveRange">marker  range</a></code> is changed due to changes on <code><a href="module_engine_model_document-Document.html">Document</a></code>.
-This is actually a delegated <code><a href="module_engine_model_liverange-LiveRange.html#event:change">LiveRange change event</a></code>.
+                      <p class="collapsing-list__excerpt">Fired whenever <a href="module_engine_model_markercollection-Marker.html#_liveRange">marker  range</a> is changed due to changes on <a href="module_engine_model_document-Document.html"><code>Document</code></a>.
+This is actually a delegated <a href="module_engine_model_liverange-LiveRange.html#event:change">LiveRange change event</a>.
                       </p>
                       <div class="collapsing-list__content">
-<p>When marker is removed from <code><a href="module_engine_model_markercollection-MarkerCollection.html">MarkerCollection</a></code>,
+<p>When marker is removed from <a href="module_engine_model_markercollection-MarkerCollection.html">MarkerCollection</a>,
 all event listeners listening to it should be removed. It is best to do it on
-<code><a href="module_engine_model_markercollection-MarkerCollection.html#event:remove">MarkerCollection remove event</a></code>.</p>
+<a href="module_engine_model_markercollection-MarkerCollection.html#event:remove">MarkerCollection remove event</a>.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> oldRange : <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
@@ -1229,7 +1229,7 @@ this marker range before it got changed.</p>
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -2485,13 +2485,13 @@ this marker range before it got changed.</p>
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -2539,7 +2539,7 @@ this marker range before it got changed.</p>
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

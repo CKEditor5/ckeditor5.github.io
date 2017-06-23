@@ -41,22 +41,22 @@ LiveSelection
                       </ul>
                     </dd>
           </dl>
-        </nav><p><code>LiveSelection</code> is a type of <code><a href="module_engine_model_selection-Selection.html">selection</a></code> that listens to changes on a
-<code><a href="module_engine_model_document-Document.html">document</a></code> and has it ranges updated accordingly. Internal implementation of this
-mechanism bases on <code><a href="module_engine_model_liverange-LiveRange.html">live ranges</a></code>.</p>
-<p>Differences between <code><a href="module_engine_model_selection-Selection.html">Selection</a></code> and <code>LiveSelection</code> are:</p>
+        </nav><p><code>LiveSelection</code> is a type of <a href="module_engine_model_selection-Selection.html">selection</a> that listens to changes on a
+<a href="module_engine_model_document-Document.html">document</a> and has it ranges updated accordingly. Internal implementation of this
+mechanism bases on <a href="module_engine_model_liverange-LiveRange.html">live ranges</a>.</p>
+<p>Differences between <a href="module_engine_model_selection-Selection.html"><code>Selection</code></a> and <code>LiveSelection</code> are:</p>
 <ul>
 <li>there is always a range in <code>LiveSelection</code> - even if no ranges were added there is a
-<code><a href="module_engine_model_liveselection-LiveSelection.html#_getDefaultRange">&quot;default range&quot;</a></code> present in the selection,</li>
+<a href="module_engine_model_liveselection-LiveSelection.html#_getDefaultRange">&quot;default range&quot;</a> present in the selection,</li>
 <li>ranges added to this selection updates automatically when the document changes,</li>
 <li>attributes of <code>LiveSelection</code> are updated automatically according to selection ranges.</li>
 </ul>
-<p>Since <code>LiveSelection</code> uses <code><a href="module_engine_model_liverange-LiveRange.html">live ranges</a></code>
-and is updated when <code><a href="module_engine_model_document-Document.html">document</a></code>
-changes, it cannot be set on <code><a href="module_engine_model_node-Node.html">nodes</a></code>
-that are inside <code><a href="module_engine_model_documentfragment-DocumentFragment.html">document fragment</a></code>.
+<p>Since <code>LiveSelection</code> uses <a href="module_engine_model_liverange-LiveRange.html">live ranges</a>
+and is updated when <a href="module_engine_model_document-Document.html">document</a>
+changes, it cannot be set on <a href="module_engine_model_node-Node.html">nodes</a>
+that are inside <a href="module_engine_model_documentfragment-DocumentFragment.html">document fragment</a>.
 If you need to represent a selection in document fragment,
-use <code><a href="module_engine_model_selection-Selection.html">Selection class</a></code> instead.</p>
+use <a href="module_engine_model_selection-Selection.html">Selection class</a> instead.</p>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
           <ul>
@@ -169,9 +169,9 @@ attributes API are set with <code>&apos;normal&apos;</code> priority.</p>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Selection anchor. Anchor may be described as a position where the most recent part of the selection starts.
-Together with <code><a href="module_engine_model_selection-Selection.html#focus">focus</a></code> they define the direction of selection, which is important
-when expanding/shrinking selection. Anchor is always <code><a href="module_engine_model_range-Range.html#start">start</a></code> or
-<code><a href="module_engine_model_range-Range.html#end">end</a></code> position of the most recently added range.</p>
+Together with <a href="module_engine_model_selection-Selection.html#focus"><code>focus</code></a> they define the direction of selection, which is important
+when expanding/shrinking selection. Anchor is always <a href="module_engine_model_range-Range.html#start">start</a> or
+<a href="module_engine_model_range-Range.html#end">end</a> position of the most recently added range.</p>
                       <div class="collapsing-list__content">
 <p>Is set to <code>null</code> if there are no ranges in selection.</p>
                       </div>
@@ -200,8 +200,8 @@ when expanding/shrinking selection. Anchor is always <code><a href="module_engin
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Specifies whether the <code><a href="module_engine_model_selection-Selection.html#focus">focus</a></code>
-precedes <code><a href="module_engine_model_selection-Selection.html#anchor">anchor</a></code>.</p>
+                      <p class="collapsing-list__excerpt">Specifies whether the <a href="module_engine_model_selection-Selection.html#focus"><code>focus</code></a>
+precedes <a href="module_engine_model_selection-Selection.html#anchor"><code>anchor</code></a>.</p>
                       <div class="collapsing-list__content">
                       </div>
                     </div>
@@ -243,7 +243,7 @@ collapsed.</p>
                       <h3><code><a href="#constructor">constructor</a>( document )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Creates an empty live selection for given <code><a href="module_engine_model_document-Document.html">Document</a></code>.
+                      <p class="collapsing-list__excerpt">Creates an empty live selection for given <a href="module_engine_model_document-Document.html"><code>Document</code></a>.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -321,7 +321,7 @@ attributes stored in that parent.
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Prepares given range to be added to selection. Checks if it is correct,
-converts it to <code><a href="module_engine_model_liverange-LiveRange.html">LiveRange</a></code>
+converts it to <a href="module_engine_model_liverange-LiveRange.html">LiveRange</a>
 and sets listeners listening to the range&apos;s change event.
                       </p>
                       <div class="collapsing-list__content">
@@ -343,7 +343,7 @@ and sets listeners listening to the range&apos;s change event.
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Adds given range to internal <code><a href="module_engine_model_selection-Selection.html#_ranges">ranges  array</a></code>. Throws an error
+                      <p class="collapsing-list__excerpt">Adds given range to internal <a href="module_engine_model_selection-Selection.html#_ranges">ranges  array</a>. Throws an error
 if given range is intersecting with any range that is already stored in this selection.
                       </p>
                       <div class="collapsing-list__content">
@@ -365,7 +365,7 @@ if given range is intersecting with any range that is already stored in this sel
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Deletes ranges from internal range array. Uses <code><a href="module_engine_model_selection-Selection.html#_popRange">_popRange</a></code> to
+                      <p class="collapsing-list__excerpt">Deletes ranges from internal range array. Uses <a href="module_engine_model_selection-Selection.html#_popRange">_popRange</a> to
 ensure proper ranges removal.
                       </p>
                       <div class="collapsing-list__content">
@@ -543,7 +543,7 @@ is caused by <code>Batch</code> API.</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Updates this selection attributes according to its ranges and the <code><a href="module_engine_model_document-Document.html">model document</a></code>.
+                      <p class="collapsing-list__excerpt">Updates this selection attributes according to its ranges and the <a href="module_engine_model_document-Document.html">model document</a>.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -568,11 +568,11 @@ instance and operating on it will not change <code>Selection</code> state.
                       </p>
                       <div class="collapsing-list__content">
 <p>Accepts a flag describing in which way the selection is made - passed range might be selected from
-<code><a href="module_engine_model_range-Range.html#start">start</a></code> to <code><a href="module_engine_model_range-Range.html#end">end</a></code>
-or from <code><a href="module_engine_model_range-Range.html#end">end</a></code>
-to <code><a href="module_engine_model_range-Range.html#start">start</a></code>.
-The flag is used to set <code><a href="module_engine_model_selection-Selection.html#anchor">anchor</a></code> and
-<code><a href="module_engine_model_selection-Selection.html#focus">focus</a></code> properties.</p>
+<a href="module_engine_model_range-Range.html#start">start</a> to <a href="module_engine_model_range-Range.html#end">end</a>
+or from <a href="module_engine_model_range-Range.html#end">end</a>
+to <a href="module_engine_model_range-Range.html#start">start</a>.
+The flag is used to set <a href="module_engine_model_selection-Selection.html#anchor"><code>anchor</code></a> and
+<a href="module_engine_model_selection-Selection.html#focus"><code>focus</code></a> properties.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> range : <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
@@ -598,7 +598,7 @@ or backward - from end to start (<code>true</code>).</p>
                       <p class="collapsing-list__excerpt">Removes all attributes from the selection.
                       </p>
                       <div class="collapsing-list__content">
-<p>If there were any attributes in selection, fires the <code><a href="module_engine_model_selection-Selection.html#event:change">change</a></code> event with
+<p>If there were any attributes in selection, fires the <a href="module_engine_model_selection-Selection.html#event:change"><code>change</code></a> event with
 removed attributes&apos; keys.</p>
                       </div>
                     </div>
@@ -614,7 +614,7 @@ removed attributes&apos; keys.</p>
                       <p class="collapsing-list__excerpt">Sets collapsed selection in the specified location.
                       </p>
                       <div class="collapsing-list__content">
-<p>The location can be specified in the same form as <code><a href="module_engine_model_position-Position.html#createAt">createAt</a></code> parameters.</p>
+<p>The location can be specified in the same form as <a href="module_engine_model_position-Position.html#createAt"><code>createAt</code></a> parameters.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> itemOrPosition : <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
@@ -622,7 +622,7 @@ removed attributes&apos; keys.</p>
                                   </dd>
                                   <dt><code> [ offset ] : Number | 'end' | 'before' | 'after'</code></dt>
                                   <dd><p>Offset or one of the flags. Used only when
-first parameter is a <code><a href="module_engine_model_item-Item.html">model item</a></code>.</p>
+first parameter is a <a href="module_engine_model_item-Item.html">model item</a>.</p>
                                     <p>Defaults to <code>0</code></p>
                                   </dd>
                                 </dl>
@@ -637,7 +637,7 @@ first parameter is a <code><a href="module_engine_model_item-Item.html">model it
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Collapses selection to the selection&apos;s <code><a href="module_engine_model_selection-Selection.html#getLastPosition">last position</a></code>.
+                      <p class="collapsing-list__excerpt">Collapses selection to the selection&apos;s <a href="module_engine_model_selection-Selection.html#getLastPosition">last position</a>.
 All ranges, besides the collapsed one, will be removed. Nothing will change if there are no ranges stored
 inside selection.
                       </p>
@@ -653,7 +653,7 @@ inside selection.
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Collapses selection to the selection&apos;s <code><a href="module_engine_model_selection-Selection.html#getFirstPosition">first position</a></code>.
+                      <p class="collapsing-list__excerpt">Collapses selection to the selection&apos;s <a href="module_engine_model_selection-Selection.html#getFirstPosition">first position</a>.
 All ranges, besides the collapsed one, will be removed. Nothing will change if there are no ranges stored
 inside selection.
                       </p>
@@ -793,7 +793,7 @@ This format is accepted by native <code>Map</code> object and also can be passed
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Returns the first position in the selection.
-First position is the position that <code><a href="module_engine_model_position-Position.html#isBefore">is before</a></code>
+First position is the position that <a href="module_engine_model_position-Position.html#isBefore">is before</a>
 any other position in the selection.
                       </p>
                       <div class="collapsing-list__content">
@@ -816,8 +816,8 @@ any other position in the selection.
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Returns a copy of the first range in the selection.
-First range is the one which <code><a href="module_engine_model_range-Range.html#start">start</a></code> position
-<code><a href="module_engine_model_position-Position.html#isBefore">is before</a></code> start position of all other ranges
+First range is the one which <a href="module_engine_model_range-Range.html#start">start</a> position
+<a href="module_engine_model_position-Position.html#isBefore">is before</a> start position of all other ranges
 (not to confuse with the first range added to the selection).
                       </p>
                       <div class="collapsing-list__content">
@@ -840,7 +840,7 @@ First range is the one which <code><a href="module_engine_model_range-Range.html
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Returns the last position in the selection.
-Last position is the position that <code><a href="module_engine_model_position-Position.html#isAfter">is after</a></code>
+Last position is the position that <a href="module_engine_model_position-Position.html#isAfter">is after</a>
 any other position in the selection.
                       </p>
                       <div class="collapsing-list__content">
@@ -863,8 +863,8 @@ any other position in the selection.
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Returns a copy of the last range in the selection.
-Last range is the one which <code><a href="module_engine_model_range-Range.html#end">end</a></code> position
-<code><a href="module_engine_model_position-Position.html#isAfter">is after</a></code> end position of all other ranges (not to confuse with the range most
+Last range is the one which <a href="module_engine_model_range-Range.html#end">end</a> position
+<a href="module_engine_model_position-Position.html#isAfter">is after</a> end position of all other ranges (not to confuse with the range most
 recently added to the selection).
                       </p>
                       <div class="collapsing-list__content">
@@ -912,12 +912,12 @@ recently added to the selection).
 <p>This method&apos;s result can be used for example to apply block styling to all blocks covered by this selection.</p>
 <p><em>Note:</em> <code>getSelectedBlocks</code> always returns the deepest block.</p>
 <p>In this case the function will return exactly all 3 paragraphs:</p>
-<pre class="prettyprint source"><code>    &lt;paragraph&gt;[a&lt;/paragraph&gt;
-    &lt;quote&gt;
-        &lt;paragraph&gt;b&lt;/paragraph&gt;
-    &lt;/quote&gt;
-    &lt;paragraph&gt;c]d&lt;/paragraph&gt;</code></pre><p>In this case the paragraph will also be returned, despite the collapsed selection:</p>
-<pre class="prettyprint source"><code>    &lt;paragraph&gt;[]a&lt;/paragraph&gt;</code></pre>
+<pre class="prettyprint source"><code>&lt;paragraph&gt;[a&lt;/paragraph&gt;
+&lt;quote&gt;
+    &lt;paragraph&gt;b&lt;/paragraph&gt;
+&lt;/quote&gt;
+&lt;paragraph&gt;c]d&lt;/paragraph&gt;</code></pre><p>In this case the paragraph will also be returned, despite the collapsed selection:</p>
+<pre class="prettyprint source"><code>&lt;paragraph&gt;[]a&lt;/paragraph&gt;</code></pre>
                         <h4>Returns</h4>
                         <dl>
                                   <dt><code><span>Iterator.&lt;<a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a>&gt;</span></code></dt>
@@ -935,7 +935,7 @@ recently added to the selection).
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Returns the selected element. <code><a href="module_engine_model_element-Element.html">Element</a></code> is considered as selected if there is only
+                      <p class="collapsing-list__excerpt">Returns the selected element. <a href="module_engine_model_element-Element.html">Element</a> is considered as selected if there is only
 one range in the selection, and that range contains exactly one element.
 Returns <code>null</code> if there is no selected element.
                       </p>
@@ -1038,7 +1038,7 @@ same number of ranges and all ranges from one selection equal to a range from ot
                       <p class="collapsing-list__excerpt">Removes an attribute with given key from the selection.
                       </p>
                       <div class="collapsing-list__content">
-<p>If given attribute was set on the selection, fires the <code><a href="module_engine_model_selection-Selection.html#event:change">change</a></code> event with
+<p>If given attribute was set on the selection, fires the <a href="module_engine_model_selection-Selection.html#event:change"><code>change</code></a> event with
 removed attribute key.</p>
                         <h4>Parameters</h4>
                                 <dl>
@@ -1060,7 +1060,7 @@ removed attribute key.</p>
                       <p class="collapsing-list__excerpt">Sets attribute on the selection. If attribute with the same key already is set, it&apos;s value is overwritten.
                       </p>
                       <div class="collapsing-list__content">
-<p>If the attribute value has changed, fires the <code><a href="module_engine_model_selection-Selection.html#event:change">change</a></code> event with
+<p>If the attribute value has changed, fires the <a href="module_engine_model_selection-Selection.html#event:change"><code>change</code></a> event with
 the attribute key.</p>
                         <h4>Parameters</h4>
                                 <dl>
@@ -1086,7 +1086,7 @@ the attribute key.</p>
                       </p>
                       <div class="collapsing-list__content">
 <p>If given set of attributes is different than set of attributes already added to selection, fires
-<code><a href="module_engine_model_selection-Selection.html#event:change">change  event</a></code> with keys of attributes that changed.</p>
+<a href="module_engine_model_selection-Selection.html#event:change">change  event</a> with keys of attributes that changed.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> attrs : Iterable | Object</code></dt>
@@ -1104,10 +1104,10 @@ the attribute key.</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Sets <code><a href="module_engine_model_selection-Selection.html#focus">focus</a></code> to the specified location.
+                      <p class="collapsing-list__excerpt">Sets <a href="module_engine_model_selection-Selection.html#focus"><code>focus</code></a> to the specified location.
                       </p>
                       <div class="collapsing-list__content">
-<p>The location can be specified in the same form as <code><a href="module_engine_model_position-Position.html#createAt">createAt</a></code> parameters.</p>
+<p>The location can be specified in the same form as <a href="module_engine_model_position-Position.html#createAt"><code>createAt</code></a> parameters.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> itemOrPosition : <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
@@ -1115,7 +1115,7 @@ the attribute key.</p>
                                   </dd>
                                   <dt><code> [ offset ] : Number | 'end' | 'before' | 'after'</code></dt>
                                   <dd><p>Offset or one of the flags. Used only when
-first parameter is a <code><a href="module_engine_model_item-Item.html">model item</a></code>.</p>
+first parameter is a <a href="module_engine_model_item-Item.html">model item</a>.</p>
                                     <p>Defaults to <code>0</code></p>
                                   </dd>
                                 </dl>
@@ -1131,9 +1131,9 @@ first parameter is a <code><a href="module_engine_model_item-Item.html">model it
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Replaces all ranges that were added to the selection with given array of ranges. Last range of the array
-is treated like the last added range and is used to set <code><a href="module_engine_model_selection-Selection.html#anchor">anchor</a></code> and
-<code><a href="module_engine_model_selection-Selection.html#focus">focus</a></code>. Accepts a flag describing in which direction the selection is made
-(see <code><a href="module_engine_model_selection-Selection.html#addRange">addRange</a></code>).
+is treated like the last added range and is used to set <a href="module_engine_model_selection-Selection.html#anchor"><code>anchor</code></a> and
+<a href="module_engine_model_selection-Selection.html#focus"><code>focus</code></a>. Accepts a flag describing in which direction the selection is made
+(see <a href="module_engine_model_selection-Selection.html#addRange"><code>addRange</code></a>).
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -1264,8 +1264,8 @@ ranges and same direction as this selection.
                                 <dl>
                                   <dt><code> directChange : Boolean</code></dt>
                                   <dd><p>Specifies whether the range change was caused by direct usage of <code>Selection</code> API (<code>true</code>)
-or by changes done to <code><a href="module_engine_model_document-Document.html">model document</a></code>
-using <code><a href="module_engine_model_batch-Batch.html">Batch</a></code> API (<code>false</code>).</p>
+or by changes done to <a href="module_engine_model_document-Document.html">model document</a>
+using <a href="module_engine_model_batch-Batch.html">Batch</a> API (<code>false</code>).</p>
                                   </dd>
                                 </dl>
                       </div>
@@ -2291,7 +2291,7 @@ using <code><a href="module_engine_model_batch-Batch.html">Batch</a></code> API 
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -3547,13 +3547,13 @@ using <code><a href="module_engine_model_batch-Batch.html">Batch</a></code> API 
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -3601,7 +3601,7 @@ using <code><a href="module_engine_model_batch-Batch.html">Batch</a></code> API 
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

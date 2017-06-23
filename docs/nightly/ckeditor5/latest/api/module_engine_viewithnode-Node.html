@@ -33,10 +33,10 @@ Node
                     <dd>
                       <ul>
                                 <li><code><span><a href="module_list_viewlistitemelement-ViewListItemElement.html">ViewListItemElement</a></span></code></li>
-                                <li><code><span><a href="module_engine_viewithcontainerelement-ContainerElement.html">ContainerElement</a></span></code></li>
-                                <li><code><span><a href="module_engine_viewithelement-Element.html">Element</a></span></code></li>
                                 <li><code><span><a href="module_engine_viewithattributeelement-AttributeElement.html">AttributeElement</a></span></code></li>
+                                <li><code><span><a href="module_engine_viewithcontainerelement-ContainerElement.html">ContainerElement</a></span></code></li>
                                 <li><code><span><a href="module_engine_viewitheditableelement-EditableElement.html">EditableElement</a></span></code></li>
+                                <li><code><span><a href="module_engine_viewithelement-Element.html">Element</a></span></code></li>
                                 <li><code><span><a href="module_engine_viewithrooteditableelement-RootEditableElement.html">RootEditableElement</a></span></code></li>
                                 <li><code><span><a href="module_engine_viewithtext-Text.html">Text</a></span></code></li>
                       </ul>
@@ -82,8 +82,8 @@ Node
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt"><code><a href="module_engine_viewithdocument-Document.html">View document</a></code> that owns this node, or <code>null</code> if the node is inside
-<code><a href="module_engine_viewithdocumentfragment-DocumentFragment.html">document fragment</a></code>.</p>
+                      <p class="collapsing-list__excerpt"><a href="module_engine_viewithdocument-Document.html">View document</a> that owns this node, or <code>null</code> if the node is inside
+<a href="module_engine_viewithdocumentfragment-DocumentFragment.html">document fragment</a>.</p>
                       <div class="collapsing-list__content">
                       </div>
                     </div>
@@ -124,7 +124,7 @@ This means that view tree got broken.</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Parent element. Null by default. Set by <code><a href="module_engine_viewithelement-Element.html#insertChildren">insertChildren</a></code>.</p>
+                      <p class="collapsing-list__excerpt">Parent element. Null by default. Set by <a href="module_engine_viewithelement-Element.html#insertChildren"><code>insertChildren</code></a>.</p>
                       <div class="collapsing-list__content">
                       </div>
                     </div>
@@ -251,14 +251,14 @@ otherwise root element will be the first item in the array.</p>
                       </p>
                       <div class="collapsing-list__content">
 <p>This method is useful when processing view tree objects that are of unknown type. For example, a function
-may return <code><a href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></code> or <code><a href="module_engine_viewithnode-Node.html">Node</a></code>
+may return <a href="module_engine_viewithdocumentfragment-DocumentFragment.html"><code>DocumentFragment</code></a> or <a href="module_engine_viewithnode-Node.html"><code>Node</code></a>
 that can be either text node or element. This method can be used to check what kind of object is returned.</p>
-<pre class="prettyprint source"><code>    obj.is( &apos;node&apos; ); // true for any node, false for document fragment
-    obj.is( &apos;documentFragment&apos; ); // true for document fragment, false for any node
-    obj.is( &apos;element&apos; ); // true for any element, false for text node or document fragment
-    obj.is( &apos;element&apos;, &apos;p&apos; ); // true only for element which name is &apos;p&apos;
-    obj.is( &apos;p&apos; ); // shortcut for obj.is( &apos;element&apos;, &apos;p&apos; )
-    obj.is( &apos;text&apos; ); // true for text node, false for element and document fragment</code></pre>
+<pre class="prettyprint source"><code>obj.is( &apos;node&apos; ); // true for any node, false for document fragment
+obj.is( &apos;documentFragment&apos; ); // true for document fragment, false for any node
+obj.is( &apos;element&apos; ); // true for any element, false for text node or document fragment
+obj.is( &apos;element&apos;, &apos;p&apos; ); // true only for element which name is &apos;p&apos;
+obj.is( &apos;p&apos; ); // shortcut for obj.is( &apos;element&apos;, &apos;p&apos; )
+obj.is( &apos;text&apos; ); // true for text node, false for element and document fragment</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> type : 'element' | 'containerElement' | 'attributeElement' | 'emptyElement' | 'uiElement' | 'rootElement' | 'documentFragment' | 'text' | 'textProxy'</code></dt>
@@ -321,7 +321,7 @@ that can be either text node or element. This method can be used to check what k
                       <h3><code><a href="#event:change:attributes">change:attributes</a>( Changed )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Fired when list of <code><a href="module_engine_viewithelement-Element.html">elements</a></code> attributes changes.
+                      <p class="collapsing-list__excerpt">Fired when list of <a href="module_engine_viewithelement-Element.html">elements</a> attributes changes.
                       </p>
                       <div class="collapsing-list__content">
 <p>Change event is bubbled &#x2013; it is fired on all ancestors.</p>
@@ -339,7 +339,7 @@ that can be either text node or element. This method can be used to check what k
                       <h3><code><a href="#event:change:children">change:children</a>( Changed )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Fired when list of <code><a href="module_engine_viewithelement-Element.html">elements</a></code> children changes.
+                      <p class="collapsing-list__excerpt">Fired when list of <a href="module_engine_viewithelement-Element.html">elements</a> children changes.
                       </p>
                       <div class="collapsing-list__content">
 <p>Change event is bubbled &#x2013; it is fired on all ancestors.</p>
@@ -357,7 +357,7 @@ that can be either text node or element. This method can be used to check what k
                       <h3><code><a href="#event:change:text">change:text</a>( Changed )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Fired when <code><a href="module_engine_viewithtext-Text.html">text nodes</a></code> data changes.
+                      <p class="collapsing-list__excerpt">Fired when <a href="module_engine_viewithtext-Text.html">text nodes</a> data changes.
                       </p>
                       <div class="collapsing-list__content">
 <p>Change event is bubbled &#x2013; it is fired on all ancestors.</p>
@@ -1390,7 +1390,7 @@ that can be either text node or element. This method can be used to check what k
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -2646,13 +2646,13 @@ that can be either text node or element. This method can be used to check what k
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -2700,7 +2700,7 @@ that can be either text node or element. This method can be used to check what k
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

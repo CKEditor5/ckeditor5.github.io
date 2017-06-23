@@ -27,8 +27,8 @@ ViewElementConsumables
         </h1>
         <p><span class="badge">class</span>
 <span class="badge badge--red">private</span>
-        </p><p>This is a private helper-class for <code><a href="module_engine_conversion_viewconsumable-ViewConsumable.html">ViewConsumable</a></code>.
-It represents and manipulates consumable parts of a single <code><a href="module_engine_viewithelement-Element.html">Element</a></code>.</p>
+        </p><p>This is a private helper-class for <a href="module_engine_conversion_viewconsumable-ViewConsumable.html"><code>ViewConsumable</code></a>.
+It represents and manipulates consumable parts of a single <a href="module_engine_viewithelement-Element.html"><code>Element</code></a>.</p>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
           <ul>
@@ -111,7 +111,7 @@ It represents and manipulates consumable parts of a single <code><a href="module
                       <p class="collapsing-list__excerpt">Helper method that adds consumables of a given type: attribute, class or style.
                       </p>
                       <div class="collapsing-list__content">
-<p>Throws <code><a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a></code> <code>viewconsumable-invalid-attribute</code> when <code>class</code> or <code>style</code>
+<p>Throws <a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a> <code>viewconsumable-invalid-attribute</code> when <code>class</code> or <code>style</code>
 type is provided - it should be handled separately by providing actual style/class type.</p>
                         <h4>Parameters</h4>
                                 <dl>
@@ -206,14 +206,14 @@ consumed and <code>false</code> when one of the items is already consumed.</p>
                       <h3><code><a href="#add">add</a>( consumables = { consumables.name, consumables.attribute, consumables.class, consumables.style } )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Adds consumable parts of the <code><a href="module_engine_viewithelement-Element.html">view element</a></code>.
+                      <p class="collapsing-list__excerpt">Adds consumable parts of the <a href="module_engine_viewithelement-Element.html">view element</a>.
 Element&apos;s name itself can be marked to be consumed (when element&apos;s name is consumed its attributes, classes and
 styles still could be consumed):
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    consumables.add( { name: true } );</code></pre><p>Attributes classes and styles:</p>
-<pre class="prettyprint source"><code>    consumables.add( { attribute: &apos;title&apos;, class: &apos;foo&apos;, style: &apos;color&apos; } );
-    consumables.add( { attribute: [ &apos;title&apos;, &apos;name&apos; ], class: [ &apos;foo&apos;, &apos;bar&apos; ] );</code></pre><p>Throws <code><a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a></code> <code>viewconsumable-invalid-attribute</code> when <code>class</code> or <code>style</code>
+<pre class="prettyprint source"><code>consumables.add( { name: true } );</code></pre><p>Attributes classes and styles:</p>
+<pre class="prettyprint source"><code>consumables.add( { attribute: &apos;title&apos;, class: &apos;foo&apos;, style: &apos;color&apos; } );
+consumables.add( { attribute: [ &apos;title&apos;, &apos;name&apos; ], class: [ &apos;foo&apos;, &apos;bar&apos; ] );</code></pre><p>Throws <a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a> <code>viewconsumable-invalid-attribute</code> when <code>class</code> or <code>style</code>
 attribute is provided - it should be handled separately by providing <code>style</code> and <code>class</code> in consumables object.</p>
                         <h4>Parameters</h4>
                                 <dl>
@@ -244,14 +244,14 @@ attribute is provided - it should be handled separately by providing <code>style
                       <h3><code><a href="#consume">consume</a>( consumables = { consumables.name, consumables.attribute, consumables.class, consumables.style } )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Consumes parts of <code><a href="module_engine_viewithelement-Element.html">view element</a></code>. This function does not check if consumable item
+                      <p class="collapsing-list__excerpt">Consumes parts of <a href="module_engine_viewithelement-Element.html">view element</a>. This function does not check if consumable item
 is already consumed - it consumes all consumable items provided.
 Element&apos;s name can be consumed:
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    consumables.consume( { name: true } );</code></pre><p>Attributes classes and styles:</p>
-<pre class="prettyprint source"><code>    consumables.consume( { attribute: &apos;title&apos;, class: &apos;foo&apos;, style: &apos;color&apos; } );
-    consumables.consume( { attribute: [ &apos;title&apos;, &apos;name&apos; ], class: [ &apos;foo&apos;, &apos;bar&apos; ] );</code></pre>
+<pre class="prettyprint source"><code>consumables.consume( { name: true } );</code></pre><p>Attributes classes and styles:</p>
+<pre class="prettyprint source"><code>consumables.consume( { attribute: &apos;title&apos;, class: &apos;foo&apos;, style: &apos;color&apos; } );
+consumables.consume( { attribute: [ &apos;title&apos;, &apos;name&apos; ], class: [ &apos;foo&apos;, &apos;bar&apos; ] );</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> consumables : Object</code></dt>
@@ -281,13 +281,13 @@ Element&apos;s name can be consumed:
                       <h3><code><a href="#revert">revert</a>( consumables = { consumables.name, consumables.attribute, consumables.class, consumables.style } )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Revert already consumed parts of <code><a href="module_engine_viewithelement-Element.html">view Element</a></code>, so they can be consumed once again.
+                      <p class="collapsing-list__excerpt">Revert already consumed parts of <a href="module_engine_viewithelement-Element.html">view Element</a>, so they can be consumed once again.
 Element&apos;s name can be reverted:
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    consumables.revert( { name: true } );</code></pre><p>Attributes classes and styles:</p>
-<pre class="prettyprint source"><code>    consumables.revert( { attribute: &apos;title&apos;, class: &apos;foo&apos;, style: &apos;color&apos; } );
-    consumables.revert( { attribute: [ &apos;title&apos;, &apos;name&apos; ], class: [ &apos;foo&apos;, &apos;bar&apos; ] );</code></pre>
+<pre class="prettyprint source"><code>consumables.revert( { name: true } );</code></pre><p>Attributes classes and styles:</p>
+<pre class="prettyprint source"><code>consumables.revert( { attribute: &apos;title&apos;, class: &apos;foo&apos;, style: &apos;color&apos; } );
+consumables.revert( { attribute: [ &apos;title&apos;, &apos;name&apos; ], class: [ &apos;foo&apos;, &apos;bar&apos; ] );</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> consumables : Object</code></dt>
@@ -317,13 +317,13 @@ Element&apos;s name can be reverted:
                       <h3><code><a href="#test">test</a>( consumables = { consumables.name, consumables.attribute, consumables.class, consumables.style } ) &rarr;  Boolean | null</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Tests if parts of the <code><a href="module_engine_viewithnode-Node.html">view node</a></code> can be consumed.
+                      <p class="collapsing-list__excerpt">Tests if parts of the <a href="module_engine_viewithnode-Node.html">view node</a> can be consumed.
                       </p>
                       <div class="collapsing-list__content">
 <p>Element&apos;s name can be tested:</p>
-<pre class="prettyprint source"><code>    consumables.test( { name: true } );</code></pre><p>Attributes classes and styles:</p>
-<pre class="prettyprint source"><code>    consumables.test( { attribute: &apos;title&apos;, class: &apos;foo&apos;, style: &apos;color&apos; } );
-    consumables.test( { attribute: [ &apos;title&apos;, &apos;name&apos; ], class: [ &apos;foo&apos;, &apos;bar&apos; ] );</code></pre>
+<pre class="prettyprint source"><code>consumables.test( { name: true } );</code></pre><p>Attributes classes and styles:</p>
+<pre class="prettyprint source"><code>consumables.test( { attribute: &apos;title&apos;, class: &apos;foo&apos;, style: &apos;color&apos; } );
+consumables.test( { attribute: [ &apos;title&apos;, &apos;name&apos; ], class: [ &apos;foo&apos;, &apos;bar&apos; ] );</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> consumables : Object</code></dt>
@@ -1375,7 +1375,7 @@ was never marked for consumption and <code>false</code> when even one of the ite
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -2631,13 +2631,13 @@ was never marked for consumption and <code>false</code> when even one of the ite
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -2685,7 +2685,7 @@ was never marked for consumption and <code>false</code> when even one of the ite
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

@@ -42,73 +42,73 @@ ViewConversionDispatcher
                       </ul>
                     </dd>
           </dl>
-        </nav><p><code>ViewConversionDispatcher</code> is a central point of <code><a href="module_engine_viewithview.html">view</a></code> conversion, which is a process of
-converting given <code><a href="module_engine_viewithdocumentfragment-DocumentFragment.html">view document fragment</a></code> or
-<code><a href="module_engine_viewithelement-Element.html">Element</a></code>
-into another structure. In default application, <code><a href="module_engine_viewithview.html">view</a></code> is converted to <code><a href="module_engine_model_model.html">module:engine/model/model</a></code>.</p>
-<p>During conversion process, for all <code><a href="module_engine_viewithnode-Node.html">view nodes</a></code> from the converted view document fragment,
+        </nav><p><code>ViewConversionDispatcher</code> is a central point of <a href="module_engine_viewithview.html">view</a> conversion, which is a process of
+converting given <a href="module_engine_viewithdocumentfragment-DocumentFragment.html">view document fragment</a> or
+<a href="module_engine_viewithelement-Element.html"><code>Element</code></a>
+into another structure. In default application, <a href="module_engine_viewithview.html">view</a> is converted to <a href="module_engine_model_model.html"><code>module:engine/model/model</code></a>.</p>
+<p>During conversion process, for all <a href="module_engine_viewithnode-Node.html">view nodes</a> from the converted view document fragment,
 <code>ViewConversionDispatcher</code> fires corresponding events. Special callbacks called &quot;converters&quot; should listen to
 <code>ViewConversionDispatcher</code> for those events.</p>
 <p>Each callback, as a first argument, is passed a special object <code>data</code> that has <code>input</code> and <code>output</code> properties.
-<code>input</code> property contains <code><a href="module_engine_viewithnode-Node.html">view node</a></code> or
-<code><a href="module_engine_viewithdocumentfragment-DocumentFragment.html">view document fragment</a></code>
+<code>input</code> property contains <a href="module_engine_viewithnode-Node.html">view node</a> or
+<a href="module_engine_viewithdocumentfragment-DocumentFragment.html">view document fragment</a>
 that is converted at the moment and might be handled by the callback. <code>output</code> property should be used to save the result
 of conversion. Keep in mind that the <code>data</code> parameter is customizable and may contain other values - see
-<code>(~ViewConversionDispatcher#convert)</code>. It is also shared by reference by all callbacks
+<code>~ViewConversionDispatcher#convert</code>. It is also shared by reference by all callbacks
 listening to given event. <strong>Note</strong>: in view to model conversion - <code>data</code> contains <code>context</code> property that is an array
-of <code><a href="module_engine_model_element-Element.html">model elements</a></code>. These are model elements that will be the parent of currently
+of <a href="module_engine_model_element-Element.html">model elements</a>. These are model elements that will be the parent of currently
 converted view item. <code>context</code> property is used in examples below.</p>
-<p>The second parameter passed to a callback is an instance of <code><a href="module_engine_conversion_viewconsumable-ViewConsumable.html">ViewConsumable</a></code>. It stores
+<p>The second parameter passed to a callback is an instance of <a href="module_engine_conversion_viewconsumable-ViewConsumable.html"><code>ViewConsumable</code></a>. It stores
 information about what parts of processed view item are still waiting to be handled. After a piece of view item
-was converted, appropriate consumable value should be <code><a href="module_engine_conversion_viewconsumable-ViewConsumable.html#consume">consumed</a></code>.</p>
-<p>The third parameter passed to a callback is an instance of <code>(~ViewConversionDispatcher)</code>
+was converted, appropriate consumable value should be <a href="module_engine_conversion_viewconsumable-ViewConsumable.html#consume">consumed</a>.</p>
+<p>The third parameter passed to a callback is an instance of <code>~ViewConversionDispatcher</code>
 which provides additional tools for converters.</p>
 <p>Examples of providing callbacks for <code>ViewConversionDispatcher</code>:</p>
-<pre class="prettyprint source"><code>    // Converter for paragraphs (&lt;p&gt;).
-    viewDispatcher.on( &apos;element:p&apos;, ( evt, data, consumable, conversionApi ) =&gt; {
-        const paragraph = new ModelElement( &apos;paragraph&apos; );
-        const schemaQuery = {
-            name: &apos;paragraph&apos;,
-            inside: data.context
-        };
+<pre class="prettyprint source"><code>// Converter for paragraphs (&lt;p&gt;).
+viewDispatcher.on( &apos;element:p&apos;, ( evt, data, consumable, conversionApi ) =&gt; {
+    const paragraph = new ModelElement( &apos;paragraph&apos; );
+    const schemaQuery = {
+        name: &apos;paragraph&apos;,
+        inside: data.context
+    };
 
-        if ( conversionApi.schema.check( schemaQuery ) ) {
-            if ( !consumable.consume( data.input, { name: true } ) ) {
-                // Before converting this paragraph&apos;s children we have to update their context by this paragraph.
-                data.context.push( paragraph );
-                const children = conversionApi.convertChildren( data.input, consumable, data );
-                data.context.pop();
-                paragraph.appendChildren( children );
-                data.output = paragraph;
+    if ( conversionApi.schema.check( schemaQuery ) ) {
+        if ( !consumable.consume( data.input, { name: true } ) ) {
+            // Before converting this paragraph&apos;s children we have to update their context by this paragraph.
+            data.context.push( paragraph );
+            const children = conversionApi.convertChildren( data.input, consumable, data );
+            data.context.pop();
+            paragraph.appendChildren( children );
+            data.output = paragraph;
+        }
+    }
+} );
+
+// Converter for links (&lt;a&gt;).
+viewDispatcher.on( &apos;element:a&apos;, ( evt, data, consumable, conversionApi ) =&gt; {
+    if ( consumable.consume( data.input, { name: true, attributes: [ &apos;href&apos; ] } ) ) {
+        // &lt;a&gt; element is inline and is represented by an attribute in the model.
+        // This is why we are not updating `context` property.
+        data.output = conversionApi.convertChildren( data.input, consumable, data );
+
+        for ( let item of Range.createFrom( data.output ) ) {
+            const schemaQuery = {
+                name: item.name || &apos;$text&apos;,
+                attribute: &apos;link&apos;,
+                inside: data.context
+            };
+
+            if ( conversionApi.schema.check( schemaQuery ) ) {
+                item.setAttribute( &apos;link&apos;, data.input.getAttribute( &apos;href&apos; ) );
             }
         }
-    } );
+    }
+} );
 
-    // Converter for links (&lt;a&gt;).
-    viewDispatcher.on( &apos;element:a&apos;, ( evt, data, consumable, conversionApi ) =&gt; {
-        if ( consumable.consume( data.input, { name: true, attributes: [ &apos;href&apos; ] } ) ) {
-            // &lt;a&gt; element is inline and is represented by an attribute in the model.
-            // This is why we are not updating `context` property.
-            data.output = conversionApi.convertChildren( data.input, consumable, data );
-
-            for ( let item of Range.createFrom( data.output ) ) {
-                const schemaQuery = {
-                    name: item.name || &apos;$text&apos;,
-                    attribute: &apos;link&apos;,
-                    inside: data.context
-                };
-
-                if ( conversionApi.schema.check( schemaQuery ) ) {
-                    item.setAttribute( &apos;link&apos;, data.input.getAttribute( &apos;href&apos; ) );
-                }
-            }
-        }
-    } );
-
-    // Fire conversion.
-    // Always take care where the converted model structure will be appended to. If this `viewDocumentFragment`
-    // is going to be appended directly to a &apos;$root&apos; element, use that in `context`.
-    viewDispatcher.convert( viewDocumentFragment, { context: [ &apos;$root&apos; ] } );</code></pre><p>Before each conversion process, <code>ViewConversionDispatcher</code> fires <code>(~ViewConversionDispatcher#event:viewCleanup)</code>
+// Fire conversion.
+// Always take care where the converted model structure will be appended to. If this `viewDocumentFragment`
+// is going to be appended directly to a &apos;$root&apos; element, use that in `context`.
+viewDispatcher.convert( viewDocumentFragment, { context: [ &apos;$root&apos; ] } );</code></pre><p>Before each conversion process, <code>ViewConversionDispatcher</code> fires <code>~ViewConversionDispatcher#event:viewCleanup</code>
 event which can be used to prepare tree view for conversion.</p>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
@@ -251,7 +251,7 @@ events. See also <code>element event (~ViewConversionDispatcher#event:element)</
                                   <dt><code><span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span></code></dt>
                                   <dd><p>Model data that is a result of the conversion process
 wrapped in <code>DocumentFragment</code>. Converted marker stamps will be set as that document fragment&apos;s
-<code><a href="module_engine_model_documentfragment-DocumentFragment.html#markers">static markers map</a></code>.</p>
+<a href="module_engine_model_documentfragment-DocumentFragment.html#markers">static markers map</a>.</p>
                                   </dd>
                         </dl>
                       </div>
@@ -265,13 +265,13 @@ wrapped in <code>DocumentFragment</code>. Converted marker stamps will be set as
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Delegates selected events to another <code><a href="module_utils_emittermixin-Emitter.html">Emitter</a></code>. For instance:
+                      <p class="collapsing-list__excerpt">Delegates selected events to another <a href="module_utils_emittermixin-Emitter.html"><code>Emitter</code></a>. For instance:
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    emitterA.delegate( &apos;eventX&apos; ).to( emitterB );
-    emitterA.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( emitterC );</code></pre><p>then <code>eventX</code> is delegated (fired by) <code>emitterB</code> and <code>emitterC</code> along with <code>data</code>:</p>
-<pre class="prettyprint source"><code>    emitterA.fire( &apos;eventX&apos;, data );</code></pre><p>and <code>eventY</code> is delegated (fired by) <code>emitterC</code> along with <code>data</code>:</p>
-<pre class="prettyprint source"><code>    emitterA.fire( &apos;eventY&apos;, data );</code></pre>
+<pre class="prettyprint source"><code>emitterA.delegate( &apos;eventX&apos; ).to( emitterB );
+emitterA.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( emitterC );</code></pre><p>then <code>eventX</code> is delegated (fired by) <code>emitterB</code> and <code>emitterC</code> along with <code>data</code>:</p>
+<pre class="prettyprint source"><code>emitterA.fire( &apos;eventX&apos;, data );</code></pre><p>and <code>eventY</code> is delegated (fired by) <code>emitterC</code> along with <code>data</code>:</p>
+<pre class="prettyprint source"><code>emitterA.fire( &apos;eventY&apos;, data );</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> events : String</code></dt>
@@ -298,7 +298,7 @@ wrapped in <code>DocumentFragment</code>. Converted marker stamps will be set as
                       <p class="collapsing-list__excerpt">Fires an event, executing all callbacks registered for it.
                       </p>
                       <div class="collapsing-list__content">
-<p>The first parameter passed to callbacks is an <code><a href="module_utils_eventinfo-EventInfo.html">EventInfo</a></code> object,
+<p>The first parameter passed to callbacks is an <a href="module_utils_eventinfo-EventInfo.html"><code>EventInfo</code></a> object,
 followed by the optional <code>args</code> provided in the <code>fire()</code> method call.</p>
                         <h4>Parameters</h4>
                                 <dl>
@@ -313,7 +313,7 @@ followed by the optional <code>args</code> provided in the <code>fire()</code> m
                         <dl>
                                   <dt><code>*</code></dt>
                                   <dd><p>By default the method returns <code>undefined</code>. However, the return value can be changed by listeners
-through modification of the <code><a href="module_utils_eventinfo-EventInfo.html#return">return</a></code>&apos;s value (the event info
+through modification of the <a href="module_utils_eventinfo-EventInfo.html#return"><code>return</code></a>&apos;s value (the event info
 is the first param of every callback).</p>
                                   </dd>
                         </dl>
@@ -374,16 +374,16 @@ the same callback is used several times with different contexts.</p>
                       <div class="collapsing-list__content">
 <p>Events can be grouped in namespaces using <code>:</code>.
 When namespaced event is fired, it additionaly fires all callbacks for that namespace.</p>
-<pre class="prettyprint source"><code>    myEmitter.on( &apos;myGroup&apos;, genericCallback );
-    myEmitter.on( &apos;myGroup:myEvent&apos;, specificCallback );
+<pre class="prettyprint source"><code>myEmitter.on( &apos;myGroup&apos;, genericCallback );
+myEmitter.on( &apos;myGroup:myEvent&apos;, specificCallback );
 
-    // genericCallback is fired.
-    myEmitter.fire( &apos;myGroup&apos; );
-    // both genericCallback and specificCallback are fired.
-    myEmitter.fire( &apos;myGroup:myEvent&apos; );
-    // genericCallback is fired even though there are no callbacks for &quot;foo&quot;.
-    myEmitter.fire( &apos;myGroup:foo&apos; );</code></pre><p>An event callback can <code><a href="module_utils_eventinfo-EventInfo.html#stop">stop the event</a></code> and
-set the <code><a href="module_utils_eventinfo-EventInfo.html#return">return value</a></code> of the <code><a href="module_utils_emittermixin-EmitterMixin.html#fire">fire</a></code> method.</p>
+// genericCallback is fired.
+myEmitter.fire( &apos;myGroup&apos; );
+// both genericCallback and specificCallback are fired.
+myEmitter.fire( &apos;myGroup:myEvent&apos; );
+// genericCallback is fired even though there are no callbacks for &quot;foo&quot;.
+myEmitter.fire( &apos;myGroup:foo&apos; );</code></pre><p>An event callback can <a href="module_utils_eventinfo-EventInfo.html#stop">stop the event</a> and
+set the <a href="module_utils_eventinfo-EventInfo.html#return">return value</a> of the <a href="module_utils_emittermixin-EmitterMixin.html#fire"><code>fire</code></a> method.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> event : String</code></dt>
@@ -421,7 +421,7 @@ order they were added.</p>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Registers a callback function to be executed on the next time the event is fired only. This is similar to
-calling <code><a href="module_utils_emittermixin-EmitterMixin.html#on">on</a></code> followed by <code><a href="module_utils_emittermixin-EmitterMixin.html#off">off</a></code> in the callback.
+calling <a href="module_utils_emittermixin-EmitterMixin.html#on"><code>on</code></a> followed by <a href="module_utils_emittermixin-EmitterMixin.html#off"><code>off</code></a> in the callback.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -523,7 +523,7 @@ for all events from <code>emitter</code>.</p>
                       <h3><code><a href="#event:documentFragment">documentFragment</a>()</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Fired when <code><a href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></code> is converted.
+                      <p class="collapsing-list__excerpt">Fired when <a href="module_engine_viewithdocumentfragment-DocumentFragment.html"><code>DocumentFragment</code></a> is converted.
                       </p>
                       <div class="collapsing-list__content">
                       </div>
@@ -534,7 +534,7 @@ for all events from <code>emitter</code>.</p>
                       <h3><code><a href="#event:element">element</a>( data = { data.input, data.output, data.context }, consumable, conversionApi )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Fired when <code><a href="module_engine_viewithelement-Element.html">Element</a></code> is converted.
+                      <p class="collapsing-list__excerpt">Fired when <a href="module_engine_viewithelement-Element.html"><code>Element</code></a> is converted.
                       </p>
                       <div class="collapsing-list__content">
 <p><code>element</code> is a namespace event for a class of events. Names of actually called events follow this pattern:
@@ -544,7 +544,7 @@ all elements conversion or to conversion of specific elements.</p>
                                 <dl>
                                   <dt><code> data : Object</code></dt>
                                   <dd><p>Object containing conversion input and a placeholder for conversion output and possibly other
-values (see <code>(#convert)</code>).
+values (see <code>#convert</code>).
 Keep in mind that this object is shared by reference between all callbacks that will be called.
 This means that callbacks can add their own values if needed,
 and those values will be available in other callbacks.</p>
@@ -568,8 +568,8 @@ be reflected by setting or modifying this property.</p>
                                   <dt><code> conversionApi : Object</code></dt>
                                   <dd><p>Conversion interface to be used by callback, passed in <code>ViewConversionDispatcher</code> constructor.
 Besides of properties passed in constructor, it also has <code>convertItem</code> and <code>convertChildren</code> methods which are references
-to <code>(#_convertItem)</code> and
-<code>(~ViewConversionDispatcher#_convertChildren)</code>. Those methods are needed to convert
+to <code>#_convertItem</code> and
+<code>~ViewConversionDispatcher#_convertChildren</code>. Those methods are needed to convert
 the whole view-tree they were exposed in <code>conversionApi</code> for callbacks.</p>
                                   </dd>
                                 </dl>
@@ -581,7 +581,7 @@ the whole view-tree they were exposed in <code>conversionApi</code> for callback
                       <h3><code><a href="#event:text">text</a>()</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Fired when <code><a href="module_engine_viewithtext-Text.html">Text</a></code> is converted.
+                      <p class="collapsing-list__excerpt">Fired when <a href="module_engine_viewithtext-Text.html"><code>Text</code></a> is converted.
                       </p>
                       <div class="collapsing-list__content">
                       </div>
@@ -1624,7 +1624,7 @@ the whole view-tree they were exposed in <code>conversionApi</code> for callback
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -2880,13 +2880,13 @@ the whole view-tree they were exposed in <code>conversionApi</code> for callback
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -2934,7 +2934,7 @@ the whole view-tree they were exposed in <code>conversionApi</code> for callback
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

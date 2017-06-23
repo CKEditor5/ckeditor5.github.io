@@ -41,9 +41,9 @@ and set inside it. Hence, the controller features two methods which allow to <co
 and <code>set (~DataController#set)</code> data of the <code>model (~DataController#model)</code>
 using given:</p>
 <ul>
-<li><code><a href="module_engine_dataprocessor_dataprocessor-DataProcessor.html">data processor</a></code>,</li>
-<li><code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html">model to view</a></code> and</li>
-<li><code><a href="module_engine_conversion_viewconversiondispatcher-ViewConversionDispatcher.html">view to model</a></code> converters.</li>
+<li><a href="module_engine_dataprocessor_dataprocessor-DataProcessor.html">data processor</a>,</li>
+<li><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html">model to view</a> and</li>
+<li><a href="module_engine_conversion_viewconversiondispatcher-ViewConversionDispatcher.html">view to model</a> converters.</li>
 </ul>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
@@ -109,11 +109,11 @@ it needs to be passed to the <code>ModelConversionDispatcher</code> as a convers
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Model to view conversion dispatcher used by the <code><a href="module_engine_controller_datacontroller-DataController.html#get">get  method</a></code>.
+                      <p class="collapsing-list__excerpt">Model to view conversion dispatcher used by the <a href="module_engine_controller_datacontroller-DataController.html#get">get  method</a>.
 To attach model to view converter to the data pipeline you need to add lister to this property:</p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    data.modelToView( &apos;insert:$element&apos;, customInsertConverter );</code></pre><p>Or use <code><a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html">ModelConverterBuilder</a></code>:</p>
-<pre class="prettyprint source"><code>    buildModelConverter().for( data.modelToView ).fromAttribute( &apos;bold&apos; ).toElement( &apos;b&apos; );</code></pre>
+<pre class="prettyprint source"><code>data.modelToView( &apos;insert:$element&apos;, customInsertConverter );</code></pre><p>Or use <a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html"><code>ModelConverterBuilder</code></a>:</p>
+<pre class="prettyprint source"><code>buildModelConverter().for( data.modelToView ).fromAttribute( &apos;bold&apos; ).toElement( &apos;b&apos; );</code></pre>
                       </div>
                     </div>
                   </li>
@@ -138,11 +138,11 @@ To attach model to view converter to the data pipeline you need to add lister to
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">View to model conversion dispatcher used by the <code><a href="module_engine_controller_datacontroller-DataController.html#set">set  method</a></code>.
+                      <p class="collapsing-list__excerpt">View to model conversion dispatcher used by the <a href="module_engine_controller_datacontroller-DataController.html#set">set  method</a>.
 To attach view to model converter to the data pipeline you need to add lister to this property:</p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    data.viewToModel( &apos;element&apos;, customElementConverter );</code></pre><p>Or use <code><a href="module_engine_conversion_buildviewconverter-ViewConverterBuilder.html">ViewConverterBuilder</a></code>:</p>
-<pre class="prettyprint source"><code>    buildViewConverter().for( data.viewToModel ).fromElement( &apos;b&apos; ).toAttribute( &apos;bold&apos;, &apos;true&apos; );</code></pre>
+<pre class="prettyprint source"><code>data.viewToModel( &apos;element&apos;, customElementConverter );</code></pre><p>Or use <a href="module_engine_conversion_buildviewconverter-ViewConverterBuilder.html"><code>ViewConverterBuilder</code></a>:</p>
+<pre class="prettyprint source"><code>buildViewConverter().for( data.viewToModel ).fromElement( &apos;b&apos; ).toAttribute( &apos;bold&apos;, &apos;true&apos; );</code></pre>
                       </div>
                     </div>
                   </li>
@@ -174,10 +174,10 @@ To attach view to model converter to the data pipeline you need to add lister to
                       <h3><code><a href="#toView">toView</a>( modelElementOrFragment ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></span></code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Returns the content of the given <code><a href="module_engine_model_element-Element.html">model element</a></code> or
-<code><a href="module_engine_model_documentfragment-DocumentFragment.html">model document fragment</a></code> converted by the
-<code><a href="module_engine_controller_datacontroller-DataController.html#modelToView">model  to  view  converters</a></code> to a
-<code><a href="module_engine_viewithdocumentfragment-DocumentFragment.html">view document fragment</a></code>.
+                      <p class="collapsing-list__excerpt">Returns the content of the given <a href="module_engine_model_element-Element.html">model element</a> or
+<a href="module_engine_model_documentfragment-DocumentFragment.html">model document fragment</a> converted by the
+<a href="module_engine_controller_datacontroller-DataController.html#modelToView">model  to  view  converters</a> to a
+<a href="module_engine_viewithdocumentfragment-DocumentFragment.html">view document fragment</a>.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -211,8 +211,8 @@ To attach view to model converter to the data pipeline you need to add lister to
                       <h3><code><a href="#get">get</a>( [ rootName ] ) &rarr;  String</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Returns model&apos;s data converted by the <code><a href="module_engine_controller_datacontroller-DataController.html#modelToView">model  to  view  converters</a></code> and
-formatted by the <code><a href="module_engine_controller_datacontroller-DataController.html#processor">data  processor</a></code>.
+                      <p class="collapsing-list__excerpt">Returns model&apos;s data converted by the <a href="module_engine_controller_datacontroller-DataController.html#modelToView">model  to  view  converters</a> and
+formatted by the <a href="module_engine_controller_datacontroller-DataController.html#processor">data  processor</a>.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -236,7 +236,7 @@ formatted by the <code><a href="module_engine_controller_datacontroller-DataCont
                       <h3><code><a href="#getSelectedContent">getSelectedContent</a>( selection ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span></code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">See <code><a href="module_engine_controller_getselectedcontent.html#getSelectedContent">getSelectedContent</a></code>.
+                      <p class="collapsing-list__excerpt">See <a href="module_engine_controller_getselectedcontent.html#getSelectedContent"><code>getSelectedContent</code></a>.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -259,7 +259,7 @@ formatted by the <code><a href="module_engine_controller_datacontroller-DataCont
                       <h3><code><a href="#insertContent">insertContent</a>( content, selection, [ batch ] )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">See <code><a href="module_engine_controller_insertcontent.html#insertContent">insertContent</a></code>.
+                      <p class="collapsing-list__excerpt">See <a href="module_engine_controller_insertcontent.html#insertContent"><code>insertContent</code></a>.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -283,7 +283,7 @@ changes will be added to a new batch.</p>
                       <h3><code><a href="#deleteContent">deleteContent</a>( selection, batch, options )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">See <code><a href="module_engine_controller_deletecontent.html#deleteContent">deleteContent</a></code>.
+                      <p class="collapsing-list__excerpt">See <a href="module_engine_controller_deletecontent.html#deleteContent"><code>deleteContent</code></a>.
                       </p>
                       <div class="collapsing-list__content">
 <p>Note: For the sake of predictability, the resulting selection should always be collapsed.
@@ -302,7 +302,7 @@ That needs to be done in order to ensure that other features which use <code>del
                                   <dd><p>Batch to which deltas will be added.</p>
                                   </dd>
                                   <dt><code> options : Object</code></dt>
-                                  <dd><p>See <code>(module:engine/controller/deletecontent~deleteContent)</code>&apos;s options.</p>
+                                  <dd><p>See <code>module:engine/controller/deletecontent~deleteContent</code>&apos;s options.</p>
                                   </dd>
                                 </dl>
                       </div>
@@ -313,8 +313,8 @@ That needs to be done in order to ensure that other features which use <code>del
                       <h3><code><a href="#parse">parse</a>( data, [ context ] ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span></code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Returns data parsed by the <code><a href="module_engine_controller_datacontroller-DataController.html#processor">data  processor</a></code> and then
-converted by the <code><a href="module_engine_controller_datacontroller-DataController.html#viewToModel">view  to  model  converters</a></code>.
+                      <p class="collapsing-list__excerpt">Returns data parsed by the <a href="module_engine_controller_datacontroller-DataController.html#processor">data  processor</a> and then
+converted by the <a href="module_engine_controller_datacontroller-DataController.html#viewToModel">view  to  model  converters</a>.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -324,7 +324,7 @@ converted by the <code><a href="module_engine_controller_datacontroller-DataCont
                                   </dd>
                                   <dt><code> [ context ] : String</code></dt>
                                   <dd><p>Base context in which the view will be converted to the model. See:
-<code><a href="module_engine_conversion_viewconversiondispatcher-ViewConversionDispatcher.html#convert">convert</a></code>.</p>
+<a href="module_engine_conversion_viewconversiondispatcher-ViewConversionDispatcher.html#convert"><code>convert</code></a>.</p>
                                     <p>Defaults to <code>'$root'</code></p>
                                   </dd>
                                 </dl>
@@ -342,12 +342,12 @@ converted by the <code><a href="module_engine_controller_datacontroller-DataCont
                       <h3><code><a href="#set">set</a>( data, [ rootName ] )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Sets input data parsed by the <code><a href="module_engine_controller_datacontroller-DataController.html#processor">data  processor</a></code> and
-converted by the <code><a href="module_engine_controller_datacontroller-DataController.html#viewToModel">view  to  model  converters</a></code>.
+                      <p class="collapsing-list__excerpt">Sets input data parsed by the <a href="module_engine_controller_datacontroller-DataController.html#processor">data  processor</a> and
+converted by the <a href="module_engine_controller_datacontroller-DataController.html#viewToModel">view  to  model  converters</a>.
                       </p>
                       <div class="collapsing-list__content">
 <p>This method also creates a batch with all the changes applied. If all you need is to parse data use
-the <code><a href="module_engine_controller_datacontroller-DataController.html#parse">parse</a></code> method.</p>
+the <a href="module_engine_controller_datacontroller-DataController.html#parse"><code>parse</code></a> method.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> data : String</code></dt>
@@ -366,10 +366,10 @@ the <code><a href="module_engine_controller_datacontroller-DataController.html#p
                       <h3><code><a href="#stringify">stringify</a>( modelElementOrFragment ) &rarr;  String</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Returns the content of the given <code><a href="module_engine_model_element-Element.html">model&apos;s element</a></code> or
-<code><a href="module_engine_model_documentfragment-DocumentFragment.html">model document fragment</a></code> converted by the
-<code><a href="module_engine_controller_datacontroller-DataController.html#modelToView">model  to  view  converters</a></code> and formatted by the
-<code><a href="module_engine_controller_datacontroller-DataController.html#processor">data  processor</a></code>.
+                      <p class="collapsing-list__excerpt">Returns the content of the given <a href="module_engine_model_element-Element.html">model&apos;s element</a> or
+<a href="module_engine_model_documentfragment-DocumentFragment.html">model document fragment</a> converted by the
+<a href="module_engine_controller_datacontroller-DataController.html#modelToView">model  to  view  converters</a> and formatted by the
+<a href="module_engine_controller_datacontroller-DataController.html#processor">data  processor</a>.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -393,13 +393,13 @@ the <code><a href="module_engine_controller_datacontroller-DataController.html#p
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Returns wrapped by {module:engine/model/documentfragment~DocumentFragment} result of the given
-<code><a href="module_engine_viewithelement-Element.html">view element</a></code> or
-<code><a href="module_engine_viewithdocumentfragment-DocumentFragment.html">view document fragment</a></code> converted by the
-<code><a href="module_engine_controller_datacontroller-DataController.html#viewToModel">view  to  model  converters</a></code>.
+<a href="module_engine_viewithelement-Element.html">view element</a> or
+<a href="module_engine_viewithdocumentfragment-DocumentFragment.html">view document fragment</a> converted by the
+<a href="module_engine_controller_datacontroller-DataController.html#viewToModel">view  to  model  converters</a>.
                       </p>
                       <div class="collapsing-list__content">
 <p>When marker stamps were converted during conversion process then will be set as DocumentFragment&apos;s
-<code><a href="module_engine_model_documentfragment-DocumentFragment.html#markers">static markers map</a></code>.</p>
+<a href="module_engine_model_documentfragment-DocumentFragment.html#markers">static markers map</a>.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> viewElementOrFragment : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></span></code></dt>
@@ -407,7 +407,7 @@ the <code><a href="module_engine_controller_datacontroller-DataController.html#p
                                   </dd>
                                   <dt><code> [ context ] : String</code></dt>
                                   <dd><p>Base context in which the view will be converted to the model. See:
-<code><a href="module_engine_conversion_viewconversiondispatcher-ViewConversionDispatcher.html#convert">convert</a></code>.</p>
+<a href="module_engine_conversion_viewconversiondispatcher-ViewConversionDispatcher.html#convert"><code>convert</code></a>.</p>
                                     <p>Defaults to <code>'$root'</code></p>
                                   </dd>
                                 </dl>
@@ -425,7 +425,7 @@ the <code><a href="module_engine_controller_datacontroller-DataController.html#p
                       <h3><code><a href="#modifySelection">modifySelection</a>( selection, options )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">See <code><a href="module_engine_controller_modifyselection.html#modifySelection">modifySelection</a></code>.
+                      <p class="collapsing-list__excerpt">See <a href="module_engine_controller_modifyselection.html#modifySelection"><code>modifySelection</code></a>.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -434,7 +434,7 @@ the <code><a href="module_engine_controller_datacontroller-DataController.html#p
                                   <dd><p>The selection to modify.</p>
                                   </dd>
                                   <dt><code> options : Object</code></dt>
-                                  <dd><p>See <code>(module:engine/controller/modifyselection~modifySelection)</code>&apos;s options.</p>
+                                  <dd><p>See <code>module:engine/controller/modifyselection~modifySelection</code>&apos;s options.</p>
                                   </dd>
                                 </dl>
                       </div>
@@ -448,10 +448,10 @@ the <code><a href="module_engine_controller_datacontroller-DataController.html#p
                       <h3><code><a href="#event:deleteContent">deleteContent</a>( args )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Event fired when <code><a href="module_engine_controller_datacontroller-DataController.html#deleteContent">deleteContent</a></code> method is called.
+                      <p class="collapsing-list__excerpt">Event fired when <a href="module_engine_controller_datacontroller-DataController.html#deleteContent"><code>deleteContent</code></a> method is called.
                       </p>
                       <div class="collapsing-list__content">
-<p>The <code><a href="module_engine_controller_datacontroller-DataController.html#deleteContent">default  action  of  that  method</a></code> is implemented as a
+<p>The <a href="module_engine_controller_datacontroller-DataController.html#deleteContent">default  action  of  that  method</a> is implemented as a
 listener to this event so it can be fully customized by the features.</p>
                         <h4>Parameters</h4>
                                 <dl>
@@ -467,10 +467,10 @@ listener to this event so it can be fully customized by the features.</p>
                       <h3><code><a href="#event:getSelectedContent">getSelectedContent</a>( args )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Event fired when <code><a href="module_engine_controller_datacontroller-DataController.html#getSelectedContent">getSelectedContent</a></code> method is called.
+                      <p class="collapsing-list__excerpt">Event fired when <a href="module_engine_controller_datacontroller-DataController.html#getSelectedContent"><code>getSelectedContent</code></a> method is called.
                       </p>
                       <div class="collapsing-list__content">
-<p>The <code><a href="module_engine_controller_datacontroller-DataController.html#getSelectedContent">default  action  of  that  method</a></code> is implemented as a
+<p>The <a href="module_engine_controller_datacontroller-DataController.html#getSelectedContent">default  action  of  that  method</a> is implemented as a
 listener to this event so it can be fully customized by the features.</p>
                         <h4>Parameters</h4>
                                 <dl>
@@ -486,10 +486,10 @@ listener to this event so it can be fully customized by the features.</p>
                       <h3><code><a href="#event:insertContent">insertContent</a>( args )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Event fired when <code><a href="module_engine_controller_datacontroller-DataController.html#insertContent">insertContent</a></code> method is called.
+                      <p class="collapsing-list__excerpt">Event fired when <a href="module_engine_controller_datacontroller-DataController.html#insertContent"><code>insertContent</code></a> method is called.
                       </p>
                       <div class="collapsing-list__content">
-<p>The <code><a href="module_engine_controller_datacontroller-DataController.html#insertContent">default  action  of  that  method</a></code> is implemented as a
+<p>The <a href="module_engine_controller_datacontroller-DataController.html#insertContent">default  action  of  that  method</a> is implemented as a
 listener to this event so it can be fully customized by the features.</p>
                         <h4>Parameters</h4>
                                 <dl>
@@ -505,10 +505,10 @@ listener to this event so it can be fully customized by the features.</p>
                       <h3><code><a href="#event:modifySelection">modifySelection</a>( args )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Event fired when <code><a href="module_engine_controller_datacontroller-DataController.html#modifySelection">modifySelection</a></code> method is called.
+                      <p class="collapsing-list__excerpt">Event fired when <a href="module_engine_controller_datacontroller-DataController.html#modifySelection"><code>modifySelection</code></a> method is called.
                       </p>
                       <div class="collapsing-list__content">
-<p>The <code><a href="module_engine_controller_datacontroller-DataController.html#modifySelection">default  action  of  that  method</a></code> is implemented as a
+<p>The <a href="module_engine_controller_datacontroller-DataController.html#modifySelection">default  action  of  that  method</a> is implemented as a
 listener to this event so it can be fully customized by the features.</p>
                         <h4>Parameters</h4>
                                 <dl>
@@ -1539,7 +1539,7 @@ listener to this event so it can be fully customized by the features.</p>
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -2795,13 +2795,13 @@ listener to this event so it can be fully customized by the features.</p>
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -2849,7 +2849,7 @@ listener to this event so it can be fully customized by the features.</p>
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

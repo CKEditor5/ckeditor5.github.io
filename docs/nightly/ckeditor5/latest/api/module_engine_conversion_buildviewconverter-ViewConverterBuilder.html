@@ -32,9 +32,9 @@ HTML content to the editor. Then, converters are used to translate this structur
 nodes, and add it to the model. Also multiple, different elements might be translated into the same thing in the
 model, i.e. <code>&lt;b&gt;</code> and <code>&lt;strong&gt;</code> elements might be converted to <code>bold</code> attribute (even though <code>bold</code> attribute will
 be then converted only to <code>&lt;strong&gt;</code> tag). Instances of this class are created by
-<code>(module:engine/conversion/buildviewconverter~buildViewConverter)</code>.</p>
-<p>If you need more complex converters, see <code><a href="module_engine_conversion_viewconversiondispatcher-ViewConversionDispatcher.html">ViewConversionDispatcher</a></code>,
-<code><a href="module_engine_conversion_view-to-model-converters.html">module:engine/conversion/view-to-model-converters</a></code>, <code><a href="module_engine_conversion_viewconsumable-ViewConsumable.html">ViewConsumable</a></code>.</p>
+<code>module:engine/conversion/buildviewconverter~buildViewConverter</code>.</p>
+<p>If you need more complex converters, see <a href="module_engine_conversion_viewconversiondispatcher-ViewConversionDispatcher.html"><code>ViewConversionDispatcher</code></a>,
+<a href="module_engine_conversion_view-to-model-converters.html"><code>module:engine/conversion/view-to-model-converters</code></a>, <a href="module_engine_conversion_viewconsumable-ViewConsumable.html"><code>ViewConsumable</code></a>.</p>
 <p>Using this API it is possible to create various kind of converters:</p>
 <ol>
 <li><p>View element to model element:</p>
@@ -50,8 +50,8 @@ be then converted only to <code>&lt;strong&gt;</code> tag). Instances of this cl
 <pre class="prettyprint source"><code> buildViewConverter().for( dispatcher )
      .fromElement( &apos;b&apos; ).fromElement( &apos;strong&apos; ).fromAttribute( &apos;style&apos;, { &apos;font-weight&apos;: &apos;bold&apos; } )
      .toAttribute( &apos;bold&apos;, &apos;true&apos; );</code></pre></li>
-<li><p>View <code><a href="module_engine_viewithmatcher-Matcher.html">view element matcher instance</a></code> or
-<code><a href="module_engine_viewithmatcher-Matcher.html#add">matcher pattern</a></code>
+<li><p>View <a href="module_engine_viewithmatcher-Matcher.html">view element matcher instance</a> or
+<a href="module_engine_viewithmatcher-Matcher.html#add">matcher pattern</a>
 to model element or attribute:</p>
 <pre class="prettyprint source"><code> const matcher = new ViewMatcher();
  matcher.add( &apos;div&apos;, { class: &apos;quote&apos; } );
@@ -59,23 +59,23 @@ to model element or attribute:</p>
 
  buildViewConverter().for( dispatcher ).from( { name: &apos;span&apos;, class: &apos;bold&apos; } ).toAttribute( &apos;bold&apos;, &apos;true&apos; );</code></pre></li>
 </ol>
-<p>Note, that converters built using <code>ViewConverterBuilder</code> automatically check <code><a href="module_engine_model_schema-Schema.html">schema</a></code>
+<p>Note, that converters built using <code>ViewConverterBuilder</code> automatically check <a href="module_engine_model_schema-Schema.html">schema</a>
 if created model structure is valid. If given conversion would be invalid according to schema, it is ignored.</p>
-<p>It is possible to provide creator functions as parameters for <code>(~ViewConverterBuilder#toElement)</code>
-and <code><a href="module_engine_conversion_buildviewconverter-ViewConverterBuilder.html#toAttribute">toAttribute</a></code> methods. See their descriptions to learn more.</p>
-<p>By default, converter will <code><a href="module_engine_conversion_viewconsumable-ViewConsumable.html#consume">consume</a></code> every value specified in
+<p>It is possible to provide creator functions as parameters for <code>~ViewConverterBuilder#toElement</code>
+and <a href="module_engine_conversion_buildviewconverter-ViewConverterBuilder.html#toAttribute"><code>toAttribute</code></a> methods. See their descriptions to learn more.</p>
+<p>By default, converter will <a href="module_engine_conversion_viewconsumable-ViewConsumable.html#consume">consume</a> every value specified in
 given <code>from...</code> query, i.e. <code>.from( { name: &apos;span&apos;, class: &apos;bold&apos; } )</code> will make converter consume both <code>span</code> name
 and <code>bold</code> class. It is possible to change this behavior using <code>consuming (~ViewConverterBuilder#consuming)</code>
 modifier. The modifier alters the last <code>fromXXX</code> query used before it. To learn more about consuming values,
-see <code><a href="module_engine_conversion_viewconsumable-ViewConsumable.html">ViewConsumable</a></code>.</p>
-<p>It is also possible to <code><a href="module_engine_conversion_buildviewconverter-ViewConverterBuilder.html#withPriority">change default priority</a></code>
+see <a href="module_engine_conversion_viewconsumable-ViewConsumable.html"><code>ViewConsumable</code></a>.</p>
+<p>It is also possible to <a href="module_engine_conversion_buildviewconverter-ViewConverterBuilder.html#withPriority">change default priority</a>
 of created converters to decide which converter should be fired earlier and which later. This is useful if you provide
 a general converter but want to provide different converter for a specific-case (i.e. given view element is converted
 always to given model element, but if it has given class it is converter to other model element). For this,
-use <code><a href="module_engine_conversion_buildviewconverter-ViewConverterBuilder.html#withPriority">withPriority</a></code> modifier. The modifier alters
+use <a href="module_engine_conversion_buildviewconverter-ViewConverterBuilder.html#withPriority">withPriority</a> modifier. The modifier alters
 the last <code>from...</code> query used before it.</p>
 <p>Note that <code>to...</code> methods are &quot;terminators&quot;, which means that should be the last one used in building converter.</p>
-<p>You can use <code><a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html">ModelConverterBuilder</a></code>
+<p>You can use <a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html"><code>ModelConverterBuilder</code></a>
 to create &quot;opposite&quot; converters - from model to view.</p>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
@@ -156,7 +156,7 @@ to create &quot;opposite&quot; converters - from model to view.</p>
                       <p class="collapsing-list__excerpt">Registers what view attribute should be converted.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    buildViewConverter().for( dispatcher ).fromAttribute( &apos;style&apos;, { &apos;font-weight&apos;: &apos;bold&apos; } ).toAttribute( &apos;bold&apos;, &apos;true&apos; );</code></pre>
+<pre class="prettyprint source"><code>buildViewConverter().for( dispatcher ).fromAttribute( &apos;style&apos;, { &apos;font-weight&apos;: &apos;bold&apos; } ).toAttribute( &apos;bold&apos;, &apos;true&apos; );</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> key : String | RegExp</code></dt>
@@ -181,24 +181,24 @@ to create &quot;opposite&quot; converters - from model to view.</p>
                       <h3><code><a href="#consuming">consuming</a>( consume ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_conversion_buildviewconverter-ViewConverterBuilder.html">ViewConverterBuilder</a></span></code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Modifies which consumable values will be <code><a href="module_engine_conversion_viewconsumable-ViewConsumable.html#consume">consumed</a></code>
+                      <p class="collapsing-list__excerpt">Modifies which consumable values will be <a href="module_engine_conversion_viewconsumable-ViewConsumable.html#consume">consumed</a>
 by built converter.
 It modifies the last <code>from...</code> query. Can be used after each <code>from...</code> query in given chain. Useful for providing
 more specific matches.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    // This converter will only handle class bold conversion (to proper attribute) but span element
-    // conversion will have to be done in separate converter.
-    // Without consuming modifier, the converter would consume both class and name, so a converter for
-    // span element would not be fired.
-    buildViewConverter().for( dispatcher )
-        .from( { name: &apos;span&apos;, class: &apos;bold&apos; } ).consuming( { class: &apos;bold&apos; } )
-        .toAttribute( &apos;bold&apos;, &apos;true&apos; } );
+<pre class="prettyprint source"><code>// This converter will only handle class bold conversion (to proper attribute) but span element
+// conversion will have to be done in separate converter.
+// Without consuming modifier, the converter would consume both class and name, so a converter for
+// span element would not be fired.
+buildViewConverter().for( dispatcher )
+    .from( { name: &apos;span&apos;, class: &apos;bold&apos; } ).consuming( { class: &apos;bold&apos; } )
+    .toAttribute( &apos;bold&apos;, &apos;true&apos; } );
 
-    buildViewConverter().for( dispatcher )
-        .fromElement( &apos;img&apos; ).consuming( { name: true, attribute: [ &apos;src&apos;, &apos;title&apos; ] } )
-        .toElement( ( viewElement ) =&gt; new ModelElement( &apos;image&apos;, { src: viewElement.getAttribute( &apos;src&apos; ),
-                                                                    title: viewElement.getAttribute( &apos;title&apos; ) } );</code></pre><p><strong>Note:</strong> All and only values from passed object has to be consumable on converted view element. This means that
+buildViewConverter().for( dispatcher )
+    .fromElement( &apos;img&apos; ).consuming( { name: true, attribute: [ &apos;src&apos;, &apos;title&apos; ] } )
+    .toElement( ( viewElement ) =&gt; new ModelElement( &apos;image&apos;, { src: viewElement.getAttribute( &apos;src&apos; ),
+                                                                title: viewElement.getAttribute( &apos;title&apos; ) } );</code></pre><p><strong>Note:</strong> All and only values from passed object has to be consumable on converted view element. This means that
 using <code>consuming</code> method, you can either make looser conversion conditions (like in first example) or tighter
 conversion conditions (like in second example). So, the view element, to be converter, has to match query of
 <code>from...</code> method and then have to have enough consumable values to consume.</p>
@@ -245,15 +245,15 @@ conversion conditions (like in second example). So, the view element, to be conv
                       <h3><code><a href="#from">from</a>( matcher ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_conversion_buildviewconverter-ViewConverterBuilder.html">ViewConverterBuilder</a></span></code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Registers what view pattern should be converted. The method accepts either <code><a href="module_engine_viewithmatcher-Matcher.html">view matcher</a></code>
+                      <p class="collapsing-list__excerpt">Registers what view pattern should be converted. The method accepts either <a href="module_engine_viewithmatcher-Matcher.html">view matcher</a>
 or view matcher pattern.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    const matcher = new ViewMatcher();
-    matcher.add( &apos;div&apos;, { class: &apos;quote&apos; } );
-    buildViewConverter().for( dispatcher ).from( matcher ).toElement( &apos;quote&apos; );
+<pre class="prettyprint source"><code>const matcher = new ViewMatcher();
+matcher.add( &apos;div&apos;, { class: &apos;quote&apos; } );
+buildViewConverter().for( dispatcher ).from( matcher ).toElement( &apos;quote&apos; );
 
-    buildViewConverter().for( dispatcher ).from( { name: &apos;span&apos;, class: &apos;bold&apos; } ).toAttribute( &apos;bold&apos;, &apos;true&apos; );</code></pre>
+buildViewConverter().for( dispatcher ).from( { name: &apos;span&apos;, class: &apos;bold&apos; } ).toAttribute( &apos;bold&apos;, &apos;true&apos; );</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> matcher : Object | <span><a class="collapsing-list__type" href="module_engine_viewithmatcher-Matcher.html">Matcher</a></span></code></dt>
@@ -300,7 +300,7 @@ or view matcher pattern.
                       <p class="collapsing-list__excerpt">Registers what view element should be converted.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    buildViewConverter().for( dispatcher ).fromElement( &apos;p&apos; ).toElement( &apos;paragraph&apos; );</code></pre>
+<pre class="prettyprint source"><code>buildViewConverter().for( dispatcher ).fromElement( &apos;p&apos; ).toElement( &apos;paragraph&apos; );</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> elementName : String</code></dt>
@@ -327,11 +327,11 @@ or view matcher pattern.
 <p>Method accepts two ways of providing what kind of model attribute will be created. You can either pass two strings
 representing attribute key and attribute value or a function that returns an object with <code>key</code> and <code>value</code> properties.
 If you provide creator function, it will be passed converted view element as first and only parameter.</p>
-<pre class="prettyprint source"><code>    buildViewConverter().for( dispatcher ).fromAttribute( &apos;alt&apos; ).toAttribute( &apos;alt&apos; );
-    buildViewConverter().for( dispatcher ).fromAttribute( &apos;style&apos;, { &apos;font-weight&apos;: &apos;bold&apos; } ).toAttribute( &apos;bold&apos;, true );
-    buildViewConverter().for( dispatcher )
-        .fromAttribute( &apos;class&apos; )
-        .toAttribute( ( viewElement ) =&gt; ( { key: &apos;class&apos;, value: &apos;class-&apos; + viewElement.getAttribute( &apos;class&apos; ) } ) );</code></pre>
+<pre class="prettyprint source"><code>buildViewConverter().for( dispatcher ).fromAttribute( &apos;alt&apos; ).toAttribute( &apos;alt&apos; );
+buildViewConverter().for( dispatcher ).fromAttribute( &apos;style&apos;, { &apos;font-weight&apos;: &apos;bold&apos; } ).toAttribute( &apos;bold&apos;, true );
+buildViewConverter().for( dispatcher )
+    .fromAttribute( &apos;class&apos; )
+    .toAttribute( ( viewElement ) =&gt; ( { key: &apos;class&apos;, value: &apos;class-&apos; + viewElement.getAttribute( &apos;class&apos; ) } ) );</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> keyOrCreator : String | function</code></dt>
@@ -356,10 +356,10 @@ if <code>value</code> is not set, attribute value from converted element will be
 <p>Method accepts two ways of providing what kind of model element will be created. You can pass model element
 name as a <code>string</code> or a function that will return model element instance. If you provide creator function,
 it will be passed converted view element as first and only parameter.</p>
-<pre class="prettyprint source"><code>    buildViewConverter().for( dispatcher ).fromElement( &apos;p&apos; ).toElement( &apos;paragraph&apos; );
-    buildViewConverter().for( dispatcher )
-        .fromElement( &apos;img&apos; )
-        .toElement( ( viewElement ) =&gt; new ModelElement( &apos;image&apos;, { src: viewElement.getAttribute( &apos;src&apos; ) } );</code></pre>
+<pre class="prettyprint source"><code>buildViewConverter().for( dispatcher ).fromElement( &apos;p&apos; ).toElement( &apos;paragraph&apos; );
+buildViewConverter().for( dispatcher )
+    .fromElement( &apos;img&apos; )
+    .toElement( ( viewElement ) =&gt; new ModelElement( &apos;image&apos;, { src: viewElement.getAttribute( &apos;src&apos; ) } );</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> element : String | function</code></dt>
@@ -378,7 +378,7 @@ it will be passed converted view element as first and only parameter.</p>
                       </p>
                       <div class="collapsing-list__content">
 <p>Created element has to match the following pattern:</p>
-<pre class="prettyprint source"><code>    { name: &apos;$marker&apos;, attribute: { data-name: /^\w/ } }</code></pre><p>There are two ways of creating this element:</p>
+<pre class="prettyprint source"><code>{ name: &apos;$marker&apos;, attribute: { data-name: /^\w/ } }</code></pre><p>There are two ways of creating this element:</p>
 <ol>
 <li><p>Makes sure that converted view element will have property <code>data-name</code> then converter will
 automatically take this property value. In this case there is no need to provide creator function.
@@ -386,14 +386,14 @@ For the following view:</p>
 <pre class="prettyprint source"><code> &lt;marker data-name=&quot;search&quot;&gt;&lt;/marker&gt;foo&lt;marker data-name=&quot;search&quot;&gt;&lt;/marker&gt;</code></pre></li>
 </ol>
 <p>converter should look like this:</p>
-<pre class="prettyprint source"><code>    buildViewConverter().for( dispatcher ).fromElement( &apos;marker&apos; ).toMarker();</code></pre><ol>
+<pre class="prettyprint source"><code>buildViewConverter().for( dispatcher ).fromElement( &apos;marker&apos; ).toMarker();</code></pre><ol>
 <li>Creates element by creator:</li>
 </ol>
 <p>For the following view:</p>
-<pre class="prettyprint source"><code>    &lt;span foo=&quot;search&quot;&gt;&lt;/span&gt;foo&lt;span foo=&quot;search&quot;&gt;&lt;/span&gt;</code></pre><p>converter should look like this:</p>
-<pre class="prettyprint source"><code>    buildViewConverter().for( dispatcher ).from( { name: &apos;span&apos;, { attribute: foo: /^\w/ } } ).toMarker( ( data ) =&gt; {
-        return new Element( &apos;$marker&apos;, { &apos;data-name&apos;: data.getAttribute( &apos;foo&apos; ) } );
-    } );</code></pre>
+<pre class="prettyprint source"><code>&lt;span foo=&quot;search&quot;&gt;&lt;/span&gt;foo&lt;span foo=&quot;search&quot;&gt;&lt;/span&gt;</code></pre><p>converter should look like this:</p>
+<pre class="prettyprint source"><code>buildViewConverter().for( dispatcher ).from( { name: &apos;span&apos;, { attribute: foo: /^\w/ } } ).toMarker( ( data ) =&gt; {
+    return new Element( &apos;$marker&apos;, { &apos;data-name&apos;: data.getAttribute( &apos;foo&apos; ) } );
+} );</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> [ creator ] : function</code></dt>
@@ -412,12 +412,12 @@ For the following view:</p>
 <code>from...</code> query in given chain. Useful for overwriting converters. The lower the number, the earlier converter will be fired.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    buildViewConverter().for( dispatcher ).fromElement( &apos;p&apos; ).toElement( &apos;paragraph&apos; );
-    // Register converter with proper priority, otherwise &quot;p&quot; element would get consumed by first
-    // converter and the second converter would not be fired.
-    buildViewConverter().for( dispatcher )
-        .from( { name: &apos;p&apos;, class: &apos;custom&apos; } ).withPriority( 9 )
-        .toElement( &apos;customParagraph&apos; );</code></pre><p><strong>Note:</strong> <code>ViewConverterBuilder</code> takes care of applying all <code>toElement()</code> conversions before all <code>toAttribute()</code>
+<pre class="prettyprint source"><code>buildViewConverter().for( dispatcher ).fromElement( &apos;p&apos; ).toElement( &apos;paragraph&apos; );
+// Register converter with proper priority, otherwise &quot;p&quot; element would get consumed by first
+// converter and the second converter would not be fired.
+buildViewConverter().for( dispatcher )
+    .from( { name: &apos;p&apos;, class: &apos;custom&apos; } ).withPriority( 9 )
+    .toElement( &apos;customParagraph&apos; );</code></pre><p><strong>Note:</strong> <code>ViewConverterBuilder</code> takes care of applying all <code>toElement()</code> conversions before all <code>toAttribute()</code>
 conversions. This is done by setting default <code>toElement()</code> priority to <code>normal</code> and <code>toAttribute()</code> priority to <code>low</code>.
 It is recommended to set converter priority for <code>toElement()</code> around <code>0</code> (the value of <code>normal</code> priority)
 and <code>toAttribute()</code> priority around <code>-1000</code> (the value of <code>low</code> priority).
@@ -1458,7 +1458,7 @@ not be applied or other errors may occur.</p>
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -2714,13 +2714,13 @@ not be applied or other errors may occur.</p>
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -2768,7 +2768,7 @@ not be applied or other errors may occur.</p>
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

@@ -26,26 +26,26 @@
 ViewConsumable
         </h1>
         <p><span class="badge">class</span>
-        </p><p>Class used for handling consumption of view <code><a href="module_engine_viewithelement-Element.html">elements</a></code>,
-<code><a href="module_engine_viewithtext-Text.html">text nodes</a></code> and <code><a href="module_engine_viewithdocumentfragment-DocumentFragment.html">document fragments</a></code>.
+        </p><p>Class used for handling consumption of view <a href="module_engine_viewithelement-Element.html">elements</a>,
+<a href="module_engine_viewithtext-Text.html">text nodes</a> and <a href="module_engine_viewithdocumentfragment-DocumentFragment.html">document fragments</a>.
 Element&apos;s name and its parts (attributes, classes and styles) can be consumed separately. Consuming an element&apos;s name
 does not consume its attributes, classes and styles.
-To add items for consumption use <code><a href="module_engine_conversion_viewconsumable-ViewConsumable.html#add">add method</a></code>.
-To test items use <code><a href="module_engine_conversion_viewconsumable-ViewConsumable.html#test">test method</a></code>.
-To consume items use <code><a href="module_engine_conversion_viewconsumable-ViewConsumable.html#consume">consume method</a></code>.
-To revert already consumed items use <code><a href="module_engine_conversion_viewconsumable-ViewConsumable.html#revert">revert method</a></code>.</p>
-<pre class="prettyprint source"><code>    viewConsumable.add( element, { name: true } ); // Adds element&apos;s name as ready to be consumed.
-    viewConsumable.add( textNode ); // Adds text node for consumption.
-    viewConsumable.add( docFragment ); // Adds document fragment for consumption.
-    viewConsumable.test( element, { name: true }  ); // Tests if element&apos;s name can be consumed.
-    viewConsumable.test( textNode ); // Tests if text node can be consumed.
-    viewConsumable.test( docFragment ); // Tests if document fragment can be consumed.
-    viewConsumable.consume( element, { name: true }  ); // Consume element&apos;s name.
-    viewConsumable.consume( textNode ); // Consume text node.
-    viewConsumable.consume( docFragment ); // Consume document fragment.
-    viewConsumable.revert( element, { name: true }  ); // Revert already consumed element&apos;s name.
-    viewConsumable.revert( textNode ); // Revert already consumed text node.
-    viewConsumable.revert( docFragment ); // Revert already consumed document fragment.</code></pre>
+To add items for consumption use <a href="module_engine_conversion_viewconsumable-ViewConsumable.html#add">add method</a>.
+To test items use <a href="module_engine_conversion_viewconsumable-ViewConsumable.html#test">test method</a>.
+To consume items use <a href="module_engine_conversion_viewconsumable-ViewConsumable.html#consume">consume method</a>.
+To revert already consumed items use <a href="module_engine_conversion_viewconsumable-ViewConsumable.html#revert">revert method</a>.</p>
+<pre class="prettyprint source"><code>viewConsumable.add( element, { name: true } ); // Adds element&apos;s name as ready to be consumed.
+viewConsumable.add( textNode ); // Adds text node for consumption.
+viewConsumable.add( docFragment ); // Adds document fragment for consumption.
+viewConsumable.test( element, { name: true }  ); // Tests if element&apos;s name can be consumed.
+viewConsumable.test( textNode ); // Tests if text node can be consumed.
+viewConsumable.test( docFragment ); // Tests if document fragment can be consumed.
+viewConsumable.consume( element, { name: true }  ); // Consume element&apos;s name.
+viewConsumable.consume( textNode ); // Consume text node.
+viewConsumable.consume( docFragment ); // Consume document fragment.
+viewConsumable.revert( element, { name: true }  ); // Revert already consumed element&apos;s name.
+viewConsumable.revert( textNode ); // Revert already consumed text node.
+viewConsumable.revert( docFragment ); // Revert already consumed document fragment.</code></pre>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
           <ul>
@@ -85,10 +85,10 @@ To revert already consumed items use <code><a href="module_engine_conversion_vie
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Map of consumable elements. If <code><a href="module_engine_viewithelement-Element.html">element</a></code> is used as a key,
-<code><a href="module_engine_conversion_viewconsumable-ViewElementConsumables.html">ViewElementConsumables</a></code> instance is stored as value.
-For <code><a href="module_engine_viewithtext-Text.html">text nodes</a></code> and
-<code><a href="module_engine_viewithdocumentfragment-DocumentFragment.html">document fragments</a></code> boolean value is stored as value.</p>
+                      <p class="collapsing-list__excerpt">Map of consumable elements. If <a href="module_engine_viewithelement-Element.html">element</a> is used as a key,
+<a href="module_engine_conversion_viewconsumable-ViewElementConsumables.html">ViewElementConsumables</a> instance is stored as value.
+For <a href="module_engine_viewithtext-Text.html">text nodes</a> and
+<a href="module_engine_viewithdocumentfragment-DocumentFragment.html">document fragments</a> boolean value is stored as value.</p>
                       <div class="collapsing-list__content">
                       </div>
                     </div>
@@ -113,28 +113,28 @@ For <code><a href="module_engine_viewithtext-Text.html">text nodes</a></code> an
                       <h3><code><a href="#add">add</a>( element, [ consumables ] = { consumables.name, consumables.attribute, consumables.class, consumables.style } )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Adds <code><a href="module_engine_viewithelement-Element.html">view element</a></code>, <code><a href="module_engine_viewithtext-Text.html">text node</a></code> or
-<code><a href="module_engine_viewithdocumentfragment-DocumentFragment.html">document fragment</a></code> as ready to be consumed.
+                      <p class="collapsing-list__excerpt">Adds <a href="module_engine_viewithelement-Element.html">view element</a>, <a href="module_engine_viewithtext-Text.html">text node</a> or
+<a href="module_engine_viewithdocumentfragment-DocumentFragment.html">document fragment</a> as ready to be consumed.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    viewConsumable.add( p, { name: true } ); // Adds element&apos;s name to consume.
-    viewConsumable.add( p, { attribute: &apos;name&apos; } ); // Adds element&apos;s attribute.
-    viewConsumable.add( p, { class: &apos;foobar&apos; } ); // Adds element&apos;s class.
-    viewConsumable.add( p, { style: &apos;color&apos; } ); // Adds element&apos;s style
-    viewConsumable.add( p, { attribute: &apos;name&apos;, style: &apos;color&apos; } ); // Adds attribute and style.
-    viewConsumable.add( p, { class: [ &apos;baz&apos;, &apos;bar&apos; ] } ); // Multiple consumables can be provided.
-    viewConsumable.add( textNode ); // Adds text node to consume.
-    viewConsumable.add( docFragment ); // Adds document fragment to consume.</code></pre><p>Throws <code><a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a></code> <code>viewconsumable-invalid-attribute</code> when <code>class</code> or <code>style</code>
+<pre class="prettyprint source"><code>viewConsumable.add( p, { name: true } ); // Adds element&apos;s name to consume.
+viewConsumable.add( p, { attribute: &apos;name&apos; } ); // Adds element&apos;s attribute.
+viewConsumable.add( p, { class: &apos;foobar&apos; } ); // Adds element&apos;s class.
+viewConsumable.add( p, { style: &apos;color&apos; } ); // Adds element&apos;s style
+viewConsumable.add( p, { attribute: &apos;name&apos;, style: &apos;color&apos; } ); // Adds attribute and style.
+viewConsumable.add( p, { class: [ &apos;baz&apos;, &apos;bar&apos; ] } ); // Multiple consumables can be provided.
+viewConsumable.add( textNode ); // Adds text node to consume.
+viewConsumable.add( docFragment ); // Adds document fragment to consume.</code></pre><p>Throws <a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a> <code>viewconsumable-invalid-attribute</code> when <code>class</code> or <code>style</code>
 attribute is provided - it should be handled separately by providing actual style/class.</p>
-<pre class="prettyprint source"><code>    viewConsumable.add( p, { attribute: &apos;style&apos; } ); // This call will throw an exception.
-    viewConsumable.add( p, { style: &apos;color&apos; } ); // This is properly handled style.</code></pre>
+<pre class="prettyprint source"><code>viewConsumable.add( p, { attribute: &apos;style&apos; } ); // This call will throw an exception.
+viewConsumable.add( p, { style: &apos;color&apos; } ); // This is properly handled style.</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> element : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithtext-Text.html">Text</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></span></code></dt>
                                   <dd>
                                   </dd>
                                   <dt><code> [ consumables ] : Object</code></dt>
-                                  <dd><p>Used only if first parameter is <code><a href="module_engine_viewithelement-Element.html">view element</a></code> instance.</p>
+                                  <dd><p>Used only if first parameter is <a href="module_engine_viewithelement-Element.html">view element</a> instance.</p>
                                             <dl>
                                               <h5>Properties</h5>
                                               <dt><code> consumables.name : Boolean</code></dt>
@@ -160,28 +160,28 @@ attribute is provided - it should be handled separately by providing actual styl
                       <h3><code><a href="#consume">consume</a>( element, [ consumables ] = { consumables.name, consumables.attribute, consumables.class, consumables.style } ) &rarr;  Boolean</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Consumes <code><a href="module_engine_viewithelement-Element.html">view element</a></code>, <code><a href="module_engine_viewithtext-Text.html">text node</a></code> or
-<code><a href="module_engine_viewithdocumentfragment-DocumentFragment.html">document fragment</a></code>.
+                      <p class="collapsing-list__excerpt">Consumes <a href="module_engine_viewithelement-Element.html">view element</a>, <a href="module_engine_viewithtext-Text.html">text node</a> or
+<a href="module_engine_viewithdocumentfragment-DocumentFragment.html">document fragment</a>.
 It returns <code>true</code> when all items included in method&apos;s call can be consumed, otherwise returns <code>false</code>.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    viewConsumable.consume( p, { name: true } ); // Consumes element&apos;s name.
-    viewConsumable.consume( p, { attribute: &apos;name&apos; } ); // Consumes element&apos;s attribute.
-    viewConsumable.consume( p, { class: &apos;foobar&apos; } ); // Consumes element&apos;s class.
-    viewConsumable.consume( p, { style: &apos;color&apos; } ); // Consumes element&apos;s style.
-    viewConsumable.consume( p, { attribute: &apos;name&apos;, style: &apos;color&apos; } ); // Consumes attribute and style.
-    viewConsumable.consume( p, { class: [ &apos;baz&apos;, &apos;bar&apos; ] } ); // Multiple consumables can be consumed.
-    viewConsumable.consume( textNode ); // Consumes text node.
-    viewConsumable.consume( docFragment ); // Consumes document fragment.</code></pre><p>Consuming classes and styles as attribute will test if all added classes/styles can be consumed.</p>
-<pre class="prettyprint source"><code>    viewConsumable.consume( p, { attribute: &apos;class&apos; } ); // Consume only if all added classes can be consumed.
-    viewConsumable.consume( p, { attribute: &apos;style&apos; } ); // Consume only if all added styles can be consumed.</code></pre>
+<pre class="prettyprint source"><code>viewConsumable.consume( p, { name: true } ); // Consumes element&apos;s name.
+viewConsumable.consume( p, { attribute: &apos;name&apos; } ); // Consumes element&apos;s attribute.
+viewConsumable.consume( p, { class: &apos;foobar&apos; } ); // Consumes element&apos;s class.
+viewConsumable.consume( p, { style: &apos;color&apos; } ); // Consumes element&apos;s style.
+viewConsumable.consume( p, { attribute: &apos;name&apos;, style: &apos;color&apos; } ); // Consumes attribute and style.
+viewConsumable.consume( p, { class: [ &apos;baz&apos;, &apos;bar&apos; ] } ); // Multiple consumables can be consumed.
+viewConsumable.consume( textNode ); // Consumes text node.
+viewConsumable.consume( docFragment ); // Consumes document fragment.</code></pre><p>Consuming classes and styles as attribute will test if all added classes/styles can be consumed.</p>
+<pre class="prettyprint source"><code>viewConsumable.consume( p, { attribute: &apos;class&apos; } ); // Consume only if all added classes can be consumed.
+viewConsumable.consume( p, { attribute: &apos;style&apos; } ); // Consume only if all added styles can be consumed.</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> element : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithtext-Text.html">Text</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></span></code></dt>
                                   <dd>
                                   </dd>
                                   <dt><code> [ consumables ] : Object</code></dt>
-                                  <dd><p>Used only if first parameter is <code><a href="module_engine_viewithelement-Element.html">view element</a></code> instance.</p>
+                                  <dd><p>Used only if first parameter is <a href="module_engine_viewithelement-Element.html">view element</a> instance.</p>
                                             <dl>
                                               <h5>Properties</h5>
                                               <dt><code> consumables.name : Boolean</code></dt>
@@ -214,30 +214,30 @@ otherwise returns <code>false</code>.</p>
                       <h3><code><a href="#revert">revert</a>( element, [ consumables ] = { consumables.name, consumables.attribute, consumables.class, consumables.style } )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Reverts <code><a href="module_engine_viewithelement-Element.html">view element</a></code>, <code><a href="module_engine_viewithtext-Text.html">text node</a></code> or
-<code><a href="module_engine_viewithdocumentfragment-DocumentFragment.html">document fragment</a></code> so they can be consumed once again.
+                      <p class="collapsing-list__excerpt">Reverts <a href="module_engine_viewithelement-Element.html">view element</a>, <a href="module_engine_viewithtext-Text.html">text node</a> or
+<a href="module_engine_viewithdocumentfragment-DocumentFragment.html">document fragment</a> so they can be consumed once again.
 Method does not revert items that were never previously added for consumption, even if they are included in
 method&apos;s call.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    viewConsumable.revert( p, { name: true } ); // Reverts element&apos;s name.
-    viewConsumable.revert( p, { attribute: &apos;name&apos; } ); // Reverts element&apos;s attribute.
-    viewConsumable.revert( p, { class: &apos;foobar&apos; } ); // Reverts element&apos;s class.
-    viewConsumable.revert( p, { style: &apos;color&apos; } ); // Reverts element&apos;s style.
-    viewConsumable.revert( p, { attribute: &apos;name&apos;, style: &apos;color&apos; } ); // Reverts attribute and style.
-    viewConsumable.revert( p, { class: [ &apos;baz&apos;, &apos;bar&apos; ] } ); // Multiple names can be reverted.
-    viewConsumable.revert( textNode ); // Reverts text node.
-    viewConsumable.revert( docFragment ); // Reverts document fragment.</code></pre><p>Reverting classes and styles as attribute will revert all classes/styles that were previously added for
+<pre class="prettyprint source"><code>viewConsumable.revert( p, { name: true } ); // Reverts element&apos;s name.
+viewConsumable.revert( p, { attribute: &apos;name&apos; } ); // Reverts element&apos;s attribute.
+viewConsumable.revert( p, { class: &apos;foobar&apos; } ); // Reverts element&apos;s class.
+viewConsumable.revert( p, { style: &apos;color&apos; } ); // Reverts element&apos;s style.
+viewConsumable.revert( p, { attribute: &apos;name&apos;, style: &apos;color&apos; } ); // Reverts attribute and style.
+viewConsumable.revert( p, { class: [ &apos;baz&apos;, &apos;bar&apos; ] } ); // Multiple names can be reverted.
+viewConsumable.revert( textNode ); // Reverts text node.
+viewConsumable.revert( docFragment ); // Reverts document fragment.</code></pre><p>Reverting classes and styles as attribute will revert all classes/styles that were previously added for
 consumption.</p>
-<pre class="prettyprint source"><code>    viewConsumable.revert( p, { attribute: &apos;class&apos; } ); // Reverts all classes added for consumption.
-    viewConsumable.revert( p, { attribute: &apos;style&apos; } ); // Reverts all styles added for consumption.</code></pre>
+<pre class="prettyprint source"><code>viewConsumable.revert( p, { attribute: &apos;class&apos; } ); // Reverts all classes added for consumption.
+viewConsumable.revert( p, { attribute: &apos;style&apos; } ); // Reverts all styles added for consumption.</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> element : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithtext-Text.html">Text</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></span></code></dt>
                                   <dd>
                                   </dd>
                                   <dt><code> [ consumables ] : Object</code></dt>
-                                  <dd><p>Used only if first parameter is <code><a href="module_engine_viewithelement-Element.html">view element</a></code> instance.</p>
+                                  <dd><p>Used only if first parameter is <a href="module_engine_viewithelement-Element.html">view element</a> instance.</p>
                                             <dl>
                                               <h5>Properties</h5>
                                               <dt><code> consumables.name : Boolean</code></dt>
@@ -263,29 +263,29 @@ consumption.</p>
                       <h3><code><a href="#test">test</a>( element, [ consumables ] = { consumables.name, consumables.attribute, consumables.class, consumables.style } ) &rarr;  Boolean | null</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Tests if <code><a href="module_engine_viewithelement-Element.html">view element</a></code>, <code><a href="module_engine_viewithtext-Text.html">text node</a></code> or
-<code><a href="module_engine_viewithdocumentfragment-DocumentFragment.html">document fragment</a></code> can be consumed.
+                      <p class="collapsing-list__excerpt">Tests if <a href="module_engine_viewithelement-Element.html">view element</a>, <a href="module_engine_viewithtext-Text.html">text node</a> or
+<a href="module_engine_viewithdocumentfragment-DocumentFragment.html">document fragment</a> can be consumed.
 It returns <code>true</code> when all items included in method&apos;s call can be consumed. Returns <code>false</code> when
 first already consumed item is found and <code>null</code> when first non-consumable item is found.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    viewConsumable.test( p, { name: true } ); // Tests element&apos;s name.
-    viewConsumable.test( p, { attribute: &apos;name&apos; } ); // Tests attribute.
-    viewConsumable.test( p, { class: &apos;foobar&apos; } ); // Tests class.
-    viewConsumable.test( p, { style: &apos;color&apos; } ); // Tests style.
-    viewConsumable.test( p, { attribute: &apos;name&apos;, style: &apos;color&apos; } ); // Tests attribute and style.
-    viewConsumable.test( p, { class: [ &apos;baz&apos;, &apos;bar&apos; ] } ); // Multiple consumables can be tested.
-    viewConsumable.test( textNode ); // Tests text node.
-    viewConsumable.test( docFragment ); // Tests document fragment.</code></pre><p>Testing classes and styles as attribute will test if all added classes/styles can be consumed.</p>
-<pre class="prettyprint source"><code>    viewConsumable.test( p, { attribute: &apos;class&apos; } ); // Tests if all added classes can be consumed.
-    viewConsumable.test( p, { attribute: &apos;style&apos; } ); // Tests if all added styles can be consumed.</code></pre>
+<pre class="prettyprint source"><code>viewConsumable.test( p, { name: true } ); // Tests element&apos;s name.
+viewConsumable.test( p, { attribute: &apos;name&apos; } ); // Tests attribute.
+viewConsumable.test( p, { class: &apos;foobar&apos; } ); // Tests class.
+viewConsumable.test( p, { style: &apos;color&apos; } ); // Tests style.
+viewConsumable.test( p, { attribute: &apos;name&apos;, style: &apos;color&apos; } ); // Tests attribute and style.
+viewConsumable.test( p, { class: [ &apos;baz&apos;, &apos;bar&apos; ] } ); // Multiple consumables can be tested.
+viewConsumable.test( textNode ); // Tests text node.
+viewConsumable.test( docFragment ); // Tests document fragment.</code></pre><p>Testing classes and styles as attribute will test if all added classes/styles can be consumed.</p>
+<pre class="prettyprint source"><code>viewConsumable.test( p, { attribute: &apos;class&apos; } ); // Tests if all added classes can be consumed.
+viewConsumable.test( p, { attribute: &apos;style&apos; } ); // Tests if all added styles can be consumed.</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> element : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithtext-Text.html">Text</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></span></code></dt>
                                   <dd>
                                   </dd>
                                   <dt><code> [ consumables ] : Object</code></dt>
-                                  <dd><p>Used only if first parameter is <code><a href="module_engine_viewithelement-Element.html">view element</a></code> instance.</p>
+                                  <dd><p>Used only if first parameter is <a href="module_engine_viewithelement-Element.html">view element</a> instance.</p>
                                             <dl>
                                               <h5>Properties</h5>
                                               <dt><code> consumables.name : Boolean</code></dt>
@@ -324,7 +324,7 @@ when first already consumed item is found and <code>null</code> when first non-c
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Creates consumable object from <code><a href="module_engine_viewithelement-Element.html">view element</a></code>. Consumable object will include
+                      <p class="collapsing-list__excerpt">Creates consumable object from <a href="module_engine_viewithelement-Element.html">view element</a>. Consumable object will include
 element&apos;s name and all its attributes, classes and styles.
                       </p>
                       <div class="collapsing-list__content">
@@ -351,8 +351,8 @@ element&apos;s name and all its attributes, classes and styles.
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Creates <code><a href="module_engine_conversion_viewconsumable-ViewConsumable.html">ViewConsumable</a></code> instance from
-<code><a href="module_engine_viewithnode-Node.html">node</a></code> or <code><a href="module_engine_viewithdocumentfragment-DocumentFragment.html">document fragment</a></code>.
+                      <p class="collapsing-list__excerpt">Creates <a href="module_engine_conversion_viewconsumable-ViewConsumable.html">ViewConsumable</a> instance from
+<a href="module_engine_viewithnode-Node.html">node</a> or <a href="module_engine_viewithdocumentfragment-DocumentFragment.html">document fragment</a>.
 Instance will contain all elements, child nodes, attributes, styles and classes added for consumption.
                       </p>
                       <div class="collapsing-list__content">
@@ -1390,7 +1390,7 @@ to add all consumables. It will be returned instead of a new instance.</p>
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -2646,13 +2646,13 @@ to add all consumables. It will be returned instead of a new instance.</p>
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -2700,7 +2700,7 @@ to add all consumables. It will be returned instead of a new instance.</p>
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

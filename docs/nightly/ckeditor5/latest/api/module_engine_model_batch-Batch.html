@@ -26,16 +26,16 @@
 Batch
         </h1>
         <p><span class="badge">class</span>
-        </p><p><code>Batch</code> instance groups document changes (<code><a href="module_engine_model_delta_delta-Delta.html">deltas</a></code>). All deltas grouped in a single <code>Batch</code>
+        </p><p><code>Batch</code> instance groups document changes (<a href="module_engine_model_delta_delta-Delta.html">deltas</a>). All deltas grouped in a single <code>Batch</code>
 can be reverted together, so you can think about <code>Batch</code> as of a single undo step. If you want to extend given undo step you
 can call another method on the same <code>Batch</code> object. If you want to create a separate undo step you can create a new <code>Batch</code>.</p>
 <p>For example to create two separate undo steps you can call:</p>
-<pre class="prettyprint source"><code>    doc.batch().insert( firstPosition, &apos;foo&apos; );
-    doc.batch().insert( secondPosition, &apos;bar&apos; );</code></pre><p>To create a single undo step:</p>
-<pre class="prettyprint source"><code>    const batch = doc.batch();
-    batch.insert( firstPosition, &apos;foo&apos; );
-    batch.insert( secondPosition, &apos;bar&apos; );</code></pre><p>Note that all document modification methods (insert, remove, split, etc.) are chainable so you can shorten code to:</p>
-<pre class="prettyprint source"><code>    doc.batch().insert( firstPosition, &apos;foo&apos; ).insert( secondPosition, &apos;bar&apos; );</code></pre>
+<pre class="prettyprint source"><code>doc.batch().insert( firstPosition, &apos;foo&apos; );
+doc.batch().insert( secondPosition, &apos;bar&apos; );</code></pre><p>To create a single undo step:</p>
+<pre class="prettyprint source"><code>const batch = doc.batch();
+batch.insert( firstPosition, &apos;foo&apos; );
+batch.insert( secondPosition, &apos;bar&apos; );</code></pre><p>Note that all document modification methods (insert, remove, split, etc.) are chainable so you can shorten code to:</p>
+<pre class="prettyprint source"><code>doc.batch().insert( firstPosition, &apos;foo&apos; ).insert( secondPosition, &apos;bar&apos; );</code></pre>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
           <ul>
@@ -134,7 +134,7 @@ If there are no deltas in the batch, it returns <code>null</code>.</p>
                       <h3><code><a href="#constructor">constructor</a>( document, [ type ] )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Creates <code>Batch</code> instance. Not recommended to use directly, use <code><a href="module_engine_model_document-Document.html#batch">batch</a></code> instead.
+                      <p class="collapsing-list__excerpt">Creates <code>Batch</code> instance. Not recommended to use directly, use <a href="module_engine_model_document-Document.html#batch"><code>batch</code></a> instead.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -155,8 +155,8 @@ If there are no deltas in the batch, it returns <code>null</code>.</p>
                       <h3><code><a href="#removeAttribute">removeAttribute</a>( itemOrRange, key )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Removes an attribute with given key from a <code><a href="module_engine_model_item-Item.html">model item</a></code>
-or from a <code><a href="module_engine_model_range-Range.html">range</a></code>.
+                      <p class="collapsing-list__excerpt">Removes an attribute with given key from a <a href="module_engine_model_item-Item.html">model item</a>
+or from a <a href="module_engine_model_range-Range.html">range</a>.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -196,8 +196,8 @@ or from a <code><a href="module_engine_model_range-Range.html">range</a></code>.
                       <p class="collapsing-list__excerpt">Inserts a node or nodes at the given position.
                       </p>
                       <div class="collapsing-list__content">
-<p>When inserted element is a <code><a href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></code> and has markers its markers will
-be set to <code><a href="module_engine_model_document-Document.html#markers">markers</a></code>.</p>
+<p>When inserted element is a <a href="module_engine_model_documentfragment-DocumentFragment.html"><code>DocumentFragment</code></a> and has markers its markers will
+be set to <a href="module_engine_model_document-Document.html#markers"><code>markers</code></a>.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> position : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
@@ -234,7 +234,7 @@ be set to <code><a href="module_engine_model_document-Document.html#markers">mar
                       <h3><code><a href="#move">move</a>( itemOrRange, targetPosition )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Moves given <code><a href="module_engine_model_item-Item.html">model item</a></code> or given range to target position.
+                      <p class="collapsing-list__excerpt">Moves given <a href="module_engine_model_item-Item.html">model item</a> or given range to target position.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -254,7 +254,7 @@ be set to <code><a href="module_engine_model_document-Document.html#markers">mar
                       <h3><code><a href="#remove">remove</a>( itemOrRange )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Removes given <code><a href="module_engine_model_item-Item.html">model item</a></code> or given range.
+                      <p class="collapsing-list__excerpt">Removes given <a href="module_engine_model_item-Item.html">model item</a> or given range.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -295,7 +295,7 @@ to add created deltas.
                       <h3><code><a href="#removeMarker">removeMarker</a>( markerOrName )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Removes given <code><a href="module_engine_model_markercollection-Marker.html">marker</a></code> or marker with given name.
+                      <p class="collapsing-list__excerpt">Removes given <a href="module_engine_model_markercollection-Marker.html">marker</a> or marker with given name.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -332,8 +332,8 @@ to add created deltas.
                       <h3><code><a href="#setAttribute">setAttribute</a>( itemOrRange, key, value )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Sets value of the attribute with given key on a <code><a href="module_engine_model_item-Item.html">model item</a></code>
-or on a <code><a href="module_engine_model_range-Range.html">range</a></code>.
+                      <p class="collapsing-list__excerpt">Sets value of the attribute with given key on a <a href="module_engine_model_item-Item.html">model item</a>
+or on a <a href="module_engine_model_range-Range.html">range</a>.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -356,17 +356,17 @@ or on a <code><a href="module_engine_model_range-Range.html">range</a></code>.
                       <h3><code><a href="#setMarker">setMarker</a>( markerOrName, [ newRange ] )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Adds or updates <code><a href="module_engine_model_markercollection-Marker.html">marker</a></code> with given name to given <code>range</code>.
+                      <p class="collapsing-list__excerpt">Adds or updates <a href="module_engine_model_markercollection-Marker.html">marker</a> with given name to given <code>range</code>.
                       </p>
                       <div class="collapsing-list__content">
-<p>If passed name is a name of already existing marker (or <code><a href="module_engine_model_markercollection-Marker.html">Marker</a></code> instance
+<p>If passed name is a name of already existing marker (or <a href="module_engine_model_markercollection-Marker.html">Marker</a> instance
 is passed), <code>range</code> parameter may be omitted. In this case marker will not be updated in
-<code><a href="module_engine_model_document-Document.html#markers">document marker collection</a></code>. However the marker will be added to
+<a href="module_engine_model_document-Document.html#markers">document marker collection</a>. However the marker will be added to
 the document history. This may be important for other features, like undo. From document history point of view, it will
 look like the marker was created and added to the document at the moment when it is set using this method.</p>
 <p>This is useful if the marker is created before it can be added to document history (e.g. a feature creating the marker
 is waiting for additional data, etc.). In this case, the marker may be first created directly through
-<code><a href="module_engine_model_markercollection-MarkerCollection.html">MarkerCollection API</a></code> and only later added using <code>Batch</code> API.</p>
+<a href="module_engine_model_markercollection-MarkerCollection.html">MarkerCollection API</a> and only later added using <code>Batch</code> API.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> markerOrName : <span><a class="collapsing-list__type" href="module_engine_model_markercollection-Marker.html">Marker</a></span> | String</code></dt>
@@ -421,21 +421,21 @@ Throws error if you try to unwrap an element which does not have a parent.
                       <h3><code><a href="#weakInsert">weakInsert</a>( position, nodes )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Inserts a node or nodes at given position. <code><a href="module_engine_model_batch-Batch.html#weakInsert">weakInsert</a></code> is commonly used for actions
+                      <p class="collapsing-list__excerpt">Inserts a node or nodes at given position. <a href="module_engine_model_batch-Batch.html#weakInsert">weakInsert</a> is commonly used for actions
 like typing or plain-text paste (without formatting). There are two differences between
-<code><a href="module_engine_model_batch-Batch.html#insert">insert</a></code> and <code><a href="module_engine_model_batch-Batch.html#weakInsert">weakInsert</a></code>:
+<a href="module_engine_model_batch-Batch.html#insert">insert</a> and <a href="module_engine_model_batch-Batch.html#weakInsert">weakInsert</a>:
                       </p>
                       <div class="collapsing-list__content">
 <ul>
 <li>When using <code>weakInsert</code>, inserted nodes will have same attributes as the current attributes of
-<code><a href="module_engine_model_document-Document.html#selection">document selection</a></code>.</li>
-<li>If <code><a href="module_engine_model_operation_insertoperation-InsertOperation.html">insert operation</a></code> position is inside a range changed by
-<code><a href="module_engine_model_operation_attributeoperation-AttributeOperation.html">attribute operation</a></code>,
+<a href="module_engine_model_document-Document.html#selection">document selection</a>.</li>
+<li>If <a href="module_engine_model_operation_insertoperation-InsertOperation.html">insert operation</a> position is inside a range changed by
+<a href="module_engine_model_operation_attributeoperation-AttributeOperation.html">attribute operation</a>,
 the attribute operation is split into two operations.
 Thanks to this, attribute change &quot;omits&quot; the inserted nodes. The correct behavior for <code>WeakInsertDelta</code> is that
-<code><a href="module_engine_model_operation_attributeoperation-AttributeOperation.html">AttributeOperation</a></code> does not &quot;break&quot; and also
+<a href="module_engine_model_operation_attributeoperation-AttributeOperation.html">AttributeOperation</a> does not &quot;break&quot; and also
 applies attributes for inserted nodes. This behavior has to be reflected during
-<code><a href="module_engine_model_delta_transform-transform.html">delta transformation</a></code>.</li>
+<a href="module_engine_model_delta_transform-transform.html">delta transformation</a>.</li>
 </ul>
                         <h4>Parameters</h4>
                                 <dl>
@@ -455,7 +455,7 @@ applies attributes for inserted nodes. This behavior has to be reflected during
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Wraps given range with given element or with a new element with specified name, if string has been passed.
-<strong>Note:</strong> range to wrap should be a &quot;flat range&quot; (see <code><a href="module_engine_model_range-Range.html#isFlat">isFlat</a></code>). If not, error will be thrown.
+<strong>Note:</strong> range to wrap should be a &quot;flat range&quot; (see <a href="module_engine_model_range-Range.html#isFlat"><code>isFlat</code></a>). If not, error will be thrown.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -489,25 +489,25 @@ methods built in. They can be registered using this method.
 is already taken.</p>
 <p>Besides that no magic happens here, the method is added to the <code>Batch</code> class prototype.</p>
 <p>For example:</p>
-<pre class="prettyprint source"><code>    Batch.register( &apos;insert&apos;, function( position, nodes ) {
-        // You can use a class inheriting from `Delta` if that class should handle OT in a special way.
-        const delta = new Delta();
+<pre class="prettyprint source"><code>Batch.register( &apos;insert&apos;, function( position, nodes ) {
+    // You can use a class inheriting from `Delta` if that class should handle OT in a special way.
+    const delta = new Delta();
 
-        // Add delta to the Batch instance. It is important to add a delta to the batch before applying any operation.
-        this.addDelta( delta );
+    // Add delta to the Batch instance. It is important to add a delta to the batch before applying any operation.
+    this.addDelta( delta );
 
-        // Create operations which should be components of this delta.
-        const operation = new InsertOperation( position, nodes, this.document.version );
+    // Create operations which should be components of this delta.
+    const operation = new InsertOperation( position, nodes, this.document.version );
 
-        // Add operation to the delta. It is important to add operation before applying it.
-        delta.addOperation( operation );
+    // Add operation to the delta. It is important to add operation before applying it.
+    delta.addOperation( operation );
 
-        // Remember to apply every operation, no magic, you need to do it manually.
-        this.document.applyOperation( operation );
+    // Remember to apply every operation, no magic, you need to do it manually.
+    this.document.applyOperation( operation );
 
-        // Make this method chainable.
-        return this;
-    } );</code></pre>
+    // Make this method chainable.
+    return this;
+} );</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> name : String</code></dt>
@@ -1540,7 +1540,7 @@ is already taken.</p>
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -2796,13 +2796,13 @@ is already taken.</p>
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -2850,7 +2850,7 @@ is already taken.</p>
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

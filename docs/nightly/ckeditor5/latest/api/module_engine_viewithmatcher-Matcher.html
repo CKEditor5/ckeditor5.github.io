@@ -27,7 +27,7 @@ Matcher
         </h1>
         <p><span class="badge">class</span>
         </p><p>View matcher class.
-Instance of this class can be used to find <code><a href="module_engine_viewithelement-Element.html">elements</a></code> that match given pattern.</p>
+Instance of this class can be used to find <a href="module_engine_viewithelement-Element.html">elements</a> that match given pattern.</p>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
           <ul>
@@ -70,7 +70,7 @@ Instance of this class can be used to find <code><a href="module_engine_viewithe
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> [ pattern ] : String | RegExp | Object</code></dt>
-                                  <dd><p>Match patterns. See <code><a href="module_engine_viewithmatcher-Matcher.html#add">add method</a></code> for
+                                  <dd><p>Match patterns. See <a href="module_engine_viewithmatcher-Matcher.html#add">add method</a> for
 more information.</p>
                                   </dd>
                                 </dl>
@@ -86,57 +86,57 @@ more information.</p>
                       </p>
                       <div class="collapsing-list__content">
 <p>Example patterns matching element&apos;s name:</p>
-<pre class="prettyprint source"><code>    // String.
-    matcher.add( &apos;div&apos; );
-    matcher.add( { name: &apos;div&apos; } );
+<pre class="prettyprint source"><code>// String.
+matcher.add( &apos;div&apos; );
+matcher.add( { name: &apos;div&apos; } );
 
-    // Regular expression.
-    matcher.add( /^\w/ );
-    matcher.add( { name: /^\w/ } );</code></pre><p>Example pattern matching element&apos;s attributes:</p>
-<pre class="prettyprint source"><code>    matcher.add( {
-        attribute: {
-            title: &apos;foobar&apos;,
-            foo: /^\w+/
-        }
-    } );</code></pre><p>Example patterns matching element&apos;s classes:</p>
-<pre class="prettyprint source"><code>    // Single class.
-    matcher.add( {
-        class: &apos;foobar&apos;
-    } );
+// Regular expression.
+matcher.add( /^\w/ );
+matcher.add( { name: /^\w/ } );</code></pre><p>Example pattern matching element&apos;s attributes:</p>
+<pre class="prettyprint source"><code>matcher.add( {
+    attribute: {
+        title: &apos;foobar&apos;,
+        foo: /^\w+/
+    }
+} );</code></pre><p>Example patterns matching element&apos;s classes:</p>
+<pre class="prettyprint source"><code>// Single class.
+matcher.add( {
+    class: &apos;foobar&apos;
+} );
 
-    // Single class using regular expression.
-    matcher.add( {
-        class: /foo.../
-    } );
+// Single class using regular expression.
+matcher.add( {
+    class: /foo.../
+} );
 
-    // Multiple classes to match.
-    matcher.add( {
-        class: [ &apos;baz&apos;, &apos;bar&apos;, /foo.../ ]
-    } ):</code></pre><p>Example pattern matching element&apos;s styles:</p>
-<pre class="prettyprint source"><code>    matcher.add( {
-        style: {
-            position: &apos;absolute&apos;,
-            color: /^\w*blue$/
-        }
-    } );</code></pre><p>Example function pattern:</p>
-<pre class="prettyprint source"><code>    matcher.add( ( element ) =&gt; {
-        // Result of this function will be included in `match`
-        // property of the object returned from matcher.match() call.
-        if ( element.name === &apos;div&apos; &amp;&amp; element.childCount &gt; 0 ) {
-            return { name: true };
-        }
+// Multiple classes to match.
+matcher.add( {
+    class: [ &apos;baz&apos;, &apos;bar&apos;, /foo.../ ]
+} ):</code></pre><p>Example pattern matching element&apos;s styles:</p>
+<pre class="prettyprint source"><code>matcher.add( {
+    style: {
+        position: &apos;absolute&apos;,
+        color: /^\w*blue$/
+    }
+} );</code></pre><p>Example function pattern:</p>
+<pre class="prettyprint source"><code>matcher.add( ( element ) =&gt; {
+    // Result of this function will be included in `match`
+    // property of the object returned from matcher.match() call.
+    if ( element.name === &apos;div&apos; &amp;&amp; element.childCount &gt; 0 ) {
+        return { name: true };
+    }
 
-        return null;
-    } );</code></pre><p>Multiple patterns can be added in one call:</p>
-<pre class="prettyprint source"><code>    matcher.add( &apos;div&apos;, { class: &apos;foobar&apos; } );</code></pre>
+    return null;
+} );</code></pre><p>Multiple patterns can be added in one call:</p>
+<pre class="prettyprint source"><code>matcher.add( &apos;div&apos;, { class: &apos;foobar&apos; } );</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> pattern : Object | String | RegExp | function</code></dt>
                                   <dd><p>Object describing pattern details. If string or regular expression
 is provided it will be used to match element&apos;s name. Pattern can be also provided in a form
-of a function - then this function will be called with each <code><a href="module_engine_viewithelement-Element.html">element</a></code> as a parameter.
+of a function - then this function will be called with each <a href="module_engine_viewithelement-Element.html">element</a> as a parameter.
 Function&apos;s return value will be stored under <code>match</code> key of the object returned from
-<code><a href="module_engine_viewithmatcher-Matcher.html#match">match</a></code> or <code><a href="module_engine_viewithmatcher-Matcher.html#matchAll">matchAll</a></code> methods.</p>
+<a href="module_engine_viewithmatcher-Matcher.html#match">match</a> or <a href="module_engine_viewithmatcher-Matcher.html#matchAll">matchAll</a> methods.</p>
                                             <dl>
                                               <h5>Properties</h5>
                                               <dt><code> [ pattern.name ] : String | RegExp</code></dt>
@@ -186,20 +186,20 @@ and it matches element name defined by <code>string</code> (not <code>RegExp</co
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Matches elements for currently stored patterns. Returns match information about first found
-<code><a href="module_engine_viewithelement-Element.html">element</a></code>, otherwise returns <code>null</code>.
+<a href="module_engine_viewithelement-Element.html">element</a>, otherwise returns <code>null</code>.
                       </p>
                       <div class="collapsing-list__content">
 <p>Example of returned object:</p>
-<pre class="prettyprint source"><code>    {
-        element: &lt;instance of found element&gt;,
-        pattern: &lt;pattern used to match found element&gt;,
-        match: {
-            name: true,
-            attribute: [ &apos;title&apos;, &apos;href&apos; ],
-            class: [ &apos;foo&apos; ],
-            style: [ &apos;color&apos;, &apos;position&apos; ]
-        }
-    }</code></pre>
+<pre class="prettyprint source"><code>{
+    element: &lt;instance of found element&gt;,
+    pattern: &lt;pattern used to match found element&gt;,
+    match: {
+        name: true,
+        attribute: [ &apos;title&apos;, &apos;href&apos; ],
+        class: [ &apos;foo&apos; ],
+        style: [ &apos;color&apos;, &apos;position&apos; ]
+    }
+}</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> element : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span></code></dt>
@@ -242,7 +242,7 @@ and it matches element name defined by <code>string</code> (not <code>RegExp</co
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Matches elements for currently stored patterns. Returns array of match information with all found
-<code><a href="module_engine_viewithelement-Element.html">elements</a></code>. If no element is found - returns <code>null</code>.
+<a href="module_engine_viewithelement-Element.html">elements</a>. If no element is found - returns <code>null</code>.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -255,7 +255,7 @@ and it matches element name defined by <code>string</code> (not <code>RegExp</co
                         <dl>
                                   <dt><code>Object | null</code></dt>
                                   <dd><p>Array with match information about found elements or <code>null</code>. For more information
-see <code><a href="module_engine_viewithmatcher-Matcher.html#match">match method</a></code> description.</p>
+see <a href="module_engine_viewithmatcher-Matcher.html#match">match method</a> description.</p>
                                   </dd>
                         </dl>
                       </div>
@@ -1281,7 +1281,7 @@ see <code><a href="module_engine_viewithmatcher-Matcher.html#match">match method
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -2537,13 +2537,13 @@ see <code><a href="module_engine_viewithmatcher-Matcher.html#match">match method
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -2591,7 +2591,7 @@ see <code><a href="module_engine_viewithmatcher-Matcher.html#match">match method
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

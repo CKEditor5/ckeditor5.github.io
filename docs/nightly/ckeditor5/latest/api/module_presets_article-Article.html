@@ -158,18 +158,18 @@ This preset follows <a href="https://github.com/ckeditor/editor-recommendations"
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Optional name of the plugin. If set, the plugin will be available in
-<code><a href="module_core_plugincollection-PluginCollection.html#get">get</a></code> by its
+<a href="module_core_plugincollection-PluginCollection.html#get"><code>get</code></a> by its
 name and its constructor. If not, then only by its constructor.</p>
                       <div class="collapsing-list__content">
 <p>The name should reflect the package name + the plugin module name. E.g. <code>ckeditor5-image/src/image.js</code> plugin
 should be named <code>image/image</code>. If plugin is kept deeper in the directory structure, it&apos;s recommended to only use the module file name,
 not the whole path. So, e.g. a plugin defined in <code>ckeditor5-ui/src/notification/notification.js</code> file may be named <code>ui/notification</code>.</p>
 <p>To keep a plugin class definition tight it&apos;s recommended to define this property as a static getter:</p>
-<pre class="prettyprint source"><code>    export default class ImageCaption {
-        static get pluginName() {
-            return &apos;image/imagecaption&apos;;
-        }
-    }</code></pre>
+<pre class="prettyprint source"><code>export default class ImageCaption {
+    static get pluginName() {
+        return &apos;image/imagecaption&apos;;
+    }
+}</code></pre>
                       </div>
                     </div>
                   </li>
@@ -185,15 +185,15 @@ not the whole path. So, e.g. a plugin defined in <code>ckeditor5-ui/src/notifica
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Creates a new plugin instance. This is the first step of a plugin initialization.
-See also <code><a href="module_core_plugin-PluginInterface.html#init">init</a></code> and <code><a href="module_core_plugin-PluginInterface.html#afterInit">afterInit</a></code>.
+See also <a href="module_core_plugin-PluginInterface.html#init"><code>init</code></a> and <a href="module_core_plugin-PluginInterface.html#afterInit"><code>afterInit</code></a>.
                       </p>
                       <div class="collapsing-list__content">
-<p>A plugin is always instantiated after its <code><a href="module_core_plugin-PluginInterface.html#requires">dependencies</a></code> and the
-<code><a href="module_core_plugin-PluginInterface.html#init">init</a></code> and <code><a href="module_core_plugin-PluginInterface.html#afterInit">afterInit</a></code> methods are called in the same order.</p>
-<p>Usually, you&apos;ll want to put your plugin&apos;s initialization code in the <code><a href="module_core_plugin-PluginInterface.html#init">init</a></code> method.
+<p>A plugin is always instantiated after its <a href="module_core_plugin-PluginInterface.html#requires">dependencies</a> and the
+<a href="module_core_plugin-PluginInterface.html#init"><code>init</code></a> and <a href="module_core_plugin-PluginInterface.html#afterInit"><code>afterInit</code></a> methods are called in the same order.</p>
+<p>Usually, you&apos;ll want to put your plugin&apos;s initialization code in the <a href="module_core_plugin-PluginInterface.html#init"><code>init</code></a> method.
 The constructor can be understood as &quot;before init&quot; and used in special cases, just like
-<code><a href="module_core_plugin-PluginInterface.html#afterInit">afterInit</a></code> servers for the special &quot;after init&quot; scenarios (e.g. code which depends on other
-plugins, but which doesn&apos;t <code><a href="module_core_plugin-PluginInterface.html#requires">explicitly require</a></code> them).</p>
+<a href="module_core_plugin-PluginInterface.html#afterInit"><code>afterInit</code></a> servers for the special &quot;after init&quot; scenarios (e.g. code which depends on other
+plugins, but which doesn&apos;t <a href="module_core_plugin-PluginInterface.html#requires">explicitly require</a> them).</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> editor : <span><a class="collapsing-list__type" href="module_core_editor_editor-Editor.html">Editor</a></span></code></dt>
@@ -253,7 +253,7 @@ order they were added.</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">The third (and last) stage of plugin initialization. See also <code><a href="module_core_plugin-PluginInterface.html#constructor">constructor</a></code> and <code><a href="module_core_plugin-PluginInterface.html#init">init</a></code>.
+                      <p class="collapsing-list__excerpt">The third (and last) stage of plugin initialization. See also <a href="module_core_plugin-PluginInterface.html#constructor"><code>constructor</code></a> and <a href="module_core_plugin-PluginInterface.html#init"><code>init</code></a>.
                       </p>
                       <div class="collapsing-list__content">
 <p><strong>Note:</strong> This method is optional. A plugin instance does not need to have to have it defined.</p>
@@ -281,42 +281,42 @@ order they were added.</p>
 <p>This is a very simplified method decoration. Itself it doesn&apos;t change the behavior of a method (expect adding the event),
 but it allows to modify it later on by listening to the method&apos;s event.</p>
 <p>For example, in order to cancel the method execution one can stop the event:</p>
-<pre class="prettyprint source"><code>    class Foo {
-        constructor() {
-            this.decorate( &apos;method&apos; );
-        }
-
-        method() {
-            console.log( &apos;called!&apos; );
-        }
+<pre class="prettyprint source"><code>class Foo {
+    constructor() {
+        this.decorate( &apos;method&apos; );
     }
 
-    const foo = new Foo();
-    foo.on( &apos;method&apos;, ( evt ) =&gt; {
-        evt.stop();
-    }, { priority: &apos;high&apos; } );
+    method() {
+        console.log( &apos;called!&apos; );
+    }
+}
 
-    foo.method(); // Nothing is logged.</code></pre><p>Note: we used a high priority listener here to execute this callback before the one which
+const foo = new Foo();
+foo.on( &apos;method&apos;, ( evt ) =&gt; {
+    evt.stop();
+}, { priority: &apos;high&apos; } );
+
+foo.method(); // Nothing is logged.</code></pre><p>Note: we used a high priority listener here to execute this callback before the one which
 calls the orignal method (which used the default priority).</p>
 <p>It&apos;s also possible to change the return value:</p>
-<pre class="prettyprint source"><code>    foo.on( &apos;method&apos;, ( evt ) =&gt; {
-        evt.return = &apos;Foo!&apos;;
-    } );
+<pre class="prettyprint source"><code>foo.on( &apos;method&apos;, ( evt ) =&gt; {
+    evt.return = &apos;Foo!&apos;;
+} );
 
-    foo.method(); // -&gt; &apos;Foo&apos;</code></pre><p>Finally, it&apos;s possible to access and modify the parameters:</p>
-<pre class="prettyprint source"><code>    method( a, b ) {
-        console.log( `${ a }, ${ b }`  );
-    }
+foo.method(); // -&gt; &apos;Foo&apos;</code></pre><p>Finally, it&apos;s possible to access and modify the parameters:</p>
+<pre class="prettyprint source"><code>method( a, b ) {
+    console.log( `${ a }, ${ b }`  );
+}
 
-    // ...
+// ...
 
-    foo.on( &apos;method&apos;, ( evt, args ) =&gt; {
-        args[ 0 ] = 3;
+foo.on( &apos;method&apos;, ( evt, args ) =&gt; {
+    args[ 0 ] = 3;
 
-        console.log( args[ 1 ] ); // -&gt; 2
-    }, { priority: &apos;high&apos; } );
+    console.log( args[ 1 ] ); // -&gt; 2
+}, { priority: &apos;high&apos; } );
 
-    foo.method( 1, 2 ); // -&gt; &apos;3, 2&apos;</code></pre>
+foo.method( 1, 2 ); // -&gt; &apos;3, 2&apos;</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> methodName : String</code></dt>
@@ -334,13 +334,13 @@ calls the orignal method (which used the default priority).</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Delegates selected events to another <code><a href="module_utils_emittermixin-Emitter.html">Emitter</a></code>. For instance:
+                      <p class="collapsing-list__excerpt">Delegates selected events to another <a href="module_utils_emittermixin-Emitter.html"><code>Emitter</code></a>. For instance:
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    emitterA.delegate( &apos;eventX&apos; ).to( emitterB );
-    emitterA.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( emitterC );</code></pre><p>then <code>eventX</code> is delegated (fired by) <code>emitterB</code> and <code>emitterC</code> along with <code>data</code>:</p>
-<pre class="prettyprint source"><code>    emitterA.fire( &apos;eventX&apos;, data );</code></pre><p>and <code>eventY</code> is delegated (fired by) <code>emitterC</code> along with <code>data</code>:</p>
-<pre class="prettyprint source"><code>    emitterA.fire( &apos;eventY&apos;, data );</code></pre>
+<pre class="prettyprint source"><code>emitterA.delegate( &apos;eventX&apos; ).to( emitterB );
+emitterA.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( emitterC );</code></pre><p>then <code>eventX</code> is delegated (fired by) <code>emitterB</code> and <code>emitterC</code> along with <code>data</code>:</p>
+<pre class="prettyprint source"><code>emitterA.fire( &apos;eventX&apos;, data );</code></pre><p>and <code>eventY</code> is delegated (fired by) <code>emitterC</code> along with <code>data</code>:</p>
+<pre class="prettyprint source"><code>emitterA.fire( &apos;eventY&apos;, data );</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> events : String</code></dt>
@@ -388,7 +388,7 @@ calls the orignal method (which used the default priority).</p>
                       <p class="collapsing-list__excerpt">Fires an event, executing all callbacks registered for it.
                       </p>
                       <div class="collapsing-list__content">
-<p>The first parameter passed to callbacks is an <code><a href="module_utils_eventinfo-EventInfo.html">EventInfo</a></code> object,
+<p>The first parameter passed to callbacks is an <a href="module_utils_eventinfo-EventInfo.html"><code>EventInfo</code></a> object,
 followed by the optional <code>args</code> provided in the <code>fire()</code> method call.</p>
                         <h4>Parameters</h4>
                                 <dl>
@@ -403,7 +403,7 @@ followed by the optional <code>args</code> provided in the <code>fire()</code> m
                         <dl>
                                   <dt><code>*</code></dt>
                                   <dd><p>By default the method returns <code>undefined</code>. However, the return value can be changed by listeners
-through modification of the <code><a href="module_utils_eventinfo-EventInfo.html#return">return</a></code>&apos;s value (the event info
+through modification of the <a href="module_utils_eventinfo-EventInfo.html#return"><code>return</code></a>&apos;s value (the event info
 is the first param of every callback).</p>
                                   </dd>
                         </dl>
@@ -418,11 +418,11 @@ is the first param of every callback).</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">The second stage (after plugin <code><a href="module_core_plugin-PluginInterface.html#constructor">constructor</a></code>) of plugin initialization.
+                      <p class="collapsing-list__excerpt">The second stage (after plugin <a href="module_core_plugin-PluginInterface.html#constructor"><code>constructor</code></a>) of plugin initialization.
 Unlike the plugin constructor this method can be asynchronous.
                       </p>
                       <div class="collapsing-list__content">
-<p>A plugin&apos;s <code>init()</code> method is called after its <code><a href="module_core_plugin-PluginInterface.html#requires">dependencies</a></code> are initialized,
+<p>A plugin&apos;s <code>init()</code> method is called after its <a href="module_core_plugin-PluginInterface.html#requires">dependencies</a> are initialized,
 so in the same order as constructors of these plugins.</p>
 <p><strong>Note:</strong> This method is optional. A plugin instance does not need to have to have it defined.</p>
                         <h4>Returns</h4>
@@ -442,18 +442,18 @@ so in the same order as constructors of these plugins.</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Binds observable attributes to another objects implementing <code><a href="module_utils_observablemixin-ObservableMixin.html">ObservableMixin</a></code>
-interface (like <code><a href="module_ui_model-Model.html">Model</a></code>).
+                      <p class="collapsing-list__excerpt">Binds observable attributes to another objects implementing <a href="module_utils_observablemixin-ObservableMixin.html"><code>ObservableMixin</code></a>
+interface (like <a href="module_ui_model-Model.html"><code>Model</code></a>).
                       </p>
                       <div class="collapsing-list__content">
 <p>Once bound, the observable will immediately share the current state of attributes
 of the observable it is bound to and react to the changes to these attributes
 in the future.</p>
-<p><strong>Note</strong>: To release the binding use <code><a href="module_utils_observablemixin-ObservableMixin.html#unbind">unbind</a></code>.</p>
-<pre class="prettyprint source"><code>    A.bind( &apos;a&apos; ).to( B );
-    A.bind( &apos;a&apos; ).to( B, &apos;b&apos; );
-    A.bind( &apos;a&apos;, &apos;b&apos; ).to( B, &apos;c&apos;, &apos;d&apos; );
-    A.bind( &apos;a&apos; ).to( B, &apos;b&apos;, C, &apos;d&apos;, ( b, d ) =&gt; b + d );</code></pre>
+<p><strong>Note</strong>: To release the binding use <a href="module_utils_observablemixin-ObservableMixin.html#unbind"><code>unbind</code></a>.</p>
+<pre class="prettyprint source"><code>A.bind( &apos;a&apos; ).to( B );
+A.bind( &apos;a&apos; ).to( B, &apos;b&apos; );
+A.bind( &apos;a&apos;, &apos;b&apos; ).to( B, &apos;c&apos;, &apos;d&apos; );
+A.bind( &apos;a&apos; ).to( B, &apos;b&apos;, C, &apos;d&apos;, ( b, d ) =&gt; b + d );</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> bindAttrs : String</code></dt>
@@ -509,16 +509,16 @@ the same callback is used several times with different contexts.</p>
                       <div class="collapsing-list__content">
 <p>Events can be grouped in namespaces using <code>:</code>.
 When namespaced event is fired, it additionaly fires all callbacks for that namespace.</p>
-<pre class="prettyprint source"><code>    myEmitter.on( &apos;myGroup&apos;, genericCallback );
-    myEmitter.on( &apos;myGroup:myEvent&apos;, specificCallback );
+<pre class="prettyprint source"><code>myEmitter.on( &apos;myGroup&apos;, genericCallback );
+myEmitter.on( &apos;myGroup:myEvent&apos;, specificCallback );
 
-    // genericCallback is fired.
-    myEmitter.fire( &apos;myGroup&apos; );
-    // both genericCallback and specificCallback are fired.
-    myEmitter.fire( &apos;myGroup:myEvent&apos; );
-    // genericCallback is fired even though there are no callbacks for &quot;foo&quot;.
-    myEmitter.fire( &apos;myGroup:foo&apos; );</code></pre><p>An event callback can <code><a href="module_utils_eventinfo-EventInfo.html#stop">stop the event</a></code> and
-set the <code><a href="module_utils_eventinfo-EventInfo.html#return">return value</a></code> of the <code><a href="module_utils_emittermixin-EmitterMixin.html#fire">fire</a></code> method.</p>
+// genericCallback is fired.
+myEmitter.fire( &apos;myGroup&apos; );
+// both genericCallback and specificCallback are fired.
+myEmitter.fire( &apos;myGroup:myEvent&apos; );
+// genericCallback is fired even though there are no callbacks for &quot;foo&quot;.
+myEmitter.fire( &apos;myGroup:foo&apos; );</code></pre><p>An event callback can <a href="module_utils_eventinfo-EventInfo.html#stop">stop the event</a> and
+set the <a href="module_utils_eventinfo-EventInfo.html#return">return value</a> of the <a href="module_utils_emittermixin-EmitterMixin.html#fire"><code>fire</code></a> method.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> event : String</code></dt>
@@ -556,7 +556,7 @@ order they were added.</p>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Registers a callback function to be executed on the next time the event is fired only. This is similar to
-calling <code><a href="module_utils_emittermixin-EmitterMixin.html#on">on</a></code> followed by <code><a href="module_utils_emittermixin-EmitterMixin.html#off">off</a></code> in the callback.
+calling <a href="module_utils_emittermixin-EmitterMixin.html#on"><code>on</code></a> followed by <a href="module_utils_emittermixin-EmitterMixin.html#off"><code>off</code></a> in the callback.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -686,11 +686,11 @@ for all events from <code>emitter</code>.</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Removes the binding created with <code><a href="module_utils_observablemixin-ObservableMixin.html#bind">bind</a></code>.
+                      <p class="collapsing-list__excerpt">Removes the binding created with <a href="module_utils_observablemixin-ObservableMixin.html#bind"><code>bind</code></a>.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    A.unbind( &apos;a&apos; );
-    A.unbind();</code></pre>
+<pre class="prettyprint source"><code>A.unbind( &apos;a&apos; );
+A.unbind();</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> [ unbindAttrs ] : String</code></dt>
@@ -1750,7 +1750,7 @@ be released if no attributes provided.</p>
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -3006,13 +3006,13 @@ be released if no attributes provided.</p>
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -3060,7 +3060,7 @@ be released if no attributes provided.</p>
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

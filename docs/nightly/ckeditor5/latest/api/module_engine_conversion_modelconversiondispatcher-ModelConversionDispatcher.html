@@ -26,86 +26,86 @@
 ModelConversionDispatcher
         </h1>
         <p><span class="badge">class</span>
-        </p><p><code>ModelConversionDispatcher</code> is a central point of <code><a href="module_engine_model_model.html">model</a></code> conversion, which is
+        </p><p><code>ModelConversionDispatcher</code> is a central point of <a href="module_engine_model_model.html">model</a> conversion, which is
 a process of reacting to changes in the model and reflecting them by listeners that listen to those changes.
-In default application, <code><a href="module_engine_model_model.html">model</a></code> is converted to <code><a href="module_engine_viewithview.html">view</a></code>. This means
+In default application, <a href="module_engine_model_model.html">model</a> is converted to <a href="module_engine_viewithview.html">view</a>. This means
 that changes in the model are reflected by changing the view (i.e. adding view nodes or changing attributes on view elements).</p>
 <p>During conversion process, <code>ModelConversionDispatcher</code> fires data-manipulation events, basing on state of the model and prepares
 data for those events. It is important to note that the events are connected with &quot;change actions&quot; like &quot;inserting&quot;
 or &quot;removing&quot; so one might say that we are converting &quot;changes&quot;. This is in contrary to view to model conversion,
 where we convert view nodes (the structure, not &quot;changes&quot; to the view). Note, that because changes are converted
 and not the structure itself, there is a need to have a mapping between model and the structure on which changes are
-reflected. To map elements during model to view conversion use <code><a href="module_engine_conversion_mapper-Mapper.html">Mapper</a></code>.</p>
-<p>The main use for this class is to listen to <code><a href="module_engine_model_document-Document.html#event:change">Document change event</a></code>, process it
+reflected. To map elements during model to view conversion use <a href="module_engine_conversion_mapper-Mapper.html"><code>Mapper</code></a>.</p>
+<p>The main use for this class is to listen to <a href="module_engine_model_document-Document.html#event:change">Document change event</a>, process it
 and then fire specific events telling what exactly has changed. For those events, <code>ModelConversionDispatcher</code>
-creates <code><a href="module_engine_conversion_modelconsumable-ModelConsumable.html">list of consumable values</a></code> that should be handled by event
+creates <a href="module_engine_conversion_modelconsumable-ModelConsumable.html">list of consumable values</a> that should be handled by event
 callbacks. Those events are listened to by model-to-view converters which convert changes done in the
-<code><a href="module_engine_model_model.html">model</a></code> to changes in the <code><a href="module_engine_viewithview.html">view</a></code>. <code>ModelConversionController</code> also checks
+<a href="module_engine_model_model.html">model</a> to changes in the <a href="module_engine_viewithview.html">view</a>. <code>ModelConversionController</code> also checks
 the current state of consumables, so it won&apos;t fire events for parts of model that were already consumed. This is
-especially important in callbacks that consume multiple values. See <code><a href="module_engine_conversion_modelconsumable-ModelConsumable.html">ModelConsumable</a></code>
+especially important in callbacks that consume multiple values. See <a href="module_engine_conversion_modelconsumable-ModelConsumable.html"><code>ModelConsumable</code></a>
 for an example of such callback.</p>
 <p>Although the primary usage for this class is the model-to-view conversion, <code>ModelConversionDispatcher</code> can be used
 to build custom data processing pipelines that converts model to anything that is needed. Existing model structure can
-be used to generate events (listening to <code><a href="module_engine_model_document-Document.html#event:change">Document change event</a></code> is not
+be used to generate events (listening to <a href="module_engine_model_document-Document.html#event:change">Document change event</a> is not
 required)
 and custom callbacks can be added to the events (these does not have to be limited to changes in the view).</p>
 <p>When providing your own event listeners for <code>ModelConversionDispatcher</code> keep in mind that any callback that had
-<code><a href="module_engine_conversion_modelconsumable-ModelConsumable.html#consume">consumed</a></code> a value from consumable (and did some changes, i.e. to
+<a href="module_engine_conversion_modelconsumable-ModelConsumable.html#consume">consumed</a> a value from consumable (and did some changes, i.e. to
 the view) should also stop the event. This is because whenever a callback is fired it is assumed that there is something
 to be consumed. Thanks to that approach, you do not have to test whether there is anything to consume at the beginning
 of your listener callback.</p>
 <p>Example of providing a converter for <code>ModelConversionDispatcher</code>:</p>
-<pre class="prettyprint source"><code>    // We will convert inserting &quot;paragraph&quot; model element into the model.
-    modelDispatcher.on( &apos;insert:paragraph&apos;, ( evt, data, consumable, conversionApi ) =&gt; {
-        // Remember to consume the part of consumable.
-        consumable.consume( data.item, &apos;insert&apos; );
+<pre class="prettyprint source"><code>// We will convert inserting &quot;paragraph&quot; model element into the model.
+modelDispatcher.on( &apos;insert:paragraph&apos;, ( evt, data, consumable, conversionApi ) =&gt; {
+    // Remember to consume the part of consumable.
+    consumable.consume( data.item, &apos;insert&apos; );
 
-        // Translate position in model to position in the view.
-        const viewPosition = conversionApi.mapper.toViewPosition( data.range.start );
+    // Translate position in model to position in the view.
+    const viewPosition = conversionApi.mapper.toViewPosition( data.range.start );
 
-        // Create a P element (note that this converter is for inserting P elements -&gt; &apos;insert:paragraph&apos;).
-        const viewElement = new ViewElement( &apos;p&apos; );
+    // Create a P element (note that this converter is for inserting P elements -&gt; &apos;insert:paragraph&apos;).
+    const viewElement = new ViewElement( &apos;p&apos; );
 
-        // Bind the newly created view element to model element so positions will map accordingly in future.
-        conversionApi.mapper.bindElements( data.item, viewElement );
+    // Bind the newly created view element to model element so positions will map accordingly in future.
+    conversionApi.mapper.bindElements( data.item, viewElement );
 
-        // Add the newly created view element to the view.
-        viewWriter.insert( viewPosition, viewElement );
+    // Add the newly created view element to the view.
+    viewWriter.insert( viewPosition, viewElement );
 
-        // Remember to stop the event propagation if the data.item was consumed.
-        evt.stop();
-    } );</code></pre><p>Callback that &quot;overrides&quot; other callback:</p>
-<pre class="prettyprint source"><code>    // Special converter for `linkHref` attribute added on custom `quote` element. Note, that this
-    // attribute may be the same as the attribute added by other features (link feature in this case).
-    // It might be even added by that feature! It makes sense that a part of content that is a quote is linked
-    // to an external source so it makes sense that link feature works on the custom quote element.
-    // However, we have to make sure that the attributes added by link feature are correctly converted.
-    // To block default `linkHref` conversion we have to:
-    // 1) add this callback with higher priority than link feature callback,
-    // 2) consume `linkHref` attribute add change.
-    modelConversionDispatcher.on( &apos;addAttribute:linkHref:quote&apos;, ( evt, data, consumable, conversionApi ) =&gt; {
-        consumable.consume( data.item, &apos;addAttribute:linkHref&apos; );
+    // Remember to stop the event propagation if the data.item was consumed.
+    evt.stop();
+} );</code></pre><p>Callback that &quot;overrides&quot; other callback:</p>
+<pre class="prettyprint source"><code>// Special converter for `linkHref` attribute added on custom `quote` element. Note, that this
+// attribute may be the same as the attribute added by other features (link feature in this case).
+// It might be even added by that feature! It makes sense that a part of content that is a quote is linked
+// to an external source so it makes sense that link feature works on the custom quote element.
+// However, we have to make sure that the attributes added by link feature are correctly converted.
+// To block default `linkHref` conversion we have to:
+// 1) add this callback with higher priority than link feature callback,
+// 2) consume `linkHref` attribute add change.
+modelConversionDispatcher.on( &apos;addAttribute:linkHref:quote&apos;, ( evt, data, consumable, conversionApi ) =&gt; {
+    consumable.consume( data.item, &apos;addAttribute:linkHref&apos; );
 
-        // Create a button that will represent the `linkHref` attribute.
-        let viewSourceBtn = new ViewElement( &apos;a&apos;, {
-            href: data.item.getAttribute( &apos;linkHref&apos; ),
-            title: &apos;source&apos;
-        } );
+    // Create a button that will represent the `linkHref` attribute.
+    let viewSourceBtn = new ViewElement( &apos;a&apos;, {
+        href: data.item.getAttribute( &apos;linkHref&apos; ),
+        title: &apos;source&apos;
+    } );
 
-        // Add a class for the button.
-        viewSourceBtn.addClass( &apos;source&apos; );
+    // Add a class for the button.
+    viewSourceBtn.addClass( &apos;source&apos; );
 
-        // Insert the button using writer API.
-        // If `addAttribute` event is fired by
-        // `module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher#convertInsert` it is fired
-        // after `data.item` insert conversion was done. If the event is fired due to attribute insertion coming from
-        // different source, `data.item` already existed. This means we are safe to get `viewQuote` from mapper.
-        const viewQuote = conversionApi.mapper.toViewElement( data.item );
-        const position = new ViewPosition( viewQuote, viewQuote.childCount );
-        viewWriter.insert( position, viewSourceBtn );
+    // Insert the button using writer API.
+    // If `addAttribute` event is fired by
+    // `module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher#convertInsert` it is fired
+    // after `data.item` insert conversion was done. If the event is fired due to attribute insertion coming from
+    // different source, `data.item` already existed. This means we are safe to get `viewQuote` from mapper.
+    const viewQuote = conversionApi.mapper.toViewElement( data.item );
+    const position = new ViewPosition( viewQuote, viewQuote.childCount );
+    viewWriter.insert( position, viewSourceBtn );
 
-        evt.stop();
-    }, { priority: &apos;high&apos; } );</code></pre>
+    evt.stop();
+}, { priority: &apos;high&apos; } );</code></pre>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
           <ul>
@@ -191,8 +191,8 @@ of your listener callback.</p>
                       <p class="collapsing-list__excerpt">Prepares data and fires a proper event.
                       </p>
                       <div class="collapsing-list__content">
-<p>The method is crafted to take use of parameters passed in <code><a href="module_engine_model_document-Document.html#event:change">Document change
-event</a></code>.</p>
+<p>The method is crafted to take use of parameters passed in <a href="module_engine_model_document-Document.html#event:change">Document change
+event</a>.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> type : String</code></dt>
@@ -213,7 +213,7 @@ event</a></code>.</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Creates <code><a href="module_engine_conversion_modelconsumable-ModelConsumable.html">ModelConsumable</a></code> for adding or removing marker on given <code>range</code>.
+                      <p class="collapsing-list__excerpt">Creates <a href="module_engine_conversion_modelconsumable-ModelConsumable.html"><code>ModelConsumable</code></a> for adding or removing marker on given <code>range</code>.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -242,7 +242,7 @@ event</a></code>.</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Creates <code><a href="module_engine_conversion_modelconsumable-ModelConsumable.html">ModelConsumable</a></code> with selection consumable values.
+                      <p class="collapsing-list__excerpt">Creates <a href="module_engine_conversion_modelconsumable-ModelConsumable.html"><code>ModelConsumable</code></a> with selection consumable values.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -297,7 +297,7 @@ event</a></code>.</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Creates <code><a href="module_engine_conversion_modelconsumable-ModelConsumable.html">ModelConsumable</a></code> with values of given <code>type</code>
+                      <p class="collapsing-list__excerpt">Creates <a href="module_engine_conversion_modelconsumable-ModelConsumable.html"><code>ModelConsumable</code></a> with values of given <code>type</code>
 for each item from given <code>range</code>.
                       </p>
                       <div class="collapsing-list__content">
@@ -357,7 +357,7 @@ for each item from given <code>range</code>.
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Creates <code><a href="module_engine_conversion_modelconsumable-ModelConsumable.html">ModelConsumable</a></code> with values to consume from given range, assuming that
+                      <p class="collapsing-list__excerpt">Creates <a href="module_engine_conversion_modelconsumable-ModelConsumable.html"><code>ModelConsumable</code></a> with values to consume from given range, assuming that
 given range has just been inserted to the model.
                       </p>
                       <div class="collapsing-list__content">
@@ -404,7 +404,7 @@ attributes that are set on inserted nodes are treated like they were added just 
                       <p class="collapsing-list__excerpt">Starts marker-conversion.
                       </p>
                       <div class="collapsing-list__content">
-<p>Fires <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:addMarker">addMarker  event</a></code> or <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:removeMarker">removeMarker  event</a></code> based on
+<p>Fires <a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:addMarker">addMarker  event</a> or <a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:removeMarker">removeMarker  event</a> based on
 given <code>type</code> with data based on passed parameters.</p>
                         <h4>Parameters</h4>
                                 <dl>
@@ -429,7 +429,7 @@ given <code>type</code> with data based on passed parameters.</p>
                       <p class="collapsing-list__excerpt">Starts conversion of move-change of given <code>range</code>, that was moved from given <code>sourcePosition</code>.
                       </p>
                       <div class="collapsing-list__content">
-<p>Fires <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:remove">remove  event</a></code> and <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:insert">insert  event</a></code> based on passed parameters.</p>
+<p>Fires <a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:remove">remove  event</a> and <a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:insert">insert  event</a> based on passed parameters.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> sourcePosition : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
@@ -450,7 +450,7 @@ given <code>type</code> with data based on passed parameters.</p>
                       <p class="collapsing-list__excerpt">Starts conversion of remove-change of given <code>range</code>, that was removed from given <code>sourcePosition</code>.
                       </p>
                       <div class="collapsing-list__content">
-<p>Fires <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:remove">remove  event</a></code> with data based on passed values.</p>
+<p>Fires <a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:remove">remove  event</a> with data based on passed values.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> sourcePosition : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
@@ -458,7 +458,7 @@ given <code>type</code> with data based on passed parameters.</p>
                                   </dd>
                                   <dt><code> range : <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
                                   <dd><p>Removed range (after remove, in
-<code><a href="module_engine_model_document-Document.html#graveyard">graveyard root</a></code>).</p>
+<a href="module_engine_model_document-Document.html#graveyard">graveyard root</a>).</p>
                                   </dd>
                                 </dl>
                       </div>
@@ -472,7 +472,7 @@ given <code>type</code> with data based on passed parameters.</p>
                       <p class="collapsing-list__excerpt">Starts conversion of rename-change of given <code>element</code> that had given <code>oldName</code>.
                       </p>
                       <div class="collapsing-list__content">
-<p>Fires <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:remove">remove  event</a></code> and <code><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:insert">insert  event</a></code> based on passed values.</p>
+<p>Fires <a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:remove">remove  event</a> and <a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:insert">insert  event</a> based on passed values.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> element : <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
@@ -493,7 +493,7 @@ given <code>type</code> with data based on passed parameters.</p>
                       <p class="collapsing-list__excerpt">Starts selection conversion.
                       </p>
                       <div class="collapsing-list__content">
-<p>Fires events for given <code><a href="module_engine_model_selection-Selection.html">selection</a></code> to start selection conversion.</p>
+<p>Fires events for given <a href="module_engine_model_selection-Selection.html">selection</a> to start selection conversion.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> selection : <span><a class="collapsing-list__type" href="module_engine_model_selection-Selection.html">Selection</a></span></code></dt>
@@ -516,7 +516,7 @@ given <code>type</code> with data based on passed parameters.</p>
                       <div class="collapsing-list__content">
 <p><code>addAttribute</code> is a namespace for a class of events. Names of actually called events follow this pattern:
 <code>addAttribute:&lt;attributeKey&gt;:&lt;name&gt;</code>. <code>attributeKey</code> is the key of added attribute. <code>name</code> is either <code>&apos;$text&apos;</code>
-if attribute was added on one or more characters, or the <code><a href="module_engine_model_element-Element.html#name">name</a></code> of
+if attribute was added on one or more characters, or the <a href="module_engine_model_element-Element.html#name">name</a> of
 the element on which attribute was added.</p>
 <p>This way listeners can either listen to a general <code>addAttribute:bold</code> event or specific event
 (for example <code>addAttribute:link:image</code>).</p>
@@ -599,7 +599,7 @@ markers can be named <code>foo:abc</code>, <code>foo:bar</code>, then it is poss
                       <div class="collapsing-list__content">
 <p><code>changeAttribute</code> is a namespace for a class of events. Names of actually called events follow this pattern:
 <code>changeAttribute:&lt;attributeKey&gt;:&lt;name&gt;</code>. <code>attributeKey</code> is the key of changed attribute. <code>name</code> is either <code>&apos;$text&apos;</code>
-if attribute was changed on one or more characters, or the <code><a href="module_engine_model_element-Element.html#name">name</a></code> of
+if attribute was changed on one or more characters, or the <a href="module_engine_model_element-Element.html#name">name</a> of
 the element on which attribute was changed.</p>
 <p>This way listeners can either listen to a general <code>changeAttribute:link</code> event or specific event
 (for example <code>changeAttribute:link:image</code>).</p>
@@ -646,7 +646,7 @@ the element on which attribute was changed.</p>
                       <div class="collapsing-list__content">
 <p><code>insert</code> is a namespace for a class of events. Names of actually called events follow this pattern:
 <code>insert:&lt;name&gt;</code>. <code>name</code> is either <code>&apos;$text&apos;</code> when one or more characters has been inserted or
-<code><a href="module_engine_model_element-Element.html#name">name</a></code> of inserted element.</p>
+<a href="module_engine_model_element-Element.html#name">name</a> of inserted element.</p>
 <p>This way listeners can either listen to a general <code>insert</code> event or specific event (for example <code>insert:paragraph</code>).</p>
                         <h4>Parameters</h4>
                                 <dl>
@@ -682,7 +682,7 @@ the element on which attribute was changed.</p>
                       <div class="collapsing-list__content">
 <p><code>remove</code> is a namespace for a class of events. Names of actually called events follow this pattern:
 <code>remove:&lt;name&gt;</code>. <code>name</code> is either <code>&apos;$text&apos;</code> when one or more characters has been removed or the
-<code><a href="module_engine_model_element-Element.html#name">name</a></code> of removed element.</p>
+<a href="module_engine_model_element-Element.html#name">name</a> of removed element.</p>
 <p>This way listeners can either listen to a general <code>remove</code> event or specific event (for example <code>remove:paragraph</code>).</p>
                         <h4>Parameters</h4>
                                 <dl>
@@ -716,7 +716,7 @@ graveyard root}).</p>
                       <div class="collapsing-list__content">
 <p><code>removeAttribute</code> is a namespace for a class of events. Names of actually called events follow this pattern:
 <code>removeAttribute:&lt;attributeKey&gt;:&lt;name&gt;</code>. <code>attributeKey</code> is the key of removed attribute. <code>name</code> is either <code>&apos;$text&apos;</code>
-if attribute was removed from one or more characters, or the <code><a href="module_engine_model_element-Element.html#name">name</a></code> of
+if attribute was removed from one or more characters, or the <a href="module_engine_model_element-Element.html#name">name</a> of
 the element from which attribute was removed.</p>
 <p>This way listeners can either listen to a general <code>removeAttribute:bold</code> event or specific event
 (for example <code>removeAttribute:link:image</code>).</p>
@@ -794,7 +794,7 @@ markers can be named <code>foo:abc</code>, <code>foo:bar</code>, then it is poss
                       <h3><code><a href="#event:selection">selection</a>( selection, consumable, conversionApi )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Fired for <code><a href="module_engine_model_selection-Selection.html">selection</a></code> changes.
+                      <p class="collapsing-list__excerpt">Fired for <a href="module_engine_model_selection-Selection.html">selection</a> changes.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -817,7 +817,7 @@ markers can be named <code>foo:abc</code>, <code>foo:bar</code>, then it is poss
                       <h3><code><a href="#event:selectionAttribute">selectionAttribute</a>( data = { data.selection, data.attributeKey, data.attributeValue }, consumable, conversionApi )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Fired for <code><a href="module_engine_model_selection-Selection.html">selection</a></code> attributes changes.
+                      <p class="collapsing-list__excerpt">Fired for <a href="module_engine_model_selection-Selection.html">selection</a> attributes changes.
                       </p>
                       <div class="collapsing-list__content">
 <p><code>selectionAttribute</code> is a namespace for a class of events. Names of actually called events follow this pattern:
@@ -1870,7 +1870,7 @@ certain attribute, i.e. <code>addAttribute:bold</code>.</p>
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -3126,13 +3126,13 @@ certain attribute, i.e. <code>addAttribute:bold</code>.</p>
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -3180,7 +3180,7 @@ certain attribute, i.e. <code>addAttribute:bold</code>.</p>
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

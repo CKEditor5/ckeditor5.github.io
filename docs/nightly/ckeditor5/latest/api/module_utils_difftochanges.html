@@ -69,23 +69,23 @@ utils/difftochanges
 it into the output. This function can be used with strings or arrays.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    const input = Array.from( &apos;abc&apos; );
-    const output = Array.from( &apos;xaby&apos; );
-    const changes = diffToChanges( diff( input, output ), output );
+<pre class="prettyprint source"><code>const input = Array.from( &apos;abc&apos; );
+const output = Array.from( &apos;xaby&apos; );
+const changes = diffToChanges( diff( input, output ), output );
 
-    changes.forEach( change =&gt; {
-        if ( change.type == &apos;insert&apos; ) {
-            input.splice( change.index, 0, ...change.values );
-        } else if ( change.type == &apos;delete&apos; ) {
-            input.splice( change.index, change.howMany );
-        }
-    } );
+changes.forEach( change =&gt; {
+    if ( change.type == &apos;insert&apos; ) {
+        input.splice( change.index, 0, ...change.values );
+    } else if ( change.type == &apos;delete&apos; ) {
+        input.splice( change.index, change.howMany );
+    }
+} );
 
-    input.join( &apos;&apos; ) == output.join( &apos;&apos; ); // -&gt; true</code></pre>
+input.join( &apos;&apos; ) == output.join( &apos;&apos; ); // -&gt; true</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> diff : ('equal'|'insert'|'delete')</code></dt>
-                                  <dd><p>Result of <code>(module:utils/diff~diff)</code>.</p>
+                                  <dd><p>Result of <code>module:utils/diff~diff</code>.</p>
                                   </dd>
                                   <dt><code> output : String | Array</code></dt>
                                   <dd><p>The string or array which was passed as diff&apos;s output.</p>
@@ -1121,7 +1121,7 @@ in order to transform it into the output.</p>
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -2377,13 +2377,13 @@ in order to transform it into the output.</p>
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -2431,7 +2431,7 @@ in order to transform it into the output.</p>
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

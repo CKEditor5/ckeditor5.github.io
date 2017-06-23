@@ -30,11 +30,11 @@ Node
 <p>This is an abstract class that is a base for other classes representing different nodes in model.</p>
 <p><strong>Note:</strong> If a node is detached from the model tree, you can manipulate it using it&apos;s API.
 However, it is <strong>very important</strong> that nodes already attached to model tree should be only changed through
-<code><a href="module_engine_model_document-Document.html#batch">Batch API</a></code>.</p>
-<p>Changes done by <code>Node</code> methods, like <code><a href="module_engine_model_element-Element.html#insertChildren">insertChildren</a></code> or
-<code><a href="module_engine_model_node-Node.html#setAttribute">setAttribute</a></code>
-do not generate <code><a href="module_engine_model_operation_operation-Operation.html">operations</a></code>
-which are essential for correct editor work if you modify nodes in <code><a href="module_engine_model_document-Document.html">document</a></code> root.</p>
+<a href="module_engine_model_document-Document.html#batch">Batch API</a>.</p>
+<p>Changes done by <code>Node</code> methods, like <a href="module_engine_model_element-Element.html#insertChildren">insertChildren</a> or
+<a href="module_engine_model_node-Node.html#setAttribute">setAttribute</a>
+do not generate <a href="module_engine_model_operation_operation-Operation.html">operations</a>
+which are essential for correct editor work if you modify nodes in <a href="module_engine_model_document-Document.html">document</a> root.</p>
 <p>The flow of working on <code>Node</code> (and classes that inherits from it) is as such:</p>
 <ol>
 <li>You can create a <code>Node</code> instance, modify it using it&apos;s API.</li>
@@ -42,10 +42,10 @@ which are essential for correct editor work if you modify nodes in <code><a href
 <li>Change <code>Node</code> that was already added to the model using <code>Batch</code> API.</li>
 </ol>
 <p>Similarly, you cannot use <code>Batch</code> API on a node that has not been added to the model tree, with the exception
-of <code><a href="module_engine_model_batch-Batch.html#insert">inserting</a></code> that node to the model tree.</p>
-<p>Be aware that using <code><a href="module_engine_model_batch-Batch.html#remove">remove from Batch API</a></code> does not allow to use <code>Node</code> API because
+of <a href="module_engine_model_batch-Batch.html#insert">inserting</a> that node to the model tree.</p>
+<p>Be aware that using <a href="module_engine_model_batch-Batch.html#remove">remove from Batch API</a> does not allow to use <code>Node</code> API because
 the information about <code>Node</code> is still kept in model document.</p>
-<p>In case of <code><a href="module_engine_model_element-Element.html">element node</a></code>, adding and removing children also counts as changing a node and
+<p>In case of <a href="module_engine_model_element-Element.html">element node</a>, adding and removing children also counts as changing a node and
 follows same rules.</p>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
@@ -99,8 +99,8 @@ follows same rules.</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt"><code><a href="module_engine_model_document-Document.html">Document</a></code> that owns this node or <code>null</code> if the node has no parent or is inside
-a <code><a href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></code>.</p>
+                      <p class="collapsing-list__excerpt"><a href="module_engine_model_document-Document.html">Document</a> that owns this node or <code>null</code> if the node has no parent or is inside
+a <a href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a>.</p>
                       <div class="collapsing-list__content">
                       </div>
                     </div>
@@ -114,7 +114,7 @@ a <code><a href="module_engine_model_documentfragment-DocumentFragment.html">Doc
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Offset at which this node ends in it&apos;s parent. It is equal to the sum of this node&apos;s
-<code><a href="module_engine_model_node-Node.html#startOffset">start offset</a></code> and <code><a href="module_engine_model_node-Node.html#offsetSize">offset  size</a></code>.
+<a href="module_engine_model_node-Node.html#startOffset">start offset</a> and <a href="module_engine_model_node-Node.html#offsetSize">offset  size</a>.
 Equals to <code>null</code> if the node has no parent.</p>
                       <div class="collapsing-list__content">
                       </div>
@@ -157,9 +157,9 @@ This means that model tree got broken.</p>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Offset size of this node. Represents how much &quot;offset space&quot; is occupied by the node in it&apos;s parent.
-It is important for <code><a href="module_engine_model_position-Position.html">position</a></code>. When node has <code>offsetSize</code> greater than <code>1</code>, position
+It is important for <a href="module_engine_model_position-Position.html">position</a>. When node has <code>offsetSize</code> greater than <code>1</code>, position
 can be placed between that node start and end. <code>offsetSize</code> greater than <code>1</code> is for nodes that represents more
-than one entity, i.e. <code><a href="module_engine_model_text-Text.html">text node</a></code>.</p>
+than one entity, i.e. <a href="module_engine_model_text-Text.html">text node</a>.</p>
                       <div class="collapsing-list__content">
                       </div>
                     </div>
@@ -172,8 +172,8 @@ than one entity, i.e. <code><a href="module_engine_model_text-Text.html">text no
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Parent of this node. It could be <code><a href="module_engine_model_element-Element.html">Element</a></code>
-or <code><a href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></code>.
+                      <p class="collapsing-list__excerpt">Parent of this node. It could be <a href="module_engine_model_element-Element.html"><code>Element</code></a>
+or <a href="module_engine_model_documentfragment-DocumentFragment.html"><code>DocumentFragment</code></a>.
 Equals to <code>null</code> if the node has no parent.</p>
                       <div class="collapsing-list__content">
                       </div>
@@ -201,7 +201,7 @@ Equals to <code>null</code> if the node has no parent.</p>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">The top-most ancestor of the node. If node has no parent it is the root itself. If the node is a part
-of <code><a href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></code>, it&apos;s <code>root</code> is equal to that <code>DocumentFragment</code>.</p>
+of <a href="module_engine_model_documentfragment-DocumentFragment.html"><code>DocumentFragment</code></a>, it&apos;s <code>root</code> is equal to that <code>DocumentFragment</code>.</p>
                       <div class="collapsing-list__content">
                       </div>
                     </div>
@@ -214,7 +214,7 @@ of <code><a href="module_engine_model_documentfragment-DocumentFragment.html">Do
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Offset at which this node starts in it&apos;s parent. It is equal to the sum of <code><a href="module_engine_model_node-Node.html#offsetSize">offsetSize</a></code>
+                      <p class="collapsing-list__excerpt">Offset at which this node starts in it&apos;s parent. It is equal to the sum of <a href="module_engine_model_node-Node.html#offsetSize">offsetSize</a>
 of all it&apos;s previous siblings. Equals to <code>null</code> if node has no parent.</p>
                       <div class="collapsing-list__content">
 <p>Accessing this property throws an error if this node&apos;s parent element does not contain it.
@@ -237,7 +237,7 @@ This means that model tree got broken.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> [ attrs ] : Object</code></dt>
-                                  <dd><p>Node&apos;s attributes. See <code>(module:utils/tomap~toMap)</code> for a list of accepted values.</p>
+                                  <dd><p>Node&apos;s attributes. See <code>module:utils/tomap~toMap</code> for a list of accepted values.</p>
                                   </dd>
                                 </dl>
                       </div>
@@ -249,18 +249,18 @@ This means that model tree got broken.</p>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Gets path to the node. The path is an array containing starting offsets of consecutive ancestors of this node,
-beginning from <code><a href="module_engine_model_node-Node.html#root">root</a></code>, down to this node&apos;s starting offset. The path can be used to
-create <code><a href="module_engine_model_position-Position.html">Position</a></code> instance.
+beginning from <a href="module_engine_model_node-Node.html#root">root</a>, down to this node&apos;s starting offset. The path can be used to
+create <a href="module_engine_model_position-Position.html">Position</a> instance.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    const abc = new Text( &apos;abc&apos; );
-    const foo = new Text( &apos;foo&apos; );
-    const h1 = new Element( &apos;h1&apos;, null, new Text( &apos;header&apos; ) );
-    const p = new Element( &apos;p&apos;, null, [ abc, foo ] );
-    const div = new Element( &apos;div&apos;, null, [ h1, p ] );
-    foo.getPath(); // Returns [ 1, 3 ]. `foo` is in `p` which is in `div`. `p` starts at offset 1, while `foo` at 3.
-    h1.getPath(); // Returns [ 0 ].
-    div.getPath(); // Returns [].</code></pre>
+<pre class="prettyprint source"><code>const abc = new Text( &apos;abc&apos; );
+const foo = new Text( &apos;foo&apos; );
+const h1 = new Element( &apos;h1&apos;, null, new Text( &apos;header&apos; ) );
+const p = new Element( &apos;p&apos;, null, [ abc, foo ] );
+const div = new Element( &apos;div&apos;, null, [ h1, p ] );
+foo.getPath(); // Returns [ 1, 3 ]. `foo` is in `p` which is in `div`. `p` starts at offset 1, while `foo` at 3.
+h1.getPath(); // Returns [ 0 ].
+div.getPath(); // Returns [].</code></pre>
                         <h4>Returns</h4>
                         <dl>
                                   <dt><code>Number</code></dt>
@@ -424,15 +424,15 @@ This format is accepted by native <code>Map</code> object and also can be passed
                       </p>
                       <div class="collapsing-list__content">
 <p>This method is useful when processing model tree objects that are of unknown type. For example, a function
-may return <code><a href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></code> or <code><a href="module_engine_model_node-Node.html">Node</a></code>
+may return <a href="module_engine_model_documentfragment-DocumentFragment.html"><code>DocumentFragment</code></a> or <a href="module_engine_model_node-Node.html"><code>Node</code></a>
 that can be either text node or element. This method can be used to check what kind of object is returned.</p>
-<pre class="prettyprint source"><code>    obj.is( &apos;node&apos; ); // true for any node, false for document fragment
-    obj.is( &apos;documentFragment&apos; ); // true for document fragment, false for any node
-    obj.is( &apos;element&apos; ); // true for any element, false for text node or document fragment
-    obj.is( &apos;element&apos;, &apos;paragraph&apos; ); // true only for element which name is &apos;paragraph&apos;
-    obj.is( &apos;paragraph&apos; ); // shortcut for obj.is( &apos;element&apos;, &apos;paragraph&apos; )
-    obj.is( &apos;text&apos; ); // true for text node, false for element and document fragment
-    obj.is( &apos;textProxy&apos; ); // true for text proxy object</code></pre>
+<pre class="prettyprint source"><code>obj.is( &apos;node&apos; ); // true for any node, false for document fragment
+obj.is( &apos;documentFragment&apos; ); // true for document fragment, false for any node
+obj.is( &apos;element&apos; ); // true for any element, false for text node or document fragment
+obj.is( &apos;element&apos;, &apos;paragraph&apos; ); // true only for element which name is &apos;paragraph&apos;
+obj.is( &apos;paragraph&apos; ); // shortcut for obj.is( &apos;element&apos;, &apos;paragraph&apos; )
+obj.is( &apos;text&apos; ); // true for text node, false for element and document fragment
+obj.is( &apos;textProxy&apos; ); // true for text proxy object</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> type : 'element' | 'rootElement' | 'text' | 'textProxy' | 'documentFragment'</code></dt>
@@ -513,7 +513,7 @@ that can be either text node or element. This method can be used to check what k
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> [ attrs ] : Object</code></dt>
-                                  <dd><p>Attributes to set. See <code>(module:utils/tomap~toMap)</code> for a list of accepted values.</p>
+                                  <dd><p>Attributes to set. See <code>module:utils/tomap~toMap</code> for a list of accepted values.</p>
                                   </dd>
                                 </dl>
                       </div>
@@ -1556,7 +1556,7 @@ that can be either text node or element. This method can be used to check what k
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -2812,13 +2812,13 @@ that can be either text node or element. This method can be used to check what k
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -2866,7 +2866,7 @@ that can be either text node or element. This method can be used to check what k
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

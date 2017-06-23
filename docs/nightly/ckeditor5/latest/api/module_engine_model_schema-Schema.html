@@ -30,7 +30,7 @@ Schema
 can be nested within which ones and which attributes can be applied to them. It&apos;s created during the run-time of the application,
 typically by features. Also, the features can query the schema to learn what structure is allowed and act accordingly.</p>
 <p>For instance, if a feature wants to define that an attribute bold is allowed on the text it needs to register this rule like this:</p>
-<pre class="prettyprint source"><code>    editor.document.schema.allow( &apos;$text&apos;, &apos;bold&apos; );</code></pre><p>Note: items prefixed with <code>$</code> are special group of items. By default, <code>Schema</code> defines three special items:</p>
+<pre class="prettyprint source"><code>editor.document.schema.allow( &apos;$text&apos;, &apos;bold&apos; );</code></pre><p>Note: items prefixed with <code>$</code> are special group of items. By default, <code>Schema</code> defines three special items:</p>
 <ul>
 <li><code>$inline</code> represents all inline elements,</li>
 <li><code>$text</code> is a sub-group of <code>$inline</code> and represents text nodes,</li>
@@ -161,14 +161,14 @@ Just like images, placeholder widgets, etc.</p>
                       <p class="collapsing-list__excerpt">Allows given query in the schema.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    // Allow text with bold attribute in all P elements.
-    schema.registerItem( &apos;p&apos;, &apos;$block&apos; );
-    schema.allow( { name: &apos;$text&apos;, attributes: &apos;bold&apos;, inside: &apos;p&apos; } );
+<pre class="prettyprint source"><code>// Allow text with bold attribute in all P elements.
+schema.registerItem( &apos;p&apos;, &apos;$block&apos; );
+schema.allow( { name: &apos;$text&apos;, attributes: &apos;bold&apos;, inside: &apos;p&apos; } );
 
-    // Allow header in Ps that are in DIVs
-    schema.registerItem( &apos;header&apos;, &apos;$block&apos; );
-    schema.registerItem( &apos;div&apos;, &apos;$block&apos; );
-    schema.allow( { name: &apos;header&apos;, inside: &apos;div p&apos; } ); // inside: [ &apos;div&apos;, &apos;p&apos; ] would also work.</code></pre>
+// Allow header in Ps that are in DIVs
+schema.registerItem( &apos;header&apos;, &apos;$block&apos; );
+schema.registerItem( &apos;div&apos;, &apos;$block&apos; );
+schema.allow( { name: &apos;header&apos;, inside: &apos;div p&apos; } ); // inside: [ &apos;div&apos;, &apos;p&apos; ] would also work.</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> query : <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaQuery.html">SchemaQuery</a></span></code></dt>
@@ -186,33 +186,33 @@ Just like images, placeholder widgets, etc.</p>
                       <p class="collapsing-list__excerpt">Checks whether given query is allowed in schema.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    // Check whether bold text is allowed in header element.
-    let query = {
-        name: &apos;$text&apos;,
-        attributes: &apos;bold&apos;,
-        inside: &apos;header&apos;
-    };
-    if ( schema.check( query ) ) { ... }
+<pre class="prettyprint source"><code>// Check whether bold text is allowed in header element.
+let query = {
+    name: &apos;$text&apos;,
+    attributes: &apos;bold&apos;,
+    inside: &apos;header&apos;
+};
+if ( schema.check( query ) ) { ... }
 
-    // Check whether bold and italic text can be placed at caret position.
-    let caretPos = editor.document.selection.getFirstPosition();
-    let query = {
-        name: &apos;$text&apos;,
-        attributes: [ &apos;bold&apos;, &apos;italic&apos; ],
-        inside: caretPos
-    };
-    if ( schema.check( query ) ) { ... }
+// Check whether bold and italic text can be placed at caret position.
+let caretPos = editor.document.selection.getFirstPosition();
+let query = {
+    name: &apos;$text&apos;,
+    attributes: [ &apos;bold&apos;, &apos;italic&apos; ],
+    inside: caretPos
+};
+if ( schema.check( query ) ) { ... }
 
-    // Check whether image with alt, src and title is allowed in given elements path.
-    let quoteElement = new Element( &apos;quote&apos; );
-    let query = {
-        name: &apos;img&apos;,
-        attributes: [ &apos;alt&apos;, &apos;src&apos;, &apos;title&apos; ],
-        // It is possible to mix strings with elements.
-        // Query will check whether &quot;img&quot; can be inside &quot;quoteElement&quot; that is inside a block element.
-        inside: [ &apos;$block&apos;, quoteElement ]
-    };
-    if ( schema.check( query ) ) { ... }</code></pre>
+// Check whether image with alt, src and title is allowed in given elements path.
+let quoteElement = new Element( &apos;quote&apos; );
+let query = {
+    name: &apos;img&apos;,
+    attributes: [ &apos;alt&apos;, &apos;src&apos;, &apos;title&apos; ],
+    // It is possible to mix strings with elements.
+    // Query will check whether &quot;img&quot; can be inside &quot;quoteElement&quot; that is inside a block element.
+    inside: [ &apos;$block&apos;, quoteElement ]
+};
+if ( schema.check( query ) ) { ... }</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> query : <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaQuery.html">SchemaQuery</a></span></code></dt>
@@ -267,7 +267,7 @@ specified attribute allowed.</li>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Returns <code><a href="module_engine_model_schema-SchemaItem.html">schema item</a></code> that was registered in the schema under given name.
+                      <p class="collapsing-list__excerpt">Returns <a href="module_engine_model_schema-SchemaItem.html">schema item</a> that was registered in the schema under given name.
 If item has not been found, throws error.
                       </p>
                       <div class="collapsing-list__content">
@@ -369,8 +369,8 @@ If item has not been found, throws error.
                       <p class="collapsing-list__excerpt">Registers given item name in schema.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    // Register P element that should be treated like all block elements.
-    schema.registerItem( &apos;p&apos;, &apos;$block&apos; );</code></pre>
+<pre class="prettyprint source"><code>// Register P element that should be treated like all block elements.
+schema.registerItem( &apos;p&apos;, &apos;$block&apos; );</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> itemName : String</code></dt>
@@ -393,11 +393,11 @@ elements in the model might require some attributes to be set. If multiple sets 
 is enough that the entity fulfills only one set.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    // &quot;a&quot; element must either have &quot;href&quot; attribute or &quot;name&quot; attribute
-    schema.requireAttributes( &apos;a&apos;, [ &apos;href&apos; ] );
-    schema.requireAttributes( &apos;a&apos;, [ &apos;name&apos; ] );
-    // &quot;img&quot; element must have both &quot;src&quot; and &quot;alt&quot; attributes
-    schema.requireAttributes( &apos;img&apos;, [ &apos;src&apos;, &apos;alt&apos; ] );</code></pre>
+<pre class="prettyprint source"><code>// &quot;a&quot; element must either have &quot;href&quot; attribute or &quot;name&quot; attribute
+schema.requireAttributes( &apos;a&apos;, [ &apos;href&apos; ] );
+schema.requireAttributes( &apos;a&apos;, [ &apos;name&apos; ] );
+// &quot;img&quot; element must have both &quot;src&quot; and &quot;alt&quot; attributes
+schema.requireAttributes( &apos;img&apos;, [ &apos;src&apos;, &apos;alt&apos; ] );</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> name : String</code></dt>
@@ -422,7 +422,7 @@ is enough that the entity fulfills only one set.
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Normalizes a path to an entity by converting it from <code><a href="module_engine_model_schema-SchemaPath.html">SchemaPath</a></code> to an array of strings.
+                      <p class="collapsing-list__excerpt">Normalizes a path to an entity by converting it from <a href="module_engine_model_schema-SchemaPath.html"><code>SchemaPath</code></a> to an array of strings.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -1460,7 +1460,7 @@ is enough that the entity fulfills only one set.
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -2716,13 +2716,13 @@ is enough that the entity fulfills only one set.
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -2770,7 +2770,7 @@ is enough that the entity fulfills only one set.
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

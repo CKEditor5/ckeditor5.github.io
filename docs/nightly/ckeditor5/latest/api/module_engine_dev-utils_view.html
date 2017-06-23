@@ -65,7 +65,7 @@ engine/dev-utils/view
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Private helper class used for converting ranges represented as text inside view <code><a href="module_engine_viewithtext-Text.html">Text nodes</a></code>.</p>
+                      <p class="collapsing-list__excerpt">Private helper class used for converting ranges represented as text inside view <a href="module_engine_viewithtext-Text.html">Text nodes</a>.</p>
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-private="true">
@@ -90,7 +90,7 @@ engine/dev-utils/view
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Writes the contents of the <code><a href="module_engine_viewithdocument-Document.html">Document</a></code> to an HTML-like string.
+                      <p class="collapsing-list__excerpt">Writes the contents of the <a href="module_engine_viewithdocument-Document.html">Document</a> to an HTML-like string.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -143,35 +143,35 @@ instead of <code>&lt;p&gt;</code>, <code>&lt;attribute:b&gt;</code> instead of <
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Parses HTML-like string and returns view tree nodes.
-Simple string will be converted to <code><a href="module_engine_viewithtext-Text.html">Text</a></code> node:
+Simple string will be converted to <a href="module_engine_viewithtext-Text.html">Text</a> node:
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    parse( &apos;foobar&apos; ); // Returns instance of Text.</code></pre><p><code><a href="module_engine_viewithelement-Element.html">Elements</a></code> will be parsed with attributes an children:</p>
-<pre class="prettyprint source"><code>    parse( &apos;&lt;b name=&quot;baz&quot;&gt;foobar&lt;/b&gt;&apos; ); // Returns instance of Element with `baz` attribute and text child node.</code></pre><p>Multiple nodes provided on root level will be converted to
-<code><a href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></code>:</p>
-<pre class="prettyprint source"><code>    parse( &apos;&lt;b&gt;foo&lt;/b&gt;&lt;i&gt;bar&lt;/i&gt;&apos; ); // Returns DocumentFragment with two child elements.</code></pre><p>Method can parse multiple <code><a href="module_engine_viewithrange-Range.html">ranges</a></code> provided in string data and return
-<code><a href="module_engine_viewithselection-Selection.html">Selection</a></code> instance containing these ranges. Ranges placed inside
-<code><a href="module_engine_viewithtext-Text.html">Text</a></code> nodes should be marked using <code>{</code> and <code>}</code> brackets:</p>
-<pre class="prettyprint source"><code>    const { text, selection } = parse( &apos;f{ooba}r&apos; );</code></pre><p>Ranges placed outside text nodes should be marked using <code>[</code> and <code>]</code> brackets:</p>
-<pre class="prettyprint source"><code>    const { root, selection } = parse( &apos;&lt;p&gt;[&lt;b&gt;foobar&lt;/b&gt;]&lt;/p&gt;&apos; );</code></pre><p><strong> Note: </strong>
+<pre class="prettyprint source"><code>parse( &apos;foobar&apos; ); // Returns instance of Text.</code></pre><p><a href="module_engine_viewithelement-Element.html">Elements</a> will be parsed with attributes an children:</p>
+<pre class="prettyprint source"><code>parse( &apos;&lt;b name=&quot;baz&quot;&gt;foobar&lt;/b&gt;&apos; ); // Returns instance of Element with `baz` attribute and text child node.</code></pre><p>Multiple nodes provided on root level will be converted to
+<a href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a>:</p>
+<pre class="prettyprint source"><code>parse( &apos;&lt;b&gt;foo&lt;/b&gt;&lt;i&gt;bar&lt;/i&gt;&apos; ); // Returns DocumentFragment with two child elements.</code></pre><p>Method can parse multiple <a href="module_engine_viewithrange-Range.html">ranges</a> provided in string data and return
+<a href="module_engine_viewithselection-Selection.html">Selection</a> instance containing these ranges. Ranges placed inside
+<a href="module_engine_viewithtext-Text.html">Text</a> nodes should be marked using <code>{</code> and <code>}</code> brackets:</p>
+<pre class="prettyprint source"><code>const { text, selection } = parse( &apos;f{ooba}r&apos; );</code></pre><p>Ranges placed outside text nodes should be marked using <code>[</code> and <code>]</code> brackets:</p>
+<pre class="prettyprint source"><code>const { root, selection } = parse( &apos;&lt;p&gt;[&lt;b&gt;foobar&lt;/b&gt;]&lt;/p&gt;&apos; );</code></pre><p><strong> Note: </strong>
 It is possible to unify selection markers to <code>[</code> and <code>]</code> for both (inside and outside text)
 by setting <code>sameSelectionCharacters=true</code> option. It is mainly used when view parse option is used by model utils.</p>
 <p>Sometimes there is a need for defining order of ranges inside created selection. This can be achieved by providing
 ranges order array as additional parameter:</p>
-<pre class="prettyprint source"><code>    const { root, selection } = parse( &apos;{fo}ob{ar}{ba}z&apos;, { order: [ 2, 3, 1 ] } );</code></pre><p>In above example first range (<code>{fo}</code>) will be added to selection as second one, second range (<code>{ar}</code>) will be added
+<pre class="prettyprint source"><code>const { root, selection } = parse( &apos;{fo}ob{ar}{ba}z&apos;, { order: [ 2, 3, 1 ] } );</code></pre><p>In above example first range (<code>{fo}</code>) will be added to selection as second one, second range (<code>{ar}</code>) will be added
 as third and third range (<code>{ba}</code>) will be added as first one.</p>
-<p>If selection&apos;s last range should be added as backward one (so the <code><a href="module_engine_viewithselection-Selection.html#anchor">selection
-anchor</a></code> is represented by <code>end</code> position and <code><a href="module_engine_viewithselection-Selection.html#focus">selection focus</a></code> is
+<p>If selection&apos;s last range should be added as backward one (so the <a href="module_engine_viewithselection-Selection.html#anchor">selection
+anchor</a> is represented by <code>end</code> position and <a href="module_engine_viewithselection-Selection.html#focus">selection focus</a> is
 represented by <code>start</code> position) use <code>lastRangeBackward</code> flag:</p>
-<pre class="prettyprint source"><code>    const { root, selection } = parse( `{foo}bar{baz}`, { lastRangeBackward: true } );</code></pre><p>Other examples and edge cases:</p>
-<pre class="prettyprint source"><code>    // Returns empty DocumentFragment.
-    parse( &apos;&apos; );
+<pre class="prettyprint source"><code>const { root, selection } = parse( `{foo}bar{baz}`, { lastRangeBackward: true } );</code></pre><p>Other examples and edge cases:</p>
+<pre class="prettyprint source"><code>// Returns empty DocumentFragment.
+parse( &apos;&apos; );
 
-    // Returns empty DocumentFragment and collapsed selection.
-    const { root, selection } = parse( &apos;[]&apos; );
+// Returns empty DocumentFragment and collapsed selection.
+const { root, selection } = parse( &apos;[]&apos; );
 
-    // Returns Element and selection that is placed inside of DocumentFragment containing that element.
-    const { root, selection } = parse( &apos;[&lt;a&gt;&lt;/a&gt;]&apos; );</code></pre>
+// Returns Element and selection that is placed inside of DocumentFragment containing that element.
+const { root, selection } = parse( &apos;[&lt;a&gt;&lt;/a&gt;]&apos; );</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> data : String</code></dt>
@@ -183,18 +183,18 @@ represented by <code>start</code> position) use <code>lastRangeBackward</code> f
                                               <h5>Properties</h5>
                                               <dt><code> [ options.order ] : Number</code></dt>
                                               <dd><p>Array with order of parsed ranges added to returned
-<code><a href="module_engine_viewithselection-Selection.html">Selection</a></code> instance. Each element should represent desired position of each range in
+<a href="module_engine_viewithselection-Selection.html">Selection</a> instance. Each element should represent desired position of each range in
 selection instance. For example: <code>[2, 3, 1]</code> means that first range will be placed as second, second as third and third as first.</p>
                                               </dd>
                                               <dt><code> [ options.lastRangeBackward ] : Boolean</code></dt>
                                               <dd><p>If set to true last range will be added as backward to the returned
-<code><a href="module_engine_viewithselection-Selection.html">Selection</a></code> instance.</p>
+<a href="module_engine_viewithselection-Selection.html">Selection</a> instance.</p>
                                                 <p>Defaults to <code>false</code></p>
                                               </dd>
                                               <dt><code> [ options.rootElement ] : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></span></code></dt>
                                               <dd><p>Default root to use when parsing elements.
 When set to <code>null</code> root element will be created automatically. If set to
-<code><a href="module_engine_viewithelement-Element.html">Element</a></code> or <code><a href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></code></p>
+<a href="module_engine_viewithelement-Element.html">Element</a> or <a href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></p>
 <ul>
 <li>this node will be used as root for all parsed nodes.</li>
 </ul>
@@ -224,7 +224,7 @@ When set to <code>null</code> root element will be created automatically. If set
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Sets the contents of the <code><a href="module_engine_viewithdocument-Document.html">Document</a></code> provided as HTML-like string.
+                      <p class="collapsing-list__excerpt">Sets the contents of the <a href="module_engine_viewithdocument-Document.html">Document</a> provided as HTML-like string.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -259,70 +259,70 @@ default <code>main</code> name will be used.</p>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Converts view elements to HTML-like string representation.
-Root element can be provided as <code><a href="module_engine_viewithtext-Text.html">Text</a></code>:
+Root element can be provided as <a href="module_engine_viewithtext-Text.html">Text</a>:
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    const text = new Text( &apos;foobar&apos; );
-    stringify( text ); // &apos;foobar&apos;</code></pre><p>or as <code><a href="module_engine_viewithelement-Element.html">Element</a></code>:</p>
-<pre class="prettyprint source"><code>    const element = new Element( &apos;p&apos;, null, new Text( &apos;foobar&apos; ) );
-    stringify( element ); // &apos;&lt;p&gt;foobar&lt;/p&gt;&apos;</code></pre><p>or as <code><a href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></code>:</p>
-<pre class="prettyprint source"><code>    const text = new Text( &apos;foobar&apos; );
-    const b = new Element( &apos;b&apos;, { name: &apos;test&apos; }, text );
-    const p = new Element( &apos;p&apos;, { style: &apos;color:red;&apos; } );
-    const fragment = new DocumentFragment( [ p, b ] );
+<pre class="prettyprint source"><code>const text = new Text( &apos;foobar&apos; );
+stringify( text ); // &apos;foobar&apos;</code></pre><p>or as <a href="module_engine_viewithelement-Element.html">Element</a>:</p>
+<pre class="prettyprint source"><code>const element = new Element( &apos;p&apos;, null, new Text( &apos;foobar&apos; ) );
+stringify( element ); // &apos;&lt;p&gt;foobar&lt;/p&gt;&apos;</code></pre><p>or as <a href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a>:</p>
+<pre class="prettyprint source"><code>const text = new Text( &apos;foobar&apos; );
+const b = new Element( &apos;b&apos;, { name: &apos;test&apos; }, text );
+const p = new Element( &apos;p&apos;, { style: &apos;color:red;&apos; } );
+const fragment = new DocumentFragment( [ p, b ] );
 
-    stringify( fragment ); // &apos;&lt;p style=&quot;color:red;&quot;&gt;&lt;/p&gt;&lt;b name=&quot;test&quot;&gt;foobar&lt;/b&gt;&apos;</code></pre><p>Additionally <code><a href="module_engine_viewithselection-Selection.html">Selection</a></code> instance can be provided, then ranges from that selection
+stringify( fragment ); // &apos;&lt;p style=&quot;color:red;&quot;&gt;&lt;/p&gt;&lt;b name=&quot;test&quot;&gt;foobar&lt;/b&gt;&apos;</code></pre><p>Additionally <a href="module_engine_viewithselection-Selection.html">Selection</a> instance can be provided, then ranges from that selection
 will be included in output data.
 If range position is placed inside element node, it will be represented with <code>[</code> and <code>]</code>:</p>
-<pre class="prettyprint source"><code>    const text = new Text( &apos;foobar&apos; );
-    const b = new Element( &apos;b&apos;, null, text );
-    const p = new Element( &apos;p&apos;, null, b );
-    const selection = new Selection();
-    selection.addRange( Range.createFromParentsAndOffsets( p, 0, p, 1 ) );
+<pre class="prettyprint source"><code>const text = new Text( &apos;foobar&apos; );
+const b = new Element( &apos;b&apos;, null, text );
+const p = new Element( &apos;p&apos;, null, b );
+const selection = new Selection();
+selection.addRange( Range.createFromParentsAndOffsets( p, 0, p, 1 ) );
 
-    stringify( p, selection ); // &apos;&lt;p&gt;[&lt;b&gt;foobar&lt;/b&gt;]&lt;/p&gt;&apos;</code></pre><p>If range is placed inside text node, it will be represented with <code>{</code> and <code>}</code>:</p>
-<pre class="prettyprint source"><code>    const text = new Text( &apos;foobar&apos; );
-    const b = new Element( &apos;b&apos;, null, text );
-    const p = new Element( &apos;p&apos;, null, b );
-    const selection = new Selection();
-    selection.addRange( Range.createFromParentsAndOffsets( text, 1, text, 5 ) );
+stringify( p, selection ); // &apos;&lt;p&gt;[&lt;b&gt;foobar&lt;/b&gt;]&lt;/p&gt;&apos;</code></pre><p>If range is placed inside text node, it will be represented with <code>{</code> and <code>}</code>:</p>
+<pre class="prettyprint source"><code>const text = new Text( &apos;foobar&apos; );
+const b = new Element( &apos;b&apos;, null, text );
+const p = new Element( &apos;p&apos;, null, b );
+const selection = new Selection();
+selection.addRange( Range.createFromParentsAndOffsets( text, 1, text, 5 ) );
 
-    stringify( p, selection ); // &apos;&lt;p&gt;&lt;b&gt;f{ooba}r&lt;/b&gt;&lt;/p&gt;&apos;</code></pre><p><strong> Note: </strong>
+stringify( p, selection ); // &apos;&lt;p&gt;&lt;b&gt;f{ooba}r&lt;/b&gt;&lt;/p&gt;&apos;</code></pre><p><strong> Note: </strong>
 It is possible to unify selection markers to <code>[</code> and <code>]</code> for both (inside and outside text)
 by setting <code>sameSelectionCharacters=true</code> option. It is mainly used when view stringify option is used by model utils.</p>
 <p>Multiple ranges are supported:</p>
-<pre class="prettyprint source"><code>    const text = new Text( &apos;foobar&apos; );
-    const selection = new Selection();
-    selection.addRange( Range.createFromParentsAndOffsets( text, 0, text, 1 ) );
-    selection.addRange( Range.createFromParentsAndOffsets( text, 3, text, 5 ) );
+<pre class="prettyprint source"><code>const text = new Text( &apos;foobar&apos; );
+const selection = new Selection();
+selection.addRange( Range.createFromParentsAndOffsets( text, 0, text, 1 ) );
+selection.addRange( Range.createFromParentsAndOffsets( text, 3, text, 5 ) );
 
-    stringify( text, selection ); // &apos;{f}oo{ba}r&apos;</code></pre><p>Instead of <code><a href="module_engine_viewithselection-Selection.html">Selection</a></code> instance <code><a href="module_engine_viewithrange-Range.html">Range</a></code> or
-<code><a href="module_engine_viewithposition-Position.html">Position</a></code> instance can be provided. If Range instance is provided - it will be
+stringify( text, selection ); // &apos;{f}oo{ba}r&apos;</code></pre><p>Instead of <a href="module_engine_viewithselection-Selection.html">Selection</a> instance <a href="module_engine_viewithrange-Range.html">Range</a> or
+<a href="module_engine_viewithposition-Position.html">Position</a> instance can be provided. If Range instance is provided - it will be
 converted to selection containing this range. If Position instance is provided - it will be converted to selection
 containing one range collapsed at this position.</p>
-<pre class="prettyprint source"><code>    const text = new Text( &apos;foobar&apos; );
-    const range = Range.createFromParentsAndOffsets( text, 0, text, 1 );
-    const position = new Position( text, 3 );
+<pre class="prettyprint source"><code>const text = new Text( &apos;foobar&apos; );
+const range = Range.createFromParentsAndOffsets( text, 0, text, 1 );
+const position = new Position( text, 3 );
 
-    stringify( text, range ); // &apos;{f}oobar&apos;
-    stringify( text, position ); // &apos;foo{}bar&apos;</code></pre><p>Additional options object can be provided.
+stringify( text, range ); // &apos;{f}oobar&apos;
+stringify( text, position ); // &apos;foo{}bar&apos;</code></pre><p>Additional options object can be provided.
 If <code>options.showType</code> is set to <code>true</code>, element&apos;s types will be
-presented for <code><a href="module_engine_viewithattributeelement-AttributeElement.html">AttributeElements</a></code>,
-<code><a href="module_engine_viewithcontainerelement-ContainerElement.html">ContainerElements</a></code>
-<code><a href="module_engine_viewithemptyelement-EmptyElement.html">EmptyElements</a></code>
-and <code><a href="module_engine_viewithuielement-UIElement.html">UIElements</a></code>:</p>
-<pre class="prettyprint source"><code>    const attribute = new AttributeElement( &apos;b&apos; );
-    const container = new ContainerElement( &apos;p&apos; );
-    const empty = new EmptyElement( &apos;img&apos; );
-    const ui = new UIElement( &apos;span&apos; );
-    getData( attribute, null, { showType: true } ); // &apos;&lt;attribute:b&gt;&lt;/attribute:b&gt;&apos;
-    getData( container, null, { showType: true } ); // &apos;&lt;container:p&gt;&lt;/container:p&gt;&apos;
-    getData( empty, null, { showType: true } ); // &apos;&lt;empty:img&gt;&lt;/empty:img&gt;&apos;
-    getData( ui, null, { showType: true } ); // &apos;&lt;ui:span&gt;&lt;/ui:span&gt;&apos;</code></pre><p>If <code>options.showPriority</code> is set to <code>true</code>, priority will be displayed for all
-<code><a href="module_engine_viewithattributeelement-AttributeElement.html">AttributeElements</a></code>.</p>
-<pre class="prettyprint source"><code>    const attribute = new AttributeElement( &apos;b&apos; );
-    attribute.priority = 20;
-    getData( attribute, null, { showPriority: true } ); // &lt;b view-priority=&quot;20&quot;&gt;&lt;/b&gt;</code></pre>
+presented for <a href="module_engine_viewithattributeelement-AttributeElement.html">AttributeElements</a>,
+<a href="module_engine_viewithcontainerelement-ContainerElement.html">ContainerElements</a>
+<a href="module_engine_viewithemptyelement-EmptyElement.html">EmptyElements</a>
+and <a href="module_engine_viewithuielement-UIElement.html">UIElements</a>:</p>
+<pre class="prettyprint source"><code>const attribute = new AttributeElement( &apos;b&apos; );
+const container = new ContainerElement( &apos;p&apos; );
+const empty = new EmptyElement( &apos;img&apos; );
+const ui = new UIElement( &apos;span&apos; );
+getData( attribute, null, { showType: true } ); // &apos;&lt;attribute:b&gt;&lt;/attribute:b&gt;&apos;
+getData( container, null, { showType: true } ); // &apos;&lt;container:p&gt;&lt;/container:p&gt;&apos;
+getData( empty, null, { showType: true } ); // &apos;&lt;empty:img&gt;&lt;/empty:img&gt;&apos;
+getData( ui, null, { showType: true } ); // &apos;&lt;ui:span&gt;&lt;/ui:span&gt;&apos;</code></pre><p>If <code>options.showPriority</code> is set to <code>true</code>, priority will be displayed for all
+<a href="module_engine_viewithattributeelement-AttributeElement.html">AttributeElements</a>.</p>
+<pre class="prettyprint source"><code>const attribute = new AttributeElement( &apos;b&apos; );
+attribute.priority = 20;
+getData( attribute, null, { showPriority: true } ); // &lt;b view-priority=&quot;20&quot;&gt;&lt;/b&gt;</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> node : <span><a class="collapsing-list__type" href="module_engine_viewithtext-Text.html">Text</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></span></code></dt>
@@ -349,7 +349,7 @@ instead of <code>&lt;p&gt;</code>, <code>&lt;attribute:b&gt;</code> instead of <
                                               </dd>
                                               <dt><code> [ options.ignoreRoot ] : Boolean</code></dt>
                                               <dd><p>When set to <code>true</code> root&apos;s element opening and closing will not be printed.
-Mainly used by <code>getData</code> function to ignore <code><a href="module_engine_viewithdocument-Document.html">Document&apos;s</a></code> root element.</p>
+Mainly used by <code>getData</code> function to ignore <a href="module_engine_viewithdocument-Document.html">Document&apos;s</a> root element.</p>
                                                 <p>Defaults to <code>false</code></p>
                                               </dd>
                                               <dt><code> [ options.sameSelectionCharacters ] : Boolean</code></dt>
@@ -1389,7 +1389,7 @@ and selection outside text as <code>[</code> and <code>]</code>. When set to <co
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -2645,13 +2645,13 @@ and selection outside text as <code>[</code> and <code>]</code>. When set to <co
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -2699,7 +2699,7 @@ and selection outside text as <code>[</code> and <code>]</code>. When set to <co
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

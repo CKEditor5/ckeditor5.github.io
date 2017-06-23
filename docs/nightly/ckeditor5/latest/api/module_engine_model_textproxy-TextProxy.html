@@ -26,25 +26,25 @@
 TextProxy
         </h1>
         <p><span class="badge">class</span>
-        </p><p><code>TextProxy</code> represents a part of <code><a href="module_engine_model_text-Text.html">text node</a></code>.</p>
-<p>Since <code><a href="module_engine_model_position-Position.html">positions</a></code> can be placed between characters of a text node,
-<code><a href="module_engine_model_range-Range.html">ranges</a></code> may contain only parts of text nodes. When {@link module:engine/model/range~Range#getItems
+        </p><p><code>TextProxy</code> represents a part of <a href="module_engine_model_text-Text.html">text node</a>.</p>
+<p>Since <a href="module_engine_model_position-Position.html">positions</a> can be placed between characters of a text node,
+<a href="module_engine_model_range-Range.html">ranges</a> may contain only parts of text nodes. When {@link module:engine/model/range~Range#getItems
 getting items}
 contained in such range, we need to represent a part of that text node, since returning the whole text node would be incorrect.
 <code>TextProxy</code> solves this issue.</p>
-<p><code>TextProxy</code> has an API similar to <code><a href="module_engine_model_text-Text.html">Text</a></code> and allows to do most of the common tasks performed
+<p><code>TextProxy</code> has an API similar to <a href="module_engine_model_text-Text.html">Text</a> and allows to do most of the common tasks performed
 on model nodes.</p>
 <p><strong>Note:</strong> Some <code>TextProxy</code> instances may represent whole text node, not just a part of it.
-See <code><a href="module_engine_model_textproxy-TextProxy.html#isPartial">isPartial</a></code>.</p>
-<p><strong>Note:</strong> <code>TextProxy</code> is not an instance of <code><a href="module_engine_model_node-Node.html">node</a></code>. Keep this in mind when using it as a
+See <a href="module_engine_model_textproxy-TextProxy.html#isPartial"><code>isPartial</code></a>.</p>
+<p><strong>Note:</strong> <code>TextProxy</code> is not an instance of <a href="module_engine_model_node-Node.html">node</a>. Keep this in mind when using it as a
 parameter of methods.</p>
 <p><strong>Note:</strong> <code>TextProxy</code> is a readonly interface. If you want to perform changes on model data represented by a <code>TextProxy</code>
-use <code><a href="module_engine_model_writer-writer.html">model writer API</a></code>.</p>
+use <a href="module_engine_model_writer-writer.html">model writer API</a>.</p>
 <p><strong>Note:</strong> <code>TextProxy</code> instances are created on the fly, basing on the current state of model. Because of this, it is
 highly unrecommended to store references to <code>TextProxy</code> instances. <code>TextProxy</code> instances are not refreshed when
-model changes, so they might get invalidated. Instead, consider creating <code><a href="module_engine_model_liveposition-LivePosition.html">live
-position</a></code>.</p>
-<p><code>TextProxy</code> instances are created by <code><a href="module_engine_model_treewalker-TreeWalker.html">model tree walker</a></code>. You should not need to create
+model changes, so they might get invalidated. Instead, consider creating <a href="module_engine_model_liveposition-LivePosition.html">live
+position</a>.</p>
+<p><code>TextProxy</code> instances are created by <a href="module_engine_model_treewalker-TreeWalker.html">model tree walker</a>. You should not need to create
 an instance of this class by your own.</p>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
@@ -98,8 +98,8 @@ an instance of this class by your own.</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt"><code><a href="module_engine_model_document-Document.html">Document</a></code> that owns text node represented by this text proxy or <code>null</code> if the text node
-has no parent or is inside a <code><a href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></code>.</p>
+                      <p class="collapsing-list__excerpt"><a href="module_engine_model_document-Document.html">Document</a> that owns text node represented by this text proxy or <code>null</code> if the text node
+has no parent or is inside a <a href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a>.</p>
                       <div class="collapsing-list__content">
                       </div>
                     </div>
@@ -125,11 +125,11 @@ has no parent or is inside a <code><a href="module_engine_model_documentfragment
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Flag indicating whether <code>TextProxy</code> instance covers only part of the original <code><a href="module_engine_model_text-Text.html">text node</a></code>
+                      <p class="collapsing-list__excerpt">Flag indicating whether <code>TextProxy</code> instance covers only part of the original <a href="module_engine_model_text-Text.html">text node</a>
 (<code>true</code>) or the whole text node (<code>false</code>).</p>
                       <div class="collapsing-list__content">
-<p>This is <code>false</code> when text proxy starts at the very beginning of <code><a href="module_engine_model_textproxy-TextProxy.html#textNode">textNode</a></code>
-(<code><a href="module_engine_model_textproxy-TextProxy.html#offsetInText">offsetInText</a></code> equals <code>0</code>) and text proxy sizes is equal to
+<p>This is <code>false</code> when text proxy starts at the very beginning of <a href="module_engine_model_textproxy-TextProxy.html#textNode">textNode</a>
+(<a href="module_engine_model_textproxy-TextProxy.html#offsetInText">offsetInText</a> equals <code>0</code>) and text proxy sizes is equal to
 text node size.</p>
                       </div>
                     </div>
@@ -142,7 +142,7 @@ text node size.</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Offset in <code><a href="module_engine_model_textproxy-TextProxy.html#textNode">text node</a></code> from which the text proxy starts.</p>
+                      <p class="collapsing-list__excerpt">Offset in <a href="module_engine_model_textproxy-TextProxy.html#textNode">text node</a> from which the text proxy starts.</p>
                       <div class="collapsing-list__content">
                       </div>
                     </div>
@@ -232,7 +232,7 @@ text node size.</p>
                                   <dd><p>Text node which part is represented by this text proxy.</p>
                                   </dd>
                                   <dt><code> offsetInText : Number</code></dt>
-                                  <dd><p>Offset in <code><a href="module_engine_model_textproxy-TextProxy.html#textNode">text node</a></code> from which the text proxy
+                                  <dd><p>Offset in <a href="module_engine_model_textproxy-TextProxy.html#textNode">text node</a> from which the text proxy
 starts.</p>
                                   </dd>
                                   <dt><code> length : Number</code></dt>
@@ -384,7 +384,7 @@ items. First one is attribute key and second is attribute value.
                       <p class="collapsing-list__excerpt">Checks whether given model tree object is of given type.
                       </p>
                       <div class="collapsing-list__content">
-<p>Read more in <code><a href="module_engine_model_node-Node.html#is">is</a></code>.</p>
+<p>Read more in <a href="module_engine_model_node-Node.html#is"><code>is</code></a>.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> type : String</code></dt>
@@ -1420,7 +1420,7 @@ items. First one is attribute key and second is attribute value.
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -2676,13 +2676,13 @@ items. First one is attribute key and second is attribute value.
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -2730,7 +2730,7 @@ items. First one is attribute key and second is attribute value.
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

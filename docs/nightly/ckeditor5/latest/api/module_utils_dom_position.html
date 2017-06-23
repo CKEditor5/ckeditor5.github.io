@@ -93,61 +93,61 @@ target in the visually most efficient way, taking various restrictions like view
 into consideration.
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>    // The element which is to be positioned.
-    const element = document.body.querySelector( &apos;#toolbar&apos; );
+<pre class="prettyprint source"><code>// The element which is to be positioned.
+const element = document.body.querySelector( &apos;#toolbar&apos; );
 
-    // A target to which the element is positioned relatively.
-    const target = document.body.querySelector( &apos;#container&apos; );
+// A target to which the element is positioned relatively.
+const target = document.body.querySelector( &apos;#container&apos; );
 
-    // Finding the optimal coordinates for the positioning.
-    const { left, top, name } = getOptimalPosition( {
-        element: element,
-        target: target,
+// Finding the optimal coordinates for the positioning.
+const { left, top, name } = getOptimalPosition( {
+    element: element,
+    target: target,
 
-        // The algorithm will chose among these positions to meet the requirements such
-        // as &quot;limiter&quot; element or &quot;fitInViewport&quot;, set below. The positions are considered
-        // in the order of the array.
-        positions: [
-            //
-             //    [ Target ]
-            //    +-----------------+
-            //    |     Element     |
-            //    +-----------------+
-            //
-            targetRect =&gt; ( {
-                top: targetRect.bottom,
-                left: targetRect.left,
-                name: &apos;mySouthEastPosition&apos;
-            } ),
+    // The algorithm will chose among these positions to meet the requirements such
+    // as &quot;limiter&quot; element or &quot;fitInViewport&quot;, set below. The positions are considered
+    // in the order of the array.
+    positions: [
+        //
+         //    [ Target ]
+        //    +-----------------+
+        //    |     Element     |
+        //    +-----------------+
+        //
+        targetRect =&gt; ( {
+            top: targetRect.bottom,
+            left: targetRect.left,
+            name: &apos;mySouthEastPosition&apos;
+        } ),
 
-            //
-            //    +-----------------+
-            //    |     Element     |
-            //    +-----------------+
-            //    [ Target ]
-            //
-            ( targetRect, elementRect ) =&gt; ( {
-                top: targetRect.top - elementRect.height,
-                left: targetRect.left,
-                name: &apos;myNorthEastPosition&apos;
-            } )
-        ],
+        //
+        //    +-----------------+
+        //    |     Element     |
+        //    +-----------------+
+        //    [ Target ]
+        //
+        ( targetRect, elementRect ) =&gt; ( {
+            top: targetRect.top - elementRect.height,
+            left: targetRect.left,
+            name: &apos;myNorthEastPosition&apos;
+        } )
+    ],
 
-        // Find a position such guarantees the element remains within visible boundaries of &lt;body&gt;.
-        limiter: document.body,
+    // Find a position such guarantees the element remains within visible boundaries of &lt;body&gt;.
+    limiter: document.body,
 
-        // Find a position such guarantees the element remains within visible boundaries of the browser viewport.
-        fitInViewport: true
-    } );
+    // Find a position such guarantees the element remains within visible boundaries of the browser viewport.
+    fitInViewport: true
+} );
 
-    // The best position which fits into document.body and the viewport. May be useful
-    // to set proper class on the `element`.
-    console.log( name ); -&gt; &quot;myNorthEastPosition&quot;
+// The best position which fits into document.body and the viewport. May be useful
+// to set proper class on the `element`.
+console.log( name ); -&gt; &quot;myNorthEastPosition&quot;
 
-    // Using the absolute coordinates which has been found to position the element
-    // as in the diagram depicting the &quot;myNorthEastPosition&quot; position.
-    element.style.top = top;
-    element.style.left = left;</code></pre>
+// Using the absolute coordinates which has been found to position the element
+// as in the diagram depicting the &quot;myNorthEastPosition&quot; position.
+element.style.top = top;
+element.style.left = left;</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> options : <span><a class="collapsing-list__type" href="module_utils_dom_position-Options.html">Options</a></span></code></dt>
@@ -1183,7 +1183,7 @@ into consideration.
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -2439,13 +2439,13 @@ into consideration.
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -2493,7 +2493,7 @@ into consideration.
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>

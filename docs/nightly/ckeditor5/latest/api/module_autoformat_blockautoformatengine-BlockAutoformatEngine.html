@@ -31,7 +31,7 @@ it can be configured to make a paragraph starting with &quot;* &quot; a list ite
 <p>The autoformatting operation is integrated with the undo manager,
 so the autoformatting step can be undone, if the user&apos;s intention wasn&apos;t to format the text.</p>
 <p>See the constructors documentation to learn how to create custom inline autoformatters. You can also use
-the <code><a href="module_autoformat_autoformat-Autoformat.html">Autoformat</a></code> feature which enables a set of default autoformatters
+the <a href="module_autoformat_autoformat-Autoformat.html"><code>Autoformat</code></a> feature which enables a set of default autoformatters
 (lists, headings, bold and italic).</p>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
@@ -76,16 +76,16 @@ if provided instead of callback.
                       <div class="collapsing-list__content">
 <p>Examples of usage:</p>
 <p>To convert paragraph to heading1 when <code>-</code> is typed, using just commmand name:</p>
-<pre class="prettyprint source"><code>    new BlockAutoformatEngine( editor, /^\- $/, &apos;heading1&apos; );</code></pre><p>To convert paragraph to heading1 when <code>-</code> is typed, using just callback:</p>
-<pre class="prettyprint source"><code>    new BlockAutoformatEngine( editor, /^\- $/, ( context ) =&gt; {
-        const { batch, match } = context;
-        const headingLevel = match[ 1 ].length;
+<pre class="prettyprint source"><code>new BlockAutoformatEngine( editor, /^\- $/, &apos;heading1&apos; );</code></pre><p>To convert paragraph to heading1 when <code>-</code> is typed, using just callback:</p>
+<pre class="prettyprint source"><code>new BlockAutoformatEngine( editor, /^\- $/, ( context ) =&gt; {
+    const { batch, match } = context;
+    const headingLevel = match[ 1 ].length;
 
-        editor.execute( &apos;heading&apos;, {
-            batch,
-            formatId: `heading${ headingLevel }`
-        } );
-    } );</code></pre>
+    editor.execute( &apos;heading&apos;, {
+        batch,
+        formatId: `heading${ headingLevel }`
+    } );
+} );</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> editor : <span><a class="collapsing-list__type" href="module_core_editor_editor-Editor.html">Editor</a></span></code></dt>
@@ -1126,7 +1126,7 @@ In case of providing callback it receives following parameters:</p>
                                                   <li><a href="module_engine_model_schema-Schema.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_model_schema-SchemaItem.html">
+                                                  <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_model_schema-SchemaPath.html">
@@ -2382,13 +2382,13 @@ In case of providing callback it receives following parameters:</p>
                                         <li><a href="module_ui_template-Template.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Template</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateIfBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateIfBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateIfBinding</span></div></a>
                                         </li>
-                                        <li><a href="module_ui_template-TemplateToBinding.html">
+                                        <li data-protected="true"><a href="module_ui_template-TemplateToBinding.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TemplateToBinding</span></div></a>
                                         </li>
                                         <li><a href="module_ui_template-BindChain.html">
@@ -2436,7 +2436,7 @@ In case of providing callback it receives following parameters:</p>
                                 <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_undo_basecommand.html">basecommand</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_undo_basecommand-BaseCommand.html">
+                                        <li data-protected="true"><a href="module_undo_basecommand-BaseCommand.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BaseCommand</span></div></a>
                                         </li>
                                 </ul>
