@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Deletecontent - CKEditor 5</title>
     <link rel="stylesheet" href="../../../assets/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/js/app.js"></script>
+    <script src="../../../assets/scripts/app.js"></script>
   </head>
   <body>
     <header class="top">
       <div class="top__logo"><a class="top__logo__link" href="../index.html"><img src="../assets/img/project-logo.svg" alt="CKEditor 5"></a></div>
       <ul class="top__menu">
-        <li><a class="top__menu__item--active" href="../api/index.html">API</a></li>
+        <li><a class="top__menu__item--active" href="index.html">API</a></li>
         <li><a href="../framework/index.html">Framework</a></li>
         <li><a href="../builds/index.html">Builds</a></li>
       </ul>
@@ -25,7 +25,8 @@
         <h1><img src="../../../assets/img/box-red.svg" alt="Module" title="Module">
 engine/controller/deletecontent
         </h1>
-        <p><span class="badge">Module</span></p>
+        <p><span class="badge">module</span>
+        </p>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
           <ul>
@@ -59,9 +60,9 @@ engine/controller/deletecontent
         <ul class="collapsing-list collapsing-list--filtered">
                   <li class="collapsing-list__item" data-public="true">
                     <div class="collapsing-list__term toggler--collapsed" id="deleteContent">
-                      <h3><code><a class="member-name" href="#deleteContent">deleteContent</a>( selection, batch, [ options ] = { [options.merge] } )</code></h3>
+                      <h3><code><a class="member-name" href="#deleteContent">deleteContent</a>( selection, batch, [ options ] = { [options.leaveUnmerged] } )</code></h3>
                       <p class="badges">
-<span class="badge badge--gray">static</span>
+<span class="badge badge--gray ">static</span>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
@@ -80,11 +81,14 @@ engine/controller/deletecontent
                                   <dd>
                                             <dl>
                                               <h5>Properties</h5>
-                                              <dt><code> [ options.merge ] : Boolean</code></dt>
-                                              <dd><p>Merge elements after removing the contents of the selection.
-For example, <code>&lt;h&gt;x[x&lt;/h&gt;&lt;p&gt;y]y&lt;/p&gt;</code> will become: <code>&lt;h&gt;x^y&lt;/h&gt;</code> with the option enabled
-and: <code>&lt;h&gt;x^&lt;/h&gt;&lt;p&gt;y&lt;/p&gt;</code> without it.
-Note: <a href="module_engine_model_schema-Schema.html#objects">object</a> and <a href="module_engine_model_schema-Schema.html#limits">limit</a>
+                                              <dt><code> [ options.leaveUnmerged ] : Boolean</code></dt>
+                                              <dd><p>Whether to merge elements after removing the content of the selection.</p>
+<p>For example <code>&lt;h&gt;x[x&lt;/h&gt;&lt;p&gt;y]y&lt;/p&gt;</code> will become:</p>
+<ul>
+<li><code>&lt;h&gt;x^y&lt;/h&gt;</code> with the option disabled (<code>leaveUnmerged == false</code>)</li>
+<li><code>&lt;h&gt;x^&lt;/h&gt;&lt;p&gt;y&lt;/p&gt;</code> with enabled (<code>leaveUnmerged == true</code>).</li>
+</ul>
+<p>Note: <a href="module_engine_model_schema-Schema.html#objects">object</a> and <a href="module_engine_model_schema-Schema.html#limits">limit</a>
 elements will not be merged.</p>
                                                 <p>Defaults to <code>false</code></p>
                                               </dd>
