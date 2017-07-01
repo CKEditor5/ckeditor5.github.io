@@ -164,24 +164,32 @@ view to DOM conversion and to recognize block fillers during the DOM to view con
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="getCorrespondingDomElement">
-                      <h3><code><a class="member-name" href="#getCorrespondingDomElement">getCorrespondingDomElement</a>( viewElement ) &rarr;  HTMLElement | null</code></h3>
+                    <div class="collapsing-list__term toggler--collapsed" id="findCorrespondingViewText">
+                      <h3><code><a class="member-name" href="#findCorrespondingViewText">findCorrespondingViewText</a>( domText ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithtext-Text.html">Text</a></span> | null</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Gets corresponding DOM element. Returns element if an DOM element was
-<a href="module_engine_viewithdomconverter-DomConverter.html#bindElements">bound</a> to the given view element or <code>null</code> otherwise.
+                      <p class="collapsing-list__excerpt">Finds corresponding text node. Text nodes are not <a href="module_engine_viewithdomconverter-DomConverter.html#bindElements">bound</a>,
+corresponding text node is returned based on the sibling or parent.
                       </p>
                       <div class="collapsing-list__content">
+<p>If the directly previous sibling is a <a href="module_engine_viewithdomconverter-DomConverter.html#bindElements">bound</a> element, it is used
+to find the corresponding text node.</p>
+<p>If this is a first child in the parent and the parent is a <a href="module_engine_viewithdomconverter-DomConverter.html#bindElements">bound</a>
+element, it is used to find the corresponding text node.</p>
+<p>For all text nodes rendered by <a href="module_engine_viewithuielement-UIElement.html"><code>UIElement</code></a> that UIElement will be returned.</p>
+<p>Otherwise <code>null</code> is returned.</p>
+<p>Note that for the block or inline <a href="module_engine_viewithfiller.html">filler</a> this method returns <code>null</code>.</p>
                         <h4>Parameters</h4>
                                 <dl>
-                                  <dt><code> viewElement : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span></code></dt>
-                                  <dd><p>View element.</p>
+                                  <dt><code> domText : Text</code></dt>
+                                  <dd><p>DOM text node.</p>
                                   </dd>
                                 </dl>
                         <h4>Returns</h4>
                         <dl>
-                                  <dt><code>HTMLElement | null</code></dt>
-                                  <dd><p>Corresponding element or <code>null</code> if none element was bound.</p>
+                                  <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithtext-Text.html">Text</a></span> | null</code></dt>
+                                  <dd><p>Corresponding view text node or <code>null</code>, if it was not possible to find a
+corresponding node.</p>
                                   </dd>
                         </dl>
                       </div>
@@ -259,8 +267,8 @@ element or if previous text node ends by space character,</li>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Binds DOM and View document fragments, so it will be possible to get corresponding document fragments using
-<a href="module_engine_viewithdomconverter-DomConverter.html#getCorrespondingViewDocumentFragment">getCorrespondingViewDocumentFragment</a> and
-<a href="module_engine_viewithdomconverter-DomConverter.html#getCorrespondingDomDocumentFragment">getCorrespondingDomDocumentFragment</a>.
+<a href="module_engine_viewithdomconverter-DomConverter.html#mapDomToView"><code>mapDomToView</code></a> and
+<a href="module_engine_viewithdomconverter-DomConverter.html#mapViewToDom"><code>mapViewToDom</code></a>.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -281,8 +289,8 @@ element or if previous text node ends by space character,</li>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Binds DOM and View elements, so it will be possible to get corresponding elements using
-<a href="module_engine_viewithdomconverter-DomConverter.html#getCorrespondingViewElement">getCorrespondingViewElement</a> and
-<a href="module_engine_viewithdomconverter-DomConverter.html#getCorrespondingDomElement">getCorrespondingDomElement</a>.
+<a href="module_engine_viewithdomconverter-DomConverter.html#mapDomToView"><code>mapDomToView</code></a> and
+<a href="module_engine_viewithdomconverter-DomConverter.html#mapViewToDom"><code>mapViewToDom</code></a>.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -354,7 +362,8 @@ If there is no such sibling, <code>null</code> is returned.
                       <h3><code><a class="member-name" href="#domChildrenToView">domChildrenToView</a>( domElement, options ) &rarr;  <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_viewithnode-Node.html">Node</a>&gt;</span></code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Converts children of the DOM element to view nodes using <a href="module_engine_viewithdomconverter-DomConverter.html#domToView"><code>domToView</code></a> method.
+                      <p class="collapsing-list__excerpt">Converts children of the DOM element to view nodes using
+the <a href="module_engine_viewithdomconverter-DomConverter.html#domToView"><code>domToView</code></a> method.
 Additionally this method omits block <a href="module_engine_viewithfiller.html">filler</a>, if it exists in the DOM parent.
                       </p>
                       <div class="collapsing-list__content">
@@ -525,69 +534,29 @@ fake selection. Returns <code>undefined</code> if binding to given DOM element d
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="focus">
-                      <h3><code><a class="member-name" href="#focus">focus</a>( viewEditable )</code></h3>
+                    <div class="collapsing-list__term toggler--collapsed" id="findCorrespondingDomText">
+                      <h3><code><a class="member-name" href="#findCorrespondingDomText">findCorrespondingDomText</a>( viewText ) &rarr;  Text | null</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Focuses DOM editable that is corresponding to provided <a href="module_engine_viewitheditableelement-EditableElement.html">EditableElement</a>.
+                      <p class="collapsing-list__excerpt">Finds corresponding text node. Text nodes are not <a href="module_engine_viewithdomconverter-DomConverter.html#bindElements">bound</a>,
+corresponding text node is returned based on the sibling or parent.
                       </p>
                       <div class="collapsing-list__content">
+<p>If the directly previous sibling is a <a href="module_engine_viewithdomconverter-DomConverter.html#bindElements">bound</a> element, it is used
+to find the corresponding text node.</p>
+<p>If this is a first child in the parent and the parent is a <a href="module_engine_viewithdomconverter-DomConverter.html#bindElements">bound</a>
+element, it is used to find the corresponding text node.</p>
+<p>Otherwise <code>null</code> is returned.</p>
                         <h4>Parameters</h4>
                                 <dl>
-                                  <dt><code> viewEditable : <span><a class="collapsing-list__type" href="module_engine_viewitheditableelement-EditableElement.html">EditableElement</a></span></code></dt>
-                                  <dd>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="getCorrespondingDom">
-                      <h3><code><a class="member-name" href="#getCorrespondingDom">getCorrespondingDom</a>( viewNode ) &rarr;  Node | DocumentFragment | null</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Gets corresponding DOM item. This function uses
-<a href="module_engine_viewithdomconverter-DomConverter.html#getCorrespondingDomElement">getCorrespondingDomElement</a> for
-elements, <a href="module_engine_viewithdomconverter-DomConverter.html#getCorrespondingDomText">getCorrespondingDomText</a> for text nodes
-and <a href="module_engine_viewithdomconverter-DomConverter.html#getCorrespondingDomDocumentFragment">getCorrespondingDomDocumentFragment</a>
-for document fragments.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> viewNode : <span><a class="collapsing-list__type" href="module_engine_viewithnode-Node.html">Node</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></span></code></dt>
-                                  <dd><p>View node or document fragment.</p>
+                                  <dt><code> viewText : <span><a class="collapsing-list__type" href="module_engine_viewithtext-Text.html">Text</a></span></code></dt>
+                                  <dd><p>View text node.</p>
                                   </dd>
                                 </dl>
                         <h4>Returns</h4>
                         <dl>
-                                  <dt><code>Node | DocumentFragment | null</code></dt>
-                                  <dd><p>Corresponding DOM node or document fragment.</p>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="getCorrespondingDomDocumentFragment">
-                      <h3><code><a class="member-name" href="#getCorrespondingDomDocumentFragment">getCorrespondingDomDocumentFragment</a>( viewDocumentFragment ) &rarr;  DocumentFragment | null</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Gets corresponding DOM document fragment. Returns document fragment if an DOM element was
-<a href="module_engine_viewithdomconverter-DomConverter.html#bindDocumentFragments">bound</a> to the given view document fragment or <code>null</code>
-otherwise.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> viewDocumentFragment : <span><a class="collapsing-list__type" href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></span></code></dt>
-                                  <dd><p>View document fragment.</p>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code>DocumentFragment | null</code></dt>
-                                  <dd><p>Corresponding document fragment or <code>null</code> if no fragment was bound.</p>
+                                  <dt><code>Text | null</code></dt>
+                                  <dd><p>Corresponding DOM text node or <code>null</code>, if it was not possible to find a corresponding node.</p>
                                   </dd>
                         </dl>
                       </div>
@@ -624,142 +593,19 @@ in the same block element. If there is no such sibling, <code>null</code> is ret
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="getCorrespondingDomText">
-                      <h3><code><a class="member-name" href="#getCorrespondingDomText">getCorrespondingDomText</a>( viewText ) &rarr;  Text | null</code></h3>
+                    <div class="collapsing-list__term toggler--collapsed" id="focus">
+                      <h3><code><a class="member-name" href="#focus">focus</a>( viewEditable )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Gets corresponding text node. Text nodes are not <a href="module_engine_viewithdomconverter-DomConverter.html#bindElements">bound</a>,
-corresponding text node is returned based on the sibling or parent.
-                      </p>
-                      <div class="collapsing-list__content">
-<p>If the directly previous sibling is a <a href="module_engine_viewithdomconverter-DomConverter.html#bindElements">bound</a> element, it is used
-to find the corresponding text node.</p>
-<p>If this is a first child in the parent and the parent is a <a href="module_engine_viewithdomconverter-DomConverter.html#bindElements">bound</a>
-element, it is used to find the corresponding text node.</p>
-<p>Otherwise <code>null</code> is returned.</p>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> viewText : <span><a class="collapsing-list__type" href="module_engine_viewithtext-Text.html">Text</a></span></code></dt>
-                                  <dd><p>View text node.</p>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code>Text | null</code></dt>
-                                  <dd><p>Corresponding DOM text node or <code>null</code>, if it was not possible to find a corresponding node.</p>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="getCorrespondingView">
-                      <h3><code><a class="member-name" href="#getCorrespondingView">getCorrespondingView</a>( domNode ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithnode-Node.html">Node</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></span> | null</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Gets corresponding view item. This function use
-<a href="module_engine_viewithdomconverter-DomConverter.html#getCorrespondingViewElement">getCorrespondingViewElement</a>
-for elements, {@link  module:engine/view/domconverter~DomConverter#getCorrespondingViewText getCorrespondingViewText} for text
-nodes and
-<a href="module_engine_viewithdomconverter-DomConverter.html#getCorrespondingViewDocumentFragment">getCorrespondingViewDocumentFragment</a>
-for document fragments.
-                      </p>
-                      <div class="collapsing-list__content">
-<p>Note that for the block or inline <a href="module_engine_viewithfiller.html">filler</a> this method returns <code>null</code>.</p>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> domNode : Node | DocumentFragment</code></dt>
-                                  <dd><p>DOM node or document fragment.</p>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithnode-Node.html">Node</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></span> | null</code></dt>
-                                  <dd><p>Corresponding view item.</p>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="getCorrespondingViewDocumentFragment">
-                      <h3><code><a class="member-name" href="#getCorrespondingViewDocumentFragment">getCorrespondingViewDocumentFragment</a>( domFragment ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></span> | null</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Gets corresponding view document fragment. Returns document fragment if an view element was
-<a href="module_engine_viewithdomconverter-DomConverter.html#bindDocumentFragments">bound</a> to the given DOM fragment or <code>null</code> otherwise.
+                      <p class="collapsing-list__excerpt">Focuses DOM editable that is corresponding to provided <a href="module_engine_viewitheditableelement-EditableElement.html"><code>EditableElement</code></a>.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
                                 <dl>
-                                  <dt><code> domFragment : DocumentFragment</code></dt>
-                                  <dd><p>DOM element.</p>
+                                  <dt><code> viewEditable : <span><a class="collapsing-list__type" href="module_engine_viewitheditableelement-EditableElement.html">EditableElement</a></span></code></dt>
+                                  <dd>
                                   </dd>
                                 </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></span> | null</code></dt>
-                                  <dd><p>Corresponding document fragment or <code>null</code> if none element was
-bound.</p>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="getCorrespondingViewElement">
-                      <h3><code><a class="member-name" href="#getCorrespondingViewElement">getCorrespondingViewElement</a>( domElement ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | null</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Gets corresponding view element. Returns element if an view element was
-<a href="module_engine_viewithdomconverter-DomConverter.html#bindElements">bound</a> to the given DOM element or <code>null</code> otherwise.
-For all DOM elements rendered by <a href="module_engine_viewithuielement-UIElement.html"><code>UIElement</code></a> that UIElement will be returned.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> domElement : HTMLElement</code></dt>
-                                  <dd><p>DOM element.</p>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | null</code></dt>
-                                  <dd><p>Corresponding element or <code>null</code> if no element was bound.</p>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="getCorrespondingViewText">
-                      <h3><code><a class="member-name" href="#getCorrespondingViewText">getCorrespondingViewText</a>( domText ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithtext-Text.html">Text</a></span> | null</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Gets corresponding text node. Text nodes are not <a href="module_engine_viewithdomconverter-DomConverter.html#bindElements">bound</a>,
-corresponding text node is returned based on the sibling or parent.
-                      </p>
-                      <div class="collapsing-list__content">
-<p>If the directly previous sibling is a <a href="module_engine_viewithdomconverter-DomConverter.html#bindElements">bound</a> element, it is used
-to find the corresponding text node.</p>
-<p>If this is a first child in the parent and the parent is a <a href="module_engine_viewithdomconverter-DomConverter.html#bindElements">bound</a>
-element, it is used to find the corresponding text node.</p>
-<p>For all text nodes rendered by <a href="module_engine_viewithuielement-UIElement.html"><code>UIElement</code></a> that UIElement will be returned.</p>
-<p>Otherwise <code>null</code> is returned.</p>
-<p>Note that for the block or inline <a href="module_engine_viewithfiller.html">filler</a> this method returns <code>null</code>.</p>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> domText : Text</code></dt>
-                                  <dd><p>DOM text node.</p>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithtext-Text.html">Text</a></span> | null</code></dt>
-                                  <dd><p>Corresponding view text node or <code>null</code>, if it was not possible to find a
-corresponding node.</p>
-                                  </dd>
-                        </dl>
                       </div>
                     </div>
                   </li>
@@ -768,7 +614,7 @@ corresponding node.</p>
                       <h3><code><a class="member-name" href="#getParentUIElement">getParentUIElement</a>( domNode ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithuielement-UIElement.html">UIElement</a></span> | null</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Returns parent <a href="module_engine_viewithuielement-UIElement.html"><code>UIElement</code></a> for provided DOM node. Returns null if there is no
+                      <p class="collapsing-list__excerpt">Returns parent <a href="module_engine_viewithuielement-UIElement.html"><code>UIElement</code></a> for provided DOM node. Returns <code>null</code> if there is no
 parent UIElement.
                       </p>
                       <div class="collapsing-list__content">
@@ -903,6 +749,59 @@ parent UIElement.
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-public="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="mapDomToView">
+                      <h3><code><a class="member-name" href="#mapDomToView">mapDomToView</a>( domElementOrDocumentFragment ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></span> | undefined</code></h3>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Returns corresponding view <a href="module_engine_viewithelement-Element.html">Element</a> or
+<a href="module_engine_viewithdocumentfragment-DocumentFragment.html"><code>DocumentFragment</code></a> for provided DOM element or
+document fragment. If there is no view item <a href="module_engine_viewithdomconverter-DomConverter.html#bindElements">bound</a>
+to the given DOM - <code>undefined</code> is returned.
+For all DOM elements rendered by <a href="module_engine_viewithuielement-UIElement.html"><code>UIElement</code></a> that UIElement will be returned.
+                      </p>
+                      <div class="collapsing-list__content">
+                        <h4>Parameters</h4>
+                                <dl>
+                                  <dt><code> domElementOrDocumentFragment : DocumentFragment | Element</code></dt>
+                                  <dd><p>DOM element or document fragment.</p>
+                                  </dd>
+                                </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                                  <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></span> | undefined</code></dt>
+                                  <dd><p>Corresponding view element, document fragment or <code>undefined</code> if no element was bound.</p>
+                                  </dd>
+                        </dl>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-public="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="mapViewToDom">
+                      <h3><code><a class="member-name" href="#mapViewToDom">mapViewToDom</a>( viewNode ) &rarr;  Node | DocumentFragment | undefined</code></h3>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Returns corresponding DOM item for provided <a href="module_engine_viewithelement-Element.html">Element</a> or
+<a href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a>.
+To find a corresponding text for <a href="module_engine_viewithtext-Text.html">view Text instance</a>
+use <a href="module_engine_viewithdomconverter-DomConverter.html#findCorrespondingDomText"><code>findCorrespondingDomText</code></a>.
+                      </p>
+                      <div class="collapsing-list__content">
+                        <h4>Parameters</h4>
+                                <dl>
+                                  <dt><code> viewNode : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></span></code></dt>
+                                  <dd><p>View element or document fragment.</p>
+                                  </dd>
+                                </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                                  <dt><code>Node | DocumentFragment | undefined</code></dt>
+                                  <dd><p>Corresponding DOM node or document fragment.</p>
+                                  </dd>
+                        </dl>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-public="true">
                     <div class="collapsing-list__term toggler--collapsed" id="unbindDomElement">
                       <h3><code><a class="member-name" href="#unbindDomElement">unbindDomElement</a>( domElement )</code></h3>
                     </div>
@@ -925,8 +824,9 @@ parent UIElement.
                       <h3><code><a class="member-name" href="#viewChildrenToDom">viewChildrenToDom</a>( viewElement, domDocument, options ) &rarr;  Node</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Converts children of the view element to DOM using <a href="module_engine_viewithdomconverter-DomConverter.html#viewToDom"><code>viewToDom</code></a> method.
-Additionally this method adds block <a href="module_engine_viewithfiller.html">filler</a> to the list of children, if needed.
+                      <p class="collapsing-list__excerpt">Converts children of the view element to DOM using the
+<a href="module_engine_viewithdomconverter-DomConverter.html#viewToDom"><code>viewToDom</code></a> method.
+Additionally, this method adds block <a href="module_engine_viewithfiller.html">filler</a> to the list of children, if needed.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -1017,8 +917,7 @@ be created. For bound elements and document fragments function will return corre
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> viewNode : <span><a class="collapsing-list__type" href="module_engine_viewithnode-Node.html">Node</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></span></code></dt>
-                                  <dd><p>View node or document fragment to
-transform.</p>
+                                  <dd><p>View node or document fragment to transform.</p>
                                   </dd>
                                   <dt><code> domDocument : Document</code></dt>
                                   <dd><p>Document which will be used to create DOM nodes.</p>
