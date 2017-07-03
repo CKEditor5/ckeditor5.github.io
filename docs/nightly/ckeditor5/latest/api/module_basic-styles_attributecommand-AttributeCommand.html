@@ -55,11 +55,11 @@ AttributeCommand
                       </ul>
                     </dd>
           </dl>
-        </nav><p>A extension of the base <a href="module_core_command-Command.html"><code>Command</code></a> class, which provides utilities for a command
-which toggles a single attribute on a text or an element.</p>
+        </nav><p>An extension of the base <a href="module_core_command-Command.html"><code>Command</code></a> class, which provides utilities for a command
+that toggles a single attribute on a text or an element.</p>
 <p><code>AttributeCommand</code> uses <a href="module_engine_model_document-Document.html#selection"><code>selection</code></a>
 to decide which nodes (if any) should be changed, and applies or removes the attribute from them.</p>
-<p>The command checks <a href="module_engine_model_document-Document.html#schema"><code>schema</code></a> to decide if it can be enabled
+<p>The command checks the <a href="module_engine_model_document-Document.html#schema"><code>schema</code></a> to decide if it can be enabled
 for the current selection and to which nodes the attribute can be applied.</p>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
@@ -185,9 +185,9 @@ A disabled command should do nothing when executed.</p>
 <a href="module_engine_model_selection-Selection.html#hasAttribute">selection has the attribute</a> which means that:</p>
                       <div class="collapsing-list__content">
 <ul>
-<li>if the selection is not empty that it starts in a text (or other node) which has the attribute set,</li>
-<li>if the selection is empty that the selection has the attribute itself (which means that newly typed
-text will have this attribute too).</li>
+<li>If the selection is not empty &#x2013; That it starts in a text (or another node) which has the attribute set.</li>
+<li>If the selection is empty &#x2013; That the selection has the attribute itself (which means that newly typed
+text will have this attribute, too).</li>
 </ul>
                       </div>
                     </div>
@@ -351,32 +351,32 @@ emitterA.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( emitterC );</cod
                       <h3><code><a class="member-name" href="#execute">execute</a>( [ options ] = { [options.forceValue], [options.batch] } )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Executes the command &#x2013; applies or removes the attribute from the selection.
+                      <p class="collapsing-list__excerpt">Executes the command &#x2014; applies the attribute to the selection or removes it from the selection.
                       </p>
                       <div class="collapsing-list__content">
 <p>If the command is active (<code>value == true</code>), it will remove attributes. Otherwise, it will set attributes.</p>
 <p>The execution result differs, depending on the <a href="module_engine_model_document-Document.html#selection"><code>selection</code></a>:</p>
 <ul>
-<li>if selection is on a range, the command applies the attribute on all nodes in that range
-(if they are allowed to have this attribute by the <a href="module_engine_model_schema-Schema.html">schema</a>),</li>
-<li>if selection is collapsed in non-empty node, the command applies attribute to the
-<a href="module_engine_model_document-Document.html#selection"><code>selection</code></a> itself (note that typed characters copy attributes from selection),</li>
-<li>if selection is collapsed in empty node, the command applies attribute to the parent node of selection (note
-that selection inherits all attributes from a node if it is in empty node).</li>
+<li>If the selection is on a range, the command applies the attribute to all nodes in that range
+(if they are allowed to have this attribute by the <a href="module_engine_model_schema-Schema.html">schema</a>).</li>
+<li>If the selection is collapsed in a non-empty node, the command applies the attribute to the
+<a href="module_engine_model_document-Document.html#selection"><code>selection</code></a> itself (note that typed characters copy attributes from the selection).</li>
+<li>If the selection is collapsed in an empty node, the command applies the attribute to the parent node of the selection (note
+that the selection inherits all attributes from a node if it is in an empty node).</li>
 </ul>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> [ options ] : Object</code></dt>
-                                  <dd><p>Options of command.</p>
+                                  <dd><p>Command options.</p>
                                             <dl>
                                               <h5>Properties</h5>
                                               <dt><code> [ options.forceValue ] : Boolean</code></dt>
-                                              <dd><p>If set it will force the command behavior. If <code>true</code>, command will apply the attribute,
+                                              <dd><p>If set, it will force the command behavior. If <code>true</code>, the command will apply the attribute,
 otherwise the command will remove the attribute.
-If not set, the command will look for it&apos;s current value to decide what it should do.</p>
+If not set, the command will look for its current value to decide what it should do.</p>
                                               </dd>
                                               <dt><code> [ options.batch ] : <span><a class="collapsing-list__type" href="module_engine_model_batch-Batch.html">Batch</a></span></code></dt>
-                                              <dd><p>Batch to group undo steps.</p>
+                                              <dd><p>A batch to group undo steps.</p>
                                               </dd>
                                             </dl>
                                   </dd>
@@ -590,7 +590,7 @@ order they were added.</p>
                       <h3><code><a class="member-name" href="#refresh">refresh</a>()</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Updates command&apos;s <a href="module_basic-styles_attributecommand-AttributeCommand.html#value"><code>value</code></a> based on the current selection.
+                      <p class="collapsing-list__excerpt">Updates the command&apos;s <a href="module_basic-styles_attributecommand-AttributeCommand.html#value"><code>value</code></a> based on the current selection.
                       </p>
                       <div class="collapsing-list__content">
                       </div>
