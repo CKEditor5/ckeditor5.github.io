@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Model-to-view-converters - CKEditor 5</title>
+    <title>Module engine/conversion/model-to-view-converters - CKEditor 5 API docs</title>
     <link rel="stylesheet" href="../../../assets/css/styles.css" type="text/css" media="screen">
     <script src="../../../assets/scripts/app.js"></script>
   </head>
@@ -22,9 +22,12 @@
     </header>
     <main class="main">
       <section class="main__content formatted">
-        <h1><img src="../../../assets/img/box-red.svg" alt="Module" title="Module">
-engine/conversion/model-to-view-converters
-        </h1>
+        <div class="api-header"><img src="../../../assets/img/box-red.svg" alt="Module" title="Module"/>
+          <div class="api-header__title">
+            <h1>engine/conversion/model-to-view-converters
+            </h1>
+          </div>
+        </div>
         <p><span class="badge">module</span>
         </p><p>Contains <a href="module_engine_model_model.html">model</a> to <a href="module_engine_viewithview.html">view</a> converters for
 <a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html"><code>ModelConversionDispatcher</code></a>.</p>
@@ -163,12 +166,12 @@ will be inserted.</p>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Function factory, creates a converter that converts marker adding change to the view ui element.
-The view ui element that will be added to the view depends on passed parameter. See <code>module:engine/conversion/model-to-view-converters~insertElement</code>.
+The view ui element that will be added to the view depends on passed parameter. See <a href="module_engine_conversion_model-to-view-converters.html#insertElement"><code>insertElement</code></a>.
 In a case of collapsed range element will not wrap range but separate elements will be placed at the beginning
 and at the end of the range.
                       </p>
                       <div class="collapsing-list__content">
-<p><strong>Note:</strong> unlike <code>module:engine/conversion/model-to-view-converters~insertElement</code>, the converter does not bind view element to model, because this converter
+<p><strong>Note:</strong> unlike <a href="module_engine_conversion_model-to-view-converters.html#insertElement"><code>insertElement</code></a>, the converter does not bind view element to model, because this converter
 uses marker as &quot;model source of data&quot;. This means that view ui element does not have corresponding model element.</p>
                         <h4>Parameters</h4>
                                 <dl>
@@ -221,7 +224,7 @@ key-value attribute pair to remove. If not provided, model attributes will be re
                       </p>
                       <div class="collapsing-list__content">
 <p><strong>Note:</strong> Provided attribute creator should always return the same <code>key</code> for given attribute from the model.</p>
-<p><strong>Note:</strong> You can use the same attribute creator as in <code>module:engine/conversion/model-to-view-converters~setAttribute</code>.</p>
+<p><strong>Note:</strong> You can use the same attribute creator as in <a href="module_engine_conversion_model-to-view-converters.html#setAttribute"><code>setAttribute</code></a>.</p>
 <p>The converter automatically consumes corresponding value from consumables list and stops the event (see
 <a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html"><code>ModelConversionDispatcher</code></a>).</p>
 <pre class="prettyprint source"><code>modelDispatcher.on( &apos;removeAttribute:customAttr:myElem&apos;, removeAttribute( ( data ) =&gt; {
@@ -461,7 +464,7 @@ be used for wrapping.</p>
                       <p class="collapsing-list__excerpt">Function factory, creates a converter that wraps model range.
                       </p>
                       <div class="collapsing-list__content">
-<p>In contrary to <code>module:engine/conversion/model-to-view-converters~wrapItem</code>, this converter&apos;s input is a
+<p>In contrary to <a href="module_engine_conversion_model-to-view-converters.html#wrapItem"><code>wrapItem</code></a>, this converter&apos;s input is a
 <a href="module_engine_model_range-Range.html">model range</a> (not changed model item). The model range is mapped
 to <a href="module_engine_viewithrange-Range.html">view range</a> and then, view items within that view range are wrapped in a
 <a href="module_engine_viewithattributeelement-AttributeElement.html">view attribute element</a>. Note, that <code>elementCreator</code>
@@ -879,7 +882,7 @@ a view attribute element, which will be used for wrapping.</p>
                               </li>
                       </ul>
                     </li>
-                    <li class="toggler--expanded">
+                    <li class="toggler--collapsed">
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">engine</span>
                       </div>
                       <ul>
@@ -925,7 +928,7 @@ a view attribute element, which will be used for wrapping.</p>
                                         </li>
                                 </ul>
                               </li>
-                              <li class="toggler--expanded">
+                              <li class="toggler--collapsed">
                                 <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">conversion</span>
                                 </div>
                                 <ul>
@@ -960,10 +963,7 @@ a view attribute element, which will be used for wrapping.</p>
                                           </ul>
                                         </li>
                                         <li><a href="module_engine_conversion_model-selection-to-view-converters.html">
-                                            <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">model-selection-to-view-converters</span></div></a>
-                                        </li>
-                                        <li><a href="module_engine_conversion_model-to-view-converters.html">
-                                            <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--module tree__item__text">model-to-view-converters</span></div></a>
+                                            <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">model</span></div></a>
                                         </li>
                                         <li class="toggler--collapsed">
                                           <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_engine_conversion_modelconsumable.html">modelconsumable</a>
@@ -984,10 +984,7 @@ a view attribute element, which will be used for wrapping.</p>
                                           </ul>
                                         </li>
                                         <li><a href="module_engine_conversion_view-selection-to-model-converters.html">
-                                            <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">view-selection-to-model-converters</span></div></a>
-                                        </li>
-                                        <li><a href="module_engine_conversion_view-to-model-converters.html">
-                                            <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">view-to-model-converters</span></div></a>
+                                            <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">view</span></div></a>
                                         </li>
                                         <li class="toggler--collapsed">
                                           <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_engine_conversion_viewconsumable.html">viewconsumable</a>
@@ -1126,10 +1123,7 @@ a view attribute element, which will be used for wrapping.</p>
                                                     </ul>
                                                   </li>
                                                   <li><a href="module_engine_model_delta_basic-deltas.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">basic-deltas</span></div></a>
-                                                  </li>
-                                                  <li><a href="module_engine_model_delta_basic-transformations.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">basic-transformations</span></div></a>
+                                                      <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">basic</span></div></a>
                                                   </li>
                                                   <li class="toggler--collapsed">
                                                     <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_engine_model_delta_delta.html">delta</a>
@@ -3233,7 +3227,7 @@ a view attribute element, which will be used for wrapping.</p>
                                   <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">tomap</span></div></a>
                               </li>
                               <li><a href="module_utils_translation-service.html">
-                                  <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">translation-service</span></div></a>
+                                  <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">translation</span></div></a>
                               </li>
                               <li><a href="module_utils_uid.html">
                                   <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">uid</span></div></a>
