@@ -201,15 +201,14 @@ trailing debounced invocation on destroy.</p>
 <a href="module_core_plugincollection-PluginCollection.html#get"><code>get</code></a> by its
 name and its constructor. If not, then only by its constructor.</p>
                       <div class="collapsing-list__content">
-<p>The name should reflect the package name + the plugin module name. E.g. <code>ckeditor5-image/src/image.js</code> plugin
-should be named <code>image/image</code>. If plugin is kept deeper in the directory structure, it&apos;s recommended to only use the module file name,
-not the whole path. So, e.g. a plugin defined in <code>ckeditor5-ui/src/notification/notification.js</code> file may be named <code>ui/notification</code>.</p>
+<p>The name should reflect the constructor name.</p>
 <p>To keep a plugin class definition tight it&apos;s recommended to define this property as a static getter:</p>
 <pre class="prettyprint source"><code>export default class ImageCaption {
     static get pluginName() {
-        return &apos;image/imagecaption&apos;;
+        return &apos;ImageCaption&apos;;
     }
-}</code></pre>
+}</code></pre><p>Note: The native <code>Function.name</code> property could not be used to keep the plugin name because
+it will be mangled during code minification.</p>
                       </div>
                     </div>
                   </li>
@@ -320,7 +319,7 @@ doesn&apos;t fire <code>change</code> event after text style change (like bold o
                   </li>
                   <li class="collapsing-list__item" data-protected="true">
                     <div class="collapsing-list__term toggler--collapsed" id="_showPanel">
-                      <h3><code><a class="member-name" href="#_showPanel">_showPanel</a>() &rarr;  Promise</code></h3>
+                      <h3><code><a class="member-name" href="#_showPanel">_showPanel</a>()</code></h3>
                       <p class="badges">
 <span class="badge badge--orange ">protected</span>
                       </p>
@@ -330,12 +329,6 @@ doesn&apos;t fire <code>change</code> event after text style change (like bold o
                       </p>
                       <div class="collapsing-list__content">
 <p>Fires <a href="module_ui_toolbar_contextual_contextualtoolbar-ContextualToolbar.html#event:beforeShow"><code>beforeShow</code></a> event just before displaying the panel.</p>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code>Promise</code></dt>
-                                  <dd><p>A promise resolved when the <code>#toolbarView</code> <a href="module_ui_view-View.html#init"><code>init</code></a> is done.</p>
-                                  </dd>
-                        </dl>
                       </div>
                     </div>
                   </li>

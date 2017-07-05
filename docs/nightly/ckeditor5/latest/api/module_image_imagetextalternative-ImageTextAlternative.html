@@ -182,15 +182,14 @@
 <a href="module_core_plugincollection-PluginCollection.html#get"><code>get</code></a> by its
 name and its constructor. If not, then only by its constructor.</p>
                       <div class="collapsing-list__content">
-<p>The name should reflect the package name + the plugin module name. E.g. <code>ckeditor5-image/src/image.js</code> plugin
-should be named <code>image/image</code>. If plugin is kept deeper in the directory structure, it&apos;s recommended to only use the module file name,
-not the whole path. So, e.g. a plugin defined in <code>ckeditor5-ui/src/notification/notification.js</code> file may be named <code>ui/notification</code>.</p>
+<p>The name should reflect the constructor name.</p>
 <p>To keep a plugin class definition tight it&apos;s recommended to define this property as a static getter:</p>
 <pre class="prettyprint source"><code>export default class ImageCaption {
     static get pluginName() {
-        return &apos;image/imagecaption&apos;;
+        return &apos;ImageCaption&apos;;
     }
-}</code></pre>
+}</code></pre><p>Note: The native <code>Function.name</code> property could not be used to keep the plugin name because
+it will be mangled during code minification.</p>
                       </div>
                     </div>
                   </li>
@@ -366,7 +365,7 @@ A.bind( &apos;a&apos; ).to( B, &apos;b&apos;, C, &apos;d&apos;, ( b, d ) =&gt; b
                   </li>
                   <li class="collapsing-list__item" data-private="true">
                     <div class="collapsing-list__term toggler--collapsed" id="_createBalloonPanel">
-                      <h3><code><a class="member-name" href="#_createBalloonPanel">_createBalloonPanel</a>() &rarr;  <span>Promise.&lt;<a class="collapsing-list__type" href="module_image_image_ui_imageballoonpanel-ImageBalloonPanelView.html">ImageBalloonPanelView</a>&gt;</span></code></h3>
+                      <h3><code><a class="member-name" href="#_createBalloonPanel">_createBalloonPanel</a>() &rarr;  <span><a class="collapsing-list__type" href="module_image_image_ui_imageballoonpanel-ImageBalloonPanelView.html">ImageBalloonPanelView</a></span></code></h3>
                       <p class="badges">
 <span class="badge badge--red ">private</span>
                       </p>
@@ -377,7 +376,7 @@ A.bind( &apos;a&apos; ).to( B, &apos;b&apos;, C, &apos;d&apos;, ( b, d ) =&gt; b
                       <div class="collapsing-list__content">
                         <h4>Returns</h4>
                         <dl>
-                                  <dt><code><span>Promise.&lt;<a class="collapsing-list__type" href="module_image_image_ui_imageballoonpanel-ImageBalloonPanelView.html">ImageBalloonPanelView</a>&gt;</span></code></dt>
+                                  <dt><code><span><a class="collapsing-list__type" href="module_image_image_ui_imageballoonpanel-ImageBalloonPanelView.html">ImageBalloonPanelView</a></span></code></dt>
                                   <dd>
                                   </dd>
                         </dl>

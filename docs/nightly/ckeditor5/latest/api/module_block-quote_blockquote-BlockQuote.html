@@ -165,15 +165,14 @@ empty quoted block.</p>
 <a href="module_core_plugincollection-PluginCollection.html#get"><code>get</code></a> by its
 name and its constructor. If not, then only by its constructor.</p>
                       <div class="collapsing-list__content">
-<p>The name should reflect the package name + the plugin module name. E.g. <code>ckeditor5-image/src/image.js</code> plugin
-should be named <code>image/image</code>. If plugin is kept deeper in the directory structure, it&apos;s recommended to only use the module file name,
-not the whole path. So, e.g. a plugin defined in <code>ckeditor5-ui/src/notification/notification.js</code> file may be named <code>ui/notification</code>.</p>
+<p>The name should reflect the constructor name.</p>
 <p>To keep a plugin class definition tight it&apos;s recommended to define this property as a static getter:</p>
 <pre class="prettyprint source"><code>export default class ImageCaption {
     static get pluginName() {
-        return &apos;image/imagecaption&apos;;
+        return &apos;ImageCaption&apos;;
     }
-}</code></pre>
+}</code></pre><p>Note: The native <code>Function.name</code> property could not be used to keep the plugin name because
+it will be mangled during code minification.</p>
                       </div>
                     </div>
                   </li>

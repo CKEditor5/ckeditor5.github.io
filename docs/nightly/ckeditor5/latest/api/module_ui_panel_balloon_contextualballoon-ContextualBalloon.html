@@ -208,15 +208,14 @@ views in the stack.</p>
 <a href="module_core_plugincollection-PluginCollection.html#get"><code>get</code></a> by its
 name and its constructor. If not, then only by its constructor.</p>
                       <div class="collapsing-list__content">
-<p>The name should reflect the package name + the plugin module name. E.g. <code>ckeditor5-image/src/image.js</code> plugin
-should be named <code>image/image</code>. If plugin is kept deeper in the directory structure, it&apos;s recommended to only use the module file name,
-not the whole path. So, e.g. a plugin defined in <code>ckeditor5-ui/src/notification/notification.js</code> file may be named <code>ui/notification</code>.</p>
+<p>The name should reflect the constructor name.</p>
 <p>To keep a plugin class definition tight it&apos;s recommended to define this property as a static getter:</p>
 <pre class="prettyprint source"><code>export default class ImageCaption {
     static get pluginName() {
-        return &apos;image/imagecaption&apos;;
+        return &apos;ImageCaption&apos;;
     }
-}</code></pre>
+}</code></pre><p>Note: The native <code>Function.name</code> property could not be used to keep the plugin name because
+it will be mangled during code minification.</p>
                       </div>
                     </div>
                   </li>
@@ -299,7 +298,7 @@ so in the same order as constructors of these plugins.</p>
                   </li>
                   <li class="collapsing-list__item" data-public="true">
                     <div class="collapsing-list__term toggler--collapsed" id="add">
-                      <h3><code><a class="member-name" href="#add">add</a>( data = { [data.view], [data.position], [data.balloonClassName] } ) &rarr;  Promise</code></h3>
+                      <h3><code><a class="member-name" href="#add">add</a>( data = { [data.view], [data.position], [data.balloonClassName] } )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Adds a new view to the stack and makes it visible.
@@ -323,12 +322,6 @@ so in the same order as constructors of these plugins.</p>
                                             </dl>
                                   </dd>
                                 </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code>Promise</code></dt>
-                                  <dd><p>A Promise resolved when the child <a href="module_ui_view-View.html#init"><code>init</code></a> is done.</p>
-                                  </dd>
-                        </dl>
                       </div>
                     </div>
                   </li>
@@ -769,7 +762,7 @@ order they were added.</p>
                   </li>
                   <li class="collapsing-list__item" data-public="true">
                     <div class="collapsing-list__term toggler--collapsed" id="remove">
-                      <h3><code><a class="member-name" href="#remove">remove</a>( view ) &rarr;  Promise</code></h3>
+                      <h3><code><a class="member-name" href="#remove">remove</a>( view )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Removes the given view from the stack. If the removed view was visible,
@@ -783,12 +776,6 @@ When there is no view in the stack then balloon will hide.
                                   <dd><p>A view to be removed from the balloon.</p>
                                   </dd>
                                 </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code>Promise</code></dt>
-                                  <dd><p>A Promise resolved when the preceding view is ready.</p>
-                                  </dd>
-                        </dl>
                       </div>
                     </div>
                   </li>

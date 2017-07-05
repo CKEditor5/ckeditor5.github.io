@@ -491,7 +491,7 @@ is the first param of every callback).</p>
                   </li>
                   <li class="collapsing-list__item" data-public="true" data-inherited="true">
                     <div class="collapsing-list__term toggler--collapsed" id="addChildren">
-                      <h3><code><a class="member-name" href="#addChildren">addChildren</a>( children ) &rarr;  Promise</code></h3>
+                      <h3><code><a class="member-name" href="#addChildren">addChildren</a>( children )</code></h3>
                       <p class="badges">
 <span class="badge badge--gray ">inherited</span>
                       </p>
@@ -525,10 +525,10 @@ and destruction (<a href="module_ui_view-View.html#destroy"><code>destroy</code>
 
 const view = new SampleView( locale );
 
-view.init().then( () =&gt; {
-    // Will append &lt;p&gt;&lt;childA#element&gt;&lt;b&gt;&lt;/b&gt;&lt;childB#element&gt;&lt;/p&gt;
-    document.body.appendChild( view.element );
-} );</code></pre><p><strong>Note</strong>: There&apos;s no need to add child views if they&apos;re used in the
+view.init();
+
+// Will append &lt;p&gt;&lt;childA#element&gt;&lt;b&gt;&lt;/b&gt;&lt;childB#element&gt;&lt;/p&gt;
+document.body.appendChild( view.element );</code></pre><p><strong>Note</strong>: There&apos;s no need to add child views if they&apos;re used in the
 <a href="module_ui_view-View.html#template"><code>template</code></a> explicitly:</p>
 <pre class="prettyprint source"><code>class SampleView extends View {
     constructor( locale ) {
@@ -554,12 +554,6 @@ view.init().then( () =&gt; {
                                   <dd><p>Children views to be registered.</p>
                                   </dd>
                                 </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code>Promise</code></dt>
-                                  <dd>
-                                  </dd>
-                        </dl>
                       </div>
                     </div>
                   </li>
@@ -659,14 +653,14 @@ e.g. as a member of <a href="module_ui_template-TemplateDefinition.html">Templat
 const view = new SampleView( locale );
 const anotherView = new AnotherSampleView( locale );
 
-view.init().then( () =&gt; {
-    // Will append &lt;p&gt;&lt;/p&gt;
-    document.body.appendChild( view.element );
+view.init();
 
-    // `anotherView` becomes a child of the view, which is reflected in DOM
-    // &lt;p&gt;&lt;anotherView#element&gt;&lt;/p&gt;
-    view.items.add( anotherView );
-} );</code></pre>
+// Will append &lt;p&gt;&lt;/p&gt;
+document.body.appendChild( view.element );
+
+// `anotherView` becomes a child of the view, which is reflected in DOM
+// &lt;p&gt;&lt;anotherView#element&gt;&lt;/p&gt;
+view.items.add( anotherView );</code></pre>
                         <h4>Returns</h4>
                         <dl>
                                   <dt><code><span><a class="collapsing-list__type" href="module_ui_viewcollection-ViewCollection.html">ViewCollection</a></span></code></dt>
@@ -779,7 +773,7 @@ emitterA.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( emitterC );</cod
                   </li>
                   <li class="collapsing-list__item" data-public="true" data-inherited="true">
                     <div class="collapsing-list__term toggler--collapsed" id="fillFromConfig">
-                      <h3><code><a class="member-name" href="#fillFromConfig">fillFromConfig</a>( config, factory ) &rarr;  Promise</code></h3>
+                      <h3><code><a class="member-name" href="#fillFromConfig">fillFromConfig</a>( config, factory )</code></h3>
                       <p class="badges">
 <span class="badge badge--gray ">inherited</span>
                       </p>
@@ -798,12 +792,6 @@ emitterA.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( emitterC );</cod
                                   <dd><p>A factory producing toolbar items.</p>
                                   </dd>
                                 </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code>Promise</code></dt>
-                                  <dd><p>A promise resolved when created toolbar items are initialized.</p>
-                                  </dd>
-                        </dl>
                       </div>
                     </div>
                   </li>
@@ -838,7 +826,7 @@ be sticky or not.
                   </li>
                   <li class="collapsing-list__item" data-public="true" data-inherited="true">
                     <div class="collapsing-list__term toggler--collapsed" id="init">
-                      <h3><code><a class="member-name" href="#init">init</a>() &rarr;  Promise</code></h3>
+                      <h3><code><a class="member-name" href="#init">init</a>()</code></h3>
                       <p class="badges">
 <span class="badge badge--gray ">inherited</span>
                       </p>
@@ -847,12 +835,6 @@ be sticky or not.
                       <p class="collapsing-list__excerpt">Initializes the view and child views located in <a href="module_ui_view-View.html#_viewCollections"><code>_viewCollections</code></a>.
                       </p>
                       <div class="collapsing-list__content">
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code>Promise</code></dt>
-                                  <dd><p>A Promise resolved when the initialization process is finished.</p>
-                                  </dd>
-                        </dl>
                       </div>
                     </div>
                   </li>
