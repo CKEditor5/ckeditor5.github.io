@@ -83,8 +83,8 @@
                       <h3><code><a class="member-name" href="#isCollapsed">isCollapsed</a> : Boolean</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Returns whether the range is collapsed, that is if <a href="module_engine_model_range-Range.html#start">start</a> and
-<a href="module_engine_model_range-Range.html#end">end</a> positions are equal.</p>
+                      <p class="collapsing-list__excerpt">Returns whether the range is collapsed, that is if <a href="module_engine_model_range-Range.html#start"><code>start</code></a> and
+<a href="module_engine_model_range-Range.html#end"><code>end</code></a> positions are equal.</p>
                       <div class="collapsing-list__content">
                       </div>
                     </div>
@@ -94,8 +94,8 @@
                       <h3><code><a class="member-name" href="#isFlat">isFlat</a> : Boolean</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Returns whether this range is flat, that is if <a href="module_engine_model_range-Range.html#start">start</a> position and
-<a href="module_engine_model_range-Range.html#end">end</a> position are in the same <a href="module_engine_model_position-Position.html#parent">parent</a>.</p>
+                      <p class="collapsing-list__excerpt">Returns whether this range is flat, that is if <a href="module_engine_model_range-Range.html#start"><code>start</code></a> position and
+<a href="module_engine_model_range-Range.html#end"><code>end</code></a> position are in the same <a href="module_engine_model_position-Position.html#parent"><code>parent</code></a>.</p>
                       <div class="collapsing-list__content">
                       </div>
                     </div>
@@ -236,8 +236,8 @@
                         <h4>Returns</h4>
                         <dl>
                                   <dt><code>Boolean</code></dt>
-                                  <dd><p><code>true</code> if given <a href="module_engine_model_position-Position.html">position</a> is contained in this range,
-<code>false</code> otherwise.</p>
+                                  <dd><p><code>true</code> if given <a href="module_engine_model_position-Position.html">position</a> is contained
+in this range,<code>false</code> otherwise.</p>
                                   </dd>
                         </dl>
                       </div>
@@ -245,7 +245,7 @@
                   </li>
                   <li class="collapsing-list__item" data-public="true">
                     <div class="collapsing-list__term toggler--collapsed" id="containsRange">
-                      <h3><code><a class="member-name" href="#containsRange">containsRange</a>( otherRange ) &rarr;  Boolean</code></h3>
+                      <h3><code><a class="member-name" href="#containsRange">containsRange</a>( otherRange, [ loose ] ) &rarr;  Boolean</code></h3>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Checks whether this range contains given <a href="module_engine_model_range-Range.html">range</a>.
@@ -255,6 +255,12 @@
                                 <dl>
                                   <dt><code> otherRange : <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
                                   <dd><p>Range to check.</p>
+                                  </dd>
+                                  <dt><code> [ loose ] : Boolean</code></dt>
+                                  <dd><p>Whether the check is loose or strict. If the check is strict (<code>false</code>), compared range cannot
+start or end at the same position as this range boundaries. If the check is loose (<code>true</code>), compared range can start, end or
+even be equal to this range. Note that collapsed ranges are always compared in strict mode.</p>
+                                    <p>Defaults to <code>false</code></p>
                                   </dd>
                                 </dl>
                         <h4>Returns</h4>
@@ -556,8 +562,7 @@ may contain one or more <code>Range</code> instances.</p>
                       <h3><code><a class="member-name" href="#isEqual">isEqual</a>( otherRange ) &rarr;  Boolean</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Two ranges are equal if their <a href="module_engine_model_range-Range.html#start">start</a> and
-<a href="module_engine_model_range-Range.html#end">end</a> positions are equal.
+                      <p class="collapsing-list__excerpt">Two ranges are equal if their <a href="module_engine_model_range-Range.html#start"><code>start</code></a> and <a href="module_engine_model_range-Range.html#end"><code>end</code></a> positions are equal.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -1538,12 +1543,15 @@ that element and ends after the last child of that element.
                                                             </li>
                                                     </ul>
                                                   </li>
-                                                  <li class="toggler--collapsed">
+                                                  <li class="toggler--collapsed" data-protected="true">
                                                     <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_engine_model_delta_transform.html">transform</a>
                                                     </div>
                                                     <ul>
                                                             <li><a href="module_engine_model_delta_transform-transform.html">
                                                                 <div class="tree__item__wrapper"><span class="tree__item--namespace tree__item__text">transform</span></div></a>
+                                                            </li>
+                                                            <li><a href="module_engine_model_delta_transform-transformationContext.html">
+                                                                <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">transformationContext</span></div></a>
                                                             </li>
                                                     </ul>
                                                   </li>

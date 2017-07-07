@@ -145,7 +145,7 @@ class CKEditorError extends Error {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__treewalker__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_lib_lodash_last__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_comparearrays__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_comparearrays__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__text__ = __webpack_require__(25);
 /**
@@ -1156,8 +1156,8 @@ class Range {
 	}
 
 	/**
-	 * Returns whether the range is collapsed, that is if {@link #start start} and
-	 * {@link #end end} positions are equal.
+	 * Returns whether the range is collapsed, that is if {@link #start} and
+	 * {@link #end} positions are equal.
 	 *
 	 * @type {Boolean}
 	 */
@@ -1166,8 +1166,8 @@ class Range {
 	}
 
 	/**
-	 * Returns whether this range is flat, that is if {@link #start start} position and
-	 * {@link #end end} position are in the same {@link module:engine/model/position~Position#parent parent}.
+	 * Returns whether this range is flat, that is if {@link #start} position and
+	 * {@link #end} position are in the same {@link module:engine/model/position~Position#parent}.
 	 *
 	 * @type {Boolean}
 	 */
@@ -1188,8 +1188,8 @@ class Range {
 	 * Checks whether this range contains given {@link module:engine/model/position~Position position}.
 	 *
 	 * @param {module:engine/model/position~Position} position Position to check.
-	 * @returns {Boolean} `true` if given {@link module:engine/model/position~Position position} is contained in this range,
-	 * `false` otherwise.
+	 * @returns {Boolean} `true` if given {@link module:engine/model/position~Position position} is contained
+	 * in this range,`false` otherwise.
 	 */
 	containsPosition( position ) {
 		return position.isAfter( this.start ) && position.isBefore( this.end );
@@ -1199,15 +1199,24 @@ class Range {
 	 * Checks whether this range contains given {@link ~Range range}.
 	 *
 	 * @param {module:engine/model/range~Range} otherRange Range to check.
+	 * @param {Boolean} [loose=false] Whether the check is loose or strict. If the check is strict (`false`), compared range cannot
+	 * start or end at the same position as this range boundaries. If the check is loose (`true`), compared range can start, end or
+	 * even be equal to this range. Note that collapsed ranges are always compared in strict mode.
 	 * @returns {Boolean} `true` if given {@link ~Range range} boundaries are contained by this range, `false` otherwise.
 	 */
-	containsRange( otherRange ) {
-		return this.containsPosition( otherRange.start ) && this.containsPosition( otherRange.end );
+	containsRange( otherRange, loose = false ) {
+		if ( otherRange.isCollapsed ) {
+			loose = false;
+		}
+
+		const containsStart = this.containsPosition( otherRange.start ) || ( loose && this.start.isEqual( otherRange.start ) );
+		const containsEnd = this.containsPosition( otherRange.end ) || ( loose && this.end.isEqual( otherRange.end ) );
+
+		return containsStart && containsEnd;
 	}
 
 	/**
-	 * Two ranges are equal if their {@link #start start} and
-	 * {@link #end end} positions are equal.
+	 * Two ranges are equal if their {@link #start} and {@link #end} positions are equal.
 	 *
 	 * @param {module:engine/model/range~Range} otherRange Range to compare with.
 	 * @returns {Boolean} `true` if ranges are equal, `false` otherwise.
@@ -1516,8 +1525,8 @@ class Range {
 		}
 
 		// It may happen that a range is split into two, and then the part of second "piece" is moved into first
-		// "piece". In this case we will have incorrect third rage, which should not be included in the result --
-		// because it is already included in first "piece". In this loop we are looking for all such ranges that
+		// "piece". In this case we will have incorrect third range, which should not be included in the result --
+		// because it is already included in the first "piece". In this loop we are looking for all such ranges that
 		// are inside other ranges and we simply remove them.
 		for ( let i = 0; i < ranges.length; i++ ) {
 			const range = ranges[ i ];
@@ -1551,6 +1560,7 @@ class Range {
 		} else {
 			const sourceRange = Range.createFromPositionAndShift( sourcePosition, howMany );
 
+			// Edge case for merge detla.
 			if (
 				deltaType == 'merge' &&
 				this.isCollapsed &&
@@ -1559,51 +1569,54 @@ class Range {
 				// Collapsed range is in merged element.
 				// Without fix, the range would end up in the graveyard, together with removed element.
 				// <p>foo</p><p>[]bar</p> -> <p>foobar</p><p>[]</p> -> <p>foobar</p> -> <p>foo[]bar</p>
+				// <p>foo</p><p>bar[]</p>
 				return [ new Range( targetPosition.getShiftedBy( this.start.offset ) ) ];
-			} else if ( type == 'move' ) {
-				// In all examples `[]` is `this` and `{}` is `sourceRange`, while `^` is move target position.
-				//
-				// Example:
-				// <p>xx</p>^<w>{<p>a[b</p>}</w><p>c]d</p>   -->   <p>xx</p><p>a[b</p><w></w><p>c]d</p>
-				// ^<p>xx</p><w>{<p>a[b</p>}</w><p>c]d</p>   -->   <p>a[b</p><p>xx</p><w></w><p>c]d</p>  // Note <p>xx</p> inclusion.
-				// <w>{<p>a[b</p>}</w>^<p>c]d</p>            -->   <w></w><p>a[b</p><p>c]d</p>
-				if (
-					sourceRange.containsPosition( this.start ) &&
-					this.containsPosition( sourceRange.end ) &&
-					this.end.isAfter( targetPosition )
-				) {
-					const start = this.start._getCombined(
-						sourcePosition,
-						targetPosition._getTransformedByDeletion( sourcePosition, howMany )
-					);
-					const end = this.end._getTransformedByMove( sourcePosition, targetPosition, howMany, false, false );
+			}
+			//
+			// Other edge cases:
+			//
+			// In all examples `[]` is `this` and `{}` is `sourceRange`, while `^` is move target position.
+			//
+			// Example:
+			// <p>xx</p>^<w>{<p>a[b</p>}</w><p>c]d</p>   -->   <p>xx</p><p>a[b</p><w></w><p>c]d</p>
+			// ^<p>xx</p><w>{<p>a[b</p>}</w><p>c]d</p>   -->   <p>a[b</p><p>xx</p><w></w><p>c]d</p>  // Note <p>xx</p> inclusion.
+			// <w>{<p>a[b</p>}</w>^<p>c]d</p>            -->   <w></w><p>a[b</p><p>c]d</p>
+			if (
+				sourceRange.containsPosition( this.start ) &&
+				this.containsPosition( sourceRange.end ) &&
+				this.end.isAfter( targetPosition )
+			) {
+				const start = this.start._getCombined(
+					sourcePosition,
+					targetPosition._getTransformedByDeletion( sourcePosition, howMany )
+				);
+				const end = this.end._getTransformedByMove( sourcePosition, targetPosition, howMany, false, false );
 
-					return [ new Range( start, end ) ];
-				}
+				return [ new Range( start, end ) ];
+			}
 
-				// Example:
-				// <p>c[d</p><w>{<p>a]b</p>}</w>^<p>xx</p>   -->   <p>c[d</p><w></w><p>a]b</p><p>xx</p>
-				// <p>c[d</p><w>{<p>a]b</p>}</w><p>xx</p>^   -->   <p>c[d</p><w></w><p>xx</p><p>a]b</p>  // Note <p>xx</p> inclusion.
-				// <p>c[d</p>^<w>{<p>a]b</p>}</w>            -->   <p>c[d</p><p>a]b</p><w></w>
-				if (
-					sourceRange.containsPosition( this.end ) &&
-					this.containsPosition( sourceRange.start ) &&
-					this.start.isBefore( targetPosition )
-				) {
-					const start = this.start._getTransformedByMove(
-						sourcePosition,
-						targetPosition,
-						howMany,
-						true,
-						false
-					);
-					const end = this.end._getCombined(
-						sourcePosition,
-						targetPosition._getTransformedByDeletion( sourcePosition, howMany )
-					);
+			// Example:
+			// <p>c[d</p><w>{<p>a]b</p>}</w>^<p>xx</p>   -->   <p>c[d</p><w></w><p>a]b</p><p>xx</p>
+			// <p>c[d</p><w>{<p>a]b</p>}</w><p>xx</p>^   -->   <p>c[d</p><w></w><p>xx</p><p>a]b</p>  // Note <p>xx</p> inclusion.
+			// <p>c[d</p>^<w>{<p>a]b</p>}</w>            -->   <p>c[d</p><p>a]b</p><w></w>
+			if (
+				sourceRange.containsPosition( this.end ) &&
+				this.containsPosition( sourceRange.start ) &&
+				this.start.isBefore( targetPosition )
+			) {
+				const start = this.start._getTransformedByMove(
+					sourcePosition,
+					targetPosition,
+					howMany,
+					true,
+					false
+				);
+				const end = this.end._getCombined(
+					sourcePosition,
+					targetPosition._getTransformedByDeletion( sourcePosition, howMany )
+				);
 
-					return [ new Range( start, end ) ];
-				}
+				return [ new Range( start, end ) ];
 			}
 
 			return this._getTransformedByMove( sourcePosition, targetPosition, howMany );
@@ -1936,10 +1949,10 @@ function mix( baseClass, ...mixins ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nodelist__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nodelist__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__text__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(46);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -2270,9 +2283,9 @@ function normalize( nodes ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_collection__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_collection__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__viewcollection__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__viewcollection__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_lib_lodash_cloneDeepWith__ = __webpack_require__(423);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_lib_lodash_isObject__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(34);
@@ -3897,7 +3910,7 @@ function shouldExtend( attrName ) {
 /* harmony export (immutable) */ __webpack_exports__["b"] = _setEmitterId;
 /* unused harmony export _getEmitterId */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__eventinfo__ = __webpack_require__(282);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__uid__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__uid__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__priorities__ = __webpack_require__(284);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -4505,7 +4518,7 @@ function fireDelegatedEvents( destinations, eventInfo, fireArgs ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__apply__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__apply__ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toInteger__ = __webpack_require__(13);
 
 
@@ -4579,13 +4592,13 @@ function rest(func, start) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__viewcollection__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__viewcollection__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__template__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_dom_emittermixin__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_dom_emittermixin__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_collection__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_collection__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(46);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -5183,8 +5196,8 @@ function toInteger(value) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isArrayLike__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isObjectLike__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isArrayLike__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isObjectLike__ = __webpack_require__(43);
 
 
 
@@ -5542,12 +5555,12 @@ function register( name, creator ) {
 /* unused harmony export setAttribute */
 /* unused harmony export removeAttribute */
 /* harmony export (immutable) */ __webpack_exports__["c"] = normalizeNodes;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__text__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__textproxy__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__textproxy__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__documentfragment__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__nodelist__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__nodelist__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -5874,7 +5887,7 @@ function _haveSameAttributes( nodeA, nodeB ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_clone__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_clone__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -6040,18 +6053,6 @@ class Delta {
 	static get className() {
 		return 'engine.model.delta.Delta';
 	}
-
-	/**
-	 * Delta priority. Used in {@link module:engine/model/delta/transform~transform delta transformations}. Delta with the higher
-	 * priority will be treated as more important when resolving transformation conflicts. If deltas have same
-	 * priority, other factors will be used to determine which delta is more important.
-	 *
-	 * @private
-	 * @type {Number}
-	 */
-	static get _priority() {
-		return 0;
-	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Delta;
 
@@ -6064,7 +6065,7 @@ __WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( Delta )
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayPush__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayPush__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isFlattenable__ = __webpack_require__(364);
 
 
@@ -6587,7 +6588,7 @@ class ButtonView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */] 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__emittermixin__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lib_lodash_extend__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lib_lodash_extend__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__lib_lodash_isObject__ = __webpack_require__(12);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -7324,7 +7325,7 @@ __WEBPACK_IMPORTED_MODULE_2__lib_lodash_extend__["a" /* default */]( ObservableM
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node__ = __webpack_require__(62);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -7418,10 +7419,10 @@ class Text extends __WEBPACK_IMPORTED_MODULE_0__node__["a" /* default */] {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__treewalker__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_comparearrays__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__treewalker__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_comparearrays__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__editableelement__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__editableelement__ = __webpack_require__(82);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -7816,12 +7817,12 @@ class Position {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__text__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_objecttomap__ = __webpack_require__(158);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isPlainObject__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__matcher__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__text__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_objecttomap__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isPlainObject__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__matcher__ = __webpack_require__(160);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -8619,181 +8620,11 @@ function normalize( nodes ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/**
- * A specialized version of `_.map` for arrays without support for iteratee
- * shorthands.
- *
- * @private
- * @param {Array} array The array to iterate over.
- * @param {Function} iteratee The function invoked per iteration.
- * @returns {Array} Returns the new mapped array.
- */
-function arrayMap(array, iteratee) {
-  var index = -1,
-      length = array.length,
-      result = Array(length);
-
-  while (++index < length) {
-    result[index] = iteratee(array[index], index, array);
-  }
-  return result;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (arrayMap);
-
-
-/***/ }),
-/* 29 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(module, global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__checkGlobal__ = __webpack_require__(293);
-
-
-/** Used to determine if values are of the language type `Object`. */
-var objectTypes = {
-  'function': true,
-  'object': true
-};
-
-/** Detect free variable `exports`. */
-var freeExports = (objectTypes[typeof exports] && exports && !exports.nodeType)
-  ? exports
-  : undefined;
-
-/** Detect free variable `module`. */
-var freeModule = (objectTypes[typeof module] && module && !module.nodeType)
-  ? module
-  : undefined;
-
-/** Detect free variable `global` from Node.js. */
-var freeGlobal = __WEBPACK_IMPORTED_MODULE_0__checkGlobal__["a" /* default */](freeExports && freeModule && typeof global == 'object' && global);
-
-/** Detect free variable `self`. */
-var freeSelf = __WEBPACK_IMPORTED_MODULE_0__checkGlobal__["a" /* default */](objectTypes[typeof self] && self);
-
-/** Detect free variable `window`. */
-var freeWindow = __WEBPACK_IMPORTED_MODULE_0__checkGlobal__["a" /* default */](objectTypes[typeof window] && window);
-
-/** Detect `this` as the global object. */
-var thisGlobal = __WEBPACK_IMPORTED_MODULE_0__checkGlobal__["a" /* default */](objectTypes[typeof this] && this);
-
-/**
- * Used as a reference to the global object.
- *
- * The `this` value is used if it's the global object to avoid Greasemonkey's
- * restricted `window` object, otherwise the `window` object is used.
- */
-var root = freeGlobal ||
-  ((freeWindow !== (thisGlobal && thisGlobal.window)) && freeWindow) ||
-    freeSelf || thisGlobal || Function('return this')();
-
-/* harmony default export */ __webpack_exports__["a"] = (root);
-
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(154)(module), __webpack_require__(292)))
-
-/***/ }),
-/* 30 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node__ = __webpack_require__(80);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module engine/view/text
- */
-
-
-
-/**
- * Tree view text node.
- *
- * @extends module:engine/view/node~Node
- */
-class Text extends __WEBPACK_IMPORTED_MODULE_0__node__["a" /* default */] {
-	/**
-	 * Creates a tree view text node.
-	 *
-	 * @param {String} data Text.
-	 */
-	constructor( data ) {
-		super();
-
-		/**
-		 * The text content.
-		 *
-		 * Setting the data fires the {@link module:engine/view/node~Node#event:change:text change event}.
-		 *
-		 * @private
-		 * @member {String} module:engine/view/text~Text#_data
-		 */
-		this._data = data;
-	}
-
-	/**
-	 * Clones this node.
-	 *
-	 * @returns {module:engine/view/text~Text} Text node that is a clone of this node.
-	 */
-	clone() {
-		return new Text( this.data );
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	is( type ) {
-		return type == 'text';
-	}
-
-	/**
-	 * The text content.
-	 *
-	 * Setting the data fires the {@link module:engine/view/node~Node#event:change:text change event}.
-	 */
-	get data() {
-		return this._data;
-	}
-
-	set data( data ) {
-		this._fireChange( 'text', this );
-
-		this._data = data;
-	}
-
-	/**
-	 * Checks if this text node is similar to other text node.
-	 * Both nodes should have the same data to be considered as similar.
-	 *
-	 * @param {module:engine/view/text~Text} otherNode Node to check if it is same as this node.
-	 * @returns {Boolean}
-	 */
-	isSimilar( otherNode ) {
-		if ( !( otherNode instanceof Text ) ) {
-			return false;
-		}
-
-		return this === otherNode || this.data === otherNode.data;
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Text;
-
-
-
-/***/ }),
-/* 31 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__operation__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_comparearrays__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_comparearrays__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__writer__ = __webpack_require__(19);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -9006,6 +8837,176 @@ class MoveOperation extends __WEBPACK_IMPORTED_MODULE_0__operation__["a" /* defa
 	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = MoveOperation;
+
+
+
+/***/ }),
+/* 29 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * A specialized version of `_.map` for arrays without support for iteratee
+ * shorthands.
+ *
+ * @private
+ * @param {Array} array The array to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Array} Returns the new mapped array.
+ */
+function arrayMap(array, iteratee) {
+  var index = -1,
+      length = array.length,
+      result = Array(length);
+
+  while (++index < length) {
+    result[index] = iteratee(array[index], index, array);
+  }
+  return result;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (arrayMap);
+
+
+/***/ }),
+/* 30 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module, global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__checkGlobal__ = __webpack_require__(293);
+
+
+/** Used to determine if values are of the language type `Object`. */
+var objectTypes = {
+  'function': true,
+  'object': true
+};
+
+/** Detect free variable `exports`. */
+var freeExports = (objectTypes[typeof exports] && exports && !exports.nodeType)
+  ? exports
+  : undefined;
+
+/** Detect free variable `module`. */
+var freeModule = (objectTypes[typeof module] && module && !module.nodeType)
+  ? module
+  : undefined;
+
+/** Detect free variable `global` from Node.js. */
+var freeGlobal = __WEBPACK_IMPORTED_MODULE_0__checkGlobal__["a" /* default */](freeExports && freeModule && typeof global == 'object' && global);
+
+/** Detect free variable `self`. */
+var freeSelf = __WEBPACK_IMPORTED_MODULE_0__checkGlobal__["a" /* default */](objectTypes[typeof self] && self);
+
+/** Detect free variable `window`. */
+var freeWindow = __WEBPACK_IMPORTED_MODULE_0__checkGlobal__["a" /* default */](objectTypes[typeof window] && window);
+
+/** Detect `this` as the global object. */
+var thisGlobal = __WEBPACK_IMPORTED_MODULE_0__checkGlobal__["a" /* default */](objectTypes[typeof this] && this);
+
+/**
+ * Used as a reference to the global object.
+ *
+ * The `this` value is used if it's the global object to avoid Greasemonkey's
+ * restricted `window` object, otherwise the `window` object is used.
+ */
+var root = freeGlobal ||
+  ((freeWindow !== (thisGlobal && thisGlobal.window)) && freeWindow) ||
+    freeSelf || thisGlobal || Function('return this')();
+
+/* harmony default export */ __webpack_exports__["a"] = (root);
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(155)(module), __webpack_require__(292)))
+
+/***/ }),
+/* 31 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node__ = __webpack_require__(81);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module engine/view/text
+ */
+
+
+
+/**
+ * Tree view text node.
+ *
+ * @extends module:engine/view/node~Node
+ */
+class Text extends __WEBPACK_IMPORTED_MODULE_0__node__["a" /* default */] {
+	/**
+	 * Creates a tree view text node.
+	 *
+	 * @param {String} data Text.
+	 */
+	constructor( data ) {
+		super();
+
+		/**
+		 * The text content.
+		 *
+		 * Setting the data fires the {@link module:engine/view/node~Node#event:change:text change event}.
+		 *
+		 * @private
+		 * @member {String} module:engine/view/text~Text#_data
+		 */
+		this._data = data;
+	}
+
+	/**
+	 * Clones this node.
+	 *
+	 * @returns {module:engine/view/text~Text} Text node that is a clone of this node.
+	 */
+	clone() {
+		return new Text( this.data );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	is( type ) {
+		return type == 'text';
+	}
+
+	/**
+	 * The text content.
+	 *
+	 * Setting the data fires the {@link module:engine/view/node~Node#event:change:text change event}.
+	 */
+	get data() {
+		return this._data;
+	}
+
+	set data( data ) {
+		this._fireChange( 'text', this );
+
+		this._data = data;
+	}
+
+	/**
+	 * Checks if this text node is similar to other text node.
+	 * Both nodes should have the same data to be considered as similar.
+	 *
+	 * @param {module:engine/view/text~Text} otherNode Node to check if it is same as this node.
+	 * @returns {Boolean}
+	 */
+	isSimilar( otherNode ) {
+		if ( !( otherNode instanceof Text ) ) {
+			return false;
+		}
+
+		return this === otherNode || this.data === otherNode.data;
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Text;
 
 
 
@@ -9503,7 +9504,7 @@ function isIndex(value, length) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__position__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__treewalker__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__treewalker__ = __webpack_require__(55);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -9678,11 +9679,21 @@ class Range {
 	 * Checks whether this range contains given {@link module:engine/view/range~Range range}.
 	 *
 	 * @param {module:engine/view/range~Range} otherRange Range to check.
+	 * @param {Boolean} [loose=false] Whether the check is loose or strict. If the check is strict (`false`), compared range cannot
+	 * start or end at the same position as this range boundaries. If the check is loose (`true`), compared range can start, end or
+	 * even be equal to this range. Note that collapsed ranges are always compared in strict mode.
 	 * @returns {Boolean} `true` if given {@link module:engine/view/range~Range range} boundaries are contained by this range, `false`
 	 * otherwise.
 	 */
-	containsRange( otherRange ) {
-		return this.containsPosition( otherRange.start ) && this.containsPosition( otherRange.end );
+	containsRange( otherRange, loose = false ) {
+		if ( otherRange.isCollapsed ) {
+			loose = false;
+		}
+
+		const containsStart = this.containsPosition( otherRange.start ) || ( loose && this.start.isEqual( otherRange.start ) );
+		const containsEnd = this.containsPosition( otherRange.end ) || ( loose && this.end.isEqual( otherRange.end ) );
+
+		return containsStart && containsEnd;
 	}
 
 	/**
@@ -9940,10 +9951,10 @@ function enlargeShrinkSkip( value ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nodelist__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nodelist__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__text__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(46);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -10253,7 +10264,7 @@ function normalize( nodes ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_clone__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_clone__ = __webpack_require__(84);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -10378,6 +10389,58 @@ class Operation {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__moveoperation__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__reinsertoperation__ = __webpack_require__(125);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module engine/model/operation/removeoperation
+ */
+
+
+
+
+/**
+ * Operation to remove a range of nodes.
+ */
+class RemoveOperation extends __WEBPACK_IMPORTED_MODULE_0__moveoperation__["a" /* default */] {
+	/**
+	 * @inheritDoc
+	 */
+	get type() {
+		return 'remove';
+	}
+
+	/**
+	 * See {@link module:engine/model/operation/operation~Operation#getReversed `Operation#getReversed()`}.
+	 *
+	 * @returns {module:engine/model/operation/reinsertoperation~ReinsertOperation|module:engine/model/operation/nooperation~NoOperation}
+	 */
+	getReversed() {
+		const newTargetPosition = this.sourcePosition._getTransformedByInsertion( this.targetPosition, this.howMany );
+
+		return new __WEBPACK_IMPORTED_MODULE_1__reinsertoperation__["a" /* default */]( this.getMovedRangeStart(), this.howMany, newTargetPosition, this.baseVersion + 1 );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get className() {
+		return 'engine.model.operation.RemoveOperation';
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = RemoveOperation;
+
+
+
+/***/ }),
+/* 40 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /**
  * The base implementation of `_.slice` without an iteratee call guard.
  *
@@ -10412,17 +10475,17 @@ function baseSlice(array, start, end) {
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = buildViewConverter;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_matcher__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_matcher__ = __webpack_require__(160);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_writer__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(46);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -10965,14 +11028,14 @@ function buildViewConverter() {
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["c"] = toImageWidget;
 /* harmony export (immutable) */ __webpack_exports__["b"] = isImageWidget;
 /* harmony export (immutable) */ __webpack_exports__["a"] = isImage;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_widget_src_utils__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_widget_src_utils__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(5);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -11033,7 +11096,7 @@ function isImage( modelElement ) {
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11069,7 +11132,7 @@ function isObjectLike(value) {
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11079,11 +11142,11 @@ function isObjectLike(value) {
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isObjectLike__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isObjectLike__ = __webpack_require__(43);
 
 
 /** `Object#toString` result references. */
@@ -11126,7 +11189,7 @@ function isSymbol(value) {
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11152,7 +11215,7 @@ function isIterable( value ) {
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11244,14 +11307,14 @@ function getFillerOffset() {
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__operation__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__nodelist__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__removeoperation__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__nodelist__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__removeoperation__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__writer__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__text__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__element__ = __webpack_require__(5);
@@ -11329,7 +11392,10 @@ class InsertOperation extends __WEBPACK_IMPORTED_MODULE_0__operation__["a" /* de
 	 * @returns {module:engine/model/operation/removeoperation~RemoveOperation}
 	 */
 	getReversed() {
-		return new __WEBPACK_IMPORTED_MODULE_3__removeoperation__["a" /* default */]( this.position, this.nodes.maxOffset, this.baseVersion + 1 );
+		const graveyard = this.position.root.document.graveyard;
+		const gyPosition = new __WEBPACK_IMPORTED_MODULE_1__position__["a" /* default */]( graveyard, [ 0 ] );
+
+		return new __WEBPACK_IMPORTED_MODULE_3__removeoperation__["a" /* default */]( this.position, this.nodes.maxOffset, gyPosition, this.baseVersion + 1 );
 	}
 
 	/**
@@ -11383,178 +11449,16 @@ class InsertOperation extends __WEBPACK_IMPORTED_MODULE_0__operation__["a" /* de
 
 
 /***/ }),
-/* 48 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__moveoperation__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__element__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__reinsertoperation__ = __webpack_require__(118);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module engine/model/operation/removeoperation
- */
-
-
-
-
-
-
-/**
- * Operation to remove a range of nodes.
- */
-class RemoveOperation extends __WEBPACK_IMPORTED_MODULE_0__moveoperation__["a" /* default */] {
-	/**
-	 * Creates a remove operation.
-	 *
-	 * @param {module:engine/model/position~Position} position Position before the first {@link module:engine/model/item~Item model item} to
-	 * remove.
-	 * @param {Number} howMany Offset size of removed range. {@link module:engine/model/item~Item Model items} will be removed starting
-	 * from `sourcePosition`, up to a `sourcePosition` with offset shifted by `howMany`.
-	 * @param {Number} baseVersion {@link module:engine/model/document~Document#version} on which operation can be applied.
-	 */
-	constructor( position, howMany, baseVersion ) {
-		const graveyard = position.root.document.graveyard;
-		const graveyardPosition = new __WEBPACK_IMPORTED_MODULE_1__position__["a" /* default */]( graveyard, [ graveyard.maxOffset, 0 ] );
-
-		super( position, howMany, graveyardPosition, baseVersion );
-
-		/**
-		 * Flag informing whether this operation should insert "holder" element (`true`) or should move removed nodes
-		 * into existing "holder" element (`false`).
-		 *
-		 * The flag should be set to `true` for each "new" `RemoveOperation` that is each `RemoveOperation` originally
-		 * created to remove some nodes from document (most likely created through `Batch` API).
-		 *
-		 * The flag should be set to `false` for each `RemoveOperation` that got created by splitting the original
-		 * `RemoveOperation`, for example during operational transformation.
-		 *
-		 * The flag should be set to `false` whenever removing nodes that were re-inserted from graveyard. This will
-		 * ensure correctness of all other operations that might change something on those nodes. This will also ensure
-		 * that redundant empty graveyard holder elements are not created.
-		 *
-		 * @protected
-		 * @type {Boolean}
-		 */
-		this._needsHolderElement = true;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	get type() {
-		return 'remove';
-	}
-
-	/**
-	 * Offset of the graveyard "holder" element, in which nodes removed by this operation are stored.
-	 *
-	 * @protected
-	 * @type {Number}
-	 */
-	get _holderElementOffset() {
-		return this.targetPosition.path[ 0 ];
-	}
-
-	/**
-	 * Sets {@link module:engine/model/operation/removeoperation~RemoveOperation#_holderElementOffset}.
-	 *
-	 * @protected
-	 * @param {Number} offset
-	 */
-	set _holderElementOffset( offset ) {
-		this.targetPosition.path[ 0 ] = offset;
-	}
-
-	/**
-	 * See {@link module:engine/model/operation/operation~Operation#getReversed `Operation#getReversed()`}.
-	 *
-	 * @returns {module:engine/model/operation/reinsertoperation~ReinsertOperation}
-	 */
-	getReversed() {
-		return new __WEBPACK_IMPORTED_MODULE_3__reinsertoperation__["a" /* default */]( this.targetPosition, this.howMany, this.sourcePosition, this.baseVersion + 1 );
-	}
-
-	/**
-	 * Creates and returns an operation that has the same parameters as this operation.
-	 *
-	 * @returns {module:engine/model/operation/removeoperation~RemoveOperation} Clone of this operation.
-	 */
-	clone() {
-		const removeOperation = new RemoveOperation( this.sourcePosition, this.howMany, this.baseVersion );
-		removeOperation.targetPosition = __WEBPACK_IMPORTED_MODULE_1__position__["a" /* default */].createFromPosition( this.targetPosition );
-
-		return removeOperation;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	_execute() {
-		// Insert "holder" element in graveyard root, if the operation needs it.
-		if ( this._needsHolderElement ) {
-			const graveyard = this.targetPosition.root;
-			const holderElement = new __WEBPACK_IMPORTED_MODULE_2__element__["a" /* default */]( '$graveyardHolder' );
-
-			graveyard.insertChildren( this._holderElementOffset, holderElement );
-
-			// If the operation removes nodes that are already in graveyard, it may happen that
-			// the operation's source position is invalidated by inserting new holder element into the graveyard.
-			// If that's the case, we need to fix source position path.
-			if ( this.sourcePosition.root == graveyard && this.sourcePosition.path[ 0 ] >= this._holderElementOffset ) {
-				this.sourcePosition.path[ 0 ]++;
-			}
-		}
-
-		// Then, execute as a move operation.
-		return super._execute();
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	static get className() {
-		return 'engine.model.operation.RemoveOperation';
-	}
-
-	/**
-	 * Creates `RemoveOperation` object from deserilized object, i.e. from parsed JSON string.
-	 *
-	 * @param {Object} json Deserialized JSON object.
-	 * @param {module:engine/model/document~Document} document Document on which this operation will be applied.
-	 * @returns {module:engine/model/operation/removeoperation~RemoveOperation}
-	 */
-	static fromJSON( json, document ) {
-		const sourcePosition = __WEBPACK_IMPORTED_MODULE_1__position__["a" /* default */].fromJSON( json.sourcePosition, document );
-
-		const removeOp = new RemoveOperation( sourcePosition, json.howMany, json.baseVersion );
-
-		removeOp.targetPosition = __WEBPACK_IMPORTED_MODULE_1__position__["a" /* default */].fromJSON( json.targetPosition, document );
-		removeOp._needsHolderElement = json._needsHolderElement;
-
-		return removeOp;
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = RemoveOperation;
-
-
-
-/***/ }),
 /* 49 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SetCache__ = __webpack_require__(91);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arrayIncludes__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__arrayIncludesWith__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cacheHas__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SetCache__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arrayIncludes__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__arrayIncludesWith__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cacheHas__ = __webpack_require__(135);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__createSet__ = __webpack_require__(390);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__setToArray__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__setToArray__ = __webpack_require__(90);
 
 
 
@@ -11668,11 +11572,11 @@ function baseUniq(array, iteratee, comparator) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = buildModelConverter;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_selection_to_view_converters__ = __webpack_require__(252);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_attributeelement__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_containerelement__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_uielement__ = __webpack_require__(162);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_attributeelement__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_containerelement__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_uielement__ = __webpack_require__(163);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -12130,7 +12034,7 @@ function eq(value, other) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__text__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__textproxy__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__textproxy__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
@@ -12540,8 +12444,67 @@ function formatReturnValue( type, item, previousPosition, nextPosition, length )
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = compareArrays;
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module utils/comparearrays
+ */
+
+/**
+ * Compares how given arrays relate to each other. One array can be: same as another array, prefix of another array
+ * or completely different. If arrays are different, first index at which they differ is returned. Otherwise,
+ * a flag specifying the relation is returned. Flags are negative numbers, so whenever a number >= 0 is returned
+ * it means that arrays differ.
+ *
+ *		compareArrays( [ 0, 2 ], [ 0, 2 ] );		// 'same'
+ *		compareArrays( [ 0, 2 ], [ 0, 2, 1 ] );		// 'prefix'
+ *		compareArrays( [ 0, 2 ], [ 0 ] );			// 'extension'
+ *		compareArrays( [ 0, 2 ], [ 1, 2 ] );		// 0
+ *		compareArrays( [ 0, 2 ], [ 0, 1 ] );		// 1
+ *
+ * @param {Array} a Array that is compared.
+ * @param {Array} b Array to compare with.
+ * @returns {module:utils/comparearrays~ArrayRelation} How array `a` is related to `b`.
+ */
+function compareArrays( a, b ) {
+	const minLen = Math.min( a.length, b.length );
+
+	for ( let i = 0; i < minLen; i++ ) {
+		if ( a[ i ] != b[ i ] ) {
+			// The arrays are different.
+			return i;
+		}
+	}
+
+	// Both arrays were same at all points.
+	if ( a.length == b.length ) {
+		// If their length is also same, they are the same.
+		return 'same';
+	} else if ( a.length < b.length ) {
+		// Compared array is shorter so it is a prefix of the other array.
+		return 'prefix';
+	} else {
+		// Compared array is longer so it is an extension of the other array.
+		return 'extension';
+	}
+}
+
+/**
+ * @typedef {'extension'|'same'|'prefix'} module:utils/comparearrays~ArrayRelation
+ */
+
+
+/***/ }),
+/* 55 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__element__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__text__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__text__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__textproxy__ = __webpack_require__(295);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__position__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
@@ -13037,7 +13000,7 @@ class TreeWalker {
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13061,12 +13024,12 @@ function getNative(object, key) {
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isArray__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isSymbol__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isSymbol__ = __webpack_require__(45);
 
 
 
@@ -13099,11 +13062,11 @@ function isKey(value, object) {
 
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isSymbol__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isSymbol__ = __webpack_require__(45);
 
 
 /** Used as references for various `Number` constants. */
@@ -13128,11 +13091,11 @@ function toKey(value) {
 
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dom_emittermixin__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dom_emittermixin__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__keyboard__ = __webpack_require__(22);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -13250,11 +13213,11 @@ class KeystrokeHandler {
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_dom_emittermixin__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_dom_emittermixin__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -13346,7 +13309,7 @@ __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__["a" /* default *
 
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13381,11 +13344,11 @@ function assignValue(object, key, value) {
 
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_tomap__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_tomap__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -13782,75 +13745,16 @@ class Node {
 
 
 /***/ }),
-/* 62 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = compareArrays;
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module utils/comparearrays
- */
-
-/**
- * Compares how given arrays relate to each other. One array can be: same as another array, prefix of another array
- * or completely different. If arrays are different, first index at which they differ is returned. Otherwise,
- * a flag specifying the relation is returned. Flags are negative numbers, so whenever a number >= 0 is returned
- * it means that arrays differ.
- *
- *		compareArrays( [ 0, 2 ], [ 0, 2 ] );		// 'same'
- *		compareArrays( [ 0, 2 ], [ 0, 2, 1 ] );		// 'prefix'
- *		compareArrays( [ 0, 2 ], [ 0 ] );			// 'extension'
- *		compareArrays( [ 0, 2 ], [ 1, 2 ] );		// 0
- *		compareArrays( [ 0, 2 ], [ 0, 1 ] );		// 1
- *
- * @param {Array} a Array that is compared.
- * @param {Array} b Array to compare with.
- * @returns {module:utils/comparearrays~ArrayRelation} How array `a` is related to `b`.
- */
-function compareArrays( a, b ) {
-	const minLen = Math.min( a.length, b.length );
-
-	for ( let i = 0; i < minLen; i++ ) {
-		if ( a[ i ] != b[ i ] ) {
-			// The arrays are different.
-			return i;
-		}
-	}
-
-	// Both arrays were same at all points.
-	if ( a.length == b.length ) {
-		// If their length is also same, they are the same.
-		return 'same';
-	} else if ( a.length < b.length ) {
-		// Compared array is shorter so it is a prefix of the other array.
-		return 'prefix';
-	} else {
-		// Compared array is longer so it is an extension of the other array.
-		return 'extension';
-	}
-}
-
-/**
- * @typedef {'extension'|'same'|'prefix'} module:utils/comparearrays~ArrayRelation
- */
-
-
-/***/ }),
 /* 63 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseHas__ = __webpack_require__(170);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseKeys__ = __webpack_require__(330);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__indexKeys__ = __webpack_require__(155);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArrayLike__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__indexKeys__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArrayLike__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isIndex__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__isPrototype__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__isPrototype__ = __webpack_require__(78);
 
 
 
@@ -13914,12 +13818,76 @@ function keys(object) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SetCache__ = __webpack_require__(91);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arrayIncludes__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__arrayIncludesWith__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__arrayMap__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__baseUnary__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__cacheHas__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__operation__ = __webpack_require__(38);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module engine/model/operation/nooperation
+ */
+
+
+
+/**
+ * Operation which is doing nothing ("empty operation", "do-nothing operation", "noop"). This is an operation,
+ * which when executed does not change the tree model. It still has some parameters defined for transformation purposes.
+ *
+ * In most cases this operation is a result of transforming operations. When transformation returns
+ * {@link module:engine/model/operation/nooperation~NoOperation} it means that changes done by the transformed operation
+ * have already been applied.
+ *
+ * @extends module:engine/model/operation/operation~Operation
+ */
+class NoOperation extends __WEBPACK_IMPORTED_MODULE_0__operation__["a" /* default */] {
+	/**
+	 * Creates and returns an operation that has the same parameters as this operation.
+	 *
+	 * @returns {module:engine/model/operation/nooperation~NoOperation} Clone of this operation.
+	 */
+	clone() {
+		return new NoOperation( this.baseVersion );
+	}
+
+	/**
+	 * See {@link module:engine/model/operation/operation~Operation#getReversed `Operation#getReversed()`}.
+	 *
+	 * @returns {module:engine/model/operation/nooperation~NoOperation}
+	 */
+	getReversed() {
+		return new NoOperation( this.baseVersion + 1 );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	_execute() {
+		// Do nothing.
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get className() {
+		return 'engine.model.operation.NoOperation';
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = NoOperation;
+
+
+
+/***/ }),
+/* 65 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SetCache__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arrayIncludes__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__arrayIncludesWith__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__arrayMap__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__baseUnary__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__cacheHas__ = __webpack_require__(135);
 
 
 
@@ -13990,7 +13958,7 @@ function baseDifference(array, values, iteratee, comparator) {
 
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14000,7 +13968,7 @@ function baseDifference(array, values, iteratee, comparator) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_tomap__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_tomap__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_mapsequal__ = __webpack_require__(398);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -14760,7 +14728,7 @@ function getParentBlock( position, visited ) {
 
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15318,7 +15286,7 @@ __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__["a" /* default *
 
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15507,12 +15475,12 @@ function jumpOverInlineFiller( evt, data ) {
 
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observer__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__domeventdata__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observer__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__domeventdata__ = __webpack_require__(148);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -15617,11 +15585,11 @@ class DomEventObserver extends __WEBPACK_IMPORTED_MODULE_0__observer__["a" /* de
 
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dom_emittermixin__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dom_emittermixin__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__observablemixin__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mix__ = __webpack_require__(4);
@@ -15766,7 +15734,7 @@ __WEBPACK_IMPORTED_MODULE_3__mix__["a" /* default */]( FocusTracker, __WEBPACK_I
 
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15798,13 +15766,13 @@ function first( iterable ) {
 
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getPrototype__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isHostObject__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObjectLike__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getPrototype__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isHostObject__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObjectLike__ = __webpack_require__(43);
 
 
 
@@ -15878,7 +15846,7 @@ function isPlainObject(value) {
 
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15905,7 +15873,7 @@ function isHostObject(value) {
 
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15937,12 +15905,12 @@ function uid() {
 
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__eq__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArrayLike__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArrayLike__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isIndex__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isObject__ = __webpack_require__(12);
 
@@ -15978,13 +15946,13 @@ function isIterateeCall(value, index, object) {
 
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getLength__ = __webpack_require__(287);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isFunction__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isLength__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isFunction__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isLength__ = __webpack_require__(77);
 
 
 
@@ -16022,7 +15990,7 @@ function isArrayLike(value) {
 
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16065,7 +16033,7 @@ function isLength(value) {
 
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16090,7 +16058,7 @@ function isPrototype(value) {
 
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16364,11 +16332,11 @@ class TextProxy {
 
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -16579,7 +16547,7 @@ class NodeList {
 
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16818,11 +16786,11 @@ __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_mix__["a" /* default *
 
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__containerelement__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__containerelement__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(24);
@@ -16922,7 +16890,7 @@ __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_mix__["a" /* default *
 
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16940,16 +16908,16 @@ __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_mix__["a" /* default *
 /* unused harmony export unwrap */
 /* unused harmony export rename */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__position__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__containerelement__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__attributeelement__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__emptyelement__ = __webpack_require__(161);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__uielement__ = __webpack_require__(162);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__text__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__containerelement__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__attributeelement__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__emptyelement__ = __webpack_require__(162);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__uielement__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__text__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__range__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__treewalker__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__treewalker__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__documentfragment__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__documentfragment__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(46);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -18195,7 +18163,7 @@ function validateRangeContainer( range ) {
 
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18236,7 +18204,7 @@ function clone(value) {
 
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18280,7 +18248,7 @@ ListCache.prototype.set = __WEBPACK_IMPORTED_MODULE_4__listCacheSet__["a" /* def
 
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18309,11 +18277,11 @@ function assocIndexOf(array, key) {
 
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getNative__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getNative__ = __webpack_require__(56);
 
 
 /* Built-in method references that are verified to be native. */
@@ -18323,7 +18291,7 @@ var nativeCreate = __WEBPACK_IMPORTED_MODULE_0__getNative__["a" /* default */](O
 
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18349,7 +18317,7 @@ function getMapData(map, key) {
 
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18376,7 +18344,7 @@ function arrayPush(array, values) {
 
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18401,7 +18369,7 @@ function setToArray(set) {
 
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18592,11 +18560,11 @@ class AttributeOperation extends __WEBPACK_IMPORTED_MODULE_0__operation__["a" /*
 
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__MapCache__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__MapCache__ = __webpack_require__(119);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__setCacheAdd__ = __webpack_require__(355);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__setCacheHas__ = __webpack_require__(356);
 
@@ -18629,71 +18597,831 @@ SetCache.prototype.has = __WEBPACK_IMPORTED_MODULE_2__setCacheHas__["a" /* defau
 
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__operation__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__movedelta__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__batch__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__deltafactory__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_removeoperation__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__position__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__range__ = __webpack_require__(3);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
  */
 
 /**
- * @module engine/model/operation/nooperation
+ * @module engine/model/delta/removedelta
  */
+
+
+
+
+
 
 
 
 /**
- * Operation which is doing nothing ("empty operation", "do-nothing operation", "noop"). This is an operation,
- * which when executed does not change the tree model. It still has some parameters defined for transformation purposes.
- *
- * In most cases this operation is a result of transforming operations. When transformation returns
- * {@link module:engine/model/operation/nooperation~NoOperation} it means that changes done by the transformed operation
- * have already been applied.
- *
- * @extends module:engine/model/operation/operation~Operation
+ * @classdesc
+ * To provide specific OT behavior and better collisions solving, {@link module:engine/model/batch~Batch#remove} method
+ * uses the `RemoveDelta` class which inherits from the `Delta` class and may overwrite some methods.
  */
-class NoOperation extends __WEBPACK_IMPORTED_MODULE_0__operation__["a" /* default */] {
+class RemoveDelta extends __WEBPACK_IMPORTED_MODULE_0__movedelta__["a" /* default */] {
 	/**
-	 * Creates and returns an operation that has the same parameters as this operation.
-	 *
-	 * @returns {module:engine/model/operation/nooperation~NoOperation} Clone of this operation.
+	 * @inheritDoc
 	 */
-	clone() {
-		return new NoOperation( this.baseVersion );
+	static get className() {
+		return 'engine.model.delta.RemoveDelta';
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = RemoveDelta;
+
+
+function addRemoveDelta( batch, position, howMany ) {
+	const delta = new RemoveDelta();
+	batch.addDelta( delta );
+
+	const graveyard = batch.document.graveyard;
+	const gyPosition = new __WEBPACK_IMPORTED_MODULE_4__position__["a" /* default */]( graveyard, [ 0 ] );
+
+	const operation = new __WEBPACK_IMPORTED_MODULE_3__operation_removeoperation__["a" /* default */]( position, howMany, gyPosition, batch.document.version );
+	delta.addOperation( operation );
+	batch.document.applyOperation( operation );
+}
+
+/**
+ * Removes given {@link module:engine/model/item~Item model item} or given range.
+ *
+ * @chainable
+ * @method module:engine/model/batch~Batch#remove
+ * @param {module:engine/model/item~Item|module:engine/model/range~Range} itemOrRange Model item or range to remove.
+ */
+__WEBPACK_IMPORTED_MODULE_1__batch__["b" /* register */]( 'remove', function( itemOrRange ) {
+	if ( itemOrRange instanceof __WEBPACK_IMPORTED_MODULE_5__range__["a" /* default */] ) {
+		// The array is reversed, so the ranges to remove are in correct order and do not have to be updated.
+		const ranges = itemOrRange.getMinimalFlatRanges().reverse();
+
+		for ( const flat of ranges ) {
+			addRemoveDelta( this, flat.start, flat.end.offset - flat.start.offset );
+		}
+	} else {
+		addRemoveDelta( this, __WEBPACK_IMPORTED_MODULE_4__position__["a" /* default */].createBefore( itemOrRange ), 1 );
+	}
+
+	return this;
+} );
+
+__WEBPACK_IMPORTED_MODULE_2__deltafactory__["a" /* default */].register( RemoveDelta );
+
+
+/***/ }),
+/* 94 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_moveoperation__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__position__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__range__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module engine/model/delta/movedelta
+ */
+
+
+
+
+
+
+
+
+
+/**
+ * @classdesc
+ * To provide specific OT behavior and better collisions solving, {@link module:engine/model/batch~Batch#move} method
+ * uses the `MoveDelta` class which inherits from the `Delta` class and may overwrite some methods.
+ */
+class MoveDelta extends __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */] {
+	/**
+	 * @inheritDoc
+	 */
+	get type() {
+		return 'move';
 	}
 
 	/**
-	 * See {@link module:engine/model/operation/operation~Operation#getReversed `Operation#getReversed()`}.
+	 * Offset size of moved range or `null` if there are no operations in the delta.
 	 *
-	 * @returns {module:engine/model/operation/nooperation~NoOperation}
+	 * @type {Number|null}
 	 */
-	getReversed() {
-		return new NoOperation( this.baseVersion + 1 );
+	get howMany() {
+		return this._moveOperation ? this._moveOperation.howMany : null;
+	}
+
+	/**
+	 * {@link module:engine/model/delta/movedelta~MoveDelta#_moveOperation Move operation}
+	 * {@link module:engine/model/operation/moveoperation~MoveOperation#sourcePosition source position} or `null` if there are
+	 * no operations in the delta.
+	 *
+	 * @type {module:engine/model/position~Position|null}
+	 */
+	get sourcePosition() {
+		return this._moveOperation ? this._moveOperation.sourcePosition : null;
+	}
+
+	/**
+	 * {@link module:engine/model/delta/movedelta~MoveDelta#_moveOperation Move operation}
+	 * {@link module:engine/model/operation/moveoperation~MoveOperation#targetPosition target position} or `null` if there are
+	 * no operations in the delta.
+	 *
+	 * @type {module:engine/model/position~Position|null}
+	 */
+	get targetPosition() {
+		return this._moveOperation ? this._moveOperation.targetPosition : null;
+	}
+
+	/**
+	 * {@link module:engine/model/delta/movedelta~MoveDelta#_moveOperation Move operation} that is saved in this delta or `null`
+	 * if there are no operations in the delta.
+	 *
+	 * @protected
+	 * @type {module:engine/model/operation/moveoperation~MoveOperation|null}
+	 */
+	get _moveOperation() {
+		return this.operations[ 0 ] || null;
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	_execute() {
-		// Do nothing.
+	get _reverseDeltaClass() {
+		return MoveDelta;
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	static get className() {
-		return 'engine.model.operation.NoOperation';
+		return 'engine.model.delta.MoveDelta';
 	}
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = NoOperation;
+/* harmony export (immutable) */ __webpack_exports__["a"] = MoveDelta;
 
+
+function addMoveOperation( batch, delta, sourcePosition, howMany, targetPosition ) {
+	const operation = new __WEBPACK_IMPORTED_MODULE_3__operation_moveoperation__["a" /* default */]( sourcePosition, howMany, targetPosition, batch.document.version );
+	delta.addOperation( operation );
+	batch.document.applyOperation( operation );
+}
+
+/**
+ * Moves given {@link module:engine/model/item~Item model item} or given range to target position.
+ *
+ * @chainable
+ * @method module:engine/model/batch~Batch#move
+ * @param {module:engine/model/item~Item|module:engine/model/range~Range} itemOrRange Model item or range of nodes to move.
+ * @param {module:engine/model/position~Position} targetPosition Position where moved nodes will be inserted.
+ */
+__WEBPACK_IMPORTED_MODULE_2__batch__["b" /* register */]( 'move', function( itemOrRange, targetPosition ) {
+	const delta = new MoveDelta();
+	this.addDelta( delta );
+
+	if ( itemOrRange instanceof __WEBPACK_IMPORTED_MODULE_5__range__["a" /* default */] ) {
+		if ( !itemOrRange.isFlat ) {
+			/**
+			 * Range to move is not flat.
+			 *
+			 * @error batch-move-range-not-flat
+			 */
+			throw new __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'batch-move-range-not-flat: Range to move is not flat.' );
+		}
+
+		addMoveOperation( this, delta, itemOrRange.start, itemOrRange.end.offset - itemOrRange.start.offset, targetPosition );
+	} else {
+		addMoveOperation( this, delta, __WEBPACK_IMPORTED_MODULE_4__position__["a" /* default */].createBefore( itemOrRange ), 1, targetPosition );
+	}
+
+	return this;
+} );
+
+__WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( MoveDelta );
 
 
 /***/ }),
-/* 93 */
+/* 95 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__splitdelta__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__batch__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__position__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__element__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__operation_removeoperation__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__operation_moveoperation__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module engine/model/delta/mergedelta
+ */
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * @classdesc
+ * To provide specific OT behavior and better collisions solving, {@link module:engine/model/batch~Batch#merge} method
+ * uses the `MergeDelta` class which inherits from the `Delta` class and may overwrite some methods.
+ */
+class MergeDelta extends __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */] {
+	/**
+	 * @inheritDoc
+	 */
+	get type() {
+		return 'merge';
+	}
+
+	/**
+	 * Position between to merged nodes or `null` if the delta has no operations.
+	 *
+	 * @readonly
+	 * @type {module:engine/model/position~Position|null}
+	 */
+	get position() {
+		return this._removeOperation ? this._removeOperation.sourcePosition : null;
+	}
+
+	/**
+	 * Operation in this delta that removes the node after merge position (which will be empty at that point) or
+	 * `null` if the delta has no operations. Note, that after {@link module:engine/model/delta/transform~transform transformation}
+	 * this might be an instance of {@link module:engine/model/operation/moveoperation~MoveOperation} instead of
+	 * {@link module:engine/model/operation/removeoperation~RemoveOperation}.
+	 *
+	 * @readonly
+	 * @protected
+	 * @type {module:engine/model/operation/moveoperation~MoveOperation|null}
+	 */
+	get _removeOperation() {
+		return this.operations[ 1 ] || null;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	get _reverseDeltaClass() {
+		return __WEBPACK_IMPORTED_MODULE_2__splitdelta__["a" /* default */];
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get className() {
+		return 'engine.model.delta.MergeDelta';
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = MergeDelta;
+
+
+/**
+ * Merges two siblings at the given position.
+ *
+ * Node before and after the position have to be an element. Otherwise `batch-merge-no-element-before` or
+ * `batch-merge-no-element-after` error will be thrown.
+ *
+ * @chainable
+ * @method module:engine/model/batch~Batch#merge
+ * @param {module:engine/model/position~Position} position Position of merge.
+ */
+__WEBPACK_IMPORTED_MODULE_3__batch__["b" /* register */]( 'merge', function( position ) {
+	const delta = new MergeDelta();
+	this.addDelta( delta );
+
+	const nodeBefore = position.nodeBefore;
+	const nodeAfter = position.nodeAfter;
+
+	if ( !( nodeBefore instanceof __WEBPACK_IMPORTED_MODULE_5__element__["a" /* default */] ) ) {
+		/**
+		 * Node before merge position must be an element.
+		 *
+		 * @error batch-merge-no-element-before
+		 */
+		throw new __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'batch-merge-no-element-before: Node before merge position must be an element.' );
+	}
+
+	if ( !( nodeAfter instanceof __WEBPACK_IMPORTED_MODULE_5__element__["a" /* default */] ) ) {
+		/**
+		 * Node after merge position must be an element.
+		 *
+		 * @error batch-merge-no-element-after
+		 */
+		throw new __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'batch-merge-no-element-after: Node after merge position must be an element.' );
+	}
+
+	const positionAfter = __WEBPACK_IMPORTED_MODULE_4__position__["a" /* default */].createFromParentAndOffset( nodeAfter, 0 );
+	const positionBefore = __WEBPACK_IMPORTED_MODULE_4__position__["a" /* default */].createFromParentAndOffset( nodeBefore, nodeBefore.maxOffset );
+
+	const move = new __WEBPACK_IMPORTED_MODULE_7__operation_moveoperation__["a" /* default */](
+		positionAfter,
+		nodeAfter.maxOffset,
+		positionBefore,
+		this.document.version
+	);
+
+	move.isSticky = true;
+	delta.addOperation( move );
+	this.document.applyOperation( move );
+
+	const graveyard = this.document.graveyard;
+	const gyPosition = new __WEBPACK_IMPORTED_MODULE_4__position__["a" /* default */]( graveyard, [ 0 ] );
+
+	const remove = new __WEBPACK_IMPORTED_MODULE_6__operation_removeoperation__["a" /* default */]( position, 1, gyPosition, this.document.version );
+	delta.addOperation( remove );
+	this.document.applyOperation( remove );
+
+	return this;
+} );
+
+__WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( MergeDelta );
+
+
+/***/ }),
+/* 96 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__position__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__element__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__operation_insertoperation__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__operation_moveoperation__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__delta_mergedelta__ = __webpack_require__(95);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module engine/model/delta/splitdelta
+ */
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * @classdesc
+ * To provide specific OT behavior and better collisions solving, the {@link module:engine/model/batch~Batch#split} method
+ * uses `SplitDelta` class which inherits from the `Delta` class and may overwrite some methods.
+ */
+class SplitDelta extends __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */] {
+	/**
+	 * @inheritDoc
+	 */
+	get type() {
+		return 'split';
+	}
+
+	/**
+	 * Position of split or `null` if there are no operations in the delta.
+	 *
+	 * @type {module:engine/model/position~Position|null}
+	 */
+	get position() {
+		return this._moveOperation ? this._moveOperation.sourcePosition : null;
+	}
+
+	/**
+	 * Operation in the delta that adds to model an element into which split nodes will be moved, or `null` if
+	 * there are no operations in the delta.
+	 *
+	 * Most commonly this will be {@link module:engine/model/operation/insertoperation~InsertOperation an insert operation},
+	 * as `SplitDelta` has to create a new node. If `SplitDelta` was created through
+	 * {@link module:engine/model/delta/delta~Delta#getReversed reversing}
+	 * a {@link module:engine/model/delta/mergedelta~MergeDelta merge delta},
+	 * this will be a {@link module:engine/model/operation/reinsertoperation~ReinsertOperation reinsert operation},
+	 * as we will want to re-insert the exact element that was removed by that merge delta.
+	 *
+	 * @protected
+	 * @type {module:engine/model/operation/insertoperation~InsertOperation|
+	 * module:engine/model/operation/reinsertoperation~ReinsertOperation|null}
+	 */
+	get _cloneOperation() {
+		return this.operations[ 0 ] || null;
+	}
+
+	/**
+	 * Operation in the delta that moves model items, that are after split position, to their new parent or `null`
+	 * if there are no operations in the delta.
+	 *
+	 * @protected
+	 * @type {module:engine/model/operation/moveoperation~MoveOperation|null}
+	 */
+	get _moveOperation() {
+		return this.operations[ 1 ] && this.operations[ 1 ] instanceof __WEBPACK_IMPORTED_MODULE_6__operation_moveoperation__["a" /* default */] ? this.operations[ 1 ] : null;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	get _reverseDeltaClass() {
+		return __WEBPACK_IMPORTED_MODULE_8__delta_mergedelta__["a" /* default */];
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get className() {
+		return 'engine.model.delta.SplitDelta';
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = SplitDelta;
+
+
+/**
+ * Splits an element at the given position.
+ *
+ * The element cannot be a root element, as root element cannot be split. The `batch-split-root` error will be thrown if
+ * you try to split the root element.
+ *
+ * @chainable
+ * @method module:engine/model/batch~Batch#split
+ * @param {module:engine/model/position~Position} position Position of split.
+ */
+__WEBPACK_IMPORTED_MODULE_2__batch__["b" /* register */]( 'split', function( position ) {
+	const delta = new SplitDelta();
+	this.addDelta( delta );
+
+	const splitElement = position.parent;
+
+	if ( !splitElement.parent ) {
+		/**
+		 * Root element can not be split.
+		 *
+		 * @error batch-split-root
+		 */
+		throw new __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'batch-split-root: Root element can not be split.' );
+	}
+
+	const copy = new __WEBPACK_IMPORTED_MODULE_4__element__["a" /* default */]( splitElement.name, splitElement.getAttributes() );
+
+	const insert = new __WEBPACK_IMPORTED_MODULE_5__operation_insertoperation__["a" /* default */](
+		__WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createAfter( splitElement ),
+		copy,
+		this.document.version
+	);
+
+	delta.addOperation( insert );
+	this.document.applyOperation( insert );
+
+	const move = new __WEBPACK_IMPORTED_MODULE_6__operation_moveoperation__["a" /* default */](
+		position,
+		splitElement.maxOffset - position.offset,
+		__WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createFromParentAndOffset( copy, 0 ),
+		this.document.version
+	);
+	move.isSticky = true;
+
+	delta.addOperation( move );
+	this.document.applyOperation( move );
+
+	return this;
+} );
+
+__WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( SplitDelta );
+
+
+/***/ }),
+/* 97 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__wrapdelta__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__batch__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__position__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__operation_removeoperation__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__operation_moveoperation__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module engine/model/delta/unwrapdelta
+ */
+
+
+
+
+
+
+
+
+
+
+/**
+ * @classdesc
+ * To provide specific OT behavior and better collisions solving, {@link module:engine/model/batch~Batch#merge} method
+ * uses the `UnwrapDelta` class which inherits from the `Delta` class and may overwrite some methods.
+ */
+class UnwrapDelta extends __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */] {
+	/**
+	 * @inheritDoc
+	 */
+	get type() {
+		return 'unwrap';
+	}
+
+	/**
+	 * Position before unwrapped element or `null` if there are no operations in the delta.
+	 *
+	 * @type {module:engine/model/position~Position|null}
+	 */
+	get position() {
+		return this._moveOperation ? this._moveOperation.targetPosition : null;
+	}
+
+	/**
+	 * Operation in the delta that moves unwrapped nodes to their new parent or `null` if there are no operations in the delta.
+	 *
+	 * @protected
+	 * @type {module:engine/model/operation/moveoperation~MoveOperation|null}
+	 */
+	get _moveOperation() {
+		return this.operations[ 0 ] || null;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	get _reverseDeltaClass() {
+		return __WEBPACK_IMPORTED_MODULE_2__wrapdelta__["a" /* default */];
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get className() {
+		return 'engine.model.delta.UnwrapDelta';
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = UnwrapDelta;
+
+
+/**
+ * Unwraps children of the given element – all its children are moved before it and then the element is removed.
+ * Throws error if you try to unwrap an element which does not have a parent.
+ *
+ * @chainable
+ * @method module:engine/model/batch~Batch#unwrap
+ * @param {module:engine/model/element~Element} position Element to unwrap.
+ */
+__WEBPACK_IMPORTED_MODULE_3__batch__["b" /* register */]( 'unwrap', function( element ) {
+	if ( element.parent === null ) {
+		/**
+		 * Trying to unwrap an element which has no parent.
+		 *
+		 * @error batch-unwrap-element-no-parent
+		 */
+		throw new __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'batch-unwrap-element-no-parent: Trying to unwrap an element which has no parent.' );
+	}
+
+	const delta = new UnwrapDelta();
+	this.addDelta( delta );
+
+	const sourcePosition = __WEBPACK_IMPORTED_MODULE_4__position__["a" /* default */].createFromParentAndOffset( element, 0 );
+
+	const move = new __WEBPACK_IMPORTED_MODULE_6__operation_moveoperation__["a" /* default */](
+		sourcePosition,
+		element.maxOffset,
+		__WEBPACK_IMPORTED_MODULE_4__position__["a" /* default */].createBefore( element ),
+		this.document.version
+	);
+
+	move.isSticky = true;
+	delta.addOperation( move );
+	this.document.applyOperation( move );
+
+	// Computing new position because we moved some nodes before `element`.
+	// If we would cache `Position.createBefore( element )` we remove wrong node.
+	const graveyard = this.document.graveyard;
+	const gyPosition = new __WEBPACK_IMPORTED_MODULE_4__position__["a" /* default */]( graveyard, [ 0 ] );
+
+	const remove = new __WEBPACK_IMPORTED_MODULE_5__operation_removeoperation__["a" /* default */]( __WEBPACK_IMPORTED_MODULE_4__position__["a" /* default */].createBefore( element ), 1, gyPosition, this.document.version );
+	delta.addOperation( remove );
+	this.document.applyOperation( remove );
+
+	return this;
+} );
+
+__WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( UnwrapDelta );
+
+
+/***/ }),
+/* 98 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__unwrapdelta__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__batch__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__position__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__range__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__element__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__operation_insertoperation__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__operation_moveoperation__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module engine/model/delta/wrapdelta
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * @classdesc
+ * To provide specific OT behavior and better collisions solving, {@link module:engine/model/batch~Batch#merge} method
+ * uses the `WrapDelta` class which inherits from the `Delta` class and may overwrite some methods.
+ */
+class WrapDelta extends __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */] {
+	/**
+	 * @inheritDoc
+	 */
+	get type() {
+		return 'wrap';
+	}
+
+	/**
+	 * Range to wrap or `null` if there are no operations in the delta.
+	 *
+	 * @type {module:engine/model/range~Range|null}
+	 */
+	get range() {
+		const moveOp = this._moveOperation;
+
+		return moveOp ? __WEBPACK_IMPORTED_MODULE_5__range__["a" /* default */].createFromPositionAndShift( moveOp.sourcePosition, moveOp.howMany ) : null;
+	}
+
+	/**
+	 * Offset size of range to wrap by the delta or `null` if there are no operations in delta.
+	 *
+	 * @type {Number}
+	 */
+	get howMany() {
+		const range = this.range;
+
+		return range ? range.end.offset - range.start.offset : 0;
+	}
+
+	/* eslint-disable max-len */
+	/**
+	 * Operation that inserts wrapping element or `null` if there are no operations in the delta.
+	 *
+	 * @protected
+	 * @type {module:engine/model/operation/insertoperation~InsertOperation|module:engine/model/operation/reinsertoperation~ReinsertOperation}
+	 */
+	/* eslint-enable max-len */
+	get _insertOperation() {
+		return this.operations[ 0 ] || null;
+	}
+
+	/**
+	 * Operation that moves wrapped nodes to their new parent or `null` if there are no operations in the delta.
+	 *
+	 * @protected
+	 * @type {module:engine/model/operation/moveoperation~MoveOperation|null}
+	 */
+	get _moveOperation() {
+		return this.operations[ 1 ] || null;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	get _reverseDeltaClass() {
+		return __WEBPACK_IMPORTED_MODULE_2__unwrapdelta__["a" /* default */];
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get className() {
+		return 'engine.model.delta.WrapDelta';
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = WrapDelta;
+
+
+/**
+ * Wraps given range with given element or with a new element with specified name, if string has been passed.
+ * **Note:** range to wrap should be a "flat range" (see {@link module:engine/model/range~Range#isFlat}). If not, error will be thrown.
+ *
+ * @chainable
+ * @method module:engine/model/batch~Batch#wrap
+ * @param {module:engine/model/range~Range} range Range to wrap.
+ * @param {module:engine/model/element~Element|String} elementOrString Element or name of element to wrap the range with.
+ */
+__WEBPACK_IMPORTED_MODULE_3__batch__["b" /* register */]( 'wrap', function( range, elementOrString ) {
+	if ( !range.isFlat ) {
+		/**
+		 * Range to wrap is not flat.
+		 *
+		 * @error batch-wrap-range-not-flat
+		 */
+		throw new __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'batch-wrap-range-not-flat: Range to wrap is not flat.' );
+	}
+
+	const element = elementOrString instanceof __WEBPACK_IMPORTED_MODULE_6__element__["a" /* default */] ? elementOrString : new __WEBPACK_IMPORTED_MODULE_6__element__["a" /* default */]( elementOrString );
+
+	if ( element.childCount > 0 ) {
+		/**
+		 * Element to wrap with is not empty.
+		 *
+		 * @error batch-wrap-element-not-empty
+		 */
+		throw new __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'batch-wrap-element-not-empty: Element to wrap with is not empty.' );
+	}
+
+	if ( element.parent !== null ) {
+		/**
+		 * Element to wrap with is already attached to a tree model.
+		 *
+		 * @error batch-wrap-element-attached
+		 */
+		throw new __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'batch-wrap-element-attached: Element to wrap with is already attached to tree model.' );
+	}
+
+	const delta = new WrapDelta();
+	this.addDelta( delta );
+
+	const insert = new __WEBPACK_IMPORTED_MODULE_7__operation_insertoperation__["a" /* default */]( range.end, element, this.document.version );
+	delta.addOperation( insert );
+	this.document.applyOperation( insert );
+
+	const targetPosition = __WEBPACK_IMPORTED_MODULE_4__position__["a" /* default */].createFromParentAndOffset( element, 0 );
+	const move = new __WEBPACK_IMPORTED_MODULE_8__operation_moveoperation__["a" /* default */](
+		range.start,
+		range.end.offset - range.start.offset,
+		targetPosition,
+		this.document.version
+	);
+	delta.addOperation( move );
+	this.document.applyOperation( move );
+
+	return this;
+} );
+
+__WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( WrapDelta );
+
+
+/***/ }),
+/* 99 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18717,11 +19445,11 @@ function castPath(value) {
 
 
 /***/ }),
-/* 94 */
+/* 100 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSlice__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSlice__ = __webpack_require__(40);
 
 
 /**
@@ -18751,13 +19479,13 @@ function baseWhile(array, predicate, isDrop, fromRight) {
 
 
 /***/ }),
-/* 95 */
+/* 101 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedIndexBy__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedIndexBy__ = __webpack_require__(144);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__identity__ = __webpack_require__(188);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isSymbol__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isSymbol__ = __webpack_require__(45);
 
 
 
@@ -18803,14 +19531,14 @@ function baseSortedIndex(array, value, retHighest) {
 
 
 /***/ }),
-/* 96 */
+/* 102 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayFilter__ = __webpack_require__(97);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arrayMap__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseProperty__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__baseTimes__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayFilter__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arrayMap__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseProperty__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__baseTimes__ = __webpack_require__(157);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isArrayLikeObject__ = __webpack_require__(14);
 
 
@@ -18860,7 +19588,7 @@ function unzip(array) {
 
 
 /***/ }),
-/* 97 */
+/* 103 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18892,13 +19620,13 @@ function arrayFilter(array, predicate) {
 
 
 /***/ }),
-/* 98 */
+/* 104 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__emittermixin__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__uid__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lib_lodash_extend__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__uid__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lib_lodash_extend__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__lib_lodash_isNative__ = __webpack_require__(167);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -19192,13 +19920,13 @@ function isDomNode( node ) {
 
 
 /***/ }),
-/* 99 */
+/* 105 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__emittermixin__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__uid__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__uid__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mix__ = __webpack_require__(4);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -19713,7 +20441,7 @@ __WEBPACK_IMPORTED_MODULE_3__mix__["a" /* default */]( Collection, __WEBPACK_IMP
 
 
 /***/ }),
-/* 100 */
+/* 106 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -19722,7 +20450,7 @@ __WEBPACK_IMPORTED_MODULE_3__mix__["a" /* default */]( Collection, __WEBPACK_IMP
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_model_position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__ = __webpack_require__(41);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -20022,7 +20750,7 @@ function autoparagraphEmptyRoots() {
 
 
 /***/ }),
-/* 101 */
+/* 107 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -20044,11 +20772,11 @@ function getPrototype(value) {
 
 
 /***/ }),
-/* 102 */
+/* 108 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assignValue__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assignValue__ = __webpack_require__(61);
 
 
 /**
@@ -20083,7 +20811,7 @@ function copyObject(source, props, object, customizer) {
 
 
 /***/ }),
-/* 103 */
+/* 109 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -20104,7 +20832,7 @@ function baseProperty(key) {
 
 
 /***/ }),
-/* 104 */
+/* 110 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -20155,7 +20883,7 @@ function isFunction(value) {
 
 
 /***/ }),
-/* 105 */
+/* 111 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -20209,12 +20937,12 @@ function isArguments(value) {
 
 
 /***/ }),
-/* 106 */
+/* 112 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isArray__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isObjectLike__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isObjectLike__ = __webpack_require__(43);
 
 
 
@@ -20258,13 +20986,13 @@ function isString(value) {
 
 
 /***/ }),
-/* 107 */
+/* 113 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = toMap;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lib_lodash_isPlainObject__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__objecttomap__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lib_lodash_isPlainObject__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__objecttomap__ = __webpack_require__(159);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -20297,7 +21025,7 @@ function toMap( data ) {
 
 
 /***/ }),
-/* 108 */
+/* 114 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -20314,10 +21042,10 @@ function toMap( data ) {
 /* harmony export (immutable) */ __webpack_exports__["f"] = removeUIElement;
 /* unused harmony export eventNameToConsumableType */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_element__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_text__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_text__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_range__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_treewalker__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_writer__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_treewalker__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_writer__ = __webpack_require__(83);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -20875,7 +21603,7 @@ function eventNameToConsumableType( evtName ) {
 
 
 /***/ }),
-/* 109 */
+/* 115 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21017,13 +21745,13 @@ function nonUiChildrenCount( element ) {
 
 
 /***/ }),
-/* 110 */
+/* 116 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__text__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__text__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(7);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -21244,11 +21972,289 @@ function normalize( nodes ) {
 
 
 /***/ }),
-/* 111 */
+/* 117 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ListCache__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_attributeoperation__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__operation_rootattributeoperation__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__operation_nooperation__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__position__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__range__ = __webpack_require__(3);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module engine/model/delta/attributedelta
+ */
+
+
+
+
+
+
+
+
+
+
+/**
+ * To provide specific OT behavior and better collisions solving, methods to change attributes
+ * ({@link module:engine/model/batch~Batch#setAttribute} and {@link module:engine/model/batch~Batch#removeAttribute})
+ * use `AttributeDelta` class which inherits from the `Delta` class and may overwrite some methods.
+ * @extends module:engine/model/delta/delta~Delta
+ */
+class AttributeDelta extends __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */] {
+	/**
+	 * @inheritDoc
+	 */
+	get type() {
+		return 'attribute';
+	}
+
+	/**
+	 * The attribute key that is changed by the delta or `null` if the delta has no operations.
+	 *
+	 * @readonly
+	 * @type {String|null}
+	 */
+	get key() {
+		return this.operations[ 0 ] ? this.operations[ 0 ].key : null;
+	}
+
+	/**
+	 * The attribute value that is set by the delta or `null` if the delta has no operations.
+	 *
+	 * @readonly
+	 * @type {*|null}
+	 */
+	get value() {
+		return this.operations[ 0 ] ? this.operations[ 0 ].newValue : null;
+	}
+
+	/**
+	 * The range on which delta operates or `null` if the delta has no operations.
+	 *
+	 * @readonly
+	 * @type {module:engine/model/range~Range|null}
+	 */
+	get range() {
+		// Check if it is cached.
+		if ( this._range ) {
+			return this._range;
+		}
+
+		let start = null;
+		let end = null;
+
+		for ( const operation of this.operations ) {
+			if ( operation instanceof __WEBPACK_IMPORTED_MODULE_5__operation_nooperation__["a" /* default */] ) {
+				continue;
+			}
+
+			if ( start === null || start.isAfter( operation.range.start ) ) {
+				start = operation.range.start;
+			}
+
+			if ( end === null || end.isBefore( operation.range.end ) ) {
+				end = operation.range.end;
+			}
+		}
+
+		if ( start && end ) {
+			this._range = new __WEBPACK_IMPORTED_MODULE_7__range__["a" /* default */]( start, end );
+
+			return this._range;
+		}
+
+		return null;
+	}
+
+	get _reverseDeltaClass() {
+		return AttributeDelta;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	toJSON() {
+		const json = super.toJSON();
+
+		delete json._range;
+
+		return json;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	static get className() {
+		return 'engine.model.delta.AttributeDelta';
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = AttributeDelta;
+
+
+/**
+ * To provide specific OT behavior and better collisions solving, methods to change attributes
+ * ({@link module:engine/model/batch~Batch#setAttribute} and {@link module:engine/model/batch~Batch#removeAttribute})
+ * use `RootAttributeDelta` class which inherits from the `Delta` class and may
+ * overwrite some methods.
+ *
+ * @extends module:engine/model/delta/delta~Delta
+ */
+class RootAttributeDelta extends __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */] {
+	/**
+	 * @inheritDoc
+	 */
+	static get className() {
+		return 'engine.model.delta.RootAttributeDelta';
+	}
+}
+/* unused harmony export RootAttributeDelta */
+
+
+/**
+ * Sets value of the attribute with given key on a {@link module:engine/model/item~Item model item}
+ * or on a {@link module:engine/model/range~Range range}.
+ *
+ * @chainable
+ * @method module:engine/model/batch~Batch#setAttribute
+ * @param {module:engine/model/item~Item|module:engine/model/range~Range} itemOrRange
+ * Model item or range on which the attribute will be set.
+ * @param {String} key Attribute key.
+ * @param {*} value Attribute new value.
+ */
+__WEBPACK_IMPORTED_MODULE_2__batch__["b" /* register */]( 'setAttribute', function( itemOrRange, key, value ) {
+	attribute( this, key, value, itemOrRange );
+
+	return this;
+} );
+
+/**
+ * Removes an attribute with given key from a {@link module:engine/model/item~Item model item}
+ * or from a {@link module:engine/model/range~Range range}.
+ *
+ * @chainable
+ * @param {module:engine/model/item~Item|module:engine/model/range~Range} itemOrRange
+ * Model item or range from which the attribute will be removed.
+ * @method module:engine/model/batch~Batch#removeAttribute
+ * @param {String} key Attribute key.
+ */
+__WEBPACK_IMPORTED_MODULE_2__batch__["b" /* register */]( 'removeAttribute', function( itemOrRange, key ) {
+	attribute( this, key, null, itemOrRange );
+
+	return this;
+} );
+
+function attribute( batch, key, value, itemOrRange ) {
+	if ( itemOrRange instanceof __WEBPACK_IMPORTED_MODULE_7__range__["a" /* default */] ) {
+		changeRange( batch, batch.document, key, value, itemOrRange );
+	} else {
+		changeItem( batch, batch.document, key, value, itemOrRange );
+	}
+}
+
+function changeItem( batch, doc, key, value, item ) {
+	const previousValue = item.getAttribute( key );
+	let range, operation;
+
+	const delta = item.is( 'rootElement' ) ? new RootAttributeDelta() : new AttributeDelta();
+
+	if ( previousValue != value ) {
+		batch.addDelta( delta );
+
+		if ( item.is( 'rootElement' ) ) {
+			// If we change attributes of root element, we have to use `RootAttributeOperation`.
+			operation = new __WEBPACK_IMPORTED_MODULE_4__operation_rootattributeoperation__["a" /* default */]( item, key, previousValue, value, doc.version );
+		} else {
+			if ( item.is( 'element' ) ) {
+				// If we change the attribute of the element, we do not want to change attributes of its children, so
+				// the end of the range cannot be after the closing tag, it should be inside that element, before any of
+				// it's children, so the range will contain only the opening tag.
+				range = new __WEBPACK_IMPORTED_MODULE_7__range__["a" /* default */]( __WEBPACK_IMPORTED_MODULE_6__position__["a" /* default */].createBefore( item ), __WEBPACK_IMPORTED_MODULE_6__position__["a" /* default */].createFromParentAndOffset( item, 0 ) );
+			} else {
+				// If `item` is text proxy, we create a range from the beginning to the end of that text proxy, to change
+				// all characters represented by it.
+				range = new __WEBPACK_IMPORTED_MODULE_7__range__["a" /* default */]( __WEBPACK_IMPORTED_MODULE_6__position__["a" /* default */].createBefore( item ), __WEBPACK_IMPORTED_MODULE_6__position__["a" /* default */].createAfter( item ) );
+			}
+
+			operation = new __WEBPACK_IMPORTED_MODULE_3__operation_attributeoperation__["a" /* default */]( range, key, previousValue, value, doc.version );
+		}
+
+		delta.addOperation( operation );
+		doc.applyOperation( operation );
+	}
+}
+
+// Because attribute operation needs to have the same attribute value on the whole range, this function splits the range
+// into smaller parts.
+function changeRange( batch, doc, attributeKey, attributeValue, range ) {
+	const delta = new AttributeDelta();
+
+	// Position of the last split, the beginning of the new range.
+	let lastSplitPosition = range.start;
+
+	// Currently position in the scanning range. Because we need value after the position, it is not a current
+	// position of the iterator but the previous one (we need to iterate one more time to get the value after).
+	let position,
+	// Value before the currently position.
+		attributeValueBefore,
+	// Value after the currently position.
+		attributeValueAfter;
+
+	for ( const value of range ) {
+		attributeValueAfter = value.item.getAttribute( attributeKey );
+
+		// At the first run of the iterator the position in undefined. We also do not have a attributeValueBefore, but
+		// because attributeValueAfter may be null, attributeValueBefore may be equal attributeValueAfter ( undefined == null ).
+		if ( position && attributeValueBefore != attributeValueAfter ) {
+			// if attributeValueBefore == attributeValue there is nothing to change, so we add operation only if these values are different.
+			if ( attributeValueBefore != attributeValue ) {
+				addOperation();
+			}
+
+			lastSplitPosition = position;
+		}
+
+		position = value.nextPosition;
+		attributeValueBefore = attributeValueAfter;
+	}
+
+	// Because position in the loop is not the iterator position (see let position comment), the last position in
+	// the while loop will be last but one position in the range. We need to check the last position manually.
+	if ( position instanceof __WEBPACK_IMPORTED_MODULE_6__position__["a" /* default */] && position != lastSplitPosition && attributeValueBefore != attributeValue ) {
+		addOperation();
+	}
+
+	function addOperation() {
+		// Add delta to the batch only if there is at least operation in the delta. Add delta only once.
+		if ( delta.operations.length === 0 ) {
+			batch.addDelta( delta );
+		}
+
+		const range = new __WEBPACK_IMPORTED_MODULE_7__range__["a" /* default */]( lastSplitPosition, position );
+		const operation = new __WEBPACK_IMPORTED_MODULE_3__operation_attributeoperation__["a" /* default */]( range, attributeKey, attributeValueBefore, attributeValue, doc.version );
+
+		delta.addOperation( operation );
+		doc.applyOperation( operation );
+	}
+}
+
+__WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( AttributeDelta );
+__WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( RootAttributeDelta );
+
+
+/***/ }),
+/* 118 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ListCache__ = __webpack_require__(85);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stackClear__ = __webpack_require__(311);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stackDelete__ = __webpack_require__(312);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stackGet__ = __webpack_require__(313);
@@ -21283,7 +22289,7 @@ Stack.prototype.set = __WEBPACK_IMPORTED_MODULE_5__stackSet__["a" /* default */]
 
 
 /***/ }),
-/* 112 */
+/* 119 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21327,7 +22333,7 @@ MapCache.prototype.set = __WEBPACK_IMPORTED_MODULE_4__mapCacheSet__["a" /* defau
 
 
 /***/ }),
-/* 113 */
+/* 120 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21410,7 +22416,7 @@ if ((__WEBPACK_IMPORTED_MODULE_0__DataView__["a" /* default */] && getTag(new __
 
 
 /***/ }),
-/* 114 */
+/* 121 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21434,7 +22440,7 @@ function cloneArrayBuffer(arrayBuffer) {
 
 
 /***/ }),
-/* 115 */
+/* 122 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21459,11 +22465,11 @@ function mapToArray(map) {
 
 
 /***/ }),
-/* 116 */
+/* 123 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root__ = __webpack_require__(30);
 
 
 /** Built-in value references. */
@@ -21473,13 +22479,13 @@ var Symbol = __WEBPACK_IMPORTED_MODULE_0__root__["a" /* default */].Symbol;
 
 
 /***/ }),
-/* 117 */
+/* 124 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIsEqualDeep__ = __webpack_require__(354);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isObject__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObjectLike__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObjectLike__ = __webpack_require__(43);
 
 
 
@@ -21513,12 +22519,12 @@ function baseIsEqual(value, other, customizer, bitmask, stack) {
 
 
 /***/ }),
-/* 118 */
+/* 125 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__moveoperation__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__removeoperation__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__moveoperation__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__removeoperation__ = __webpack_require__(39);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -21567,13 +22573,9 @@ class ReinsertOperation extends __WEBPACK_IMPORTED_MODULE_0__moveoperation__["a"
 	 * @returns {module:engine/model/operation/removeoperation~RemoveOperation}
 	 */
 	getReversed() {
-		const removeOp = new __WEBPACK_IMPORTED_MODULE_1__removeoperation__["a" /* default */]( this.targetPosition, this.howMany, this.baseVersion + 1 );
+		const newTargetPosition = this.sourcePosition._getTransformedByInsertion( this.targetPosition, this.howMany );
 
-		// Make sure that nodes are put back into the `$graveyardHolder` from which they got reinserted.
-		removeOp.targetPosition = this.sourcePosition;
-		removeOp._needsHolderElement = false;
-
-		return removeOp;
+		return new __WEBPACK_IMPORTED_MODULE_1__removeoperation__["a" /* default */]( this.getMovedRangeStart(), this.howMany, newTargetPosition, this.baseVersion + 1 );
 	}
 
 	/**
@@ -21588,7 +22590,7 @@ class ReinsertOperation extends __WEBPACK_IMPORTED_MODULE_0__moveoperation__["a"
 
 
 /***/ }),
-/* 119 */
+/* 126 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21729,7 +22731,7 @@ class MarkerOperation extends __WEBPACK_IMPORTED_MODULE_0__operation__["a" /* de
 
 
 /***/ }),
-/* 120 */
+/* 127 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21880,7 +22882,7 @@ class RenameOperation extends __WEBPACK_IMPORTED_MODULE_0__operation__["a" /* de
 
 
 /***/ }),
-/* 121 */
+/* 128 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -22061,14 +23063,14 @@ class RootAttributeOperation extends __WEBPACK_IMPORTED_MODULE_0__operation__["a
 
 
 /***/ }),
-/* 122 */
+/* 129 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__removedelta__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__removedelta__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__deltafactory__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_insertoperation__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_insertoperation__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__batch__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__writer__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__documentfragment__ = __webpack_require__(37);
@@ -22151,13 +23153,6 @@ class InsertDelta extends __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */
 	static get className() {
 		return 'engine.model.delta.InsertDelta';
 	}
-
-	/**
-	 * @inheritDoc
-	 */
-	static get _priority() {
-		return 20;
-	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = InsertDelta;
 
@@ -22209,93 +23204,16 @@ __WEBPACK_IMPORTED_MODULE_2__deltafactory__["a" /* default */].register( InsertD
 
 
 /***/ }),
-/* 123 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__movedelta__ = __webpack_require__(124);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__batch__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__deltafactory__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_removeoperation__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__range__ = __webpack_require__(3);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module engine/model/delta/removedelta
- */
-
-
-
-
-
-
-
-
-/**
- * @classdesc
- * To provide specific OT behavior and better collisions solving, {@link module:engine/model/batch~Batch#remove} method
- * uses the `RemoveDelta` class which inherits from the `Delta` class and may overwrite some methods.
- */
-class RemoveDelta extends __WEBPACK_IMPORTED_MODULE_0__movedelta__["a" /* default */] {
-	/**
-	 * @inheritDoc
-	 */
-	static get className() {
-		return 'engine.model.delta.RemoveDelta';
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = RemoveDelta;
-
-
-function addRemoveOperation( batch, delta, position, howMany ) {
-	const operation = new __WEBPACK_IMPORTED_MODULE_3__operation_removeoperation__["a" /* default */]( position, howMany, batch.document.version );
-	delta.addOperation( operation );
-	batch.document.applyOperation( operation );
-}
-
-/**
- * Removes given {@link module:engine/model/item~Item model item} or given range.
- *
- * @chainable
- * @method module:engine/model/batch~Batch#remove
- * @param {module:engine/model/item~Item|module:engine/model/range~Range} itemOrRange Model item or range to remove.
- */
-__WEBPACK_IMPORTED_MODULE_1__batch__["b" /* register */]( 'remove', function( itemOrRange ) {
-	const delta = new RemoveDelta();
-	this.addDelta( delta );
-
-	if ( itemOrRange instanceof __WEBPACK_IMPORTED_MODULE_5__range__["a" /* default */] ) {
-		// The array is reversed, so the ranges are correct and do not have to be updated.
-		const ranges = itemOrRange.getMinimalFlatRanges().reverse();
-
-		for ( const flat of ranges ) {
-			addRemoveOperation( this, delta, flat.start, flat.end.offset - flat.start.offset );
-		}
-	} else {
-		addRemoveOperation( this, delta, __WEBPACK_IMPORTED_MODULE_4__position__["a" /* default */].createBefore( itemOrRange ), 1 );
-	}
-
-	return this;
-} );
-
-__WEBPACK_IMPORTED_MODULE_2__deltafactory__["a" /* default */].register( RemoveDelta );
-
-
-/***/ }),
-/* 124 */
+/* 130 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_moveoperation__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__range__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_renameoperation__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__element__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -22303,7 +23221,7 @@ __WEBPACK_IMPORTED_MODULE_2__deltafactory__["a" /* default */].register( RemoveD
  */
 
 /**
- * @module engine/model/delta/movedelta
+ * @module engine/model/delta/renamedelta
  */
 
 
@@ -22315,1089 +23233,75 @@ __WEBPACK_IMPORTED_MODULE_2__deltafactory__["a" /* default */].register( RemoveD
 
 
 /**
- * @classdesc
- * To provide specific OT behavior and better collisions solving, {@link module:engine/model/batch~Batch#move} method
- * uses the `MoveDelta` class which inherits from the `Delta` class and may overwrite some methods.
+ * To provide specific OT behavior and better collisions solving, the {@link module:engine/model/batch~Batch#rename Batch#rename} method
+ * uses the `RenameDelta` class which inherits from the `Delta` class and may overwrite some methods.
  */
-class MoveDelta extends __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */] {
+class RenameDelta extends __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */] {
 	/**
 	 * @inheritDoc
 	 */
 	get type() {
-		return 'move';
-	}
-
-	/**
-	 * Offset size of moved range or `null` if there are no operations in the delta.
-	 *
-	 * @type {Number|null}
-	 */
-	get howMany() {
-		return this._moveOperation ? this._moveOperation.howMany : null;
-	}
-
-	/**
-	 * {@link module:engine/model/delta/movedelta~MoveDelta#_moveOperation Move operation}
-	 * {@link module:engine/model/operation/moveoperation~MoveOperation#sourcePosition source position} or `null` if there are
-	 * no operations in the delta.
-	 *
-	 * @type {module:engine/model/position~Position|null}
-	 */
-	get sourcePosition() {
-		return this._moveOperation ? this._moveOperation.sourcePosition : null;
-	}
-
-	/**
-	 * {@link module:engine/model/delta/movedelta~MoveDelta#_moveOperation Move operation}
-	 * {@link module:engine/model/operation/moveoperation~MoveOperation#targetPosition target position} or `null` if there are
-	 * no operations in the delta.
-	 *
-	 * @type {module:engine/model/position~Position|null}
-	 */
-	get targetPosition() {
-		return this._moveOperation ? this._moveOperation.targetPosition : null;
-	}
-
-	/**
-	 * {@link module:engine/model/delta/movedelta~MoveDelta#_moveOperation Move operation} that is saved in this delta or `null`
-	 * if there are no operations in the delta.
-	 *
-	 * @protected
-	 * @type {module:engine/model/operation/moveoperation~MoveOperation|null}
-	 */
-	get _moveOperation() {
-		return this.operations[ 0 ] || null;
+		return 'rename';
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	get _reverseDeltaClass() {
-		return MoveDelta;
+		return RenameDelta;
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	static get className() {
-		return 'engine.model.delta.MoveDelta';
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	static get _priority() {
-		return 20;
+		return 'engine.model.delta.RenameDelta';
 	}
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = MoveDelta;
+/* harmony export (immutable) */ __webpack_exports__["a"] = RenameDelta;
 
 
-function addMoveOperation( batch, delta, sourcePosition, howMany, targetPosition ) {
-	const operation = new __WEBPACK_IMPORTED_MODULE_3__operation_moveoperation__["a" /* default */]( sourcePosition, howMany, targetPosition, batch.document.version );
+function apply( batch, delta, operation ) {
 	delta.addOperation( operation );
 	batch.document.applyOperation( operation );
 }
 
 /**
- * Moves given {@link module:engine/model/item~Item model item} or given range to target position.
+ * Renames given element.
  *
  * @chainable
- * @method module:engine/model/batch~Batch#move
- * @param {module:engine/model/item~Item|module:engine/model/range~Range} itemOrRange Model item or range of nodes to move.
- * @param {module:engine/model/position~Position} targetPosition Position where moved nodes will be inserted.
+ * @method module:engine/model/batch~Batch#rename
+ * @param {module:engine/model/element~Element} element The element to rename.
+ * @param {String} newName New element name.
  */
-__WEBPACK_IMPORTED_MODULE_2__batch__["b" /* register */]( 'move', function( itemOrRange, targetPosition ) {
-	const delta = new MoveDelta();
+__WEBPACK_IMPORTED_MODULE_2__batch__["b" /* register */]( 'rename', function( element, newName ) {
+	if ( !( element instanceof __WEBPACK_IMPORTED_MODULE_4__element__["a" /* default */] ) ) {
+		/**
+		 * Trying to rename an object which is not an instance of Element.
+		 *
+		 * @error batch-rename-not-element-instance
+		 */
+		throw new __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'batch-rename-not-element-instance: Trying to rename an object which is not an instance of Element.' );
+	}
+
+	const delta = new RenameDelta();
 	this.addDelta( delta );
 
-	if ( itemOrRange instanceof __WEBPACK_IMPORTED_MODULE_5__range__["a" /* default */] ) {
-		if ( !itemOrRange.isFlat ) {
-			/**
-			 * Range to move is not flat.
-			 *
-			 * @error batch-move-range-not-flat
-			 */
-			throw new __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'batch-move-range-not-flat: Range to move is not flat.' );
-		}
-
-		addMoveOperation( this, delta, itemOrRange.start, itemOrRange.end.offset - itemOrRange.start.offset, targetPosition );
-	} else {
-		addMoveOperation( this, delta, __WEBPACK_IMPORTED_MODULE_4__position__["a" /* default */].createBefore( itemOrRange ), 1, targetPosition );
-	}
+	const renameOperation = new __WEBPACK_IMPORTED_MODULE_3__operation_renameoperation__["a" /* default */]( __WEBPACK_IMPORTED_MODULE_5__position__["a" /* default */].createBefore( element ), element.name, newName, this.document.version );
+	apply( this, delta, renameOperation );
 
 	return this;
 } );
 
-__WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( MoveDelta );
+__WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( RenameDelta );
 
 
 /***/ }),
-/* 125 */
+/* 131 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__splitdelta__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__batch__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__element__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__operation_removeoperation__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__operation_moveoperation__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module engine/model/delta/mergedelta
- */
-
-
-
-
-
-
-
-
-
-
-
-/**
- * @classdesc
- * To provide specific OT behavior and better collisions solving, {@link module:engine/model/batch~Batch#merge} method
- * uses the `MergeDelta` class which inherits from the `Delta` class and may overwrite some methods.
- */
-class MergeDelta extends __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */] {
-	/**
-	 * @inheritDoc
-	 */
-	get type() {
-		return 'merge';
-	}
-
-	/**
-	 * Position between to merged nodes or `null` if the delta has no operations.
-	 *
-	 * @readonly
-	 * @type {module:engine/model/position~Position|null}
-	 */
-	get position() {
-		return this._removeOperation ? this._removeOperation.sourcePosition : null;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	getReversed() {
-		const delta = super.getReversed();
-
-		if ( delta.operations.length > 0 ) {
-			delta.operations[ 1 ].isSticky = false;
-		}
-
-		return delta;
-	}
-
-	/**
-	 * Operation in this delta that removes the node after merge position (which will be empty at that point) or
-	 * `null` if the delta has no operations. Note, that after {@link module:engine/model/delta/transform~transform transformation}
-	 * this might be an instance of {@link module:engine/model/operation/moveoperation~MoveOperation} instead of
-	 * {@link module:engine/model/operation/removeoperation~RemoveOperation}.
-	 *
-	 * @readonly
-	 * @protected
-	 * @type {module:engine/model/operation/moveoperation~MoveOperation|null}
-	 */
-	get _removeOperation() {
-		return this.operations[ 1 ] || null;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	get _reverseDeltaClass() {
-		return __WEBPACK_IMPORTED_MODULE_2__splitdelta__["a" /* default */];
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	static get className() {
-		return 'engine.model.delta.MergeDelta';
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = MergeDelta;
-
-
-/**
- * Merges two siblings at the given position.
- *
- * Node before and after the position have to be an element. Otherwise `batch-merge-no-element-before` or
- * `batch-merge-no-element-after` error will be thrown.
- *
- * @chainable
- * @method module:engine/model/batch~Batch#merge
- * @param {module:engine/model/position~Position} position Position of merge.
- */
-__WEBPACK_IMPORTED_MODULE_3__batch__["b" /* register */]( 'merge', function( position ) {
-	const delta = new MergeDelta();
-	this.addDelta( delta );
-
-	const nodeBefore = position.nodeBefore;
-	const nodeAfter = position.nodeAfter;
-
-	if ( !( nodeBefore instanceof __WEBPACK_IMPORTED_MODULE_5__element__["a" /* default */] ) ) {
-		/**
-		 * Node before merge position must be an element.
-		 *
-		 * @error batch-merge-no-element-before
-		 */
-		throw new __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'batch-merge-no-element-before: Node before merge position must be an element.' );
-	}
-
-	if ( !( nodeAfter instanceof __WEBPACK_IMPORTED_MODULE_5__element__["a" /* default */] ) ) {
-		/**
-		 * Node after merge position must be an element.
-		 *
-		 * @error batch-merge-no-element-after
-		 */
-		throw new __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'batch-merge-no-element-after: Node after merge position must be an element.' );
-	}
-
-	const positionAfter = __WEBPACK_IMPORTED_MODULE_4__position__["a" /* default */].createFromParentAndOffset( nodeAfter, 0 );
-	const positionBefore = __WEBPACK_IMPORTED_MODULE_4__position__["a" /* default */].createFromParentAndOffset( nodeBefore, nodeBefore.maxOffset );
-
-	const move = new __WEBPACK_IMPORTED_MODULE_7__operation_moveoperation__["a" /* default */](
-		positionAfter,
-		nodeAfter.maxOffset,
-		positionBefore,
-		this.document.version
-	);
-
-	move.isSticky = true;
-	delta.addOperation( move );
-	this.document.applyOperation( move );
-
-	const remove = new __WEBPACK_IMPORTED_MODULE_6__operation_removeoperation__["a" /* default */]( position, 1, this.document.version );
-	delta.addOperation( remove );
-	this.document.applyOperation( remove );
-
-	return this;
-} );
-
-__WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( MergeDelta );
-
-
-/***/ }),
-/* 126 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__element__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__operation_insertoperation__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__operation_moveoperation__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__delta_mergedelta__ = __webpack_require__(125);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module engine/model/delta/splitdelta
- */
-
-
-
-
-
-
-
-
-
-
-
-/**
- * @classdesc
- * To provide specific OT behavior and better collisions solving, the {@link module:engine/model/batch~Batch#split} method
- * uses `SplitDelta` class which inherits from the `Delta` class and may overwrite some methods.
- */
-class SplitDelta extends __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */] {
-	/**
-	 * @inheritDoc
-	 */
-	get type() {
-		return 'split';
-	}
-
-	/**
-	 * Position of split or `null` if there are no operations in the delta.
-	 *
-	 * @type {module:engine/model/position~Position|null}
-	 */
-	get position() {
-		return this._moveOperation ? this._moveOperation.sourcePosition : null;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	getReversed() {
-		const delta = super.getReversed();
-
-		if ( delta.operations.length > 0 ) {
-			delta.operations[ 0 ].isSticky = true;
-		}
-
-		return delta;
-	}
-
-	/**
-	 * Operation in the delta that adds to model an element into which split nodes will be moved, or `null` if
-	 * there are no operations in the delta.
-	 *
-	 * Most commonly this will be {@link module:engine/model/operation/insertoperation~InsertOperation an insert operation},
-	 * as `SplitDelta` has to create a new node. If `SplitDelta` was created through
-	 * {@link module:engine/model/delta/delta~Delta#getReversed reversing}
-	 * a {@link module:engine/model/delta/mergedelta~MergeDelta merge delta},
-	 * this will be a {@link module:engine/model/operation/reinsertoperation~ReinsertOperation reinsert operation},
-	 * as we will want to re-insert the exact element that was removed by that merge delta.
-	 *
-	 * @protected
-	 * @type {module:engine/model/operation/insertoperation~InsertOperation|
-	 * module:engine/model/operation/reinsertoperation~ReinsertOperation|null}
-	 */
-	get _cloneOperation() {
-		return this.operations[ 0 ] || null;
-	}
-
-	/**
-	 * Operation in the delta that moves model items, that are after split position, to their new parent or `null`
-	 * if there are no operations in the delta.
-	 *
-	 * @protected
-	 * @type {module:engine/model/operation/moveoperation~MoveOperation|null}
-	 */
-	get _moveOperation() {
-		return this.operations[ 1 ] || null;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	get _reverseDeltaClass() {
-		return __WEBPACK_IMPORTED_MODULE_8__delta_mergedelta__["a" /* default */];
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	static get className() {
-		return 'engine.model.delta.SplitDelta';
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	static get _priority() {
-		return 5;
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = SplitDelta;
-
-
-/**
- * Splits an element at the given position.
- *
- * The element cannot be a root element, as root element cannot be split. The `batch-split-root` error will be thrown if
- * you try to split the root element.
- *
- * @chainable
- * @method module:engine/model/batch~Batch#split
- * @param {module:engine/model/position~Position} position Position of split.
- */
-__WEBPACK_IMPORTED_MODULE_2__batch__["b" /* register */]( 'split', function( position ) {
-	const delta = new SplitDelta();
-	this.addDelta( delta );
-
-	const splitElement = position.parent;
-
-	if ( !splitElement.parent ) {
-		/**
-		 * Root element can not be split.
-		 *
-		 * @error batch-split-root
-		 */
-		throw new __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'batch-split-root: Root element can not be split.' );
-	}
-
-	const copy = new __WEBPACK_IMPORTED_MODULE_4__element__["a" /* default */]( splitElement.name, splitElement.getAttributes() );
-
-	const insert = new __WEBPACK_IMPORTED_MODULE_5__operation_insertoperation__["a" /* default */](
-		__WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createAfter( splitElement ),
-		copy,
-		this.document.version
-	);
-
-	delta.addOperation( insert );
-	this.document.applyOperation( insert );
-
-	const move = new __WEBPACK_IMPORTED_MODULE_6__operation_moveoperation__["a" /* default */](
-		position,
-		splitElement.maxOffset - position.offset,
-		__WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createFromParentAndOffset( copy, 0 ),
-		this.document.version
-	);
-	move.isSticky = true;
-
-	delta.addOperation( move );
-	this.document.applyOperation( move );
-
-	return this;
-} );
-
-__WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( SplitDelta );
-
-
-/***/ }),
-/* 127 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__wrapdelta__ = __webpack_require__(128);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__batch__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__operation_removeoperation__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__operation_moveoperation__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module engine/model/delta/unwrapdelta
- */
-
-
-
-
-
-
-
-
-
-
-/**
- * @classdesc
- * To provide specific OT behavior and better collisions solving, {@link module:engine/model/batch~Batch#merge} method
- * uses the `UnwrapDelta` class which inherits from the `Delta` class and may overwrite some methods.
- */
-class UnwrapDelta extends __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */] {
-	/**
-	 * @inheritDoc
-	 */
-	get type() {
-		return 'unwrap';
-	}
-
-	/**
-	 * Position before unwrapped element or `null` if there are no operations in the delta.
-	 *
-	 * @type {module:engine/model/position~Position|null}
-	 */
-	get position() {
-		return this._moveOperation ? this._moveOperation.targetPosition : null;
-	}
-
-	/**
-	 * Operation in the delta that moves unwrapped nodes to their new parent or `null` if there are no operations in the delta.
-	 *
-	 * @protected
-	 * @type {module:engine/model/operation/moveoperation~MoveOperation|null}
-	 */
-	get _moveOperation() {
-		return this.operations[ 0 ] || null;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	get _reverseDeltaClass() {
-		return __WEBPACK_IMPORTED_MODULE_2__wrapdelta__["a" /* default */];
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	static get className() {
-		return 'engine.model.delta.UnwrapDelta';
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	static get _priority() {
-		return 10;
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = UnwrapDelta;
-
-
-/**
- * Unwraps children of the given element – all its children are moved before it and then the element is removed.
- * Throws error if you try to unwrap an element which does not have a parent.
- *
- * @chainable
- * @method module:engine/model/batch~Batch#unwrap
- * @param {module:engine/model/element~Element} position Element to unwrap.
- */
-__WEBPACK_IMPORTED_MODULE_3__batch__["b" /* register */]( 'unwrap', function( element ) {
-	if ( element.parent === null ) {
-		/**
-		 * Trying to unwrap an element which has no parent.
-		 *
-		 * @error batch-unwrap-element-no-parent
-		 */
-		throw new __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'batch-unwrap-element-no-parent: Trying to unwrap an element which has no parent.' );
-	}
-
-	const delta = new UnwrapDelta();
-	this.addDelta( delta );
-
-	const sourcePosition = __WEBPACK_IMPORTED_MODULE_4__position__["a" /* default */].createFromParentAndOffset( element, 0 );
-
-	const move = new __WEBPACK_IMPORTED_MODULE_6__operation_moveoperation__["a" /* default */](
-		sourcePosition,
-		element.maxOffset,
-		__WEBPACK_IMPORTED_MODULE_4__position__["a" /* default */].createBefore( element ),
-		this.document.version
-	);
-
-	move.isSticky = true;
-	delta.addOperation( move );
-	this.document.applyOperation( move );
-
-	// Computing new position because we moved some nodes before `element`.
-	// If we would cache `Position.createBefore( element )` we remove wrong node.
-	const remove = new __WEBPACK_IMPORTED_MODULE_5__operation_removeoperation__["a" /* default */]( __WEBPACK_IMPORTED_MODULE_4__position__["a" /* default */].createBefore( element ), 1, this.document.version );
-	delta.addOperation( remove );
-	this.document.applyOperation( remove );
-
-	return this;
-} );
-
-__WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( UnwrapDelta );
-
-
-/***/ }),
-/* 128 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__unwrapdelta__ = __webpack_require__(127);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__batch__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__range__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__element__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__operation_insertoperation__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__operation_moveoperation__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module engine/model/delta/wrapdelta
- */
-
-
-
-
-
-
-
-
-
-
-
-
-/**
- * @classdesc
- * To provide specific OT behavior and better collisions solving, {@link module:engine/model/batch~Batch#merge} method
- * uses the `WrapDelta` class which inherits from the `Delta` class and may overwrite some methods.
- */
-class WrapDelta extends __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */] {
-	/**
-	 * @inheritDoc
-	 */
-	get type() {
-		return 'wrap';
-	}
-
-	/**
-	 * Range to wrap or `null` if there are no operations in the delta.
-	 *
-	 * @type {module:engine/model/range~Range|null}
-	 */
-	get range() {
-		const moveOp = this._moveOperation;
-
-		return moveOp ? __WEBPACK_IMPORTED_MODULE_5__range__["a" /* default */].createFromPositionAndShift( moveOp.sourcePosition, moveOp.howMany ) : null;
-	}
-
-	/**
-	 * Offset size of range to wrap by the delta or `null` if there are no operations in delta.
-	 *
-	 * @type {Number}
-	 */
-	get howMany() {
-		const range = this.range;
-
-		return range ? range.end.offset - range.start.offset : 0;
-	}
-
-	/* eslint-disable max-len */
-	/**
-	 * Operation that inserts wrapping element or `null` if there are no operations in the delta.
-	 *
-	 * @protected
-	 * @type {module:engine/model/operation/insertoperation~InsertOperation|module:engine/model/operation/reinsertoperation~ReinsertOperation}
-	 */
-	/* eslint-enable max-len */
-	get _insertOperation() {
-		return this.operations[ 0 ] || null;
-	}
-
-	/**
-	 * Operation that moves wrapped nodes to their new parent or `null` if there are no operations in the delta.
-	 *
-	 * @protected
-	 * @type {module:engine/model/operation/moveoperation~MoveOperation|null}
-	 */
-	get _moveOperation() {
-		return this.operations[ 1 ] || null;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	get _reverseDeltaClass() {
-		return __WEBPACK_IMPORTED_MODULE_2__unwrapdelta__["a" /* default */];
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	static get className() {
-		return 'engine.model.delta.WrapDelta';
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	static get _priority() {
-		return 10;
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = WrapDelta;
-
-
-/**
- * Wraps given range with given element or with a new element with specified name, if string has been passed.
- * **Note:** range to wrap should be a "flat range" (see {@link module:engine/model/range~Range#isFlat}). If not, error will be thrown.
- *
- * @chainable
- * @method module:engine/model/batch~Batch#wrap
- * @param {module:engine/model/range~Range} range Range to wrap.
- * @param {module:engine/model/element~Element|String} elementOrString Element or name of element to wrap the range with.
- */
-__WEBPACK_IMPORTED_MODULE_3__batch__["b" /* register */]( 'wrap', function( range, elementOrString ) {
-	if ( !range.isFlat ) {
-		/**
-		 * Range to wrap is not flat.
-		 *
-		 * @error batch-wrap-range-not-flat
-		 */
-		throw new __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'batch-wrap-range-not-flat: Range to wrap is not flat.' );
-	}
-
-	const element = elementOrString instanceof __WEBPACK_IMPORTED_MODULE_6__element__["a" /* default */] ? elementOrString : new __WEBPACK_IMPORTED_MODULE_6__element__["a" /* default */]( elementOrString );
-
-	if ( element.childCount > 0 ) {
-		/**
-		 * Element to wrap with is not empty.
-		 *
-		 * @error batch-wrap-element-not-empty
-		 */
-		throw new __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'batch-wrap-element-not-empty: Element to wrap with is not empty.' );
-	}
-
-	if ( element.parent !== null ) {
-		/**
-		 * Element to wrap with is already attached to a tree model.
-		 *
-		 * @error batch-wrap-element-attached
-		 */
-		throw new __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'batch-wrap-element-attached: Element to wrap with is already attached to tree model.' );
-	}
-
-	const delta = new WrapDelta();
-	this.addDelta( delta );
-
-	const insert = new __WEBPACK_IMPORTED_MODULE_7__operation_insertoperation__["a" /* default */]( range.end, element, this.document.version );
-	delta.addOperation( insert );
-	this.document.applyOperation( insert );
-
-	const targetPosition = __WEBPACK_IMPORTED_MODULE_4__position__["a" /* default */].createFromParentAndOffset( element, 0 );
-	const move = new __WEBPACK_IMPORTED_MODULE_8__operation_moveoperation__["a" /* default */](
-		range.start,
-		range.end.offset - range.start.offset,
-		targetPosition,
-		this.document.version
-	);
-	delta.addOperation( move );
-	this.document.applyOperation( move );
-
-	return this;
-} );
-
-__WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( WrapDelta );
-
-
-/***/ }),
-/* 129 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__operation_transform__ = __webpack_require__(362);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__operation_nooperation__ = __webpack_require__(92);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_lib_lodash_array__ = __webpack_require__(363);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module engine/model/delta/transform
- */
-
-
-
-
-
-
-const specialCases = new Map();
-
-/**
- * @namespace
- */
-const transform = {
-	/**
-	 * Transforms given {@link module:engine/model/delta/delta~Delta delta} by another {@link module:engine/model/delta/delta~Delta delta}
-	 * and returns the result of that transformation as an array containing one or more {@link module:engine/model/delta/delta~Delta delta}
-	 * instances.
-	 *
-	 * Delta transformations heavily base on {@link module:engine/model/operation/transform~transform operational transformations}. Since
-	 * delta is a list of operations most situations can be handled thanks to operational transformation. Unfortunately,
-	 * deltas are more complicated than operations and have they semantic meaning, as they represent user's editing intentions.
-	 *
-	 * Sometimes, simple operational transformation on deltas' operations might result in some unexpected results. Those
-	 * results would be fine from OT point of view, but would not reflect user's intentions. Because of such conflicts
-	 * we need to handle transformations in special cases in a custom way.
-	 *
-	 * The function itself looks whether two given delta types have a special case function registered. If so, the deltas are
-	 * transformed using that function. If not,
-	 * {@link module:engine/model/delta/transform~transform.defaultTransform default transformation algorithm} is used.
-	 *
-	 * @param {module:engine/model/delta/delta~Delta} a Delta that will be transformed.
-	 * @param {module:engine/model/delta/delta~Delta} b Delta to transform by.
-	 * @param {Boolean} isAMoreImportantThanB Flag indicating whether the delta which will be transformed (`a`) should be treated
-	 * as more important when resolving conflicts. Note that this flag is used only if provided deltas have same
-	 * {@link module:engine/model/delta/delta~Delta._priority priority}. If deltas have different priorities, their importance is resolved
-	 * automatically and overwrites this flag.
-	 * @returns {Array.<module:engine/model/delta/delta~Delta>} Result of the transformation.
-	 */
-	transform( a, b, isAMoreImportantThanB ) {
-		const transformAlgorithm = transform.getTransformationCase( a, b ) || transform.defaultTransform;
-
-		const transformed = transformAlgorithm( a, b, isAMoreImportantThanB );
-		const baseVersion = __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_lib_lodash_array__["a" /* default */].last( b.operations ).baseVersion;
-
-		return updateBaseVersion( baseVersion, transformed );
-	},
-
-	/**
-	 * The default delta transformation function. It is used for those deltas that are not in special case conflict.
-	 *
-	 * This algorithm is similar to a popular `dOPT` algorithm used in operational transformation, as we are in fact
-	 * transforming two sets of operations by each other.
-	 *
-	 * @param {module:engine/model/delta/delta~Delta} a Delta that will be transformed.
-	 * @param {module:engine/model/delta/delta~Delta} b Delta to transform by.
-	 * @param {Boolean} isAMoreImportantThanB Flag indicating whether the delta which will be transformed (`a`) should be treated
-	 * as more important when resolving conflicts. Note that this flag is used only if provided deltas have same
-	 * {@link module:engine/model/delta/delta~Delta._priority priority}. If deltas have different priorities, their importance is resolved
-	 * automatically and overwrites this flag.
-	 * @returns {Array.<module:engine/model/delta/delta~Delta>} Result of the transformation, that is an array with single delta instance.
-	 */
-	defaultTransform( a, b, isAMoreImportantThanB ) {
-		// First, resolve the flag real value.
-		isAMoreImportantThanB = getPriority( a.constructor, b.constructor, isAMoreImportantThanB );
-
-		// Create a new delta instance. Make sure that the new delta is of same type as transformed delta.
-		// We will transform operations in that delta but it doesn't mean the delta's "meaning" which is connected to
-		// the delta's type. Since the delta's type is heavily used in transformations and probably other parts
-		// of system it is important to keep proper delta type through all transformation process.
-		const transformed = new a.constructor();
-
-		// Array containing operations that we will transform by. At the beginning these are just operations from
-		let byOps = b.operations;
-
-		// This array is storing operations from `byOps` which got transformed by operation from delta `a`.
-		let newByOps = [];
-
-		// We take each operation from original set of operations to transform.
-		for ( const opA of a.operations ) {
-			// We wrap the operation in the array. This is important, because operation transformation algorithm returns
-			// an array of operations so we need to make sure that our algorithm is ready to handle arrays.
-			const ops = [ opA ];
-
-			// Now the real algorithm takes place.
-			for ( const opB of byOps ) {
-				// For each operation that we need transform by...
-				for ( let i = 0; i < ops.length; i++ ) {
-					// We take each operation to transform...
-					const op = ops[ i ];
-
-					// And transform both of them by themselves.
-
-					// The result of transforming operation from delta B by operation from delta A is saved in
-					// `newByOps` array. We will use that array for transformations in next loops. We need delta B
-					// operations after transformed by delta A operations to get correct results of transformations
-					// of next operations from delta A.
-					//
-					// It's like this because 2nd operation from delta A assumes that 1st operation from delta A
-					// is "already applied". When we transform 2nd operation from delta A by operations from delta B
-					// we have to be sure that operations from delta B are in a state that acknowledges 1st operation
-					// from delta A.
-					//
-					// This can be easier understood when operations sets to transform are represented by diamond diagrams:
-					// http://www.codecommit.com/blog/java/understanding-and-applying-operational-transformation
-
-					// Using push.apply because operationTransform function is returning an array with one or multiple results.
-					Array.prototype.push.apply( newByOps, __WEBPACK_IMPORTED_MODULE_1__operation_transform__["a" /* default */]( opB, op, !isAMoreImportantThanB ) );
-
-					// Then, we transform operation from delta A by operation from delta B.
-					const results = __WEBPACK_IMPORTED_MODULE_1__operation_transform__["a" /* default */]( op, opB, isAMoreImportantThanB );
-
-					// We replace currently processed operation from `ops` array by the results of transformation.
-					// Note, that we process single operation but the operationTransform result might be an array, so we
-					// might splice-in more operations. We will process them further in next iterations. Right now we
-					// just save them in `ops` array and move `i` pointer by proper offset.
-					Array.prototype.splice.apply( ops, [ i, 1 ].concat( results ) );
-
-					i += results.length - 1;
-				}
-
-				// At this point a single operation from delta A got transformed by a single operation from delta B.
-				// The transformation result is in `ops` array and it may be one or more operations. This was just the first step.
-				// Operation from delta A has to be further transformed by the other operations from delta B.
-				// So in next iterator loop we will take another operation from delta B and use transformed delta A (`ops`)
-				// to transform it further.
-			}
-
-			// We got through all delta B operations and have a final transformed state of an operation from delta A.
-
-			// As previously mentioned, we substitute operations from delta B by their transformed equivalents.
-			byOps = newByOps;
-			newByOps = [];
-
-			// We add transformed operation from delta A to newly created delta.
-			// Remember that transformed operation from delta A may consist of multiple operations.
-			for ( const op of ops ) {
-				transformed.addOperation( op );
-			}
-
-			// In next loop, we will take another operation from delta A and transform it through (transformed) operations
-			// from delta B...
-		}
-
-		return [ transformed ];
-	},
-
-	/**
-	 * Adds a special case callback for given delta classes.
-	 *
-	 * @param {Function} A Delta constructor which instance will get transformed.
-	 * @param {Function} B Delta constructor which instance will be transformed by.
-	 * @param {Function} resolver A callback that will handle custom special case transformation for instances of given delta classes.
-	 */
-	addTransformationCase( A, B, resolver ) {
-		let casesA = specialCases.get( A );
-
-		if ( !casesA ) {
-			casesA = new Map();
-			specialCases.set( A, casesA );
-		}
-
-		casesA.set( B, resolver );
-	},
-
-	/**
-	 * Gets a special case callback which was previously {@link module:engine/model/delta/transform~transform.addTransformationCase added}.
-	 *
-	 * @param {module:engine/model/delta/delta~Delta} a Delta to transform.
-	 * @param {module:engine/model/delta/delta~Delta} b Delta to be transformed by.
-	 */
-	getTransformationCase( a, b ) {
-		let casesA = specialCases.get( a.constructor );
-
-		// If there are no special cases registered for class which `a` is instance of, we will
-		// check if there are special cases registered for any parent class.
-		if ( !casesA || !casesA.get( b.constructor ) ) {
-			const cases = specialCases.keys();
-
-			for ( const caseClass of cases ) {
-				if ( a instanceof caseClass && specialCases.get( caseClass ).get( b.constructor ) ) {
-					casesA = specialCases.get( caseClass );
-
-					break;
-				}
-			}
-		}
-
-		if ( casesA ) {
-			return casesA.get( b.constructor );
-		}
-
-		return undefined;
-	},
-
-	/**
-	 * Transforms two sets of deltas by themselves. Returns both transformed sets. Does not modify passed parameters.
-	 *
-	 * @param {Array.<module:engine/model/delta/delta~Delta>} deltasA Array with first set of deltas to transform.
-	 * @param {Array.<module:engine/model/delta/delta~Delta>} deltasB Array with second set of deltas to transform.
-	 * @param {Boolean} isAMoreImportantThanB Flag indicating whether the deltas from `deltasA` set should be treated as more
-	 * important when resolving conflicts.
-	 * @returns {Object}
-	 * @returns {Array.<module:engine/model/delta/delta~Delta>} return.deltasA The first set of deltas transformed by the second
-	 * set of deltas.
-	 * @returns {Array.<module:engine/model/delta/delta~Delta>} return.deltasB The second set of deltas transformed by the first
-	 * set of deltas.
-	 */
-	transformDeltaSets( deltasA, deltasB, isAMoreImportantThanB ) {
-		const transformedDeltasA = Array.from( deltasA );
-		const transformedDeltasB = Array.from( deltasB );
-
-		for ( let i = 0; i < transformedDeltasA.length; i++ ) {
-			const deltaA = [ transformedDeltasA[ i ] ];
-
-			for ( let j = 0; j < transformedDeltasB.length; j++ ) {
-				const deltaB = [ transformedDeltasB[ j ] ];
-
-				for ( let k = 0; k < deltaA.length; k++ ) {
-					for ( let l = 0; l < deltaB.length; l++ ) {
-						const resultAB = transform.transform( deltaA[ k ], deltaB[ l ], isAMoreImportantThanB );
-						const resultBA = transform.transform( deltaB[ l ], deltaA[ k ], !isAMoreImportantThanB );
-
-						deltaA.splice( k, 1, ...resultAB );
-						k += resultAB.length - 1;
-
-						deltaB.splice( l, 1, ...resultBA );
-						l += resultBA.length - 1;
-					}
-				}
-
-				transformedDeltasB.splice( j, 1, ...deltaB );
-				j += deltaB.length - 1;
-			}
-
-			transformedDeltasA.splice( i, 1, ...deltaA );
-			i += deltaA.length - 1;
-		}
-
-		const opsDiffA = getOpsCount( transformedDeltasA ) - getOpsCount( deltasA );
-		const opsDiffB = getOpsCount( transformedDeltasB ) - getOpsCount( deltasB );
-
-		if ( opsDiffB < opsDiffA ) {
-			padWithNoOps( transformedDeltasB, opsDiffA - opsDiffB );
-		} else if ( opsDiffA < opsDiffB ) {
-			padWithNoOps( transformedDeltasA, opsDiffB - opsDiffA );
-		}
-
-		return { deltasA: transformedDeltasA, deltasB: transformedDeltasB };
-	}
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (transform);
-
-// Updates base versions of operations inside deltas (which are the results of delta transformation).
-function updateBaseVersion( baseVersion, deltas ) {
-	for ( const delta of deltas ) {
-		for ( const op of delta.operations ) {
-			op.baseVersion = ++baseVersion;
-		}
-	}
-
-	return deltas;
-}
-
-// Checks priorities of passed constructors and decides which one is more important.
-// If both priorities are same, value passed in `isAMoreImportantThanB` parameter is used.
-function getPriority( A, B, isAMoreImportantThanB ) {
-	if ( A._priority > B._priority ) {
-		return true;
-	} else if ( A._priority < B._priority ) {
-		return false;
-	} else {
-		return isAMoreImportantThanB;
-	}
-}
-
-// Returns number of operations in given array of deltas.
-function getOpsCount( deltas ) {
-	return deltas.reduce( ( current, delta ) => {
-		return current + delta.operations.length;
-	}, 0 );
-}
-
-// Adds a delta containing `howMany` `NoOperation` instances to given array with deltas.
-// Used to "synchronize" the number of operations in two delta sets.
-function padWithNoOps( deltas, howMany ) {
-	const lastDelta = deltas[ deltas.length - 1 ];
-	let baseVersion = lastDelta.operations.length + lastDelta.baseVersion;
-
-	const noDelta = new __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */]();
-
-	for ( let i = 0; i < howMany; i++ ) {
-		noDelta.addOperation( new __WEBPACK_IMPORTED_MODULE_2__operation_nooperation__["a" /* default */]( baseVersion++ ) );
-	}
-
-	deltas.push( noDelta );
-}
-
-
-/***/ }),
-/* 130 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIndexOf__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIndexOf__ = __webpack_require__(132);
 
 
 /**
@@ -23417,7 +23321,7 @@ function arrayIncludes(array, value) {
 
 
 /***/ }),
-/* 131 */
+/* 132 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -23452,7 +23356,7 @@ function baseIndexOf(array, value, fromIndex) {
 
 
 /***/ }),
-/* 132 */
+/* 133 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -23481,7 +23385,7 @@ function arrayIncludesWith(array, value, comparator) {
 
 
 /***/ }),
-/* 133 */
+/* 134 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -23502,7 +23406,7 @@ function baseUnary(func) {
 
 
 /***/ }),
-/* 134 */
+/* 135 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -23522,13 +23426,13 @@ function cacheHas(cache, key) {
 
 
 /***/ }),
-/* 135 */
+/* 136 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__castPath__ = __webpack_require__(93);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isKey__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__toKey__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__castPath__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isKey__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__toKey__ = __webpack_require__(58);
 
 
 
@@ -23557,11 +23461,11 @@ function baseGet(object, path) {
 
 
 /***/ }),
-/* 136 */
+/* 137 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSlice__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSlice__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toInteger__ = __webpack_require__(13);
 
 
@@ -23604,11 +23508,11 @@ function drop(array, n, guard) {
 
 
 /***/ }),
-/* 137 */
+/* 138 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSlice__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSlice__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toInteger__ = __webpack_require__(13);
 
 
@@ -23652,7 +23556,7 @@ function dropRight(array, n, guard) {
 
 
 /***/ }),
-/* 138 */
+/* 139 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -23682,16 +23586,16 @@ function head(array) {
 
 
 /***/ }),
-/* 139 */
+/* 140 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SetCache__ = __webpack_require__(91);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arrayIncludes__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__arrayIncludesWith__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__arrayMap__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__baseUnary__ = __webpack_require__(133);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__cacheHas__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SetCache__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arrayIncludes__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__arrayIncludesWith__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__arrayMap__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__baseUnary__ = __webpack_require__(134);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__cacheHas__ = __webpack_require__(135);
 
 
 
@@ -23769,7 +23673,7 @@ function baseIntersection(arrays, iteratee, comparator) {
 
 
 /***/ }),
-/* 140 */
+/* 141 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -23791,11 +23695,11 @@ function castArrayLikeObject(value) {
 
 
 /***/ }),
-/* 141 */
+/* 142 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__basePullAll__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__basePullAll__ = __webpack_require__(143);
 
 
 /**
@@ -23828,14 +23732,14 @@ function pullAll(array, values) {
 
 
 /***/ }),
-/* 142 */
+/* 143 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayMap__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIndexOf__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayMap__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIndexOf__ = __webpack_require__(132);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseIndexOfWith__ = __webpack_require__(386);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__baseUnary__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__baseUnary__ = __webpack_require__(134);
 
 
 
@@ -23886,11 +23790,11 @@ function basePullAll(array, values, iteratee, comparator) {
 
 
 /***/ }),
-/* 143 */
+/* 144 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isSymbol__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isSymbol__ = __webpack_require__(45);
 
 
 /** Used as references for the maximum length and index of an array. */
@@ -23958,13 +23862,13 @@ function baseSortedIndexBy(array, value, iteratee, retHighest) {
 
 
 /***/ }),
-/* 144 */
+/* 145 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__apply__ = __webpack_require__(152);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arrayMap__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__unzip__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__apply__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arrayMap__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__unzip__ = __webpack_require__(102);
 
 
 
@@ -24007,12 +23911,12 @@ function unzipWith(array, iteratee) {
 
 
 /***/ }),
-/* 145 */
+/* 146 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayPush__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseDifference__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayPush__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseDifference__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseUniq__ = __webpack_require__(49);
 
 
@@ -24047,13 +23951,13 @@ function baseXor(arrays, iteratee, comparator) {
 
 
 /***/ }),
-/* 146 */
+/* 147 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isObject__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__now__ = __webpack_require__(411);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__toNumber__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__toNumber__ = __webpack_require__(154);
 
 
 
@@ -24243,11 +24147,11 @@ function debounce(func, wait, options) {
 
 
 /***/ }),
-/* 147 */
+/* 148 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_extend__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_extend__ = __webpack_require__(44);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -24327,13 +24231,13 @@ class DomEventData {
 
 
 /***/ }),
-/* 148 */
+/* 149 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_collection__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_collection__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -24548,7 +24452,7 @@ function isStringArray( arr ) {
 
 
 /***/ }),
-/* 149 */
+/* 150 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -25212,7 +25116,7 @@ function getSouthTop( targetRect ) {
 
 
 /***/ }),
-/* 150 */
+/* 151 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -25505,7 +25409,7 @@ function isFocusable( view ) {
 
 
 /***/ }),
-/* 151 */
+/* 152 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -25642,7 +25546,7 @@ function getFillerOffset() {
 
 
 /***/ }),
-/* 152 */
+/* 153 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -25671,13 +25575,13 @@ function apply(func, thisArg, args) {
 
 
 /***/ }),
-/* 153 */
+/* 154 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isFunction__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isFunction__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isObject__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isSymbol__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isSymbol__ = __webpack_require__(45);
 
 
 
@@ -25748,7 +25652,7 @@ function toNumber(value) {
 
 
 /***/ }),
-/* 154 */
+/* 155 */
 /***/ (function(module, exports) {
 
 module.exports = function(originalModule) {
@@ -25778,15 +25682,15 @@ module.exports = function(originalModule) {
 
 
 /***/ }),
-/* 155 */
+/* 156 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseTimes__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArguments__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseTimes__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArguments__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArray__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isLength__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isString__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isLength__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isString__ = __webpack_require__(112);
 
 
 
@@ -25814,7 +25718,7 @@ function indexKeys(object) {
 
 
 /***/ }),
-/* 156 */
+/* 157 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -25841,7 +25745,7 @@ function baseTimes(n, iteratee) {
 
 
 /***/ }),
-/* 157 */
+/* 158 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -25849,7 +25753,7 @@ function baseTimes(n, iteratee) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_position__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_range__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_text__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_text__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /**
@@ -26384,7 +26288,7 @@ __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_mix__["a" /* default *
 
 
 /***/ }),
-/* 158 */
+/* 159 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26419,7 +26323,7 @@ function objectToMap( obj ) {
 
 
 /***/ }),
-/* 159 */
+/* 160 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26809,7 +26713,7 @@ function matchStyles( patterns, element ) {
 
 
 /***/ }),
-/* 160 */
+/* 161 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26819,7 +26723,7 @@ function matchStyles( patterns, element ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_documentfragment__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_lib_lodash_extend__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_lib_lodash_extend__ = __webpack_require__(44);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -27046,7 +26950,7 @@ class ModelConversionDispatcher {
 			}
 
 			// Check if inserted content contains a marker.
-			if ( range.containsRange( markerRange ) || range.isEqual( markerRange ) ) {
+			if ( range.containsRange( markerRange, true ) ) {
 				this.convertMarker( 'addMarker', marker.name, markerRange );
 			}
 		}
@@ -27498,13 +27402,13 @@ __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_mix__["a" /* default *
 
 
 /***/ }),
-/* 161 */
+/* 162 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__element__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node__ = __webpack_require__(81);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -27582,13 +27486,13 @@ function getFillerOffset() {
 
 
 /***/ }),
-/* 162 */
+/* 163 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__element__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node__ = __webpack_require__(81);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -27684,7 +27588,7 @@ function getFillerOffset() {
 
 
 /***/ }),
-/* 163 */
+/* 164 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -27909,7 +27813,7 @@ __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__["a" /* default *
 
 
 /***/ }),
-/* 164 */
+/* 165 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -27989,304 +27893,25 @@ function isInsideCombinedSymbol( string, offset ) {
 
 
 /***/ }),
-/* 165 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_attributeoperation__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__operation_rootattributeoperation__ = __webpack_require__(121);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__range__ = __webpack_require__(3);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module engine/model/delta/attributedelta
- */
-
-
-
-
-
-
-
-
-
-/**
- * To provide specific OT behavior and better collisions solving, methods to change attributes
- * ({@link module:engine/model/batch~Batch#setAttribute} and {@link module:engine/model/batch~Batch#removeAttribute})
- * use `AttributeDelta` class which inherits from the `Delta` class and may overwrite some methods.
- * @extends module:engine/model/delta/delta~Delta
- */
-class AttributeDelta extends __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */] {
-	/**
-	 * @inheritDoc
-	 */
-	get type() {
-		return 'attribute';
-	}
-
-	/**
-	 * The attribute key that is changed by the delta or `null` if the delta has no operations.
-	 *
-	 * @readonly
-	 * @type {String|null}
-	 */
-	get key() {
-		return this.operations[ 0 ] ? this.operations[ 0 ].key : null;
-	}
-
-	/**
-	 * The attribute value that is set by the delta or `null` if the delta has no operations.
-	 *
-	 * @readonly
-	 * @type {*|null}
-	 */
-	get value() {
-		return this.operations[ 0 ] ? this.operations[ 0 ].newValue : null;
-	}
-
-	/**
-	 * The range on which delta operates or `null` if the delta has no operations.
-	 *
-	 * @readonly
-	 * @type {module:engine/model/range~Range|null}
-	 */
-	get range() {
-		// Check if it is cached.
-		if ( this._range ) {
-			return this._range;
-		}
-
-		let start = null;
-		let end = null;
-
-		for ( const operation of this.operations ) {
-			if ( start === null || start.isAfter( operation.range.start ) ) {
-				start = operation.range.start;
-			}
-
-			if ( end === null || end.isBefore( operation.range.end ) ) {
-				end = operation.range.end;
-			}
-		}
-
-		if ( start && end ) {
-			this._range = new __WEBPACK_IMPORTED_MODULE_6__range__["a" /* default */]( start, end );
-
-			return this._range;
-		}
-
-		return null;
-	}
-
-	get _reverseDeltaClass() {
-		return AttributeDelta;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	toJSON() {
-		const json = super.toJSON();
-
-		delete json._range;
-
-		return json;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	static get className() {
-		return 'engine.model.delta.AttributeDelta';
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	static get _priority() {
-		return 20;
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = AttributeDelta;
-
-
-/**
- * To provide specific OT behavior and better collisions solving, methods to change attributes
- * ({@link module:engine/model/batch~Batch#setAttribute} and {@link module:engine/model/batch~Batch#removeAttribute})
- * use `RootAttributeDelta` class which inherits from the `Delta` class and may
- * overwrite some methods.
- *
- * @extends module:engine/model/delta/delta~Delta
- */
-class RootAttributeDelta extends __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */] {
-	/**
-	 * @inheritDoc
-	 */
-	static get className() {
-		return 'engine.model.delta.RootAttributeDelta';
-	}
-}
-/* unused harmony export RootAttributeDelta */
-
-
-/**
- * Sets value of the attribute with given key on a {@link module:engine/model/item~Item model item}
- * or on a {@link module:engine/model/range~Range range}.
- *
- * @chainable
- * @method module:engine/model/batch~Batch#setAttribute
- * @param {module:engine/model/item~Item|module:engine/model/range~Range} itemOrRange
- * Model item or range on which the attribute will be set.
- * @param {String} key Attribute key.
- * @param {*} value Attribute new value.
- */
-__WEBPACK_IMPORTED_MODULE_2__batch__["b" /* register */]( 'setAttribute', function( itemOrRange, key, value ) {
-	attribute( this, key, value, itemOrRange );
-
-	return this;
-} );
-
-/**
- * Removes an attribute with given key from a {@link module:engine/model/item~Item model item}
- * or from a {@link module:engine/model/range~Range range}.
- *
- * @chainable
- * @param {module:engine/model/item~Item|module:engine/model/range~Range} itemOrRange
- * Model item or range from which the attribute will be removed.
- * @method module:engine/model/batch~Batch#removeAttribute
- * @param {String} key Attribute key.
- */
-__WEBPACK_IMPORTED_MODULE_2__batch__["b" /* register */]( 'removeAttribute', function( itemOrRange, key ) {
-	attribute( this, key, null, itemOrRange );
-
-	return this;
-} );
-
-function attribute( batch, key, value, itemOrRange ) {
-	if ( itemOrRange instanceof __WEBPACK_IMPORTED_MODULE_6__range__["a" /* default */] ) {
-		changeRange( batch, batch.document, key, value, itemOrRange );
-	} else {
-		changeItem( batch, batch.document, key, value, itemOrRange );
-	}
-}
-
-function changeItem( batch, doc, key, value, item ) {
-	const previousValue = item.getAttribute( key );
-	let range, operation;
-
-	const delta = item.is( 'rootElement' ) ? new RootAttributeDelta() : new AttributeDelta();
-
-	if ( previousValue != value ) {
-		batch.addDelta( delta );
-
-		if ( item.is( 'rootElement' ) ) {
-			// If we change attributes of root element, we have to use `RootAttributeOperation`.
-			operation = new __WEBPACK_IMPORTED_MODULE_4__operation_rootattributeoperation__["a" /* default */]( item, key, previousValue, value, doc.version );
-		} else {
-			if ( item.is( 'element' ) ) {
-				// If we change the attribute of the element, we do not want to change attributes of its children, so
-				// the end of the range cannot be after the closing tag, it should be inside that element, before any of
-				// it's children, so the range will contain only the opening tag.
-				range = new __WEBPACK_IMPORTED_MODULE_6__range__["a" /* default */]( __WEBPACK_IMPORTED_MODULE_5__position__["a" /* default */].createBefore( item ), __WEBPACK_IMPORTED_MODULE_5__position__["a" /* default */].createFromParentAndOffset( item, 0 ) );
-			} else {
-				// If `item` is text proxy, we create a range from the beginning to the end of that text proxy, to change
-				// all characters represented by it.
-				range = new __WEBPACK_IMPORTED_MODULE_6__range__["a" /* default */]( __WEBPACK_IMPORTED_MODULE_5__position__["a" /* default */].createBefore( item ), __WEBPACK_IMPORTED_MODULE_5__position__["a" /* default */].createAfter( item ) );
-			}
-
-			operation = new __WEBPACK_IMPORTED_MODULE_3__operation_attributeoperation__["a" /* default */]( range, key, previousValue, value, doc.version );
-		}
-
-		delta.addOperation( operation );
-		doc.applyOperation( operation );
-	}
-}
-
-// Because attribute operation needs to have the same attribute value on the whole range, this function splits the range
-// into smaller parts.
-function changeRange( batch, doc, attributeKey, attributeValue, range ) {
-	const delta = new AttributeDelta();
-
-	// Position of the last split, the beginning of the new range.
-	let lastSplitPosition = range.start;
-
-	// Currently position in the scanning range. Because we need value after the position, it is not a current
-	// position of the iterator but the previous one (we need to iterate one more time to get the value after).
-	let position,
-	// Value before the currently position.
-		attributeValueBefore,
-	// Value after the currently position.
-		attributeValueAfter;
-
-	for ( const value of range ) {
-		attributeValueAfter = value.item.getAttribute( attributeKey );
-
-		// At the first run of the iterator the position in undefined. We also do not have a attributeValueBefore, but
-		// because attributeValueAfter may be null, attributeValueBefore may be equal attributeValueAfter ( undefined == null ).
-		if ( position && attributeValueBefore != attributeValueAfter ) {
-			// if attributeValueBefore == attributeValue there is nothing to change, so we add operation only if these values are different.
-			if ( attributeValueBefore != attributeValue ) {
-				addOperation();
-			}
-
-			lastSplitPosition = position;
-		}
-
-		position = value.nextPosition;
-		attributeValueBefore = attributeValueAfter;
-	}
-
-	// Because position in the loop is not the iterator position (see let position comment), the last position in
-	// the while loop will be last but one position in the range. We need to check the last position manually.
-	if ( position instanceof __WEBPACK_IMPORTED_MODULE_5__position__["a" /* default */] && position != lastSplitPosition && attributeValueBefore != attributeValue ) {
-		addOperation();
-	}
-
-	function addOperation() {
-		// Add delta to the batch only if there is at least operation in the delta. Add delta only once.
-		if ( delta.operations.length === 0 ) {
-			batch.addDelta( delta );
-		}
-
-		const range = new __WEBPACK_IMPORTED_MODULE_6__range__["a" /* default */]( lastSplitPosition, position );
-		const operation = new __WEBPACK_IMPORTED_MODULE_3__operation_attributeoperation__["a" /* default */]( range, attributeKey, attributeValueBefore, attributeValue, doc.version );
-
-		delta.addOperation( operation );
-		doc.applyOperation( operation );
-	}
-}
-
-__WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( AttributeDelta );
-__WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( RootAttributeDelta );
-
-
-/***/ }),
 /* 166 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Stack__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Stack__ = __webpack_require__(118);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arrayEach__ = __webpack_require__(328);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__assignValue__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__assignValue__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__baseAssign__ = __webpack_require__(329);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__cloneBuffer__ = __webpack_require__(331);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__copyArray__ = __webpack_require__(171);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__copySymbols__ = __webpack_require__(332);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__getAllKeys__ = __webpack_require__(333);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__getTag__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__getTag__ = __webpack_require__(120);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__initCloneArray__ = __webpack_require__(338);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__initCloneByTag__ = __webpack_require__(339);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__initCloneObject__ = __webpack_require__(348);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__isArray__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__isBuffer__ = __webpack_require__(350);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__isHostObject__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__isHostObject__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__isObject__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__keys__ = __webpack_require__(63);
 
@@ -28435,8 +28060,8 @@ function baseClone(value, isDeep, isFull, customizer, key, object, stack) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isFunction__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isHostObject__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isFunction__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isHostObject__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObject__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__toSource__ = __webpack_require__(168);
 
@@ -28532,8 +28157,8 @@ function toSource(func) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getNative__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__root__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getNative__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__root__ = __webpack_require__(30);
 
 
 
@@ -28548,7 +28173,7 @@ var Map = __WEBPACK_IMPORTED_MODULE_0__getNative__["a" /* default */](__WEBPACK_
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getPrototype__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getPrototype__ = __webpack_require__(107);
 
 
 /** Used for built-in method references. */
@@ -28639,8 +28264,8 @@ if (!getOwnPropertySymbols) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getNative__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__root__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getNative__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__root__ = __webpack_require__(30);
 
 
 
@@ -28655,7 +28280,7 @@ var Set = __WEBPACK_IMPORTED_MODULE_0__getNative__["a" /* default */](__WEBPACK_
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root__ = __webpack_require__(30);
 
 
 /** Built-in value references. */
@@ -28702,7 +28327,7 @@ function arrayReduce(array, iteratee, accumulator, initAccum) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SetCache__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SetCache__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arraySome__ = __webpack_require__(357);
 
 
@@ -28792,103 +28417,10 @@ function equalArrays(array, other, equalFunc, customizer, bitmask, stack) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_renameoperation__ = __webpack_require__(120);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__element__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module engine/model/delta/renamedelta
- */
-
-
-
-
-
-
-
-
-
-/**
- * To provide specific OT behavior and better collisions solving, the {@link module:engine/model/batch~Batch#rename Batch#rename} method
- * uses the `RenameDelta` class which inherits from the `Delta` class and may overwrite some methods.
- */
-class RenameDelta extends __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */] {
-	/**
-	 * @inheritDoc
-	 */
-	get type() {
-		return 'rename';
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	get _reverseDeltaClass() {
-		return RenameDelta;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	static get className() {
-		return 'engine.model.delta.RenameDelta';
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = RenameDelta;
-
-
-function apply( batch, delta, operation ) {
-	delta.addOperation( operation );
-	batch.document.applyOperation( operation );
-}
-
-/**
- * Renames given element.
- *
- * @chainable
- * @method module:engine/model/batch~Batch#rename
- * @param {module:engine/model/element~Element} element The element to rename.
- * @param {String} newName New element name.
- */
-__WEBPACK_IMPORTED_MODULE_2__batch__["b" /* register */]( 'rename', function( element, newName ) {
-	if ( !( element instanceof __WEBPACK_IMPORTED_MODULE_4__element__["a" /* default */] ) ) {
-		/**
-		 * Trying to rename an object which is not an instance of Element.
-		 *
-		 * @error batch-rename-not-element-instance
-		 */
-		throw new __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'batch-rename-not-element-instance: Trying to rename an object which is not an instance of Element.' );
-	}
-
-	const delta = new RenameDelta();
-	this.addDelta( delta );
-
-	const renameOperation = new __WEBPACK_IMPORTED_MODULE_3__operation_renameoperation__["a" /* default */]( __WEBPACK_IMPORTED_MODULE_5__position__["a" /* default */].createBefore( element ), element.name, newName, this.document.version );
-	apply( this, delta, renameOperation );
-
-	return this;
-} );
-
-__WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( RenameDelta );
-
-
-/***/ }),
-/* 178 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__insertdelta__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__insertdelta__ = __webpack_require__(129);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__batch__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__deltafactory__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_insertoperation__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_insertoperation__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__writer__ = __webpack_require__(19);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -28962,12 +28494,701 @@ __WEBPACK_IMPORTED_MODULE_2__deltafactory__["a" /* default */].register( WeakIns
 
 
 /***/ }),
+/* 178 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__movedelta__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__removedelta__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mergedelta__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__splitdelta__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__wrapdelta__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__unwrapdelta__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__renamedelta__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__attributedelta__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__operation_transform__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__operation_nooperation__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__operation_moveoperation__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__operation_removeoperation__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ckeditor_ckeditor5_utils_src_lib_lodash_array__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ckeditor_ckeditor5_utils_src_comparearrays__ = __webpack_require__(54);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @protected
+ * @module engine/model/delta/transform
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const specialCases = new Map();
+
+/**
+ * @namespace
+ */
+const transform = {
+	/**
+	 * Transforms given {@link module:engine/model/delta/delta~Delta delta} by another {@link module:engine/model/delta/delta~Delta delta}
+	 * and returns the result of that transformation as an array containing one or more {@link module:engine/model/delta/delta~Delta delta}
+	 * instances.
+	 *
+	 * Delta transformations heavily base on {@link module:engine/model/operation/transform~transform operational transformations}. Since
+	 * delta is a list of operations most situations can be handled thanks to operational transformation. Unfortunately,
+	 * deltas are more complicated than operations and have they semantic meaning, as they represent user's editing intentions.
+	 *
+	 * Sometimes, simple operational transformation on deltas' operations might result in some unexpected results. Those
+	 * results would be fine from OT point of view, but would not reflect user's intentions. Because of such conflicts
+	 * we need to handle transformations in special cases in a custom way.
+	 *
+	 * The function itself looks whether two given delta types have a special case function registered. If so, the deltas are
+	 * transformed using that function. If not,
+	 * {@link module:engine/model/delta/transform~transform.defaultTransform default transformation algorithm} is used.
+	 *
+	 * @param {module:engine/model/delta/delta~Delta} a Delta that will be transformed.
+	 * @param {module:engine/model/delta/delta~Delta} b Delta to transform by.
+	 * @param {module:engine/model/delta/transform~transformationContext} context Transformation context object.
+	 * @returns {Array.<module:engine/model/delta/delta~Delta>} Result of the transformation.
+	 */
+	transform( a, b, context ) {
+		const transformAlgorithm = transform.getTransformationCase( a, b ) || transform.defaultTransform;
+
+		// Make new instance of context object, so all changes done during transformation are not saved in original object.
+		const transformed = transformAlgorithm( a, b, Object.assign( {}, context ) );
+		const baseVersion = __WEBPACK_IMPORTED_MODULE_13__ckeditor_ckeditor5_utils_src_lib_lodash_array__["a" /* default */].last( b.operations ).baseVersion;
+
+		return updateBaseVersion( baseVersion, transformed );
+	},
+
+	/**
+	 * The default delta transformation function. It is used for those deltas that are not in special case conflict.
+	 *
+	 * This algorithm is similar to a popular `dOPT` algorithm used in operational transformation, as we are in fact
+	 * transforming two sets of operations by each other.
+	 *
+	 * @param {module:engine/model/delta/delta~Delta} a Delta that will be transformed.
+	 * @param {module:engine/model/delta/delta~Delta} b Delta to transform by.
+	 * @param {module:engine/model/delta/transform~transformationContext} context Transformation context object.
+	 * @returns {Array.<module:engine/model/delta/delta~Delta>} Result of the transformation.
+	 */
+	defaultTransform( a, b, context ) {
+		// This will hold operations from delta `a` that will be transformed by operations from delta `b`.
+		// Eventually, those operations will be used to create result delta(s).
+		const transformed = [];
+
+		// Array containing operations that we will transform by. At the beginning these are just operations from
+		let byOps = b.operations;
+
+		// This array is storing operations from `byOps` which got transformed by operation from delta `a`.
+		let newByOps = [];
+
+		// We take each operation from original set of operations to transform.
+		for ( const opA of a.operations ) {
+			// We wrap the operation in the array. This is important, because operation transformation algorithm returns
+			// an array of operations so we need to make sure that our algorithm is ready to handle arrays.
+			const ops = [ opA ];
+
+			// Now the real algorithm takes place.
+			for ( const opB of byOps ) {
+				// For each operation that we need transform by...
+				for ( let i = 0; i < ops.length; i++ ) {
+					// We take each operation to transform...
+					const op = ops[ i ];
+
+					// And transform both of them by themselves.
+
+					// The result of transforming operation from delta B by operation from delta A is saved in
+					// `newByOps` array. We will use that array for transformations in next loops. We need delta B
+					// operations after transformed by delta A operations to get correct results of transformations
+					// of next operations from delta A.
+					//
+					// It's like this because 2nd operation from delta A assumes that 1st operation from delta A
+					// is "already applied". When we transform 2nd operation from delta A by operations from delta B
+					// we have to be sure that operations from delta B are in a state that acknowledges 1st operation
+					// from delta A.
+					//
+					// This can be easier understood when operations sets to transform are represented by diamond diagrams:
+					// http://www.codecommit.com/blog/java/understanding-and-applying-operational-transformation
+
+					// Transform operation from delta A by operation from delta B.
+					const results = __WEBPACK_IMPORTED_MODULE_9__operation_transform__["a" /* default */]( op, opB, context );
+
+					// We replace currently processed operation from `ops` array by the results of transformation.
+					// Note, that we process single operation but `operationTransform` result is an array, so we
+					// might have to splice-in more than one operation. Save them in `ops` array and move `i` pointer by a proper offset.
+					Array.prototype.splice.apply( ops, [ i, 1 ].concat( results ) );
+
+					i += results.length - 1;
+
+					// Then, transform operation from delta B by operation from delta A.
+					// Since this is a "mirror" transformation, first, we "mirror" some of context values.
+					const reverseContext = Object.assign( {}, context );
+					reverseContext.isStrong = !context.isStrong;
+					reverseContext.insertBefore = context.insertBefore !== undefined ? !context.insertBefore : undefined;
+
+					// Transform operations.
+					const updatedOpB = __WEBPACK_IMPORTED_MODULE_9__operation_transform__["a" /* default */]( opB, op, reverseContext );
+
+					// Update `newByOps` by transformed, updated `opB`.
+					// Using push.apply because `operationTransform` returns an array with one or multiple results.
+					Array.prototype.push.apply( newByOps, updatedOpB );
+				}
+
+				// At this point a single operation from delta A got transformed by a single operation from delta B.
+				// The transformation result is in `ops` array and it may be one or more operations. This was just the first step.
+				// Operation from delta A has to be further transformed by the other operations from delta B.
+				// So in next iterator loop we will take another operation from delta B and use transformed delta A (`ops`)
+				// to transform it further.
+			}
+
+			// We got through all delta B operations and have a final transformed state of an operation from delta A.
+
+			// As previously mentioned, we substitute operations from delta B by their transformed equivalents.
+			byOps = newByOps;
+			newByOps = [];
+
+			// We add transformed operation from delta A to newly created delta.
+			// Remember that transformed operation from delta A may consist of multiple operations.
+			for ( const op of ops ) {
+				transformed.push( op );
+			}
+
+			// In next loop, we will take another operation from delta A and transform it through (transformed) operations
+			// from delta B...
+		}
+
+		return getNormalizedDeltas( a.constructor, transformed );
+	},
+
+	/**
+	 * Adds a special case callback for given delta classes.
+	 *
+	 * @param {Function} A Delta constructor which instance will get transformed.
+	 * @param {Function} B Delta constructor which instance will be transformed by.
+	 * @param {Function} resolver A callback that will handle custom special case transformation for instances of given delta classes.
+	 */
+	addTransformationCase( A, B, resolver ) {
+		let casesA = specialCases.get( A );
+
+		if ( !casesA ) {
+			casesA = new Map();
+			specialCases.set( A, casesA );
+		}
+
+		casesA.set( B, resolver );
+	},
+
+	/**
+	 * Gets a special case callback which was previously {@link module:engine/model/delta/transform~transform.addTransformationCase added}.
+	 *
+	 * @param {module:engine/model/delta/delta~Delta} a Delta to transform.
+	 * @param {module:engine/model/delta/delta~Delta} b Delta to be transformed by.
+	 */
+	getTransformationCase( a, b ) {
+		let casesA = specialCases.get( a.constructor );
+
+		// If there are no special cases registered for class which `a` is instance of, we will
+		// check if there are special cases registered for any parent class.
+		if ( !casesA || !casesA.get( b.constructor ) ) {
+			const cases = specialCases.keys();
+
+			for ( const caseClass of cases ) {
+				if ( a instanceof caseClass && specialCases.get( caseClass ).get( b.constructor ) ) {
+					casesA = specialCases.get( caseClass );
+
+					break;
+				}
+			}
+		}
+
+		if ( casesA ) {
+			return casesA.get( b.constructor );
+		}
+
+		return undefined;
+	},
+
+	/**
+	 * Transforms two sets of deltas by themselves. Returns both transformed sets.
+	 *
+	 * @param {Array.<module:engine/model/delta/delta~Delta>} deltasA Array with the first set of deltas to transform. These
+	 * deltas are considered more important (than `deltasB`) when resolving conflicts.
+	 * @param {Array.<module:engine/model/delta/delta~Delta>} deltasB Array with the second set of deltas to transform. These
+	 * deltas are considered less important (than `deltasA`) when resolving conflicts.
+	 * @param {module:engine/model/document~Document} [document=null] If set, deltas will be transformed in "context mode"
+	 * and given `document` will be used to determine relations between deltas. If not set (default), deltas will be
+	 * transforming without additional context information.
+	 * @returns {Object}
+	 * @returns {Array.<module:engine/model/delta/delta~Delta>} return.deltasA The first set of deltas transformed
+	 * by the second set of deltas.
+	 * @returns {Array.<module:engine/model/delta/delta~Delta>} return.deltasB The second set of deltas transformed
+	 * by the first set of deltas.
+	 */
+	transformDeltaSets( deltasA, deltasB, document = null ) {
+		const transformedDeltasA = Array.from( deltasA );
+		const transformedDeltasB = Array.from( deltasB );
+
+		const useAdditionalContext = document !== null;
+
+		const contextAB = {
+			isStrong: true
+		};
+
+		if ( useAdditionalContext ) {
+			contextAB.wasAffected = new Map();
+			contextAB.originalDelta = new Map();
+			contextAB.document = document;
+
+			for ( const delta of transformedDeltasB ) {
+				contextAB.originalDelta.set( delta, delta );
+			}
+		}
+
+		for ( let i = 0; i < transformedDeltasA.length; i++ ) {
+			const deltaA = [ transformedDeltasA[ i ] ];
+
+			for ( let j = 0; j < transformedDeltasB.length; j++ ) {
+				const deltaB = [ transformedDeltasB[ j ] ];
+
+				for ( let k = 0; k < deltaA.length; k++ ) {
+					for ( let l = 0; l < deltaB.length; l++ ) {
+						if ( useAdditionalContext ) {
+							_setContext( deltaA[ k ], deltaB[ l ], contextAB );
+						}
+
+						const resultAB = transform.transform( deltaA[ k ], deltaB[ l ], {
+							insertBefore: contextAB.insertBefore,
+							forceNotSticky: contextAB.forceNotSticky,
+							isStrong: contextAB.isStrong,
+							forceWeakRemove: contextAB.forceWeakRemove
+						} );
+
+						const resultBA = transform.transform( deltaB[ l ], deltaA[ k ], {
+							insertBefore: !contextAB.insertBefore,
+							forceNotSticky: contextAB.forceNotSticky,
+							isStrong: !contextAB.isStrong,
+							forceWeakRemove: contextAB.forceWeakRemove
+						} );
+
+						if ( useAdditionalContext ) {
+							_updateContext( deltaA[ k ], resultAB, contextAB );
+
+							const originalDelta = contextAB.originalDelta.get( deltaB[ l ] );
+
+							for ( const deltaBA of resultBA ) {
+								contextAB.originalDelta.set( deltaBA, originalDelta );
+							}
+						}
+
+						deltaA.splice( k, 1, ...resultAB );
+						k += resultAB.length - 1;
+
+						deltaB.splice( l, 1, ...resultBA );
+						l += resultBA.length - 1;
+					}
+				}
+
+				transformedDeltasB.splice( j, 1, ...deltaB );
+				j += deltaB.length - 1;
+			}
+
+			transformedDeltasA.splice( i, 1, ...deltaA );
+			i += deltaA.length - 1;
+		}
+
+		const opsDiffA = getOpsCount( transformedDeltasA ) - getOpsCount( deltasA );
+		const opsDiffB = getOpsCount( transformedDeltasB ) - getOpsCount( deltasB );
+
+		if ( opsDiffB < opsDiffA ) {
+			padWithNoOps( transformedDeltasB, opsDiffA - opsDiffB );
+		} else if ( opsDiffA < opsDiffB ) {
+			padWithNoOps( transformedDeltasA, opsDiffB - opsDiffA );
+		}
+
+		return { deltasA: transformedDeltasA, deltasB: transformedDeltasB };
+	}
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (transform);
+
+// Updates base versions of operations inside deltas (which are the results of delta transformation).
+function updateBaseVersion( baseVersion, deltas ) {
+	for ( const delta of deltas ) {
+		for ( const op of delta.operations ) {
+			op.baseVersion = ++baseVersion;
+		}
+	}
+
+	return deltas;
+}
+
+// Returns number of operations in given array of deltas.
+function getOpsCount( deltas ) {
+	return deltas.reduce( ( current, delta ) => {
+		return current + delta.operations.length;
+	}, 0 );
+}
+
+// Adds a delta containing `howMany` `NoOperation` instances to given array with deltas.
+// Used to "synchronize" the number of operations in two delta sets.
+function padWithNoOps( deltas, howMany ) {
+	const lastDelta = deltas[ deltas.length - 1 ];
+	let baseVersion = lastDelta.operations.length + lastDelta.baseVersion;
+
+	const noDelta = new __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */]();
+
+	for ( let i = 0; i < howMany; i++ ) {
+		noDelta.addOperation( new __WEBPACK_IMPORTED_MODULE_10__operation_nooperation__["a" /* default */]( baseVersion++ ) );
+	}
+
+	deltas.push( noDelta );
+}
+
+// Sets context data before delta `a` by delta `b` transformation.
+// Using data given in `context` object, sets `context.insertBefore` and `context.forceNotSticky` flags.
+// Also updates `context.wasAffected`.
+function _setContext( a, b, context ) {
+	_setWasAffected( a, b, context );
+	_setInsertBeforeContext( a, b, context );
+	_setForceWeakRemove( b, context );
+	_setForceNotSticky( b, context );
+}
+
+// Sets `context.insertBefore` basing on `context.document` history for `a` by `b` transformation.
+//
+// Simply saying, if `b` is "undoing delta" it means that `a` might already be transformed by the delta
+// which was undone by `b` (let's call it `oldB`). If this is true, `a` by `b` transformation has to consider
+// how `a` was transformed by `oldB` to get an expected result.
+//
+// This is used to resolve conflict when two operations want to insert nodes at the same position. If the operations
+// are not related, it doesn't matter in what order operations insert those nodes. However if the operations are
+// related (for example, in undo) we need to keep the same order.
+//
+// For example, assume that editor has two letters: 'ab'. Then, both letters are removed, creating two operations:
+// (op. 1) REM [ 1 ] - [ 2 ] => (graveyard) [ 0 ]
+// (op. 2) REM [ 0 ] - [ 1 ] => (graveyard) [ 1 ]
+// Then, we undo operation 2:
+// REM [ 0 ] - [ 1 ] => (graveyard) [ 1 ] is reversed to REI (graveyard) [ 1 ] => [ 0 ] - [ 1 ] and is applied.
+// History stack is:
+// (op. 1) REM [ 1 ] - [ 2 ] => (graveyard) [ 0 ]
+// (op. 2) REM [ 0 ] - [ 1 ] => (graveyard) [ 1 ]
+// (op. 3) REI (graveyard) [ 1 ] => [ 0 ] - [ 1 ]
+// Then, we undo operation 1:
+// REM [ 1 ] - [ 2 ] => (graveyard) [ 0 ] is reversed to REI (graveyard) [ 0 ] => [ 1 ] - [ 2 ] then,
+// is transformed by (op. 2) REM [ 0 ] - [ 1 ] => (graveyard) [ 1 ] and becomes REI (graveyard) [ 0 ] => [ 0 ] - [ 1 ] then,
+// is transformed by (op. 3) REI (graveyard) [ 1 ] => [ 0 ] - [ 1 ] and we have a conflict because both operations
+// insert at the same position, but thanks to keeping the context, we know that in this case, the transformed operation should
+// insert the node after operation 3.
+//
+// Keep in mind, that `context.insertBefore` may be either `Boolean` or `undefined`. If it is `Boolean` then the order is
+// known (deltas are related and `a` should insert nodes before or after `b`). However, if deltas were not related,
+// `context.isBefore` is `undefined` and other factors will be taken into consideration when resolving the order
+// (this, however, happens in operational transformation algorithms).
+//
+// This affects both `MoveOperation` (and its derivatives) and `InsertOperation`.
+function _setInsertBeforeContext( a, b, context ) {
+	// If `b` is a delta that undoes other delta...
+	const originalDelta = context.originalDelta.get( b );
+
+	if ( context.document.history.isUndoingDelta( originalDelta ) ) {
+		// Get the undone delta...
+		const undoneDelta = context.document.history.getUndoneDelta( originalDelta );
+		// Get a map with deltas related to `a` delta...
+		const aWasAffectedBy = context.wasAffected.get( a );
+		// And check if the undone delta is related with delta `a`.
+		const affected = aWasAffectedBy.get( undoneDelta );
+
+		if ( affected !== undefined ) {
+			// If deltas are related, set `context.insertBefore` basing on whether `a` was affected by the undone delta.
+			context.insertBefore = affected;
+		}
+	}
+}
+
+// Sets `context.forceNotSticky` basing on `context.document` history for transformation by `b` delta.
+//
+// `MoveOperation` may be "sticky" which means, that anything that was inserted at the boundary of moved range, should
+// also be moved. This is particularly helpful for actions like splitting or merging a node. However, this behavior
+// sometimes leads to an error, for example in undo.
+//
+// Simply saying, if delta is going to be transformed by delta `b`, stickiness should not be taken into consideration
+// if delta `b` was already undone or if delta `b` is an undoing delta.
+//
+// This affects `MoveOperation` (and its derivatives).
+function _setForceNotSticky( b, context ) {
+	const history = context.document.history;
+	const originalB = context.originalDelta.get( b );
+
+	// If `b` delta is undoing or undone delta, stickiness should not be taken into consideration.
+	if ( history.isUndoingDelta( originalB ) || history.isUndoneDelta( originalB ) ) {
+		context.forceNotSticky = true;
+	}
+}
+
+// Sets `context.forceWeakRemove` basing on `context.document` history for transformation by `b` delta.
+//
+// When additional context is not used, default `MoveOperation` x `RemoveOperation` transformation
+// always treats `RemoveOperation` as a stronger one, no matter how `context.isStrong` is set. It is like this
+// to provide better results when transformations happen.
+//
+// This is however works fine only when additional context is not used.
+//
+// When additional context is used, we need a better way to decide whether `RemoveOperation` is "dominating" (or in other
+// words, whether nodes removed by given operation should stay in graveyard if other operation wants to move them).
+//
+// The answer to this is easy: if `RemoveOperation` has been already undone, we are not forcing given nodes to stay
+// in graveyard. In such scenario, we set `context.forceWeakRemove` to `true`. However, if the `RemoveOperation` has
+// not been undone, we set `context.forceWeakRemove` to `false` because we want remove to be "dominating".
+function _setForceWeakRemove( b, context ) {
+	const history = context.document.history;
+	const originalB = context.originalDelta.get( b );
+
+	// If `b` delta is a remove delta, that has not been undone yet, forceWeakRemove should be `false`.
+	// It should be `true` in any other case, if additional context is used.
+	context.forceWeakRemove = !( originalB instanceof __WEBPACK_IMPORTED_MODULE_2__removedelta__["a" /* default */] && !history.isUndoneDelta( originalB ) );
+}
+
+// Sets `context.wasAffected` which holds context information about how transformed deltas are related. `context.wasAffected`
+// is used by `_setInsertBeforeContext` helper function.
+function _setWasAffected( a, b, context ) {
+	if ( !context.wasAffected.get( a ) ) {
+		// Create a new map with relations for `a` delta.
+		context.wasAffected.set( a, new Map() );
+	}
+
+	const originalDelta = context.originalDelta.get( b );
+	let wasAffected = !!context.wasAffected.get( a ).get( originalDelta );
+
+	// Cross-check all operations from both deltas...
+	for ( const opA of a.operations ) {
+		for ( const opB of b.operations ) {
+			if ( opA instanceof __WEBPACK_IMPORTED_MODULE_11__operation_moveoperation__["a" /* default */] && opB instanceof __WEBPACK_IMPORTED_MODULE_11__operation_moveoperation__["a" /* default */] ) {
+				if ( _isOperationAffected( opA, opB ) ) {
+					// If any of them are move operations that affect each other, set the relation accordingly.
+					wasAffected = true;
+
+					break;
+				}
+			}
+		}
+
+		// Break both loops if affecting pair has been found.
+		if ( wasAffected ) {
+			break;
+		}
+	}
+
+	context.wasAffected.get( a ).set( originalDelta, wasAffected );
+}
+
+// Checks whether `opA` is affected by `opB`. It is assumed that both operations are `MoveOperation`.
+// Operation is affected only if the other operation's source range is before that operation's source range.
+function _isOperationAffected( opA, opB ) {
+	const target = opA.targetPosition;
+	const source = opB.sourcePosition;
+
+	const cmpResult = __WEBPACK_IMPORTED_MODULE_14__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( source.getParentPath(), target.getParentPath() );
+
+	if ( target.root != source.root ) {
+		return false;
+	}
+
+	return cmpResult == 'same' && source.offset < target.offset;
+}
+
+// Updates `context` object after delta by delta transformation is done.
+//
+// This means two things:
+// 1. Some information are removed from context (those that apply only to the transformation that just happened).
+// 2. `context.wasAffected` is updated because `oldDelta` has been transformed to one or many `newDeltas` and we
+// need to update entries in `context.wasAffected`. Basically, anything that was in `context.wasAffected` under
+// `oldDelta` key should be rewritten to `newDeltas`. This way in next transformation steps, `newDeltas` "remember"
+// the context of `oldDelta`.
+function _updateContext( oldDelta, newDeltas, context ) {
+	delete context.insertBefore;
+	delete context.forceNotSticky;
+	delete context.forceWeakRemove;
+
+	const wasAffected = context.wasAffected.get( oldDelta );
+
+	context.wasAffected.delete( oldDelta );
+
+	for ( const delta of newDeltas ) {
+		context.wasAffected.set( delta, new Map( wasAffected ) );
+	}
+}
+
+// Takes base delta class (`DeltaClass`) and a set of `operations` that are transformation results and creates
+// one or more deltas, acknowledging that the result is a transformation of a delta that is of `DeltaClass`.
+//
+// The normalization ensures that each delta has it's "normal" state, that is, for example, `MoveDelta` has
+// just one `MoveOperation`, `SplitDelta` has just two operations of which first is `InsertOperation` and second
+// is `MoveOperation` or `NoOperation`, etc.
+function getNormalizedDeltas( DeltaClass, operations ) {
+	let deltas = [];
+	let delta = null;
+	let attributeOperationIndex;
+
+	switch ( DeltaClass ) {
+		case __WEBPACK_IMPORTED_MODULE_1__movedelta__["a" /* default */]:
+		case __WEBPACK_IMPORTED_MODULE_2__removedelta__["a" /* default */]:
+			// Normal MoveDelta has just one MoveOperation.
+			// Take all operations and create MoveDelta for each of them.
+			for ( const o of operations ) {
+				if ( o instanceof __WEBPACK_IMPORTED_MODULE_10__operation_nooperation__["a" /* default */] ) {
+					// An operation may be instance of NoOperation and this may be correct.
+					// If that's the case, do not create a MoveDelta with singular NoOperation.
+					// Create "no delta" instead, that is Delta instance with NoOperation.
+					delta = new __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */]();
+				} else {
+					if ( o instanceof __WEBPACK_IMPORTED_MODULE_12__operation_removeoperation__["a" /* default */] ) {
+						delta = new __WEBPACK_IMPORTED_MODULE_2__removedelta__["a" /* default */]();
+					} else {
+						delta = new __WEBPACK_IMPORTED_MODULE_1__movedelta__["a" /* default */]();
+					}
+
+					// Unsticky the operation. Only operations in "special" deltas can be sticky.
+					o.isSticky = false;
+				}
+
+				delta.addOperation( o );
+				deltas.push( delta );
+			}
+
+			// Return all created MoveDeltas.
+			return deltas;
+		case __WEBPACK_IMPORTED_MODULE_4__splitdelta__["a" /* default */]:
+		case __WEBPACK_IMPORTED_MODULE_5__wrapdelta__["a" /* default */]:
+			// Normal SplitDelta and WrapDelta have two operations: first is InsertOperation and second is MoveOperation.
+			// The MoveOperation may be split into multiple MoveOperations.
+			// If that's the case, convert additional MoveOperations into MoveDeltas.
+			// First, create normal SplitDelta or WrapDelta, using first two operations.
+			delta = new DeltaClass();
+			delta.addOperation( operations[ 0 ] );
+			delta.addOperation( operations[ 1 ] );
+			// Then, take all but last two operations and use them to create normalized MoveDeltas.
+			deltas = getNormalizedDeltas( __WEBPACK_IMPORTED_MODULE_1__movedelta__["a" /* default */], operations.slice( 2 ) );
+
+			// Return all deltas as one array, in proper order.
+			return [ delta ].concat( deltas );
+		case __WEBPACK_IMPORTED_MODULE_3__mergedelta__["a" /* default */]:
+		case __WEBPACK_IMPORTED_MODULE_6__unwrapdelta__["a" /* default */]:
+			// Normal MergeDelta and UnwrapDelta have two operations: first is MoveOperation and second is RemoveOperation.
+			// The MoveOperation may be split into multiple MoveOperations.
+			// If that's the case, convert additional MoveOperations into MoveDeltas.
+			// Take all but last two operations and use them to create normalized MoveDeltas.
+			deltas = getNormalizedDeltas( __WEBPACK_IMPORTED_MODULE_1__movedelta__["a" /* default */], operations.slice( 0, -2 ) );
+			// Then, create normal MergeDelta or UnwrapDelta, using last two operations.
+			delta = new DeltaClass();
+			delta.addOperation( operations[ operations.length - 2 ] );
+			delta.addOperation( operations[ operations.length - 1 ] );
+
+			// Return all deltas as one array, in proper order.
+			return deltas.concat( delta );
+		case __WEBPACK_IMPORTED_MODULE_7__renamedelta__["a" /* default */]:
+			// RenameDelta may become a "no delta" if it's only operation is transformed to NoOperation.
+			// This may happen when RenameOperation is transformed by RenameOperation.
+			// Keep in mind that RenameDelta always have just one operation.
+			if ( operations[ 0 ] instanceof __WEBPACK_IMPORTED_MODULE_10__operation_nooperation__["a" /* default */] ) {
+				delta = new __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */]();
+			} else {
+				delta = new __WEBPACK_IMPORTED_MODULE_7__renamedelta__["a" /* default */]();
+			}
+
+			delta.addOperation( operations[ 0 ] );
+
+			return [ delta ];
+		case __WEBPACK_IMPORTED_MODULE_8__attributedelta__["a" /* default */]:
+			// AttributeDelta is allowed to have multiple AttributeOperations and also NoOperations but
+			// the first operation has to be an AttributeOperation as it is used as a reference for deltas properties.
+			// Keep in mind that we cannot simply remove NoOperations cause that would mess up base versions.
+			// Find an index of first operation that is not a NoOperation.
+			for ( attributeOperationIndex = 0; attributeOperationIndex < operations.length; attributeOperationIndex++ ) {
+				if ( !( operations[ attributeOperationIndex ] instanceof __WEBPACK_IMPORTED_MODULE_10__operation_nooperation__["a" /* default */] ) ) {
+					break;
+				}
+			}
+
+			// No AttributeOperations has been found. Convert AttributeDelta to "no delta".
+			if ( attributeOperationIndex == operations.length ) {
+				delta = new __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */]();
+			}
+			// AttributeOperation found.
+			else {
+				delta = new __WEBPACK_IMPORTED_MODULE_8__attributedelta__["a" /* default */]();
+
+				// AttributeOperation wasn't the first operation.
+				if ( attributeOperationIndex != 0 ) {
+					// Move AttributeOperation to the beginning.
+					operations.unshift( operations.splice( attributeOperationIndex, 1 )[ 0 ] );
+					// No need to update base versions - they are updated at the end of transformation algorithm anyway.
+				}
+			}
+
+			// Add all operations to the delta (even if it is just a couple of NoOperations we have to keep them all).
+			for ( const o of operations ) {
+				delta.addOperation( o );
+			}
+
+			return [ delta ];
+		default:
+			// For all other deltas no normalization is needed.
+			delta = new DeltaClass();
+
+			for ( const o of operations ) {
+				delta.addOperation( o );
+			}
+
+			return [ delta ];
+	}
+}
+
+/**
+ * Object containing values and flags describing context of a transformation.
+ *
+ * @typedef {Object} module:engine/model/delta/transform~transformationContext
+ * @property {Boolean} useAdditionalContext Whether additional context should be evaluated and used during transformations.
+ * @property {Boolean} isStrong Whether transformed deltas are more (`true`) or less (`false`) important than deltas to transform by.
+ * @property {module:engine/model/document~Document} [document] Model document which is a context for transformations.
+ * Available only if `useAdditionalContext` is `true`.
+ * @property {Boolean|undefined} forceWeakRemove Whether {@link module:engine/model/operation/removeoperation~RemoveOperation}
+ * should be always more important than other operations. Available only if `useAdditionalContext` is `true`.
+ * @property {Boolean|undefined} insertBefore Used when transforming {@link module:engine/model/operation/moveoperation~MoveOperation}s
+ * If two `MoveOperation`s target to the same position, `insertBefore` is used to resolve such conflict. This flag
+ * is set and used internally by transformation algorithms. Available only if `useAdditionalContext` is `true`.
+ * @property {Boolean|undefined} forceNotSticky Used when transforming
+ * {@link module:engine/model/operation/moveoperation~MoveOperation#isSticky sticky MoveOperation}. If set to `true`,
+ * `isSticky` flag is discarded during transformations. This flag is set and used internally by transformation algorithms.
+ * Available only if `useAdditionalContext` is `true`.
+ * @property {Map|undefined} wasAffected Used to evaluate `insertBefore` flag. This map is set and used internally by
+ * transformation algorithms. Available only if `useAdditionalContext` is `true`.
+ */
+
+
+/***/ }),
 /* 179 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSlice__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isIterateeCall__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSlice__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isIterateeCall__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__toInteger__ = __webpack_require__(13);
 
 
@@ -29064,7 +29285,7 @@ function compact(array) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayPush__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayPush__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__copyArray__ = __webpack_require__(171);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArray__ = __webpack_require__(15);
@@ -29117,7 +29338,7 @@ function concat() {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rest__ = __webpack_require__(8);
@@ -29189,7 +29410,7 @@ function indexOfNaN(array, fromIndex, fromRight) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseIteratee__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__ = __webpack_require__(14);
@@ -29294,7 +29515,7 @@ function matchesStrictComparable(key, srcValue) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseGet__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseGet__ = __webpack_require__(136);
 
 
 /**
@@ -29363,7 +29584,7 @@ function identity(value) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(16);
@@ -29414,7 +29635,7 @@ var differenceWith = __WEBPACK_IMPORTED_MODULE_4__rest__["a" /* default */](func
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseWhile__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseWhile__ = __webpack_require__(100);
 
 
 
@@ -29469,7 +29690,7 @@ function dropRightWhile(array, predicate) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseWhile__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseWhile__ = __webpack_require__(100);
 
 
 
@@ -29524,7 +29745,7 @@ function dropWhile(array, predicate) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFill__ = __webpack_require__(382);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isIterateeCall__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isIterateeCall__ = __webpack_require__(75);
 
 
 
@@ -29715,7 +29936,7 @@ function findLastIndex(array, predicate) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__head__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__head__ = __webpack_require__(139);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__head__["a"]; });
 
 
@@ -29865,7 +30086,7 @@ function fromPairs(pairs) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIndexOf__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIndexOf__ = __webpack_require__(132);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toInteger__ = __webpack_require__(13);
 
 
@@ -29916,7 +30137,7 @@ function indexOf(array, value, fromIndex) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dropRight__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dropRight__ = __webpack_require__(138);
 
 
 /**
@@ -29945,9 +30166,9 @@ function initial(array) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayMap__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIntersection__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__castArrayLikeObject__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayMap__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIntersection__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__castArrayLikeObject__ = __webpack_require__(141);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rest__ = __webpack_require__(8);
 
 
@@ -29986,10 +30207,10 @@ var intersection = __WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */](functi
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayMap__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIntersection__ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayMap__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIntersection__ = __webpack_require__(140);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseIteratee__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__castArrayLikeObject__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__castArrayLikeObject__ = __webpack_require__(141);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__last__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rest__ = __webpack_require__(8);
 
@@ -30044,9 +30265,9 @@ var intersectionBy = __WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */](func
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayMap__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIntersection__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__castArrayLikeObject__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayMap__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIntersection__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__castArrayLikeObject__ = __webpack_require__(141);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__rest__ = __webpack_require__(8);
 
@@ -30232,7 +30453,7 @@ function nth(array, n) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pullAll__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pullAll__ = __webpack_require__(142);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__rest__ = __webpack_require__(8);
 
 
@@ -30271,7 +30492,7 @@ var pull = __WEBPACK_IMPORTED_MODULE_1__rest__["a" /* default */](__WEBPACK_IMPO
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__basePullAll__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__basePullAll__ = __webpack_require__(143);
 
 
 
@@ -30313,7 +30534,7 @@ function pullAllBy(array, values, iteratee) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__basePullAll__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__basePullAll__ = __webpack_require__(143);
 
 
 /**
@@ -30353,7 +30574,7 @@ function pullAllWith(array, values, comparator) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayMap__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayMap__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseAt__ = __webpack_require__(387);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseFlatten__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__basePullAt__ = __webpack_require__(213);
@@ -30413,12 +30634,12 @@ var pullAt = __WEBPACK_IMPORTED_MODULE_6__rest__["a" /* default */](function(arr
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__castPath__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__castPath__ = __webpack_require__(99);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isIndex__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isKey__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isKey__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__parent__ = __webpack_require__(388);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__toKey__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__toKey__ = __webpack_require__(58);
 
 
 
@@ -30580,8 +30801,8 @@ function reverse(array) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSlice__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isIterateeCall__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSlice__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isIterateeCall__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__toInteger__ = __webpack_require__(13);
 
 
@@ -30627,7 +30848,7 @@ function slice(array, start, end) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__ = __webpack_require__(101);
 
 
 /**
@@ -30663,7 +30884,7 @@ function sortedIndex(array, value) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseSortedIndexBy__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseSortedIndexBy__ = __webpack_require__(144);
 
 
 
@@ -30705,7 +30926,7 @@ function sortedIndexBy(array, value, iteratee) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__eq__ = __webpack_require__(52);
 
 
@@ -30745,7 +30966,7 @@ function sortedIndexOf(array, value) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__ = __webpack_require__(101);
 
 
 /**
@@ -30779,7 +31000,7 @@ function sortedLastIndex(array, value) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseSortedIndexBy__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseSortedIndexBy__ = __webpack_require__(144);
 
 
 
@@ -30816,7 +31037,7 @@ function sortedLastIndexBy(array, value, iteratee) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__ = __webpack_require__(101);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__eq__ = __webpack_require__(52);
 
 
@@ -30961,7 +31182,7 @@ function sortedUniqBy(array, iteratee) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__drop__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__drop__ = __webpack_require__(137);
 
 
 /**
@@ -30990,7 +31211,7 @@ function tail(array) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSlice__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSlice__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toInteger__ = __webpack_require__(13);
 
 
@@ -31036,7 +31257,7 @@ function take(array, n, guard) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSlice__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSlice__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toInteger__ = __webpack_require__(13);
 
 
@@ -31085,7 +31306,7 @@ function takeRight(array, n, guard) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseWhile__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseWhile__ = __webpack_require__(100);
 
 
 
@@ -31140,7 +31361,7 @@ function takeRightWhile(array, predicate) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseWhile__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseWhile__ = __webpack_require__(100);
 
 
 
@@ -31441,7 +31662,7 @@ function uniqWith(array, comparator) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArrayLikeObject__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__rest__ = __webpack_require__(8);
 
@@ -31480,8 +31701,8 @@ var without = __WEBPACK_IMPORTED_MODULE_2__rest__["a" /* default */](function(ar
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayFilter__ = __webpack_require__(97);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseXor__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayFilter__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseXor__ = __webpack_require__(146);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rest__ = __webpack_require__(8);
 
@@ -31519,9 +31740,9 @@ var xor = __WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */](function(arrays
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayFilter__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayFilter__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIteratee__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseXor__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseXor__ = __webpack_require__(146);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__last__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rest__ = __webpack_require__(8);
@@ -31571,8 +31792,8 @@ var xorBy = __WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */](function(arra
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayFilter__ = __webpack_require__(97);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseXor__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayFilter__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseXor__ = __webpack_require__(146);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__rest__ = __webpack_require__(8);
@@ -31619,7 +31840,7 @@ var xorWith = __WEBPACK_IMPORTED_MODULE_4__rest__["a" /* default */](function(ar
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rest__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__unzip__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__unzip__ = __webpack_require__(102);
 
 
 
@@ -31649,7 +31870,7 @@ var zip = __WEBPACK_IMPORTED_MODULE_0__rest__["a" /* default */](__WEBPACK_IMPOR
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assignValue__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assignValue__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseZipObject__ = __webpack_require__(243);
 
 
@@ -31745,7 +31966,7 @@ function zipObjectDeep(props, values) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rest__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__unzipWith__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__unzipWith__ = __webpack_require__(145);
 
 
 
@@ -31866,11 +32087,16 @@ class LiveRange extends __WEBPACK_IMPORTED_MODULE_0__range__["a" /* default */] 
 	 */
 
 	/**
-	 * Fired when `LiveRange` instance is changed due to changes on {@link module:engine/model/document~Document}.
+	 * Fired when `LiveRange` instance is changed due to changes in the {@link module:engine/model/document~Document document}.
 	 *
 	 * @event change
-	 * @param {module:engine/model/range~Range} oldRange
-	 * Range with start and end position equal to start and end position of this live range before it got changed.
+	 * @param {module:engine/model/range~Range} oldRange Range with start and end position equal to start and end position of this live
+	 * range before it got changed.
+	 * @param {Object} data Object with additional information about the change. Those parameters are passed from
+	 * {@link module:engine/model/document~Document#event:change document change event}.
+	 * @param {String} data.type Change type.
+	 * @param {module:engine/model/range~Range} data.range Range containing the result of applied change.
+	 * @param {module:engine/model/position~Position} data.sourcePosition Source position for move, remove and reinsert change types.
 	 */
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = LiveRange;
@@ -31915,7 +32141,7 @@ function transform( changeType, deltaType, targetRange, sourcePosition ) {
 	const howMany = targetRange.end.offset - targetRange.start.offset;
 	let targetPosition = targetRange.start;
 
-	if ( changeType == 'move' ) {
+	if ( changeType == 'move' || changeType == 'remove' || changeType == 'reinsert' ) {
 		// Range._getTransformedByDocumentChange is expecting `targetPosition` to be "before" move
 		// (before transformation). `targetRange.start` is already after the move happened.
 		// We have to revert `targetPosition` to the state before the move.
@@ -31928,7 +32154,7 @@ function transform( changeType, deltaType, targetRange, sourcePosition ) {
 	//
 	// First, this concerns only `move` change, because insert change includes inserted part always (changeType == 'move').
 	// Second, this is a case only if moved range was intersecting with this range and was inserted into this range (result.length == 3).
-	if ( changeType == 'move' && result.length == 3 ) {
+	if ( ( changeType == 'move' || changeType == 'remove' || changeType == 'reinsert' ) && result.length == 3 ) {
 		// `result[ 2 ]` is a "common part" of this range and moved range. We substitute that common part with the whole
 		// `targetRange` because we want to include whole `targetRange` in this range.
 		result[ 2 ] = targetRange;
@@ -31943,7 +32169,11 @@ function transform( changeType, deltaType, targetRange, sourcePosition ) {
 		this.start = updated.start;
 		this.end = updated.end;
 
-		this.fire( 'change', oldRange );
+		this.fire( 'change', oldRange, {
+			type: changeType,
+			range: targetRange,
+			sourcePosition
+		} );
 	}
 }
 
@@ -32082,14 +32312,14 @@ function diff( a, b, cmp ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__text__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__text__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__element__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__position__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__range__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__selection__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__documentfragment__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__treewalker__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__filler__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__selection__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__documentfragment__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__treewalker__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__filler__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_dom_global__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_dom_indexof__ = __webpack_require__(408);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_utils_src_dom_getancestors__ = __webpack_require__(249);
@@ -33243,7 +33473,7 @@ function getAncestors( node ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__editableelement__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__editableelement__ = __webpack_require__(82);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -33312,9 +33542,9 @@ class RootEditableElement extends __WEBPACK_IMPORTED_MODULE_0__editableelement__
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observer__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__selection__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__filler__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observer__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__selection__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__filler__ = __webpack_require__(68);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -33651,7 +33881,7 @@ class MutationObserver extends __WEBPACK_IMPORTED_MODULE_0__observer__["a" /* de
 /* harmony export (immutable) */ __webpack_exports__["b"] = clearFakeSelection;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_element__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_range__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_writer__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_writer__ = __webpack_require__(83);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -33947,7 +34177,7 @@ function setDataInElement( el, data ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__basichtmlwriter__ = __webpack_require__(417);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_domconverter__ = __webpack_require__(248);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_filler__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_filler__ = __webpack_require__(68);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -34083,8 +34313,8 @@ function isRange( obj ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isObjectLike__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isPlainObject__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isObjectLike__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isPlainObject__ = __webpack_require__(72);
 
 
 
@@ -34151,9 +34381,9 @@ function preventDefault( view ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__focuscycler__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keystrokehandler__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__focuscycler__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keystrokehandler__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__toolbarseparatorview__ = __webpack_require__(430);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__bindings_preventdefault_js__ = __webpack_require__(257);
 /**
@@ -34532,7 +34762,7 @@ function count( iterator ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["b"] = transformRangesByDeltas;
+/* unused harmony export transformRangesByDeltas */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_command__ = __webpack_require__(11);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -34615,6 +34845,7 @@ class BaseCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_s
 	 * @protected
 	 * @param {Array.<module:engine/model/range~Range>} ranges Ranges to be restored.
 	 * @param {Boolean} isBackward A flag describing whether the restored range was selected forward or backward.
+	 * @param {Array.<module:engine/model/delta/delta~Delta>} deltas Deltas which has been applied since selection has been stored.
 	 */
 	_restoreSelection( ranges, isBackward, deltas ) {
 		const document = this.editor.document;
@@ -34645,21 +34876,67 @@ class BaseCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_s
 			document.selection.setRanges( selectionRanges, isBackward );
 		}
 	}
+
+	/**
+	 * Undoes a batch by reversing that batch, transforming reversed batch and finally applying it.
+	 * This is a helper method for {@link #execute}.
+	 *
+	 * @protected
+	 * @param {module:engine/model/batch~Batch} batchToUndo The batch to be undone.
+	 */
+	_undo( batchToUndo ) {
+		const document = this.editor.document;
+
+		// All changes done by the command execution will be saved as one batch.
+		const undoingBatch = document.batch();
+		this._createdBatches.add( undoingBatch );
+
+		const deltasToUndo = batchToUndo.deltas.slice();
+		deltasToUndo.reverse();
+
+		// We will process each delta from `batchToUndo`, in reverse order. If there were deltas A, B and C in undone batch,
+		// we need to revert them in reverse order, so first C' (reversed C), then B', then A'.
+		for ( const deltaToUndo of deltasToUndo ) {
+			// Keep in mind that transformation algorithms return arrays. That's because the transformation might result in multiple
+			// deltas, so we need arrays to handle them. To simplify algorithms, it is better to always operate on arrays.
+			const nextBaseVersion = deltaToUndo.baseVersion + deltaToUndo.operations.length;
+
+			// Reverse delta from the history.
+			const historyDeltas = Array.from( document.history.getDeltas( nextBaseVersion ) );
+			const transformedSets = document.transformDeltas( [ deltaToUndo.getReversed() ], historyDeltas, true );
+			const reversedDeltas = transformedSets.deltasA;
+
+			// After reversed delta has been transformed by all history deltas, apply it.
+			for ( const delta of reversedDeltas ) {
+				// Fix base version.
+				delta.baseVersion = document.version;
+
+				// Before applying, add the delta to the `undoingBatch`.
+				undoingBatch.addDelta( delta );
+
+				// Now, apply all operations of the delta.
+				for ( const operation of delta.operations ) {
+					document.applyOperation( operation );
+				}
+
+				document.history.setDeltaAsUndone( deltaToUndo, delta );
+			}
+		}
+
+		return undoingBatch;
+	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = BaseCommand;
 
 
-// Transforms given range `range` by deltas from `document` history, starting from a delta with given `baseVersion`.
+// Transforms given range `range` by given `deltas`.
 // Returns an array containing one or more ranges, which are result of the transformation.
 function transformSelectionRange( range, deltas ) {
-	// The range will be transformed by history deltas that happened after the selection got stored.
-	// Note, that at this point, the document history is already updated by undo command execution. We will
-	// not transform the range by deltas that got undone or their reversing counterparts.
 	const transformed = transformRangesByDeltas( [ range ], deltas );
 
 	// After `range` got transformed, we have an array of ranges. Some of those
 	// ranges may be "touching" -- they can be next to each other and could be merged.
-	// First, we have to sort those ranges because they don't have to be in an order.
+	// First, we have to sort those ranges to assure that they are in order.
 	transformed.sort( ( a, b ) => a.start.isBefore( b.start ) ? -1 : 1 );
 
 	// Then, we check if two consecutive ranges are touching.
@@ -34668,6 +34945,7 @@ function transformSelectionRange( range, deltas ) {
 		const b = transformed[ i ];
 
 		if ( a.end.isTouching( b.start ) ) {
+			// And join them together if they are.
 			a.end = b.end;
 			transformed.splice( i, 1 );
 			i--;
@@ -34853,12 +35131,12 @@ class AttributeCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_c
 /* unused harmony export createImageViewElement */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__converters__ = __webpack_require__(482);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_engine_src_view_containerelement__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_engine_src_view_emptyelement__ = __webpack_require__(161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_engine_src_view_containerelement__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_engine_src_view_emptyelement__ = __webpack_require__(162);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -35013,7 +35291,7 @@ function clickOutsideHandler( { emitter, activator, callback, contextElement } )
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_src_template__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_toolbar_toolbarview__ = __webpack_require__(258);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__image_utils__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__image_utils__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__image_ui_imageballoonpanelview__ = __webpack_require__(266);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -35145,8 +35423,8 @@ class ImageToolbar extends __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_core_
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_throttle__ = __webpack_require__(491);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_dom_global__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_panel_balloon_balloonpanelview__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_panel_balloon_balloonpanelview__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils__ = __webpack_require__(42);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -35260,7 +35538,7 @@ class ImageBalloonPanelView extends __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckedit
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_uid__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_uid__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__label_labelview__ = __webpack_require__(493);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -35515,7 +35793,7 @@ function submitHandler( { view } ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_view_attributeelement__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_view_attributeelement__ = __webpack_require__(115);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -36146,7 +36424,7 @@ __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_mix__["a" /* default *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lib_lodash_isPlainObject__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lib_lodash_isPlainObject__ = __webpack_require__(72);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -36915,12 +37193,12 @@ function _clear() {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__conversion_mapper__ = __webpack_require__(157);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__conversion_modelconversiondispatcher__ = __webpack_require__(160);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__conversion_model_to_view_converters__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__conversion_mapper__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__conversion_modelconversiondispatcher__ = __webpack_require__(161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__conversion_model_to_view_converters__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__conversion_viewconversiondispatcher__ = __webpack_require__(297);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__conversion_view_to_model_converters__ = __webpack_require__(299);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__view_documentfragment__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__view_documentfragment__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__model_range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__model_position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__insertcontent__ = __webpack_require__(300);
@@ -37450,11 +37728,11 @@ const priorities = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assignValue__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__copyObject__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assignValue__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__copyObject__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__createAssigner__ = __webpack_require__(286);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArrayLike__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isPrototype__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArrayLike__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isPrototype__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__keysIn__ = __webpack_require__(289);
 
 
@@ -37521,7 +37799,7 @@ var assignIn = __WEBPACK_IMPORTED_MODULE_2__createAssigner__["a" /* default */](
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isIterateeCall__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isIterateeCall__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__rest__ = __webpack_require__(8);
 
 
@@ -37567,7 +37845,7 @@ function createAssigner(assigner) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseProperty__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseProperty__ = __webpack_require__(109);
 
 
 /**
@@ -37591,7 +37869,7 @@ var getLength = __WEBPACK_IMPORTED_MODULE_0__baseProperty__["a" /* default */]('
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__toNumber__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__toNumber__ = __webpack_require__(154);
 
 
 /** Used as references for various `Number` constants. */
@@ -37642,9 +37920,9 @@ function toFinite(value) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseKeysIn__ = __webpack_require__(290);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__indexKeys__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__indexKeys__ = __webpack_require__(156);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isIndex__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isPrototype__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isPrototype__ = __webpack_require__(78);
 
 
 
@@ -37752,7 +38030,7 @@ if (enumerate && !propertyIsEnumerable.call({ 'valueOf': 1 }, 'valueOf')) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root__ = __webpack_require__(30);
 
 
 /** Built-in value references. */
@@ -38012,7 +38290,7 @@ class TextProxy {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_textproxy__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_textproxy__ = __webpack_require__(79);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -38330,12 +38608,12 @@ class ModelConsumable {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_treewalker__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_node__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_node__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__model_documentfragment__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__model_writer__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_lib_lodash_extend__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_lib_lodash_extend__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(34);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -39384,7 +39662,7 @@ function convertText() {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = insertContent;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_liveposition__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_liveposition__ = __webpack_require__(164);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(34);
@@ -39828,7 +40106,7 @@ class Insertion {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = deleteContent;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_liveposition__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_liveposition__ = __webpack_require__(164);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_element__ = __webpack_require__(5);
@@ -40008,7 +40286,7 @@ function checkCanBeMerged( leftPos, rightPos ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_treewalker__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_range__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_unicode__ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_unicode__ = __webpack_require__(165);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -40326,11 +40604,12 @@ function removeRangeContent( range ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__schema__ = __webpack_require__(399);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__treewalker__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__markercollection__ = __webpack_require__(400);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ckeditor_ckeditor5_utils_src_lib_lodash_clone__ = __webpack_require__(83);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ckeditor_ckeditor5_utils_src_unicode__ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__delta_transform__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ckeditor_ckeditor5_utils_src_lib_lodash_clone__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ckeditor_ckeditor5_utils_src_unicode__ = __webpack_require__(165);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -40345,6 +40624,7 @@ function removeRangeContent( range ) {
 
 
 /* eslint-enable no-unused-vars */
+
 
 
 
@@ -40453,7 +40733,7 @@ class Document {
 					 * @error document-selection-wrong-position
 					 * @param {module:engine/model/range~Range} range
 					 */
-					throw new __WEBPACK_IMPORTED_MODULE_13__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'document-selection-wrong-position: ' +
+					throw new __WEBPACK_IMPORTED_MODULE_14__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'document-selection-wrong-position: ' +
 						'Range from document selection starts or ends at incorrect position.', { range } );
 				}
 			}
@@ -40489,7 +40769,7 @@ class Document {
 			 * @error document-applyOperation-wrong-version
 			 * @param {module:engine/model/operation/operation~Operation} operation
 			 */
-			throw new __WEBPACK_IMPORTED_MODULE_13__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */](
+			throw new __WEBPACK_IMPORTED_MODULE_14__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */](
 				'model-document-applyOperation-wrong-version: Only operations with matching versions can be applied.',
 				{ operation } );
 		}
@@ -40534,7 +40814,7 @@ class Document {
 			 * @param {module:engine/model/document~Document} doc
 			 * @param {String} name
 			 */
-			throw new __WEBPACK_IMPORTED_MODULE_13__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */](
+			throw new __WEBPACK_IMPORTED_MODULE_14__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */](
 				'model-document-createRoot-name-exists: Root with specified name already exists.',
 				{ name: rootName }
 			);
@@ -40592,7 +40872,7 @@ class Document {
 			 * @error document-getRoot-root-not-exist
 			 * @param {String} name
 			 */
-			throw new __WEBPACK_IMPORTED_MODULE_13__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */](
+			throw new __WEBPACK_IMPORTED_MODULE_14__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */](
 				'model-document-getRoot-root-not-exist: Root with specified name does not exist.',
 				{ name }
 			);
@@ -40672,12 +40952,32 @@ class Document {
 	}
 
 	/**
+	 * Transforms two sets of deltas by themselves. Returns both transformed sets.
+	 *
+	 * @param {Array.<module:engine/model/delta/delta~Delta>} deltasA Array with the first set of deltas to transform. These
+	 * deltas are considered more important (than `deltasB`) when resolving conflicts.
+	 * @param {Array.<module:engine/model/delta/delta~Delta>} deltasB Array with the second set of deltas to transform. These
+	 * deltas are considered less important (than `deltasA`) when resolving conflicts.
+	 * @param {Boolean} [useContext=false] When set to `true`, transformation will store and use additional context
+	 * information to guarantee more expected results. Should be used whenever deltas related to already applied
+	 * deltas are transformed (for example when undoing changes).
+	 * @returns {Object}
+	 * @returns {Array.<module:engine/model/delta/delta~Delta>} return.deltasA The first set of deltas transformed
+	 * by the second set of deltas.
+	 * @returns {Array.<module:engine/model/delta/delta~Delta>} return.deltasB The second set of deltas transformed
+	 * by the first set of deltas.
+	 */
+	transformDeltas( deltasA, deltasB, useContext = false ) {
+		return __WEBPACK_IMPORTED_MODULE_11__delta_transform__["a" /* default */].transformDeltaSets( deltasA, deltasB, useContext ? this : null );
+	}
+
+	/**
 	 * Custom toJSON method to solve child-parent circular dependencies.
 	 *
 	 * @returns {Object} Clone of this object with the document property changed to string.
 	 */
 	toJSON() {
-		const json = __WEBPACK_IMPORTED_MODULE_11__ckeditor_ckeditor5_utils_src_lib_lodash_clone__["a" /* default */]( this );
+		const json = __WEBPACK_IMPORTED_MODULE_12__ckeditor_ckeditor5_utils_src_lib_lodash_clone__["a" /* default */]( this );
 
 		// Due to circular references we need to remove parent reference.
 		json.selection = '[engine.model.LiveSelection]';
@@ -40778,7 +41078,7 @@ class Document {
 /* harmony export (immutable) */ __webpack_exports__["a"] = Document;
 
 
-__WEBPACK_IMPORTED_MODULE_14__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( Document, __WEBPACK_IMPORTED_MODULE_12__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
+__WEBPACK_IMPORTED_MODULE_15__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( Document, __WEBPACK_IMPORTED_MODULE_13__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
 
 // Checks whether given range boundary position is valid for document selection, meaning that is not between
 // unicode surrogate pairs or base character and combining marks.
@@ -40789,7 +41089,7 @@ function validateTextNodePosition( rangeBoundary ) {
 		const data = textNode.data;
 		const offset = rangeBoundary.offset - textNode.startOffset;
 
-		return !__WEBPACK_IMPORTED_MODULE_15__ckeditor_ckeditor5_utils_src_unicode__["b" /* isInsideSurrogatePair */]( data, offset ) && !__WEBPACK_IMPORTED_MODULE_15__ckeditor_ckeditor5_utils_src_unicode__["a" /* isInsideCombinedSymbol */]( data, offset );
+		return !__WEBPACK_IMPORTED_MODULE_16__ckeditor_ckeditor5_utils_src_unicode__["b" /* isInsideSurrogatePair */]( data, offset ) && !__WEBPACK_IMPORTED_MODULE_16__ckeditor_ckeditor5_utils_src_unicode__["a" /* isInsideCombinedSymbol */]( data, offset );
 	}
 
 	return true;
@@ -40840,16 +41140,16 @@ function* combineWalkers( backward, forward ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__attributedelta__ = __webpack_require__(165);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__insertdelta__ = __webpack_require__(122);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mergedelta__ = __webpack_require__(125);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__movedelta__ = __webpack_require__(124);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__removedelta__ = __webpack_require__(123);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__renamedelta__ = __webpack_require__(177);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__splitdelta__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__unwrapdelta__ = __webpack_require__(127);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__weakinsertdelta__ = __webpack_require__(178);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__wrapdelta__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__attributedelta__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__insertdelta__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mergedelta__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__movedelta__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__removedelta__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__renamedelta__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__splitdelta__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__unwrapdelta__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__weakinsertdelta__ = __webpack_require__(177);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__wrapdelta__ = __webpack_require__(98);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -40902,7 +41202,7 @@ function listCacheClear() {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assocIndexOf__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assocIndexOf__ = __webpack_require__(86);
 
 
 /** Used for built-in method references. */
@@ -40944,7 +41244,7 @@ function listCacheDelete(key) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assocIndexOf__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assocIndexOf__ = __webpack_require__(86);
 
 
 /**
@@ -40971,7 +41271,7 @@ function listCacheGet(key) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assocIndexOf__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assocIndexOf__ = __webpack_require__(86);
 
 
 /**
@@ -40995,7 +41295,7 @@ function listCacheHas(key) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assocIndexOf__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assocIndexOf__ = __webpack_require__(86);
 
 
 /**
@@ -41028,7 +41328,7 @@ function listCacheSet(key, value) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ListCache__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ListCache__ = __webpack_require__(85);
 
 
 /**
@@ -41113,8 +41413,8 @@ function stackHas(key) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ListCache__ = __webpack_require__(84);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__MapCache__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ListCache__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__MapCache__ = __webpack_require__(119);
 
 
 
@@ -41149,7 +41449,7 @@ function stackSet(key, value) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Hash__ = __webpack_require__(317);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ListCache__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ListCache__ = __webpack_require__(85);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Map__ = __webpack_require__(169);
 
 
@@ -41222,7 +41522,7 @@ Hash.prototype.set = __WEBPACK_IMPORTED_MODULE_4__hashSet__["a" /* default */];
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nativeCreate__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nativeCreate__ = __webpack_require__(87);
 
 
 /**
@@ -41266,7 +41566,7 @@ function hashDelete(key) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nativeCreate__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nativeCreate__ = __webpack_require__(87);
 
 
 /** Used to stand-in for `undefined` hash values. */
@@ -41304,7 +41604,7 @@ function hashGet(key) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nativeCreate__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nativeCreate__ = __webpack_require__(87);
 
 
 /** Used for built-in method references. */
@@ -41335,7 +41635,7 @@ function hashHas(key) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nativeCreate__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nativeCreate__ = __webpack_require__(87);
 
 
 /** Used to stand-in for `undefined` hash values. */
@@ -41365,7 +41665,7 @@ function hashSet(key, value) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getMapData__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getMapData__ = __webpack_require__(88);
 
 
 /**
@@ -41411,7 +41711,7 @@ function isKeyable(value) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getMapData__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getMapData__ = __webpack_require__(88);
 
 
 /**
@@ -41435,7 +41735,7 @@ function mapCacheGet(key) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getMapData__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getMapData__ = __webpack_require__(88);
 
 
 /**
@@ -41459,7 +41759,7 @@ function mapCacheHas(key) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getMapData__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getMapData__ = __webpack_require__(88);
 
 
 /**
@@ -41514,7 +41814,7 @@ function arrayEach(array, iteratee) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__copyObject__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__copyObject__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__keys__ = __webpack_require__(63);
 
 
@@ -41588,7 +41888,7 @@ function cloneBuffer(buffer, isDeep) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__copyObject__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__copyObject__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getSymbols__ = __webpack_require__(172);
 
 
@@ -41639,7 +41939,7 @@ function getAllKeys(object) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayPush__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayPush__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArray__ = __webpack_require__(15);
 
 
@@ -41668,8 +41968,8 @@ function baseGetAllKeys(object, keysFunc, symbolsFunc) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getNative__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__root__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getNative__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__root__ = __webpack_require__(30);
 
 
 
@@ -41684,8 +41984,8 @@ var DataView = __WEBPACK_IMPORTED_MODULE_0__getNative__["a" /* default */](__WEB
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getNative__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__root__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getNative__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__root__ = __webpack_require__(30);
 
 
 
@@ -41700,8 +42000,8 @@ var Promise = __WEBPACK_IMPORTED_MODULE_0__getNative__["a" /* default */](__WEBP
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getNative__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__root__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getNative__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__root__ = __webpack_require__(30);
 
 
 
@@ -41749,7 +42049,7 @@ function initCloneArray(array) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cloneArrayBuffer__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cloneArrayBuffer__ = __webpack_require__(121);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cloneDataView__ = __webpack_require__(340);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cloneMap__ = __webpack_require__(341);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cloneRegExp__ = __webpack_require__(343);
@@ -41843,7 +42143,7 @@ function initCloneByTag(object, tag, cloneFunc, isDeep) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cloneArrayBuffer__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cloneArrayBuffer__ = __webpack_require__(121);
 
 
 /**
@@ -41869,7 +42169,7 @@ function cloneDataView(dataView, isDeep) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addMapEntry__ = __webpack_require__(342);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arrayReduce__ = __webpack_require__(175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mapToArray__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mapToArray__ = __webpack_require__(122);
 
 
 
@@ -41944,7 +42244,7 @@ function cloneRegExp(regexp) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addSetEntry__ = __webpack_require__(345);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arrayReduce__ = __webpack_require__(175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__setToArray__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__setToArray__ = __webpack_require__(90);
 
 
 
@@ -41992,7 +42292,7 @@ function addSetEntry(set, value) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol__ = __webpack_require__(123);
 
 
 /** Used to convert symbols to primitives and strings. */
@@ -42018,7 +42318,7 @@ function cloneSymbol(symbol) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cloneArrayBuffer__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cloneArrayBuffer__ = __webpack_require__(121);
 
 
 /**
@@ -42043,8 +42343,8 @@ function cloneTypedArray(typedArray, isDeep) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseCreate__ = __webpack_require__(349);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getPrototype__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isPrototype__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getPrototype__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isPrototype__ = __webpack_require__(78);
 
 
 
@@ -42097,7 +42397,7 @@ function baseCreate(proto) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constant__ = __webpack_require__(351);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__root__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__root__ = __webpack_require__(30);
 
 
 
@@ -42148,7 +42448,7 @@ var isBuffer = !Buffer ? __WEBPACK_IMPORTED_MODULE_0__constant__["a" /* default 
 
 /* harmony default export */ __webpack_exports__["a"] = (isBuffer);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(154)(module)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(155)(module)))
 
 /***/ }),
 /* 351 */
@@ -42186,16 +42486,16 @@ function constant(value) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__operation_attributeoperation__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__operation_insertoperation__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__operation_markeroperation__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_moveoperation__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__operation_nooperation__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__operation_attributeoperation__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__operation_insertoperation__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__operation_markeroperation__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_moveoperation__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__operation_nooperation__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__operation_operation__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__operation_reinsertoperation__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__operation_removeoperation__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__operation_renameoperation__ = __webpack_require__(120);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__operation_rootattributeoperation__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__operation_reinsertoperation__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__operation_removeoperation__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__operation_renameoperation__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__operation_rootattributeoperation__ = __webpack_require__(128);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -42254,7 +42554,7 @@ class OperationFactory {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIsEqual__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIsEqual__ = __webpack_require__(124);
 
 
 /**
@@ -42298,13 +42598,13 @@ function isEqual(value, other) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Stack__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Stack__ = __webpack_require__(118);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__equalArrays__ = __webpack_require__(176);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__equalByTag__ = __webpack_require__(358);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__equalObjects__ = __webpack_require__(359);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__getTag__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__getTag__ = __webpack_require__(120);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__isArray__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__isHostObject__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__isHostObject__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__isTypedArray__ = __webpack_require__(360);
 
 
@@ -42472,11 +42772,11 @@ function arraySome(array, predicate) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol__ = __webpack_require__(123);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Uint8Array__ = __webpack_require__(174);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__equalArrays__ = __webpack_require__(176);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mapToArray__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__setToArray__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mapToArray__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__setToArray__ = __webpack_require__(90);
 
 
 
@@ -42690,8 +42990,8 @@ function equalObjects(object, other, equalFunc, customizer, bitmask, stack) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isLength__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isObjectLike__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isLength__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isObjectLike__ = __webpack_require__(43);
 
 
 
@@ -42779,26 +43079,25 @@ function isTypedArray(value) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__transform__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__transform__ = __webpack_require__(178);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_nooperation__ = __webpack_require__(92);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__operation_attributeoperation__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__operation_insertoperation__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__operation_reinsertoperation__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__delta__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__attributedelta__ = __webpack_require__(165);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__insertdelta__ = __webpack_require__(122);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__markerdelta__ = __webpack_require__(394);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__mergedelta__ = __webpack_require__(125);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__movedelta__ = __webpack_require__(124);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__splitdelta__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__weakinsertdelta__ = __webpack_require__(178);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__wrapdelta__ = __webpack_require__(128);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__unwrapdelta__ = __webpack_require__(127);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__renamedelta__ = __webpack_require__(177);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__removedelta__ = __webpack_require__(123);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__ckeditor_ckeditor5_utils_src_comparearrays__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_nooperation__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__operation_attributeoperation__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__operation_insertoperation__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__delta__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__attributedelta__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__insertdelta__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__markerdelta__ = __webpack_require__(394);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__mergedelta__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__movedelta__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__splitdelta__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__weakinsertdelta__ = __webpack_require__(177);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__wrapdelta__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__unwrapdelta__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__renamedelta__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__removedelta__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__ = __webpack_require__(54);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -42834,14 +43133,13 @@ const defaultTransform = __WEBPACK_IMPORTED_MODULE_0__transform__["a" /* default
 
 
 
-
 // Provide transformations for default deltas.
 
 // Add special case for AttributeDelta x WeakInsertDelta transformation.
-addTransformationCase( __WEBPACK_IMPORTED_MODULE_8__attributedelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_14__weakinsertdelta__["a" /* default */], ( a, b, isStrong ) => {
+addTransformationCase( __WEBPACK_IMPORTED_MODULE_7__attributedelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_13__weakinsertdelta__["a" /* default */], ( a, b, context ) => {
 	// If nodes are weak-inserted into attribute delta range, we need to apply changes from attribute delta on them.
 	// So first we do the normal transformation and if this special cases happens, we will add an extra delta.
-	const deltas = defaultTransform( a, b, isStrong );
+	const deltas = defaultTransform( a, b, context );
 
 	if ( a.range.containsPosition( b.position ) ) {
 		deltas.push( _getComplementaryAttrDelta( b, a ) );
@@ -42851,16 +43149,16 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_8__attributedelta__["a" /* defa
 } );
 
 // Add special case for AttributeDelta x SplitDelta transformation.
-addTransformationCase( __WEBPACK_IMPORTED_MODULE_8__attributedelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_13__splitdelta__["a" /* default */], ( a, b, isStrong ) => {
+addTransformationCase( __WEBPACK_IMPORTED_MODULE_7__attributedelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], ( a, b, context ) => {
 	const splitPosition = new __WEBPACK_IMPORTED_MODULE_2__position__["a" /* default */]( b.position.root, b.position.path.slice( 0, -1 ) );
 
-	const deltas = defaultTransform( a, b, isStrong );
+	const deltas = defaultTransform( a, b, context );
 
 	for ( const operation of a.operations ) {
 		// If a node that has been split has it's attribute updated, we should also update attribute of
 		// the node created during splitting.
 		if ( operation.range.containsPosition( splitPosition ) || operation.range.start.isEqual( splitPosition ) ) {
-			const additionalAttributeDelta = new __WEBPACK_IMPORTED_MODULE_8__attributedelta__["a" /* default */]();
+			const additionalAttributeDelta = new __WEBPACK_IMPORTED_MODULE_7__attributedelta__["a" /* default */]();
 
 			const rangeStart = splitPosition.getShiftedBy( 1 );
 			const rangeEnd = __WEBPACK_IMPORTED_MODULE_2__position__["a" /* default */].createFromPosition( rangeStart );
@@ -42886,7 +43184,7 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_8__attributedelta__["a" /* defa
 } );
 
 // Add special case for InsertDelta x MergeDelta transformation.
-addTransformationCase( __WEBPACK_IMPORTED_MODULE_9__insertdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_11__mergedelta__["a" /* default */], ( a, b, isStrong ) => {
+addTransformationCase( __WEBPACK_IMPORTED_MODULE_8__insertdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_10__mergedelta__["a" /* default */], ( a, b, context ) => {
 	// If insert is applied at the same position where merge happened, we reverse the merge (we treat it like it
 	// didn't happen) and then apply the original insert operation. This is "mirrored" in MergeDelta x InsertDelta
 	// transformation below, where we simply do not apply MergeDelta.
@@ -42897,7 +43195,7 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_9__insertdelta__["a" /* default
 		];
 	}
 
-	return defaultTransform( a, b, isStrong );
+	return defaultTransform( a, b, context );
 } );
 
 function transformMarkerDelta( a, b ) {
@@ -42915,22 +43213,22 @@ function transformMarkerDelta( a, b ) {
 	return [ transformedDelta ];
 }
 
-addTransformationCase( __WEBPACK_IMPORTED_MODULE_10__markerdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_13__splitdelta__["a" /* default */], transformMarkerDelta );
-addTransformationCase( __WEBPACK_IMPORTED_MODULE_10__markerdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_11__mergedelta__["a" /* default */], transformMarkerDelta );
-addTransformationCase( __WEBPACK_IMPORTED_MODULE_10__markerdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_15__wrapdelta__["a" /* default */], transformMarkerDelta );
-addTransformationCase( __WEBPACK_IMPORTED_MODULE_10__markerdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_16__unwrapdelta__["a" /* default */], transformMarkerDelta );
-addTransformationCase( __WEBPACK_IMPORTED_MODULE_10__markerdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_12__movedelta__["a" /* default */], transformMarkerDelta );
-addTransformationCase( __WEBPACK_IMPORTED_MODULE_10__markerdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_17__renamedelta__["a" /* default */], transformMarkerDelta );
+addTransformationCase( __WEBPACK_IMPORTED_MODULE_9__markerdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], transformMarkerDelta );
+addTransformationCase( __WEBPACK_IMPORTED_MODULE_9__markerdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_10__mergedelta__["a" /* default */], transformMarkerDelta );
+addTransformationCase( __WEBPACK_IMPORTED_MODULE_9__markerdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_14__wrapdelta__["a" /* default */], transformMarkerDelta );
+addTransformationCase( __WEBPACK_IMPORTED_MODULE_9__markerdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_15__unwrapdelta__["a" /* default */], transformMarkerDelta );
+addTransformationCase( __WEBPACK_IMPORTED_MODULE_9__markerdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_11__movedelta__["a" /* default */], transformMarkerDelta );
+addTransformationCase( __WEBPACK_IMPORTED_MODULE_9__markerdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_16__renamedelta__["a" /* default */], transformMarkerDelta );
 
 // Add special case for MoveDelta x MergeDelta transformation.
-addTransformationCase( __WEBPACK_IMPORTED_MODULE_12__movedelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_11__mergedelta__["a" /* default */], ( a, b, isStrong ) => {
+addTransformationCase( __WEBPACK_IMPORTED_MODULE_11__movedelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_10__mergedelta__["a" /* default */], ( a, b, context ) => {
 	// If move delta is supposed to move a node that has been merged, we reverse the merge (we treat it like it
 	// didn't happen) and then apply the original move operation. This is "mirrored" in MergeDelta x MoveDelta
 	// transformation below, where we simply do not apply MergeDelta.
 
 	const operateInSameParent =
 		a.sourcePosition.root == b.position.root &&
-		__WEBPACK_IMPORTED_MODULE_19__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( a.sourcePosition.getParentPath(), b.position.getParentPath() ) === 'same';
+		__WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( a.sourcePosition.getParentPath(), b.position.getParentPath() ) === 'same';
 
 	const mergeInsideMoveRange = a.sourcePosition.offset <= b.position.offset && a.sourcePosition.offset + a.howMany > b.position.offset;
 
@@ -42941,28 +43239,28 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_12__movedelta__["a" /* default 
 		];
 	}
 
-	return defaultTransform( a, b, isStrong );
+	return defaultTransform( a, b, context );
 } );
 
 // Add special case for MergeDelta x InsertDelta transformation.
-addTransformationCase( __WEBPACK_IMPORTED_MODULE_11__mergedelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_9__insertdelta__["a" /* default */], ( a, b, isStrong ) => {
+addTransformationCase( __WEBPACK_IMPORTED_MODULE_10__mergedelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_8__insertdelta__["a" /* default */], ( a, b, context ) => {
 	// If merge is applied at the same position where we inserted a range of nodes we cancel the merge as it's results
 	// may be unexpected and very weird. Even if we do some "magic" we don't know what really are users' expectations.
 	if ( a.position.isEqual( b.position ) ) {
 		return [ noDelta() ];
 	}
 
-	return defaultTransform( a, b, isStrong );
+	return defaultTransform( a, b, context );
 } );
 
 // Add special case for MergeDelta x MoveDelta transformation.
-addTransformationCase( __WEBPACK_IMPORTED_MODULE_11__mergedelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_12__movedelta__["a" /* default */], ( a, b, isStrong ) => {
+addTransformationCase( __WEBPACK_IMPORTED_MODULE_10__mergedelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_11__movedelta__["a" /* default */], ( a, b, context ) => {
 	// If merge is applied at the position between moved nodes we cancel the merge as it's results may be unexpected and
 	// very weird. Even if we do some "magic" we don't know what really are users' expectations.
 
 	const operateInSameParent =
 		a.position.root == b.sourcePosition.root &&
-		__WEBPACK_IMPORTED_MODULE_19__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( a.position.getParentPath(), b.sourcePosition.getParentPath() ) === 'same';
+		__WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( a.position.getParentPath(), b.sourcePosition.getParentPath() ) === 'same';
 
 	const mergeInsideMoveRange = b.sourcePosition.offset <= a.position.offset && b.sourcePosition.offset + b.howMany > a.position.offset;
 
@@ -42970,87 +43268,61 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_11__mergedelta__["a" /* default
 		return [ noDelta() ];
 	}
 
-	return defaultTransform( a, b, isStrong );
+	return defaultTransform( a, b, context );
 } );
 
 // Add special case for SplitDelta x SplitDelta transformation.
-addTransformationCase( __WEBPACK_IMPORTED_MODULE_13__splitdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_13__splitdelta__["a" /* default */], ( a, b, isStrong ) => {
+addTransformationCase( __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], ( a, b, context ) => {
 	const pathA = a.position.getParentPath();
 	const pathB = b.position.getParentPath();
 
 	// The special case is for splits inside the same parent.
-	if ( __WEBPACK_IMPORTED_MODULE_19__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( pathA, pathB ) == 'same' ) {
-		if ( a.position.offset == b.position.offset ) {
-			// We are applying split at the position where split already happened. Additional split is not needed.
-			return [ noDelta() ];
-		} else if ( a.position.offset < b.position.offset ) {
-			// Incoming split delta splits at closer offset. So we simply have to once again split the same node,
-			// but since it was already split (at further offset) there are less child nodes in the split node.
-			// This means that we have to update `howMany` parameter of `MoveOperation` for that delta.
+	if ( a.position.root == b.position.root && __WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( pathA, pathB ) == 'same' ) {
+		const newContext = Object.assign( {}, context );
 
-			const delta = a.clone();
-			delta._moveOperation.howMany = b.position.offset - a.position.offset;
-
-			// If both SplitDeltas are taking their nodes from graveyard, we have to transform their ReinsertOperations.
-			if (
-				a._cloneOperation instanceof __WEBPACK_IMPORTED_MODULE_6__operation_reinsertoperation__["a" /* default */] &&
-				b._cloneOperation instanceof __WEBPACK_IMPORTED_MODULE_6__operation_reinsertoperation__["a" /* default */] &&
-				a._cloneOperation.sourcePosition.offset > b._cloneOperation.sourcePosition.offset
-			) {
-				delta._cloneOperation.sourcePosition.offset--;
-			}
-
-			return [ delta ];
-		} else {
-			// Incoming split delta splits at further offset. We have to simulate that we are not splitting the
-			// original split node but the node after it, which got created by the other split delta.
-			// To do so, we increment offsets so it looks like the split delta was created in the next node.
-
-			const delta = a.clone();
-
-			delta._cloneOperation.position.offset++;
-			delta._moveOperation.sourcePosition.path[ delta._moveOperation.sourcePosition.path.length - 2 ]++;
-			delta._moveOperation.targetPosition.path[ delta._moveOperation.targetPosition.path.length - 2 ]++;
-			delta._moveOperation.sourcePosition.offset = a.position.offset - b.position.offset;
-
-			// If both SplitDeltas are taking their nodes from graveyard, we have to transform their ReinsertOperations.
-			if (
-				a._cloneOperation instanceof __WEBPACK_IMPORTED_MODULE_6__operation_reinsertoperation__["a" /* default */] &&
-				b._cloneOperation instanceof __WEBPACK_IMPORTED_MODULE_6__operation_reinsertoperation__["a" /* default */] &&
-				a._cloneOperation.sourcePosition.offset > b._cloneOperation.sourcePosition.offset
-			) {
-				delta._cloneOperation.sourcePosition.offset--;
-			}
-
-			return [ delta ];
+		// If `a` delta splits in further location, make sure that it will move some nodes by forcing it to be strong.
+		// Similarly, if `a` splits closer, make sure that it is transformed accordingly.
+		if ( a.position.offset != b.position.offset ) {
+			// We need to ensure that incoming operation is strong / weak.
+			newContext.isStrong = a.position.offset > b.position.offset;
 		}
+
+		// Then, default transformation is almost good.
+		// We need to change insert operations offsets, though.
+		// We will use `context.insertBefore` for this (but only if it is not set!)
+		if ( context.insertBefore === undefined ) {
+			newContext.insertBefore = newContext.isStrong;
+		}
+
+		return defaultTransform( a, b, newContext );
 	}
 
-	return defaultTransform( a, b, isStrong );
+	return defaultTransform( a, b, context );
 } );
 
 // Add special case for SplitDelta x UnwrapDelta transformation.
-addTransformationCase( __WEBPACK_IMPORTED_MODULE_13__splitdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_16__unwrapdelta__["a" /* default */], ( a, b, isStrong ) => {
+addTransformationCase( __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_15__unwrapdelta__["a" /* default */], ( a, b, context ) => {
 	// If incoming split delta tries to split a node that just got unwrapped, there is actually nothing to split,
 	// so we discard that delta.
-	if ( __WEBPACK_IMPORTED_MODULE_19__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( b.position.path, a.position.getParentPath() ) === 'same' ) {
+	if ( a.position.root == b.position.root && __WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( b.position.path, a.position.getParentPath() ) === 'same' ) {
 		return [ noDelta() ];
 	}
 
-	return defaultTransform( a, b, isStrong );
+	return defaultTransform( a, b, context );
 } );
 
 // Add special case for SplitDelta x WrapDelta transformation.
-addTransformationCase( __WEBPACK_IMPORTED_MODULE_13__splitdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_15__wrapdelta__["a" /* default */], ( a, b, isStrong ) => {
+addTransformationCase( __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_14__wrapdelta__["a" /* default */], ( a, b, context ) => {
 	// If split is applied at the position between wrapped nodes, we cancel the split as it's results may be unexpected and
 	// very weird. Even if we do some "magic" we don't know what really are users' expectations.
 
-	const operateInSameParent = __WEBPACK_IMPORTED_MODULE_19__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( a.position.getParentPath(), b.range.start.getParentPath() ) === 'same';
+	const sameRoot = a.position.root == b.range.start.root;
+	const operateInSameParent = sameRoot && __WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( a.position.getParentPath(), b.range.start.getParentPath() ) === 'same';
 	const splitInsideWrapRange = b.range.start.offset < a.position.offset && b.range.end.offset >= a.position.offset;
 
 	if ( operateInSameParent && splitInsideWrapRange ) {
 		return [ noDelta() ];
-	} else if ( __WEBPACK_IMPORTED_MODULE_19__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( a.position.getParentPath(), b.range.end.getShiftedBy( -1 ).path ) === 'same' ) {
+	} else if ( sameRoot && __WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( a.position.getParentPath(), b.range.end.getShiftedBy( -1 ).path ) === 'same' ) {
 		// Split position is directly inside the last node from wrap range.
 		// If that's the case, we manually change split delta so it will "target" inside the wrapping element.
 		// By doing so we will be inserting split node right to the original node which feels natural and is a good UX.
@@ -43088,11 +43360,11 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_13__splitdelta__["a" /* default
 		return [ delta ];
 	}
 
-	return defaultTransform( a, b, isStrong );
+	return defaultTransform( a, b, context );
 } );
 
 // Add special case for SplitDelta x WrapDelta transformation.
-addTransformationCase( __WEBPACK_IMPORTED_MODULE_13__splitdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_8__attributedelta__["a" /* default */], ( a, b ) => {
+addTransformationCase( __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_7__attributedelta__["a" /* default */], ( a, b ) => {
 	a = a.clone();
 
 	const splitPosition = new __WEBPACK_IMPORTED_MODULE_2__position__["a" /* default */]( a.position.root, a.position.path.slice( 0, -1 ) );
@@ -43117,30 +43389,21 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_13__splitdelta__["a" /* default
 } );
 
 // Add special case for UnwrapDelta x SplitDelta transformation.
-addTransformationCase( __WEBPACK_IMPORTED_MODULE_16__unwrapdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_13__splitdelta__["a" /* default */], ( a, b, isStrong ) => {
+addTransformationCase( __WEBPACK_IMPORTED_MODULE_15__unwrapdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], ( a, b, context ) => {
 	// If incoming unwrap delta tries to unwrap node that got split we should unwrap the original node and the split copy.
 	// This can be achieved either by reverting split and applying unwrap to singular node, or creating additional unwrap delta.
-	if ( __WEBPACK_IMPORTED_MODULE_19__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( a.position.path, b.position.getParentPath() ) === 'same' ) {
-		const transformed = [
+	if ( a.position.root == b.position.root && __WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( a.position.path, b.position.getParentPath() ) === 'same' ) {
+		return [
 			b.getReversed(),
 			a.clone()
 		];
-
-		// It's a kind of magic-magic-magic-maaaaagiiic!
-		transformed[ 1 ].operations[ 1 ].targetPosition.path[ 0 ]++;
-		// But seriously, we have to fix RemoveOperation in the second delta because reversed UnwrapDelta creates
-		// MergeDelta which also has RemoveOperation. Those two operations cannot point to the same "holder" element
-		// in the graveyard, so we fix it by hand. This is the only case where it happens in "special" transformation
-		// cases, and it won't happen for "default" transformation apart of RemoveDelta, where it is okay.
-
-		return transformed;
 	}
 
-	return defaultTransform( a, b, isStrong );
+	return defaultTransform( a, b, context );
 } );
 
 // Add special case for WeakInsertDelta x AttributeDelta transformation.
-addTransformationCase( __WEBPACK_IMPORTED_MODULE_14__weakinsertdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_8__attributedelta__["a" /* default */], ( a, b ) => {
+addTransformationCase( __WEBPACK_IMPORTED_MODULE_13__weakinsertdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_7__attributedelta__["a" /* default */], ( a, b ) => {
 	// If nodes are weak-inserted into attribute delta range, we need to apply changes from attribute delta on them.
 	const deltas = [ a.clone() ];
 
@@ -43152,11 +43415,12 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_14__weakinsertdelta__["a" /* de
 } );
 
 // Add special case for WrapDelta x SplitDelta transformation.
-addTransformationCase( __WEBPACK_IMPORTED_MODULE_15__wrapdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_13__splitdelta__["a" /* default */], ( a, b, isStrong ) => {
+addTransformationCase( __WEBPACK_IMPORTED_MODULE_14__wrapdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], ( a, b, context ) => {
 	// If incoming wrap delta tries to wrap range that contains split position, we have to cancel the split and apply
 	// the wrap. Since split was already applied, we have to revert it.
 
-	const operateInSameParent = __WEBPACK_IMPORTED_MODULE_19__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( a.range.start.getParentPath(), b.position.getParentPath() ) === 'same';
+	const sameRoot = a.range.start.root == b.position.root;
+	const operateInSameParent = sameRoot && __WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( a.range.start.getParentPath(), b.position.getParentPath() ) === 'same';
 	const splitInsideWrapRange = a.range.start.offset < b.position.offset && a.range.end.offset >= b.position.offset;
 
 	if ( operateInSameParent && splitInsideWrapRange ) {
@@ -43164,7 +43428,7 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_15__wrapdelta__["a" /* default 
 			b.getReversed(),
 			a.clone()
 		];
-	} else if ( __WEBPACK_IMPORTED_MODULE_19__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( b.position.getParentPath(), a.range.end.getShiftedBy( -1 ).path ) === 'same' ) {
+	} else if ( sameRoot && __WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( b.position.getParentPath(), a.range.end.getShiftedBy( -1 ).path ) === 'same' ) {
 		const delta = a.clone();
 
 		// Move wrapping element insert position one node further so it is after the split node insertion.
@@ -43179,14 +43443,14 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_15__wrapdelta__["a" /* default 
 		return [ delta ];
 	}
 
-	return defaultTransform( a, b, isStrong );
+	return defaultTransform( a, b, context );
 } );
 
 // Add special case for RenameDelta x SplitDelta transformation.
-addTransformationCase( __WEBPACK_IMPORTED_MODULE_17__renamedelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_13__splitdelta__["a" /* default */], ( a, b, isStrong ) => {
+addTransformationCase( __WEBPACK_IMPORTED_MODULE_16__renamedelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], ( a, b, context ) => {
 	const splitPosition = new __WEBPACK_IMPORTED_MODULE_2__position__["a" /* default */]( b.position.root, b.position.path.slice( 0, -1 ) );
 
-	const deltas = defaultTransform( a, b, isStrong );
+	const deltas = defaultTransform( a, b, context );
 
 	if ( a.operations[ 0 ].position.isEqual( splitPosition ) ) {
 		// If a node that has been split has it's name changed, we should also change name of
@@ -43201,7 +43465,7 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_17__renamedelta__["a" /* defaul
 } );
 
 // Add special case for SplitDelta x RenameDelta transformation.
-addTransformationCase( __WEBPACK_IMPORTED_MODULE_13__splitdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_17__renamedelta__["a" /* default */], ( a, b ) => {
+addTransformationCase( __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_16__renamedelta__["a" /* default */], ( a, b ) => {
 	a = a.clone();
 
 	const splitPosition = new __WEBPACK_IMPORTED_MODULE_2__position__["a" /* default */]( a.position.root, a.position.path.slice( 0, -1 ) );
@@ -43218,13 +43482,15 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_13__splitdelta__["a" /* default
 } );
 
 // Add special case for RemoveDelta x SplitDelta transformation.
-addTransformationCase( __WEBPACK_IMPORTED_MODULE_18__removedelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_13__splitdelta__["a" /* default */], ( a, b, isStrong ) => {
-	const deltas = defaultTransform( a, b, isStrong );
+addTransformationCase( __WEBPACK_IMPORTED_MODULE_17__removedelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], ( a, b, context ) => {
+	const deltas = defaultTransform( a, b, context );
 	const insertPosition = b._cloneOperation.position;
 
 	// In case if `defaultTransform` returned more than one delta.
 	for ( const delta of deltas ) {
-		for ( const operation of delta.operations ) {
+		// "No delta" may be returned in some cases.
+		if ( delta instanceof __WEBPACK_IMPORTED_MODULE_17__removedelta__["a" /* default */] ) {
+			const operation = delta._moveOperation;
 			const rangeEnd = operation.sourcePosition.getShiftedBy( operation.howMany );
 
 			if ( rangeEnd.isEqual( insertPosition ) ) {
@@ -43237,26 +43503,27 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_18__removedelta__["a" /* defaul
 } );
 
 // Add special case for SplitDelta x RemoveDelta transformation.
-addTransformationCase( __WEBPACK_IMPORTED_MODULE_13__splitdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_18__removedelta__["a" /* default */], ( a, b, isStrong ) => {
+addTransformationCase( __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_17__removedelta__["a" /* default */], ( a, b, context ) => {
+	// This case is very trickily solved.
+	// Instead of fixing `a` delta, we change `b` delta for a while and fire default transformation with fixed `b` delta.
+	// Thanks to that fixing `a` delta will be differently (correctly) transformed.
 	b = b.clone();
 
 	const insertPosition = a._cloneOperation.position;
+	const operation = b._moveOperation;
+	const rangeEnd = operation.sourcePosition.getShiftedBy( operation.howMany );
 
-	for ( const operation of b.operations ) {
-		const rangeEnd = operation.sourcePosition.getShiftedBy( operation.howMany );
-
-		if ( rangeEnd.isEqual( insertPosition ) ) {
-			operation.howMany += 1;
-		}
+	if ( rangeEnd.isEqual( insertPosition ) ) {
+		operation.howMany += 1;
 	}
 
-	return defaultTransform( a, b, isStrong );
+	return defaultTransform( a, b, context );
 } );
 
 // Helper function for `AttributeDelta` class transformations.
 // Creates an attribute delta that sets attribute from given `attributeDelta` on nodes from given `weakInsertDelta`.
 function _getComplementaryAttrDelta( weakInsertDelta, attributeDelta ) {
-	const complementaryAttrDelta = new __WEBPACK_IMPORTED_MODULE_8__attributedelta__["a" /* default */]();
+	const complementaryAttrDelta = new __WEBPACK_IMPORTED_MODULE_7__attributedelta__["a" /* default */]();
 	const nodes = weakInsertDelta.nodes;
 
 	// At the beginning we store the attribute value from the first node on `weakInsertDelta` node list.
@@ -43308,7 +43575,7 @@ function _getComplementaryAttrDelta( weakInsertDelta, attributeDelta ) {
 // This is "no-op" delta, it has no type and only no-operation, it basically does nothing.
 // It is used when we don't want to apply changes but still we need to return a delta.
 function noDelta() {
-	const noDelta = new __WEBPACK_IMPORTED_MODULE_7__delta__["a" /* default */]();
+	const noDelta = new __WEBPACK_IMPORTED_MODULE_6__delta__["a" /* default */]();
 
 	// BaseVersion will be fixed later anyway.
 	noDelta.addOperation( new __WEBPACK_IMPORTED_MODULE_3__operation_nooperation__["a" /* default */]( 0 ) );
@@ -43322,16 +43589,17 @@ function noDelta() {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__insertoperation__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__attributeoperation__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__rootattributeoperation__ = __webpack_require__(121);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__renameoperation__ = __webpack_require__(120);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__markeroperation__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__moveoperation__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__removeoperation__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__nooperation__ = __webpack_require__(92);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__range__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_comparearrays__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__insertoperation__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__attributeoperation__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__rootattributeoperation__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__renameoperation__ = __webpack_require__(127);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__markeroperation__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__moveoperation__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__removeoperation__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__reinsertoperation__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__nooperation__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__range__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_utils_src_comparearrays__ = __webpack_require__(54);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -43340,6 +43608,7 @@ function noDelta() {
 /**
  * @module engine/model/operation/transform
  */
+
 
 
 
@@ -43386,12 +43655,10 @@ function noDelta() {
  * `a` by `b` and also `b` by `a`. In both transformations the same operation has to be the important one. If we assume
  * that first or the second passed operation is always more important we won't be able to solve this case.
  *
- * @external module:engine/model/model.operation
  * @function module:engine/model/operation/transform~transform
  * @param {module:engine/model/operation/operation~Operation} a Operation that will be transformed.
  * @param {module:engine/model/operation/operation~Operation} b Operation to transform by.
- * @param {Boolean} isAMoreImportantThanB Flag indicating whether the operation which will be transformed (`a`) should be treated
- * as more important when resolving conflicts.
+ * @param {module:engine/model/delta/transform~transformationContext} [context] Transformation context.
  * @returns {Array.<module:engine/model/operation/operation~Operation>} Result of the transformation.
  */
 
@@ -43401,12 +43668,15 @@ const ot = {
 	InsertOperation: {
 		// Transforms InsertOperation `a` by InsertOperation `b`. Accepts a flag stating whether `a` is more important
 		// than `b` when it comes to resolving conflicts. Returns results as an array of operations.
-		InsertOperation( a, b, isStrong ) {
+		InsertOperation( a, b, context ) {
 			// Transformed operations are always new instances, not references to the original operations.
 			const transformed = a.clone();
 
+			// Check whether there is a forced order of nodes or use `context.isStrong` flag for conflict resolving.
+			const insertBefore = context.insertBefore === undefined ? !context.isStrong : context.insertBefore;
+
 			// Transform insert position by the other operation position.
-			transformed.position = transformed.position._getTransformedByInsertion( b.position, b.nodes.maxOffset, !isStrong );
+			transformed.position = transformed.position._getTransformedByInsertion( b.position, b.nodes.maxOffset, insertBefore );
 
 			return [ transformed ];
 		},
@@ -43421,11 +43691,20 @@ const ot = {
 
 		// Transforms InsertOperation `a` by MoveOperation `b`. Accepts a flag stating whether `a` is more important
 		// than `b` when it comes to resolving conflicts. Returns results as an array of operations.
-		MoveOperation( a, b, isStrong ) {
+		MoveOperation( a, b, context ) {
 			const transformed = a.clone();
 
+			// Check whether there is a forced order of nodes or use `context.isStrong` flag for conflict resolving.
+			const insertBefore = context.insertBefore === undefined ? !context.isStrong : context.insertBefore;
+
 			// Transform insert position by the other operation parameters.
-			transformed.position = a.position._getTransformedByMove( b.sourcePosition, b.targetPosition, b.howMany, !isStrong, b.isSticky );
+			transformed.position = a.position._getTransformedByMove(
+				b.sourcePosition,
+				b.targetPosition,
+				b.howMany,
+				insertBefore,
+				b.isSticky && !context.forceNotSticky
+			);
 
 			return [ transformed ];
 		}
@@ -43445,7 +43724,7 @@ const ot = {
 
 		// Transforms AttributeOperation `a` by AttributeOperation `b`. Accepts a flag stating whether `a` is more important
 		// than `b` when it comes to resolving conflicts. Returns results as an array of operations.
-		AttributeOperation( a, b, isStrong ) {
+		AttributeOperation( a, b, context ) {
 			if ( a.key === b.key ) {
 				// If operations attributes are in conflict, check if their ranges intersect and manage them properly.
 
@@ -43461,10 +43740,10 @@ const ot = {
 					// If this operation is more important, we also want to apply change to the part of the
 					// original range that has already been changed by the other operation. Since that range
 					// got changed we also have to update `oldValue`.
-					if ( isStrong ) {
+					if ( context.isStrong ) {
 						operations.push( new __WEBPACK_IMPORTED_MODULE_1__attributeoperation__["a" /* default */]( common, b.key, b.newValue, a.newValue, a.baseVersion ) );
 					} else if ( operations.length === 0 ) {
-						operations.push( new __WEBPACK_IMPORTED_MODULE_7__nooperation__["a" /* default */]( 0 ) );
+						operations.push( new __WEBPACK_IMPORTED_MODULE_8__nooperation__["a" /* default */]( 0 ) );
 					}
 				}
 
@@ -43484,22 +43763,10 @@ const ot = {
 		// Transforms AttributeOperation `a` by MoveOperation `b`. Returns results as an array of operations.
 		MoveOperation( a, b ) {
 			// Convert MoveOperation properties into a range.
-			const rangeB = __WEBPACK_IMPORTED_MODULE_8__range__["a" /* default */].createFromPositionAndShift( b.sourcePosition, b.howMany );
+			const rangeB = __WEBPACK_IMPORTED_MODULE_9__range__["a" /* default */].createFromPositionAndShift( b.sourcePosition, b.howMany );
 
 			// This will aggregate transformed ranges.
 			let ranges = [];
-
-			// Special case when MoveOperation is in fact a RemoveOperation. RemoveOperation not only moves nodes but also
-			// creates a "holder" element for them in graveyard. If there was a RemoveOperation pointing to an offset
-			// before this AttributeOperation, we have to increment AttributeOperation's offset.
-			if ( b instanceof __WEBPACK_IMPORTED_MODULE_6__removeoperation__["a" /* default */] && b._needsHolderElement &&
-				a.range.root == b.targetPosition.root && a.range.start.path[ 0 ] >= b._holderElementOffset
-			) {
-				// Do not change original operation!
-				a = a.clone();
-				a.range.start.path[ 0 ]++;
-				a.range.end.path[ 0 ]++;
-			}
 
 			// Difference is a part of changed range that is modified by AttributeOperation but is not affected
 			// by MoveOperation. This can be zero, one or two ranges (if moved range is inside changed range).
@@ -43549,10 +43816,10 @@ const ot = {
 
 		// Transforms RootAttributeOperation `a` by RootAttributeOperation `b`. Accepts a flag stating whether `a` is more important
 		// than `b` when it comes to resolving conflicts. Returns results as an array of operations.
-		RootAttributeOperation( a, b, isStrong ) {
+		RootAttributeOperation( a, b, context ) {
 			if ( a.root === b.root && a.key === b.key ) {
-				if ( ( a.newValue !== b.newValue && !isStrong ) || a.newValue === b.newValue ) {
-					return [ new __WEBPACK_IMPORTED_MODULE_7__nooperation__["a" /* default */]( a.baseVersion ) ];
+				if ( ( a.newValue !== b.newValue && !context.isStrong ) || a.newValue === b.newValue ) {
+					return [ new __WEBPACK_IMPORTED_MODULE_8__nooperation__["a" /* default */]( a.baseVersion ) ];
 				}
 			}
 
@@ -43584,15 +43851,15 @@ const ot = {
 
 		// Transforms RenameOperation `a` by RenameOperation `b`. Accepts a flag stating whether `a` is more important
 		// than `b` when it comes to resolving conflicts. Returns results as an array of operations.
-		RenameOperation( a, b, isStrong ) {
+		RenameOperation( a, b, context ) {
 			// Clone the operation, we don't want to alter the original operation.
 			const clone = a.clone();
 
 			if ( a.position.isEqual( b.position ) ) {
-				if ( isStrong ) {
+				if ( context.isStrong ) {
 					clone.oldName = b.newName;
 				} else {
-					return [ new __WEBPACK_IMPORTED_MODULE_7__nooperation__["a" /* default */]( a.baseVersion ) ];
+					return [ new __WEBPACK_IMPORTED_MODULE_8__nooperation__["a" /* default */]( a.baseVersion ) ];
 				}
 			}
 
@@ -43637,15 +43904,15 @@ const ot = {
 
 		// Transforms MarkerOperation `a` by MarkerOperation `b`. Accepts a flag stating whether `a` is more important
 		// than `b` when it comes to resolving conflicts. Returns results as an array of operations.
-		MarkerOperation( a, b, isStrong ) {
+		MarkerOperation( a, b, context ) {
 			// Clone the operation, we don't want to alter the original operation.
 			const clone = a.clone();
 
 			if ( a.name == b.name ) {
-				if ( isStrong ) {
+				if ( context.isStrong ) {
 					clone.oldRange = b.newRange;
 				} else {
-					return [ new __WEBPACK_IMPORTED_MODULE_7__nooperation__["a" /* default */]( a.baseVersion ) ];
+					return [ new __WEBPACK_IMPORTED_MODULE_8__nooperation__["a" /* default */]( a.baseVersion ) ];
 				}
 			}
 
@@ -43659,12 +43926,12 @@ const ot = {
 
 			if ( clone.oldRange ) {
 				const oldRanges = clone.oldRange._getTransformedByMove( b.sourcePosition, b.targetPosition, b.howMany );
-				clone.oldRange = __WEBPACK_IMPORTED_MODULE_8__range__["a" /* default */].createFromRanges( oldRanges );
+				clone.oldRange = __WEBPACK_IMPORTED_MODULE_9__range__["a" /* default */].createFromRanges( oldRanges );
 			}
 
 			if ( clone.newRange ) {
 				const newRanges = clone.newRange._getTransformedByMove( b.sourcePosition, b.targetPosition, b.howMany );
-				clone.newRange = __WEBPACK_IMPORTED_MODULE_8__range__["a" /* default */].createFromRanges( newRanges );
+				clone.newRange = __WEBPACK_IMPORTED_MODULE_9__range__["a" /* default */].createFromRanges( newRanges );
 			}
 
 			return [ clone ];
@@ -43674,26 +43941,22 @@ const ot = {
 	MoveOperation: {
 		// Transforms MoveOperation `a` by InsertOperation `b`. Accepts a flag stating whether `a` is more important
 		// than `b` when it comes to resolving conflicts. Returns results as an array of operations.
-		InsertOperation( a, b, isStrong ) {
+		InsertOperation( a, b, context ) {
 			// Create range from MoveOperation properties and transform it by insertion.
-			let range = __WEBPACK_IMPORTED_MODULE_8__range__["a" /* default */].createFromPositionAndShift( a.sourcePosition, a.howMany );
-			range = range._getTransformedByInsertion( b.position, b.nodes.maxOffset, false, a.isSticky )[ 0 ];
+			let range = __WEBPACK_IMPORTED_MODULE_9__range__["a" /* default */].createFromPositionAndShift( a.sourcePosition, a.howMany );
+			range = range._getTransformedByInsertion( b.position, b.nodes.maxOffset, false, a.isSticky && !context.forceNotSticky )[ 0 ];
+
+			// Check whether there is a forced order of nodes or use `context.isStrong` flag for conflict resolving.
+			const insertBefore = context.insertBefore === undefined ? !context.isStrong : context.insertBefore;
 
 			const result = new a.constructor(
 				range.start,
 				range.end.offset - range.start.offset,
-				a instanceof __WEBPACK_IMPORTED_MODULE_6__removeoperation__["a" /* default */] ?
-					a.baseVersion :
-					a.targetPosition._getTransformedByInsertion( b.position, b.nodes.maxOffset, !isStrong ),
-				a instanceof __WEBPACK_IMPORTED_MODULE_6__removeoperation__["a" /* default */] ? undefined : a.baseVersion
+				a.targetPosition._getTransformedByInsertion( b.position, b.nodes.maxOffset, insertBefore ),
+				a.baseVersion
 			);
 
 			result.isSticky = a.isSticky;
-
-			if ( a instanceof __WEBPACK_IMPORTED_MODULE_6__removeoperation__["a" /* default */] ) {
-				result._needsHolderElement = a._needsHolderElement;
-				result._holderElementOffset = a._holderElementOffset;
-			}
 
 			return [ result ];
 		},
@@ -43708,7 +43971,34 @@ const ot = {
 
 		// Transforms MoveOperation `a` by MoveOperation `b`. Accepts a flag stating whether `a` is more important
 		// than `b` when it comes to resolving conflicts. Returns results as an array of operations.
-		MoveOperation( a, b, isStrong ) {
+		MoveOperation( a, b, context ) {
+			//
+			// Setting and evaluating some variables that will be used in special cases and default algorithm.
+			//
+			// Create ranges from `MoveOperations` properties.
+			const rangeA = __WEBPACK_IMPORTED_MODULE_9__range__["a" /* default */].createFromPositionAndShift( a.sourcePosition, a.howMany );
+			const rangeB = __WEBPACK_IMPORTED_MODULE_9__range__["a" /* default */].createFromPositionAndShift( b.sourcePosition, b.howMany );
+
+			// Whether range moved by operation `b` is includable in operation `a` move range.
+			// For this, `a` operation has to be sticky (so `b` sticks to the range) and context has to allow stickiness.
+			const includeB = a.isSticky && !context.forceNotSticky;
+
+			// Evaluate new target position for transformed operation.
+			// Check whether there is a forced order of nodes or use `context.isStrong` flag for conflict resolving.
+			const insertBefore = context.insertBefore === undefined ? !context.isStrong : context.insertBefore;
+
+			// `a.targetPosition` could be affected by the `b` operation. We will transform it.
+			const newTargetPosition = a.targetPosition._getTransformedByMove(
+				b.sourcePosition,
+				b.targetPosition,
+				b.howMany,
+				insertBefore,
+				b.isSticky && !context.forceNotSticky
+			);
+
+			//
+			// Special case #1 + mirror.
+			//
 			// Special case when both move operations' target positions are inside nodes that are
 			// being moved by the other move operation. So in other words, we move ranges into inside of each other.
 			// This case can't be solved reasonably (on the other hand, it should not happen often).
@@ -43717,173 +44007,170 @@ const ot = {
 				// So when the results of this "transformation" will be applied, `b` MoveOperation will get reversed.
 				return [ b.getReversed() ];
 			}
+			//
+			// End of special case #1.
+			//
 
-			// Special case when operation transformed by is RemoveOperation. RemoveOperation not only moves nodes but also
-			// (usually) creates a "holder" element for them in graveyard. This has to be taken into consideration when
-			// transforming operations that operate in graveyard root.
-			if ( b instanceof __WEBPACK_IMPORTED_MODULE_6__removeoperation__["a" /* default */] && b._needsHolderElement ) {
-				a = a.clone();
+			//
+			// Special case #2.
+			//
+			// Check if `b` operation targets inside `rangeA`. Use stickiness if possible.
+			const bTargetsToA = rangeA.containsPosition( b.targetPosition ) ||
+				( rangeA.start.isEqual( b.targetPosition ) && includeB ) ||
+				( rangeA.end.isEqual( b.targetPosition ) && includeB );
 
-				const aSourceOffset = a.sourcePosition.path[ 0 ];
-				const aTargetOffset = a.targetPosition.path[ 0 ];
+			// If `b` targets to `rangeA` and `rangeA` contains `rangeB`, `b` operation has no influence on `a` operation.
+			// You might say that operation `b` is captured inside operation `a`.
+			if ( bTargetsToA && rangeA.containsRange( rangeB, true ) ) {
+				// There is a mini-special case here, where `rangeB` is on other level than `rangeA`. That's why
+				// we need to transform `a` operation anyway.
+				rangeA.start = rangeA.start._getTransformedByMove( b.sourcePosition, b.targetPosition, b.howMany, !includeB );
+				rangeA.end = rangeA.end._getTransformedByMove( b.sourcePosition, b.targetPosition, b.howMany, includeB );
 
-				// We can't use Position#_getTransformedByInsertion because it works a bit differently and we would get wrong results.
-				// That's because `sourcePosition`/`targetPosition` is, for example, `[ 1, 0 ]`, while `insertionPosition` is
-				// `[ 1 ]`. In this case, `sourcePosition`/`targetPosition` would always be transformed but in fact, only
-				// "holderElement" offsets should be looked at (so `[ 1 ]` in case of `sourcePosition`/`targetPosition`, not `[ 1, 0 ]` ).
-				// This is why we are doing it "by hand".
-				if ( a.sourcePosition.root == b.targetPosition.root ) {
-					if ( aSourceOffset > b._holderElementOffset || aSourceOffset == b._holderElementOffset ) {
-						a.sourcePosition.path[ 0 ]++;
-					}
-				}
-
-				if ( a.targetPosition.root == b.targetPosition.root ) {
-					if ( aTargetOffset > b._holderElementOffset || ( aTargetOffset == b._holderElementOffset && isStrong ) ) {
-						a.targetPosition.path[ 0 ]++;
-					}
-				}
+				return makeMoveOperationsFromRanges( a, [ rangeA ], newTargetPosition );
 			}
 
+			//
+			// Special case #2 mirror.
+			//
+			const aTargetsToB = rangeB.containsPosition( a.targetPosition ) ||
+				( rangeB.start.isEqual( a.targetPosition ) && b.isSticky && !context.forceNotSticky ) ||
+				( rangeB.end.isEqual( a.targetPosition ) && b.isSticky && !context.forceNotSticky );
+
+			if ( aTargetsToB && rangeB.containsRange( rangeA, true ) ) {
+				// `a` operation is "moved together" with `b` operation.
+				// Here, just move `rangeA` "inside" `rangeB`.
+				rangeA.start = rangeA.start._getCombined( b.sourcePosition, b.getMovedRangeStart() );
+				rangeA.end = rangeA.end._getCombined( b.sourcePosition, b.getMovedRangeStart() );
+
+				return makeMoveOperationsFromRanges( a, [ rangeA ], newTargetPosition );
+			}
+			//
+			// End of special case #2.
+			//
+
+			//
+			// Special case #3 + mirror.
+			//
+			// `rangeA` has a node which is an ancestor of `rangeB`. In other words, `rangeB` is inside `rangeA`
+			// but not on the same tree level. In such case ranges have common part but we have to treat it
+			// differently, because in such case those ranges are not really conflicting and should be treated like
+			// two separate ranges. Also we have to discard two difference parts.
+			const aCompB = __WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( a.sourcePosition.getParentPath(), b.sourcePosition.getParentPath() );
+
+			if ( aCompB == 'prefix' || aCompB == 'extension' ) {
+				// Transform `rangeA` by `b` operation and make operation out of it, and that's all.
+				// Note that this is a simplified version of default case, but here we treat the common part (whole `rangeA`)
+				// like a one difference part.
+				rangeA.start = rangeA.start._getTransformedByMove( b.sourcePosition, b.targetPosition, b.howMany, !includeB );
+				rangeA.end = rangeA.end._getTransformedByMove( b.sourcePosition, b.targetPosition, b.howMany, includeB );
+
+				return makeMoveOperationsFromRanges( a, [ rangeA ], newTargetPosition );
+			}
+			//
+			// End of special case #3.
+			//
+
+			//
+			// Default case - ranges are on the same level or are not connected with each other.
+			//
+			// Modifier for default case.
+			// Modifies `context.isStrong` in certain conditions.
+			//
 			// If only one of operations is a remove operation, we force remove operation to be the "stronger" one
-			// to provide more expected results.
-			if ( a instanceof __WEBPACK_IMPORTED_MODULE_6__removeoperation__["a" /* default */] && !( b instanceof __WEBPACK_IMPORTED_MODULE_6__removeoperation__["a" /* default */] ) ) {
-				isStrong = true;
-			} else if ( !( a instanceof __WEBPACK_IMPORTED_MODULE_6__removeoperation__["a" /* default */] ) && b instanceof __WEBPACK_IMPORTED_MODULE_6__removeoperation__["a" /* default */] ) {
-				isStrong = false;
+			// to provide more expected results. This is done only if `context.forceWeakRemove` is set to `false`.
+			// `context.forceWeakRemove` is set to `true` in certain conditions when transformation takes place during undo.
+			if ( !context.forceWeakRemove ) {
+				if ( a instanceof __WEBPACK_IMPORTED_MODULE_6__removeoperation__["a" /* default */] && !( b instanceof __WEBPACK_IMPORTED_MODULE_6__removeoperation__["a" /* default */] ) ) {
+					context.isStrong = true;
+				} else if ( !( a instanceof __WEBPACK_IMPORTED_MODULE_6__removeoperation__["a" /* default */] ) && b instanceof __WEBPACK_IMPORTED_MODULE_6__removeoperation__["a" /* default */] ) {
+					context.isStrong = false;
+				}
 			}
 
-			// Create ranges from MoveOperations properties.
-			const rangeA = __WEBPACK_IMPORTED_MODULE_8__range__["a" /* default */].createFromPositionAndShift( a.sourcePosition, a.howMany );
-			const rangeB = __WEBPACK_IMPORTED_MODULE_8__range__["a" /* default */].createFromPositionAndShift( b.sourcePosition, b.howMany );
-
+			// Handle operation's source ranges - check how `rangeA` is affected by `b` operation.
 			// This will aggregate transformed ranges.
-			const ranges = [];
+			let ranges = [];
 
-			// All the other non-special cases are treated by generic algorithm below.
-			const difference = joinRanges( rangeA.getDifference( rangeB ) );
+			// Get the "difference part" of `a` operation source range.
+			// This is an array with one or two ranges. Two ranges if `rangeB` is inside `rangeA`.
+			const difference = rangeA.getDifference( rangeB );
 
-			if ( difference ) {
-				difference.start = difference.start._getTransformedByMove(
-					b.sourcePosition,
-					b.targetPosition,
-					b.howMany,
-					!a.isSticky,
-					false
-				);
-				difference.end = difference.end._getTransformedByMove(
-					b.sourcePosition,
-					b.targetPosition,
-					b.howMany,
-					a.isSticky,
-					false
-				);
+			for ( const range of difference ) {
+				// Transform those ranges by `b` operation. For example if `b` moved range from before those ranges, fix those ranges.
+				range.start = range.start._getTransformedByMove( b.sourcePosition, b.targetPosition, b.howMany, !includeB );
+				range.end = range.end._getTransformedByMove( b.sourcePosition, b.targetPosition, b.howMany, includeB );
 
-				ranges.push( difference );
+				ranges.push( range );
 			}
 
-			// Then, we have to manage the common part of both move ranges.
+			// Then, we have to manage the "common part" of both move ranges.
 			const common = rangeA.getIntersection( rangeB );
 
-			// If MoveOperations has common range it can be one of two:
-			// * on the same tree level - it means that we move the same nodes into different places
-			// * on deeper tree level - it means that we move nodes that are inside moved nodes
-			// The operations are conflicting only if they try to move exactly same nodes, so only in the first case.
-			// That means that we transform common part in two cases:
-			// * `rangeA` is "deeper" than `rangeB` so it does not collide
-			// * `rangeA` is at the same level but is stronger than `rangeB`.
-			const aCompB = __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( a.sourcePosition.getParentPath(), b.sourcePosition.getParentPath() );
-
-			// If the `b` MoveOperation points inside the `a` MoveOperation range, the common part will be included in
-			// range(s) that (is) are results of processing `difference`. If that's the case, we cannot include it again.
-			const bTargetsToA = rangeA.containsPosition( b.targetPosition ) ||
-				( rangeA.start.isEqual( b.targetPosition ) && a.isSticky ) ||
-				( rangeA.end.isEqual( b.targetPosition ) && a.isSticky );
-
-			// If the `b` MoveOperation range contains both whole `a` range and target position we do an exception and
-			// transform `a` operation. Normally, when same nodes are moved, we stick with stronger operation's target.
-			// Here it is a move inside larger range so there is no conflict because after all, all nodes from
-			// smaller range will be moved to larger range target. The effect of this transformation feels natural.
-			// Also if we wouldn't do that, we would get different results on both sides of transformation (i.e. in
-			// collaborative editing).
-			const aIsInside = rangeB.containsRange( rangeA ) &&
-				(
-					rangeB.containsPosition( a.targetPosition ) ||
-					rangeB.start.isEqual( a.targetPosition ) ||
-					rangeB.end.isEqual( a.targetPosition )
-				);
-
-			if ( common !== null && ( aCompB === 'extension' || ( aCompB === 'same' && isStrong ) || aIsInside ) && !bTargetsToA ) {
-				// Here we do not need to worry that newTargetPosition is inside moved range, because that
-				// would mean that the MoveOperation targets into itself, and that is incorrect operation.
-				// Instead, we calculate the new position of that part of original range.
+			if ( common !== null && context.isStrong && !bTargetsToA ) {
+				// Calculate the new position of that part of original range.
 				common.start = common.start._getCombined( b.sourcePosition, b.getMovedRangeStart() );
 				common.end = common.end._getCombined( b.sourcePosition, b.getMovedRangeStart() );
 
-				// We have to take care of proper range order.
-				if ( difference && rangeA.start.isBefore( rangeB.start ) ) {
+				// Take care of proper range order.
+				//
+				// Put `common` at appropriate place. Keep in mind that we are interested in original order.
+				// Basically there are only three cases: there is zero, one or two difference ranges.
+				//
+				// If there is zero difference ranges, just push `common` in the array.
+				if ( ranges.length === 0 ) {
 					ranges.push( common );
-				} else {
-					ranges.unshift( common );
+				}
+				// If there is one difference range, we need to check whether common part was before it or after it.
+				else if ( ranges.length == 1 ) {
+					if ( rangeB.start.isBefore( rangeA.start ) ) {
+						ranges.unshift( common );
+					} else {
+						ranges.push( common );
+					}
+				}
+				// If there are more ranges (which means two), put common part between them. This is the only scenario
+				// where there could be two difference ranges so we don't have to make any comparisons.
+				else {
+					ranges.splice( 1, 0, common );
 				}
 			}
 
 			if ( ranges.length === 0 ) {
-				// At this point we transformed this operation's source ranges it means that nothing should be changed.
-				// But since we need to return an instance of Operation we return an array with NoOperation.
+				// If there are no "source ranges", nothing should be changed.
+				// Note that this can happen only if `context.isStrong == false` and `rangeA.isEqual( rangeB )`.
+				return [ new __WEBPACK_IMPORTED_MODULE_8__nooperation__["a" /* default */]( a.baseVersion ) ];
+			}
 
-				if ( a instanceof __WEBPACK_IMPORTED_MODULE_6__removeoperation__["a" /* default */] ) {
-					// If `a` operation was RemoveOperation, we cannot convert it to NoOperation.
-					// This is because RemoveOperation creates a holder in graveyard.
-					// Even if we "remove nothing" we need a RemoveOperation to create holder element
-					// so that the tree structure is synchronised between clients.
-					// Note that this can happen only if both operations are remove operations, because in
-					// other case RemoveOperation would be forced to be stronger and there would be a common range to move.
-					a = a.clone();
-					a.howMany = 0;
-					a.sourcePosition = b.targetPosition;
+			// At this moment we have some ranges and a target position, to which those ranges should be moved.
+			// Order in `ranges` array is the go-to order of after transformation. We can reverse the `ranges`
+			// array so the last range will be moved first. This will ensure that each transformed `MoveOperation`
+			// can have same `targetPosition` and the order of ranges will be kept.
+			ranges = ranges.reverse();
 
-					return [ a ];
-				} else {
-					return [ new __WEBPACK_IMPORTED_MODULE_7__nooperation__["a" /* default */]( a.baseVersion ) ];
+			// We are almost done. We have `ranges` and `targetPosition` to make operations from.
+			// Unfortunately, those operations may affect each other. Precisely, first operation after move
+			// may affect source range of second and third operation. Same with second operation affecting third.
+			// We need to fix those source ranges once again, before converting `ranges` to operations.
+			// Keep in mind that `targetPosition` is already set in stone thanks to the trick above.
+			for ( let i = 1; i < ranges.length; i++ ) {
+				for ( let j = 0; j < i; j++ ) {
+					const howMany = ranges[ j ].end.offset - ranges[ j ].start.offset;
+
+					// Thankfully, all ranges in `ranges` array are:
+					// * non-intersecting (these are part of original `a` operation source range), and
+					// * `newTargetPosition` does not target into them (opposite would mean that `a` operation targets "inside itself").
+					// This means that the transformation will be "clean" and always return one result.
+					ranges[ i ] = ranges[ i ]._getTransformedByMove( ranges[ j ].start, newTargetPosition, howMany )[ 0 ];
 				}
 			}
 
-			// Target position also could be affected by the other MoveOperation. We will transform it.
-			const newTargetPosition = a.targetPosition._getTransformedByMove(
-				b.sourcePosition,
-				b.targetPosition,
-				b.howMany,
-				!isStrong,
-				b.isSticky || aIsInside
-			);
-
-			// Map transformed range(s) to operations and return them.
-			return ranges.reverse().map( ( range, i ) => {
-				// We want to keep correct operation class.
-				const result = new a.constructor(
-					range.start,
-					range.end.offset - range.start.offset,
-					a instanceof __WEBPACK_IMPORTED_MODULE_6__removeoperation__["a" /* default */] ? a.baseVersion : newTargetPosition,
-					a instanceof __WEBPACK_IMPORTED_MODULE_6__removeoperation__["a" /* default */] ? undefined : a.baseVersion
-				);
-
-				result.isSticky = a.isSticky;
-
-				if ( a instanceof __WEBPACK_IMPORTED_MODULE_6__removeoperation__["a" /* default */] ) {
-					// Transformed `RemoveOperation` needs graveyard holder only when the original operation needed it.
-					// If `RemoveOperation` got split into two or more operations, only first operation needs graveyard holder.
-					result._needsHolderElement = a._needsHolderElement && i === 0;
-					result._holderElementOffset = a._holderElementOffset;
-				}
-
-				return result;
-			} );
+			return makeMoveOperationsFromRanges( a, ranges, newTargetPosition );
 		}
 	}
 };
 
-function transform( a, b, isStrong ) {
+function transform( a, b, context = { isStrong: false } ) {
 	let group, algorithm;
 
 	if ( a instanceof __WEBPACK_IMPORTED_MODULE_0__insertoperation__["a" /* default */] ) {
@@ -43920,7 +44207,7 @@ function transform( a, b, isStrong ) {
 		}
 	}
 
-	const transformed = algorithm( a, b, isStrong );
+	const transformed = algorithm( a, b, context );
 
 	return updateBaseVersions( a.baseVersion, transformed );
 }
@@ -43961,6 +44248,33 @@ function joinRanges( ranges ) {
 	}
 }
 
+// Map transformed range(s) to operations and return them.
+function makeMoveOperationsFromRanges( a, ranges, targetPosition ) {
+	return ranges.map( range => {
+		// We want to keep correct operation class.
+		let OperationClass;
+
+		if ( targetPosition.root.rootName == '$graveyard' ) {
+			OperationClass = __WEBPACK_IMPORTED_MODULE_6__removeoperation__["a" /* default */];
+		} else if ( range.start.root.rootName == '$graveyard' ) {
+			OperationClass = __WEBPACK_IMPORTED_MODULE_7__reinsertoperation__["a" /* default */];
+		} else {
+			OperationClass = __WEBPACK_IMPORTED_MODULE_5__moveoperation__["a" /* default */];
+		}
+
+		const result = new OperationClass(
+			range.start,
+			range.end.offset - range.start.offset,
+			targetPosition,
+			0 // Is corrected anyway later.
+		);
+
+		result.isSticky = a.isSticky;
+
+		return result;
+	} );
+}
+
 
 /***/ }),
 /* 363 */
@@ -43979,9 +44293,9 @@ function joinRanges( ranges ) {
 /* unused harmony reexport differenceBy */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__differenceWith__ = __webpack_require__(189);
 /* unused harmony reexport differenceWith */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__drop__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__drop__ = __webpack_require__(137);
 /* unused harmony reexport drop */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__dropRight__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__dropRight__ = __webpack_require__(138);
 /* unused harmony reexport dropRight */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dropRightWhile__ = __webpack_require__(190);
 /* unused harmony reexport dropRightWhile */
@@ -44003,7 +44317,7 @@ function joinRanges( ranges ) {
 /* unused harmony reexport flattenDepth */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__fromPairs__ = __webpack_require__(200);
 /* unused harmony reexport fromPairs */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__head__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__head__ = __webpack_require__(139);
 /* unused harmony reexport head */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__indexOf__ = __webpack_require__(201);
 /* unused harmony reexport indexOf */
@@ -44025,7 +44339,7 @@ function joinRanges( ranges ) {
 /* unused harmony reexport nth */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pull__ = __webpack_require__(209);
 /* unused harmony reexport pull */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pullAll__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pullAll__ = __webpack_require__(142);
 /* unused harmony reexport pullAll */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pullAllBy__ = __webpack_require__(210);
 /* unused harmony reexport pullAllBy */
@@ -44077,9 +44391,9 @@ function joinRanges( ranges ) {
 /* unused harmony reexport uniqBy */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__uniqWith__ = __webpack_require__(236);
 /* unused harmony reexport uniqWith */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__unzip__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__unzip__ = __webpack_require__(102);
 /* unused harmony reexport unzip */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__unzipWith__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__unzipWith__ = __webpack_require__(145);
 /* unused harmony reexport unzipWith */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__without__ = __webpack_require__(237);
 /* unused harmony reexport without */
@@ -44172,7 +44486,7 @@ function joinRanges( ranges ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isArguments__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isArguments__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArray__ = __webpack_require__(15);
 
 
@@ -44228,8 +44542,8 @@ function baseMatches(source) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Stack__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIsEqual__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Stack__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIsEqual__ = __webpack_require__(124);
 
 
 
@@ -44369,8 +44683,8 @@ var toPairs = __WEBPACK_IMPORTED_MODULE_0__createToPairs__["a" /* default */](__
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseToPairs__ = __webpack_require__(370);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getTag__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mapToArray__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getTag__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mapToArray__ = __webpack_require__(122);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__setToPairs__ = __webpack_require__(371);
 
 
@@ -44409,7 +44723,7 @@ function createToPairs(keysFunc) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayMap__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayMap__ = __webpack_require__(29);
 
 
 /**
@@ -44460,13 +44774,13 @@ function setToPairs(set) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIsEqual__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIsEqual__ = __webpack_require__(124);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__get__ = __webpack_require__(187);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__hasIn__ = __webpack_require__(377);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isKey__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isKey__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isStrictComparable__ = __webpack_require__(185);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__matchesStrictComparable__ = __webpack_require__(186);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__toKey__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__toKey__ = __webpack_require__(58);
 
 
 
@@ -44541,7 +44855,7 @@ var stringToPath = __WEBPACK_IMPORTED_MODULE_0__memoize__["a" /* default */](fun
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__MapCache__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__MapCache__ = __webpack_require__(119);
 
 
 /** Used as the `TypeError` message for "Functions" methods. */
@@ -44658,8 +44972,8 @@ function toString(value) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isSymbol__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isSymbol__ = __webpack_require__(45);
 
 
 
@@ -44761,14 +45075,14 @@ function baseHasIn(object, key) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__castPath__ = __webpack_require__(93);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArguments__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__castPath__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArguments__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArray__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isIndex__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isKey__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__isLength__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__isString__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__toKey__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isKey__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__isLength__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__isString__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__toKey__ = __webpack_require__(58);
 
 
 
@@ -44817,10 +45131,10 @@ function hasPath(object, path, hasFunc) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseProperty__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseProperty__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__basePropertyDeep__ = __webpack_require__(381);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isKey__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__toKey__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isKey__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__toKey__ = __webpack_require__(58);
 
 
 
@@ -44860,7 +45174,7 @@ function property(path) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseGet__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseGet__ = __webpack_require__(136);
 
 
 /**
@@ -45090,8 +45404,8 @@ function baseAt(object, paths) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseGet__ = __webpack_require__(135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseSlice__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseGet__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseSlice__ = __webpack_require__(40);
 
 
 
@@ -45115,7 +45429,7 @@ function parent(object, path) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isSymbol__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isSymbol__ = __webpack_require__(45);
 
 
 /**
@@ -45166,7 +45480,7 @@ function compareAscending(value, other) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Set__ = __webpack_require__(173);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__noop__ = __webpack_require__(391);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__setToArray__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__setToArray__ = __webpack_require__(90);
 
 
 
@@ -45220,12 +45534,12 @@ function noop() {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assignValue__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__castPath__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assignValue__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__castPath__ = __webpack_require__(99);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isIndex__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isKey__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isKey__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isObject__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__toKey__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__toKey__ = __webpack_require__(58);
 
 
 
@@ -45285,8 +45599,8 @@ function baseSet(object, path, value, customizer) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__difference__ = __webpack_require__(182);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__differenceBy__ = __webpack_require__(184);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__differenceWith__ = __webpack_require__(189);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__drop__ = __webpack_require__(136);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__dropRight__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__drop__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__dropRight__ = __webpack_require__(138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dropRightWhile__ = __webpack_require__(190);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dropWhile__ = __webpack_require__(191);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__fill__ = __webpack_require__(192);
@@ -45297,7 +45611,7 @@ function baseSet(object, path, value, customizer) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__flattenDeep__ = __webpack_require__(198);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__flattenDepth__ = __webpack_require__(199);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__fromPairs__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__head__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__head__ = __webpack_require__(139);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__indexOf__ = __webpack_require__(201);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__initial__ = __webpack_require__(202);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__intersection__ = __webpack_require__(203);
@@ -45308,7 +45622,7 @@ function baseSet(object, path, value, customizer) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__lastIndexOf__ = __webpack_require__(207);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__nth__ = __webpack_require__(208);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pull__ = __webpack_require__(209);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pullAll__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pullAll__ = __webpack_require__(142);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pullAllBy__ = __webpack_require__(210);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pullAllWith__ = __webpack_require__(211);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pullAt__ = __webpack_require__(212);
@@ -45334,8 +45648,8 @@ function baseSet(object, path, value, customizer) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__uniq__ = __webpack_require__(234);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__uniqBy__ = __webpack_require__(235);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__uniqWith__ = __webpack_require__(236);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__unzip__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__unzipWith__ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__unzip__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__unzipWith__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__without__ = __webpack_require__(237);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__xor__ = __webpack_require__(238);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__xorBy__ = __webpack_require__(239);
@@ -45435,7 +45749,7 @@ function baseSet(object, path, value, customizer) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_markeroperation__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_markeroperation__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -45675,14 +45989,7 @@ class RootElement extends __WEBPACK_IMPORTED_MODULE_0__element__["a" /* default 
 
 
 /**
- * `History` keeps the track of all the deltas applied to the {@link module:engine/model/document~Document document}. Deltas stored in
- * `History` might get updated, split into more deltas or even removed. This is used mostly to compress history, instead
- * of keeping all deltas in a state in which they were applied.
- *
- * **Note:** deltas kept in `History` should be used only to transform deltas. It's not advised to use `History` to get
- * original delta basing on it's {@link module:engine/model/delta/delta~Delta#baseVersion baseVersion}. Also, after transforming a
- * delta by deltas from `History`,
- * fix it's base version accordingly (set it to {@link module:engine/model/document~Document#version document version}).
+ * `History` keeps the track of all the deltas applied to the {@link module:engine/model/document~Document document}.
  */
 class History {
 	/**
@@ -45705,6 +46012,26 @@ class History {
 		 * @member {Map} module:engine/model/history~History#_historyPoints
 		 */
 		this._historyPoints = new Map();
+
+		/**
+		 * Holds an information which {@link module:engine/model/delta/delta~Delta delta} undoes which
+		 * {@link module:engine/model/delta/delta~Delta delta}.
+		 *
+		 * Keys of the map are "undoing deltas", that is deltas that undone some other deltas. For each key, the
+		 * value is a delta that has been undone by the "undoing delta".
+		 *
+		 * @private
+		 * @member {Map} module:engine/model/history~History#_undoPairs
+		 */
+		this._undoPairs = new Map();
+
+		/**
+		 * Holds all undone deltas.
+		 *
+		 * @private
+		 * @member {Set.<module:engine/model/delta/delta~Delta>} module:engine/model/history~History#_undoneDeltas
+		 */
+		this._undoneDeltas = new Set();
 	}
 
 	/**
@@ -45728,7 +46055,7 @@ class History {
 	 * that deltas from the first one will be returned.
 	 * @param {Number} [to=Number.POSITIVE_INFINITY] Base version up to which deltas should be returned (exclusive).
 	 * Defaults to `Number.POSITIVE_INFINITY` which means that deltas up to the last one will be returned.
-	 * @returns {Iterator.<module:engine/model/delta/delta~Delta>} Deltas added to the history.
+	 * @returns {Iterator.<module:engine/model/delta/delta~Delta>} Deltas added to the history from given base versions range.
 	 */
 	* getDeltas( from = 0, to = Number.POSITIVE_INFINITY ) {
 		// No deltas added, nothing to yield.
@@ -45757,90 +46084,58 @@ class History {
 	}
 
 	/**
-	 * Returns one or more deltas from history that bases on given `baseVersion`. Most often it will be just
-	 * one delta, but if that delta got updated by multiple deltas, all of those updated deltas will be returned.
+	 * Returns delta from history that bases on given `baseVersion`.
 	 *
-	 * @see module:engine/model/history~History#updateDelta
-	 * @param {Number} baseVersion Base version of the delta to retrieve.
-	 * @returns {Array.<module:engine/model/delta/delta~Delta>|null} Delta with given base version or null if no such delta is in history.
+	 * @param {Number} baseVersion Base version of the delta to get.
+	 * @returns {module:engine/model/delta/delta~Delta|null} Delta with given base version or `null` if there is no such delta in history.
 	 */
 	getDelta( baseVersion ) {
-		let index = this._historyPoints.get( baseVersion );
+		const index = this._historyPoints.get( baseVersion );
 
-		if ( index === undefined ) {
-			return null;
-		}
-
-		const deltas = [];
-
-		for ( index; index < this._deltas.length; index++ ) {
-			const delta = this._deltas[ index ];
-
-			if ( delta.baseVersion != baseVersion ) {
-				break;
-			}
-
-			deltas.push( delta );
-		}
-
-		return deltas.length === 0 ? null : deltas;
+		return index === undefined ? null : this._deltas[ index ];
 	}
 
 	/**
-	 * Removes delta from the history. This happens i.e., when a delta is undone by another delta. Both undone delta and
-	 * undoing delta should be removed so they won't have an impact on transforming other deltas.
+	 * Marks in history that one delta is a delta that is undoing the other delta. By marking deltas this way,
+	 * history is keeping more context information about deltas which helps in operational transformation.
 	 *
-	 * **Note:** using this method does not change the state of {@link module:engine/model/document~Document model}. It just affects
-	 * the state of `History`.
-	 *
-	 * **Note:** when some deltas are removed, deltas between them should probably get updated. See
-	 * {@link module:engine/model/history~History#updateDelta}.
-	 *
-	 * **Note:** if delta with `baseVersion` got {@link module:engine/model/history~History#updateDelta updated} by multiple
-	 * deltas, all updated deltas will be removed.
-	 *
-	 * @param {Number} baseVersion Base version of a delta to be removed.
+	 * @param {module:engine/model/delta/delta~Delta} undoneDelta Delta which is undone by `undoingDelta`.
+	 * @param {module:engine/model/delta/delta~Delta} undoingDelta Delta which undoes `undoneDelta`.
 	 */
-	removeDelta( baseVersion ) {
-		this.updateDelta( baseVersion, [] );
+	setDeltaAsUndone( undoneDelta, undoingDelta ) {
+		this._undoPairs.set( undoingDelta, undoneDelta );
+		this._undoneDeltas.add( undoneDelta );
 	}
 
 	/**
-	 * Substitutes delta in history by one or more given deltas.
+	 * Checks whether given `delta` is undoing by any other delta.
 	 *
-	 * **Note:** if delta with `baseVersion` was already updated by multiple deltas, all updated deltas will be removed
-	 * and new deltas will be inserted at their position.
-	 *
-	 * **Note:** removed delta won't get updated.
-	 *
-	 * @param {Number} baseVersion Base version of a delta to update.
-	 * @param {Iterable.<module:engine/model/delta/delta~Delta>} updatedDeltas Deltas to be inserted in place of updated delta.
+	 * @param {module:engine/model/delta/delta~Delta} delta Delta to check.
+	 * @returns {Boolean} `true` if given `delta` is undoing any other delta, `false` otherwise.
 	 */
-	updateDelta( baseVersion, updatedDeltas ) {
-		const deltas = this.getDelta( baseVersion );
+	isUndoingDelta( delta ) {
+		return this._undoPairs.has( delta );
+	}
 
-		// If there are no deltas, stop executing function as there is nothing to update.
-		if ( deltas === null ) {
-			return;
-		}
+	/**
+	 * Checks whether given `delta` has been undone by any other delta.
+	 *
+	 * @param {module:engine/model/delta/delta~Delta} delta Delta to check.
+	 * @returns {Boolean} `true` if given `delta` has been undone any other delta, `false` otherwise.
+	 */
+	isUndoneDelta( delta ) {
+		return this._undoneDeltas.has( delta );
+	}
 
-		// Make sure that every updated delta has correct `baseVersion`.
-		// This is crucial for algorithms in `History` and algorithms using `History`.
-		for ( const delta of updatedDeltas ) {
-			delta.baseVersion = baseVersion;
-		}
-
-		// Put updated deltas in place of old deltas.
-		this._deltas.splice( this._getIndex( baseVersion ), deltas.length, ...updatedDeltas );
-
-		// Update history points.
-		const changeBy = updatedDeltas.length - deltas.length;
-
-		for ( const key of this._historyPoints.keys() ) {
-			if ( key > baseVersion ) {
-				this._historyPoints.set( key, this._historyPoints.get( key ) + changeBy );
-			}
-		}
+	/**
+	 * For given `undoingDelta`, returns the delta which has been undone by it.
+	 *
+	 * @param {module:engine/model/delta/delta~Delta} undoingDelta
+	 * @returns {module:engine/model/delta/delta~Delta|undefined} Delta that has been undone by given `undoingDelta` or `undefined`
+	 * if given `undoingDelta` is not undoing any other delta.
+	 */
+	getUndoneDelta( undoingDelta ) {
+		return this._undoPairs.get( undoingDelta );
 	}
 
 	/**
@@ -45859,7 +46154,6 @@ class History {
 
 			if ( baseVersion < 0 || baseVersion >= nextBaseVersion ) {
 				// Base version is too high or too low - it's acceptable situation.
-				// Return -1 because `baseVersion` was correct.
 				return -1;
 			}
 
@@ -45887,11 +46181,11 @@ class History {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__liverange__ = __webpack_require__(246);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__text__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__textproxy__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_tomap__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__textproxy__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_tomap__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__selection__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__selection__ = __webpack_require__(66);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -46196,11 +46490,18 @@ class LiveSelection extends __WEBPACK_IMPORTED_MODULE_8__selection__["a" /* defa
 		this._checkRange( range );
 
 		const liveRange = __WEBPACK_IMPORTED_MODULE_2__liverange__["a" /* default */].createFromRange( range );
-		this.listenTo( liveRange, 'change', ( evt, oldRange ) => {
+
+		this.listenTo( liveRange, 'change', ( evt, oldRange, data ) => {
+			// If `LiveRange` is in whole moved to the graveyard, fix that range.
 			if ( liveRange.root == this._document.graveyard ) {
-				this._fixGraveyardSelection( liveRange, oldRange );
+				const sourceStart = data.sourcePosition;
+				const howMany = data.range.end.offset - data.range.start.offset;
+				const sourceRange = __WEBPACK_IMPORTED_MODULE_1__range__["a" /* default */].createFromPositionAndShift( sourceStart, howMany );
+
+				this._fixGraveyardSelection( liveRange, sourceRange );
 			}
 
+			// Whenever a live range from selection changes, fire an event informing about that change.
 			this.fire( 'change:range', { directChange: false } );
 		} );
 
@@ -46518,29 +46819,36 @@ class LiveSelection extends __WEBPACK_IMPORTED_MODULE_8__selection__["a" /* defa
 	 * Fixes a selection range after it ends up in graveyard root.
 	 *
 	 * @private
-	 * @param {module:engine/model/liverange~LiveRange} gyRange The range added in selection, that ended up in graveyard root.
-	 * @param {module:engine/model/range~Range} oldRange The state of that range before it was added to graveyard root.
+	 * @param {module:engine/model/liverange~LiveRange} liveRange The range from selection, that ended up in the graveyard root.
+	 * @param {module:engine/model/range~Range} removedRange Range which removing had caused moving `liveRange` to the graveyard root.
 	 */
-	_fixGraveyardSelection( gyRange, oldRange ) {
-		const gyPath = gyRange.start.path;
+	_fixGraveyardSelection( liveRange, removedRange ) {
+		// The start of the removed range is the closest position to the `liveRange` - the original selection range.
+		// This is a good candidate for a fixed selection range.
+		const positionCandidate = __WEBPACK_IMPORTED_MODULE_0__position__["a" /* default */].createFromPosition( removedRange.start );
 
-		const newPathLength = oldRange.start.path.length - ( gyPath.length - 2 );
-		const newPath = oldRange.start.path.slice( 0, newPathLength );
-		newPath[ newPath.length - 1 ] -= gyPath[ 1 ];
+		// Find a range that is a correct selection range and is closest to the start of removed range.
+		let selectionRange = this._document.getNearestSelectionRange( positionCandidate );
 
-		const newPosition = new __WEBPACK_IMPORTED_MODULE_0__position__["a" /* default */]( oldRange.root, newPath );
-		let selectionRange = this._document.getNearestSelectionRange( newPosition );
-
-		// If nearest valid selection range cannot be found - use one created at root beginning.
+		// If nearest valid selection range cannot be found - use one created at the beginning of the root.
 		if ( !selectionRange ) {
-			selectionRange = new __WEBPACK_IMPORTED_MODULE_1__range__["a" /* default */]( new __WEBPACK_IMPORTED_MODULE_0__position__["a" /* default */]( newPosition.root, [ 0 ] ) );
+			selectionRange = new __WEBPACK_IMPORTED_MODULE_1__range__["a" /* default */]( new __WEBPACK_IMPORTED_MODULE_0__position__["a" /* default */]( positionCandidate.root, [ 0 ] ) );
 		}
 
-		const newRange = this._prepareRange( selectionRange );
-		const index = this._ranges.indexOf( gyRange );
-		gyRange.detach();
+		// Remove the old selection range before preparing and adding new selection range. This order is important,
+		// because new range, in some cases, may intersect with old range (it depends on `getNearestSelectionRange()` result).
+		const index = this._ranges.indexOf( liveRange );
+		this._ranges.splice( index, 1 );
+		liveRange.detach();
 
-		this._ranges.splice( index, 1, newRange );
+		// Check the range, convert it to live range, bind events, etc.
+		const newRange = this._prepareRange( selectionRange );
+
+		// Add new range in the place of old range.
+		this._ranges.splice( index, 0, newRange );
+
+		// Fire an event informing about selection change.
+		this.fire( 'change:range', { directChange: false } );
 	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = LiveSelection;
@@ -46609,9 +46917,9 @@ function mapsEqual( mapA, mapB ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__element__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_lib_lodash_clone__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_lib_lodash_clone__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_lib_lodash_isArray__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isString__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isString__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__range__ = __webpack_require__(3);
 /**
@@ -47659,7 +47967,7 @@ __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_mix__["a" /* default *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_keystrokehandler__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_keystrokehandler__ = __webpack_require__(59);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -47785,9 +48093,9 @@ function isMac( userAgent ) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_document__ = __webpack_require__(404);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__conversion_mapper__ = __webpack_require__(157);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__conversion_modelconversiondispatcher__ = __webpack_require__(160);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__conversion_model_to_view_converters__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__conversion_mapper__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__conversion_modelconversiondispatcher__ = __webpack_require__(161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__conversion_model_to_view_converters__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__conversion_view_selection_to_model_converters__ = __webpack_require__(415);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__conversion_model_selection_to_view_converters__ = __webpack_require__(252);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(7);
@@ -47955,11 +48263,11 @@ class EditingController {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__selection__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__selection__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__renderer__ = __webpack_require__(405);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__domconverter__ = __webpack_require__(248);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rooteditableelement__ = __webpack_require__(250);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__filler__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__filler__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__observer_mutationobserver__ = __webpack_require__(251);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__observer_selectionobserver__ = __webpack_require__(410);
@@ -48316,10 +48624,10 @@ __WEBPACK_IMPORTED_MODULE_11__ckeditor_ckeditor5_utils_src_mix__["a" /* default 
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__text__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__text__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__position__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__selection__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__filler__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__selection__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__filler__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_diff__ = __webpack_require__(247);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_dom_insertat__ = __webpack_require__(406);
@@ -49163,10 +49471,10 @@ function getCommonAncestor( nodeA, nodeB ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observer__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observer__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mutationobserver__ = __webpack_require__(251);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_lib_lodash_debounce__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_lib_lodash_debounce__ = __webpack_require__(147);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -49433,7 +49741,7 @@ var now = Date.now;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__domeventobserver__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__domeventobserver__ = __webpack_require__(69);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -49545,7 +49853,7 @@ class FocusObserver extends __WEBPACK_IMPORTED_MODULE_0__domeventobserver__["a" 
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__domeventobserver__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__domeventobserver__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(22);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -49625,10 +49933,10 @@ class KeyObserver extends __WEBPACK_IMPORTED_MODULE_0__domeventobserver__["a" /*
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observer__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__selection__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observer__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__selection__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_lib_lodash_debounce__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_lib_lodash_debounce__ = __webpack_require__(147);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -49765,7 +50073,7 @@ function _isArrowKeyCode( keyCode ) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = convertSelectionChange;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_selection__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_selection__ = __webpack_require__(66);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -49895,7 +50203,7 @@ class BasicHtmlWriter {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_src_componentfactory__ = __webpack_require__(419);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_toolbar_enabletoolbarkeyboardfocus__ = __webpack_require__(420);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -50164,7 +50472,7 @@ function enableToolbarKeyboardFocus( {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_src_editorui_editoruiview__ = __webpack_require__(422);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_editableui_inline_inlineeditableuiview__ = __webpack_require__(424);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_panel_balloon_balloonpanelview__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_panel_balloon_balloonpanelview__ = __webpack_require__(150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_toolbar_toolbarview__ = __webpack_require__(258);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_ui_src_template__ = __webpack_require__(6);
 /**
@@ -51543,7 +51851,7 @@ module.exports = function (css) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_basic_styles_src_italic__ = __webpack_require__(513);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_link_src_link__ = __webpack_require__(516);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ckeditor_ckeditor5_list_src_list__ = __webpack_require__(527);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ckeditor_ckeditor5_paragraph_src_paragraph__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ckeditor_ckeditor5_paragraph_src_paragraph__ = __webpack_require__(106);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -51909,7 +52217,7 @@ class Clipboard extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_view_observer_domeventobserver__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_view_observer_domeventobserver__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__datatransfer__ = __webpack_require__(438);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -52440,8 +52748,8 @@ function splitBlock( batch, selection, splitPos ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_view_observer_observer__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_observer_domeventdata__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_view_observer_observer__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_observer_domeventdata__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(22);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -52541,7 +52849,7 @@ class Typing extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_view_position__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_view_text__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_view_text__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_diff__ = __webpack_require__(247);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_difftochanges__ = __webpack_require__(447);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(22);
@@ -53126,7 +53434,7 @@ class Delete extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_pl
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_command__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_selection__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_selection__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__changebuffer__ = __webpack_require__(259);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_count__ = __webpack_require__(260);
 /**
@@ -53233,8 +53541,8 @@ class DeleteCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_view_observer_observer__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_observer_domeventdata__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_view_observer_observer__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_observer_domeventdata__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(22);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -53342,9 +53650,9 @@ class DeleteObserver extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_eng
  *
  *		  History                           Undo stack
  *		===========             ==================================
- *		[delta A1]              [batch A with selection before A1]
- *		[delta B1]              [batch B with selection before B1]
- *		[delta B2]              [batch C with selection before C1]
+ *		[delta A1]                          [batch A]
+ *		[delta B1]                          [batch B]
+ *		[delta B2]                          [batch C]
  *		[delta C1]
  *		[delta C2]
  *		[delta B3]
@@ -53362,80 +53670,54 @@ class DeleteObserver extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_eng
  * bases on up-to-date document state, so it can be applied to the document.
  *
  *		  History                           Undo stack
- *		===========             ==================================
- *		[delta A1 ]             [batch A with selection before A1]
- *		[delta B1 ]             [batch B with selection before B1]
- *		[delta B2 ]             [   processing undoing batch C   ]
- *		[delta C1 ]
- *		[delta C2 ]
- *		[delta B3 ]
- *		[delta C3 ]
- *		[delta C3r]
+ *		=============             ==================================
+ *		[ delta A1  ]                      [  batch A  ]
+ *		[ delta B1  ]                      [  batch B  ]
+ *		[ delta B2  ]             [   processing undoing batch C   ]
+ *		[ delta C1  ]
+ *		[ delta C2  ]
+ *		[ delta B3  ]
+ *		[ delta C3  ]
+ *		[ delta C3r ]
  *
  * Next is delta `C2`, reversed to `C2r`. `C2r` bases on `C2`, so it bases on the wrong document state. It needs to be
  * transformed by deltas from history that happened after it, so it "knows" about them. Let us assume that `C2' = C2r * B3 * C3 * C3r`,
- * where `*` means "transformed by". As can be seen, `C2r` is transformed by a delta which is undone afterwards anyway.
- * This brings two problems: lower effectiveness (obvious) and incorrect results. Bad results come from the fact that
- * operational transformation algorithms assume there is no connection between two transformed operations when resolving
- * conflicts, which is true for example for collaborative editing, but is not true for the undo algorithm.
+ * where `*` means "transformed by". Rest of deltas from that batch are processed in the same fashion.
  *
- * To prevent both problems, `History` introduces an API to {@link module:engine/model/history~History#removeDelta remove}
- * deltas from history. It is used to remove undone and undoing deltas after they are applied. It feels right &mdash; since when a
- * delta is undone or reversed, it is "removed" and there should be no sign of it in the history (fig. 1).
- *
- * Notes:
- *
- * * `---` symbolizes a removed delta.
- * * `'` symbolizes a reversed delta that was later transformed.
- *
- *		History (fig. 1)            History (fig. 2)            History (fig. 3)
- *		================            ================            ================
- *		   [delta A1]                  [delta A1]                  [delta A1]
- *		   [delta B1]                  [delta B1]                  [delta B1]
- *		   [delta B2]                  [delta B2]                  [delta B2]
- *		   [delta C1]                  [delta C1]                  [---C1---]
- *		   [delta C2]                  [---C2---]                  [---C2---]
- *		   [delta B3]                  [delta B3]                  [delta B3]
- *		   [---C3---]                  [---C3---]                  [---C3---]
- *		   [---C3r--]                  [---C3r--]                  [---C3r--]
- *		                               [---C2'--]                  [---C2'--]
- *		                                                           [---C1'--]
- *
- * `C2r` can now be transformed only by `B3` and both `C2'` and `C2` can be removed (fig. 2). Same with `C1` (fig. 3).
- *
- * But what about that selection? For batch `C`, undo feature remembers the selection just before `C1` was applied. It can be
- * visualized between delta `B2` and `B3` (see fig. 3). As can be seen, some operations were applied to the document since the selection
- * state was remembered. Setting the document selection as it was remembered would be incorrect. It feels natural that
- * the selection state should also be transformed by deltas from history. The same pattern applies as with transforming deltas &mdash;
- * ranges should not be transformed by undone and undoing deltas. Thankfully, those deltas are already removed from history.
- *
- * Unfortunately, a problem appears with delta `B3`. It still remembers the context of deltas `C2` and `C1` on which it bases.
- * It is an obvious error &mdash; transforming by that delta would lead to incorrect results or "repeating" history would
- * produce a different document than the actual one.
- *
- * To prevent this situation, `B3` needs to also be {@link module:engine/model/history~History#updateDelta updated} in history.
- * It should be kept in a state that "does not remember" deltas that were removed from history. It is easily
- * achieved while transforming the reversed delta. For example, when `C2r` is transformed by `B3`, at the same time `B3` is
- * transformed by `C2r`. Transforming `B3` that remembers `C2` by a delta reversing `C2` effectively makes `B3` "forget" about `C2`.
- * By doing these transformations you effectively make `B3` base on `B2` which is the correct state of history (fig. 4).
- *
- *		     History (fig. 4)                         History (fig. 5)
- *		===========================            ===============================
- *		        [delta A1]                               [---A1---]
- *		        [delta B1]                         [delta B1 "without A1"]
- *		        [delta B2]                         [delta B2 "without A1"]
- *		        [---C1---]                               [---C1---]
- *		        [---C2---]                               [---C2---]
- *		[delta B3 "without C2, C1"]            [delta B3 "without C2, C1, A1"]
- *		        [---C3---]                               [---C3---]
- *		        [---C3r--]                               [---C3r--]
- *		        [---C2'--]                               [---C2'--]
- *		        [---C1'--]                               [---C1'--]
- *		                                                 [---A1'--]
+ *		  History                           Undo stack                                     Redo stack
+ *		=============             ==================================             ==================================
+ *		[ delta A1  ]                      [  batch A  ]                                  [ batch Cr ]
+ *		[ delta B1  ]                      [  batch B  ]
+ *		[ delta B2  ]
+ *		[ delta C1  ]
+ *		[ delta C2  ]
+ *		[ delta B3  ]
+ *		[ delta C3  ]
+ *		[ delta C3r ]
+ *		[ delta C2' ]
+ *		[ delta C1' ]
  *
  * Selective undo works on the same basis, however, instead of undoing the last batch in the undo stack, any batch can be undone.
- * The same algorithm applies: deltas from a batch (i.e. `A1`) are reversed and then transformed by deltas stored in history,
- * simultaneously updating them. Then deltas are applied to the document and removed from history (fig. 5).
+ * The same algorithm applies: deltas from a batch (i.e. `A1`) are reversed and then transformed by deltas stored in history.
+ *
+ * Redo also is very similar to undo. It has its own stack that is filled with undoing (reversed batches). Deltas from
+ * batch that is re-done are reversed-back, transformed in proper order and applied to the document.
+ *
+ *		  History                           Undo stack                                     Redo stack
+ *		=============             ==================================             ==================================
+ *		[ delta A1  ]                      [  batch A  ]
+ *		[ delta B1  ]                      [  batch B  ]
+ *		[ delta B2  ]                      [ batch Crr ]
+ *		[ delta C1  ]
+ *		[ delta C2  ]
+ *		[ delta B3  ]
+ *		[ delta C3  ]
+ *		[ delta C3r ]
+ *		[ delta C2' ]
+ *		[ delta C1' ]
+ *		[ delta C1'r]
+ *		[ delta C2'r]
+ *		[ delta C3rr]
  *
  * @extends module:core/plugin~Plugin
  */
@@ -53612,7 +53894,6 @@ class UndoEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_sr
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__basecommand__ = __webpack_require__(261);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_delta_transform__ = __webpack_require__(129);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -53624,14 +53905,12 @@ class UndoEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_sr
 
 
 
-
 /**
  * The undo command stores {@link module:engine/model/batch~Batch batches} applied to the
  * {@link module:engine/model/document~Document document} and is able to undo a batch by reversing it and transforming by
- * other batches from {@link module:engine/model/document~Document#history history} that happened after the reversed batch.
+ * batches from {@link module:engine/model/document~Document#history history} that happened after the reversed batch.
  *
- * The undo command also takes care of restoring the {@link module:engine/model/document~Document#selection document selection}
- * to the state before the undone batch was applied.
+ * The undo command also takes care of restoring the {@link module:engine/model/document~Document#selection document selection}.
  *
  * @extends module:undo/basecommand~BaseCommand
  */
@@ -53664,139 +53943,6 @@ class UndoCommand extends __WEBPACK_IMPORTED_MODULE_0__basecommand__["a" /* defa
 
 		this.refresh();
 	}
-
-	/**
-	 * Returns an index in {@link module:undo/basecommand~BaseCommand#_stack} pointing to the item that is storing a
-	 * batch that has a given {@link module:engine/model/batch~Batch#baseVersion}.
-	 *
-	 * @private
-	 * @param {Number} baseVersion The base version of the batch to find.
-	 * @returns {Number|null}
-	 */
-	_getItemIndexFromBaseVersion( baseVersion ) {
-		for ( let i = 0; i < this._stack.length; i++ ) {
-			if ( this._stack[ i ].batch.baseVersion == baseVersion ) {
-				return i;
-			}
-		}
-
-		return null;
-	}
-
-	/**
-	 * Undoes a batch by reversing a batch from history, transforming that reversed batch and applying it. This is
-	 * a helper method for {@link #execute}.
-	 *
-	 * @private
-	 * @param {module:engine/model/batch~Batch} batchToUndo A batch whose deltas will be reversed, transformed and applied.
-	 */
-	_undo( batchToUndo ) {
-		const document = this.editor.document;
-
-		// All changes done by the command execution will be saved as one batch.
-		const undoingBatch = document.batch();
-		this._createdBatches.add( undoingBatch );
-
-		const history = document.history;
-		const deltasToUndo = batchToUndo.deltas.slice();
-		deltasToUndo.reverse();
-
-		// We will process each delta from `batchToUndo`, in reverse order. If there was deltas A, B and C in undone batch,
-		// we need to revert them in reverse order, so first reverse C, then B, then A.
-		for ( const deltaToUndo of deltasToUndo ) {
-			// Keep in mind that all algorithms return arrays. That's because the transformation might result in multiple
-			// deltas, so we need arrays to handle them anyway. To simplify algorithms, it is better to always have arrays
-			// in mind. For simplicity reasons, we will use singular form in descriptions and names.
-			const baseVersion = deltaToUndo.baseVersion;
-			const nextBaseVersion = baseVersion + deltaToUndo.operations.length;
-
-			// 1. Get updated version of the delta from the history.
-			// Batch stored in the undo command might have an outdated version of the delta that should be undone.
-			// To prevent errors, we will take an updated version of it from the history, basing on delta's `baseVersion`.
-			const updatedDeltaToUndo = history.getDelta( baseVersion );
-
-			// This is a safe valve in case of not finding delta to undo in history. This may come up if that delta
-			// got updated into no deltas, or removed from history.
-			if ( updatedDeltaToUndo === null ) {
-				continue;
-			}
-
-			// 2. Reverse delta from the history.
-			updatedDeltaToUndo.reverse();
-			let reversedDelta = [];
-
-			for ( const delta of updatedDeltaToUndo ) {
-				reversedDelta.push( delta.getReversed() );
-			}
-
-			// Stores history deltas transformed by `deltaToUndo`. Will be used later for updating document history.
-			const updatedHistoryDeltas = {};
-
-			// 3. Transform reversed delta by history deltas that happened after delta to undo. We have to bring
-			// reversed delta to the current state of document. While doing this, we will also update history deltas
-			// to the state which "does not remember" delta that we undo.
-			for ( const historyDelta of history.getDeltas( nextBaseVersion ) ) {
-				// 3.1. Transform selection range stored with history batch by reversed delta.
-				// It is important to keep stored selection ranges updated. As we are removing and updating deltas in the history,
-				// selection ranges would base on outdated history state.
-				const itemIndex = this._getItemIndexFromBaseVersion( historyDelta.baseVersion );
-
-				// `itemIndex` will be `null` for `historyDelta` if it is not the first delta in it's batch.
-				// This is fine, because we want to transform each selection only once, before transforming reversed delta
-				// by the first delta of the batch connected with the ranges.
-				if ( itemIndex !== null ) {
-					this._stack[ itemIndex ].selection.ranges = __WEBPACK_IMPORTED_MODULE_0__basecommand__["b" /* transformRangesByDeltas */](
-						this._stack[ itemIndex ].selection.ranges, reversedDelta
-					);
-				}
-
-				// 3.2. Transform reversed delta by history delta and vice-versa.
-				const results = __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_delta_transform__["a" /* default */].transformDeltaSets( reversedDelta, [ historyDelta ], true );
-
-				reversedDelta = results.deltasA;
-				const updatedHistoryDelta = results.deltasB;
-
-				// 3.3. Store updated history delta. Later, it will be updated in `history`.
-				if ( !updatedHistoryDeltas[ historyDelta.baseVersion ] ) {
-					updatedHistoryDeltas[ historyDelta.baseVersion ] = [];
-				}
-
-				const mergedHistoryDeltas = updatedHistoryDeltas[ historyDelta.baseVersion ].concat( updatedHistoryDelta );
-				updatedHistoryDeltas[ historyDelta.baseVersion ] = mergedHistoryDeltas;
-			}
-
-			// 4. After reversed delta has been transformed by all history deltas, apply it.
-			for ( const delta of reversedDelta ) {
-				// Fix base version.
-				delta.baseVersion = document.version;
-
-				// Before applying, add the delta to the `undoingBatch`.
-				undoingBatch.addDelta( delta );
-
-				// Now, apply all operations of the delta.
-				for ( const operation of delta.operations ) {
-					document.applyOperation( operation );
-				}
-			}
-
-			// 5. Remove reversed delta from the history.
-			history.removeDelta( baseVersion );
-
-			// And all deltas that are reversing it.
-			// So the history looks like both original and reversing deltas never happened.
-			// That's why we have to update history deltas - some of them might have been basing on deltas that we are now removing.
-			for ( const delta of reversedDelta ) {
-				history.removeDelta( delta.baseVersion );
-			}
-
-			// 6. Update history deltas in history.
-			for ( const historyBaseVersion in updatedHistoryDeltas ) {
-				history.updateDelta( Number( historyBaseVersion ), updatedHistoryDeltas[ historyBaseVersion ] );
-			}
-		}
-
-		return undoingBatch;
-	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = UndoCommand;
 
@@ -53814,7 +53960,6 @@ class UndoCommand extends __WEBPACK_IMPORTED_MODULE_0__basecommand__["a" /* defa
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__basecommand__ = __webpack_require__(261);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_delta_transform__ = __webpack_require__(129);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -53826,15 +53971,13 @@ class UndoCommand extends __WEBPACK_IMPORTED_MODULE_0__basecommand__["a" /* defa
 
 
 
-
 /**
  * The redo command stores {@link module:engine/model/batch~Batch batches} that were used to undo a batch by
  * {@link module:undo/undocommand~UndoCommand}. It is able to redo a previously undone batch by reversing the undoing
- * batches created by `UndoCommand`. The reversed batch is also transformed by batches from
- * {@link module:engine/model/document~Document#history history} that happened after it and are not other redo batches.
+ * batches created by `UndoCommand`. The reversed batch is transformed by all the batches from
+ * {@link module:engine/model/document~Document#history history} that happened after the reversed undo batch.
  *
- * The redo command also takes care of restoring the {@link module:engine/model/document~Document#selection document selection}
- * to the state before an undone batch was applied.
+ * The redo command also takes care of restoring the {@link module:engine/model/document~Document#selection document selection}.
  *
  * @extends module:undo/basecommand~BaseCommand
  */
@@ -53855,74 +53998,13 @@ class RedoCommand extends __WEBPACK_IMPORTED_MODULE_0__basecommand__["a" /* defa
 		this.editor.document.enqueueChanges( () => {
 			const lastDelta = item.batch.deltas[ item.batch.deltas.length - 1 ];
 			const nextBaseVersion = lastDelta.baseVersion + lastDelta.operations.length;
-
-			// Selection state is from the moment after undo happened. It needs to be transformed by all the deltas
-			// that happened after the selection state got saved. Unfortunately it is tricky, because those deltas
-			// are already compressed in the history (they are removed).
-			// Because of that we will transform the selection only by non-redo deltas
-			const deltas = Array.from( this.editor.document.history.getDeltas( nextBaseVersion ) ).filter( delta => {
-				return !this._createdBatches.has( delta.batch );
-			} );
+			const deltas = this.editor.document.history.getDeltas( nextBaseVersion );
 
 			this._restoreSelection( item.selection.ranges, item.selection.isBackward, deltas );
-			this._redo( item.batch );
+			this._undo( item.batch );
 		} );
 
 		this.refresh();
-	}
-
-	/**
-	 * Redoes a batch by reversing the batch that has undone it, transforming that batch and applying it. This is
-	 * a helper method for {@link #execute}.
-	 *
-	 * @private
-	 * @param {module:engine/model/batch~Batch} storedBatch The batch whose deltas will be reversed, transformed and applied.
-	 */
-	_redo( storedBatch ) {
-		const document = this.editor.document;
-
-		// All changes done by the command execution will be saved as one batch.
-		const redoingBatch = document.batch();
-		this._createdBatches.add( redoingBatch );
-
-		const deltasToRedo = storedBatch.deltas.slice();
-		deltasToRedo.reverse();
-
-		// We will process each delta from `storedBatch`, in reverse order. If there was deltas A, B and C in stored batch,
-		// we need to revert them in reverse order, so first reverse C, then B, then A.
-		for ( const deltaToRedo of deltasToRedo ) {
-			// Keep in mind that all algorithms return arrays. That's because the transformation might result in multiple
-			// deltas, so we need arrays to handle them anyway. To simplify algorithms, it is better to always have arrays
-			// in mind. For simplicity reasons, we will use singular form in descriptions and names.
-
-			const nextBaseVersion = deltaToRedo.baseVersion + deltaToRedo.operations.length;
-
-			// As stated above, convert delta to array of deltas.
-			let reversedDelta = [ deltaToRedo.getReversed() ];
-
-			// 1. Transform that delta by deltas from history that happened after it.
-			// Omit deltas from "redo" batches, because reversed delta already bases on them. Transforming by them
-			// again will result in incorrect deltas.
-			for ( const historyDelta of document.history.getDeltas( nextBaseVersion ) ) {
-				if ( !this._createdBatches.has( historyDelta.batch ) ) {
-					reversedDelta = __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_delta_transform__["a" /* default */].transformDeltaSets( reversedDelta, [ historyDelta ], true ).deltasA;
-				}
-			}
-
-			// 2. After reversed delta has been transformed by all history deltas, apply it.
-			for ( const delta of reversedDelta ) {
-				// Fix base version.
-				delta.baseVersion = document.version;
-
-				// Before applying, add the delta to the `redoingBatch`.
-				redoingBatch.addDelta( delta );
-
-				// Now, apply all operations of the delta.
-				for ( const operation of delta.operations ) {
-					document.applyOperation( operation );
-				}
-			}
-		}
 	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = RedoCommand;
@@ -54136,7 +54218,7 @@ class BlockQuote extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_sr
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blockquotecommand__ = __webpack_require__(461);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__ = __webpack_require__(51);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -54214,7 +54296,7 @@ class BlockQuoteEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_c
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_model_range__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_first__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_first__ = __webpack_require__(71);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -54591,7 +54673,7 @@ class Bold extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plug
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__attributecommand__ = __webpack_require__(262);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -54662,12 +54744,12 @@ module.exports = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_paragraph_src_paragraph__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_paragraph_src_paragraph__ = __webpack_require__(106);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__headingengine__ = __webpack_require__(470);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_model__ = __webpack_require__(472);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_ui_src_dropdown_list_createlistdropdown__ = __webpack_require__(473);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_collection__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_collection__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_ui_src_template__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__theme_theme_scss__ = __webpack_require__(479);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__theme_theme_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__theme_theme_scss__);
@@ -54852,7 +54934,7 @@ function getCommandsBindingTargets( commands, attribute ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_command__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_first__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_first__ = __webpack_require__(71);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -54941,8 +55023,8 @@ function checkCanBecomeParagraph( block, schema ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_paragraph_src_paragraph__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_paragraph_src_paragraph__ = __webpack_require__(106);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__headingcommand__ = __webpack_require__(471);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -55059,9 +55141,9 @@ class HeadingEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_command__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_range__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_selection__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_selection__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_model_position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_first__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_first__ = __webpack_require__(71);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -55188,7 +55270,7 @@ function checkCanBecomeHeading( block, heading, schema ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_extend__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_extend__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(24);
 /**
@@ -55343,9 +55425,9 @@ function attachDocumentClickListener( dropdownView ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__focuscycler__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keystrokehandler__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__focuscycler__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keystrokehandler__ = __webpack_require__(59);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -55474,7 +55556,7 @@ class ListView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */] {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_keystrokehandler__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_keystrokehandler__ = __webpack_require__(59);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -55652,8 +55734,8 @@ function createDropdown( model, locale ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_keystrokehandler__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_keystrokehandler__ = __webpack_require__(59);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -55931,7 +56013,7 @@ exports.push([module.i, ".ck-heading_heading1{font-size:1.5em}.ck-heading_headin
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__image_imageengine__ = __webpack_require__(263);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_widget_src_widget__ = __webpack_require__(483);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__imagetextalternative__ = __webpack_require__(487);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__image_utils__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__image_utils__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__theme_theme_scss__ = __webpack_require__(497);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__theme_theme_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__theme_theme_scss__);
 /**
@@ -56301,11 +56383,11 @@ function hoistImageThroughElement( evt, data ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_observer_mouseobserver__ = __webpack_require__(484);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_range__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_model_selection__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_model_selection__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_view_editableelement__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_view_editableelement__ = __webpack_require__(82);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_engine_src_view_rooteditableelement__ = __webpack_require__(250);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__theme_theme_scss__ = __webpack_require__(485);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__theme_theme_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__theme_theme_scss__);
@@ -56606,7 +56688,7 @@ function isInsideNestedEditable( element ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__domeventobserver__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__domeventobserver__ = __webpack_require__(69);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -56938,7 +57020,7 @@ class ImageTextAlternativeEngine extends __WEBPACK_IMPORTED_MODULE_1__ckeditor_c
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_command__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__image_utils__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__image_utils__ = __webpack_require__(42);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -57046,7 +57128,7 @@ function escPressHandler( { emitter, activator, callback } ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__debounce__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__debounce__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isObject__ = __webpack_require__(12);
 
 
@@ -57468,13 +57550,13 @@ class ImageCaption extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_treewalker__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_view_containerelement__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_view_containerelement__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_engine_src_view_element__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_view_writer__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_view_writer__ = __webpack_require__(83);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_engine_src_model_position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_engine_src_view_position__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__image_utils__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__image_utils__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__utils__ = __webpack_require__(501);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -57731,9 +57813,9 @@ function getParentCaption( node ) {
 /* harmony export (immutable) */ __webpack_exports__["b"] = getCaptionFromImage;
 /* harmony export (immutable) */ __webpack_exports__["d"] = matchImageCaption;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_editableelement__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_editableelement__ = __webpack_require__(82);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_view_placeholder__ = __webpack_require__(502);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_widget_src_utils__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_widget_src_utils__ = __webpack_require__(152);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -57821,7 +57903,7 @@ function matchImageCaption( element ) {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = attachPlaceholder;
 /* unused harmony export detachPlaceholder */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_extend__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_extend__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__theme_placeholder_scss__ = __webpack_require__(503);
@@ -58242,7 +58324,7 @@ class ImageStyleEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_c
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_command__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__image_utils__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__image_utils__ = __webpack_require__(42);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -58339,7 +58421,7 @@ class ImageStyleCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = modelToViewStyleAttribute;
 /* harmony export (immutable) */ __webpack_exports__["b"] = viewToModelStyleAttribute;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__image_utils__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__image_utils__ = __webpack_require__(42);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -58578,7 +58660,7 @@ class Italic extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_pl
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__attributecommand__ = __webpack_require__(262);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -58690,6 +58772,8 @@ module.exports = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n
 
 
 
+const linkKeystroke = 'Ctrl+K';
+
 /**
  * The link plugin. It introduces the Link and Unlink buttons and the <kbd>Ctrl+K</kbd> keystroke.
  *
@@ -58790,7 +58874,11 @@ class Link extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plug
 		const t = editor.t;
 
 		// Handle `Ctrl+K` keystroke and show the panel.
-		editor.keystrokes.set( 'CTRL+K', () => this._showPanel( true ) );
+		editor.keystrokes.set( linkKeystroke, () => {
+			if ( linkCommand.isEnabled ) {
+				this._showPanel( true );
+			}
+		} );
 
 		editor.ui.componentFactory.add( 'link', locale => {
 			const button = new __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_ui_src_button_buttonview__["a" /* default */]( locale );
@@ -58798,7 +58886,7 @@ class Link extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plug
 			button.isEnabled = true;
 			button.label = t( 'Link' );
 			button.icon = __WEBPACK_IMPORTED_MODULE_9__theme_icons_link_svg___default.a;
-			button.keystroke = 'CTRL+K';
+			button.keystroke = linkKeystroke;
 			button.tooltip = true;
 
 			// Bind button to the command.
@@ -59060,7 +59148,7 @@ function findLinkElementAncestor( position ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__domeventobserver__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__domeventobserver__ = __webpack_require__(69);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -59117,7 +59205,7 @@ class ClickObserver extends __WEBPACK_IMPORTED_MODULE_0__domeventobserver__["a" 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__linkelement__ = __webpack_require__(270);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__linkcommand__ = __webpack_require__(519);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__unlinkcommand__ = __webpack_require__(520);
@@ -59231,7 +59319,7 @@ class LinkCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_s
 		const doc = this.editor.document;
 
 		this.value = doc.selection.getAttribute( 'linkHref' );
-		this.isEnabled = doc.schema.checkAttributeInSelection( doc.selection, 'linkHref' );
+		this.isEnabled = this._checkEnabled();
 	}
 
 	/**
@@ -59291,6 +59379,24 @@ class LinkCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_s
 				}
 			}
 		} );
+	}
+
+	/**
+	 * Checks whether the command can be enabled in the current context.
+	 *
+	 * @private
+	 * @returns {Boolean} Whether the command should be enabled.
+	 */
+	_checkEnabled() {
+		const doc = this.editor.document;
+		const selectedElement = doc.selection.getSelectedElement();
+
+		// https://github.com/ckeditor/ckeditor5-link/issues/85
+		if ( selectedElement && selectedElement.is( 'image' ) ) {
+			return false;
+		}
+
+		return doc.schema.checkAttributeInSelection( doc.selection, 'linkHref' );
 	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = LinkCommand;
@@ -59366,7 +59472,7 @@ class UnlinkCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__balloonpanelview__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__balloonpanelview__ = __webpack_require__(150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -59580,14 +59686,14 @@ class ContextualBalloon extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_src_view__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_template__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_viewcollection__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_viewcollection__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_ui_src_labeledinput_labeledinputview__ = __webpack_require__(267);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_inputtext_inputtextview__ = __webpack_require__(268);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_ui_src_bindings_submithandler__ = __webpack_require__(269);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_ui_src_focuscycler__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_keystrokehandler__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_ui_src_focuscycler__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_keystrokehandler__ = __webpack_require__(59);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -60035,7 +60141,7 @@ class List extends __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_core_src_plug
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__listcommand__ = __webpack_require__(529);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__indentcommand__ = __webpack_require__(530);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_paragraph_src_paragraph__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_paragraph_src_paragraph__ = __webpack_require__(106);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__converters__ = __webpack_require__(531);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -60172,7 +60278,7 @@ function getViewListItemLength( element ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_command__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_first__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_first__ = __webpack_require__(71);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -60502,7 +60608,7 @@ function checkCanBecomeListItem( block, schema ) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_command__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_first__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_first__ = __webpack_require__(71);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -60719,11 +60825,11 @@ function _seekListItem( item, seekForward ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_model_position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_engine_src_model_writer__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_view_containerelement__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_view_containerelement__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_engine_src_view_position__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_engine_src_view_range__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_engine_src_view_treewalker__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_engine_src_view_writer__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_engine_src_view_treewalker__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_engine_src_view_writer__ = __webpack_require__(83);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -61757,7 +61863,7 @@ function _getBoundaryItemOfSameList( item, getFirst ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_view_containerelement__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_view_containerelement__ = __webpack_require__(47);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.

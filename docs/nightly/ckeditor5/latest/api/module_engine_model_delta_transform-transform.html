@@ -93,7 +93,7 @@
                   </li>
                   <li class="collapsing-list__item" data-public="true">
                     <div class="collapsing-list__term toggler--collapsed" id="defaultTransform">
-                      <h3><code><a class="member-name" href="#defaultTransform">defaultTransform</a>( a, b, isAMoreImportantThanB ) &rarr;  <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_delta_delta-Delta.html">Delta</a>&gt;</span></code></h3>
+                      <h3><code><a class="member-name" href="#defaultTransform">defaultTransform</a>( a, b, context ) &rarr;  <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_delta_delta-Delta.html">Delta</a>&gt;</span></code></h3>
                       <p class="badges">
 <span class="badge badge--gray ">static</span>
                       </p>
@@ -112,17 +112,14 @@ transforming two sets of operations by each other.</p>
                                   <dt><code> b : <span><a class="collapsing-list__type" href="module_engine_model_delta_delta-Delta.html">Delta</a></span></code></dt>
                                   <dd><p>Delta to transform by.</p>
                                   </dd>
-                                  <dt><code> isAMoreImportantThanB : Boolean</code></dt>
-                                  <dd><p>Flag indicating whether the delta which will be transformed (<code>a</code>) should be treated
-as more important when resolving conflicts. Note that this flag is used only if provided deltas have same
-<a href="module_engine_model_delta_delta-Delta.html#_priority">priority</a>. If deltas have different priorities, their importance is resolved
-automatically and overwrites this flag.</p>
+                                  <dt><code> context : <span><a class="collapsing-list__type" href="module_engine_model_delta_transform-transformationContext.html">transformationContext</a></span></code></dt>
+                                  <dd><p>Transformation context object.</p>
                                   </dd>
                                 </dl>
                         <h4>Returns</h4>
                         <dl>
                                   <dt><code><span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_delta_delta-Delta.html">Delta</a>&gt;</span></code></dt>
-                                  <dd><p>Result of the transformation, that is an array with single delta instance.</p>
+                                  <dd><p>Result of the transformation.</p>
                                   </dd>
                         </dl>
                       </div>
@@ -153,7 +150,7 @@ automatically and overwrites this flag.</p>
                   </li>
                   <li class="collapsing-list__item" data-public="true">
                     <div class="collapsing-list__term toggler--collapsed" id="transform">
-                      <h3><code><a class="member-name" href="#transform">transform</a>( a, b, isAMoreImportantThanB ) &rarr;  <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_delta_delta-Delta.html">Delta</a>&gt;</span></code></h3>
+                      <h3><code><a class="member-name" href="#transform">transform</a>( a, b, context ) &rarr;  <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_delta_delta-Delta.html">Delta</a>&gt;</span></code></h3>
                       <p class="badges">
 <span class="badge badge--gray ">static</span>
                       </p>
@@ -181,11 +178,8 @@ transformed using that function. If not,
                                   <dt><code> b : <span><a class="collapsing-list__type" href="module_engine_model_delta_delta-Delta.html">Delta</a></span></code></dt>
                                   <dd><p>Delta to transform by.</p>
                                   </dd>
-                                  <dt><code> isAMoreImportantThanB : Boolean</code></dt>
-                                  <dd><p>Flag indicating whether the delta which will be transformed (<code>a</code>) should be treated
-as more important when resolving conflicts. Note that this flag is used only if provided deltas have same
-<a href="module_engine_model_delta_delta-Delta.html#_priority">priority</a>. If deltas have different priorities, their importance is resolved
-automatically and overwrites this flag.</p>
+                                  <dt><code> context : <span><a class="collapsing-list__type" href="module_engine_model_delta_transform-transformationContext.html">transformationContext</a></span></code></dt>
+                                  <dd><p>Transformation context object.</p>
                                   </dd>
                                 </dl>
                         <h4>Returns</h4>
@@ -199,26 +193,29 @@ automatically and overwrites this flag.</p>
                   </li>
                   <li class="collapsing-list__item" data-public="true">
                     <div class="collapsing-list__term toggler--collapsed" id="transformDeltaSets">
-                      <h3><code><a class="member-name" href="#transformDeltaSets">transformDeltaSets</a>( deltasA, deltasB, isAMoreImportantThanB ) &rarr;  Object</code></h3>
+                      <h3><code><a class="member-name" href="#transformDeltaSets">transformDeltaSets</a>( deltasA, deltasB, [ document ] ) &rarr;  Object</code></h3>
                       <p class="badges">
 <span class="badge badge--gray ">static</span>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Transforms two sets of deltas by themselves. Returns both transformed sets. Does not modify passed parameters.
+                      <p class="collapsing-list__excerpt">Transforms two sets of deltas by themselves. Returns both transformed sets.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> deltasA : <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_delta_delta-Delta.html">Delta</a>&gt;</span></code></dt>
-                                  <dd><p>Array with first set of deltas to transform.</p>
+                                  <dd><p>Array with the first set of deltas to transform. These
+deltas are considered more important (than <code>deltasB</code>) when resolving conflicts.</p>
                                   </dd>
                                   <dt><code> deltasB : <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_delta_delta-Delta.html">Delta</a>&gt;</span></code></dt>
-                                  <dd><p>Array with second set of deltas to transform.</p>
+                                  <dd><p>Array with the second set of deltas to transform. These
+deltas are considered less important (than <code>deltasA</code>) when resolving conflicts.</p>
                                   </dd>
-                                  <dt><code> isAMoreImportantThanB : Boolean</code></dt>
-                                  <dd><p>Flag indicating whether the deltas from <code>deltasA</code> set should be treated as more
-important when resolving conflicts.</p>
+                                  <dt><code> [ document ] : <span><a class="collapsing-list__type" href="module_engine_model_document-Document.html">Document</a></span></code></dt>
+                                  <dd><p>If set, deltas will be transformed in &quot;context mode&quot;
+and given <code>document</code> will be used to determine relations between deltas. If not set (default), deltas will be
+transforming without additional context information.</p>
                                   </dd>
                                 </dl>
                         <h4>Returns</h4>
@@ -227,12 +224,12 @@ important when resolving conflicts.</p>
                                   <dd>
                                   </dd>
                                   <dt><code><span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_delta_delta-Delta.html">Delta</a>&gt;</span></code></dt>
-                                  <dd><p>return.deltasA The first set of deltas transformed by the second
-set of deltas.</p>
+                                  <dd><p>return.deltasA The first set of deltas transformed
+by the second set of deltas.</p>
                                   </dd>
                                   <dt><code><span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_delta_delta-Delta.html">Delta</a>&gt;</span></code></dt>
-                                  <dd><p>return.deltasB The second set of deltas transformed by the first
-set of deltas.</p>
+                                  <dd><p>return.deltasB The second set of deltas transformed
+by the first set of deltas.</p>
                                   </dd>
                         </dl>
                       </div>
@@ -946,12 +943,15 @@ set of deltas.</p>
                                                             </li>
                                                     </ul>
                                                   </li>
-                                                  <li class="toggler--expanded">
+                                                  <li class="toggler--expanded" data-protected="true">
                                                     <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_engine_model_delta_transform.html">transform</a>
                                                     </div>
                                                     <ul>
                                                             <li><a href="module_engine_model_delta_transform-transform.html">
                                                                 <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--namespace tree__item__text">transform</span></div></a>
+                                                            </li>
+                                                            <li><a href="module_engine_model_delta_transform-transformationContext.html">
+                                                                <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">transformationContext</span></div></a>
                                                             </li>
                                                     </ul>
                                                   </li>

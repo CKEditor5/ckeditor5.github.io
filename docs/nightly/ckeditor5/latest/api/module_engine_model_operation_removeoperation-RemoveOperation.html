@@ -66,53 +66,6 @@
         <h2>Properties</h2>
         <h4>Instance properties</h4>
         <ul class="collapsing-list collapsing-list--filtered">
-                  <li class="collapsing-list__item" data-protected="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_holderElementOffset">
-                      <h3><code><a class="member-name" href="#_holderElementOffset">_holderElementOffset</a> : Number</code></h3>
-                      <p class="badges">
-<span class="badge badge--orange ">protected</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Offset of the graveyard &quot;holder&quot; element, in which nodes removed by this operation are stored.</p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-protected="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_holderElementOffset">
-                      <h3><code><a class="member-name" href="#_holderElementOffset">_holderElementOffset</a></code></h3>
-                      <p class="badges">
-<span class="badge badge--orange ">protected</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Sets <a href="module_engine_model_operation_removeoperation-RemoveOperation.html#_holderElementOffset"><code>_holderElementOffset</code></a>.</p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-protected="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_needsHolderElement">
-                      <h3><code><a class="member-name" href="#_needsHolderElement">_needsHolderElement</a> : Boolean</code></h3>
-                      <p class="badges">
-<span class="badge badge--orange ">protected</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Flag informing whether this operation should insert &quot;holder&quot; element (<code>true</code>) or should move removed nodes
-into existing &quot;holder&quot; element (<code>false</code>).</p>
-                      <div class="collapsing-list__content">
-<p>The flag should be set to <code>true</code> for each &quot;new&quot; <code>RemoveOperation</code> that is each <code>RemoveOperation</code> originally
-created to remove some nodes from document (most likely created through <code>Batch</code> API).</p>
-<p>The flag should be set to <code>false</code> for each <code>RemoveOperation</code> that got created by splitting the original
-<code>RemoveOperation</code>, for example during operational transformation.</p>
-<p>The flag should be set to <code>false</code> whenever removing nodes that were re-inserted from graveyard. This will
-ensure correctness of all other operations that might change something on those nodes. This will also ensure
-that redundant empty graveyard holder elements are not created.</p>
-                      </div>
-                    </div>
-                  </li>
                   <li class="collapsing-list__item" data-public="true">
                     <div class="collapsing-list__term toggler--collapsed" id="type">
                       <h3><code><a class="member-name" href="#type">type</a></code></h3>
@@ -139,64 +92,10 @@ that redundant empty graveyard holder elements are not created.</p>
                   </li>
         </ul>
         <h2>Methods</h2>
-        <h4>Instance methods</h4>
         <ul class="collapsing-list collapsing-list--filtered">
                   <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="constructor">
-                      <h3><code><a class="member-name" href="#constructor">constructor</a>( position, howMany, baseVersion )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Creates a remove operation.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> position : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
-                                  <dd><p>Position before the first <a href="module_engine_model_item-Item.html">model item</a> to
-remove.</p>
-                                  </dd>
-                                  <dt><code> howMany : Number</code></dt>
-                                  <dd><p>Offset size of removed range. <a href="module_engine_model_item-Item.html">Model items</a> will be removed starting
-from <code>sourcePosition</code>, up to a <code>sourcePosition</code> with offset shifted by <code>howMany</code>.</p>
-                                  </dd>
-                                  <dt><code> baseVersion : Number</code></dt>
-                                  <dd><p><a href="module_engine_model_document-Document.html#version"><code>version</code></a> on which operation can be applied.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_execute">
-                      <h3><code><a class="member-name" href="#_execute">_execute</a>()</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">
-                      </p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="clone">
-                      <h3><code><a class="member-name" href="#clone">clone</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_operation_removeoperation-RemoveOperation.html">RemoveOperation</a></span></code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Creates and returns an operation that has the same parameters as this operation.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code><span><a class="collapsing-list__type" href="module_engine_model_operation_removeoperation-RemoveOperation.html">RemoveOperation</a></span></code></dt>
-                                  <dd><p>Clone of this operation.</p>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
                     <div class="collapsing-list__term toggler--collapsed" id="getReversed">
-                      <h3><code><a class="member-name" href="#getReversed">getReversed</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_operation_reinsertoperation-ReinsertOperation.html">ReinsertOperation</a></span></code></h3>
+                      <h3><code><a class="member-name" href="#getReversed">getReversed</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_operation_reinsertoperation-ReinsertOperation.html">ReinsertOperation</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_operation_nooperation-NoOperation.html">NoOperation</a></span></code></h3>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">See <a href="module_engine_model_operation_operation-Operation.html#getReversed"><code>Operation#getReversed()</code></a>.
@@ -204,39 +103,7 @@ from <code>sourcePosition</code>, up to a <code>sourcePosition</code> with offse
                       <div class="collapsing-list__content">
                         <h4>Returns</h4>
                         <dl>
-                                  <dt><code><span><a class="collapsing-list__type" href="module_engine_model_operation_reinsertoperation-ReinsertOperation.html">ReinsertOperation</a></span></code></dt>
-                                  <dd>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-        </ul>
-        <h4>Static methods</h4>
-        <ul class="collapsing-list collapsing-list--filtered">
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="fromJSON">
-                      <h3><code><a class="member-name" href="#fromJSON">fromJSON</a>( json, document ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_operation_removeoperation-RemoveOperation.html">RemoveOperation</a></span></code></h3>
-                      <p class="badges">
-<span class="badge badge--gray ">static</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Creates <code>RemoveOperation</code> object from deserilized object, i.e. from parsed JSON string.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> json : Object</code></dt>
-                                  <dd><p>Deserialized JSON object.</p>
-                                  </dd>
-                                  <dt><code> document : <span><a class="collapsing-list__type" href="module_engine_model_document-Document.html">Document</a></span></code></dt>
-                                  <dd><p>Document on which this operation will be applied.</p>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code><span><a class="collapsing-list__type" href="module_engine_model_operation_removeoperation-RemoveOperation.html">RemoveOperation</a></span></code></dt>
+                                  <dt><code><span><a class="collapsing-list__type" href="module_engine_model_operation_reinsertoperation-ReinsertOperation.html">ReinsertOperation</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_operation_nooperation-NoOperation.html">NoOperation</a></span></code></dt>
                                   <dd>
                                   </dd>
                         </dl>
@@ -951,12 +818,15 @@ from <code>sourcePosition</code>, up to a <code>sourcePosition</code> with offse
                                                             </li>
                                                     </ul>
                                                   </li>
-                                                  <li class="toggler--collapsed">
+                                                  <li class="toggler--collapsed" data-protected="true">
                                                     <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_engine_model_delta_transform.html">transform</a>
                                                     </div>
                                                     <ul>
                                                             <li><a href="module_engine_model_delta_transform-transform.html">
                                                                 <div class="tree__item__wrapper"><span class="tree__item--namespace tree__item__text">transform</span></div></a>
+                                                            </li>
+                                                            <li><a href="module_engine_model_delta_transform-transformationContext.html">
+                                                                <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">transformationContext</span></div></a>
                                                             </li>
                                                     </ul>
                                                   </li>

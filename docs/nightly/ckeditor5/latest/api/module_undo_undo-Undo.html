@@ -74,9 +74,9 @@ and a batch is seen as one undo step.</p>
 <p>After some changes happen to the document, the <code>History</code> and <code>UndoCommand</code> stack can be represented as follows:</p>
 <pre class="prettyprint source"><code>  History                           Undo stack
 ===========             ==================================
-[delta A1]              [batch A with selection before A1]
-[delta B1]              [batch B with selection before B1]
-[delta B2]              [batch C with selection before C1]
+[delta A1]                          [batch A]
+[delta B1]                          [batch B]
+[delta B2]                          [batch C]
 [delta C1]
 [delta C2]
 [delta B3]
@@ -89,69 +89,47 @@ so if a batch has delta <code>X</code>, <code>Y</code>, <code>Z</code>, reversed
 one needs to make sure if they are ready to be applied. In the scenario above, delta <code>C3</code> is the last delta and <code>C3r</code>
 bases on up-to-date document state, so it can be applied to the document.</p>
 <pre class="prettyprint source"><code>  History                           Undo stack
-===========             ==================================
-[delta A1 ]             [batch A with selection before A1]
-[delta B1 ]             [batch B with selection before B1]
-[delta B2 ]             [   processing undoing batch C   ]
-[delta C1 ]
-[delta C2 ]
-[delta B3 ]
-[delta C3 ]
-[delta C3r]</code></pre><p>Next is delta <code>C2</code>, reversed to <code>C2r</code>. <code>C2r</code> bases on <code>C2</code>, so it bases on the wrong document state. It needs to be
+=============             ==================================
+[ delta A1  ]                      [  batch A  ]
+[ delta B1  ]                      [  batch B  ]
+[ delta B2  ]             [   processing undoing batch C   ]
+[ delta C1  ]
+[ delta C2  ]
+[ delta B3  ]
+[ delta C3  ]
+[ delta C3r ]</code></pre><p>Next is delta <code>C2</code>, reversed to <code>C2r</code>. <code>C2r</code> bases on <code>C2</code>, so it bases on the wrong document state. It needs to be
 transformed by deltas from history that happened after it, so it &quot;knows&quot; about them. Let us assume that <code>C2&apos; = C2r * B3 * C3 * C3r</code>,
-where <code>*</code> means &quot;transformed by&quot;. As can be seen, <code>C2r</code> is transformed by a delta which is undone afterwards anyway.
-This brings two problems: lower effectiveness (obvious) and incorrect results. Bad results come from the fact that
-operational transformation algorithms assume there is no connection between two transformed operations when resolving
-conflicts, which is true for example for collaborative editing, but is not true for the undo algorithm.</p>
-<p>To prevent both problems, <code>History</code> introduces an API to <a href="module_engine_model_history-History.html#removeDelta">remove</a>
-deltas from history. It is used to remove undone and undoing deltas after they are applied. It feels right &#x2014; since when a
-delta is undone or reversed, it is &quot;removed&quot; and there should be no sign of it in the history (fig. 1).</p>
-<p>Notes:</p>
-<ul>
-<li><code>---</code> symbolizes a removed delta.</li>
-<li><p><code>&apos;</code> symbolizes a reversed delta that was later transformed.</p>
-<pre class="prettyprint source"><code>  History (fig. 1)            History (fig. 2)            History (fig. 3)
-  ================            ================            ================
-     [delta A1]                  [delta A1]                  [delta A1]
-     [delta B1]                  [delta B1]                  [delta B1]
-     [delta B2]                  [delta B2]                  [delta B2]
-     [delta C1]                  [delta C1]                  [---C1---]
-     [delta C2]                  [---C2---]                  [---C2---]
-     [delta B3]                  [delta B3]                  [delta B3]
-     [---C3---]                  [---C3---]                  [---C3---]
-     [---C3r--]                  [---C3r--]                  [---C3r--]
-                                 [---C2&apos;--]                  [---C2&apos;--]
-                                                             [---C1&apos;--]</code></pre></li>
-</ul>
-<p><code>C2r</code> can now be transformed only by <code>B3</code> and both <code>C2&apos;</code> and <code>C2</code> can be removed (fig. 2). Same with <code>C1</code> (fig. 3).</p>
-<p>But what about that selection? For batch <code>C</code>, undo feature remembers the selection just before <code>C1</code> was applied. It can be
-visualized between delta <code>B2</code> and <code>B3</code> (see fig. 3). As can be seen, some operations were applied to the document since the selection
-state was remembered. Setting the document selection as it was remembered would be incorrect. It feels natural that
-the selection state should also be transformed by deltas from history. The same pattern applies as with transforming deltas &#x2014;
-ranges should not be transformed by undone and undoing deltas. Thankfully, those deltas are already removed from history.</p>
-<p>Unfortunately, a problem appears with delta <code>B3</code>. It still remembers the context of deltas <code>C2</code> and <code>C1</code> on which it bases.
-It is an obvious error &#x2014; transforming by that delta would lead to incorrect results or &quot;repeating&quot; history would
-produce a different document than the actual one.</p>
-<p>To prevent this situation, <code>B3</code> needs to also be <a href="module_engine_model_history-History.html#updateDelta">updated</a> in history.
-It should be kept in a state that &quot;does not remember&quot; deltas that were removed from history. It is easily
-achieved while transforming the reversed delta. For example, when <code>C2r</code> is transformed by <code>B3</code>, at the same time <code>B3</code> is
-transformed by <code>C2r</code>. Transforming <code>B3</code> that remembers <code>C2</code> by a delta reversing <code>C2</code> effectively makes <code>B3</code> &quot;forget&quot; about <code>C2</code>.
-By doing these transformations you effectively make <code>B3</code> base on <code>B2</code> which is the correct state of history (fig. 4).</p>
-<pre class="prettyprint source"><code>     History (fig. 4)                         History (fig. 5)
-===========================            ===============================
-        [delta A1]                               [---A1---]
-        [delta B1]                         [delta B1 &quot;without A1&quot;]
-        [delta B2]                         [delta B2 &quot;without A1&quot;]
-        [---C1---]                               [---C1---]
-        [---C2---]                               [---C2---]
-[delta B3 &quot;without C2, C1&quot;]            [delta B3 &quot;without C2, C1, A1&quot;]
-        [---C3---]                               [---C3---]
-        [---C3r--]                               [---C3r--]
-        [---C2&apos;--]                               [---C2&apos;--]
-        [---C1&apos;--]                               [---C1&apos;--]
-                                                 [---A1&apos;--]</code></pre><p>Selective undo works on the same basis, however, instead of undoing the last batch in the undo stack, any batch can be undone.
-The same algorithm applies: deltas from a batch (i.e. <code>A1</code>) are reversed and then transformed by deltas stored in history,
-simultaneously updating them. Then deltas are applied to the document and removed from history (fig. 5).</p>
+where <code>*</code> means &quot;transformed by&quot;. Rest of deltas from that batch are processed in the same fashion.</p>
+<pre class="prettyprint source"><code>  History                           Undo stack                                     Redo stack
+=============             ==================================             ==================================
+[ delta A1  ]                      [  batch A  ]                                  [ batch Cr ]
+[ delta B1  ]                      [  batch B  ]
+[ delta B2  ]
+[ delta C1  ]
+[ delta C2  ]
+[ delta B3  ]
+[ delta C3  ]
+[ delta C3r ]
+[ delta C2&apos; ]
+[ delta C1&apos; ]</code></pre><p>Selective undo works on the same basis, however, instead of undoing the last batch in the undo stack, any batch can be undone.
+The same algorithm applies: deltas from a batch (i.e. <code>A1</code>) are reversed and then transformed by deltas stored in history.</p>
+<p>Redo also is very similar to undo. It has its own stack that is filled with undoing (reversed batches). Deltas from
+batch that is re-done are reversed-back, transformed in proper order and applied to the document.</p>
+<pre class="prettyprint source"><code>  History                           Undo stack                                     Redo stack
+=============             ==================================             ==================================
+[ delta A1  ]                      [  batch A  ]
+[ delta B1  ]                      [  batch B  ]
+[ delta B2  ]                      [ batch Crr ]
+[ delta C1  ]
+[ delta C2  ]
+[ delta B3  ]
+[ delta C3  ]
+[ delta C3r ]
+[ delta C2&apos; ]
+[ delta C1&apos; ]
+[ delta C1&apos;r]
+[ delta C2&apos;r]
+[ delta C3rr]</code></pre>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
           <ul>
@@ -1582,12 +1560,15 @@ be released if no attributes provided.</p>
                                                             </li>
                                                     </ul>
                                                   </li>
-                                                  <li class="toggler--collapsed">
+                                                  <li class="toggler--collapsed" data-protected="true">
                                                     <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_engine_model_delta_transform.html">transform</a>
                                                     </div>
                                                     <ul>
                                                             <li><a href="module_engine_model_delta_transform-transform.html">
                                                                 <div class="tree__item__wrapper"><span class="tree__item--namespace tree__item__text">transform</span></div></a>
+                                                            </li>
+                                                            <li><a href="module_engine_model_delta_transform-transformationContext.html">
+                                                                <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">transformationContext</span></div></a>
                                                             </li>
                                                     </ul>
                                                   </li>

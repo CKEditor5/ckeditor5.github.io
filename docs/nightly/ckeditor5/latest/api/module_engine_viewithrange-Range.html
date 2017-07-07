@@ -165,7 +165,7 @@ set to <code>true</code>.</p>
                   </li>
                   <li class="collapsing-list__item" data-public="true">
                     <div class="collapsing-list__term toggler--collapsed" id="containsRange">
-                      <h3><code><a class="member-name" href="#containsRange">containsRange</a>( otherRange ) &rarr;  Boolean</code></h3>
+                      <h3><code><a class="member-name" href="#containsRange">containsRange</a>( otherRange, [ loose ] ) &rarr;  Boolean</code></h3>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Checks whether this range contains given <a href="module_engine_viewithrange-Range.html">range</a>.
@@ -175,6 +175,12 @@ set to <code>true</code>.</p>
                                 <dl>
                                   <dt><code> otherRange : <span><a class="collapsing-list__type" href="module_engine_viewithrange-Range.html">Range</a></span></code></dt>
                                   <dd><p>Range to check.</p>
+                                  </dd>
+                                  <dt><code> [ loose ] : Boolean</code></dt>
+                                  <dd><p>Whether the check is loose or strict. If the check is strict (<code>false</code>), compared range cannot
+start or end at the same position as this range boundaries. If the check is loose (<code>true</code>), compared range can start, end or
+even be equal to this range. Note that collapsed ranges are always compared in strict mode.</p>
+                                    <p>Defaults to <code>false</code></p>
                                   </dd>
                                 </dl>
                         <h4>Returns</h4>
@@ -1335,12 +1341,15 @@ that element and ends after the last child of that element.
                                                             </li>
                                                     </ul>
                                                   </li>
-                                                  <li class="toggler--collapsed">
+                                                  <li class="toggler--collapsed" data-protected="true">
                                                     <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_engine_model_delta_transform.html">transform</a>
                                                     </div>
                                                     <ul>
                                                             <li><a href="module_engine_model_delta_transform-transform.html">
                                                                 <div class="tree__item__wrapper"><span class="tree__item--namespace tree__item__text">transform</span></div></a>
+                                                            </li>
+                                                            <li><a href="module_engine_model_delta_transform-transformationContext.html">
+                                                                <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">transformationContext</span></div></a>
                                                             </li>
                                                     </ul>
                                                   </li>

@@ -68,9 +68,8 @@
           </dl>
         </nav><p>The undo command stores <a href="module_engine_model_batch-Batch.html">batches</a> applied to the
 <a href="module_engine_model_document-Document.html">document</a> and is able to undo a batch by reversing it and transforming by
-other batches from <a href="module_engine_model_document-Document.html#history">history</a> that happened after the reversed batch.</p>
-<p>The undo command also takes care of restoring the <a href="module_engine_model_document-Document.html#selection">document selection</a>
-to the state before the undone batch was applied.</p>
+batches from <a href="module_engine_model_document-Document.html#history">history</a> that happened after the reversed batch.</p>
+<p>The undo command also takes care of restoring the <a href="module_engine_model_document-Document.html#selection">document selection</a>.</p>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
           <ul>
@@ -242,43 +241,36 @@ And the value of the <code>link</code> command may be an object with links detai
                       </div>
                     </div>
                   </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="execute">
-                      <h3><code><a class="member-name" href="#execute">execute</a>( [ batch ] )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Executes the command. This method reverts a <a href="module_engine_model_batch-Batch.html">batch</a> added to the command&apos;s stack, transforms
-and applies the reverted version on the <a href="module_engine_model_document-Document.html">document</a> and removes the batch from the stack.
-Then, it restores the <a href="module_engine_model_document-Document.html#selection">document selection</a>.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> [ batch ] : <span><a class="collapsing-list__type" href="module_engine_model_batch-Batch.html">Batch</a></span></code></dt>
-                                  <dd><p>A batch that should be undone. If not set, the last added batch will be undone.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_undo">
-                      <h3><code><a class="member-name" href="#_undo">_undo</a>( batchToUndo )</code></h3>
+                  <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="fire">
+                      <h3><code><a class="member-name" href="#fire">fire</a>( eventOrInfo, [ args ] ) &rarr;  </code></h3>
                       <p class="badges">
-<span class="badge badge--red ">private</span>
+<span class="badge badge--gray ">mixed</span>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Undoes a batch by reversing a batch from history, transforming that reversed batch and applying it. This is
-a helper method for <a href="module_undo_undocommand-UndoCommand.html#execute"><code>execute</code></a>.
+                      <p class="collapsing-list__excerpt">Fires an event, executing all callbacks registered for it.
                       </p>
                       <div class="collapsing-list__content">
+<p>The first parameter passed to callbacks is an <a href="module_utils_eventinfo-EventInfo.html"><code>EventInfo</code></a> object,
+followed by the optional <code>args</code> provided in the <code>fire()</code> method call.</p>
                         <h4>Parameters</h4>
                                 <dl>
-                                  <dt><code> batchToUndo : <span><a class="collapsing-list__type" href="module_engine_model_batch-Batch.html">Batch</a></span></code></dt>
-                                  <dd><p>A batch whose deltas will be reversed, transformed and applied.</p>
+                                  <dt><code> eventOrInfo : String | <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                  <dd><p>The name of the event or <code>EventInfo</code> object if event is delegated.</p>
+                                  </dd>
+                                  <dt><code> [ args ] : </code></dt>
+                                  <dd><p>Additional arguments to be passed to the callbacks.</p>
                                   </dd>
                                 </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                                  <dt><code></code></dt>
+                                  <dd><p>By default the method returns <code>undefined</code>. However, the return value can be changed by listeners
+through modification of the <a href="module_utils_eventinfo-EventInfo.html#return"><code>return</code></a>&apos;s value (the event info
+is the first param of every callback).</p>
+                                  </dd>
+                        </dl>
                       </div>
                     </div>
                   </li>
@@ -352,30 +344,30 @@ A.bind( &apos;a&apos; ).to( B, &apos;b&apos;, C, &apos;d&apos;, ( b, d ) =&gt; b
                       </div>
                     </div>
                   </li>
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_getItemIndexFromBaseVersion">
-                      <h3><code><a class="member-name" href="#_getItemIndexFromBaseVersion">_getItemIndexFromBaseVersion</a>( baseVersion ) &rarr;  Number | null</code></h3>
+                  <li class="collapsing-list__item" data-protected="true" data-inherited="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="_restoreSelection">
+                      <h3><code><a class="member-name" href="#_restoreSelection">_restoreSelection</a>( ranges, isBackward, deltas )</code></h3>
                       <p class="badges">
-<span class="badge badge--red ">private</span>
+<span class="badge badge--orange ">protected</span>
+<span class="badge badge--gray ">inherited</span>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Returns an index in <a href="module_undo_basecommand-BaseCommand.html#_stack"><code>_stack</code></a> pointing to the item that is storing a
-batch that has a given <a href="module_engine_model_batch-Batch.html#baseVersion"><code>baseVersion</code></a>.
+                      <p class="collapsing-list__excerpt">Restores the <a href="module_engine_model_document-Document.html#selection">document selection</a> state after a batch was undone.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
                                 <dl>
-                                  <dt><code> baseVersion : Number</code></dt>
-                                  <dd><p>The base version of the batch to find.</p>
+                                  <dt><code> ranges : <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span></code></dt>
+                                  <dd><p>Ranges to be restored.</p>
+                                  </dd>
+                                  <dt><code> isBackward : Boolean</code></dt>
+                                  <dd><p>A flag describing whether the restored range was selected forward or backward.</p>
+                                  </dd>
+                                  <dt><code> deltas : <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_delta_delta-Delta.html">Delta</a>&gt;</span></code></dt>
+                                  <dd><p>Deltas which has been applied since selection has been stored.</p>
                                   </dd>
                                 </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code>Number | null</code></dt>
-                                  <dd>
-                                  </dd>
-                        </dl>
                       </div>
                     </div>
                   </li>
@@ -483,60 +475,44 @@ emitterA.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( emitterC );</cod
                       </div>
                     </div>
                   </li>
+                  <li class="collapsing-list__item" data-public="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="execute">
+                      <h3><code><a class="member-name" href="#execute">execute</a>( [ batch ] )</code></h3>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Executes the command. This method reverts a <a href="module_engine_model_batch-Batch.html">batch</a> added to the command&apos;s stack, transforms
+and applies the reverted version on the <a href="module_engine_model_document-Document.html">document</a> and removes the batch from the stack.
+Then, it restores the <a href="module_engine_model_document-Document.html#selection">document selection</a>.
+                      </p>
+                      <div class="collapsing-list__content">
+                        <h4>Parameters</h4>
+                                <dl>
+                                  <dt><code> [ batch ] : <span><a class="collapsing-list__type" href="module_engine_model_batch-Batch.html">Batch</a></span></code></dt>
+                                  <dd><p>A batch that should be undone. If not set, the last added batch will be undone.</p>
+                                  </dd>
+                                </dl>
+                      </div>
+                    </div>
+                  </li>
                   <li class="collapsing-list__item" data-protected="true" data-inherited="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_restoreSelection">
-                      <h3><code><a class="member-name" href="#_restoreSelection">_restoreSelection</a>( ranges, isBackward )</code></h3>
+                    <div class="collapsing-list__term toggler--collapsed" id="_undo">
+                      <h3><code><a class="member-name" href="#_undo">_undo</a>( batchToUndo )</code></h3>
                       <p class="badges">
 <span class="badge badge--orange ">protected</span>
 <span class="badge badge--gray ">inherited</span>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Restores the <a href="module_engine_model_document-Document.html#selection">document selection</a> state after a batch was undone.
+                      <p class="collapsing-list__excerpt">Undoes a batch by reversing that batch, transforming reversed batch and finally applying it.
+This is a helper method for <a href="module_undo_basecommand-BaseCommand.html#execute"><code>execute</code></a>.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
                                 <dl>
-                                  <dt><code> ranges : <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span></code></dt>
-                                  <dd><p>Ranges to be restored.</p>
-                                  </dd>
-                                  <dt><code> isBackward : Boolean</code></dt>
-                                  <dd><p>A flag describing whether the restored range was selected forward or backward.</p>
+                                  <dt><code> batchToUndo : <span><a class="collapsing-list__type" href="module_engine_model_batch-Batch.html">Batch</a></span></code></dt>
+                                  <dd><p>The batch to be undone.</p>
                                   </dd>
                                 </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true" data-mixed="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="fire">
-                      <h3><code><a class="member-name" href="#fire">fire</a>( eventOrInfo, [ args ] ) &rarr;  </code></h3>
-                      <p class="badges">
-<span class="badge badge--gray ">mixed</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Fires an event, executing all callbacks registered for it.
-                      </p>
-                      <div class="collapsing-list__content">
-<p>The first parameter passed to callbacks is an <a href="module_utils_eventinfo-EventInfo.html"><code>EventInfo</code></a> object,
-followed by the optional <code>args</code> provided in the <code>fire()</code> method call.</p>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> eventOrInfo : String | <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                  <dd><p>The name of the event or <code>EventInfo</code> object if event is delegated.</p>
-                                  </dd>
-                                  <dt><code> [ args ] : </code></dt>
-                                  <dd><p>Additional arguments to be passed to the callbacks.</p>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code></code></dt>
-                                  <dd><p>By default the method returns <code>undefined</code>. However, the return value can be changed by listeners
-through modification of the <a href="module_utils_eventinfo-EventInfo.html#return"><code>return</code></a>&apos;s value (the event info
-is the first param of every callback).</p>
-                                  </dd>
-                        </dl>
                       </div>
                     </div>
                   </li>
@@ -1597,12 +1573,15 @@ by a high priority listener in order to prevent command execution.</p>
                                                             </li>
                                                     </ul>
                                                   </li>
-                                                  <li class="toggler--collapsed">
+                                                  <li class="toggler--collapsed" data-protected="true">
                                                     <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_engine_model_delta_transform.html">transform</a>
                                                     </div>
                                                     <ul>
                                                             <li><a href="module_engine_model_delta_transform-transform.html">
                                                                 <div class="tree__item__wrapper"><span class="tree__item--namespace tree__item__text">transform</span></div></a>
+                                                            </li>
+                                                            <li><a href="module_engine_model_delta_transform-transformationContext.html">
+                                                                <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">transformationContext</span></div></a>
                                                             </li>
                                                     </ul>
                                                   </li>
