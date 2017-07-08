@@ -924,7 +924,7 @@ class Position {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -2282,7 +2282,7 @@ function normalize( nodes ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_collection__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__viewcollection__ = __webpack_require__(149);
@@ -3906,6 +3906,79 @@ function shouldExtend( attrName ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__apply__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toInteger__ = __webpack_require__(13);
+
+
+
+/** Used as the `TypeError` message for "Functions" methods. */
+var FUNC_ERROR_TEXT = 'Expected a function';
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeMax = Math.max;
+
+/**
+ * Creates a function that invokes `func` with the `this` binding of the
+ * created function and arguments from `start` and beyond provided as
+ * an array.
+ *
+ * **Note:** This method is based on the
+ * [rest parameter](https://mdn.io/rest_parameters).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Function
+ * @param {Function} func The function to apply a rest parameter to.
+ * @param {number} [start=func.length-1] The start position of the rest parameter.
+ * @returns {Function} Returns the new function.
+ * @example
+ *
+ * var say = _.rest(function(what, names) {
+ *   return what + ' ' + _.initial(names).join(', ') +
+ *     (_.size(names) > 1 ? ', & ' : '') + _.last(names);
+ * });
+ *
+ * say('hello', 'fred', 'barney', 'pebbles');
+ * // => 'hello fred, barney, & pebbles'
+ */
+function rest(func, start) {
+  if (typeof func != 'function') {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+  start = nativeMax(start === undefined ? (func.length - 1) : __WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */](start), 0);
+  return function() {
+    var args = arguments,
+        index = -1,
+        length = nativeMax(args.length - start, 0),
+        array = Array(length);
+
+    while (++index < length) {
+      array[index] = args[start + index];
+    }
+    switch (start) {
+      case 0: return func.call(this, array);
+      case 1: return func.call(this, args[0], array);
+      case 2: return func.call(this, args[0], args[1], array);
+    }
+    var otherArgs = Array(start + 1);
+    index = -1;
+    while (++index < start) {
+      otherArgs[index] = args[index];
+    }
+    otherArgs[start] = array;
+    return __WEBPACK_IMPORTED_MODULE_0__apply__["a" /* default */](func, this, otherArgs);
+  };
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (rest);
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = _getEmitterListenedTo;
 /* harmony export (immutable) */ __webpack_exports__["b"] = _setEmitterId;
 /* unused harmony export _getEmitterId */
@@ -4514,79 +4587,6 @@ function fireDelegatedEvents( destinations, eventInfo, fireArgs ) {
 
 
 /***/ }),
-/* 8 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__apply__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toInteger__ = __webpack_require__(13);
-
-
-
-/** Used as the `TypeError` message for "Functions" methods. */
-var FUNC_ERROR_TEXT = 'Expected a function';
-
-/* Built-in method references for those with the same name as other `lodash` methods. */
-var nativeMax = Math.max;
-
-/**
- * Creates a function that invokes `func` with the `this` binding of the
- * created function and arguments from `start` and beyond provided as
- * an array.
- *
- * **Note:** This method is based on the
- * [rest parameter](https://mdn.io/rest_parameters).
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Function
- * @param {Function} func The function to apply a rest parameter to.
- * @param {number} [start=func.length-1] The start position of the rest parameter.
- * @returns {Function} Returns the new function.
- * @example
- *
- * var say = _.rest(function(what, names) {
- *   return what + ' ' + _.initial(names).join(', ') +
- *     (_.size(names) > 1 ? ', & ' : '') + _.last(names);
- * });
- *
- * say('hello', 'fred', 'barney', 'pebbles');
- * // => 'hello fred, barney, & pebbles'
- */
-function rest(func, start) {
-  if (typeof func != 'function') {
-    throw new TypeError(FUNC_ERROR_TEXT);
-  }
-  start = nativeMax(start === undefined ? (func.length - 1) : __WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */](start), 0);
-  return function() {
-    var args = arguments,
-        index = -1,
-        length = nativeMax(args.length - start, 0),
-        array = Array(length);
-
-    while (++index < length) {
-      array[index] = args[start + index];
-    }
-    switch (start) {
-      case 0: return func.call(this, array);
-      case 1: return func.call(this, args[0], array);
-      case 2: return func.call(this, args[0], args[1], array);
-    }
-    var otherArgs = Array(start + 1);
-    index = -1;
-    while (++index < start) {
-      otherArgs[index] = args[index];
-    }
-    otherArgs[start] = array;
-    return __WEBPACK_IMPORTED_MODULE_0__apply__["a" /* default */](func, this, otherArgs);
-  };
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (rest);
-
-
-/***/ }),
 /* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4595,7 +4595,7 @@ function rest(func, start) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__viewcollection__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__template__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_dom_emittermixin__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_collection__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(46);
@@ -4981,7 +4981,7 @@ function baseIteratee(value) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -5004,6 +5004,8 @@ function baseIteratee(value) {
  *
  * Instances of registered commands can be retrieved from {@link module:core/editor/editor~Editor#commands}.
  * The easiest way to execute a command is through {@link module:core/editor/editor~Editor#execute}.
+ *
+ * By default commands are disabled when the editor is in {@link module:core/editor/editor~Editor#isReadOnly read-only} mode.
  *
  * @mixes module:utils/observablemixin~ObservableMixin
  */
@@ -5058,6 +5060,23 @@ class Command {
 				evt.stop();
 			}
 		}, { priority: 'high' } );
+
+		// By default commands are disabled when the editor is in read-only mode.
+		this.listenTo( editor, 'change:isReadOnly', ( evt, name, value ) => {
+			if ( value ) {
+				// See a ticket about overriding observable properties
+				// https://github.com/ckeditor/ckeditor5-utils/issues/171.
+				this.on( 'change:isEnabled', forceDisable, { priority: 'lowest' } );
+				this.isEnabled = false;
+			} else {
+				this.off( 'change:isEnabled', forceDisable );
+				this.refresh();
+			}
+		} );
+
+		function forceDisable() {
+			this.isEnabled = false;
+		}
 	}
 
 	/**
@@ -5549,1044 +5568,7 @@ function register( name, creator ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["b"] = insert;
-/* harmony export (immutable) */ __webpack_exports__["d"] = remove;
-/* unused harmony export move */
-/* unused harmony export setAttribute */
-/* unused harmony export removeAttribute */
-/* harmony export (immutable) */ __webpack_exports__["c"] = normalizeNodes;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__text__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__textproxy__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__range__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__documentfragment__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__nodelist__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module engine/model/writer
- */
-
-
-
-
-
-
-
-
-
-/**
- * Contains functions used for composing model tree, grouped together under "model writer" name. Those functions
- * are built on top of {@link module:engine/model/node~Node node}, and it's child classes', APIs.
- *
- * Model writer API has multiple advantages and it is highly recommended to use it when changing model tree and nodes:
- * * model writer API {@link module:engine/model/writer~writer.normalizeNodes normalizes inserted nodes}, which means that you can insert
- * not only {@link module:engine/model/node~Node nodes}, but also `String`s, {@link module:engine/model/textproxy~TextProxy text proxies}
- * and
- * {@link module:engine/model/documentfragment~DocumentFragment document fragments},
- * * model writer API operates on {@link module:engine/model/position~Position positions}, which means that you have
- * better control over manipulating model tree as positions operate on offsets rather than indexes,
- * * model writer API automatically merges {@link module:engine/model/text~Text text nodes} with same attributes, which means
- * lower memory usage and better efficiency.
- *
- * @namespace writer
- */
-const writer = {
-	insert,
-	remove,
-	move,
-	setAttribute,
-	removeAttribute,
-	normalizeNodes
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (writer);
-
-/**
- * Inserts given nodes at given position.
- *
- * @function module:engine/model/writer~writer.insert
- * @param {module:engine/model/position~Position} position Position at which nodes should be inserted.
- * @param {module:engine/model/node~NodeSet} nodes Nodes to insert.
- * @returns {module:engine/model/range~Range} Range spanning over inserted elements.
- */
-function insert( position, nodes ) {
-	nodes = normalizeNodes( nodes );
-
-	// We have to count offset before inserting nodes because they can get merged and we would get wrong offsets.
-	const offset = nodes.reduce( ( sum, node ) => sum + node.offsetSize, 0 );
-	const parent = position.parent;
-
-	// Insertion might be in a text node, we should split it if that's the case.
-	_splitNodeAtPosition( position );
-	const index = position.index;
-
-	// Insert nodes at given index. After splitting we have a proper index and insertion is between nodes,
-	// using basic `Element` API.
-	parent.insertChildren( index, nodes );
-
-	// Merge text nodes, if possible. Merging is needed only at points where inserted nodes "touch" "old" nodes.
-	_mergeNodesAtIndex( parent, index + nodes.length );
-	_mergeNodesAtIndex( parent, index );
-
-	return new __WEBPACK_IMPORTED_MODULE_3__range__["a" /* default */]( position, position.getShiftedBy( offset ) );
-}
-
-/**
- * Removed nodes in given range. Only {@link module:engine/model/range~Range#isFlat flat} ranges are accepted.
- *
- * @function module:engine/model/writer~writer.remove
- * @param {module:engine/model/range~Range} range Range containing nodes to remove.
- * @returns {Array.<module:engine/model/node~Node>}
- */
-function remove( range ) {
-	if ( !range.isFlat ) {
-		/**
-		 * Trying to remove a range that starts and ends in different element.
-		 *
-		 * @error model-writer-remove-range-not-flat
-		 */
-		throw new __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'model-writer-remove-range-not-flat: ' +
-			'Trying to remove a range that starts and ends in different element.' );
-	}
-
-	const parent = range.start.parent;
-
-	// Range may be inside text nodes, we have to split them if that's the case.
-	_splitNodeAtPosition( range.start );
-	_splitNodeAtPosition( range.end );
-
-	// Remove the text nodes using basic `Element` API.
-	const removed = parent.removeChildren( range.start.index, range.end.index - range.start.index );
-
-	// Merge text nodes, if possible. After some nodes were removed, node before and after removed range will be
-	// touching at the position equal to the removed range beginning. We check merging possibility there.
-	_mergeNodesAtIndex( parent, range.start.index );
-
-	return removed;
-}
-
-/**
- * Moves nodes in given range to given target position. Only {@link module:engine/model/range~Range#isFlat flat} ranges are accepted.
- *
- * @param {module:engine/model/range~Range} sourceRange Range containing nodes to move.
- * @param {module:engine/model/position~Position} targetPosition Position to which nodes should be moved.
- * @returns {module:engine/model/range~Range} Range containing moved nodes.
- */
-function move( sourceRange, targetPosition ) {
-	if ( !sourceRange.isFlat ) {
-		/**
-		 * Trying to move a range that starts and ends in different element.
-		 *
-		 * @error model-writer-move-range-not-flat
-		 */
-		throw new __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'model-writer-move-range-not-flat: ' +
-			'Trying to move a range that starts and ends in different element.' );
-	}
-
-	const nodes = this.remove( sourceRange );
-
-	// We have to fix `targetPosition` because model changed after nodes from `sourceRange` got removed and
-	// that change might have an impact on `targetPosition`.
-	targetPosition = targetPosition._getTransformedByDeletion( sourceRange.start, sourceRange.end.offset - sourceRange.start.offset );
-
-	return this.insert( targetPosition, nodes );
-}
-
-/**
- * Sets given attribute on nodes in given range.
- *
- * @param {module:engine/model/range~Range} range Range containing nodes that should have the attribute set.
- * @param {String} key Key of attribute to set.
- * @param {*} value Attribute value.
- */
-function setAttribute( range, key, value ) {
-	// Range might start or end in text nodes, so we have to split them.
-	_splitNodeAtPosition( range.start );
-	_splitNodeAtPosition( range.end );
-
-	// Iterate over all items in the range.
-	for ( const item of range.getItems() ) {
-		// Iterator will return `TextProxy` instances but we know that those text proxies will
-		// always represent full text nodes (this is guaranteed thanks to splitting we did before).
-		// So, we can operate on those text proxies' text nodes.
-		const node = item.is( 'textProxy' ) ? item.textNode : item;
-
-		if ( value !== null ) {
-			node.setAttribute( key, value );
-		} else {
-			node.removeAttribute( key );
-		}
-
-		// After attributes changing it may happen that some text nodes can be merged. Try to merge with previous node.
-		_mergeNodesAtIndex( node.parent, node.index );
-	}
-
-	// Try to merge last changed node with it's previous sibling (not covered by the loop above).
-	_mergeNodesAtIndex( range.end.parent, range.end.index );
-}
-
-/**
- * Removes given attribute from nodes in given range.
- *
- * @param {module:engine/model/range~Range} range Range containing nodes that should have the attribute removed.
- * @param {String} key Key of attribute to remove.
- */
-function removeAttribute( range, key ) {
-	this.setAttribute( range, key, null );
-}
-
-/**
- * Normalizes given object or an array of objects to an array of {@link module:engine/model/node~Node nodes}. See
- * {@link module:engine/model/node~NodeSet NodeSet} for details on how normalization is performed.
- *
- * @param {module:engine/model/node~NodeSet} nodes Objects to normalize.
- * @returns {Array.<module:engine/model/node~Node>} Normalized nodes.
- */
-function normalizeNodes( nodes ) {
-	const normalized = [];
-
-	if ( !( nodes instanceof Array ) ) {
-		nodes = [ nodes ];
-	}
-
-	// Convert instances of classes other than Node.
-	for ( let i = 0; i < nodes.length; i++ ) {
-		if ( typeof nodes[ i ] == 'string' ) {
-			normalized.push( new __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */]( nodes[ i ] ) );
-		} else if ( nodes[ i ] instanceof __WEBPACK_IMPORTED_MODULE_2__textproxy__["a" /* default */] ) {
-			normalized.push( new __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */]( nodes[ i ].data, nodes[ i ].getAttributes() ) );
-		} else if ( nodes[ i ] instanceof __WEBPACK_IMPORTED_MODULE_4__documentfragment__["a" /* default */] || nodes[ i ] instanceof __WEBPACK_IMPORTED_MODULE_5__nodelist__["a" /* default */] ) {
-			for ( const child of nodes[ i ] ) {
-				normalized.push( child );
-			}
-		} else if ( nodes[ i ] instanceof __WEBPACK_IMPORTED_MODULE_0__node__["a" /* default */] ) {
-			normalized.push( nodes[ i ] );
-		}
-		// Skip unrecognized type.
-	}
-
-	// Merge text nodes.
-	for ( let i = 1; i < normalized.length; i++ ) {
-		const node = normalized[ i ];
-		const prev = normalized[ i - 1 ];
-
-		if ( node instanceof __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */] && prev instanceof __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */] && _haveSameAttributes( node, prev ) ) {
-			// Doing this instead changing prev.data because .data is readonly.
-			normalized.splice( i - 1, 2, new __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */]( prev.data + node.data, prev.getAttributes() ) );
-			i--;
-		}
-	}
-
-	return normalized;
-}
-
-/**
- * Checks if nodes before and after given index in given element are {@link module:engine/model/text~Text text nodes} and
- * merges them into one node if they have same attributes.
- *
- * Merging is done by removing two text nodes and inserting a new text node containing data from both merged text nodes.
- *
- * @ignore
- * @private
- * @param {module:engine/model/element~Element} element Parent element of nodes to merge.
- * @param {Number} index Index between nodes to merge.
- */
-function _mergeNodesAtIndex( element, index ) {
-	const nodeBefore = element.getChild( index - 1 );
-	const nodeAfter = element.getChild( index );
-
-	// Check if both of those nodes are text objects with same attributes.
-	if ( nodeBefore && nodeAfter && nodeBefore.is( 'text' ) && nodeAfter.is( 'text' ) && _haveSameAttributes( nodeBefore, nodeAfter ) ) {
-		// Append text of text node after index to the before one.
-		const mergedNode = new __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */]( nodeBefore.data + nodeAfter.data, nodeBefore.getAttributes() );
-
-		// Remove separate text nodes.
-		element.removeChildren( index - 1, 2 );
-
-		// Insert merged text node.
-		element.insertChildren( index - 1, mergedNode );
-	}
-}
-
-/**
- * Checks if given position is in a text node, and if so, splits the text node in two text nodes, each of them
- * containing a part of original text node.
- *
- * @ignore
- * @private
- * @param {module:engine/model/position~Position} position Position at which node should be split.
- */
-function _splitNodeAtPosition( position ) {
-	const textNode = position.textNode;
-	const element = position.parent;
-
-	if ( textNode ) {
-		const offsetDiff = position.offset - textNode.startOffset;
-		const index = textNode.index;
-
-		element.removeChildren( index, 1 );
-
-		const firstPart = new __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */]( textNode.data.substr( 0, offsetDiff ), textNode.getAttributes() );
-		const secondPart = new __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */]( textNode.data.substr( offsetDiff ), textNode.getAttributes() );
-
-		element.insertChildren( index, [ firstPart, secondPart ] );
-	}
-}
-
-/**
- * Checks whether two given nodes have same attributes.
- *
- * @ignore
- * @private
- * @param {module:engine/model/node~Node} nodeA Node to check.
- * @param {module:engine/model/node~Node} nodeB Node to check.
- * @returns {Boolean} `true` if nodes have same attributes, `false` otherwise.
- */
-function _haveSameAttributes( nodeA, nodeB ) {
-	const iteratorA = nodeA.getAttributes();
-	const iteratorB = nodeB.getAttributes();
-
-	for ( const attr of iteratorA ) {
-		if ( attr[ 1 ] !== nodeB.getAttribute( attr[ 0 ] ) ) {
-			return false;
-		}
-
-		iteratorB.next();
-	}
-
-	return iteratorB.next().done;
-}
-
-/**
- * Value that can be normalized to an array of {@link module:engine/model/node~Node nodes}.
- *
- * Non-arrays are normalized as follows:
- * * {@link module:engine/model/node~Node Node} is left as is,
- * * {@link module:engine/model/textproxy~TextProxy TextProxy} and `String` are normalized to {@link module:engine/model/text~Text Text},
- * * {@link module:engine/model/nodelist~NodeList NodeList} is normalized to an array containing all nodes that are in that node list,
- * * {@link module:engine/model/documentfragment~DocumentFragment DocumentFragment} is normalized to an array containing all of it's
- * * children.
- *
- * Arrays are processed item by item like non-array values and flattened to one array. Normalization always results in
- * a flat array of {@link module:engine/model/node~Node nodes}. Consecutive text nodes (or items normalized to text nodes) will be
- * merged if they have same attributes.
- *
- * @typedef {module:engine/model/node~Node|module:engine/model/textproxy~TextProxy|String|
- * module:engine/model/nodelist~NodeList|module:engine/model/documentfragment~DocumentFragment|Iterable}
- * module:engine/model/node~NodeSet
- */
-
-
-/***/ }),
-/* 20 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_clone__ = __webpack_require__(84);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module engine/model/delta/delta
- */
-
-
-
-
-/**
- * Base class for all deltas.
- *
- * Delta is a single, from the user action point of view, change in the editable document, like insert, split or
- * rename element. Delta is composed of operations, which are unit changes needed to be done to execute user action.
- *
- * Multiple deltas are grouped into a single {@link module:engine/model/batch~Batch}.
- */
-class Delta {
-	/**
-	 * Creates a delta instance.
-	 */
-	constructor() {
-		/**
-		 * {@link module:engine/model/batch~Batch} which delta is a part of. This property is null by default and set by the
-		 * {@link module:engine/model/batch~Batch#addDelta} method.
-		 *
-		 * @readonly
-		 * @member {module:engine/model/batch~Batch} module:engine/model/delta/delta~Delta#batch
-		 */
-		this.batch = null;
-
-		/**
-		 * Array of operations which compose delta.
-		 *
-		 * @readonly
-		 * @member {module:engine/model/operation/operation~Operation[]} module:engine/model/delta/delta~Delta#operations
-		 */
-		this.operations = [];
-	}
-
-	/**
-	 * Returns delta base version which is equal to the base version of the first operation in delta. If there
-	 * are no operations in delta, returns `null`.
-	 *
-	 * @see module:engine/model/document~Document
-	 * @type {Number|null}
-	 */
-	get baseVersion() {
-		if ( this.operations.length > 0 ) {
-			return this.operations[ 0 ].baseVersion;
-		}
-
-		return null;
-	}
-
-	/**
-	 * @param {Number} baseVersion
-	 */
-	set baseVersion( baseVersion ) {
-		for ( const operation of this.operations ) {
-			operation.baseVersion = baseVersion++;
-		}
-	}
-
-	/**
-	 * A class that will be used when creating reversed delta.
-	 *
-	 * @private
-	 * @type {Function}
-	 */
-	get _reverseDeltaClass() {
-		return Delta;
-	}
-
-	/**
-	 * Delta type.
-	 *
-	 * @readonly
-	 * @member {String} #type
-	 */
-
-	/**
-	 * Add operation to the delta.
-	 *
-	 * @param {module:engine/model/operation/operation~Operation} operation Operation instance.
-	 */
-	addOperation( operation ) {
-		operation.delta = this;
-		this.operations.push( operation );
-
-		return operation;
-	}
-
-	/**
-	 * Creates and returns a delta that has the same parameters as this delta.
-	 *
-	 * @returns {module:engine/model/delta/delta~Delta} Clone of this delta.
-	 */
-	clone() {
-		const delta = new this.constructor();
-
-		for ( const op of this.operations ) {
-			delta.addOperation( op.clone() );
-		}
-
-		return delta;
-	}
-
-	/**
-	 * Creates and returns a reverse delta. Reverse delta when executed right after the original delta will bring back
-	 * tree model state to the point before the original delta execution. In other words, it reverses changes done
-	 * by the original delta.
-	 *
-	 * Keep in mind that tree model state may change since executing the original delta, so reverse delta may be "outdated".
-	 * In that case you will need to {@link module:engine/model/delta/transform~transform} it by all deltas that were executed after
-	 * the original delta.
-	 *
-	 * @returns {module:engine/model/delta/delta~Delta} Reversed delta.
-	 */
-	getReversed() {
-		const delta = new this._reverseDeltaClass();
-
-		for ( const op of this.operations ) {
-			delta.addOperation( op.getReversed() );
-		}
-
-		delta.operations.reverse();
-
-		for ( let i = 0; i < delta.operations.length; i++ ) {
-			delta.operations[ i ].baseVersion = this.operations[ this.operations.length - 1 ].baseVersion + i + 1;
-		}
-
-		return delta;
-	}
-
-	/**
-	 * Custom toJSON method to make deltas serializable.
-	 *
-	 * @returns {Object} Clone of this delta with added class name.
-	 */
-	toJSON() {
-		const json = __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_clone__["a" /* default */]( this );
-
-		json.__className = this.constructor.className;
-
-		// Remove parent batch to avoid circular dependencies.
-		delete json.batch;
-
-		return json;
-	}
-
-	/**
-	 * Delta class name. Used by {@link #toJSON} method for serialization and
-	 * {@link module:engine/model/delta/deltafactory~DeltaFactory.fromJSON} during deserialization.
-	 *
-	 * @type {String}
-	 * @readonly
-	 */
-	static get className() {
-		return 'engine.model.delta.Delta';
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Delta;
-
-
-__WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( Delta );
-
-
-/***/ }),
-/* 21 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayPush__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isFlattenable__ = __webpack_require__(364);
-
-
-
-/**
- * The base implementation of `_.flatten` with support for restricting flattening.
- *
- * @private
- * @param {Array} array The array to flatten.
- * @param {number} depth The maximum recursion depth.
- * @param {boolean} [predicate=isFlattenable] The function invoked per iteration.
- * @param {boolean} [isStrict] Restrict to values that pass `predicate` checks.
- * @param {Array} [result=[]] The initial result value.
- * @returns {Array} Returns the new flattened array.
- */
-function baseFlatten(array, depth, predicate, isStrict, result) {
-  var index = -1,
-      length = array.length;
-
-  predicate || (predicate = __WEBPACK_IMPORTED_MODULE_1__isFlattenable__["a" /* default */]);
-  result || (result = []);
-
-  while (++index < length) {
-    var value = array[index];
-    if (depth > 0 && predicate(value)) {
-      if (depth > 1) {
-        // Recursively flatten arrays (susceptible to call stack limits).
-        baseFlatten(value, depth - 1, predicate, isStrict, result);
-      } else {
-        __WEBPACK_IMPORTED_MODULE_0__arrayPush__["a" /* default */](result, value);
-      }
-    } else if (!isStrict) {
-      result[result.length] = value;
-    }
-  }
-  return result;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (baseFlatten);
-
-
-/***/ }),
-/* 22 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = getCode;
-/* harmony export (immutable) */ __webpack_exports__["d"] = parseKeystroke;
-/* harmony export (immutable) */ __webpack_exports__["b"] = getEnvKeystrokeText;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__env__ = __webpack_require__(402);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * Set of utils related to keyboard support.
- *
- * @module utils/keyboard
- */
-
-
-
-
-/**
- * Object with `keyName => keyCode` pairs for a set of known keys.
- *
- * Contains:
- *
- * * `a-z`,
- * * `0-9`,
- * * `f1-f12`,
- * * `arrow(left|up|right|bottom)`,
- * * `backspace`, `delete`, `enter`, `esc`, `tab`,
- * * `ctrl`, `cmd`, `shift`, `alt`.
- */
-const keyCodes = generateKnownKeyCodes();
-/* harmony export (immutable) */ __webpack_exports__["c"] = keyCodes;
-
-
-/**
- * Converts a key name or a {@link module:utils/keyboard~KeystrokeInfo keystroke info} into a key code.
- *
- * Note: Key names are matched with {@link module:utils/keyboard~keyCodes} in a case-insensitive way.
- *
- * @param {String|module:utils/keyboard~KeystrokeInfo} Key name (see {@link module:utils/keyboard~keyCodes})
- * or a keystroke data object.
- * @returns {Number} Key or keystroke code.
- */
-function getCode( key ) {
-	let keyCode;
-
-	if ( typeof key == 'string' ) {
-		keyCode = keyCodes[ key.toLowerCase() ];
-
-		if ( !keyCode ) {
-			/**
-			 * Unknown key name. Only key names contained by the {@link module:utils/keyboard~keyCodes} can be used.
-			 *
-			 * @errror keyboard-unknown-key
-			 * @param {String} key
-			 */
-			throw new __WEBPACK_IMPORTED_MODULE_0__ckeditorerror__["a" /* default */]( 'keyboard-unknown-key: Unknown key name.', { key } );
-		}
-	} else {
-		keyCode = key.keyCode +
-			( key.altKey ? keyCodes.alt : 0 ) +
-			( key.ctrlKey ? keyCodes.ctrl : 0 ) +
-			( key.shiftKey ? keyCodes.shift : 0 );
-	}
-
-	return keyCode;
-}
-
-/**
- * Parses keystroke and returns a keystroke code that will match the code returned by
- * link {@link module:utils/keyboard.getCode} for a corresponding {@link module:utils/keyboard~KeystrokeInfo keystroke info}.
- *
- * The keystroke can be passed in two formats:
- *
- * * as a single string – e.g. `ctrl + A`,
- * * as an array of {@link module:utils/keyboard~keyCodes known key names} and key codes – e.g.:
- *   * `[ 'ctrl', 32 ]` (ctrl + space),
- *   * `[ 'ctrl', 'a' ]` (ctrl + A).
- *
- * Note: Key names are matched with {@link module:utils/keyboard~keyCodes} in a case-insensitive way.
- *
- * Note: Only keystrokes with a single non-modifier key are supported (e.g. `ctrl+A` is OK, but `ctrl+A+B` is not).
- *
- * @param {String|Array.<Number|String>} keystroke Keystroke definition.
- * @returns {Number} Keystroke code.
- */
-function parseKeystroke( keystroke ) {
-	if ( typeof keystroke == 'string' ) {
-		keystroke = splitKeystrokeText( keystroke );
-	}
-
-	return keystroke
-		.map( key => ( typeof key == 'string' ) ? getCode( key ) : key )
-		.reduce( ( key, sum ) => sum + key, 0 );
-}
-
-/**
- * It translates any keystroke string text like `"CTRL+A"` to an
- * environment–specific keystroke, i.e. `"⌘A"` on Mac OSX.
- *
- * @param {String} keystroke Keystroke text.
- * @returns {String} Keystroke text specific for the environment.
- */
-function getEnvKeystrokeText( keystroke ) {
-	const split = splitKeystrokeText( keystroke );
-
-	if ( __WEBPACK_IMPORTED_MODULE_1__env__["a" /* default */].mac ) {
-		if ( split[ 0 ].toLowerCase() == 'ctrl' ) {
-			return '⌘' + ( split[ 1 ] || '' );
-		}
-	}
-
-	return keystroke;
-}
-
-function generateKnownKeyCodes() {
-	const keyCodes = {
-		arrowleft: 37,
-		arrowup: 38,
-		arrowright: 39,
-		arrowdown: 40,
-		backspace: 8,
-		delete: 46,
-		enter: 13,
-		space: 32,
-		esc: 27,
-		tab: 9,
-
-		// The idea about these numbers is that they do not collide with any real key codes, so we can use them
-		// like bit masks.
-		ctrl: 0x110000,
-		// Has the same code as ctrl, because their behaviour should be unified across the editor.
-		// See http://ckeditor.github.io/editor-recommendations/general-policies#ctrl-vs-cmd
-		cmd: 0x110000,
-		shift: 0x220000,
-		alt: 0x440000
-	};
-
-	// a-z
-	for ( let code = 65; code <= 90; code++ ) {
-		const letter = String.fromCharCode( code );
-
-		keyCodes[ letter.toLowerCase() ] = code;
-	}
-
-	// 0-9
-	for ( let code = 48; code <= 57; code++ ) {
-		keyCodes[ code - 48 ] = code;
-	}
-
-	// F1-F12
-	for ( let code = 112; code <= 123; code++ ) {
-		keyCodes[ 'f' + ( code - 111 ) ] = code;
-	}
-
-	return keyCodes;
-}
-
-function splitKeystrokeText( keystroke ) {
-	return keystroke.split( /\s*\+\s*/ );
-}
-
-/**
- * Information about a keystroke.
- *
- * @interface module:utils/keyboard~KeystrokeInfo
- */
-
-/**
- * The [key code](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode).
- *
- * @member {Number} module:utils/keyboard~KeystrokeInfo#keyCode
- */
-
-/**
- * Whether the <kbd>Alt</kbd> modifier was pressed.
- *
- * @member {Bolean} module:utils/keyboard~KeystrokeInfo#altKey
- */
-
-/**
- * Whether the <kbd>Ctrl</kbd> or <kbd>Cmd</kbd> modifier was pressed.
- *
- * @member {Bolean} module:utils/keyboard~KeystrokeInfo#ctrlKey
- */
-
-/**
- * Whether the <kbd>Shift</kbd> modifier was pressed.
- *
- * @member {Bolean} module:utils/keyboard~KeystrokeInfo#shiftKey
- */
-
-
-/***/ }),
-/* 23 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__icon_iconview__ = __webpack_require__(456);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(22);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module ui/button/buttonview
- */
-
-
-
-
-
-
-
-/**
- * The button view class.
- *
- * @extends module:ui/view~View
- */
-class ButtonView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */] {
-	/**
-	 * @inheritDoc
-	 */
-	constructor( locale ) {
-		super( locale );
-
-		/**
-		 * The label of the button view visible to the user.
-		 *
-		 * @observable
-		 * @member {String} #label
-		 */
-		this.set( 'label' );
-
-		/**
-		 * (Optional) The keystroke associated with the button, i.e. <kbd>CTRL+B</kbd>,
-		 * in the string format compatible with {@link module:utils/keyboard}.
-		 *
-		 * @observable
-		 * @member {Boolean} #keystroke
-		 */
-		this.set( 'keystroke' );
-
-		/**
-		 * (Optional) Tooltip of the button, i.e. displayed when hovering the button with the mouse cursor.
-		 *
-		 * * If defined as a `Boolean` (e.g. `true`), then combination of `label` and `keystroke` will be set as a tooltip.
-		 * * If defined as a `String`, tooltip will equal the exact text of that `String`.
-		 * * If defined as a `Function`, `label` and `keystroke` will be passed to that function, which is to return
-		 * a string with the tooltip text.
-		 *
-		 *		const view = new ButtonView( locale );
-		 *		view.tooltip = ( label, keystroke ) => `A tooltip for ${ label } and ${ keystroke }.`
-		 *
-		 * @observable
-		 * @default false
-		 * @member {Boolean|String|Function} #tooltip
-		 */
-		this.set( 'tooltip' );
-
-		/**
-		 * The HTML type of the button. Default `button`.
-		 *
-		 * @observable
-		 * @member {'button'|'submit'|'reset'|'menu'} #type
-		 */
-		this.set( 'type', 'button' );
-
-		/**
-		 * Controls whether the button view is "on", e.g. some feature which it represents
-		 * is currently enabled.
-		 *
-		 * @observable
-		 * @member {Boolean} #isOn
-		 */
-		this.set( 'isOn', false );
-
-		/**
-		 * Controls whether the button view is enabled (can be clicked).
-		 *
-		 * @observable
-		 * @member {Boolean} #isEnabled
-		 */
-		this.set( 'isEnabled', true );
-
-		/**
-		 * Controls whether the button view is visible.
-		 *
-		 * @observable
-		 * @member {Boolean} #isVisible
-		 */
-		this.set( 'isVisible', true );
-
-		/**
-		 * (Optional) Whether the label of the button is hidden (e.g. button with icon only).
-		 *
-		 * @observable
-		 * @member {Boolean} #withText
-		 */
-		this.set( 'withText', false );
-
-		/**
-		 * (Optional) Source of the icon. See {@link module:ui/icon/iconview~IconView#content}.
-		 *
-		 * @observable
-		 * @member {String} #icon
-		 */
-		this.set( 'icon' );
-
-		/**
-		 * Controls the `tabindex` attribute of the button.
-		 *
-		 * @observable
-		 * @default -1
-		 * @member {String} #tabindex
-		 */
-		this.set( 'tabindex', -1 );
-
-		/**
-		 * Tooltip of the button bound to the template.
-		 *
-		 * @see #tooltip
-		 * @see #_getTooltipString
-		 * @private
-		 * @observable
-		 * @member {Boolean} #_tooltipString
-		 */
-		this.bind( '_tooltipString' ).to(
-			this, 'tooltip',
-			this, 'label',
-			this, 'keystroke',
-			this._getTooltipString.bind( this )
-		);
-
-		/**
-		 * Icon of the button view.
-		 *
-		 * @readonly
-		 * @member {module:ui/icon/iconview~IconView} #iconView
-		 */
-
-		const bind = this.bindTemplate;
-
-		this.template = new __WEBPACK_IMPORTED_MODULE_1__template__["a" /* default */]( {
-			tag: 'button',
-
-			attributes: {
-				class: [
-					'ck-button',
-					bind.if( '_tooltipString', 'ck-tooltip_s' ),
-					bind.to( 'isEnabled', value => value ? 'ck-enabled' : 'ck-disabled' ),
-					bind.if( 'isVisible', 'ck-hidden', value => !value ),
-					bind.to( 'isOn', value => value ? 'ck-on' : 'ck-off' ),
-					bind.if( 'withText', 'ck-button_with-text' )
-				],
-				type: bind.to( 'type', value => value ? value : 'button' ),
-				'data-ck-tooltip': [
-					bind.to( '_tooltipString' )
-				],
-				tabindex: bind.to( 'tabindex' )
-			},
-
-			children: [
-				{
-					tag: 'span',
-
-					attributes: {
-						class: [ 'ck-button__label' ]
-					},
-
-					children: [
-						{
-							text: bind.to( 'label' )
-						}
-					]
-				}
-			],
-
-			on: {
-				mousedown: bind.to( evt => {
-					evt.preventDefault();
-				} ),
-
-				click: bind.to( evt => {
-					// We can't make the button disabled using the disabled attribute, because it won't be focusable.
-					// Though, shouldn't this condition be moved to the button controller?
-					if ( this.isEnabled ) {
-						this.fire( 'execute' );
-					} else {
-						// Prevent the default when button is disabled, to block e.g.
-						// automatic form submitting. See ckeditor/ckeditor5-link#74.
-						evt.preventDefault();
-					}
-				} )
-			}
-		} );
-
-		/**
-		 * Fired when the button view is clicked. It won't be fired when the button is disabled.
-		 *
-		 * @event #execute
-		 */
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	init() {
-		if ( this.icon && !this.iconView ) {
-			const iconView = this.iconView = new __WEBPACK_IMPORTED_MODULE_2__icon_iconview__["a" /* default */]();
-
-			iconView.bind( 'content' ).to( this, 'icon' );
-
-			this.element.insertBefore( iconView.element, this.element.firstChild );
-
-			// Make sure the icon view will be destroyed along with button.
-			this.addChildren( iconView );
-		}
-
-		super.init();
-	}
-
-	/**
-	 * Focuses the button.
-	 */
-	focus() {
-		this.element.focus();
-	}
-
-	/**
-	 * Gets value for the `data-ck-tooltip` attribute from the combination of
-	 * {@link #tooltip}, {@link #label} and {@link #keystroke} attributes.
-	 *
-	 * @private
-	 * @see #tooltip
-	 * @see #_tooltipString
-	 * @param {Boolean|String|Function} tooltip Button tooltip.
-	 * @param {String} label Button label.
-	 * @param {String} keystroke Button keystroke.
-	 * @returns {String}
-	 */
-	_getTooltipString( tooltip, label, keystroke ) {
-		if ( tooltip ) {
-			if ( typeof tooltip == 'string' ) {
-				return tooltip;
-			} else {
-				if ( keystroke ) {
-					keystroke = __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_keyboard__["b" /* getEnvKeystrokeText */]( keystroke );
-				}
-
-				if ( tooltip instanceof Function ) {
-					return tooltip( label, keystroke );
-				} else if ( tooltip === true ) {
-					return `${ label }${ keystroke ? ` (${ keystroke })` : '' }`;
-				}
-			}
-		}
-
-		return false;
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = ButtonView;
-
-
-
-/***/ }),
-/* 24 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__emittermixin__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__emittermixin__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lib_lodash_extend__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__lib_lodash_isObject__ = __webpack_require__(12);
@@ -7318,6 +6300,1043 @@ __WEBPACK_IMPORTED_MODULE_2__lib_lodash_extend__["a" /* default */]( ObservableM
  *
  * @interface Observable
  */
+
+
+/***/ }),
+/* 20 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = insert;
+/* harmony export (immutable) */ __webpack_exports__["d"] = remove;
+/* unused harmony export move */
+/* unused harmony export setAttribute */
+/* unused harmony export removeAttribute */
+/* harmony export (immutable) */ __webpack_exports__["c"] = normalizeNodes;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__text__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__textproxy__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__range__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__documentfragment__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__nodelist__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module engine/model/writer
+ */
+
+
+
+
+
+
+
+
+
+/**
+ * Contains functions used for composing model tree, grouped together under "model writer" name. Those functions
+ * are built on top of {@link module:engine/model/node~Node node}, and it's child classes', APIs.
+ *
+ * Model writer API has multiple advantages and it is highly recommended to use it when changing model tree and nodes:
+ * * model writer API {@link module:engine/model/writer~writer.normalizeNodes normalizes inserted nodes}, which means that you can insert
+ * not only {@link module:engine/model/node~Node nodes}, but also `String`s, {@link module:engine/model/textproxy~TextProxy text proxies}
+ * and
+ * {@link module:engine/model/documentfragment~DocumentFragment document fragments},
+ * * model writer API operates on {@link module:engine/model/position~Position positions}, which means that you have
+ * better control over manipulating model tree as positions operate on offsets rather than indexes,
+ * * model writer API automatically merges {@link module:engine/model/text~Text text nodes} with same attributes, which means
+ * lower memory usage and better efficiency.
+ *
+ * @namespace writer
+ */
+const writer = {
+	insert,
+	remove,
+	move,
+	setAttribute,
+	removeAttribute,
+	normalizeNodes
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (writer);
+
+/**
+ * Inserts given nodes at given position.
+ *
+ * @function module:engine/model/writer~writer.insert
+ * @param {module:engine/model/position~Position} position Position at which nodes should be inserted.
+ * @param {module:engine/model/node~NodeSet} nodes Nodes to insert.
+ * @returns {module:engine/model/range~Range} Range spanning over inserted elements.
+ */
+function insert( position, nodes ) {
+	nodes = normalizeNodes( nodes );
+
+	// We have to count offset before inserting nodes because they can get merged and we would get wrong offsets.
+	const offset = nodes.reduce( ( sum, node ) => sum + node.offsetSize, 0 );
+	const parent = position.parent;
+
+	// Insertion might be in a text node, we should split it if that's the case.
+	_splitNodeAtPosition( position );
+	const index = position.index;
+
+	// Insert nodes at given index. After splitting we have a proper index and insertion is between nodes,
+	// using basic `Element` API.
+	parent.insertChildren( index, nodes );
+
+	// Merge text nodes, if possible. Merging is needed only at points where inserted nodes "touch" "old" nodes.
+	_mergeNodesAtIndex( parent, index + nodes.length );
+	_mergeNodesAtIndex( parent, index );
+
+	return new __WEBPACK_IMPORTED_MODULE_3__range__["a" /* default */]( position, position.getShiftedBy( offset ) );
+}
+
+/**
+ * Removed nodes in given range. Only {@link module:engine/model/range~Range#isFlat flat} ranges are accepted.
+ *
+ * @function module:engine/model/writer~writer.remove
+ * @param {module:engine/model/range~Range} range Range containing nodes to remove.
+ * @returns {Array.<module:engine/model/node~Node>}
+ */
+function remove( range ) {
+	if ( !range.isFlat ) {
+		/**
+		 * Trying to remove a range that starts and ends in different element.
+		 *
+		 * @error model-writer-remove-range-not-flat
+		 */
+		throw new __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'model-writer-remove-range-not-flat: ' +
+			'Trying to remove a range that starts and ends in different element.' );
+	}
+
+	const parent = range.start.parent;
+
+	// Range may be inside text nodes, we have to split them if that's the case.
+	_splitNodeAtPosition( range.start );
+	_splitNodeAtPosition( range.end );
+
+	// Remove the text nodes using basic `Element` API.
+	const removed = parent.removeChildren( range.start.index, range.end.index - range.start.index );
+
+	// Merge text nodes, if possible. After some nodes were removed, node before and after removed range will be
+	// touching at the position equal to the removed range beginning. We check merging possibility there.
+	_mergeNodesAtIndex( parent, range.start.index );
+
+	return removed;
+}
+
+/**
+ * Moves nodes in given range to given target position. Only {@link module:engine/model/range~Range#isFlat flat} ranges are accepted.
+ *
+ * @param {module:engine/model/range~Range} sourceRange Range containing nodes to move.
+ * @param {module:engine/model/position~Position} targetPosition Position to which nodes should be moved.
+ * @returns {module:engine/model/range~Range} Range containing moved nodes.
+ */
+function move( sourceRange, targetPosition ) {
+	if ( !sourceRange.isFlat ) {
+		/**
+		 * Trying to move a range that starts and ends in different element.
+		 *
+		 * @error model-writer-move-range-not-flat
+		 */
+		throw new __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'model-writer-move-range-not-flat: ' +
+			'Trying to move a range that starts and ends in different element.' );
+	}
+
+	const nodes = this.remove( sourceRange );
+
+	// We have to fix `targetPosition` because model changed after nodes from `sourceRange` got removed and
+	// that change might have an impact on `targetPosition`.
+	targetPosition = targetPosition._getTransformedByDeletion( sourceRange.start, sourceRange.end.offset - sourceRange.start.offset );
+
+	return this.insert( targetPosition, nodes );
+}
+
+/**
+ * Sets given attribute on nodes in given range.
+ *
+ * @param {module:engine/model/range~Range} range Range containing nodes that should have the attribute set.
+ * @param {String} key Key of attribute to set.
+ * @param {*} value Attribute value.
+ */
+function setAttribute( range, key, value ) {
+	// Range might start or end in text nodes, so we have to split them.
+	_splitNodeAtPosition( range.start );
+	_splitNodeAtPosition( range.end );
+
+	// Iterate over all items in the range.
+	for ( const item of range.getItems() ) {
+		// Iterator will return `TextProxy` instances but we know that those text proxies will
+		// always represent full text nodes (this is guaranteed thanks to splitting we did before).
+		// So, we can operate on those text proxies' text nodes.
+		const node = item.is( 'textProxy' ) ? item.textNode : item;
+
+		if ( value !== null ) {
+			node.setAttribute( key, value );
+		} else {
+			node.removeAttribute( key );
+		}
+
+		// After attributes changing it may happen that some text nodes can be merged. Try to merge with previous node.
+		_mergeNodesAtIndex( node.parent, node.index );
+	}
+
+	// Try to merge last changed node with it's previous sibling (not covered by the loop above).
+	_mergeNodesAtIndex( range.end.parent, range.end.index );
+}
+
+/**
+ * Removes given attribute from nodes in given range.
+ *
+ * @param {module:engine/model/range~Range} range Range containing nodes that should have the attribute removed.
+ * @param {String} key Key of attribute to remove.
+ */
+function removeAttribute( range, key ) {
+	this.setAttribute( range, key, null );
+}
+
+/**
+ * Normalizes given object or an array of objects to an array of {@link module:engine/model/node~Node nodes}. See
+ * {@link module:engine/model/node~NodeSet NodeSet} for details on how normalization is performed.
+ *
+ * @param {module:engine/model/node~NodeSet} nodes Objects to normalize.
+ * @returns {Array.<module:engine/model/node~Node>} Normalized nodes.
+ */
+function normalizeNodes( nodes ) {
+	const normalized = [];
+
+	if ( !( nodes instanceof Array ) ) {
+		nodes = [ nodes ];
+	}
+
+	// Convert instances of classes other than Node.
+	for ( let i = 0; i < nodes.length; i++ ) {
+		if ( typeof nodes[ i ] == 'string' ) {
+			normalized.push( new __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */]( nodes[ i ] ) );
+		} else if ( nodes[ i ] instanceof __WEBPACK_IMPORTED_MODULE_2__textproxy__["a" /* default */] ) {
+			normalized.push( new __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */]( nodes[ i ].data, nodes[ i ].getAttributes() ) );
+		} else if ( nodes[ i ] instanceof __WEBPACK_IMPORTED_MODULE_4__documentfragment__["a" /* default */] || nodes[ i ] instanceof __WEBPACK_IMPORTED_MODULE_5__nodelist__["a" /* default */] ) {
+			for ( const child of nodes[ i ] ) {
+				normalized.push( child );
+			}
+		} else if ( nodes[ i ] instanceof __WEBPACK_IMPORTED_MODULE_0__node__["a" /* default */] ) {
+			normalized.push( nodes[ i ] );
+		}
+		// Skip unrecognized type.
+	}
+
+	// Merge text nodes.
+	for ( let i = 1; i < normalized.length; i++ ) {
+		const node = normalized[ i ];
+		const prev = normalized[ i - 1 ];
+
+		if ( node instanceof __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */] && prev instanceof __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */] && _haveSameAttributes( node, prev ) ) {
+			// Doing this instead changing prev.data because .data is readonly.
+			normalized.splice( i - 1, 2, new __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */]( prev.data + node.data, prev.getAttributes() ) );
+			i--;
+		}
+	}
+
+	return normalized;
+}
+
+/**
+ * Checks if nodes before and after given index in given element are {@link module:engine/model/text~Text text nodes} and
+ * merges them into one node if they have same attributes.
+ *
+ * Merging is done by removing two text nodes and inserting a new text node containing data from both merged text nodes.
+ *
+ * @ignore
+ * @private
+ * @param {module:engine/model/element~Element} element Parent element of nodes to merge.
+ * @param {Number} index Index between nodes to merge.
+ */
+function _mergeNodesAtIndex( element, index ) {
+	const nodeBefore = element.getChild( index - 1 );
+	const nodeAfter = element.getChild( index );
+
+	// Check if both of those nodes are text objects with same attributes.
+	if ( nodeBefore && nodeAfter && nodeBefore.is( 'text' ) && nodeAfter.is( 'text' ) && _haveSameAttributes( nodeBefore, nodeAfter ) ) {
+		// Append text of text node after index to the before one.
+		const mergedNode = new __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */]( nodeBefore.data + nodeAfter.data, nodeBefore.getAttributes() );
+
+		// Remove separate text nodes.
+		element.removeChildren( index - 1, 2 );
+
+		// Insert merged text node.
+		element.insertChildren( index - 1, mergedNode );
+	}
+}
+
+/**
+ * Checks if given position is in a text node, and if so, splits the text node in two text nodes, each of them
+ * containing a part of original text node.
+ *
+ * @ignore
+ * @private
+ * @param {module:engine/model/position~Position} position Position at which node should be split.
+ */
+function _splitNodeAtPosition( position ) {
+	const textNode = position.textNode;
+	const element = position.parent;
+
+	if ( textNode ) {
+		const offsetDiff = position.offset - textNode.startOffset;
+		const index = textNode.index;
+
+		element.removeChildren( index, 1 );
+
+		const firstPart = new __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */]( textNode.data.substr( 0, offsetDiff ), textNode.getAttributes() );
+		const secondPart = new __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */]( textNode.data.substr( offsetDiff ), textNode.getAttributes() );
+
+		element.insertChildren( index, [ firstPart, secondPart ] );
+	}
+}
+
+/**
+ * Checks whether two given nodes have same attributes.
+ *
+ * @ignore
+ * @private
+ * @param {module:engine/model/node~Node} nodeA Node to check.
+ * @param {module:engine/model/node~Node} nodeB Node to check.
+ * @returns {Boolean} `true` if nodes have same attributes, `false` otherwise.
+ */
+function _haveSameAttributes( nodeA, nodeB ) {
+	const iteratorA = nodeA.getAttributes();
+	const iteratorB = nodeB.getAttributes();
+
+	for ( const attr of iteratorA ) {
+		if ( attr[ 1 ] !== nodeB.getAttribute( attr[ 0 ] ) ) {
+			return false;
+		}
+
+		iteratorB.next();
+	}
+
+	return iteratorB.next().done;
+}
+
+/**
+ * Value that can be normalized to an array of {@link module:engine/model/node~Node nodes}.
+ *
+ * Non-arrays are normalized as follows:
+ * * {@link module:engine/model/node~Node Node} is left as is,
+ * * {@link module:engine/model/textproxy~TextProxy TextProxy} and `String` are normalized to {@link module:engine/model/text~Text Text},
+ * * {@link module:engine/model/nodelist~NodeList NodeList} is normalized to an array containing all nodes that are in that node list,
+ * * {@link module:engine/model/documentfragment~DocumentFragment DocumentFragment} is normalized to an array containing all of it's
+ * * children.
+ *
+ * Arrays are processed item by item like non-array values and flattened to one array. Normalization always results in
+ * a flat array of {@link module:engine/model/node~Node nodes}. Consecutive text nodes (or items normalized to text nodes) will be
+ * merged if they have same attributes.
+ *
+ * @typedef {module:engine/model/node~Node|module:engine/model/textproxy~TextProxy|String|
+ * module:engine/model/nodelist~NodeList|module:engine/model/documentfragment~DocumentFragment|Iterable}
+ * module:engine/model/node~NodeSet
+ */
+
+
+/***/ }),
+/* 21 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_clone__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module engine/model/delta/delta
+ */
+
+
+
+
+/**
+ * Base class for all deltas.
+ *
+ * Delta is a single, from the user action point of view, change in the editable document, like insert, split or
+ * rename element. Delta is composed of operations, which are unit changes needed to be done to execute user action.
+ *
+ * Multiple deltas are grouped into a single {@link module:engine/model/batch~Batch}.
+ */
+class Delta {
+	/**
+	 * Creates a delta instance.
+	 */
+	constructor() {
+		/**
+		 * {@link module:engine/model/batch~Batch} which delta is a part of. This property is null by default and set by the
+		 * {@link module:engine/model/batch~Batch#addDelta} method.
+		 *
+		 * @readonly
+		 * @member {module:engine/model/batch~Batch} module:engine/model/delta/delta~Delta#batch
+		 */
+		this.batch = null;
+
+		/**
+		 * Array of operations which compose delta.
+		 *
+		 * @readonly
+		 * @member {module:engine/model/operation/operation~Operation[]} module:engine/model/delta/delta~Delta#operations
+		 */
+		this.operations = [];
+	}
+
+	/**
+	 * Returns delta base version which is equal to the base version of the first operation in delta. If there
+	 * are no operations in delta, returns `null`.
+	 *
+	 * @see module:engine/model/document~Document
+	 * @type {Number|null}
+	 */
+	get baseVersion() {
+		if ( this.operations.length > 0 ) {
+			return this.operations[ 0 ].baseVersion;
+		}
+
+		return null;
+	}
+
+	/**
+	 * @param {Number} baseVersion
+	 */
+	set baseVersion( baseVersion ) {
+		for ( const operation of this.operations ) {
+			operation.baseVersion = baseVersion++;
+		}
+	}
+
+	/**
+	 * A class that will be used when creating reversed delta.
+	 *
+	 * @private
+	 * @type {Function}
+	 */
+	get _reverseDeltaClass() {
+		return Delta;
+	}
+
+	/**
+	 * Delta type.
+	 *
+	 * @readonly
+	 * @member {String} #type
+	 */
+
+	/**
+	 * Add operation to the delta.
+	 *
+	 * @param {module:engine/model/operation/operation~Operation} operation Operation instance.
+	 */
+	addOperation( operation ) {
+		operation.delta = this;
+		this.operations.push( operation );
+
+		return operation;
+	}
+
+	/**
+	 * Creates and returns a delta that has the same parameters as this delta.
+	 *
+	 * @returns {module:engine/model/delta/delta~Delta} Clone of this delta.
+	 */
+	clone() {
+		const delta = new this.constructor();
+
+		for ( const op of this.operations ) {
+			delta.addOperation( op.clone() );
+		}
+
+		return delta;
+	}
+
+	/**
+	 * Creates and returns a reverse delta. Reverse delta when executed right after the original delta will bring back
+	 * tree model state to the point before the original delta execution. In other words, it reverses changes done
+	 * by the original delta.
+	 *
+	 * Keep in mind that tree model state may change since executing the original delta, so reverse delta may be "outdated".
+	 * In that case you will need to {@link module:engine/model/delta/transform~transform} it by all deltas that were executed after
+	 * the original delta.
+	 *
+	 * @returns {module:engine/model/delta/delta~Delta} Reversed delta.
+	 */
+	getReversed() {
+		const delta = new this._reverseDeltaClass();
+
+		for ( const op of this.operations ) {
+			delta.addOperation( op.getReversed() );
+		}
+
+		delta.operations.reverse();
+
+		for ( let i = 0; i < delta.operations.length; i++ ) {
+			delta.operations[ i ].baseVersion = this.operations[ this.operations.length - 1 ].baseVersion + i + 1;
+		}
+
+		return delta;
+	}
+
+	/**
+	 * Custom toJSON method to make deltas serializable.
+	 *
+	 * @returns {Object} Clone of this delta with added class name.
+	 */
+	toJSON() {
+		const json = __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_clone__["a" /* default */]( this );
+
+		json.__className = this.constructor.className;
+
+		// Remove parent batch to avoid circular dependencies.
+		delete json.batch;
+
+		return json;
+	}
+
+	/**
+	 * Delta class name. Used by {@link #toJSON} method for serialization and
+	 * {@link module:engine/model/delta/deltafactory~DeltaFactory.fromJSON} during deserialization.
+	 *
+	 * @type {String}
+	 * @readonly
+	 */
+	static get className() {
+		return 'engine.model.delta.Delta';
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Delta;
+
+
+__WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( Delta );
+
+
+/***/ }),
+/* 22 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayPush__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isFlattenable__ = __webpack_require__(364);
+
+
+
+/**
+ * The base implementation of `_.flatten` with support for restricting flattening.
+ *
+ * @private
+ * @param {Array} array The array to flatten.
+ * @param {number} depth The maximum recursion depth.
+ * @param {boolean} [predicate=isFlattenable] The function invoked per iteration.
+ * @param {boolean} [isStrict] Restrict to values that pass `predicate` checks.
+ * @param {Array} [result=[]] The initial result value.
+ * @returns {Array} Returns the new flattened array.
+ */
+function baseFlatten(array, depth, predicate, isStrict, result) {
+  var index = -1,
+      length = array.length;
+
+  predicate || (predicate = __WEBPACK_IMPORTED_MODULE_1__isFlattenable__["a" /* default */]);
+  result || (result = []);
+
+  while (++index < length) {
+    var value = array[index];
+    if (depth > 0 && predicate(value)) {
+      if (depth > 1) {
+        // Recursively flatten arrays (susceptible to call stack limits).
+        baseFlatten(value, depth - 1, predicate, isStrict, result);
+      } else {
+        __WEBPACK_IMPORTED_MODULE_0__arrayPush__["a" /* default */](result, value);
+      }
+    } else if (!isStrict) {
+      result[result.length] = value;
+    }
+  }
+  return result;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (baseFlatten);
+
+
+/***/ }),
+/* 23 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = getCode;
+/* harmony export (immutable) */ __webpack_exports__["d"] = parseKeystroke;
+/* harmony export (immutable) */ __webpack_exports__["b"] = getEnvKeystrokeText;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditorerror__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__env__ = __webpack_require__(402);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * Set of utils related to keyboard support.
+ *
+ * @module utils/keyboard
+ */
+
+
+
+
+/**
+ * Object with `keyName => keyCode` pairs for a set of known keys.
+ *
+ * Contains:
+ *
+ * * `a-z`,
+ * * `0-9`,
+ * * `f1-f12`,
+ * * `arrow(left|up|right|bottom)`,
+ * * `backspace`, `delete`, `enter`, `esc`, `tab`,
+ * * `ctrl`, `cmd`, `shift`, `alt`.
+ */
+const keyCodes = generateKnownKeyCodes();
+/* harmony export (immutable) */ __webpack_exports__["c"] = keyCodes;
+
+
+/**
+ * Converts a key name or a {@link module:utils/keyboard~KeystrokeInfo keystroke info} into a key code.
+ *
+ * Note: Key names are matched with {@link module:utils/keyboard~keyCodes} in a case-insensitive way.
+ *
+ * @param {String|module:utils/keyboard~KeystrokeInfo} Key name (see {@link module:utils/keyboard~keyCodes})
+ * or a keystroke data object.
+ * @returns {Number} Key or keystroke code.
+ */
+function getCode( key ) {
+	let keyCode;
+
+	if ( typeof key == 'string' ) {
+		keyCode = keyCodes[ key.toLowerCase() ];
+
+		if ( !keyCode ) {
+			/**
+			 * Unknown key name. Only key names contained by the {@link module:utils/keyboard~keyCodes} can be used.
+			 *
+			 * @errror keyboard-unknown-key
+			 * @param {String} key
+			 */
+			throw new __WEBPACK_IMPORTED_MODULE_0__ckeditorerror__["a" /* default */]( 'keyboard-unknown-key: Unknown key name.', { key } );
+		}
+	} else {
+		keyCode = key.keyCode +
+			( key.altKey ? keyCodes.alt : 0 ) +
+			( key.ctrlKey ? keyCodes.ctrl : 0 ) +
+			( key.shiftKey ? keyCodes.shift : 0 );
+	}
+
+	return keyCode;
+}
+
+/**
+ * Parses keystroke and returns a keystroke code that will match the code returned by
+ * link {@link module:utils/keyboard.getCode} for a corresponding {@link module:utils/keyboard~KeystrokeInfo keystroke info}.
+ *
+ * The keystroke can be passed in two formats:
+ *
+ * * as a single string – e.g. `ctrl + A`,
+ * * as an array of {@link module:utils/keyboard~keyCodes known key names} and key codes – e.g.:
+ *   * `[ 'ctrl', 32 ]` (ctrl + space),
+ *   * `[ 'ctrl', 'a' ]` (ctrl + A).
+ *
+ * Note: Key names are matched with {@link module:utils/keyboard~keyCodes} in a case-insensitive way.
+ *
+ * Note: Only keystrokes with a single non-modifier key are supported (e.g. `ctrl+A` is OK, but `ctrl+A+B` is not).
+ *
+ * @param {String|Array.<Number|String>} keystroke Keystroke definition.
+ * @returns {Number} Keystroke code.
+ */
+function parseKeystroke( keystroke ) {
+	if ( typeof keystroke == 'string' ) {
+		keystroke = splitKeystrokeText( keystroke );
+	}
+
+	return keystroke
+		.map( key => ( typeof key == 'string' ) ? getCode( key ) : key )
+		.reduce( ( key, sum ) => sum + key, 0 );
+}
+
+/**
+ * It translates any keystroke string text like `"CTRL+A"` to an
+ * environment–specific keystroke, i.e. `"⌘A"` on Mac OSX.
+ *
+ * @param {String} keystroke Keystroke text.
+ * @returns {String} Keystroke text specific for the environment.
+ */
+function getEnvKeystrokeText( keystroke ) {
+	const split = splitKeystrokeText( keystroke );
+
+	if ( __WEBPACK_IMPORTED_MODULE_1__env__["a" /* default */].mac ) {
+		if ( split[ 0 ].toLowerCase() == 'ctrl' ) {
+			return '⌘' + ( split[ 1 ] || '' );
+		}
+	}
+
+	return keystroke;
+}
+
+function generateKnownKeyCodes() {
+	const keyCodes = {
+		arrowleft: 37,
+		arrowup: 38,
+		arrowright: 39,
+		arrowdown: 40,
+		backspace: 8,
+		delete: 46,
+		enter: 13,
+		space: 32,
+		esc: 27,
+		tab: 9,
+
+		// The idea about these numbers is that they do not collide with any real key codes, so we can use them
+		// like bit masks.
+		ctrl: 0x110000,
+		// Has the same code as ctrl, because their behaviour should be unified across the editor.
+		// See http://ckeditor.github.io/editor-recommendations/general-policies#ctrl-vs-cmd
+		cmd: 0x110000,
+		shift: 0x220000,
+		alt: 0x440000
+	};
+
+	// a-z
+	for ( let code = 65; code <= 90; code++ ) {
+		const letter = String.fromCharCode( code );
+
+		keyCodes[ letter.toLowerCase() ] = code;
+	}
+
+	// 0-9
+	for ( let code = 48; code <= 57; code++ ) {
+		keyCodes[ code - 48 ] = code;
+	}
+
+	// F1-F12
+	for ( let code = 112; code <= 123; code++ ) {
+		keyCodes[ 'f' + ( code - 111 ) ] = code;
+	}
+
+	return keyCodes;
+}
+
+function splitKeystrokeText( keystroke ) {
+	return keystroke.split( /\s*\+\s*/ );
+}
+
+/**
+ * Information about a keystroke.
+ *
+ * @interface module:utils/keyboard~KeystrokeInfo
+ */
+
+/**
+ * The [key code](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode).
+ *
+ * @member {Number} module:utils/keyboard~KeystrokeInfo#keyCode
+ */
+
+/**
+ * Whether the <kbd>Alt</kbd> modifier was pressed.
+ *
+ * @member {Bolean} module:utils/keyboard~KeystrokeInfo#altKey
+ */
+
+/**
+ * Whether the <kbd>Ctrl</kbd> or <kbd>Cmd</kbd> modifier was pressed.
+ *
+ * @member {Bolean} module:utils/keyboard~KeystrokeInfo#ctrlKey
+ */
+
+/**
+ * Whether the <kbd>Shift</kbd> modifier was pressed.
+ *
+ * @member {Bolean} module:utils/keyboard~KeystrokeInfo#shiftKey
+ */
+
+
+/***/ }),
+/* 24 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__icon_iconview__ = __webpack_require__(456);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(23);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module ui/button/buttonview
+ */
+
+
+
+
+
+
+
+/**
+ * The button view class.
+ *
+ * @extends module:ui/view~View
+ */
+class ButtonView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */] {
+	/**
+	 * @inheritDoc
+	 */
+	constructor( locale ) {
+		super( locale );
+
+		/**
+		 * The label of the button view visible to the user.
+		 *
+		 * @observable
+		 * @member {String} #label
+		 */
+		this.set( 'label' );
+
+		/**
+		 * (Optional) The keystroke associated with the button, i.e. <kbd>CTRL+B</kbd>,
+		 * in the string format compatible with {@link module:utils/keyboard}.
+		 *
+		 * @observable
+		 * @member {Boolean} #keystroke
+		 */
+		this.set( 'keystroke' );
+
+		/**
+		 * (Optional) Tooltip of the button, i.e. displayed when hovering the button with the mouse cursor.
+		 *
+		 * * If defined as a `Boolean` (e.g. `true`), then combination of `label` and `keystroke` will be set as a tooltip.
+		 * * If defined as a `String`, tooltip will equal the exact text of that `String`.
+		 * * If defined as a `Function`, `label` and `keystroke` will be passed to that function, which is to return
+		 * a string with the tooltip text.
+		 *
+		 *		const view = new ButtonView( locale );
+		 *		view.tooltip = ( label, keystroke ) => `A tooltip for ${ label } and ${ keystroke }.`
+		 *
+		 * @observable
+		 * @default false
+		 * @member {Boolean|String|Function} #tooltip
+		 */
+		this.set( 'tooltip' );
+
+		/**
+		 * The HTML type of the button. Default `button`.
+		 *
+		 * @observable
+		 * @member {'button'|'submit'|'reset'|'menu'} #type
+		 */
+		this.set( 'type', 'button' );
+
+		/**
+		 * Controls whether the button view is "on", e.g. some feature which it represents
+		 * is currently enabled.
+		 *
+		 * @observable
+		 * @member {Boolean} #isOn
+		 */
+		this.set( 'isOn', false );
+
+		/**
+		 * Controls whether the button view is enabled (can be clicked).
+		 *
+		 * @observable
+		 * @member {Boolean} #isEnabled
+		 */
+		this.set( 'isEnabled', true );
+
+		/**
+		 * Controls whether the button view is visible.
+		 *
+		 * @observable
+		 * @member {Boolean} #isVisible
+		 */
+		this.set( 'isVisible', true );
+
+		/**
+		 * (Optional) Whether the label of the button is hidden (e.g. button with icon only).
+		 *
+		 * @observable
+		 * @member {Boolean} #withText
+		 */
+		this.set( 'withText', false );
+
+		/**
+		 * (Optional) Source of the icon. See {@link module:ui/icon/iconview~IconView#content}.
+		 *
+		 * @observable
+		 * @member {String} #icon
+		 */
+		this.set( 'icon' );
+
+		/**
+		 * Controls the `tabindex` attribute of the button.
+		 *
+		 * @observable
+		 * @default -1
+		 * @member {String} #tabindex
+		 */
+		this.set( 'tabindex', -1 );
+
+		/**
+		 * Tooltip of the button bound to the template.
+		 *
+		 * @see #tooltip
+		 * @see #_getTooltipString
+		 * @private
+		 * @observable
+		 * @member {Boolean} #_tooltipString
+		 */
+		this.bind( '_tooltipString' ).to(
+			this, 'tooltip',
+			this, 'label',
+			this, 'keystroke',
+			this._getTooltipString.bind( this )
+		);
+
+		/**
+		 * Icon of the button view.
+		 *
+		 * @readonly
+		 * @member {module:ui/icon/iconview~IconView} #iconView
+		 */
+
+		const bind = this.bindTemplate;
+
+		this.template = new __WEBPACK_IMPORTED_MODULE_1__template__["a" /* default */]( {
+			tag: 'button',
+
+			attributes: {
+				class: [
+					'ck-button',
+					bind.if( '_tooltipString', 'ck-tooltip_s' ),
+					bind.to( 'isEnabled', value => value ? 'ck-enabled' : 'ck-disabled' ),
+					bind.if( 'isVisible', 'ck-hidden', value => !value ),
+					bind.to( 'isOn', value => value ? 'ck-on' : 'ck-off' ),
+					bind.if( 'withText', 'ck-button_with-text' )
+				],
+				type: bind.to( 'type', value => value ? value : 'button' ),
+				'data-ck-tooltip': [
+					bind.to( '_tooltipString' )
+				],
+				tabindex: bind.to( 'tabindex' )
+			},
+
+			children: [
+				{
+					tag: 'span',
+
+					attributes: {
+						class: [ 'ck-button__label' ]
+					},
+
+					children: [
+						{
+							text: bind.to( 'label' )
+						}
+					]
+				}
+			],
+
+			on: {
+				mousedown: bind.to( evt => {
+					evt.preventDefault();
+				} ),
+
+				click: bind.to( evt => {
+					// We can't make the button disabled using the disabled attribute, because it won't be focusable.
+					// Though, shouldn't this condition be moved to the button controller?
+					if ( this.isEnabled ) {
+						this.fire( 'execute' );
+					} else {
+						// Prevent the default when button is disabled, to block e.g.
+						// automatic form submitting. See ckeditor/ckeditor5-link#74.
+						evt.preventDefault();
+					}
+				} )
+			}
+		} );
+
+		/**
+		 * Fired when the button view is clicked. It won't be fired when the button is disabled.
+		 *
+		 * @event #execute
+		 */
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	init() {
+		if ( this.icon && !this.iconView ) {
+			const iconView = this.iconView = new __WEBPACK_IMPORTED_MODULE_2__icon_iconview__["a" /* default */]();
+
+			iconView.bind( 'content' ).to( this, 'icon' );
+
+			this.element.insertBefore( iconView.element, this.element.firstChild );
+
+			// Make sure the icon view will be destroyed along with button.
+			this.addChildren( iconView );
+		}
+
+		super.init();
+	}
+
+	/**
+	 * Focuses the button.
+	 */
+	focus() {
+		this.element.focus();
+	}
+
+	/**
+	 * Gets value for the `data-ck-tooltip` attribute from the combination of
+	 * {@link #tooltip}, {@link #label} and {@link #keystroke} attributes.
+	 *
+	 * @private
+	 * @see #tooltip
+	 * @see #_tooltipString
+	 * @param {Boolean|String|Function} tooltip Button tooltip.
+	 * @param {String} label Button label.
+	 * @param {String} keystroke Button keystroke.
+	 * @returns {String}
+	 */
+	_getTooltipString( tooltip, label, keystroke ) {
+		if ( tooltip ) {
+			if ( typeof tooltip == 'string' ) {
+				return tooltip;
+			} else {
+				if ( keystroke ) {
+					keystroke = __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_keyboard__["b" /* getEnvKeystrokeText */]( keystroke );
+				}
+
+				if ( tooltip instanceof Function ) {
+					return tooltip( label, keystroke );
+				} else if ( tooltip === true ) {
+					return `${ label }${ keystroke ? ` (${ keystroke })` : '' }`;
+				}
+			}
+		}
+
+		return false;
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = ButtonView;
+
 
 
 /***/ }),
@@ -8625,7 +8644,7 @@ function normalize( nodes ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_comparearrays__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__writer__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__writer__ = __webpack_require__(20);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -10483,7 +10502,7 @@ function baseSlice(array, start, end) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_matcher__ = __webpack_require__(160);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_writer__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_writer__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(46);
 /**
@@ -11315,7 +11334,7 @@ function getFillerOffset() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__nodelist__ = __webpack_require__(80);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__removeoperation__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__writer__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__writer__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__text__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__element__ = __webpack_require__(5);
 /**
@@ -13096,7 +13115,7 @@ function toKey(value) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dom_emittermixin__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__keyboard__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__keyboard__ = __webpack_require__(23);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -13965,7 +13984,7 @@ function baseDifference(array, values, iteratee, comparator) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__range__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_tomap__ = __webpack_require__(113);
@@ -14736,7 +14755,7 @@ function getParentBlock( position, visited ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__range__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__position__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__element__ = __webpack_require__(27);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -15296,7 +15315,7 @@ __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__["a" /* default *
 /* harmony export (immutable) */ __webpack_exports__["e"] = getDataWithoutFiller;
 /* harmony export (immutable) */ __webpack_exports__["g"] = isBlockFiller;
 /* harmony export (immutable) */ __webpack_exports__["f"] = injectQuirksHandling;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(23);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -15590,7 +15609,7 @@ class DomEventObserver extends __WEBPACK_IMPORTED_MODULE_0__observer__["a" /* de
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dom_emittermixin__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__observablemixin__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__observablemixin__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mix__ = __webpack_require__(4);
 /**
@@ -16552,7 +16571,7 @@ class NodeList {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -16793,7 +16812,7 @@ __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_mix__["a" /* default *
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__containerelement__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(19);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -18376,7 +18395,7 @@ function setToArray(set) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__operation__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__writer__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__writer__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isEqual__ = __webpack_require__(353);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -18681,7 +18700,7 @@ __WEBPACK_IMPORTED_MODULE_2__deltafactory__["a" /* default */].register( RemoveD
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_moveoperation__ = __webpack_require__(28);
@@ -18821,7 +18840,7 @@ __WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( MoveDel
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__splitdelta__ = __webpack_require__(96);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__batch__ = __webpack_require__(18);
@@ -18970,7 +18989,7 @@ __WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( MergeDe
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__position__ = __webpack_require__(1);
@@ -19125,7 +19144,7 @@ __WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( SplitDe
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__wrapdelta__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__batch__ = __webpack_require__(18);
@@ -19254,7 +19273,7 @@ __WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( UnwrapD
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__unwrapdelta__ = __webpack_require__(97);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__batch__ = __webpack_require__(18);
@@ -19624,7 +19643,7 @@ function arrayFilter(array, predicate) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__emittermixin__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__emittermixin__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__uid__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lib_lodash_extend__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__lib_lodash_isNative__ = __webpack_require__(167);
@@ -19924,7 +19943,7 @@ function isDomNode( node ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__emittermixin__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__emittermixin__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__uid__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mix__ = __webpack_require__(4);
@@ -21752,7 +21771,7 @@ function nonUiChildrenCount( element ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__text__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(8);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -21976,7 +21995,7 @@ function normalize( nodes ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_attributeoperation__ = __webpack_require__(91);
@@ -23067,12 +23086,12 @@ class RootAttributeOperation extends __WEBPACK_IMPORTED_MODULE_0__operation__["a
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__removedelta__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__deltafactory__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_insertoperation__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__batch__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__writer__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__writer__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__documentfragment__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__model_range_js__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__model_position_js__ = __webpack_require__(1);
@@ -23208,7 +23227,7 @@ __WEBPACK_IMPORTED_MODULE_2__deltafactory__["a" /* default */].register( InsertD
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_renameoperation__ = __webpack_require__(127);
@@ -24236,7 +24255,7 @@ class DomEventData {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_collection__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /**
@@ -25754,7 +25773,7 @@ function baseTimes(n, iteratee) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_position__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_range__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_text__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -26721,7 +26740,7 @@ function matchStyles( patterns, element ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_documentfragment__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_lib_lodash_extend__ = __webpack_require__(44);
 /**
@@ -27594,7 +27613,7 @@ function getFillerOffset() {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__range__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /**
@@ -28421,7 +28440,7 @@ function equalArrays(array, other, equalFunc, customizer, bitmask, stack) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__batch__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__deltafactory__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_insertoperation__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__writer__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__writer__ = __webpack_require__(20);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -28498,7 +28517,7 @@ __WEBPACK_IMPORTED_MODULE_2__deltafactory__["a" /* default */].register( WeakIns
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__movedelta__ = __webpack_require__(94);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__removedelta__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mergedelta__ = __webpack_require__(95);
@@ -29286,7 +29305,7 @@ function compact(array) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayPush__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__copyArray__ = __webpack_require__(171);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArray__ = __webpack_require__(15);
 
@@ -29339,9 +29358,9 @@ function concat() {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rest__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rest__ = __webpack_require__(7);
 
 
 
@@ -29411,11 +29430,11 @@ function indexOfNaN(array, fromIndex, fromRight) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseIteratee__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__last__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rest__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rest__ = __webpack_require__(7);
 
 
 
@@ -29585,10 +29604,10 @@ function identity(value) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__rest__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__rest__ = __webpack_require__(7);
 
 
 
@@ -29946,7 +29965,7 @@ function findLastIndex(array, predicate) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(22);
 
 
 /**
@@ -29976,7 +29995,7 @@ function flatten(array) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(22);
 
 
 /** Used as references for various `Number` constants. */
@@ -30009,7 +30028,7 @@ function flattenDeep(array) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toInteger__ = __webpack_require__(13);
 
 
@@ -30169,7 +30188,7 @@ function initial(array) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayMap__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIntersection__ = __webpack_require__(140);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__castArrayLikeObject__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rest__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rest__ = __webpack_require__(7);
 
 
 
@@ -30212,7 +30231,7 @@ var intersection = __WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */](functi
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseIteratee__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__castArrayLikeObject__ = __webpack_require__(141);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__last__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rest__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rest__ = __webpack_require__(7);
 
 
 
@@ -30269,7 +30288,7 @@ var intersectionBy = __WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */](func
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIntersection__ = __webpack_require__(140);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__castArrayLikeObject__ = __webpack_require__(141);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__rest__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__rest__ = __webpack_require__(7);
 
 
 
@@ -30454,7 +30473,7 @@ function nth(array, n) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pullAll__ = __webpack_require__(142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__rest__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__rest__ = __webpack_require__(7);
 
 
 
@@ -30576,11 +30595,11 @@ function pullAllWith(array, values, comparator) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayMap__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseAt__ = __webpack_require__(387);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseFlatten__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseFlatten__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__basePullAt__ = __webpack_require__(213);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__compareAscending__ = __webpack_require__(389);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__isIndex__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__rest__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__rest__ = __webpack_require__(7);
 
 
 
@@ -31415,10 +31434,10 @@ function takeWhile(array, predicate) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseUniq__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rest__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rest__ = __webpack_require__(7);
 
 
 
@@ -31452,12 +31471,12 @@ var union = __WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */](function(arra
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIteratee__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseUniq__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__last__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rest__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rest__ = __webpack_require__(7);
 
 
 
@@ -31504,11 +31523,11 @@ var unionBy = __WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */](function(ar
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseUniq__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__rest__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__rest__ = __webpack_require__(7);
 
 
 
@@ -31664,7 +31683,7 @@ function uniqWith(array, comparator) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArrayLikeObject__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__rest__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__rest__ = __webpack_require__(7);
 
 
 
@@ -31704,7 +31723,7 @@ var without = __WEBPACK_IMPORTED_MODULE_2__rest__["a" /* default */](function(ar
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayFilter__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseXor__ = __webpack_require__(146);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rest__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rest__ = __webpack_require__(7);
 
 
 
@@ -31745,7 +31764,7 @@ var xor = __WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */](function(arrays
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseXor__ = __webpack_require__(146);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__last__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rest__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rest__ = __webpack_require__(7);
 
 
 
@@ -31796,7 +31815,7 @@ var xorBy = __WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */](function(arra
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseXor__ = __webpack_require__(146);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__rest__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__rest__ = __webpack_require__(7);
 
 
 
@@ -31839,7 +31858,7 @@ var xorWith = __WEBPACK_IMPORTED_MODULE_4__rest__["a" /* default */](function(ar
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rest__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rest__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__unzip__ = __webpack_require__(102);
 
 
@@ -31965,7 +31984,7 @@ function zipObjectDeep(props, values) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rest__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rest__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__unzipWith__ = __webpack_require__(145);
 
 
@@ -32006,7 +32025,7 @@ var zipWith = __WEBPACK_IMPORTED_MODULE_0__rest__["a" /* default */](function(ar
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__range__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -36169,7 +36188,7 @@ class StandardEditor extends __WEBPACK_IMPORTED_MODULE_0__editor__["a" /* defaul
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_locale__ = __webpack_require__(279);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_engine_src_controller_datacontroller__ = __webpack_require__(281);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_model_document__ = __webpack_require__(304);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -36195,7 +36214,7 @@ class StandardEditor extends __WEBPACK_IMPORTED_MODULE_0__editor__["a" /* defaul
  *
  * See also {@link module:core/editor/standardeditor~StandardEditor}.
  *
- * @mixes module:utils/emittermixin~EmitterMixin
+ * @mixes module:utils/observablemixin~ObservableMixin
  */
 class Editor {
 	/**
@@ -36228,7 +36247,7 @@ class Editor {
 		 * Commands registered to the editor.
 		 *
 		 * @readonly
-		 * @member {module:core/command/commandcollection~CommandCollection}
+		 * @member {module:core/commandcollection~CommandCollection}
 		 */
 		this.commands = new __WEBPACK_IMPORTED_MODULE_2__commandcollection__["a" /* default */]();
 
@@ -36247,7 +36266,18 @@ class Editor {
 		this.t = this.locale.t;
 
 		/**
-		 * Tree Model document managed by this editor.
+		 * The editor's model document.
+		 *
+		 * The center of the editor's abstract data model. The document contains
+		 * {@link module:engine/model/document~Document#getRoot all editing roots},
+		 * {@link module:engine/model/document~Document#selection} and allows
+		 * applying changes to through the {@link module:engine/model/document~Document#batch batch interface}.
+		 *
+		 * Besides the model document, the editor usually contains two controllers –
+		 * {@link #data data controller} and {@link #editing editing controller}.
+		 * The former is used e.g. when setting or retrieving editor data and contains a useful
+		 * set of methods for operating on the content. The latter controls user input and rendering
+		 * the content for editing.
 		 *
 		 * @readonly
 		 * @member {module:engine/model/document~Document}
@@ -36255,7 +36285,7 @@ class Editor {
 		this.document = new __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_model_document__["a" /* default */]();
 
 		/**
-		 * Instance of the {@link module:engine/controller/datacontroller~DataController data controller}.
+		 * The {@link module:engine/controller/datacontroller~DataController data controller}.
 		 *
 		 * @readonly
 		 * @member {module:engine/controller/datacontroller~DataController}
@@ -36263,7 +36293,18 @@ class Editor {
 		this.data = new __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_engine_src_controller_datacontroller__["a" /* default */]( this.document );
 
 		/**
-		 * Instance of the {@link module:engine/controller/editingcontroller~EditingController editing controller}.
+		 * Defines whether this editor is in read-only mode.
+		 *
+		 * In read-only mode the editor {@link #commands commands} are disabled so it is not possible
+		 * to modify document using them.
+		 *
+		 * @observable
+		 * @member {Boolean} #isReadOnly
+		 */
+		this.set( 'isReadOnly', false );
+
+		/**
+		 * The {@link module:engine/controller/editingcontroller~EditingController editing controller}.
 		 *
 		 * This property is set by more specialized editor classes (such as {@link module:core/editor/standardeditor~StandardEditor}),
 		 * however, it's required for features to work as their engine-related parts will try to connect converters.
@@ -36369,7 +36410,7 @@ class Editor {
 /* harmony export (immutable) */ __webpack_exports__["a"] = Editor;
 
 
-__WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( Editor, __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
+__WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( Editor, __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_observablemixin__["a" /* default */] );
 
 /**
  * Fired after {@link #initPlugins plugins are initialized}.
@@ -37192,7 +37233,7 @@ function _clear() {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__conversion_mapper__ = __webpack_require__(158);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__conversion_modelconversiondispatcher__ = __webpack_require__(161);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__conversion_model_to_view_converters__ = __webpack_require__(114);
@@ -37800,7 +37841,7 @@ var assignIn = __WEBPACK_IMPORTED_MODULE_2__createAssigner__["a" /* default */](
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isIterateeCall__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__rest__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__rest__ = __webpack_require__(7);
 
 
 
@@ -38610,8 +38651,8 @@ class ModelConsumable {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_treewalker__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_node__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__model_documentfragment__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__model_writer__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__model_writer__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_lib_lodash_extend__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(34);
@@ -39591,7 +39632,7 @@ class ViewElementConsumables {
 /* harmony export (immutable) */ __webpack_exports__["a"] = convertText;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_documentfragment__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_text__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_writer__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_writer__ = __webpack_require__(20);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -40438,7 +40479,7 @@ function getSearchRange( start, isForward ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_text__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_writer__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_writer__ = __webpack_require__(20);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -40606,7 +40647,7 @@ function removeRangeContent( range ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__markercollection__ = __webpack_require__(400);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__delta_transform__ = __webpack_require__(178);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ckeditor_ckeditor5_utils_src_lib_lodash_clone__ = __webpack_require__(84);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ckeditor_ckeditor5_utils_src_unicode__ = __webpack_require__(165);
@@ -43085,7 +43126,7 @@ function isTypedArray(value) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_nooperation__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__operation_attributeoperation__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__operation_insertoperation__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__delta__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__delta__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__attributedelta__ = __webpack_require__(117);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__insertdelta__ = __webpack_require__(129);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__markerdelta__ = __webpack_require__(394);
@@ -45746,7 +45787,7 @@ function baseSet(object, path, value, customizer) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_markeroperation__ = __webpack_require__(126);
@@ -47617,7 +47658,7 @@ function matchPaths( schema, pathToCheck, registeredPath ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__liverange__ = __webpack_require__(246);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__range__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /**
@@ -48098,7 +48139,7 @@ function isMac( userAgent ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__conversion_model_to_view_converters__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__conversion_view_selection_to_model_converters__ = __webpack_require__(415);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__conversion_model_selection_to_view_converters__ = __webpack_require__(252);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(8);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -48275,7 +48316,7 @@ class EditingController {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__observer_keyobserver__ = __webpack_require__(413);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__observer_fakeselectionobserver__ = __webpack_require__(414);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(19);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -48633,7 +48674,7 @@ __WEBPACK_IMPORTED_MODULE_11__ckeditor_ckeditor5_utils_src_mix__["a" /* default 
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_dom_insertat__ = __webpack_require__(406);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_dom_remove__ = __webpack_require__(407);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -49854,7 +49895,7 @@ class FocusObserver extends __WEBPACK_IMPORTED_MODULE_0__domeventobserver__["a" 
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__domeventobserver__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(23);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -49935,7 +49976,7 @@ class KeyObserver extends __WEBPACK_IMPORTED_MODULE_0__domeventobserver__["a" /*
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observer__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__selection__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_lib_lodash_debounce__ = __webpack_require__(147);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -51351,25 +51392,7 @@ class Rect {
 		if ( __WEBPACK_IMPORTED_MODULE_2__lib_lodash_isElement__["a" /* default */]( source ) ) {
 			copyRectProperties( this, source.getBoundingClientRect() );
 		} else if ( __WEBPACK_IMPORTED_MODULE_1__isrange__["a" /* default */]( source ) ) {
-			// Use getClientRects() when the range is collapsed.
-			// https://github.com/ckeditor/ckeditor5-utils/issues/153
-			if ( source.collapsed ) {
-				const rects = source.getClientRects();
-
-				if ( rects.length ) {
-					copyRectProperties( this, rects[ 0 ] );
-				}
-				// If there's no client rects for the Range, use parent container's bounding
-				// rect instead and adjust rect's width to simulate the actual geometry of such
-				// range.
-				// https://github.com/ckeditor/ckeditor5-utils/issues/153
-				else {
-					copyRectProperties( this, source.startContainer.getBoundingClientRect() );
-					this.width = 0;
-				}
-			} else {
-				copyRectProperties( this, source.getBoundingClientRect() );
-			}
+			copyRectProperties( this, Rect.getDomRangeRects( source )[ 0 ] );
 		} else {
 			copyRectProperties( this, source );
 		}
@@ -51563,6 +51586,36 @@ class Rect {
 			width: innerWidth,
 			height: innerHeight
 		} );
+	}
+
+	/**
+	 * Returns an array of rects of the given native DOM Range.
+	 *
+	 * @param {Range} range A native DOM range.
+	 * @returns {Array.<module:utils/dom/rect~Rect>} DOM Range rects.
+	 */
+	static getDomRangeRects( range ) {
+		const rects = [];
+		// Safari does not iterate over ClientRectList using for...of loop.
+		const clientRects = Array.from( range.getClientRects() );
+
+		if ( clientRects.length ) {
+			for ( const rect of clientRects ) {
+				rects.push( new Rect( rect ) );
+			}
+		}
+		// If there's no client rects for the Range, use parent container's bounding rect
+		// instead and adjust rect's width to simulate the actual geometry of such range.
+		// https://github.com/ckeditor/ckeditor5-utils/issues/153
+		else {
+			const startContainerRect = new Rect( range.startContainer.getBoundingClientRect() );
+			startContainerRect.right = startContainerRect.left;
+			startContainerRect.width = 0;
+
+			rects.push( startContainerRect );
+		}
+
+		return rects;
 	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Rect;
@@ -52507,7 +52560,7 @@ function plainTextToHtml( text ) {
  */
 function normalizeClipboardData( data ) {
 	return data
-		.replace( /<span class="Apple-converted-space">(\s+)<\/span>/g, ( fullMatch, spaces ) => {
+		.replace( /<span(?: class="Apple-converted-space"|)>(\s+)<\/span>/g, ( fullMatch, spaces ) => {
 			// Handle the most popular and problematic case when even a single space becomes an nbsp;.
 			// Decode those to normal spaces. Read more in https://github.com/ckeditor/ckeditor5-clipboard/issues/2.
 			if ( spaces.length == 1 ) {
@@ -52750,7 +52803,7 @@ function splitBlock( batch, selection, splitPos ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_view_observer_observer__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_observer_domeventdata__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(23);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -52852,7 +52905,7 @@ class Typing extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_view_text__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_diff__ = __webpack_require__(247);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_difftochanges__ = __webpack_require__(447);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__inputcommand__ = __webpack_require__(448);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -53543,7 +53596,7 @@ class DeleteCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_view_observer_observer__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_observer_domeventdata__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(23);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -53613,7 +53666,7 @@ class DeleteObserver extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_eng
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__undoengine__ = __webpack_require__(453);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__theme_icons_undo_svg__ = __webpack_require__(457);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__theme_icons_undo_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__theme_icons_undo_svg__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__theme_icons_redo_svg__ = __webpack_require__(458);
@@ -54109,7 +54162,7 @@ module.exports = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blockquoteengine__ = __webpack_require__(460);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_core_theme_icons_quote_svg__ = __webpack_require__(462);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_core_theme_icons_quote_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_core_theme_icons_quote_svg__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__theme_theme_scss__ = __webpack_require__(463);
@@ -54591,7 +54644,7 @@ exports.push([module.i, "blockquote{border-left:5px solid #ccc;padding-left:20px
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__boldengine__ = __webpack_require__(466);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__theme_icons_bold_svg__ = __webpack_require__(467);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__theme_icons_bold_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__theme_icons_bold_svg__);
 /**
@@ -55272,7 +55325,7 @@ function checkCanBecomeHeading( block, heading, schema ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_extend__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(19);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -55693,7 +55746,7 @@ class ListItemView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = createDropdown;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__button_buttonview__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__button_buttonview__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dropdownview__ = __webpack_require__(477);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dropdownpanelview__ = __webpack_require__(478);
 /**
@@ -56091,7 +56144,7 @@ class Image extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plu
 /* harmony export (immutable) */ __webpack_exports__["c"] = hoistImageThroughElement;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_model_position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_documentfragment__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_writer__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_writer__ = __webpack_require__(20);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -56388,7 +56441,7 @@ function hoistImageThroughElement( evt, data ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_view_editableelement__ = __webpack_require__(82);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_engine_src_view_rooteditableelement__ = __webpack_require__(250);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils__ = __webpack_require__(152);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__theme_theme_scss__ = __webpack_require__(485);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__theme_theme_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__theme_theme_scss__);
 /**
@@ -56783,7 +56836,7 @@ exports.push([module.i, ".ck-widget{margin:.8em 0;padding:0}.ck-widget.ck-widget
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__imagetextalternative_imagetextalternativeengine__ = __webpack_require__(488);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_bindings_escpresshandler__ = __webpack_require__(490);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_ui_src_bindings_clickoutsidehandler__ = __webpack_require__(264);
@@ -57092,7 +57145,7 @@ class ImageTextAlternativeCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = escPressHandler;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(23);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -57204,7 +57257,7 @@ function throttle(func, wait, options) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_src_view__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_template__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_labeledinput_labeledinputview__ = __webpack_require__(267);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_ui_src_inputtext_inputtextview__ = __webpack_require__(268);
@@ -57904,7 +57957,7 @@ function matchImageCaption( element ) {
 /* harmony export (immutable) */ __webpack_exports__["a"] = attachPlaceholder;
 /* unused harmony export detachPlaceholder */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_extend__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__theme_placeholder_scss__ = __webpack_require__(503);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__theme_placeholder_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__theme_placeholder_scss__);
@@ -58071,7 +58124,7 @@ exports = module.exports = __webpack_require__(32)(undefined);
 
 
 // module
-exports.push([module.i, ".ck-placeholder:before{content:attr(data-placeholder);cursor:text;color:#c2c2c2}", ""]);
+exports.push([module.i, ".ck-placeholder:before{content:attr(data-placeholder);cursor:text;color:#c2c2c2;pointer-events:none}", ""]);
 
 // exports
 
@@ -58123,7 +58176,7 @@ exports.push([module.i, ".ck-editor__editable .image>figcaption{background-color
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__imagestyle_imagestyleengine__ = __webpack_require__(508);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -58578,7 +58631,7 @@ module.exports = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><s
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__italicengine__ = __webpack_require__(514);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__theme_icons_italic_svg__ = __webpack_require__(515);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__theme_icons_italic_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__theme_icons_italic_svg__);
 /**
@@ -58738,7 +58791,7 @@ module.exports = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__linkelement__ = __webpack_require__(270);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_panel_balloon_contextualballoon__ = __webpack_require__(521);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_ui_src_bindings_clickoutsidehandler__ = __webpack_require__(264);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ui_linkformview__ = __webpack_require__(522);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__theme_icons_link_svg__ = __webpack_require__(523);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__theme_icons_link_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__theme_icons_link_svg__);
@@ -59687,7 +59740,7 @@ class ContextualBalloon extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_src_view__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_template__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_viewcollection__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_ui_src_labeledinput_labeledinputview__ = __webpack_require__(267);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_inputtext_inputtextview__ = __webpack_require__(268);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_ui_src_bindings_submithandler__ = __webpack_require__(269);
@@ -60007,8 +60060,8 @@ exports.push([module.i, ".ck-link-form{padding:1.2em;overflow:hidden}.ck-link-fo
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__theme_icons_bulletedlist_svg__ = __webpack_require__(534);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__theme_icons_bulletedlist_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__theme_icons_bulletedlist_svg__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -60824,7 +60877,7 @@ function _seekListItem( item, seekForward ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_documentfragment__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_model_position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_engine_src_model_writer__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_engine_src_model_writer__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_view_containerelement__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_engine_src_view_position__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_engine_src_view_range__ = __webpack_require__(36);
