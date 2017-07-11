@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Basic API - CKEditor 5</title>
+    <link rel="stylesheet" href="../../../../../assets/0.2.20/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
+    <script src="../../../../../assets/0.2.20/scripts/app.js"></script>
+  </head>
+  <body>
+    <header class="top">
+      <div class="top__logo"><a class="top__logo__link" href="../../../index.html"><img src="../../../assets/img/project-logo.svg" alt="CKEditor 5"></a></div>
+      <ul class="top__menu">
+        <li><a href="../../../api/index.html">API</a></li>
+        <li><a href="../../../framework/index.html">Framework</a></li>
+        <li><a class="top__menu__item--active" href="../../index.html">Builds</a></li>
+        <li><a href="../../../samples/index.html">Samples</a></li>
+      </ul>
+      <div class="top__search">
+        <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.2.20/img/loupe.svg" alt="Search"></button>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <h1><img src="../../../../../assets/0.2.20/img/book.svg">Basic API
+        </h1><nav class="toc"><h3>In this page</h3><ol><li><a href="#Creators">Creators</a></li><li><a href="#Interacting-with-the-editor">Interacting with the editor</a></li><ol><li><a href="#Setting-the-editor-data">Setting the editor data</a></li><li><a href="#Getting-the-editor-data">Getting the editor data</a></li><li><a href="#Destroying-the-editor">Destroying the editor</a></li></ol><li><a href="#What&#x2019;s-more">What&#x2019;s more?</a></li></ol></nav><h2 id="Creators"><a href="#Creators" class="headerlink" title="Creators"></a>Creators</h2><p>Each CKEditor 5 build provides a class that handles the creation of editor instances inside a page. For this reason they are called &#x201C;creators&#x201D;. Every creator comes with a static <code>create()</code> method.</p>
+<p>The following are creator class names for each build:</p>
+<ul>
+<li>Classic Editor &#x2013; <a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html">ClassicEditor</a></li>
+<li>Inline Editor &#x2013; <a href="../../../api/module_editor-inline_inlineeditor-InlineEditor.html">InlineEditor</a></li>
+<li>Medium-like Editor &#x2013; <a href="../../../api/module_editor-medium-like_mediumlikeeditor-MediumLikeEditor.html">MediumLikeEditor</a></li>
+</ul>
+<p>Most of the examples in the documentation use the <code>ClassicEditor</code> class, but things should work in a similar way with other creator classes.</p>
+<p>Because builds are distributed as <a href="https://github.com/umdjs/umd" target="_blank" rel="external">UMD modules</a>, these classes can be retrieved:</p>
+<ul>
+<li>by a <a href="http://wiki.commonjs.org/wiki/CommonJS" target="_blank" rel="external">CommonJS</a>-compatible loader (e.g. <a href="https://webpack.js.org" target="_blank" rel="external">Webpack</a> or <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>),</li>
+<li>by <a href="http://requirejs.org/" target="_blank" rel="external">RequireJS</a> (or any other AMD library),</li>
+<li>from the global namespace if none of the above loaders is available.</li>
+</ul>
+<p>For example:</p>
+<pre><code class="js">// In CommonJS environment.
+const ClassicEditor = require( &apos;@ckeditor/ckeditor5-build-classic/build/ckeditor.js&apos; );
+ClassicEditor.create; // [Function]
+
+// If AMD is present, you can do this.
+require( &apos;/(ckeditor path)/build/ckeditor.js&apos;, ClassicEditor =&gt; {
+    ClassicEditor.create; // [Function]
+} );
+
+// As a global.
+ClassicEditor.create; // [Function]
+</code></pre>
+<p>Depending on which build you are using, creating an editor in the page is then a breeze:</p>
+<p>In the HTML code:</p>
+<pre><code class="html">&lt;textarea id=&quot;text-editor&quot;&gt;
+    &lt;p&gt;Here goes the initial content of the editor.&lt;/p&gt;
+&lt;/textarea&gt;
+</code></pre>
+<p>In the script:</p>
+<pre><code class="js">ClassicEditor.create( document.querySelector( &apos;#text-editor&apos; ) )
+    .then( editor =&gt; {
+        console.log( editor );
+    } )
+    .catch( error =&gt; {
+        console.error( error );
+    } );
+</code></pre>
+<p>In the above case, the <code>&lt;textarea&gt;</code> element is hidden and replaced with an editor. The <code>&lt;textarea&gt;</code> data is used to initialize the editor content. A <code>&lt;div&gt;</code> element can be used in the same fashion.</p>
+<div class="side-box notice notice__info"><p>Every creator may accept different parameters and handle initialization differently. For instance, the classic editor will replace a given element with an editor, while the inline editor will use the given element to initialize the editor on it. See each editor&#x2019;s documentation to learn the details.</p><p>The interface of the editor class is not enforced either. Since different implementations of editors may vary heavily in terms of functionality, the editor class implementers have full freedom regarding the API. Therefore, the examples in this guide may not work with some editor classes.</p></div>
+
+<h2 id="Interacting-with-the-editor"><a href="#Interacting-with-the-editor" class="headerlink" title="Interacting with the editor"></a>Interacting with the editor</h2><p>Once the editor is created, it is possible to interact with it through its API. The <code>editor</code> variable from the examples above should enable that.</p>
+<h3 id="Setting-the-editor-data"><a href="#Setting-the-editor-data" class="headerlink" title="Setting the editor data"></a>Setting the editor data</h3><p>To replace the editor content with new data, just use the <code>setData</code> method:</p>
+<pre><code class="js">editor.setData( &apos;&lt;p&gt;Some text.&lt;/p&gt;&apos; );
+</code></pre>
+<h3 id="Getting-the-editor-data"><a href="#Getting-the-editor-data" class="headerlink" title="Getting the editor data"></a>Getting the editor data</h3><p>If the editor content needs to be retrieved for any reason, like for sending it to the server through an Ajax call, simply use the <code>getData</code> method:</p>
+<pre><code class="js">const data = editor.getData();
+</code></pre>
+<h3 id="Destroying-the-editor"><a href="#Destroying-the-editor" class="headerlink" title="Destroying the editor"></a>Destroying the editor</h3><p>In modern applications, it is common to create and remove elements from the page interactively through JavaScript. CKEditor instances should be destroyed in such cases by using the <code>destroy()</code> method:</p>
+<pre><code class="js">editor.destroy()
+    .catch( error =&gt; {
+        console.log( error );
+    } );
+</code></pre>
+<p>Once destroyed, resources used by the editor instance are released and the original element used to create the editor is automatically displayed and updated to reflect the final editor data.</p>
+<h2 id="What&#x2019;s-more"><a href="#What&#x2019;s-more" class="headerlink" title="What&#x2019;s more?"></a>What&#x2019;s more?</h2><p>CKEditor offers a rich API to interact with editors. Check out the <a href="../../../api/TODO.html">API documentation</a> for more.</p>
+
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li>
+                            <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Guides</span></div>
+                            <ul>
+                                    <li><a href="../overview.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="../whats-new.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">What's new?</span></div></a></li>
+                                    <li><a href="../migrate.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migration</span></div></a></li>
+                                    <li>
+                                      <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Integration</span></div>
+                                      <ul>
+                                              <li><a href="installation.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Installation</span></div></a></li>
+                                              <li><a href="">
+                                                  <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Basic API</span></div></a></li>
+                                              <li><a href="configuration.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Configuration</span></div></a></li>
+                                              <li><a href="plugins.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugins</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Development</span></div>
+                                      <ul>
+                                              <li><a href="../development/custom-builds.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating custom builds</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li><a href="../license-and-legal.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span></div></a></li>
+                                    <li><a href="../reporting-issues.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span></div></a></li>
+                            </ul>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">docsearch({apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:10}});</script>
+    <footer class="footer">
+      <p>&copy; 2017 CKSource sp. z.o.o. sp.k. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
