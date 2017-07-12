@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Custom builds - CKEditor 5</title>
+    <link rel="stylesheet" href="../../../../../assets/0.2.21/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
+    <script src="../../../../../assets/0.2.21/scripts/app.js"></script>
+  </head>
+  <body>
+    <header class="top">
+      <div class="top__logo"><a class="top__logo__link" href="../../../index.html"><img src="../../../assets/img/project-logo.svg" alt="CKEditor 5"></a></div>
+      <ul class="top__menu">
+        <li><a href="../../../api/index.html">API</a></li>
+        <li><a href="../../../framework/index.html">Framework</a></li>
+        <li><a class="top__menu__item--active" href="../../index.html">Builds</a></li>
+        <li><a href="../../../samples/index.html">Samples</a></li>
+      </ul>
+      <div class="top__search">
+        <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.2.21/img/loupe.svg" alt="Search"></button>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <h1><img src="../../../../../assets/0.2.21/img/book.svg">Creating custom builds
+        </h1><nav class="toc"><h3>In this page</h3><ol><li><a href="#Creating-custom-builds">Creating custom builds</a></li><ol><li><a href="#Forking-an-existing-build">Forking an existing build</a></li><li><a href="#Build-anatomy">Build anatomy</a></li><li><a href="#Customizing-a-build">Customizing a build</a></li><ol><li><a href="#Installing-dependencies">Installing dependencies</a></li><li><a href="#Updating-build-configuration">Updating build configuration</a></li><li><a href="#Rebuilding-the-bundle">Rebuilding the bundle</a></li></ol><li><a href="#Updating-the-build">Updating the build</a></li><li><a href="#Publishing-your-builds">Publishing your builds</a></li></ol></ol></nav><p>A build is a simple <a href="https://www.npmjs.com" target="_blank" rel="external">npm</a> package (usually developed in a Git repository) with a predefined set of dependencies. Out of this repository, distribution files can be generated through the build process.</p>
+<p>Some of the reasons for creating custom builds are:</p>
+<ul>
+<li>Adding features which are not included in the existing builds, either from a third party or custom developed.</li>
+<li>Removing unnecessary features present in a build.</li>
+<li>Changing the <a href="../../../api/TODO.html">builds/guides/integration/basic-api.html#Creators editor creator</a>.</li>
+<li>Changing the editor theme.</li>
+<li>Changing the localization language of the editor.</li>
+<li>Enabling bug fixes which are still not a part of any public release.</li>
+</ul>
+<h2 id="Forking-an-existing-build"><a href="#Forking-an-existing-build" class="headerlink" title="Forking an existing build"></a>Forking an existing build</h2><p>Start with <a href="https://help.github.com/articles/fork-a-repo/" target="_blank" rel="external">forking</a> one of the official builds (it will serve as the starting point for your custom one) and then clone your fork:</p>
+<pre><code>git clone https://github.com/&lt;your-username&gt;/ckeditor5-build-classic.git
+</code></pre><p>To make updating easier you may optionally add the original build repository to your Git remotes:</p>
+<pre><code>git remote add upstream https://github.com/ckeditor/ckeditor5-build-classic.git
+</code></pre><div class="side-box notice notice__tip"><p>If you do not want to fork the official build, you can just clone it. However, you will not be able to commit and push your customizations back to <a href="https://github.com" target="_blank" rel="external">GitHub</a>.</p></div>
+
+<h2 id="Build-anatomy"><a href="#Build-anatomy" class="headerlink" title="Build anatomy"></a>Build anatomy</h2><p>Every build contains the following files:</p>
+<ul>
+<li><code>package.json</code> &#x2013; The definition of the npm package. It specifies the package name, version, dependencies, license, etc.</li>
+<li><code>build-config.js</code> &#x2013; The configuration of this particular CKEditor 5 build.</li>
+<li><code>ckeditor.js</code> &#x2013; The bundler&#x2019;s &#x201C;entry file&#x201D;. A CommonJS module which tells the bundler (like <a href="https://webpack.js.org" target="_blank" rel="external">webpack</a>) which CKEditor modules should be included in the bundle and what should that bundle export). By default, it is created based on the build configuration but you may also modify it manually.</li>
+<li><code>build/*</code> &#x2013; The directory with ready-to-use bundles. There are two bundles:<ul>
+<li>The most optimized, ES6 one, in: <code>build/ckeditor.js</code>.</li>
+<li>The ES5 one in: <code>build/ckeditor.compat.js</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Customizing-a-build"><a href="#Customizing-a-build" class="headerlink" title="Customizing a build"></a>Customizing a build</h2><p>In order to customize a build you need to:</p>
+<ul>
+<li>Install missing dependencies.</li>
+<li>Update the <code>build-config.js</code>.</li>
+<li>Update the builds (which includes updating <code>ckeditor.js</code> and editor bundles in <code>build/*</code>).</li>
+</ul>
+<h3 id="Installing-dependencies"><a href="#Installing-dependencies" class="headerlink" title="Installing dependencies"></a>Installing dependencies</h3><p>The easiest way to install missing dependencies is by typing:</p>
+<pre><code>npm install --save &lt;package-name&gt;
+</code></pre><p>This will install the package and add it to <code>package.json</code>. You can also edit <code>package.json</code> manually.</p>
+<div class="side-box notice notice__tip"><p>Due to a non-deterministic way how npm installs packages, it is recommended to run <code>rm -rf node_modules &amp;&amp; npm install</code> when in doubt. This will prevent some packages from getting installed more than once in <code>node_modules/</code> (which might lead to broken builds).</p><p>You can also give <a href="https://yarnpkg.com/lang/en/" target="_blank" rel="external">Yarn</a> a try.</p></div>
+
+<h3 id="Updating-build-configuration"><a href="#Updating-build-configuration" class="headerlink" title="Updating build configuration"></a>Updating build configuration</h3><p>If you added or removed dependencies, you will also need to modify the <code>build-config.js</code> file. Based on it the bundler entry file (<code>ckeditor.js</code>) will be created. You can also opt out from automatically creating the entry file and modify <code>ckeditor.js</code> manually, which can be useful in some non-standard cases.</p>
+<p>Either way, every plugin that you want to include in the bundle should be included at this stage. You can also change the editor creator and specify the default editor configuration. For instance, your build configuration might look like this:</p>
+<pre><code>&apos;use strict&apos;;
+
+module.exports = {
+    editor: &apos;@ckeditor/ckeditor5-editor-classic/src/classic&apos;,
+    moduleName: &apos;ClassicEditor&apos;,
+    plugins: [
+        &apos;@ckeditor/ckeditor5-presets/src/essentials&apos;,
+
+        &apos;@ckeditor/ckeditor5-autoformat/src/autoformat&apos;,
+        &apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;,
+        &apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;,
+        &apos;@ckeditor/ckeditor5-heading/src/heading&apos;,
+        &apos;@ckeditor/ckeditor5-link/src/link&apos;,
+        &apos;@ckeditor/ckeditor5-list/src/list&apos;,
+        &apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;,
+
+        &apos;ckeditor5-custom-package/src/customplugin&apos;,
+        &apos;../relative/path/to/some/othercustomplugin&apos;
+    ],
+    config: {
+        toolbar: [ &apos;headings&apos;, &apos;bold&apos;, &apos;italic&apos;, &apos;custombutton&apos; ]
+    }
+};
+</code></pre><h3 id="Rebuilding-the-bundle"><a href="#Rebuilding-the-bundle" class="headerlink" title="Rebuilding the bundle"></a>Rebuilding the bundle</h3><p>After you changed the build configuration or updated some dependencies, it is time to rebuild the bundle. This will run a bundler (webpack) with a proper configuration (see <code>webpack.config.js</code> and <code>webpack.compat.config.js</code>).</p>
+<p>If you wish to create the bundles based on the build configuration (<code>build-config.js</code>) run:</p>
+<pre><code>npm run build
+</code></pre><p>This command will update the entry file (<code>ckeditor.js</code>) and create two bundles &#x2013; <code>build/ckeditor.js</code> and <code>build/ckeditor.compat.js</code>.</p>
+<p>If you want to skip updating the entry file (in case you modified it manually) run:</p>
+<pre><code>npm run build-ckeditor
+npm run build-ckeditor-compat
+</code></pre><h2 id="Updating-the-build"><a href="#Updating-the-build" class="headerlink" title="Updating the build"></a>Updating the build</h2><p>You may decide to update your build at any time. Since it is a fork of the official build, you can simply merge the changes that happened meanwhile in that build, using Git commands:</p>
+<pre><code>git fetch upstream
+git merge upstream/master
+</code></pre><p>You should handle eventual conflicts and verify the merged changes. After that, just follow the previous instructions for creating your build and test it.</p>
+<div class="side-box notice notice__tip"><p>It is recommended to run <code>rm -rf node_modules &amp;&amp; npm install</code> after you fetched changes from the upstream or updated versions of dependencies in <code>package.json</code> manually. This will prevent npm from installing packages more than once (which may lead to broken builds).</p></div>
+
+<h2 id="Publishing-your-builds"><a href="#Publishing-your-builds" class="headerlink" title="Publishing your builds"></a>Publishing your builds</h2><p>If you think that your custom builds can be useful to others, it is a great idea to publish them on GitHub and npm. When doing so, just be sure to give them meaningful names that would fit the <code>ckeditor5-build-(the name)</code> pattern, making them easy to find. To avoid conflicts with other existing builds you can use <a href="https://docs.npmjs.com/misc/scope" target="_blank" rel="external">scoped packages</a>.</p>
+<p>After your build is out, <a href="https://twitter.com/ckeditor" target="_blank" rel="external">ping us on Twitter</a>!</p>
+
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li>
+                            <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Guides</span></div>
+                            <ul>
+                                    <li><a href="../overview.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="../whats-new.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">What's new?</span></div></a></li>
+                                    <li><a href="../migrate.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migration</span></div></a></li>
+                                    <li>
+                                      <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Integration</span></div>
+                                      <ul>
+                                              <li><a href="../integration/installation.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Installation</span></div></a></li>
+                                              <li><a href="../integration/basic-api.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic API</span></div></a></li>
+                                              <li><a href="../integration/configuration.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Configuration</span></div></a></li>
+                                              <li><a href="../integration/plugins.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugins</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Development</span></div>
+                                      <ul>
+                                              <li><a href="">
+                                                  <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Creating custom builds</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li><a href="../license-and-legal.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span></div></a></li>
+                                    <li><a href="../reporting-issues.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span></div></a></li>
+                            </ul>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">docsearch({apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:10}});</script>
+    <footer class="footer">
+      <p>&copy; 2017 CKSource sp. z.o.o. sp.k. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
