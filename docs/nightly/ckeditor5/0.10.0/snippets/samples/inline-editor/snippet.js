@@ -264,7 +264,7 @@ class Position {
 	 * @type {Number}
 	 */
 	get offset() {
-		return __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_lib_lodash_last__["a" /* default */]( this.path );
+		return Object(__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_lib_lodash_last__["a" /* default */])( this.path );
 	}
 
 	/**
@@ -372,7 +372,7 @@ class Position {
 			return 'different';
 		}
 
-		const result = __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( this.path, otherPosition.path );
+		const result = Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */])( this.path, otherPosition.path );
 
 		switch ( result ) {
 			case 'same':
@@ -461,7 +461,7 @@ class Position {
 		}
 
 		// We find on which tree-level start and end have the lowest common ancestor
-		const cmp = __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( this.path, position.path );
+		const cmp = Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */])( this.path, position.path );
 		// If comparison returned string it means that arrays are same.
 		const diffAt = ( typeof cmp == 'string' ) ? Math.min( this.path.length, position.path.length ) : cmp;
 
@@ -637,7 +637,7 @@ class Position {
 			return transformed;
 		}
 
-		if ( __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( deletePosition.getParentPath(), this.getParentPath() ) == 'same' ) {
+		if ( Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */])( deletePosition.getParentPath(), this.getParentPath() ) == 'same' ) {
 			// If nodes are removed from the node that is pointed by this position...
 			if ( deletePosition.offset < this.offset ) {
 				// And are removed from before an offset of that position...
@@ -649,7 +649,7 @@ class Position {
 					transformed.offset -= howMany;
 				}
 			}
-		} else if ( __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( deletePosition.getParentPath(), this.getParentPath() ) == 'prefix' ) {
+		} else if ( Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */])( deletePosition.getParentPath(), this.getParentPath() ) == 'prefix' ) {
 			// If nodes are removed from a node that is on a path to this position...
 			const i = deletePosition.path.length - 1;
 
@@ -688,14 +688,14 @@ class Position {
 			return transformed;
 		}
 
-		if ( __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( insertPosition.getParentPath(), this.getParentPath() ) == 'same' ) {
+		if ( Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */])( insertPosition.getParentPath(), this.getParentPath() ) == 'same' ) {
 			// If nodes are inserted in the node that is pointed by this position...
 			if ( insertPosition.offset < this.offset || ( insertPosition.offset == this.offset && insertBefore ) ) {
 				// And are inserted before an offset of that position...
 				// "Push" this positions offset.
 				transformed.offset += howMany;
 			}
-		} else if ( __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( insertPosition.getParentPath(), this.getParentPath() ) == 'prefix' ) {
+		} else if ( Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */])( insertPosition.getParentPath(), this.getParentPath() ) == 'prefix' ) {
 			// If nodes are inserted in a node that is on a path to this position...
 			const i = insertPosition.path.length - 1;
 
@@ -988,7 +988,7 @@ class Plugin {
 /* harmony export (immutable) */ __webpack_exports__["a"] = Plugin;
 
 
-__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( Plugin, __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_observablemixin__["a" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( Plugin, __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_observablemixin__["a" /* default */] );
 
 /**
  * The base interface for CKEditor plugins.
@@ -1590,13 +1590,13 @@ class Range {
 		} else {
 			const sourceRange = Range.createFromPositionAndShift( sourcePosition, howMany );
 
-			// Edge case for merge detla.
+			// Edge case for merge delta.
 			if (
 				deltaType == 'merge' &&
 				this.isCollapsed &&
 				( this.start.isEqual( sourceRange.start ) || this.start.isEqual( sourceRange.end ) )
 			) {
-				// Collapsed range is in merged element.
+				// Collapsed range is in merged element, at the beginning or at the end of it.
 				// Without fix, the range would end up in the graveyard, together with removed element.
 				// <p>foo</p><p>[]bar</p> -> <p>foobar</p><p>[]</p> -> <p>foobar</p> -> <p>foo[]bar</p>
 				// <p>foo</p><p>bar[]</p>
@@ -1630,7 +1630,7 @@ class Range {
 			// <p>c[d</p><w>{<p>a]b</p>}</w><p>xx</p>^   -->   <p>c[d</p><w></w><p>xx</p><p>a]b</p>  // Note <p>xx</p> inclusion.
 			// <p>c[d</p>^<w>{<p>a]b</p>}</w>            -->   <p>c[d</p><p>a]b</p><w></w>
 			if (
-				sourceRange.containsPosition( this.end ) &&
+				( sourceRange.containsPosition( this.end ) || sourceRange.end.isEqual( this.end ) ) &&
 				this.containsPosition( sourceRange.start ) &&
 				this.start.isBefore( targetPosition )
 			) {
@@ -2293,7 +2293,7 @@ function normalize( nodes ) {
 		return [ new __WEBPACK_IMPORTED_MODULE_2__text__["a" /* default */]( nodes ) ];
 	}
 
-	if ( !__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_isiterable__["a" /* default */]( nodes ) ) {
+	if ( !Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_isiterable__["a" /* default */])( nodes ) ) {
 		nodes = [ nodes ];
 	}
 
@@ -2758,7 +2758,7 @@ class Template {
 			//			value: Template.bind( ... ).to( ... )
 			//		}
 			//
-			attrNs = ( __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_lib_lodash_isObject__["a" /* default */]( attrValue[ 0 ] ) && attrValue[ 0 ].ns ) ? attrValue[ 0 ].ns : null;
+			attrNs = ( Object(__WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_lib_lodash_isObject__["a" /* default */])( attrValue[ 0 ] ) && attrValue[ 0 ].ns ) ? attrValue[ 0 ].ns : null;
 
 			// Activate binding if one is found. Cases:
 			//
@@ -3069,7 +3069,7 @@ class Template {
 /* harmony export (immutable) */ __webpack_exports__["a"] = Template;
 
 
-__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( Template, __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( Template, __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
 
 /**
  * Describes a binding created by {@link module:ui/template~Template.bind} interface.
@@ -3361,7 +3361,7 @@ function getStyleUpdater( el, styleName ) {
 // @param {module:ui/template~TemplateDefinition} def
 // @returns {module:ui/template~TemplateDefinition}
 function clone( def ) {
-	const clone = __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_lib_lodash_cloneDeepWith__["a" /* default */]( def, value => {
+	const clone = Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_lib_lodash_cloneDeepWith__["a" /* default */])( def, value => {
 		// Don't clone the `Template.bind`* bindings because of the references to Observable
 		// and DomEmitterMixin instances inside, which would also be traversed and cloned by greedy
 		// cloneDeepWith algorithm. There's no point in cloning Observable/DomEmitterMixins
@@ -3976,7 +3976,7 @@ function rest(func, start) {
   if (typeof func != 'function') {
     throw new TypeError(FUNC_ERROR_TEXT);
   }
-  start = nativeMax(start === undefined ? (func.length - 1) : __WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */](start), 0);
+  start = nativeMax(start === undefined ? (func.length - 1) : Object(__WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */])(start), 0);
   return function() {
     var args = arguments,
         index = -1,
@@ -3997,7 +3997,7 @@ function rest(func, start) {
       otherArgs[index] = args[index];
     }
     otherArgs[start] = array;
-    return __WEBPACK_IMPORTED_MODULE_0__apply__["a" /* default */](func, this, otherArgs);
+    return Object(__WEBPACK_IMPORTED_MODULE_0__apply__["a" /* default */])(func, this, otherArgs);
   };
 }
 
@@ -4428,7 +4428,7 @@ function _getEmitterListenedTo( listeningEmitter, listenedToEmitterId ) {
  */
 function _setEmitterId( emitter, id ) {
 	if ( !emitter[ _emitterId ] ) {
-		emitter[ _emitterId ] = id || __WEBPACK_IMPORTED_MODULE_1__uid__["a" /* default */]();
+		emitter[ _emitterId ] = id || Object(__WEBPACK_IMPORTED_MODULE_1__uid__["a" /* default */])();
 	}
 }
 
@@ -4898,7 +4898,7 @@ class View {
 	 * @param {module:ui/view~View|Iterable.<module:ui/view~View>} children Children views to be registered.
 	 */
 	addChildren( children ) {
-		if ( !__WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_isiterable__["a" /* default */]( children ) ) {
+		if ( !Object(__WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_isiterable__["a" /* default */])( children ) ) {
 			children = [ children ];
 		}
 
@@ -4959,8 +4959,8 @@ class View {
 /* harmony export (immutable) */ __webpack_exports__["a"] = View;
 
 
-__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( View, __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_dom_emittermixin__["a" /* default */] );
-__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( View, __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_observablemixin__["a" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( View, __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_dom_emittermixin__["a" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( View, __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_observablemixin__["a" /* default */] );
 
 
 /***/ }),
@@ -4996,11 +4996,11 @@ function baseIteratee(value) {
     return __WEBPACK_IMPORTED_MODULE_2__identity__["a" /* default */];
   }
   if (typeof value == 'object') {
-    return __WEBPACK_IMPORTED_MODULE_3__isArray__["a" /* default */](value)
-      ? __WEBPACK_IMPORTED_MODULE_1__baseMatchesProperty__["a" /* default */](value[0], value[1])
-      : __WEBPACK_IMPORTED_MODULE_0__baseMatches__["a" /* default */](value);
+    return Object(__WEBPACK_IMPORTED_MODULE_3__isArray__["a" /* default */])(value)
+      ? Object(__WEBPACK_IMPORTED_MODULE_1__baseMatchesProperty__["a" /* default */])(value[0], value[1])
+      : Object(__WEBPACK_IMPORTED_MODULE_0__baseMatches__["a" /* default */])(value);
   }
-  return __WEBPACK_IMPORTED_MODULE_4__property__["a" /* default */](value);
+  return Object(__WEBPACK_IMPORTED_MODULE_4__property__["a" /* default */])(value);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (baseIteratee);
@@ -5155,7 +5155,7 @@ class Command {
 /* harmony export (immutable) */ __webpack_exports__["a"] = Command;
 
 
-__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( Command, __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_observablemixin__["a" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( Command, __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_observablemixin__["a" /* default */] );
 
 
 /***/ }),
@@ -5231,7 +5231,7 @@ function isObject(value) {
  * // => 3
  */
 function toInteger(value) {
-  var result = __WEBPACK_IMPORTED_MODULE_0__toFinite__["a" /* default */](value),
+  var result = Object(__WEBPACK_IMPORTED_MODULE_0__toFinite__["a" /* default */])(value),
       remainder = result % 1;
 
   return result === result ? (remainder ? result - remainder : result) : 0;
@@ -5276,7 +5276,7 @@ function toInteger(value) {
  * // => false
  */
 function isArrayLikeObject(value) {
-  return __WEBPACK_IMPORTED_MODULE_1__isObjectLike__["a" /* default */](value) && __WEBPACK_IMPORTED_MODULE_0__isArrayLike__["a" /* default */](value);
+  return Object(__WEBPACK_IMPORTED_MODULE_1__isObjectLike__["a" /* default */])(value) && Object(__WEBPACK_IMPORTED_MODULE_0__isArrayLike__["a" /* default */])(value);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (isArrayLikeObject);
@@ -5645,7 +5645,7 @@ const ObservableMixin = {
 	 */
 	set( name, value ) {
 		// If the first parameter is an Object, iterate over its properties.
-		if ( __WEBPACK_IMPORTED_MODULE_3__lib_lodash_isObject__["a" /* default */]( name ) ) {
+		if ( Object(__WEBPACK_IMPORTED_MODULE_3__lib_lodash_isObject__["a" /* default */])( name ) ) {
 			Object.keys( name ).forEach( attr => {
 				this.set( attr, name[ attr ] );
 			}, this );
@@ -6314,7 +6314,7 @@ function attachBindToListeners( observable, toBindings ) {
 	} );
 }
 
-__WEBPACK_IMPORTED_MODULE_2__lib_lodash_extend__["a" /* default */]( ObservableMixin, __WEBPACK_IMPORTED_MODULE_0__emittermixin__["c" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_2__lib_lodash_extend__["a" /* default */])( ObservableMixin, __WEBPACK_IMPORTED_MODULE_0__emittermixin__["c" /* default */] );
 
 /**
  * Fired when an attribute changed value.
@@ -6821,7 +6821,7 @@ class Delta {
 	 * @returns {Object} Clone of this delta with added class name.
 	 */
 	toJSON() {
-		const json = __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_clone__["a" /* default */]( this );
+		const json = Object(__WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_clone__["a" /* default */])( this );
 
 		json.__className = this.constructor.className;
 
@@ -6883,7 +6883,7 @@ function baseFlatten(array, depth, predicate, isStrict, result) {
         // Recursively flatten arrays (susceptible to call stack limits).
         baseFlatten(value, depth - 1, predicate, isStrict, result);
       } else {
-        __WEBPACK_IMPORTED_MODULE_0__arrayPush__["a" /* default */](result, value);
+        Object(__WEBPACK_IMPORTED_MODULE_0__arrayPush__["a" /* default */])(result, value);
       }
     } else if (!isStrict) {
       result[result.length] = value;
@@ -7351,7 +7351,7 @@ class ButtonView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */] 
 				return tooltip;
 			} else {
 				if ( keystroke ) {
-					keystroke = __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_keyboard__["b" /* getEnvKeystrokeText */]( keystroke );
+					keystroke = Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_keyboard__["b" /* getEnvKeystrokeText */])( keystroke );
 				}
 
 				if ( tooltip instanceof Function ) {
@@ -7729,7 +7729,7 @@ class Position {
 		const otherPath = otherPosition.getAncestors();
 
 		// Compare both path arrays to find common ancestor.
-		const result = __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( path, otherPath );
+		const result = Object(__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */])( path, otherPath );
 
 		let commonAncestorIndex;
 
@@ -7953,8 +7953,8 @@ class Element extends __WEBPACK_IMPORTED_MODULE_0__node__["a" /* default */] {
 		 * @protected
 		 * @member {Map} #_attrs
 		 */
-		if ( __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isPlainObject__["a" /* default */]( attrs ) ) {
-			this._attrs = __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_objecttomap__["a" /* default */]( attrs );
+		if ( Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isPlainObject__["a" /* default */])( attrs ) ) {
+			this._attrs = Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_objecttomap__["a" /* default */])( attrs );
 		} else {
 			this._attrs = new Map( attrs );
 		}
@@ -8436,7 +8436,7 @@ class Element extends __WEBPACK_IMPORTED_MODULE_0__node__["a" /* default */] {
 	setStyle( property, value ) {
 		this._fireChange( 'attributes', this );
 
-		if ( __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isPlainObject__["a" /* default */]( property ) ) {
+		if ( Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isPlainObject__["a" /* default */])( property ) ) {
 			const keys = Object.keys( property );
 
 			for ( const key of keys ) {
@@ -8672,7 +8672,7 @@ function normalize( nodes ) {
 		return [ new __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */]( nodes ) ];
 	}
 
-	if ( !__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_isiterable__["a" /* default */]( nodes ) ) {
+	if ( !Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_isiterable__["a" /* default */])( nodes ) ) {
 		nodes = [ nodes ];
 	}
 
@@ -8854,7 +8854,7 @@ class MoveOperation extends __WEBPACK_IMPORTED_MODULE_0__operation__["a" /* defa
 				'move-operation-range-into-itself: Trying to move a range of nodes to the inside of that range.'
 			);
 		} else if ( this.sourcePosition.root == this.targetPosition.root ) {
-			if ( __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( this.sourcePosition.getParentPath(), this.targetPosition.getParentPath() ) == 'prefix' ) {
+			if ( Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */])( this.sourcePosition.getParentPath(), this.targetPosition.getParentPath() ) == 'prefix' ) {
 				const i = this.sourcePosition.path.length - 1;
 
 				if ( this.targetPosition.path[ i ] >= sourceOffset && this.targetPosition.path[ i ] < sourceOffset + this.howMany ) {
@@ -8962,16 +8962,16 @@ var freeModule = (objectTypes[typeof module] && module && !module.nodeType)
   : undefined;
 
 /** Detect free variable `global` from Node.js. */
-var freeGlobal = __WEBPACK_IMPORTED_MODULE_0__checkGlobal__["a" /* default */](freeExports && freeModule && typeof global == 'object' && global);
+var freeGlobal = Object(__WEBPACK_IMPORTED_MODULE_0__checkGlobal__["a" /* default */])(freeExports && freeModule && typeof global == 'object' && global);
 
 /** Detect free variable `self`. */
-var freeSelf = __WEBPACK_IMPORTED_MODULE_0__checkGlobal__["a" /* default */](objectTypes[typeof self] && self);
+var freeSelf = Object(__WEBPACK_IMPORTED_MODULE_0__checkGlobal__["a" /* default */])(objectTypes[typeof self] && self);
 
 /** Detect free variable `window`. */
-var freeWindow = __WEBPACK_IMPORTED_MODULE_0__checkGlobal__["a" /* default */](objectTypes[typeof window] && window);
+var freeWindow = Object(__WEBPACK_IMPORTED_MODULE_0__checkGlobal__["a" /* default */])(objectTypes[typeof window] && window);
 
 /** Detect `this` as the global object. */
-var thisGlobal = __WEBPACK_IMPORTED_MODULE_0__checkGlobal__["a" /* default */](objectTypes[typeof this] && this);
+var thisGlobal = Object(__WEBPACK_IMPORTED_MODULE_0__checkGlobal__["a" /* default */])(objectTypes[typeof this] && this);
 
 /**
  * Used as a reference to the global object.
@@ -10347,7 +10347,7 @@ function normalize( nodes ) {
 		return [ new __WEBPACK_IMPORTED_MODULE_2__text__["a" /* default */]( nodes ) ];
 	}
 
-	if ( !__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_isiterable__["a" /* default */]( nodes ) ) {
+	if ( !Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_isiterable__["a" /* default */])( nodes ) ) {
 		nodes = [ nodes ];
 	}
 
@@ -10450,7 +10450,7 @@ class Operation {
 	 * @returns {Object} Clone of this object with the delta property replaced with string.
 	 */
 	toJSON() {
-		const json = __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_clone__["a" /* default */]( this, true );
+		const json = Object(__WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_clone__["a" /* default */])( this, true );
 
 		json.__className = this.constructor.className;
 
@@ -11095,7 +11095,7 @@ class ViewConverterBuilder {
 // Helper function that sets given attributes on given `module:engine/model/node~Node` or
 // `module:engine/model/documentfragment~DocumentFragment`.
 function setAttributeOn( toChange, attribute, data, conversionApi ) {
-	if ( __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_isiterable__["a" /* default */]( toChange ) ) {
+	if ( Object(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_isiterable__["a" /* default */])( toChange ) ) {
 		for ( const node of toChange ) {
 			setAttributeOn( node, attribute, data, conversionApi );
 		}
@@ -11163,7 +11163,7 @@ const imageSymbol = Symbol( 'isImage' );
 function toImageWidget( viewElement, label ) {
 	viewElement.setCustomProperty( imageSymbol, true );
 
-	return __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_widget_src_utils__["d" /* toWidget */]( viewElement, { label: labelCreator } );
+	return Object(__WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_widget_src_utils__["d" /* toWidget */])( viewElement, { label: labelCreator } );
 
 	function labelCreator() {
 		const imgElement = viewElement.getChild( 0 );
@@ -11180,7 +11180,7 @@ function toImageWidget( viewElement, label ) {
  * @returns {Boolean}
  */
 function isImageWidget( viewElement ) {
-	return !!viewElement.getCustomProperty( imageSymbol ) && __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_widget_src_utils__["c" /* isWidget */]( viewElement );
+	return !!viewElement.getCustomProperty( imageSymbol ) && Object(__WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_widget_src_utils__["c" /* isWidget */])( viewElement );
 }
 
 /**
@@ -11282,7 +11282,7 @@ var objectToString = objectProto.toString;
  */
 function isSymbol(value) {
   return typeof value == 'symbol' ||
-    (__WEBPACK_IMPORTED_MODULE_0__isObjectLike__["a" /* default */](value) && objectToString.call(value) == symbolTag);
+    (Object(__WEBPACK_IMPORTED_MODULE_0__isObjectLike__["a" /* default */])(value) && objectToString.call(value) == symbolTag);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (isSymbol);
@@ -11465,7 +11465,7 @@ class InsertOperation extends __WEBPACK_IMPORTED_MODULE_0__operation__["a" /* de
 		 * @readonly
 		 * @member {module:engine/model/nodelist~NodeList} module:engine/model/operation/insertoperation~InsertOperation#nodeList
 		 */
-		this.nodes = new __WEBPACK_IMPORTED_MODULE_2__nodelist__["a" /* default */]( __WEBPACK_IMPORTED_MODULE_4__writer__["c" /* normalizeNodes */]( nodes ) );
+		this.nodes = new __WEBPACK_IMPORTED_MODULE_2__nodelist__["a" /* default */]( Object(__WEBPACK_IMPORTED_MODULE_4__writer__["c" /* normalizeNodes */])( nodes ) );
 	}
 
 	/**
@@ -11509,7 +11509,7 @@ class InsertOperation extends __WEBPACK_IMPORTED_MODULE_0__operation__["a" /* de
 		const originalNodes = this.nodes;
 		this.nodes = new __WEBPACK_IMPORTED_MODULE_2__nodelist__["a" /* default */]( [ ...originalNodes ].map( node => node.clone( true ) ) );
 
-		const range = __WEBPACK_IMPORTED_MODULE_4__writer__["b" /* insert */]( this.position, originalNodes );
+		const range = Object(__WEBPACK_IMPORTED_MODULE_4__writer__["b" /* insert */])( this.position, originalNodes );
 
 		return { range };
 	}
@@ -11591,9 +11591,9 @@ function baseUniq(array, iteratee, comparator) {
     includes = __WEBPACK_IMPORTED_MODULE_2__arrayIncludesWith__["a" /* default */];
   }
   else if (length >= LARGE_ARRAY_SIZE) {
-    var set = iteratee ? null : __WEBPACK_IMPORTED_MODULE_4__createSet__["a" /* default */](array);
+    var set = iteratee ? null : Object(__WEBPACK_IMPORTED_MODULE_4__createSet__["a" /* default */])(array);
     if (set) {
-      return __WEBPACK_IMPORTED_MODULE_5__setToArray__["a" /* default */](set);
+      return Object(__WEBPACK_IMPORTED_MODULE_5__setToArray__["a" /* default */])(set);
     }
     isCommon = false;
     includes = __WEBPACK_IMPORTED_MODULE_3__cacheHas__["a" /* default */];
@@ -11903,23 +11903,23 @@ class ModelConverterBuilder {
 				// From model element to view element -> insert element.
 				element = typeof element == 'string' ? new __WEBPACK_IMPORTED_MODULE_3__view_containerelement__["a" /* default */]( element ) : element;
 
-				dispatcher.on( 'insert:' + this._from.name, __WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["a" /* insertElement */]( element ), { priority } );
+				dispatcher.on( 'insert:' + this._from.name, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["a" /* insertElement */])( element ), { priority } );
 			} else if ( this._from.type == 'attribute' ) {
 				// From model attribute to view element -> wrap and unwrap.
 				element = typeof element == 'string' ? new __WEBPACK_IMPORTED_MODULE_2__view_attributeelement__["a" /* default */]( element ) : element;
 
-				dispatcher.on( 'addAttribute:' + this._from.key, __WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["j" /* wrapItem */]( element ), { priority } );
-				dispatcher.on( 'changeAttribute:' + this._from.key, __WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["j" /* wrapItem */]( element ), { priority } );
-				dispatcher.on( 'removeAttribute:' + this._from.key, __WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["h" /* unwrapItem */]( element ), { priority } );
+				dispatcher.on( 'addAttribute:' + this._from.key, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["j" /* wrapItem */])( element ), { priority } );
+				dispatcher.on( 'changeAttribute:' + this._from.key, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["j" /* wrapItem */])( element ), { priority } );
+				dispatcher.on( 'removeAttribute:' + this._from.key, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["h" /* unwrapItem */])( element ), { priority } );
 
-				dispatcher.on( 'selectionAttribute:' + this._from.key, __WEBPACK_IMPORTED_MODULE_1__model_selection_to_view_converters__["e" /* convertSelectionAttribute */]( element ), { priority } );
+				dispatcher.on( 'selectionAttribute:' + this._from.key, Object(__WEBPACK_IMPORTED_MODULE_1__model_selection_to_view_converters__["e" /* convertSelectionAttribute */])( element ), { priority } );
 			} else {
 				element = typeof element == 'string' ? new __WEBPACK_IMPORTED_MODULE_2__view_attributeelement__["a" /* default */]( element ) : element;
 
-				dispatcher.on( 'addMarker:' + this._from.name, __WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["k" /* wrapRange */]( element ), { priority } );
-				dispatcher.on( 'removeMarker:' + this._from.name, __WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["i" /* unwrapRange */]( element ), { priority } );
+				dispatcher.on( 'addMarker:' + this._from.name, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["k" /* wrapRange */])( element ), { priority } );
+				dispatcher.on( 'removeMarker:' + this._from.name, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["i" /* unwrapRange */])( element ), { priority } );
 
-				dispatcher.on( 'selectionMarker:' + this._from.name, __WEBPACK_IMPORTED_MODULE_1__model_selection_to_view_converters__["f" /* convertSelectionMarker */]( element ), { priority } );
+				dispatcher.on( 'selectionMarker:' + this._from.name, Object(__WEBPACK_IMPORTED_MODULE_1__model_selection_to_view_converters__["f" /* convertSelectionMarker */])( element ), { priority } );
 			}
 		}
 	}
@@ -11982,8 +11982,8 @@ class ModelConverterBuilder {
 
 			element = typeof element == 'string' ? new __WEBPACK_IMPORTED_MODULE_4__view_uielement__["a" /* default */]( element ) : element;
 
-			dispatcher.on( 'addMarker:' + this._from.name, __WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["c" /* insertUIElement */]( element ), { priority } );
-			dispatcher.on( 'removeMarker:' + this._from.name, __WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["f" /* removeUIElement */]( element ), { priority } );
+			dispatcher.on( 'addMarker:' + this._from.name, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["c" /* insertUIElement */])( element ), { priority } );
+			dispatcher.on( 'removeMarker:' + this._from.name, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["f" /* removeUIElement */])( element ), { priority } );
 		}
 	}
 
@@ -12057,9 +12057,9 @@ class ModelConverterBuilder {
 		for ( const dispatcher of this._dispatchers ) {
 			const options = { priority: this._from.priority || 'normal' };
 
-			dispatcher.on( 'addAttribute:' + this._from.key, __WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["g" /* setAttribute */]( attributeCreator ), options );
-			dispatcher.on( 'changeAttribute:' + this._from.key, __WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["g" /* setAttribute */]( attributeCreator ), options );
-			dispatcher.on( 'removeAttribute:' + this._from.key, __WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["e" /* removeAttribute */]( attributeCreator ), options );
+			dispatcher.on( 'addAttribute:' + this._from.key, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["g" /* setAttribute */])( attributeCreator ), options );
+			dispatcher.on( 'changeAttribute:' + this._from.key, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["g" /* setAttribute */])( attributeCreator ), options );
+			dispatcher.on( 'removeAttribute:' + this._from.key, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["e" /* removeAttribute */])( attributeCreator ), options );
 		}
 	}
 }
@@ -13117,7 +13117,7 @@ class TreeWalker {
  */
 function getNative(object, key) {
   var value = object[key];
-  return __WEBPACK_IMPORTED_MODULE_0__isNative__["a" /* default */](value) ? value : undefined;
+  return Object(__WEBPACK_IMPORTED_MODULE_0__isNative__["a" /* default */])(value) ? value : undefined;
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (getNative);
@@ -13146,12 +13146,12 @@ var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
  * @returns {boolean} Returns `true` if `value` is a property name, else `false`.
  */
 function isKey(value, object) {
-  if (__WEBPACK_IMPORTED_MODULE_0__isArray__["a" /* default */](value)) {
+  if (Object(__WEBPACK_IMPORTED_MODULE_0__isArray__["a" /* default */])(value)) {
     return false;
   }
   var type = typeof value;
   if (type == 'number' || type == 'symbol' || type == 'boolean' ||
-      value == null || __WEBPACK_IMPORTED_MODULE_1__isSymbol__["a" /* default */](value)) {
+      value == null || Object(__WEBPACK_IMPORTED_MODULE_1__isSymbol__["a" /* default */])(value)) {
     return true;
   }
   return reIsPlainProp.test(value) || !reIsDeepProp.test(value) ||
@@ -13180,7 +13180,7 @@ var INFINITY = 1 / 0;
  * @returns {string|symbol} Returns the key.
  */
 function toKey(value) {
-  if (typeof value == 'string' || __WEBPACK_IMPORTED_MODULE_0__isSymbol__["a" /* default */](value)) {
+  if (typeof value == 'string' || Object(__WEBPACK_IMPORTED_MODULE_0__isSymbol__["a" /* default */])(value)) {
     return value;
   }
   var result = (value + '');
@@ -13266,7 +13266,7 @@ class KeystrokeHandler {
 	 * a helper to both `preventDefault` and `stopPropagation` of the event.
 	 */
 	set( keystroke, callback ) {
-		const keyCode = __WEBPACK_IMPORTED_MODULE_1__keyboard__["d" /* parseKeystroke */]( keystroke );
+		const keyCode = Object(__WEBPACK_IMPORTED_MODULE_1__keyboard__["d" /* parseKeystroke */])( keystroke );
 		const callbacks = this._keystrokes.get( keyCode );
 
 		if ( callbacks ) {
@@ -13283,7 +13283,7 @@ class KeystrokeHandler {
 	 * @returns {Boolean} Whether the keystroke was handled.
 	 */
 	press( keyEventData ) {
-		const keyCode = __WEBPACK_IMPORTED_MODULE_1__keyboard__["a" /* getCode */]( keyEventData );
+		const keyCode = Object(__WEBPACK_IMPORTED_MODULE_1__keyboard__["a" /* getCode */])( keyEventData );
 		const callbacks = this._keystrokes.get( keyCode );
 
 		if ( !callbacks ) {
@@ -13405,7 +13405,7 @@ class Observer {
 /* harmony export (immutable) */ __webpack_exports__["a"] = Observer;
 
 
-__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( Observer, __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_dom_emittermixin__["a" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( Observer, __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_dom_emittermixin__["a" /* default */] );
 
 
 /***/ }),
@@ -13434,7 +13434,7 @@ var hasOwnProperty = objectProto.hasOwnProperty;
  */
 function assignValue(object, key, value) {
   var objValue = object[key];
-  if (!(hasOwnProperty.call(object, key) && __WEBPACK_IMPORTED_MODULE_0__eq__["a" /* default */](objValue, value)) ||
+  if (!(hasOwnProperty.call(object, key) && Object(__WEBPACK_IMPORTED_MODULE_0__eq__["a" /* default */])(objValue, value)) ||
       (value === undefined && !(key in object))) {
     object[key] = value;
   }
@@ -13516,7 +13516,7 @@ class Node {
 		 * @private
 		 * @member {Map} module:engine/model/node~Node#_attrs
 		 */
-		this._attrs = __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_tomap__["a" /* default */]( attrs );
+		this._attrs = Object(__WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_tomap__["a" /* default */])( attrs );
 	}
 
 	/**
@@ -13785,7 +13785,7 @@ class Node {
 	 * @param {Object} [attrs] Attributes to set. See {@link module:utils/tomap~toMap} for a list of accepted values.
 	 */
 	setAttributesTo( attrs ) {
-		this._attrs = __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_tomap__["a" /* default */]( attrs );
+		this._attrs = Object(__WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_tomap__["a" /* default */])( attrs );
 	}
 
 	/**
@@ -13891,18 +13891,18 @@ class Node {
  * // => ['0', '1']
  */
 function keys(object) {
-  var isProto = __WEBPACK_IMPORTED_MODULE_5__isPrototype__["a" /* default */](object);
-  if (!(isProto || __WEBPACK_IMPORTED_MODULE_3__isArrayLike__["a" /* default */](object))) {
-    return __WEBPACK_IMPORTED_MODULE_1__baseKeys__["a" /* default */](object);
+  var isProto = Object(__WEBPACK_IMPORTED_MODULE_5__isPrototype__["a" /* default */])(object);
+  if (!(isProto || Object(__WEBPACK_IMPORTED_MODULE_3__isArrayLike__["a" /* default */])(object))) {
+    return Object(__WEBPACK_IMPORTED_MODULE_1__baseKeys__["a" /* default */])(object);
   }
-  var indexes = __WEBPACK_IMPORTED_MODULE_2__indexKeys__["a" /* default */](object),
+  var indexes = Object(__WEBPACK_IMPORTED_MODULE_2__indexKeys__["a" /* default */])(object),
       skipIndexes = !!indexes,
       result = indexes || [],
       length = result.length;
 
   for (var key in object) {
-    if (__WEBPACK_IMPORTED_MODULE_0__baseHas__["a" /* default */](object, key) &&
-        !(skipIndexes && (key == 'length' || __WEBPACK_IMPORTED_MODULE_4__isIndex__["a" /* default */](key, length))) &&
+    if (Object(__WEBPACK_IMPORTED_MODULE_0__baseHas__["a" /* default */])(object, key) &&
+        !(skipIndexes && (key == 'length' || Object(__WEBPACK_IMPORTED_MODULE_4__isIndex__["a" /* default */])(key, length))) &&
         !(isProto && key == 'constructor')) {
       result.push(key);
     }
@@ -14021,7 +14021,7 @@ function baseDifference(array, values, iteratee, comparator) {
     return result;
   }
   if (iteratee) {
-    values = __WEBPACK_IMPORTED_MODULE_3__arrayMap__["a" /* default */](values, __WEBPACK_IMPORTED_MODULE_4__baseUnary__["a" /* default */](iteratee));
+    values = Object(__WEBPACK_IMPORTED_MODULE_3__arrayMap__["a" /* default */])(values, Object(__WEBPACK_IMPORTED_MODULE_4__baseUnary__["a" /* default */])(iteratee));
   }
   if (comparator) {
     includes = __WEBPACK_IMPORTED_MODULE_2__arrayIncludesWith__["a" /* default */];
@@ -14605,9 +14605,9 @@ class Selection {
 	 * @param {Iterable|Object} attrs Iterable object containing attributes to be set.
 	 */
 	setAttributesTo( attrs ) {
-		attrs = __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_tomap__["a" /* default */]( attrs );
+		attrs = Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_tomap__["a" /* default */])( attrs );
 
-		if ( !__WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_mapsequal__["a" /* default */]( attrs, this._attrs ) ) {
+		if ( !Object(__WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_mapsequal__["a" /* default */])( attrs, this._attrs ) ) {
 			// Create a set from keys of old and new attributes.
 			const changed = new Set( Array.from( attrs.keys() ).concat( Array.from( this._attrs.keys() ) ) );
 
@@ -14797,7 +14797,7 @@ class Selection {
 /* harmony export (immutable) */ __webpack_exports__["a"] = Selection;
 
 
-__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( Selection, __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( Selection, __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
 
 // Checks whether the given element extends $block in the schema and has a parent (is not a root).
 // Marks it as already visited.
@@ -15376,7 +15376,7 @@ class Selection {
 /* harmony export (immutable) */ __webpack_exports__["a"] = Selection;
 
 
-__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( Selection, __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( Selection, __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
 
 /**
  * Fired whenever selection ranges are changed through {@link ~Selection Selection API}.
@@ -15829,8 +15829,8 @@ class FocusTracker {
 /* harmony export (immutable) */ __webpack_exports__["a"] = FocusTracker;
 
 
-__WEBPACK_IMPORTED_MODULE_3__mix__["a" /* default */]( FocusTracker, __WEBPACK_IMPORTED_MODULE_0__dom_emittermixin__["a" /* default */] );
-__WEBPACK_IMPORTED_MODULE_3__mix__["a" /* default */]( FocusTracker, __WEBPACK_IMPORTED_MODULE_1__observablemixin__["a" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_3__mix__["a" /* default */])( FocusTracker, __WEBPACK_IMPORTED_MODULE_0__dom_emittermixin__["a" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_3__mix__["a" /* default */])( FocusTracker, __WEBPACK_IMPORTED_MODULE_1__observablemixin__["a" /* default */] );
 
 
 /***/ }),
@@ -15929,11 +15929,11 @@ var objectToString = objectProto.toString;
  * // => true
  */
 function isPlainObject(value) {
-  if (!__WEBPACK_IMPORTED_MODULE_2__isObjectLike__["a" /* default */](value) ||
-      objectToString.call(value) != objectTag || __WEBPACK_IMPORTED_MODULE_1__isHostObject__["a" /* default */](value)) {
+  if (!Object(__WEBPACK_IMPORTED_MODULE_2__isObjectLike__["a" /* default */])(value) ||
+      objectToString.call(value) != objectTag || Object(__WEBPACK_IMPORTED_MODULE_1__isHostObject__["a" /* default */])(value)) {
     return false;
   }
-  var proto = __WEBPACK_IMPORTED_MODULE_0__getPrototype__["a" /* default */](value);
+  var proto = Object(__WEBPACK_IMPORTED_MODULE_0__getPrototype__["a" /* default */])(value);
   if (proto === null) {
     return true;
   }
@@ -16029,15 +16029,15 @@ function uid() {
  *  else `false`.
  */
 function isIterateeCall(value, index, object) {
-  if (!__WEBPACK_IMPORTED_MODULE_3__isObject__["a" /* default */](object)) {
+  if (!Object(__WEBPACK_IMPORTED_MODULE_3__isObject__["a" /* default */])(object)) {
     return false;
   }
   var type = typeof index;
   if (type == 'number'
-        ? (__WEBPACK_IMPORTED_MODULE_1__isArrayLike__["a" /* default */](object) && __WEBPACK_IMPORTED_MODULE_2__isIndex__["a" /* default */](index, object.length))
+        ? (Object(__WEBPACK_IMPORTED_MODULE_1__isArrayLike__["a" /* default */])(object) && Object(__WEBPACK_IMPORTED_MODULE_2__isIndex__["a" /* default */])(index, object.length))
         : (type == 'string' && index in object)
       ) {
-    return __WEBPACK_IMPORTED_MODULE_0__eq__["a" /* default */](object[index], value);
+    return Object(__WEBPACK_IMPORTED_MODULE_0__eq__["a" /* default */])(object[index], value);
   }
   return false;
 }
@@ -16083,7 +16083,7 @@ function isIterateeCall(value, index, object) {
  * // => false
  */
 function isArrayLike(value) {
-  return value != null && __WEBPACK_IMPORTED_MODULE_2__isLength__["a" /* default */](__WEBPACK_IMPORTED_MODULE_0__getLength__["a" /* default */](value)) && !__WEBPACK_IMPORTED_MODULE_1__isFunction__["a" /* default */](value);
+  return value != null && Object(__WEBPACK_IMPORTED_MODULE_2__isLength__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_0__getLength__["a" /* default */])(value)) && !Object(__WEBPACK_IMPORTED_MODULE_1__isFunction__["a" /* default */])(value);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (isArrayLike);
@@ -16882,7 +16882,7 @@ class Node {
  * @event change
  */
 
-__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( Node, __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( Node, __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
 
 
 /***/ }),
@@ -16986,7 +16986,7 @@ class EditableElement extends __WEBPACK_IMPORTED_MODULE_0__containerelement__["a
 /* harmony export (immutable) */ __webpack_exports__["a"] = EditableElement;
 
 
-__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( EditableElement, __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_observablemixin__["a" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( EditableElement, __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_observablemixin__["a" /* default */] );
 
 
 /***/ }),
@@ -17339,7 +17339,7 @@ function breakViewRangePerContainer( range ) {
  * @returns {module:engine/view/range~Range} Range around inserted nodes.
  */
 function insert( position, nodes ) {
-	nodes = __WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_utils_src_isiterable__["a" /* default */]( nodes ) ? [ ...nodes ] : [ nodes ];
+	nodes = Object(__WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_utils_src_isiterable__["a" /* default */])( nodes ) ? [ ...nodes ] : [ nodes ];
 
 	// Check if nodes to insert are instances of AttributeElements, ContainerElements, EmptyElements, UIElements or Text.
 	validateNodesToInsert( nodes );
@@ -18297,7 +18297,7 @@ function validateRangeContainer( range ) {
  * // => true
  */
 function clone(value) {
-  return __WEBPACK_IMPORTED_MODULE_0__baseClone__["a" /* default */](value, false, true);
+  return Object(__WEBPACK_IMPORTED_MODULE_0__baseClone__["a" /* default */])(value, false, true);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (clone);
@@ -18366,7 +18366,7 @@ ListCache.prototype.set = __WEBPACK_IMPORTED_MODULE_4__listCacheSet__["a" /* def
 function assocIndexOf(array, key) {
   var length = array.length;
   while (length--) {
-    if (__WEBPACK_IMPORTED_MODULE_0__eq__["a" /* default */](array[length][0], key)) {
+    if (Object(__WEBPACK_IMPORTED_MODULE_0__eq__["a" /* default */])(array[length][0], key)) {
       return length;
     }
   }
@@ -18385,7 +18385,7 @@ function assocIndexOf(array, key) {
 
 
 /* Built-in method references that are verified to be native. */
-var nativeCreate = __WEBPACK_IMPORTED_MODULE_0__getNative__["a" /* default */](Object, 'create');
+var nativeCreate = Object(__WEBPACK_IMPORTED_MODULE_0__getNative__["a" /* default */])(Object, 'create');
 
 /* harmony default export */ __webpack_exports__["a"] = (nativeCreate);
 
@@ -18408,7 +18408,7 @@ var nativeCreate = __WEBPACK_IMPORTED_MODULE_0__getNative__["a" /* default */](O
  */
 function getMapData(map, key) {
   var data = map.__data__;
-  return __WEBPACK_IMPORTED_MODULE_0__isKeyable__["a" /* default */](key)
+  return Object(__WEBPACK_IMPORTED_MODULE_0__isKeyable__["a" /* default */])(key)
     ? data[typeof key == 'string' ? 'string' : 'hash']
     : data.map;
 }
@@ -18592,7 +18592,7 @@ class AttributeOperation extends __WEBPACK_IMPORTED_MODULE_0__operation__["a" /*
 	_execute() {
 		// Validation.
 		for ( const item of this.range.getItems() ) {
-			if ( this.oldValue !== null && !__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isEqual__["a" /* default */]( item.getAttribute( this.key ), this.oldValue ) ) {
+			if ( this.oldValue !== null && !Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isEqual__["a" /* default */])( item.getAttribute( this.key ), this.oldValue ) ) {
 				/**
 				 * Changed node has different attribute value than operation's old attribute value.
 				 *
@@ -18626,7 +18626,7 @@ class AttributeOperation extends __WEBPACK_IMPORTED_MODULE_0__operation__["a" /*
 			// By returning `undefined`, this operation will be seen as `NoOperation` - that means
 			// that it won't generate any events, etc. `AttributeOperation` with such parameters may be
 			// a result of operational transformation.
-			if ( __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isEqual__["a" /* default */]( this.oldValue, this.newValue ) ) {
+			if ( Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isEqual__["a" /* default */])( this.oldValue, this.newValue ) ) {
 				return;
 			}
 		}
@@ -18758,7 +18758,7 @@ function addRemoveDelta( batch, position, howMany ) {
  * @method module:engine/model/batch~Batch#remove
  * @param {module:engine/model/item~Item|module:engine/model/range~Range} itemOrRange Model item or range to remove.
  */
-__WEBPACK_IMPORTED_MODULE_1__batch__["b" /* register */]( 'remove', function( itemOrRange ) {
+Object(__WEBPACK_IMPORTED_MODULE_1__batch__["b" /* register */])( 'remove', function( itemOrRange ) {
 	if ( itemOrRange instanceof __WEBPACK_IMPORTED_MODULE_5__range__["a" /* default */] ) {
 		// The array is reversed, so the ranges to remove are in correct order and do not have to be updated.
 		const ranges = itemOrRange.getMinimalFlatRanges().reverse();
@@ -18891,7 +18891,7 @@ function addMoveOperation( batch, delta, sourcePosition, howMany, targetPosition
  * @param {module:engine/model/item~Item|module:engine/model/range~Range} itemOrRange Model item or range of nodes to move.
  * @param {module:engine/model/position~Position} targetPosition Position where moved nodes will be inserted.
  */
-__WEBPACK_IMPORTED_MODULE_2__batch__["b" /* register */]( 'move', function( itemOrRange, targetPosition ) {
+Object(__WEBPACK_IMPORTED_MODULE_2__batch__["b" /* register */])( 'move', function( itemOrRange, targetPosition ) {
 	const delta = new MoveDelta();
 	this.addDelta( delta );
 
@@ -19013,7 +19013,7 @@ class MergeDelta extends __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */]
  * @method module:engine/model/batch~Batch#merge
  * @param {module:engine/model/position~Position} position Position of merge.
  */
-__WEBPACK_IMPORTED_MODULE_3__batch__["b" /* register */]( 'merge', function( position ) {
+Object(__WEBPACK_IMPORTED_MODULE_3__batch__["b" /* register */])( 'merge', function( position ) {
 	const delta = new MergeDelta();
 	this.addDelta( delta );
 
@@ -19177,7 +19177,7 @@ class SplitDelta extends __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */]
  * @method module:engine/model/batch~Batch#split
  * @param {module:engine/model/position~Position} position Position of split.
  */
-__WEBPACK_IMPORTED_MODULE_2__batch__["b" /* register */]( 'split', function( position ) {
+Object(__WEBPACK_IMPORTED_MODULE_2__batch__["b" /* register */])( 'split', function( position ) {
 	const delta = new SplitDelta();
 	this.addDelta( delta );
 
@@ -19308,7 +19308,7 @@ class UnwrapDelta extends __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */
  * @method module:engine/model/batch~Batch#unwrap
  * @param {module:engine/model/element~Element} position Element to unwrap.
  */
-__WEBPACK_IMPORTED_MODULE_3__batch__["b" /* register */]( 'unwrap', function( element ) {
+Object(__WEBPACK_IMPORTED_MODULE_3__batch__["b" /* register */])( 'unwrap', function( element ) {
 	if ( element.parent === null ) {
 		/**
 		 * Trying to unwrap an element which has no parent.
@@ -19467,7 +19467,7 @@ class WrapDelta extends __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */] 
  * @param {module:engine/model/range~Range} range Range to wrap.
  * @param {module:engine/model/element~Element|String} elementOrString Element or name of element to wrap the range with.
  */
-__WEBPACK_IMPORTED_MODULE_3__batch__["b" /* register */]( 'wrap', function( range, elementOrString ) {
+Object(__WEBPACK_IMPORTED_MODULE_3__batch__["b" /* register */])( 'wrap', function( range, elementOrString ) {
 	if ( !range.isFlat ) {
 		/**
 		 * Range to wrap is not flat.
@@ -19538,7 +19538,7 @@ __WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( WrapDel
  * @returns {Array} Returns the cast property path array.
  */
 function castPath(value) {
-  return __WEBPACK_IMPORTED_MODULE_0__isArray__["a" /* default */](value) ? value : __WEBPACK_IMPORTED_MODULE_1__stringToPath__["a" /* default */](value);
+  return Object(__WEBPACK_IMPORTED_MODULE_0__isArray__["a" /* default */])(value) ? value : Object(__WEBPACK_IMPORTED_MODULE_1__stringToPath__["a" /* default */])(value);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (castPath);
@@ -19571,8 +19571,8 @@ function baseWhile(array, predicate, isDrop, fromRight) {
     predicate(array[index], index, array)) {}
 
   return isDrop
-    ? __WEBPACK_IMPORTED_MODULE_0__baseSlice__["a" /* default */](array, (fromRight ? 0 : index), (fromRight ? index + 1 : length))
-    : __WEBPACK_IMPORTED_MODULE_0__baseSlice__["a" /* default */](array, (fromRight ? index + 1 : 0), (fromRight ? length : index));
+    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseSlice__["a" /* default */])(array, (fromRight ? 0 : index), (fromRight ? index + 1 : length))
+    : Object(__WEBPACK_IMPORTED_MODULE_0__baseSlice__["a" /* default */])(array, (fromRight ? index + 1 : 0), (fromRight ? length : index));
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (baseWhile);
@@ -19615,7 +19615,7 @@ function baseSortedIndex(array, value, retHighest) {
       var mid = (low + high) >>> 1,
           computed = array[mid];
 
-      if (computed !== null && !__WEBPACK_IMPORTED_MODULE_2__isSymbol__["a" /* default */](computed) &&
+      if (computed !== null && !Object(__WEBPACK_IMPORTED_MODULE_2__isSymbol__["a" /* default */])(computed) &&
           (retHighest ? (computed <= value) : (computed < value))) {
         low = mid + 1;
       } else {
@@ -19624,7 +19624,7 @@ function baseSortedIndex(array, value, retHighest) {
     }
     return high;
   }
-  return __WEBPACK_IMPORTED_MODULE_0__baseSortedIndexBy__["a" /* default */](array, value, __WEBPACK_IMPORTED_MODULE_1__identity__["a" /* default */], retHighest);
+  return Object(__WEBPACK_IMPORTED_MODULE_0__baseSortedIndexBy__["a" /* default */])(array, value, __WEBPACK_IMPORTED_MODULE_1__identity__["a" /* default */], retHighest);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (baseSortedIndex);
@@ -19673,14 +19673,14 @@ function unzip(array) {
     return [];
   }
   var length = 0;
-  array = __WEBPACK_IMPORTED_MODULE_0__arrayFilter__["a" /* default */](array, function(group) {
-    if (__WEBPACK_IMPORTED_MODULE_4__isArrayLikeObject__["a" /* default */](group)) {
+  array = Object(__WEBPACK_IMPORTED_MODULE_0__arrayFilter__["a" /* default */])(array, function(group) {
+    if (Object(__WEBPACK_IMPORTED_MODULE_4__isArrayLikeObject__["a" /* default */])(group)) {
       length = nativeMax(group.length, length);
       return true;
     }
   });
-  return __WEBPACK_IMPORTED_MODULE_3__baseTimes__["a" /* default */](length, function(index) {
-    return __WEBPACK_IMPORTED_MODULE_1__arrayMap__["a" /* default */](array, __WEBPACK_IMPORTED_MODULE_2__baseProperty__["a" /* default */](index));
+  return Object(__WEBPACK_IMPORTED_MODULE_3__baseTimes__["a" /* default */])(length, function(index) {
+    return Object(__WEBPACK_IMPORTED_MODULE_1__arrayMap__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_2__baseProperty__["a" /* default */])(index));
   });
 }
 
@@ -19764,7 +19764,7 @@ function arrayFilter(array, predicate) {
  * @mixes module:utils/emittermixin~EmitterMixin
  * @implements module:utils/dom/emittermixin~Emitter
  */
-const DomEmitterMixin = __WEBPACK_IMPORTED_MODULE_2__lib_lodash_extend__["a" /* default */]( {}, __WEBPACK_IMPORTED_MODULE_0__emittermixin__["c" /* default */], {
+const DomEmitterMixin = Object(__WEBPACK_IMPORTED_MODULE_2__lib_lodash_extend__["a" /* default */])( {}, __WEBPACK_IMPORTED_MODULE_0__emittermixin__["c" /* default */], {
 	/**
 	 * Registers a callback function to be executed when an event is fired in a specific Emitter or DOM Node.
 	 * It is backwards compatible with {@link module:utils/emittermixin~EmitterMixin#listenTo}.
@@ -19839,7 +19839,7 @@ const DomEmitterMixin = __WEBPACK_IMPORTED_MODULE_2__lib_lodash_extend__["a" /* 
 	 * @return {module:utils/dom/emittermixin~ProxyEmitter} ProxyEmitter instance or null.
 	 */
 	_getProxyEmitter( node ) {
-		return __WEBPACK_IMPORTED_MODULE_0__emittermixin__["a" /* _getEmitterListenedTo */]( this, getNodeUID( node ) );
+		return Object(__WEBPACK_IMPORTED_MODULE_0__emittermixin__["a" /* _getEmitterListenedTo */])( this, getNodeUID( node ) );
 	}
 } );
 
@@ -19882,14 +19882,14 @@ class ProxyEmitter {
 	 */
 	constructor( node ) {
 		// Set emitter ID to match DOM Node "expando" property.
-		__WEBPACK_IMPORTED_MODULE_0__emittermixin__["b" /* _setEmitterId */]( this, getNodeUID( node ) );
+		Object(__WEBPACK_IMPORTED_MODULE_0__emittermixin__["b" /* _setEmitterId */])( this, getNodeUID( node ) );
 
 		// Remember the DOM Node this ProxyEmitter is bound to.
 		this._domNode = node;
 	}
 }
 
-__WEBPACK_IMPORTED_MODULE_2__lib_lodash_extend__["a" /* default */]( ProxyEmitter.prototype, __WEBPACK_IMPORTED_MODULE_0__emittermixin__["c" /* default */], {
+Object(__WEBPACK_IMPORTED_MODULE_2__lib_lodash_extend__["a" /* default */])( ProxyEmitter.prototype, __WEBPACK_IMPORTED_MODULE_0__emittermixin__["c" /* default */], {
 	/**
 	 * Collection of native DOM listeners.
 	 *
@@ -20000,7 +20000,7 @@ __WEBPACK_IMPORTED_MODULE_2__lib_lodash_extend__["a" /* default */]( ProxyEmitte
 // @param {Node} node
 // @return {String} UID for given DOM Node.
 function getNodeUID( node ) {
-	return node[ 'data-ck-expando' ] || ( node[ 'data-ck-expando' ] = __WEBPACK_IMPORTED_MODULE_1__uid__["a" /* default */]() );
+	return node[ 'data-ck-expando' ] || ( node[ 'data-ck-expando' ] = Object(__WEBPACK_IMPORTED_MODULE_1__uid__["a" /* default */])() );
 }
 
 // Checks (naively) if given node is native DOM Node.
@@ -20009,7 +20009,7 @@ function getNodeUID( node ) {
 // @param {Node} node
 // @return {Boolean} True when native DOM Node.
 function isDomNode( node ) {
-	return node && __WEBPACK_IMPORTED_MODULE_3__lib_lodash_isNative__["a" /* default */]( node.addEventListener );
+	return node && Object(__WEBPACK_IMPORTED_MODULE_3__lib_lodash_isNative__["a" /* default */])( node.addEventListener );
 }
 
 /**
@@ -20164,7 +20164,7 @@ class Collection {
 				throw new __WEBPACK_IMPORTED_MODULE_1__ckeditorerror__["a" /* default */]( 'collection-add-item-already-exists' );
 			}
 		} else {
-			item[ idProperty ] = itemId = __WEBPACK_IMPORTED_MODULE_2__uid__["a" /* default */]();
+			item[ idProperty ] = itemId = Object(__WEBPACK_IMPORTED_MODULE_2__uid__["a" /* default */])();
 		}
 
 		// TODO: Use ES6 default function argument.
@@ -20537,7 +20537,7 @@ class Collection {
 /* harmony export (immutable) */ __webpack_exports__["a"] = Collection;
 
 
-__WEBPACK_IMPORTED_MODULE_3__mix__["a" /* default */]( Collection, __WEBPACK_IMPORTED_MODULE_0__emittermixin__["c" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_3__mix__["a" /* default */])( Collection, __WEBPACK_IMPORTED_MODULE_0__emittermixin__["c" /* default */] );
 
 
 /***/ }),
@@ -20598,12 +20598,12 @@ class Paragraph extends __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_core_src
 		doc.schema.registerItem( 'paragraph', '$block' );
 
 		// Build converter from model to view for data and editing pipelines.
-		__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__["a" /* default */]().for( data.modelToView, editing.modelToView )
+		Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__["a" /* default */])().for( data.modelToView, editing.modelToView )
 			.fromElement( 'paragraph' )
 			.toElement( 'p' );
 
 		// Build converter from view to model for data pipeline.
-		__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__["a" /* default */]().for( data.viewToModel )
+		Object(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__["a" /* default */])().for( data.viewToModel )
 			.fromElement( 'p' )
 			.toElement( 'paragraph' );
 
@@ -20902,7 +20902,7 @@ function copyObject(source, props, object, customizer) {
       ? customizer(object[key], source[key], key, object, source)
       : source[key];
 
-    __WEBPACK_IMPORTED_MODULE_0__assignValue__["a" /* default */](object, key, newValue);
+    Object(__WEBPACK_IMPORTED_MODULE_0__assignValue__["a" /* default */])(object, key, newValue);
   }
   return object;
 }
@@ -20975,7 +20975,7 @@ function isFunction(value) {
   // The use of `Object#toString` avoids issues with the `typeof` operator
   // in Safari 8 which returns 'object' for typed array and weak map constructors,
   // and PhantomJS 1.9 which returns 'function' for `NodeList` instances.
-  var tag = __WEBPACK_IMPORTED_MODULE_0__isObject__["a" /* default */](value) ? objectToString.call(value) : '';
+  var tag = Object(__WEBPACK_IMPORTED_MODULE_0__isObject__["a" /* default */])(value) ? objectToString.call(value) : '';
   return tag == funcTag || tag == genTag;
 }
 
@@ -21029,7 +21029,7 @@ var propertyIsEnumerable = objectProto.propertyIsEnumerable;
  */
 function isArguments(value) {
   // Safari 8.1 incorrectly makes `arguments.callee` enumerable in strict mode.
-  return __WEBPACK_IMPORTED_MODULE_0__isArrayLikeObject__["a" /* default */](value) && hasOwnProperty.call(value, 'callee') &&
+  return Object(__WEBPACK_IMPORTED_MODULE_0__isArrayLikeObject__["a" /* default */])(value) && hasOwnProperty.call(value, 'callee') &&
     (!propertyIsEnumerable.call(value, 'callee') || objectToString.call(value) == argsTag);
 }
 
@@ -21079,7 +21079,7 @@ var objectToString = objectProto.toString;
  */
 function isString(value) {
   return typeof value == 'string' ||
-    (!__WEBPACK_IMPORTED_MODULE_0__isArray__["a" /* default */](value) && __WEBPACK_IMPORTED_MODULE_1__isObjectLike__["a" /* default */](value) && objectToString.call(value) == stringTag);
+    (!Object(__WEBPACK_IMPORTED_MODULE_0__isArray__["a" /* default */])(value) && Object(__WEBPACK_IMPORTED_MODULE_1__isObjectLike__["a" /* default */])(value) && objectToString.call(value) == stringTag);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (isString);
@@ -21116,8 +21116,8 @@ function isString(value) {
  * @returns {Map} Map created from data.
  */
 function toMap( data ) {
-	if ( __WEBPACK_IMPORTED_MODULE_0__lib_lodash_isPlainObject__["a" /* default */]( data ) ) {
-		return __WEBPACK_IMPORTED_MODULE_1__objecttomap__["a" /* default */]( data );
+	if ( Object(__WEBPACK_IMPORTED_MODULE_0__lib_lodash_isPlainObject__["a" /* default */])( data ) ) {
+		return Object(__WEBPACK_IMPORTED_MODULE_1__objecttomap__["a" /* default */])( data );
 	} else {
 		return new Map( data );
 	}
@@ -22047,7 +22047,7 @@ class DocumentFragment {
 /* harmony export (immutable) */ __webpack_exports__["a"] = DocumentFragment;
 
 
-__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( DocumentFragment, __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( DocumentFragment, __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
 
 // Converts strings to Text and non-iterables to arrays.
 //
@@ -22059,7 +22059,7 @@ function normalize( nodes ) {
 		return [ new __WEBPACK_IMPORTED_MODULE_0__text__["a" /* default */]( nodes ) ];
 	}
 
-	if ( !__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_isiterable__["a" /* default */]( nodes ) ) {
+	if ( !Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_isiterable__["a" /* default */])( nodes ) ) {
 		nodes = [ nodes ];
 	}
 
@@ -22229,7 +22229,7 @@ class RootAttributeDelta extends __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* def
  * @param {String} key Attribute key.
  * @param {*} value Attribute new value.
  */
-__WEBPACK_IMPORTED_MODULE_2__batch__["b" /* register */]( 'setAttribute', function( itemOrRange, key, value ) {
+Object(__WEBPACK_IMPORTED_MODULE_2__batch__["b" /* register */])( 'setAttribute', function( itemOrRange, key, value ) {
 	attribute( this, key, value, itemOrRange );
 
 	return this;
@@ -22245,7 +22245,7 @@ __WEBPACK_IMPORTED_MODULE_2__batch__["b" /* register */]( 'setAttribute', functi
  * @method module:engine/model/batch~Batch#removeAttribute
  * @param {String} key Attribute key.
  */
-__WEBPACK_IMPORTED_MODULE_2__batch__["b" /* register */]( 'removeAttribute', function( itemOrRange, key ) {
+Object(__WEBPACK_IMPORTED_MODULE_2__batch__["b" /* register */])( 'removeAttribute', function( itemOrRange, key ) {
 	attribute( this, key, null, itemOrRange );
 
 	return this;
@@ -22470,11 +22470,11 @@ var objectProto = Object.prototype;
 var objectToString = objectProto.toString;
 
 /** Used to detect maps, sets, and weakmaps. */
-var dataViewCtorString = __WEBPACK_IMPORTED_MODULE_5__toSource__["a" /* default */](__WEBPACK_IMPORTED_MODULE_0__DataView__["a" /* default */]),
-    mapCtorString = __WEBPACK_IMPORTED_MODULE_5__toSource__["a" /* default */](__WEBPACK_IMPORTED_MODULE_1__Map__["a" /* default */]),
-    promiseCtorString = __WEBPACK_IMPORTED_MODULE_5__toSource__["a" /* default */](__WEBPACK_IMPORTED_MODULE_2__Promise__["a" /* default */]),
-    setCtorString = __WEBPACK_IMPORTED_MODULE_5__toSource__["a" /* default */](__WEBPACK_IMPORTED_MODULE_3__Set__["a" /* default */]),
-    weakMapCtorString = __WEBPACK_IMPORTED_MODULE_5__toSource__["a" /* default */](__WEBPACK_IMPORTED_MODULE_4__WeakMap__["a" /* default */]);
+var dataViewCtorString = Object(__WEBPACK_IMPORTED_MODULE_5__toSource__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_0__DataView__["a" /* default */]),
+    mapCtorString = Object(__WEBPACK_IMPORTED_MODULE_5__toSource__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_1__Map__["a" /* default */]),
+    promiseCtorString = Object(__WEBPACK_IMPORTED_MODULE_5__toSource__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_2__Promise__["a" /* default */]),
+    setCtorString = Object(__WEBPACK_IMPORTED_MODULE_5__toSource__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_3__Set__["a" /* default */]),
+    weakMapCtorString = Object(__WEBPACK_IMPORTED_MODULE_5__toSource__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_4__WeakMap__["a" /* default */]);
 
 /**
  * Gets the `toStringTag` of `value`.
@@ -22497,7 +22497,7 @@ if ((__WEBPACK_IMPORTED_MODULE_0__DataView__["a" /* default */] && getTag(new __
   getTag = function(value) {
     var result = objectToString.call(value),
         Ctor = result == objectTag ? value.constructor : undefined,
-        ctorString = Ctor ? __WEBPACK_IMPORTED_MODULE_5__toSource__["a" /* default */](Ctor) : undefined;
+        ctorString = Ctor ? Object(__WEBPACK_IMPORTED_MODULE_5__toSource__["a" /* default */])(Ctor) : undefined;
 
     if (ctorString) {
       switch (ctorString) {
@@ -22609,10 +22609,10 @@ function baseIsEqual(value, other, customizer, bitmask, stack) {
   if (value === other) {
     return true;
   }
-  if (value == null || other == null || (!__WEBPACK_IMPORTED_MODULE_1__isObject__["a" /* default */](value) && !__WEBPACK_IMPORTED_MODULE_2__isObjectLike__["a" /* default */](other))) {
+  if (value == null || other == null || (!Object(__WEBPACK_IMPORTED_MODULE_1__isObject__["a" /* default */])(value) && !Object(__WEBPACK_IMPORTED_MODULE_2__isObjectLike__["a" /* default */])(other))) {
     return value !== value && other !== other;
   }
-  return __WEBPACK_IMPORTED_MODULE_0__baseIsEqualDeep__["a" /* default */](value, other, baseIsEqual, customizer, bitmask, stack);
+  return Object(__WEBPACK_IMPORTED_MODULE_0__baseIsEqualDeep__["a" /* default */])(value, other, baseIsEqual, customizer, bitmask, stack);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (baseIsEqual);
@@ -23268,8 +23268,8 @@ class InsertDelta extends __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */
  * @param {module:engine/model/position~Position} position Position of insertion.
  * @param {module:engine/model/node~NodeSet} nodes The list of nodes to be inserted.
  */
-__WEBPACK_IMPORTED_MODULE_4__batch__["b" /* register */]( 'insert', function( position, nodes ) {
-	const normalizedNodes = __WEBPACK_IMPORTED_MODULE_5__writer__["c" /* normalizeNodes */]( nodes );
+Object(__WEBPACK_IMPORTED_MODULE_4__batch__["b" /* register */])( 'insert', function( position, nodes ) {
+	const normalizedNodes = Object(__WEBPACK_IMPORTED_MODULE_5__writer__["c" /* normalizeNodes */])( nodes );
 
 	// If nothing is inserted do not create delta and operation.
 	if ( normalizedNodes.length === 0 ) {
@@ -23374,7 +23374,7 @@ function apply( batch, delta, operation ) {
  * @param {module:engine/model/element~Element} element The element to rename.
  * @param {String} newName New element name.
  */
-__WEBPACK_IMPORTED_MODULE_2__batch__["b" /* register */]( 'rename', function( element, newName ) {
+Object(__WEBPACK_IMPORTED_MODULE_2__batch__["b" /* register */])( 'rename', function( element, newName ) {
 	if ( !( element instanceof __WEBPACK_IMPORTED_MODULE_4__element__["a" /* default */] ) ) {
 		/**
 		 * Trying to rename an object which is not an instance of Element.
@@ -23414,7 +23414,7 @@ __WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( RenameD
  * @returns {boolean} Returns `true` if `target` is found, else `false`.
  */
 function arrayIncludes(array, value) {
-  return !!array.length && __WEBPACK_IMPORTED_MODULE_0__baseIndexOf__["a" /* default */](array, value, 0) > -1;
+  return !!array.length && Object(__WEBPACK_IMPORTED_MODULE_0__baseIndexOf__["a" /* default */])(array, value, 0) > -1;
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (arrayIncludes);
@@ -23439,7 +23439,7 @@ function arrayIncludes(array, value) {
  */
 function baseIndexOf(array, value, fromIndex) {
   if (value !== value) {
-    return __WEBPACK_IMPORTED_MODULE_0__indexOfNaN__["a" /* default */](array, fromIndex);
+    return Object(__WEBPACK_IMPORTED_MODULE_0__indexOfNaN__["a" /* default */])(array, fromIndex);
   }
   var index = fromIndex - 1,
       length = array.length;
@@ -23546,13 +23546,13 @@ function cacheHas(cache, key) {
  * @returns {*} Returns the resolved value.
  */
 function baseGet(object, path) {
-  path = __WEBPACK_IMPORTED_MODULE_1__isKey__["a" /* default */](path, object) ? [path] : __WEBPACK_IMPORTED_MODULE_0__castPath__["a" /* default */](path);
+  path = Object(__WEBPACK_IMPORTED_MODULE_1__isKey__["a" /* default */])(path, object) ? [path] : Object(__WEBPACK_IMPORTED_MODULE_0__castPath__["a" /* default */])(path);
 
   var index = 0,
       length = path.length;
 
   while (object != null && index < length) {
-    object = object[__WEBPACK_IMPORTED_MODULE_2__toKey__["a" /* default */](path[index++])];
+    object = object[Object(__WEBPACK_IMPORTED_MODULE_2__toKey__["a" /* default */])(path[index++])];
   }
   return (index && index == length) ? object : undefined;
 }
@@ -23600,8 +23600,8 @@ function drop(array, n, guard) {
   if (!length) {
     return [];
   }
-  n = (guard || n === undefined) ? 1 : __WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */](n);
-  return __WEBPACK_IMPORTED_MODULE_0__baseSlice__["a" /* default */](array, n < 0 ? 0 : n, length);
+  n = (guard || n === undefined) ? 1 : Object(__WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */])(n);
+  return Object(__WEBPACK_IMPORTED_MODULE_0__baseSlice__["a" /* default */])(array, n < 0 ? 0 : n, length);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (drop);
@@ -23647,9 +23647,9 @@ function dropRight(array, n, guard) {
   if (!length) {
     return [];
   }
-  n = (guard || n === undefined) ? 1 : __WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */](n);
+  n = (guard || n === undefined) ? 1 : Object(__WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */])(n);
   n = length - n;
-  return __WEBPACK_IMPORTED_MODULE_0__baseSlice__["a" /* default */](array, 0, n < 0 ? 0 : n);
+  return Object(__WEBPACK_IMPORTED_MODULE_0__baseSlice__["a" /* default */])(array, 0, n < 0 ? 0 : n);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (dropRight);
@@ -23728,7 +23728,7 @@ function baseIntersection(arrays, iteratee, comparator) {
   while (othIndex--) {
     var array = arrays[othIndex];
     if (othIndex && iteratee) {
-      array = __WEBPACK_IMPORTED_MODULE_3__arrayMap__["a" /* default */](array, __WEBPACK_IMPORTED_MODULE_4__baseUnary__["a" /* default */](iteratee));
+      array = Object(__WEBPACK_IMPORTED_MODULE_3__arrayMap__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_4__baseUnary__["a" /* default */])(iteratee));
     }
     maxLength = nativeMin(array.length, maxLength);
     caches[othIndex] = !comparator && (iteratee || (length >= 120 && array.length >= 120))
@@ -23747,14 +23747,14 @@ function baseIntersection(arrays, iteratee, comparator) {
 
     value = (comparator || value !== 0) ? value : 0;
     if (!(seen
-          ? __WEBPACK_IMPORTED_MODULE_5__cacheHas__["a" /* default */](seen, computed)
+          ? Object(__WEBPACK_IMPORTED_MODULE_5__cacheHas__["a" /* default */])(seen, computed)
           : includes(result, computed, comparator)
         )) {
       othIndex = othLength;
       while (--othIndex) {
         var cache = caches[othIndex];
         if (!(cache
-              ? __WEBPACK_IMPORTED_MODULE_5__cacheHas__["a" /* default */](cache, computed)
+              ? Object(__WEBPACK_IMPORTED_MODULE_5__cacheHas__["a" /* default */])(cache, computed)
               : includes(arrays[othIndex], computed, comparator))
             ) {
           continue outer;
@@ -23788,7 +23788,7 @@ function baseIntersection(arrays, iteratee, comparator) {
  * @returns {Array|Object} Returns the cast array-like object.
  */
 function castArrayLikeObject(value) {
-  return __WEBPACK_IMPORTED_MODULE_0__isArrayLikeObject__["a" /* default */](value) ? value : [];
+  return Object(__WEBPACK_IMPORTED_MODULE_0__isArrayLikeObject__["a" /* default */])(value) ? value : [];
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (castArrayLikeObject);
@@ -23824,7 +23824,7 @@ function castArrayLikeObject(value) {
  */
 function pullAll(array, values) {
   return (array && array.length && values && values.length)
-    ? __WEBPACK_IMPORTED_MODULE_0__basePullAll__["a" /* default */](array, values)
+    ? Object(__WEBPACK_IMPORTED_MODULE_0__basePullAll__["a" /* default */])(array, values)
     : array;
 }
 
@@ -23869,7 +23869,7 @@ function basePullAll(array, values, iteratee, comparator) {
       seen = array;
 
   if (iteratee) {
-    seen = __WEBPACK_IMPORTED_MODULE_0__arrayMap__["a" /* default */](array, __WEBPACK_IMPORTED_MODULE_3__baseUnary__["a" /* default */](iteratee));
+    seen = Object(__WEBPACK_IMPORTED_MODULE_0__arrayMap__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_3__baseUnary__["a" /* default */])(iteratee));
   }
   while (++index < length) {
     var fromIndex = 0,
@@ -23925,7 +23925,7 @@ function baseSortedIndexBy(array, value, iteratee, retHighest) {
       high = array ? array.length : 0,
       valIsNaN = value !== value,
       valIsNull = value === null,
-      valIsSymbol = __WEBPACK_IMPORTED_MODULE_0__isSymbol__["a" /* default */](value),
+      valIsSymbol = Object(__WEBPACK_IMPORTED_MODULE_0__isSymbol__["a" /* default */])(value),
       valIsUndefined = value === undefined;
 
   while (low < high) {
@@ -23934,7 +23934,7 @@ function baseSortedIndexBy(array, value, iteratee, retHighest) {
         othIsDefined = computed !== undefined,
         othIsNull = computed === null,
         othIsReflexive = computed === computed,
-        othIsSymbol = __WEBPACK_IMPORTED_MODULE_0__isSymbol__["a" /* default */](computed);
+        othIsSymbol = Object(__WEBPACK_IMPORTED_MODULE_0__isSymbol__["a" /* default */])(computed);
 
     if (valIsNaN) {
       var setLow = retHighest || othIsReflexive;
@@ -23998,12 +23998,12 @@ function unzipWith(array, iteratee) {
   if (!(array && array.length)) {
     return [];
   }
-  var result = __WEBPACK_IMPORTED_MODULE_2__unzip__["a" /* default */](array);
+  var result = Object(__WEBPACK_IMPORTED_MODULE_2__unzip__["a" /* default */])(array);
   if (iteratee == null) {
     return result;
   }
-  return __WEBPACK_IMPORTED_MODULE_1__arrayMap__["a" /* default */](result, function(group) {
-    return __WEBPACK_IMPORTED_MODULE_0__apply__["a" /* default */](iteratee, undefined, group);
+  return Object(__WEBPACK_IMPORTED_MODULE_1__arrayMap__["a" /* default */])(result, function(group) {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__apply__["a" /* default */])(iteratee, undefined, group);
   });
 }
 
@@ -24038,13 +24038,13 @@ function baseXor(arrays, iteratee, comparator) {
 
   while (++index < length) {
     var result = result
-      ? __WEBPACK_IMPORTED_MODULE_0__arrayPush__["a" /* default */](
-          __WEBPACK_IMPORTED_MODULE_1__baseDifference__["a" /* default */](result, arrays[index], iteratee, comparator),
-          __WEBPACK_IMPORTED_MODULE_1__baseDifference__["a" /* default */](arrays[index], result, iteratee, comparator)
+      ? Object(__WEBPACK_IMPORTED_MODULE_0__arrayPush__["a" /* default */])(
+          Object(__WEBPACK_IMPORTED_MODULE_1__baseDifference__["a" /* default */])(result, arrays[index], iteratee, comparator),
+          Object(__WEBPACK_IMPORTED_MODULE_1__baseDifference__["a" /* default */])(arrays[index], result, iteratee, comparator)
         )
       : arrays[index];
   }
-  return (result && result.length) ? __WEBPACK_IMPORTED_MODULE_2__baseUniq__["a" /* default */](result, iteratee, comparator) : [];
+  return (result && result.length) ? Object(__WEBPACK_IMPORTED_MODULE_2__baseUniq__["a" /* default */])(result, iteratee, comparator) : [];
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (baseXor);
@@ -24134,11 +24134,11 @@ function debounce(func, wait, options) {
   if (typeof func != 'function') {
     throw new TypeError(FUNC_ERROR_TEXT);
   }
-  wait = __WEBPACK_IMPORTED_MODULE_2__toNumber__["a" /* default */](wait) || 0;
-  if (__WEBPACK_IMPORTED_MODULE_0__isObject__["a" /* default */](options)) {
+  wait = Object(__WEBPACK_IMPORTED_MODULE_2__toNumber__["a" /* default */])(wait) || 0;
+  if (Object(__WEBPACK_IMPORTED_MODULE_0__isObject__["a" /* default */])(options)) {
     leading = !!options.leading;
     maxing = 'maxWait' in options;
-    maxWait = maxing ? nativeMax(__WEBPACK_IMPORTED_MODULE_2__toNumber__["a" /* default */](options.maxWait) || 0, wait) : maxWait;
+    maxWait = maxing ? nativeMax(Object(__WEBPACK_IMPORTED_MODULE_2__toNumber__["a" /* default */])(options.maxWait) || 0, wait) : maxWait;
     trailing = 'trailing' in options ? !!options.trailing : trailing;
   }
 
@@ -24181,7 +24181,7 @@ function debounce(func, wait, options) {
   }
 
   function timerExpired() {
-    var time = __WEBPACK_IMPORTED_MODULE_1__now__["a" /* default */]();
+    var time = Object(__WEBPACK_IMPORTED_MODULE_1__now__["a" /* default */])();
     if (shouldInvoke(time)) {
       return trailingEdge(time);
     }
@@ -24211,11 +24211,11 @@ function debounce(func, wait, options) {
   }
 
   function flush() {
-    return timerId === undefined ? result : trailingEdge(__WEBPACK_IMPORTED_MODULE_1__now__["a" /* default */]());
+    return timerId === undefined ? result : trailingEdge(Object(__WEBPACK_IMPORTED_MODULE_1__now__["a" /* default */])());
   }
 
   function debounced() {
-    var time = __WEBPACK_IMPORTED_MODULE_1__now__["a" /* default */](),
+    var time = Object(__WEBPACK_IMPORTED_MODULE_1__now__["a" /* default */])(),
         isInvoking = shouldInvoke(time);
 
     lastArgs = arguments;
@@ -24299,7 +24299,7 @@ class DomEventData {
 		 */
 		this.domTarget = domEvent.target;
 
-		__WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_extend__["a" /* default */]( this, additionalData );
+		Object(__WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_extend__["a" /* default */])( this, additionalData );
 	}
 
 	/**
@@ -24539,7 +24539,7 @@ class ViewCollection extends __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_uti
 /* harmony export (immutable) */ __webpack_exports__["a"] = ViewCollection;
 
 
-__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_collection__["a" /* default */], __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_observablemixin__["a" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_collection__["a" /* default */], __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_observablemixin__["a" /* default */] );
 
 // Check if all entries of the array are of `String` type.
 //
@@ -24582,7 +24582,7 @@ function isStringArray( arr ) {
 
 
 
-const toPx = __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_dom_tounit__["a" /* default */]( 'px' );
+const toPx = Object(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_dom_tounit__["a" /* default */])( 'px' );
 const defaultLimiterElement = __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_dom_global__["a" /* default */].document.body;
 
 /**
@@ -24700,7 +24700,7 @@ class BalloonPanelView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* defaul
 
 			on: {
 				// https://github.com/ckeditor/ckeditor5-ui/issues/206
-				mousedown: __WEBPACK_IMPORTED_MODULE_6__bindings_preventdefault_js__["a" /* default */]( this ),
+				mousedown: Object(__WEBPACK_IMPORTED_MODULE_6__bindings_preventdefault_js__["a" /* default */])( this ),
 
 				// https://github.com/ckeditor/ckeditor5-ui/issues/243
 				selectstart: bind.to( evt => evt.preventDefault() )
@@ -24753,7 +24753,7 @@ class BalloonPanelView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* defaul
 			fitInViewport: true
 		}, options );
 
-		const { top, left, name: position } = __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_dom_position__["a" /* getOptimalPosition */]( positionOptions );
+		const { top, left, name: position } = Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_dom_position__["a" /* getOptimalPosition */])( positionOptions );
 
 		Object.assign( this, { top, left, position } );
 	}
@@ -24823,9 +24823,9 @@ class BalloonPanelView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* defaul
 		let targetElement = null;
 
 		// We need to take HTMLElement related to the target if it is possible.
-		if ( __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isElement__["a" /* default */]( options.target ) ) {
+		if ( Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isElement__["a" /* default */])( options.target ) ) {
 			targetElement = options.target;
-		} else if ( __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_dom_isrange__["a" /* default */]( options.target ) ) {
+		} else if ( Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_dom_isrange__["a" /* default */])( options.target ) ) {
 			targetElement = options.target.commonAncestorContainer;
 		}
 
@@ -25731,12 +25731,12 @@ function toNumber(value) {
   if (typeof value == 'number') {
     return value;
   }
-  if (__WEBPACK_IMPORTED_MODULE_2__isSymbol__["a" /* default */](value)) {
+  if (Object(__WEBPACK_IMPORTED_MODULE_2__isSymbol__["a" /* default */])(value)) {
     return NAN;
   }
-  if (__WEBPACK_IMPORTED_MODULE_1__isObject__["a" /* default */](value)) {
-    var other = __WEBPACK_IMPORTED_MODULE_0__isFunction__["a" /* default */](value.valueOf) ? value.valueOf() : value;
-    value = __WEBPACK_IMPORTED_MODULE_1__isObject__["a" /* default */](other) ? (other + '') : other;
+  if (Object(__WEBPACK_IMPORTED_MODULE_1__isObject__["a" /* default */])(value)) {
+    var other = Object(__WEBPACK_IMPORTED_MODULE_0__isFunction__["a" /* default */])(value.valueOf) ? value.valueOf() : value;
+    value = Object(__WEBPACK_IMPORTED_MODULE_1__isObject__["a" /* default */])(other) ? (other + '') : other;
   }
   if (typeof value != 'string') {
     return value === 0 ? value : +value;
@@ -25807,9 +25807,9 @@ module.exports = function(originalModule) {
  */
 function indexKeys(object) {
   var length = object ? object.length : undefined;
-  if (__WEBPACK_IMPORTED_MODULE_3__isLength__["a" /* default */](length) &&
-      (__WEBPACK_IMPORTED_MODULE_2__isArray__["a" /* default */](object) || __WEBPACK_IMPORTED_MODULE_4__isString__["a" /* default */](object) || __WEBPACK_IMPORTED_MODULE_1__isArguments__["a" /* default */](object))) {
-    return __WEBPACK_IMPORTED_MODULE_0__baseTimes__["a" /* default */](length, String);
+  if (Object(__WEBPACK_IMPORTED_MODULE_3__isLength__["a" /* default */])(length) &&
+      (Object(__WEBPACK_IMPORTED_MODULE_2__isArray__["a" /* default */])(object) || Object(__WEBPACK_IMPORTED_MODULE_4__isString__["a" /* default */])(object) || Object(__WEBPACK_IMPORTED_MODULE_1__isArguments__["a" /* default */])(object))) {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__baseTimes__["a" /* default */])(length, String);
   }
   return null;
 }
@@ -26384,7 +26384,7 @@ class Mapper {
 /* harmony export (immutable) */ __webpack_exports__["a"] = Mapper;
 
 
-__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( Mapper, __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( Mapper, __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
 
 
 /***/ }),
@@ -26953,7 +26953,7 @@ class ModelConversionDispatcher {
 		 *
 		 * @member {Object}
 		 */
-		this.conversionApi = __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_lib_lodash_extend__["a" /* default */]( { dispatcher: this }, conversionApi );
+		this.conversionApi = Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_lib_lodash_extend__["a" /* default */])( { dispatcher: this }, conversionApi );
 	}
 
 	/**
@@ -27498,7 +27498,7 @@ class ModelConversionDispatcher {
 /* harmony export (immutable) */ __webpack_exports__["a"] = ModelConversionDispatcher;
 
 
-__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( ModelConversionDispatcher, __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( ModelConversionDispatcher, __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
 
 
 /***/ }),
@@ -27901,7 +27901,7 @@ function transform( type, range, position ) {
 	/* eslint-enable no-case-declarations */
 }
 
-__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( LivePosition, __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( LivePosition, __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
 
 /**
  * Enum representing how position is "sticking" with their neighbour nodes.
@@ -28099,35 +28099,35 @@ function baseClone(value, isDeep, isFull, customizer, key, object, stack) {
   if (result !== undefined) {
     return result;
   }
-  if (!__WEBPACK_IMPORTED_MODULE_15__isObject__["a" /* default */](value)) {
+  if (!Object(__WEBPACK_IMPORTED_MODULE_15__isObject__["a" /* default */])(value)) {
     return value;
   }
-  var isArr = __WEBPACK_IMPORTED_MODULE_12__isArray__["a" /* default */](value);
+  var isArr = Object(__WEBPACK_IMPORTED_MODULE_12__isArray__["a" /* default */])(value);
   if (isArr) {
-    result = __WEBPACK_IMPORTED_MODULE_9__initCloneArray__["a" /* default */](value);
+    result = Object(__WEBPACK_IMPORTED_MODULE_9__initCloneArray__["a" /* default */])(value);
     if (!isDeep) {
-      return __WEBPACK_IMPORTED_MODULE_5__copyArray__["a" /* default */](value, result);
+      return Object(__WEBPACK_IMPORTED_MODULE_5__copyArray__["a" /* default */])(value, result);
     }
   } else {
-    var tag = __WEBPACK_IMPORTED_MODULE_8__getTag__["a" /* default */](value),
+    var tag = Object(__WEBPACK_IMPORTED_MODULE_8__getTag__["a" /* default */])(value),
         isFunc = tag == funcTag || tag == genTag;
 
-    if (__WEBPACK_IMPORTED_MODULE_13__isBuffer__["a" /* default */](value)) {
-      return __WEBPACK_IMPORTED_MODULE_4__cloneBuffer__["a" /* default */](value, isDeep);
+    if (Object(__WEBPACK_IMPORTED_MODULE_13__isBuffer__["a" /* default */])(value)) {
+      return Object(__WEBPACK_IMPORTED_MODULE_4__cloneBuffer__["a" /* default */])(value, isDeep);
     }
     if (tag == objectTag || tag == argsTag || (isFunc && !object)) {
-      if (__WEBPACK_IMPORTED_MODULE_14__isHostObject__["a" /* default */](value)) {
+      if (Object(__WEBPACK_IMPORTED_MODULE_14__isHostObject__["a" /* default */])(value)) {
         return object ? value : {};
       }
-      result = __WEBPACK_IMPORTED_MODULE_11__initCloneObject__["a" /* default */](isFunc ? {} : value);
+      result = Object(__WEBPACK_IMPORTED_MODULE_11__initCloneObject__["a" /* default */])(isFunc ? {} : value);
       if (!isDeep) {
-        return __WEBPACK_IMPORTED_MODULE_6__copySymbols__["a" /* default */](value, __WEBPACK_IMPORTED_MODULE_3__baseAssign__["a" /* default */](result, value));
+        return Object(__WEBPACK_IMPORTED_MODULE_6__copySymbols__["a" /* default */])(value, Object(__WEBPACK_IMPORTED_MODULE_3__baseAssign__["a" /* default */])(result, value));
       }
     } else {
       if (!cloneableTags[tag]) {
         return object ? value : {};
       }
-      result = __WEBPACK_IMPORTED_MODULE_10__initCloneByTag__["a" /* default */](value, tag, baseClone, isDeep);
+      result = Object(__WEBPACK_IMPORTED_MODULE_10__initCloneByTag__["a" /* default */])(value, tag, baseClone, isDeep);
     }
   }
   // Check for circular references and return its corresponding clone.
@@ -28139,15 +28139,15 @@ function baseClone(value, isDeep, isFull, customizer, key, object, stack) {
   stack.set(value, result);
 
   if (!isArr) {
-    var props = isFull ? __WEBPACK_IMPORTED_MODULE_7__getAllKeys__["a" /* default */](value) : __WEBPACK_IMPORTED_MODULE_16__keys__["a" /* default */](value);
+    var props = isFull ? Object(__WEBPACK_IMPORTED_MODULE_7__getAllKeys__["a" /* default */])(value) : Object(__WEBPACK_IMPORTED_MODULE_16__keys__["a" /* default */])(value);
   }
   // Recursively populate clone (susceptible to call stack limits).
-  __WEBPACK_IMPORTED_MODULE_1__arrayEach__["a" /* default */](props || value, function(subValue, key) {
+  Object(__WEBPACK_IMPORTED_MODULE_1__arrayEach__["a" /* default */])(props || value, function(subValue, key) {
     if (props) {
       key = subValue;
       subValue = value[key];
     }
-    __WEBPACK_IMPORTED_MODULE_2__assignValue__["a" /* default */](result, key, baseClone(subValue, isDeep, isFull, customizer, key, value, stack));
+    Object(__WEBPACK_IMPORTED_MODULE_2__assignValue__["a" /* default */])(result, key, baseClone(subValue, isDeep, isFull, customizer, key, value, stack));
   });
   return result;
 }
@@ -28212,11 +28212,11 @@ var reIsNative = RegExp('^' +
  * // => false
  */
 function isNative(value) {
-  if (!__WEBPACK_IMPORTED_MODULE_2__isObject__["a" /* default */](value)) {
+  if (!Object(__WEBPACK_IMPORTED_MODULE_2__isObject__["a" /* default */])(value)) {
     return false;
   }
-  var pattern = (__WEBPACK_IMPORTED_MODULE_0__isFunction__["a" /* default */](value) || __WEBPACK_IMPORTED_MODULE_1__isHostObject__["a" /* default */](value)) ? reIsNative : reIsHostCtor;
-  return pattern.test(__WEBPACK_IMPORTED_MODULE_3__toSource__["a" /* default */](value));
+  var pattern = (Object(__WEBPACK_IMPORTED_MODULE_0__isFunction__["a" /* default */])(value) || Object(__WEBPACK_IMPORTED_MODULE_1__isHostObject__["a" /* default */])(value)) ? reIsNative : reIsHostCtor;
+  return pattern.test(Object(__WEBPACK_IMPORTED_MODULE_3__toSource__["a" /* default */])(value));
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (isNative);
@@ -28263,7 +28263,7 @@ function toSource(func) {
 
 
 /* Built-in method references that are verified to be native. */
-var Map = __WEBPACK_IMPORTED_MODULE_0__getNative__["a" /* default */](__WEBPACK_IMPORTED_MODULE_1__root__["a" /* default */], 'Map');
+var Map = Object(__WEBPACK_IMPORTED_MODULE_0__getNative__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_1__root__["a" /* default */], 'Map');
 
 /* harmony default export */ __webpack_exports__["a"] = (Map);
 
@@ -28295,7 +28295,7 @@ function baseHas(object, key) {
   // that are composed entirely of index properties, return `false` for
   // `hasOwnProperty` checks of them.
   return hasOwnProperty.call(object, key) ||
-    (typeof object == 'object' && key in object && __WEBPACK_IMPORTED_MODULE_0__getPrototype__["a" /* default */](object) === null);
+    (typeof object == 'object' && key in object && Object(__WEBPACK_IMPORTED_MODULE_0__getPrototype__["a" /* default */])(object) === null);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (baseHas);
@@ -28370,7 +28370,7 @@ if (!getOwnPropertySymbols) {
 
 
 /* Built-in method references that are verified to be native. */
-var Set = __WEBPACK_IMPORTED_MODULE_0__getNative__["a" /* default */](__WEBPACK_IMPORTED_MODULE_1__root__["a" /* default */], 'Set');
+var Set = Object(__WEBPACK_IMPORTED_MODULE_0__getNative__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_1__root__["a" /* default */], 'Set');
 
 /* harmony default export */ __webpack_exports__["a"] = (Set);
 
@@ -28488,7 +28488,7 @@ function equalArrays(array, other, equalFunc, customizer, bitmask, stack) {
     }
     // Recursively compare arrays (susceptible to call stack limits).
     if (seen) {
-      if (!__WEBPACK_IMPORTED_MODULE_1__arraySome__["a" /* default */](other, function(othValue, othIndex) {
+      if (!Object(__WEBPACK_IMPORTED_MODULE_1__arraySome__["a" /* default */])(other, function(othValue, othIndex) {
             if (!seen.has(othIndex) &&
                 (arrValue === othValue || equalFunc(arrValue, othValue, customizer, bitmask, stack))) {
               return seen.add(othIndex);
@@ -28573,11 +28573,11 @@ class WeakInsertDelta extends __WEBPACK_IMPORTED_MODULE_0__insertdelta__["a" /* 
  * @param {module:engine/model/position~Position} position Position of insertion.
  * @param {module:engine/model/node~NodeSet} nodes The list of nodes to be inserted.
  */
-__WEBPACK_IMPORTED_MODULE_1__batch__["b" /* register */]( 'weakInsert', function( position, nodes ) {
+Object(__WEBPACK_IMPORTED_MODULE_1__batch__["b" /* register */])( 'weakInsert', function( position, nodes ) {
 	const delta = new WeakInsertDelta();
 	this.addDelta( delta );
 
-	nodes = __WEBPACK_IMPORTED_MODULE_4__writer__["c" /* normalizeNodes */]( nodes );
+	nodes = Object(__WEBPACK_IMPORTED_MODULE_4__writer__["c" /* normalizeNodes */])( nodes );
 
 	for ( const node of nodes ) {
 		node.setAttributesTo( this.document.selection.getAttributes() );
@@ -28728,7 +28728,7 @@ const transform = {
 					// http://www.codecommit.com/blog/java/understanding-and-applying-operational-transformation
 
 					// Transform operation from delta A by operation from delta B.
-					const results = __WEBPACK_IMPORTED_MODULE_9__operation_transform__["a" /* default */]( op, opB, context );
+					const results = Object(__WEBPACK_IMPORTED_MODULE_9__operation_transform__["a" /* default */])( op, opB, context );
 
 					// We replace currently processed operation from `ops` array by the results of transformation.
 					// Note, that we process single operation but `operationTransform` result is an array, so we
@@ -28744,7 +28744,7 @@ const transform = {
 					reverseContext.insertBefore = context.insertBefore !== undefined ? !context.insertBefore : undefined;
 
 					// Transform operations.
-					const updatedOpB = __WEBPACK_IMPORTED_MODULE_9__operation_transform__["a" /* default */]( opB, op, reverseContext );
+					const updatedOpB = Object(__WEBPACK_IMPORTED_MODULE_9__operation_transform__["a" /* default */])( opB, op, reverseContext );
 
 					// Update `newByOps` by transformed, updated `opB`.
 					// Using push.apply because `operationTransform` returns an array with one or multiple results.
@@ -29104,7 +29104,7 @@ function _isOperationAffected( opA, opB ) {
 	const target = opA.targetPosition;
 	const source = opB.sourcePosition;
 
-	const cmpResult = __WEBPACK_IMPORTED_MODULE_14__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( source.getParentPath(), target.getParentPath() );
+	const cmpResult = Object(__WEBPACK_IMPORTED_MODULE_14__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */])( source.getParentPath(), target.getParentPath() );
 
 	if ( target.root != source.root ) {
 		return false;
@@ -29320,10 +29320,10 @@ var nativeCeil = Math.ceil,
  * // => [['a', 'b', 'c'], ['d']]
  */
 function chunk(array, size, guard) {
-  if ((guard ? __WEBPACK_IMPORTED_MODULE_1__isIterateeCall__["a" /* default */](array, size, guard) : size === undefined)) {
+  if ((guard ? Object(__WEBPACK_IMPORTED_MODULE_1__isIterateeCall__["a" /* default */])(array, size, guard) : size === undefined)) {
     size = 1;
   } else {
-    size = nativeMax(__WEBPACK_IMPORTED_MODULE_2__toInteger__["a" /* default */](size), 0);
+    size = nativeMax(Object(__WEBPACK_IMPORTED_MODULE_2__toInteger__["a" /* default */])(size), 0);
   }
   var length = array ? array.length : 0;
   if (!length || size < 1) {
@@ -29334,7 +29334,7 @@ function chunk(array, size, guard) {
       result = Array(nativeCeil(length / size));
 
   while (index < length) {
-    result[resIndex++] = __WEBPACK_IMPORTED_MODULE_0__baseSlice__["a" /* default */](array, index, (index += size));
+    result[resIndex++] = Object(__WEBPACK_IMPORTED_MODULE_0__baseSlice__["a" /* default */])(array, index, (index += size));
   }
   return result;
 }
@@ -29426,7 +29426,7 @@ function concat() {
     args[index - 1] = arguments[index];
   }
   return length
-    ? __WEBPACK_IMPORTED_MODULE_0__arrayPush__["a" /* default */](__WEBPACK_IMPORTED_MODULE_3__isArray__["a" /* default */](array) ? __WEBPACK_IMPORTED_MODULE_2__copyArray__["a" /* default */](array) : [array], __WEBPACK_IMPORTED_MODULE_1__baseFlatten__["a" /* default */](args, 1))
+    ? Object(__WEBPACK_IMPORTED_MODULE_0__arrayPush__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_3__isArray__["a" /* default */])(array) ? Object(__WEBPACK_IMPORTED_MODULE_2__copyArray__["a" /* default */])(array) : [array], Object(__WEBPACK_IMPORTED_MODULE_1__baseFlatten__["a" /* default */])(args, 1))
     : [];
 }
 
@@ -29466,9 +29466,9 @@ function concat() {
  * _.difference([3, 2, 1], [4, 2]);
  * // => [3, 1]
  */
-var difference = __WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */](function(array, values) {
-  return __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */](array)
-    ? __WEBPACK_IMPORTED_MODULE_0__baseDifference__["a" /* default */](array, __WEBPACK_IMPORTED_MODULE_1__baseFlatten__["a" /* default */](values, 1, __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */], true))
+var difference = Object(__WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */])(function(array, values) {
+  return Object(__WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */])(array)
+    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseDifference__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_1__baseFlatten__["a" /* default */])(values, 1, __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */], true))
     : [];
 });
 
@@ -29547,13 +29547,13 @@ function indexOfNaN(array, fromIndex, fromRight) {
  * _.differenceBy([{ 'x': 2 }, { 'x': 1 }], [{ 'x': 1 }], 'x');
  * // => [{ 'x': 2 }]
  */
-var differenceBy = __WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */](function(array, values) {
-  var iteratee = __WEBPACK_IMPORTED_MODULE_4__last__["a" /* default */](values);
-  if (__WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__["a" /* default */](iteratee)) {
+var differenceBy = Object(__WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */])(function(array, values) {
+  var iteratee = Object(__WEBPACK_IMPORTED_MODULE_4__last__["a" /* default */])(values);
+  if (Object(__WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__["a" /* default */])(iteratee)) {
     iteratee = undefined;
   }
-  return __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__["a" /* default */](array)
-    ? __WEBPACK_IMPORTED_MODULE_0__baseDifference__["a" /* default */](array, __WEBPACK_IMPORTED_MODULE_1__baseFlatten__["a" /* default */](values, 1, __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__["a" /* default */], true), __WEBPACK_IMPORTED_MODULE_2__baseIteratee__["a" /* default */](iteratee))
+  return Object(__WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__["a" /* default */])(array)
+    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseDifference__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_1__baseFlatten__["a" /* default */])(values, 1, __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__["a" /* default */], true), Object(__WEBPACK_IMPORTED_MODULE_2__baseIteratee__["a" /* default */])(iteratee))
     : [];
 });
 
@@ -29577,7 +29577,7 @@ var differenceBy = __WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */](functi
  *  equality comparisons, else `false`.
  */
 function isStrictComparable(value) {
-  return value === value && !__WEBPACK_IMPORTED_MODULE_0__isObject__["a" /* default */](value);
+  return value === value && !Object(__WEBPACK_IMPORTED_MODULE_0__isObject__["a" /* default */])(value);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (isStrictComparable);
@@ -29644,7 +29644,7 @@ function matchesStrictComparable(key, srcValue) {
  * // => 'default'
  */
 function get(object, path, defaultValue) {
-  var result = object == null ? undefined : __WEBPACK_IMPORTED_MODULE_0__baseGet__["a" /* default */](object, path);
+  var result = object == null ? undefined : Object(__WEBPACK_IMPORTED_MODULE_0__baseGet__["a" /* default */])(object, path);
   return result === undefined ? defaultValue : result;
 }
 
@@ -29716,13 +29716,13 @@ function identity(value) {
  * _.differenceWith(objects, [{ 'x': 1, 'y': 2 }], _.isEqual);
  * // => [{ 'x': 2, 'y': 1 }]
  */
-var differenceWith = __WEBPACK_IMPORTED_MODULE_4__rest__["a" /* default */](function(array, values) {
-  var comparator = __WEBPACK_IMPORTED_MODULE_3__last__["a" /* default */](values);
-  if (__WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */](comparator)) {
+var differenceWith = Object(__WEBPACK_IMPORTED_MODULE_4__rest__["a" /* default */])(function(array, values) {
+  var comparator = Object(__WEBPACK_IMPORTED_MODULE_3__last__["a" /* default */])(values);
+  if (Object(__WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */])(comparator)) {
     comparator = undefined;
   }
-  return __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */](array)
-    ? __WEBPACK_IMPORTED_MODULE_0__baseDifference__["a" /* default */](array, __WEBPACK_IMPORTED_MODULE_1__baseFlatten__["a" /* default */](values, 1, __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */], true), undefined, comparator)
+  return Object(__WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */])(array)
+    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseDifference__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_1__baseFlatten__["a" /* default */])(values, 1, __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */], true), undefined, comparator)
     : [];
 });
 
@@ -29777,7 +29777,7 @@ var differenceWith = __WEBPACK_IMPORTED_MODULE_4__rest__["a" /* default */](func
  */
 function dropRightWhile(array, predicate) {
   return (array && array.length)
-    ? __WEBPACK_IMPORTED_MODULE_1__baseWhile__["a" /* default */](array, __WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */](predicate, 3), true, true)
+    ? Object(__WEBPACK_IMPORTED_MODULE_1__baseWhile__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(predicate, 3), true, true)
     : [];
 }
 
@@ -29832,7 +29832,7 @@ function dropRightWhile(array, predicate) {
  */
 function dropWhile(array, predicate) {
   return (array && array.length)
-    ? __WEBPACK_IMPORTED_MODULE_1__baseWhile__["a" /* default */](array, __WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */](predicate, 3), true)
+    ? Object(__WEBPACK_IMPORTED_MODULE_1__baseWhile__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(predicate, 3), true)
     : [];
 }
 
@@ -29883,11 +29883,11 @@ function fill(array, value, start, end) {
   if (!length) {
     return [];
   }
-  if (start && typeof start != 'number' && __WEBPACK_IMPORTED_MODULE_1__isIterateeCall__["a" /* default */](array, value, start)) {
+  if (start && typeof start != 'number' && Object(__WEBPACK_IMPORTED_MODULE_1__isIterateeCall__["a" /* default */])(array, value, start)) {
     start = 0;
     end = length;
   }
-  return __WEBPACK_IMPORTED_MODULE_0__baseFill__["a" /* default */](array, value, start, end);
+  return Object(__WEBPACK_IMPORTED_MODULE_0__baseFill__["a" /* default */])(array, value, start, end);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (fill);
@@ -29940,7 +29940,7 @@ function fill(array, value, start, end) {
  */
 function findIndex(array, predicate) {
   return (array && array.length)
-    ? __WEBPACK_IMPORTED_MODULE_0__baseFindIndex__["a" /* default */](array, __WEBPACK_IMPORTED_MODULE_1__baseIteratee__["a" /* default */](predicate, 3))
+    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseFindIndex__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_1__baseIteratee__["a" /* default */])(predicate, 3))
     : -1;
 }
 
@@ -30024,7 +30024,7 @@ function baseFindIndex(array, predicate, fromRight) {
  */
 function findLastIndex(array, predicate) {
   return (array && array.length)
-    ? __WEBPACK_IMPORTED_MODULE_0__baseFindIndex__["a" /* default */](array, __WEBPACK_IMPORTED_MODULE_1__baseIteratee__["a" /* default */](predicate, 3), true)
+    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseFindIndex__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_1__baseIteratee__["a" /* default */])(predicate, 3), true)
     : -1;
 }
 
@@ -30065,7 +30065,7 @@ function findLastIndex(array, predicate) {
  */
 function flatten(array) {
   var length = array ? array.length : 0;
-  return length ? __WEBPACK_IMPORTED_MODULE_0__baseFlatten__["a" /* default */](array, 1) : [];
+  return length ? Object(__WEBPACK_IMPORTED_MODULE_0__baseFlatten__["a" /* default */])(array, 1) : [];
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (flatten);
@@ -30098,7 +30098,7 @@ var INFINITY = 1 / 0;
  */
 function flattenDeep(array) {
   var length = array ? array.length : 0;
-  return length ? __WEBPACK_IMPORTED_MODULE_0__baseFlatten__["a" /* default */](array, INFINITY) : [];
+  return length ? Object(__WEBPACK_IMPORTED_MODULE_0__baseFlatten__["a" /* default */])(array, INFINITY) : [];
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (flattenDeep);
@@ -30139,8 +30139,8 @@ function flattenDepth(array, depth) {
   if (!length) {
     return [];
   }
-  depth = depth === undefined ? 1 : __WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */](depth);
-  return __WEBPACK_IMPORTED_MODULE_0__baseFlatten__["a" /* default */](array, depth);
+  depth = depth === undefined ? 1 : Object(__WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */])(depth);
+  return Object(__WEBPACK_IMPORTED_MODULE_0__baseFlatten__["a" /* default */])(array, depth);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (flattenDepth);
@@ -30222,11 +30222,11 @@ function indexOf(array, value, fromIndex) {
   if (!length) {
     return -1;
   }
-  fromIndex = __WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */](fromIndex);
+  fromIndex = Object(__WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */])(fromIndex);
   if (fromIndex < 0) {
     fromIndex = nativeMax(length + fromIndex, 0);
   }
-  return __WEBPACK_IMPORTED_MODULE_0__baseIndexOf__["a" /* default */](array, value, fromIndex);
+  return Object(__WEBPACK_IMPORTED_MODULE_0__baseIndexOf__["a" /* default */])(array, value, fromIndex);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (indexOf);
@@ -30255,7 +30255,7 @@ function indexOf(array, value, fromIndex) {
  * // => [1, 2]
  */
 function initial(array) {
-  return __WEBPACK_IMPORTED_MODULE_0__dropRight__["a" /* default */](array, 1);
+  return Object(__WEBPACK_IMPORTED_MODULE_0__dropRight__["a" /* default */])(array, 1);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (initial);
@@ -30292,10 +30292,10 @@ function initial(array) {
  * _.intersection([2, 1], [4, 2], [1, 2]);
  * // => [2]
  */
-var intersection = __WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */](function(arrays) {
-  var mapped = __WEBPACK_IMPORTED_MODULE_0__arrayMap__["a" /* default */](arrays, __WEBPACK_IMPORTED_MODULE_2__castArrayLikeObject__["a" /* default */]);
+var intersection = Object(__WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */])(function(arrays) {
+  var mapped = Object(__WEBPACK_IMPORTED_MODULE_0__arrayMap__["a" /* default */])(arrays, __WEBPACK_IMPORTED_MODULE_2__castArrayLikeObject__["a" /* default */]);
   return (mapped.length && mapped[0] === arrays[0])
-    ? __WEBPACK_IMPORTED_MODULE_1__baseIntersection__["a" /* default */](mapped)
+    ? Object(__WEBPACK_IMPORTED_MODULE_1__baseIntersection__["a" /* default */])(mapped)
     : [];
 });
 
@@ -30343,17 +30343,17 @@ var intersection = __WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */](functi
  * _.intersectionBy([{ 'x': 1 }], [{ 'x': 2 }, { 'x': 1 }], 'x');
  * // => [{ 'x': 1 }]
  */
-var intersectionBy = __WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */](function(arrays) {
-  var iteratee = __WEBPACK_IMPORTED_MODULE_4__last__["a" /* default */](arrays),
-      mapped = __WEBPACK_IMPORTED_MODULE_0__arrayMap__["a" /* default */](arrays, __WEBPACK_IMPORTED_MODULE_3__castArrayLikeObject__["a" /* default */]);
+var intersectionBy = Object(__WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */])(function(arrays) {
+  var iteratee = Object(__WEBPACK_IMPORTED_MODULE_4__last__["a" /* default */])(arrays),
+      mapped = Object(__WEBPACK_IMPORTED_MODULE_0__arrayMap__["a" /* default */])(arrays, __WEBPACK_IMPORTED_MODULE_3__castArrayLikeObject__["a" /* default */]);
 
-  if (iteratee === __WEBPACK_IMPORTED_MODULE_4__last__["a" /* default */](mapped)) {
+  if (iteratee === Object(__WEBPACK_IMPORTED_MODULE_4__last__["a" /* default */])(mapped)) {
     iteratee = undefined;
   } else {
     mapped.pop();
   }
   return (mapped.length && mapped[0] === arrays[0])
-    ? __WEBPACK_IMPORTED_MODULE_1__baseIntersection__["a" /* default */](mapped, __WEBPACK_IMPORTED_MODULE_2__baseIteratee__["a" /* default */](iteratee))
+    ? Object(__WEBPACK_IMPORTED_MODULE_1__baseIntersection__["a" /* default */])(mapped, Object(__WEBPACK_IMPORTED_MODULE_2__baseIteratee__["a" /* default */])(iteratee))
     : [];
 });
 
@@ -30397,17 +30397,17 @@ var intersectionBy = __WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */](func
  * _.intersectionWith(objects, others, _.isEqual);
  * // => [{ 'x': 1, 'y': 2 }]
  */
-var intersectionWith = __WEBPACK_IMPORTED_MODULE_4__rest__["a" /* default */](function(arrays) {
-  var comparator = __WEBPACK_IMPORTED_MODULE_3__last__["a" /* default */](arrays),
-      mapped = __WEBPACK_IMPORTED_MODULE_0__arrayMap__["a" /* default */](arrays, __WEBPACK_IMPORTED_MODULE_2__castArrayLikeObject__["a" /* default */]);
+var intersectionWith = Object(__WEBPACK_IMPORTED_MODULE_4__rest__["a" /* default */])(function(arrays) {
+  var comparator = Object(__WEBPACK_IMPORTED_MODULE_3__last__["a" /* default */])(arrays),
+      mapped = Object(__WEBPACK_IMPORTED_MODULE_0__arrayMap__["a" /* default */])(arrays, __WEBPACK_IMPORTED_MODULE_2__castArrayLikeObject__["a" /* default */]);
 
-  if (comparator === __WEBPACK_IMPORTED_MODULE_3__last__["a" /* default */](mapped)) {
+  if (comparator === Object(__WEBPACK_IMPORTED_MODULE_3__last__["a" /* default */])(mapped)) {
     comparator = undefined;
   } else {
     mapped.pop();
   }
   return (mapped.length && mapped[0] === arrays[0])
-    ? __WEBPACK_IMPORTED_MODULE_1__baseIntersection__["a" /* default */](mapped, undefined, comparator)
+    ? Object(__WEBPACK_IMPORTED_MODULE_1__baseIntersection__["a" /* default */])(mapped, undefined, comparator)
     : [];
 });
 
@@ -30489,7 +30489,7 @@ function lastIndexOf(array, value, fromIndex) {
   }
   var index = length;
   if (fromIndex !== undefined) {
-    index = __WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */](fromIndex);
+    index = Object(__WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */])(fromIndex);
     index = (
       index < 0
         ? nativeMax(length + index, 0)
@@ -30497,7 +30497,7 @@ function lastIndexOf(array, value, fromIndex) {
     ) + 1;
   }
   if (value !== value) {
-    return __WEBPACK_IMPORTED_MODULE_0__indexOfNaN__["a" /* default */](array, index, true);
+    return Object(__WEBPACK_IMPORTED_MODULE_0__indexOfNaN__["a" /* default */])(array, index, true);
   }
   while (index--) {
     if (array[index] === value) {
@@ -30542,7 +30542,7 @@ function lastIndexOf(array, value, fromIndex) {
  * // => 'c';
  */
 function nth(array, n) {
-  return (array && array.length) ? __WEBPACK_IMPORTED_MODULE_0__baseNth__["a" /* default */](array, __WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */](n)) : undefined;
+  return (array && array.length) ? Object(__WEBPACK_IMPORTED_MODULE_0__baseNth__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */])(n)) : undefined;
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (nth);
@@ -30581,7 +30581,7 @@ function nth(array, n) {
  * console.log(array);
  * // => [1, 1]
  */
-var pull = __WEBPACK_IMPORTED_MODULE_1__rest__["a" /* default */](__WEBPACK_IMPORTED_MODULE_0__pullAll__["a" /* default */]);
+var pull = Object(__WEBPACK_IMPORTED_MODULE_1__rest__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_0__pullAll__["a" /* default */]);
 
 /* harmony default export */ __webpack_exports__["a"] = (pull);
 
@@ -30622,7 +30622,7 @@ var pull = __WEBPACK_IMPORTED_MODULE_1__rest__["a" /* default */](__WEBPACK_IMPO
  */
 function pullAllBy(array, values, iteratee) {
   return (array && array.length && values && values.length)
-    ? __WEBPACK_IMPORTED_MODULE_1__basePullAll__["a" /* default */](array, values, __WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */](iteratee))
+    ? Object(__WEBPACK_IMPORTED_MODULE_1__basePullAll__["a" /* default */])(array, values, Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(iteratee))
     : array;
 }
 
@@ -30662,7 +30662,7 @@ function pullAllBy(array, values, iteratee) {
  */
 function pullAllWith(array, values, comparator) {
   return (array && array.length && values && values.length)
-    ? __WEBPACK_IMPORTED_MODULE_0__basePullAll__["a" /* default */](array, values, undefined, comparator)
+    ? Object(__WEBPACK_IMPORTED_MODULE_0__basePullAll__["a" /* default */])(array, values, undefined, comparator)
     : array;
 }
 
@@ -30713,14 +30713,14 @@ function pullAllWith(array, values, comparator) {
  * console.log(evens);
  * // => [10, 20]
  */
-var pullAt = __WEBPACK_IMPORTED_MODULE_6__rest__["a" /* default */](function(array, indexes) {
-  indexes = __WEBPACK_IMPORTED_MODULE_2__baseFlatten__["a" /* default */](indexes, 1);
+var pullAt = Object(__WEBPACK_IMPORTED_MODULE_6__rest__["a" /* default */])(function(array, indexes) {
+  indexes = Object(__WEBPACK_IMPORTED_MODULE_2__baseFlatten__["a" /* default */])(indexes, 1);
 
   var length = array ? array.length : 0,
-      result = __WEBPACK_IMPORTED_MODULE_1__baseAt__["a" /* default */](array, indexes);
+      result = Object(__WEBPACK_IMPORTED_MODULE_1__baseAt__["a" /* default */])(array, indexes);
 
-  __WEBPACK_IMPORTED_MODULE_3__basePullAt__["a" /* default */](array, __WEBPACK_IMPORTED_MODULE_0__arrayMap__["a" /* default */](indexes, function(index) {
-    return __WEBPACK_IMPORTED_MODULE_5__isIndex__["a" /* default */](index, length) ? +index : index;
+  Object(__WEBPACK_IMPORTED_MODULE_3__basePullAt__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_0__arrayMap__["a" /* default */])(indexes, function(index) {
+    return Object(__WEBPACK_IMPORTED_MODULE_5__isIndex__["a" /* default */])(index, length) ? +index : index;
   }).sort(__WEBPACK_IMPORTED_MODULE_4__compareAscending__["a" /* default */]));
 
   return result;
@@ -30770,19 +30770,19 @@ function basePullAt(array, indexes) {
     var index = indexes[length];
     if (length == lastIndex || index !== previous) {
       var previous = index;
-      if (__WEBPACK_IMPORTED_MODULE_1__isIndex__["a" /* default */](index)) {
+      if (Object(__WEBPACK_IMPORTED_MODULE_1__isIndex__["a" /* default */])(index)) {
         splice.call(array, index, 1);
       }
-      else if (!__WEBPACK_IMPORTED_MODULE_2__isKey__["a" /* default */](index, array)) {
-        var path = __WEBPACK_IMPORTED_MODULE_0__castPath__["a" /* default */](index),
-            object = __WEBPACK_IMPORTED_MODULE_4__parent__["a" /* default */](array, path);
+      else if (!Object(__WEBPACK_IMPORTED_MODULE_2__isKey__["a" /* default */])(index, array)) {
+        var path = Object(__WEBPACK_IMPORTED_MODULE_0__castPath__["a" /* default */])(index),
+            object = Object(__WEBPACK_IMPORTED_MODULE_4__parent__["a" /* default */])(array, path);
 
         if (object != null) {
-          delete object[__WEBPACK_IMPORTED_MODULE_5__toKey__["a" /* default */](__WEBPACK_IMPORTED_MODULE_3__last__["a" /* default */](path))];
+          delete object[Object(__WEBPACK_IMPORTED_MODULE_5__toKey__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_3__last__["a" /* default */])(path))];
         }
       }
       else {
-        delete array[__WEBPACK_IMPORTED_MODULE_5__toKey__["a" /* default */](index)];
+        delete array[Object(__WEBPACK_IMPORTED_MODULE_5__toKey__["a" /* default */])(index)];
       }
     }
   }
@@ -30840,7 +30840,7 @@ function remove(array, predicate) {
       indexes = [],
       length = array.length;
 
-  predicate = __WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */](predicate, 3);
+  predicate = Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(predicate, 3);
   while (++index < length) {
     var value = array[index];
     if (predicate(value, index, array)) {
@@ -30848,7 +30848,7 @@ function remove(array, predicate) {
       indexes.push(index);
     }
   }
-  __WEBPACK_IMPORTED_MODULE_1__basePullAt__["a" /* default */](array, indexes);
+  Object(__WEBPACK_IMPORTED_MODULE_1__basePullAt__["a" /* default */])(array, indexes);
   return result;
 }
 
@@ -30929,15 +30929,15 @@ function slice(array, start, end) {
   if (!length) {
     return [];
   }
-  if (end && typeof end != 'number' && __WEBPACK_IMPORTED_MODULE_1__isIterateeCall__["a" /* default */](array, start, end)) {
+  if (end && typeof end != 'number' && Object(__WEBPACK_IMPORTED_MODULE_1__isIterateeCall__["a" /* default */])(array, start, end)) {
     start = 0;
     end = length;
   }
   else {
-    start = start == null ? 0 : __WEBPACK_IMPORTED_MODULE_2__toInteger__["a" /* default */](start);
-    end = end === undefined ? length : __WEBPACK_IMPORTED_MODULE_2__toInteger__["a" /* default */](end);
+    start = start == null ? 0 : Object(__WEBPACK_IMPORTED_MODULE_2__toInteger__["a" /* default */])(start);
+    end = end === undefined ? length : Object(__WEBPACK_IMPORTED_MODULE_2__toInteger__["a" /* default */])(end);
   }
-  return __WEBPACK_IMPORTED_MODULE_0__baseSlice__["a" /* default */](array, start, end);
+  return Object(__WEBPACK_IMPORTED_MODULE_0__baseSlice__["a" /* default */])(array, start, end);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (slice);
@@ -30972,7 +30972,7 @@ function slice(array, start, end) {
  * // => 0
  */
 function sortedIndex(array, value) {
-  return __WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__["a" /* default */](array, value);
+  return Object(__WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__["a" /* default */])(array, value);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (sortedIndex);
@@ -31015,7 +31015,7 @@ function sortedIndex(array, value) {
  * // => 0
  */
 function sortedIndexBy(array, value, iteratee) {
-  return __WEBPACK_IMPORTED_MODULE_1__baseSortedIndexBy__["a" /* default */](array, value, __WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */](iteratee));
+  return Object(__WEBPACK_IMPORTED_MODULE_1__baseSortedIndexBy__["a" /* default */])(array, value, Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(iteratee));
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (sortedIndexBy);
@@ -31050,8 +31050,8 @@ function sortedIndexBy(array, value, iteratee) {
 function sortedIndexOf(array, value) {
   var length = array ? array.length : 0;
   if (length) {
-    var index = __WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__["a" /* default */](array, value);
-    if (index < length && __WEBPACK_IMPORTED_MODULE_1__eq__["a" /* default */](array[index], value)) {
+    var index = Object(__WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__["a" /* default */])(array, value);
+    if (index < length && Object(__WEBPACK_IMPORTED_MODULE_1__eq__["a" /* default */])(array[index], value)) {
       return index;
     }
   }
@@ -31088,7 +31088,7 @@ function sortedIndexOf(array, value) {
  * // => 1
  */
 function sortedLastIndex(array, value) {
-  return __WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__["a" /* default */](array, value, true);
+  return Object(__WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__["a" /* default */])(array, value, true);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (sortedLastIndex);
@@ -31126,7 +31126,7 @@ function sortedLastIndex(array, value) {
  * // => 1
  */
 function sortedLastIndexBy(array, value, iteratee) {
-  return __WEBPACK_IMPORTED_MODULE_1__baseSortedIndexBy__["a" /* default */](array, value, __WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */](iteratee), true);
+  return Object(__WEBPACK_IMPORTED_MODULE_1__baseSortedIndexBy__["a" /* default */])(array, value, Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(iteratee), true);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (sortedLastIndexBy);
@@ -31161,8 +31161,8 @@ function sortedLastIndexBy(array, value, iteratee) {
 function sortedLastIndexOf(array, value) {
   var length = array ? array.length : 0;
   if (length) {
-    var index = __WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__["a" /* default */](array, value, true) - 1;
-    if (__WEBPACK_IMPORTED_MODULE_1__eq__["a" /* default */](array[index], value)) {
+    var index = Object(__WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__["a" /* default */])(array, value, true) - 1;
+    if (Object(__WEBPACK_IMPORTED_MODULE_1__eq__["a" /* default */])(array[index], value)) {
       return index;
     }
   }
@@ -31197,7 +31197,7 @@ function sortedLastIndexOf(array, value) {
  */
 function sortedUniq(array) {
   return (array && array.length)
-    ? __WEBPACK_IMPORTED_MODULE_0__baseSortedUniq__["a" /* default */](array)
+    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseSortedUniq__["a" /* default */])(array)
     : [];
 }
 
@@ -31231,7 +31231,7 @@ function baseSortedUniq(array, iteratee) {
     var value = array[index],
         computed = iteratee ? iteratee(value) : value;
 
-    if (!index || !__WEBPACK_IMPORTED_MODULE_0__eq__["a" /* default */](computed, seen)) {
+    if (!index || !Object(__WEBPACK_IMPORTED_MODULE_0__eq__["a" /* default */])(computed, seen)) {
       var seen = computed;
       result[resIndex++] = value === 0 ? 0 : value;
     }
@@ -31270,7 +31270,7 @@ function baseSortedUniq(array, iteratee) {
  */
 function sortedUniqBy(array, iteratee) {
   return (array && array.length)
-    ? __WEBPACK_IMPORTED_MODULE_1__baseSortedUniq__["a" /* default */](array, __WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */](iteratee))
+    ? Object(__WEBPACK_IMPORTED_MODULE_1__baseSortedUniq__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(iteratee))
     : [];
 }
 
@@ -31300,7 +31300,7 @@ function sortedUniqBy(array, iteratee) {
  * // => [2, 3]
  */
 function tail(array) {
-  return __WEBPACK_IMPORTED_MODULE_0__drop__["a" /* default */](array, 1);
+  return Object(__WEBPACK_IMPORTED_MODULE_0__drop__["a" /* default */])(array, 1);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (tail);
@@ -31345,8 +31345,8 @@ function take(array, n, guard) {
   if (!(array && array.length)) {
     return [];
   }
-  n = (guard || n === undefined) ? 1 : __WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */](n);
-  return __WEBPACK_IMPORTED_MODULE_0__baseSlice__["a" /* default */](array, 0, n < 0 ? 0 : n);
+  n = (guard || n === undefined) ? 1 : Object(__WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */])(n);
+  return Object(__WEBPACK_IMPORTED_MODULE_0__baseSlice__["a" /* default */])(array, 0, n < 0 ? 0 : n);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (take);
@@ -31392,9 +31392,9 @@ function takeRight(array, n, guard) {
   if (!length) {
     return [];
   }
-  n = (guard || n === undefined) ? 1 : __WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */](n);
+  n = (guard || n === undefined) ? 1 : Object(__WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */])(n);
   n = length - n;
-  return __WEBPACK_IMPORTED_MODULE_0__baseSlice__["a" /* default */](array, n < 0 ? 0 : n, length);
+  return Object(__WEBPACK_IMPORTED_MODULE_0__baseSlice__["a" /* default */])(array, n < 0 ? 0 : n, length);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (takeRight);
@@ -31448,7 +31448,7 @@ function takeRight(array, n, guard) {
  */
 function takeRightWhile(array, predicate) {
   return (array && array.length)
-    ? __WEBPACK_IMPORTED_MODULE_1__baseWhile__["a" /* default */](array, __WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */](predicate, 3), false, true)
+    ? Object(__WEBPACK_IMPORTED_MODULE_1__baseWhile__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(predicate, 3), false, true)
     : [];
 }
 
@@ -31503,7 +31503,7 @@ function takeRightWhile(array, predicate) {
  */
 function takeWhile(array, predicate) {
   return (array && array.length)
-    ? __WEBPACK_IMPORTED_MODULE_1__baseWhile__["a" /* default */](array, __WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */](predicate, 3))
+    ? Object(__WEBPACK_IMPORTED_MODULE_1__baseWhile__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(predicate, 3))
     : [];
 }
 
@@ -31540,8 +31540,8 @@ function takeWhile(array, predicate) {
  * _.union([2, 1], [4, 2], [1, 2]);
  * // => [2, 1, 4]
  */
-var union = __WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */](function(arrays) {
-  return __WEBPACK_IMPORTED_MODULE_1__baseUniq__["a" /* default */](__WEBPACK_IMPORTED_MODULE_0__baseFlatten__["a" /* default */](arrays, 1, __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */], true));
+var union = Object(__WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */])(function(arrays) {
+  return Object(__WEBPACK_IMPORTED_MODULE_1__baseUniq__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_0__baseFlatten__["a" /* default */])(arrays, 1, __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */], true));
 });
 
 /* harmony default export */ __webpack_exports__["a"] = (union);
@@ -31588,12 +31588,12 @@ var union = __WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */](function(arra
  * _.unionBy([{ 'x': 1 }], [{ 'x': 2 }, { 'x': 1 }], 'x');
  * // => [{ 'x': 1 }, { 'x': 2 }]
  */
-var unionBy = __WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */](function(arrays) {
-  var iteratee = __WEBPACK_IMPORTED_MODULE_4__last__["a" /* default */](arrays);
-  if (__WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__["a" /* default */](iteratee)) {
+var unionBy = Object(__WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */])(function(arrays) {
+  var iteratee = Object(__WEBPACK_IMPORTED_MODULE_4__last__["a" /* default */])(arrays);
+  if (Object(__WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__["a" /* default */])(iteratee)) {
     iteratee = undefined;
   }
-  return __WEBPACK_IMPORTED_MODULE_2__baseUniq__["a" /* default */](__WEBPACK_IMPORTED_MODULE_0__baseFlatten__["a" /* default */](arrays, 1, __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__["a" /* default */], true), __WEBPACK_IMPORTED_MODULE_1__baseIteratee__["a" /* default */](iteratee));
+  return Object(__WEBPACK_IMPORTED_MODULE_2__baseUniq__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_0__baseFlatten__["a" /* default */])(arrays, 1, __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__["a" /* default */], true), Object(__WEBPACK_IMPORTED_MODULE_1__baseIteratee__["a" /* default */])(iteratee));
 });
 
 /* harmony default export */ __webpack_exports__["a"] = (unionBy);
@@ -31635,12 +31635,12 @@ var unionBy = __WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */](function(ar
  * _.unionWith(objects, others, _.isEqual);
  * // => [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }, { 'x': 1, 'y': 1 }]
  */
-var unionWith = __WEBPACK_IMPORTED_MODULE_4__rest__["a" /* default */](function(arrays) {
-  var comparator = __WEBPACK_IMPORTED_MODULE_3__last__["a" /* default */](arrays);
-  if (__WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */](comparator)) {
+var unionWith = Object(__WEBPACK_IMPORTED_MODULE_4__rest__["a" /* default */])(function(arrays) {
+  var comparator = Object(__WEBPACK_IMPORTED_MODULE_3__last__["a" /* default */])(arrays);
+  if (Object(__WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */])(comparator)) {
     comparator = undefined;
   }
-  return __WEBPACK_IMPORTED_MODULE_1__baseUniq__["a" /* default */](__WEBPACK_IMPORTED_MODULE_0__baseFlatten__["a" /* default */](arrays, 1, __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */], true), undefined, comparator);
+  return Object(__WEBPACK_IMPORTED_MODULE_1__baseUniq__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_0__baseFlatten__["a" /* default */])(arrays, 1, __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */], true), undefined, comparator);
 });
 
 /* harmony default export */ __webpack_exports__["a"] = (unionWith);
@@ -31673,7 +31673,7 @@ var unionWith = __WEBPACK_IMPORTED_MODULE_4__rest__["a" /* default */](function(
  */
 function uniq(array) {
   return (array && array.length)
-    ? __WEBPACK_IMPORTED_MODULE_0__baseUniq__["a" /* default */](array)
+    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseUniq__["a" /* default */])(array)
     : [];
 }
 
@@ -31714,7 +31714,7 @@ function uniq(array) {
  */
 function uniqBy(array, iteratee) {
   return (array && array.length)
-    ? __WEBPACK_IMPORTED_MODULE_1__baseUniq__["a" /* default */](array, __WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */](iteratee))
+    ? Object(__WEBPACK_IMPORTED_MODULE_1__baseUniq__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(iteratee))
     : [];
 }
 
@@ -31750,7 +31750,7 @@ function uniqBy(array, iteratee) {
  */
 function uniqWith(array, comparator) {
   return (array && array.length)
-    ? __WEBPACK_IMPORTED_MODULE_0__baseUniq__["a" /* default */](array, undefined, comparator)
+    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseUniq__["a" /* default */])(array, undefined, comparator)
     : [];
 }
 
@@ -31787,9 +31787,9 @@ function uniqWith(array, comparator) {
  * _.without([1, 2, 1, 3], 1, 2);
  * // => [3]
  */
-var without = __WEBPACK_IMPORTED_MODULE_2__rest__["a" /* default */](function(array, values) {
-  return __WEBPACK_IMPORTED_MODULE_1__isArrayLikeObject__["a" /* default */](array)
-    ? __WEBPACK_IMPORTED_MODULE_0__baseDifference__["a" /* default */](array, values)
+var without = Object(__WEBPACK_IMPORTED_MODULE_2__rest__["a" /* default */])(function(array, values) {
+  return Object(__WEBPACK_IMPORTED_MODULE_1__isArrayLikeObject__["a" /* default */])(array)
+    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseDifference__["a" /* default */])(array, values)
     : [];
 });
 
@@ -31828,8 +31828,8 @@ var without = __WEBPACK_IMPORTED_MODULE_2__rest__["a" /* default */](function(ar
  * _.xor([2, 1], [4, 2]);
  * // => [1, 4]
  */
-var xor = __WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */](function(arrays) {
-  return __WEBPACK_IMPORTED_MODULE_1__baseXor__["a" /* default */](__WEBPACK_IMPORTED_MODULE_0__arrayFilter__["a" /* default */](arrays, __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */]));
+var xor = Object(__WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */])(function(arrays) {
+  return Object(__WEBPACK_IMPORTED_MODULE_1__baseXor__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_0__arrayFilter__["a" /* default */])(arrays, __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */]));
 });
 
 /* harmony default export */ __webpack_exports__["a"] = (xor);
@@ -31876,12 +31876,12 @@ var xor = __WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */](function(arrays
  * _.xorBy([{ 'x': 1 }], [{ 'x': 2 }, { 'x': 1 }], 'x');
  * // => [{ 'x': 2 }]
  */
-var xorBy = __WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */](function(arrays) {
-  var iteratee = __WEBPACK_IMPORTED_MODULE_4__last__["a" /* default */](arrays);
-  if (__WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__["a" /* default */](iteratee)) {
+var xorBy = Object(__WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */])(function(arrays) {
+  var iteratee = Object(__WEBPACK_IMPORTED_MODULE_4__last__["a" /* default */])(arrays);
+  if (Object(__WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__["a" /* default */])(iteratee)) {
     iteratee = undefined;
   }
-  return __WEBPACK_IMPORTED_MODULE_2__baseXor__["a" /* default */](__WEBPACK_IMPORTED_MODULE_0__arrayFilter__["a" /* default */](arrays, __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__["a" /* default */]), __WEBPACK_IMPORTED_MODULE_1__baseIteratee__["a" /* default */](iteratee));
+  return Object(__WEBPACK_IMPORTED_MODULE_2__baseXor__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_0__arrayFilter__["a" /* default */])(arrays, __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__["a" /* default */]), Object(__WEBPACK_IMPORTED_MODULE_1__baseIteratee__["a" /* default */])(iteratee));
 });
 
 /* harmony default export */ __webpack_exports__["a"] = (xorBy);
@@ -31923,12 +31923,12 @@ var xorBy = __WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */](function(arra
  * _.xorWith(objects, others, _.isEqual);
  * // => [{ 'x': 2, 'y': 1 }, { 'x': 1, 'y': 1 }]
  */
-var xorWith = __WEBPACK_IMPORTED_MODULE_4__rest__["a" /* default */](function(arrays) {
-  var comparator = __WEBPACK_IMPORTED_MODULE_3__last__["a" /* default */](arrays);
-  if (__WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */](comparator)) {
+var xorWith = Object(__WEBPACK_IMPORTED_MODULE_4__rest__["a" /* default */])(function(arrays) {
+  var comparator = Object(__WEBPACK_IMPORTED_MODULE_3__last__["a" /* default */])(arrays);
+  if (Object(__WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */])(comparator)) {
     comparator = undefined;
   }
-  return __WEBPACK_IMPORTED_MODULE_1__baseXor__["a" /* default */](__WEBPACK_IMPORTED_MODULE_0__arrayFilter__["a" /* default */](arrays, __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */]), undefined, comparator);
+  return Object(__WEBPACK_IMPORTED_MODULE_1__baseXor__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_0__arrayFilter__["a" /* default */])(arrays, __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */]), undefined, comparator);
 });
 
 /* harmony default export */ __webpack_exports__["a"] = (xorWith);
@@ -31960,7 +31960,7 @@ var xorWith = __WEBPACK_IMPORTED_MODULE_4__rest__["a" /* default */](function(ar
  * _.zip(['fred', 'barney'], [30, 40], [true, false]);
  * // => [['fred', 30, true], ['barney', 40, false]]
  */
-var zip = __WEBPACK_IMPORTED_MODULE_0__rest__["a" /* default */](__WEBPACK_IMPORTED_MODULE_1__unzip__["a" /* default */]);
+var zip = Object(__WEBPACK_IMPORTED_MODULE_0__rest__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_1__unzip__["a" /* default */]);
 
 /* harmony default export */ __webpack_exports__["a"] = (zip);
 
@@ -31992,7 +31992,7 @@ var zip = __WEBPACK_IMPORTED_MODULE_0__rest__["a" /* default */](__WEBPACK_IMPOR
  * // => { 'a': 1, 'b': 2 }
  */
 function zipObject(props, values) {
-  return __WEBPACK_IMPORTED_MODULE_1__baseZipObject__["a" /* default */](props || [], values || [], __WEBPACK_IMPORTED_MODULE_0__assignValue__["a" /* default */]);
+  return Object(__WEBPACK_IMPORTED_MODULE_1__baseZipObject__["a" /* default */])(props || [], values || [], __WEBPACK_IMPORTED_MODULE_0__assignValue__["a" /* default */]);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (zipObject);
@@ -32054,7 +32054,7 @@ function baseZipObject(props, values, assignFunc) {
  * // => { 'a': { 'b': [{ 'c': 1 }, { 'd': 2 }] } }
  */
 function zipObjectDeep(props, values) {
-  return __WEBPACK_IMPORTED_MODULE_1__baseZipObject__["a" /* default */](props || [], values || [], __WEBPACK_IMPORTED_MODULE_0__baseSet__["a" /* default */]);
+  return Object(__WEBPACK_IMPORTED_MODULE_1__baseZipObject__["a" /* default */])(props || [], values || [], __WEBPACK_IMPORTED_MODULE_0__baseSet__["a" /* default */]);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (zipObjectDeep);
@@ -32089,12 +32089,12 @@ function zipObjectDeep(props, values) {
  * });
  * // => [111, 222]
  */
-var zipWith = __WEBPACK_IMPORTED_MODULE_0__rest__["a" /* default */](function(arrays) {
+var zipWith = Object(__WEBPACK_IMPORTED_MODULE_0__rest__["a" /* default */])(function(arrays) {
   var length = arrays.length,
       iteratee = length > 1 ? arrays[length - 1] : undefined;
 
   iteratee = typeof iteratee == 'function' ? (arrays.pop(), iteratee) : undefined;
-  return __WEBPACK_IMPORTED_MODULE_1__unzipWith__["a" /* default */](arrays, iteratee);
+  return Object(__WEBPACK_IMPORTED_MODULE_1__unzipWith__["a" /* default */])(arrays, iteratee);
 });
 
 /* harmony default export */ __webpack_exports__["a"] = (zipWith);
@@ -32277,7 +32277,7 @@ function transform( changeType, deltaType, targetRange, sourcePosition ) {
 	}
 }
 
-__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( LiveRange, __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( LiveRange, __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
 
 
 /***/ }),
@@ -32729,7 +32729,7 @@ class DomConverter {
 
 			let offset = viewPosition.offset;
 
-			if ( __WEBPACK_IMPORTED_MODULE_7__filler__["i" /* startsWithFiller */]( domParent ) ) {
+			if ( Object(__WEBPACK_IMPORTED_MODULE_7__filler__["i" /* startsWithFiller */])( domParent ) ) {
 				offset += __WEBPACK_IMPORTED_MODULE_7__filler__["c" /* INLINE_FILLER_LENGTH */];
 			}
 
@@ -32765,11 +32765,11 @@ class DomConverter {
 
 			// If there is an inline filler at position return position inside the filler. We should never return
 			// the position before the inline filler.
-			if ( this.isText( domAfter ) && __WEBPACK_IMPORTED_MODULE_7__filler__["i" /* startsWithFiller */]( domAfter ) ) {
+			if ( this.isText( domAfter ) && Object(__WEBPACK_IMPORTED_MODULE_7__filler__["i" /* startsWithFiller */])( domAfter ) ) {
 				return { parent: domAfter, offset: __WEBPACK_IMPORTED_MODULE_7__filler__["c" /* INLINE_FILLER_LENGTH */] };
 			}
 
-			const offset = domBefore ? __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_dom_indexof__["a" /* default */]( domBefore ) + 1 : 0;
+			const offset = domBefore ? Object(__WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_dom_indexof__["a" /* default */])( domBefore ) + 1 : 0;
 
 			return { parent: domParent, offset };
 		}
@@ -32790,7 +32790,7 @@ class DomConverter {
 	 * or `null` if DOM node is a {@link module:engine/view/filler filler} or the given node is an empty text node.
 	 */
 	domToView( domNode, options = {} ) {
-		if ( __WEBPACK_IMPORTED_MODULE_7__filler__["g" /* isBlockFiller */]( domNode, this.blockFiller ) ) {
+		if ( Object(__WEBPACK_IMPORTED_MODULE_7__filler__["g" /* isBlockFiller */])( domNode, this.blockFiller ) ) {
 			return null;
 		}
 
@@ -32802,7 +32802,7 @@ class DomConverter {
 		}
 
 		if ( this.isText( domNode ) ) {
-			if ( __WEBPACK_IMPORTED_MODULE_7__filler__["h" /* isInlineFiller */]( domNode ) ) {
+			if ( Object(__WEBPACK_IMPORTED_MODULE_7__filler__["h" /* isInlineFiller */])( domNode ) ) {
 				return null;
 			} else {
 				const textData = this._processDataFromDomText( domNode );
@@ -32947,8 +32947,8 @@ class DomConverter {
 	 * @returns {module:engine/view/position~Position} viewPosition View position.
 	 */
 	domPositionToView( domParent, domOffset ) {
-		if ( __WEBPACK_IMPORTED_MODULE_7__filler__["g" /* isBlockFiller */]( domParent, this.blockFiller ) ) {
-			return this.domPositionToView( domParent.parentNode, __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_dom_indexof__["a" /* default */]( domParent ) );
+		if ( Object(__WEBPACK_IMPORTED_MODULE_7__filler__["g" /* isBlockFiller */])( domParent, this.blockFiller ) ) {
+			return this.domPositionToView( domParent.parentNode, Object(__WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_dom_indexof__["a" /* default */])( domParent ) );
 		}
 
 		// If position is somewhere inside UIElement - return position before that element.
@@ -32959,8 +32959,8 @@ class DomConverter {
 		}
 
 		if ( this.isText( domParent ) ) {
-			if ( __WEBPACK_IMPORTED_MODULE_7__filler__["h" /* isInlineFiller */]( domParent ) ) {
-				return this.domPositionToView( domParent.parentNode, __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_dom_indexof__["a" /* default */]( domParent ) );
+			if ( Object(__WEBPACK_IMPORTED_MODULE_7__filler__["h" /* isInlineFiller */])( domParent ) ) {
+				return this.domPositionToView( domParent.parentNode, Object(__WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_dom_indexof__["a" /* default */])( domParent ) );
 			}
 
 			const viewParent = this.findCorrespondingViewText( domParent );
@@ -32970,7 +32970,7 @@ class DomConverter {
 				return null;
 			}
 
-			if ( __WEBPACK_IMPORTED_MODULE_7__filler__["i" /* startsWithFiller */]( domParent ) ) {
+			if ( Object(__WEBPACK_IMPORTED_MODULE_7__filler__["i" /* startsWithFiller */])( domParent ) ) {
 				offset -= __WEBPACK_IMPORTED_MODULE_7__filler__["c" /* INLINE_FILLER_LENGTH */];
 				offset = offset < 0 ? 0 : offset;
 			}
@@ -33037,7 +33037,7 @@ class DomConverter {
 	 * corresponding node.
 	 */
 	findCorrespondingViewText( domText ) {
-		if ( __WEBPACK_IMPORTED_MODULE_7__filler__["h" /* isInlineFiller */]( domText ) ) {
+		if ( Object(__WEBPACK_IMPORTED_MODULE_7__filler__["h" /* isInlineFiller */])( domText ) ) {
 			return null;
 		}
 
@@ -33247,7 +33247,7 @@ class DomConverter {
 	 * @return {module:engine/view/uielement~UIElement|null}
 	 */
 	getParentUIElement( domNode ) {
-		const ancestors = __WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_utils_src_dom_getancestors__["a" /* default */]( domNode );
+		const ancestors = Object(__WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_utils_src_dom_getancestors__["a" /* default */])( domNode );
 
 		// Remove domNode from the list.
 		ancestors.pop();
@@ -33402,7 +33402,7 @@ class DomConverter {
 	 * @private
 	 */
 	_processDataFromDomText( node ) {
-		let data = __WEBPACK_IMPORTED_MODULE_7__filler__["e" /* getDataWithoutFiller */]( node );
+		let data = Object(__WEBPACK_IMPORTED_MODULE_7__filler__["e" /* getDataWithoutFiller */])( node );
 
 		if ( _hasDomParentOfType( node, this.preElements ) ) {
 			return data;
@@ -33478,7 +33478,7 @@ class DomConverter {
 		const touchingNode = treeWalker[ direction ]();
 
 		if ( touchingNode !== null ) {
-			const lca = __WEBPACK_IMPORTED_MODULE_11__ckeditor_ckeditor5_utils_src_dom_getcommonancestor__["a" /* default */]( node, touchingNode );
+			const lca = Object(__WEBPACK_IMPORTED_MODULE_11__ckeditor_ckeditor5_utils_src_dom_getcommonancestor__["a" /* default */])( node, touchingNode );
 
 			// If there is common ancestor between the text node and next/prev text node,
 			// and there are no block elements on a way from the text node to that ancestor,
@@ -33507,7 +33507,7 @@ class DomConverter {
 // @param {Boolean} [boundaryParent] Can be given if parents should be checked up to a given element (excluding that element).
 // @returns {Boolean} `true` if such parent exists or `false` if it does not.
 function _hasDomParentOfType( node, types, boundaryParent ) {
-	let parents = __WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_utils_src_dom_getancestors__["a" /* default */]( node );
+	let parents = Object(__WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_utils_src_dom_getancestors__["a" /* default */])( node );
 
 	if ( boundaryParent ) {
 		parents = parents.slice( parents.indexOf( boundaryParent ) + 1 );
@@ -33825,14 +33825,14 @@ class MutationObserver extends __WEBPACK_IMPORTED_MODULE_0__observer__["a" /* de
 					mutatedTexts.set( text, {
 						type: 'text',
 						oldText: text.data,
-						newText: __WEBPACK_IMPORTED_MODULE_2__filler__["e" /* getDataWithoutFiller */]( mutation.target ),
+						newText: Object(__WEBPACK_IMPORTED_MODULE_2__filler__["e" /* getDataWithoutFiller */])( mutation.target ),
 						node: text
 					} );
 				}
 				// When we added first letter to the text node which had only inline filler, for the DOM it is mutation
 				// on text, but for the view, where filler text node did not existed, new text node was created, so we
 				// need to fire 'children' mutation instead of 'text'.
-				else if ( !text && __WEBPACK_IMPORTED_MODULE_2__filler__["i" /* startsWithFiller */]( mutation.target ) ) {
+				else if ( !text && Object(__WEBPACK_IMPORTED_MODULE_2__filler__["i" /* startsWithFiller */])( mutation.target ) ) {
 					mutatedElements.add( domConverter.mapDomToView( mutation.target.parentNode ) );
 				}
 			}
@@ -34437,7 +34437,7 @@ function isRange( obj ) {
  * // => false
  */
 function isElement(value) {
-  return !!value && value.nodeType === 1 && __WEBPACK_IMPORTED_MODULE_0__isObjectLike__["a" /* default */](value) && !__WEBPACK_IMPORTED_MODULE_1__isPlainObject__["a" /* default */](value);
+  return !!value && value.nodeType === 1 && Object(__WEBPACK_IMPORTED_MODULE_0__isObjectLike__["a" /* default */])(value) && !Object(__WEBPACK_IMPORTED_MODULE_1__isPlainObject__["a" /* default */])(value);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (isElement);
@@ -34571,7 +34571,7 @@ class ToolbarView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */]
 
 			on: {
 				// https://github.com/ckeditor/ckeditor5-ui/issues/206
-				mousedown: __WEBPACK_IMPORTED_MODULE_6__bindings_preventdefault_js__["a" /* default */]( this )
+				mousedown: Object(__WEBPACK_IMPORTED_MODULE_6__bindings_preventdefault_js__["a" /* default */])( this )
 			}
 		} );
 
@@ -34801,7 +34801,7 @@ class ChangeBuffer {
 	 */
 	_onBatch( batch ) {
 		// One operation means a newly created batch.
-		if ( batch.type != 'transparent' && batch !== this._batch && __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_count__["a" /* default */]( batch.getOperations() ) <= 1 ) {
+		if ( batch.type != 'transparent' && batch !== this._batch && Object(__WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_count__["a" /* default */])( batch.getOperations() ) <= 1 ) {
 			this._reset( true );
 		}
 	}
@@ -35281,20 +35281,20 @@ class ImageEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_s
 		schema.objects.add( 'image' );
 
 		// Build converter from model to view for data pipeline.
-		__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__["a" /* default */]().for( data.modelToView )
+		Object(__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__["a" /* default */])().for( data.modelToView )
 			.fromElement( 'image' )
 			.toElement( () => createImageViewElement() );
 
 		// Build converter from model to view for editing pipeline.
-		__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__["a" /* default */]().for( editing.modelToView )
+		Object(__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__["a" /* default */])().for( editing.modelToView )
 			.fromElement( 'image' )
-			.toElement( () => __WEBPACK_IMPORTED_MODULE_4__utils__["c" /* toImageWidget */]( createImageViewElement(), t( 'image widget' ) ) );
+			.toElement( () => Object(__WEBPACK_IMPORTED_MODULE_4__utils__["c" /* toImageWidget */])( createImageViewElement(), t( 'image widget' ) ) );
 
-		__WEBPACK_IMPORTED_MODULE_3__converters__["b" /* createImageAttributeConverter */]( [ editing.modelToView, data.modelToView ], 'src' );
-		__WEBPACK_IMPORTED_MODULE_3__converters__["b" /* createImageAttributeConverter */]( [ editing.modelToView, data.modelToView ], 'alt' );
+		Object(__WEBPACK_IMPORTED_MODULE_3__converters__["b" /* createImageAttributeConverter */])( [ editing.modelToView, data.modelToView ], 'src' );
+		Object(__WEBPACK_IMPORTED_MODULE_3__converters__["b" /* createImageAttributeConverter */])( [ editing.modelToView, data.modelToView ], 'alt' );
 
 		// Convert `srcset` attribute changes and add or remove `sizes` attribute when necessary.
-		__WEBPACK_IMPORTED_MODULE_3__converters__["b" /* createImageAttributeConverter */]( [ editing.modelToView, data.modelToView ], 'srcset', ( viewImg, type ) => {
+		Object(__WEBPACK_IMPORTED_MODULE_3__converters__["b" /* createImageAttributeConverter */])( [ editing.modelToView, data.modelToView ], 'srcset', ( viewImg, type ) => {
 			if ( type == 'removeAttribute' ) {
 				viewImg.removeAttribute( 'sizes' );
 			} else {
@@ -35304,7 +35304,7 @@ class ImageEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_s
 		} );
 
 		// Build converter for view img element to model image element.
-		__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__["a" /* default */]().for( data.viewToModel )
+		Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__["a" /* default */])().for( data.viewToModel )
 			.from( { name: 'img', attribute: { src: /./ } } )
 			.toElement( viewImage => new __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_model_element__["a" /* default */]( 'image', { src: viewImage.getAttribute( 'src' ) } ) );
 
@@ -35314,19 +35314,19 @@ class ImageEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_s
 		// Build converter for alt attribute.
 		// Note that by default attribute converters are added with `low` priority.
 		// This converter will be thus fired after `convertHoistableImage` converter.
-		__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__["a" /* default */]().for( data.viewToModel )
+		Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__["a" /* default */])().for( data.viewToModel )
 			.from( { name: 'img', attribute: { alt: /./ } } )
 			.consuming( { attribute: [ 'alt' ] } )
 			.toAttribute( viewImage => ( { key: 'alt', value: viewImage.getAttribute( 'alt' ) } ) );
 
 		// Build converter for srcset attribute.
-		__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__["a" /* default */]().for( data.viewToModel )
+		Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__["a" /* default */])().for( data.viewToModel )
 			.from( { name: 'img', attribute: { srcset: /./ } } )
 			.consuming( { attribute: [ 'srcset' ] } )
 			.toAttribute( viewImage => ( { key: 'srcset', value: viewImage.getAttribute( 'srcset' ) } ) );
 
 		// Converter for figure element from view to model.
-		data.viewToModel.on( 'element:figure', __WEBPACK_IMPORTED_MODULE_3__converters__["d" /* viewFigureToModel */]() );
+		data.viewToModel.on( 'element:figure', Object(__WEBPACK_IMPORTED_MODULE_3__converters__["d" /* viewFigureToModel */])() );
 	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = ImageEngine;
@@ -35508,7 +35508,7 @@ class ImageToolbar extends __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_core_
 	show() {
 		const selectedElement = this.editor.editing.view.selection.getSelectedElement();
 
-		if ( selectedElement && __WEBPACK_IMPORTED_MODULE_3__image_utils__["b" /* isImageWidget */]( selectedElement ) ) {
+		if ( selectedElement && Object(__WEBPACK_IMPORTED_MODULE_3__image_utils__["b" /* isImageWidget */])( selectedElement ) ) {
 			this._panel.attach();
 		}
 	}
@@ -35575,7 +35575,7 @@ class ImageBalloonPanelView extends __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckedit
 		editor.listenTo( editingView, 'render', () => {
 			const selectedElement = editingView.selection.getSelectedElement();
 
-			if ( !selectedElement || !__WEBPACK_IMPORTED_MODULE_3__utils__["b" /* isImageWidget */]( selectedElement ) ) {
+			if ( !selectedElement || !Object(__WEBPACK_IMPORTED_MODULE_3__utils__["b" /* isImageWidget */])( selectedElement ) ) {
 				this.detach();
 			}
 		}, { priority: 'low' } );
@@ -35587,7 +35587,7 @@ class ImageBalloonPanelView extends __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckedit
 		 * @private
 		 * @member {Function} #_throttledAttach
 		 */
-		this._throttledAttach = __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_throttle__["a" /* default */]( () => {
+		this._throttledAttach = Object(__WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_throttle__["a" /* default */])( () => {
 			this._attach();
 		}, 100 );
 	}
@@ -35678,7 +35678,7 @@ class LabeledInputView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* defaul
 	constructor( locale, InputView ) {
 		super( locale );
 
-		const id = `ck-input-${ __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_uid__["a" /* default */]() }`;
+		const id = `ck-input-${ Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_uid__["a" /* default */])() }`;
 
 		/**
 		 * The text of the label.
@@ -36079,7 +36079,7 @@ class InlineEditor extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_
 		this.ui.destroy();
 
 		return super.destroy()
-			.then( () => __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_dom_setdatainelement__["a" /* default */]( this.element, data ) );
+			.then( () => Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_dom_setdatainelement__["a" /* default */])( this.element, data ) );
 	}
 
 	/**
@@ -36229,14 +36229,14 @@ class StandardEditor extends __WEBPACK_IMPORTED_MODULE_0__editor__["a" /* defaul
 	 * Updates the {@link #element editor element}'s content with the data.
 	 */
 	updateEditorElement() {
-		__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_dom_setdatainelement__["a" /* default */]( this.element, this.getData() );
+		Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_dom_setdatainelement__["a" /* default */])( this.element, this.getData() );
 	}
 
 	/**
 	 * Loads the data from the {@link #element editor element} to the main root.
 	 */
 	loadDataFromEditorElement() {
-		this.setData( __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_dom_getdatafromelement__["a" /* default */]( this.element ) );
+		this.setData( Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_dom_getdatafromelement__["a" /* default */])( this.element ) );
 	}
 
 	/**
@@ -36499,7 +36499,7 @@ class Editor {
 /* harmony export (immutable) */ __webpack_exports__["a"] = Editor;
 
 
-__WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( Editor, __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_observablemixin__["a" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( Editor, __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_observablemixin__["a" /* default */] );
 
 /**
  * Fired after {@link #initPlugins plugins are initialized}.
@@ -36682,7 +36682,7 @@ class Config {
 	 */
 	_setToTarget( target, name, value, isDefine = false ) {
 		// In case of an object, iterate through it and call `_setToTarget` again for each property.
-		if ( __WEBPACK_IMPORTED_MODULE_0__lib_lodash_isPlainObject__["a" /* default */]( name ) ) {
+		if ( Object(__WEBPACK_IMPORTED_MODULE_0__lib_lodash_isPlainObject__["a" /* default */])( name ) ) {
 			this._setObjectToTarget( target, name, isDefine );
 
 			return;
@@ -36697,7 +36697,7 @@ class Config {
 		// Iterate over parts to check if currently stored configuration has proper structure.
 		for ( const part of parts ) {
 			// If there is no object for specified part then create one.
-			if ( !__WEBPACK_IMPORTED_MODULE_0__lib_lodash_isPlainObject__["a" /* default */]( target[ part ] ) ) {
+			if ( !Object(__WEBPACK_IMPORTED_MODULE_0__lib_lodash_isPlainObject__["a" /* default */])( target[ part ] ) ) {
 				target[ part ] = {};
 			}
 
@@ -36706,9 +36706,9 @@ class Config {
 		}
 
 		// In case of value is an object.
-		if ( __WEBPACK_IMPORTED_MODULE_0__lib_lodash_isPlainObject__["a" /* default */]( value ) ) {
+		if ( Object(__WEBPACK_IMPORTED_MODULE_0__lib_lodash_isPlainObject__["a" /* default */])( value ) ) {
 			// We take care of proper config structure.
-			if ( !__WEBPACK_IMPORTED_MODULE_0__lib_lodash_isPlainObject__["a" /* default */]( target[ name ] ) ) {
+			if ( !Object(__WEBPACK_IMPORTED_MODULE_0__lib_lodash_isPlainObject__["a" /* default */])( target[ name ] ) ) {
 				target[ name ] = {};
 			}
 
@@ -36745,7 +36745,7 @@ class Config {
 
 		// Iterate over parts to check if currently stored configuration has proper structure.
 		for ( const part of parts ) {
-			if ( !__WEBPACK_IMPORTED_MODULE_0__lib_lodash_isPlainObject__["a" /* default */]( source[ part ] ) ) {
+			if ( !Object(__WEBPACK_IMPORTED_MODULE_0__lib_lodash_isPlainObject__["a" /* default */])( source[ part ] ) ) {
 				source = null;
 				break;
 			}
@@ -37222,7 +37222,7 @@ class Locale {
 	 * @private
 	 */
 	_t( str, values ) {
-		let translatedString = __WEBPACK_IMPORTED_MODULE_0__translation_service__["a" /* translate */]( this.lang, str );
+		let translatedString = Object(__WEBPACK_IMPORTED_MODULE_0__translation_service__["a" /* translate */])( this.lang, str );
 
 		if ( values ) {
 			translatedString = translatedString.replace( /%(\d+)/g, ( match, index ) => {
@@ -37426,7 +37426,7 @@ class DataController {
 		this.modelToView = new __WEBPACK_IMPORTED_MODULE_3__conversion_modelconversiondispatcher__["a" /* default */]( this.model, {
 			mapper: this.mapper
 		} );
-		this.modelToView.on( 'insert:$text', __WEBPACK_IMPORTED_MODULE_4__conversion_model_to_view_converters__["b" /* insertText */](), { priority: 'lowest' } );
+		this.modelToView.on( 'insert:$text', Object(__WEBPACK_IMPORTED_MODULE_4__conversion_model_to_view_converters__["b" /* insertText */])(), { priority: 'lowest' } );
 
 		/**
 		 * View to model conversion dispatcher used by the {@link #set set method}.
@@ -37450,9 +37450,9 @@ class DataController {
 		// Note that if there is no default converter for the element it will be skipped, for instance `<b>foo</b>` will be
 		// converted to nothing. We add `convertToModelFragment` as a last converter so it converts children of that
 		// element to the document fragment so `<b>foo</b>` will be converted to `foo` if there is no converter for `<b>`.
-		this.viewToModel.on( 'text', __WEBPACK_IMPORTED_MODULE_6__conversion_view_to_model_converters__["a" /* convertText */](), { priority: 'lowest' } );
-		this.viewToModel.on( 'element', __WEBPACK_IMPORTED_MODULE_6__conversion_view_to_model_converters__["b" /* convertToModelFragment */](), { priority: 'lowest' } );
-		this.viewToModel.on( 'documentFragment', __WEBPACK_IMPORTED_MODULE_6__conversion_view_to_model_converters__["b" /* convertToModelFragment */](), { priority: 'lowest' } );
+		this.viewToModel.on( 'text', Object(__WEBPACK_IMPORTED_MODULE_6__conversion_view_to_model_converters__["a" /* convertText */])(), { priority: 'lowest' } );
+		this.viewToModel.on( 'element', Object(__WEBPACK_IMPORTED_MODULE_6__conversion_view_to_model_converters__["b" /* convertToModelFragment */])(), { priority: 'lowest' } );
+		this.viewToModel.on( 'documentFragment', Object(__WEBPACK_IMPORTED_MODULE_6__conversion_view_to_model_converters__["b" /* convertToModelFragment */])(), { priority: 'lowest' } );
 
 		[ 'insertContent', 'deleteContent', 'modifySelection', 'getSelectedContent' ]
 			.forEach( methodName => this.decorate( methodName ) );
@@ -37590,7 +37590,7 @@ class DataController {
 	 * changes will be added to a new batch.
 	 */
 	insertContent( content, selection, batch ) {
-		__WEBPACK_IMPORTED_MODULE_10__insertcontent__["a" /* default */]( this, content, selection, batch );
+		Object(__WEBPACK_IMPORTED_MODULE_10__insertcontent__["a" /* default */])( this, content, selection, batch );
 	}
 
 	/**
@@ -37610,7 +37610,7 @@ class DataController {
 	 * @param {Object} options See {@link module:engine/controller/deletecontent~deleteContent}'s options.
 	 */
 	deleteContent( selection, batch, options ) {
-		__WEBPACK_IMPORTED_MODULE_11__deletecontent__["a" /* default */]( selection, batch, options );
+		Object(__WEBPACK_IMPORTED_MODULE_11__deletecontent__["a" /* default */])( selection, batch, options );
 	}
 
 	/**
@@ -37621,7 +37621,7 @@ class DataController {
 	 * @param {Object} options See {@link module:engine/controller/modifyselection~modifySelection}'s options.
 	 */
 	modifySelection( selection, options ) {
-		__WEBPACK_IMPORTED_MODULE_12__modifyselection__["a" /* default */]( this, selection, options );
+		Object(__WEBPACK_IMPORTED_MODULE_12__modifyselection__["a" /* default */])( this, selection, options );
 	}
 
 	/**
@@ -37632,13 +37632,13 @@ class DataController {
 	 * @returns {module:engine/model/documentfragment~DocumentFragment} Document fragment holding the clone of the selected content.
 	 */
 	getSelectedContent( selection ) {
-		return __WEBPACK_IMPORTED_MODULE_13__getselectedcontent__["a" /* default */]( selection );
+		return Object(__WEBPACK_IMPORTED_MODULE_13__getselectedcontent__["a" /* default */])( selection );
 	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = DataController;
 
 
-__WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( DataController, __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_observablemixin__["a" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( DataController, __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_observablemixin__["a" /* default */] );
 
 /**
  * Event fired when {@link #insertContent} method is called.
@@ -37739,14 +37739,14 @@ class EventInfo {
 		 *
 		 * @method #stop
 		 */
-		this.stop = __WEBPACK_IMPORTED_MODULE_0__spy__["a" /* default */]();
+		this.stop = Object(__WEBPACK_IMPORTED_MODULE_0__spy__["a" /* default */])();
 
 		/**
 		 * Removes the current callback from future interactions of this event.
 		 *
 		 * @method #off
 		 */
-		this.off = __WEBPACK_IMPORTED_MODULE_0__spy__["a" /* default */]();
+		this.off = Object(__WEBPACK_IMPORTED_MODULE_0__spy__["a" /* default */])();
 
 		/**
 		 * The value which will be returned by {@link module:utils/emittermixin~EmitterMixin#fire}.
@@ -37911,13 +37911,13 @@ var nonEnumShadows = !propertyIsEnumerable.call({ 'valueOf': 1 }, 'valueOf');
  * _.assignIn({ 'a': 1 }, new Foo, new Bar);
  * // => { 'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5 }
  */
-var assignIn = __WEBPACK_IMPORTED_MODULE_2__createAssigner__["a" /* default */](function(object, source) {
-  if (nonEnumShadows || __WEBPACK_IMPORTED_MODULE_4__isPrototype__["a" /* default */](source) || __WEBPACK_IMPORTED_MODULE_3__isArrayLike__["a" /* default */](source)) {
-    __WEBPACK_IMPORTED_MODULE_1__copyObject__["a" /* default */](source, __WEBPACK_IMPORTED_MODULE_5__keysIn__["a" /* default */](source), object);
+var assignIn = Object(__WEBPACK_IMPORTED_MODULE_2__createAssigner__["a" /* default */])(function(object, source) {
+  if (nonEnumShadows || Object(__WEBPACK_IMPORTED_MODULE_4__isPrototype__["a" /* default */])(source) || Object(__WEBPACK_IMPORTED_MODULE_3__isArrayLike__["a" /* default */])(source)) {
+    Object(__WEBPACK_IMPORTED_MODULE_1__copyObject__["a" /* default */])(source, Object(__WEBPACK_IMPORTED_MODULE_5__keysIn__["a" /* default */])(source), object);
     return;
   }
   for (var key in source) {
-    __WEBPACK_IMPORTED_MODULE_0__assignValue__["a" /* default */](object, key, source[key]);
+    Object(__WEBPACK_IMPORTED_MODULE_0__assignValue__["a" /* default */])(object, key, source[key]);
   }
 });
 
@@ -37942,7 +37942,7 @@ var assignIn = __WEBPACK_IMPORTED_MODULE_2__createAssigner__["a" /* default */](
  * @returns {Function} Returns the new assigner function.
  */
 function createAssigner(assigner) {
-  return __WEBPACK_IMPORTED_MODULE_1__rest__["a" /* default */](function(object, sources) {
+  return Object(__WEBPACK_IMPORTED_MODULE_1__rest__["a" /* default */])(function(object, sources) {
     var index = -1,
         length = sources.length,
         customizer = length > 1 ? sources[length - 1] : undefined,
@@ -37952,7 +37952,7 @@ function createAssigner(assigner) {
       ? (length--, customizer)
       : undefined;
 
-    if (guard && __WEBPACK_IMPORTED_MODULE_0__isIterateeCall__["a" /* default */](sources[0], sources[1], guard)) {
+    if (guard && Object(__WEBPACK_IMPORTED_MODULE_0__isIterateeCall__["a" /* default */])(sources[0], sources[1], guard)) {
       customizer = length < 3 ? undefined : customizer;
       length = 1;
     }
@@ -37989,7 +37989,7 @@ function createAssigner(assigner) {
  * @param {Object} object The object to query.
  * @returns {*} Returns the "length" value.
  */
-var getLength = __WEBPACK_IMPORTED_MODULE_0__baseProperty__["a" /* default */]('length');
+var getLength = Object(__WEBPACK_IMPORTED_MODULE_0__baseProperty__["a" /* default */])('length');
 
 /* harmony default export */ __webpack_exports__["a"] = (getLength);
 
@@ -38033,7 +38033,7 @@ function toFinite(value) {
   if (!value) {
     return value === 0 ? value : 0;
   }
-  value = __WEBPACK_IMPORTED_MODULE_0__toNumber__["a" /* default */](value);
+  value = Object(__WEBPACK_IMPORTED_MODULE_0__toNumber__["a" /* default */])(value);
   if (value === INFINITY || value === -INFINITY) {
     var sign = (value < 0 ? -1 : 1);
     return sign * MAX_INTEGER;
@@ -38089,17 +38089,17 @@ var hasOwnProperty = objectProto.hasOwnProperty;
  */
 function keysIn(object) {
   var index = -1,
-      isProto = __WEBPACK_IMPORTED_MODULE_3__isPrototype__["a" /* default */](object),
-      props = __WEBPACK_IMPORTED_MODULE_0__baseKeysIn__["a" /* default */](object),
+      isProto = Object(__WEBPACK_IMPORTED_MODULE_3__isPrototype__["a" /* default */])(object),
+      props = Object(__WEBPACK_IMPORTED_MODULE_0__baseKeysIn__["a" /* default */])(object),
       propsLength = props.length,
-      indexes = __WEBPACK_IMPORTED_MODULE_1__indexKeys__["a" /* default */](object),
+      indexes = Object(__WEBPACK_IMPORTED_MODULE_1__indexKeys__["a" /* default */])(object),
       skipIndexes = !!indexes,
       result = indexes || [],
       length = result.length;
 
   while (++index < propsLength) {
     var key = props[index];
-    if (!(skipIndexes && (key == 'length' || __WEBPACK_IMPORTED_MODULE_2__isIndex__["a" /* default */](key, length))) &&
+    if (!(skipIndexes && (key == 'length' || Object(__WEBPACK_IMPORTED_MODULE_2__isIndex__["a" /* default */])(key, length))) &&
         !(key == 'constructor' && (isProto || !hasOwnProperty.call(object, key)))) {
       result.push(key);
     }
@@ -38148,7 +38148,7 @@ function baseKeysIn(object) {
 // Fallback for IE < 9 with es6-shim.
 if (enumerate && !propertyIsEnumerable.call({ 'valueOf': 1 }, 'valueOf')) {
   baseKeysIn = function(object) {
-    return __WEBPACK_IMPORTED_MODULE_1__iteratorToArray__["a" /* default */](enumerate(object));
+    return Object(__WEBPACK_IMPORTED_MODULE_1__iteratorToArray__["a" /* default */])(enumerate(object));
   };
 }
 
@@ -38865,7 +38865,7 @@ class ViewConversionDispatcher {
 		 *
 		 * @member {module:engine/conversion/viewconversiondispatcher~ViewConversionApi}
 		 */
-		this.conversionApi = __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_lib_lodash_extend__["a" /* default */]( {}, conversionApi );
+		this.conversionApi = Object(__WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_lib_lodash_extend__["a" /* default */])( {}, conversionApi );
 
 		// `convertItem` and `convertChildren` are bound to this `ViewConversionDispatcher` instance and
 		// set on `conversionApi`. This way only a part of `ViewConversionDispatcher` API is exposed.
@@ -38915,7 +38915,7 @@ class ViewConversionDispatcher {
 	 * @see module:engine/conversion/viewconversiondispatcher~ViewConversionApi#convertItem
 	 */
 	_convertItem( input, consumable, additionalData = {} ) {
-		const data = __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_lib_lodash_extend__["a" /* default */]( {}, additionalData, {
+		const data = Object(__WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_lib_lodash_extend__["a" /* default */])( {}, additionalData, {
 			input,
 			output: null
 		} );
@@ -39020,7 +39020,7 @@ class ViewConversionDispatcher {
 /* harmony export (immutable) */ __webpack_exports__["a"] = ViewConversionDispatcher;
 
 
-__WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( ViewConversionDispatcher, __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( ViewConversionDispatcher, __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
 
 // Traverses given model item and searches elements which marks marker range. Found element is removed from
 // DocumentFragment but path of this element is stored in a Map which is then returned.
@@ -39059,7 +39059,7 @@ function extractMarkersFromModelFragment( modelItem ) {
 		}
 
 		// Remove marker stamp element from DocumentFragment.
-		__WEBPACK_IMPORTED_MODULE_6__model_writer__["d" /* remove */]( __WEBPACK_IMPORTED_MODULE_1__model_range__["a" /* default */].createOn( stamp ) );
+		Object(__WEBPACK_IMPORTED_MODULE_6__model_writer__["d" /* remove */])( __WEBPACK_IMPORTED_MODULE_1__model_range__["a" /* default */].createOn( stamp ) );
 	}
 
 	return markers;
@@ -39610,7 +39610,7 @@ class ViewElementConsumables {
 	 * @param {String|Array.<String>} item Consumable item or array of items.
 	 */
 	_add( type, item ) {
-		const items = __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_isArray__["a" /* default */]( item ) ? item : [ item ];
+		const items = Object(__WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_isArray__["a" /* default */])( item ) ? item : [ item ];
 		const consumables = this._consumables[ type ];
 
 		for ( const name of items ) {
@@ -39637,7 +39637,7 @@ class ViewElementConsumables {
 	 * consumed and `false` when one of the items is already consumed.
 	 */
 	_test( type, item ) {
-		const items = __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_isArray__["a" /* default */]( item ) ? item : [ item ];
+		const items = Object(__WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_isArray__["a" /* default */])( item ) ? item : [ item ];
 		const consumables = this._consumables[ type ];
 
 		for ( const name of items ) {
@@ -39672,7 +39672,7 @@ class ViewElementConsumables {
 	 * @param {String|Array.<String>} item Consumable item or array of items.
 	 */
 	_consume( type, item ) {
-		const items = __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_isArray__["a" /* default */]( item ) ? item : [ item ];
+		const items = Object(__WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_isArray__["a" /* default */])( item ) ? item : [ item ];
 		const consumables = this._consumables[ type ];
 
 		for ( const name of items ) {
@@ -39693,7 +39693,7 @@ class ViewElementConsumables {
 	 * @param {String|Array.<String>} item Consumable item or array of items.
 	 */
 	_revert( type, item ) {
-		const items = __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_isArray__["a" /* default */]( item ) ? item : [ item ];
+		const items = Object(__WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_isArray__["a" /* default */])( item ) ? item : [ item ];
 		const consumables = this._consumables[ type ];
 
 		for ( const name of items ) {
@@ -39759,7 +39759,7 @@ function convertToModelFragment() {
 		if ( !data.output && consumable.consume( data.input, { name: true } ) ) {
 			const convertedChildren = conversionApi.convertChildren( data.input, consumable, data );
 
-			data.output = new __WEBPACK_IMPORTED_MODULE_0__model_documentfragment__["a" /* default */]( __WEBPACK_IMPORTED_MODULE_2__model_writer__["c" /* normalizeNodes */]( convertedChildren ) );
+			data.output = new __WEBPACK_IMPORTED_MODULE_0__model_documentfragment__["a" /* default */]( Object(__WEBPACK_IMPORTED_MODULE_2__model_writer__["c" /* normalizeNodes */])( convertedChildren ) );
 		}
 	};
 }
@@ -40536,7 +40536,7 @@ function getCorrectPosition( walker, unit ) {
 		const data = textNode.data;
 		let offset = walker.position.offset - textNode.startOffset;
 
-		while ( __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_unicode__["b" /* isInsideSurrogatePair */]( data, offset ) || ( unit == 'character' && __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_unicode__["a" /* isInsideCombinedSymbol */]( data, offset ) ) ) {
+		while ( Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_unicode__["b" /* isInsideSurrogatePair */])( data, offset ) || ( unit == 'character' && Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_unicode__["a" /* isInsideCombinedSymbol */])( data, offset ) ) ) {
 			walker.next();
 
 			offset = walker.position.offset - textNode.startOffset;
@@ -40699,7 +40699,7 @@ function removeRangeContent( range ) {
 		.forEach( itemRange => {
 			parentsToCheck.push( itemRange.start.parent );
 
-			__WEBPACK_IMPORTED_MODULE_4__model_writer__["d" /* remove */]( itemRange );
+			Object(__WEBPACK_IMPORTED_MODULE_4__model_writer__["d" /* remove */])( itemRange );
 		} );
 
 	// Remove ancestors of the removed items if they turned to be empty now
@@ -40712,7 +40712,7 @@ function removeRangeContent( range ) {
 
 			parent = parent.parent;
 
-			__WEBPACK_IMPORTED_MODULE_4__model_writer__["d" /* remove */]( removeRange );
+			Object(__WEBPACK_IMPORTED_MODULE_4__model_writer__["d" /* remove */])( removeRange );
 		}
 	} );
 }
@@ -41107,7 +41107,7 @@ class Document {
 	 * @returns {Object} Clone of this object with the document property changed to string.
 	 */
 	toJSON() {
-		const json = __WEBPACK_IMPORTED_MODULE_12__ckeditor_ckeditor5_utils_src_lib_lodash_clone__["a" /* default */]( this );
+		const json = Object(__WEBPACK_IMPORTED_MODULE_12__ckeditor_ckeditor5_utils_src_lib_lodash_clone__["a" /* default */])( this );
 
 		// Due to circular references we need to remove parent reference.
 		json.selection = '[engine.model.LiveSelection]';
@@ -41208,7 +41208,7 @@ class Document {
 /* harmony export (immutable) */ __webpack_exports__["a"] = Document;
 
 
-__WEBPACK_IMPORTED_MODULE_15__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( Document, __WEBPACK_IMPORTED_MODULE_13__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_15__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( Document, __WEBPACK_IMPORTED_MODULE_13__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
 
 // Checks whether given range boundary position is valid for document selection, meaning that is not between
 // unicode surrogate pairs or base character and combining marks.
@@ -41219,7 +41219,7 @@ function validateTextNodePosition( rangeBoundary ) {
 		const data = textNode.data;
 		const offset = rangeBoundary.offset - textNode.startOffset;
 
-		return !__WEBPACK_IMPORTED_MODULE_16__ckeditor_ckeditor5_utils_src_unicode__["b" /* isInsideSurrogatePair */]( data, offset ) && !__WEBPACK_IMPORTED_MODULE_16__ckeditor_ckeditor5_utils_src_unicode__["a" /* isInsideCombinedSymbol */]( data, offset );
+		return !Object(__WEBPACK_IMPORTED_MODULE_16__ckeditor_ckeditor5_utils_src_unicode__["b" /* isInsideSurrogatePair */])( data, offset ) && !Object(__WEBPACK_IMPORTED_MODULE_16__ckeditor_ckeditor5_utils_src_unicode__["a" /* isInsideCombinedSymbol */])( data, offset );
 	}
 
 	return true;
@@ -41352,7 +41352,7 @@ var splice = arrayProto.splice;
  */
 function listCacheDelete(key) {
   var data = this.__data__,
-      index = __WEBPACK_IMPORTED_MODULE_0__assocIndexOf__["a" /* default */](data, key);
+      index = Object(__WEBPACK_IMPORTED_MODULE_0__assocIndexOf__["a" /* default */])(data, key);
 
   if (index < 0) {
     return false;
@@ -41388,7 +41388,7 @@ function listCacheDelete(key) {
  */
 function listCacheGet(key) {
   var data = this.__data__,
-      index = __WEBPACK_IMPORTED_MODULE_0__assocIndexOf__["a" /* default */](data, key);
+      index = Object(__WEBPACK_IMPORTED_MODULE_0__assocIndexOf__["a" /* default */])(data, key);
 
   return index < 0 ? undefined : data[index][1];
 }
@@ -41414,7 +41414,7 @@ function listCacheGet(key) {
  * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
  */
 function listCacheHas(key) {
-  return __WEBPACK_IMPORTED_MODULE_0__assocIndexOf__["a" /* default */](this.__data__, key) > -1;
+  return Object(__WEBPACK_IMPORTED_MODULE_0__assocIndexOf__["a" /* default */])(this.__data__, key) > -1;
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (listCacheHas);
@@ -41440,7 +41440,7 @@ function listCacheHas(key) {
  */
 function listCacheSet(key, value) {
   var data = this.__data__,
-      index = __WEBPACK_IMPORTED_MODULE_0__assocIndexOf__["a" /* default */](data, key);
+      index = Object(__WEBPACK_IMPORTED_MODULE_0__assocIndexOf__["a" /* default */])(data, key);
 
   if (index < 0) {
     data.push([key, value]);
@@ -41663,7 +41663,7 @@ Hash.prototype.set = __WEBPACK_IMPORTED_MODULE_4__hashSet__["a" /* default */];
  * @memberOf Hash
  */
 function hashClear() {
-  this.__data__ = __WEBPACK_IMPORTED_MODULE_0__nativeCreate__["a" /* default */] ? __WEBPACK_IMPORTED_MODULE_0__nativeCreate__["a" /* default */](null) : {};
+  this.__data__ = __WEBPACK_IMPORTED_MODULE_0__nativeCreate__["a" /* default */] ? Object(__WEBPACK_IMPORTED_MODULE_0__nativeCreate__["a" /* default */])(null) : {};
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (hashClear);
@@ -41808,7 +41808,7 @@ function hashSet(key, value) {
  * @returns {boolean} Returns `true` if the entry was removed, else `false`.
  */
 function mapCacheDelete(key) {
-  return __WEBPACK_IMPORTED_MODULE_0__getMapData__["a" /* default */](this, key)['delete'](key);
+  return Object(__WEBPACK_IMPORTED_MODULE_0__getMapData__["a" /* default */])(this, key)['delete'](key);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (mapCacheDelete);
@@ -41854,7 +41854,7 @@ function isKeyable(value) {
  * @returns {*} Returns the entry value.
  */
 function mapCacheGet(key) {
-  return __WEBPACK_IMPORTED_MODULE_0__getMapData__["a" /* default */](this, key).get(key);
+  return Object(__WEBPACK_IMPORTED_MODULE_0__getMapData__["a" /* default */])(this, key).get(key);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (mapCacheGet);
@@ -41878,7 +41878,7 @@ function mapCacheGet(key) {
  * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
  */
 function mapCacheHas(key) {
-  return __WEBPACK_IMPORTED_MODULE_0__getMapData__["a" /* default */](this, key).has(key);
+  return Object(__WEBPACK_IMPORTED_MODULE_0__getMapData__["a" /* default */])(this, key).has(key);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (mapCacheHas);
@@ -41903,7 +41903,7 @@ function mapCacheHas(key) {
  * @returns {Object} Returns the map cache instance.
  */
 function mapCacheSet(key, value) {
-  __WEBPACK_IMPORTED_MODULE_0__getMapData__["a" /* default */](this, key).set(key, value);
+  Object(__WEBPACK_IMPORTED_MODULE_0__getMapData__["a" /* default */])(this, key).set(key, value);
   return this;
 }
 
@@ -41959,7 +41959,7 @@ function arrayEach(array, iteratee) {
  * @returns {Object} Returns `object`.
  */
 function baseAssign(object, source) {
-  return object && __WEBPACK_IMPORTED_MODULE_0__copyObject__["a" /* default */](source, __WEBPACK_IMPORTED_MODULE_1__keys__["a" /* default */](source), object);
+  return object && Object(__WEBPACK_IMPORTED_MODULE_0__copyObject__["a" /* default */])(source, Object(__WEBPACK_IMPORTED_MODULE_1__keys__["a" /* default */])(source), object);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (baseAssign);
@@ -42032,7 +42032,7 @@ function cloneBuffer(buffer, isDeep) {
  * @returns {Object} Returns `object`.
  */
 function copySymbols(source, object) {
-  return __WEBPACK_IMPORTED_MODULE_0__copyObject__["a" /* default */](source, __WEBPACK_IMPORTED_MODULE_1__getSymbols__["a" /* default */](source), object);
+  return Object(__WEBPACK_IMPORTED_MODULE_0__copyObject__["a" /* default */])(source, Object(__WEBPACK_IMPORTED_MODULE_1__getSymbols__["a" /* default */])(source), object);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (copySymbols);
@@ -42058,7 +42058,7 @@ function copySymbols(source, object) {
  * @returns {Array} Returns the array of property names and symbols.
  */
 function getAllKeys(object) {
-  return __WEBPACK_IMPORTED_MODULE_0__baseGetAllKeys__["a" /* default */](object, __WEBPACK_IMPORTED_MODULE_2__keys__["a" /* default */], __WEBPACK_IMPORTED_MODULE_1__getSymbols__["a" /* default */]);
+  return Object(__WEBPACK_IMPORTED_MODULE_0__baseGetAllKeys__["a" /* default */])(object, __WEBPACK_IMPORTED_MODULE_2__keys__["a" /* default */], __WEBPACK_IMPORTED_MODULE_1__getSymbols__["a" /* default */]);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (getAllKeys);
@@ -42087,7 +42087,7 @@ function getAllKeys(object) {
  */
 function baseGetAllKeys(object, keysFunc, symbolsFunc) {
   var result = keysFunc(object);
-  return __WEBPACK_IMPORTED_MODULE_1__isArray__["a" /* default */](object) ? result : __WEBPACK_IMPORTED_MODULE_0__arrayPush__["a" /* default */](result, symbolsFunc(object));
+  return Object(__WEBPACK_IMPORTED_MODULE_1__isArray__["a" /* default */])(object) ? result : Object(__WEBPACK_IMPORTED_MODULE_0__arrayPush__["a" /* default */])(result, symbolsFunc(object));
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (baseGetAllKeys);
@@ -42104,7 +42104,7 @@ function baseGetAllKeys(object, keysFunc, symbolsFunc) {
 
 
 /* Built-in method references that are verified to be native. */
-var DataView = __WEBPACK_IMPORTED_MODULE_0__getNative__["a" /* default */](__WEBPACK_IMPORTED_MODULE_1__root__["a" /* default */], 'DataView');
+var DataView = Object(__WEBPACK_IMPORTED_MODULE_0__getNative__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_1__root__["a" /* default */], 'DataView');
 
 /* harmony default export */ __webpack_exports__["a"] = (DataView);
 
@@ -42120,7 +42120,7 @@ var DataView = __WEBPACK_IMPORTED_MODULE_0__getNative__["a" /* default */](__WEB
 
 
 /* Built-in method references that are verified to be native. */
-var Promise = __WEBPACK_IMPORTED_MODULE_0__getNative__["a" /* default */](__WEBPACK_IMPORTED_MODULE_1__root__["a" /* default */], 'Promise');
+var Promise = Object(__WEBPACK_IMPORTED_MODULE_0__getNative__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_1__root__["a" /* default */], 'Promise');
 
 /* harmony default export */ __webpack_exports__["a"] = (Promise);
 
@@ -42136,7 +42136,7 @@ var Promise = __WEBPACK_IMPORTED_MODULE_0__getNative__["a" /* default */](__WEBP
 
 
 /* Built-in method references that are verified to be native. */
-var WeakMap = __WEBPACK_IMPORTED_MODULE_0__getNative__["a" /* default */](__WEBPACK_IMPORTED_MODULE_1__root__["a" /* default */], 'WeakMap');
+var WeakMap = Object(__WEBPACK_IMPORTED_MODULE_0__getNative__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_1__root__["a" /* default */], 'WeakMap');
 
 /* harmony default export */ __webpack_exports__["a"] = (WeakMap);
 
@@ -42233,35 +42233,35 @@ function initCloneByTag(object, tag, cloneFunc, isDeep) {
   var Ctor = object.constructor;
   switch (tag) {
     case arrayBufferTag:
-      return __WEBPACK_IMPORTED_MODULE_0__cloneArrayBuffer__["a" /* default */](object);
+      return Object(__WEBPACK_IMPORTED_MODULE_0__cloneArrayBuffer__["a" /* default */])(object);
 
     case boolTag:
     case dateTag:
       return new Ctor(+object);
 
     case dataViewTag:
-      return __WEBPACK_IMPORTED_MODULE_1__cloneDataView__["a" /* default */](object, isDeep);
+      return Object(__WEBPACK_IMPORTED_MODULE_1__cloneDataView__["a" /* default */])(object, isDeep);
 
     case float32Tag: case float64Tag:
     case int8Tag: case int16Tag: case int32Tag:
     case uint8Tag: case uint8ClampedTag: case uint16Tag: case uint32Tag:
-      return __WEBPACK_IMPORTED_MODULE_6__cloneTypedArray__["a" /* default */](object, isDeep);
+      return Object(__WEBPACK_IMPORTED_MODULE_6__cloneTypedArray__["a" /* default */])(object, isDeep);
 
     case mapTag:
-      return __WEBPACK_IMPORTED_MODULE_2__cloneMap__["a" /* default */](object, isDeep, cloneFunc);
+      return Object(__WEBPACK_IMPORTED_MODULE_2__cloneMap__["a" /* default */])(object, isDeep, cloneFunc);
 
     case numberTag:
     case stringTag:
       return new Ctor(object);
 
     case regexpTag:
-      return __WEBPACK_IMPORTED_MODULE_3__cloneRegExp__["a" /* default */](object);
+      return Object(__WEBPACK_IMPORTED_MODULE_3__cloneRegExp__["a" /* default */])(object);
 
     case setTag:
-      return __WEBPACK_IMPORTED_MODULE_4__cloneSet__["a" /* default */](object, isDeep, cloneFunc);
+      return Object(__WEBPACK_IMPORTED_MODULE_4__cloneSet__["a" /* default */])(object, isDeep, cloneFunc);
 
     case symbolTag:
-      return __WEBPACK_IMPORTED_MODULE_5__cloneSymbol__["a" /* default */](object);
+      return Object(__WEBPACK_IMPORTED_MODULE_5__cloneSymbol__["a" /* default */])(object);
   }
 }
 
@@ -42285,7 +42285,7 @@ function initCloneByTag(object, tag, cloneFunc, isDeep) {
  * @returns {Object} Returns the cloned data view.
  */
 function cloneDataView(dataView, isDeep) {
-  var buffer = isDeep ? __WEBPACK_IMPORTED_MODULE_0__cloneArrayBuffer__["a" /* default */](dataView.buffer) : dataView.buffer;
+  var buffer = isDeep ? Object(__WEBPACK_IMPORTED_MODULE_0__cloneArrayBuffer__["a" /* default */])(dataView.buffer) : dataView.buffer;
   return new dataView.constructor(buffer, dataView.byteOffset, dataView.byteLength);
 }
 
@@ -42314,8 +42314,8 @@ function cloneDataView(dataView, isDeep) {
  * @returns {Object} Returns the cloned map.
  */
 function cloneMap(map, isDeep, cloneFunc) {
-  var array = isDeep ? cloneFunc(__WEBPACK_IMPORTED_MODULE_2__mapToArray__["a" /* default */](map), true) : __WEBPACK_IMPORTED_MODULE_2__mapToArray__["a" /* default */](map);
-  return __WEBPACK_IMPORTED_MODULE_1__arrayReduce__["a" /* default */](array, __WEBPACK_IMPORTED_MODULE_0__addMapEntry__["a" /* default */], new map.constructor);
+  var array = isDeep ? cloneFunc(Object(__WEBPACK_IMPORTED_MODULE_2__mapToArray__["a" /* default */])(map), true) : Object(__WEBPACK_IMPORTED_MODULE_2__mapToArray__["a" /* default */])(map);
+  return Object(__WEBPACK_IMPORTED_MODULE_1__arrayReduce__["a" /* default */])(array, __WEBPACK_IMPORTED_MODULE_0__addMapEntry__["a" /* default */], new map.constructor);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (cloneMap);
@@ -42389,8 +42389,8 @@ function cloneRegExp(regexp) {
  * @returns {Object} Returns the cloned set.
  */
 function cloneSet(set, isDeep, cloneFunc) {
-  var array = isDeep ? cloneFunc(__WEBPACK_IMPORTED_MODULE_2__setToArray__["a" /* default */](set), true) : __WEBPACK_IMPORTED_MODULE_2__setToArray__["a" /* default */](set);
-  return __WEBPACK_IMPORTED_MODULE_1__arrayReduce__["a" /* default */](array, __WEBPACK_IMPORTED_MODULE_0__addSetEntry__["a" /* default */], new set.constructor);
+  var array = isDeep ? cloneFunc(Object(__WEBPACK_IMPORTED_MODULE_2__setToArray__["a" /* default */])(set), true) : Object(__WEBPACK_IMPORTED_MODULE_2__setToArray__["a" /* default */])(set);
+  return Object(__WEBPACK_IMPORTED_MODULE_1__arrayReduce__["a" /* default */])(array, __WEBPACK_IMPORTED_MODULE_0__addSetEntry__["a" /* default */], new set.constructor);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (cloneSet);
@@ -42460,7 +42460,7 @@ function cloneSymbol(symbol) {
  * @returns {Object} Returns the cloned typed array.
  */
 function cloneTypedArray(typedArray, isDeep) {
-  var buffer = isDeep ? __WEBPACK_IMPORTED_MODULE_0__cloneArrayBuffer__["a" /* default */](typedArray.buffer) : typedArray.buffer;
+  var buffer = isDeep ? Object(__WEBPACK_IMPORTED_MODULE_0__cloneArrayBuffer__["a" /* default */])(typedArray.buffer) : typedArray.buffer;
   return new typedArray.constructor(buffer, typedArray.byteOffset, typedArray.length);
 }
 
@@ -42487,8 +42487,8 @@ function cloneTypedArray(typedArray, isDeep) {
  * @returns {Object} Returns the initialized clone.
  */
 function initCloneObject(object) {
-  return (typeof object.constructor == 'function' && !__WEBPACK_IMPORTED_MODULE_2__isPrototype__["a" /* default */](object))
-    ? __WEBPACK_IMPORTED_MODULE_0__baseCreate__["a" /* default */](__WEBPACK_IMPORTED_MODULE_1__getPrototype__["a" /* default */](object))
+  return (typeof object.constructor == 'function' && !Object(__WEBPACK_IMPORTED_MODULE_2__isPrototype__["a" /* default */])(object))
+    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseCreate__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_1__getPrototype__["a" /* default */])(object))
     : {};
 }
 
@@ -42515,7 +42515,7 @@ var objectCreate = Object.create;
  * @returns {Object} Returns the new object.
  */
 function baseCreate(proto) {
-  return __WEBPACK_IMPORTED_MODULE_0__isObject__["a" /* default */](proto) ? objectCreate(proto) : {};
+  return Object(__WEBPACK_IMPORTED_MODULE_0__isObject__["a" /* default */])(proto) ? objectCreate(proto) : {};
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (baseCreate);
@@ -42572,7 +42572,7 @@ var Buffer = moduleExports ? __WEBPACK_IMPORTED_MODULE_1__root__["a" /* default 
  * _.isBuffer(new Uint8Array(2));
  * // => false
  */
-var isBuffer = !Buffer ? __WEBPACK_IMPORTED_MODULE_0__constant__["a" /* default */](false) : function(value) {
+var isBuffer = !Buffer ? Object(__WEBPACK_IMPORTED_MODULE_0__constant__["a" /* default */])(false) : function(value) {
   return value instanceof Buffer;
 };
 
@@ -42717,7 +42717,7 @@ class OperationFactory {
  * // => false
  */
 function isEqual(value, other) {
-  return __WEBPACK_IMPORTED_MODULE_0__baseIsEqual__["a" /* default */](value, other);
+  return Object(__WEBPACK_IMPORTED_MODULE_0__baseIsEqual__["a" /* default */])(value, other);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (isEqual);
@@ -42775,28 +42775,28 @@ var hasOwnProperty = objectProto.hasOwnProperty;
  * @returns {boolean} Returns `true` if the objects are equivalent, else `false`.
  */
 function baseIsEqualDeep(object, other, equalFunc, customizer, bitmask, stack) {
-  var objIsArr = __WEBPACK_IMPORTED_MODULE_5__isArray__["a" /* default */](object),
-      othIsArr = __WEBPACK_IMPORTED_MODULE_5__isArray__["a" /* default */](other),
+  var objIsArr = Object(__WEBPACK_IMPORTED_MODULE_5__isArray__["a" /* default */])(object),
+      othIsArr = Object(__WEBPACK_IMPORTED_MODULE_5__isArray__["a" /* default */])(other),
       objTag = arrayTag,
       othTag = arrayTag;
 
   if (!objIsArr) {
-    objTag = __WEBPACK_IMPORTED_MODULE_4__getTag__["a" /* default */](object);
+    objTag = Object(__WEBPACK_IMPORTED_MODULE_4__getTag__["a" /* default */])(object);
     objTag = objTag == argsTag ? objectTag : objTag;
   }
   if (!othIsArr) {
-    othTag = __WEBPACK_IMPORTED_MODULE_4__getTag__["a" /* default */](other);
+    othTag = Object(__WEBPACK_IMPORTED_MODULE_4__getTag__["a" /* default */])(other);
     othTag = othTag == argsTag ? objectTag : othTag;
   }
-  var objIsObj = objTag == objectTag && !__WEBPACK_IMPORTED_MODULE_6__isHostObject__["a" /* default */](object),
-      othIsObj = othTag == objectTag && !__WEBPACK_IMPORTED_MODULE_6__isHostObject__["a" /* default */](other),
+  var objIsObj = objTag == objectTag && !Object(__WEBPACK_IMPORTED_MODULE_6__isHostObject__["a" /* default */])(object),
+      othIsObj = othTag == objectTag && !Object(__WEBPACK_IMPORTED_MODULE_6__isHostObject__["a" /* default */])(other),
       isSameTag = objTag == othTag;
 
   if (isSameTag && !objIsObj) {
     stack || (stack = new __WEBPACK_IMPORTED_MODULE_0__Stack__["a" /* default */]);
-    return (objIsArr || __WEBPACK_IMPORTED_MODULE_7__isTypedArray__["a" /* default */](object))
-      ? __WEBPACK_IMPORTED_MODULE_1__equalArrays__["a" /* default */](object, other, equalFunc, customizer, bitmask, stack)
-      : __WEBPACK_IMPORTED_MODULE_2__equalByTag__["a" /* default */](object, other, objTag, equalFunc, customizer, bitmask, stack);
+    return (objIsArr || Object(__WEBPACK_IMPORTED_MODULE_7__isTypedArray__["a" /* default */])(object))
+      ? Object(__WEBPACK_IMPORTED_MODULE_1__equalArrays__["a" /* default */])(object, other, equalFunc, customizer, bitmask, stack)
+      : Object(__WEBPACK_IMPORTED_MODULE_2__equalByTag__["a" /* default */])(object, other, objTag, equalFunc, customizer, bitmask, stack);
   }
   if (!(bitmask & PARTIAL_COMPARE_FLAG)) {
     var objIsWrapped = objIsObj && hasOwnProperty.call(object, '__wrapped__'),
@@ -42814,7 +42814,7 @@ function baseIsEqualDeep(object, other, equalFunc, customizer, bitmask, stack) {
     return false;
   }
   stack || (stack = new __WEBPACK_IMPORTED_MODULE_0__Stack__["a" /* default */]);
-  return __WEBPACK_IMPORTED_MODULE_3__equalObjects__["a" /* default */](object, other, equalFunc, customizer, bitmask, stack);
+  return Object(__WEBPACK_IMPORTED_MODULE_3__equalObjects__["a" /* default */])(object, other, equalFunc, customizer, bitmask, stack);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (baseIsEqualDeep);
@@ -43010,7 +43010,7 @@ function equalByTag(object, other, tag, equalFunc, customizer, bitmask, stack) {
       stack.set(object, other);
 
       // Recursively compare objects (susceptible to call stack limits).
-      return __WEBPACK_IMPORTED_MODULE_2__equalArrays__["a" /* default */](convert(object), convert(other), equalFunc, customizer, bitmask, stack);
+      return Object(__WEBPACK_IMPORTED_MODULE_2__equalArrays__["a" /* default */])(convert(object), convert(other), equalFunc, customizer, bitmask, stack);
 
     case symbolTag:
       if (symbolValueOf) {
@@ -43052,9 +43052,9 @@ var PARTIAL_COMPARE_FLAG = 2;
  */
 function equalObjects(object, other, equalFunc, customizer, bitmask, stack) {
   var isPartial = bitmask & PARTIAL_COMPARE_FLAG,
-      objProps = __WEBPACK_IMPORTED_MODULE_1__keys__["a" /* default */](object),
+      objProps = Object(__WEBPACK_IMPORTED_MODULE_1__keys__["a" /* default */])(object),
       objLength = objProps.length,
-      othProps = __WEBPACK_IMPORTED_MODULE_1__keys__["a" /* default */](other),
+      othProps = Object(__WEBPACK_IMPORTED_MODULE_1__keys__["a" /* default */])(other),
       othLength = othProps.length;
 
   if (objLength != othLength && !isPartial) {
@@ -43063,7 +43063,7 @@ function equalObjects(object, other, equalFunc, customizer, bitmask, stack) {
   var index = objLength;
   while (index--) {
     var key = objProps[index];
-    if (!(isPartial ? key in other : __WEBPACK_IMPORTED_MODULE_0__baseHas__["a" /* default */](other, key))) {
+    if (!(isPartial ? key in other : Object(__WEBPACK_IMPORTED_MODULE_0__baseHas__["a" /* default */])(other, key))) {
       return false;
     }
   }
@@ -43197,8 +43197,8 @@ var objectToString = objectProto.toString;
  * // => false
  */
 function isTypedArray(value) {
-  return __WEBPACK_IMPORTED_MODULE_1__isObjectLike__["a" /* default */](value) &&
-    __WEBPACK_IMPORTED_MODULE_0__isLength__["a" /* default */](value.length) && !!typedArrayTags[objectToString.call(value)];
+  return Object(__WEBPACK_IMPORTED_MODULE_1__isObjectLike__["a" /* default */])(value) &&
+    Object(__WEBPACK_IMPORTED_MODULE_0__isLength__["a" /* default */])(value.length) && !!typedArrayTags[objectToString.call(value)];
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (isTypedArray);
@@ -43358,7 +43358,7 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_11__movedelta__["a" /* default 
 
 	const operateInSameParent =
 		a.sourcePosition.root == b.position.root &&
-		__WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( a.sourcePosition.getParentPath(), b.position.getParentPath() ) === 'same';
+		Object(__WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */])( a.sourcePosition.getParentPath(), b.position.getParentPath() ) === 'same';
 
 	const mergeInsideMoveRange = a.sourcePosition.offset <= b.position.offset && a.sourcePosition.offset + a.howMany > b.position.offset;
 
@@ -43390,7 +43390,7 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_10__mergedelta__["a" /* default
 
 	const operateInSameParent =
 		a.position.root == b.sourcePosition.root &&
-		__WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( a.position.getParentPath(), b.sourcePosition.getParentPath() ) === 'same';
+		Object(__WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */])( a.position.getParentPath(), b.sourcePosition.getParentPath() ) === 'same';
 
 	const mergeInsideMoveRange = b.sourcePosition.offset <= a.position.offset && b.sourcePosition.offset + b.howMany > a.position.offset;
 
@@ -43407,7 +43407,7 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default
 	const pathB = b.position.getParentPath();
 
 	// The special case is for splits inside the same parent.
-	if ( a.position.root == b.position.root && __WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( pathA, pathB ) == 'same' ) {
+	if ( a.position.root == b.position.root && Object(__WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */])( pathA, pathB ) == 'same' ) {
 		const newContext = Object.assign( {}, context );
 
 		// If `a` delta splits in further location, make sure that it will move some nodes by forcing it to be strong.
@@ -43434,7 +43434,7 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default
 addTransformationCase( __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_15__unwrapdelta__["a" /* default */], ( a, b, context ) => {
 	// If incoming split delta tries to split a node that just got unwrapped, there is actually nothing to split,
 	// so we discard that delta.
-	if ( a.position.root == b.position.root && __WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( b.position.path, a.position.getParentPath() ) === 'same' ) {
+	if ( a.position.root == b.position.root && Object(__WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */])( b.position.path, a.position.getParentPath() ) === 'same' ) {
 		return [ noDelta() ];
 	}
 
@@ -43447,12 +43447,12 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default
 	// very weird. Even if we do some "magic" we don't know what really are users' expectations.
 
 	const sameRoot = a.position.root == b.range.start.root;
-	const operateInSameParent = sameRoot && __WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( a.position.getParentPath(), b.range.start.getParentPath() ) === 'same';
+	const operateInSameParent = sameRoot && Object(__WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */])( a.position.getParentPath(), b.range.start.getParentPath() ) === 'same';
 	const splitInsideWrapRange = b.range.start.offset < a.position.offset && b.range.end.offset >= a.position.offset;
 
 	if ( operateInSameParent && splitInsideWrapRange ) {
 		return [ noDelta() ];
-	} else if ( sameRoot && __WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( a.position.getParentPath(), b.range.end.getShiftedBy( -1 ).path ) === 'same' ) {
+	} else if ( sameRoot && Object(__WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */])( a.position.getParentPath(), b.range.end.getShiftedBy( -1 ).path ) === 'same' ) {
 		// Split position is directly inside the last node from wrap range.
 		// If that's the case, we manually change split delta so it will "target" inside the wrapping element.
 		// By doing so we will be inserting split node right to the original node which feels natural and is a good UX.
@@ -43522,7 +43522,7 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default
 addTransformationCase( __WEBPACK_IMPORTED_MODULE_15__unwrapdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], ( a, b, context ) => {
 	// If incoming unwrap delta tries to unwrap node that got split we should unwrap the original node and the split copy.
 	// This can be achieved either by reverting split and applying unwrap to singular node, or creating additional unwrap delta.
-	if ( a.position.root == b.position.root && __WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( a.position.path, b.position.getParentPath() ) === 'same' ) {
+	if ( a.position.root == b.position.root && Object(__WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */])( a.position.path, b.position.getParentPath() ) === 'same' ) {
 		return [
 			b.getReversed(),
 			a.clone()
@@ -43550,7 +43550,7 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_14__wrapdelta__["a" /* default 
 	// the wrap. Since split was already applied, we have to revert it.
 
 	const sameRoot = a.range.start.root == b.position.root;
-	const operateInSameParent = sameRoot && __WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( a.range.start.getParentPath(), b.position.getParentPath() ) === 'same';
+	const operateInSameParent = sameRoot && Object(__WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */])( a.range.start.getParentPath(), b.position.getParentPath() ) === 'same';
 	const splitInsideWrapRange = a.range.start.offset < b.position.offset && a.range.end.offset >= b.position.offset;
 
 	if ( operateInSameParent && splitInsideWrapRange ) {
@@ -43558,7 +43558,7 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_14__wrapdelta__["a" /* default 
 			b.getReversed(),
 			a.clone()
 		];
-	} else if ( sameRoot && __WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( b.position.getParentPath(), a.range.end.getShiftedBy( -1 ).path ) === 'same' ) {
+	} else if ( sameRoot && Object(__WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */])( b.position.getParentPath(), a.range.end.getShiftedBy( -1 ).path ) === 'same' ) {
 		const delta = a.clone();
 
 		// Move wrapping element insert position one node further so it is after the split node insertion.
@@ -44186,7 +44186,7 @@ const ot = {
 			// but not on the same tree level. In such case ranges have common part but we have to treat it
 			// differently, because in such case those ranges are not really conflicting and should be treated like
 			// two separate ranges. Also we have to discard two difference parts.
-			const aCompB = __WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */]( a.sourcePosition.getParentPath(), b.sourcePosition.getParentPath() );
+			const aCompB = Object(__WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */])( a.sourcePosition.getParentPath(), b.sourcePosition.getParentPath() );
 
 			if ( aCompB == 'prefix' || aCompB == 'extension' ) {
 				// Transform `rangeA` by `b` operation and make operation out of it, and that's all.
@@ -44629,7 +44629,7 @@ function makeMoveOperationsFromRanges( a, ranges, targetPosition ) {
  * @returns {boolean} Returns `true` if `value` is flattenable, else `false`.
  */
 function isFlattenable(value) {
-  return __WEBPACK_IMPORTED_MODULE_1__isArray__["a" /* default */](value) || __WEBPACK_IMPORTED_MODULE_0__isArguments__["a" /* default */](value);
+  return Object(__WEBPACK_IMPORTED_MODULE_1__isArray__["a" /* default */])(value) || Object(__WEBPACK_IMPORTED_MODULE_0__isArguments__["a" /* default */])(value);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (isFlattenable);
@@ -44655,12 +44655,12 @@ function isFlattenable(value) {
  * @returns {Function} Returns the new spec function.
  */
 function baseMatches(source) {
-  var matchData = __WEBPACK_IMPORTED_MODULE_1__getMatchData__["a" /* default */](source);
+  var matchData = Object(__WEBPACK_IMPORTED_MODULE_1__getMatchData__["a" /* default */])(source);
   if (matchData.length == 1 && matchData[0][2]) {
-    return __WEBPACK_IMPORTED_MODULE_2__matchesStrictComparable__["a" /* default */](matchData[0][0], matchData[0][1]);
+    return Object(__WEBPACK_IMPORTED_MODULE_2__matchesStrictComparable__["a" /* default */])(matchData[0][0], matchData[0][1]);
   }
   return function(object) {
-    return object === source || __WEBPACK_IMPORTED_MODULE_0__baseIsMatch__["a" /* default */](object, source, matchData);
+    return object === source || Object(__WEBPACK_IMPORTED_MODULE_0__baseIsMatch__["a" /* default */])(object, source, matchData);
   };
 }
 
@@ -44725,7 +44725,7 @@ function baseIsMatch(object, source, matchData, customizer) {
         var result = customizer(objValue, srcValue, key, object, source, stack);
       }
       if (!(result === undefined
-            ? __WEBPACK_IMPORTED_MODULE_1__baseIsEqual__["a" /* default */](srcValue, objValue, customizer, UNORDERED_COMPARE_FLAG | PARTIAL_COMPARE_FLAG, stack)
+            ? Object(__WEBPACK_IMPORTED_MODULE_1__baseIsEqual__["a" /* default */])(srcValue, objValue, customizer, UNORDERED_COMPARE_FLAG | PARTIAL_COMPARE_FLAG, stack)
             : result
           )) {
         return false;
@@ -44756,11 +44756,11 @@ function baseIsMatch(object, source, matchData, customizer) {
  * @returns {Array} Returns the match data of `object`.
  */
 function getMatchData(object) {
-  var result = __WEBPACK_IMPORTED_MODULE_1__toPairs__["a" /* default */](object),
+  var result = Object(__WEBPACK_IMPORTED_MODULE_1__toPairs__["a" /* default */])(object),
       length = result.length;
 
   while (length--) {
-    result[length][2] = __WEBPACK_IMPORTED_MODULE_0__isStrictComparable__["a" /* default */](result[length][1]);
+    result[length][2] = Object(__WEBPACK_IMPORTED_MODULE_0__isStrictComparable__["a" /* default */])(result[length][1]);
   }
   return result;
 }
@@ -44802,7 +44802,7 @@ function getMatchData(object) {
  * _.toPairs(new Foo);
  * // => [['a', 1], ['b', 2]] (iteration order is not guaranteed)
  */
-var toPairs = __WEBPACK_IMPORTED_MODULE_0__createToPairs__["a" /* default */](__WEBPACK_IMPORTED_MODULE_1__keys__["a" /* default */]);
+var toPairs = Object(__WEBPACK_IMPORTED_MODULE_0__createToPairs__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_1__keys__["a" /* default */]);
 
 /* harmony default export */ __webpack_exports__["a"] = (toPairs);
 
@@ -44834,14 +44834,14 @@ var mapTag = '[object Map]',
  */
 function createToPairs(keysFunc) {
   return function(object) {
-    var tag = __WEBPACK_IMPORTED_MODULE_1__getTag__["a" /* default */](object);
+    var tag = Object(__WEBPACK_IMPORTED_MODULE_1__getTag__["a" /* default */])(object);
     if (tag == mapTag) {
-      return __WEBPACK_IMPORTED_MODULE_2__mapToArray__["a" /* default */](object);
+      return Object(__WEBPACK_IMPORTED_MODULE_2__mapToArray__["a" /* default */])(object);
     }
     if (tag == setTag) {
-      return __WEBPACK_IMPORTED_MODULE_3__setToPairs__["a" /* default */](object);
+      return Object(__WEBPACK_IMPORTED_MODULE_3__setToPairs__["a" /* default */])(object);
     }
-    return __WEBPACK_IMPORTED_MODULE_0__baseToPairs__["a" /* default */](object, keysFunc(object));
+    return Object(__WEBPACK_IMPORTED_MODULE_0__baseToPairs__["a" /* default */])(object, keysFunc(object));
   };
 }
 
@@ -44866,7 +44866,7 @@ function createToPairs(keysFunc) {
  * @returns {Object} Returns the key-value pairs.
  */
 function baseToPairs(object, props) {
-  return __WEBPACK_IMPORTED_MODULE_0__arrayMap__["a" /* default */](props, function(key) {
+  return Object(__WEBPACK_IMPORTED_MODULE_0__arrayMap__["a" /* default */])(props, function(key) {
     return [key, object[key]];
   });
 }
@@ -44932,14 +44932,14 @@ var UNORDERED_COMPARE_FLAG = 1,
  * @returns {Function} Returns the new spec function.
  */
 function baseMatchesProperty(path, srcValue) {
-  if (__WEBPACK_IMPORTED_MODULE_3__isKey__["a" /* default */](path) && __WEBPACK_IMPORTED_MODULE_4__isStrictComparable__["a" /* default */](srcValue)) {
-    return __WEBPACK_IMPORTED_MODULE_5__matchesStrictComparable__["a" /* default */](__WEBPACK_IMPORTED_MODULE_6__toKey__["a" /* default */](path), srcValue);
+  if (Object(__WEBPACK_IMPORTED_MODULE_3__isKey__["a" /* default */])(path) && Object(__WEBPACK_IMPORTED_MODULE_4__isStrictComparable__["a" /* default */])(srcValue)) {
+    return Object(__WEBPACK_IMPORTED_MODULE_5__matchesStrictComparable__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_6__toKey__["a" /* default */])(path), srcValue);
   }
   return function(object) {
-    var objValue = __WEBPACK_IMPORTED_MODULE_1__get__["a" /* default */](object, path);
+    var objValue = Object(__WEBPACK_IMPORTED_MODULE_1__get__["a" /* default */])(object, path);
     return (objValue === undefined && objValue === srcValue)
-      ? __WEBPACK_IMPORTED_MODULE_2__hasIn__["a" /* default */](object, path)
-      : __WEBPACK_IMPORTED_MODULE_0__baseIsEqual__["a" /* default */](srcValue, objValue, undefined, UNORDERED_COMPARE_FLAG | PARTIAL_COMPARE_FLAG);
+      ? Object(__WEBPACK_IMPORTED_MODULE_2__hasIn__["a" /* default */])(object, path)
+      : Object(__WEBPACK_IMPORTED_MODULE_0__baseIsEqual__["a" /* default */])(srcValue, objValue, undefined, UNORDERED_COMPARE_FLAG | PARTIAL_COMPARE_FLAG);
   };
 }
 
@@ -44969,9 +44969,9 @@ var reEscapeChar = /\\(\\)?/g;
  * @param {string} string The string to convert.
  * @returns {Array} Returns the property path array.
  */
-var stringToPath = __WEBPACK_IMPORTED_MODULE_0__memoize__["a" /* default */](function(string) {
+var stringToPath = Object(__WEBPACK_IMPORTED_MODULE_0__memoize__["a" /* default */])(function(string) {
   var result = [];
-  __WEBPACK_IMPORTED_MODULE_1__toString__["a" /* default */](string).replace(rePropName, function(match, number, quote, string) {
+  Object(__WEBPACK_IMPORTED_MODULE_1__toString__["a" /* default */])(string).replace(rePropName, function(match, number, quote, string) {
     result.push(quote ? string.replace(reEscapeChar, '$1') : (number || match));
   });
   return result;
@@ -45091,7 +45091,7 @@ memoize.Cache = __WEBPACK_IMPORTED_MODULE_0__MapCache__["a" /* default */];
  * // => '1,2,3'
  */
 function toString(value) {
-  return value == null ? '' : __WEBPACK_IMPORTED_MODULE_0__baseToString__["a" /* default */](value);
+  return value == null ? '' : Object(__WEBPACK_IMPORTED_MODULE_0__baseToString__["a" /* default */])(value);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (toString);
@@ -45127,7 +45127,7 @@ function baseToString(value) {
   if (typeof value == 'string') {
     return value;
   }
-  if (__WEBPACK_IMPORTED_MODULE_1__isSymbol__["a" /* default */](value)) {
+  if (Object(__WEBPACK_IMPORTED_MODULE_1__isSymbol__["a" /* default */])(value)) {
     return symbolToString ? symbolToString.call(value) : '';
   }
   var result = (value + '');
@@ -45174,7 +45174,7 @@ function baseToString(value) {
  * // => false
  */
 function hasIn(object, path) {
-  return object != null && __WEBPACK_IMPORTED_MODULE_1__hasPath__["a" /* default */](object, path, __WEBPACK_IMPORTED_MODULE_0__baseHasIn__["a" /* default */]);
+  return object != null && Object(__WEBPACK_IMPORTED_MODULE_1__hasPath__["a" /* default */])(object, path, __WEBPACK_IMPORTED_MODULE_0__baseHasIn__["a" /* default */]);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (hasIn);
@@ -45232,14 +45232,14 @@ function baseHasIn(object, key) {
  * @returns {boolean} Returns `true` if `path` exists, else `false`.
  */
 function hasPath(object, path, hasFunc) {
-  path = __WEBPACK_IMPORTED_MODULE_4__isKey__["a" /* default */](path, object) ? [path] : __WEBPACK_IMPORTED_MODULE_0__castPath__["a" /* default */](path);
+  path = Object(__WEBPACK_IMPORTED_MODULE_4__isKey__["a" /* default */])(path, object) ? [path] : Object(__WEBPACK_IMPORTED_MODULE_0__castPath__["a" /* default */])(path);
 
   var result,
       index = -1,
       length = path.length;
 
   while (++index < length) {
-    var key = __WEBPACK_IMPORTED_MODULE_7__toKey__["a" /* default */](path[index]);
+    var key = Object(__WEBPACK_IMPORTED_MODULE_7__toKey__["a" /* default */])(path[index]);
     if (!(result = object != null && hasFunc(object, key))) {
       break;
     }
@@ -45249,8 +45249,8 @@ function hasPath(object, path, hasFunc) {
     return result;
   }
   var length = object ? object.length : 0;
-  return !!length && __WEBPACK_IMPORTED_MODULE_5__isLength__["a" /* default */](length) && __WEBPACK_IMPORTED_MODULE_3__isIndex__["a" /* default */](key, length) &&
-    (__WEBPACK_IMPORTED_MODULE_2__isArray__["a" /* default */](object) || __WEBPACK_IMPORTED_MODULE_6__isString__["a" /* default */](object) || __WEBPACK_IMPORTED_MODULE_1__isArguments__["a" /* default */](object));
+  return !!length && Object(__WEBPACK_IMPORTED_MODULE_5__isLength__["a" /* default */])(length) && Object(__WEBPACK_IMPORTED_MODULE_3__isIndex__["a" /* default */])(key, length) &&
+    (Object(__WEBPACK_IMPORTED_MODULE_2__isArray__["a" /* default */])(object) || Object(__WEBPACK_IMPORTED_MODULE_6__isString__["a" /* default */])(object) || Object(__WEBPACK_IMPORTED_MODULE_1__isArguments__["a" /* default */])(object));
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (hasPath);
@@ -45293,7 +45293,7 @@ function hasPath(object, path, hasFunc) {
  * // => [1, 2]
  */
 function property(path) {
-  return __WEBPACK_IMPORTED_MODULE_2__isKey__["a" /* default */](path) ? __WEBPACK_IMPORTED_MODULE_0__baseProperty__["a" /* default */](__WEBPACK_IMPORTED_MODULE_3__toKey__["a" /* default */](path)) : __WEBPACK_IMPORTED_MODULE_1__basePropertyDeep__["a" /* default */](path);
+  return Object(__WEBPACK_IMPORTED_MODULE_2__isKey__["a" /* default */])(path) ? Object(__WEBPACK_IMPORTED_MODULE_0__baseProperty__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_3__toKey__["a" /* default */])(path)) : Object(__WEBPACK_IMPORTED_MODULE_1__basePropertyDeep__["a" /* default */])(path);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (property);
@@ -45316,7 +45316,7 @@ function property(path) {
  */
 function basePropertyDeep(path) {
   return function(object) {
-    return __WEBPACK_IMPORTED_MODULE_0__baseGet__["a" /* default */](object, path);
+    return Object(__WEBPACK_IMPORTED_MODULE_0__baseGet__["a" /* default */])(object, path);
   };
 }
 
@@ -45346,15 +45346,15 @@ function basePropertyDeep(path) {
 function baseFill(array, value, start, end) {
   var length = array.length;
 
-  start = __WEBPACK_IMPORTED_MODULE_0__toInteger__["a" /* default */](start);
+  start = Object(__WEBPACK_IMPORTED_MODULE_0__toInteger__["a" /* default */])(start);
   if (start < 0) {
     start = -start > length ? 0 : (length + start);
   }
-  end = (end === undefined || end > length) ? length : __WEBPACK_IMPORTED_MODULE_0__toInteger__["a" /* default */](end);
+  end = (end === undefined || end > length) ? length : Object(__WEBPACK_IMPORTED_MODULE_0__toInteger__["a" /* default */])(end);
   if (end < 0) {
     end += length;
   }
-  end = start > end ? 0 : __WEBPACK_IMPORTED_MODULE_1__toLength__["a" /* default */](end);
+  end = start > end ? 0 : Object(__WEBPACK_IMPORTED_MODULE_1__toLength__["a" /* default */])(end);
   while (start < end) {
     array[start++] = value;
   }
@@ -45405,7 +45405,7 @@ var MAX_ARRAY_LENGTH = 4294967295;
  * // => 3
  */
 function toLength(value) {
-  return value ? __WEBPACK_IMPORTED_MODULE_0__baseClamp__["a" /* default */](__WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */](value), 0, MAX_ARRAY_LENGTH) : 0;
+  return value ? Object(__WEBPACK_IMPORTED_MODULE_0__baseClamp__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */])(value), 0, MAX_ARRAY_LENGTH) : 0;
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (toLength);
@@ -45462,7 +45462,7 @@ function baseNth(array, n) {
     return;
   }
   n += n < 0 ? length : 0;
-  return __WEBPACK_IMPORTED_MODULE_0__isIndex__["a" /* default */](n, length) ? array[n] : undefined;
+  return Object(__WEBPACK_IMPORTED_MODULE_0__isIndex__["a" /* default */])(n, length) ? array[n] : undefined;
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (baseNth);
@@ -45521,7 +45521,7 @@ function baseAt(object, paths) {
       result = Array(length);
 
   while (++index < length) {
-    result[index] = isNil ? undefined : __WEBPACK_IMPORTED_MODULE_0__get__["a" /* default */](object, paths[index]);
+    result[index] = isNil ? undefined : Object(__WEBPACK_IMPORTED_MODULE_0__get__["a" /* default */])(object, paths[index]);
   }
   return result;
 }
@@ -45548,7 +45548,7 @@ function baseAt(object, paths) {
  * @returns {*} Returns the parent value.
  */
 function parent(object, path) {
-  return path.length == 1 ? object : __WEBPACK_IMPORTED_MODULE_0__baseGet__["a" /* default */](object, __WEBPACK_IMPORTED_MODULE_1__baseSlice__["a" /* default */](path, 0, -1));
+  return path.length == 1 ? object : Object(__WEBPACK_IMPORTED_MODULE_0__baseGet__["a" /* default */])(object, Object(__WEBPACK_IMPORTED_MODULE_1__baseSlice__["a" /* default */])(path, 0, -1));
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (parent);
@@ -45575,12 +45575,12 @@ function compareAscending(value, other) {
     var valIsDefined = value !== undefined,
         valIsNull = value === null,
         valIsReflexive = value === value,
-        valIsSymbol = __WEBPACK_IMPORTED_MODULE_0__isSymbol__["a" /* default */](value);
+        valIsSymbol = Object(__WEBPACK_IMPORTED_MODULE_0__isSymbol__["a" /* default */])(value);
 
     var othIsDefined = other !== undefined,
         othIsNull = other === null,
         othIsReflexive = other === other,
-        othIsSymbol = __WEBPACK_IMPORTED_MODULE_0__isSymbol__["a" /* default */](other);
+        othIsSymbol = Object(__WEBPACK_IMPORTED_MODULE_0__isSymbol__["a" /* default */])(other);
 
     if ((!othIsNull && !othIsSymbol && !valIsSymbol && value > other) ||
         (valIsSymbol && othIsDefined && othIsReflexive && !othIsNull && !othIsSymbol) ||
@@ -45625,7 +45625,7 @@ var INFINITY = 1 / 0;
  * @param {Array} values The values to add to the set.
  * @returns {Object} Returns the new set.
  */
-var createSet = !(__WEBPACK_IMPORTED_MODULE_0__Set__["a" /* default */] && (1 / __WEBPACK_IMPORTED_MODULE_2__setToArray__["a" /* default */](new __WEBPACK_IMPORTED_MODULE_0__Set__["a" /* default */]([,-0]))[1]) == INFINITY) ? __WEBPACK_IMPORTED_MODULE_1__noop__["a" /* default */] : function(values) {
+var createSet = !(__WEBPACK_IMPORTED_MODULE_0__Set__["a" /* default */] && (1 / Object(__WEBPACK_IMPORTED_MODULE_2__setToArray__["a" /* default */])(new __WEBPACK_IMPORTED_MODULE_0__Set__["a" /* default */]([,-0]))[1]) == INFINITY) ? __WEBPACK_IMPORTED_MODULE_1__noop__["a" /* default */] : function(values) {
   return new __WEBPACK_IMPORTED_MODULE_0__Set__["a" /* default */](values);
 };
 
@@ -45688,7 +45688,7 @@ function noop() {
  * @returns {Object} Returns `object`.
  */
 function baseSet(object, path, value, customizer) {
-  path = __WEBPACK_IMPORTED_MODULE_3__isKey__["a" /* default */](path, object) ? [path] : __WEBPACK_IMPORTED_MODULE_1__castPath__["a" /* default */](path);
+  path = Object(__WEBPACK_IMPORTED_MODULE_3__isKey__["a" /* default */])(path, object) ? [path] : Object(__WEBPACK_IMPORTED_MODULE_1__castPath__["a" /* default */])(path);
 
   var index = -1,
       length = path.length,
@@ -45696,19 +45696,19 @@ function baseSet(object, path, value, customizer) {
       nested = object;
 
   while (nested != null && ++index < length) {
-    var key = __WEBPACK_IMPORTED_MODULE_5__toKey__["a" /* default */](path[index]);
-    if (__WEBPACK_IMPORTED_MODULE_4__isObject__["a" /* default */](nested)) {
+    var key = Object(__WEBPACK_IMPORTED_MODULE_5__toKey__["a" /* default */])(path[index]);
+    if (Object(__WEBPACK_IMPORTED_MODULE_4__isObject__["a" /* default */])(nested)) {
       var newValue = value;
       if (index != lastIndex) {
         var objValue = nested[key];
         newValue = customizer ? customizer(objValue, key, nested) : undefined;
         if (newValue === undefined) {
           newValue = objValue == null
-            ? (__WEBPACK_IMPORTED_MODULE_2__isIndex__["a" /* default */](path[index + 1]) ? [] : {})
+            ? (Object(__WEBPACK_IMPORTED_MODULE_2__isIndex__["a" /* default */])(path[index + 1]) ? [] : {})
             : objValue;
         }
       }
-      __WEBPACK_IMPORTED_MODULE_0__assignValue__["a" /* default */](nested, key, newValue);
+      Object(__WEBPACK_IMPORTED_MODULE_0__assignValue__["a" /* default */])(nested, key, newValue);
     }
     nested = nested[key];
   }
@@ -45948,7 +45948,7 @@ class MarkerDelta extends __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */
  * @param {module:engine/model/markercollection~Marker|String} markerOrName Marker or marker name to add or update.
  * @param {module:engine/model/range~Range} [newRange] Marker range.
  */
-__WEBPACK_IMPORTED_MODULE_2__batch__["b" /* register */]( 'setMarker', function( markerOrName, newRange ) {
+Object(__WEBPACK_IMPORTED_MODULE_2__batch__["b" /* register */])( 'setMarker', function( markerOrName, newRange ) {
 	const name = typeof markerOrName == 'string' ? markerOrName : markerOrName.name;
 	const currentMarker = this.document.markers.get( name );
 
@@ -45982,7 +45982,7 @@ __WEBPACK_IMPORTED_MODULE_2__batch__["b" /* register */]( 'setMarker', function(
  * @method module:engine/model/batch~Batch#removeMarker
  * @param {module:engine/model/markercollection~Marker|String} markerOrName Marker or marker name to remove.
  */
-__WEBPACK_IMPORTED_MODULE_2__batch__["b" /* register */]( 'removeMarker', function( markerOrName ) {
+Object(__WEBPACK_IMPORTED_MODULE_2__batch__["b" /* register */])( 'removeMarker', function( markerOrName ) {
 	const name = typeof markerOrName == 'string' ? markerOrName : markerOrName.name;
 
 	if ( !this.document.markers.has( name ) ) {
@@ -46526,7 +46526,7 @@ class LiveSelection extends __WEBPACK_IMPORTED_MODULE_8__selection__["a" /* defa
 	 * @inheritDoc
 	 */
 	setAttributesTo( attrs ) {
-		attrs = __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_tomap__["a" /* default */]( attrs );
+		attrs = Object(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_tomap__["a" /* default */])( attrs );
 
 		if ( this.isCollapsed && this.anchor.parent.childCount === 0 ) {
 			this._setStoredAttributesTo( attrs );
@@ -46646,8 +46646,8 @@ class LiveSelection extends __WEBPACK_IMPORTED_MODULE_8__selection__["a" /* defa
 	 * @fires change:attribute
 	 */
 	_updateAttributes( clearAll ) {
-		const newAttributes = __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_tomap__["a" /* default */]( this._getSurroundingAttributes() );
-		const oldAttributes = __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_tomap__["a" /* default */]( this.getAttributes() );
+		const newAttributes = Object(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_tomap__["a" /* default */])( this._getSurroundingAttributes() );
+		const oldAttributes = Object(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_tomap__["a" /* default */])( this.getAttributes() );
 
 		if ( clearAll ) {
 			// If `clearAll` remove all attributes and reset priorities.
@@ -47231,7 +47231,7 @@ class Schema {
 		}
 
 		// If attributes property is a string or undefined, wrap it in an array for easier processing.
-		if ( !__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_lib_lodash_isArray__["a" /* default */]( query.attributes ) ) {
+		if ( !Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_lib_lodash_isArray__["a" /* default */])( query.attributes ) ) {
 			query.attributes = [ query.attributes ];
 		} else if ( query.attributes.length === 0 ) {
 			// To simplify algorithms, when a SchemaItem path is added "without" attribute, it is added with
@@ -47465,11 +47465,11 @@ class Schema {
 	static _normalizeQueryPath( path ) {
 		let normalized = [];
 
-		if ( __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_lib_lodash_isArray__["a" /* default */]( path ) ) {
+		if ( Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_lib_lodash_isArray__["a" /* default */])( path ) ) {
 			for ( const pathItem of path ) {
 				if ( pathItem instanceof __WEBPACK_IMPORTED_MODULE_1__element__["a" /* default */] ) {
 					normalized.push( pathItem.name );
-				} else if ( __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isString__["a" /* default */]( pathItem ) ) {
+				} else if ( Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isString__["a" /* default */])( pathItem ) ) {
 					normalized.push( pathItem );
 				}
 			}
@@ -47482,7 +47482,7 @@ class Schema {
 			}
 
 			normalized.reverse();
-		} else if ( __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isString__["a" /* default */]( path ) ) {
+		} else if ( Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isString__["a" /* default */])( path ) ) {
 			normalized = path.split( ' ' );
 		}
 
@@ -47576,7 +47576,7 @@ class SchemaItem {
 	 * @returns {Object} Clone of this object with the parent property replaced with its name.
 	 */
 	toJSON() {
-		const json = __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_lib_lodash_clone__["a" /* default */]( this );
+		const json = Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_lib_lodash_clone__["a" /* default */])( this );
 
 		// Due to circular references we need to remove parent reference.
 		json._schema = '[model.Schema]';
@@ -47595,7 +47595,7 @@ class SchemaItem {
 	_addPath( member, path, attributes ) {
 		path = path.slice();
 
-		if ( !__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_lib_lodash_isArray__["a" /* default */]( attributes ) ) {
+		if ( !Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_lib_lodash_isArray__["a" /* default */])( attributes ) ) {
 			attributes = [ attributes ];
 		}
 
@@ -47956,7 +47956,7 @@ class MarkerCollection {
 /* harmony export (immutable) */ __webpack_exports__["a"] = MarkerCollection;
 
 
-__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( MarkerCollection, __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( MarkerCollection, __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
 
 /**
  * `Marker` is a continuous parts of model (like a range), is named and represent some kind of information about marked
@@ -48089,7 +48089,7 @@ class Marker {
 	 */
 }
 
-__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( Marker, __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( Marker, __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
 
 
 /***/ }),
@@ -48335,17 +48335,17 @@ class EditingController {
 		} );
 
 		// Convert view selection to model.
-		this._listener.listenTo( this.view, 'selectionChange', __WEBPACK_IMPORTED_MODULE_4__conversion_view_selection_to_model_converters__["a" /* convertSelectionChange */]( this.model, this.mapper ) );
+		this._listener.listenTo( this.view, 'selectionChange', Object(__WEBPACK_IMPORTED_MODULE_4__conversion_view_selection_to_model_converters__["a" /* convertSelectionChange */])( this.model, this.mapper ) );
 
 		// Attach default content converters.
-		this.modelToView.on( 'insert:$text', __WEBPACK_IMPORTED_MODULE_3__conversion_model_to_view_converters__["b" /* insertText */](), { priority: 'lowest' } );
-		this.modelToView.on( 'remove', __WEBPACK_IMPORTED_MODULE_3__conversion_model_to_view_converters__["d" /* remove */](), { priority: 'low' } );
+		this.modelToView.on( 'insert:$text', Object(__WEBPACK_IMPORTED_MODULE_3__conversion_model_to_view_converters__["b" /* insertText */])(), { priority: 'lowest' } );
+		this.modelToView.on( 'remove', Object(__WEBPACK_IMPORTED_MODULE_3__conversion_model_to_view_converters__["d" /* remove */])(), { priority: 'low' } );
 
 		// Attach default selection converters.
-		this.modelToView.on( 'selection', __WEBPACK_IMPORTED_MODULE_5__conversion_model_selection_to_view_converters__["a" /* clearAttributes */](), { priority: 'low' } );
-		this.modelToView.on( 'selection', __WEBPACK_IMPORTED_MODULE_5__conversion_model_selection_to_view_converters__["b" /* clearFakeSelection */](), { priority: 'low' } );
-		this.modelToView.on( 'selection', __WEBPACK_IMPORTED_MODULE_5__conversion_model_selection_to_view_converters__["d" /* convertRangeSelection */](), { priority: 'low' } );
-		this.modelToView.on( 'selection', __WEBPACK_IMPORTED_MODULE_5__conversion_model_selection_to_view_converters__["c" /* convertCollapsedSelection */](), { priority: 'low' } );
+		this.modelToView.on( 'selection', Object(__WEBPACK_IMPORTED_MODULE_5__conversion_model_selection_to_view_converters__["a" /* clearAttributes */])(), { priority: 'low' } );
+		this.modelToView.on( 'selection', Object(__WEBPACK_IMPORTED_MODULE_5__conversion_model_selection_to_view_converters__["b" /* clearFakeSelection */])(), { priority: 'low' } );
+		this.modelToView.on( 'selection', Object(__WEBPACK_IMPORTED_MODULE_5__conversion_model_selection_to_view_converters__["d" /* convertRangeSelection */])(), { priority: 'low' } );
+		this.modelToView.on( 'selection', Object(__WEBPACK_IMPORTED_MODULE_5__conversion_model_selection_to_view_converters__["c" /* convertCollapsedSelection */])(), { priority: 'low' } );
 	}
 
 	/**
@@ -48523,7 +48523,7 @@ class Document {
 		this.addObserver( __WEBPACK_IMPORTED_MODULE_9__observer_keyobserver__["a" /* default */] );
 		this.addObserver( __WEBPACK_IMPORTED_MODULE_10__observer_fakeselectionobserver__["a" /* default */] );
 
-		__WEBPACK_IMPORTED_MODULE_4__filler__["f" /* injectQuirksHandling */]( this );
+		Object(__WEBPACK_IMPORTED_MODULE_4__filler__["f" /* injectQuirksHandling */])( this );
 
 		this.decorate( 'render' );
 	}
@@ -48727,7 +48727,7 @@ class Document {
 /* harmony export (immutable) */ __webpack_exports__["a"] = Document;
 
 
-__WEBPACK_IMPORTED_MODULE_11__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( Document, __WEBPACK_IMPORTED_MODULE_12__ckeditor_ckeditor5_utils_src_observablemixin__["a" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_11__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( Document, __WEBPACK_IMPORTED_MODULE_12__ckeditor_ckeditor5_utils_src_observablemixin__["a" /* default */] );
 
 /**
  * Enum representing type of the change.
@@ -49007,7 +49007,7 @@ class Renderer {
 		const domPosition = this.domConverter.viewPositionToDom( fillerPosition );
 
 		/* istanbul ignore if */
-		if ( !domPosition || !__WEBPACK_IMPORTED_MODULE_3__filler__["i" /* startsWithFiller */]( domPosition.parent ) ) {
+		if ( !domPosition || !Object(__WEBPACK_IMPORTED_MODULE_3__filler__["i" /* startsWithFiller */])( domPosition.parent ) ) {
 			/**
 			 * Cannot find filler node by its position.
 			 *
@@ -49067,7 +49067,7 @@ class Renderer {
 		const selectionPosition = this.selection.getFirstPosition();
 		const position = this.domConverter.viewPositionToDom( selectionPosition );
 
-		if ( position && this.domConverter.isText( position.parent ) && __WEBPACK_IMPORTED_MODULE_3__filler__["i" /* startsWithFiller */]( position.parent ) ) {
+		if ( position && this.domConverter.isText( position.parent ) && Object(__WEBPACK_IMPORTED_MODULE_3__filler__["i" /* startsWithFiller */])( position.parent ) ) {
 			return true;
 		}
 
@@ -49083,7 +49083,7 @@ class Renderer {
 		const domFillerNode = this._inlineFiller;
 
 		// Something weird happened and the stored node doesn't contain the filler's text.
-		if ( !__WEBPACK_IMPORTED_MODULE_3__filler__["i" /* startsWithFiller */]( domFillerNode ) ) {
+		if ( !Object(__WEBPACK_IMPORTED_MODULE_3__filler__["i" /* startsWithFiller */])( domFillerNode ) ) {
 			/**
 			 * The inline filler node was lost. Most likely, something overwrote the filler text node
 			 * in the DOM.
@@ -49093,7 +49093,7 @@ class Renderer {
 			throw new __WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-renderer-filler-was-lost: The inline filler node was lost.' );
 		}
 
-		if ( __WEBPACK_IMPORTED_MODULE_3__filler__["h" /* isInlineFiller */]( domFillerNode ) ) {
+		if ( Object(__WEBPACK_IMPORTED_MODULE_3__filler__["h" /* isInlineFiller */])( domFillerNode ) ) {
 			domFillerNode.parentNode.removeChild( domFillerNode );
 		} else {
 			domFillerNode.data = domFillerNode.data.substr( __WEBPACK_IMPORTED_MODULE_3__filler__["c" /* INLINE_FILLER_LENGTH */] );
@@ -49226,18 +49226,18 @@ class Renderer {
 			}
 		}
 
-		const actions = __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_diff__["a" /* default */]( actualDomChildren, expectedDomChildren, sameNodes );
+		const actions = Object(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_diff__["a" /* default */])( actualDomChildren, expectedDomChildren, sameNodes );
 
 		let i = 0;
 		const nodesToUnbind = new Set();
 
 		for ( const action of actions ) {
 			if ( action === 'insert' ) {
-				__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_dom_insertat__["a" /* default */]( domElement, i, expectedDomChildren[ i ] );
+				Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_dom_insertat__["a" /* default */])( domElement, i, expectedDomChildren[ i ] );
 				i++;
 			} else if ( action === 'delete' ) {
 				nodesToUnbind.add( actualDomChildren[ i ] );
-				__WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_dom_remove__["a" /* default */]( actualDomChildren[ i ] );
+				Object(__WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_dom_remove__["a" /* default */])( actualDomChildren[ i ] );
 			} else { // 'equal'
 				i++;
 			}
@@ -49262,8 +49262,8 @@ class Renderer {
 				return actualDomChild.data === expectedDomChild.data;
 			}
 			// Block fillers.
-			else if ( __WEBPACK_IMPORTED_MODULE_3__filler__["g" /* isBlockFiller */]( actualDomChild, domConverter.blockFiller ) &&
-				__WEBPACK_IMPORTED_MODULE_3__filler__["g" /* isBlockFiller */]( expectedDomChild, domConverter.blockFiller ) ) {
+			else if ( Object(__WEBPACK_IMPORTED_MODULE_3__filler__["g" /* isBlockFiller */])( actualDomChild, domConverter.blockFiller ) &&
+				Object(__WEBPACK_IMPORTED_MODULE_3__filler__["g" /* isBlockFiller */])( expectedDomChild, domConverter.blockFiller ) ) {
 				return true;
 			}
 
@@ -49432,7 +49432,7 @@ class Renderer {
 /* harmony export (immutable) */ __webpack_exports__["a"] = Renderer;
 
 
-__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( Renderer, __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_observablemixin__["a" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( Renderer, __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_observablemixin__["a" /* default */] );
 
 // Checks if two given selections are similar. Selections are considered similar if they are non-collapsed
 // and their trimmed (see {@link #_trimSelection}) representations are equal.
@@ -49582,8 +49582,8 @@ function indexOf( node ) {
  * @returns {Node|DocumentFragment|Document|null} Lowest common ancestor of both nodes or `null` if nodes do not have a common ancestor.
  */
 function getCommonAncestor( nodeA, nodeB ) {
-	const ancestorsA = __WEBPACK_IMPORTED_MODULE_0__getancestors__["a" /* default */]( nodeA );
-	const ancestorsB = __WEBPACK_IMPORTED_MODULE_0__getancestors__["a" /* default */]( nodeB );
+	const ancestorsA = Object(__WEBPACK_IMPORTED_MODULE_0__getancestors__["a" /* default */])( nodeA );
+	const ancestorsB = Object(__WEBPACK_IMPORTED_MODULE_0__getancestors__["a" /* default */])( nodeB );
 
 	let i = 0;
 
@@ -49690,7 +49690,7 @@ class SelectionObserver extends __WEBPACK_IMPORTED_MODULE_0__observer__["a" /* d
 		 * @param {Object} data Selection change data.
 		 * @method #_fireSelectionChangeDoneDebounced
 		 */
-		this._fireSelectionChangeDoneDebounced = __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_lib_lodash_debounce__["a" /* default */]( data => this.document.fire( 'selectionChangeDone', data ), 200 );
+		this._fireSelectionChangeDoneDebounced = Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_lib_lodash_debounce__["a" /* default */])( data => this.document.fire( 'selectionChangeDone', data ), 200 );
 
 		this._clearInfiniteLoopInterval = setInterval( () => this._clearInfiniteLoop(), 1000 );
 
@@ -50020,7 +50020,7 @@ class KeyObserver extends __WEBPACK_IMPORTED_MODULE_0__domeventobserver__["a" /*
 			shiftKey: domEvt.shiftKey,
 
 			get keystroke() {
-				return __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_keyboard__["a" /* getCode */]( this );
+				return Object(__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_keyboard__["a" /* getCode */])( this );
 			}
 		} );
 	}
@@ -50106,7 +50106,7 @@ class FakeSelectionObserver extends __WEBPACK_IMPORTED_MODULE_0__observer__["a" 
 		 * @param {Object} data Selection change data.
 		 * @method #_fireSelectionChangeDoneDebounced
 		 */
-		this._fireSelectionChangeDoneDebounced = __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_lib_lodash_debounce__["a" /* default */]( data => this.document.fire( 'selectionChangeDone', data ), 200 );
+		this._fireSelectionChangeDoneDebounced = Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_lib_lodash_debounce__["a" /* default */])( data => this.document.fire( 'selectionChangeDone', data ), 200 );
 	}
 
 	/**
@@ -50417,7 +50417,7 @@ class InlineEditorUI {
 		this.view.init();
 		this.view.toolbar.fillFromConfig( editor.config.get( 'toolbar' ), this.componentFactory );
 
-		__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_toolbar_enabletoolbarkeyboardfocus__["a" /* default */]( {
+		Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_toolbar_enabletoolbarkeyboardfocus__["a" /* default */])( {
 			origin: editor.editing.view,
 			originFocusTracker: this.focusTracker,
 			originKeystrokeHandler: editor.keystrokes,
@@ -50925,7 +50925,7 @@ class EditorUIView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */
  * // => 20
  */
 function cloneDeepWith(value, customizer) {
-  return __WEBPACK_IMPORTED_MODULE_0__baseClone__["a" /* default */](value, true, true, customizer);
+  return Object(__WEBPACK_IMPORTED_MODULE_0__baseClone__["a" /* default */])(value, true, true, customizer);
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (cloneDeepWith);
@@ -51201,7 +51201,7 @@ function getOptimalPosition( { element, target, positions, limiter, fitInViewpor
 		target = target();
 	}
 
-	const positionedElementAncestor = __WEBPACK_IMPORTED_MODULE_2__getpositionedancestor__["a" /* default */]( element.parentElement );
+	const positionedElementAncestor = Object(__WEBPACK_IMPORTED_MODULE_2__getpositionedancestor__["a" /* default */])( element.parentElement );
 	const elementRect = new __WEBPACK_IMPORTED_MODULE_1__rect__["a" /* default */]( element );
 	const targetRect = new __WEBPACK_IMPORTED_MODULE_1__rect__["a" /* default */]( target );
 
@@ -51478,9 +51478,9 @@ class Rect {
 			enumerable: false
 		} );
 
-		if ( __WEBPACK_IMPORTED_MODULE_2__lib_lodash_isElement__["a" /* default */]( source ) ) {
+		if ( Object(__WEBPACK_IMPORTED_MODULE_2__lib_lodash_isElement__["a" /* default */])( source ) ) {
 			copyRectProperties( this, source.getBoundingClientRect() );
-		} else if ( __WEBPACK_IMPORTED_MODULE_1__isrange__["a" /* default */]( source ) ) {
+		} else if ( Object(__WEBPACK_IMPORTED_MODULE_1__isrange__["a" /* default */])( source ) ) {
 			copyRectProperties( this, Rect.getDomRangeRects( source )[ 0 ] );
 		} else {
 			copyRectProperties( this, source );
@@ -52247,9 +52247,9 @@ class Clipboard extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src
 			let content = '';
 
 			if ( dataTransfer.getData( 'text/html' ) ) {
-				content = __WEBPACK_IMPORTED_MODULE_3__utils_normalizeclipboarddata__["a" /* default */]( dataTransfer.getData( 'text/html' ) );
+				content = Object(__WEBPACK_IMPORTED_MODULE_3__utils_normalizeclipboarddata__["a" /* default */])( dataTransfer.getData( 'text/html' ) );
 			} else if ( dataTransfer.getData( 'text/plain' ) ) {
-				content = __WEBPACK_IMPORTED_MODULE_2__utils_plaintexttohtml__["a" /* default */]( dataTransfer.getData( 'text/plain' ) );
+				content = Object(__WEBPACK_IMPORTED_MODULE_2__utils_plaintexttohtml__["a" /* default */])( dataTransfer.getData( 'text/plain' ) );
 			}
 
 			content = this._htmlDataProcessor.toView( content );
@@ -52289,7 +52289,7 @@ class Clipboard extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src
 		this.listenTo( editingView, 'clipboardOutput', ( evt, data ) => {
 			if ( !data.content.isEmpty ) {
 				data.dataTransfer.setData( 'text/html', this._htmlDataProcessor.toData( data.content ) );
-				data.dataTransfer.setData( 'text/plain', __WEBPACK_IMPORTED_MODULE_4__utils_viewtoplaintext_js__["a" /* default */]( data.content ) );
+				data.dataTransfer.setData( 'text/plain', Object(__WEBPACK_IMPORTED_MODULE_4__utils_viewtoplaintext_js__["a" /* default */])( data.content ) );
 			}
 
 			if ( data.method == 'cut' ) {
@@ -53167,7 +53167,7 @@ class MutationHandler {
 		// To have correct `diffResult`, we also compare view node text data with &nbsp; replaced by space.
 		const oldText = mutation.oldText.replace( /\u00A0/g, ' ' );
 
-		const diffResult = __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_diff__["a" /* default */]( oldText, newText );
+		const diffResult = Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_diff__["a" /* default */])( oldText, newText );
 
 		// Index where the first change happens. Used to set the position from which nodes will be removed and where will be inserted.
 		let firstChangeAt = null;
@@ -53232,8 +53232,8 @@ class MutationHandler {
 		}
 
 		// Which is text.
-		const diffResult = __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_diff__["a" /* default */]( mutation.oldChildren, mutation.newChildren, compareChildNodes );
-		const changes = __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_difftochanges__["a" /* default */]( diffResult, mutation.newChildren );
+		const diffResult = Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_diff__["a" /* default */])( mutation.oldChildren, mutation.newChildren, compareChildNodes );
+		const changes = Object(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_difftochanges__["a" /* default */])( diffResult, mutation.newChildren );
 
 		// In case of [ delete, insert, insert ] the previous check will not exit.
 		if ( changes.length > 1 ) {
@@ -53263,10 +53263,10 @@ class MutationHandler {
 }
 
 const safeKeycodes = [
-	__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_keyboard__["a" /* getCode */]( 'arrowUp' ),
-	__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_keyboard__["a" /* getCode */]( 'arrowRight' ),
-	__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_keyboard__["a" /* getCode */]( 'arrowDown' ),
-	__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_keyboard__["a" /* getCode */]( 'arrowLeft' ),
+	Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_keyboard__["a" /* getCode */])( 'arrowUp' ),
+	Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_keyboard__["a" /* getCode */])( 'arrowRight' ),
+	Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_keyboard__["a" /* getCode */])( 'arrowDown' ),
+	Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_keyboard__["a" /* getCode */])( 'arrowLeft' ),
 	9,  // Tab
 	16, // Shift
 	17, // Ctrl
@@ -53660,7 +53660,7 @@ class DeleteCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core
 			let changeCount = 0;
 
 			selection.getFirstRange().getMinimalFlatRanges().forEach( range => {
-				changeCount += __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_count__["a" /* default */](
+				changeCount += Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_count__["a" /* default */])(
 					range.getWalker( { singleCharacters: true, ignoreElementEnd: true, shallow: true } )
 				);
 			} );
@@ -54399,11 +54399,11 @@ class BlockQuoteEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_c
 		schema.allow( { name: 'blockQuote', inside: '$root' } );
 		schema.allow( { name: '$block', inside: 'blockQuote' } );
 
-		__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__["a" /* default */]().for( editor.data.viewToModel )
+		Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__["a" /* default */])().for( editor.data.viewToModel )
 			.fromElement( 'blockquote' )
 			.toElement( 'blockQuote' );
 
-		__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__["a" /* default */]().for( editor.data.modelToView, editor.editing.modelToView )
+		Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__["a" /* default */])().for( editor.data.modelToView, editor.editing.modelToView )
 			.fromElement( 'blockQuote' )
 			.toElement( 'blockquote' );
 	}
@@ -54515,7 +54515,7 @@ class BlockQuoteCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_
 	 * @returns {Boolean} The current value.
 	 */
 	_getValue() {
-		const firstBlock = __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_first__["a" /* default */]( this.editor.document.selection.getSelectedBlocks() );
+		const firstBlock = Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_first__["a" /* default */])( this.editor.document.selection.getSelectedBlocks() );
 
 		// In the current implementation, the block quote must be an immediate parent of a block element.
 		return !!( firstBlock && findQuote( firstBlock ) );
@@ -54535,7 +54535,7 @@ class BlockQuoteCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_
 		const selection = this.editor.document.selection;
 		const schema = this.editor.document.schema;
 
-		const firstBlock = __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_first__["a" /* default */]( selection.getSelectedBlocks() );
+		const firstBlock = Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_first__["a" /* default */])( selection.getSelectedBlocks() );
 
 		if ( !firstBlock ) {
 			return false;
@@ -54856,12 +54856,12 @@ class BoldEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_sr
 		editor.document.schema.allow( { name: '$inline', attributes: BOLD, inside: '$clipboardHolder' } );
 
 		// Build converter from model to view for data and editing pipelines.
-		__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__["a" /* default */]().for( data.modelToView, editing.modelToView )
+		Object(__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__["a" /* default */])().for( data.modelToView, editing.modelToView )
 			.fromAttribute( BOLD )
 			.toElement( 'strong' );
 
 		// Build converter from view to model for data pipeline.
-		__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__["a" /* default */]().for( data.viewToModel )
+		Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__["a" /* default */])().for( data.viewToModel )
 			.fromElement( 'strong' )
 			.fromElement( 'b' )
 			.fromAttribute( 'style', { 'font-weight': 'bold' } )
@@ -54991,7 +54991,7 @@ class Heading extends __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_core_src_p
 
 		// Register UI component.
 		editor.ui.componentFactory.add( 'headings', locale => {
-			const dropdown = __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_ui_src_dropdown_list_createlistdropdown__["a" /* default */]( dropdownModel, locale );
+			const dropdown = Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_ui_src_dropdown_list_createlistdropdown__["a" /* default */])( dropdownModel, locale );
 
 			__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_ui_src_template__["a" /* default */].extend( dropdown.template, {
 				attributes: {
@@ -55109,7 +55109,7 @@ class ParagraphCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_c
 	 */
 	refresh() {
 		const document = this.editor.document;
-		const block = __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_first__["a" /* default */]( document.selection.getSelectedBlocks() );
+		const block = Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_first__["a" /* default */])( document.selection.getSelectedBlocks() );
 
 		this.value = !!block && block.is( 'paragraph' );
 		this.isEnabled = !!block && checkCanBecomeParagraph( block, document.schema );
@@ -55234,12 +55234,12 @@ class HeadingEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core
 				editor.document.schema.registerItem( option.modelElement, '$block' );
 
 				// Build converter from model to view for data and editing pipelines.
-				__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__["a" /* default */]().for( data.modelToView, editing.modelToView )
+				Object(__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__["a" /* default */])().for( data.modelToView, editing.modelToView )
 					.fromElement( option.modelElement )
 					.toElement( option.viewElement );
 
 				// Build converter from view to model for data pipeline.
-				__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__["a" /* default */]().for( data.viewToModel )
+				Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__["a" /* default */])().for( data.viewToModel )
 					.fromElement( option.viewElement )
 					.toElement( option.modelElement );
 
@@ -55339,7 +55339,7 @@ class HeadingCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_cor
 	 * @inheritDoc
 	 */
 	refresh() {
-		const block = __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_first__["a" /* default */]( this.editor.document.selection.getSelectedBlocks() );
+		const block = Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_first__["a" /* default */])( this.editor.document.selection.getSelectedBlocks() );
 
 		this.value = !!block && block.is( this.modelElement );
 		this.isEnabled = !!block && checkCanBecomeHeading( block, this.modelElement, this.editor.document.schema );
@@ -55443,7 +55443,7 @@ class Model {
 	constructor( attributes, properties ) {
 		// Extend this instance with the additional (out of state) properties.
 		if ( properties ) {
-			__WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_extend__["a" /* default */]( this, properties );
+			Object(__WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_extend__["a" /* default */])( this, properties );
 		}
 
 		// Initialize the attributes.
@@ -55455,7 +55455,7 @@ class Model {
 /* harmony export (immutable) */ __webpack_exports__["a"] = Model;
 
 
-__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__["a" /* default */]( Model, __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_observablemixin__["a" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( Model, __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_observablemixin__["a" /* default */] );
 
 
 /***/ }),
@@ -55491,7 +55491,7 @@ __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__["a" /* default *
  * @returns {module:ui/dropdown/list/listdropdownview~ListDropdownView} The list dropdown view instance.
  */
 function createListDropdown( model, locale ) {
-	const dropdownView = __WEBPACK_IMPORTED_MODULE_2__createdropdown__["a" /* default */]( model, locale );
+	const dropdownView = Object(__WEBPACK_IMPORTED_MODULE_2__createdropdown__["a" /* default */])( model, locale );
 
 	const listView = dropdownView.listView = new __WEBPACK_IMPORTED_MODULE_0__list_listview__["a" /* default */]( locale );
 
@@ -56211,7 +56211,7 @@ class Image extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plu
 			this.listenTo( contextualToolbar, 'beforeShow', ( evt, stop ) => {
 				const selectedElement = editor.editing.view.selection.getSelectedElement();
 
-				if ( selectedElement && __WEBPACK_IMPORTED_MODULE_4__image_utils__["b" /* isImageWidget */]( selectedElement ) ) {
+				if ( selectedElement && Object(__WEBPACK_IMPORTED_MODULE_4__image_utils__["b" /* isImageWidget */])( selectedElement ) ) {
 					stop();
 				}
 			} );
@@ -56592,11 +56592,11 @@ class Widget extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_pl
 			// Check if widget was clicked or some sub-element.
 			const selectedElement = viewSelection.getSelectedElement();
 
-			if ( !selectedElement || !__WEBPACK_IMPORTED_MODULE_7__utils__["c" /* isWidget */]( selectedElement ) ) {
+			if ( !selectedElement || !Object(__WEBPACK_IMPORTED_MODULE_7__utils__["c" /* isWidget */])( selectedElement ) ) {
 				return;
 			}
 
-			viewSelection.setFake( true, { label: __WEBPACK_IMPORTED_MODULE_7__utils__["b" /* getLabel */]( selectedElement ) } );
+			viewSelection.setFake( true, { label: Object(__WEBPACK_IMPORTED_MODULE_7__utils__["b" /* getLabel */])( selectedElement ) } );
 			selectedElement.addClass( __WEBPACK_IMPORTED_MODULE_7__utils__["a" /* WIDGET_SELECTED_CLASS_NAME */] );
 			previouslySelected = selectedElement;
 		}, { priority: 'low' } );
@@ -56627,7 +56627,7 @@ class Widget extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_pl
 		}
 
 		// If target is not a widget element - check if one of the ancestors is.
-		if ( !__WEBPACK_IMPORTED_MODULE_7__utils__["c" /* isWidget */]( element ) ) {
+		if ( !Object(__WEBPACK_IMPORTED_MODULE_7__utils__["c" /* isWidget */])( element ) ) {
 			element = element.findAncestor( __WEBPACK_IMPORTED_MODULE_7__utils__["c" /* isWidget */] );
 
 			if ( !element ) {
@@ -57063,14 +57063,14 @@ class ImageTextAlternative extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckedito
 		this.listenTo( form, 'cancel', () => this._hideBalloonPanel() );
 
 		// Close on `ESC` press.
-		__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_bindings_escpresshandler__["a" /* default */]( {
+		Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_bindings_escpresshandler__["a" /* default */])( {
 			emitter: panel,
 			activator: () => panel.isVisible,
 			callback: () => this._hideBalloonPanel()
 		} );
 
 		// Close on click outside of balloon panel element.
-		__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_ui_src_bindings_clickoutsidehandler__["a" /* default */]( {
+		Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_ui_src_bindings_clickoutsidehandler__["a" /* default */])( {
 			emitter: panel,
 			activator: () => panel.isVisible,
 			contextElements: [ panel.element ],
@@ -57195,9 +57195,9 @@ class ImageTextAlternativeCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_
 	refresh() {
 		const element = this.editor.document.selection.getSelectedElement();
 
-		this.isEnabled = __WEBPACK_IMPORTED_MODULE_1__image_utils__["a" /* isImage */]( element );
+		this.isEnabled = Object(__WEBPACK_IMPORTED_MODULE_1__image_utils__["a" /* isImage */])( element );
 
-		if ( __WEBPACK_IMPORTED_MODULE_1__image_utils__["a" /* isImage */]( element ) && element.hasAttribute( 'alt' ) ) {
+		if ( Object(__WEBPACK_IMPORTED_MODULE_1__image_utils__["a" /* isImage */])( element ) && element.hasAttribute( 'alt' ) ) {
 			this.value = element.getAttribute( 'alt' );
 		} else {
 			this.value = false;
@@ -57326,11 +57326,11 @@ function throttle(func, wait, options) {
   if (typeof func != 'function') {
     throw new TypeError(FUNC_ERROR_TEXT);
   }
-  if (__WEBPACK_IMPORTED_MODULE_1__isObject__["a" /* default */](options)) {
+  if (Object(__WEBPACK_IMPORTED_MODULE_1__isObject__["a" /* default */])(options)) {
     leading = 'leading' in options ? !!options.leading : leading;
     trailing = 'trailing' in options ? !!options.trailing : trailing;
   }
-  return __WEBPACK_IMPORTED_MODULE_0__debounce__["a" /* default */](func, wait, {
+  return Object(__WEBPACK_IMPORTED_MODULE_0__debounce__["a" /* default */])(func, wait, {
     'leading': leading,
     'maxWait': wait,
     'trailing': trailing
@@ -57439,7 +57439,7 @@ class TextAlternativeFormView extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_cked
 			]
 		} );
 
-		__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_bindings_submithandler__["a" /* default */]( {
+		Object(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_bindings_submithandler__["a" /* default */])( {
 			view: this
 		} );
 	}
@@ -57755,7 +57755,7 @@ class ImageCaptionEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5
 		 * @private
 		 * @member {Function}
 		 */
-		this._createCaption = __WEBPACK_IMPORTED_MODULE_10__utils__["a" /* captionElementCreator */]( viewDocument, t( 'Enter image caption' ) );
+		this._createCaption = Object(__WEBPACK_IMPORTED_MODULE_10__utils__["a" /* captionElementCreator */])( viewDocument, t( 'Enter image caption' ) );
 
 		// Schema configuration.
 		schema.registerItem( 'caption', '$block' );
@@ -57767,7 +57767,7 @@ class ImageCaptionEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5
 		document.on( 'change', insertMissingModelCaptionElement );
 
 		// View to model converter for the data pipeline.
-		__WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__["a" /* default */]()
+		Object(__WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__["a" /* default */])()
 			.for( data.viewToModel )
 			.from( __WEBPACK_IMPORTED_MODULE_10__utils__["d" /* matchImageCaption */] )
 			.toElement( 'caption' );
@@ -57806,14 +57806,14 @@ class ImageCaptionEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5
 		}
 
 		// If whole image widget is selected.
-		if ( selectedElement && __WEBPACK_IMPORTED_MODULE_9__image_utils__["b" /* isImageWidget */]( selectedElement ) ) {
+		if ( selectedElement && Object(__WEBPACK_IMPORTED_MODULE_9__image_utils__["b" /* isImageWidget */])( selectedElement ) ) {
 			const modelImage = mapper.toModelElement( selectedElement );
-			const modelCaption = __WEBPACK_IMPORTED_MODULE_10__utils__["b" /* getCaptionFromImage */]( modelImage );
+			const modelCaption = Object(__WEBPACK_IMPORTED_MODULE_10__utils__["b" /* getCaptionFromImage */])( modelImage );
 			viewCaption = mapper.toViewElement( modelCaption );
 		}
 
 		// If selection is placed inside caption.
-		if ( __WEBPACK_IMPORTED_MODULE_10__utils__["c" /* isCaption */]( viewSelection.editableElement ) ) {
+		if ( Object(__WEBPACK_IMPORTED_MODULE_10__utils__["c" /* isCaption */])( viewSelection.editableElement ) ) {
 			viewCaption = viewSelection.editableElement;
 		}
 
@@ -57867,11 +57867,11 @@ function insertMissingModelCaptionElement( evt, changeType, data, batch ) {
 	for ( const value of walker ) {
 		const item = value.item;
 
-		if ( value.type == 'elementStart' && __WEBPACK_IMPORTED_MODULE_9__image_utils__["a" /* isImage */]( item ) && !__WEBPACK_IMPORTED_MODULE_10__utils__["b" /* getCaptionFromImage */]( item ) ) {
+		if ( value.type == 'elementStart' && Object(__WEBPACK_IMPORTED_MODULE_9__image_utils__["a" /* isImage */])( item ) && !Object(__WEBPACK_IMPORTED_MODULE_10__utils__["b" /* getCaptionFromImage */])( item ) ) {
 			batch.document.enqueueChanges( () => {
 				// Make sure that the image does not have caption already.
 				// https://github.com/ckeditor/ckeditor5-image/issues/78
-				if ( !__WEBPACK_IMPORTED_MODULE_10__utils__["b" /* getCaptionFromImage */]( item ) ) {
+				if ( !Object(__WEBPACK_IMPORTED_MODULE_10__utils__["b" /* getCaptionFromImage */])( item ) ) {
 					batch.insert( __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_engine_src_model_position__["a" /* default */].createAt( item, 'end' ), new __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_element__["a" /* default */]( 'caption' ) );
 				}
 			} );
@@ -57893,7 +57893,7 @@ function captionModelToView( elementCreator, hide = true ) {
 			return;
 		}
 
-		if ( __WEBPACK_IMPORTED_MODULE_9__image_utils__["a" /* isImage */]( captionElement.parent ) ) {
+		if ( Object(__WEBPACK_IMPORTED_MODULE_9__image_utils__["a" /* isImage */])( captionElement.parent ) ) {
 			if ( !consumable.consume( data.item, 'insert' ) ) {
 				return;
 			}
@@ -57986,9 +57986,9 @@ function captionElementCreator( viewDocument, placeholderText ) {
 		const editable = new __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_editableelement__["a" /* default */]( 'figcaption' );
 		editable.document = viewDocument;
 		editable.setCustomProperty( captionSymbol, true );
-		__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_view_placeholder__["a" /* attachPlaceholder */]( editable, placeholderText );
+		Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_view_placeholder__["a" /* attachPlaceholder */])( editable, placeholderText );
 
-		return __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_widget_src_utils__["e" /* toWidgetEditable */]( editable );
+		return Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_widget_src_utils__["e" /* toWidgetEditable */])( editable );
 	};
 }
 
@@ -58065,7 +58065,7 @@ function matchImageCaption( element ) {
 
 
 const listener = {};
-__WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_extend__["a" /* default */]( listener, __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_extend__["a" /* default */])( listener, __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
 
 // Each document stores information about its placeholder elements and check functions.
 const documentPlaceholders = new WeakMap();
@@ -58415,7 +58415,7 @@ class ImageStyleEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_c
 		schema.allow( { name: 'image', attributes: 'imageStyle', inside: '$root' } );
 
 		// Converters for imageStyle attribute from model to view.
-		const modelToViewConverter = __WEBPACK_IMPORTED_MODULE_3__converters__["a" /* modelToViewStyleAttribute */]( styles );
+		const modelToViewConverter = Object(__WEBPACK_IMPORTED_MODULE_3__converters__["a" /* modelToViewStyleAttribute */])( styles );
 		editing.modelToView.on( 'addAttribute:imageStyle:image', modelToViewConverter );
 		data.modelToView.on( 'addAttribute:imageStyle:image', modelToViewConverter );
 		editing.modelToView.on( 'changeAttribute:imageStyle:image', modelToViewConverter );
@@ -58424,7 +58424,7 @@ class ImageStyleEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_c
 		data.modelToView.on( 'removeAttribute:imageStyle:image', modelToViewConverter );
 
 		// Converter for figure element from view to model.
-		data.viewToModel.on( 'element:figure', __WEBPACK_IMPORTED_MODULE_3__converters__["b" /* viewToModelStyleAttribute */]( styles ), { priority: 'low' } );
+		data.viewToModel.on( 'element:figure', Object(__WEBPACK_IMPORTED_MODULE_3__converters__["b" /* viewToModelStyleAttribute */])( styles ), { priority: 'low' } );
 
 		// Register separate command for each style.
 		for ( const style of styles ) {
@@ -58518,7 +58518,7 @@ class ImageStyleCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_
 	refresh() {
 		const element = this.editor.document.selection.getSelectedElement();
 
-		this.isEnabled = __WEBPACK_IMPORTED_MODULE_1__image_utils__["a" /* isImage */]( element );
+		this.isEnabled = Object(__WEBPACK_IMPORTED_MODULE_1__image_utils__["a" /* isImage */])( element );
 
 		if ( !element ) {
 			this.value = false;
@@ -58637,7 +58637,7 @@ function viewToModelImageStyle( style, data, consumable, conversionApi ) {
 	}
 
 	// Check if figure is converted to image.
-	if ( !__WEBPACK_IMPORTED_MODULE_0__image_utils__["a" /* isImage */]( modelImageElement ) ) {
+	if ( !Object(__WEBPACK_IMPORTED_MODULE_0__image_utils__["a" /* isImage */])( modelImageElement ) ) {
 		return;
 	}
 
@@ -58843,12 +58843,12 @@ class ItalicEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_
 		editor.document.schema.allow( { name: '$inline', attributes: ITALIC, inside: '$clipboardHolder' } );
 
 		// Build converter from model to view for data and editing pipelines.
-		__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__["a" /* default */]().for( data.modelToView, editing.modelToView )
+		Object(__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__["a" /* default */])().for( data.modelToView, editing.modelToView )
 			.fromAttribute( ITALIC )
 			.toElement( 'i' );
 
 		// Build converter from view to model for data pipeline.
-		__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__["a" /* default */]().for( data.viewToModel )
+		Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__["a" /* default */])().for( data.viewToModel )
 			.fromElement( 'em' )
 			.fromElement( 'i' )
 			.fromAttribute( 'style', { 'font-style': 'italic' } )
@@ -59107,7 +59107,7 @@ class Link extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plug
 		} );
 
 		// Close on click outside of balloon panel element.
-		__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_ui_src_bindings_clickoutsidehandler__["a" /* default */]( {
+		Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_ui_src_bindings_clickoutsidehandler__["a" /* default */])( {
 			emitter: this.formView,
 			activator: () => this._balloon.hasView( this.formView ),
 			contextElements: [ this._balloon.view.element ],
@@ -59389,7 +59389,7 @@ class LinkEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_sr
 		editor.document.schema.allow( { name: '$inline', attributes: 'linkHref', inside: '$clipboardHolder' } );
 
 		// Build converter from model to view for data and editing pipelines.
-		__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__["a" /* default */]().for( data.modelToView, editing.modelToView )
+		Object(__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__["a" /* default */])().for( data.modelToView, editing.modelToView )
 			.fromAttribute( 'linkHref' )
 			.toElement( linkHref => {
 				const linkElement = new __WEBPACK_IMPORTED_MODULE_3__linkelement__["a" /* default */]( 'a', { href: linkHref } );
@@ -59401,7 +59401,7 @@ class LinkEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_sr
 			} );
 
 		// Build converter from view to model for data pipeline.
-		__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__["a" /* default */]().for( data.viewToModel )
+		Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__["a" /* default */])().for( data.viewToModel )
 			.fromElement( 'a' )
 			.toAttribute( viewElement => ( {
 				key: 'linkHref',
@@ -59495,7 +59495,7 @@ class LinkCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_s
 				// When selection is inside text with `linkHref` attribute.
 				if ( selection.hasAttribute( 'linkHref' ) ) {
 					// Then update `linkHref` value.
-					const linkRange = __WEBPACK_IMPORTED_MODULE_3__findlinkrange__["a" /* default */]( selection.getFirstPosition(), selection.getAttribute( 'linkHref' ) );
+					const linkRange = Object(__WEBPACK_IMPORTED_MODULE_3__findlinkrange__["a" /* default */])( selection.getFirstPosition(), selection.getAttribute( 'linkHref' ) );
 
 					batch.setAttribute( linkRange, 'linkHref', href );
 
@@ -59592,7 +59592,7 @@ class UnlinkCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core
 		document.enqueueChanges( () => {
 			// Get ranges to unlink.
 			const rangesToUnlink = selection.isCollapsed ?
-				[ __WEBPACK_IMPORTED_MODULE_1__findlinkrange__["a" /* default */]( selection.getFirstPosition(), selection.getAttribute( 'linkHref' ) ) ] : selection.getRanges();
+				[ Object(__WEBPACK_IMPORTED_MODULE_1__findlinkrange__["a" /* default */])( selection.getFirstPosition(), selection.getAttribute( 'linkHref' ) ) ] : selection.getRanges();
 
 			// Keep it as one undo step.
 			const batch = document.batch();
@@ -59988,7 +59988,7 @@ class LinkFormView extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_sr
 			]
 		} );
 
-		__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_ui_src_bindings_submithandler__["a" /* default */]( {
+		Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_ui_src_bindings_submithandler__["a" /* default */])( {
 			view: this
 		} );
 
@@ -60221,9 +60221,9 @@ class List extends __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_core_src_plug
 		this.listenTo( this.editor.editing.view, 'keydown', ( evt, data ) => {
 			let commandName;
 
-			if ( data.keystroke == __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keyboard__["d" /* parseKeystroke */]( 'Tab' ) ) {
+			if ( data.keystroke == Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keyboard__["d" /* parseKeystroke */])( 'Tab' ) ) {
 				commandName = 'indentList';
-			} else if ( data.keystroke == __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keyboard__["d" /* parseKeystroke */]( 'Shift+Tab' ) ) {
+			} else if ( data.keystroke == Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keyboard__["d" /* parseKeystroke */])( 'Shift+Tab' ) ) {
 				commandName = 'outdentList';
 			}
 
@@ -60339,7 +60339,7 @@ class ListEngine extends __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_core_sr
 		const data = editor.data;
 		const editing = editor.editing;
 
-		this.editor.document.on( 'change', __WEBPACK_IMPORTED_MODULE_4__converters__["c" /* modelChangePostFixer */]( this.editor.document ), { priority: 'high' } );
+		this.editor.document.on( 'change', Object(__WEBPACK_IMPORTED_MODULE_4__converters__["c" /* modelChangePostFixer */])( this.editor.document ), { priority: 'high' } );
 
 		// Unbind all moved model elements before conversion happens. This is important for converters.
 		// TODO: fix this when changes are converted on `changesDone`.
@@ -60649,7 +60649,7 @@ class ListCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_s
 	 */
 	_getValue() {
 		// Check whether closest `listItem` ancestor of the position has a correct type.
-		const listItem = __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_first__["a" /* default */]( this.editor.document.selection.getSelectedBlocks() );
+		const listItem = Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_first__["a" /* default */])( this.editor.document.selection.getSelectedBlocks() );
 
 		return !!listItem && listItem.is( 'listItem' ) && listItem.getAttribute( 'type' ) == this.type;
 	}
@@ -60669,7 +60669,7 @@ class ListCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_s
 		const selection = this.editor.document.selection;
 		const schema = this.editor.document.schema;
 
-		const firstBlock = __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_first__["a" /* default */]( selection.getSelectedBlocks() );
+		const firstBlock = Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_first__["a" /* default */])( selection.getSelectedBlocks() );
 
 		if ( !firstBlock ) {
 			return false;
@@ -60864,7 +60864,7 @@ class IndentCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core
 	 */
 	_checkEnabled() {
 		// Check whether any of position's ancestor is a list item.
-		const listItem = __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_first__["a" /* default */]( this.editor.document.selection.getSelectedBlocks() );
+		const listItem = Object(__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_first__["a" /* default */])( this.editor.document.selection.getSelectedBlocks() );
 
 		// If selection is not in a list item, the command is disabled.
 		if ( !listItem || !listItem.is( 'listItem' ) ) {
@@ -61544,6 +61544,10 @@ function viewToModelPosition( evt, data ) {
  */
 function modelChangePostFixer( document ) {
 	return ( evt, type, changes, batch ) => {
+		if ( batch.type == 'transparent' ) {
+			return;
+		}
+
 		if ( type == 'remove' ) {
 			// Fix list items after the cut-out range.
 			// This fix is needed if items in model after cut-out range have now wrong indents compared to their previous siblings.
