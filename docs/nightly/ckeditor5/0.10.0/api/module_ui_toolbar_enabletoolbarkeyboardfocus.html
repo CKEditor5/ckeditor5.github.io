@@ -67,7 +67,7 @@
         <ul class="collapsing-list collapsing-list--filtered">
                   <li class="collapsing-list__item" data-public="true">
                     <div class="collapsing-list__term toggler--collapsed" id="enableToolbarKeyboardFocus">
-                      <h3><code><a class="member-name" href="#enableToolbarKeyboardFocus">enableToolbarKeyboardFocus</a>( options = { options.origin, options.originKeystrokeHandler, options.originFocusTracker, options.toolbar } )</code></h3>
+                      <h3><code><a class="member-name" href="#enableToolbarKeyboardFocus">enableToolbarKeyboardFocus</a>( options = { options.origin, options.originKeystrokeHandler, options.originFocusTracker, options.toolbar, [options.beforeFocus], [options.afterBlur] } )</code></h3>
                       <p class="badges">
 <span class="badge badge--gray ">static</span>
                       </p>
@@ -97,6 +97,14 @@ for <code>options.origin</code>.</p>
                                               <dt><code> options.toolbar : <span><a class="collapsing-list__type" href="module_ui_toolbar_toolbarview-ToolbarView.html">ToolbarView</a></span></code></dt>
                                               <dd><p>A toolbar which is to gain
 focus when <code>Alt+F10</code> is pressed.</p>
+                                              </dd>
+                                              <dt><code> [ options.beforeFocus ] : function</code></dt>
+                                              <dd><p>A callback executed before the <code>options.toolbar</code> gains focus
+upon the <code>Alt+F10</code> keystroke.</p>
+                                              </dd>
+                                              <dt><code> [ options.afterBlur ] : function</code></dt>
+                                              <dd><p>A callback executed after <code>options.toolbar</code> loses focus upon
+<code>Esc</code> keystroke but before the focus goes back to <code>options.origin</code>.</p>
                                               </dd>
                                             </dl>
                                   </dd>
@@ -989,6 +997,15 @@ focus when <code>Alt+F10</code> is pressed.</p>
                                           </ul>
                                         </li>
                                         <li class="toggler--collapsed">
+                                          <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_engine_model_documentselection.html">documentselection</a>
+                                          </div>
+                                          <ul>
+                                                  <li><a href="module_engine_model_documentselection-DocumentSelection.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">DocumentSelection</span></div></a>
+                                                  </li>
+                                          </ul>
+                                        </li>
+                                        <li class="toggler--collapsed">
                                           <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_engine_model_element.html">element</a>
                                           </div>
                                           <ul>
@@ -1030,15 +1047,6 @@ focus when <code>Alt+F10</code> is pressed.</p>
                                           <ul>
                                                   <li><a href="module_engine_model_liverange-LiveRange.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">LiveRange</span></div></a>
-                                                  </li>
-                                          </ul>
-                                        </li>
-                                        <li class="toggler--collapsed">
-                                          <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_engine_model_liveselection.html">liveselection</a>
-                                          </div>
-                                          <ul>
-                                                  <li><a href="module_engine_model_liveselection-LiveSelection.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">LiveSelection</span></div></a>
                                                   </li>
                                           </ul>
                                         </li>

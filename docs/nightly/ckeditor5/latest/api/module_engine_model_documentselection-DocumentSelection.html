@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Class LiveSelection (engine/model/liveselection~LiveSelection) - CKEditor 5 API docs</title>
+    <title>Class DocumentSelection (engine/model/documentselection~DocumentSelection) - CKEditor 5 API docs</title>
     <link rel="stylesheet" href="../../../assets/0.2.21/css/styles.css" type="text/css" media="screen">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
     <script src="../../../assets/0.2.21/scripts/app.js"></script>
@@ -26,9 +26,9 @@
       <section class="main__content formatted">
         <div class="api-header"><img src="../../../assets/0.2.21/img/cog.svg" alt="Class" title="Class"/>
           <div class="api-header__title">
-            <h1>LiveSelection
+            <h1>DocumentSelection
             </h1>
-            <p class="header__import">@ckeditor/ckeditor5-engine/src/model/liveselection
+            <p class="header__import">@ckeditor/ckeditor5-engine/src/model/documentselection
             </p>
           </div>
         </div>
@@ -41,24 +41,26 @@
                       <ul class="hierarchy-list">
                                 <li><code><span><a href="module_engine_model_selection-Selection.html">Selection</a></span></code>
                                   <ul>
-                                            <li><code><span><a href="module_engine_model_liveselection-LiveSelection.html">LiveSelection</a></span></code>
+                                            <li><code><span><a href="module_engine_model_documentselection-DocumentSelection.html">DocumentSelection</a></span></code>
                                             </li>
                                   </ul>
                                 </li>
                       </ul>
                     </dd>
           </dl>
-        </nav><p><code>LiveSelection</code> is a type of <a href="module_engine_model_selection-Selection.html">selection</a> that listens to changes on a
-<a href="module_engine_model_document-Document.html">document</a> and has it ranges updated accordingly. Internal implementation of this
-mechanism bases on <a href="module_engine_model_liverange-LiveRange.html">live ranges</a>.</p>
-<p>Differences between <a href="module_engine_model_selection-Selection.html"><code>Selection</code></a> and <code>LiveSelection</code> are:</p>
+        </nav><p><code>DocumentSelection</code> is a special selection which is used as the
+<a href="module_engine_model_document-Document.html#selection">document&apos;s selection</a>.
+There can be only one instance of <code>DocumentSelection</code> per document.</p>
+<p><code>DocumentSelection</code> is automatically updated upon changes in the <a href="module_engine_model_document-Document.html">document</a>
+to always contain valid ranges. Its attributes are inherited from the text unless set explicitly.</p>
+<p>Differences between <a href="module_engine_model_selection-Selection.html"><code>Selection</code></a> and <code>DocumentSelection</code> are:</p>
 <ul>
-<li>there is always a range in <code>LiveSelection</code> - even if no ranges were added there is a
-<a href="module_engine_model_liveselection-LiveSelection.html#_getDefaultRange">&quot;default range&quot;</a> present in the selection,</li>
+<li>there is always a range in <code>DocumentSelection</code> - even if no ranges were added there is a &quot;default range&quot;
+present in the selection,</li>
 <li>ranges added to this selection updates automatically when the document changes,</li>
-<li>attributes of <code>LiveSelection</code> are updated automatically according to selection ranges.</li>
+<li>attributes of <code>DocumentSelection</code> are updated automatically according to selection ranges.</li>
 </ul>
-<p>Since <code>LiveSelection</code> uses <a href="module_engine_model_liverange-LiveRange.html">live ranges</a>
+<p>Since <code>DocumentSelection</code> uses <a href="module_engine_model_liverange-LiveRange.html">live ranges</a>
 and is updated when <a href="module_engine_model_document-Document.html">document</a>
 changes, it cannot be set on <a href="module_engine_model_node-Node.html">nodes</a>
 that are inside <a href="module_engine_model_documentfragment-DocumentFragment.html">document fragment</a>.
@@ -106,7 +108,7 @@ use <a href="module_engine_model_selection-Selection.html">Selection class</a> i
                       <p class="collapsing-list__excerpt">Keeps mapping of attribute name to priority with which the attribute got modified (added/changed/removed)
 last time. Possible values of priority are: <code>&apos;low&apos;</code> and <code>&apos;normal&apos;</code>.</p>
                       <div class="collapsing-list__content">
-<p>Priorities are used by internal <code>LiveSelection</code> mechanisms. All attributes set using <code>LiveSelection</code>
+<p>Priorities are used by internal <code>DocumentSelection</code> mechanisms. All attributes set using <code>DocumentSelection</code>
 attributes API are set with <code>&apos;normal&apos;</code> priority.</p>
                       </div>
                     </div>
@@ -387,7 +389,7 @@ ensure proper ranges removal.
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Internal method for removing <code>LiveSelection</code> attribute. Supports attribute priorities (through <code>directChange</code>
+                      <p class="collapsing-list__excerpt">Internal method for removing <code>DocumentSelection</code> attribute. Supports attribute priorities (through <code>directChange</code>
 parameter).
                       </p>
                       <div class="collapsing-list__content">
@@ -440,7 +442,7 @@ existing attribute had higher priority.</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Internal method for setting <code>LiveSelection</code> attribute. Supports attribute priorities (through <code>directChange</code>
+                      <p class="collapsing-list__excerpt">Internal method for setting <code>DocumentSelection</code> attribute. Supports attribute priorities (through <code>directChange</code>
 parameter).
                       </p>
                       <div class="collapsing-list__content">
@@ -475,7 +477,7 @@ is caused by <code>Batch</code> API.</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Internal method for setting multiple <code>LiveSelection</code> attributes. Supports attribute priorities (through
+                      <p class="collapsing-list__excerpt">Internal method for setting multiple <code>DocumentSelection</code> attributes. Supports attribute priorities (through
 <code>directChange</code> parameter).
                       </p>
                       <div class="collapsing-list__content">
@@ -1186,22 +1188,17 @@ or backward - from end to start (<code>true</code>).</p>
         <ul class="collapsing-list collapsing-list--filtered">
                   <li class="collapsing-list__item" data-public="true">
                     <div class="collapsing-list__term toggler--collapsed" id="createFromSelection">
-                      <h3><code><a class="member-name" href="#createFromSelection">createFromSelection</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_liveselection-LiveSelection.html">LiveSelection</a></span></code></h3>
+                      <h3><code><a class="member-name" href="#createFromSelection">createFromSelection</a>()</code></h3>
                       <p class="badges">
 <span class="badge badge--gray ">static</span>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Creates and returns an instance of <code>LiveSelection</code> that is a clone of given selection, meaning that it has same
-ranges and same direction as this selection.
+                      <p class="collapsing-list__excerpt">This method is not available in <code>DocumentSelection</code>. There can be only one
+<code>DocumentSelection</code> per document instance, so creating new <code>DocumentSelection</code>s this way
+would be unsafe.
                       </p>
                       <div class="collapsing-list__content">
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code><span><a class="collapsing-list__type" href="module_engine_model_liveselection-LiveSelection.html">LiveSelection</a></span></code></dt>
-                                  <dd><p><code>Selection</code> instance that is a clone of given selection.</p>
-                                  </dd>
-                        </dl>
                       </div>
                     </div>
                   </li>
@@ -2166,6 +2163,15 @@ using <a href="module_engine_model_batch-Batch.html">Batch</a> API (<code>false<
                                                   </li>
                                           </ul>
                                         </li>
+                                        <li class="toggler--expanded">
+                                          <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_engine_model_documentselection.html">documentselection</a>
+                                          </div>
+                                          <ul>
+                                                  <li><a href="module_engine_model_documentselection-DocumentSelection.html">
+                                                      <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--class tree__item__text">DocumentSelection</span></div></a>
+                                                  </li>
+                                          </ul>
+                                        </li>
                                         <li class="toggler--collapsed">
                                           <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_engine_model_element.html">element</a>
                                           </div>
@@ -2208,15 +2214,6 @@ using <a href="module_engine_model_batch-Batch.html">Batch</a> API (<code>false<
                                           <ul>
                                                   <li><a href="module_engine_model_liverange-LiveRange.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">LiveRange</span></div></a>
-                                                  </li>
-                                          </ul>
-                                        </li>
-                                        <li class="toggler--expanded">
-                                          <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_engine_model_liveselection.html">liveselection</a>
-                                          </div>
-                                          <ul>
-                                                  <li><a href="module_engine_model_liveselection-LiveSelection.html">
-                                                      <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--class tree__item__text">LiveSelection</span></div></a>
                                                   </li>
                                           </ul>
                                         </li>

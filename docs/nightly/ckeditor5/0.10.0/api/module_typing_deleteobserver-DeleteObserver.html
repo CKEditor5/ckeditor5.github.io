@@ -39,7 +39,7 @@
                     <dt>Hierarchy</dt>
                     <dd>
                       <ul class="hierarchy-list">
-                                <li><code>Observer</code>
+                                <li><code><span><a href="module_engine_viewithobserver_observer-Observer.html">Observer</a></span></code>
                                   <ul>
                                             <li><code><span><a href="module_typing_deleteobserver-DeleteObserver.html">DeleteObserver</a></span></code>
                                             </li>
@@ -78,16 +78,126 @@
             </li>
           </ul>
         </div>
-        <h2>Methods</h2>
+        <h2>Properties</h2>
         <ul class="collapsing-list collapsing-list--filtered">
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="observe">
-                      <h3><code><a class="member-name" href="#observe">observe</a>()</code></h3>
+                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="document">
+                      <h3><code><a class="member-name" href="#document">document</a> : <span><a class="collapsing-list__type" href="module_engine_viewithdocument-Document.html">Document</a></span></code></h3>
+                      <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+<span class="badge badge--gray ">inherited</span>
+                      </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">
+                      <p class="collapsing-list__excerpt">Reference to the <a href="module_engine_viewithdocument-Document.html"><code>Document</code></a> object.</p>
+                      <div class="collapsing-list__content">
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="isEnabled">
+                      <h3><code><a class="member-name" href="#isEnabled">isEnabled</a> : Boolean</code></h3>
+                      <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+<span class="badge badge--gray ">inherited</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">State of the observer. If it is disabled events will not be fired.</p>
+                      <div class="collapsing-list__content">
+                      </div>
+                    </div>
+                  </li>
+        </ul>
+        <h2>Methods</h2>
+        <ul class="collapsing-list collapsing-list--filtered">
+                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="constructor">
+                      <h3><code><a class="member-name" href="#constructor">constructor</a>( document )</code></h3>
+                      <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Creates an instance of the observer.
                       </p>
                       <div class="collapsing-list__content">
+                        <h4>Parameters</h4>
+                                <dl>
+                                  <dt><code> document : <span><a class="collapsing-list__type" href="module_engine_viewithdocument-Document.html">Document</a></span></code></dt>
+                                  <dd>
+                                  </dd>
+                                </dl>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="destroy">
+                      <h3><code><a class="member-name" href="#destroy">destroy</a>()</code></h3>
+                      <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Disables and destroys the observer, among others removes event listeners created by the observer.
+                      </p>
+                      <div class="collapsing-list__content">
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="disable">
+                      <h3><code><a class="member-name" href="#disable">disable</a>()</code></h3>
+                      <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Disables the observer. This method is called before
+<a href="module_engine_viewithdocument-Document.html#render">rendering</a> to prevent firing events during rendering.
+                      </p>
+                      <div class="collapsing-list__content">
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="enable">
+                      <h3><code><a class="member-name" href="#enable">enable</a>()</code></h3>
+                      <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Enables the observer. This method is called when then observer is registered to the
+<a href="module_engine_viewithdocument-Document.html"><code>Document</code></a> and after <a href="module_engine_viewithdocument-Document.html#render">rendering</a>
+(all observers are <a href="module_engine_viewithobserver_observer-Observer.html#disable">disabled</a> before rendering).
+                      </p>
+                      <div class="collapsing-list__content">
+<p>A typical use case for disabling observers is that mutation observers need to be disabled for the rendering.
+However, a child class may not need to be disabled, so it can implement an empty method.</p>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="observe">
+                      <h3><code><a class="member-name" href="#observe">observe</a>( domElement, name )</code></h3>
+                      <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Starts observing the given root element.
+                      </p>
+                      <div class="collapsing-list__content">
+                        <h4>Parameters</h4>
+                                <dl>
+                                  <dt><code> domElement : HTMLElement</code></dt>
+                                  <dd>
+                                  </dd>
+                                  <dt><code> name : String</code></dt>
+                                  <dd><p>The name of the root element.</p>
+                                  </dd>
+                                </dl>
                       </div>
                     </div>
                   </li>
@@ -976,6 +1086,15 @@
                                           </ul>
                                         </li>
                                         <li class="toggler--collapsed">
+                                          <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_engine_model_documentselection.html">documentselection</a>
+                                          </div>
+                                          <ul>
+                                                  <li><a href="module_engine_model_documentselection-DocumentSelection.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">DocumentSelection</span></div></a>
+                                                  </li>
+                                          </ul>
+                                        </li>
+                                        <li class="toggler--collapsed">
                                           <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_engine_model_element.html">element</a>
                                           </div>
                                           <ul>
@@ -1017,15 +1136,6 @@
                                           <ul>
                                                   <li><a href="module_engine_model_liverange-LiveRange.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">LiveRange</span></div></a>
-                                                  </li>
-                                          </ul>
-                                        </li>
-                                        <li class="toggler--collapsed">
-                                          <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_engine_model_liveselection.html">liveselection</a>
-                                          </div>
-                                          <ul>
-                                                  <li><a href="module_engine_model_liveselection-LiveSelection.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">LiveSelection</span></div></a>
                                                   </li>
                                           </ul>
                                         </li>

@@ -35700,6 +35700,14 @@ class LabeledInputView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* defaul
 		this.set( 'value' );
 
 		/**
+		 * Controls whether the component is in read-only mode.
+		 *
+		 * @observable
+		 * @member {Boolean} #isReadOnly
+		 */
+		this.set( 'isReadOnly', false );
+
+		/**
 		 * The label view.
 		 *
 		 * @member {module:ui/label/labelview~LabelView} #labelView
@@ -35713,9 +35721,15 @@ class LabeledInputView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* defaul
 		 */
 		this.inputView = this._createInputView( InputView, id );
 
+		const bind = this.bindTemplate;
+
 		this.template = new __WEBPACK_IMPORTED_MODULE_1__template__["a" /* default */]( {
 			tag: 'div',
-
+			attributes: {
+				class: [
+					bind.if( 'isReadOnly', 'ck-disabled' )
+				]
+			},
 			children: [
 				this.labelView,
 				this.inputView
@@ -35752,6 +35766,7 @@ class LabeledInputView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* defaul
 
 		inputView.id = id;
 		inputView.bind( 'value' ).to( this );
+		inputView.bind( 'isReadOnly' ).to( this );
 
 		return inputView;
 	}
@@ -35829,6 +35844,14 @@ class InputTextView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default *
 		 */
 		this.set( 'placeholder' );
 
+		/**
+		 * Controls whether the input view is in read-only mode.
+		 *
+		 * @observable
+		 * @member {Boolean} #isReadOnly
+		 */
+		this.set( 'isReadOnly', false );
+
 		const bind = this.bindTemplate;
 
 		this.template = new __WEBPACK_IMPORTED_MODULE_1__template__["a" /* default */]( {
@@ -35840,7 +35863,8 @@ class InputTextView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default *
 					'ck-input-text'
 				],
 				id: bind.to( 'id' ),
-				placeholder: bind.to( 'placeholder' )
+				placeholder: bind.to( 'placeholder' ),
+				readonly: bind.to( 'isReadOnly' )
 			}
 		} );
 
@@ -40742,7 +40766,7 @@ function removeRangeContent( range ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__rootelement__ = __webpack_require__(395);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__batch__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__history__ = __webpack_require__(396);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__liveselection__ = __webpack_require__(397);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__documentselection__ = __webpack_require__(397);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__schema__ = __webpack_require__(399);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__treewalker__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__markercollection__ = __webpack_require__(400);
@@ -40844,9 +40868,9 @@ class Document {
 		 * Selection done on this document.
 		 *
 		 * @readonly
-		 * @member {module:engine/model/liveselection~LiveSelection}
+		 * @member {module:engine/model/documentselection~DocumentSelection}
 		 */
-		this.selection = new __WEBPACK_IMPORTED_MODULE_7__liveselection__["a" /* default */]( this );
+		this.selection = new __WEBPACK_IMPORTED_MODULE_7__documentselection__["a" /* default */]( this );
 
 		/**
 		 * Array of pending changes. See: {@link #enqueueChanges}.
@@ -41122,7 +41146,7 @@ class Document {
 		const json = Object(__WEBPACK_IMPORTED_MODULE_12__ckeditor_ckeditor5_utils_src_lib_lodash_clone__["a" /* default */])( this );
 
 		// Due to circular references we need to remove parent reference.
-		json.selection = '[engine.model.LiveSelection]';
+		json.selection = '[engine.model.DocumentSelection]';
 
 		return json;
 	}
@@ -41183,6 +41207,8 @@ class Document {
 	 * * 'remove' when nodes are removed,
 	 * * 'reinsert' when remove is undone,
 	 * * 'move' when nodes are moved,
+	 * * 'rename' when element is renamed,
+	 * * 'marker' when a marker changes (added, removed or its range is changed),
 	 * * 'addAttribute' when attributes are added,
 	 * * 'removeAttribute' when attributes are removed,
 	 * * 'changeAttribute' when attributes change,
@@ -41193,9 +41219,9 @@ class Document {
 	 * @event change
 	 * @param {String} type Change type, possible option: 'insert', 'remove', 'reinsert', 'move', 'attribute'.
 	 * @param {Object} data Additional information about the change.
-	 * @param {module:engine/model/range~Range} data.range Range in model containing changed nodes. Note that the range state is
+	 * @param {module:engine/model/range~Range} [data.range] Range in model containing changed nodes. Note that the range state is
 	 * after changes has been done, i.e. for 'remove' the range will be in the {@link #graveyard graveyard root}.
-	 * This is `undefined` for "...root..." types.
+	 * The range is not defined for root, rename and marker types.
 	 * @param {module:engine/model/position~Position} [data.sourcePosition] Change source position.
 	 * Exists for 'remove', 'reinsert' and 'move'.
 	 * Note that this position state is before changes has been done, i.e. for 'reinsert' the source position will be in the
@@ -41205,7 +41231,7 @@ class Document {
 	 * 'changeRootAttribute' type.
 	 * @param {*} [data.newValue] Only for 'addAttribute', 'addRootAttribute', 'changeAttribute' or
 	 * 'changeRootAttribute' type.
-	 * @param {module:engine/model/rootelement~RootElement} [changeInfo.root] Root element which attributes got changed. This is defined
+	 * @param {module:engine/model/rootelement~RootElement} [data.root] Root element which attributes got changed. This is defined
 	 * only for root types.
 	 * @param {module:engine/model/batch~Batch} batch A {@link module:engine/model/batch~Batch batch}
 	 * of changes which this change is a part of.
@@ -46334,7 +46360,7 @@ class History {
  */
 
 /**
- * @module engine/model/liveselection
+ * @module engine/model/documentselection
  */
 
 
@@ -46355,17 +46381,20 @@ const attrOpTypes = new Set(
 );
 
 /**
- * `LiveSelection` is a type of {@link module:engine/model/selection~Selection selection} that listens to changes on a
- * {@link module:engine/model/document~Document document} and has it ranges updated accordingly. Internal implementation of this
- * mechanism bases on {@link module:engine/model/liverange~LiveRange live ranges}.
+ * `DocumentSelection` is a special selection which is used as the
+ * {@link module:engine/model/document~Document#selection document's selection}.
+ * There can be only one instance of `DocumentSelection` per document.
  *
- * Differences between {@link module:engine/model/selection~Selection} and `LiveSelection` are:
- * * there is always a range in `LiveSelection` - even if no ranges were added there is a
- * {@link module:engine/model/liveselection~LiveSelection#_getDefaultRange "default range"} present in the selection,
+ * `DocumentSelection` is automatically updated upon changes in the {@link module:engine/model/document~Document document}
+ * to always contain valid ranges. Its attributes are inherited from the text unless set explicitly.
+ *
+ * Differences between {@link module:engine/model/selection~Selection} and `DocumentSelection` are:
+ * * there is always a range in `DocumentSelection` - even if no ranges were added there is a "default range"
+ * present in the selection,
  * * ranges added to this selection updates automatically when the document changes,
- * * attributes of `LiveSelection` are updated automatically according to selection ranges.
+ * * attributes of `DocumentSelection` are updated automatically according to selection ranges.
  *
- * Since `LiveSelection` uses {@link module:engine/model/liverange~LiveRange live ranges}
+ * Since `DocumentSelection` uses {@link module:engine/model/liverange~LiveRange live ranges}
  * and is updated when {@link module:engine/model/document~Document document}
  * changes, it cannot be set on {@link module:engine/model/node~Node nodes}
  * that are inside {@link module:engine/model/documentfragment~DocumentFragment document fragment}.
@@ -46374,7 +46403,7 @@ const attrOpTypes = new Set(
  *
  * @extends module:engine/model/selection~Selection
  */
-class LiveSelection extends __WEBPACK_IMPORTED_MODULE_8__selection__["a" /* default */] {
+class DocumentSelection extends __WEBPACK_IMPORTED_MODULE_8__selection__["a" /* default */] {
 	/**
 	 * Creates an empty live selection for given {@link module:engine/model/document~Document}.
 	 *
@@ -46387,7 +46416,7 @@ class LiveSelection extends __WEBPACK_IMPORTED_MODULE_8__selection__["a" /* defa
 		 * Document which owns this selection.
 		 *
 		 * @protected
-		 * @member {module:engine/model/document~Document} module:engine/model/liveselection~LiveSelection#_document
+		 * @member {module:engine/model/document~Document} module:engine/model/documentselection~DocumentSelection#_document
 		 */
 		this._document = document;
 
@@ -46395,20 +46424,24 @@ class LiveSelection extends __WEBPACK_IMPORTED_MODULE_8__selection__["a" /* defa
 		 * Keeps mapping of attribute name to priority with which the attribute got modified (added/changed/removed)
 		 * last time. Possible values of priority are: `'low'` and `'normal'`.
 		 *
-		 * Priorities are used by internal `LiveSelection` mechanisms. All attributes set using `LiveSelection`
+		 * Priorities are used by internal `DocumentSelection` mechanisms. All attributes set using `DocumentSelection`
 		 * attributes API are set with `'normal'` priority.
 		 *
 		 * @private
-		 * @member {Map} module:engine/model/liveselection~LiveSelection#_attributePriority
+		 * @member {Map} module:engine/model/documentselection~DocumentSelection#_attributePriority
 		 */
 		this._attributePriority = new Map();
 
-		// Whenever attribute operation is performed on document, update selection attributes.
-		// This is not the most efficient way to update selection attributes, but should be okay for now.
-		this.listenTo( this._document, 'change', ( evt, type ) => {
+		this.listenTo( this._document, 'change', ( evt, type, changes, batch ) => {
+			// Whenever attribute operation is performed on document, update selection attributes.
+			// This is not the most efficient way to update selection attributes, but should be okay for now.
 			if ( attrOpTypes.has( type ) ) {
 				this._updateAttributes( false );
 			}
+
+			// Whenever element which had selection's attributes stored in it stops being empty,
+			// the attributes need to be removed.
+			clearAttributesStoredInElement( changes, batch );
 		} );
 	}
 
@@ -46507,7 +46540,7 @@ class LiveSelection extends __WEBPACK_IMPORTED_MODULE_8__selection__["a" /* defa
 	 */
 	setAttribute( key, value ) {
 		// Store attribute in parent element if the selection is collapsed in an empty node.
-		if ( this.isCollapsed && this.anchor.parent.childCount === 0 ) {
+		if ( this.isCollapsed && this.anchor.parent.isEmpty ) {
 			this._storeAttribute( key, value );
 		}
 
@@ -46523,7 +46556,7 @@ class LiveSelection extends __WEBPACK_IMPORTED_MODULE_8__selection__["a" /* defa
 	 */
 	removeAttribute( key ) {
 		// Remove stored attribute from parent element if the selection is collapsed in an empty node.
-		if ( this.isCollapsed && this.anchor.parent.childCount === 0 ) {
+		if ( this.isCollapsed && this.anchor.parent.isEmpty ) {
 			this._removeStoredAttribute( key );
 		}
 
@@ -46540,7 +46573,7 @@ class LiveSelection extends __WEBPACK_IMPORTED_MODULE_8__selection__["a" /* defa
 	setAttributesTo( attrs ) {
 		attrs = Object(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_tomap__["a" /* default */])( attrs );
 
-		if ( this.isCollapsed && this.anchor.parent.childCount === 0 ) {
+		if ( this.isCollapsed && this.anchor.parent.isEmpty ) {
 			this._setStoredAttributesTo( attrs );
 		}
 
@@ -46568,17 +46601,19 @@ class LiveSelection extends __WEBPACK_IMPORTED_MODULE_8__selection__["a" /* defa
 	}
 
 	/**
-	 * Creates and returns an instance of `LiveSelection` that is a clone of given selection, meaning that it has same
-	 * ranges and same direction as this selection.
-	 *
-	 * @params {module:engine/model/selection~Selection} otherSelection Selection to be cloned.
-	 * @returns {module:engine/model/liveselection~LiveSelection} `Selection` instance that is a clone of given selection.
+	 * This method is not available in `DocumentSelection`. There can be only one
+	 * `DocumentSelection` per document instance, so creating new `DocumentSelection`s this way
+	 * would be unsafe.
 	 */
-	static createFromSelection( otherSelection ) {
-		const selection = new this( otherSelection._document );
-		selection.setTo( otherSelection );
-
-		return selection;
+	static createFromSelection() {
+		/**
+		 * `DocumentSelection#createFromSelection()` is not available. There can be only one
+		 * `DocumentSelection` per document instance, so creating new `DocumentSelection`s this way
+		 * would be unsafe.
+		 *
+		 * @error documentselection-cannot-create
+		 */
+		throw new __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'documentselection-cannot-create: Cannot create new DocumentSelection instance.' );
 	}
 
 	/**
@@ -46713,7 +46748,7 @@ class LiveSelection extends __WEBPACK_IMPORTED_MODULE_8__selection__["a" /* defa
 	}
 
 	/**
-	 * Internal method for setting `LiveSelection` attribute. Supports attribute priorities (through `directChange`
+	 * Internal method for setting `DocumentSelection` attribute. Supports attribute priorities (through `directChange`
 	 * parameter).
 	 *
 	 * @private
@@ -46747,7 +46782,7 @@ class LiveSelection extends __WEBPACK_IMPORTED_MODULE_8__selection__["a" /* defa
 	}
 
 	/**
-	 * Internal method for removing `LiveSelection` attribute. Supports attribute priorities (through `directChange`
+	 * Internal method for removing `DocumentSelection` attribute. Supports attribute priorities (through `directChange`
 	 * parameter).
 	 *
 	 * @private
@@ -46779,7 +46814,7 @@ class LiveSelection extends __WEBPACK_IMPORTED_MODULE_8__selection__["a" /* defa
 	}
 
 	/**
-	 * Internal method for setting multiple `LiveSelection` attributes. Supports attribute priorities (through
+	 * Internal method for setting multiple `DocumentSelection` attributes. Supports attribute priorities (through
 	 * `directChange` parameter).
 	 *
 	 * @private
@@ -46824,9 +46859,9 @@ class LiveSelection extends __WEBPACK_IMPORTED_MODULE_8__selection__["a" /* defa
 	* _getStoredAttributes() {
 		const selectionParent = this.getFirstPosition().parent;
 
-		if ( this.isCollapsed && selectionParent.childCount === 0 ) {
+		if ( this.isCollapsed && selectionParent.isEmpty ) {
 			for ( const key of selectionParent.getAttributeKeys() ) {
-				if ( key.indexOf( storePrefix ) === 0 ) {
+				if ( key.startsWith( storePrefix ) ) {
 					const realKey = key.substr( storePrefix.length );
 
 					yield [ realKey, selectionParent.getAttribute( key ) ];
@@ -46842,7 +46877,7 @@ class LiveSelection extends __WEBPACK_IMPORTED_MODULE_8__selection__["a" /* defa
 	 * @param {String} key Key of attribute to remove.
 	 */
 	_removeStoredAttribute( key ) {
-		const storeKey = LiveSelection._getStoreAttributeKey( key );
+		const storeKey = DocumentSelection._getStoreAttributeKey( key );
 
 		this._document.batch().removeAttribute( this.anchor.parent, storeKey );
 	}
@@ -46855,7 +46890,7 @@ class LiveSelection extends __WEBPACK_IMPORTED_MODULE_8__selection__["a" /* defa
 	 * @param {*} value Attribute value.
 	 */
 	_storeAttribute( key, value ) {
-		const storeKey = LiveSelection._getStoreAttributeKey( key );
+		const storeKey = DocumentSelection._getStoreAttributeKey( key );
 
 		this._document.batch().setAttribute( this.anchor.parent, storeKey, value );
 	}
@@ -46871,13 +46906,13 @@ class LiveSelection extends __WEBPACK_IMPORTED_MODULE_8__selection__["a" /* defa
 		const batch = this._document.batch();
 
 		for ( const [ oldKey ] of this._getStoredAttributes() ) {
-			const storeKey = LiveSelection._getStoreAttributeKey( oldKey );
+			const storeKey = DocumentSelection._getStoreAttributeKey( oldKey );
 
 			batch.removeAttribute( selectionParent, storeKey );
 		}
 
 		for ( const [ key, value ] of attrs ) {
-			const storeKey = LiveSelection._getStoreAttributeKey( key );
+			const storeKey = DocumentSelection._getStoreAttributeKey( key );
 
 			batch.setAttribute( selectionParent, storeKey, value );
 		}
@@ -46993,15 +47028,16 @@ class LiveSelection extends __WEBPACK_IMPORTED_MODULE_8__selection__["a" /* defa
 		this.fire( 'change:range', { directChange: false } );
 	}
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = LiveSelection;
+/* harmony export (immutable) */ __webpack_exports__["a"] = DocumentSelection;
 
 
 /**
  * @event change:attribute
  */
 
-// Helper function for {@link module:engine/model/liveselection~LiveSelection#_updateAttributes}. It takes model item, checks whether
-// it is a text node (or text proxy) and if so, returns it's attributes. If not, returns `null`.
+// Helper function for {@link module:engine/model/documentselection~DocumentSelection#_updateAttributes}.
+//
+// It takes model item, checks whether it is a text node (or text proxy) and, if so, returns it's attributes. If not, returns `null`.
 //
 // @param {module:engine/model/item~Item|null}  node
 // @returns {Boolean}
@@ -47011,6 +47047,30 @@ function getAttrsIfCharacter( node ) {
 	}
 
 	return null;
+}
+
+// Removes selection attributes from element which is not empty anymore.
+function clearAttributesStoredInElement( changes, batch ) {
+	// Batch may not be passed to the document#change event in some tests.
+	// See https://github.com/ckeditor/ckeditor5-engine/issues/1001#issuecomment-314202352
+	// Ignore also transparent batches because they are... transparent.
+	if ( !batch || batch.type == 'transparent' ) {
+		return;
+	}
+
+	const changeParent = changes.range && changes.range.start.parent;
+
+	// `changes.range` is not set in case of rename, root and marker operations.
+	// None of them may lead to the element becoming non-empty.
+	if ( !changeParent || changeParent.isEmpty ) {
+		return;
+	}
+
+	const storedAttributes = Array.from( changeParent.getAttributeKeys() ).filter( key => key.startsWith( storePrefix ) );
+
+	for ( const key of storedAttributes ) {
+		batch.removeAttribute( changeParent, key );
+	}
 }
 
 
@@ -50599,12 +50659,18 @@ class ComponentFactory {
  * for `options.origin`.
  * @param {module:ui/toolbar/toolbarview~ToolbarView} options.toolbar A toolbar which is to gain
  * focus when `Alt+F10` is pressed.
+ * @param {Function} [options.beforeFocus] A callback executed before the `options.toolbar` gains focus
+ * upon the `Alt+F10` keystroke.
+ * @param {Function} [options.afterBlur] A callback executed after `options.toolbar` loses focus upon
+ * `Esc` keystroke but before the focus goes back to `options.origin`.
  */
 function enableToolbarKeyboardFocus( {
 	origin,
 	originKeystrokeHandler,
 	originFocusTracker,
-	toolbar
+	toolbar,
+	beforeFocus,
+	afterBlur
 } ) {
 	// Because toolbar items can get focus, the overall state of the toolbar must
 	// also be tracked.
@@ -50613,7 +50679,12 @@ function enableToolbarKeyboardFocus( {
 	// Focus the toolbar on the keystroke, if not already focused.
 	originKeystrokeHandler.set( 'Alt+F10', ( data, cancel ) => {
 		if ( originFocusTracker.isFocused && !toolbar.focusTracker.isFocused ) {
+			if ( beforeFocus ) {
+				beforeFocus();
+			}
+
 			toolbar.focus();
+
 			cancel();
 		}
 	} );
@@ -50622,6 +50693,11 @@ function enableToolbarKeyboardFocus( {
 	toolbar.keystrokes.set( 'Esc', ( data, cancel ) => {
 		if ( toolbar.focusTracker.isFocused ) {
 			origin.focus();
+
+			if ( afterBlur ) {
+				afterBlur();
+			}
+
 			cancel();
 		}
 	} );
@@ -51514,7 +51590,7 @@ exports = module.exports = __webpack_require__(32)(undefined);
 
 
 // module
-exports.push([module.i, ".ck-hidden{display:none!important}.ck-reset,.ck-reset_all,.ck-reset_all *,.ck-reset_all a,.ck-reset_all textarea{box-sizing:border-box;width:auto;height:auto;position:static}svg.ck-icon{min-width:20px;min-height:20px;font-size:1em;vertical-align:middle}svg.ck-icon,svg.ck-icon *{color:inherit;cursor:inherit}svg.ck-icon *{fill:currentColor}[data-ck-tooltip]:after,[data-ck-tooltip]:before{visibility:hidden;opacity:0;display:none;position:absolute;z-index:999;pointer-events:none;-webkit-backface-visibility:hidden}[data-ck-tooltip]:after{content:attr(data-ck-tooltip)}[data-ck-tooltip]:before{content:\"\";width:0;height:0}.ck-button,a.ck-button{display:inline-block;position:relative;-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none}.ck-button:after,.ck-button:before,a.ck-button:after,a.ck-button:before{display:block}.ck-button:hover:after,.ck-button:hover:before,a.ck-button:hover:after,a.ck-button:hover:before{visibility:visible;opacity:1}.ck-button .ck-button__label,.ck-button:focus:not(:hover):after,.ck-button:focus:not(:hover):before,a.ck-button .ck-button__label,a.ck-button:focus:not(:hover):after,a.ck-button:focus:not(:hover):before{display:none}.ck-toolbar__separator{display:inline-block}.ck-toolbar__newline{display:block;clear:left}.ck-dropdown{display:inline-block;position:relative}.ck-dropdown:after{content:\"\";width:0;height:0;pointer-events:none;z-index:1;position:absolute;top:50%;transform:translateY(-50%)}.ck-dropdown__panel{-webkit-backface-visibility:hidden;display:none;z-index:999;position:absolute;left:0;transform:translateY(100%)}.ck-dropdown__panel-visible{display:inline-block}.ck-label,.ck-list__item{display:block}.cke-voice-label{display:none}.ck-balloon-panel{-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;display:none;position:absolute;z-index:999}.ck-balloon-panel.ck-balloon-panel_with-arrow:after,.ck-balloon-panel.ck-balloon-panel_with-arrow:before{content:\"\";position:absolute}.ck-balloon-panel.ck-balloon-panel_with-arrow:before{z-index:1}.ck-balloon-panel.ck-balloon-panel_with-arrow:after{z-index:2}.ck-balloon-panel.ck-balloon-panel_arrow_n:before,.ck-balloon-panel.ck-balloon-panel_arrow_ne:before,.ck-balloon-panel.ck-balloon-panel_arrow_nw:before{z-index:1}.ck-balloon-panel.ck-balloon-panel_arrow_n:after,.ck-balloon-panel.ck-balloon-panel_arrow_ne:after,.ck-balloon-panel.ck-balloon-panel_arrow_nw:after{z-index:2}.ck-balloon-panel.ck-balloon-panel_arrow_s:before,.ck-balloon-panel.ck-balloon-panel_arrow_se:before,.ck-balloon-panel.ck-balloon-panel_arrow_sw:before{z-index:1}.ck-balloon-panel.ck-balloon-panel_arrow_s:after,.ck-balloon-panel.ck-balloon-panel_arrow_se:after,.ck-balloon-panel.ck-balloon-panel_arrow_sw:after{z-index:2}.ck-balloon-panel_visible{display:block}.ck-editor .ck-toolbar.ck-toolbar_sticky{position:fixed;top:0}.ck-editor .ck-toolbar.ck-toolbar_sticky.ck-toolbar_sticky_bottom-limit{top:auto;position:absolute}.ck-reset,.ck-reset_all,.ck-reset_all *,.ck-reset_all a,.ck-reset_all textarea{margin:0;padding:0;border:0;background:transparent;text-decoration:none;vertical-align:middle;transition:none}.ck-reset_all,.ck-reset_all *,.ck-reset_all a,.ck-reset_all textarea{border-collapse:collapse;font:normal normal normal 12px Helvetica,Arial,Tahoma,Verdana,Sans-Serif;color:#333;text-align:left;white-space:nowrap;cursor:auto;float:none}.ck-reset_all .ck-rtl *{text-align:right}.ck-reset_all iframe{vertical-align:inherit}.ck-reset_all textarea{white-space:pre-wrap}.ck-reset_all input[type=password],.ck-reset_all input[type=text],.ck-reset_all textarea{cursor:text}.ck-reset_all input[type=password][disabled],.ck-reset_all input[type=text][disabled],.ck-reset_all textarea[disabled]{cursor:default}.ck-reset_all fieldset{padding:10px;border:2px groove #e0dfe3}.ck-reset_all button::-moz-focus-inner{padding:0;border:0}svg.ck-icon{width:1.66667em;height:1.66667em}[data-ck-tooltip]:after,[data-ck-tooltip]:before{left:50%;transition:opacity .2s ease-in-out .2s}[data-ck-tooltip]:after{border-radius:2px;color:#fff;font-size:.7rem;background:#333;padding:.4em .64em}[data-ck-tooltip]:before{border-style:solid}.ck-tooltip_s:after{bottom:-4px;transform:translate(-50%,100%)}.ck-tooltip_s:before{bottom:0;transform:translate(-50%,100%);border-color:transparent transparent #333;border-width:0 5px 5px}.ck-tooltip_n:after{top:-4px;transform:translate(-50%,-100%)}.ck-tooltip_n:before{top:0;transform:translate(-50%,-100%);border-color:#333 transparent transparent;border-width:5px 5px 0}.ck-button,a.ck-button{background:#fff;border:1px solid #bfbfbf;white-space:nowrap;cursor:default;vertical-align:middle;padding:.4em;line-height:1.66667}.ck-button:not(.ck-disabled):focus,.ck-button:not(.ck-disabled):hover,a.ck-button:not(.ck-disabled):focus,a.ck-button:not(.ck-disabled):hover{background:#e6e6e6;border-color:#a6a6a6}.ck-button:not(.ck-disabled):active,a.ck-button:not(.ck-disabled):active{background:#d9d9d9;border-color:#999;box-shadow:inset 0 2px 2px #bfbfbf}.ck-button.ck-disabled,a.ck-button.ck-disabled{background:#fff;border-color:#d9d9d9}.ck-button.ck-rounded-corners,.ck-rounded-corners .ck-button,.ck-rounded-corners a.ck-button,a.ck-button.ck-rounded-corners{border-radius:2px}.ck-button:focus,a.ck-button:focus{outline:none;border:1px solid #6ab5f9;box-shadow:0 0 3px 2px #9bcdfb}.ck-button .ck-icon,a.ck-button .ck-icon{float:left}.ck-button.ck-disabled .ck-button__label,.ck-button.ck-disabled .ck-icon,a.ck-button.ck-disabled .ck-button__label,a.ck-button.ck-disabled .ck-icon{opacity:.5}.ck-button.ck-button_with-text,a.ck-button.ck-button_with-text{padding:.4em .8em}.ck-button.ck-button_with-text .ck-icon,a.ck-button.ck-button_with-text .ck-icon{margin-left:-.4em;margin-right:.4em}.ck-button.ck-button_with-text .ck-button__label,a.ck-button.ck-button_with-text .ck-button__label{display:block}.ck-button.ck-on,a.ck-button.ck-on{background:#f7f7f7;border-color:#b9b9b9}.ck-button.ck-on:not(.ck-disabled):focus,.ck-button.ck-on:not(.ck-disabled):hover,a.ck-button.ck-on:not(.ck-disabled):focus,a.ck-button.ck-on:not(.ck-disabled):hover{background:#dedede;border-color:#a1a1a1}.ck-button.ck-on:not(.ck-disabled):active,a.ck-button.ck-on:not(.ck-disabled):active{background:#d2d2d2;border-color:#949494;box-shadow:inset 0 2px 2px #b9b9b9}.ck-button.ck-on.ck-disabled,a.ck-button.ck-on.ck-disabled{background:#f8f8f8;border-color:#d2d2d2}.ck-button-action,a.ck-button-action{background:#61b145;border-color:#498534;text-shadow:0 -1px #4e8e37;color:#fff}.ck-button-action:not(.ck-disabled):focus,.ck-button-action:not(.ck-disabled):hover,a.ck-button-action:not(.ck-disabled):focus,a.ck-button-action:not(.ck-disabled):hover{background:#579f3e;border-color:#3f732d}.ck-button-action:not(.ck-disabled):active,a.ck-button-action:not(.ck-disabled):active{background:#52963b;border-color:#3a6a29;box-shadow:inset 0 2px 2px #498534}.ck-button-action.ck-disabled,a.ck-button-action.ck-disabled{background:#6fbc54;border-color:#52963b}.ck-button-action:active,.ck-button-action:focus,.ck-button-action:hover,a.ck-button-action:active,a.ck-button-action:focus,a.ck-button-action:hover{text-shadow:0 -1px #3a6a29}.ck-button-bold,a.ck-button-bold{font-weight:700}.ck-button .ck-icon use,.ck-button .ck-icon use *,a.ck-button .ck-icon use,a.ck-button .ck-icon use *{color:inherit}.ck-button .ck-button__label,a.ck-button .ck-button__label{float:left;line-height:inherit;font-size:inherit;font-weight:inherit;color:inherit;cursor:inherit}.ck-toolbar{line-height:1;padding:.4em;border:1px solid #bfbfbf;white-space:normal;-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none}.ck-toolbar_floating{white-space:nowrap}.ck-rounded-corners .ck-toolbar,.ck-toolbar.ck-rounded-corners{border-radius:2px}.ck-toolbar__separator{width:1px;height:2.28em;vertical-align:middle;background:#bfbfbf}.ck-toolbar__newline{height:.4em}.ck-toolbar>*{margin-right:.4em}.ck-toolbar>:last-child{margin-right:0}.ck-toolbar-container .ck-toolbar{border:0}.ck-dropdown:after{border-style:solid;border-width:.4em .4em 0;border-color:#707070 transparent;right:.8em}.ck-dropdown .ck-button.ck-dropdown__button{padding-right:1.6em}.ck-dropdown .ck-button.ck-dropdown__button.ck-disabled .ck-button__label{opacity:.5}.ck-dropdown .ck-button.ck-dropdown__button .ck-button__label{width:7em;overflow:hidden;text-overflow:ellipsis}.ck-dropdown__panel{border:1px solid #b9b9b9;bottom:1px;background:#fff;box-shadow:0 1px 2px 0 rgba(0,0,0,.2)}.ck-dropdown__panel.ck-rounded-corners,.ck-rounded-corners .ck-dropdown__panel{border-radius:2px}.ck-list{-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;list-style-type:none;background:#fff}.ck-list.ck-rounded-corners,.ck-rounded-corners .ck-list{border-radius:2px}.ck-list__item{padding:.64em;cursor:default;min-width:12em}.ck-list__item:focus,.ck-list__item:hover{background:#f7f7f7}.ck-list__item:focus{box-shadow:0 0 3px 2px #9bcdfb;position:relative;z-index:1;outline:none}.ck-list__item:last-of-type{border:none}.ck-list__item_active{background:#1a8bf1;color:#fff}.ck-list__item_active:focus,.ck-list__item_active:hover{background:#0e7ee2}.ck-label{font-weight:700}.ck-input-text{box-shadow:inset 2px 2px 3px #e6e6e6;border:1px solid #b9b9b9;padding:.64em;min-width:250px}.ck-input-text.ck-rounded-corners,.ck-rounded-corners .ck-input-text{border-radius:2px}.ck-input-text:focus{outline:none;border:1px solid #6ab5f9;box-shadow:0 0 3px 2px #9bcdfb,inset 2px 2px 3px #e6e6e6}.ck-balloon-panel{box-shadow:0 1px 2px 0 rgba(0,0,0,.2);min-height:15px;background:#fff;border:1px solid #b9b9b9}.ck-balloon-panel.ck-rounded-corners,.ck-rounded-corners .ck-balloon-panel{border-radius:2px}.ck-balloon-panel.ck-balloon-panel_with-arrow:after,.ck-balloon-panel.ck-balloon-panel_with-arrow:before{width:0;height:0;border-style:solid}.ck-balloon-panel.ck-balloon-panel_arrow_n:after,.ck-balloon-panel.ck-balloon-panel_arrow_n:before,.ck-balloon-panel.ck-balloon-panel_arrow_ne:after,.ck-balloon-panel.ck-balloon-panel_arrow_ne:before,.ck-balloon-panel.ck-balloon-panel_arrow_nw:after,.ck-balloon-panel.ck-balloon-panel_arrow_nw:before{border-width:0 10px 15px}.ck-balloon-panel.ck-balloon-panel_arrow_n:before,.ck-balloon-panel.ck-balloon-panel_arrow_ne:before,.ck-balloon-panel.ck-balloon-panel_arrow_nw:before{border-color:transparent transparent #b9b9b9}.ck-balloon-panel.ck-balloon-panel_arrow_n:after,.ck-balloon-panel.ck-balloon-panel_arrow_ne:after,.ck-balloon-panel.ck-balloon-panel_arrow_nw:after{border-color:transparent transparent #fff;margin-top:2px}.ck-balloon-panel.ck-balloon-panel_arrow_s:after,.ck-balloon-panel.ck-balloon-panel_arrow_s:before,.ck-balloon-panel.ck-balloon-panel_arrow_se:after,.ck-balloon-panel.ck-balloon-panel_arrow_se:before,.ck-balloon-panel.ck-balloon-panel_arrow_sw:after,.ck-balloon-panel.ck-balloon-panel_arrow_sw:before{border-width:15px 10px 0}.ck-balloon-panel.ck-balloon-panel_arrow_s:before,.ck-balloon-panel.ck-balloon-panel_arrow_se:before,.ck-balloon-panel.ck-balloon-panel_arrow_sw:before{border-color:#b9b9b9 transparent transparent}.ck-balloon-panel.ck-balloon-panel_arrow_s:after,.ck-balloon-panel.ck-balloon-panel_arrow_se:after,.ck-balloon-panel.ck-balloon-panel_arrow_sw:after{border-color:#fff transparent transparent;margin-bottom:2px}.ck-balloon-panel.ck-balloon-panel_arrow_n:after,.ck-balloon-panel.ck-balloon-panel_arrow_n:before{left:50%;margin-left:-10px;top:-15px}.ck-balloon-panel.ck-balloon-panel_arrow_nw:after,.ck-balloon-panel.ck-balloon-panel_arrow_nw:before{left:20px;top:-15px}.ck-balloon-panel.ck-balloon-panel_arrow_ne:after,.ck-balloon-panel.ck-balloon-panel_arrow_ne:before{right:20px;top:-15px}.ck-balloon-panel.ck-balloon-panel_arrow_s:after,.ck-balloon-panel.ck-balloon-panel_arrow_s:before{left:50%;margin-left:-10px;bottom:-15px}.ck-balloon-panel.ck-balloon-panel_arrow_sw:after,.ck-balloon-panel.ck-balloon-panel_arrow_sw:before{left:20px;bottom:-15px}.ck-balloon-panel.ck-balloon-panel_arrow_se:after,.ck-balloon-panel.ck-balloon-panel_arrow_se:before{right:20px;bottom:-15px}.ck-editor-toolbar{border-radius:0}.ck-editor-toolbar .ck-button{border-width:0}.ck-editor-toolbar .ck-button.ck-disabled,.ck-editor-toolbar .ck-button:not(:hover):not(:focus):not(.ck-on){background:#f7f7f7}.ck-editor-toolbar .ck-button.ck-on{background:#dedede;border-color:#a1a1a1}.ck-editor-toolbar .ck-button.ck-on:not(.ck-disabled):focus,.ck-editor-toolbar .ck-button.ck-on:not(.ck-disabled):hover{background:#c6c6c6;border-color:#888}.ck-editor-toolbar .ck-button.ck-on:not(.ck-disabled):active{background:#b9b9b9;border-color:#7c7c7c;box-shadow:inset 0 2px 2px #a1a1a1}.ck-editor-toolbar .ck-button.ck-on.ck-disabled{background:#f7f7f7;border-color:#b9b9b9}.ck-editor-toolbar .ck-dropdown__button{border-width:1px}.ck-editor-toolbar .ck-dropdown__button:not(:hover):not(:focus):not(.ck-on){background:#fff}.ck-toolbar-container .ck-editor-toolbar{background:#f7f7f7}.ck-editor-toolbar-container.ck-balloon-panel_arrow_n:after,.ck-editor-toolbar-container.ck-balloon-panel_arrow_ne:after,.ck-editor-toolbar-container.ck-balloon-panel_arrow_nw:after{border-bottom-color:#f7f7f7}.ck-editor-toolbar-container.ck-balloon-panel_arrow_s:after,.ck-editor-toolbar-container.ck-balloon-panel_arrow_se:after,.ck-editor-toolbar-container.ck-balloon-panel_arrow_sw:after{border-top-color:#f7f7f7}.ck-editor .ck-toolbar.ck-toolbar_sticky{box-shadow:0 1px 2px 0 rgba(0,0,0,.2);border:1px solid #bfbfbf;border-width:0 0 1px;background:#f7f7f7}.ck-editor{position:relative}.ck-editor.ck-rounded-corners,.ck-rounded-corners .ck-editor{border-radius:2px}.ck-editor .ck-editor__top .ck-toolbar{border-top:0;border-left:0;border-right:0}.ck-editor .ck-editor__main{background:#fff}.ck-editor .ck-editor__bottom{border-bottom:0;border-left:0;border-right:0;padding:.8em}.ck-editor .ck-editor__editable.ck-focused{outline:1px solid #6ab5f9;box-shadow:inset 2px 2px 3px #e6e6e6}.ck-editor .ck-editor__editable_inline{overflow:auto;padding:0 .8em}.ck-editor,.ck-editor-bottom{background:#f7f7f7;border:1px solid #b9b9b9}", ""]);
+exports.push([module.i, ".ck-hidden{display:none!important}.ck-reset,.ck-reset_all,.ck-reset_all *,.ck-reset_all a,.ck-reset_all textarea{box-sizing:border-box;width:auto;height:auto;position:static}svg.ck-icon{min-width:20px;min-height:20px;font-size:1em;vertical-align:middle}svg.ck-icon,svg.ck-icon *{color:inherit;cursor:inherit}svg.ck-icon *{fill:currentColor}[data-ck-tooltip]:after,[data-ck-tooltip]:before{visibility:hidden;opacity:0;display:none;position:absolute;z-index:999;pointer-events:none;-webkit-backface-visibility:hidden}[data-ck-tooltip]:after{content:attr(data-ck-tooltip)}[data-ck-tooltip]:before{content:\"\";width:0;height:0}.ck-button,a.ck-button{display:inline-block;position:relative;-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none}.ck-button:after,.ck-button:before,a.ck-button:after,a.ck-button:before{display:block}.ck-button:hover:after,.ck-button:hover:before,a.ck-button:hover:after,a.ck-button:hover:before{visibility:visible;opacity:1}.ck-button .ck-button__label,.ck-button:focus:not(:hover):after,.ck-button:focus:not(:hover):before,a.ck-button .ck-button__label,a.ck-button:focus:not(:hover):after,a.ck-button:focus:not(:hover):before{display:none}.ck-toolbar__separator{display:inline-block}.ck-toolbar__newline{display:block;clear:left}.ck-dropdown{display:inline-block;position:relative}.ck-dropdown:after{content:\"\";width:0;height:0;pointer-events:none;z-index:1;position:absolute;top:50%;transform:translateY(-50%)}.ck-dropdown__panel{-webkit-backface-visibility:hidden;display:none;z-index:999;position:absolute;left:0;transform:translateY(100%)}.ck-dropdown__panel-visible{display:inline-block}.ck-label,.ck-list__item{display:block}.cke-voice-label{display:none}.ck-balloon-panel{-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;display:none;position:absolute;z-index:999}.ck-balloon-panel.ck-balloon-panel_with-arrow:after,.ck-balloon-panel.ck-balloon-panel_with-arrow:before{content:\"\";position:absolute}.ck-balloon-panel.ck-balloon-panel_with-arrow:before{z-index:1}.ck-balloon-panel.ck-balloon-panel_with-arrow:after{z-index:2}.ck-balloon-panel.ck-balloon-panel_arrow_n:before,.ck-balloon-panel.ck-balloon-panel_arrow_ne:before,.ck-balloon-panel.ck-balloon-panel_arrow_nw:before{z-index:1}.ck-balloon-panel.ck-balloon-panel_arrow_n:after,.ck-balloon-panel.ck-balloon-panel_arrow_ne:after,.ck-balloon-panel.ck-balloon-panel_arrow_nw:after{z-index:2}.ck-balloon-panel.ck-balloon-panel_arrow_s:before,.ck-balloon-panel.ck-balloon-panel_arrow_se:before,.ck-balloon-panel.ck-balloon-panel_arrow_sw:before{z-index:1}.ck-balloon-panel.ck-balloon-panel_arrow_s:after,.ck-balloon-panel.ck-balloon-panel_arrow_se:after,.ck-balloon-panel.ck-balloon-panel_arrow_sw:after{z-index:2}.ck-balloon-panel_visible{display:block}.ck-editor .ck-toolbar.ck-toolbar_sticky{position:fixed;top:0}.ck-editor .ck-toolbar.ck-toolbar_sticky.ck-toolbar_sticky_bottom-limit{top:auto;position:absolute}.ck-reset,.ck-reset_all,.ck-reset_all *,.ck-reset_all a,.ck-reset_all textarea{margin:0;padding:0;border:0;background:transparent;text-decoration:none;vertical-align:middle;transition:none}.ck-reset_all,.ck-reset_all *,.ck-reset_all a,.ck-reset_all textarea{border-collapse:collapse;font:normal normal normal 12px Helvetica,Arial,Tahoma,Verdana,Sans-Serif;color:#333;text-align:left;white-space:nowrap;cursor:auto;float:none}.ck-reset_all .ck-rtl *{text-align:right}.ck-reset_all iframe{vertical-align:inherit}.ck-reset_all textarea{white-space:pre-wrap}.ck-reset_all input[type=password],.ck-reset_all input[type=text],.ck-reset_all textarea{cursor:text}.ck-reset_all input[type=password][disabled],.ck-reset_all input[type=text][disabled],.ck-reset_all textarea[disabled]{cursor:default}.ck-reset_all fieldset{padding:10px;border:2px groove #e0dfe3}.ck-reset_all button::-moz-focus-inner{padding:0;border:0}svg.ck-icon{width:1.66667em;height:1.66667em}[data-ck-tooltip]:after,[data-ck-tooltip]:before{left:50%;transition:opacity .2s ease-in-out .2s}[data-ck-tooltip]:after{border-radius:2px;color:#fff;font-size:.7rem;background:#333;padding:.4em .64em}[data-ck-tooltip]:before{border-style:solid}.ck-tooltip_s:after{bottom:-4px;transform:translate(-50%,100%)}.ck-tooltip_s:before{bottom:0;transform:translate(-50%,100%);border-color:transparent transparent #333;border-width:0 5px 5px}.ck-tooltip_n:after{top:-4px;transform:translate(-50%,-100%)}.ck-tooltip_n:before{top:0;transform:translate(-50%,-100%);border-color:#333 transparent transparent;border-width:5px 5px 0}.ck-button,a.ck-button{background:#fff;border:1px solid #bfbfbf;white-space:nowrap;cursor:default;vertical-align:middle;padding:.4em;line-height:1.66667}.ck-button:not(.ck-disabled):focus,.ck-button:not(.ck-disabled):hover,a.ck-button:not(.ck-disabled):focus,a.ck-button:not(.ck-disabled):hover{background:#e6e6e6;border-color:#a6a6a6}.ck-button:not(.ck-disabled):active,a.ck-button:not(.ck-disabled):active{background:#d9d9d9;border-color:#999;box-shadow:inset 0 2px 2px #bfbfbf}.ck-button.ck-disabled,a.ck-button.ck-disabled{background:#fff;border-color:#d9d9d9}.ck-button.ck-rounded-corners,.ck-rounded-corners .ck-button,.ck-rounded-corners a.ck-button,a.ck-button.ck-rounded-corners{border-radius:2px}.ck-button:focus,a.ck-button:focus{outline:none;border:1px solid #6ab5f9;box-shadow:0 0 3px 2px #9bcdfb}.ck-button .ck-icon,a.ck-button .ck-icon{float:left}.ck-button.ck-disabled .ck-button__label,.ck-button.ck-disabled .ck-icon,a.ck-button.ck-disabled .ck-button__label,a.ck-button.ck-disabled .ck-icon{opacity:.5}.ck-button.ck-button_with-text,a.ck-button.ck-button_with-text{padding:.4em .8em}.ck-button.ck-button_with-text .ck-icon,a.ck-button.ck-button_with-text .ck-icon{margin-left:-.4em;margin-right:.4em}.ck-button.ck-button_with-text .ck-button__label,a.ck-button.ck-button_with-text .ck-button__label{display:block}.ck-button.ck-on,a.ck-button.ck-on{background:#f7f7f7;border-color:#b9b9b9}.ck-button.ck-on:not(.ck-disabled):focus,.ck-button.ck-on:not(.ck-disabled):hover,a.ck-button.ck-on:not(.ck-disabled):focus,a.ck-button.ck-on:not(.ck-disabled):hover{background:#dedede;border-color:#a1a1a1}.ck-button.ck-on:not(.ck-disabled):active,a.ck-button.ck-on:not(.ck-disabled):active{background:#d2d2d2;border-color:#949494;box-shadow:inset 0 2px 2px #b9b9b9}.ck-button.ck-on.ck-disabled,a.ck-button.ck-on.ck-disabled{background:#f8f8f8;border-color:#d2d2d2}.ck-button-action,a.ck-button-action{background:#61b145;border-color:#498534;text-shadow:0 -1px #4e8e37;color:#fff}.ck-button-action:not(.ck-disabled):focus,.ck-button-action:not(.ck-disabled):hover,a.ck-button-action:not(.ck-disabled):focus,a.ck-button-action:not(.ck-disabled):hover{background:#579f3e;border-color:#3f732d}.ck-button-action:not(.ck-disabled):active,a.ck-button-action:not(.ck-disabled):active{background:#52963b;border-color:#3a6a29;box-shadow:inset 0 2px 2px #498534}.ck-button-action.ck-disabled,a.ck-button-action.ck-disabled{background:#6fbc54;border-color:#52963b}.ck-button-action:active,.ck-button-action:focus,.ck-button-action:hover,a.ck-button-action:active,a.ck-button-action:focus,a.ck-button-action:hover{text-shadow:0 -1px #3a6a29}.ck-button-bold,a.ck-button-bold{font-weight:700}.ck-button .ck-icon use,.ck-button .ck-icon use *,a.ck-button .ck-icon use,a.ck-button .ck-icon use *{color:inherit}.ck-button .ck-button__label,a.ck-button .ck-button__label{float:left;line-height:inherit;font-size:inherit;font-weight:inherit;color:inherit;cursor:inherit}.ck-toolbar{line-height:1;padding:.4em;border:1px solid #bfbfbf;white-space:normal;-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none}.ck-toolbar_floating{white-space:nowrap}.ck-rounded-corners .ck-toolbar,.ck-toolbar.ck-rounded-corners{border-radius:2px}.ck-toolbar__separator{width:1px;height:2.28em;vertical-align:middle;background:#bfbfbf}.ck-toolbar__newline{height:.4em}.ck-toolbar>*{margin-right:.4em}.ck-toolbar>:last-child{margin-right:0}.ck-toolbar-container .ck-toolbar{border:0}.ck-dropdown:after{border-style:solid;border-width:.4em .4em 0;border-color:#707070 transparent;right:.8em}.ck-dropdown .ck-button.ck-dropdown__button{padding-right:1.6em}.ck-dropdown .ck-button.ck-dropdown__button.ck-disabled .ck-button__label{opacity:.5}.ck-dropdown .ck-button.ck-dropdown__button .ck-button__label{width:7em;overflow:hidden;text-overflow:ellipsis}.ck-dropdown__panel{border:1px solid #b9b9b9;bottom:1px;background:#fff;box-shadow:0 1px 2px 0 rgba(0,0,0,.2)}.ck-dropdown__panel.ck-rounded-corners,.ck-rounded-corners .ck-dropdown__panel{border-radius:2px}.ck-list{-moz-user-select:none;-webkit-user-select:none;-ms-user-select:none;list-style-type:none;background:#fff}.ck-list.ck-rounded-corners,.ck-rounded-corners .ck-list{border-radius:2px}.ck-list__item{padding:.64em;cursor:default;min-width:12em}.ck-list__item:focus,.ck-list__item:hover{background:#f7f7f7}.ck-list__item:focus{box-shadow:0 0 3px 2px #9bcdfb;position:relative;z-index:1;outline:none}.ck-list__item:last-of-type{border:none}.ck-list__item_active{background:#1a8bf1;color:#fff}.ck-list__item_active:focus,.ck-list__item_active:hover{background:#0e7ee2}.ck-label{font-weight:700}.ck-input-text{box-shadow:inset 2px 2px 3px #e6e6e6;border:1px solid #b9b9b9;padding:.64em;min-width:250px}.ck-input-text.ck-rounded-corners,.ck-rounded-corners .ck-input-text{border-radius:2px}.ck-input-text:focus{outline:none;border:1px solid #6ab5f9;box-shadow:0 0 3px 2px #9bcdfb,inset 2px 2px 3px #e6e6e6}.ck-input-text[readonly]{border:1px solid #d2d2d2;background:#f7f7f7;color:#5c5c5c}.ck-balloon-panel{box-shadow:0 1px 2px 0 rgba(0,0,0,.2);min-height:15px;background:#fff;border:1px solid #b9b9b9}.ck-balloon-panel.ck-rounded-corners,.ck-rounded-corners .ck-balloon-panel{border-radius:2px}.ck-balloon-panel.ck-balloon-panel_with-arrow:after,.ck-balloon-panel.ck-balloon-panel_with-arrow:before{width:0;height:0;border-style:solid}.ck-balloon-panel.ck-balloon-panel_arrow_n:after,.ck-balloon-panel.ck-balloon-panel_arrow_n:before,.ck-balloon-panel.ck-balloon-panel_arrow_ne:after,.ck-balloon-panel.ck-balloon-panel_arrow_ne:before,.ck-balloon-panel.ck-balloon-panel_arrow_nw:after,.ck-balloon-panel.ck-balloon-panel_arrow_nw:before{border-width:0 10px 15px}.ck-balloon-panel.ck-balloon-panel_arrow_n:before,.ck-balloon-panel.ck-balloon-panel_arrow_ne:before,.ck-balloon-panel.ck-balloon-panel_arrow_nw:before{border-color:transparent transparent #b9b9b9}.ck-balloon-panel.ck-balloon-panel_arrow_n:after,.ck-balloon-panel.ck-balloon-panel_arrow_ne:after,.ck-balloon-panel.ck-balloon-panel_arrow_nw:after{border-color:transparent transparent #fff;margin-top:2px}.ck-balloon-panel.ck-balloon-panel_arrow_s:after,.ck-balloon-panel.ck-balloon-panel_arrow_s:before,.ck-balloon-panel.ck-balloon-panel_arrow_se:after,.ck-balloon-panel.ck-balloon-panel_arrow_se:before,.ck-balloon-panel.ck-balloon-panel_arrow_sw:after,.ck-balloon-panel.ck-balloon-panel_arrow_sw:before{border-width:15px 10px 0}.ck-balloon-panel.ck-balloon-panel_arrow_s:before,.ck-balloon-panel.ck-balloon-panel_arrow_se:before,.ck-balloon-panel.ck-balloon-panel_arrow_sw:before{border-color:#b9b9b9 transparent transparent}.ck-balloon-panel.ck-balloon-panel_arrow_s:after,.ck-balloon-panel.ck-balloon-panel_arrow_se:after,.ck-balloon-panel.ck-balloon-panel_arrow_sw:after{border-color:#fff transparent transparent;margin-bottom:2px}.ck-balloon-panel.ck-balloon-panel_arrow_n:after,.ck-balloon-panel.ck-balloon-panel_arrow_n:before{left:50%;margin-left:-10px;top:-15px}.ck-balloon-panel.ck-balloon-panel_arrow_nw:after,.ck-balloon-panel.ck-balloon-panel_arrow_nw:before{left:20px;top:-15px}.ck-balloon-panel.ck-balloon-panel_arrow_ne:after,.ck-balloon-panel.ck-balloon-panel_arrow_ne:before{right:20px;top:-15px}.ck-balloon-panel.ck-balloon-panel_arrow_s:after,.ck-balloon-panel.ck-balloon-panel_arrow_s:before{left:50%;margin-left:-10px;bottom:-15px}.ck-balloon-panel.ck-balloon-panel_arrow_sw:after,.ck-balloon-panel.ck-balloon-panel_arrow_sw:before{left:20px;bottom:-15px}.ck-balloon-panel.ck-balloon-panel_arrow_se:after,.ck-balloon-panel.ck-balloon-panel_arrow_se:before{right:20px;bottom:-15px}.ck-editor-toolbar{border-radius:0}.ck-editor-toolbar .ck-button{border-width:0}.ck-editor-toolbar .ck-button.ck-disabled,.ck-editor-toolbar .ck-button:not(:hover):not(:focus):not(.ck-on){background:#f7f7f7}.ck-editor-toolbar .ck-button.ck-on{background:#dedede;border-color:#a1a1a1}.ck-editor-toolbar .ck-button.ck-on:not(.ck-disabled):focus,.ck-editor-toolbar .ck-button.ck-on:not(.ck-disabled):hover{background:#c6c6c6;border-color:#888}.ck-editor-toolbar .ck-button.ck-on:not(.ck-disabled):active{background:#b9b9b9;border-color:#7c7c7c;box-shadow:inset 0 2px 2px #a1a1a1}.ck-editor-toolbar .ck-button.ck-on.ck-disabled{background:#f7f7f7;border-color:#b9b9b9}.ck-editor-toolbar .ck-dropdown__button{border-width:1px}.ck-editor-toolbar .ck-dropdown__button:not(:hover):not(:focus):not(.ck-on){background:#fff}.ck-toolbar-container .ck-editor-toolbar{background:#f7f7f7}.ck-editor-toolbar-container.ck-balloon-panel_arrow_n:after,.ck-editor-toolbar-container.ck-balloon-panel_arrow_ne:after,.ck-editor-toolbar-container.ck-balloon-panel_arrow_nw:after{border-bottom-color:#f7f7f7}.ck-editor-toolbar-container.ck-balloon-panel_arrow_s:after,.ck-editor-toolbar-container.ck-balloon-panel_arrow_se:after,.ck-editor-toolbar-container.ck-balloon-panel_arrow_sw:after{border-top-color:#f7f7f7}.ck-editor .ck-toolbar.ck-toolbar_sticky{box-shadow:0 1px 2px 0 rgba(0,0,0,.2);border:1px solid #bfbfbf;border-width:0 0 1px;background:#f7f7f7}.ck-editor{position:relative}.ck-editor.ck-rounded-corners,.ck-rounded-corners .ck-editor{border-radius:2px}.ck-editor .ck-editor__top .ck-toolbar{border-top:0;border-left:0;border-right:0}.ck-editor .ck-editor__main{background:#fff}.ck-editor .ck-editor__bottom{border-bottom:0;border-left:0;border-right:0;padding:.8em}.ck-editor .ck-editor__editable.ck-focused{outline:1px solid #6ab5f9;box-shadow:inset 2px 2px 3px #e6e6e6}.ck-editor .ck-editor__editable_inline{overflow:auto;padding:0 .8em}.ck-editor,.ck-editor-bottom{background:#f7f7f7;border:1px solid #b9b9b9}", ""]);
 
 // exports
 
@@ -53340,7 +53416,7 @@ class DeleteCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core
 /**
  * Delete observer introduces the {@link module:engine/view/document~Document#event:delete} event.
  *
- * @extends engine.view.observer.Observer
+ * @extends module:engine/view/observer/observer~Observer
  */
 class DeleteObserver extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_view_observer_observer__["a" /* default */] {
 	constructor( document ) {
@@ -59268,8 +59344,15 @@ class Link extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plug
 	_createForm() {
 		const editor = this.editor;
 		const formView = new __WEBPACK_IMPORTED_MODULE_8__ui_linkformview__["a" /* default */]( editor.locale );
+		const linkCommand = editor.commands.get( 'link' );
+		const unlinkCommand = editor.commands.get( 'unlink' );
 
-		formView.urlInputView.bind( 'value' ).to( editor.commands.get( 'link' ), 'value' );
+		formView.urlInputView.bind( 'value' ).to( linkCommand, 'value' );
+
+		// Form elements should be read-only when corresponding commands are disabled.
+		formView.urlInputView.bind( 'isReadOnly' ).to( linkCommand, 'isEnabled', value => !value );
+		formView.saveButtonView.bind( 'isEnabled' ).to( linkCommand );
+		formView.unlinkButtonView.bind( 'isEnabled' ).to( unlinkCommand );
 
 		// Execute link command after clicking on formView `Save` button.
 		this.listenTo( formView, 'submit', () => {
