@@ -199,64 +199,29 @@ A disabled command should do nothing when executed.</p>
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-public="true" data-mixed="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="listenTo">
-                      <h3><code><a class="member-name" href="#listenTo">listenTo</a>( emitter, event, callback, [ options ] = { [options.priority], [options.context] } )</code></h3>
+                    <div class="collapsing-list__term toggler--collapsed" id="off">
+                      <h3><code><a class="member-name" href="#off">off</a>( event, callback, [ context ] )</code></h3>
                       <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Registers a callback function to be executed when an event is fired in a specific (emitter) object.
+                      <p class="collapsing-list__excerpt">Stops executing the callback on the given event.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
                                 <dl>
-                                  <dt><code> emitter : <span><a class="collapsing-list__type" href="module_utils_emittermixin-Emitter.html">Emitter</a></span></code></dt>
-                                  <dd><p>The object that fires the event.</p>
-                                  </dd>
                                   <dt><code> event : String</code></dt>
                                   <dd><p>The name of the event.</p>
                                   </dd>
                                   <dt><code> callback : function</code></dt>
-                                  <dd><p>The function to be called on event.</p>
+                                  <dd><p>The function to stop being called.</p>
                                   </dd>
-                                  <dt><code> [ options ] : Object</code></dt>
-                                  <dd><p>Additional options.</p>
-                                            <dl>
-                                              <h5>Properties</h5>
-                                              <dt><code> [ options.priority ] : <span><a class="collapsing-list__type" href="module_utils_priorities-PriorityString.html">PriorityString</a></span> | Number</code></dt>
-                                              <dd><p>The priority of this event callback. The higher
-the priority value the sooner the callback will be fired. Events having the same priority are called in the
-order they were added.</p>
-                                                <p>Defaults to <code>'normal'</code></p>
-                                              </dd>
-                                              <dt><code> [ options.context ] : Object</code></dt>
-                                              <dd><p>The object that represents <code>this</code> in the callback. Defaults to the object firing the event.</p>
-                                              </dd>
-                                            </dl>
-                                    <p>Defaults to <code>{}</code></p>
+                                  <dt><code> [ context ] : Object</code></dt>
+                                  <dd><p>The context object to be removed, pared with the given callback. To handle cases where
+the same callback is used several times with different contexts.</p>
                                   </dd>
                                 </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_checkEnabled">
-                      <h3><code><a class="member-name" href="#_checkEnabled">_checkEnabled</a>() &rarr;  Boolean</code></h3>
-                      <p class="badges">
-<span class="badge badge--red ">private</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Checks whether the command can be enabled in the current context.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code>Boolean</code></dt>
-                                  <dd><p>Whether the command should be enabled.</p>
-                                  </dd>
-                        </dl>
                       </div>
                     </div>
                   </li>
@@ -422,6 +387,48 @@ is the first param of every callback).</p>
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="listenTo">
+                      <h3><code><a class="member-name" href="#listenTo">listenTo</a>( emitter, event, callback, [ options ] = { [options.priority], [options.context] } )</code></h3>
+                      <p class="badges">
+<span class="badge badge--gray ">mixed</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Registers a callback function to be executed when an event is fired in a specific (emitter) object.
+                      </p>
+                      <div class="collapsing-list__content">
+                        <h4>Parameters</h4>
+                                <dl>
+                                  <dt><code> emitter : <span><a class="collapsing-list__type" href="module_utils_emittermixin-Emitter.html">Emitter</a></span></code></dt>
+                                  <dd><p>The object that fires the event.</p>
+                                  </dd>
+                                  <dt><code> event : String</code></dt>
+                                  <dd><p>The name of the event.</p>
+                                  </dd>
+                                  <dt><code> callback : function</code></dt>
+                                  <dd><p>The function to be called on event.</p>
+                                  </dd>
+                                  <dt><code> [ options ] : Object</code></dt>
+                                  <dd><p>Additional options.</p>
+                                            <dl>
+                                              <h5>Properties</h5>
+                                              <dt><code> [ options.priority ] : <span><a class="collapsing-list__type" href="module_utils_priorities-PriorityString.html">PriorityString</a></span> | Number</code></dt>
+                                              <dd><p>The priority of this event callback. The higher
+the priority value the sooner the callback will be fired. Events having the same priority are called in the
+order they were added.</p>
+                                                <p>Defaults to <code>'normal'</code></p>
+                                              </dd>
+                                              <dt><code> [ options.context ] : Object</code></dt>
+                                              <dd><p>The object that represents <code>this</code> in the callback. Defaults to the object firing the event.</p>
+                                              </dd>
+                                            </dl>
+                                    <p>Defaults to <code>{}</code></p>
+                                  </dd>
+                                </dl>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-public="true" data-mixed="true">
                     <div class="collapsing-list__term toggler--collapsed" id="bind">
                       <h3><code><a class="member-name" href="#bind">bind</a>( bindAttrs ) &rarr;  <span><a class="collapsing-list__type" href="module_utils_observablemixin-BindChain.html">BindChain</a></span></code></h3>
                       <p class="badges">
@@ -453,33 +460,6 @@ A.bind( &apos;a&apos; ).to( B, &apos;b&apos;, C, &apos;d&apos;, ( b, d ) =&gt; b
                                   <dd>
                                   </dd>
                         </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true" data-mixed="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="off">
-                      <h3><code><a class="member-name" href="#off">off</a>( event, callback, [ context ] )</code></h3>
-                      <p class="badges">
-<span class="badge badge--gray ">mixed</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Stops executing the callback on the given event.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> event : String</code></dt>
-                                  <dd><p>The name of the event.</p>
-                                  </dd>
-                                  <dt><code> callback : function</code></dt>
-                                  <dd><p>The function to stop being called.</p>
-                                  </dd>
-                                  <dt><code> [ context ] : Object</code></dt>
-                                  <dd><p>The context object to be removed, pared with the given callback. To handle cases where
-the same callback is used several times with different contexts.</p>
-                                  </dd>
-                                </dl>
                       </div>
                     </div>
                   </li>
