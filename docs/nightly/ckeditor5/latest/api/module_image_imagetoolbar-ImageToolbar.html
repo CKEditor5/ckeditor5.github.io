@@ -15,7 +15,7 @@
         <li><a class="top__menu__item--active" href="index.html">API</a></li>
         <li><a href="../framework/index.html">Framework</a></li>
         <li><a href="../builds/index.html">Builds</a></li>
-        <li><a href="../samples/index.html">Samples</a></li>
+        <li><a href="../examples/index.html">Examples</a></li>
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
@@ -63,9 +63,10 @@
                       </ul>
                     </dd>
           </dl>
-        </nav><p>Image toolbar class. Creates image toolbar placed inside balloon panel that is showed when image widget is selected.
-Toolbar components are created using editor&apos;s <a href="module_ui_componentfactory-ComponentFactory.html">ComponentFactory</a>
+        </nav><p>The image toolbar class. Creates an image toolbar that shows up when image widget is selected.</p>
+<p>Toolbar components are created using editor&apos;s <a href="module_ui_componentfactory-ComponentFactory.html">ComponentFactory</a>
 based on <a href="module_core_editor_editor-Editor.html#config">configuration</a> stored under <code>image.toolbar</code>.</p>
+<p>The toolbar uses <a href="module_ui_panel_balloon_contextualballoon-ContextualBalloon.html"><code>ContextualBalloon</code></a>.</p>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
           <ul>
@@ -98,6 +99,19 @@ based on <a href="module_core_editor_editor-Editor.html#config">configuration</a
         <h2>Properties</h2>
         <h4>Instance properties</h4>
         <ul class="collapsing-list collapsing-list--filtered">
+                  <li class="collapsing-list__item" data-private="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="_balloon">
+                      <h3><code><a class="member-name" href="#_balloon">_balloon</a> : <span><a class="collapsing-list__type" href="module_ui_panel_balloon_contextualballoon-ContextualBalloon.html">ContextualBalloon</a></span></code></h3>
+                      <p class="badges">
+<span class="badge badge--red ">private</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">The contextual balloon plugin instance.</p>
+                      <div class="collapsing-list__content">
+                      </div>
+                    </div>
+                  </li>
                   <li class="collapsing-list__item" data-private="true" data-mixed="true">
                     <div class="collapsing-list__term toggler--collapsed" id="_bindTo">
                       <h3><code><a class="member-name" href="#_bindTo">_bindTo</a></code></h3>
@@ -137,6 +151,34 @@ based on <a href="module_core_editor_editor-Editor.html#config">configuration</a
                       </div>
                     </div>
                   </li>
+                  <li class="collapsing-list__item" data-private="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="_isVisible">
+                      <h3><code><a class="member-name" href="#_isVisible">_isVisible</a> : Boolean</code></h3>
+                      <p class="badges">
+<span class="badge badge--red ">private</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Returns <code>true</code> when the <a href="module_image_imagetoolbar-ImageToolbar.html#_toolbar"><code>_toolbar</code></a> is the visible view
+in the <a href="module_image_imagetoolbar-ImageToolbar.html#_balloon"><code>_balloon</code></a>.</p>
+                      <div class="collapsing-list__content">
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-protected="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="_toolbar">
+                      <h3><code><a class="member-name" href="#_toolbar">_toolbar</a> : <span><a class="collapsing-list__type" href="module_ui_toolbar_toolbarview-ToolbarView.html">ToolbarView</a></span></code></h3>
+                      <p class="badges">
+<span class="badge badge--orange ">protected</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">A <code>ToolbarView</code> instance used to display the buttons specific for image
+editing.</p>
+                      <div class="collapsing-list__content">
+                      </div>
+                    </div>
+                  </li>
                   <li class="collapsing-list__item" data-public="true" data-inherited="true">
                     <div class="collapsing-list__term toggler--collapsed" id="editor">
                       <h3><code><a class="member-name" href="#editor">editor</a> : <span><a class="collapsing-list__type" href="module_core_editor_editor-Editor.html">Editor</a></span></code></h3>
@@ -147,17 +189,6 @@ based on <a href="module_core_editor_editor-Editor.html#config">configuration</a
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">The editor instance.</p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="isEnabled">
-                      <h3><code><a class="member-name" href="#isEnabled">isEnabled</a> : Boolean</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">When set to <code>true</code>, toolbar will be repositioned and showed on each render event and focus change.
-Set to <code>false</code> to temporary disable the image toolbar.</p>
                       <div class="collapsing-list__content">
                       </div>
                     </div>
@@ -244,44 +275,49 @@ plugins, but which doesn&apos;t <a href="module_core_plugin-PluginInterface.html
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-public="true" data-mixed="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="listenTo">
-                      <h3><code><a class="member-name" href="#listenTo">listenTo</a>( emitter, event, callback, [ options ] = { [options.priority], [options.context] } )</code></h3>
+                    <div class="collapsing-list__term toggler--collapsed" id="fire">
+                      <h3><code><a class="member-name" href="#fire">fire</a>( eventOrInfo, [ args ] ) &rarr;  </code></h3>
                       <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Registers a callback function to be executed when an event is fired in a specific (emitter) object.
+                      <p class="collapsing-list__excerpt">Fires an event, executing all callbacks registered for it.
                       </p>
                       <div class="collapsing-list__content">
+<p>The first parameter passed to callbacks is an <a href="module_utils_eventinfo-EventInfo.html"><code>EventInfo</code></a> object,
+followed by the optional <code>args</code> provided in the <code>fire()</code> method call.</p>
                         <h4>Parameters</h4>
                                 <dl>
-                                  <dt><code> emitter : <span><a class="collapsing-list__type" href="module_utils_emittermixin-Emitter.html">Emitter</a></span></code></dt>
-                                  <dd><p>The object that fires the event.</p>
+                                  <dt><code> eventOrInfo : String | <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                  <dd><p>The name of the event or <code>EventInfo</code> object if event is delegated.</p>
                                   </dd>
-                                  <dt><code> event : String</code></dt>
-                                  <dd><p>The name of the event.</p>
-                                  </dd>
-                                  <dt><code> callback : function</code></dt>
-                                  <dd><p>The function to be called on event.</p>
-                                  </dd>
-                                  <dt><code> [ options ] : Object</code></dt>
-                                  <dd><p>Additional options.</p>
-                                            <dl>
-                                              <h5>Properties</h5>
-                                              <dt><code> [ options.priority ] : <span><a class="collapsing-list__type" href="module_utils_priorities-PriorityString.html">PriorityString</a></span> | Number</code></dt>
-                                              <dd><p>The priority of this event callback. The higher
-the priority value the sooner the callback will be fired. Events having the same priority are called in the
-order they were added.</p>
-                                                <p>Defaults to <code>'normal'</code></p>
-                                              </dd>
-                                              <dt><code> [ options.context ] : Object</code></dt>
-                                              <dd><p>The object that represents <code>this</code> in the callback. Defaults to the object firing the event.</p>
-                                              </dd>
-                                            </dl>
-                                    <p>Defaults to <code>{}</code></p>
+                                  <dt><code> [ args ] : </code></dt>
+                                  <dd><p>Additional arguments to be passed to the callbacks.</p>
                                   </dd>
                                 </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                                  <dt><code></code></dt>
+                                  <dd><p>By default the method returns <code>undefined</code>. However, the return value can be changed by listeners
+through modification of the <a href="module_utils_eventinfo-EventInfo.html#return"><code>return</code></a>&apos;s value (the event info
+is the first param of every callback).</p>
+                                  </dd>
+                        </dl>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-private="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="_showToolbar">
+                      <h3><code><a class="member-name" href="#_showToolbar">_showToolbar</a>()</code></h3>
+                      <p class="badges">
+<span class="badge badge--red ">private</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Shows the <a href="module_image_imagetoolbar-ImageToolbar.html#_toolbar"><code>_toolbar</code></a> in the <a href="module_image_imagetoolbar-ImageToolbar.html#_balloon"><code>_balloon</code></a>.
+                      </p>
+                      <div class="collapsing-list__content">
                       </div>
                     </div>
                   </li>
@@ -303,6 +339,56 @@ order they were added.</p>
                                   <dd>
                                   </dd>
                         </dl>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="bind">
+                      <h3><code><a class="member-name" href="#bind">bind</a>( bindAttrs ) &rarr;  <span><a class="collapsing-list__type" href="module_utils_observablemixin-BindChain.html">BindChain</a></span></code></h3>
+                      <p class="badges">
+<span class="badge badge--gray ">mixed</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Binds observable attributes to another objects implementing <a href="module_utils_observablemixin-ObservableMixin.html"><code>ObservableMixin</code></a>
+interface (like <a href="module_ui_model-Model.html"><code>Model</code></a>).
+                      </p>
+                      <div class="collapsing-list__content">
+<p>Once bound, the observable will immediately share the current state of attributes
+of the observable it is bound to and react to the changes to these attributes
+in the future.</p>
+<p><strong>Note</strong>: To release the binding use <a href="module_utils_observablemixin-ObservableMixin.html#unbind"><code>unbind</code></a>.</p>
+<pre class="prettyprint source"><code>A.bind( &apos;a&apos; ).to( B );
+A.bind( &apos;a&apos; ).to( B, &apos;b&apos; );
+A.bind( &apos;a&apos;, &apos;b&apos; ).to( B, &apos;c&apos;, &apos;d&apos; );
+A.bind( &apos;a&apos; ).to( B, &apos;b&apos;, C, &apos;d&apos;, ( b, d ) =&gt; b + d );</code></pre>
+                        <h4>Parameters</h4>
+                                <dl>
+                                  <dt><code> bindAttrs : String</code></dt>
+                                  <dd><p>Observable attributes that will be bound to another observable(s).</p>
+                                  </dd>
+                                </dl>
+                        <h4>Returns</h4>
+                        <dl>
+                                  <dt><code><span><a class="collapsing-list__type" href="module_utils_observablemixin-BindChain.html">BindChain</a></span></code></dt>
+                                  <dd>
+                                  </dd>
+                        </dl>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-private="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="_checkIsVisible">
+                      <h3><code><a class="member-name" href="#_checkIsVisible">_checkIsVisible</a>()</code></h3>
+                      <p class="badges">
+<span class="badge badge--red ">private</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Checks whether the toolbar should show up or hide depending on the
+current selection.
+                      </p>
+                      <div class="collapsing-list__content">
                       </div>
                     </div>
                   </li>
@@ -417,45 +503,15 @@ emitterA.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( emitterC );</cod
                       </div>
                     </div>
                   </li>
-                  <li class="collapsing-list__item" data-public="true" data-mixed="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="fire">
-                      <h3><code><a class="member-name" href="#fire">fire</a>( eventOrInfo, [ args ] ) &rarr;  </code></h3>
+                  <li class="collapsing-list__item" data-private="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="_hideToolbar">
+                      <h3><code><a class="member-name" href="#_hideToolbar">_hideToolbar</a>()</code></h3>
                       <p class="badges">
-<span class="badge badge--gray ">mixed</span>
+<span class="badge badge--red ">private</span>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Fires an event, executing all callbacks registered for it.
-                      </p>
-                      <div class="collapsing-list__content">
-<p>The first parameter passed to callbacks is an <a href="module_utils_eventinfo-EventInfo.html"><code>EventInfo</code></a> object,
-followed by the optional <code>args</code> provided in the <code>fire()</code> method call.</p>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> eventOrInfo : String | <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                  <dd><p>The name of the event or <code>EventInfo</code> object if event is delegated.</p>
-                                  </dd>
-                                  <dt><code> [ args ] : </code></dt>
-                                  <dd><p>Additional arguments to be passed to the callbacks.</p>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code></code></dt>
-                                  <dd><p>By default the method returns <code>undefined</code>. However, the return value can be changed by listeners
-through modification of the <a href="module_utils_eventinfo-EventInfo.html#return"><code>return</code></a>&apos;s value (the event info
-is the first param of every callback).</p>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="hide">
-                      <h3><code><a class="member-name" href="#hide">hide</a>()</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Hides the toolbar.
+                      <p class="collapsing-list__excerpt">Removes the <a href="module_image_imagetoolbar-ImageToolbar.html#_toolbar"><code>_toolbar</code></a> from the <a href="module_image_imagetoolbar-ImageToolbar.html#_balloon"><code>_balloon</code></a>.
                       </p>
                       <div class="collapsing-list__content">
                       </div>
@@ -486,37 +542,44 @@ so in the same order as constructors of these plugins.</p>
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-public="true" data-mixed="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="bind">
-                      <h3><code><a class="member-name" href="#bind">bind</a>( bindAttrs ) &rarr;  <span><a class="collapsing-list__type" href="module_utils_observablemixin-BindChain.html">BindChain</a></span></code></h3>
+                    <div class="collapsing-list__term toggler--collapsed" id="listenTo">
+                      <h3><code><a class="member-name" href="#listenTo">listenTo</a>( emitter, event, callback, [ options ] = { [options.priority], [options.context] } )</code></h3>
                       <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Binds observable attributes to another objects implementing <a href="module_utils_observablemixin-ObservableMixin.html"><code>ObservableMixin</code></a>
-interface (like <a href="module_ui_model-Model.html"><code>Model</code></a>).
+                      <p class="collapsing-list__excerpt">Registers a callback function to be executed when an event is fired in a specific (emitter) object.
                       </p>
                       <div class="collapsing-list__content">
-<p>Once bound, the observable will immediately share the current state of attributes
-of the observable it is bound to and react to the changes to these attributes
-in the future.</p>
-<p><strong>Note</strong>: To release the binding use <a href="module_utils_observablemixin-ObservableMixin.html#unbind"><code>unbind</code></a>.</p>
-<pre class="prettyprint source"><code>A.bind( &apos;a&apos; ).to( B );
-A.bind( &apos;a&apos; ).to( B, &apos;b&apos; );
-A.bind( &apos;a&apos;, &apos;b&apos; ).to( B, &apos;c&apos;, &apos;d&apos; );
-A.bind( &apos;a&apos; ).to( B, &apos;b&apos;, C, &apos;d&apos;, ( b, d ) =&gt; b + d );</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
-                                  <dt><code> bindAttrs : String</code></dt>
-                                  <dd><p>Observable attributes that will be bound to another observable(s).</p>
+                                  <dt><code> emitter : <span><a class="collapsing-list__type" href="module_utils_emittermixin-Emitter.html">Emitter</a></span></code></dt>
+                                  <dd><p>The object that fires the event.</p>
+                                  </dd>
+                                  <dt><code> event : String</code></dt>
+                                  <dd><p>The name of the event.</p>
+                                  </dd>
+                                  <dt><code> callback : function</code></dt>
+                                  <dd><p>The function to be called on event.</p>
+                                  </dd>
+                                  <dt><code> [ options ] : Object</code></dt>
+                                  <dd><p>Additional options.</p>
+                                            <dl>
+                                              <h5>Properties</h5>
+                                              <dt><code> [ options.priority ] : <span><a class="collapsing-list__type" href="module_utils_priorities-PriorityString.html">PriorityString</a></span> | Number</code></dt>
+                                              <dd><p>The priority of this event callback. The higher
+the priority value the sooner the callback will be fired. Events having the same priority are called in the
+order they were added.</p>
+                                                <p>Defaults to <code>'normal'</code></p>
+                                              </dd>
+                                              <dt><code> [ options.context ] : Object</code></dt>
+                                              <dd><p>The object that represents <code>this</code> in the callback. Defaults to the object firing the event.</p>
+                                              </dd>
+                                            </dl>
+                                    <p>Defaults to <code>{}</code></p>
                                   </dd>
                                 </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code><span><a class="collapsing-list__type" href="module_utils_observablemixin-BindChain.html">BindChain</a></span></code></dt>
-                                  <dd>
-                                  </dd>
-                        </dl>
                       </div>
                     </div>
                   </li>
@@ -663,17 +726,6 @@ properties and methods, but means that <code>foo.set( &apos;bar&apos;, 1 )</code
                                   <dd><p>The attributes value.</p>
                                   </dd>
                                 </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="show">
-                      <h3><code><a class="member-name" href="#show">show</a>()</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Shows the toolbar.
-                      </p>
-                      <div class="collapsing-list__content">
                       </div>
                     </div>
                   </li>
@@ -2293,15 +2345,6 @@ be released if no attributes provided.</p>
                                           </div>
                                           <ul>
                                                   <li class="toggler--collapsed">
-                                                    <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_image_image_ui_imageballoonpanel.html">imageballoonpanel</a>
-                                                    </div>
-                                                    <ul>
-                                                            <li><a href="module_image_image_ui_imageballoonpanel-ImageBalloonPanelView.html">
-                                                                <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">ImageBalloonPanelView</span></div></a>
-                                                            </li>
-                                                    </ul>
-                                                  </li>
-                                                  <li class="toggler--collapsed">
                                                     <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_image_imagetextalternative_ui_textalternativeformview.html">textalternativeformview</a>
                                                     </div>
                                                     <ul>
@@ -2309,6 +2352,9 @@ be released if no attributes provided.</p>
                                                                 <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TextAlternativeFormView</span></div></a>
                                                             </li>
                                                     </ul>
+                                                  </li>
+                                                  <li><a href="module_image_image_ui_utils.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">utils</span></div></a>
                                                   </li>
                                           </ul>
                                         </li>

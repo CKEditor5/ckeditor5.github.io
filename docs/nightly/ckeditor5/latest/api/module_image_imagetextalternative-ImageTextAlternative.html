@@ -15,7 +15,7 @@
         <li><a class="top__menu__item--active" href="index.html">API</a></li>
         <li><a href="../framework/index.html">Framework</a></li>
         <li><a href="../builds/index.html">Builds</a></li>
-        <li><a href="../samples/index.html">Samples</a></li>
+        <li><a href="../examples/index.html">Examples</a></li>
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
@@ -64,6 +64,7 @@
                     </dd>
           </dl>
         </nav><p>The image text alternative plugin.</p>
+<p>The plugin uses the <a href="module_ui_panel_balloon_contextualballoon-ContextualBalloon.html"><code>ContextualBalloon</code></a>.</p>
         <div class="notice notice__filter api-props-filter">
           <h4>Filtering</h4>
           <ul>
@@ -96,6 +97,19 @@
         <h2>Properties</h2>
         <h4>Instance properties</h4>
         <ul class="collapsing-list collapsing-list--filtered">
+                  <li class="collapsing-list__item" data-private="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="_balloon">
+                      <h3><code><a class="member-name" href="#_balloon">_balloon</a> : <span><a class="collapsing-list__type" href="module_ui_panel_balloon_contextualballoon-ContextualBalloon.html">ContextualBalloon</a></span></code></h3>
+                      <p class="badges">
+<span class="badge badge--red ">private</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">The contextual balloon plugin instance.</p>
+                      <div class="collapsing-list__content">
+                      </div>
+                    </div>
+                  </li>
                   <li class="collapsing-list__item" data-private="true" data-mixed="true">
                     <div class="collapsing-list__term toggler--collapsed" id="_bindTo">
                       <h3><code><a class="member-name" href="#_bindTo">_bindTo</a></code></h3>
@@ -135,12 +149,16 @@
                       </div>
                     </div>
                   </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="baloonPanel">
-                      <h3><code><a class="member-name" href="#baloonPanel">baloonPanel</a> : <span><a class="collapsing-list__type" href="module_image_image_ui_imageballoonpanel-ImageBalloonPanelView.html">ImageBalloonPanelView</a></span></code></h3>
+                  <li class="collapsing-list__item" data-private="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="_isVisible">
+                      <h3><code><a class="member-name" href="#_isVisible">_isVisible</a> : Boolean</code></h3>
+                      <p class="badges">
+<span class="badge badge--red ">private</span>
+                      </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Balloon panel containing text alternative change form.</p>
+                      <p class="collapsing-list__excerpt">Returns <code>true</code> when the <a href="module_image_imagetextalternative-ImageTextAlternative.html#_form"><code>_form</code></a> is the visible view
+in the <a href="module_image_imagetextalternative-ImageTextAlternative.html#_balloon"><code>_balloon</code></a>.</p>
                       <div class="collapsing-list__content">
                       </div>
                     </div>
@@ -284,28 +302,34 @@ is the first param of every callback).</p>
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_hideBalloonPanel">
-                      <h3><code><a class="member-name" href="#_hideBalloonPanel">_hideBalloonPanel</a>()</code></h3>
+                    <div class="collapsing-list__term toggler--collapsed" id="_hideForm">
+                      <h3><code><a class="member-name" href="#_hideForm">_hideForm</a>( focusEditable )</code></h3>
                       <p class="badges">
 <span class="badge badge--red ">private</span>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Hides the balloon panel.
+                      <p class="collapsing-list__excerpt">Removes the <a href="module_image_imagetextalternative-ImageTextAlternative.html#_form"><code>_form</code></a> from the <a href="module_image_imagetextalternative-ImageTextAlternative.html#_balloon"><code>_balloon</code></a>.
                       </p>
                       <div class="collapsing-list__content">
+                        <h4>Parameters</h4>
+                                <dl>
+                                  <dt><code> focusEditable : Boolean</code></dt>
+                                  <dd><p>Control whether the editing view is focused afterwards.</p>
+                                  </dd>
+                                </dl>
                       </div>
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_showBalloonPanel">
-                      <h3><code><a class="member-name" href="#_showBalloonPanel">_showBalloonPanel</a>()</code></h3>
+                    <div class="collapsing-list__term toggler--collapsed" id="_showForm">
+                      <h3><code><a class="member-name" href="#_showForm">_showForm</a>()</code></h3>
                       <p class="badges">
 <span class="badge badge--red ">private</span>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Shows the balloon panel.
+                      <p class="collapsing-list__excerpt">Shows the <a href="module_image_imagetextalternative-ImageTextAlternative.html#_form"><code>_form</code></a> in the <a href="module_image_imagetextalternative-ImageTextAlternative.html#_balloon"><code>_balloon</code></a>.
                       </p>
                       <div class="collapsing-list__content">
                       </div>
@@ -368,22 +392,17 @@ A.bind( &apos;a&apos; ).to( B, &apos;b&apos;, C, &apos;d&apos;, ( b, d ) =&gt; b
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_createBalloonPanel">
-                      <h3><code><a class="member-name" href="#_createBalloonPanel">_createBalloonPanel</a>() &rarr;  <span><a class="collapsing-list__type" href="module_image_image_ui_imageballoonpanel-ImageBalloonPanelView.html">ImageBalloonPanelView</a></span></code></h3>
+                    <div class="collapsing-list__term toggler--collapsed" id="_createButton">
+                      <h3><code><a class="member-name" href="#_createButton">_createButton</a>()</code></h3>
                       <p class="badges">
 <span class="badge badge--red ">private</span>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Creates balloon panel.
+                      <p class="collapsing-list__excerpt">Creates button showing text alternative change balloon panel and registers it in
+editor&apos;s <a href="module_ui_componentfactory-ComponentFactory.html">ComponentFactory</a>.
                       </p>
                       <div class="collapsing-list__content">
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code><span><a class="collapsing-list__type" href="module_image_image_ui_imageballoonpanel-ImageBalloonPanelView.html">ImageBalloonPanelView</a></span></code></dt>
-                                  <dd>
-                                  </dd>
-                        </dl>
                       </div>
                     </div>
                   </li>
@@ -499,15 +518,15 @@ emitterA.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( emitterC );</cod
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_createButton">
-                      <h3><code><a class="member-name" href="#_createButton">_createButton</a>()</code></h3>
+                    <div class="collapsing-list__term toggler--collapsed" id="_createForm">
+                      <h3><code><a class="member-name" href="#_createForm">_createForm</a>()</code></h3>
                       <p class="badges">
 <span class="badge badge--red ">private</span>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Creates button showing text alternative change balloon panel and registers it in
-editor&apos;s <a href="module_ui_componentfactory-ComponentFactory.html">ComponentFactory</a>.
+                      <p class="collapsing-list__excerpt">Creates the <a href="module_image_imagetextalternative_ui_textalternativeformview-TextAlternativeFormView.html"><code>TextAlternativeFormView</code></a>
+form.
                       </p>
                       <div class="collapsing-list__content">
                       </div>
@@ -2341,15 +2360,6 @@ be released if no attributes provided.</p>
                                           </div>
                                           <ul>
                                                   <li class="toggler--collapsed">
-                                                    <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_image_image_ui_imageballoonpanel.html">imageballoonpanel</a>
-                                                    </div>
-                                                    <ul>
-                                                            <li><a href="module_image_image_ui_imageballoonpanel-ImageBalloonPanelView.html">
-                                                                <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">ImageBalloonPanelView</span></div></a>
-                                                            </li>
-                                                    </ul>
-                                                  </li>
-                                                  <li class="toggler--collapsed">
                                                     <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_image_imagetextalternative_ui_textalternativeformview.html">textalternativeformview</a>
                                                     </div>
                                                     <ul>
@@ -2357,6 +2367,9 @@ be released if no attributes provided.</p>
                                                                 <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TextAlternativeFormView</span></div></a>
                                                             </li>
                                                     </ul>
+                                                  </li>
+                                                  <li><a href="module_image_image_ui_utils.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">utils</span></div></a>
                                                   </li>
                                           </ul>
                                         </li>
