@@ -144,7 +144,7 @@ class CKEditorError extends Error {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__treewalker__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_lib_lodash_last__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_lib_lodash_last__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_comparearrays__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__text__ = __webpack_require__(24);
@@ -944,7 +944,7 @@ class Position {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -1981,12 +1981,12 @@ function mix( baseClass, ...mixins ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_collection__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__viewcollection__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_lib_lodash_cloneDeepWith__ = __webpack_require__(425);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_lib_lodash_isObject__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_lib_lodash_isObject__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(34);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -4009,6 +4009,353 @@ function rest(func, start) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__viewcollection__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__template__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_dom_emittermixin__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_collection__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(46);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module ui/view
+ */
+
+
+
+
+
+
+
+
+
+
+/**
+ * Basic View class.
+ *
+ *		class SampleView extends View {
+ *			constructor( locale ) {
+ *				super( locale );
+ *
+ *				this.template = new Template( {
+ *					tag: 'p',
+ *					children: [
+ *						'Hello',
+ *						{
+ *							tag: 'b',
+ *							children: [
+ *								'world!'
+ *							]
+ *						}
+ *					],
+ *					attributes: {
+ *						class: 'foo'
+ *					}
+ *				} );
+ *			}
+ *		}
+ *
+ *		const view = new SampleView( locale );
+ *
+ *		view.init();
+ *
+ *		// Will append <p class="foo">Hello<b>world</b></p>
+ *		document.body.appendChild( view.element );
+ *
+ * @mixes module:utils/observablemixin~ObservableMixin
+ */
+class View {
+	/**
+	 * Creates an instance of the {@link module:ui/view~View} class.
+	 *
+	 * @param {module:utils/locale~Locale} [locale] The {@link module:core/editor/editor~Editor editor's locale} instance.
+	 */
+	constructor( locale ) {
+		/**
+		 * A set of tools to localize the user interface. See {@link module:core/editor/editor~Editor}.
+		 *
+		 * @readonly
+		 * @member {module:utils/locale~Locale}
+		 */
+		this.locale = locale;
+
+		/**
+		 * Shorthand for {@link module:utils/locale~Locale#t}.
+		 *
+		 * Note: If locale instance hasn't been passed to the view this method may not be available.
+		 *
+		 * @see module:utils/locale~Locale#t
+		 * @method
+		 */
+		this.t = locale && locale.t;
+
+		/**
+		 * Set `true` after {@link #init}, which can be asynchronous.
+		 *
+		 * @readonly
+		 * @observable
+		 * @member {Boolean} #ready
+		 */
+		this.set( 'ready', false );
+
+		/**
+		 * Collections registered with {@link #createCollection}.
+		 *
+		 * @protected
+		 * @member {Set.<module:ui/viewcollection~ViewCollection>}
+		 */
+		this._viewCollections = new __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_collection__["a" /* default */]();
+
+		/**
+		 * A collection of view instances, which have been added directly
+		 * into the {@link module:ui/template~Template#children}.
+		 *
+		 * @protected
+		 * @member {module:ui/viewcollection~ViewCollection}
+		 */
+		this._unboundChildren = this.createCollection();
+
+		// Pass parent locale to its children.
+		this._viewCollections.on( 'add', ( evt, collection ) => {
+			collection.locale = locale;
+		} );
+
+		/**
+		 * Template of this view.
+		 *
+		 * @member {module:ui/template~Template} #template
+		 */
+
+		/**
+		 * Element of this view.
+		 *
+		 * @private
+		 * @member {HTMLElement} #_element
+		 */
+
+		/**
+		 * Cached {@link module:ui/template~Template} binder object specific for this instance.
+		 * See {@link #bindTemplate}.
+		 *
+		 * @private
+		 * @member {Object} #_bindTemplate
+		 */
+	}
+
+	/**
+	 * Element of this view. The element is rendered on first reference
+	 * using {@link #template} definition.
+	 *
+	 * @type {HTMLElement}
+	 */
+	get element() {
+		if ( this._element ) {
+			return this._element;
+		}
+
+		// No template means no element (a virtual view).
+		if ( !this.template ) {
+			return null;
+		}
+
+		this._addTemplateChildren();
+
+		return ( this._element = this.template.render() );
+	}
+
+	set element( el ) {
+		this._element = el;
+	}
+
+	/**
+	 * Shorthand for {@link module:ui/template~Template.bind}, bound to {@link ~View} on the first access.
+	 *
+	 * Cached {@link module:ui/template~Template.bind} object is stored in {@link #_bindTemplate}.
+	 *
+	 * @method #bindTemplate
+	 */
+	get bindTemplate() {
+		if ( this._bindTemplate ) {
+			return this._bindTemplate;
+		}
+
+		return ( this._bindTemplate = __WEBPACK_IMPORTED_MODULE_2__template__["a" /* default */].bind( this, this ) );
+	}
+
+	/**
+	 * Creates a new collection of views, which can be used in this view instance,
+	 * e.g. as a member of {@link module:ui/template~TemplateDefinition TemplateDefinition} children.
+	 *
+	 *		class SampleView extends View {
+	 *			constructor( locale ) {
+	 *				super( locale );
+	 *
+	 *				this.items = this.createCollection();
+ 	 *
+	 *				this.template = new Template( {
+	 *					tag: 'p',
+	 *
+	 *					// `items` collection will render here.
+	 *					children: this.items
+	 *				} );
+	 *			}
+	 *		}
+	 *
+	 *		const view = new SampleView( locale );
+	 *		const anotherView = new AnotherSampleView( locale );
+	 *
+	 *		view.init();
+	 *
+	 *		// Will append <p></p>
+	 *		document.body.appendChild( view.element );
+	 *
+	 *		// `anotherView` becomes a child of the view, which is reflected in DOM
+	 *		// <p><anotherView#element></p>
+	 *		view.items.add( anotherView );
+	 *
+	 * @returns {module:ui/viewcollection~ViewCollection} A new collection of view instances.
+	 */
+	createCollection() {
+		const collection = new __WEBPACK_IMPORTED_MODULE_1__viewcollection__["a" /* default */]();
+
+		this._viewCollections.add( collection );
+
+		return collection;
+	}
+
+	/**
+	 * Registers a new child view under this view instance. Once registered, a child
+	 * view is managed by its parent, including initialization ({@link #init})
+	 * and destruction ({@link #destroy}).
+	 *
+	 *		class SampleView extends View {
+	 *			constructor( locale ) {
+	 *				super( locale );
+	 *
+	 *				this.childA = new SomeChildView( locale );
+	 *				this.childB = new SomeChildView( locale );
+	 *
+	 *				this.template = new Template( { tag: 'p' } );
+	 *
+	 *				// Register children.
+	 *				this.addChildren( [ this.childA, this.childB ] );
+	 *			}
+	 *
+	 *			init() {
+	 *				this.element.appendChild( this.childA.element );
+	 *				this.element.appendChild( this.childB.element );
+	 *
+	 *				return super.init();
+	 *			}
+	 *		}
+	 *
+	 *		const view = new SampleView( locale );
+	 *
+	 *		view.init();
+	 *
+	 *		// Will append <p><childA#element><b></b><childB#element></p>
+	 *		document.body.appendChild( view.element );
+	 *
+	 * **Note**: There's no need to add child views if they're used in the
+	 * {@link #template} explicitly:
+	 *
+	 *		class SampleView extends View {
+	 *			constructor( locale ) {
+	 *				super( locale );
+	 *
+	 *				this.childA = new SomeChildView( locale );
+	 *				this.childB = new SomeChildView( locale );
+	 *
+	 *				this.template = new Template( {
+	 *					tag: 'p',
+	 *
+ 	 *					// These children will be added automatically. There's no
+ 	 *					// need to call {@link #addChildren} for any of them.
+	 *					children: [ this.childA, this.childB ]
+	 *				} );
+	 *			}
+	 *
+	 *			...
+	 *		}
+	 *
+	 * @param {module:ui/view~View|Iterable.<module:ui/view~View>} children Children views to be registered.
+	 */
+	addChildren( children ) {
+		if ( !Object(__WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_isiterable__["a" /* default */])( children ) ) {
+			children = [ children ];
+		}
+
+		children.map( c => this._unboundChildren.add( c ) );
+	}
+
+	/**
+	 * Initializes the view and child views located in {@link #_viewCollections}.
+	 */
+	init() {
+		if ( this.ready ) {
+			/**
+			 * This View has already been initialized.
+			 *
+			 * @error ui-view-init-reinit
+			 */
+			throw new __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'ui-view-init-reinit: This View has already been initialized.' );
+		}
+
+		// Initialize collections in #_viewCollections.
+		this._viewCollections.map( c => c.init() );
+
+		// Spread the word that this view is ready!
+		this.ready = true;
+	}
+
+	/**
+	 * Destroys the view instance and child views located in {@link #_viewCollections}.
+	 */
+	destroy() {
+		this.stopListening();
+
+		this._viewCollections.map( c => c.destroy() );
+	}
+
+	/**
+	 * Recursively traverses {@link #template} in search of {@link module:ui/view~View}
+	 * instances and automatically registers them using {@link #addChildren} method.
+	 *
+	 * @protected
+	 */
+	_addTemplateChildren() {
+		const search = def => {
+			if ( def.children ) {
+				for ( const defOrView of def.children ) {
+					if ( defOrView instanceof View ) {
+						this.addChildren( defOrView );
+					} else {
+						search( defOrView );
+					}
+				}
+			}
+		};
+
+		search( this.template );
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = View;
+
+
+Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( View, __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_dom_emittermixin__["a" /* default */] );
+Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( View, __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_observablemixin__["a" /* default */] );
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = _getEmitterListenedTo;
 /* harmony export (immutable) */ __webpack_exports__["b"] = _setEmitterId;
 /* unused harmony export _getEmitterId */
@@ -4617,353 +4964,6 @@ function fireDelegatedEvents( destinations, eventInfo, fireArgs ) {
 
 
 /***/ }),
-/* 9 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__viewcollection__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__template__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_dom_emittermixin__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_collection__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(46);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module ui/view
- */
-
-
-
-
-
-
-
-
-
-
-/**
- * Basic View class.
- *
- *		class SampleView extends View {
- *			constructor( locale ) {
- *				super( locale );
- *
- *				this.template = new Template( {
- *					tag: 'p',
- *					children: [
- *						'Hello',
- *						{
- *							tag: 'b',
- *							children: [
- *								'world!'
- *							]
- *						}
- *					],
- *					attributes: {
- *						class: 'foo'
- *					}
- *				} );
- *			}
- *		}
- *
- *		const view = new SampleView( locale );
- *
- *		view.init();
- *
- *		// Will append <p class="foo">Hello<b>world</b></p>
- *		document.body.appendChild( view.element );
- *
- * @mixes module:utils/observablemixin~ObservableMixin
- */
-class View {
-	/**
-	 * Creates an instance of the {@link module:ui/view~View} class.
-	 *
-	 * @param {module:utils/locale~Locale} [locale] The {@link module:core/editor/editor~Editor editor's locale} instance.
-	 */
-	constructor( locale ) {
-		/**
-		 * A set of tools to localize the user interface. See {@link module:core/editor/editor~Editor}.
-		 *
-		 * @readonly
-		 * @member {module:utils/locale~Locale}
-		 */
-		this.locale = locale;
-
-		/**
-		 * Shorthand for {@link module:utils/locale~Locale#t}.
-		 *
-		 * Note: If locale instance hasn't been passed to the view this method may not be available.
-		 *
-		 * @see module:utils/locale~Locale#t
-		 * @method
-		 */
-		this.t = locale && locale.t;
-
-		/**
-		 * Set `true` after {@link #init}, which can be asynchronous.
-		 *
-		 * @readonly
-		 * @observable
-		 * @member {Boolean} #ready
-		 */
-		this.set( 'ready', false );
-
-		/**
-		 * Collections registered with {@link #createCollection}.
-		 *
-		 * @protected
-		 * @member {Set.<module:ui/viewcollection~ViewCollection>}
-		 */
-		this._viewCollections = new __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_collection__["a" /* default */]();
-
-		/**
-		 * A collection of view instances, which have been added directly
-		 * into the {@link module:ui/template~Template#children}.
-		 *
-		 * @protected
-		 * @member {module:ui/viewcollection~ViewCollection}
-		 */
-		this._unboundChildren = this.createCollection();
-
-		// Pass parent locale to its children.
-		this._viewCollections.on( 'add', ( evt, collection ) => {
-			collection.locale = locale;
-		} );
-
-		/**
-		 * Template of this view.
-		 *
-		 * @member {module:ui/template~Template} #template
-		 */
-
-		/**
-		 * Element of this view.
-		 *
-		 * @private
-		 * @member {HTMLElement} #_element
-		 */
-
-		/**
-		 * Cached {@link module:ui/template~Template} binder object specific for this instance.
-		 * See {@link #bindTemplate}.
-		 *
-		 * @private
-		 * @member {Object} #_bindTemplate
-		 */
-	}
-
-	/**
-	 * Element of this view. The element is rendered on first reference
-	 * using {@link #template} definition.
-	 *
-	 * @type {HTMLElement}
-	 */
-	get element() {
-		if ( this._element ) {
-			return this._element;
-		}
-
-		// No template means no element (a virtual view).
-		if ( !this.template ) {
-			return null;
-		}
-
-		this._addTemplateChildren();
-
-		return ( this._element = this.template.render() );
-	}
-
-	set element( el ) {
-		this._element = el;
-	}
-
-	/**
-	 * Shorthand for {@link module:ui/template~Template.bind}, bound to {@link ~View} on the first access.
-	 *
-	 * Cached {@link module:ui/template~Template.bind} object is stored in {@link #_bindTemplate}.
-	 *
-	 * @method #bindTemplate
-	 */
-	get bindTemplate() {
-		if ( this._bindTemplate ) {
-			return this._bindTemplate;
-		}
-
-		return ( this._bindTemplate = __WEBPACK_IMPORTED_MODULE_2__template__["a" /* default */].bind( this, this ) );
-	}
-
-	/**
-	 * Creates a new collection of views, which can be used in this view instance,
-	 * e.g. as a member of {@link module:ui/template~TemplateDefinition TemplateDefinition} children.
-	 *
-	 *		class SampleView extends View {
-	 *			constructor( locale ) {
-	 *				super( locale );
-	 *
-	 *				this.items = this.createCollection();
- 	 *
-	 *				this.template = new Template( {
-	 *					tag: 'p',
-	 *
-	 *					// `items` collection will render here.
-	 *					children: this.items
-	 *				} );
-	 *			}
-	 *		}
-	 *
-	 *		const view = new SampleView( locale );
-	 *		const anotherView = new AnotherSampleView( locale );
-	 *
-	 *		view.init();
-	 *
-	 *		// Will append <p></p>
-	 *		document.body.appendChild( view.element );
-	 *
-	 *		// `anotherView` becomes a child of the view, which is reflected in DOM
-	 *		// <p><anotherView#element></p>
-	 *		view.items.add( anotherView );
-	 *
-	 * @returns {module:ui/viewcollection~ViewCollection} A new collection of view instances.
-	 */
-	createCollection() {
-		const collection = new __WEBPACK_IMPORTED_MODULE_1__viewcollection__["a" /* default */]();
-
-		this._viewCollections.add( collection );
-
-		return collection;
-	}
-
-	/**
-	 * Registers a new child view under this view instance. Once registered, a child
-	 * view is managed by its parent, including initialization ({@link #init})
-	 * and destruction ({@link #destroy}).
-	 *
-	 *		class SampleView extends View {
-	 *			constructor( locale ) {
-	 *				super( locale );
-	 *
-	 *				this.childA = new SomeChildView( locale );
-	 *				this.childB = new SomeChildView( locale );
-	 *
-	 *				this.template = new Template( { tag: 'p' } );
-	 *
-	 *				// Register children.
-	 *				this.addChildren( [ this.childA, this.childB ] );
-	 *			}
-	 *
-	 *			init() {
-	 *				this.element.appendChild( this.childA.element );
-	 *				this.element.appendChild( this.childB.element );
-	 *
-	 *				return super.init();
-	 *			}
-	 *		}
-	 *
-	 *		const view = new SampleView( locale );
-	 *
-	 *		view.init();
-	 *
-	 *		// Will append <p><childA#element><b></b><childB#element></p>
-	 *		document.body.appendChild( view.element );
-	 *
-	 * **Note**: There's no need to add child views if they're used in the
-	 * {@link #template} explicitly:
-	 *
-	 *		class SampleView extends View {
-	 *			constructor( locale ) {
-	 *				super( locale );
-	 *
-	 *				this.childA = new SomeChildView( locale );
-	 *				this.childB = new SomeChildView( locale );
-	 *
-	 *				this.template = new Template( {
-	 *					tag: 'p',
-	 *
- 	 *					// These children will be added automatically. There's no
- 	 *					// need to call {@link #addChildren} for any of them.
-	 *					children: [ this.childA, this.childB ]
-	 *				} );
-	 *			}
-	 *
-	 *			...
-	 *		}
-	 *
-	 * @param {module:ui/view~View|Iterable.<module:ui/view~View>} children Children views to be registered.
-	 */
-	addChildren( children ) {
-		if ( !Object(__WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_isiterable__["a" /* default */])( children ) ) {
-			children = [ children ];
-		}
-
-		children.map( c => this._unboundChildren.add( c ) );
-	}
-
-	/**
-	 * Initializes the view and child views located in {@link #_viewCollections}.
-	 */
-	init() {
-		if ( this.ready ) {
-			/**
-			 * This View has already been initialized.
-			 *
-			 * @error ui-view-init-reinit
-			 */
-			throw new __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'ui-view-init-reinit: This View has already been initialized.' );
-		}
-
-		// Initialize collections in #_viewCollections.
-		this._viewCollections.map( c => c.init() );
-
-		// Spread the word that this view is ready!
-		this.ready = true;
-	}
-
-	/**
-	 * Destroys the view instance and child views located in {@link #_viewCollections}.
-	 */
-	destroy() {
-		this.stopListening();
-
-		this._viewCollections.map( c => c.destroy() );
-	}
-
-	/**
-	 * Recursively traverses {@link #template} in search of {@link module:ui/view~View}
-	 * instances and automatically registers them using {@link #addChildren} method.
-	 *
-	 * @protected
-	 */
-	_addTemplateChildren() {
-		const search = def => {
-			if ( def.children ) {
-				for ( const defOrView of def.children ) {
-					if ( defOrView instanceof View ) {
-						this.addChildren( defOrView );
-					} else {
-						search( defOrView );
-					}
-				}
-			}
-		};
-
-		search( this.template );
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = View;
-
-
-Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( View, __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_dom_emittermixin__["a" /* default */] );
-Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( View, __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_observablemixin__["a" /* default */] );
-
-
-/***/ }),
 /* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -5011,7 +5011,7 @@ function baseIteratee(value) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -5284,324 +5284,10 @@ var isArray = Array.isArray;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/**
- * Checks if `value` is the
- * [language type](http://www.ecma-international.org/ecma-262/6.0/#sec-ecmascript-language-types)
- * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is an object, else `false`.
- * @example
- *
- * _.isObject({});
- * // => true
- *
- * _.isObject([1, 2, 3]);
- * // => true
- *
- * _.isObject(_.noop);
- * // => true
- *
- * _.isObject(null);
- * // => false
- */
-function isObject(value) {
-  var type = typeof value;
-  return !!value && (type == 'object' || type == 'function');
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (isObject);
-
-
-/***/ }),
-/* 16 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/**
- * Gets the last element of `array`.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Array
- * @param {Array} array The array to query.
- * @returns {*} Returns the last element of `array`.
- * @example
- *
- * _.last([1, 2, 3]);
- * // => 3
- */
-function last(array) {
-  var length = array ? array.length : 0;
-  return length ? array[length - 1] : undefined;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (last);
-
-
-/***/ }),
-/* 17 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__operation_operationfactory__ = __webpack_require__(352);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module engine/model/delta/deltafactory
- */
-
-
-
-
-
-const deserializers = new Map();
-
-/**
- * A factory class for creating operations.
- *
- * Delta is a single, from the user action point of view, change in the editable document, like insert, split or
- * rename element. Delta is composed of operations, which are unit changes needed to be done to execute user action.
- *
- * Multiple deltas are grouped into a single {@link module:engine/model/batch~Batch}.
- */
-class DeltaFactory {
-	/**
-	 * Creates InsertDelta from deserialized object, i.e. from parsed JSON string.
-	 *
-	 * @param {Object} json
-	 * @param {module:engine/model/document~Document} doc Document on which this delta will be applied.
-	 * @returns {module:engine/model/delta/insertdelta~InsertDelta}
-	 */
-	static fromJSON( json, doc ) {
-		if ( !deserializers.has( json.__className ) ) {
-			/**
-			 * This delta has no defined deserializer.
-			 *
-			 * @error delta-fromjson-no-deserializer
-			 * @param {String} name
-			 */
-			throw new __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */](
-				'delta-fromjson-no-deserializer: This delta has no defined deserializer',
-				{ name: json.__className }
-			);
-		}
-
-		const Delta = deserializers.get( json.__className );
-
-		const delta = new Delta();
-
-		for ( const operation of json.operations ) {
-			delta.addOperation( __WEBPACK_IMPORTED_MODULE_1__operation_operationfactory__["a" /* default */].fromJSON( operation, doc ) );
-		}
-
-		// Rewrite all other properties.
-		for ( const prop in json ) {
-			if ( prop != '__className' && delta[ prop ] === undefined ) {
-				delta[ prop ] = json[ prop ];
-			}
-		}
-
-		return delta;
-	}
-
-	/**
-	 * Registers a class for delta factory.
-	 *
-	 * @param {Function} Delta A delta class to register.
-	 */
-	static register( Delta ) {
-		deserializers.set( Delta.className, Delta );
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = DeltaFactory;
-
-
-
-/***/ }),
-/* 18 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["b"] = register;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module engine/model/batch
- */
-
-
-
-/**
- * `Batch` instance groups document changes ({@link module:engine/model/delta/delta~Delta deltas}). All deltas grouped in a single `Batch`
- * can be reverted together, so you can think about `Batch` as of a single undo step. If you want to extend given undo step you
- * can call another method on the same `Batch` object. If you want to create a separate undo step you can create a new `Batch`.
- *
- * For example to create two separate undo steps you can call:
- *
- *		doc.batch().insert( firstPosition, 'foo' );
- *		doc.batch().insert( secondPosition, 'bar' );
- *
- * To create a single undo step:
- *
- *		const batch = doc.batch();
- *		batch.insert( firstPosition, 'foo' );
- *		batch.insert( secondPosition, 'bar' );
- *
- * Note that all document modification methods (insert, remove, split, etc.) are chainable so you can shorten code to:
- *
- *		doc.batch().insert( firstPosition, 'foo' ).insert( secondPosition, 'bar' );
- */
-class Batch {
-	/**
-	 * Creates `Batch` instance. Not recommended to use directly, use {@link module:engine/model/document~Document#batch} instead.
-	 *
-	 * @param {module:engine/model/document~Document} document Document which this Batch changes.
-	 * @param {'transparent'|'default'} [type='default'] Type of the batch.
-	 */
-	constructor( document, type = 'default' ) {
-		/**
-		 * Document which this batch changes.
-		 *
-		 * @readonly
-		 * @member {module:engine/model/document~Document} module:engine/model/batch~Batch#document
-		 */
-		this.document = document;
-
-		/**
-		 * Array of deltas which compose this batch.
-		 *
-		 * @readonly
-		 * @member {Array.<module:engine/model/delta/delta~Delta>} module:engine/model/batch~Batch#deltas
-		 */
-		this.deltas = [];
-
-		/**
-		 * Type of the batch.
-		 *
-		 * Can be one of the following values:
-		 * * `'default'` - all "normal" batches, most commonly used type.
-		 * * `'transparent'` - batch that should be ignored by other features, i.e. initial batch or collaborative editing changes.
-		 *
-		 * @readonly
-		 * @member {'transparent'|'default'} module:engine/model/batch~Batch#type
-		 */
-		this.type = type;
-	}
-
-	/**
-	 * Returns this batch base version, which is equal to the base version of first delta in the batch.
-	 * If there are no deltas in the batch, it returns `null`.
-	 *
-	 * @readonly
-	 * @type {Number|null}
-	 */
-	get baseVersion() {
-		return this.deltas.length > 0 ? this.deltas[ 0 ].baseVersion : null;
-	}
-
-	/**
-	 * Adds delta to the batch instance. All modification methods (insert, remove, split, etc.) use this method
-	 * to add created deltas.
-	 *
-	 * @param {module:engine/model/delta/delta~Delta} delta Delta to add.
-	 * @return {module:engine/model/delta/delta~Delta} Added delta.
-	 */
-	addDelta( delta ) {
-		delta.batch = this;
-		this.deltas.push( delta );
-
-		return delta;
-	}
-
-	/**
-	 * Gets an iterable collection of operations.
-	 *
-	 * @returns {Iterable.<module:engine/model/operation/operation~Operation>}
-	 */
-	* getOperations() {
-		for ( const delta of this.deltas ) {
-			yield* delta.operations;
-		}
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Batch;
-
-
-/**
- * Function to register batch methods. To make code scalable `Batch` do not have modification
- * methods built in. They can be registered using this method.
- *
- * This method checks if there is no naming collision and throws `batch-register-taken` if the method name
- * is already taken.
- *
- * Besides that no magic happens here, the method is added to the `Batch` class prototype.
- *
- * For example:
- *
- *		Batch.register( 'insert', function( position, nodes ) {
- *			// You can use a class inheriting from `Delta` if that class should handle OT in a special way.
- *			const delta = new Delta();
- *
- *			// Add delta to the Batch instance. It is important to add a delta to the batch before applying any operation.
- *			this.addDelta( delta );
- *
- *			// Create operations which should be components of this delta.
- *			const operation = new InsertOperation( position, nodes, this.document.version );
- *
- *			// Add operation to the delta. It is important to add operation before applying it.
- *			delta.addOperation( operation );
- *
- *			// Remember to apply every operation, no magic, you need to do it manually.
- *			this.document.applyOperation( operation );
- *
- *			// Make this method chainable.
- *			return this;
- *		} );
- *
- * @method module:engine/model/batch~Batch.register
- * @param {String} name Method name.
- * @param {Function} creator Method body.
- */
-function register( name, creator ) {
-	if ( Batch.prototype[ name ] ) {
-		/**
-		 * This batch method name is already taken.
-		 *
-		 * @error batch-register-taken
-		 * @param {String} name
-		 */
-		throw new __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */](
-			'model-batch-register-taken: This batch method name is already taken.',
-			{ name } );
-	}
-
-	Batch.prototype[ name ] = creator;
-}
-
-
-/***/ }),
-/* 19 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__emittermixin__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__emittermixin__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lib_lodash_extend__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__lib_lodash_isObject__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__lib_lodash_isObject__ = __webpack_require__(16);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -6333,6 +6019,320 @@ Object(__WEBPACK_IMPORTED_MODULE_2__lib_lodash_extend__["a" /* default */])( Obs
 
 
 /***/ }),
+/* 16 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * Checks if `value` is the
+ * [language type](http://www.ecma-international.org/ecma-262/6.0/#sec-ecmascript-language-types)
+ * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(_.noop);
+ * // => true
+ *
+ * _.isObject(null);
+ * // => false
+ */
+function isObject(value) {
+  var type = typeof value;
+  return !!value && (type == 'object' || type == 'function');
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (isObject);
+
+
+/***/ }),
+/* 17 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * Gets the last element of `array`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Array
+ * @param {Array} array The array to query.
+ * @returns {*} Returns the last element of `array`.
+ * @example
+ *
+ * _.last([1, 2, 3]);
+ * // => 3
+ */
+function last(array) {
+  var length = array ? array.length : 0;
+  return length ? array[length - 1] : undefined;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (last);
+
+
+/***/ }),
+/* 18 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__operation_operationfactory__ = __webpack_require__(352);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module engine/model/delta/deltafactory
+ */
+
+
+
+
+
+const deserializers = new Map();
+
+/**
+ * A factory class for creating operations.
+ *
+ * Delta is a single, from the user action point of view, change in the editable document, like insert, split or
+ * rename element. Delta is composed of operations, which are unit changes needed to be done to execute user action.
+ *
+ * Multiple deltas are grouped into a single {@link module:engine/model/batch~Batch}.
+ */
+class DeltaFactory {
+	/**
+	 * Creates InsertDelta from deserialized object, i.e. from parsed JSON string.
+	 *
+	 * @param {Object} json
+	 * @param {module:engine/model/document~Document} doc Document on which this delta will be applied.
+	 * @returns {module:engine/model/delta/insertdelta~InsertDelta}
+	 */
+	static fromJSON( json, doc ) {
+		if ( !deserializers.has( json.__className ) ) {
+			/**
+			 * This delta has no defined deserializer.
+			 *
+			 * @error delta-fromjson-no-deserializer
+			 * @param {String} name
+			 */
+			throw new __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */](
+				'delta-fromjson-no-deserializer: This delta has no defined deserializer',
+				{ name: json.__className }
+			);
+		}
+
+		const Delta = deserializers.get( json.__className );
+
+		const delta = new Delta();
+
+		for ( const operation of json.operations ) {
+			delta.addOperation( __WEBPACK_IMPORTED_MODULE_1__operation_operationfactory__["a" /* default */].fromJSON( operation, doc ) );
+		}
+
+		// Rewrite all other properties.
+		for ( const prop in json ) {
+			if ( prop != '__className' && delta[ prop ] === undefined ) {
+				delta[ prop ] = json[ prop ];
+			}
+		}
+
+		return delta;
+	}
+
+	/**
+	 * Registers a class for delta factory.
+	 *
+	 * @param {Function} Delta A delta class to register.
+	 */
+	static register( Delta ) {
+		deserializers.set( Delta.className, Delta );
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = DeltaFactory;
+
+
+
+/***/ }),
+/* 19 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = register;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module engine/model/batch
+ */
+
+
+
+/**
+ * `Batch` instance groups document changes ({@link module:engine/model/delta/delta~Delta deltas}). All deltas grouped in a single `Batch`
+ * can be reverted together, so you can think about `Batch` as of a single undo step. If you want to extend given undo step you
+ * can call another method on the same `Batch` object. If you want to create a separate undo step you can create a new `Batch`.
+ *
+ * For example to create two separate undo steps you can call:
+ *
+ *		doc.batch().insert( firstPosition, 'foo' );
+ *		doc.batch().insert( secondPosition, 'bar' );
+ *
+ * To create a single undo step:
+ *
+ *		const batch = doc.batch();
+ *		batch.insert( firstPosition, 'foo' );
+ *		batch.insert( secondPosition, 'bar' );
+ *
+ * Note that all document modification methods (insert, remove, split, etc.) are chainable so you can shorten code to:
+ *
+ *		doc.batch().insert( firstPosition, 'foo' ).insert( secondPosition, 'bar' );
+ */
+class Batch {
+	/**
+	 * Creates `Batch` instance. Not recommended to use directly, use {@link module:engine/model/document~Document#batch} instead.
+	 *
+	 * @param {module:engine/model/document~Document} document Document which this Batch changes.
+	 * @param {'transparent'|'default'} [type='default'] Type of the batch.
+	 */
+	constructor( document, type = 'default' ) {
+		/**
+		 * Document which this batch changes.
+		 *
+		 * @readonly
+		 * @member {module:engine/model/document~Document} module:engine/model/batch~Batch#document
+		 */
+		this.document = document;
+
+		/**
+		 * Array of deltas which compose this batch.
+		 *
+		 * @readonly
+		 * @member {Array.<module:engine/model/delta/delta~Delta>} module:engine/model/batch~Batch#deltas
+		 */
+		this.deltas = [];
+
+		/**
+		 * Type of the batch.
+		 *
+		 * Can be one of the following values:
+		 * * `'default'` - all "normal" batches, most commonly used type.
+		 * * `'transparent'` - batch that should be ignored by other features, i.e. initial batch or collaborative editing changes.
+		 *
+		 * @readonly
+		 * @member {'transparent'|'default'} module:engine/model/batch~Batch#type
+		 */
+		this.type = type;
+	}
+
+	/**
+	 * Returns this batch base version, which is equal to the base version of first delta in the batch.
+	 * If there are no deltas in the batch, it returns `null`.
+	 *
+	 * @readonly
+	 * @type {Number|null}
+	 */
+	get baseVersion() {
+		return this.deltas.length > 0 ? this.deltas[ 0 ].baseVersion : null;
+	}
+
+	/**
+	 * Adds delta to the batch instance. All modification methods (insert, remove, split, etc.) use this method
+	 * to add created deltas.
+	 *
+	 * @param {module:engine/model/delta/delta~Delta} delta Delta to add.
+	 * @return {module:engine/model/delta/delta~Delta} Added delta.
+	 */
+	addDelta( delta ) {
+		delta.batch = this;
+		this.deltas.push( delta );
+
+		return delta;
+	}
+
+	/**
+	 * Gets an iterable collection of operations.
+	 *
+	 * @returns {Iterable.<module:engine/model/operation/operation~Operation>}
+	 */
+	* getOperations() {
+		for ( const delta of this.deltas ) {
+			yield* delta.operations;
+		}
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Batch;
+
+
+/**
+ * Function to register batch methods. To make code scalable `Batch` do not have modification
+ * methods built in. They can be registered using this method.
+ *
+ * This method checks if there is no naming collision and throws `batch-register-taken` if the method name
+ * is already taken.
+ *
+ * Besides that no magic happens here, the method is added to the `Batch` class prototype.
+ *
+ * For example:
+ *
+ *		Batch.register( 'insert', function( position, nodes ) {
+ *			// You can use a class inheriting from `Delta` if that class should handle OT in a special way.
+ *			const delta = new Delta();
+ *
+ *			// Add delta to the Batch instance. It is important to add a delta to the batch before applying any operation.
+ *			this.addDelta( delta );
+ *
+ *			// Create operations which should be components of this delta.
+ *			const operation = new InsertOperation( position, nodes, this.document.version );
+ *
+ *			// Add operation to the delta. It is important to add operation before applying it.
+ *			delta.addOperation( operation );
+ *
+ *			// Remember to apply every operation, no magic, you need to do it manually.
+ *			this.document.applyOperation( operation );
+ *
+ *			// Make this method chainable.
+ *			return this;
+ *		} );
+ *
+ * @method module:engine/model/batch~Batch.register
+ * @param {String} name Method name.
+ * @param {Function} creator Method body.
+ */
+function register( name, creator ) {
+	if ( Batch.prototype[ name ] ) {
+		/**
+		 * This batch method name is already taken.
+		 *
+		 * @error batch-register-taken
+		 * @param {String} name
+		 */
+		throw new __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */](
+			'model-batch-register-taken: This batch method name is already taken.',
+			{ name } );
+	}
+
+	Batch.prototype[ name ] = creator;
+}
+
+
+/***/ }),
 /* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -6676,7 +6676,7 @@ function _haveSameAttributes( nodeA, nodeB ) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_clone__ = __webpack_require__(84);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -6900,7 +6900,7 @@ function baseFlatten(array, depth, predicate, isStrict, result) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__icon_iconview__ = __webpack_require__(456);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(29);
@@ -14371,7 +14371,7 @@ function baseDifference(array, values, iteratee, comparator) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__element__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__range__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_tomap__ = __webpack_require__(113);
@@ -15142,7 +15142,7 @@ function getParentBlock( position, visited ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__range__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__position__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__element__ = __webpack_require__(26);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -15996,7 +15996,7 @@ class DomEventObserver extends __WEBPACK_IMPORTED_MODULE_0__observer__["a" /* de
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dom_emittermixin__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__observablemixin__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__observablemixin__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mix__ = __webpack_require__(4);
 /**
@@ -16286,7 +16286,7 @@ function isHostObject(value) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__eq__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArrayLike__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isIndex__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isObject__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isObject__ = __webpack_require__(16);
 
 
 
@@ -16652,7 +16652,7 @@ class NodeList {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -16893,7 +16893,7 @@ Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_mix__["a" /* de
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__containerelement__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(15);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -16914,8 +16914,10 @@ const documentSymbol = Symbol( 'document' );
  * Editable element which can be a {@link module:engine/view/rooteditableelement~RootEditableElement root}
  * or nested editable area in the editor.
  *
+ * Editable is automatically read-only when its {module:engine/view/document~Document Document} is read-only.
+ *
  * @extends module:engine/view/containerelement~ContainerElement
- * @mixes module:utils/observablemixin~ObservaleMixin
+ * @mixes module:utils/observablemixin~ObservableMixin
  */
 class EditableElement extends __WEBPACK_IMPORTED_MODULE_0__containerelement__["a" /* default */] {
 	/**
@@ -16969,6 +16971,8 @@ class EditableElement extends __WEBPACK_IMPORTED_MODULE_0__containerelement__["a
 		}
 
 		this.setCustomProperty( documentSymbol, document );
+
+		this.bind( 'isReadOnly' ).to( document );
 
 		this.bind( 'isFocused' ).to(
 			document,
@@ -18702,8 +18706,8 @@ SetCache.prototype.has = __WEBPACK_IMPORTED_MODULE_2__setCacheHas__["a" /* defau
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__movedelta__ = __webpack_require__(94);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__batch__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__deltafactory__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__batch__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__deltafactory__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_removeoperation__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__range__ = __webpack_require__(3);
@@ -18782,8 +18786,8 @@ __WEBPACK_IMPORTED_MODULE_2__deltafactory__["a" /* default */].register( RemoveD
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_moveoperation__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__range__ = __webpack_require__(3);
@@ -18922,9 +18926,9 @@ __WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( MoveDel
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__splitdelta__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__batch__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__element__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__operation_removeoperation__ = __webpack_require__(39);
@@ -19071,8 +19075,8 @@ __WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( MergeDe
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__element__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__operation_insertoperation__ = __webpack_require__(48);
@@ -19226,9 +19230,9 @@ __WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( SplitDe
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__wrapdelta__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__batch__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__operation_removeoperation__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__operation_moveoperation__ = __webpack_require__(27);
@@ -19355,9 +19359,9 @@ __WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( UnwrapD
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__unwrapdelta__ = __webpack_require__(97);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__batch__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__element__ = __webpack_require__(6);
@@ -19724,7 +19728,7 @@ function arrayFilter(array, predicate) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__emittermixin__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__emittermixin__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__uid__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lib_lodash_extend__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__lib_lodash_isNative__ = __webpack_require__(167);
@@ -20024,7 +20028,7 @@ function isDomNode( node ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__emittermixin__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__emittermixin__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__uid__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mix__ = __webpack_require__(4);
@@ -20944,7 +20948,7 @@ function baseProperty(key) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isObject__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isObject__ = __webpack_require__(16);
 
 
 /** `Object#toString` result references. */
@@ -21860,7 +21864,7 @@ function nonUiChildrenCount( element ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__text__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -22085,8 +22089,8 @@ function normalize( nodes ) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_attributeoperation__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__operation_rootattributeoperation__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__operation_nooperation__ = __webpack_require__(66);
@@ -22592,7 +22596,7 @@ var Symbol = __WEBPACK_IMPORTED_MODULE_0__root__["a" /* default */].Symbol;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIsEqualDeep__ = __webpack_require__(354);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isObject__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isObject__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObjectLike__ = __webpack_require__(43);
 
 
@@ -23177,9 +23181,9 @@ class RootAttributeOperation extends __WEBPACK_IMPORTED_MODULE_0__operation__["a
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__removedelta__ = __webpack_require__(93);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__deltafactory__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__deltafactory__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_insertoperation__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__batch__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__writer__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__documentfragment__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__model_range_js__ = __webpack_require__(3);
@@ -23317,8 +23321,8 @@ __WEBPACK_IMPORTED_MODULE_2__deltafactory__["a" /* default */].register( InsertD
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_renameoperation__ = __webpack_require__(127);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__element__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__position__ = __webpack_require__(1);
@@ -24064,7 +24068,7 @@ function baseXor(arrays, iteratee, comparator) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__range__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -24328,7 +24332,7 @@ class DomEventData {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_collection__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /**
@@ -24894,13 +24898,12 @@ function isWidget( element ) {
  * * adds custom property allowing to recognize widget elements by using {@link ~isWidget}.
  *
  * @param {module:engine/view/element~Element} element
- * @param {Object} [options]
+ * @param {Object} [options={}]
  * @param {String|Function} [options.label] Element's label provided to {@link ~setLabel} function. It can be passed as
  * a plain string or a function returning a string.
  * @returns {module:engine/view/element~Element} Returns same element.
  */
-function toWidget( element, options ) {
-	options = options || {};
+function toWidget( element, options = {} ) {
 	element.setAttribute( 'contenteditable', false );
 	element.getFillerOffset = getFillerOffset;
 	element.addClass( WIDGET_CLASS_NAME );
@@ -24943,16 +24946,24 @@ function getLabel( element ) {
 
 /**
  * Adds functionality to provided {module:engine/view/editableelement~EditableElement} to act as a widget's editable:
- * * sets `contenteditable` attribute to `true`,
  * * adds `ck-editable` CSS class,
+ * * sets `contenteditable` as `true` when {module:engine/view/editableelement~EditableElement#isReadOnly} is `false`
+ * otherwise set `false`,
  * * adds `ck-editable_focused` CSS class when editable is focused and removes it when it's blurred.
  *
  * @param {module:engine/view/editableelement~EditableElement} editable
  * @returns {module:engine/view/editableelement~EditableElement} Returns same element that was provided in `editable` param.
  */
 function toWidgetEditable( editable ) {
-	editable.setAttribute( 'contenteditable', 'true' );
 	editable.addClass( 'ck-editable' );
+
+	// Set initial contenteditable value.
+	editable.setAttribute( 'contenteditable', !editable.isReadOnly );
+
+	// Bind contenteditable property to element#isReadOnly.
+	editable.on( 'change:isReadOnly', ( evt, property, is ) => {
+		editable.setAttribute( 'contenteditable', !is );
+	} );
 
 	editable.on( 'change:isFocused', ( evt, property, is ) => {
 		if ( is ) {
@@ -25221,7 +25232,7 @@ function apply(func, thisArg, args) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isFunction__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isObject__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isObject__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isSymbol__ = __webpack_require__(45);
 
 
@@ -25395,7 +25406,7 @@ function baseTimes(n, iteratee) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_position__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_range__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_text__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -26362,7 +26373,7 @@ function matchStyles( patterns, element ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_documentfragment__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_lib_lodash_extend__ = __webpack_require__(44);
 /**
@@ -27235,7 +27246,7 @@ function getFillerOffset() {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__range__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /**
@@ -27553,7 +27564,7 @@ function isInsideCombinedSymbol( string, offset ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__isArray__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__isBuffer__ = __webpack_require__(350);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__isHostObject__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__isObject__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__isObject__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__keys__ = __webpack_require__(65);
 
 
@@ -27703,7 +27714,7 @@ function baseClone(value, isDeep, isFull, customizer, key, object, stack) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isFunction__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isHostObject__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObject__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObject__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__toSource__ = __webpack_require__(168);
 
 
@@ -28059,8 +28070,8 @@ function equalArrays(array, other, equalFunc, customizer, bitmask, stack) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__insertdelta__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__batch__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__deltafactory__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__batch__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__deltafactory__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_insertoperation__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__writer__ = __webpack_require__(20);
 /**
@@ -29055,7 +29066,7 @@ function indexOfNaN(array, fromIndex, fromRight) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseIteratee__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__last__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__last__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rest__ = __webpack_require__(7);
 
 
@@ -29106,7 +29117,7 @@ var differenceBy = Object(__WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */]
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isObject__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isObject__ = __webpack_require__(16);
 
 
 /**
@@ -29228,7 +29239,7 @@ function identity(value) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__rest__ = __webpack_require__(7);
 
 
@@ -29852,7 +29863,7 @@ var intersection = Object(__WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */]
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIntersection__ = __webpack_require__(140);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseIteratee__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__castArrayLikeObject__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__last__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__last__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rest__ = __webpack_require__(7);
 
 
@@ -29909,7 +29920,7 @@ var intersectionBy = Object(__WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default *
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayMap__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIntersection__ = __webpack_require__(140);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__castArrayLikeObject__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__rest__ = __webpack_require__(7);
 
 
@@ -30278,7 +30289,7 @@ var pullAt = Object(__WEBPACK_IMPORTED_MODULE_6__rest__["a" /* default */])(func
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__castPath__ = __webpack_require__(99);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isIndex__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isKey__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__parent__ = __webpack_require__(388);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__toKey__ = __webpack_require__(59);
 
@@ -31097,7 +31108,7 @@ var union = Object(__WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */])(funct
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIteratee__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseUniq__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__last__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__last__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rest__ = __webpack_require__(7);
 
 
@@ -31148,7 +31159,7 @@ var unionBy = Object(__WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */])(fun
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseUniq__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__rest__ = __webpack_require__(7);
 
 
@@ -31385,7 +31396,7 @@ var xor = Object(__WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */])(functio
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIteratee__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseXor__ = __webpack_require__(146);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__last__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__last__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rest__ = __webpack_require__(7);
 
 
@@ -31436,7 +31447,7 @@ var xorBy = Object(__WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */])(funct
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayFilter__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseXor__ = __webpack_require__(146);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__rest__ = __webpack_require__(7);
 
 
@@ -33334,7 +33345,7 @@ class MutationObserver extends __WEBPACK_IMPORTED_MODULE_0__observer__["a" /* de
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isObject__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isObject__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__now__ = __webpack_require__(411);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__toNumber__ = __webpack_require__(154);
 
@@ -33912,7 +33923,7 @@ class HtmlDataProcessor {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__focuscycler__ = __webpack_require__(150);
@@ -34895,7 +34906,7 @@ function clickOutsideHandler( { emitter, activator, callback, contextElements } 
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_uid__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__label_labelview__ = __webpack_require__(494);
@@ -35042,7 +35053,7 @@ class LabeledInputView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* defaul
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -35176,7 +35187,7 @@ function submitHandler( { view } ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_dom_position__ = __webpack_require__(495);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_dom_isrange__ = __webpack_require__(267);
@@ -36247,6 +36258,7 @@ class StandardEditor extends __WEBPACK_IMPORTED_MODULE_0__editor__["a" /* defaul
 
 		// Documented in Editor.
 		this.editing = new __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_controller_editingcontroller__["a" /* default */]( this.document );
+		this.editing.bind( 'isReadOnly' ).to( this );
 
 		/**
 		 * Instance of the {@link module:core/editingkeystrokehandler~EditingKeystrokeHandler}.
@@ -36348,7 +36360,7 @@ class StandardEditor extends __WEBPACK_IMPORTED_MODULE_0__editor__["a" /* defaul
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_locale__ = __webpack_require__(279);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_engine_src_controller_datacontroller__ = __webpack_require__(281);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_model_document__ = __webpack_require__(304);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -37393,7 +37405,7 @@ function _clear() {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__conversion_mapper__ = __webpack_require__(158);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__conversion_modelconversiondispatcher__ = __webpack_require__(161);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__conversion_model_to_view_converters__ = __webpack_require__(114);
@@ -38812,7 +38824,7 @@ class ModelConsumable {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_node__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__model_documentfragment__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__model_writer__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_lib_lodash_extend__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(34);
@@ -40345,17 +40357,24 @@ function deleteContent( selection, batch, options = {} ) {
 		return;
 	}
 
-	const selRange = selection.getFirstRange();
+	// 1. Replace the entire content with paragraph.
+	// See: https://github.com/ckeditor/ckeditor5-engine/issues/1012#issuecomment-315017594.
+	if ( shouldEntireContentBeReplacedWithParagraph( batch.document.schema, selection ) ) {
+		replaceEntireContentWithParagraph( batch, selection );
 
+		return;
+	}
+
+	const selRange = selection.getFirstRange();
 	const startPos = selRange.start;
 	const endPos = __WEBPACK_IMPORTED_MODULE_0__model_liveposition__["a" /* default */].createFromPosition( selRange.end );
 
-	// 1. Remove the content if there is any.
+	// 2. Remove the content if there is any.
 	if ( !selRange.start.isTouching( selRange.end ) ) {
 		batch.remove( selRange );
 	}
 
-	// 2. Merge elements in the right branch to the elements in the left branch.
+	// 3. Merge elements in the right branch to the elements in the left branch.
 	// The only reasonable (in terms of data and selection correctness) case in which we need to do that is:
 	//
 	// <heading type=1>Fo[</heading><paragraph>]ar</paragraph> => <heading type=1>Fo^ar</heading>
@@ -40369,13 +40388,10 @@ function deleteContent( selection, batch, options = {} ) {
 
 	selection.collapse( startPos );
 
-	// 3. Autoparagraphing.
+	// 4. Autoparagraphing.
 	// Check if a text is allowed in the new container. If not, try to create a new paragraph (if it's allowed here).
 	if ( shouldAutoparagraph( batch.document, startPos ) ) {
-		const paragraph = new __WEBPACK_IMPORTED_MODULE_3__model_element__["a" /* default */]( 'paragraph' );
-		batch.insert( startPos, paragraph );
-
-		selection.collapse( paragraph );
+		insertParagraph( batch, startPos, selection );
 	}
 
 	endPos.detach();
@@ -40472,6 +40488,64 @@ function checkCanBeMerged( leftPos, rightPos ) {
 		if ( schema.objects.has( value.item.name ) || schema.limits.has( value.item.name ) ) {
 			return false;
 		}
+	}
+
+	return true;
+}
+
+// Returns the lowest limit element defined in `Schema.limits` for passed selection.
+function getLimitElement( schema, selection ) {
+	let element = selection.getFirstRange().getCommonAncestor();
+
+	while ( !schema.limits.has( element.name ) ) {
+		if ( element.parent ) {
+			element = element.parent;
+		} else {
+			break;
+		}
+	}
+
+	return element;
+}
+
+function insertParagraph( batch, position, selection ) {
+	const paragraph = new __WEBPACK_IMPORTED_MODULE_3__model_element__["a" /* default */]( 'paragraph' );
+	batch.insert( position, paragraph );
+
+	selection.collapse( paragraph );
+}
+
+function replaceEntireContentWithParagraph( batch, selection ) {
+	const limitElement = getLimitElement( batch.document.schema, selection );
+
+	batch.remove( __WEBPACK_IMPORTED_MODULE_2__model_range__["a" /* default */].createIn( limitElement ) );
+	insertParagraph( batch, __WEBPACK_IMPORTED_MODULE_1__model_position__["a" /* default */].createAt( limitElement ), selection );
+}
+
+// We want to replace the entire content with a paragraph when:
+// * the entire content is selected,
+// * selection contains at least two elements,
+// * whether the paragraph is allowed in schema in the common ancestor.
+function shouldEntireContentBeReplacedWithParagraph( schema, selection ) {
+	const limitElement = getLimitElement( schema, selection );
+	const limitStartPosition = __WEBPACK_IMPORTED_MODULE_1__model_position__["a" /* default */].createAt( limitElement );
+	const limitEndPosition = __WEBPACK_IMPORTED_MODULE_1__model_position__["a" /* default */].createAt( limitElement, 'end' );
+
+	if (
+		!limitStartPosition.isTouching( selection.getFirstPosition() ) ||
+		!limitEndPosition.isTouching( selection.getLastPosition() )
+	) {
+		return false;
+	}
+
+	const range = selection.getFirstRange();
+
+	if ( range.start.parent == range.end.parent ) {
+		return false;
+	}
+
+	if ( !schema.check( { name: 'paragraph', inside: limitElement.name } ) ) {
+		return false;
 	}
 
 	return true;
@@ -40799,7 +40873,7 @@ function removeRangeContent( range ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__rootelement__ = __webpack_require__(395);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__batch__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__history__ = __webpack_require__(396);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__documentselection__ = __webpack_require__(397);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__schema__ = __webpack_require__(399);
@@ -40807,7 +40881,7 @@ function removeRangeContent( range ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__markercollection__ = __webpack_require__(400);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__delta_transform__ = __webpack_require__(178);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ckeditor_ckeditor5_utils_src_lib_lodash_clone__ = __webpack_require__(84);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ckeditor_ckeditor5_utils_src_unicode__ = __webpack_require__(165);
@@ -42573,7 +42647,7 @@ function initCloneObject(object) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isObject__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isObject__ = __webpack_require__(16);
 
 
 /** Built-in value references. */
@@ -44534,7 +44608,7 @@ function makeMoveOperationsFromRanges( a, ranges, targetPosition ) {
 /* unused harmony reexport intersectionWith */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__join__ = __webpack_require__(206);
 /* unused harmony reexport join */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__last__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__last__ = __webpack_require__(17);
 /* unused harmony reexport last */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__lastIndexOf__ = __webpack_require__(207);
 /* unused harmony reexport lastIndexOf */
@@ -45741,7 +45815,7 @@ function noop() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__castPath__ = __webpack_require__(99);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isIndex__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isKey__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isObject__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isObject__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__toKey__ = __webpack_require__(59);
 
 
@@ -45821,7 +45895,7 @@ function baseSet(object, path, value, customizer) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__intersectionBy__ = __webpack_require__(204);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__intersectionWith__ = __webpack_require__(205);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__join__ = __webpack_require__(206);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__last__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__last__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__lastIndexOf__ = __webpack_require__(207);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__nth__ = __webpack_require__(208);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pull__ = __webpack_require__(209);
@@ -45950,8 +46024,8 @@ function baseSet(object, path, value, customizer) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_markeroperation__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /**
@@ -47244,6 +47318,8 @@ class Schema {
 		this.allow( { name: '$block', inside: '$root' } );
 		this.allow( { name: '$inline', inside: '$block' } );
 
+		this.limits.add( '$root' );
+
 		// TMP!
 		// Create an "all allowed" context in the schema for processing the pasted content.
 		// Read: https://github.com/ckeditor/ckeditor5-engine/issues/638#issuecomment-255086588
@@ -47854,7 +47930,7 @@ function matchPaths( schema, pathToCheck, registeredPath ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__liverange__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__range__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /**
@@ -48335,7 +48411,8 @@ function isMac( userAgent ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__conversion_model_to_view_converters__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__conversion_view_selection_to_model_converters__ = __webpack_require__(415);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__conversion_model_selection_to_view_converters__ = __webpack_require__(252);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -48354,10 +48431,13 @@ function isMac( userAgent ) {
 
 
 
+
 /**
  * Controller for the editing pipeline. The editing pipeline controls {@link ~EditingController#model model} rendering,
  * including selection handling. It also creates {@link ~EditingController#view view document} which build a
  * browser-independent virtualization over the DOM elements. Editing controller also attach default converters.
+ *
+ * @mixes module:utils/observablemixin~ObservableMixin
  */
 class EditingController {
 	/**
@@ -48391,6 +48471,19 @@ class EditingController {
 		this.mapper = new __WEBPACK_IMPORTED_MODULE_1__conversion_mapper__["a" /* default */]();
 
 		/**
+		 * Defines whether controller is in read-only mode.
+		 *
+		 * When controller is read-ony then {module:engine/view/document~Document view document} is read-only as well.
+		 *
+		 * @observable
+		 * @member {Boolean} #isReadOnly
+		 */
+		this.set( 'isReadOnly', false );
+
+		// When controller is read-only the view document is read-only as well.
+		this.view.bind( 'isReadOnly' ).to( this );
+
+		/**
 		 * Model to view conversion dispatcher, which converts changes from the model to
 		 * {@link #view editing view}.
 		 *
@@ -48410,22 +48503,13 @@ class EditingController {
 			viewSelection: this.view.selection
 		} );
 
-		/**
-		 * Property keeping all listenters attached by controller on other objects, so it can
-		 * stop listening on {@link #destroy}.
-		 *
-		 * @private
-		 * @member {utils.EmitterMixin} #_listener
-		 */
-		this._listener = Object.create( __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
-
 		// Convert changes in model to view.
-		this._listener.listenTo( this.model, 'change', ( evt, type, changes ) => {
+		this.listenTo( this.model, 'change', ( evt, type, changes ) => {
 			this.modelToView.convertChange( type, changes );
 		}, { priority: 'low' } );
 
 		// Convert model selection to view.
-		this._listener.listenTo( this.model, 'changesDone', () => {
+		this.listenTo( this.model, 'changesDone', () => {
 			const selection = this.model.selection;
 
 			this.modelToView.convertSelection( selection );
@@ -48433,16 +48517,16 @@ class EditingController {
 		}, { priority: 'low' } );
 
 		// Convert model markers changes.
-		this._listener.listenTo( this.model.markers, 'add', ( evt, marker ) => {
+		this.listenTo( this.model.markers, 'add', ( evt, marker ) => {
 			this.modelToView.convertMarker( 'addMarker', marker.name, marker.getRange() );
 		} );
 
-		this._listener.listenTo( this.model.markers, 'remove', ( evt, marker ) => {
+		this.listenTo( this.model.markers, 'remove', ( evt, marker ) => {
 			this.modelToView.convertMarker( 'removeMarker', marker.name, marker.getRange() );
 		} );
 
 		// Convert view selection to model.
-		this._listener.listenTo( this.view, 'selectionChange', Object(__WEBPACK_IMPORTED_MODULE_4__conversion_view_selection_to_model_converters__["a" /* convertSelectionChange */])( this.model, this.mapper ) );
+		this.listenTo( this.view, 'selectionChange', Object(__WEBPACK_IMPORTED_MODULE_4__conversion_view_selection_to_model_converters__["a" /* convertSelectionChange */])( this.model, this.mapper ) );
 
 		// Attach default content converters.
 		this.modelToView.on( 'insert:$text', Object(__WEBPACK_IMPORTED_MODULE_3__conversion_model_to_view_converters__["b" /* insertText */])(), { priority: 'lowest' } );
@@ -48488,11 +48572,13 @@ class EditingController {
 	 */
 	destroy() {
 		this.view.destroy();
-		this._listener.stopListening();
+		this.stopListening();
 	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = EditingController;
 
+
+Object(__WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( EditingController, __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_observablemixin__["a" /* default */] );
 
 
 /***/ }),
@@ -48512,7 +48598,7 @@ class EditingController {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__observer_keyobserver__ = __webpack_require__(413);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__observer_fakeselectionobserver__ = __webpack_require__(414);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(15);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -48595,6 +48681,16 @@ class Document {
 		this.roots = new Map();
 
 		/**
+		 * Defines whether document is in read-only mode.
+		 *
+		 * When document is read-ony then all roots are read-only as well and caret placed inside this root is hidden.
+		 *
+		 * @observable
+		 * @member {Boolean} #isReadOnly
+		 */
+		this.set( 'isReadOnly', false );
+
+		/**
 		 * True if document is focused.
 		 *
 		 * This property is updated by the {@link module:engine/view/observer/focusobserver~FocusObserver}.
@@ -48613,7 +48709,7 @@ class Document {
 		 * @member {module:engine/view/renderer~Renderer} module:engine/view/document~Document#renderer
 		 */
 		this.renderer = new __WEBPACK_IMPORTED_MODULE_1__renderer__["a" /* default */]( this.domConverter, this.selection );
-		this.renderer.bind( 'isFocused' ).to( this, 'isFocused' );
+		this.renderer.bind( 'isFocused' ).to( this );
 
 		/**
 		 * Map of registered {@link module:engine/view/observer/observer~Observer observers}.
@@ -48870,7 +48966,7 @@ Object(__WEBPACK_IMPORTED_MODULE_11__ckeditor_ckeditor5_utils_src_mix__["a" /* d
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_dom_insertat__ = __webpack_require__(406);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_dom_remove__ = __webpack_require__(407);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -49847,7 +49943,10 @@ class SelectionObserver extends __WEBPACK_IMPORTED_MODULE_0__observer__["a" /* d
 	 * @param {Document} domDocument DOM document.
 	 */
 	_handleSelectionChange( domDocument ) {
-		if ( !this.isEnabled || !this.document.isFocused ) {
+		// Selection is handled when document is not focused but is read-only. This is because in read-only
+		// mode contenteditable is set as false and editor won't receive focus but we still need to know
+		// selection position.
+		if ( !this.isEnabled || ( !this.document.isFocused && !this.document.isReadOnly ) ) {
 			return;
 		}
 
@@ -50943,7 +51042,7 @@ class BoxedEditorUIView extends __WEBPACK_IMPORTED_MODULE_0__editorui_editoruivi
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -51144,7 +51243,7 @@ class InlineEditableUIView extends __WEBPACK_IMPORTED_MODULE_0__editableui_edita
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -51484,7 +51583,7 @@ class StickyToolbarView extends __WEBPACK_IMPORTED_MODULE_2__toolbarview__["a" /
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -52000,6 +52099,12 @@ class Clipboard extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src
 		// The clipboard paste pipeline.
 
 		this.listenTo( editingView, 'clipboardInput', ( evt, data ) => {
+			// Pasting and dropping is disabled when editor is read-only.
+			// See: https://github.com/ckeditor/ckeditor5-clipboard/issues/26.
+			if ( editor.isReadOnly ) {
+				return;
+			}
+
 			const dataTransfer = data.dataTransfer;
 			let content = '';
 
@@ -52031,17 +52136,25 @@ class Clipboard extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src
 
 		// The clipboard copy/cut pipeline.
 
-		const onCopyCut = ( evt, data ) => {
+		function onCopyCut( evt, data ) {
 			const dataTransfer = data.dataTransfer;
 			const content = editor.data.toView( editor.data.getSelectedContent( doc.selection ) );
 
 			data.preventDefault();
 
 			editingView.fire( 'clipboardOutput', { dataTransfer, content, method: evt.name } );
-		};
+		}
 
 		this.listenTo( editingView, 'copy', onCopyCut, { priority: 'low' } );
-		this.listenTo( editingView, 'cut', onCopyCut, { priority: 'low' } );
+		this.listenTo( editingView, 'cut', ( evt, data ) => {
+			// Cutting is disabled when editor is read-only.
+			// See: https://github.com/ckeditor/ckeditor5-clipboard/issues/26.
+			if ( editor.isReadOnly ) {
+				data.preventDefault();
+			} else {
+				onCopyCut( evt, data );
+			}
+		}, { priority: 'low' } );
 
 		this.listenTo( editingView, 'clipboardOutput', ( evt, data ) => {
 			if ( !data.content.isEmpty ) {
@@ -52586,14 +52699,13 @@ function enterBlock( dataController, batch, selection, schema ) {
 	const startElement = range.start.parent;
 	const endElement = range.end.parent;
 
-	// Do nothing if selection starts or ends inside `limit` elements.
+	// Don't touch the roots and other limit elements.
 	if ( schema.limits.has( startElement.name ) || schema.limits.has( endElement.name ) ) {
-		return;
-	}
-
-	// Don't touch the root.
-	if ( startElement.root == startElement ) {
-		if ( !isSelectionEmpty ) {
+		// Delete the selected content but only if inside a single limit element.
+		// Abort, when crossing limit elements boundary (e.g. <limit1>x[x</limit1>donttouchme<limit2>y]y</limit2>).
+		// This is an edge case and it's hard to tell what should actually happen because such a selection
+		// is not entirely valid.
+		if ( !isSelectionEmpty && startElement == endElement ) {
 			dataController.deleteContent( selection, batch );
 		}
 
@@ -53915,7 +54027,7 @@ class RedoCommand extends __WEBPACK_IMPORTED_MODULE_0__basecommand__["a" /* defa
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -55702,7 +55814,7 @@ function checkCanBecomeHeading( block, heading, schema ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_extend__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(15);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -55853,7 +55965,7 @@ function attachDocumentClickListener( dropdownView ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__focuscycler__ = __webpack_require__(150);
@@ -55984,7 +56096,7 @@ class ListView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */] {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_keystrokehandler__ = __webpack_require__(50);
 /**
@@ -56162,7 +56274,7 @@ function createDropdown( model, locale ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_keystrokehandler__ = __webpack_require__(50);
@@ -56325,7 +56437,7 @@ class DropdownView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -56496,11 +56608,11 @@ class Image extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plu
 		// which have their own toolbar to avoid duplication.
 		// https://github.com/ckeditor/ckeditor5-image/issues/110
 		if ( contextualToolbar ) {
-			this.listenTo( contextualToolbar, 'beforeShow', ( evt, stop ) => {
+			this.listenTo( contextualToolbar, 'show', evt => {
 				const selectedElement = editor.editing.view.selection.getSelectedElement();
 
 				if ( selectedElement && Object(__WEBPACK_IMPORTED_MODULE_4__image_utils__["b" /* isImageWidget */])( selectedElement ) ) {
-					stop();
+					evt.stop();
 				}
 			} );
 		}
@@ -57545,7 +57657,7 @@ class ImageTextAlternativeCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_src_view__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_src_view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_template__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_labeledinput_labeledinputview__ = __webpack_require__(263);
@@ -57707,7 +57819,7 @@ class TextAlternativeFormView extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_cked
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -58918,7 +59030,7 @@ function matchImageCaption( element ) {
 /* harmony export (immutable) */ __webpack_exports__["a"] = attachPlaceholder;
 /* unused harmony export detachPlaceholder */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_extend__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__theme_placeholder_scss__ = __webpack_require__(507);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__theme_placeholder_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__theme_placeholder_scss__);
@@ -60655,7 +60767,7 @@ class UnlinkCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_src_view__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_src_view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_template__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_viewcollection__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(23);

@@ -526,7 +526,7 @@ is the first param of every callback).</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Handles editor focus change and hides panel if it&apos;s needed.
+                      <p class="collapsing-list__excerpt">Handles the editor focus change and hides the toolbar if it&apos;s needed.
                       </p>
                       <div class="collapsing-list__content">
                       </div>
@@ -752,7 +752,7 @@ properties and methods, but means that <code>foo.set( &apos;bar&apos;, 1 )</code
                       <p class="collapsing-list__excerpt">Shows the toolbar and attaches it to the selection.
                       </p>
                       <div class="collapsing-list__content">
-<p>Fires <a href="module_ui_toolbar_contextual_contextualtoolbar-ContextualToolbar.html#event:beforeShow"><code>beforeShow</code></a> event just before displaying the panel.</p>
+<p>Fires <a href="module_ui_toolbar_contextual_contextualtoolbar-ContextualToolbar.html#event:show"><code>show</code></a> event which can be stopped to prevent the toolbar from showing up.</p>
                       </div>
                     </div>
                   </li>
@@ -860,25 +860,6 @@ This is to makes easy test debounced action without need to use <code>setTimeout
                       </div>
                     </div>
                   </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="event:beforeShow">
-                      <h3><code><a class="member-name" href="#event:beforeShow">beforeShow</a>( stop )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">This event is fired just before the toolbar shows.
-Using this event, an external code can prevent ContextualToolbar
-from being displayed by calling a <code>stop</code> function which is passed along with this event.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> stop : function</code></dt>
-                                  <dd><p>Calling this function prevents panel from being displayed.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
                   <li class="collapsing-list__item" data-public="true" data-mixed="true">
                     <div class="collapsing-list__term toggler--collapsed" id="">
                       <h3><code><a class="member-name" href="#">change:{attribute}</a>( name, value, oldValue )</code></h3>
@@ -902,6 +883,17 @@ from being displayed by calling a <code>stop</code> function which is passed alo
                                   <dd><p>The previous attribute value.</p>
                                   </dd>
                                 </dl>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-public="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="event:show">
+                      <h3><code><a class="member-name" href="#event:show">show</a>()</code></h3>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">This event is fired just before the toolbar shows up. Stopping this event will prevent this.
+                      </p>
+                      <div class="collapsing-list__content">
                       </div>
                     </div>
                   </li>
