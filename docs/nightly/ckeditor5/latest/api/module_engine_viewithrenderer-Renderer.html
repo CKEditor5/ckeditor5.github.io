@@ -35,7 +35,7 @@
         <p><span class="badge">class</span>
         </p><p>Renderer updates DOM structure and selection, to make them a reflection of the view structure and selection.</p>
 <p>View nodes which may need to be rendered needs to be <a href="module_engine_viewithrenderer-Renderer.html#markToSync">marked</a>.
-Then, on <a href="module_engine_viewithrenderer-Renderer.html#render">render</a>, renderer compares the view nodes with the DOM nodes
+Then, on <a href="module_engine_viewithrenderer-Renderer.html#render">render</a>, renderer compares view nodes with DOM nodes
 in order to check which ones really need to be refreshed. Finally, it creates DOM nodes from these view nodes,
 <a href="module_engine_viewithdomconverter-DomConverter.html#bindElements">binds</a> them and inserts into the DOM tree.</p>
 <p>Every time <a href="module_engine_viewithrenderer-Renderer.html#render">render</a> is called, renderer additionally checks if
@@ -126,7 +126,7 @@ in order to check which ones really need to be refreshed. Finally, it creates DO
                       <h3><code><a class="member-name" href="#isFocused">isFocused</a> : Boolean</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Indicates if view document is focused and selection can be rendered. Selection will not be rendered if
+                      <p class="collapsing-list__excerpt">Indicates if the view document is focused and selection can be rendered. Selection will not be rendered if
 this is set to <code>false</code>.</p>
                       <div class="collapsing-list__content">
                       </div>
@@ -179,7 +179,7 @@ this is set to <code>false</code>.</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">View selection. Renderer updates DOM Selection to make it match this one.</p>
+                      <p class="collapsing-list__excerpt">View selection. Renderer updates DOM selection based on the view selection.</p>
                       <div class="collapsing-list__content">
                       </div>
                     </div>
@@ -466,26 +466,34 @@ filler should be rendered.</p>
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_getInlineFillerNode">
-                      <h3><code><a class="member-name" href="#_getInlineFillerNode">_getInlineFillerNode</a>( fillerPosition ) &rarr;  Text</code></h3>
+                    <div class="collapsing-list__term toggler--collapsed" id="_addInlineFiller">
+                      <h3><code><a class="member-name" href="#_addInlineFiller">_addInlineFiller</a>( domDocument, domParentOrArray, offset ) &rarr;  Text</code></h3>
                       <p class="badges">
 <span class="badge badge--red ">private</span>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Gets the text node in which the inline filler is kept.
+                      <p class="collapsing-list__excerpt">Adds inline filler at given position.
                       </p>
                       <div class="collapsing-list__content">
+<p>The position can be given as an array of DOM nodes and an offset in that array,
+or a DOM parent element and offset in that element.</p>
                         <h4>Parameters</h4>
                                 <dl>
-                                  <dt><code> fillerPosition : <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></dt>
-                                  <dd><p>The position on which the filler is needed in the view.</p>
+                                  <dt><code> domDocument : Document</code></dt>
+                                  <dd>
+                                  </dd>
+                                  <dt><code> domParentOrArray : Element | Node</code></dt>
+                                  <dd>
+                                  </dd>
+                                  <dt><code> offset : Number</code></dt>
+                                  <dd>
                                   </dd>
                                 </dl>
                         <h4>Returns</h4>
                         <dl>
                                   <dt><code>Text</code></dt>
-                                  <dd><p>The text node with the filler.</p>
+                                  <dd><p>The DOM text node that contains inline filler.</p>
                                   </dd>
                         </dl>
                       </div>

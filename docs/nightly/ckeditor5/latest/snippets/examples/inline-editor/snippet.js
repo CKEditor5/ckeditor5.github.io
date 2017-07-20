@@ -7876,6 +7876,8 @@ class Element extends __WEBPACK_IMPORTED_MODULE_0__node__["a" /* default */] {
 		cloned._customProperties = new Map( this._customProperties );
 
 		// Clone filler offset method.
+		// We can't define this method in a prototype because it's behavior which
+		// is changed by e.g. toWidget() function from ckeditor5-widget. Perhaps this should be one of custom props.
 		cloned.getFillerOffset = this.getFillerOffset;
 
 		return cloned;
@@ -11402,7 +11404,15 @@ class ContainerElement extends __WEBPACK_IMPORTED_MODULE_0__element__["a" /* def
 //
 // @returns {Number|null} Block filler offset or `null` if block filler is not needed.
 function getFillerOffset() {
-	return Array.from( this.getChildren() ).some( element => !element.is( 'uiElement' ) ) ? null : 0;
+	for ( const child of this.getChildren() ) {
+		// If there's any non-UI element – don't render the bogus.
+		if ( !child.is( 'uiElement' ) ) {
+			return null;
+		}
+	}
+
+	// If there are only UI elements – render the bogus at the end of the element.
+	return this.childCount;
 }
 
 
@@ -21844,7 +21854,8 @@ function getFillerOffset() {
 		return null;
 	}
 
-	return 0;
+	// Render block filler at the end of element (after all ui elements).
+	return this.childCount;
 }
 
 // Returns total count of children that are not {@link module:engine/view/uielement~UIElement UIElements}.
@@ -36246,7 +36257,7 @@ class StandardEditor extends __WEBPACK_IMPORTED_MODULE_0__editor__["a" /* defaul
 
 		// Documented in Editor.
 		this.editing = new __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_controller_editingcontroller__["a" /* default */]( this.document );
-		this.editing.bind( 'isReadOnly' ).to( this );
+		this.editing.view.bind( 'isReadOnly' ).to( this );
 
 		/**
 		 * Instance of the {@link module:core/editingkeystrokehandler~EditingKeystrokeHandler}.
@@ -48459,19 +48470,6 @@ class EditingController {
 		this.mapper = new __WEBPACK_IMPORTED_MODULE_1__conversion_mapper__["a" /* default */]();
 
 		/**
-		 * Defines whether controller is in read-only mode.
-		 *
-		 * When controller is read-ony then {module:engine/view/document~Document view document} is read-only as well.
-		 *
-		 * @observable
-		 * @member {Boolean} #isReadOnly
-		 */
-		this.set( 'isReadOnly', false );
-
-		// When controller is read-only the view document is read-only as well.
-		this.view.bind( 'isReadOnly' ).to( this );
-
-		/**
 		 * Model to view conversion dispatcher, which converts changes from the model to
 		 * {@link #view editing view}.
 		 *
@@ -48982,7 +48980,7 @@ Object(__WEBPACK_IMPORTED_MODULE_11__ckeditor_ckeditor5_utils_src_mix__["a" /* d
  * Renderer updates DOM structure and selection, to make them a reflection of the view structure and selection.
  *
  * View nodes which may need to be rendered needs to be {@link module:engine/view/renderer~Renderer#markToSync marked}.
- * Then, on {@link module:engine/view/renderer~Renderer#render render}, renderer compares the view nodes with the DOM nodes
+ * Then, on {@link module:engine/view/renderer~Renderer#render render}, renderer compares view nodes with DOM nodes
  * in order to check which ones really need to be refreshed. Finally, it creates DOM nodes from these view nodes,
  * {@link module:engine/view/domconverter~DomConverter#bindElements binds} them and inserts into the DOM tree.
  *
@@ -49039,7 +49037,7 @@ class Renderer {
 		this.markedTexts = new Set();
 
 		/**
-		 * View selection. Renderer updates DOM Selection to make it match this one.
+		 * View selection. Renderer updates DOM selection based on the view selection.
 		 *
 		 * @readonly
 		 * @member {module:engine/view/selection~Selection}
@@ -49055,7 +49053,7 @@ class Renderer {
 		this._inlineFiller = null;
 
 		/**
-		 * Indicates if view document is focused and selection can be rendered. Selection will not be rendered if
+		 * Indicates if the view document is focused and selection can be rendered. Selection will not be rendered if
 		 * this is set to `false`.
 		 *
 		 * @member {Boolean}
@@ -49170,44 +49168,67 @@ class Renderer {
 			this._updateChildren( element, { inlineFillerPosition } );
 		}
 
+		// Check whether the inline filler is required and where it really is in the DOM.
+		// At this point in most cases it will be in the DOM, but there are exceptions.
+		// For example, if the inline filler was deep in the created DOM structure, it will not be created.
+		// Similarly, if it was removed at the beginning of this function and then neither text nor children were updated,
+		// it will not be present.
+		// Fix those and similar scenarios.
+		if ( inlineFillerPosition ) {
+			const fillerDomPosition = this.domConverter.viewPositionToDom( inlineFillerPosition );
+			const domDocument = fillerDomPosition.parent.ownerDocument;
+
+			if ( !Object(__WEBPACK_IMPORTED_MODULE_3__filler__["i" /* startsWithFiller */])( fillerDomPosition.parent ) ) {
+				// Filler has not been created at filler position. Create it now.
+				this._inlineFiller = this._addInlineFiller( domDocument, fillerDomPosition.parent, fillerDomPosition.offset );
+			} else {
+				// Filler has been found, save it.
+				this._inlineFiller = fillerDomPosition.parent;
+			}
+		} else {
+			// There is no filler needed.
+			this._inlineFiller = null;
+		}
+
 		this._updateSelection();
 		this._updateFocus();
 
 		this.markedTexts.clear();
 		this.markedAttributes.clear();
 		this.markedChildren.clear();
-
-		// Remember the filler by its node.
-		this._inlineFiller = this._getInlineFillerNode( inlineFillerPosition );
 	}
 
 	/**
-	 * Gets the text node in which the inline filler is kept.
+	 * Adds inline filler at given position.
+	 *
+	 * The position can be given as an array of DOM nodes and an offset in that array,
+	 * or a DOM parent element and offset in that element.
 	 *
 	 * @private
-	 * @param {module:engine/view/position~Position} fillerPosition The position on which the filler is needed in the view.
-	 * @returns {Text} The text node with the filler.
+	 * @param {Document} domDocument
+	 * @param {Element|Array.<Node>} domParentOrArray
+	 * @param {Number} offset
+	 * @returns {Text} The DOM text node that contains inline filler.
 	 */
-	_getInlineFillerNode( fillerPosition ) {
-		if ( !fillerPosition ) {
-			this._inlineFiller = null;
+	_addInlineFiller( domDocument, domParentOrArray, offset ) {
+		const childNodes = domParentOrArray instanceof Array ? domParentOrArray : domParentOrArray.childNodes;
+		const nodeAfterFiller = childNodes[ offset ];
 
-			return;
+		if ( this.domConverter.isText( nodeAfterFiller ) ) {
+			nodeAfterFiller.data = __WEBPACK_IMPORTED_MODULE_3__filler__["b" /* INLINE_FILLER */] + nodeAfterFiller.data;
+
+			return nodeAfterFiller;
+		} else {
+			const fillerNode = domDocument.createTextNode( __WEBPACK_IMPORTED_MODULE_3__filler__["b" /* INLINE_FILLER */] );
+
+			if ( Array.isArray( domParentOrArray ) ) {
+				childNodes.splice( offset, 0, fillerNode );
+			} else {
+				Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_dom_insertat__["a" /* default */])( domParentOrArray, offset, fillerNode );
+			}
+
+			return fillerNode;
 		}
-
-		const domPosition = this.domConverter.viewPositionToDom( fillerPosition );
-
-		/* istanbul ignore if */
-		if ( !domPosition || !Object(__WEBPACK_IMPORTED_MODULE_3__filler__["i" /* startsWithFiller */])( domPosition.parent ) ) {
-			/**
-			 * Cannot find filler node by its position.
-			 *
-			 * @error view-renderer-cannot-find-filler
-			 */
-			throw new __WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-renderer-cannot-find-filler: Cannot find filler node by its position.' );
-		}
-
-		return domPosition.parent;
 	}
 
 	/**
@@ -49407,14 +49428,11 @@ class Renderer {
 		const actualDomChildren = domElement.childNodes;
 		const expectedDomChildren = Array.from( domConverter.viewChildrenToDom( viewElement, domDocument, { bind: true } ) );
 
+		// Inline filler element has to be created during children update because we need it to diff actual dom
+		// elements with expected dom elements. We need inline filler in expected dom elements so we won't re-render
+		// text node if it is not necessary.
 		if ( filler && filler.parent == viewElement ) {
-			const expectedNodeAfterFiller = expectedDomChildren[ filler.offset ];
-
-			if ( this.domConverter.isText( expectedNodeAfterFiller ) ) {
-				expectedNodeAfterFiller.data = __WEBPACK_IMPORTED_MODULE_3__filler__["b" /* INLINE_FILLER */] + expectedNodeAfterFiller.data;
-			} else {
-				expectedDomChildren.splice( filler.offset, 0, domDocument.createTextNode( __WEBPACK_IMPORTED_MODULE_3__filler__["b" /* INLINE_FILLER */] ) );
-			}
+			this._addInlineFiller( domDocument, expectedDomChildren, filler.offset );
 		}
 
 		const actions = Object(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_diff__["a" /* default */])( actualDomChildren, expectedDomChildren, sameNodes );
@@ -50202,11 +50220,11 @@ class KeyObserver extends __WEBPACK_IMPORTED_MODULE_0__domeventobserver__["a" /*
 	constructor( document ) {
 		super( document );
 
-		this.domEventType = 'keydown';
+		this.domEventType = [ 'keydown', 'keyup' ];
 	}
 
 	onDomEvent( domEvt ) {
-		this.fire( 'keydown', domEvt, {
+		this.fire( domEvt.type, domEvt, {
 			keyCode: domEvt.keyCode,
 
 			altKey: domEvt.altKey,
@@ -50237,7 +50255,22 @@ class KeyObserver extends __WEBPACK_IMPORTED_MODULE_0__domeventobserver__["a" /*
  */
 
 /**
- * The value of the {@link module:engine/view/document~Document#event:keydown} event.
+ * Fired when a key has been released.
+ *
+ * Introduced by {@link module:engine/view/observer/keyobserver~KeyObserver}.
+ *
+ * Note that because {@link module:engine/view/observer/keyobserver~KeyObserver} is attached by the
+ * {@link module:engine/view/document~Document}
+ * this event is available by default.
+ *
+ * @see module:engine/view/observer/keyobserver~KeyObserver
+ * @event module:engine/view/document~Document#event:keyup
+ * @param {module:engine/view/observer/keyobserver~KeyEventData} keyEventData
+ */
+
+/**
+ * The value of both events - {@link module:engine/view/document~Document#event:keydown} and
+ * {@link module:engine/view/document~Document#event:keyup}.
  *
  * @class module:engine/view/observer/keyobserver~KeyEventData
  * @extends module:engine/view/observer/domeventdata~DomEventData
