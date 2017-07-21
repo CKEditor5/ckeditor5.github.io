@@ -13764,6 +13764,26 @@ class Node {
 	}
 
 	/**
+	 * Returns a {@link module:engine/model/element~Element} or {@link module:engine/model/documentfragment~DocumentFragment}
+	 * which is a common ancestor of both nodes.
+	 *
+	 * @param {module:engine/model/node~Node} node The second node.
+	 * @returns {module:engine/model/element~Element|module:engine/model/documentfragment~DocumentFragment|null}
+	 */
+	getCommonAncestor( node ) {
+		const ancestorsA = this.getAncestors();
+		const ancestorsB = node.getAncestors();
+
+		let i = 0;
+
+		while ( ancestorsA[ i ] == ancestorsB[ i ] && ancestorsA[ i ] ) {
+			i++;
+		}
+
+		return i === 0 ? null : ancestorsA[ i - 1 ];
+	}
+
+	/**
 	 * Removes this node from it's parent.
 	 */
 	remove() {
@@ -16802,6 +16822,26 @@ class Node {
 		}
 
 		return ancestors;
+	}
+
+	/**
+	 * Returns a {@link module:engine/view/element~Element} or {@link module:engine/view/documentfragment~DocumentFragment}
+	 * which is a common ancestor of both nodes.
+	 *
+	 * @param {module:engine/view/node~Node} node The second node.
+	 * @returns {module:engine/view/element~Element|module:engine/view/documentfragment~DocumentFragment|null}
+	 */
+	getCommonAncestor( node ) {
+		const ancestorsA = this.getAncestors();
+		const ancestorsB = node.getAncestors();
+
+		let i = 0;
+
+		while ( ancestorsA[ i ] == ancestorsB[ i ] && ancestorsA[ i ] ) {
+			i++;
+		}
+
+		return i === 0 ? null : ancestorsA[ i - 1 ];
 	}
 
 	/**
@@ -60328,14 +60368,15 @@ class Link extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plug
 	 */
 	_showPanel( focusInput ) {
 		const editor = this.editor;
-		const command = editor.commands.get( 'link' );
+		const linkCommand = editor.commands.get( 'link' );
+		const unlinkCommand = editor.commands.get( 'unlink' );
 		const editing = editor.editing;
 		const showViewDocument = editing.view;
 		const showIsCollapsed = showViewDocument.selection.isCollapsed;
 		const showSelectedLink = this._getSelectedLinkElement();
 
 		// https://github.com/ckeditor/ckeditor5-link/issues/53
-		this.formView.unlinkButtonView.isVisible = !!showSelectedLink;
+		this.formView.unlinkButtonView.isVisible = unlinkCommand.isEnabled;
 
 		// Make sure that each time the panel shows up, the URL field remains in sync with the value of
 		// the command. If the user typed in the input, then canceled the balloon (`urlInputView#value` stays
@@ -60343,7 +60384,7 @@ class Link extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plug
 		// clicked the same link), they would see the old value instead of the actual value of the command.
 		// https://github.com/ckeditor/ckeditor5-link/issues/78
 		// https://github.com/ckeditor/ckeditor5-link/issues/123
-		this.formView.urlInputView.inputView.element.value = command.value || '';
+		this.formView.urlInputView.inputView.element.value = linkCommand.value || '';
 
 		this.listenTo( showViewDocument, 'render', () => {
 			const renderSelectedLink = this._getSelectedLinkElement();
