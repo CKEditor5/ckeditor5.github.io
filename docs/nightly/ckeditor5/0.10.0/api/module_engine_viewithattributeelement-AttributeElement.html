@@ -452,7 +452,7 @@ See <a href="module_engine_viewithmatcher-Matcher.html"><code>Matcher</code></a>
                   </li>
                   <li class="collapsing-list__item" data-public="true" data-inherited="true">
                     <div class="collapsing-list__term toggler--collapsed" id="getAncestors">
-                      <h3><code><a class="member-name" href="#getAncestors">getAncestors</a>( options = { [options.includeNode], [options.parentFirst] } ) &rarr;  Array</code></h3>
+                      <h3><code><a class="member-name" href="#getAncestors">getAncestors</a>( options = { [options.includeSelf], [options.parentFirst] } ) &rarr;  Array</code></h3>
                       <p class="badges">
 <span class="badge badge--gray ">inherited</span>
                       </p>
@@ -467,7 +467,7 @@ See <a href="module_engine_viewithmatcher-Matcher.html"><code>Matcher</code></a>
                                   <dd><p>Options object.</p>
                                             <dl>
                                               <h5>Properties</h5>
-                                              <dt><code> [ options.includeNode ] : Boolean</code></dt>
+                                              <dt><code> [ options.includeSelf ] : Boolean</code></dt>
                                               <dd><p>When set to <code>true</code> this node will be also included in parent&apos;s array.</p>
                                                 <p>Defaults to <code>false</code></p>
                                               </dd>
@@ -650,7 +650,7 @@ This format is accepted by native <code>Map</code> object and also can be passed
                   </li>
                   <li class="collapsing-list__item" data-public="true" data-inherited="true">
                     <div class="collapsing-list__term toggler--collapsed" id="getCommonAncestor">
-                      <h3><code><a class="member-name" href="#getCommonAncestor">getCommonAncestor</a>( node ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></span> | null</code></h3>
+                      <h3><code><a class="member-name" href="#getCommonAncestor">getCommonAncestor</a>( node, options = { [options.includeSelf] } ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></span> | null</code></h3>
                       <p class="badges">
 <span class="badge badge--gray ">inherited</span>
                       </p>
@@ -664,6 +664,17 @@ which is a common ancestor of both nodes.
                                 <dl>
                                   <dt><code> node : <span><a class="collapsing-list__type" href="module_engine_viewithnode-Node.html">Node</a></span></code></dt>
                                   <dd><p>The second node.</p>
+                                  </dd>
+                                  <dt><code> options : Object</code></dt>
+                                  <dd><p>Options object.</p>
+                                            <dl>
+                                              <h5>Properties</h5>
+                                              <dt><code> [ options.includeSelf ] : Boolean</code></dt>
+                                              <dd><p>When set to <code>true</code> both nodes will be considered &quot;ancestors&quot; too.
+Which means that if e.g. node A is inside B, then their common ancestor will be B.</p>
+                                                <p>Defaults to <code>false</code></p>
+                                              </dd>
+                                            </dl>
                                   </dd>
                                 </dl>
                         <h4>Returns</h4>

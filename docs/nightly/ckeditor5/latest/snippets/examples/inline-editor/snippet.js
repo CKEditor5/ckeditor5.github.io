@@ -444,7 +444,7 @@ class Position {
 		if ( this.parent.is( 'documentFragment' ) ) {
 			return [ this.parent ];
 		} else {
-			return this.parent.getAncestors( { includeNode: true } );
+			return this.parent.getAncestors( { includeSelf: true } );
 		}
 	}
 
@@ -2315,7 +2315,7 @@ function normalize( nodes ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_collection__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__viewcollection__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__viewcollection__ = __webpack_require__(150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_lib_lodash_cloneDeepWith__ = __webpack_require__(423);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_lib_lodash_isObject__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(34);
@@ -3936,7 +3936,7 @@ function shouldExtend( attrName ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__apply__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__apply__ = __webpack_require__(155);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toInteger__ = __webpack_require__(12);
 
 
@@ -4010,7 +4010,7 @@ function rest(func, start) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__viewcollection__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__viewcollection__ = __webpack_require__(150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__template__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_dom_emittermixin__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(15);
@@ -4970,7 +4970,7 @@ function fireDelegatedEvents( destinations, eventInfo, fireArgs ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseMatches__ = __webpack_require__(365);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseMatchesProperty__ = __webpack_require__(372);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__identity__ = __webpack_require__(189);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__identity__ = __webpack_require__(190);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArray__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__property__ = __webpack_require__(380);
 
@@ -7446,7 +7446,7 @@ class Position {
 		if ( this.parent.is( 'documentFragment' ) ) {
 			return [ this.parent ];
 		} else {
-			return this.parent.getAncestors( { includeNode: true } );
+			return this.parent.getAncestors( { includeSelf: true } );
 		}
 	}
 
@@ -7689,10 +7689,10 @@ class Position {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__text__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_objecttomap__ = __webpack_require__(160);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_objecttomap__ = __webpack_require__(161);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isPlainObject__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__matcher__ = __webpack_require__(161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__matcher__ = __webpack_require__(162);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -8987,7 +8987,7 @@ var root = freeGlobal ||
 
 /* harmony default export */ __webpack_exports__["a"] = (root);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(156)(module), __webpack_require__(292)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(157)(module), __webpack_require__(292)))
 
 /***/ }),
 /* 31 */
@@ -10582,7 +10582,7 @@ function baseSlice(array, start, end) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = buildViewConverter;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_matcher__ = __webpack_require__(161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_matcher__ = __webpack_require__(162);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_writer__ = __webpack_require__(20);
@@ -11137,7 +11137,7 @@ function buildViewConverter() {
 /* harmony export (immutable) */ __webpack_exports__["c"] = toImageWidget;
 /* harmony export (immutable) */ __webpack_exports__["b"] = isImageWidget;
 /* harmony export (immutable) */ __webpack_exports__["a"] = isImage;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_widget_src_utils__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_widget_src_utils__ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(5);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -11775,7 +11775,7 @@ class KeystrokeHandler {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_selection_to_view_converters__ = __webpack_require__(253);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_attributeelement__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_containerelement__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_uielement__ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_uielement__ = __webpack_require__(165);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -13203,7 +13203,7 @@ class TreeWalker {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isNative__ = __webpack_require__(168);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isNative__ = __webpack_require__(169);
 
 
 /**
@@ -13714,14 +13714,14 @@ class Node {
 	 * Returns ancestors array of this node.
 	 *
 	 * @param {Object} options Options object.
-	 * @param {Boolean} [options.includeNode=false] When set to `true` this node will be also included in parent's array.
+	 * @param {Boolean} [options.includeSelf=false] When set to `true` this node will be also included in parent's array.
 	 * @param {Boolean} [options.parentFirst=false] When set to `true`, array will be sorted from node's parent to root element,
 	 * otherwise root element will be the first item in the array.
 	 * @returns {Array} Array with ancestors.
 	 */
-	getAncestors( options = { includeNode: false, parentFirst: false } ) {
+	getAncestors( options = { includeSelf: false, parentFirst: false } ) {
 		const ancestors = [];
-		let parent = options.includeNode ? this : this.parent;
+		let parent = options.includeSelf ? this : this.parent;
 
 		while ( parent ) {
 			ancestors[ options.parentFirst ? 'push' : 'unshift' ]( parent );
@@ -13736,11 +13736,14 @@ class Node {
 	 * which is a common ancestor of both nodes.
 	 *
 	 * @param {module:engine/model/node~Node} node The second node.
+	 * @param {Object} options Options object.
+	 * @param {Boolean} [options.includeSelf=false] When set to `true` both nodes will be considered "ancestors" too.
+	 * Which means that if e.g. node A is inside B, then their common ancestor will be B.
 	 * @returns {module:engine/model/element~Element|module:engine/model/documentfragment~DocumentFragment|null}
 	 */
-	getCommonAncestor( node ) {
-		const ancestorsA = this.getAncestors();
-		const ancestorsB = node.getAncestors();
+	getCommonAncestor( node, options = {} ) {
+		const ancestorsA = this.getAncestors( options );
+		const ancestorsB = node.getAncestors( options );
 
 		let i = 0;
 
@@ -14086,14 +14089,14 @@ class TextProxy {
 	 * Returns ancestors array of this text proxy.
 	 *
 	 * @param {Object} options Options object.
-	 * @param {Boolean} [options.includeNode=false] When set to `true` this text proxy will be also included in parent's array.
+	 * @param {Boolean} [options.includeSelf=false] When set to `true` this text proxy will be also included in parent's array.
 	 * @param {Boolean} [options.parentFirst=false] When set to `true`, array will be sorted from text proxy parent to root element,
 	 * otherwise root element will be the first item in the array.
 	 * @returns {Array} Array with ancestors.
 	 */
-	getAncestors( options = { includeNode: false, parentFirst: false } ) {
+	getAncestors( options = { includeSelf: false, parentFirst: false } ) {
 		const ancestors = [];
-		let parent = options.includeNode ? this : this.parent;
+		let parent = options.includeSelf ? this : this.parent;
 
 		while ( parent ) {
 			ancestors[ options.parentFirst ? 'push' : 'unshift' ]( parent );
@@ -14153,9 +14156,9 @@ class TextProxy {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseHas__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseHas__ = __webpack_require__(172);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseKeys__ = __webpack_require__(330);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__indexKeys__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__indexKeys__ = __webpack_require__(158);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArrayLike__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isIndex__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__isPrototype__ = __webpack_require__(79);
@@ -15120,7 +15123,7 @@ function isUnvisitedBlockContainer( element, visited ) {
 // Finds the lowest element in position's ancestors which is a block.
 // Marks all ancestors as already visited to not include any of them later on.
 function getParentBlock( position, visited ) {
-	const ancestors = position.parent.getAncestors( { parentFirst: true, includeNode: true } );
+	const ancestors = position.parent.getAncestors( { parentFirst: true, includeSelf: true } );
 	const block = ancestors.find( element => isUnvisitedBlockContainer( element, visited ) );
 
 	// Mark all ancestors of this position's parent, because find() might've stopped early and
@@ -15884,7 +15887,7 @@ function jumpOverInlineFiller( evt, data ) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observer__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__domeventdata__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__domeventdata__ = __webpack_require__(149);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -16807,14 +16810,14 @@ class Node {
 	 * Returns ancestors array of this node.
 	 *
 	 * @param {Object} options Options object.
-	 * @param {Boolean} [options.includeNode=false] When set to `true` this node will be also included in parent's array.
+	 * @param {Boolean} [options.includeSelf=false] When set to `true` this node will be also included in parent's array.
 	 * @param {Boolean} [options.parentFirst=false] When set to `true`, array will be sorted from node's parent to root element,
 	 * otherwise root element will be the first item in the array.
 	 * @returns {Array} Array with ancestors.
 	 */
-	getAncestors( options = { includeNode: false, parentFirst: false } ) {
+	getAncestors( options = { includeSelf: false, parentFirst: false } ) {
 		const ancestors = [];
-		let parent = options.includeNode ? this : this.parent;
+		let parent = options.includeSelf ? this : this.parent;
 
 		while ( parent ) {
 			ancestors[ options.parentFirst ? 'push' : 'unshift' ]( parent );
@@ -16829,11 +16832,14 @@ class Node {
 	 * which is a common ancestor of both nodes.
 	 *
 	 * @param {module:engine/view/node~Node} node The second node.
+	 * @param {Object} options Options object.
+	 * @param {Boolean} [options.includeSelf=false] When set to `true` both nodes will be considered "ancestors" too.
+	 * Which means that if e.g. node A is inside B, then their common ancestor will be B.
 	 * @returns {module:engine/view/element~Element|module:engine/view/documentfragment~DocumentFragment|null}
 	 */
-	getCommonAncestor( node ) {
-		const ancestorsA = this.getAncestors();
-		const ancestorsB = node.getAncestors();
+	getCommonAncestor( node, options = {} ) {
+		const ancestorsA = this.getAncestors( options );
+		const ancestorsB = node.getAncestors( options );
 
 		let i = 0;
 
@@ -17064,8 +17070,8 @@ Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_mix__["a" /* de
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__position__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__containerelement__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__attributeelement__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__emptyelement__ = __webpack_require__(163);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__uielement__ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__emptyelement__ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__uielement__ = __webpack_require__(165);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__text__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__range__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__treewalker__ = __webpack_require__(55);
@@ -18321,7 +18327,7 @@ function validateRangeContainer( range ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseClone__ = __webpack_require__(167);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseClone__ = __webpack_require__(168);
 
 
 /**
@@ -19638,7 +19644,7 @@ function baseWhile(array, predicate, isDrop, fromRight) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedIndexBy__ = __webpack_require__(144);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__identity__ = __webpack_require__(189);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__identity__ = __webpack_require__(190);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isSymbol__ = __webpack_require__(45);
 
 
@@ -19692,7 +19698,7 @@ function baseSortedIndex(array, value, retHighest) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayFilter__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arrayMap__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseProperty__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__baseTimes__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__baseTimes__ = __webpack_require__(159);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isArrayLikeObject__ = __webpack_require__(13);
 
 
@@ -19781,7 +19787,7 @@ function arrayFilter(array, predicate) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__emittermixin__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__uid__ = __webpack_require__(75);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lib_lodash_extend__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__lib_lodash_isNative__ = __webpack_require__(168);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__lib_lodash_isNative__ = __webpack_require__(169);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -21154,7 +21160,7 @@ function isString(value) {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = toMap;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lib_lodash_isPlainObject__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__objecttomap__ = __webpack_require__(160);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__objecttomap__ = __webpack_require__(161);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -22501,11 +22507,11 @@ MapCache.prototype.set = __WEBPACK_IMPORTED_MODULE_4__mapCacheSet__["a" /* defau
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DataView__ = __webpack_require__(335);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Map__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Map__ = __webpack_require__(171);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Promise__ = __webpack_require__(336);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Set__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Set__ = __webpack_require__(175);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__WeakMap__ = __webpack_require__(337);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__toSource__ = __webpack_require__(169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__toSource__ = __webpack_require__(170);
 
 
 
@@ -22583,7 +22589,7 @@ if ((__WEBPACK_IMPORTED_MODULE_0__DataView__["a" /* default */] && getTag(new __
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Uint8Array__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Uint8Array__ = __webpack_require__(176);
 
 
 /**
@@ -23488,7 +23494,7 @@ function arrayIncludes(array, value) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__indexOfNaN__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__indexOfNaN__ = __webpack_require__(185);
 
 
 /**
@@ -24029,7 +24035,7 @@ function baseSortedIndexBy(array, value, iteratee, retHighest) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__apply__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__apply__ = __webpack_require__(155);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arrayMap__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__unzip__ = __webpack_require__(102);
 
@@ -24295,8207 +24301,6 @@ Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_mix__["a" /* de
 
 /***/ }),
 /* 148 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_extend__ = __webpack_require__(44);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module engine/view/observer/domeventdata
- */
-
-
-
-/**
- * Information about a DOM event in context of the {@link module:engine/view/document~Document}.
- * It wraps the native event, which usually should not be used as the wrapper contains
- * additional data (like key code for keyboard events).
- */
-class DomEventData {
-	/**
-	 * @param {module:engine/view/document~Document} document The instance of the tree view Document.
-	 * @param {Event} domEvent The DOM event.
-	 * @param {Object} [additionalData] Additional properties that the instance should contain.
-	 */
-	constructor( document, domEvent, additionalData ) {
-		/**
-		 * The instance of the document.
-		 *
-		 * @readonly
-		 * @member {module:engine/view/document~Document} module:engine/view/observer/observer~Observer.DomEvent#view
-		 */
-		this.document = document;
-
-		/**
-		 * The DOM event.
-		 *
-		 * @readonly
-		 * @member {Event} module:engine/view/observer/observer~Observer.DomEvent#domEvent
-		 */
-		this.domEvent = domEvent;
-
-		/**
-		 * The DOM target.
-		 *
-		 * @readonly
-		 * @member {HTMLElement} module:engine/view/observer/observer~Observer.DomEvent#target
-		 */
-		this.domTarget = domEvent.target;
-
-		Object(__WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_extend__["a" /* default */])( this, additionalData );
-	}
-
-	/**
-	 * The tree view element representing the target.
-	 *
-	 * @readonly
-	 * @type module:engine/view/element~Element
-	 */
-	get target() {
-		return this.document.domConverter.mapDomToView( this.domTarget );
-	}
-
-	/**
-	 * Prevents the native's event default action.
-	 */
-	preventDefault() {
-		this.domEvent.preventDefault();
-	}
-
-	/**
-	 * Stops native event propagation.
-	 */
-	stopPropagation() {
-		this.domEvent.stopPropagation();
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = DomEventData;
-
-
-
-/***/ }),
-/* 149 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_collection__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module ui/viewcollection
- */
-
-
-
-
-
-
-/**
- * Collects {@link module:ui/view~View} instances.
- *
- * @extends module:utils/collection~Collection
- * @mixes module:utils/observablemixin~ObservableMixin
- */
-class ViewCollection extends __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_collection__["a" /* default */] {
-	/**
-	 * Creates a new {@link module:ui/viewcollection~ViewCollection} instance.
-	 *
-	 * @param {module:utils/locale~Locale} [locale] The {@link module:core/editor~Editor editor's locale} instance.
-	 */
-	constructor( locale ) {
-		super( {
-			// An #id Number attribute should be legal and not break the `ViewCollection` instance.
-			// https://github.com/ckeditor/ckeditor5-ui/issues/93
-			idProperty: 'viewUid'
-		} );
-
-		// Handle {@link module:ui/view~View#element} in DOM when a new view is added to the collection.
-		this.on( 'add', ( evt, view, index ) => {
-			if ( view.element && this._parentElement ) {
-				this._parentElement.insertBefore( view.element, this._parentElement.children[ index ] );
-			}
-		} );
-
-		// Handle {@link module:ui/view~View#element} in DOM when a view is removed from the collection.
-		this.on( 'remove', ( evt, view ) => {
-			if ( view.element && this._parentElement ) {
-				view.element.remove();
-			}
-		} );
-
-		/**
-		 * The {@link module:core/editor/editor~Editor editor's locale} instance.
-		 *
-		 * @member {module:utils/locale~Locale}
-		 */
-		this.locale = locale;
-
-		/**
-		 * Set to `true` once the parent's {@link module:ui/view~View#ready} is true, which means
-		 * that all the views in the collection are also ready (which can be asynchronous).
-		 *
-		 * @readonly
-		 * @observable
-		 * @member {Boolean} #ready
-		 */
-		this.set( 'ready', false );
-
-		/**
-		 * A parent element within which child views are rendered and managed in DOM.
-		 *
-		 * @protected
-		 * @member {HTMLElement}
-		 */
-		this._parentElement = null;
-	}
-
-	/**
-	 * Initializes child views by injecting {@link module:ui/view~View#element} into DOM
-	 * and calling {@link module:ui/view~View#init}.
-	 */
-	init() {
-		if ( this.ready ) {
-			/**
-			 * This ViewCollection has already been initialized.
-			 *
-			 * @error ui-viewcollection-init-reinit
-			 */
-			throw new __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'ui-viewcollection-init-reinit: This ViewCollection has already been initialized.' );
-		}
-
-		this.map( v => v.init() );
-
-		this.ready = true;
-	}
-
-	/**
-	 * Destroys the view collection along with child views.
-	 */
-	destroy() {
-		this.map( v => v.destroy() );
-	}
-
-	/**
-	 * Adds a child view to the collection. If {@link module:ui/viewcollection~ViewCollection#ready}, the child view
-	 * is also initialized when added.
-	 *
-	 * @param {module:ui/view~View} view A child view.
-	 * @param {Number} [index] Index at which the child will be added to the collection.
-	 */
-	add( view, index ) {
-		super.add( view, index );
-
-		if ( this.ready && !view.ready ) {
-			view.init();
-		}
-	}
-
-	/**
-	 * Sets {@link #_parentElement} of this collection.
-	 *
-	 * @param {HTMLElement} element A new parent.
-	 */
-	setParent( elementOrDocFragment ) {
-		this._parentElement = elementOrDocFragment;
-	}
-
-	/**
-	 * Delegates selected events coming from within the collection to desired {@link module:utils/emittermixin~EmitterMixin}.
-	 *
-	 * For instance:
-	 *
-	 *		const viewA = new View();
-	 *		const viewB = new View();
-	 *		const viewC = new View();
-	 *
-	 *		const views = parentView.createCollection();
-	 *
-	 *		views.delegate( 'eventX' ).to( viewB );
-	 *		views.delegate( 'eventX', 'eventY' ).to( viewC );
-	 *
-	 *		views.add( viewA );
-	 *
-	 * then `eventX` is delegated (fired by) `viewB` and `viewC` along with `customData`:
-	 *
-	 *		viewA.fire( 'eventX', customData );
-	 *
-	 * and `eventY` is delegated (fired by) `viewC` along with `customData`:
-	 *
-	 *		viewA.fire( 'eventY', customData );
-	 *
-	 * See {@link module:utils/emittermixin~EmitterMixin#delegate}.
-	 *
-	 * @param {...String} events {@link module:ui/view~View} event names to be delegated to another
-	 * {@link module:utils/emittermixin~EmitterMixin}.
-	 * @returns {module:ui/viewcollection~ViewCollection#delegate.to}
-	 */
-	delegate( ...events ) {
-		if ( !events.length || !isStringArray( events ) ) {
-			/**
-			 * All event names must be strings.
-			 *
-			 * @error ui-viewcollection-delegate-wrong-events
-			 */
-			throw new __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'ui-viewcollection-delegate-wrong-events: All event names must be strings.' );
-		}
-
-		return {
-			/**
-			 * Selects destination for {@link module:utils/emittermixin~EmitterMixin#delegate} events.
-			 *
-			 * @memberOf module:ui/viewcollection~ViewCollection#delegate
-			 * @function module:ui/viewcollection~ViewCollection#delegate.to
-			 * @param {module:utils/emittermixin~EmitterMixin} dest An `EmitterMixin` instance which is
-			 * the destination for delegated events.
-			 */
-			to: dest => {
-				// Activate delegating on existing views in this collection.
-				for ( const view of this ) {
-					for ( const evtName of events ) {
-						view.delegate( evtName ).to( dest );
-					}
-				}
-
-				// Activate delegating on future views in this collection.
-				this.on( 'add', ( evt, view ) => {
-					for ( const evtName of events ) {
-						view.delegate( evtName ).to( dest );
-					}
-				} );
-
-				// Deactivate delegating when view is removed from this collection.
-				this.on( 'remove', ( evt, view ) => {
-					for ( const evtName of events ) {
-						view.stopDelegating( evtName, dest );
-					}
-				} );
-			}
-		};
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = ViewCollection;
-
-
-Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_collection__["a" /* default */], __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_observablemixin__["a" /* default */] );
-
-// Check if all entries of the array are of `String` type.
-//
-// @private
-// @param {Array} arr An array to be checked.
-// @returns {Boolean}
-function isStringArray( arr ) {
-	return arr.every( a => typeof a == 'string' );
-}
-
-
-/***/ }),
-/* 150 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_dom_position__ = __webpack_require__(426);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_dom_isrange__ = __webpack_require__(256);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isElement__ = __webpack_require__(257);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_dom_tounit__ = __webpack_require__(429);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__bindings_preventdefault_js__ = __webpack_require__(258);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_dom_global__ = __webpack_require__(59);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module ui/panel/balloon/balloonpanelview
- */
-
-
-
-
-
-
-
-
-
-
-const toPx = Object(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_dom_tounit__["a" /* default */])( 'px' );
-const defaultLimiterElement = __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_dom_global__["a" /* default */].document.body;
-
-/**
- * The balloon panel view class.
- *
- * @extends module:ui/view~View
- */
-class BalloonPanelView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */] {
-	/**
-	 * @inheritDoc
-	 */
-	constructor( locale ) {
-		super( locale );
-
-		const bind = this.bindTemplate;
-
-		/**
-		 * The absolute top position of the balloon panel in pixels.
-		 *
-		 * @observable
-		 * @default 0
-		 * @member {Number} #top
-		 */
-		this.set( 'top', 0 );
-
-		/**
-		 * The absolute left position of the balloon panel in pixels.
-		 *
-		 * @observable
-		 * @default 0
-		 * @member {Number} #left
-		 */
-		this.set( 'left', 0 );
-
-		/**
-		 * Balloon panel's current position. The position name is reflected in the CSS class set
-		 * to the balloon, i.e. `.ck-balloon-panel_arrow_nw` for "arrow_nw" position. The class
-		 * controls the minor aspects of the balloon's visual appearance like placement
-		 * of the "arrow". To support a new position, an additional CSS must be created.
-		 *
-		 * Default position names correspond with
-		 * {@link module:ui/panel/balloon/balloonpanelview~BalloonPanelView.defaultPositions}.
-		 *
-		 * See {@link #attachTo} to learn about custom balloon positions.
-		 *
-		 * See {@link #withArrow}.
-		 *
-		 * @observable
-		 * @default 'arrow_nw'
-		 * @member {'arrow_nw'|'arrow_ne'|'arrow_sw'|'arrow_se'} #position
-		 */
-		this.set( 'position', 'arrow_nw' );
-
-		/**
-		 * Controls whether the balloon panel is visible or not.
-		 *
-		 * @observable
-		 * @default false
-		 * @member {Boolean} #isVisible
-		 */
-		this.set( 'isVisible', false );
-
-		/**
-		 * Controls whether the balloon panel has an arrow. The presence of the arrow
-		 * is reflected in `ck-balloon-panel_with-arrow` CSS class.
-		 *
-		 * @observable
-		 * @default true
-		 * @member {Boolean} #withArrow
-		 */
-		this.set( 'withArrow', true );
-
-		/**
-		 * Additional css class added to the {#element}.
-		 *
-		 * @observable
-		 * @member {String} #className
-		 */
-		this.set( 'className' );
-
-		/**
-		 * A callback that starts pining the panel when {@link #isVisible} gets
-		 * `true`. Used by {@link #pin}.
-		 *
-		 * @private
-		 * @member {Function} #_pinWhenIsVisibleCallback
-		 */
-
-		/**
-		 * Collection of the child views which creates balloon panel contents.
-		 *
-		 * @readonly
-		 * @member {module:ui/viewcollection~ViewCollection}
-		 */
-		this.content = this.createCollection();
-
-		this.template = new __WEBPACK_IMPORTED_MODULE_1__template__["a" /* default */]( {
-			tag: 'div',
-			attributes: {
-				class: [
-					'ck-balloon-panel',
-					bind.to( 'position', value => `ck-balloon-panel_${ value }` ),
-					bind.if( 'isVisible', 'ck-balloon-panel_visible' ),
-					bind.if( 'withArrow', 'ck-balloon-panel_with-arrow' ),
-					bind.to( 'className' )
-				],
-
-				style: {
-					top: bind.to( 'top', toPx ),
-					left: bind.to( 'left', toPx )
-				}
-			},
-
-			children: this.content,
-
-			on: {
-				// https://github.com/ckeditor/ckeditor5-ui/issues/206
-				mousedown: Object(__WEBPACK_IMPORTED_MODULE_6__bindings_preventdefault_js__["a" /* default */])( this ),
-
-				// https://github.com/ckeditor/ckeditor5-ui/issues/243
-				selectstart: bind.to( evt => evt.preventDefault() )
-			}
-		} );
-	}
-
-	/**
-	 * Shows the balloon panel.
-	 *
-	 * See {@link #isVisible}.
-	 */
-	show() {
-		this.isVisible = true;
-	}
-
-	/**
-	 * Hides the balloon panel.
-	 *
-	 * See {@link #isVisible}.
-	 */
-	hide() {
-		this.isVisible = false;
-	}
-
-	/**
-	 * Attaches the balloon panel to a specified DOM element or range with a smart heuristics.
-	 *
-	 * See {@link @link module:utils/dom/position~getOptimalPosition}.
-	 *
-	 * TODO: More docs and examples.
-	 *
-	 * @param {module:utils/dom/position~Options} options Positioning options compatible with
-	 * {@link module:utils/dom/position~getOptimalPosition}. Default `positions` array is
-	 * {@link module:ui/panel/balloon/balloonpanelview~BalloonPanelView.defaultPositions}.
-	 */
-	attachTo( options ) {
-		this.show();
-
-		const defaultPositions = BalloonPanelView.defaultPositions;
-		const positionOptions = Object.assign( {}, {
-			element: this.element,
-			positions: [
-				defaultPositions.southArrowNorthWest,
-				defaultPositions.southArrowNorthEast,
-				defaultPositions.northArrowSouthWest,
-				defaultPositions.northArrowSouthEast
-			],
-			limiter: defaultLimiterElement,
-			fitInViewport: true
-		}, options );
-
-		const { top, left, name: position } = Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_dom_position__["a" /* getOptimalPosition */])( positionOptions );
-
-		Object.assign( this, { top, left, position } );
-	}
-
-	/**
-	 * Works the same way as {module:ui/panel/balloon/balloonpanelview~BalloonPanelView.attachTo}
-	 * except that the position of the panel is continuously updated when any ancestor of the
-	 * {@link module:utils/dom/position~Options#target} or {@link module:utils/dom/position~Options#limiter}
-	 * is being scrolled or when the browser window is being resized.
-	 *
-	 * Thanks to this, the panel always sticks to the {@link module:utils/dom/position~Options#target}.
-	 *
-	 * See: {@link #unpin}.
-	 *
-	 * @param {module:utils/dom/position~Options} options Positioning options compatible with
-	 * {@link module:utils/dom/position~getOptimalPosition}. Default `positions` array is
-	 * {@link module:ui/panel/balloon/balloonpanelview~BalloonPanelView.defaultPositions}.
-	 */
-	pin( options ) {
-		this.unpin();
-
-		this._pinWhenIsVisibleCallback = () => {
-			if ( this.isVisible ) {
-				this._startPinning( options );
-			} else {
-				this._stopPinning();
-			}
-		};
-
-		this._startPinning( options );
-
-		// Control the state of the listeners depending on whether the panel is visible
-		// or not.
-		// TODO: Use on() (https://github.com/ckeditor/ckeditor5-utils/issues/144).
-		this.listenTo( this, 'change:isVisible', this._pinWhenIsVisibleCallback );
-	}
-
-	/**
-	 * Stops pinning the panel, as set up by {@link #pin}.
-	 */
-	unpin() {
-		if ( this._pinWhenIsVisibleCallback ) {
-			// Deactivate listeners attached by pin().
-			this._stopPinning();
-
-			// Deactivate the panel pin() control logic.
-			// TODO: Use off() (https://github.com/ckeditor/ckeditor5-utils/issues/144).
-			this.stopListening( this, 'change:isVisible', this._pinWhenIsVisibleCallback );
-
-			this._pinWhenIsVisibleCallback = null;
-
-			this.hide();
-		}
-	}
-
-	/**
-	 * Starts managing the pinned state of the panel. See {@link #pin}.
-	 *
-	 * @private
-	 * @param {module:utils/dom/position~Options} options Positioning options compatible with
-	 * {@link module:utils/dom/position~getOptimalPosition}.
-	 */
-	_startPinning( options ) {
-		this.attachTo( options );
-
-		const limiter = options.limiter || defaultLimiterElement;
-		let targetElement = null;
-
-		// We need to take HTMLElement related to the target if it is possible.
-		if ( Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isElement__["a" /* default */])( options.target ) ) {
-			targetElement = options.target;
-		} else if ( Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_dom_isrange__["a" /* default */])( options.target ) ) {
-			targetElement = options.target.commonAncestorContainer;
-		}
-
-		// Then we need to listen on scroll event of eny element in the document.
-		this.listenTo( __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_dom_global__["a" /* default */].document, 'scroll', ( evt, domEvt ) => {
-			const scrollTarget = domEvt.target;
-
-			// The position needs to be updated if the positioning target is within the scrolled element.
-			const isWithinScrollTarget = targetElement && scrollTarget.contains( targetElement );
-
-			// The position needs to be updated if the positioning limiter is within the scrolled element.
-			const isLimiterWithinScrollTarget = scrollTarget.contains( limiter );
-
-			// The positioning target can be a Rect, object etc.. There's no way to optimize the listener then.
-			if ( isWithinScrollTarget || isLimiterWithinScrollTarget || !targetElement ) {
-				this.attachTo( options );
-			}
-		}, { useCapture: true } );
-
-		// We need to listen on window resize event and update position.
-		this.listenTo( __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_dom_global__["a" /* default */].window, 'resize', () => {
-			this.attachTo( options );
-		} );
-	}
-
-	/**
-	 * Stops managing the pinned state of the panel. See {@link #pin}.
-	 *
-	 * @private
-	 */
-	_stopPinning() {
-		this.stopListening( __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_dom_global__["a" /* default */].document, 'scroll' );
-		this.stopListening( __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_dom_global__["a" /* default */].window, 'resize' );
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = BalloonPanelView;
-
-
-/**
- * A horizontal offset of the arrow tip from the edge of the balloon. Controlled by CSS.
- *
- *		 +-----|---------...
- *		 |     |
- *		 |     |
- *		 |     |
- *		 |     |
- *		 +--+  |  +------...
- *		     \ | /
- *		      \|/
- *	    >|-----|<---------------- horizontal offset
- *
- * @default 30
- * @member {Number} module:ui/panel/balloon/balloonpanelview~BalloonPanelView.arrowHorizontalOffset
- */
-BalloonPanelView.arrowHorizontalOffset = 30;
-
-/**
- * A vertical offset of the arrow from the edge of the balloon. Controlled by CSS.
- *
- *		 +-------------...
- *		 |
- *		 |
- *		 |                      /-- vertical offset
- *		 |                     V
- *		 +--+    +-----...    ---------
- *		     \  /              |
- *		      \/               |
- *		-------------------------------
- *		                       ^
- *
- * @default 15
- * @member {Number} module:ui/panel/balloon/balloonpanelview~BalloonPanelView.arrowVerticalOffset
- */
-BalloonPanelView.arrowVerticalOffset = 15;
-
-/**
- * A default set of positioning functions used by the balloon panel view
- * when attaching using {@link module:ui/panel/balloon/balloonpanelview~BalloonPanelView#attachTo} method.
- *
- * The available positioning functions are as follow:
- *
- * **North**
- *
- * * `northArrowSouth`
- *
- * 		+-----------------+
- * 		|     Balloon     |
- * 		+-----------------+
- * 		         V
- * 		    [ Target ]
- *
- * * `northArrowSouthEast`
- *
- * 		+-----------------+
- * 		|     Balloon     |
- * 		+-----------------+
- * 		               V
- * 		          [ Target ]
- *
- * * `northArrowSouthWest`
- *
- * 		  +-----------------+
- * 		  |     Balloon     |
- * 		  +-----------------+
- * 		     V
- * 		[ Target ]
- *
- * **North west**
- *
- * * `northWestArrowSouth`
- *
- * 		+-----------------+
- * 		|     Balloon     |
- * 		+-----------------+
- * 		         V
- * 		         [ Target ]
- *
- * * `northWestArrowSouthWest`
- *
- * 		+-----------------+
- * 		|     Balloon     |
- * 		+-----------------+
- * 		   V
- * 		   [ Target ]
- *
- * * `northWestArrowSouthEast`
- *
- * 		+-----------------+
- * 		|     Balloon     |
- * 		+-----------------+
- * 		               V
- * 		               [ Target ]
- *
- * **North east**
- *
- * * `northEastArrowSouth`
- *
- * 		+-----------------+
- * 		|     Balloon     |
- * 		+-----------------+
- * 		         V
- * 		[ Target ]
- *
- * * `northEastArrowSouthEast`
- *
- * 		+-----------------+
- * 		|     Balloon     |
- * 		+-----------------+
- * 		               V
- * 		      [ Target ]
- *
- * * `northEastArrowSouthWest`
- *
- * 		      +-----------------+
- * 		      |     Balloon     |
- * 		      +-----------------+
- * 		         V
- * 		[ Target ]
- *
- * **South**
- *
- * * `southArrowNorth`
- *
- *		    [ Target ]
- *		         ^
- *		+-----------------+
- *		|     Balloon     |
- *		+-----------------+
- *
- * * `southArrowNorthEast`
- *
- *		          [ Target ]
- *		               ^
- *		+-----------------+
- *		|     Balloon     |
- *		+-----------------+
- *
- * * `southArrowNorthWest`
- *
- *		[ Target ]
- *		     ^
- *		   +-----------------+
- *		   |     Balloon     |
- *		   +-----------------+
- *
- * **South west**
- *
- * * `southWestArrowNorth`
- *
- *		         [ Target ]
- *		         ^
- *		+-----------------+
- *		|     Balloon     |
- *		+-----------------+
- *
- * * `southWestArrowNorthWest`
- *
- *		  [ Target ]
- *		  ^
- *		+-----------------+
- *		|     Balloon     |
- *		+-----------------+
- *
- * * `southWestArrowNorthEast`
- *
- *		               [ Target ]
- *		               ^
- *		+-----------------+
- *		|     Balloon     |
- *		+-----------------+
- *
- * **South east**
- *
- * * `southEastArrowNorth`
- *
- *		[ Target ]
- *		         ^
- *		+-----------------+
- *		|     Balloon     |
- *		+-----------------+
- *
- * * `southEastArrowNorthEast`
- *
- *		       [ Target ]
- *		                ^
- *		+-----------------+
- *		|     Balloon     |
- *		+-----------------+
- *
- * * `southEastArrowNorthWest`
- *
- *		[ Target ]
- *		         ^
- *		       +-----------------+
- *		       |     Balloon     |
- *		       +-----------------+
- *
- * See {@link module:ui/panel/balloon/balloonpanelview~BalloonPanelView#attachTo}.
- *
- * Positioning functions must be compatible with {@link module:utils/dom/position~Position}.
- *
- * The name that position function returns will be reflected in balloon panel's class that
- * controls the placement of the "arrow". See {@link #position} to learn more.
- *
- * @member {Object} module:ui/panel/balloon/balloonpanelview~BalloonPanelView.defaultPositions
- */
-BalloonPanelView.defaultPositions = {
-	// ------- North
-
-	northArrowSouth: ( targetRect, balloonRect ) => ( {
-		top: getNorthTop( targetRect, balloonRect ),
-		left: targetRect.left + targetRect.width / 2 - balloonRect.width / 2,
-		name: 'arrow_s'
-	} ),
-
-	northArrowSouthEast: ( targetRect, balloonRect ) => ( {
-		top: getNorthTop( targetRect, balloonRect ),
-		left: targetRect.left + targetRect.width / 2 - balloonRect.width + BalloonPanelView.arrowHorizontalOffset,
-		name: 'arrow_se'
-	} ),
-
-	northArrowSouthWest: ( targetRect, balloonRect ) => ( {
-		top: getNorthTop( targetRect, balloonRect ),
-		left: targetRect.left + targetRect.width / 2 - BalloonPanelView.arrowHorizontalOffset,
-		name: 'arrow_sw'
-	} ),
-
-	// ------- North west
-
-	northWestArrowSouth: ( targetRect, balloonRect ) => ( {
-		top: getNorthTop( targetRect, balloonRect ),
-		left: targetRect.left - balloonRect.width / 2,
-		name: 'arrow_s'
-	} ),
-
-	northWestArrowSouthWest: ( targetRect, balloonRect ) => ( {
-		top: getNorthTop( targetRect, balloonRect ),
-		left: targetRect.left - BalloonPanelView.arrowHorizontalOffset,
-		name: 'arrow_sw'
-	} ),
-
-	northWestArrowSouthEast: ( targetRect, balloonRect ) => ( {
-		top: getNorthTop( targetRect, balloonRect ),
-		left: targetRect.left - balloonRect.width + BalloonPanelView.arrowHorizontalOffset,
-		name: 'arrow_se'
-	} ),
-
-	// ------- North east
-
-	northEastArrowSouth: ( targetRect, balloonRect ) => ( {
-		top: getNorthTop( targetRect, balloonRect ),
-		left: targetRect.right - balloonRect.width / 2,
-		name: 'arrow_s'
-	} ),
-
-	northEastArrowSouthEast: ( targetRect, balloonRect ) => ( {
-		top: getNorthTop( targetRect, balloonRect ),
-		left: targetRect.right - balloonRect.width + BalloonPanelView.arrowHorizontalOffset,
-		name: 'arrow_se'
-	} ),
-
-	northEastArrowSouthWest: ( targetRect, balloonRect ) => ( {
-		top: getNorthTop( targetRect, balloonRect ),
-		left: targetRect.right - BalloonPanelView.arrowHorizontalOffset,
-		name: 'arrow_sw'
-	} ),
-
-	// ------- South
-
-	southArrowNorth: ( targetRect, balloonRect ) => ( {
-		top: getSouthTop( targetRect, balloonRect ),
-		left: targetRect.left + targetRect.width / 2 - balloonRect.width / 2,
-		name: 'arrow_n'
-	} ),
-
-	southArrowNorthEast: ( targetRect, balloonRect ) => ( {
-		top: getSouthTop( targetRect, balloonRect ),
-		left: targetRect.left + targetRect.width / 2 - balloonRect.width + BalloonPanelView.arrowHorizontalOffset,
-		name: 'arrow_ne'
-	} ),
-
-	southArrowNorthWest: ( targetRect, balloonRect ) => ( {
-		top: getSouthTop( targetRect, balloonRect ),
-		left: targetRect.left + targetRect.width / 2 - BalloonPanelView.arrowHorizontalOffset,
-		name: 'arrow_nw'
-	} ),
-
-	// ------- South west
-
-	southWestArrowNorth: ( targetRect, balloonRect ) => ( {
-		top: getSouthTop( targetRect, balloonRect ),
-		left: targetRect.left - balloonRect.width / 2,
-		name: 'arrow_n'
-	} ),
-
-	southWestArrowNorthWest: ( targetRect, balloonRect ) => ( {
-		top: getSouthTop( targetRect, balloonRect ),
-		left: targetRect.left - BalloonPanelView.arrowHorizontalOffset,
-		name: 'arrow_nw'
-	} ),
-
-	southWestArrowNorthEast: ( targetRect, balloonRect ) => ( {
-		top: getSouthTop( targetRect, balloonRect ),
-		left: targetRect.left - balloonRect.width + BalloonPanelView.arrowHorizontalOffset,
-		name: 'arrow_ne'
-	} ),
-
-	// ------- South east
-
-	southEastArrowNorth: ( targetRect, balloonRect ) => ( {
-		top: getSouthTop( targetRect, balloonRect ),
-		left: targetRect.right - balloonRect.width / 2,
-		name: 'arrow_n'
-	} ),
-
-	southEastArrowNorthEast: ( targetRect, balloonRect ) => ( {
-		top: getSouthTop( targetRect, balloonRect ),
-		left: targetRect.right - balloonRect.width + BalloonPanelView.arrowHorizontalOffset,
-		name: 'arrow_ne'
-	} ),
-
-	southEastArrowNorthWest: ( targetRect, balloonRect ) => ( {
-		top: getSouthTop( targetRect, balloonRect ),
-		left: targetRect.right - BalloonPanelView.arrowHorizontalOffset,
-		name: 'arrow_nw'
-	} ),
-};
-
-// Returns the top coordinate for positions starting with `north*`.
-//
-// @private
-// @param {utils/dom/rect~Rect} targetRect A rect of the target.
-// @param {utils/dom/rect~Rect} elementRect A rect of the balloon.
-// @returns {Number}
-function getNorthTop( targetRect, balloonRect ) {
-	return targetRect.top - balloonRect.height - BalloonPanelView.arrowVerticalOffset;
-}
-
-// Returns the top coordinate for positions starting with `south*`.
-//
-// @private
-// @param {utils/dom/rect~Rect} targetRect A rect of the target.
-// @param {utils/dom/rect~Rect} elementRect A rect of the balloon.
-// @returns {Number}
-function getSouthTop( targetRect ) {
-	return targetRect.bottom + BalloonPanelView.arrowVerticalOffset;
-}
-
-
-/***/ }),
-/* 151 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_dom_global__ = __webpack_require__(59);
-/**
- * @license Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module ui/focuscycler
- */
-
-
-
-/**
- * Helps cycling over focusable views in a {@link module:ui/viewcollection~ViewCollection}
- * when the focus is tracked by {@link module:utils/focustracker~FocusTracker} instance.
- *
- * It requires a collection of focusable views and associated focus tracker:
- *
- *		const focusables = new ViewCollection();
- *		const focusTracker = new FocusTracker();
- *
- *		// Add focusables to the focus tracker.
- *		focusTracker.add( ... );
- *
- * The cycler can be used manually:
- *
- *		const cycler = new FocusCycler( { focusables, focusTracker } );
- *
- *		// Will focus the first forusable view in #focusables.
- *		cycler.focusFirst();
- *
- *		// Will log next focusable item in #focusables.
- *		console.log( cycler.next );
- *
- * or it can be used as an automated, keystroke–detecting utility:
- *
- *		const keystrokeHandler = new KeystrokeHandler();
- *
- *		// Activate the keystroke handler.
- *		keystrokeHandler.listenTo( sourceOfEvents );
- *
- *		const cycler = new FocusCycler( {
- *			focusables, focusTracker, keystrokeHandler,
- *			actions: {
- *				// When arrowup of arrowleft is detected by the #keystrokeHandler
- *				// focusPrevious() will be called by the cycler.
- *				focusPrevious: [ 'arrowup', 'arrowleft' ],
- *			}
- *		} );
- */
-class FocusCycler {
-	/**
-	 * Creates an instance of the focus cycler utility.
-	 *
-	 * @param {Object} options Configuration options.
-	 * @param {module:utils/collection~Collection|Object} options.focusables
-	 * @param {module:utils/focustracker~FocusTracker} options.focusTracker
-	 * @param {module:utils/keystrokehandler~KeystrokeHandler} [options.keystrokeHandler]
-	 * @param {Object} [options.actions]
-	 */
-	constructor( options ) {
-		Object.assign( this, options );
-
-		/**
-		 * A view collection the cycler operates on.
-		 *
-		 * @readonly
-		 * @member {module:utils/collection~Collection} #focusables
-		 */
-
-		/**
-		 * A focus tracker instance that cycler uses to determine focus
-		 * state in {@link #focusables}.
-		 *
-		 * @readonly
-		 * @member {module:utils/focustracker~FocusTracker} #focusTracker
-		 */
-
-		/**
-		 * Instance of the {@link module:utils/keystrokehandler~KeystrokeHandler}.
-		 *
-		 * @readonly
-		 * @member {module:utils/keystrokehandler~KeystrokeHandler} #keystrokeHandler
-		 */
-
-		/**
-		 * Actions that the cycler can take when a keystroke is pressed. Requires
-		 * `options.keystrokeHandler` to be passed and working. When an action is
-		 * performed, the event the keystroke fired is will be `preventDefault` and
-		 * `stopPropagation` in DOM.
-		 *
-		 *		actions: {
-		 *			// Will call #focusPrevious() when arrowleft or arrowup is pressed.
-		 *			focusPrevious: [ 'arrowleft', 'arrowup' ],
-		 *
-		 *			// Will call #focusNext() when arrowdown is pressed.
-		 *			focusNext: 'arrowdown'
-		 *		}
-		 *
-		 * @readonly
-		 * @member {Object} #actions
-		 */
-
-		if ( options.actions && options.keystrokeHandler ) {
-			for ( const methodName in options.actions ) {
-				let actions = options.actions[ methodName ];
-
-				if ( typeof actions == 'string' ) {
-					actions = [ actions ];
-				}
-
-				for ( const keystroke of actions ) {
-					options.keystrokeHandler.set( keystroke, ( data, cancel ) => {
-						this[ methodName ]();
-						cancel();
-					} );
-				}
-			}
-		}
-	}
-
-	/**
-	 * Returns the first focusable view in {@link #focusables}.
-	 * `null` if there's none.
-	 *
-	 * @readonly
-	 * @member {module:ui/view~View|null} #first
-	 */
-	get first() {
-		return this.focusables.find( isFocusable ) || null;
-	}
-
-	/**
-	 * Returns the last focusable view in {@link #focusables}.
-	 * `null` if there's none.
-	 *
-	 * @readonly
-	 * @member {module:ui/view~View|null} #last
-	 */
-	get last() {
-		return this.focusables.filter( isFocusable ).slice( -1 )[ 0 ] || null;
-	}
-
-	/**
-	 * Returns the next focusable view in {@link #focusables} based on {@link #current}.
-	 * `null` if there's none.
-	 *
-	 * @readonly
-	 * @member {module:ui/view~View|null} #next
-	 */
-	get next() {
-		return this._getFocusableItem( 1 );
-	}
-
-	/**
-	 * Returns the previous focusable view in {@link #focusables} based on {@link #current}.
-	 * `null` if there's none.
-	 *
-	 * @readonly
-	 * @member {module:ui/view~View|null} #previous
-	 */
-	get previous() {
-		return this._getFocusableItem( -1 );
-	}
-
-	/**
-	 * An index of the view in the {@link #focusables} which is focused according
-	 * to {@link #focusTracker}. `null` when there's no such view.
-	 *
-	 * @readonly
-	 * @member {Number|null} #current
-	 */
-	get current() {
-		let index = null;
-
-		// There's no focused view in the focusables.
-		if ( this.focusTracker.focusedElement === null ) {
-			return null;
-		}
-
-		this.focusables.find( ( view, viewIndex ) => {
-			const focused = view.element === this.focusTracker.focusedElement;
-
-			if ( focused ) {
-				index = viewIndex;
-			}
-
-			return focused;
-		} );
-
-		return index;
-	}
-
-	/**
-	 * Focuses the {@link #first} item.
-	 */
-	focusFirst() {
-		this._focus( this.first );
-	}
-
-	/**
-	 * Focuses the {@link #last} item.
-	 */
-	focusLast() {
-		this._focus( this.last );
-	}
-
-	/**
-	 * Focuses the {@link #next} item.
-	 */
-	focusNext() {
-		this._focus( this.next );
-	}
-
-	/**
-	 * Focuses the {@link #previous} item.
-	 */
-	focusPrevious() {
-		this._focus( this.previous );
-	}
-
-	/**
-	 * Focuses the given view, if exists.
-	 *
-	 * @protected
-	 * @param {module:ui/view~View} view
-	 */
-	_focus( view ) {
-		if ( view ) {
-			view.focus();
-		}
-	}
-
-	/**
-	 * Returns the next/previous focusable view in {@link #focusables} with respect
-	 * to {@link #current}.
-	 *
-	 * @protected
-	 * @param {Number} step Either `1` for checking forward of {@link #current} or
-	 * `-1` for checking backwards.
-	 * @returns {module:ui/view~View|null}
-	 */
-	_getFocusableItem( step ) {
-		// Cache for speed.
-		const current = this.current;
-		const collectionLength = this.focusables.length;
-
-		if ( !collectionLength ) {
-			return null;
-		}
-
-		// Start from the beginning if no view is focused.
-		// https://github.com/ckeditor/ckeditor5-ui/issues/206
-		if ( current === null ) {
-			return this[ step === 1 ? 'first' : 'last' ];
-		}
-
-		// Cycle in both directions.
-		let index = ( current + collectionLength + step ) % collectionLength;
-
-		do {
-			const view = this.focusables.get( index );
-
-			// TODO: Check if view is visible.
-			if ( isFocusable( view ) ) {
-				return view;
-			}
-
-			// Cycle in both directions.
-			index = ( index + collectionLength + step ) % collectionLength;
-		} while ( index !== current );
-
-		return null;
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = FocusCycler;
-
-
-// Checks whether an view is focusable.
-//
-// @private
-// @param {module:ui/view~View} view A view to be checked.
-// @returns {Boolean}
-function isFocusable( view ) {
-	return !!( view.focus && __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_dom_global__["a" /* default */].window.getComputedStyle( view.element ).display != 'none' );
-}
-
-
-/***/ }),
-/* 152 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["c"] = isWidget;
-/* harmony export (immutable) */ __webpack_exports__["d"] = toWidget;
-/* unused harmony export setLabel */
-/* harmony export (immutable) */ __webpack_exports__["b"] = getLabel;
-/* harmony export (immutable) */ __webpack_exports__["e"] = toWidgetEditable;
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module widget/utils
- */
-
-const widgetSymbol = Symbol( 'isWidget' );
-const labelSymbol = Symbol( 'label' );
-
-/**
- * CSS class added to each widget element.
- *
- * @const {String}
- */
-const WIDGET_CLASS_NAME = 'ck-widget';
-/* unused harmony export WIDGET_CLASS_NAME */
-
-
-/**
- * CSS class added to currently selected widget element.
- *
- * @const {String}
- */
-const WIDGET_SELECTED_CLASS_NAME = 'ck-widget_selected';
-/* harmony export (immutable) */ __webpack_exports__["a"] = WIDGET_SELECTED_CLASS_NAME;
-
-
-/**
- * Returns `true` if given {@link module:engine/view/element~Element} is a widget.
- *
- * @param {module:engine/view/element~Element} element
- * @returns {Boolean}
- */
-function isWidget( element ) {
-	return !!element.getCustomProperty( widgetSymbol );
-}
-
-/**
- * Converts given {@link module:engine/view/element~Element} to widget in following way:
- * * sets `contenteditable` attribute to `true`,
- * * adds custom `getFillerOffset` method returning `null`,
- * * adds `ck-widget` CSS class,
- * * adds custom property allowing to recognize widget elements by using {@link ~isWidget}.
- *
- * @param {module:engine/view/element~Element} element
- * @param {Object} [options={}]
- * @param {String|Function} [options.label] Element's label provided to {@link ~setLabel} function. It can be passed as
- * a plain string or a function returning a string.
- * @returns {module:engine/view/element~Element} Returns same element.
- */
-function toWidget( element, options = {} ) {
-	element.setAttribute( 'contenteditable', false );
-	element.getFillerOffset = getFillerOffset;
-	element.addClass( WIDGET_CLASS_NAME );
-	element.setCustomProperty( widgetSymbol, true );
-
-	if ( options.label ) {
-		setLabel( element, options.label );
-	}
-
-	return element;
-}
-
-/**
- * Sets label for given element.
- * It can be passed as a plain string or a function returning a string. Function will be called each time label is retrieved by
- * {@link ~getLabel}.
- *
- * @param {module:engine/view/element~Element} element
- * @param {String|Function} labelOrCreator
- */
-function setLabel( element, labelOrCreator ) {
-	element.setCustomProperty( labelSymbol, labelOrCreator );
-}
-
-/**
- * Returns label for provided element.
- *
- * @param {module:engine/view/element~Element} element
- * @return {String}
- */
-function getLabel( element ) {
-	const labelCreator = element.getCustomProperty( labelSymbol );
-
-	if ( !labelCreator ) {
-		return '';
-	}
-
-	return typeof labelCreator == 'function' ? labelCreator() : labelCreator;
-}
-
-/**
- * Adds functionality to provided {module:engine/view/editableelement~EditableElement} to act as a widget's editable:
- * * adds `ck-editable` CSS class,
- * * sets `contenteditable` as `true` when {module:engine/view/editableelement~EditableElement#isReadOnly} is `false`
- * otherwise set `false`,
- * * adds `ck-editable_focused` CSS class when editable is focused and removes it when it's blurred.
- *
- * @param {module:engine/view/editableelement~EditableElement} editable
- * @returns {module:engine/view/editableelement~EditableElement} Returns same element that was provided in `editable` param.
- */
-function toWidgetEditable( editable ) {
-	editable.addClass( 'ck-editable' );
-
-	// Set initial contenteditable value.
-	editable.setAttribute( 'contenteditable', !editable.isReadOnly );
-
-	// Bind contenteditable property to element#isReadOnly.
-	editable.on( 'change:isReadOnly', ( evt, property, is ) => {
-		editable.setAttribute( 'contenteditable', !is );
-	} );
-
-	editable.on( 'change:isFocused', ( evt, property, is ) => {
-		if ( is ) {
-			editable.addClass( 'ck-editable_focused' );
-		} else {
-			editable.removeClass( 'ck-editable_focused' );
-		}
-	} );
-
-	return editable;
-}
-
-// Default filler offset function applied to all widget elements.
-//
-// @returns {null}
-function getFillerOffset() {
-	return null;
-}
-
-
-/***/ }),
-/* 153 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__balloonpanelview__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module ui/panel/balloon/contextualballoon
- */
-
-
-
-
-
-/**
- * Provides the common contextual balloon panel for the editor.
- *
- * This plugin allows reusing a single {module:ui/panel/balloon/balloonpanelview~BalloonPanelView} instance
- * to display multiple contextual balloon panels in the editor.
- *
- * Child views of such a panel are stored in the stack and the last one in the stack is visible. When the
- * visible view is removed from the stack, the previous view becomes visible, etc. If there are no more
- * views in the stack, the balloon panel will hide.
- *
- * It simplifies managing the views and helps
- * avoid the unnecessary complexity of handling multiple {module:ui/panel/balloon/balloonpanelview~BalloonPanelView}
- * instances in the editor.
- *
- * @extends module:core/plugin~Plugin
- */
-class ContextualBalloon extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__["a" /* default */] {
-	/**
-	 * @inheritDoc
-	 */
-	static get pluginName() {
-		return 'ContextualBalloon';
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	init() {
-		/**
-		 * The common balloon panel view.
-		 *
-		 * @readonly
-		 * @member {module:ui/panel/balloon/balloonpanelview~BalloonPanelView} #view
-		 */
-		this.view = new __WEBPACK_IMPORTED_MODULE_1__balloonpanelview__["a" /* default */]();
-
-		/**
-		 * Stack of the views injected into the balloon. Last one in the stack is displayed
-		 * as a content of {@link module:ui/panel/balloon/contextualballoon~ContextualBalloon#view}.
-		 *
-		 * @private
-		 * @member {Map} #_stack
-		 */
-		this._stack = new Map();
-
-		// Editor should be focused when contextual balloon is focused.
-		this.editor.ui.focusTracker.add( this.view.element );
-
-		// Add balloon panel view to editor `body` collection and wait until view will be ready.
-		this.editor.ui.view.body.add( this.view );
-	}
-
-	/**
-	 * Returns the currently visible view or `null` when there are no
-	 * views in the stack.
-	 *
-	 * @returns {module:ui/view~View|null}
-	 */
-	get visibleView() {
-		const item = this._stack.get( this.view.content.get( 0 ) );
-
-		return item ? item.view : null;
-	}
-
-	/**
-	 * Returns `true` when the given view is in the stack. Otherwise returns `false`.
-	 *
-	 * @param {module:ui/view~View} view
-	 * @returns {Boolean}
-	 */
-	hasView( view ) {
-		return this._stack.has( view );
-	}
-
-	/**
-	 * Adds a new view to the stack and makes it visible.
-	 *
-	 * @param {Object} data Configuration of the view.
-	 * @param {module:ui/view~View} [data.view] Content of the balloon.
-	 * @param {module:utils/dom/position~Options} [data.position] Positioning options.
-	 * @param {String} [data.balloonClassName] Additional css class for {@link #view} added when given view is visible.
-	 */
-	add( data ) {
-		if ( this.hasView( data.view ) ) {
-			/**
-			 * Trying to add configuration of the same view more than once.
-			 *
-			 * @error contextualballoon-add-view-exist
-			 */
-			throw new __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'contextualballoon-add-view-exist: Cannot add configuration of the same view twice.' );
-		}
-
-		// When adding view to the not empty balloon.
-		if ( this.visibleView ) {
-			// Remove displayed content from the view.
-			this.view.content.remove( this.visibleView );
-		}
-
-		// Add new view to the stack.
-		this._stack.set( data.view, data );
-
-		// And display it.
-		this._show( data );
-	}
-
-	/**
-	 * Removes the given view from the stack. If the removed view was visible,
-	 * then the view preceding it in the stack will become visible instead.
-	 * When there is no view in the stack then balloon will hide.
-	 *
-	 * @param {module:ui/view~View} view A view to be removed from the balloon.
-	 */
-	remove( view ) {
-		if ( !this.hasView( view ) ) {
-			/**
-			 * Trying to remove configuration of the view not defined in the stack.
-			 *
-			 * @error contextualballoon-remove-view-not-exist
-			 */
-			throw new __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'contextualballoon-remove-view-not-exist: Cannot remove configuration of not existing view.' );
-		}
-
-		// When visible view is being removed.
-		if ( this.visibleView === view ) {
-			// We need to remove it from the view content.
-			this.view.content.remove( view );
-
-			// And then remove from the stack.
-			this._stack.delete( view );
-
-			// Next we need to check if there is other view in stack to show.
-			const last = Array.from( this._stack.values() ).pop();
-
-			// If it is some other view.
-			if ( last ) {
-				// Just show it.
-				this._show( last );
-			} else {
-				// Hide the balloon panel.
-				this.view.hide();
-			}
-		} else {
-			// Just remove given view from the stack.
-			this._stack.delete( view );
-		}
-	}
-
-	/**
-	 * Updates the position of the balloon panel according to the given position data
-	 * or position data of the first view in the stack.
-	 *
-	 * @param {module:utils/dom/position~Options} [position] position options.
-	 */
-	updatePosition( position ) {
-		if ( position ) {
-			this._stack.values().next().value.position = position;
-		}
-
-		this.view.attachTo( this._getBalloonPosition() );
-	}
-
-	/**
-	 * Sets the view as a content of the balloon and attaches balloon using position
-	 * options of the first view.
-	 *
-	 * @private
-	 * @param {Object} data Configuration.
-	 * @param {module:ui/view~View} [data.view] View to show in the balloon.
-	 * @param {String} [data.balloonClassName=''] Additional class name which will added to the {#_balloon} view.
-	 */
-	_show( { view, balloonClassName = '' } ) {
-		this.view.className = balloonClassName;
-
-		this.view.content.add( view );
-		this.view.pin( this._getBalloonPosition() );
-	}
-
-	/**
-	 * Returns position options of the first view in the stack.
-	 * This keeps the balloon in the same position when view is changed.
-	 *
-	 * @private
-	 * @returns {module:utils/dom/position~Options}
-	 */
-	_getBalloonPosition() {
-		return this._stack.values().next().value.position;
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = ContextualBalloon;
-
-
-
-/***/ }),
-/* 154 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/**
- * A faster alternative to `Function#apply`, this function invokes `func`
- * with the `this` binding of `thisArg` and the arguments of `args`.
- *
- * @private
- * @param {Function} func The function to invoke.
- * @param {*} thisArg The `this` binding of `func`.
- * @param {Array} args The arguments to invoke `func` with.
- * @returns {*} Returns the result of `func`.
- */
-function apply(func, thisArg, args) {
-  var length = args.length;
-  switch (length) {
-    case 0: return func.call(thisArg);
-    case 1: return func.call(thisArg, args[0]);
-    case 2: return func.call(thisArg, args[0], args[1]);
-    case 3: return func.call(thisArg, args[0], args[1], args[2]);
-  }
-  return func.apply(thisArg, args);
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (apply);
-
-
-/***/ }),
-/* 155 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isFunction__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isObject__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isSymbol__ = __webpack_require__(45);
-
-
-
-
-/** Used as references for various `Number` constants. */
-var NAN = 0 / 0;
-
-/** Used to match leading and trailing whitespace. */
-var reTrim = /^\s+|\s+$/g;
-
-/** Used to detect bad signed hexadecimal string values. */
-var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
-
-/** Used to detect binary string values. */
-var reIsBinary = /^0b[01]+$/i;
-
-/** Used to detect octal string values. */
-var reIsOctal = /^0o[0-7]+$/i;
-
-/** Built-in method references without a dependency on `root`. */
-var freeParseInt = parseInt;
-
-/**
- * Converts `value` to a number.
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to process.
- * @returns {number} Returns the number.
- * @example
- *
- * _.toNumber(3.2);
- * // => 3.2
- *
- * _.toNumber(Number.MIN_VALUE);
- * // => 5e-324
- *
- * _.toNumber(Infinity);
- * // => Infinity
- *
- * _.toNumber('3.2');
- * // => 3.2
- */
-function toNumber(value) {
-  if (typeof value == 'number') {
-    return value;
-  }
-  if (Object(__WEBPACK_IMPORTED_MODULE_2__isSymbol__["a" /* default */])(value)) {
-    return NAN;
-  }
-  if (Object(__WEBPACK_IMPORTED_MODULE_1__isObject__["a" /* default */])(value)) {
-    var other = Object(__WEBPACK_IMPORTED_MODULE_0__isFunction__["a" /* default */])(value.valueOf) ? value.valueOf() : value;
-    value = Object(__WEBPACK_IMPORTED_MODULE_1__isObject__["a" /* default */])(other) ? (other + '') : other;
-  }
-  if (typeof value != 'string') {
-    return value === 0 ? value : +value;
-  }
-  value = value.replace(reTrim, '');
-  var isBinary = reIsBinary.test(value);
-  return (isBinary || reIsOctal.test(value))
-    ? freeParseInt(value.slice(2), isBinary ? 2 : 8)
-    : (reIsBadHex.test(value) ? NAN : +value);
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (toNumber);
-
-
-/***/ }),
-/* 156 */
-/***/ (function(module, exports) {
-
-module.exports = function(originalModule) {
-	if(!originalModule.webpackPolyfill) {
-		var module = Object.create(originalModule);
-		// module.parent = undefined by default
-		if(!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function() {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function() {
-				return module.i;
-			}
-		});
-		Object.defineProperty(module, "exports", {
-			enumerable: true,
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
-
-
-/***/ }),
-/* 157 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseTimes__ = __webpack_require__(158);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArguments__ = __webpack_require__(111);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArray__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isLength__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isString__ = __webpack_require__(112);
-
-
-
-
-
-
-/**
- * Creates an array of index keys for `object` values of arrays,
- * `arguments` objects, and strings, otherwise `null` is returned.
- *
- * @private
- * @param {Object} object The object to query.
- * @returns {Array|null} Returns index keys, else `null`.
- */
-function indexKeys(object) {
-  var length = object ? object.length : undefined;
-  if (Object(__WEBPACK_IMPORTED_MODULE_3__isLength__["a" /* default */])(length) &&
-      (Object(__WEBPACK_IMPORTED_MODULE_2__isArray__["a" /* default */])(object) || Object(__WEBPACK_IMPORTED_MODULE_4__isString__["a" /* default */])(object) || Object(__WEBPACK_IMPORTED_MODULE_1__isArguments__["a" /* default */])(object))) {
-    return Object(__WEBPACK_IMPORTED_MODULE_0__baseTimes__["a" /* default */])(length, String);
-  }
-  return null;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (indexKeys);
-
-
-/***/ }),
-/* 158 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/**
- * The base implementation of `_.times` without support for iteratee shorthands
- * or max array length checks.
- *
- * @private
- * @param {number} n The number of times to invoke `iteratee`.
- * @param {Function} iteratee The function invoked per iteration.
- * @returns {Array} Returns the array of results.
- */
-function baseTimes(n, iteratee) {
-  var index = -1,
-      result = Array(n);
-
-  while (++index < n) {
-    result[index] = iteratee(index);
-  }
-  return result;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (baseTimes);
-
-
-/***/ }),
-/* 159 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_range__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_position__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_range__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_text__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module engine/conversion/mapper
- */
-
-
-
-
-
-
-
-
-
-
-
-/**
- * Maps elements and positions between {@link module:engine/view/document~Document view} and {@link module:engine/model/model model}.
- *
- * Mapper use bound elements to find corresponding elements and positions, so, to get proper results,
- * all model elements should be {@link module:engine/conversion/mapper~Mapper#bindElements bound}.
- *
- * To map complex model to/from view relations, you may provide custom callbacks for
- * {@link module:engine/conversion/mapper~Mapper#event:modelToViewPosition modelToViewPosition event} and
- * {@link module:engine/conversion/mapper~Mapper#event:viewToModelPosition viewToModelPosition event} that are fired whenever
- * a position mapping request occurs.
- * Those events are fired by {@link module:engine/conversion/mapper~Mapper#toViewPosition toViewPosition}
- * and {@link module:engine/conversion/mapper~Mapper#toModelPosition toModelPosition} methods. `Mapper` adds it's own default callbacks
- * with `'lowest'` priority. To override default `Mapper` mapping, add custom callback with higher priority and
- * stop the event.
- */
-class Mapper {
-	/**
-	 * Creates an instance of the mapper.
-	 */
-	constructor() {
-		/**
-		 * Model element to view element mapping.
-		 *
-		 * @private
-		 * @member {WeakMap}
-		 */
-		this._modelToViewMapping = new WeakMap();
-
-		/**
-		 * View element to model element mapping.
-		 *
-		 * @private
-		 * @member {WeakMap}
-		 */
-		this._viewToModelMapping = new WeakMap();
-
-		/**
-		 * A map containing callbacks between view element names and functions evaluating length of view elements
-		 * in model.
-		 *
-		 * @private
-		 * @member {Map}
-		 */
-		this._viewToModelLengthCallbacks = new Map();
-
-		// Default mapper algorithm for mapping model position to view position.
-		this.on( 'modelToViewPosition', ( evt, data ) => {
-			if ( data.viewPosition ) {
-				return;
-			}
-
-			const viewContainer = this._modelToViewMapping.get( data.modelPosition.parent );
-
-			data.viewPosition = this._findPositionIn( viewContainer, data.modelPosition.offset );
-		}, { priority: 'low' } );
-
-		// Default mapper algorithm for mapping view position to model position.
-		this.on( 'viewToModelPosition', ( evt, data ) => {
-			if ( data.modelPosition ) {
-				return;
-			}
-
-			let viewBlock = data.viewPosition.parent;
-			let modelParent = this._viewToModelMapping.get( viewBlock );
-
-			while ( !modelParent ) {
-				viewBlock = viewBlock.parent;
-				modelParent = this._viewToModelMapping.get( viewBlock );
-			}
-
-			const modelOffset = this._toModelOffset( data.viewPosition.parent, data.viewPosition.offset, viewBlock );
-
-			data.modelPosition = __WEBPACK_IMPORTED_MODULE_0__model_position__["a" /* default */].createFromParentAndOffset( modelParent, modelOffset );
-		}, { priority: 'low' } );
-	}
-
-	/**
-	 * Marks model and view elements as corresponding. Corresponding elements can be retrieved by using
-	 * the {@link module:engine/conversion/mapper~Mapper#toModelElement toModelElement} and
-	 * {@link module:engine/conversion/mapper~Mapper#toViewElement toViewElement} methods.
-	 * The information that elements are bound is also used to translate positions.
-	 *
-	 * @param {module:engine/model/element~Element} modelElement Model element.
-	 * @param {module:engine/view/element~Element} viewElement View element.
-	 */
-	bindElements( modelElement, viewElement ) {
-		this._modelToViewMapping.set( modelElement, viewElement );
-		this._viewToModelMapping.set( viewElement, modelElement );
-	}
-
-	/**
-	 * Unbinds given {@link module:engine/view/element~Element view element} from the map.
-	 *
-	 * @param {module:engine/view/element~Element} viewElement View element to unbind.
-	 */
-	unbindViewElement( viewElement ) {
-		const modelElement = this.toModelElement( viewElement );
-
-		this._unbindElements( modelElement, viewElement );
-	}
-
-	/**
-	 * Unbinds given {@link module:engine/model/element~Element model element} from the map.
-	 *
-	 * @param {module:engine/model/element~Element} modelElement Model element to unbind.
-	 */
-	unbindModelElement( modelElement ) {
-		const viewElement = this.toViewElement( modelElement );
-
-		this._unbindElements( modelElement, viewElement );
-	}
-
-	/**
-	 * Removes all model to view and view to model bindings.
-	 */
-	clearBindings() {
-		this._modelToViewMapping = new WeakMap();
-		this._viewToModelMapping = new WeakMap();
-	}
-
-	/**
-	 * Gets the corresponding model element.
-	 *
-	 * **Note:** {@link module:engine/view/uielement~UIElement} does not have corresponding element in model.
-	 *
-	 * @param {module:engine/view/element~Element} viewElement View element.
-	 * @returns {module:engine/model/element~Element|undefined} Corresponding model element or `undefined` if not found.
-	 */
-	toModelElement( viewElement ) {
-		return this._viewToModelMapping.get( viewElement );
-	}
-
-	/**
-	 * Gets the corresponding view element.
-	 *
-	 * @param {module:engine/model/element~Element} modelElement Model element.
-	 * @returns {module:engine/view/element~Element|undefined} Corresponding view element or `undefined` if not found.
-	 */
-	toViewElement( modelElement ) {
-		return this._modelToViewMapping.get( modelElement );
-	}
-
-	/**
-	 * Gets the corresponding model range.
-	 *
-	 * @param {module:engine/view/range~Range} viewRange View range.
-	 * @returns {module:engine/model/range~Range} Corresponding model range.
-	 */
-	toModelRange( viewRange ) {
-		return new __WEBPACK_IMPORTED_MODULE_1__model_range__["a" /* default */]( this.toModelPosition( viewRange.start ), this.toModelPosition( viewRange.end ) );
-	}
-
-	/**
-	 * Gets the corresponding view range.
-	 *
-	 * @param {module:engine/model/range~Range} modelRange Model range.
-	 * @returns {module:engine/view/range~Range} Corresponding view range.
-	 */
-	toViewRange( modelRange ) {
-		return new __WEBPACK_IMPORTED_MODULE_3__view_range__["a" /* default */]( this.toViewPosition( modelRange.start ), this.toViewPosition( modelRange.end ) );
-	}
-
-	/**
-	 * Gets the corresponding model position.
-	 *
-	 * @fires viewToModelPosition
-	 * @param {module:engine/view/position~Position} viewPosition View position.
-	 * @returns {module:engine/model/position~Position} Corresponding model position.
-	 */
-	toModelPosition( viewPosition ) {
-		const data = {
-			viewPosition,
-			mapper: this
-		};
-
-		this.fire( 'viewToModelPosition', data );
-
-		return data.modelPosition;
-	}
-
-	/**
-	 * Gets the corresponding view position.
-	 *
-	 * @fires modelToViewPosition
-	 * @param {module:engine/model/position~Position} modelPosition Model position.
-	 * @returns {module:engine/view/position~Position} Corresponding view position.
-	 */
-	toViewPosition( modelPosition ) {
-		const data = {
-			modelPosition,
-			mapper: this
-		};
-
-		this.fire( 'modelToViewPosition', data );
-
-		return data.viewPosition;
-	}
-
-	/**
-	 * Registers a callback that evaluates the length in the model of a view element with given name.
-	 *
-	 * The callback is fired with one argument, which is a view element instance. The callback is expected to return
-	 * a number representing the length of view element in model.
-	 *
-	 *		// List item in view may contain nested list, which have other list items. In model though,
-	 *		// the lists are represented by flat structure. Because of those differences, length of list view element
-	 *		// may be greater than one. In the callback it's checked how many nested list items are in evaluated list item.
-	 *
-	 *		function getViewListItemLength( element ) {
-	 *			let length = 1;
-	 *
-	 *			for ( let child of element.getChildren() ) {
-	 *				if ( child.name == 'ul' || child.name == 'ol' ) {
-	 *					for ( let item of child.getChildren() ) {
-	 *						length += getViewListItemLength( item );
-	 *					}
-	 *				}
-	 *			}
-	 *
-	 *			return length;
-	 *		}
-	 *
-	 *		mapper.registerViewToModelLength( 'li', getViewListItemLength );
-	 *
-	 * @param {String} viewElementName Name of view element for which callback is registered.
-	 * @param {Function} lengthCallback Function return a length of view element instance in model.
-	 */
-	registerViewToModelLength( viewElementName, lengthCallback ) {
-		this._viewToModelLengthCallbacks.set( viewElementName, lengthCallback );
-	}
-
-	/**
-	 * Calculates model offset based on the view position and the block element.
-	 *
-	 * Example:
-	 *
-	 *		<p>foo<b>ba|r</b></p> // _toModelOffset( b, 2, p ) -> 5
-	 *
-	 * Is a sum of:
-	 *
-	 *		<p>foo|<b>bar</b></p> // _toModelOffset( p, 3, p ) -> 3
-	 *		<p>foo<b>ba|r</b></p> // _toModelOffset( b, 2, b ) -> 2
-	 *
-	 * @private
-	 * @param {module:engine/view/element~Element} viewParent Position parent.
-	 * @param {Number} viewOffset Position offset.
-	 * @param {module:engine/view/element~Element} viewBlock Block used as a base to calculate offset.
-	 * @returns {Number} Offset in the model.
-	 */
-	_toModelOffset( viewParent, viewOffset, viewBlock ) {
-		if ( viewBlock != viewParent ) {
-			// See example.
-			const offsetToParentStart = this._toModelOffset( viewParent.parent, viewParent.index, viewBlock );
-			const offsetInParent = this._toModelOffset( viewParent, viewOffset, viewParent );
-
-			return offsetToParentStart + offsetInParent;
-		}
-
-		// viewBlock == viewParent, so we need to calculate the offset in the parent element.
-
-		// If the position is a text it is simple ("ba|r" -> 2).
-		if ( viewParent.is( 'text' ) ) {
-			return viewOffset;
-		}
-
-		// If the position is in an element we need to sum lengths of siblings ( <b> bar </b> foo | -> 3 + 3 = 6 ).
-		let modelOffset = 0;
-
-		for ( let i = 0; i < viewOffset; i++ ) {
-			modelOffset += this.getModelLength( viewParent.getChild( i ) );
-		}
-
-		return modelOffset;
-	}
-
-	/**
-	 * Removes binding between given elements.
-	 *
-	 * @private
-	 * @param {module:engine/model/element~Element} modelElement Model element to unbind.
-	 * @param {module:engine/view/element~Element} viewElement View element to unbind.
-	 */
-	_unbindElements( modelElement, viewElement ) {
-		this._viewToModelMapping.delete( viewElement );
-		this._modelToViewMapping.delete( modelElement );
-	}
-
-	/**
-	 * Gets the length of the view element in the model.
-	 *
-	 * The length is calculated as follows:
-	 * * if {@link #registerViewToModelLength length mapping callback} is provided for given `viewNode` it is used to
-	 * evaluate model length (`viewNode` is used as first and only parameter passed to the callback),
-	 * * length of a {@link module:engine/view/text~Text text node} is equal to the length of it's
-	 * {@link module:engine/view/text~Text#data data},
-	 * * length of a {@link module:engine/view/uielement~UIElement ui element} is equal to 0,
-	 * * length of a mapped {@link module:engine/view/element~Element element} is equal to 1,
-	 * * length of a not-mapped {@link module:engine/view/element~Element element} is equal to the length of it's children.
-	 *
-	 * Examples:
-	 *
-	 *		foo                          -> 3 // Text length is equal to it's data length.
-	 *		<p>foo</p>                   -> 1 // Length of an element which is mapped is by default equal to 1.
-	 *		<b>foo</b>                   -> 3 // Length of an element which is not mapped is a length of its children.
-	 *		<div><p>x</p><p>y</p></div>  -> 2 // Assuming that <div> is not mapped and <p> are mapped.
-	 *
-	 * @param {module:engine/view/element~Element} viewNode View node.
-	 * @returns {Number} Length of the node in the tree model.
-	 */
-	getModelLength( viewNode ) {
-		if ( this._viewToModelLengthCallbacks.get( viewNode.name ) ) {
-			const callback = this._viewToModelLengthCallbacks.get( viewNode.name );
-
-			return callback( viewNode );
-		} else if ( this._viewToModelMapping.has( viewNode ) ) {
-			return 1;
-		} else if ( viewNode.is( 'text' ) ) {
-			return viewNode.data.length;
-		} else if ( viewNode.is( 'uiElement' ) ) {
-			return 0;
-		} else {
-			let len = 0;
-
-			for ( const child of viewNode.getChildren() ) {
-				len += this.getModelLength( child );
-			}
-
-			return len;
-		}
-	}
-
-	/**
-	 * Finds the position in the view node (or its children) with the expected model offset.
-	 *
-	 * Example:
-	 *
-	 *		<p>fo<b>bar</b>bom</p> -> expected offset: 4
-	 *
-	 *		_findPositionIn( p, 4 ):
-	 *		<p>|fo<b>bar</b>bom</p> -> expected offset: 4, actual offset: 0
-	 *		<p>fo|<b>bar</b>bom</p> -> expected offset: 4, actual offset: 2
-	 *		<p>fo<b>bar</b>|bom</p> -> expected offset: 4, actual offset: 5 -> we are too far
-	 *
-	 *		_findPositionIn( b, 4 - ( 5 - 3 ) ):
-	 *		<p>fo<b>|bar</b>bom</p> -> expected offset: 2, actual offset: 0
-	 *		<p>fo<b>bar|</b>bom</p> -> expected offset: 2, actual offset: 3 -> we are too far
-	 *
-	 *		_findPositionIn( bar, 2 - ( 3 - 3 ) ):
-	 *		We are in the text node so we can simple find the offset.
-	 *		<p>fo<b>ba|r</b>bom</p> -> expected offset: 2, actual offset: 2 -> position found
-	 *
-	 * @private
-	 * @param {module:engine/view/element~Element} viewParent Tree view element in which we are looking for the position.
-	 * @param {Number} expectedOffset Expected offset.
-	 * @returns {module:engine/view/position~Position} Found position.
-	 */
-	_findPositionIn( viewParent, expectedOffset ) {
-		// Last scanned view node.
-		let viewNode;
-		// Length of the last scanned view node.
-		let lastLength = 0;
-
-		let modelOffset = 0;
-		let viewOffset = 0;
-
-		// In the text node it is simple: offset in the model equals offset in the text.
-		if ( viewParent.is( 'text' ) ) {
-			return new __WEBPACK_IMPORTED_MODULE_2__view_position__["a" /* default */]( viewParent, expectedOffset );
-		}
-
-		// In other cases we add lengths of child nodes to find the proper offset.
-
-		// If it is smaller we add the length.
-		while ( modelOffset < expectedOffset ) {
-			viewNode = viewParent.getChild( viewOffset );
-			lastLength = this.getModelLength( viewNode );
-			modelOffset += lastLength;
-			viewOffset++;
-		}
-
-		// If it equals we found the position.
-		if ( modelOffset == expectedOffset ) {
-			return this._moveViewPositionToTextNode( new __WEBPACK_IMPORTED_MODULE_2__view_position__["a" /* default */]( viewParent, viewOffset ) );
-		}
-		// If it is higher we need to enter last child.
-		else {
-			// ( modelOffset - lastLength ) is the offset to the child we enter,
-			// so we subtract it from the expected offset to fine the offset in the child.
-			return this._findPositionIn( viewNode, expectedOffset - ( modelOffset - lastLength ) );
-		}
-	}
-
-	/**
-	 * Because we prefer positions in text nodes over positions next to text node moves view position to the text node
-	 * if it was next to it.
-	 *
-	 *		<p>[]<b>foo</b></p> -> <p>[]<b>foo</b></p> // do not touch if position is not directly next to text
-	 *		<p>foo[]<b>foo</b></p> -> <p>foo{}<b>foo</b></p> // move to text node
-	 *		<p><b>[]foo</b></p> -> <p><b>{}foo</b></p> // move to text node
-	 *
-	 * @private
-	 * @param {module:engine/view/position~Position} viewPosition Position potentially next to text node.
-	 * @returns {module:engine/view/position~Position} Position in text node if possible.
-	 */
-	_moveViewPositionToTextNode( viewPosition ) {
-		// If the position is just after text node, put it at the end of that text node.
-		// If the position is just before text node, put it at the beginning of that text node.
-		const nodeBefore = viewPosition.nodeBefore;
-		const nodeAfter = viewPosition.nodeAfter;
-
-		if ( nodeBefore instanceof __WEBPACK_IMPORTED_MODULE_4__view_text__["a" /* default */] ) {
-			return new __WEBPACK_IMPORTED_MODULE_2__view_position__["a" /* default */]( nodeBefore, nodeBefore.data.length );
-		} else if ( nodeAfter instanceof __WEBPACK_IMPORTED_MODULE_4__view_text__["a" /* default */] ) {
-			return new __WEBPACK_IMPORTED_MODULE_2__view_position__["a" /* default */]( nodeAfter, 0 );
-		}
-
-		// Otherwise, just return the given position.
-		return viewPosition;
-	}
-
-	/**
-	 * Fired for each model-to-view position mapping request. The purpose of this event is to enable custom model-to-view position
-	 * mapping. Callbacks added to this event take {@link module:engine/model/position~Position model position} and are expected to
-	 * calculate {@link module:engine/view/position~Position view position}. Calculated view position should be added as `viewPosition`
-	 * value in `data` object that is passed as one of parameters to the event callback.
-	 *
-	 * 		// Assume that "captionedImage" model element is converted to <img> and following <span> elements in view,
-	 * 		// and the model element is bound to <img> element. Force mapping model positions inside "captionedImage" to that
-	 * 		// <span> element.
-	 *		mapper.on( 'modelToViewPosition', ( evt, data ) => {
-	 *			const positionParent = modelPosition.parent;
-	 *
-	 *			if ( positionParent.name == 'captionedImage' ) {
-	 *				const viewImg = data.mapper.toViewElement( positionParent );
-	 *				const viewCaption = viewImg.nextSibling; // The <span> element.
-	 *
-	 *				data.viewPosition = new ViewPosition( viewCaption, modelPosition.offset );
-	 *
-	 *				// Stop the event if other callbacks should not modify calculated value.
-	 *				evt.stop();
-	 *			}
-	 *		} );
-	 *
-	 * **Note:** keep in mind that custom callback provided for this event should use provided `data.modelPosition` only to check
-	 * what is before the position (or position's parent). This is important when model-to-view position mapping is used in
-	 * remove change conversion. Model after the removed position (that is being mapped) does not correspond to view, so it cannot be used:
-	 *
-	 *		// Incorrect:
-	 *		const modelElement = data.modelPosition.nodeAfter;
-	 *		const viewElement = data.mapper.toViewElement( modelElement );
-	 *		// ... Do something with `viewElement` and set `data.viewPosition`.
-	 *
-	 *		// Correct:
-	 *		const prevModelElement = data.modelPosition.nodeBefore;
-	 *		const prevViewElement = data.mapper.toViewElement( prevModelElement );
-	 *		// ... Use `prevViewElement` to find correct `data.viewPosition`.
-	 *
-	 * **Note:** default mapping callback is provided with `low` priority setting and does not cancel the event, so it is possible to
-	 * attach a custom callback after default callback and also use `data.viewPosition` calculated by default callback
-	 * (for example to fix it).
-	 *
-	 * **Note:** default mapping callback will not fire if `data.viewPosition` is already set.
-	 *
-	 * **Note:** these callbacks are called **very often**. For efficiency reasons, it is advised to use them only when position
-	 * mapping between given model and view elements is unsolvable using just elements mapping and default algorithm. Also,
-	 * the condition that checks if special case scenario happened should be as simple as possible.
-	 *
-	 * @event modelToViewPosition
-	 * @param {Object} data Data pipeline object that can store and pass data between callbacks. The callback should add
-	 * `viewPosition` value to that object with calculated {@link module:engine/view/position~Position view position}.
-	 * @param {module:engine/conversion/mapper~Mapper} data.mapper Mapper instance that fired the event.
-	 */
-
-	/**
-	 * Fired for each view-to-model position mapping request. See {@link module:engine/conversion/mapper~Mapper#event:modelToViewPosition}.
-	 *
-	 * 		// See example in `modelToViewPosition` event description.
-	 * 		// This custom mapping will map positions from <span> element next to <img> to the "captionedImage" element.
-	 *		mapper.on( 'viewToModelPosition', ( evt, data ) => {
-	 *			const positionParent = viewPosition.parent;
-	 *
-	 *			if ( positionParent.hasClass( 'image-caption' ) ) {
-	 *				const viewImg = positionParent.previousSibling;
-	 *				const modelImg = data.mapper.toModelElement( viewImg );
-	 *
-	 *				data.modelPosition = new ModelPosition( modelImg, viewPosition.offset );
-	 *				evt.stop();
-	 *			}
-	 *		} );
-	 *
-	 * **Note:** default mapping callback is provided with `low` priority setting and does not cancel the event, so it is possible to
-	 * attach a custom callback after default callback and also use `data.modelPosition` calculated by default callback
-	 * (for example to fix it).
-	 *
-	 * **Note:** default mapping callback will not fire if `data.modelPosition` is already set.
-	 *
-	 * **Note:** these callbacks are called **very often**. For efficiency reasons, it is advised to use them only when position
-	 * mapping between given model and view elements is unsolvable using just elements mapping and default algorithm. Also,
-	 * the condition that checks if special case scenario happened should be as simple as possible.
-	 *
-	 * @event viewToModelPosition
-	 * @param {Object} data Data pipeline object that can store and pass data between callbacks. The callback should add
-	 * `modelPosition` value to that object with calculated {@link module:engine/model/position~Position model position}.
-	 * @param {module:engine/conversion/mapper~Mapper} data.mapper Mapper instance that fired the event.
-	 */
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Mapper;
-
-
-Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( Mapper, __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
-
-
-/***/ }),
-/* 160 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = objectToMap;
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module utils/objecttomap
- */
-
-/**
- * Transforms object to map.
- *
- *		const map = objectToMap( { 'foo': 1, 'bar': 2 } );
- *		map.get( 'foo' ); // 1
- *
- * @param {Object} obj Object to transform.
- * @returns {Map} Map created from object.
- */
-function objectToMap( obj ) {
-	const map = new Map();
-
-	for ( const key in obj ) {
-		map.set( key, obj[ key ] );
-	}
-
-	return map;
-}
-
-
-/***/ }),
-/* 161 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module engine/view/matcher
- */
-
-/**
- * View matcher class.
- * Instance of this class can be used to find {@link module:engine/view/element~Element elements} that match given pattern.
- */
-class Matcher {
-	/**
-	 * Creates new instance of Matcher.
-	 *
-	 * @param {String|RegExp|Object} [pattern] Match patterns. See {@link module:engine/view/matcher~Matcher#add add method} for
-	 * more information.
-	 */
-	constructor( ...pattern ) {
-		this._patterns = [];
-
-		this.add( ...pattern );
-	}
-
-	/**
-	 * Adds pattern or patterns to matcher instance.
-	 *
-	 * Example patterns matching element's name:
-	 *
-	 *		// String.
-	 *		matcher.add( 'div' );
-	 *		matcher.add( { name: 'div' } );
-	 *
-	 *		// Regular expression.
-	 *		matcher.add( /^\w/ );
-	 *		matcher.add( { name: /^\w/ } );
-	 *
-	 * Example pattern matching element's attributes:
-	 *
-	 *		matcher.add( {
-	 *			attribute: {
-	 *				title: 'foobar',
-	 *				foo: /^\w+/
-	 *			}
-	 *		} );
-	 *
-	 * Example patterns matching element's classes:
-	 *
-	 *		// Single class.
-	 *		matcher.add( {
-	 *			class: 'foobar'
-	 *		} );
-	 *
-	 *		// Single class using regular expression.
-	 *		matcher.add( {
-	 *			class: /foo.../
-	 *		} );
-	 *
-	 *		// Multiple classes to match.
-	 *		matcher.add( {
-	 *			class: [ 'baz', 'bar', /foo.../ ]
-	 *		} ):
-	 *
-	 * Example pattern matching element's styles:
-	 *
-	 *		matcher.add( {
-	 *			style: {
-	 *				position: 'absolute',
-	 *				color: /^\w*blue$/
-	 *			}
-	 *		} );
-	 *
-	 * Example function pattern:
-	 *
-	 *		matcher.add( ( element ) => {
-	 *			// Result of this function will be included in `match`
-	 *			// property of the object returned from matcher.match() call.
-	 *			if ( element.name === 'div' && element.childCount > 0 ) {
-	 *				return { name: true };
-	 *			}
-	 *
-	 *			return null;
-	 *		} );
-	 *
-	 * Multiple patterns can be added in one call:
-	 *
-	 * 		matcher.add( 'div', { class: 'foobar' } );
-	 *
-	 * @param {Object|String|RegExp|Function} pattern Object describing pattern details. If string or regular expression
-	 * is provided it will be used to match element's name. Pattern can be also provided in a form
-	 * of a function - then this function will be called with each {@link module:engine/view/element~Element element} as a parameter.
-	 * Function's return value will be stored under `match` key of the object returned from
-	 * {@link module:engine/view/matcher~Matcher#match match} or {@link module:engine/view/matcher~Matcher#matchAll matchAll} methods.
-	 * @param {String|RegExp} [pattern.name] Name or regular expression to match element's name.
-	 * @param {Object} [pattern.attribute] Object with key-value pairs representing attributes to match. Each object key
-	 * represents attribute name. Value under that key can be either a string or a regular expression and it will be
-	 * used to match attribute value.
-	 * @param {String|RegExp|Array} [pattern.class] Class name or array of class names to match. Each name can be
-	 * provided in a form of string or regular expression.
-	 * @param {Object} [pattern.style] Object with key-value pairs representing styles to match. Each object key
-	 * represents style name. Value under that key can be either a string or a regular expression and it will be used
-	 * to match style value.
-	 */
-	add( ...pattern ) {
-		for ( let item of pattern ) {
-			// String or RegExp pattern is used as element's name.
-			if ( typeof item == 'string' || item instanceof RegExp ) {
-				item = { name: item };
-			}
-
-			// Single class name/RegExp can be provided.
-			if ( item.class && ( typeof item.class == 'string' || item.class instanceof RegExp ) ) {
-				item.class = [ item.class ];
-			}
-
-			this._patterns.push( item );
-		}
-	}
-
-	/**
-	 * Matches elements for currently stored patterns. Returns match information about first found
-	 * {@link module:engine/view/element~Element element}, otherwise returns `null`.
-	 *
-	 * Example of returned object:
-	 *
-	 *		{
-	 *			element: <instance of found element>,
-	 *			pattern: <pattern used to match found element>,
-	 *			match: {
-	 *				name: true,
-	 *				attribute: [ 'title', 'href' ],
-	 *				class: [ 'foo' ],
-	 *				style: [ 'color', 'position' ]
-	 *			}
-	 *		}
-	 *
-	 * @see module:engine/view/matcher~Matcher#add
-	 * @see module:engine/view/matcher~Matcher#matchAll
-	 * @param {...module:engine/view/element~Element} element View element to match against stored patterns.
-	 * @returns {Object|null} result
-	 * @returns {module:engine/view/element~Element} result.element Matched view element.
-	 * @returns {Object|String|RegExp|Function} result.pattern Pattern that was used to find matched element.
-	 * @returns {Object} result.match Object representing matched element parts.
-	 * @returns {Boolean} [result.match.name] True if name of the element was matched.
-	 * @returns {Array} [result.match.attribute] Array with matched attribute names.
-	 * @returns {Array} [result.match.class] Array with matched class names.
-	 * @returns {Array} [result.match.style] Array with matched style names.
-	 */
-	match( ...element ) {
-		for ( const singleElement of element ) {
-			for ( const pattern of this._patterns ) {
-				const match = isElementMatching( singleElement, pattern );
-
-				if ( match ) {
-					return {
-						element: singleElement,
-						pattern,
-						match
-					};
-				}
-			}
-		}
-
-		return null;
-	}
-
-	/**
-	 * Matches elements for currently stored patterns. Returns array of match information with all found
-	 * {@link module:engine/view/element~Element elements}. If no element is found - returns `null`.
-	 *
-	 * @see module:engine/view/matcher~Matcher#add
-	 * @see module:engine/view/matcher~Matcher#match
-	 * @param {...module:engine/view/element~Element} element View element to match against stored patterns.
-	 * @returns {Array.<Object>|null} Array with match information about found elements or `null`. For more information
-	 * see {@link module:engine/view/matcher~Matcher#match match method} description.
-	 */
-	matchAll( ...element ) {
-		const results = [];
-
-		for ( const singleElement of element ) {
-			for ( const pattern of this._patterns ) {
-				const match = isElementMatching( singleElement, pattern );
-
-				if ( match ) {
-					results.push( {
-						element: singleElement,
-						pattern,
-						match
-					} );
-				}
-			}
-		}
-
-		return results.length > 0 ? results : null;
-	}
-
-	/**
-	 * Returns the name of the element to match if there is exactly one pattern added to the matcher instance
-	 * and it matches element name defined by `string` (not `RegExp`). Otherwise, returns `null`.
-	 *
-	 * @returns {String|null} Element name trying to match.
-	 */
-	getElementName() {
-		if ( this._patterns.length !== 1 ) {
-			return null;
-		}
-
-		const pattern = this._patterns[ 0 ];
-		const name = pattern.name;
-
-		return ( typeof pattern != 'function' && name && !( name instanceof RegExp ) ) ? name : null;
-	}
-
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Matcher;
-
-
-// Returns match information if {@link module:engine/view/element~Element element} is matching provided pattern.
-// If element cannot be matched to provided pattern - returns `null`.
-//
-// @param {module:engine/view/element~Element} element
-// @param {Object|String|RegExp|Function} pattern
-// @returns {Object|null} Returns object with match information or null if element is not matching.
-function isElementMatching( element, pattern ) {
-	// If pattern is provided as function - return result of that function;
-	if ( typeof pattern == 'function' ) {
-		return pattern( element );
-	}
-
-	const match = {};
-	// Check element's name.
-	if ( pattern.name ) {
-		match.name = matchName( pattern.name, element.name );
-
-		if ( !match.name ) {
-			return null;
-		}
-	}
-
-	// Check element's attributes.
-	if ( pattern.attribute ) {
-		match.attribute = matchAttributes( pattern.attribute, element );
-
-		if ( !match.attribute ) {
-			return null;
-		}
-	}
-
-	// Check element's classes.
-	if ( pattern.class ) {
-		match.class = matchClasses( pattern.class, element );
-
-		if ( !match.class ) {
-			return false;
-		}
-	}
-
-	// Check element's styles.
-	if ( pattern.style ) {
-		match.style = matchStyles( pattern.style, element );
-
-		if ( !match.style ) {
-			return false;
-		}
-	}
-
-	return match;
-}
-
-// Checks if name can be matched by provided pattern.
-//
-// @param {String|RegExp} pattern
-// @param {String} name
-// @returns {Boolean} Returns `true` if name can be matched, `false` otherwise.
-function matchName( pattern, name ) {
-	// If pattern is provided as RegExp - test against this regexp.
-	if ( pattern instanceof RegExp ) {
-		return pattern.test( name );
-	}
-
-	return pattern === name;
-}
-
-// Checks if attributes of provided element can be matched against provided patterns.
-//
-// @param {Object} patterns Object with information about attributes to match. Each key of the object will be
-// used as attribute name. Value of each key can be a string or regular expression to match against attribute value.
-// @param {module:engine/view/element~Element} element Element which attributes will be tested.
-// @returns {Array|null} Returns array with matched attribute names or `null` if no attributes were matched.
-function matchAttributes( patterns, element ) {
-	const match = [];
-
-	for ( const name in patterns ) {
-		const pattern = patterns[ name ];
-
-		if ( element.hasAttribute( name ) ) {
-			const attribute = element.getAttribute( name );
-
-			if ( pattern instanceof RegExp ) {
-				if ( pattern.test( attribute ) ) {
-					match.push( name );
-				} else {
-					return null;
-				}
-			} else if ( attribute === pattern ) {
-				match.push( name );
-			} else {
-				return null;
-			}
-		} else {
-			return null;
-		}
-	}
-
-	return match;
-}
-
-// Checks if classes of provided element can be matched against provided patterns.
-//
-// @param {Array.<String|RegExp>} patterns Array of strings or regular expressions to match against element's classes.
-// @param {module:engine/view/element~Element} element Element which classes will be tested.
-// @returns {Array|null} Returns array with matched class names or `null` if no classes were matched.
-function matchClasses( patterns, element ) {
-	const match = [];
-
-	for ( const pattern of patterns ) {
-		if ( pattern instanceof RegExp ) {
-			const classes = element.getClassNames();
-
-			for ( const name of classes ) {
-				if ( pattern.test( name ) ) {
-					match.push( name );
-				}
-			}
-
-			if ( match.length === 0 ) {
-				return null;
-			}
-		} else if ( element.hasClass( pattern ) ) {
-			match.push( pattern );
-		} else {
-			return null;
-		}
-	}
-
-	return match;
-}
-
-// Checks if styles of provided element can be matched against provided patterns.
-//
-// @param {Object} patterns Object with information about styles to match. Each key of the object will be
-// used as style name. Value of each key can be a string or regular expression to match against style value.
-// @param {module:engine/view/element~Element} element Element which styles will be tested.
-// @returns {Array|null} Returns array with matched style names or `null` if no styles were matched.
-function matchStyles( patterns, element ) {
-	const match = [];
-
-	for ( const name in patterns ) {
-		const pattern = patterns[ name ];
-
-		if ( element.hasStyle( name ) ) {
-			const style = element.getStyle( name );
-
-			if ( pattern instanceof RegExp ) {
-				if ( pattern.test( style ) ) {
-					match.push( name );
-				} else {
-					return null;
-				}
-			} else if ( style === pattern ) {
-				match.push( name );
-			} else {
-				return null;
-			}
-		} else {
-			return null;
-		}
-	}
-
-	return match;
-}
-
-
-/***/ }),
-/* 162 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modelconsumable__ = __webpack_require__(296);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_range__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_documentfragment__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_lib_lodash_extend__ = __webpack_require__(44);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module engine/conversion/modelconversiondispatcher
- */
-
-
-
-
-
-
-
-
-
-/**
- * `ModelConversionDispatcher` is a central point of {@link module:engine/model/model model} conversion, which is
- * a process of reacting to changes in the model and reflecting them by listeners that listen to those changes.
- * In default application, {@link module:engine/model/model model} is converted to {@link module:engine/view/view view}. This means
- * that changes in the model are reflected by changing the view (i.e. adding view nodes or changing attributes on view elements).
- *
- * During conversion process, `ModelConversionDispatcher` fires data-manipulation events, basing on state of the model and prepares
- * data for those events. It is important to note that the events are connected with "change actions" like "inserting"
- * or "removing" so one might say that we are converting "changes". This is in contrary to view to model conversion,
- * where we convert view nodes (the structure, not "changes" to the view). Note, that because changes are converted
- * and not the structure itself, there is a need to have a mapping between model and the structure on which changes are
- * reflected. To map elements during model to view conversion use {@link module:engine/conversion/mapper~Mapper}.
- *
- * The main use for this class is to listen to {@link module:engine/model/document~Document#event:change Document change event}, process it
- * and then fire specific events telling what exactly has changed. For those events, `ModelConversionDispatcher`
- * creates {@link module:engine/conversion/modelconsumable~ModelConsumable list of consumable values} that should be handled by event
- * callbacks. Those events are listened to by model-to-view converters which convert changes done in the
- * {@link module:engine/model/model model} to changes in the {@link module:engine/view/view view}. `ModelConversionController` also checks
- * the current state of consumables, so it won't fire events for parts of model that were already consumed. This is
- * especially important in callbacks that consume multiple values. See {@link module:engine/conversion/modelconsumable~ModelConsumable}
- * for an example of such callback.
- *
- * Although the primary usage for this class is the model-to-view conversion, `ModelConversionDispatcher` can be used
- * to build custom data processing pipelines that converts model to anything that is needed. Existing model structure can
- * be used to generate events (listening to {@link module:engine/model/document~Document#event:change Document change event} is not
- * required)
- * and custom callbacks can be added to the events (these does not have to be limited to changes in the view).
- *
- * When providing your own event listeners for `ModelConversionDispatcher` keep in mind that any callback that had
- * {@link module:engine/conversion/modelconsumable~ModelConsumable#consume consumed} a value from consumable (and did some changes, i.e. to
- * the view) should also stop the event. This is because whenever a callback is fired it is assumed that there is something
- * to be consumed. Thanks to that approach, you do not have to test whether there is anything to consume at the beginning
- * of your listener callback.
- *
- * Example of providing a converter for `ModelConversionDispatcher`:
- *
- *		// We will convert inserting "paragraph" model element into the model.
- *		modelDispatcher.on( 'insert:paragraph', ( evt, data, consumable, conversionApi ) => {
- *			// Remember to consume the part of consumable.
- *			consumable.consume( data.item, 'insert' );
- *
- *			// Translate position in model to position in the view.
- *			const viewPosition = conversionApi.mapper.toViewPosition( data.range.start );
- *
- *			// Create a P element (note that this converter is for inserting P elements -> 'insert:paragraph').
- *			const viewElement = new ViewElement( 'p' );
- *
- *			// Bind the newly created view element to model element so positions will map accordingly in future.
- *			conversionApi.mapper.bindElements( data.item, viewElement );
- *
- *			// Add the newly created view element to the view.
- *			viewWriter.insert( viewPosition, viewElement );
- *
- *			// Remember to stop the event propagation if the data.item was consumed.
- *			evt.stop();
- *		} );
- *
- * Callback that "overrides" other callback:
- *
- *		// Special converter for `linkHref` attribute added on custom `quote` element. Note, that this
- *		// attribute may be the same as the attribute added by other features (link feature in this case).
- *		// It might be even added by that feature! It makes sense that a part of content that is a quote is linked
- *		// to an external source so it makes sense that link feature works on the custom quote element.
- *		// However, we have to make sure that the attributes added by link feature are correctly converted.
- *		// To block default `linkHref` conversion we have to:
- *		// 1) add this callback with higher priority than link feature callback,
- *		// 2) consume `linkHref` attribute add change.
- *		modelConversionDispatcher.on( 'addAttribute:linkHref:quote', ( evt, data, consumable, conversionApi ) => {
- *			consumable.consume( data.item, 'addAttribute:linkHref' );
- *
- *			// Create a button that will represent the `linkHref` attribute.
- *			let viewSourceBtn = new ViewElement( 'a', {
- *				href: data.item.getAttribute( 'linkHref' ),
- *				title: 'source'
- *			} );
- *
- *			// Add a class for the button.
- *			viewSourceBtn.addClass( 'source' );
- *
- *			// Insert the button using writer API.
- *			// If `addAttribute` event is fired by
- *			// `module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher#convertInsert` it is fired
- *			// after `data.item` insert conversion was done. If the event is fired due to attribute insertion coming from
- *			// different source, `data.item` already existed. This means we are safe to get `viewQuote` from mapper.
- *			const viewQuote = conversionApi.mapper.toViewElement( data.item );
- *			const position = new ViewPosition( viewQuote, viewQuote.childCount );
- *			viewWriter.insert( position, viewSourceBtn );
- *
- *			evt.stop();
- *		}, { priority: 'high' } );
- */
-class ModelConversionDispatcher {
-	/**
-	 * Creates a `ModelConversionDispatcher` that operates using passed API.
-	 *
-	 * @param {module:engine/model/document~Document} modelDocument Model document instance bound with this dispatcher.
-	 * @param {Object} [conversionApi] Interface passed by dispatcher to the events callbacks.
-	 */
-	constructor( modelDocument, conversionApi = {} ) {
-		/**
-		 * Model document instance bound with this dispatcher.
-		 *
-		 * @private
-		 * @member {module:engine/model/document~Document}
-		 */
-		this._modelDocument = modelDocument;
-
-		/**
-		 * Interface passed by dispatcher to the events callbacks.
-		 *
-		 * @member {Object}
-		 */
-		this.conversionApi = Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_lib_lodash_extend__["a" /* default */])( { dispatcher: this }, conversionApi );
-	}
-
-	/**
-	 * Prepares data and fires a proper event.
-	 *
-	 * The method is crafted to take use of parameters passed in {@link module:engine/model/document~Document#event:change Document change
-	 * event}.
-	 *
-	 * @see module:engine/model/document~Document#event:change
-	 * @fires insert
-	 * @fires remove
-	 * @fires addAttribute
-	 * @fires removeAttribute
-	 * @fires changeAttribute
-	 * @fires addMarker
-	 * @param {String} type Change type.
-	 * @param {Object} data Additional information about the change.
-	 */
-	convertChange( type, data ) {
-		// Do not convert changes if they happen in graveyard.
-		// Graveyard is a special root that has no view / no other representation and changes done in it should not be converted.
-		if ( type !== 'remove' && data.range && data.range.root.rootName == '$graveyard' ) {
-			return;
-		}
-
-		if ( type == 'remove' && data.sourcePosition.root.rootName == '$graveyard' ) {
-			return;
-		}
-
-		if ( type == 'rename' && data.element.root.rootName == '$graveyard' ) {
-			return;
-		}
-
-		// We can safely dispatch changes.
-		if ( type == 'insert' || type == 'reinsert' ) {
-			this.convertInsertion( data.range );
-		} else if ( type == 'move' ) {
-			this.convertMove( data.sourcePosition, data.range );
-		} else if ( type == 'remove' ) {
-			this.convertRemove( data.sourcePosition, data.range );
-		} else if ( type == 'addAttribute' || type == 'removeAttribute' || type == 'changeAttribute' ) {
-			this.convertAttribute( type, data.range, data.key, data.oldValue, data.newValue );
-		} else if ( type == 'rename' ) {
-			this.convertRename( data.element, data.oldName );
-		}
-	}
-
-	/**
-	 * Starts conversion of insertion-change on given `range`.
-	 *
-	 * Analyzes given range and fires insertion-connected events with data based on that range.
-	 *
-	 * **Note**: This method will fire separate events for node insertion and attributes insertion. All
-	 * attributes that are set on inserted nodes are treated like they were added just after node insertion.
-	 *
-	 * @fires insert
-	 * @fires addAttribute
-	 * @fires addMarker
-	 * @param {module:engine/model/range~Range} range Inserted range.
-	 */
-	convertInsertion( range ) {
-		// Create a list of things that can be consumed, consisting of nodes and their attributes.
-		const consumable = this._createInsertConsumable( range );
-
-		// Fire a separate insert event for each node and text fragment contained in the range.
-		for ( const value of range ) {
-			const item = value.item;
-			const itemRange = __WEBPACK_IMPORTED_MODULE_1__model_range__["a" /* default */].createFromPositionAndShift( value.previousPosition, value.length );
-			const data = {
-				item,
-				range: itemRange
-			};
-
-			this._testAndFire( 'insert', data, consumable );
-
-			// Fire a separate addAttribute event for each attribute that was set on inserted items.
-			// This is important because most attributes converters will listen only to add/change/removeAttribute events.
-			// If we would not add this part, attributes on inserted nodes would not be converted.
-			for ( const key of item.getAttributeKeys() ) {
-				data.attributeKey = key;
-				data.attributeOldValue = null;
-				data.attributeNewValue = item.getAttribute( key );
-
-				this._testAndFire( `addAttribute:${ key }`, data, consumable );
-			}
-		}
-
-		for ( const marker of this._modelDocument.markers ) {
-			const markerRange = marker.getRange();
-
-			// Check if inserted content is inserted into a marker.
-			if ( markerRange.containsPosition( range.start ) ) {
-				this.convertMarker( 'addMarker', marker.name, markerRange.getIntersection( range ) );
-			}
-
-			// Check if inserted content contains a marker.
-			if ( range.containsRange( markerRange, true ) ) {
-				this.convertMarker( 'addMarker', marker.name, markerRange );
-			}
-		}
-	}
-
-	/**
-	 * Starts conversion of move-change of given `range`, that was moved from given `sourcePosition`.
-	 *
-	 * Fires {@link ~#event:remove remove event} and {@link ~#event:insert insert event} based on passed parameters.
-	 *
-	 * @fires remove
-	 * @fires insert
-	 * @param {module:engine/model/position~Position} sourcePosition The original position from which the range was moved.
-	 * @param {module:engine/model/range~Range} range The range containing the moved content.
-	 */
-	convertMove( sourcePosition, range ) {
-		// Move left – convert insertion first (#847).
-		if ( range.start.isBefore( sourcePosition ) ) {
-			this.convertInsertion( range );
-
-			const sourcePositionAfterInsertion =
-				sourcePosition._getTransformedByInsertion( range.start, range.end.offset - range.start.offset );
-
-			this.convertRemove( sourcePositionAfterInsertion, range );
-		} else {
-			this.convertRemove( sourcePosition, range );
-			this.convertInsertion( range );
-		}
-	}
-
-	/**
-	 * Starts conversion of remove-change of given `range`, that was removed from given `sourcePosition`.
-	 *
-	 * Fires {@link ~#event:remove remove event} with data based on passed values.
-	 *
-	 * @fires remove
-	 * @param {module:engine/model/position~Position} sourcePosition Position from where the range has been removed.
-	 * @param {module:engine/model/range~Range} range Removed range (after remove, in
-	 * {@link module:engine/model/document~Document#graveyard graveyard root}).
-	 */
-	convertRemove( sourcePosition, range ) {
-		const consumable = this._createConsumableForRange( range, 'remove' );
-
-		for ( const item of range.getItems( { shallow: true } ) ) {
-			const data = {
-				sourcePosition,
-				item
-			};
-
-			this._testAndFire( 'remove', data, consumable );
-		}
-	}
-
-	/**
-	 * Starts conversion of attribute-change on given `range`.
-	 *
-	 * Analyzes given attribute change and fires attributes-connected events with data based on passed values.
-	 *
-	 * @fires addAttribute
-	 * @fires removeAttribute
-	 * @fires changeAttribute
-	 * @param {String} type Change type. Possible values: `addAttribute`, `removeAttribute`, `changeAttribute`.
-	 * @param {module:engine/model/range~Range} range Changed range.
-	 * @param {String} key Attribute key.
-	 * @param {*} oldValue Attribute value before the change or `null` if attribute has not been set.
-	 * @param {*} newValue New attribute value or `null` if attribute has been removed.
-	 */
-	convertAttribute( type, range, key, oldValue, newValue ) {
-		// Create a list with attributes to consume.
-		const consumable = this._createConsumableForRange( range, type + ':' + key );
-
-		// Create a separate attribute event for each node in the range.
-		for ( const value of range ) {
-			const item = value.item;
-			const itemRange = __WEBPACK_IMPORTED_MODULE_1__model_range__["a" /* default */].createFromPositionAndShift( value.previousPosition, value.length );
-			const data = {
-				item,
-				range: itemRange,
-				attributeKey: key,
-				attributeOldValue: oldValue,
-				attributeNewValue: newValue
-			};
-
-			this._testAndFire( `${ type }:${ key }`, data, consumable );
-		}
-	}
-
-	/**
-	 * Starts conversion of rename-change of given `element` that had given `oldName`.
-	 *
-	 * Fires {@link ~#event:remove remove event} and {@link ~#event:insert insert event} based on passed values.
-	 *
-	 * @fires remove
-	 * @fires insert
-	 * @param {module:engine/model/element~Element} element Renamed element.
-	 * @param {String} oldName Name of the renamed element before it was renamed.
-	 */
-	convertRename( element, oldName ) {
-		// Create fake element that will be used to fire remove event. The fake element will have the old element name.
-		const fakeElement = element.clone( true );
-		fakeElement.name = oldName;
-
-		// Bind fake element with original view element so the view element will be removed.
-		this.conversionApi.mapper.bindElements(
-			fakeElement,
-			this.conversionApi.mapper.toViewElement( element )
-		);
-
-		// Create fake document fragment so a range can be created on fake element.
-		const fakeDocumentFragment = new __WEBPACK_IMPORTED_MODULE_3__model_documentfragment__["a" /* default */]();
-		fakeDocumentFragment.appendChildren( fakeElement );
-
-		this.convertRemove( __WEBPACK_IMPORTED_MODULE_2__model_position__["a" /* default */].createBefore( element ), __WEBPACK_IMPORTED_MODULE_1__model_range__["a" /* default */].createOn( fakeElement ) );
-		this.convertInsertion( __WEBPACK_IMPORTED_MODULE_1__model_range__["a" /* default */].createOn( element ) );
-	}
-
-	/**
-	 * Starts selection conversion.
-	 *
-	 * Fires events for given {@link module:engine/model/selection~Selection selection} to start selection conversion.
-	 *
-	 * @fires selection
-	 * @fires selectionAttribute
-	 * @param {module:engine/model/selection~Selection} selection Selection to convert.
-	 */
-	convertSelection( selection ) {
-		const markers = Array.from( this._modelDocument.markers.getMarkersAtPosition( selection.getFirstPosition() ) );
-		const consumable = this._createSelectionConsumable( selection, markers );
-
-		this.fire( 'selection', { selection }, consumable, this.conversionApi );
-
-		for ( const marker of markers ) {
-			const data = {
-				selection,
-				name: marker.name
-			};
-
-			if ( consumable.test( selection, 'selectionMarker:' + marker.name ) ) {
-				this.fire( 'selectionMarker:' + marker.name, data, consumable, this.conversionApi );
-			}
-		}
-
-		for ( const key of selection.getAttributeKeys() ) {
-			const data = {
-				selection,
-				key,
-				value: selection.getAttribute( key )
-			};
-
-			// Do not fire event if the attribute has been consumed.
-			if ( consumable.test( selection, 'selectionAttribute:' + data.key ) ) {
-				this.fire( 'selectionAttribute:' + data.key, data, consumable, this.conversionApi );
-			}
-		}
-	}
-
-	/**
-	 * Starts marker-conversion.
-	 *
-	 * Fires {@link ~#event:addMarker addMarker event} or {@link ~#event:removeMarker removeMarker event} based on
-	 * given `type` with data based on passed parameters.
-	 *
-	 * @fires addMarker
-	 * @fires removeMarker
-	 * @param {'addMarker'|'removeMarker'} type Change type.
-	 * @param {String} name Marker name.
-	 * @param {module:engine/model/range~Range} range Marker range.
-	 */
-	convertMarker( type, name, range ) {
-		// Do not convert if range is in graveyard or not in the document (e.g. in DocumentFragment).
-		if ( !range.root.document || range.root.rootName == '$graveyard' ) {
-			return;
-		}
-
-		const consumable = this._createMarkerConsumable( type, range );
-		const data = { name, range };
-
-		this.fire( type + ':' + name, data, consumable, this.conversionApi );
-	}
-
-	/**
-	 * Creates {@link module:engine/conversion/modelconsumable~ModelConsumable} with values to consume from given range, assuming that
-	 * given range has just been inserted to the model.
-	 *
-	 * @private
-	 * @param {module:engine/model/range~Range} range Inserted range.
-	 * @returns {module:engine/conversion/modelconsumable~ModelConsumable} Values to consume.
-	 */
-	_createInsertConsumable( range ) {
-		const consumable = new __WEBPACK_IMPORTED_MODULE_0__modelconsumable__["a" /* default */]();
-
-		for ( const value of range ) {
-			const item = value.item;
-
-			consumable.add( item, 'insert' );
-
-			for ( const key of item.getAttributeKeys() ) {
-				consumable.add( item, 'addAttribute:' + key );
-			}
-		}
-
-		return consumable;
-	}
-
-	/**
-	 * Creates {@link module:engine/conversion/modelconsumable~ModelConsumable} with values of given `type`
-	 * for each item from given `range`.
-	 *
-	 * @private
-	 * @param {module:engine/model/range~Range} range Affected range.
-	 * @param {String} type Consumable type.
-	 * @returns {module:engine/conversion/modelconsumable~ModelConsumable} Values to consume.
-	 */
-	_createConsumableForRange( range, type ) {
-		const consumable = new __WEBPACK_IMPORTED_MODULE_0__modelconsumable__["a" /* default */]();
-
-		for ( const item of range.getItems() ) {
-			consumable.add( item, type );
-		}
-
-		return consumable;
-	}
-
-	/**
-	 * Creates {@link module:engine/conversion/modelconsumable~ModelConsumable} with selection consumable values.
-	 *
-	 * @private
-	 * @param {module:engine/model/selection~Selection} selection Selection to create consumable from.
-	 * @param {Iterable.<module:engine/model/markercollection~Marker>} markers Markers which contains selection.
-	 * @returns {module:engine/conversion/modelconsumable~ModelConsumable} Values to consume.
-	 */
-	_createSelectionConsumable( selection, markers ) {
-		const consumable = new __WEBPACK_IMPORTED_MODULE_0__modelconsumable__["a" /* default */]();
-
-		consumable.add( selection, 'selection' );
-
-		for ( const marker of markers ) {
-			consumable.add( selection, 'selectionMarker:' + marker.name );
-		}
-
-		for ( const key of selection.getAttributeKeys() ) {
-			consumable.add( selection, 'selectionAttribute:' + key );
-		}
-
-		return consumable;
-	}
-
-	/**
-	 * Creates {@link module:engine/conversion/modelconsumable~ModelConsumable} for adding or removing marker on given `range`.
-	 *
-	 * @private
-	 * @param {'addMarker'|'removeMarker'} type Change type.
-	 * @param {module:engine/model/range~Range} range Range on which marker was added or removed.
-	 * @returns {module:engine/conversion/modelconsumable~ModelConsumable} Values to consume.
-	 */
-	_createMarkerConsumable( type, range ) {
-		const consumable = new __WEBPACK_IMPORTED_MODULE_0__modelconsumable__["a" /* default */]();
-
-		consumable.add( range, type );
-
-		return consumable;
-	}
-
-	/**
-	 * Tests passed `consumable` to check whether given event can be fired and if so, fires it.
-	 *
-	 * @private
-	 * @fires insert
-	 * @fires remove
-	 * @fires addAttribute
-	 * @fires removeAttribute
-	 * @fires changeAttribute
-	 * @param {String} type Event type.
-	 * @param {Object} data Event data.
-	 * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume.
-	 */
-	_testAndFire( type, data, consumable ) {
-		if ( !consumable.test( data.item, type ) ) {
-			// Do not fire event if the item was consumed.
-			return;
-		}
-
-		const name = data.item.name || '$text';
-
-		this.fire( type + ':' + name, data, consumable, this.conversionApi );
-	}
-
-	/**
-	 * Fired for inserted nodes.
-	 *
-	 * `insert` is a namespace for a class of events. Names of actually called events follow this pattern:
-	 * `insert:<name>`. `name` is either `'$text'` when one or more characters has been inserted or
-	 * {@link module:engine/model/element~Element#name name} of inserted element.
-	 *
-	 * This way listeners can either listen to a general `insert` event or specific event (for example `insert:paragraph`).
-	 *
-	 * @event insert
-	 * @param {Object} data Additional information about the change.
-	 * @param {module:engine/model/item~Item} data.item Inserted item.
-	 * @param {module:engine/model/range~Range} data.range Range spanning over inserted item.
-	 * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume.
-	 * @param {Object} conversionApi Conversion interface to be used by callback, passed in `ModelConversionDispatcher` constructor.
-	 */
-
-	/**
-	 * Fired for removed nodes.
-	 *
-	 * `remove` is a namespace for a class of events. Names of actually called events follow this pattern:
-	 * `remove:<name>`. `name` is either `'$text'` when one or more characters has been removed or the
-	 * {@link module:engine/model/element~Element#name name} of removed element.
-	 *
-	 * This way listeners can either listen to a general `remove` event or specific event (for example `remove:paragraph`).
-	 *
-	 * @event remove
-	 * @param {Object} data Additional information about the change.
-	 * @param {module:engine/model/position~Position} data.sourcePosition Position from where the range has been removed.
-	 * @param {module:engine/model/range~Range} data.range Removed range (in {@link module:engine/model/document~Document#graveyard
-	 * graveyard root}).
-	 * @param {Object} conversionApi Conversion interface to be used by callback, passed in `ModelConversionDispatcher` constructor.
-	 */
-
-	/**
-	 * Fired when attribute has been added on a node.
-	 *
-	 * `addAttribute` is a namespace for a class of events. Names of actually called events follow this pattern:
-	 * `addAttribute:<attributeKey>:<name>`. `attributeKey` is the key of added attribute. `name` is either `'$text'`
-	 * if attribute was added on one or more characters, or the {@link module:engine/model/element~Element#name name} of
-	 * the element on which attribute was added.
-	 *
-	 * This way listeners can either listen to a general `addAttribute:bold` event or specific event
-	 * (for example `addAttribute:link:image`).
-	 *
-	 * @event addAttribute
-	 * @param {Object} data Additional information about the change.
-	 * @param {module:engine/model/item~Item} data.item Changed item.
-	 * @param {module:engine/model/range~Range} data.range Range spanning over changed item.
-	 * @param {String} data.attributeKey Attribute key.
-	 * @param {null} data.attributeOldValue Attribute value before the change - always `null`. Kept for the sake of unifying events.
-	 * @param {*} data.attributeNewValue New attribute value.
-	 * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume.
-	 * @param {Object} conversionApi Conversion interface to be used by callback, passed in `ModelConversionDispatcher` constructor.
-	 */
-
-	/**
-	 * Fired when attribute has been removed from a node.
-	 *
-	 * `removeAttribute` is a namespace for a class of events. Names of actually called events follow this pattern:
-	 * `removeAttribute:<attributeKey>:<name>`. `attributeKey` is the key of removed attribute. `name` is either `'$text'`
-	 * if attribute was removed from one or more characters, or the {@link module:engine/model/element~Element#name name} of
-	 * the element from which attribute was removed.
-	 *
-	 * This way listeners can either listen to a general `removeAttribute:bold` event or specific event
-	 * (for example `removeAttribute:link:image`).
-	 *
-	 * @event removeAttribute
-	 * @param {Object} data Additional information about the change.
-	 * @param {module:engine/model/item~Item} data.item Changed item.
-	 * @param {module:engine/model/range~Range} data.range Range spanning over changed item.
-	 * @param {String} data.attributeKey Attribute key.
-	 * @param {*} data.attributeOldValue Attribute value before it was removed.
-	 * @param {null} data.attributeNewValue New attribute value - always `null`. Kept for the sake of unifying events.
-	 * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume.
-	 * @param {Object} conversionApi Conversion interface to be used by callback, passed in `ModelConversionDispatcher` constructor.
-	 */
-
-	/**
-	 * Fired when attribute of a node has been changed.
-	 *
-	 * `changeAttribute` is a namespace for a class of events. Names of actually called events follow this pattern:
-	 * `changeAttribute:<attributeKey>:<name>`. `attributeKey` is the key of changed attribute. `name` is either `'$text'`
-	 * if attribute was changed on one or more characters, or the {@link module:engine/model/element~Element#name name} of
-	 * the element on which attribute was changed.
-	 *
-	 * This way listeners can either listen to a general `changeAttribute:link` event or specific event
-	 * (for example `changeAttribute:link:image`).
-	 *
-	 * @event changeAttribute
-	 * @param {Object} data Additional information about the change.
-	 * @param {module:engine/model/item~Item} data.item Changed item.
-	 * @param {module:engine/model/range~Range} data.range Range spanning over changed item.
-	 * @param {String} data.attributeKey Attribute key.
-	 * @param {*} data.attributeOldValue Attribute value before the change.
-	 * @param {*} data.attributeNewValue New attribute value.
-	 * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume.
-	 * @param {Object} conversionApi Conversion interface to be used by callback, passed in `ModelConversionDispatcher` constructor.
-	 */
-
-	/**
-	 * Fired for {@link module:engine/model/selection~Selection selection} changes.
-	 *
-	 * @event selection
-	 * @param {module:engine/model/selection~Selection} selection `Selection` instance that is converted.
-	 * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume.
-	 * @param {Object} conversionApi Conversion interface to be used by callback, passed in `ModelConversionDispatcher` constructor.
-	 */
-
-	/**
-	 * Fired for {@link module:engine/model/selection~Selection selection} attributes changes.
-	 *
-	 * `selectionAttribute` is a namespace for a class of events. Names of actually called events follow this pattern:
-	 * `selectionAttribute:<attributeKey>`. `attributeKey` is the key of selection attribute. This way listen can listen to
-	 * certain attribute, i.e. `addAttribute:bold`.
-	 *
-	 * @event selectionAttribute
-	 * @param {Object} data Additional information about the change.
-	 * @param {module:engine/model/selection~Selection} data.selection Selection that is converted.
-	 * @param {String} data.attributeKey Key of changed attribute.
-	 * @param {*} data.attributeValue Value of changed attribute.
-	 * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume.
-	 * @param {Object} conversionApi Conversion interface to be used by callback, passed in `ModelConversionDispatcher` constructor.
-	 */
-
-	/**
-	 * Fired when a new marker is added to the model.
-	 *
-	 * `addMarker` is a namespace for a class of events. Names of actually called events follow this pattern:
-	 * `addMarker:<markerName>`. By specifying certain marker names, you can make the events even more gradual. For example,
-	 * markers can be named `foo:abc`, `foo:bar`, then it is possible to listen to `addMarker:foo` or `addMarker:foo:abc` and
-	 * `addMarker:foo:bar` events.
-	 *
-	 * @event addMarker
-	 * @param {Object} data Additional information about the change.
-	 * @param {String} data.name Marker name.
-	 * @param {module:engine/model/range~Range} data.range Marker range.
-	 * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume.
-	 * @param {Object} conversionApi Conversion interface to be used by callback, passed in `ModelConversionDispatcher` constructor.
-	 */
-
-	/**
-	 * Fired when marker is removed from the model.
-	 *
-	 * `removeMarker` is a namespace for a class of events. Names of actually called events follow this pattern:
-	 * `removeMarker:<markerName>`. By specifying certain marker names, you can make the events even more gradual. For example,
-	 * markers can be named `foo:abc`, `foo:bar`, then it is possible to listen to `removeMarker:foo` or `removeMarker:foo:abc` and
-	 * `removeMarker:foo:bar` events.
-	 *
-	 * @event removeMarker
-	 * @param {Object} data Additional information about the change.
-	 * @param {String} data.name Marker name.
-	 * @param {module:engine/model/range~Range} data.range Marker range.
-	 * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume.
-	 * @param {Object} conversionApi Conversion interface to be used by callback, passed in `ModelConversionDispatcher` constructor.
-	 */
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = ModelConversionDispatcher;
-
-
-Object(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( ModelConversionDispatcher, __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
-
-
-/***/ }),
-/* 163 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__element__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node__ = __webpack_require__(81);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module engine/view/emptyelement
- */
-
-
-
-
-
-/**
- * EmptyElement class. It is used to represent elements that cannot contain any child nodes.
- */
-class EmptyElement extends __WEBPACK_IMPORTED_MODULE_0__element__["a" /* default */] {
-	/**
-	 * Creates new instance of EmptyElement.
-	 *
-	 * Throws {@link module:utils/ckeditorerror~CKEditorError CKEditorError} `view-emptyelement-cannot-add` when third parameter is passed,
-	 * to inform that usage of EmptyElement is incorrect (adding child nodes to EmptyElement is forbidden).
-	 *
-	 * @param {String} name Node name.
-	 * @param {Object|Iterable} [attributes] Collection of attributes.
-	 */
-	constructor( name, attributes, children ) {
-		super( name, attributes, children );
-
-		/**
-		 * Returns `null` because filler is not needed for EmptyElements.
-		 *
-		 * @method #getFillerOffset
-		 * @returns {null} Always returns null.
-		 */
-		this.getFillerOffset = getFillerOffset;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	is( type, name = null ) {
-		if ( !name ) {
-			return type == 'emptyElement' || super.is( type );
-		} else {
-			return ( type == 'emptyElement' && name == this.name ) || super.is( type, name );
-		}
-	}
-
-	/**
-	 * Overrides {@link module:engine/view/element~Element#insertChildren} method.
-	 * Throws {@link module:utils/ckeditorerror~CKEditorError CKEditorError} `view-emptyelement-cannot-add` to prevent
-	 * adding any child nodes to EmptyElement.
-	 */
-	insertChildren( index, nodes ) {
-		if ( nodes && ( nodes instanceof __WEBPACK_IMPORTED_MODULE_2__node__["a" /* default */] || Array.from( nodes ).length > 0 ) ) {
-			/**
-			 * Cannot add children to {@link module:engine/view/emptyelement~EmptyElement}.
-			 *
-			 * @error view-emptyelement-cannot-add
-			 */
-			throw new __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-emptyelement-cannot-add: Cannot add child nodes to EmptyElement instance.' );
-		}
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = EmptyElement;
-
-
-// Returns `null` because block filler is not needed for EmptyElements.
-//
-// @returns {null}
-function getFillerOffset() {
-	return null;
-}
-
-
-/***/ }),
-/* 164 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__element__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node__ = __webpack_require__(81);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module engine/view/uielement
- */
-
-
-
-
-
-/**
- * UIElement class. It is used to represent UI not a content of the document.
- * This element can't be split and selection can't be placed inside this element.
- */
-class UIElement extends __WEBPACK_IMPORTED_MODULE_0__element__["a" /* default */] {
-	/**
-	 * Creates new instance of UIElement.
-	 *
-	 * Throws {@link module:utils/ckeditorerror~CKEditorError CKEditorError} `view-uielement-cannot-add` when third parameter is passed,
-	 * to inform that usage of UIElement is incorrect (adding child nodes to UIElement is forbidden).
-	 *
-	 * @param {String} name Node name.
-	 * @param {Object|Iterable} [attributes] Collection of attributes.
-	 */
-	constructor( name, attributes, children ) {
-		super( name, attributes, children );
-
-		/**
-		 * Returns `null` because filler is not needed for UIElements.
-		 *
-		 * @method #getFillerOffset
-		 * @returns {null} Always returns null.
-		 */
-		this.getFillerOffset = getFillerOffset;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	is( type, name = null ) {
-		if ( !name ) {
-			return type == 'uiElement' || super.is( type );
-		} else {
-			return ( type == 'uiElement' && name == this.name ) || super.is( type, name );
-		}
-	}
-
-	/**
-	 * Overrides {@link module:engine/view/element~Element#insertChildren} method.
-	 * Throws {@link module:utils/ckeditorerror~CKEditorError CKEditorError} `view-uielement-cannot-add` to prevent adding any child nodes
-	 * to UIElement.
-	 */
-	insertChildren( index, nodes ) {
-		if ( nodes && ( nodes instanceof __WEBPACK_IMPORTED_MODULE_2__node__["a" /* default */] || Array.from( nodes ).length > 0 ) ) {
-			/**
-			 * Cannot add children to {@link module:engine/view/uielement~UIElement}.
-			 *
-			 * @error view-uielement-cannot-add
-			 */
-			throw new __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-uielement-cannot-add: Cannot add child nodes to UIElement instance.' );
-		}
-	}
-
-	/**
-	 * Renders this {@link module:engine/view/uielement~UIElement} to DOM. This method is called by
-	 * {@link module:engine/view/domconverter~DomConverter}.
-	 *
-	 * @param {Document} domDocument
-	 * @return {HTMLElement}
-	 */
-	render( domDocument ) {
-		const domElement = domDocument.createElement( this.name );
-
-		for ( const key of this.getAttributeKeys() ) {
-			domElement.setAttribute( key, this.getAttribute( key ) );
-		}
-
-		return domElement;
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = UIElement;
-
-
-// Returns `null` because block filler is not needed for UIElements.
-//
-// @returns {null}
-function getFillerOffset() {
-	return null;
-}
-
-
-/***/ }),
-/* 165 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__range__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module engine/model/liveposition
- */
-
-
-
-
-
-
-
-/**
- * `LivePosition` is a type of {@link module:engine/model/position~Position Position}
- * that updates itself as {@link module:engine/model/document~Document document}
- * is changed through operations. It may be used as a bookmark.
- *
- * **Note:** Contrary to {@link module:engine/model/position~Position}, `LivePosition` works only in roots that are
- * {@link module:engine/model/rootelement~RootElement}.
- * If {@link module:engine/model/documentfragment~DocumentFragment} is passed, error will be thrown.
- *
- * **Note:** Be very careful when dealing with `LivePosition`. Each `LivePosition` instance bind events that might
- * have to be unbound.
- * Use {@link module:engine/model/liveposition~LivePosition#detach} whenever you don't need `LivePosition` anymore.
- *
- * @extends module:engine/model/position~Position
- */
-class LivePosition extends __WEBPACK_IMPORTED_MODULE_0__position__["a" /* default */] {
-	/**
-	 * Creates a live position.
-	 *
-	 * @see module:engine/model/position~Position
-	 * @param {module:engine/model/rootelement~RootElement} root
-	 * @param {Array.<Number>} path
-	 * @param {module:engine/model/position~PositionStickiness} [stickiness] Defaults to `'sticksToNext'`.
-	 * See {@link module:engine/model/liveposition~LivePosition#stickiness}.
-	 */
-	constructor( root, path, stickiness ) {
-		super( root, path );
-
-		if ( !this.root.is( 'rootElement' ) ) {
-			/**
-			 * LivePosition root has to be an instance of RootElement.
-			 *
-			 * @error liveposition-root-not-rootelement
-			 */
-			throw new __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'model-liveposition-root-not-rootelement: LivePosition root has to be an instance of RootElement.' );
-		}
-
-		/**
-		 * Flag representing `LivePosition` stickiness. `LivePosition` might be sticking to previous node or next node.
-		 * Whenever some nodes are inserted at the same position as `LivePosition`, `stickiness` is checked to decide if
-		 * LivePosition should be moved. Similar applies when a range of nodes is moved and one of it's boundary
-		 * position is same as `LivePosition`.
-		 *
-		 * Examples:
-		 *
-		 *		Insert:
-		 *		Position is at | and we insert at the same position, marked as ^:
-		 *		- | sticks to previous node: `<p>f|^oo</p>` => `<p>f|baroo</p>`
-		 *		- | sticks to next node: `<p>f^|oo</p>` => `<p>fbar|oo</p>`
-		 *
-		 *		Move:
-		 *		Position is at | and range [ ] is moved to position ^:
-		 *		- | sticks to previous node: `<p>f|[oo]</p><p>b^ar</p>` => `<p>f|</p><p>booar</p>`
-		 *		- | sticks to next node: `<p>f|[oo]</p><p>b^ar</p>` => `<p>f</p><p>b|ooar</p>`
-		 *
-		 * @member {module:engine/model/position~PositionStickiness} module:engine/model/liveposition~LivePosition#stickiness
-		 */
-		this.stickiness = stickiness || 'sticksToNext';
-
-		bindWithDocument.call( this );
-	}
-
-	/**
-	 * Unbinds all events previously bound by `LivePosition`. Use it whenever you don't need `LivePosition` instance
-	 * anymore (i.e. when leaving scope in which it was declared or before re-assigning variable that was
-	 * referring to it).
-	 */
-	detach() {
-		this.stopListening();
-	}
-
-	/**
-	 * @static
-	 * @method module:engine/model/liveposition~LivePosition.createAfter
-	 * @see module:engine/model/position~Position.createAfter
-	 * @param {module:engine/model/node~Node} node
-	 * @returns {module:engine/model/liveposition~LivePosition}
-	 */
-
-	/**
-	 * @static
-	 * @method module:engine/model/liveposition~LivePosition.createBefore
-	 * @see module:engine/model/position~Position.createBefore
-	 * @param {module:engine/model/node~Node} node
-	 * @returns {module:engine/model/liveposition~LivePosition}
-	 */
-
-	/**
-	 * @static
-	 * @method module:engine/model/liveposition~LivePosition.createFromParentAndOffset
-	 * @see module:engine/model/position~Position.createFromParentAndOffset
-	 * @param {module:engine/model/element~Element} parent
-	 * @param {Number} offset
-	 * @returns {module:engine/model/liveposition~LivePosition}
-	 */
-
-	/**
-	 * @static
-	 * @method module:engine/model/liveposition~LivePosition.createFromPosition
-	 * @see module:engine/model/position~Position.createFromPosition
-	 * @param {module:engine/model/position~Position} position
-	 * @returns {module:engine/model/liveposition~LivePosition}
-	 */
-
-	/**
-	 * Fired when `LivePosition` instance is changed due to changes on {@link module:engine/model/document~Document}.
-	 *
-	 * @event module:engine/model/liveposition~LivePosition#change
-	 * @param {module:engine/model/position~Position} oldPosition Position equal to this live position before it got changed.
-	 */
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = LivePosition;
-
-
-/**
- * Binds this `LivePosition` to the {@link module:engine/model/document~Document document} that owns
- * this position's {@link module:engine/model/position~Position#root root}.
- *
- * @ignore
- * @private
- * @method module:engine/model/liveposition~LivePosition.bindWithDocument
- */
-function bindWithDocument() {
-	// Operation types handled by LivePosition (these are operations that change model tree structure).
-	const supportedTypes = new Set( [ 'insert', 'move', 'remove', 'reinsert' ] );
-
-	this.listenTo(
-		this.root.document,
-		'change',
-		( event, type, changes ) => {
-			if ( supportedTypes.has( type ) ) {
-				transform.call( this, type, changes.range, changes.sourcePosition );
-			}
-		},
-		{ priority: 'high' }
-	);
-}
-
-/**
- * Updates this position accordingly to the updates applied to the model. Bases on change events.
- *
- * @ignore
- * @private
- * @method transform
- * @param {String} type Type of changes applied to the Tree Model.
- * @param {module:engine/model/range~Range} range Range containing the result of applied change.
- * @param {module:engine/model/position~Position} [position] Additional position parameter provided by some change events.
- */
-function transform( type, range, position ) {
-	/* eslint-disable no-case-declarations */
-	const howMany = range.end.offset - range.start.offset;
-	let transformed;
-
-	switch ( type ) {
-		case 'insert':
-			const insertBefore = this.stickiness == 'sticksToNext';
-			transformed = this._getTransformedByInsertion( range.start, howMany, insertBefore );
-			break;
-
-		case 'move':
-		case 'remove':
-		case 'reinsert':
-			const originalRange = __WEBPACK_IMPORTED_MODULE_1__range__["a" /* default */].createFromPositionAndShift( position, howMany );
-
-			const gotMoved = originalRange.containsPosition( this ) ||
-				( originalRange.start.isEqual( this ) && this.stickiness == 'sticksToNext' ) ||
-				( originalRange.end.isEqual( this ) && this.stickiness == 'sticksToPrevious' );
-
-			// We can't use ._getTransformedByMove() because we have a different if-condition.
-			if ( gotMoved ) {
-				transformed = this._getCombined( position, range.start );
-			} else {
-				const insertBefore = this.stickiness == 'sticksToNext';
-				transformed = this._getTransformedByMove( position, range.start, howMany, insertBefore );
-			}
-			break;
-	}
-
-	if ( !this.isEqual( transformed ) ) {
-		const oldPosition = __WEBPACK_IMPORTED_MODULE_0__position__["a" /* default */].createFromPosition( this );
-
-		this.path = transformed.path;
-		this.root = transformed.root;
-
-		this.fire( 'change', oldPosition );
-	}
-	/* eslint-enable no-case-declarations */
-}
-
-Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( LivePosition, __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
-
-/**
- * Enum representing how position is "sticking" with their neighbour nodes.
- * Possible values: `'sticksToNext'`, `'sticksToPrevious'`.
- *
- * @typedef {String} module:engine/model/position~PositionStickiness
- */
-
-
-
-/***/ }),
-/* 166 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export isCombiningMark */
-/* unused harmony export isHighSurrogateHalf */
-/* unused harmony export isLowSurrogateHalf */
-/* harmony export (immutable) */ __webpack_exports__["b"] = isInsideSurrogatePair;
-/* harmony export (immutable) */ __webpack_exports__["a"] = isInsideCombinedSymbol;
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * Set of utils to handle unicode characters.
- *
- * @module utils/unicode
- */
-
-/**
- * Checks whether given `character` is a combining mark.
- *
- * @param {String} character Character to check.
- * @returns {Boolean}
- */
-function isCombiningMark( character ) {
-	return !!character && character.length == 1 && /[\u0300-\u036f\u1ab0-\u1aff\u1dc0-\u1dff\u20d0-\u20ff\ufe20-\ufe2f]/.test( character );
-}
-
-/**
- * Checks whether given `character` is a high half of surrogate pair.
- *
- * Using UTF-16 terminology, a surrogate pair denotes UTF-16 character using two UTF-8 characters. The surrogate pair
- * consist of high surrogate pair character followed by low surrogate pair character.
- *
- * @param {String} character Character to check.
- * @returns {Boolean}
- */
-function isHighSurrogateHalf( character ) {
-	return !!character && character.length == 1 && /[\ud800-\udbff]/.test( character );
-}
-
-/**
- * Checks whether given `character` is a low half of surrogate pair.
- *
- * Using UTF-16 terminology, a surrogate pair denotes UTF-16 character using two UTF-8 characters. The surrogate pair
- * consist of high surrogate pair character followed by low surrogate pair character.
- *
- * @param {String} character Character to check.
- * @returns {Boolean}
- */
-function isLowSurrogateHalf( character ) {
-	return !!character && character.length == 1 && /[\udc00-\udfff]/.test( character );
-}
-
-/**
- * Checks whether given offset in a string is inside a surrogate pair (between two surrogate halves).
- *
- * @param {String} string String to check.
- * @param {Number} offset Offset to check.
- * @returns {Boolean}
- */
-function isInsideSurrogatePair( string, offset ) {
-	return isHighSurrogateHalf( string.charAt( offset - 1 ) ) && isLowSurrogateHalf( string.charAt( offset ) );
-}
-
-/**
- * Checks whether given offset in a string is between base character and combining mark or between two combining marks.
- *
- * @param {String} string String to check.
- * @param {Number} offset Offset to check.
- * @returns {Boolean}
- */
-function isInsideCombinedSymbol( string, offset ) {
-	return isCombiningMark( string.charAt( offset ) );
-}
-
-
-/***/ }),
-/* 167 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Stack__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arrayEach__ = __webpack_require__(328);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__assignValue__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__baseAssign__ = __webpack_require__(329);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__cloneBuffer__ = __webpack_require__(331);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__copyArray__ = __webpack_require__(172);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__copySymbols__ = __webpack_require__(332);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__getAllKeys__ = __webpack_require__(333);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__getTag__ = __webpack_require__(120);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__initCloneArray__ = __webpack_require__(338);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__initCloneByTag__ = __webpack_require__(339);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__initCloneObject__ = __webpack_require__(348);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__isArray__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__isBuffer__ = __webpack_require__(350);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__isHostObject__ = __webpack_require__(74);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__isObject__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__keys__ = __webpack_require__(64);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/** `Object#toString` result references. */
-var argsTag = '[object Arguments]',
-    arrayTag = '[object Array]',
-    boolTag = '[object Boolean]',
-    dateTag = '[object Date]',
-    errorTag = '[object Error]',
-    funcTag = '[object Function]',
-    genTag = '[object GeneratorFunction]',
-    mapTag = '[object Map]',
-    numberTag = '[object Number]',
-    objectTag = '[object Object]',
-    regexpTag = '[object RegExp]',
-    setTag = '[object Set]',
-    stringTag = '[object String]',
-    symbolTag = '[object Symbol]',
-    weakMapTag = '[object WeakMap]';
-
-var arrayBufferTag = '[object ArrayBuffer]',
-    dataViewTag = '[object DataView]',
-    float32Tag = '[object Float32Array]',
-    float64Tag = '[object Float64Array]',
-    int8Tag = '[object Int8Array]',
-    int16Tag = '[object Int16Array]',
-    int32Tag = '[object Int32Array]',
-    uint8Tag = '[object Uint8Array]',
-    uint8ClampedTag = '[object Uint8ClampedArray]',
-    uint16Tag = '[object Uint16Array]',
-    uint32Tag = '[object Uint32Array]';
-
-/** Used to identify `toStringTag` values supported by `_.clone`. */
-var cloneableTags = {};
-cloneableTags[argsTag] = cloneableTags[arrayTag] =
-cloneableTags[arrayBufferTag] = cloneableTags[dataViewTag] =
-cloneableTags[boolTag] = cloneableTags[dateTag] =
-cloneableTags[float32Tag] = cloneableTags[float64Tag] =
-cloneableTags[int8Tag] = cloneableTags[int16Tag] =
-cloneableTags[int32Tag] = cloneableTags[mapTag] =
-cloneableTags[numberTag] = cloneableTags[objectTag] =
-cloneableTags[regexpTag] = cloneableTags[setTag] =
-cloneableTags[stringTag] = cloneableTags[symbolTag] =
-cloneableTags[uint8Tag] = cloneableTags[uint8ClampedTag] =
-cloneableTags[uint16Tag] = cloneableTags[uint32Tag] = true;
-cloneableTags[errorTag] = cloneableTags[funcTag] =
-cloneableTags[weakMapTag] = false;
-
-/**
- * The base implementation of `_.clone` and `_.cloneDeep` which tracks
- * traversed objects.
- *
- * @private
- * @param {*} value The value to clone.
- * @param {boolean} [isDeep] Specify a deep clone.
- * @param {boolean} [isFull] Specify a clone including symbols.
- * @param {Function} [customizer] The function to customize cloning.
- * @param {string} [key] The key of `value`.
- * @param {Object} [object] The parent object of `value`.
- * @param {Object} [stack] Tracks traversed objects and their clone counterparts.
- * @returns {*} Returns the cloned value.
- */
-function baseClone(value, isDeep, isFull, customizer, key, object, stack) {
-  var result;
-  if (customizer) {
-    result = object ? customizer(value, key, object, stack) : customizer(value);
-  }
-  if (result !== undefined) {
-    return result;
-  }
-  if (!Object(__WEBPACK_IMPORTED_MODULE_15__isObject__["a" /* default */])(value)) {
-    return value;
-  }
-  var isArr = Object(__WEBPACK_IMPORTED_MODULE_12__isArray__["a" /* default */])(value);
-  if (isArr) {
-    result = Object(__WEBPACK_IMPORTED_MODULE_9__initCloneArray__["a" /* default */])(value);
-    if (!isDeep) {
-      return Object(__WEBPACK_IMPORTED_MODULE_5__copyArray__["a" /* default */])(value, result);
-    }
-  } else {
-    var tag = Object(__WEBPACK_IMPORTED_MODULE_8__getTag__["a" /* default */])(value),
-        isFunc = tag == funcTag || tag == genTag;
-
-    if (Object(__WEBPACK_IMPORTED_MODULE_13__isBuffer__["a" /* default */])(value)) {
-      return Object(__WEBPACK_IMPORTED_MODULE_4__cloneBuffer__["a" /* default */])(value, isDeep);
-    }
-    if (tag == objectTag || tag == argsTag || (isFunc && !object)) {
-      if (Object(__WEBPACK_IMPORTED_MODULE_14__isHostObject__["a" /* default */])(value)) {
-        return object ? value : {};
-      }
-      result = Object(__WEBPACK_IMPORTED_MODULE_11__initCloneObject__["a" /* default */])(isFunc ? {} : value);
-      if (!isDeep) {
-        return Object(__WEBPACK_IMPORTED_MODULE_6__copySymbols__["a" /* default */])(value, Object(__WEBPACK_IMPORTED_MODULE_3__baseAssign__["a" /* default */])(result, value));
-      }
-    } else {
-      if (!cloneableTags[tag]) {
-        return object ? value : {};
-      }
-      result = Object(__WEBPACK_IMPORTED_MODULE_10__initCloneByTag__["a" /* default */])(value, tag, baseClone, isDeep);
-    }
-  }
-  // Check for circular references and return its corresponding clone.
-  stack || (stack = new __WEBPACK_IMPORTED_MODULE_0__Stack__["a" /* default */]);
-  var stacked = stack.get(value);
-  if (stacked) {
-    return stacked;
-  }
-  stack.set(value, result);
-
-  if (!isArr) {
-    var props = isFull ? Object(__WEBPACK_IMPORTED_MODULE_7__getAllKeys__["a" /* default */])(value) : Object(__WEBPACK_IMPORTED_MODULE_16__keys__["a" /* default */])(value);
-  }
-  // Recursively populate clone (susceptible to call stack limits).
-  Object(__WEBPACK_IMPORTED_MODULE_1__arrayEach__["a" /* default */])(props || value, function(subValue, key) {
-    if (props) {
-      key = subValue;
-      subValue = value[key];
-    }
-    Object(__WEBPACK_IMPORTED_MODULE_2__assignValue__["a" /* default */])(result, key, baseClone(subValue, isDeep, isFull, customizer, key, value, stack));
-  });
-  return result;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (baseClone);
-
-
-/***/ }),
-/* 168 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isFunction__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isHostObject__ = __webpack_require__(74);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObject__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__toSource__ = __webpack_require__(169);
-
-
-
-
-
-/**
- * Used to match `RegExp`
- * [syntax characters](http://ecma-international.org/ecma-262/6.0/#sec-patterns).
- */
-var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
-
-/** Used to detect host constructors (Safari). */
-var reIsHostCtor = /^\[object .+?Constructor\]$/;
-
-/** Used for built-in method references. */
-var objectProto = Object.prototype;
-
-/** Used to resolve the decompiled source of functions. */
-var funcToString = Function.prototype.toString;
-
-/** Used to check objects for own properties. */
-var hasOwnProperty = objectProto.hasOwnProperty;
-
-/** Used to detect if a method is native. */
-var reIsNative = RegExp('^' +
-  funcToString.call(hasOwnProperty).replace(reRegExpChar, '\\$&')
-  .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
-);
-
-/**
- * Checks if `value` is a native function.
- *
- * @static
- * @memberOf _
- * @since 3.0.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a native function,
- *  else `false`.
- * @example
- *
- * _.isNative(Array.prototype.push);
- * // => true
- *
- * _.isNative(_);
- * // => false
- */
-function isNative(value) {
-  if (!Object(__WEBPACK_IMPORTED_MODULE_2__isObject__["a" /* default */])(value)) {
-    return false;
-  }
-  var pattern = (Object(__WEBPACK_IMPORTED_MODULE_0__isFunction__["a" /* default */])(value) || Object(__WEBPACK_IMPORTED_MODULE_1__isHostObject__["a" /* default */])(value)) ? reIsNative : reIsHostCtor;
-  return pattern.test(Object(__WEBPACK_IMPORTED_MODULE_3__toSource__["a" /* default */])(value));
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (isNative);
-
-
-/***/ }),
-/* 169 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/** Used to resolve the decompiled source of functions. */
-var funcToString = Function.prototype.toString;
-
-/**
- * Converts `func` to its source code.
- *
- * @private
- * @param {Function} func The function to process.
- * @returns {string} Returns the source code.
- */
-function toSource(func) {
-  if (func != null) {
-    try {
-      return funcToString.call(func);
-    } catch (e) {}
-    try {
-      return (func + '');
-    } catch (e) {}
-  }
-  return '';
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (toSource);
-
-
-/***/ }),
-/* 170 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getNative__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__root__ = __webpack_require__(30);
-
-
-
-/* Built-in method references that are verified to be native. */
-var Map = Object(__WEBPACK_IMPORTED_MODULE_0__getNative__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_1__root__["a" /* default */], 'Map');
-
-/* harmony default export */ __webpack_exports__["a"] = (Map);
-
-
-/***/ }),
-/* 171 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getPrototype__ = __webpack_require__(107);
-
-
-/** Used for built-in method references. */
-var objectProto = Object.prototype;
-
-/** Used to check objects for own properties. */
-var hasOwnProperty = objectProto.hasOwnProperty;
-
-/**
- * The base implementation of `_.has` without support for deep paths.
- *
- * @private
- * @param {Object} object The object to query.
- * @param {Array|string} key The key to check.
- * @returns {boolean} Returns `true` if `key` exists, else `false`.
- */
-function baseHas(object, key) {
-  // Avoid a bug in IE 10-11 where objects with a [[Prototype]] of `null`,
-  // that are composed entirely of index properties, return `false` for
-  // `hasOwnProperty` checks of them.
-  return hasOwnProperty.call(object, key) ||
-    (typeof object == 'object' && key in object && Object(__WEBPACK_IMPORTED_MODULE_0__getPrototype__["a" /* default */])(object) === null);
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (baseHas);
-
-
-/***/ }),
-/* 172 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/**
- * Copies the values of `source` to `array`.
- *
- * @private
- * @param {Array} source The array to copy values from.
- * @param {Array} [array=[]] The array to copy values to.
- * @returns {Array} Returns `array`.
- */
-function copyArray(source, array) {
-  var index = -1,
-      length = source.length;
-
-  array || (array = Array(length));
-  while (++index < length) {
-    array[index] = source[index];
-  }
-  return array;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (copyArray);
-
-
-/***/ }),
-/* 173 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/** Built-in value references. */
-var getOwnPropertySymbols = Object.getOwnPropertySymbols;
-
-/**
- * Creates an array of the own enumerable symbol properties of `object`.
- *
- * @private
- * @param {Object} object The object to query.
- * @returns {Array} Returns the array of symbols.
- */
-function getSymbols(object) {
-  // Coerce `object` to an object to avoid non-object errors in V8.
-  // See https://bugs.chromium.org/p/v8/issues/detail?id=3443 for more details.
-  return getOwnPropertySymbols(Object(object));
-}
-
-// Fallback for IE < 11.
-if (!getOwnPropertySymbols) {
-  getSymbols = function() {
-    return [];
-  };
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (getSymbols);
-
-
-/***/ }),
-/* 174 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getNative__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__root__ = __webpack_require__(30);
-
-
-
-/* Built-in method references that are verified to be native. */
-var Set = Object(__WEBPACK_IMPORTED_MODULE_0__getNative__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_1__root__["a" /* default */], 'Set');
-
-/* harmony default export */ __webpack_exports__["a"] = (Set);
-
-
-/***/ }),
-/* 175 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root__ = __webpack_require__(30);
-
-
-/** Built-in value references. */
-var Uint8Array = __WEBPACK_IMPORTED_MODULE_0__root__["a" /* default */].Uint8Array;
-
-/* harmony default export */ __webpack_exports__["a"] = (Uint8Array);
-
-
-/***/ }),
-/* 176 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/**
- * A specialized version of `_.reduce` for arrays without support for
- * iteratee shorthands.
- *
- * @private
- * @param {Array} array The array to iterate over.
- * @param {Function} iteratee The function invoked per iteration.
- * @param {*} [accumulator] The initial value.
- * @param {boolean} [initAccum] Specify using the first element of `array` as
- *  the initial value.
- * @returns {*} Returns the accumulated value.
- */
-function arrayReduce(array, iteratee, accumulator, initAccum) {
-  var index = -1,
-      length = array.length;
-
-  if (initAccum && length) {
-    accumulator = array[++index];
-  }
-  while (++index < length) {
-    accumulator = iteratee(accumulator, array[index], index, array);
-  }
-  return accumulator;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (arrayReduce);
-
-
-/***/ }),
-/* 177 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SetCache__ = __webpack_require__(92);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arraySome__ = __webpack_require__(357);
-
-
-
-/** Used to compose bitmasks for comparison styles. */
-var UNORDERED_COMPARE_FLAG = 1,
-    PARTIAL_COMPARE_FLAG = 2;
-
-/**
- * A specialized version of `baseIsEqualDeep` for arrays with support for
- * partial deep comparisons.
- *
- * @private
- * @param {Array} array The array to compare.
- * @param {Array} other The other array to compare.
- * @param {Function} equalFunc The function to determine equivalents of values.
- * @param {Function} customizer The function to customize comparisons.
- * @param {number} bitmask The bitmask of comparison flags. See `baseIsEqual`
- *  for more details.
- * @param {Object} stack Tracks traversed `array` and `other` objects.
- * @returns {boolean} Returns `true` if the arrays are equivalent, else `false`.
- */
-function equalArrays(array, other, equalFunc, customizer, bitmask, stack) {
-  var isPartial = bitmask & PARTIAL_COMPARE_FLAG,
-      arrLength = array.length,
-      othLength = other.length;
-
-  if (arrLength != othLength && !(isPartial && othLength > arrLength)) {
-    return false;
-  }
-  // Assume cyclic values are equal.
-  var stacked = stack.get(array);
-  if (stacked) {
-    return stacked == other;
-  }
-  var index = -1,
-      result = true,
-      seen = (bitmask & UNORDERED_COMPARE_FLAG) ? new __WEBPACK_IMPORTED_MODULE_0__SetCache__["a" /* default */] : undefined;
-
-  stack.set(array, other);
-
-  // Ignore non-index properties.
-  while (++index < arrLength) {
-    var arrValue = array[index],
-        othValue = other[index];
-
-    if (customizer) {
-      var compared = isPartial
-        ? customizer(othValue, arrValue, index, other, array, stack)
-        : customizer(arrValue, othValue, index, array, other, stack);
-    }
-    if (compared !== undefined) {
-      if (compared) {
-        continue;
-      }
-      result = false;
-      break;
-    }
-    // Recursively compare arrays (susceptible to call stack limits).
-    if (seen) {
-      if (!Object(__WEBPACK_IMPORTED_MODULE_1__arraySome__["a" /* default */])(other, function(othValue, othIndex) {
-            if (!seen.has(othIndex) &&
-                (arrValue === othValue || equalFunc(arrValue, othValue, customizer, bitmask, stack))) {
-              return seen.add(othIndex);
-            }
-          })) {
-        result = false;
-        break;
-      }
-    } else if (!(
-          arrValue === othValue ||
-            equalFunc(arrValue, othValue, customizer, bitmask, stack)
-        )) {
-      result = false;
-      break;
-    }
-  }
-  stack['delete'](array);
-  return result;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (equalArrays);
-
-
-/***/ }),
-/* 178 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__insertdelta__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__batch__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__deltafactory__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_insertoperation__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__writer__ = __webpack_require__(20);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module engine/model/delta/weakinsertdelta
- */
-
-
-
-
-
-
-
-/**
- * @classdesc
- * To provide specific OT behavior and better collisions solving, the {@link module:engine/model/batch~Batch#insert} method
- * uses the `WeakInsertDelta` class which inherits from the `Delta` class and may overwrite some methods.
- */
-class WeakInsertDelta extends __WEBPACK_IMPORTED_MODULE_0__insertdelta__["a" /* default */] {
-	/**
-	 * @inheritDoc
-	 */
-	static get className() {
-		return 'engine.model.delta.WeakInsertDelta';
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = WeakInsertDelta;
-
-
-/**
- * Inserts a node or nodes at given position. {@link module:engine/model/batch~Batch#weakInsert weakInsert} is commonly used for actions
- * like typing or plain-text paste (without formatting). There are two differences between
- * {@link module:engine/model/batch~Batch#insert insert} and {@link module:engine/model/batch~Batch#weakInsert weakInsert}:
- *
- * * When using `weakInsert`, inserted nodes will have same attributes as the current attributes of
- * {@link module:engine/model/document~Document#selection document selection}.
- * * If {@link module:engine/model/operation/insertoperation~InsertOperation insert operation} position is inside a range changed by
- * {@link module:engine/model/operation/attributeoperation~AttributeOperation attribute operation},
- * the attribute operation is split into two operations.
- * Thanks to this, attribute change "omits" the inserted nodes. The correct behavior for `WeakInsertDelta` is that
- * {@link module:engine/model/operation/attributeoperation~AttributeOperation AttributeOperation} does not "break" and also
- * applies attributes for inserted nodes. This behavior has to be reflected during
- * {@link module:engine/model/delta/transform~transform delta transformation}.
- *
- * @chainable
- * @method module:engine/model/batch~Batch#weakInsert
- * @param {module:engine/model/position~Position} position Position of insertion.
- * @param {module:engine/model/node~NodeSet} nodes The list of nodes to be inserted.
- */
-Object(__WEBPACK_IMPORTED_MODULE_1__batch__["b" /* register */])( 'weakInsert', function( position, nodes ) {
-	const delta = new WeakInsertDelta();
-	this.addDelta( delta );
-
-	nodes = Object(__WEBPACK_IMPORTED_MODULE_4__writer__["c" /* normalizeNodes */])( nodes );
-
-	for ( const node of nodes ) {
-		node.setAttributesTo( this.document.selection.getAttributes() );
-	}
-
-	const operation = new __WEBPACK_IMPORTED_MODULE_3__operation_insertoperation__["a" /* default */]( position, nodes, this.document.version );
-	delta.addOperation( operation );
-	this.document.applyOperation( operation );
-
-	return this;
-} );
-
-__WEBPACK_IMPORTED_MODULE_2__deltafactory__["a" /* default */].register( WeakInsertDelta );
-
-
-/***/ }),
-/* 179 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__movedelta__ = __webpack_require__(94);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__removedelta__ = __webpack_require__(93);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mergedelta__ = __webpack_require__(95);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__splitdelta__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__wrapdelta__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__unwrapdelta__ = __webpack_require__(97);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__renamedelta__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__attributedelta__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__operation_transform__ = __webpack_require__(362);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__operation_nooperation__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__operation_moveoperation__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__operation_removeoperation__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ckeditor_ckeditor5_utils_src_lib_lodash_array__ = __webpack_require__(363);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ckeditor_ckeditor5_utils_src_comparearrays__ = __webpack_require__(54);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @protected
- * @module engine/model/delta/transform
- */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const specialCases = new Map();
-
-/**
- * @namespace
- */
-const transform = {
-	/**
-	 * Transforms given {@link module:engine/model/delta/delta~Delta delta} by another {@link module:engine/model/delta/delta~Delta delta}
-	 * and returns the result of that transformation as an array containing one or more {@link module:engine/model/delta/delta~Delta delta}
-	 * instances.
-	 *
-	 * Delta transformations heavily base on {@link module:engine/model/operation/transform~transform operational transformations}. Since
-	 * delta is a list of operations most situations can be handled thanks to operational transformation. Unfortunately,
-	 * deltas are more complicated than operations and have they semantic meaning, as they represent user's editing intentions.
-	 *
-	 * Sometimes, simple operational transformation on deltas' operations might result in some unexpected results. Those
-	 * results would be fine from OT point of view, but would not reflect user's intentions. Because of such conflicts
-	 * we need to handle transformations in special cases in a custom way.
-	 *
-	 * The function itself looks whether two given delta types have a special case function registered. If so, the deltas are
-	 * transformed using that function. If not,
-	 * {@link module:engine/model/delta/transform~transform.defaultTransform default transformation algorithm} is used.
-	 *
-	 * @param {module:engine/model/delta/delta~Delta} a Delta that will be transformed.
-	 * @param {module:engine/model/delta/delta~Delta} b Delta to transform by.
-	 * @param {module:engine/model/delta/transform~transformationContext} context Transformation context object.
-	 * @returns {Array.<module:engine/model/delta/delta~Delta>} Result of the transformation.
-	 */
-	transform( a, b, context ) {
-		const transformAlgorithm = transform.getTransformationCase( a, b ) || transform.defaultTransform;
-
-		// Make new instance of context object, so all changes done during transformation are not saved in original object.
-		const transformed = transformAlgorithm( a, b, Object.assign( {}, context ) );
-		const baseVersion = __WEBPACK_IMPORTED_MODULE_13__ckeditor_ckeditor5_utils_src_lib_lodash_array__["a" /* default */].last( b.operations ).baseVersion;
-
-		return updateBaseVersion( baseVersion, transformed );
-	},
-
-	/**
-	 * The default delta transformation function. It is used for those deltas that are not in special case conflict.
-	 *
-	 * This algorithm is similar to a popular `dOPT` algorithm used in operational transformation, as we are in fact
-	 * transforming two sets of operations by each other.
-	 *
-	 * @param {module:engine/model/delta/delta~Delta} a Delta that will be transformed.
-	 * @param {module:engine/model/delta/delta~Delta} b Delta to transform by.
-	 * @param {module:engine/model/delta/transform~transformationContext} context Transformation context object.
-	 * @returns {Array.<module:engine/model/delta/delta~Delta>} Result of the transformation.
-	 */
-	defaultTransform( a, b, context ) {
-		// This will hold operations from delta `a` that will be transformed by operations from delta `b`.
-		// Eventually, those operations will be used to create result delta(s).
-		const transformed = [];
-
-		// Array containing operations that we will transform by. At the beginning these are just operations from
-		let byOps = b.operations;
-
-		// This array is storing operations from `byOps` which got transformed by operation from delta `a`.
-		let newByOps = [];
-
-		// We take each operation from original set of operations to transform.
-		for ( const opA of a.operations ) {
-			// We wrap the operation in the array. This is important, because operation transformation algorithm returns
-			// an array of operations so we need to make sure that our algorithm is ready to handle arrays.
-			const ops = [ opA ];
-
-			// Now the real algorithm takes place.
-			for ( const opB of byOps ) {
-				// For each operation that we need transform by...
-				for ( let i = 0; i < ops.length; i++ ) {
-					// We take each operation to transform...
-					const op = ops[ i ];
-
-					// And transform both of them by themselves.
-
-					// The result of transforming operation from delta B by operation from delta A is saved in
-					// `newByOps` array. We will use that array for transformations in next loops. We need delta B
-					// operations after transformed by delta A operations to get correct results of transformations
-					// of next operations from delta A.
-					//
-					// It's like this because 2nd operation from delta A assumes that 1st operation from delta A
-					// is "already applied". When we transform 2nd operation from delta A by operations from delta B
-					// we have to be sure that operations from delta B are in a state that acknowledges 1st operation
-					// from delta A.
-					//
-					// This can be easier understood when operations sets to transform are represented by diamond diagrams:
-					// http://www.codecommit.com/blog/java/understanding-and-applying-operational-transformation
-
-					// Transform operation from delta A by operation from delta B.
-					const results = Object(__WEBPACK_IMPORTED_MODULE_9__operation_transform__["a" /* default */])( op, opB, context );
-
-					// We replace currently processed operation from `ops` array by the results of transformation.
-					// Note, that we process single operation but `operationTransform` result is an array, so we
-					// might have to splice-in more than one operation. Save them in `ops` array and move `i` pointer by a proper offset.
-					Array.prototype.splice.apply( ops, [ i, 1 ].concat( results ) );
-
-					i += results.length - 1;
-
-					// Then, transform operation from delta B by operation from delta A.
-					// Since this is a "mirror" transformation, first, we "mirror" some of context values.
-					const reverseContext = Object.assign( {}, context );
-					reverseContext.isStrong = !context.isStrong;
-					reverseContext.insertBefore = context.insertBefore !== undefined ? !context.insertBefore : undefined;
-
-					// Transform operations.
-					const updatedOpB = Object(__WEBPACK_IMPORTED_MODULE_9__operation_transform__["a" /* default */])( opB, op, reverseContext );
-
-					// Update `newByOps` by transformed, updated `opB`.
-					// Using push.apply because `operationTransform` returns an array with one or multiple results.
-					Array.prototype.push.apply( newByOps, updatedOpB );
-				}
-
-				// At this point a single operation from delta A got transformed by a single operation from delta B.
-				// The transformation result is in `ops` array and it may be one or more operations. This was just the first step.
-				// Operation from delta A has to be further transformed by the other operations from delta B.
-				// So in next iterator loop we will take another operation from delta B and use transformed delta A (`ops`)
-				// to transform it further.
-			}
-
-			// We got through all delta B operations and have a final transformed state of an operation from delta A.
-
-			// As previously mentioned, we substitute operations from delta B by their transformed equivalents.
-			byOps = newByOps;
-			newByOps = [];
-
-			// We add transformed operation from delta A to newly created delta.
-			// Remember that transformed operation from delta A may consist of multiple operations.
-			for ( const op of ops ) {
-				transformed.push( op );
-			}
-
-			// In next loop, we will take another operation from delta A and transform it through (transformed) operations
-			// from delta B...
-		}
-
-		return getNormalizedDeltas( a.constructor, transformed );
-	},
-
-	/**
-	 * Adds a special case callback for given delta classes.
-	 *
-	 * @param {Function} A Delta constructor which instance will get transformed.
-	 * @param {Function} B Delta constructor which instance will be transformed by.
-	 * @param {Function} resolver A callback that will handle custom special case transformation for instances of given delta classes.
-	 */
-	addTransformationCase( A, B, resolver ) {
-		let casesA = specialCases.get( A );
-
-		if ( !casesA ) {
-			casesA = new Map();
-			specialCases.set( A, casesA );
-		}
-
-		casesA.set( B, resolver );
-	},
-
-	/**
-	 * Gets a special case callback which was previously {@link module:engine/model/delta/transform~transform.addTransformationCase added}.
-	 *
-	 * @param {module:engine/model/delta/delta~Delta} a Delta to transform.
-	 * @param {module:engine/model/delta/delta~Delta} b Delta to be transformed by.
-	 */
-	getTransformationCase( a, b ) {
-		let casesA = specialCases.get( a.constructor );
-
-		// If there are no special cases registered for class which `a` is instance of, we will
-		// check if there are special cases registered for any parent class.
-		if ( !casesA || !casesA.get( b.constructor ) ) {
-			const cases = specialCases.keys();
-
-			for ( const caseClass of cases ) {
-				if ( a instanceof caseClass && specialCases.get( caseClass ).get( b.constructor ) ) {
-					casesA = specialCases.get( caseClass );
-
-					break;
-				}
-			}
-		}
-
-		if ( casesA ) {
-			return casesA.get( b.constructor );
-		}
-
-		return undefined;
-	},
-
-	/**
-	 * Transforms two sets of deltas by themselves. Returns both transformed sets.
-	 *
-	 * @param {Array.<module:engine/model/delta/delta~Delta>} deltasA Array with the first set of deltas to transform. These
-	 * deltas are considered more important (than `deltasB`) when resolving conflicts.
-	 * @param {Array.<module:engine/model/delta/delta~Delta>} deltasB Array with the second set of deltas to transform. These
-	 * deltas are considered less important (than `deltasA`) when resolving conflicts.
-	 * @param {module:engine/model/document~Document} [document=null] If set, deltas will be transformed in "context mode"
-	 * and given `document` will be used to determine relations between deltas. If not set (default), deltas will be
-	 * transforming without additional context information.
-	 * @returns {Object}
-	 * @returns {Array.<module:engine/model/delta/delta~Delta>} return.deltasA The first set of deltas transformed
-	 * by the second set of deltas.
-	 * @returns {Array.<module:engine/model/delta/delta~Delta>} return.deltasB The second set of deltas transformed
-	 * by the first set of deltas.
-	 */
-	transformDeltaSets( deltasA, deltasB, document = null ) {
-		const transformedDeltasA = Array.from( deltasA );
-		const transformedDeltasB = Array.from( deltasB );
-
-		const useAdditionalContext = document !== null;
-
-		const contextAB = {
-			isStrong: true
-		};
-
-		if ( useAdditionalContext ) {
-			contextAB.wasAffected = new Map();
-			contextAB.originalDelta = new Map();
-			contextAB.document = document;
-
-			for ( const delta of transformedDeltasB ) {
-				contextAB.originalDelta.set( delta, delta );
-			}
-		}
-
-		for ( let i = 0; i < transformedDeltasA.length; i++ ) {
-			const deltaA = [ transformedDeltasA[ i ] ];
-
-			for ( let j = 0; j < transformedDeltasB.length; j++ ) {
-				const deltaB = [ transformedDeltasB[ j ] ];
-
-				for ( let k = 0; k < deltaA.length; k++ ) {
-					for ( let l = 0; l < deltaB.length; l++ ) {
-						if ( useAdditionalContext ) {
-							_setContext( deltaA[ k ], deltaB[ l ], contextAB );
-						}
-
-						const resultAB = transform.transform( deltaA[ k ], deltaB[ l ], {
-							insertBefore: contextAB.insertBefore,
-							forceNotSticky: contextAB.forceNotSticky,
-							isStrong: contextAB.isStrong,
-							forceWeakRemove: contextAB.forceWeakRemove
-						} );
-
-						const resultBA = transform.transform( deltaB[ l ], deltaA[ k ], {
-							insertBefore: !contextAB.insertBefore,
-							forceNotSticky: contextAB.forceNotSticky,
-							isStrong: !contextAB.isStrong,
-							forceWeakRemove: contextAB.forceWeakRemove
-						} );
-
-						if ( useAdditionalContext ) {
-							_updateContext( deltaA[ k ], resultAB, contextAB );
-
-							const originalDelta = contextAB.originalDelta.get( deltaB[ l ] );
-
-							for ( const deltaBA of resultBA ) {
-								contextAB.originalDelta.set( deltaBA, originalDelta );
-							}
-						}
-
-						deltaA.splice( k, 1, ...resultAB );
-						k += resultAB.length - 1;
-
-						deltaB.splice( l, 1, ...resultBA );
-						l += resultBA.length - 1;
-					}
-				}
-
-				transformedDeltasB.splice( j, 1, ...deltaB );
-				j += deltaB.length - 1;
-			}
-
-			transformedDeltasA.splice( i, 1, ...deltaA );
-			i += deltaA.length - 1;
-		}
-
-		const opsDiffA = getOpsCount( transformedDeltasA ) - getOpsCount( deltasA );
-		const opsDiffB = getOpsCount( transformedDeltasB ) - getOpsCount( deltasB );
-
-		if ( opsDiffB < opsDiffA ) {
-			padWithNoOps( transformedDeltasB, opsDiffA - opsDiffB );
-		} else if ( opsDiffA < opsDiffB ) {
-			padWithNoOps( transformedDeltasA, opsDiffB - opsDiffA );
-		}
-
-		return { deltasA: transformedDeltasA, deltasB: transformedDeltasB };
-	}
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (transform);
-
-// Updates base versions of operations inside deltas (which are the results of delta transformation).
-function updateBaseVersion( baseVersion, deltas ) {
-	for ( const delta of deltas ) {
-		for ( const op of delta.operations ) {
-			op.baseVersion = ++baseVersion;
-		}
-	}
-
-	return deltas;
-}
-
-// Returns number of operations in given array of deltas.
-function getOpsCount( deltas ) {
-	return deltas.reduce( ( current, delta ) => {
-		return current + delta.operations.length;
-	}, 0 );
-}
-
-// Adds a delta containing `howMany` `NoOperation` instances to given array with deltas.
-// Used to "synchronize" the number of operations in two delta sets.
-function padWithNoOps( deltas, howMany ) {
-	const lastDelta = deltas[ deltas.length - 1 ];
-	let baseVersion = lastDelta.operations.length + lastDelta.baseVersion;
-
-	const noDelta = new __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */]();
-
-	for ( let i = 0; i < howMany; i++ ) {
-		noDelta.addOperation( new __WEBPACK_IMPORTED_MODULE_10__operation_nooperation__["a" /* default */]( baseVersion++ ) );
-	}
-
-	deltas.push( noDelta );
-}
-
-// Sets context data before delta `a` by delta `b` transformation.
-// Using data given in `context` object, sets `context.insertBefore` and `context.forceNotSticky` flags.
-// Also updates `context.wasAffected`.
-function _setContext( a, b, context ) {
-	_setWasAffected( a, b, context );
-	_setInsertBeforeContext( a, b, context );
-	_setForceWeakRemove( b, context );
-	_setForceNotSticky( b, context );
-}
-
-// Sets `context.insertBefore` basing on `context.document` history for `a` by `b` transformation.
-//
-// Simply saying, if `b` is "undoing delta" it means that `a` might already be transformed by the delta
-// which was undone by `b` (let's call it `oldB`). If this is true, `a` by `b` transformation has to consider
-// how `a` was transformed by `oldB` to get an expected result.
-//
-// This is used to resolve conflict when two operations want to insert nodes at the same position. If the operations
-// are not related, it doesn't matter in what order operations insert those nodes. However if the operations are
-// related (for example, in undo) we need to keep the same order.
-//
-// For example, assume that editor has two letters: 'ab'. Then, both letters are removed, creating two operations:
-// (op. 1) REM [ 1 ] - [ 2 ] => (graveyard) [ 0 ]
-// (op. 2) REM [ 0 ] - [ 1 ] => (graveyard) [ 1 ]
-// Then, we undo operation 2:
-// REM [ 0 ] - [ 1 ] => (graveyard) [ 1 ] is reversed to REI (graveyard) [ 1 ] => [ 0 ] - [ 1 ] and is applied.
-// History stack is:
-// (op. 1) REM [ 1 ] - [ 2 ] => (graveyard) [ 0 ]
-// (op. 2) REM [ 0 ] - [ 1 ] => (graveyard) [ 1 ]
-// (op. 3) REI (graveyard) [ 1 ] => [ 0 ] - [ 1 ]
-// Then, we undo operation 1:
-// REM [ 1 ] - [ 2 ] => (graveyard) [ 0 ] is reversed to REI (graveyard) [ 0 ] => [ 1 ] - [ 2 ] then,
-// is transformed by (op. 2) REM [ 0 ] - [ 1 ] => (graveyard) [ 1 ] and becomes REI (graveyard) [ 0 ] => [ 0 ] - [ 1 ] then,
-// is transformed by (op. 3) REI (graveyard) [ 1 ] => [ 0 ] - [ 1 ] and we have a conflict because both operations
-// insert at the same position, but thanks to keeping the context, we know that in this case, the transformed operation should
-// insert the node after operation 3.
-//
-// Keep in mind, that `context.insertBefore` may be either `Boolean` or `undefined`. If it is `Boolean` then the order is
-// known (deltas are related and `a` should insert nodes before or after `b`). However, if deltas were not related,
-// `context.isBefore` is `undefined` and other factors will be taken into consideration when resolving the order
-// (this, however, happens in operational transformation algorithms).
-//
-// This affects both `MoveOperation` (and its derivatives) and `InsertOperation`.
-function _setInsertBeforeContext( a, b, context ) {
-	// If `b` is a delta that undoes other delta...
-	const originalDelta = context.originalDelta.get( b );
-
-	if ( context.document.history.isUndoingDelta( originalDelta ) ) {
-		// Get the undone delta...
-		const undoneDelta = context.document.history.getUndoneDelta( originalDelta );
-		// Get a map with deltas related to `a` delta...
-		const aWasAffectedBy = context.wasAffected.get( a );
-		// And check if the undone delta is related with delta `a`.
-		const affected = aWasAffectedBy.get( undoneDelta );
-
-		if ( affected !== undefined ) {
-			// If deltas are related, set `context.insertBefore` basing on whether `a` was affected by the undone delta.
-			context.insertBefore = affected;
-		}
-	}
-}
-
-// Sets `context.forceNotSticky` basing on `context.document` history for transformation by `b` delta.
-//
-// `MoveOperation` may be "sticky" which means, that anything that was inserted at the boundary of moved range, should
-// also be moved. This is particularly helpful for actions like splitting or merging a node. However, this behavior
-// sometimes leads to an error, for example in undo.
-//
-// Simply saying, if delta is going to be transformed by delta `b`, stickiness should not be taken into consideration
-// if delta `b` was already undone or if delta `b` is an undoing delta.
-//
-// This affects `MoveOperation` (and its derivatives).
-function _setForceNotSticky( b, context ) {
-	const history = context.document.history;
-	const originalB = context.originalDelta.get( b );
-
-	// If `b` delta is undoing or undone delta, stickiness should not be taken into consideration.
-	if ( history.isUndoingDelta( originalB ) || history.isUndoneDelta( originalB ) ) {
-		context.forceNotSticky = true;
-	}
-}
-
-// Sets `context.forceWeakRemove` basing on `context.document` history for transformation by `b` delta.
-//
-// When additional context is not used, default `MoveOperation` x `RemoveOperation` transformation
-// always treats `RemoveOperation` as a stronger one, no matter how `context.isStrong` is set. It is like this
-// to provide better results when transformations happen.
-//
-// This is however works fine only when additional context is not used.
-//
-// When additional context is used, we need a better way to decide whether `RemoveOperation` is "dominating" (or in other
-// words, whether nodes removed by given operation should stay in graveyard if other operation wants to move them).
-//
-// The answer to this is easy: if `RemoveOperation` has been already undone, we are not forcing given nodes to stay
-// in graveyard. In such scenario, we set `context.forceWeakRemove` to `true`. However, if the `RemoveOperation` has
-// not been undone, we set `context.forceWeakRemove` to `false` because we want remove to be "dominating".
-function _setForceWeakRemove( b, context ) {
-	const history = context.document.history;
-	const originalB = context.originalDelta.get( b );
-
-	// If `b` delta is a remove delta, that has not been undone yet, forceWeakRemove should be `false`.
-	// It should be `true` in any other case, if additional context is used.
-	context.forceWeakRemove = !( originalB instanceof __WEBPACK_IMPORTED_MODULE_2__removedelta__["a" /* default */] && !history.isUndoneDelta( originalB ) );
-}
-
-// Sets `context.wasAffected` which holds context information about how transformed deltas are related. `context.wasAffected`
-// is used by `_setInsertBeforeContext` helper function.
-function _setWasAffected( a, b, context ) {
-	if ( !context.wasAffected.get( a ) ) {
-		// Create a new map with relations for `a` delta.
-		context.wasAffected.set( a, new Map() );
-	}
-
-	const originalDelta = context.originalDelta.get( b );
-	let wasAffected = !!context.wasAffected.get( a ).get( originalDelta );
-
-	// Cross-check all operations from both deltas...
-	for ( const opA of a.operations ) {
-		for ( const opB of b.operations ) {
-			if ( opA instanceof __WEBPACK_IMPORTED_MODULE_11__operation_moveoperation__["a" /* default */] && opB instanceof __WEBPACK_IMPORTED_MODULE_11__operation_moveoperation__["a" /* default */] ) {
-				if ( _isOperationAffected( opA, opB ) ) {
-					// If any of them are move operations that affect each other, set the relation accordingly.
-					wasAffected = true;
-
-					break;
-				}
-			}
-		}
-
-		// Break both loops if affecting pair has been found.
-		if ( wasAffected ) {
-			break;
-		}
-	}
-
-	context.wasAffected.get( a ).set( originalDelta, wasAffected );
-}
-
-// Checks whether `opA` is affected by `opB`. It is assumed that both operations are `MoveOperation`.
-// Operation is affected only if the other operation's source range is before that operation's source range.
-function _isOperationAffected( opA, opB ) {
-	const target = opA.targetPosition;
-	const source = opB.sourcePosition;
-
-	const cmpResult = Object(__WEBPACK_IMPORTED_MODULE_14__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */])( source.getParentPath(), target.getParentPath() );
-
-	if ( target.root != source.root ) {
-		return false;
-	}
-
-	return cmpResult == 'same' && source.offset < target.offset;
-}
-
-// Updates `context` object after delta by delta transformation is done.
-//
-// This means two things:
-// 1. Some information are removed from context (those that apply only to the transformation that just happened).
-// 2. `context.wasAffected` is updated because `oldDelta` has been transformed to one or many `newDeltas` and we
-// need to update entries in `context.wasAffected`. Basically, anything that was in `context.wasAffected` under
-// `oldDelta` key should be rewritten to `newDeltas`. This way in next transformation steps, `newDeltas` "remember"
-// the context of `oldDelta`.
-function _updateContext( oldDelta, newDeltas, context ) {
-	delete context.insertBefore;
-	delete context.forceNotSticky;
-	delete context.forceWeakRemove;
-
-	const wasAffected = context.wasAffected.get( oldDelta );
-
-	context.wasAffected.delete( oldDelta );
-
-	for ( const delta of newDeltas ) {
-		context.wasAffected.set( delta, new Map( wasAffected ) );
-	}
-}
-
-// Takes base delta class (`DeltaClass`) and a set of `operations` that are transformation results and creates
-// one or more deltas, acknowledging that the result is a transformation of a delta that is of `DeltaClass`.
-//
-// The normalization ensures that each delta has it's "normal" state, that is, for example, `MoveDelta` has
-// just one `MoveOperation`, `SplitDelta` has just two operations of which first is `InsertOperation` and second
-// is `MoveOperation` or `NoOperation`, etc.
-function getNormalizedDeltas( DeltaClass, operations ) {
-	let deltas = [];
-	let delta = null;
-	let attributeOperationIndex;
-
-	switch ( DeltaClass ) {
-		case __WEBPACK_IMPORTED_MODULE_1__movedelta__["a" /* default */]:
-		case __WEBPACK_IMPORTED_MODULE_2__removedelta__["a" /* default */]:
-			// Normal MoveDelta has just one MoveOperation.
-			// Take all operations and create MoveDelta for each of them.
-			for ( const o of operations ) {
-				if ( o instanceof __WEBPACK_IMPORTED_MODULE_10__operation_nooperation__["a" /* default */] ) {
-					// An operation may be instance of NoOperation and this may be correct.
-					// If that's the case, do not create a MoveDelta with singular NoOperation.
-					// Create "no delta" instead, that is Delta instance with NoOperation.
-					delta = new __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */]();
-				} else {
-					if ( o instanceof __WEBPACK_IMPORTED_MODULE_12__operation_removeoperation__["a" /* default */] ) {
-						delta = new __WEBPACK_IMPORTED_MODULE_2__removedelta__["a" /* default */]();
-					} else {
-						delta = new __WEBPACK_IMPORTED_MODULE_1__movedelta__["a" /* default */]();
-					}
-
-					// Unsticky the operation. Only operations in "special" deltas can be sticky.
-					o.isSticky = false;
-				}
-
-				delta.addOperation( o );
-				deltas.push( delta );
-			}
-
-			// Return all created MoveDeltas.
-			return deltas;
-		case __WEBPACK_IMPORTED_MODULE_4__splitdelta__["a" /* default */]:
-		case __WEBPACK_IMPORTED_MODULE_5__wrapdelta__["a" /* default */]:
-			// Normal SplitDelta and WrapDelta have two operations: first is InsertOperation and second is MoveOperation.
-			// The MoveOperation may be split into multiple MoveOperations.
-			// If that's the case, convert additional MoveOperations into MoveDeltas.
-			// First, create normal SplitDelta or WrapDelta, using first two operations.
-			delta = new DeltaClass();
-			delta.addOperation( operations[ 0 ] );
-			delta.addOperation( operations[ 1 ] );
-			// Then, take all but last two operations and use them to create normalized MoveDeltas.
-			deltas = getNormalizedDeltas( __WEBPACK_IMPORTED_MODULE_1__movedelta__["a" /* default */], operations.slice( 2 ) );
-
-			// Return all deltas as one array, in proper order.
-			return [ delta ].concat( deltas );
-		case __WEBPACK_IMPORTED_MODULE_3__mergedelta__["a" /* default */]:
-		case __WEBPACK_IMPORTED_MODULE_6__unwrapdelta__["a" /* default */]:
-			// Normal MergeDelta and UnwrapDelta have two operations: first is MoveOperation and second is RemoveOperation.
-			// The MoveOperation may be split into multiple MoveOperations.
-			// If that's the case, convert additional MoveOperations into MoveDeltas.
-			// Take all but last two operations and use them to create normalized MoveDeltas.
-			deltas = getNormalizedDeltas( __WEBPACK_IMPORTED_MODULE_1__movedelta__["a" /* default */], operations.slice( 0, -2 ) );
-			// Then, create normal MergeDelta or UnwrapDelta, using last two operations.
-			delta = new DeltaClass();
-			delta.addOperation( operations[ operations.length - 2 ] );
-			delta.addOperation( operations[ operations.length - 1 ] );
-
-			// Return all deltas as one array, in proper order.
-			return deltas.concat( delta );
-		case __WEBPACK_IMPORTED_MODULE_7__renamedelta__["a" /* default */]:
-			// RenameDelta may become a "no delta" if it's only operation is transformed to NoOperation.
-			// This may happen when RenameOperation is transformed by RenameOperation.
-			// Keep in mind that RenameDelta always have just one operation.
-			if ( operations[ 0 ] instanceof __WEBPACK_IMPORTED_MODULE_10__operation_nooperation__["a" /* default */] ) {
-				delta = new __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */]();
-			} else {
-				delta = new __WEBPACK_IMPORTED_MODULE_7__renamedelta__["a" /* default */]();
-			}
-
-			delta.addOperation( operations[ 0 ] );
-
-			return [ delta ];
-		case __WEBPACK_IMPORTED_MODULE_8__attributedelta__["a" /* default */]:
-			// AttributeDelta is allowed to have multiple AttributeOperations and also NoOperations but
-			// the first operation has to be an AttributeOperation as it is used as a reference for deltas properties.
-			// Keep in mind that we cannot simply remove NoOperations cause that would mess up base versions.
-			// Find an index of first operation that is not a NoOperation.
-			for ( attributeOperationIndex = 0; attributeOperationIndex < operations.length; attributeOperationIndex++ ) {
-				if ( !( operations[ attributeOperationIndex ] instanceof __WEBPACK_IMPORTED_MODULE_10__operation_nooperation__["a" /* default */] ) ) {
-					break;
-				}
-			}
-
-			// No AttributeOperations has been found. Convert AttributeDelta to "no delta".
-			if ( attributeOperationIndex == operations.length ) {
-				delta = new __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */]();
-			}
-			// AttributeOperation found.
-			else {
-				delta = new __WEBPACK_IMPORTED_MODULE_8__attributedelta__["a" /* default */]();
-
-				// AttributeOperation wasn't the first operation.
-				if ( attributeOperationIndex != 0 ) {
-					// Move AttributeOperation to the beginning.
-					operations.unshift( operations.splice( attributeOperationIndex, 1 )[ 0 ] );
-					// No need to update base versions - they are updated at the end of transformation algorithm anyway.
-				}
-			}
-
-			// Add all operations to the delta (even if it is just a couple of NoOperations we have to keep them all).
-			for ( const o of operations ) {
-				delta.addOperation( o );
-			}
-
-			return [ delta ];
-		default:
-			// For all other deltas no normalization is needed.
-			delta = new DeltaClass();
-
-			for ( const o of operations ) {
-				delta.addOperation( o );
-			}
-
-			return [ delta ];
-	}
-}
-
-/**
- * Object containing values and flags describing context of a transformation.
- *
- * @typedef {Object} module:engine/model/delta/transform~transformationContext
- * @property {Boolean} useAdditionalContext Whether additional context should be evaluated and used during transformations.
- * @property {Boolean} isStrong Whether transformed deltas are more (`true`) or less (`false`) important than deltas to transform by.
- * @property {module:engine/model/document~Document} [document] Model document which is a context for transformations.
- * Available only if `useAdditionalContext` is `true`.
- * @property {Boolean|undefined} forceWeakRemove Whether {@link module:engine/model/operation/removeoperation~RemoveOperation}
- * should be always more important than other operations. Available only if `useAdditionalContext` is `true`.
- * @property {Boolean|undefined} insertBefore Used when transforming {@link module:engine/model/operation/moveoperation~MoveOperation}s
- * If two `MoveOperation`s target to the same position, `insertBefore` is used to resolve such conflict. This flag
- * is set and used internally by transformation algorithms. Available only if `useAdditionalContext` is `true`.
- * @property {Boolean|undefined} forceNotSticky Used when transforming
- * {@link module:engine/model/operation/moveoperation~MoveOperation#isSticky sticky MoveOperation}. If set to `true`,
- * `isSticky` flag is discarded during transformations. This flag is set and used internally by transformation algorithms.
- * Available only if `useAdditionalContext` is `true`.
- * @property {Map|undefined} wasAffected Used to evaluate `insertBefore` flag. This map is set and used internally by
- * transformation algorithms. Available only if `useAdditionalContext` is `true`.
- */
-
-
-/***/ }),
-/* 180 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSlice__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isIterateeCall__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__toInteger__ = __webpack_require__(12);
-
-
-
-
-/* Built-in method references for those with the same name as other `lodash` methods. */
-var nativeCeil = Math.ceil,
-    nativeMax = Math.max;
-
-/**
- * Creates an array of elements split into groups the length of `size`.
- * If `array` can't be split evenly, the final chunk will be the remaining
- * elements.
- *
- * @static
- * @memberOf _
- * @since 3.0.0
- * @category Array
- * @param {Array} array The array to process.
- * @param {number} [size=1] The length of each chunk
- * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
- * @returns {Array} Returns the new array of chunks.
- * @example
- *
- * _.chunk(['a', 'b', 'c', 'd'], 2);
- * // => [['a', 'b'], ['c', 'd']]
- *
- * _.chunk(['a', 'b', 'c', 'd'], 3);
- * // => [['a', 'b', 'c'], ['d']]
- */
-function chunk(array, size, guard) {
-  if ((guard ? Object(__WEBPACK_IMPORTED_MODULE_1__isIterateeCall__["a" /* default */])(array, size, guard) : size === undefined)) {
-    size = 1;
-  } else {
-    size = nativeMax(Object(__WEBPACK_IMPORTED_MODULE_2__toInteger__["a" /* default */])(size), 0);
-  }
-  var length = array ? array.length : 0;
-  if (!length || size < 1) {
-    return [];
-  }
-  var index = 0,
-      resIndex = 0,
-      result = Array(nativeCeil(length / size));
-
-  while (index < length) {
-    result[resIndex++] = Object(__WEBPACK_IMPORTED_MODULE_0__baseSlice__["a" /* default */])(array, index, (index += size));
-  }
-  return result;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (chunk);
-
-
-/***/ }),
-/* 181 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/**
- * Creates an array with all falsey values removed. The values `false`, `null`,
- * `0`, `""`, `undefined`, and `NaN` are falsey.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Array
- * @param {Array} array The array to compact.
- * @returns {Array} Returns the new array of filtered values.
- * @example
- *
- * _.compact([0, 1, false, 2, '', 3]);
- * // => [1, 2, 3]
- */
-function compact(array) {
-  var index = -1,
-      length = array ? array.length : 0,
-      resIndex = 0,
-      result = [];
-
-  while (++index < length) {
-    var value = array[index];
-    if (value) {
-      result[resIndex++] = value;
-    }
-  }
-  return result;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (compact);
-
-
-/***/ }),
-/* 182 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayPush__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__copyArray__ = __webpack_require__(172);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArray__ = __webpack_require__(14);
-
-
-
-
-
-/**
- * Creates a new array concatenating `array` with any additional arrays
- * and/or values.
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Array
- * @param {Array} array The array to concatenate.
- * @param {...*} [values] The values to concatenate.
- * @returns {Array} Returns the new concatenated array.
- * @example
- *
- * var array = [1];
- * var other = _.concat(array, 2, [3], [[4]]);
- *
- * console.log(other);
- * // => [1, 2, 3, [4]]
- *
- * console.log(array);
- * // => [1]
- */
-function concat() {
-  var length = arguments.length,
-      args = Array(length ? length - 1 : 0),
-      array = arguments[0],
-      index = length;
-
-  while (index--) {
-    args[index - 1] = arguments[index];
-  }
-  return length
-    ? Object(__WEBPACK_IMPORTED_MODULE_0__arrayPush__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_3__isArray__["a" /* default */])(array) ? Object(__WEBPACK_IMPORTED_MODULE_2__copyArray__["a" /* default */])(array) : [array], Object(__WEBPACK_IMPORTED_MODULE_1__baseFlatten__["a" /* default */])(args, 1))
-    : [];
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (concat);
-
-
-/***/ }),
-/* 183 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rest__ = __webpack_require__(7);
-
-
-
-
-
-/**
- * Creates an array of unique `array` values not included in the other given
- * arrays using [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
- * for equality comparisons. The order of result values is determined by the
- * order they occur in the first array.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Array
- * @param {Array} array The array to inspect.
- * @param {...Array} [values] The values to exclude.
- * @returns {Array} Returns the new array of filtered values.
- * @see _.without, _.xor
- * @example
- *
- * _.difference([3, 2, 1], [4, 2]);
- * // => [3, 1]
- */
-var difference = Object(__WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */])(function(array, values) {
-  return Object(__WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */])(array)
-    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseDifference__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_1__baseFlatten__["a" /* default */])(values, 1, __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */], true))
-    : [];
-});
-
-/* harmony default export */ __webpack_exports__["a"] = (difference);
-
-
-/***/ }),
-/* 184 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/**
- * Gets the index at which the first occurrence of `NaN` is found in `array`.
- *
- * @private
- * @param {Array} array The array to search.
- * @param {number} fromIndex The index to search from.
- * @param {boolean} [fromRight] Specify iterating from right to left.
- * @returns {number} Returns the index of the matched `NaN`, else `-1`.
- */
-function indexOfNaN(array, fromIndex, fromRight) {
-  var length = array.length,
-      index = fromIndex + (fromRight ? 0 : -1);
-
-  while ((fromRight ? index-- : ++index < length)) {
-    var other = array[index];
-    if (other !== other) {
-      return index;
-    }
-  }
-  return -1;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (indexOfNaN);
-
-
-/***/ }),
-/* 185 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseIteratee__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__last__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rest__ = __webpack_require__(7);
-
-
-
-
-
-
-
-/**
- * This method is like `_.difference` except that it accepts `iteratee` which
- * is invoked for each element of `array` and `values` to generate the criterion
- * by which they're compared. Result values are chosen from the first array.
- * The iteratee is invoked with one argument: (value).
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Array
- * @param {Array} array The array to inspect.
- * @param {...Array} [values] The values to exclude.
- * @param {Array|Function|Object|string} [iteratee=_.identity]
- *  The iteratee invoked per element.
- * @returns {Array} Returns the new array of filtered values.
- * @example
- *
- * _.differenceBy([3.1, 2.2, 1.3], [4.4, 2.5], Math.floor);
- * // => [3.1, 1.3]
- *
- * // The `_.property` iteratee shorthand.
- * _.differenceBy([{ 'x': 2 }, { 'x': 1 }], [{ 'x': 1 }], 'x');
- * // => [{ 'x': 2 }]
- */
-var differenceBy = Object(__WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */])(function(array, values) {
-  var iteratee = Object(__WEBPACK_IMPORTED_MODULE_4__last__["a" /* default */])(values);
-  if (Object(__WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__["a" /* default */])(iteratee)) {
-    iteratee = undefined;
-  }
-  return Object(__WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__["a" /* default */])(array)
-    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseDifference__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_1__baseFlatten__["a" /* default */])(values, 1, __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__["a" /* default */], true), Object(__WEBPACK_IMPORTED_MODULE_2__baseIteratee__["a" /* default */])(iteratee))
-    : [];
-});
-
-/* harmony default export */ __webpack_exports__["a"] = (differenceBy);
-
-
-/***/ }),
-/* 186 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isObject__ = __webpack_require__(16);
-
-
-/**
- * Checks if `value` is suitable for strict equality comparisons, i.e. `===`.
- *
- * @private
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` if suitable for strict
- *  equality comparisons, else `false`.
- */
-function isStrictComparable(value) {
-  return value === value && !Object(__WEBPACK_IMPORTED_MODULE_0__isObject__["a" /* default */])(value);
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (isStrictComparable);
-
-
-/***/ }),
-/* 187 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/**
- * A specialized version of `matchesProperty` for source values suitable
- * for strict equality comparisons, i.e. `===`.
- *
- * @private
- * @param {string} key The key of the property to get.
- * @param {*} srcValue The value to match.
- * @returns {Function} Returns the new spec function.
- */
-function matchesStrictComparable(key, srcValue) {
-  return function(object) {
-    if (object == null) {
-      return false;
-    }
-    return object[key] === srcValue &&
-      (srcValue !== undefined || (key in Object(object)));
-  };
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (matchesStrictComparable);
-
-
-/***/ }),
-/* 188 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseGet__ = __webpack_require__(136);
-
-
-/**
- * Gets the value at `path` of `object`. If the resolved value is
- * `undefined`, the `defaultValue` is used in its place.
- *
- * @static
- * @memberOf _
- * @since 3.7.0
- * @category Object
- * @param {Object} object The object to query.
- * @param {Array|string} path The path of the property to get.
- * @param {*} [defaultValue] The value returned for `undefined` resolved values.
- * @returns {*} Returns the resolved value.
- * @example
- *
- * var object = { 'a': [{ 'b': { 'c': 3 } }] };
- *
- * _.get(object, 'a[0].b.c');
- * // => 3
- *
- * _.get(object, ['a', '0', 'b', 'c']);
- * // => 3
- *
- * _.get(object, 'a.b.c', 'default');
- * // => 'default'
- */
-function get(object, path, defaultValue) {
-  var result = object == null ? undefined : Object(__WEBPACK_IMPORTED_MODULE_0__baseGet__["a" /* default */])(object, path);
-  return result === undefined ? defaultValue : result;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (get);
-
-
-/***/ }),
-/* 189 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/**
- * This method returns the first argument given to it.
- *
- * @static
- * @since 0.1.0
- * @memberOf _
- * @category Util
- * @param {*} value Any value.
- * @returns {*} Returns `value`.
- * @example
- *
- * var object = { 'user': 'fred' };
- *
- * _.identity(object) === object;
- * // => true
- */
-function identity(value) {
-  return value;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (identity);
-
-
-/***/ }),
-/* 190 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__rest__ = __webpack_require__(7);
-
-
-
-
-
-
-/**
- * This method is like `_.difference` except that it accepts `comparator`
- * which is invoked to compare elements of `array` to `values`. Result values
- * are chosen from the first array. The comparator is invoked with two arguments:
- * (arrVal, othVal).
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Array
- * @param {Array} array The array to inspect.
- * @param {...Array} [values] The values to exclude.
- * @param {Function} [comparator] The comparator invoked per element.
- * @returns {Array} Returns the new array of filtered values.
- * @example
- *
- * var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
- *
- * _.differenceWith(objects, [{ 'x': 1, 'y': 2 }], _.isEqual);
- * // => [{ 'x': 2, 'y': 1 }]
- */
-var differenceWith = Object(__WEBPACK_IMPORTED_MODULE_4__rest__["a" /* default */])(function(array, values) {
-  var comparator = Object(__WEBPACK_IMPORTED_MODULE_3__last__["a" /* default */])(values);
-  if (Object(__WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */])(comparator)) {
-    comparator = undefined;
-  }
-  return Object(__WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */])(array)
-    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseDifference__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_1__baseFlatten__["a" /* default */])(values, 1, __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */], true), undefined, comparator)
-    : [];
-});
-
-/* harmony default export */ __webpack_exports__["a"] = (differenceWith);
-
-
-/***/ }),
-/* 191 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseWhile__ = __webpack_require__(100);
-
-
-
-/**
- * Creates a slice of `array` excluding elements dropped from the end.
- * Elements are dropped until `predicate` returns falsey. The predicate is
- * invoked with three arguments: (value, index, array).
- *
- * @static
- * @memberOf _
- * @since 3.0.0
- * @category Array
- * @param {Array} array The array to query.
- * @param {Array|Function|Object|string} [predicate=_.identity]
- *  The function invoked per iteration.
- * @returns {Array} Returns the slice of `array`.
- * @example
- *
- * var users = [
- *   { 'user': 'barney',  'active': true },
- *   { 'user': 'fred',    'active': false },
- *   { 'user': 'pebbles', 'active': false }
- * ];
- *
- * _.dropRightWhile(users, function(o) { return !o.active; });
- * // => objects for ['barney']
- *
- * // The `_.matches` iteratee shorthand.
- * _.dropRightWhile(users, { 'user': 'pebbles', 'active': false });
- * // => objects for ['barney', 'fred']
- *
- * // The `_.matchesProperty` iteratee shorthand.
- * _.dropRightWhile(users, ['active', false]);
- * // => objects for ['barney']
- *
- * // The `_.property` iteratee shorthand.
- * _.dropRightWhile(users, 'active');
- * // => objects for ['barney', 'fred', 'pebbles']
- */
-function dropRightWhile(array, predicate) {
-  return (array && array.length)
-    ? Object(__WEBPACK_IMPORTED_MODULE_1__baseWhile__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(predicate, 3), true, true)
-    : [];
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (dropRightWhile);
-
-
-/***/ }),
-/* 192 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseWhile__ = __webpack_require__(100);
-
-
-
-/**
- * Creates a slice of `array` excluding elements dropped from the beginning.
- * Elements are dropped until `predicate` returns falsey. The predicate is
- * invoked with three arguments: (value, index, array).
- *
- * @static
- * @memberOf _
- * @since 3.0.0
- * @category Array
- * @param {Array} array The array to query.
- * @param {Array|Function|Object|string} [predicate=_.identity]
- *  The function invoked per iteration.
- * @returns {Array} Returns the slice of `array`.
- * @example
- *
- * var users = [
- *   { 'user': 'barney',  'active': false },
- *   { 'user': 'fred',    'active': false },
- *   { 'user': 'pebbles', 'active': true }
- * ];
- *
- * _.dropWhile(users, function(o) { return !o.active; });
- * // => objects for ['pebbles']
- *
- * // The `_.matches` iteratee shorthand.
- * _.dropWhile(users, { 'user': 'barney', 'active': false });
- * // => objects for ['fred', 'pebbles']
- *
- * // The `_.matchesProperty` iteratee shorthand.
- * _.dropWhile(users, ['active', false]);
- * // => objects for ['pebbles']
- *
- * // The `_.property` iteratee shorthand.
- * _.dropWhile(users, 'active');
- * // => objects for ['barney', 'fred', 'pebbles']
- */
-function dropWhile(array, predicate) {
-  return (array && array.length)
-    ? Object(__WEBPACK_IMPORTED_MODULE_1__baseWhile__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(predicate, 3), true)
-    : [];
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (dropWhile);
-
-
-/***/ }),
-/* 193 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFill__ = __webpack_require__(382);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isIterateeCall__ = __webpack_require__(76);
-
-
-
-/**
- * Fills elements of `array` with `value` from `start` up to, but not
- * including, `end`.
- *
- * **Note:** This method mutates `array`.
- *
- * @static
- * @memberOf _
- * @since 3.2.0
- * @category Array
- * @param {Array} array The array to fill.
- * @param {*} value The value to fill `array` with.
- * @param {number} [start=0] The start position.
- * @param {number} [end=array.length] The end position.
- * @returns {Array} Returns `array`.
- * @example
- *
- * var array = [1, 2, 3];
- *
- * _.fill(array, 'a');
- * console.log(array);
- * // => ['a', 'a', 'a']
- *
- * _.fill(Array(3), 2);
- * // => [2, 2, 2]
- *
- * _.fill([4, 6, 8, 10], '*', 1, 3);
- * // => [4, '*', '*', 10]
- */
-function fill(array, value, start, end) {
-  var length = array ? array.length : 0;
-  if (!length) {
-    return [];
-  }
-  if (start && typeof start != 'number' && Object(__WEBPACK_IMPORTED_MODULE_1__isIterateeCall__["a" /* default */])(array, value, start)) {
-    start = 0;
-    end = length;
-  }
-  return Object(__WEBPACK_IMPORTED_MODULE_0__baseFill__["a" /* default */])(array, value, start, end);
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (fill);
-
-
-/***/ }),
-/* 194 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFindIndex__ = __webpack_require__(195);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIteratee__ = __webpack_require__(10);
-
-
-
-/**
- * This method is like `_.find` except that it returns the index of the first
- * element `predicate` returns truthy for instead of the element itself.
- *
- * @static
- * @memberOf _
- * @since 1.1.0
- * @category Array
- * @param {Array} array The array to search.
- * @param {Array|Function|Object|string} [predicate=_.identity]
- *  The function invoked per iteration.
- * @returns {number} Returns the index of the found element, else `-1`.
- * @example
- *
- * var users = [
- *   { 'user': 'barney',  'active': false },
- *   { 'user': 'fred',    'active': false },
- *   { 'user': 'pebbles', 'active': true }
- * ];
- *
- * _.findIndex(users, function(o) { return o.user == 'barney'; });
- * // => 0
- *
- * // The `_.matches` iteratee shorthand.
- * _.findIndex(users, { 'user': 'fred', 'active': false });
- * // => 1
- *
- * // The `_.matchesProperty` iteratee shorthand.
- * _.findIndex(users, ['active', false]);
- * // => 0
- *
- * // The `_.property` iteratee shorthand.
- * _.findIndex(users, 'active');
- * // => 2
- */
-function findIndex(array, predicate) {
-  return (array && array.length)
-    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseFindIndex__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_1__baseIteratee__["a" /* default */])(predicate, 3))
-    : -1;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (findIndex);
-
-
-/***/ }),
-/* 195 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/**
- * The base implementation of `_.findIndex` and `_.findLastIndex` without
- * support for iteratee shorthands.
- *
- * @private
- * @param {Array} array The array to search.
- * @param {Function} predicate The function invoked per iteration.
- * @param {boolean} [fromRight] Specify iterating from right to left.
- * @returns {number} Returns the index of the matched value, else `-1`.
- */
-function baseFindIndex(array, predicate, fromRight) {
-  var length = array.length,
-      index = fromRight ? length : -1;
-
-  while ((fromRight ? index-- : ++index < length)) {
-    if (predicate(array[index], index, array)) {
-      return index;
-    }
-  }
-  return -1;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (baseFindIndex);
-
-
-/***/ }),
-/* 196 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFindIndex__ = __webpack_require__(195);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIteratee__ = __webpack_require__(10);
-
-
-
-/**
- * This method is like `_.findIndex` except that it iterates over elements
- * of `collection` from right to left.
- *
- * @static
- * @memberOf _
- * @since 2.0.0
- * @category Array
- * @param {Array} array The array to search.
- * @param {Array|Function|Object|string} [predicate=_.identity]
- *  The function invoked per iteration.
- * @returns {number} Returns the index of the found element, else `-1`.
- * @example
- *
- * var users = [
- *   { 'user': 'barney',  'active': true },
- *   { 'user': 'fred',    'active': false },
- *   { 'user': 'pebbles', 'active': false }
- * ];
- *
- * _.findLastIndex(users, function(o) { return o.user == 'pebbles'; });
- * // => 2
- *
- * // The `_.matches` iteratee shorthand.
- * _.findLastIndex(users, { 'user': 'barney', 'active': true });
- * // => 0
- *
- * // The `_.matchesProperty` iteratee shorthand.
- * _.findLastIndex(users, ['active', false]);
- * // => 2
- *
- * // The `_.property` iteratee shorthand.
- * _.findLastIndex(users, 'active');
- * // => 0
- */
-function findLastIndex(array, predicate) {
-  return (array && array.length)
-    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseFindIndex__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_1__baseIteratee__["a" /* default */])(predicate, 3), true)
-    : -1;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (findLastIndex);
-
-
-/***/ }),
-/* 197 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__head__ = __webpack_require__(139);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__head__["a"]; });
-
-
-
-/***/ }),
-/* 198 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(22);
-
-
-/**
- * Flattens `array` a single level deep.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Array
- * @param {Array} array The array to flatten.
- * @returns {Array} Returns the new flattened array.
- * @example
- *
- * _.flatten([1, [2, [3, [4]], 5]]);
- * // => [1, 2, [3, [4]], 5]
- */
-function flatten(array) {
-  var length = array ? array.length : 0;
-  return length ? Object(__WEBPACK_IMPORTED_MODULE_0__baseFlatten__["a" /* default */])(array, 1) : [];
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (flatten);
-
-
-/***/ }),
-/* 199 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(22);
-
-
-/** Used as references for various `Number` constants. */
-var INFINITY = 1 / 0;
-
-/**
- * Recursively flattens `array`.
- *
- * @static
- * @memberOf _
- * @since 3.0.0
- * @category Array
- * @param {Array} array The array to flatten.
- * @returns {Array} Returns the new flattened array.
- * @example
- *
- * _.flattenDeep([1, [2, [3, [4]], 5]]);
- * // => [1, 2, 3, 4, 5]
- */
-function flattenDeep(array) {
-  var length = array ? array.length : 0;
-  return length ? Object(__WEBPACK_IMPORTED_MODULE_0__baseFlatten__["a" /* default */])(array, INFINITY) : [];
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (flattenDeep);
-
-
-/***/ }),
-/* 200 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toInteger__ = __webpack_require__(12);
-
-
-
-/**
- * Recursively flatten `array` up to `depth` times.
- *
- * @static
- * @memberOf _
- * @since 4.4.0
- * @category Array
- * @param {Array} array The array to flatten.
- * @param {number} [depth=1] The maximum recursion depth.
- * @returns {Array} Returns the new flattened array.
- * @example
- *
- * var array = [1, [2, [3, [4]], 5]];
- *
- * _.flattenDepth(array, 1);
- * // => [1, 2, [3, [4]], 5]
- *
- * _.flattenDepth(array, 2);
- * // => [1, 2, 3, [4], 5]
- */
-function flattenDepth(array, depth) {
-  var length = array ? array.length : 0;
-  if (!length) {
-    return [];
-  }
-  depth = depth === undefined ? 1 : Object(__WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */])(depth);
-  return Object(__WEBPACK_IMPORTED_MODULE_0__baseFlatten__["a" /* default */])(array, depth);
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (flattenDepth);
-
-
-/***/ }),
-/* 201 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/**
- * The inverse of `_.toPairs`; this method returns an object composed
- * from key-value `pairs`.
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Array
- * @param {Array} pairs The key-value pairs.
- * @returns {Object} Returns the new object.
- * @example
- *
- * _.fromPairs([['fred', 30], ['barney', 40]]);
- * // => { 'fred': 30, 'barney': 40 }
- */
-function fromPairs(pairs) {
-  var index = -1,
-      length = pairs ? pairs.length : 0,
-      result = {};
-
-  while (++index < length) {
-    var pair = pairs[index];
-    result[pair[0]] = pair[1];
-  }
-  return result;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (fromPairs);
-
-
-/***/ }),
-/* 202 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIndexOf__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toInteger__ = __webpack_require__(12);
-
-
-
-/* Built-in method references for those with the same name as other `lodash` methods. */
-var nativeMax = Math.max;
-
-/**
- * Gets the index at which the first occurrence of `value` is found in `array`
- * using [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
- * for equality comparisons. If `fromIndex` is negative, it's used as the
- * offset from the end of `array`.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Array
- * @param {Array} array The array to search.
- * @param {*} value The value to search for.
- * @param {number} [fromIndex=0] The index to search from.
- * @returns {number} Returns the index of the matched value, else `-1`.
- * @example
- *
- * _.indexOf([1, 2, 1, 2], 2);
- * // => 1
- *
- * // Search from the `fromIndex`.
- * _.indexOf([1, 2, 1, 2], 2, 2);
- * // => 3
- */
-function indexOf(array, value, fromIndex) {
-  var length = array ? array.length : 0;
-  if (!length) {
-    return -1;
-  }
-  fromIndex = Object(__WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */])(fromIndex);
-  if (fromIndex < 0) {
-    fromIndex = nativeMax(length + fromIndex, 0);
-  }
-  return Object(__WEBPACK_IMPORTED_MODULE_0__baseIndexOf__["a" /* default */])(array, value, fromIndex);
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (indexOf);
-
-
-/***/ }),
-/* 203 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dropRight__ = __webpack_require__(138);
-
-
-/**
- * Gets all but the last element of `array`.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Array
- * @param {Array} array The array to query.
- * @returns {Array} Returns the slice of `array`.
- * @example
- *
- * _.initial([1, 2, 3]);
- * // => [1, 2]
- */
-function initial(array) {
-  return Object(__WEBPACK_IMPORTED_MODULE_0__dropRight__["a" /* default */])(array, 1);
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (initial);
-
-
-/***/ }),
-/* 204 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayMap__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIntersection__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__castArrayLikeObject__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rest__ = __webpack_require__(7);
-
-
-
-
-
-/**
- * Creates an array of unique values that are included in all given arrays
- * using [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
- * for equality comparisons. The order of result values is determined by the
- * order they occur in the first array.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Array
- * @param {...Array} [arrays] The arrays to inspect.
- * @returns {Array} Returns the new array of intersecting values.
- * @example
- *
- * _.intersection([2, 1], [4, 2], [1, 2]);
- * // => [2]
- */
-var intersection = Object(__WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */])(function(arrays) {
-  var mapped = Object(__WEBPACK_IMPORTED_MODULE_0__arrayMap__["a" /* default */])(arrays, __WEBPACK_IMPORTED_MODULE_2__castArrayLikeObject__["a" /* default */]);
-  return (mapped.length && mapped[0] === arrays[0])
-    ? Object(__WEBPACK_IMPORTED_MODULE_1__baseIntersection__["a" /* default */])(mapped)
-    : [];
-});
-
-/* harmony default export */ __webpack_exports__["a"] = (intersection);
-
-
-/***/ }),
-/* 205 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayMap__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIntersection__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseIteratee__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__castArrayLikeObject__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__last__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rest__ = __webpack_require__(7);
-
-
-
-
-
-
-
-/**
- * This method is like `_.intersection` except that it accepts `iteratee`
- * which is invoked for each element of each `arrays` to generate the criterion
- * by which they're compared. Result values are chosen from the first array.
- * The iteratee is invoked with one argument: (value).
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Array
- * @param {...Array} [arrays] The arrays to inspect.
- * @param {Array|Function|Object|string} [iteratee=_.identity]
- *  The iteratee invoked per element.
- * @returns {Array} Returns the new array of intersecting values.
- * @example
- *
- * _.intersectionBy([2.1, 1.2], [4.3, 2.4], Math.floor);
- * // => [2.1]
- *
- * // The `_.property` iteratee shorthand.
- * _.intersectionBy([{ 'x': 1 }], [{ 'x': 2 }, { 'x': 1 }], 'x');
- * // => [{ 'x': 1 }]
- */
-var intersectionBy = Object(__WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */])(function(arrays) {
-  var iteratee = Object(__WEBPACK_IMPORTED_MODULE_4__last__["a" /* default */])(arrays),
-      mapped = Object(__WEBPACK_IMPORTED_MODULE_0__arrayMap__["a" /* default */])(arrays, __WEBPACK_IMPORTED_MODULE_3__castArrayLikeObject__["a" /* default */]);
-
-  if (iteratee === Object(__WEBPACK_IMPORTED_MODULE_4__last__["a" /* default */])(mapped)) {
-    iteratee = undefined;
-  } else {
-    mapped.pop();
-  }
-  return (mapped.length && mapped[0] === arrays[0])
-    ? Object(__WEBPACK_IMPORTED_MODULE_1__baseIntersection__["a" /* default */])(mapped, Object(__WEBPACK_IMPORTED_MODULE_2__baseIteratee__["a" /* default */])(iteratee))
-    : [];
-});
-
-/* harmony default export */ __webpack_exports__["a"] = (intersectionBy);
-
-
-/***/ }),
-/* 206 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayMap__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIntersection__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__castArrayLikeObject__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__rest__ = __webpack_require__(7);
-
-
-
-
-
-
-/**
- * This method is like `_.intersection` except that it accepts `comparator`
- * which is invoked to compare elements of `arrays`. Result values are chosen
- * from the first array. The comparator is invoked with two arguments:
- * (arrVal, othVal).
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Array
- * @param {...Array} [arrays] The arrays to inspect.
- * @param {Function} [comparator] The comparator invoked per element.
- * @returns {Array} Returns the new array of intersecting values.
- * @example
- *
- * var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
- * var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 2 }];
- *
- * _.intersectionWith(objects, others, _.isEqual);
- * // => [{ 'x': 1, 'y': 2 }]
- */
-var intersectionWith = Object(__WEBPACK_IMPORTED_MODULE_4__rest__["a" /* default */])(function(arrays) {
-  var comparator = Object(__WEBPACK_IMPORTED_MODULE_3__last__["a" /* default */])(arrays),
-      mapped = Object(__WEBPACK_IMPORTED_MODULE_0__arrayMap__["a" /* default */])(arrays, __WEBPACK_IMPORTED_MODULE_2__castArrayLikeObject__["a" /* default */]);
-
-  if (comparator === Object(__WEBPACK_IMPORTED_MODULE_3__last__["a" /* default */])(mapped)) {
-    comparator = undefined;
-  } else {
-    mapped.pop();
-  }
-  return (mapped.length && mapped[0] === arrays[0])
-    ? Object(__WEBPACK_IMPORTED_MODULE_1__baseIntersection__["a" /* default */])(mapped, undefined, comparator)
-    : [];
-});
-
-/* harmony default export */ __webpack_exports__["a"] = (intersectionWith);
-
-
-/***/ }),
-/* 207 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/** Used for built-in method references. */
-var arrayProto = Array.prototype;
-
-/* Built-in method references for those with the same name as other `lodash` methods. */
-var nativeJoin = arrayProto.join;
-
-/**
- * Converts all elements in `array` into a string separated by `separator`.
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Array
- * @param {Array} array The array to convert.
- * @param {string} [separator=','] The element separator.
- * @returns {string} Returns the joined string.
- * @example
- *
- * _.join(['a', 'b', 'c'], '~');
- * // => 'a~b~c'
- */
-function join(array, separator) {
-  return array ? nativeJoin.call(array, separator) : '';
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (join);
-
-
-/***/ }),
-/* 208 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__indexOfNaN__ = __webpack_require__(184);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toInteger__ = __webpack_require__(12);
-
-
-
-/* Built-in method references for those with the same name as other `lodash` methods. */
-var nativeMax = Math.max,
-    nativeMin = Math.min;
-
-/**
- * This method is like `_.indexOf` except that it iterates over elements of
- * `array` from right to left.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Array
- * @param {Array} array The array to search.
- * @param {*} value The value to search for.
- * @param {number} [fromIndex=array.length-1] The index to search from.
- * @returns {number} Returns the index of the matched value, else `-1`.
- * @example
- *
- * _.lastIndexOf([1, 2, 1, 2], 2);
- * // => 3
- *
- * // Search from the `fromIndex`.
- * _.lastIndexOf([1, 2, 1, 2], 2, 2);
- * // => 1
- */
-function lastIndexOf(array, value, fromIndex) {
-  var length = array ? array.length : 0;
-  if (!length) {
-    return -1;
-  }
-  var index = length;
-  if (fromIndex !== undefined) {
-    index = Object(__WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */])(fromIndex);
-    index = (
-      index < 0
-        ? nativeMax(length + index, 0)
-        : nativeMin(index, length - 1)
-    ) + 1;
-  }
-  if (value !== value) {
-    return Object(__WEBPACK_IMPORTED_MODULE_0__indexOfNaN__["a" /* default */])(array, index, true);
-  }
-  while (index--) {
-    if (array[index] === value) {
-      return index;
-    }
-  }
-  return -1;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (lastIndexOf);
-
-
-/***/ }),
-/* 209 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseNth__ = __webpack_require__(385);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toInteger__ = __webpack_require__(12);
-
-
-
-/**
- * Gets the element at `n` index of `array`. If `n` is negative, the nth
- * element from the end is returned.
- *
- * @static
- * @memberOf _
- * @since 4.11.0
- * @category Array
- * @param {Array} array The array to query.
- * @param {number} [n=0] The index of the element to return.
- * @returns {*} Returns the nth element of `array`.
- * @example
- *
- * var array = ['a', 'b', 'c', 'd'];
- *
- * _.nth(array, 1);
- * // => 'b'
- *
- * _.nth(array, -2);
- * // => 'c';
- */
-function nth(array, n) {
-  return (array && array.length) ? Object(__WEBPACK_IMPORTED_MODULE_0__baseNth__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */])(n)) : undefined;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (nth);
-
-
-/***/ }),
-/* 210 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pullAll__ = __webpack_require__(142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__rest__ = __webpack_require__(7);
-
-
-
-/**
- * Removes all given values from `array` using
- * [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
- * for equality comparisons.
- *
- * **Note:** Unlike `_.without`, this method mutates `array`. Use `_.remove`
- * to remove elements from an array by predicate.
- *
- * @static
- * @memberOf _
- * @since 2.0.0
- * @category Array
- * @param {Array} array The array to modify.
- * @param {...*} [values] The values to remove.
- * @returns {Array} Returns `array`.
- * @example
- *
- * var array = [1, 2, 3, 1, 2, 3];
- *
- * _.pull(array, 2, 3);
- * console.log(array);
- * // => [1, 1]
- */
-var pull = Object(__WEBPACK_IMPORTED_MODULE_1__rest__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_0__pullAll__["a" /* default */]);
-
-/* harmony default export */ __webpack_exports__["a"] = (pull);
-
-
-/***/ }),
-/* 211 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__basePullAll__ = __webpack_require__(143);
-
-
-
-/**
- * This method is like `_.pullAll` except that it accepts `iteratee` which is
- * invoked for each element of `array` and `values` to generate the criterion
- * by which they're compared. The iteratee is invoked with one argument: (value).
- *
- * **Note:** Unlike `_.differenceBy`, this method mutates `array`.
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Array
- * @param {Array} array The array to modify.
- * @param {Array} values The values to remove.
- * @param {Array|Function|Object|string} [iteratee=_.identity]
- *  The iteratee invoked per element.
- * @returns {Array} Returns `array`.
- * @example
- *
- * var array = [{ 'x': 1 }, { 'x': 2 }, { 'x': 3 }, { 'x': 1 }];
- *
- * _.pullAllBy(array, [{ 'x': 1 }, { 'x': 3 }], 'x');
- * console.log(array);
- * // => [{ 'x': 2 }]
- */
-function pullAllBy(array, values, iteratee) {
-  return (array && array.length && values && values.length)
-    ? Object(__WEBPACK_IMPORTED_MODULE_1__basePullAll__["a" /* default */])(array, values, Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(iteratee))
-    : array;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (pullAllBy);
-
-
-/***/ }),
-/* 212 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__basePullAll__ = __webpack_require__(143);
-
-
-/**
- * This method is like `_.pullAll` except that it accepts `comparator` which
- * is invoked to compare elements of `array` to `values`. The comparator is
- * invoked with two arguments: (arrVal, othVal).
- *
- * **Note:** Unlike `_.differenceWith`, this method mutates `array`.
- *
- * @static
- * @memberOf _
- * @since 4.6.0
- * @category Array
- * @param {Array} array The array to modify.
- * @param {Array} values The values to remove.
- * @param {Function} [comparator] The comparator invoked per element.
- * @returns {Array} Returns `array`.
- * @example
- *
- * var array = [{ 'x': 1, 'y': 2 }, { 'x': 3, 'y': 4 }, { 'x': 5, 'y': 6 }];
- *
- * _.pullAllWith(array, [{ 'x': 3, 'y': 4 }], _.isEqual);
- * console.log(array);
- * // => [{ 'x': 1, 'y': 2 }, { 'x': 5, 'y': 6 }]
- */
-function pullAllWith(array, values, comparator) {
-  return (array && array.length && values && values.length)
-    ? Object(__WEBPACK_IMPORTED_MODULE_0__basePullAll__["a" /* default */])(array, values, undefined, comparator)
-    : array;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (pullAllWith);
-
-
-/***/ }),
-/* 213 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayMap__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseAt__ = __webpack_require__(387);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseFlatten__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__basePullAt__ = __webpack_require__(214);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__compareAscending__ = __webpack_require__(389);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__isIndex__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__rest__ = __webpack_require__(7);
-
-
-
-
-
-
-
-
-/**
- * Removes elements from `array` corresponding to `indexes` and returns an
- * array of removed elements.
- *
- * **Note:** Unlike `_.at`, this method mutates `array`.
- *
- * @static
- * @memberOf _
- * @since 3.0.0
- * @category Array
- * @param {Array} array The array to modify.
- * @param {...(number|number[])} [indexes] The indexes of elements to remove.
- * @returns {Array} Returns the new array of removed elements.
- * @example
- *
- * var array = [5, 10, 15, 20];
- * var evens = _.pullAt(array, 1, 3);
- *
- * console.log(array);
- * // => [5, 15]
- *
- * console.log(evens);
- * // => [10, 20]
- */
-var pullAt = Object(__WEBPACK_IMPORTED_MODULE_6__rest__["a" /* default */])(function(array, indexes) {
-  indexes = Object(__WEBPACK_IMPORTED_MODULE_2__baseFlatten__["a" /* default */])(indexes, 1);
-
-  var length = array ? array.length : 0,
-      result = Object(__WEBPACK_IMPORTED_MODULE_1__baseAt__["a" /* default */])(array, indexes);
-
-  Object(__WEBPACK_IMPORTED_MODULE_3__basePullAt__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_0__arrayMap__["a" /* default */])(indexes, function(index) {
-    return Object(__WEBPACK_IMPORTED_MODULE_5__isIndex__["a" /* default */])(index, length) ? +index : index;
-  }).sort(__WEBPACK_IMPORTED_MODULE_4__compareAscending__["a" /* default */]));
-
-  return result;
-});
-
-/* harmony default export */ __webpack_exports__["a"] = (pullAt);
-
-
-/***/ }),
-/* 214 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__castPath__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isIndex__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isKey__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__parent__ = __webpack_require__(388);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__toKey__ = __webpack_require__(58);
-
-
-
-
-
-
-
-/** Used for built-in method references. */
-var arrayProto = Array.prototype;
-
-/** Built-in value references. */
-var splice = arrayProto.splice;
-
-/**
- * The base implementation of `_.pullAt` without support for individual
- * indexes or capturing the removed elements.
- *
- * @private
- * @param {Array} array The array to modify.
- * @param {number[]} indexes The indexes of elements to remove.
- * @returns {Array} Returns `array`.
- */
-function basePullAt(array, indexes) {
-  var length = array ? indexes.length : 0,
-      lastIndex = length - 1;
-
-  while (length--) {
-    var index = indexes[length];
-    if (length == lastIndex || index !== previous) {
-      var previous = index;
-      if (Object(__WEBPACK_IMPORTED_MODULE_1__isIndex__["a" /* default */])(index)) {
-        splice.call(array, index, 1);
-      }
-      else if (!Object(__WEBPACK_IMPORTED_MODULE_2__isKey__["a" /* default */])(index, array)) {
-        var path = Object(__WEBPACK_IMPORTED_MODULE_0__castPath__["a" /* default */])(index),
-            object = Object(__WEBPACK_IMPORTED_MODULE_4__parent__["a" /* default */])(array, path);
-
-        if (object != null) {
-          delete object[Object(__WEBPACK_IMPORTED_MODULE_5__toKey__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_3__last__["a" /* default */])(path))];
-        }
-      }
-      else {
-        delete array[Object(__WEBPACK_IMPORTED_MODULE_5__toKey__["a" /* default */])(index)];
-      }
-    }
-  }
-  return array;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (basePullAt);
-
-
-/***/ }),
-/* 215 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__basePullAt__ = __webpack_require__(214);
-
-
-
-/**
- * Removes all elements from `array` that `predicate` returns truthy for
- * and returns an array of the removed elements. The predicate is invoked
- * with three arguments: (value, index, array).
- *
- * **Note:** Unlike `_.filter`, this method mutates `array`. Use `_.pull`
- * to pull elements from an array by value.
- *
- * @static
- * @memberOf _
- * @since 2.0.0
- * @category Array
- * @param {Array} array The array to modify.
- * @param {Array|Function|Object|string} [predicate=_.identity]
- *  The function invoked per iteration.
- * @returns {Array} Returns the new array of removed elements.
- * @example
- *
- * var array = [1, 2, 3, 4];
- * var evens = _.remove(array, function(n) {
- *   return n % 2 == 0;
- * });
- *
- * console.log(array);
- * // => [1, 3]
- *
- * console.log(evens);
- * // => [2, 4]
- */
-function remove(array, predicate) {
-  var result = [];
-  if (!(array && array.length)) {
-    return result;
-  }
-  var index = -1,
-      indexes = [],
-      length = array.length;
-
-  predicate = Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(predicate, 3);
-  while (++index < length) {
-    var value = array[index];
-    if (predicate(value, index, array)) {
-      result.push(value);
-      indexes.push(index);
-    }
-  }
-  Object(__WEBPACK_IMPORTED_MODULE_1__basePullAt__["a" /* default */])(array, indexes);
-  return result;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (remove);
-
-
-/***/ }),
-/* 216 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/** Used for built-in method references. */
-var arrayProto = Array.prototype;
-
-/* Built-in method references for those with the same name as other `lodash` methods. */
-var nativeReverse = arrayProto.reverse;
-
-/**
- * Reverses `array` so that the first element becomes the last, the second
- * element becomes the second to last, and so on.
- *
- * **Note:** This method mutates `array` and is based on
- * [`Array#reverse`](https://mdn.io/Array/reverse).
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Array
- * @param {Array} array The array to modify.
- * @returns {Array} Returns `array`.
- * @example
- *
- * var array = [1, 2, 3];
- *
- * _.reverse(array);
- * // => [3, 2, 1]
- *
- * console.log(array);
- * // => [3, 2, 1]
- */
-function reverse(array) {
-  return array ? nativeReverse.call(array) : array;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (reverse);
-
-
-/***/ }),
-/* 217 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSlice__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isIterateeCall__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__toInteger__ = __webpack_require__(12);
-
-
-
-
-/**
- * Creates a slice of `array` from `start` up to, but not including, `end`.
- *
- * **Note:** This method is used instead of
- * [`Array#slice`](https://mdn.io/Array/slice) to ensure dense arrays are
- * returned.
- *
- * @static
- * @memberOf _
- * @since 3.0.0
- * @category Array
- * @param {Array} array The array to slice.
- * @param {number} [start=0] The start position.
- * @param {number} [end=array.length] The end position.
- * @returns {Array} Returns the slice of `array`.
- */
-function slice(array, start, end) {
-  var length = array ? array.length : 0;
-  if (!length) {
-    return [];
-  }
-  if (end && typeof end != 'number' && Object(__WEBPACK_IMPORTED_MODULE_1__isIterateeCall__["a" /* default */])(array, start, end)) {
-    start = 0;
-    end = length;
-  }
-  else {
-    start = start == null ? 0 : Object(__WEBPACK_IMPORTED_MODULE_2__toInteger__["a" /* default */])(start);
-    end = end === undefined ? length : Object(__WEBPACK_IMPORTED_MODULE_2__toInteger__["a" /* default */])(end);
-  }
-  return Object(__WEBPACK_IMPORTED_MODULE_0__baseSlice__["a" /* default */])(array, start, end);
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (slice);
-
-
-/***/ }),
-/* 218 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__ = __webpack_require__(101);
-
-
-/**
- * Uses a binary search to determine the lowest index at which `value`
- * should be inserted into `array` in order to maintain its sort order.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Array
- * @param {Array} array The sorted array to inspect.
- * @param {*} value The value to evaluate.
- * @returns {number} Returns the index at which `value` should be inserted
- *  into `array`.
- * @example
- *
- * _.sortedIndex([30, 50], 40);
- * // => 1
- *
- * _.sortedIndex([4, 5], 4);
- * // => 0
- */
-function sortedIndex(array, value) {
-  return Object(__WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__["a" /* default */])(array, value);
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (sortedIndex);
-
-
-/***/ }),
-/* 219 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseSortedIndexBy__ = __webpack_require__(144);
-
-
-
-/**
- * This method is like `_.sortedIndex` except that it accepts `iteratee`
- * which is invoked for `value` and each element of `array` to compute their
- * sort ranking. The iteratee is invoked with one argument: (value).
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Array
- * @param {Array} array The sorted array to inspect.
- * @param {*} value The value to evaluate.
- * @param {Array|Function|Object|string} [iteratee=_.identity]
- *  The iteratee invoked per element.
- * @returns {number} Returns the index at which `value` should be inserted
- *  into `array`.
- * @example
- *
- * var dict = { 'thirty': 30, 'forty': 40, 'fifty': 50 };
- *
- * _.sortedIndexBy(['thirty', 'fifty'], 'forty', _.propertyOf(dict));
- * // => 1
- *
- * // The `_.property` iteratee shorthand.
- * _.sortedIndexBy([{ 'x': 4 }, { 'x': 5 }], { 'x': 4 }, 'x');
- * // => 0
- */
-function sortedIndexBy(array, value, iteratee) {
-  return Object(__WEBPACK_IMPORTED_MODULE_1__baseSortedIndexBy__["a" /* default */])(array, value, Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(iteratee));
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (sortedIndexBy);
-
-
-/***/ }),
-/* 220 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__eq__ = __webpack_require__(52);
-
-
-
-/**
- * This method is like `_.indexOf` except that it performs a binary
- * search on a sorted `array`.
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Array
- * @param {Array} array The array to search.
- * @param {*} value The value to search for.
- * @returns {number} Returns the index of the matched value, else `-1`.
- * @example
- *
- * _.sortedIndexOf([1, 1, 2, 2], 2);
- * // => 2
- */
-function sortedIndexOf(array, value) {
-  var length = array ? array.length : 0;
-  if (length) {
-    var index = Object(__WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__["a" /* default */])(array, value);
-    if (index < length && Object(__WEBPACK_IMPORTED_MODULE_1__eq__["a" /* default */])(array[index], value)) {
-      return index;
-    }
-  }
-  return -1;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (sortedIndexOf);
-
-
-/***/ }),
-/* 221 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__ = __webpack_require__(101);
-
-
-/**
- * This method is like `_.sortedIndex` except that it returns the highest
- * index at which `value` should be inserted into `array` in order to
- * maintain its sort order.
- *
- * @static
- * @memberOf _
- * @since 3.0.0
- * @category Array
- * @param {Array} array The sorted array to inspect.
- * @param {*} value The value to evaluate.
- * @returns {number} Returns the index at which `value` should be inserted
- *  into `array`.
- * @example
- *
- * _.sortedLastIndex([4, 5], 4);
- * // => 1
- */
-function sortedLastIndex(array, value) {
-  return Object(__WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__["a" /* default */])(array, value, true);
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (sortedLastIndex);
-
-
-/***/ }),
-/* 222 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseSortedIndexBy__ = __webpack_require__(144);
-
-
-
-/**
- * This method is like `_.sortedLastIndex` except that it accepts `iteratee`
- * which is invoked for `value` and each element of `array` to compute their
- * sort ranking. The iteratee is invoked with one argument: (value).
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Array
- * @param {Array} array The sorted array to inspect.
- * @param {*} value The value to evaluate.
- * @param {Array|Function|Object|string} [iteratee=_.identity]
- *  The iteratee invoked per element.
- * @returns {number} Returns the index at which `value` should be inserted
- *  into `array`.
- * @example
- *
- * // The `_.property` iteratee shorthand.
- * _.sortedLastIndexBy([{ 'x': 4 }, { 'x': 5 }], { 'x': 4 }, 'x');
- * // => 1
- */
-function sortedLastIndexBy(array, value, iteratee) {
-  return Object(__WEBPACK_IMPORTED_MODULE_1__baseSortedIndexBy__["a" /* default */])(array, value, Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(iteratee), true);
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (sortedLastIndexBy);
-
-
-/***/ }),
-/* 223 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__eq__ = __webpack_require__(52);
-
-
-
-/**
- * This method is like `_.lastIndexOf` except that it performs a binary
- * search on a sorted `array`.
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Array
- * @param {Array} array The array to search.
- * @param {*} value The value to search for.
- * @returns {number} Returns the index of the matched value, else `-1`.
- * @example
- *
- * _.sortedLastIndexOf([1, 1, 2, 2], 2);
- * // => 3
- */
-function sortedLastIndexOf(array, value) {
-  var length = array ? array.length : 0;
-  if (length) {
-    var index = Object(__WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__["a" /* default */])(array, value, true) - 1;
-    if (Object(__WEBPACK_IMPORTED_MODULE_1__eq__["a" /* default */])(array[index], value)) {
-      return index;
-    }
-  }
-  return -1;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (sortedLastIndexOf);
-
-
-/***/ }),
-/* 224 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedUniq__ = __webpack_require__(225);
-
-
-/**
- * This method is like `_.uniq` except that it's designed and optimized
- * for sorted arrays.
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Array
- * @param {Array} array The array to inspect.
- * @returns {Array} Returns the new duplicate free array.
- * @example
- *
- * _.sortedUniq([1, 1, 2]);
- * // => [1, 2]
- */
-function sortedUniq(array) {
-  return (array && array.length)
-    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseSortedUniq__["a" /* default */])(array)
-    : [];
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (sortedUniq);
-
-
-/***/ }),
-/* 225 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__eq__ = __webpack_require__(52);
-
-
-/**
- * The base implementation of `_.sortedUniq` and `_.sortedUniqBy` without
- * support for iteratee shorthands.
- *
- * @private
- * @param {Array} array The array to inspect.
- * @param {Function} [iteratee] The iteratee invoked per element.
- * @returns {Array} Returns the new duplicate free array.
- */
-function baseSortedUniq(array, iteratee) {
-  var index = -1,
-      length = array.length,
-      resIndex = 0,
-      result = [];
-
-  while (++index < length) {
-    var value = array[index],
-        computed = iteratee ? iteratee(value) : value;
-
-    if (!index || !Object(__WEBPACK_IMPORTED_MODULE_0__eq__["a" /* default */])(computed, seen)) {
-      var seen = computed;
-      result[resIndex++] = value === 0 ? 0 : value;
-    }
-  }
-  return result;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (baseSortedUniq);
-
-
-/***/ }),
-/* 226 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseSortedUniq__ = __webpack_require__(225);
-
-
-
-/**
- * This method is like `_.uniqBy` except that it's designed and optimized
- * for sorted arrays.
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Array
- * @param {Array} array The array to inspect.
- * @param {Function} [iteratee] The iteratee invoked per element.
- * @returns {Array} Returns the new duplicate free array.
- * @example
- *
- * _.sortedUniqBy([1.1, 1.2, 2.3, 2.4], Math.floor);
- * // => [1.1, 2.3]
- */
-function sortedUniqBy(array, iteratee) {
-  return (array && array.length)
-    ? Object(__WEBPACK_IMPORTED_MODULE_1__baseSortedUniq__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(iteratee))
-    : [];
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (sortedUniqBy);
-
-
-/***/ }),
-/* 227 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__drop__ = __webpack_require__(137);
-
-
-/**
- * Gets all but the first element of `array`.
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Array
- * @param {Array} array The array to query.
- * @returns {Array} Returns the slice of `array`.
- * @example
- *
- * _.tail([1, 2, 3]);
- * // => [2, 3]
- */
-function tail(array) {
-  return Object(__WEBPACK_IMPORTED_MODULE_0__drop__["a" /* default */])(array, 1);
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (tail);
-
-
-/***/ }),
-/* 228 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSlice__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toInteger__ = __webpack_require__(12);
-
-
-
-/**
- * Creates a slice of `array` with `n` elements taken from the beginning.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Array
- * @param {Array} array The array to query.
- * @param {number} [n=1] The number of elements to take.
- * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
- * @returns {Array} Returns the slice of `array`.
- * @example
- *
- * _.take([1, 2, 3]);
- * // => [1]
- *
- * _.take([1, 2, 3], 2);
- * // => [1, 2]
- *
- * _.take([1, 2, 3], 5);
- * // => [1, 2, 3]
- *
- * _.take([1, 2, 3], 0);
- * // => []
- */
-function take(array, n, guard) {
-  if (!(array && array.length)) {
-    return [];
-  }
-  n = (guard || n === undefined) ? 1 : Object(__WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */])(n);
-  return Object(__WEBPACK_IMPORTED_MODULE_0__baseSlice__["a" /* default */])(array, 0, n < 0 ? 0 : n);
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (take);
-
-
-/***/ }),
-/* 229 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSlice__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toInteger__ = __webpack_require__(12);
-
-
-
-/**
- * Creates a slice of `array` with `n` elements taken from the end.
- *
- * @static
- * @memberOf _
- * @since 3.0.0
- * @category Array
- * @param {Array} array The array to query.
- * @param {number} [n=1] The number of elements to take.
- * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
- * @returns {Array} Returns the slice of `array`.
- * @example
- *
- * _.takeRight([1, 2, 3]);
- * // => [3]
- *
- * _.takeRight([1, 2, 3], 2);
- * // => [2, 3]
- *
- * _.takeRight([1, 2, 3], 5);
- * // => [1, 2, 3]
- *
- * _.takeRight([1, 2, 3], 0);
- * // => []
- */
-function takeRight(array, n, guard) {
-  var length = array ? array.length : 0;
-  if (!length) {
-    return [];
-  }
-  n = (guard || n === undefined) ? 1 : Object(__WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */])(n);
-  n = length - n;
-  return Object(__WEBPACK_IMPORTED_MODULE_0__baseSlice__["a" /* default */])(array, n < 0 ? 0 : n, length);
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (takeRight);
-
-
-/***/ }),
-/* 230 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseWhile__ = __webpack_require__(100);
-
-
-
-/**
- * Creates a slice of `array` with elements taken from the end. Elements are
- * taken until `predicate` returns falsey. The predicate is invoked with
- * three arguments: (value, index, array).
- *
- * @static
- * @memberOf _
- * @since 3.0.0
- * @category Array
- * @param {Array} array The array to query.
- * @param {Array|Function|Object|string} [predicate=_.identity]
- *  The function invoked per iteration.
- * @returns {Array} Returns the slice of `array`.
- * @example
- *
- * var users = [
- *   { 'user': 'barney',  'active': true },
- *   { 'user': 'fred',    'active': false },
- *   { 'user': 'pebbles', 'active': false }
- * ];
- *
- * _.takeRightWhile(users, function(o) { return !o.active; });
- * // => objects for ['fred', 'pebbles']
- *
- * // The `_.matches` iteratee shorthand.
- * _.takeRightWhile(users, { 'user': 'pebbles', 'active': false });
- * // => objects for ['pebbles']
- *
- * // The `_.matchesProperty` iteratee shorthand.
- * _.takeRightWhile(users, ['active', false]);
- * // => objects for ['fred', 'pebbles']
- *
- * // The `_.property` iteratee shorthand.
- * _.takeRightWhile(users, 'active');
- * // => []
- */
-function takeRightWhile(array, predicate) {
-  return (array && array.length)
-    ? Object(__WEBPACK_IMPORTED_MODULE_1__baseWhile__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(predicate, 3), false, true)
-    : [];
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (takeRightWhile);
-
-
-/***/ }),
-/* 231 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseWhile__ = __webpack_require__(100);
-
-
-
-/**
- * Creates a slice of `array` with elements taken from the beginning. Elements
- * are taken until `predicate` returns falsey. The predicate is invoked with
- * three arguments: (value, index, array).
- *
- * @static
- * @memberOf _
- * @since 3.0.0
- * @category Array
- * @param {Array} array The array to query.
- * @param {Array|Function|Object|string} [predicate=_.identity]
- *  The function invoked per iteration.
- * @returns {Array} Returns the slice of `array`.
- * @example
- *
- * var users = [
- *   { 'user': 'barney',  'active': false },
- *   { 'user': 'fred',    'active': false},
- *   { 'user': 'pebbles', 'active': true }
- * ];
- *
- * _.takeWhile(users, function(o) { return !o.active; });
- * // => objects for ['barney', 'fred']
- *
- * // The `_.matches` iteratee shorthand.
- * _.takeWhile(users, { 'user': 'barney', 'active': false });
- * // => objects for ['barney']
- *
- * // The `_.matchesProperty` iteratee shorthand.
- * _.takeWhile(users, ['active', false]);
- * // => objects for ['barney', 'fred']
- *
- * // The `_.property` iteratee shorthand.
- * _.takeWhile(users, 'active');
- * // => []
- */
-function takeWhile(array, predicate) {
-  return (array && array.length)
-    ? Object(__WEBPACK_IMPORTED_MODULE_1__baseWhile__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(predicate, 3))
-    : [];
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (takeWhile);
-
-
-/***/ }),
-/* 232 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseUniq__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rest__ = __webpack_require__(7);
-
-
-
-
-
-/**
- * Creates an array of unique values, in order, from all given arrays using
- * [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
- * for equality comparisons.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Array
- * @param {...Array} [arrays] The arrays to inspect.
- * @returns {Array} Returns the new array of combined values.
- * @example
- *
- * _.union([2, 1], [4, 2], [1, 2]);
- * // => [2, 1, 4]
- */
-var union = Object(__WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */])(function(arrays) {
-  return Object(__WEBPACK_IMPORTED_MODULE_1__baseUniq__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_0__baseFlatten__["a" /* default */])(arrays, 1, __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */], true));
-});
-
-/* harmony default export */ __webpack_exports__["a"] = (union);
-
-
-/***/ }),
-/* 233 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIteratee__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseUniq__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__last__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rest__ = __webpack_require__(7);
-
-
-
-
-
-
-
-/**
- * This method is like `_.union` except that it accepts `iteratee` which is
- * invoked for each element of each `arrays` to generate the criterion by
- * which uniqueness is computed. The iteratee is invoked with one argument:
- * (value).
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Array
- * @param {...Array} [arrays] The arrays to inspect.
- * @param {Array|Function|Object|string} [iteratee=_.identity]
- *  The iteratee invoked per element.
- * @returns {Array} Returns the new array of combined values.
- * @example
- *
- * _.unionBy([2.1, 1.2], [4.3, 2.4], Math.floor);
- * // => [2.1, 1.2, 4.3]
- *
- * // The `_.property` iteratee shorthand.
- * _.unionBy([{ 'x': 1 }], [{ 'x': 2 }, { 'x': 1 }], 'x');
- * // => [{ 'x': 1 }, { 'x': 2 }]
- */
-var unionBy = Object(__WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */])(function(arrays) {
-  var iteratee = Object(__WEBPACK_IMPORTED_MODULE_4__last__["a" /* default */])(arrays);
-  if (Object(__WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__["a" /* default */])(iteratee)) {
-    iteratee = undefined;
-  }
-  return Object(__WEBPACK_IMPORTED_MODULE_2__baseUniq__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_0__baseFlatten__["a" /* default */])(arrays, 1, __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__["a" /* default */], true), Object(__WEBPACK_IMPORTED_MODULE_1__baseIteratee__["a" /* default */])(iteratee));
-});
-
-/* harmony default export */ __webpack_exports__["a"] = (unionBy);
-
-
-/***/ }),
-/* 234 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseUniq__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__rest__ = __webpack_require__(7);
-
-
-
-
-
-
-/**
- * This method is like `_.union` except that it accepts `comparator` which
- * is invoked to compare elements of `arrays`. The comparator is invoked
- * with two arguments: (arrVal, othVal).
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Array
- * @param {...Array} [arrays] The arrays to inspect.
- * @param {Function} [comparator] The comparator invoked per element.
- * @returns {Array} Returns the new array of combined values.
- * @example
- *
- * var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
- * var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 2 }];
- *
- * _.unionWith(objects, others, _.isEqual);
- * // => [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }, { 'x': 1, 'y': 1 }]
- */
-var unionWith = Object(__WEBPACK_IMPORTED_MODULE_4__rest__["a" /* default */])(function(arrays) {
-  var comparator = Object(__WEBPACK_IMPORTED_MODULE_3__last__["a" /* default */])(arrays);
-  if (Object(__WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */])(comparator)) {
-    comparator = undefined;
-  }
-  return Object(__WEBPACK_IMPORTED_MODULE_1__baseUniq__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_0__baseFlatten__["a" /* default */])(arrays, 1, __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */], true), undefined, comparator);
-});
-
-/* harmony default export */ __webpack_exports__["a"] = (unionWith);
-
-
-/***/ }),
-/* 235 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseUniq__ = __webpack_require__(49);
-
-
-/**
- * Creates a duplicate-free version of an array, using
- * [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
- * for equality comparisons, in which only the first occurrence of each
- * element is kept.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Array
- * @param {Array} array The array to inspect.
- * @returns {Array} Returns the new duplicate free array.
- * @example
- *
- * _.uniq([2, 1, 2]);
- * // => [2, 1]
- */
-function uniq(array) {
-  return (array && array.length)
-    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseUniq__["a" /* default */])(array)
-    : [];
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (uniq);
-
-
-/***/ }),
-/* 236 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseUniq__ = __webpack_require__(49);
-
-
-
-/**
- * This method is like `_.uniq` except that it accepts `iteratee` which is
- * invoked for each element in `array` to generate the criterion by which
- * uniqueness is computed. The iteratee is invoked with one argument: (value).
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Array
- * @param {Array} array The array to inspect.
- * @param {Array|Function|Object|string} [iteratee=_.identity]
- *  The iteratee invoked per element.
- * @returns {Array} Returns the new duplicate free array.
- * @example
- *
- * _.uniqBy([2.1, 1.2, 2.3], Math.floor);
- * // => [2.1, 1.2]
- *
- * // The `_.property` iteratee shorthand.
- * _.uniqBy([{ 'x': 1 }, { 'x': 2 }, { 'x': 1 }], 'x');
- * // => [{ 'x': 1 }, { 'x': 2 }]
- */
-function uniqBy(array, iteratee) {
-  return (array && array.length)
-    ? Object(__WEBPACK_IMPORTED_MODULE_1__baseUniq__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(iteratee))
-    : [];
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (uniqBy);
-
-
-/***/ }),
-/* 237 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseUniq__ = __webpack_require__(49);
-
-
-/**
- * This method is like `_.uniq` except that it accepts `comparator` which
- * is invoked to compare elements of `array`. The comparator is invoked with
- * two arguments: (arrVal, othVal).
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Array
- * @param {Array} array The array to inspect.
- * @param {Function} [comparator] The comparator invoked per element.
- * @returns {Array} Returns the new duplicate free array.
- * @example
- *
- * var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 },  { 'x': 1, 'y': 2 }];
- *
- * _.uniqWith(objects, _.isEqual);
- * // => [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }]
- */
-function uniqWith(array, comparator) {
-  return (array && array.length)
-    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseUniq__["a" /* default */])(array, undefined, comparator)
-    : [];
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (uniqWith);
-
-
-/***/ }),
-/* 238 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArrayLikeObject__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__rest__ = __webpack_require__(7);
-
-
-
-
-/**
- * Creates an array excluding all given values using
- * [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
- * for equality comparisons.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Array
- * @param {Array} array The array to inspect.
- * @param {...*} [values] The values to exclude.
- * @returns {Array} Returns the new array of filtered values.
- * @see _.difference, _.xor
- * @example
- *
- * _.without([1, 2, 1, 3], 1, 2);
- * // => [3]
- */
-var without = Object(__WEBPACK_IMPORTED_MODULE_2__rest__["a" /* default */])(function(array, values) {
-  return Object(__WEBPACK_IMPORTED_MODULE_1__isArrayLikeObject__["a" /* default */])(array)
-    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseDifference__["a" /* default */])(array, values)
-    : [];
-});
-
-/* harmony default export */ __webpack_exports__["a"] = (without);
-
-
-/***/ }),
-/* 239 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayFilter__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseXor__ = __webpack_require__(146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rest__ = __webpack_require__(7);
-
-
-
-
-
-/**
- * Creates an array of unique values that is the
- * [symmetric difference](https://en.wikipedia.org/wiki/Symmetric_difference)
- * of the given arrays. The order of result values is determined by the order
- * they occur in the arrays.
- *
- * @static
- * @memberOf _
- * @since 2.4.0
- * @category Array
- * @param {...Array} [arrays] The arrays to inspect.
- * @returns {Array} Returns the new array of filtered values.
- * @see _.difference, _.without
- * @example
- *
- * _.xor([2, 1], [4, 2]);
- * // => [1, 4]
- */
-var xor = Object(__WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */])(function(arrays) {
-  return Object(__WEBPACK_IMPORTED_MODULE_1__baseXor__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_0__arrayFilter__["a" /* default */])(arrays, __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */]));
-});
-
-/* harmony default export */ __webpack_exports__["a"] = (xor);
-
-
-/***/ }),
-/* 240 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayFilter__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIteratee__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseXor__ = __webpack_require__(146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__last__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rest__ = __webpack_require__(7);
-
-
-
-
-
-
-
-/**
- * This method is like `_.xor` except that it accepts `iteratee` which is
- * invoked for each element of each `arrays` to generate the criterion by
- * which by which they're compared. The iteratee is invoked with one argument:
- * (value).
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Array
- * @param {...Array} [arrays] The arrays to inspect.
- * @param {Array|Function|Object|string} [iteratee=_.identity]
- *  The iteratee invoked per element.
- * @returns {Array} Returns the new array of filtered values.
- * @example
- *
- * _.xorBy([2.1, 1.2], [4.3, 2.4], Math.floor);
- * // => [1.2, 4.3]
- *
- * // The `_.property` iteratee shorthand.
- * _.xorBy([{ 'x': 1 }], [{ 'x': 2 }, { 'x': 1 }], 'x');
- * // => [{ 'x': 2 }]
- */
-var xorBy = Object(__WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */])(function(arrays) {
-  var iteratee = Object(__WEBPACK_IMPORTED_MODULE_4__last__["a" /* default */])(arrays);
-  if (Object(__WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__["a" /* default */])(iteratee)) {
-    iteratee = undefined;
-  }
-  return Object(__WEBPACK_IMPORTED_MODULE_2__baseXor__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_0__arrayFilter__["a" /* default */])(arrays, __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__["a" /* default */]), Object(__WEBPACK_IMPORTED_MODULE_1__baseIteratee__["a" /* default */])(iteratee));
-});
-
-/* harmony default export */ __webpack_exports__["a"] = (xorBy);
-
-
-/***/ }),
-/* 241 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayFilter__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseXor__ = __webpack_require__(146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__rest__ = __webpack_require__(7);
-
-
-
-
-
-
-/**
- * This method is like `_.xor` except that it accepts `comparator` which is
- * invoked to compare elements of `arrays`. The comparator is invoked with
- * two arguments: (arrVal, othVal).
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Array
- * @param {...Array} [arrays] The arrays to inspect.
- * @param {Function} [comparator] The comparator invoked per element.
- * @returns {Array} Returns the new array of filtered values.
- * @example
- *
- * var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
- * var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 2 }];
- *
- * _.xorWith(objects, others, _.isEqual);
- * // => [{ 'x': 2, 'y': 1 }, { 'x': 1, 'y': 1 }]
- */
-var xorWith = Object(__WEBPACK_IMPORTED_MODULE_4__rest__["a" /* default */])(function(arrays) {
-  var comparator = Object(__WEBPACK_IMPORTED_MODULE_3__last__["a" /* default */])(arrays);
-  if (Object(__WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */])(comparator)) {
-    comparator = undefined;
-  }
-  return Object(__WEBPACK_IMPORTED_MODULE_1__baseXor__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_0__arrayFilter__["a" /* default */])(arrays, __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */]), undefined, comparator);
-});
-
-/* harmony default export */ __webpack_exports__["a"] = (xorWith);
-
-
-/***/ }),
-/* 242 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rest__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__unzip__ = __webpack_require__(102);
-
-
-
-/**
- * Creates an array of grouped elements, the first of which contains the
- * first elements of the given arrays, the second of which contains the
- * second elements of the given arrays, and so on.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Array
- * @param {...Array} [arrays] The arrays to process.
- * @returns {Array} Returns the new array of grouped elements.
- * @example
- *
- * _.zip(['fred', 'barney'], [30, 40], [true, false]);
- * // => [['fred', 30, true], ['barney', 40, false]]
- */
-var zip = Object(__WEBPACK_IMPORTED_MODULE_0__rest__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_1__unzip__["a" /* default */]);
-
-/* harmony default export */ __webpack_exports__["a"] = (zip);
-
-
-/***/ }),
-/* 243 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assignValue__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseZipObject__ = __webpack_require__(244);
-
-
-
-/**
- * This method is like `_.fromPairs` except that it accepts two arrays,
- * one of property identifiers and one of corresponding values.
- *
- * @static
- * @memberOf _
- * @since 0.4.0
- * @category Array
- * @param {Array} [props=[]] The property identifiers.
- * @param {Array} [values=[]] The property values.
- * @returns {Object} Returns the new object.
- * @example
- *
- * _.zipObject(['a', 'b'], [1, 2]);
- * // => { 'a': 1, 'b': 2 }
- */
-function zipObject(props, values) {
-  return Object(__WEBPACK_IMPORTED_MODULE_1__baseZipObject__["a" /* default */])(props || [], values || [], __WEBPACK_IMPORTED_MODULE_0__assignValue__["a" /* default */]);
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (zipObject);
-
-
-/***/ }),
-/* 244 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/**
- * This base implementation of `_.zipObject` which assigns values using `assignFunc`.
- *
- * @private
- * @param {Array} props The property identifiers.
- * @param {Array} values The property values.
- * @param {Function} assignFunc The function to assign values.
- * @returns {Object} Returns the new object.
- */
-function baseZipObject(props, values, assignFunc) {
-  var index = -1,
-      length = props.length,
-      valsLength = values.length,
-      result = {};
-
-  while (++index < length) {
-    var value = index < valsLength ? values[index] : undefined;
-    assignFunc(result, props[index], value);
-  }
-  return result;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (baseZipObject);
-
-
-/***/ }),
-/* 245 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSet__ = __webpack_require__(392);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseZipObject__ = __webpack_require__(244);
-
-
-
-/**
- * This method is like `_.zipObject` except that it supports property paths.
- *
- * @static
- * @memberOf _
- * @since 4.1.0
- * @category Array
- * @param {Array} [props=[]] The property identifiers.
- * @param {Array} [values=[]] The property values.
- * @returns {Object} Returns the new object.
- * @example
- *
- * _.zipObjectDeep(['a.b[0].c', 'a.b[1].d'], [1, 2]);
- * // => { 'a': { 'b': [{ 'c': 1 }, { 'd': 2 }] } }
- */
-function zipObjectDeep(props, values) {
-  return Object(__WEBPACK_IMPORTED_MODULE_1__baseZipObject__["a" /* default */])(props || [], values || [], __WEBPACK_IMPORTED_MODULE_0__baseSet__["a" /* default */]);
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (zipObjectDeep);
-
-
-/***/ }),
-/* 246 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rest__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__unzipWith__ = __webpack_require__(145);
-
-
-
-/**
- * This method is like `_.zip` except that it accepts `iteratee` to specify
- * how grouped values should be combined. The iteratee is invoked with the
- * elements of each group: (...group).
- *
- * @static
- * @memberOf _
- * @since 3.8.0
- * @category Array
- * @param {...Array} [arrays] The arrays to process.
- * @param {Function} [iteratee=_.identity] The function to combine grouped values.
- * @returns {Array} Returns the new array of grouped elements.
- * @example
- *
- * _.zipWith([1, 2], [10, 20], [100, 200], function(a, b, c) {
- *   return a + b + c;
- * });
- * // => [111, 222]
- */
-var zipWith = Object(__WEBPACK_IMPORTED_MODULE_0__rest__["a" /* default */])(function(arrays) {
-  var length = arrays.length,
-      iteratee = length > 1 ? arrays[length - 1] : undefined;
-
-  iteratee = typeof iteratee == 'function' ? (arrays.pop(), iteratee) : undefined;
-  return Object(__WEBPACK_IMPORTED_MODULE_1__unzipWith__["a" /* default */])(arrays, iteratee);
-});
-
-/* harmony default export */ __webpack_exports__["a"] = (zipWith);
-
-
-/***/ }),
-/* 247 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = diff;
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module utils/diff
- */
-
-// The following code is based on the "O(NP) Sequence Comparison Algorithm"
-// by Sun Wu, Udi Manber, Gene Myers, Webb Miller.
-
-/**
- * Calculates the difference between two arrays or strings producing an array containing a list of changes
- * necessary to transform input into output.
- *
- *		diff( 'aba', 'acca' ); // [ 'equal', 'insert', 'insert', 'delete', 'equal' ]
- *
- * @param {Array|String} a Input array or string.
- * @param {Array|String} b Output array or string.
- * @param {Function} [cmp] Optional function used to compare array values, by default === is used.
- * @returns {Array} Array of changes.
- */
-function diff( a, b, cmp ) {
-	// Set the comparator function.
-	cmp = cmp || function( a, b ) {
-		return a === b;
-	};
-
-	// Temporary action type statics.
-	let _insert, _delete;
-
-	// Swapped the arrays to use the shorter one as the first one.
-	if ( b.length < a.length ) {
-		const tmp = a;
-
-		a = b;
-		b = tmp;
-
-		// We swap the action types as well.
-		_insert = 'delete';
-		_delete = 'insert';
-	} else {
-		_insert = 'insert';
-		_delete = 'delete';
-	}
-
-	const m = a.length;
-	const n = b.length;
-	const delta = n - m;
-
-	// Edit scripts, for each diagonal.
-	const es = {};
-	// Furthest points, the furthest y we can get on each diagonal.
-	const fp = {};
-
-	function snake( k ) {
-		// We use -1 as an alternative below to handle initial values ( instead of filling the fp with -1 first ).
-		// Furthest points (y) on the diagonal below k.
-		const y1 = ( fp[ k - 1 ] !== undefined ? fp[ k - 1 ] : -1 ) + 1;
-		// Furthest points (y) on the diagonal above k.
-		const y2 = fp[ k + 1 ] !== undefined ? fp[ k + 1 ] : -1;
-		// The way we should go to get further.
-		const dir = y1 > y2 ? -1 : 1;
-
-		// Clone previous changes array (if any).
-		if ( es[ k + dir ] ) {
-			es[ k ] = es[ k + dir ].slice( 0 );
-		}
-
-		// Create changes array.
-		if ( !es[ k ] ) {
-			es[ k ] = [];
-		}
-
-		// Push the action.
-		es[ k ].push( y1 > y2 ? _insert : _delete );
-
-		// Set the beginning coordinates.
-		let y = Math.max( y1, y2 );
-		let x = y - k;
-
-		// Traverse the diagonal as long as the values match.
-		while ( x < m && y < n && cmp( a[ x ], b[ y ] ) ) {
-			x++;
-			y++;
-			// Push no change action.
-			es[ k ].push( 'equal' );
-		}
-
-		return y;
-	}
-
-	let p = 0;
-	let k;
-
-	// Traverse the graph until we reach the end of the longer string.
-	do {
-		// Updates furthest points and edit scripts for diagonals below delta.
-		for ( k = -p; k < delta; k++ ) {
-			fp[ k ] = snake( k );
-		}
-
-		// Updates furthest points and edit scripts for diagonals above delta.
-		for ( k = delta + p; k > delta; k-- ) {
-			fp[ k ] = snake( k );
-		}
-
-		// Updates furthest point and edit script for the delta diagonal.
-		// note that the delta diagonal is the one which goes through the sink (m, n).
-		fp[ delta ] = snake( delta );
-
-		p++;
-	} while ( fp[ delta ] !== n );
-
-	// Return the final list of edit changes.
-	// We remove the first item that represents the action for the injected nulls.
-	return es[ delta ].slice( 1 );
-}
-
-
-/***/ }),
-/* 248 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33617,6 +25422,8207 @@ function forEachDomNodeAncestor( node, callback ) {
 
 
 /***/ }),
+/* 149 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_extend__ = __webpack_require__(44);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module engine/view/observer/domeventdata
+ */
+
+
+
+/**
+ * Information about a DOM event in context of the {@link module:engine/view/document~Document}.
+ * It wraps the native event, which usually should not be used as the wrapper contains
+ * additional data (like key code for keyboard events).
+ */
+class DomEventData {
+	/**
+	 * @param {module:engine/view/document~Document} document The instance of the tree view Document.
+	 * @param {Event} domEvent The DOM event.
+	 * @param {Object} [additionalData] Additional properties that the instance should contain.
+	 */
+	constructor( document, domEvent, additionalData ) {
+		/**
+		 * The instance of the document.
+		 *
+		 * @readonly
+		 * @member {module:engine/view/document~Document} module:engine/view/observer/observer~Observer.DomEvent#view
+		 */
+		this.document = document;
+
+		/**
+		 * The DOM event.
+		 *
+		 * @readonly
+		 * @member {Event} module:engine/view/observer/observer~Observer.DomEvent#domEvent
+		 */
+		this.domEvent = domEvent;
+
+		/**
+		 * The DOM target.
+		 *
+		 * @readonly
+		 * @member {HTMLElement} module:engine/view/observer/observer~Observer.DomEvent#target
+		 */
+		this.domTarget = domEvent.target;
+
+		Object(__WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_extend__["a" /* default */])( this, additionalData );
+	}
+
+	/**
+	 * The tree view element representing the target.
+	 *
+	 * @readonly
+	 * @type module:engine/view/element~Element
+	 */
+	get target() {
+		return this.document.domConverter.mapDomToView( this.domTarget );
+	}
+
+	/**
+	 * Prevents the native's event default action.
+	 */
+	preventDefault() {
+		this.domEvent.preventDefault();
+	}
+
+	/**
+	 * Stops native event propagation.
+	 */
+	stopPropagation() {
+		this.domEvent.stopPropagation();
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = DomEventData;
+
+
+
+/***/ }),
+/* 150 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_collection__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module ui/viewcollection
+ */
+
+
+
+
+
+
+/**
+ * Collects {@link module:ui/view~View} instances.
+ *
+ * @extends module:utils/collection~Collection
+ * @mixes module:utils/observablemixin~ObservableMixin
+ */
+class ViewCollection extends __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_collection__["a" /* default */] {
+	/**
+	 * Creates a new {@link module:ui/viewcollection~ViewCollection} instance.
+	 *
+	 * @param {module:utils/locale~Locale} [locale] The {@link module:core/editor~Editor editor's locale} instance.
+	 */
+	constructor( locale ) {
+		super( {
+			// An #id Number attribute should be legal and not break the `ViewCollection` instance.
+			// https://github.com/ckeditor/ckeditor5-ui/issues/93
+			idProperty: 'viewUid'
+		} );
+
+		// Handle {@link module:ui/view~View#element} in DOM when a new view is added to the collection.
+		this.on( 'add', ( evt, view, index ) => {
+			if ( view.element && this._parentElement ) {
+				this._parentElement.insertBefore( view.element, this._parentElement.children[ index ] );
+			}
+		} );
+
+		// Handle {@link module:ui/view~View#element} in DOM when a view is removed from the collection.
+		this.on( 'remove', ( evt, view ) => {
+			if ( view.element && this._parentElement ) {
+				view.element.remove();
+			}
+		} );
+
+		/**
+		 * The {@link module:core/editor/editor~Editor editor's locale} instance.
+		 *
+		 * @member {module:utils/locale~Locale}
+		 */
+		this.locale = locale;
+
+		/**
+		 * Set to `true` once the parent's {@link module:ui/view~View#ready} is true, which means
+		 * that all the views in the collection are also ready (which can be asynchronous).
+		 *
+		 * @readonly
+		 * @observable
+		 * @member {Boolean} #ready
+		 */
+		this.set( 'ready', false );
+
+		/**
+		 * A parent element within which child views are rendered and managed in DOM.
+		 *
+		 * @protected
+		 * @member {HTMLElement}
+		 */
+		this._parentElement = null;
+	}
+
+	/**
+	 * Initializes child views by injecting {@link module:ui/view~View#element} into DOM
+	 * and calling {@link module:ui/view~View#init}.
+	 */
+	init() {
+		if ( this.ready ) {
+			/**
+			 * This ViewCollection has already been initialized.
+			 *
+			 * @error ui-viewcollection-init-reinit
+			 */
+			throw new __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'ui-viewcollection-init-reinit: This ViewCollection has already been initialized.' );
+		}
+
+		this.map( v => v.init() );
+
+		this.ready = true;
+	}
+
+	/**
+	 * Destroys the view collection along with child views.
+	 */
+	destroy() {
+		this.map( v => v.destroy() );
+	}
+
+	/**
+	 * Adds a child view to the collection. If {@link module:ui/viewcollection~ViewCollection#ready}, the child view
+	 * is also initialized when added.
+	 *
+	 * @param {module:ui/view~View} view A child view.
+	 * @param {Number} [index] Index at which the child will be added to the collection.
+	 */
+	add( view, index ) {
+		super.add( view, index );
+
+		if ( this.ready && !view.ready ) {
+			view.init();
+		}
+	}
+
+	/**
+	 * Sets {@link #_parentElement} of this collection.
+	 *
+	 * @param {HTMLElement} element A new parent.
+	 */
+	setParent( elementOrDocFragment ) {
+		this._parentElement = elementOrDocFragment;
+	}
+
+	/**
+	 * Delegates selected events coming from within the collection to desired {@link module:utils/emittermixin~EmitterMixin}.
+	 *
+	 * For instance:
+	 *
+	 *		const viewA = new View();
+	 *		const viewB = new View();
+	 *		const viewC = new View();
+	 *
+	 *		const views = parentView.createCollection();
+	 *
+	 *		views.delegate( 'eventX' ).to( viewB );
+	 *		views.delegate( 'eventX', 'eventY' ).to( viewC );
+	 *
+	 *		views.add( viewA );
+	 *
+	 * then `eventX` is delegated (fired by) `viewB` and `viewC` along with `customData`:
+	 *
+	 *		viewA.fire( 'eventX', customData );
+	 *
+	 * and `eventY` is delegated (fired by) `viewC` along with `customData`:
+	 *
+	 *		viewA.fire( 'eventY', customData );
+	 *
+	 * See {@link module:utils/emittermixin~EmitterMixin#delegate}.
+	 *
+	 * @param {...String} events {@link module:ui/view~View} event names to be delegated to another
+	 * {@link module:utils/emittermixin~EmitterMixin}.
+	 * @returns {module:ui/viewcollection~ViewCollection#delegate.to}
+	 */
+	delegate( ...events ) {
+		if ( !events.length || !isStringArray( events ) ) {
+			/**
+			 * All event names must be strings.
+			 *
+			 * @error ui-viewcollection-delegate-wrong-events
+			 */
+			throw new __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'ui-viewcollection-delegate-wrong-events: All event names must be strings.' );
+		}
+
+		return {
+			/**
+			 * Selects destination for {@link module:utils/emittermixin~EmitterMixin#delegate} events.
+			 *
+			 * @memberOf module:ui/viewcollection~ViewCollection#delegate
+			 * @function module:ui/viewcollection~ViewCollection#delegate.to
+			 * @param {module:utils/emittermixin~EmitterMixin} dest An `EmitterMixin` instance which is
+			 * the destination for delegated events.
+			 */
+			to: dest => {
+				// Activate delegating on existing views in this collection.
+				for ( const view of this ) {
+					for ( const evtName of events ) {
+						view.delegate( evtName ).to( dest );
+					}
+				}
+
+				// Activate delegating on future views in this collection.
+				this.on( 'add', ( evt, view ) => {
+					for ( const evtName of events ) {
+						view.delegate( evtName ).to( dest );
+					}
+				} );
+
+				// Deactivate delegating when view is removed from this collection.
+				this.on( 'remove', ( evt, view ) => {
+					for ( const evtName of events ) {
+						view.stopDelegating( evtName, dest );
+					}
+				} );
+			}
+		};
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = ViewCollection;
+
+
+Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_collection__["a" /* default */], __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_observablemixin__["a" /* default */] );
+
+// Check if all entries of the array are of `String` type.
+//
+// @private
+// @param {Array} arr An array to be checked.
+// @returns {Boolean}
+function isStringArray( arr ) {
+	return arr.every( a => typeof a == 'string' );
+}
+
+
+/***/ }),
+/* 151 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_dom_position__ = __webpack_require__(426);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_dom_isrange__ = __webpack_require__(256);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isElement__ = __webpack_require__(257);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_dom_tounit__ = __webpack_require__(429);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__bindings_preventdefault_js__ = __webpack_require__(258);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_dom_global__ = __webpack_require__(59);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module ui/panel/balloon/balloonpanelview
+ */
+
+
+
+
+
+
+
+
+
+
+const toPx = Object(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_dom_tounit__["a" /* default */])( 'px' );
+const defaultLimiterElement = __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_dom_global__["a" /* default */].document.body;
+
+/**
+ * The balloon panel view class.
+ *
+ * @extends module:ui/view~View
+ */
+class BalloonPanelView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */] {
+	/**
+	 * @inheritDoc
+	 */
+	constructor( locale ) {
+		super( locale );
+
+		const bind = this.bindTemplate;
+
+		/**
+		 * The absolute top position of the balloon panel in pixels.
+		 *
+		 * @observable
+		 * @default 0
+		 * @member {Number} #top
+		 */
+		this.set( 'top', 0 );
+
+		/**
+		 * The absolute left position of the balloon panel in pixels.
+		 *
+		 * @observable
+		 * @default 0
+		 * @member {Number} #left
+		 */
+		this.set( 'left', 0 );
+
+		/**
+		 * Balloon panel's current position. The position name is reflected in the CSS class set
+		 * to the balloon, i.e. `.ck-balloon-panel_arrow_nw` for "arrow_nw" position. The class
+		 * controls the minor aspects of the balloon's visual appearance like placement
+		 * of the "arrow". To support a new position, an additional CSS must be created.
+		 *
+		 * Default position names correspond with
+		 * {@link module:ui/panel/balloon/balloonpanelview~BalloonPanelView.defaultPositions}.
+		 *
+		 * See {@link #attachTo} to learn about custom balloon positions.
+		 *
+		 * See {@link #withArrow}.
+		 *
+		 * @observable
+		 * @default 'arrow_nw'
+		 * @member {'arrow_nw'|'arrow_ne'|'arrow_sw'|'arrow_se'} #position
+		 */
+		this.set( 'position', 'arrow_nw' );
+
+		/**
+		 * Controls whether the balloon panel is visible or not.
+		 *
+		 * @observable
+		 * @default false
+		 * @member {Boolean} #isVisible
+		 */
+		this.set( 'isVisible', false );
+
+		/**
+		 * Controls whether the balloon panel has an arrow. The presence of the arrow
+		 * is reflected in `ck-balloon-panel_with-arrow` CSS class.
+		 *
+		 * @observable
+		 * @default true
+		 * @member {Boolean} #withArrow
+		 */
+		this.set( 'withArrow', true );
+
+		/**
+		 * Additional css class added to the {#element}.
+		 *
+		 * @observable
+		 * @member {String} #className
+		 */
+		this.set( 'className' );
+
+		/**
+		 * A callback that starts pining the panel when {@link #isVisible} gets
+		 * `true`. Used by {@link #pin}.
+		 *
+		 * @private
+		 * @member {Function} #_pinWhenIsVisibleCallback
+		 */
+
+		/**
+		 * Collection of the child views which creates balloon panel contents.
+		 *
+		 * @readonly
+		 * @member {module:ui/viewcollection~ViewCollection}
+		 */
+		this.content = this.createCollection();
+
+		this.template = new __WEBPACK_IMPORTED_MODULE_1__template__["a" /* default */]( {
+			tag: 'div',
+			attributes: {
+				class: [
+					'ck-balloon-panel',
+					bind.to( 'position', value => `ck-balloon-panel_${ value }` ),
+					bind.if( 'isVisible', 'ck-balloon-panel_visible' ),
+					bind.if( 'withArrow', 'ck-balloon-panel_with-arrow' ),
+					bind.to( 'className' )
+				],
+
+				style: {
+					top: bind.to( 'top', toPx ),
+					left: bind.to( 'left', toPx )
+				}
+			},
+
+			children: this.content,
+
+			on: {
+				// https://github.com/ckeditor/ckeditor5-ui/issues/206
+				mousedown: Object(__WEBPACK_IMPORTED_MODULE_6__bindings_preventdefault_js__["a" /* default */])( this ),
+
+				// https://github.com/ckeditor/ckeditor5-ui/issues/243
+				selectstart: bind.to( evt => evt.preventDefault() )
+			}
+		} );
+	}
+
+	/**
+	 * Shows the balloon panel.
+	 *
+	 * See {@link #isVisible}.
+	 */
+	show() {
+		this.isVisible = true;
+	}
+
+	/**
+	 * Hides the balloon panel.
+	 *
+	 * See {@link #isVisible}.
+	 */
+	hide() {
+		this.isVisible = false;
+	}
+
+	/**
+	 * Attaches the balloon panel to a specified DOM element or range with a smart heuristics.
+	 *
+	 * See {@link @link module:utils/dom/position~getOptimalPosition}.
+	 *
+	 * TODO: More docs and examples.
+	 *
+	 * @param {module:utils/dom/position~Options} options Positioning options compatible with
+	 * {@link module:utils/dom/position~getOptimalPosition}. Default `positions` array is
+	 * {@link module:ui/panel/balloon/balloonpanelview~BalloonPanelView.defaultPositions}.
+	 */
+	attachTo( options ) {
+		this.show();
+
+		const defaultPositions = BalloonPanelView.defaultPositions;
+		const positionOptions = Object.assign( {}, {
+			element: this.element,
+			positions: [
+				defaultPositions.southArrowNorthWest,
+				defaultPositions.southArrowNorthEast,
+				defaultPositions.northArrowSouthWest,
+				defaultPositions.northArrowSouthEast
+			],
+			limiter: defaultLimiterElement,
+			fitInViewport: true
+		}, options );
+
+		const { top, left, name: position } = Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_dom_position__["a" /* getOptimalPosition */])( positionOptions );
+
+		Object.assign( this, { top, left, position } );
+	}
+
+	/**
+	 * Works the same way as {module:ui/panel/balloon/balloonpanelview~BalloonPanelView.attachTo}
+	 * except that the position of the panel is continuously updated when any ancestor of the
+	 * {@link module:utils/dom/position~Options#target} or {@link module:utils/dom/position~Options#limiter}
+	 * is being scrolled or when the browser window is being resized.
+	 *
+	 * Thanks to this, the panel always sticks to the {@link module:utils/dom/position~Options#target}.
+	 *
+	 * See: {@link #unpin}.
+	 *
+	 * @param {module:utils/dom/position~Options} options Positioning options compatible with
+	 * {@link module:utils/dom/position~getOptimalPosition}. Default `positions` array is
+	 * {@link module:ui/panel/balloon/balloonpanelview~BalloonPanelView.defaultPositions}.
+	 */
+	pin( options ) {
+		this.unpin();
+
+		this._pinWhenIsVisibleCallback = () => {
+			if ( this.isVisible ) {
+				this._startPinning( options );
+			} else {
+				this._stopPinning();
+			}
+		};
+
+		this._startPinning( options );
+
+		// Control the state of the listeners depending on whether the panel is visible
+		// or not.
+		// TODO: Use on() (https://github.com/ckeditor/ckeditor5-utils/issues/144).
+		this.listenTo( this, 'change:isVisible', this._pinWhenIsVisibleCallback );
+	}
+
+	/**
+	 * Stops pinning the panel, as set up by {@link #pin}.
+	 */
+	unpin() {
+		if ( this._pinWhenIsVisibleCallback ) {
+			// Deactivate listeners attached by pin().
+			this._stopPinning();
+
+			// Deactivate the panel pin() control logic.
+			// TODO: Use off() (https://github.com/ckeditor/ckeditor5-utils/issues/144).
+			this.stopListening( this, 'change:isVisible', this._pinWhenIsVisibleCallback );
+
+			this._pinWhenIsVisibleCallback = null;
+
+			this.hide();
+		}
+	}
+
+	/**
+	 * Starts managing the pinned state of the panel. See {@link #pin}.
+	 *
+	 * @private
+	 * @param {module:utils/dom/position~Options} options Positioning options compatible with
+	 * {@link module:utils/dom/position~getOptimalPosition}.
+	 */
+	_startPinning( options ) {
+		this.attachTo( options );
+
+		const limiter = options.limiter || defaultLimiterElement;
+		let targetElement = null;
+
+		// We need to take HTMLElement related to the target if it is possible.
+		if ( Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isElement__["a" /* default */])( options.target ) ) {
+			targetElement = options.target;
+		} else if ( Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_dom_isrange__["a" /* default */])( options.target ) ) {
+			targetElement = options.target.commonAncestorContainer;
+		}
+
+		// Then we need to listen on scroll event of eny element in the document.
+		this.listenTo( __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_dom_global__["a" /* default */].document, 'scroll', ( evt, domEvt ) => {
+			const scrollTarget = domEvt.target;
+
+			// The position needs to be updated if the positioning target is within the scrolled element.
+			const isWithinScrollTarget = targetElement && scrollTarget.contains( targetElement );
+
+			// The position needs to be updated if the positioning limiter is within the scrolled element.
+			const isLimiterWithinScrollTarget = scrollTarget.contains( limiter );
+
+			// The positioning target can be a Rect, object etc.. There's no way to optimize the listener then.
+			if ( isWithinScrollTarget || isLimiterWithinScrollTarget || !targetElement ) {
+				this.attachTo( options );
+			}
+		}, { useCapture: true } );
+
+		// We need to listen on window resize event and update position.
+		this.listenTo( __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_dom_global__["a" /* default */].window, 'resize', () => {
+			this.attachTo( options );
+		} );
+	}
+
+	/**
+	 * Stops managing the pinned state of the panel. See {@link #pin}.
+	 *
+	 * @private
+	 */
+	_stopPinning() {
+		this.stopListening( __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_dom_global__["a" /* default */].document, 'scroll' );
+		this.stopListening( __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_dom_global__["a" /* default */].window, 'resize' );
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = BalloonPanelView;
+
+
+/**
+ * A horizontal offset of the arrow tip from the edge of the balloon. Controlled by CSS.
+ *
+ *		 +-----|---------...
+ *		 |     |
+ *		 |     |
+ *		 |     |
+ *		 |     |
+ *		 +--+  |  +------...
+ *		     \ | /
+ *		      \|/
+ *	    >|-----|<---------------- horizontal offset
+ *
+ * @default 30
+ * @member {Number} module:ui/panel/balloon/balloonpanelview~BalloonPanelView.arrowHorizontalOffset
+ */
+BalloonPanelView.arrowHorizontalOffset = 30;
+
+/**
+ * A vertical offset of the arrow from the edge of the balloon. Controlled by CSS.
+ *
+ *		 +-------------...
+ *		 |
+ *		 |
+ *		 |                      /-- vertical offset
+ *		 |                     V
+ *		 +--+    +-----...    ---------
+ *		     \  /              |
+ *		      \/               |
+ *		-------------------------------
+ *		                       ^
+ *
+ * @default 15
+ * @member {Number} module:ui/panel/balloon/balloonpanelview~BalloonPanelView.arrowVerticalOffset
+ */
+BalloonPanelView.arrowVerticalOffset = 15;
+
+/**
+ * A default set of positioning functions used by the balloon panel view
+ * when attaching using {@link module:ui/panel/balloon/balloonpanelview~BalloonPanelView#attachTo} method.
+ *
+ * The available positioning functions are as follow:
+ *
+ * **North**
+ *
+ * * `northArrowSouth`
+ *
+ * 		+-----------------+
+ * 		|     Balloon     |
+ * 		+-----------------+
+ * 		         V
+ * 		    [ Target ]
+ *
+ * * `northArrowSouthEast`
+ *
+ * 		+-----------------+
+ * 		|     Balloon     |
+ * 		+-----------------+
+ * 		               V
+ * 		          [ Target ]
+ *
+ * * `northArrowSouthWest`
+ *
+ * 		  +-----------------+
+ * 		  |     Balloon     |
+ * 		  +-----------------+
+ * 		     V
+ * 		[ Target ]
+ *
+ * **North west**
+ *
+ * * `northWestArrowSouth`
+ *
+ * 		+-----------------+
+ * 		|     Balloon     |
+ * 		+-----------------+
+ * 		         V
+ * 		         [ Target ]
+ *
+ * * `northWestArrowSouthWest`
+ *
+ * 		+-----------------+
+ * 		|     Balloon     |
+ * 		+-----------------+
+ * 		   V
+ * 		   [ Target ]
+ *
+ * * `northWestArrowSouthEast`
+ *
+ * 		+-----------------+
+ * 		|     Balloon     |
+ * 		+-----------------+
+ * 		               V
+ * 		               [ Target ]
+ *
+ * **North east**
+ *
+ * * `northEastArrowSouth`
+ *
+ * 		+-----------------+
+ * 		|     Balloon     |
+ * 		+-----------------+
+ * 		         V
+ * 		[ Target ]
+ *
+ * * `northEastArrowSouthEast`
+ *
+ * 		+-----------------+
+ * 		|     Balloon     |
+ * 		+-----------------+
+ * 		               V
+ * 		      [ Target ]
+ *
+ * * `northEastArrowSouthWest`
+ *
+ * 		      +-----------------+
+ * 		      |     Balloon     |
+ * 		      +-----------------+
+ * 		         V
+ * 		[ Target ]
+ *
+ * **South**
+ *
+ * * `southArrowNorth`
+ *
+ *		    [ Target ]
+ *		         ^
+ *		+-----------------+
+ *		|     Balloon     |
+ *		+-----------------+
+ *
+ * * `southArrowNorthEast`
+ *
+ *		          [ Target ]
+ *		               ^
+ *		+-----------------+
+ *		|     Balloon     |
+ *		+-----------------+
+ *
+ * * `southArrowNorthWest`
+ *
+ *		[ Target ]
+ *		     ^
+ *		   +-----------------+
+ *		   |     Balloon     |
+ *		   +-----------------+
+ *
+ * **South west**
+ *
+ * * `southWestArrowNorth`
+ *
+ *		         [ Target ]
+ *		         ^
+ *		+-----------------+
+ *		|     Balloon     |
+ *		+-----------------+
+ *
+ * * `southWestArrowNorthWest`
+ *
+ *		  [ Target ]
+ *		  ^
+ *		+-----------------+
+ *		|     Balloon     |
+ *		+-----------------+
+ *
+ * * `southWestArrowNorthEast`
+ *
+ *		               [ Target ]
+ *		               ^
+ *		+-----------------+
+ *		|     Balloon     |
+ *		+-----------------+
+ *
+ * **South east**
+ *
+ * * `southEastArrowNorth`
+ *
+ *		[ Target ]
+ *		         ^
+ *		+-----------------+
+ *		|     Balloon     |
+ *		+-----------------+
+ *
+ * * `southEastArrowNorthEast`
+ *
+ *		       [ Target ]
+ *		                ^
+ *		+-----------------+
+ *		|     Balloon     |
+ *		+-----------------+
+ *
+ * * `southEastArrowNorthWest`
+ *
+ *		[ Target ]
+ *		         ^
+ *		       +-----------------+
+ *		       |     Balloon     |
+ *		       +-----------------+
+ *
+ * See {@link module:ui/panel/balloon/balloonpanelview~BalloonPanelView#attachTo}.
+ *
+ * Positioning functions must be compatible with {@link module:utils/dom/position~Position}.
+ *
+ * The name that position function returns will be reflected in balloon panel's class that
+ * controls the placement of the "arrow". See {@link #position} to learn more.
+ *
+ * @member {Object} module:ui/panel/balloon/balloonpanelview~BalloonPanelView.defaultPositions
+ */
+BalloonPanelView.defaultPositions = {
+	// ------- North
+
+	northArrowSouth: ( targetRect, balloonRect ) => ( {
+		top: getNorthTop( targetRect, balloonRect ),
+		left: targetRect.left + targetRect.width / 2 - balloonRect.width / 2,
+		name: 'arrow_s'
+	} ),
+
+	northArrowSouthEast: ( targetRect, balloonRect ) => ( {
+		top: getNorthTop( targetRect, balloonRect ),
+		left: targetRect.left + targetRect.width / 2 - balloonRect.width + BalloonPanelView.arrowHorizontalOffset,
+		name: 'arrow_se'
+	} ),
+
+	northArrowSouthWest: ( targetRect, balloonRect ) => ( {
+		top: getNorthTop( targetRect, balloonRect ),
+		left: targetRect.left + targetRect.width / 2 - BalloonPanelView.arrowHorizontalOffset,
+		name: 'arrow_sw'
+	} ),
+
+	// ------- North west
+
+	northWestArrowSouth: ( targetRect, balloonRect ) => ( {
+		top: getNorthTop( targetRect, balloonRect ),
+		left: targetRect.left - balloonRect.width / 2,
+		name: 'arrow_s'
+	} ),
+
+	northWestArrowSouthWest: ( targetRect, balloonRect ) => ( {
+		top: getNorthTop( targetRect, balloonRect ),
+		left: targetRect.left - BalloonPanelView.arrowHorizontalOffset,
+		name: 'arrow_sw'
+	} ),
+
+	northWestArrowSouthEast: ( targetRect, balloonRect ) => ( {
+		top: getNorthTop( targetRect, balloonRect ),
+		left: targetRect.left - balloonRect.width + BalloonPanelView.arrowHorizontalOffset,
+		name: 'arrow_se'
+	} ),
+
+	// ------- North east
+
+	northEastArrowSouth: ( targetRect, balloonRect ) => ( {
+		top: getNorthTop( targetRect, balloonRect ),
+		left: targetRect.right - balloonRect.width / 2,
+		name: 'arrow_s'
+	} ),
+
+	northEastArrowSouthEast: ( targetRect, balloonRect ) => ( {
+		top: getNorthTop( targetRect, balloonRect ),
+		left: targetRect.right - balloonRect.width + BalloonPanelView.arrowHorizontalOffset,
+		name: 'arrow_se'
+	} ),
+
+	northEastArrowSouthWest: ( targetRect, balloonRect ) => ( {
+		top: getNorthTop( targetRect, balloonRect ),
+		left: targetRect.right - BalloonPanelView.arrowHorizontalOffset,
+		name: 'arrow_sw'
+	} ),
+
+	// ------- South
+
+	southArrowNorth: ( targetRect, balloonRect ) => ( {
+		top: getSouthTop( targetRect, balloonRect ),
+		left: targetRect.left + targetRect.width / 2 - balloonRect.width / 2,
+		name: 'arrow_n'
+	} ),
+
+	southArrowNorthEast: ( targetRect, balloonRect ) => ( {
+		top: getSouthTop( targetRect, balloonRect ),
+		left: targetRect.left + targetRect.width / 2 - balloonRect.width + BalloonPanelView.arrowHorizontalOffset,
+		name: 'arrow_ne'
+	} ),
+
+	southArrowNorthWest: ( targetRect, balloonRect ) => ( {
+		top: getSouthTop( targetRect, balloonRect ),
+		left: targetRect.left + targetRect.width / 2 - BalloonPanelView.arrowHorizontalOffset,
+		name: 'arrow_nw'
+	} ),
+
+	// ------- South west
+
+	southWestArrowNorth: ( targetRect, balloonRect ) => ( {
+		top: getSouthTop( targetRect, balloonRect ),
+		left: targetRect.left - balloonRect.width / 2,
+		name: 'arrow_n'
+	} ),
+
+	southWestArrowNorthWest: ( targetRect, balloonRect ) => ( {
+		top: getSouthTop( targetRect, balloonRect ),
+		left: targetRect.left - BalloonPanelView.arrowHorizontalOffset,
+		name: 'arrow_nw'
+	} ),
+
+	southWestArrowNorthEast: ( targetRect, balloonRect ) => ( {
+		top: getSouthTop( targetRect, balloonRect ),
+		left: targetRect.left - balloonRect.width + BalloonPanelView.arrowHorizontalOffset,
+		name: 'arrow_ne'
+	} ),
+
+	// ------- South east
+
+	southEastArrowNorth: ( targetRect, balloonRect ) => ( {
+		top: getSouthTop( targetRect, balloonRect ),
+		left: targetRect.right - balloonRect.width / 2,
+		name: 'arrow_n'
+	} ),
+
+	southEastArrowNorthEast: ( targetRect, balloonRect ) => ( {
+		top: getSouthTop( targetRect, balloonRect ),
+		left: targetRect.right - balloonRect.width + BalloonPanelView.arrowHorizontalOffset,
+		name: 'arrow_ne'
+	} ),
+
+	southEastArrowNorthWest: ( targetRect, balloonRect ) => ( {
+		top: getSouthTop( targetRect, balloonRect ),
+		left: targetRect.right - BalloonPanelView.arrowHorizontalOffset,
+		name: 'arrow_nw'
+	} ),
+};
+
+// Returns the top coordinate for positions starting with `north*`.
+//
+// @private
+// @param {utils/dom/rect~Rect} targetRect A rect of the target.
+// @param {utils/dom/rect~Rect} elementRect A rect of the balloon.
+// @returns {Number}
+function getNorthTop( targetRect, balloonRect ) {
+	return targetRect.top - balloonRect.height - BalloonPanelView.arrowVerticalOffset;
+}
+
+// Returns the top coordinate for positions starting with `south*`.
+//
+// @private
+// @param {utils/dom/rect~Rect} targetRect A rect of the target.
+// @param {utils/dom/rect~Rect} elementRect A rect of the balloon.
+// @returns {Number}
+function getSouthTop( targetRect ) {
+	return targetRect.bottom + BalloonPanelView.arrowVerticalOffset;
+}
+
+
+/***/ }),
+/* 152 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_dom_global__ = __webpack_require__(59);
+/**
+ * @license Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module ui/focuscycler
+ */
+
+
+
+/**
+ * Helps cycling over focusable views in a {@link module:ui/viewcollection~ViewCollection}
+ * when the focus is tracked by {@link module:utils/focustracker~FocusTracker} instance.
+ *
+ * It requires a collection of focusable views and associated focus tracker:
+ *
+ *		const focusables = new ViewCollection();
+ *		const focusTracker = new FocusTracker();
+ *
+ *		// Add focusables to the focus tracker.
+ *		focusTracker.add( ... );
+ *
+ * The cycler can be used manually:
+ *
+ *		const cycler = new FocusCycler( { focusables, focusTracker } );
+ *
+ *		// Will focus the first forusable view in #focusables.
+ *		cycler.focusFirst();
+ *
+ *		// Will log next focusable item in #focusables.
+ *		console.log( cycler.next );
+ *
+ * or it can be used as an automated, keystroke–detecting utility:
+ *
+ *		const keystrokeHandler = new KeystrokeHandler();
+ *
+ *		// Activate the keystroke handler.
+ *		keystrokeHandler.listenTo( sourceOfEvents );
+ *
+ *		const cycler = new FocusCycler( {
+ *			focusables, focusTracker, keystrokeHandler,
+ *			actions: {
+ *				// When arrowup of arrowleft is detected by the #keystrokeHandler
+ *				// focusPrevious() will be called by the cycler.
+ *				focusPrevious: [ 'arrowup', 'arrowleft' ],
+ *			}
+ *		} );
+ */
+class FocusCycler {
+	/**
+	 * Creates an instance of the focus cycler utility.
+	 *
+	 * @param {Object} options Configuration options.
+	 * @param {module:utils/collection~Collection|Object} options.focusables
+	 * @param {module:utils/focustracker~FocusTracker} options.focusTracker
+	 * @param {module:utils/keystrokehandler~KeystrokeHandler} [options.keystrokeHandler]
+	 * @param {Object} [options.actions]
+	 */
+	constructor( options ) {
+		Object.assign( this, options );
+
+		/**
+		 * A view collection the cycler operates on.
+		 *
+		 * @readonly
+		 * @member {module:utils/collection~Collection} #focusables
+		 */
+
+		/**
+		 * A focus tracker instance that cycler uses to determine focus
+		 * state in {@link #focusables}.
+		 *
+		 * @readonly
+		 * @member {module:utils/focustracker~FocusTracker} #focusTracker
+		 */
+
+		/**
+		 * Instance of the {@link module:utils/keystrokehandler~KeystrokeHandler}.
+		 *
+		 * @readonly
+		 * @member {module:utils/keystrokehandler~KeystrokeHandler} #keystrokeHandler
+		 */
+
+		/**
+		 * Actions that the cycler can take when a keystroke is pressed. Requires
+		 * `options.keystrokeHandler` to be passed and working. When an action is
+		 * performed, the event the keystroke fired is will be `preventDefault` and
+		 * `stopPropagation` in DOM.
+		 *
+		 *		actions: {
+		 *			// Will call #focusPrevious() when arrowleft or arrowup is pressed.
+		 *			focusPrevious: [ 'arrowleft', 'arrowup' ],
+		 *
+		 *			// Will call #focusNext() when arrowdown is pressed.
+		 *			focusNext: 'arrowdown'
+		 *		}
+		 *
+		 * @readonly
+		 * @member {Object} #actions
+		 */
+
+		if ( options.actions && options.keystrokeHandler ) {
+			for ( const methodName in options.actions ) {
+				let actions = options.actions[ methodName ];
+
+				if ( typeof actions == 'string' ) {
+					actions = [ actions ];
+				}
+
+				for ( const keystroke of actions ) {
+					options.keystrokeHandler.set( keystroke, ( data, cancel ) => {
+						this[ methodName ]();
+						cancel();
+					} );
+				}
+			}
+		}
+	}
+
+	/**
+	 * Returns the first focusable view in {@link #focusables}.
+	 * `null` if there's none.
+	 *
+	 * @readonly
+	 * @member {module:ui/view~View|null} #first
+	 */
+	get first() {
+		return this.focusables.find( isFocusable ) || null;
+	}
+
+	/**
+	 * Returns the last focusable view in {@link #focusables}.
+	 * `null` if there's none.
+	 *
+	 * @readonly
+	 * @member {module:ui/view~View|null} #last
+	 */
+	get last() {
+		return this.focusables.filter( isFocusable ).slice( -1 )[ 0 ] || null;
+	}
+
+	/**
+	 * Returns the next focusable view in {@link #focusables} based on {@link #current}.
+	 * `null` if there's none.
+	 *
+	 * @readonly
+	 * @member {module:ui/view~View|null} #next
+	 */
+	get next() {
+		return this._getFocusableItem( 1 );
+	}
+
+	/**
+	 * Returns the previous focusable view in {@link #focusables} based on {@link #current}.
+	 * `null` if there's none.
+	 *
+	 * @readonly
+	 * @member {module:ui/view~View|null} #previous
+	 */
+	get previous() {
+		return this._getFocusableItem( -1 );
+	}
+
+	/**
+	 * An index of the view in the {@link #focusables} which is focused according
+	 * to {@link #focusTracker}. `null` when there's no such view.
+	 *
+	 * @readonly
+	 * @member {Number|null} #current
+	 */
+	get current() {
+		let index = null;
+
+		// There's no focused view in the focusables.
+		if ( this.focusTracker.focusedElement === null ) {
+			return null;
+		}
+
+		this.focusables.find( ( view, viewIndex ) => {
+			const focused = view.element === this.focusTracker.focusedElement;
+
+			if ( focused ) {
+				index = viewIndex;
+			}
+
+			return focused;
+		} );
+
+		return index;
+	}
+
+	/**
+	 * Focuses the {@link #first} item.
+	 */
+	focusFirst() {
+		this._focus( this.first );
+	}
+
+	/**
+	 * Focuses the {@link #last} item.
+	 */
+	focusLast() {
+		this._focus( this.last );
+	}
+
+	/**
+	 * Focuses the {@link #next} item.
+	 */
+	focusNext() {
+		this._focus( this.next );
+	}
+
+	/**
+	 * Focuses the {@link #previous} item.
+	 */
+	focusPrevious() {
+		this._focus( this.previous );
+	}
+
+	/**
+	 * Focuses the given view, if exists.
+	 *
+	 * @protected
+	 * @param {module:ui/view~View} view
+	 */
+	_focus( view ) {
+		if ( view ) {
+			view.focus();
+		}
+	}
+
+	/**
+	 * Returns the next/previous focusable view in {@link #focusables} with respect
+	 * to {@link #current}.
+	 *
+	 * @protected
+	 * @param {Number} step Either `1` for checking forward of {@link #current} or
+	 * `-1` for checking backwards.
+	 * @returns {module:ui/view~View|null}
+	 */
+	_getFocusableItem( step ) {
+		// Cache for speed.
+		const current = this.current;
+		const collectionLength = this.focusables.length;
+
+		if ( !collectionLength ) {
+			return null;
+		}
+
+		// Start from the beginning if no view is focused.
+		// https://github.com/ckeditor/ckeditor5-ui/issues/206
+		if ( current === null ) {
+			return this[ step === 1 ? 'first' : 'last' ];
+		}
+
+		// Cycle in both directions.
+		let index = ( current + collectionLength + step ) % collectionLength;
+
+		do {
+			const view = this.focusables.get( index );
+
+			// TODO: Check if view is visible.
+			if ( isFocusable( view ) ) {
+				return view;
+			}
+
+			// Cycle in both directions.
+			index = ( index + collectionLength + step ) % collectionLength;
+		} while ( index !== current );
+
+		return null;
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = FocusCycler;
+
+
+// Checks whether an view is focusable.
+//
+// @private
+// @param {module:ui/view~View} view A view to be checked.
+// @returns {Boolean}
+function isFocusable( view ) {
+	return !!( view.focus && __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_dom_global__["a" /* default */].window.getComputedStyle( view.element ).display != 'none' );
+}
+
+
+/***/ }),
+/* 153 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["c"] = isWidget;
+/* harmony export (immutable) */ __webpack_exports__["d"] = toWidget;
+/* unused harmony export setLabel */
+/* harmony export (immutable) */ __webpack_exports__["b"] = getLabel;
+/* harmony export (immutable) */ __webpack_exports__["e"] = toWidgetEditable;
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module widget/utils
+ */
+
+const widgetSymbol = Symbol( 'isWidget' );
+const labelSymbol = Symbol( 'label' );
+
+/**
+ * CSS class added to each widget element.
+ *
+ * @const {String}
+ */
+const WIDGET_CLASS_NAME = 'ck-widget';
+/* unused harmony export WIDGET_CLASS_NAME */
+
+
+/**
+ * CSS class added to currently selected widget element.
+ *
+ * @const {String}
+ */
+const WIDGET_SELECTED_CLASS_NAME = 'ck-widget_selected';
+/* harmony export (immutable) */ __webpack_exports__["a"] = WIDGET_SELECTED_CLASS_NAME;
+
+
+/**
+ * Returns `true` if given {@link module:engine/view/element~Element} is a widget.
+ *
+ * @param {module:engine/view/element~Element} element
+ * @returns {Boolean}
+ */
+function isWidget( element ) {
+	return !!element.getCustomProperty( widgetSymbol );
+}
+
+/**
+ * Converts given {@link module:engine/view/element~Element} to widget in following way:
+ * * sets `contenteditable` attribute to `true`,
+ * * adds custom `getFillerOffset` method returning `null`,
+ * * adds `ck-widget` CSS class,
+ * * adds custom property allowing to recognize widget elements by using {@link ~isWidget}.
+ *
+ * @param {module:engine/view/element~Element} element
+ * @param {Object} [options={}]
+ * @param {String|Function} [options.label] Element's label provided to {@link ~setLabel} function. It can be passed as
+ * a plain string or a function returning a string.
+ * @returns {module:engine/view/element~Element} Returns same element.
+ */
+function toWidget( element, options = {} ) {
+	element.setAttribute( 'contenteditable', false );
+	element.getFillerOffset = getFillerOffset;
+	element.addClass( WIDGET_CLASS_NAME );
+	element.setCustomProperty( widgetSymbol, true );
+
+	if ( options.label ) {
+		setLabel( element, options.label );
+	}
+
+	return element;
+}
+
+/**
+ * Sets label for given element.
+ * It can be passed as a plain string or a function returning a string. Function will be called each time label is retrieved by
+ * {@link ~getLabel}.
+ *
+ * @param {module:engine/view/element~Element} element
+ * @param {String|Function} labelOrCreator
+ */
+function setLabel( element, labelOrCreator ) {
+	element.setCustomProperty( labelSymbol, labelOrCreator );
+}
+
+/**
+ * Returns label for provided element.
+ *
+ * @param {module:engine/view/element~Element} element
+ * @return {String}
+ */
+function getLabel( element ) {
+	const labelCreator = element.getCustomProperty( labelSymbol );
+
+	if ( !labelCreator ) {
+		return '';
+	}
+
+	return typeof labelCreator == 'function' ? labelCreator() : labelCreator;
+}
+
+/**
+ * Adds functionality to provided {module:engine/view/editableelement~EditableElement} to act as a widget's editable:
+ * * adds `ck-editable` CSS class,
+ * * sets `contenteditable` as `true` when {module:engine/view/editableelement~EditableElement#isReadOnly} is `false`
+ * otherwise set `false`,
+ * * adds `ck-editable_focused` CSS class when editable is focused and removes it when it's blurred.
+ *
+ * @param {module:engine/view/editableelement~EditableElement} editable
+ * @returns {module:engine/view/editableelement~EditableElement} Returns same element that was provided in `editable` param.
+ */
+function toWidgetEditable( editable ) {
+	editable.addClass( 'ck-editable' );
+
+	// Set initial contenteditable value.
+	editable.setAttribute( 'contenteditable', !editable.isReadOnly );
+
+	// Bind contenteditable property to element#isReadOnly.
+	editable.on( 'change:isReadOnly', ( evt, property, is ) => {
+		editable.setAttribute( 'contenteditable', !is );
+	} );
+
+	editable.on( 'change:isFocused', ( evt, property, is ) => {
+		if ( is ) {
+			editable.addClass( 'ck-editable_focused' );
+		} else {
+			editable.removeClass( 'ck-editable_focused' );
+		}
+	} );
+
+	return editable;
+}
+
+// Default filler offset function applied to all widget elements.
+//
+// @returns {null}
+function getFillerOffset() {
+	return null;
+}
+
+
+/***/ }),
+/* 154 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__balloonpanelview__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module ui/panel/balloon/contextualballoon
+ */
+
+
+
+
+
+/**
+ * Provides the common contextual balloon panel for the editor.
+ *
+ * This plugin allows reusing a single {module:ui/panel/balloon/balloonpanelview~BalloonPanelView} instance
+ * to display multiple contextual balloon panels in the editor.
+ *
+ * Child views of such a panel are stored in the stack and the last one in the stack is visible. When the
+ * visible view is removed from the stack, the previous view becomes visible, etc. If there are no more
+ * views in the stack, the balloon panel will hide.
+ *
+ * It simplifies managing the views and helps
+ * avoid the unnecessary complexity of handling multiple {module:ui/panel/balloon/balloonpanelview~BalloonPanelView}
+ * instances in the editor.
+ *
+ * @extends module:core/plugin~Plugin
+ */
+class ContextualBalloon extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__["a" /* default */] {
+	/**
+	 * @inheritDoc
+	 */
+	static get pluginName() {
+		return 'ContextualBalloon';
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	init() {
+		/**
+		 * The common balloon panel view.
+		 *
+		 * @readonly
+		 * @member {module:ui/panel/balloon/balloonpanelview~BalloonPanelView} #view
+		 */
+		this.view = new __WEBPACK_IMPORTED_MODULE_1__balloonpanelview__["a" /* default */]();
+
+		/**
+		 * Stack of the views injected into the balloon. Last one in the stack is displayed
+		 * as a content of {@link module:ui/panel/balloon/contextualballoon~ContextualBalloon#view}.
+		 *
+		 * @private
+		 * @member {Map} #_stack
+		 */
+		this._stack = new Map();
+
+		// Editor should be focused when contextual balloon is focused.
+		this.editor.ui.focusTracker.add( this.view.element );
+
+		// Add balloon panel view to editor `body` collection and wait until view will be ready.
+		this.editor.ui.view.body.add( this.view );
+	}
+
+	/**
+	 * Returns the currently visible view or `null` when there are no
+	 * views in the stack.
+	 *
+	 * @returns {module:ui/view~View|null}
+	 */
+	get visibleView() {
+		const item = this._stack.get( this.view.content.get( 0 ) );
+
+		return item ? item.view : null;
+	}
+
+	/**
+	 * Returns `true` when the given view is in the stack. Otherwise returns `false`.
+	 *
+	 * @param {module:ui/view~View} view
+	 * @returns {Boolean}
+	 */
+	hasView( view ) {
+		return this._stack.has( view );
+	}
+
+	/**
+	 * Adds a new view to the stack and makes it visible.
+	 *
+	 * @param {Object} data Configuration of the view.
+	 * @param {module:ui/view~View} [data.view] Content of the balloon.
+	 * @param {module:utils/dom/position~Options} [data.position] Positioning options.
+	 * @param {String} [data.balloonClassName] Additional css class for {@link #view} added when given view is visible.
+	 */
+	add( data ) {
+		if ( this.hasView( data.view ) ) {
+			/**
+			 * Trying to add configuration of the same view more than once.
+			 *
+			 * @error contextualballoon-add-view-exist
+			 */
+			throw new __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'contextualballoon-add-view-exist: Cannot add configuration of the same view twice.' );
+		}
+
+		// When adding view to the not empty balloon.
+		if ( this.visibleView ) {
+			// Remove displayed content from the view.
+			this.view.content.remove( this.visibleView );
+		}
+
+		// Add new view to the stack.
+		this._stack.set( data.view, data );
+
+		// And display it.
+		this._show( data );
+	}
+
+	/**
+	 * Removes the given view from the stack. If the removed view was visible,
+	 * then the view preceding it in the stack will become visible instead.
+	 * When there is no view in the stack then balloon will hide.
+	 *
+	 * @param {module:ui/view~View} view A view to be removed from the balloon.
+	 */
+	remove( view ) {
+		if ( !this.hasView( view ) ) {
+			/**
+			 * Trying to remove configuration of the view not defined in the stack.
+			 *
+			 * @error contextualballoon-remove-view-not-exist
+			 */
+			throw new __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'contextualballoon-remove-view-not-exist: Cannot remove configuration of not existing view.' );
+		}
+
+		// When visible view is being removed.
+		if ( this.visibleView === view ) {
+			// We need to remove it from the view content.
+			this.view.content.remove( view );
+
+			// And then remove from the stack.
+			this._stack.delete( view );
+
+			// Next we need to check if there is other view in stack to show.
+			const last = Array.from( this._stack.values() ).pop();
+
+			// If it is some other view.
+			if ( last ) {
+				// Just show it.
+				this._show( last );
+			} else {
+				// Hide the balloon panel.
+				this.view.hide();
+			}
+		} else {
+			// Just remove given view from the stack.
+			this._stack.delete( view );
+		}
+	}
+
+	/**
+	 * Updates the position of the balloon panel according to the given position data
+	 * or position data of the first view in the stack.
+	 *
+	 * @param {module:utils/dom/position~Options} [position] position options.
+	 */
+	updatePosition( position ) {
+		if ( position ) {
+			this._stack.values().next().value.position = position;
+		}
+
+		this.view.attachTo( this._getBalloonPosition() );
+	}
+
+	/**
+	 * Sets the view as a content of the balloon and attaches balloon using position
+	 * options of the first view.
+	 *
+	 * @private
+	 * @param {Object} data Configuration.
+	 * @param {module:ui/view~View} [data.view] View to show in the balloon.
+	 * @param {String} [data.balloonClassName=''] Additional class name which will added to the {#_balloon} view.
+	 */
+	_show( { view, balloonClassName = '' } ) {
+		this.view.className = balloonClassName;
+
+		this.view.content.add( view );
+		this.view.pin( this._getBalloonPosition() );
+	}
+
+	/**
+	 * Returns position options of the first view in the stack.
+	 * This keeps the balloon in the same position when view is changed.
+	 *
+	 * @private
+	 * @returns {module:utils/dom/position~Options}
+	 */
+	_getBalloonPosition() {
+		return this._stack.values().next().value.position;
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = ContextualBalloon;
+
+
+
+/***/ }),
+/* 155 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * A faster alternative to `Function#apply`, this function invokes `func`
+ * with the `this` binding of `thisArg` and the arguments of `args`.
+ *
+ * @private
+ * @param {Function} func The function to invoke.
+ * @param {*} thisArg The `this` binding of `func`.
+ * @param {Array} args The arguments to invoke `func` with.
+ * @returns {*} Returns the result of `func`.
+ */
+function apply(func, thisArg, args) {
+  var length = args.length;
+  switch (length) {
+    case 0: return func.call(thisArg);
+    case 1: return func.call(thisArg, args[0]);
+    case 2: return func.call(thisArg, args[0], args[1]);
+    case 3: return func.call(thisArg, args[0], args[1], args[2]);
+  }
+  return func.apply(thisArg, args);
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (apply);
+
+
+/***/ }),
+/* 156 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isFunction__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isObject__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isSymbol__ = __webpack_require__(45);
+
+
+
+
+/** Used as references for various `Number` constants. */
+var NAN = 0 / 0;
+
+/** Used to match leading and trailing whitespace. */
+var reTrim = /^\s+|\s+$/g;
+
+/** Used to detect bad signed hexadecimal string values. */
+var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
+
+/** Used to detect binary string values. */
+var reIsBinary = /^0b[01]+$/i;
+
+/** Used to detect octal string values. */
+var reIsOctal = /^0o[0-7]+$/i;
+
+/** Built-in method references without a dependency on `root`. */
+var freeParseInt = parseInt;
+
+/**
+ * Converts `value` to a number.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to process.
+ * @returns {number} Returns the number.
+ * @example
+ *
+ * _.toNumber(3.2);
+ * // => 3.2
+ *
+ * _.toNumber(Number.MIN_VALUE);
+ * // => 5e-324
+ *
+ * _.toNumber(Infinity);
+ * // => Infinity
+ *
+ * _.toNumber('3.2');
+ * // => 3.2
+ */
+function toNumber(value) {
+  if (typeof value == 'number') {
+    return value;
+  }
+  if (Object(__WEBPACK_IMPORTED_MODULE_2__isSymbol__["a" /* default */])(value)) {
+    return NAN;
+  }
+  if (Object(__WEBPACK_IMPORTED_MODULE_1__isObject__["a" /* default */])(value)) {
+    var other = Object(__WEBPACK_IMPORTED_MODULE_0__isFunction__["a" /* default */])(value.valueOf) ? value.valueOf() : value;
+    value = Object(__WEBPACK_IMPORTED_MODULE_1__isObject__["a" /* default */])(other) ? (other + '') : other;
+  }
+  if (typeof value != 'string') {
+    return value === 0 ? value : +value;
+  }
+  value = value.replace(reTrim, '');
+  var isBinary = reIsBinary.test(value);
+  return (isBinary || reIsOctal.test(value))
+    ? freeParseInt(value.slice(2), isBinary ? 2 : 8)
+    : (reIsBadHex.test(value) ? NAN : +value);
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (toNumber);
+
+
+/***/ }),
+/* 157 */
+/***/ (function(module, exports) {
+
+module.exports = function(originalModule) {
+	if(!originalModule.webpackPolyfill) {
+		var module = Object.create(originalModule);
+		// module.parent = undefined by default
+		if(!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		Object.defineProperty(module, "exports", {
+			enumerable: true,
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+
+/***/ }),
+/* 158 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseTimes__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArguments__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArray__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isLength__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isString__ = __webpack_require__(112);
+
+
+
+
+
+
+/**
+ * Creates an array of index keys for `object` values of arrays,
+ * `arguments` objects, and strings, otherwise `null` is returned.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array|null} Returns index keys, else `null`.
+ */
+function indexKeys(object) {
+  var length = object ? object.length : undefined;
+  if (Object(__WEBPACK_IMPORTED_MODULE_3__isLength__["a" /* default */])(length) &&
+      (Object(__WEBPACK_IMPORTED_MODULE_2__isArray__["a" /* default */])(object) || Object(__WEBPACK_IMPORTED_MODULE_4__isString__["a" /* default */])(object) || Object(__WEBPACK_IMPORTED_MODULE_1__isArguments__["a" /* default */])(object))) {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__baseTimes__["a" /* default */])(length, String);
+  }
+  return null;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (indexKeys);
+
+
+/***/ }),
+/* 159 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * The base implementation of `_.times` without support for iteratee shorthands
+ * or max array length checks.
+ *
+ * @private
+ * @param {number} n The number of times to invoke `iteratee`.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Array} Returns the array of results.
+ */
+function baseTimes(n, iteratee) {
+  var index = -1,
+      result = Array(n);
+
+  while (++index < n) {
+    result[index] = iteratee(index);
+  }
+  return result;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (baseTimes);
+
+
+/***/ }),
+/* 160 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_position__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_range__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_position__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_range__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_text__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module engine/conversion/mapper
+ */
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Maps elements and positions between {@link module:engine/view/document~Document view} and {@link module:engine/model/model model}.
+ *
+ * Mapper use bound elements to find corresponding elements and positions, so, to get proper results,
+ * all model elements should be {@link module:engine/conversion/mapper~Mapper#bindElements bound}.
+ *
+ * To map complex model to/from view relations, you may provide custom callbacks for
+ * {@link module:engine/conversion/mapper~Mapper#event:modelToViewPosition modelToViewPosition event} and
+ * {@link module:engine/conversion/mapper~Mapper#event:viewToModelPosition viewToModelPosition event} that are fired whenever
+ * a position mapping request occurs.
+ * Those events are fired by {@link module:engine/conversion/mapper~Mapper#toViewPosition toViewPosition}
+ * and {@link module:engine/conversion/mapper~Mapper#toModelPosition toModelPosition} methods. `Mapper` adds it's own default callbacks
+ * with `'lowest'` priority. To override default `Mapper` mapping, add custom callback with higher priority and
+ * stop the event.
+ */
+class Mapper {
+	/**
+	 * Creates an instance of the mapper.
+	 */
+	constructor() {
+		/**
+		 * Model element to view element mapping.
+		 *
+		 * @private
+		 * @member {WeakMap}
+		 */
+		this._modelToViewMapping = new WeakMap();
+
+		/**
+		 * View element to model element mapping.
+		 *
+		 * @private
+		 * @member {WeakMap}
+		 */
+		this._viewToModelMapping = new WeakMap();
+
+		/**
+		 * A map containing callbacks between view element names and functions evaluating length of view elements
+		 * in model.
+		 *
+		 * @private
+		 * @member {Map}
+		 */
+		this._viewToModelLengthCallbacks = new Map();
+
+		// Default mapper algorithm for mapping model position to view position.
+		this.on( 'modelToViewPosition', ( evt, data ) => {
+			if ( data.viewPosition ) {
+				return;
+			}
+
+			const viewContainer = this._modelToViewMapping.get( data.modelPosition.parent );
+
+			data.viewPosition = this._findPositionIn( viewContainer, data.modelPosition.offset );
+		}, { priority: 'low' } );
+
+		// Default mapper algorithm for mapping view position to model position.
+		this.on( 'viewToModelPosition', ( evt, data ) => {
+			if ( data.modelPosition ) {
+				return;
+			}
+
+			let viewBlock = data.viewPosition.parent;
+			let modelParent = this._viewToModelMapping.get( viewBlock );
+
+			while ( !modelParent ) {
+				viewBlock = viewBlock.parent;
+				modelParent = this._viewToModelMapping.get( viewBlock );
+			}
+
+			const modelOffset = this._toModelOffset( data.viewPosition.parent, data.viewPosition.offset, viewBlock );
+
+			data.modelPosition = __WEBPACK_IMPORTED_MODULE_0__model_position__["a" /* default */].createFromParentAndOffset( modelParent, modelOffset );
+		}, { priority: 'low' } );
+	}
+
+	/**
+	 * Marks model and view elements as corresponding. Corresponding elements can be retrieved by using
+	 * the {@link module:engine/conversion/mapper~Mapper#toModelElement toModelElement} and
+	 * {@link module:engine/conversion/mapper~Mapper#toViewElement toViewElement} methods.
+	 * The information that elements are bound is also used to translate positions.
+	 *
+	 * @param {module:engine/model/element~Element} modelElement Model element.
+	 * @param {module:engine/view/element~Element} viewElement View element.
+	 */
+	bindElements( modelElement, viewElement ) {
+		this._modelToViewMapping.set( modelElement, viewElement );
+		this._viewToModelMapping.set( viewElement, modelElement );
+	}
+
+	/**
+	 * Unbinds given {@link module:engine/view/element~Element view element} from the map.
+	 *
+	 * @param {module:engine/view/element~Element} viewElement View element to unbind.
+	 */
+	unbindViewElement( viewElement ) {
+		const modelElement = this.toModelElement( viewElement );
+
+		this._unbindElements( modelElement, viewElement );
+	}
+
+	/**
+	 * Unbinds given {@link module:engine/model/element~Element model element} from the map.
+	 *
+	 * @param {module:engine/model/element~Element} modelElement Model element to unbind.
+	 */
+	unbindModelElement( modelElement ) {
+		const viewElement = this.toViewElement( modelElement );
+
+		this._unbindElements( modelElement, viewElement );
+	}
+
+	/**
+	 * Removes all model to view and view to model bindings.
+	 */
+	clearBindings() {
+		this._modelToViewMapping = new WeakMap();
+		this._viewToModelMapping = new WeakMap();
+	}
+
+	/**
+	 * Gets the corresponding model element.
+	 *
+	 * **Note:** {@link module:engine/view/uielement~UIElement} does not have corresponding element in model.
+	 *
+	 * @param {module:engine/view/element~Element} viewElement View element.
+	 * @returns {module:engine/model/element~Element|undefined} Corresponding model element or `undefined` if not found.
+	 */
+	toModelElement( viewElement ) {
+		return this._viewToModelMapping.get( viewElement );
+	}
+
+	/**
+	 * Gets the corresponding view element.
+	 *
+	 * @param {module:engine/model/element~Element} modelElement Model element.
+	 * @returns {module:engine/view/element~Element|undefined} Corresponding view element or `undefined` if not found.
+	 */
+	toViewElement( modelElement ) {
+		return this._modelToViewMapping.get( modelElement );
+	}
+
+	/**
+	 * Gets the corresponding model range.
+	 *
+	 * @param {module:engine/view/range~Range} viewRange View range.
+	 * @returns {module:engine/model/range~Range} Corresponding model range.
+	 */
+	toModelRange( viewRange ) {
+		return new __WEBPACK_IMPORTED_MODULE_1__model_range__["a" /* default */]( this.toModelPosition( viewRange.start ), this.toModelPosition( viewRange.end ) );
+	}
+
+	/**
+	 * Gets the corresponding view range.
+	 *
+	 * @param {module:engine/model/range~Range} modelRange Model range.
+	 * @returns {module:engine/view/range~Range} Corresponding view range.
+	 */
+	toViewRange( modelRange ) {
+		return new __WEBPACK_IMPORTED_MODULE_3__view_range__["a" /* default */]( this.toViewPosition( modelRange.start ), this.toViewPosition( modelRange.end ) );
+	}
+
+	/**
+	 * Gets the corresponding model position.
+	 *
+	 * @fires viewToModelPosition
+	 * @param {module:engine/view/position~Position} viewPosition View position.
+	 * @returns {module:engine/model/position~Position} Corresponding model position.
+	 */
+	toModelPosition( viewPosition ) {
+		const data = {
+			viewPosition,
+			mapper: this
+		};
+
+		this.fire( 'viewToModelPosition', data );
+
+		return data.modelPosition;
+	}
+
+	/**
+	 * Gets the corresponding view position.
+	 *
+	 * @fires modelToViewPosition
+	 * @param {module:engine/model/position~Position} modelPosition Model position.
+	 * @returns {module:engine/view/position~Position} Corresponding view position.
+	 */
+	toViewPosition( modelPosition ) {
+		const data = {
+			modelPosition,
+			mapper: this
+		};
+
+		this.fire( 'modelToViewPosition', data );
+
+		return data.viewPosition;
+	}
+
+	/**
+	 * Registers a callback that evaluates the length in the model of a view element with given name.
+	 *
+	 * The callback is fired with one argument, which is a view element instance. The callback is expected to return
+	 * a number representing the length of view element in model.
+	 *
+	 *		// List item in view may contain nested list, which have other list items. In model though,
+	 *		// the lists are represented by flat structure. Because of those differences, length of list view element
+	 *		// may be greater than one. In the callback it's checked how many nested list items are in evaluated list item.
+	 *
+	 *		function getViewListItemLength( element ) {
+	 *			let length = 1;
+	 *
+	 *			for ( let child of element.getChildren() ) {
+	 *				if ( child.name == 'ul' || child.name == 'ol' ) {
+	 *					for ( let item of child.getChildren() ) {
+	 *						length += getViewListItemLength( item );
+	 *					}
+	 *				}
+	 *			}
+	 *
+	 *			return length;
+	 *		}
+	 *
+	 *		mapper.registerViewToModelLength( 'li', getViewListItemLength );
+	 *
+	 * @param {String} viewElementName Name of view element for which callback is registered.
+	 * @param {Function} lengthCallback Function return a length of view element instance in model.
+	 */
+	registerViewToModelLength( viewElementName, lengthCallback ) {
+		this._viewToModelLengthCallbacks.set( viewElementName, lengthCallback );
+	}
+
+	/**
+	 * Calculates model offset based on the view position and the block element.
+	 *
+	 * Example:
+	 *
+	 *		<p>foo<b>ba|r</b></p> // _toModelOffset( b, 2, p ) -> 5
+	 *
+	 * Is a sum of:
+	 *
+	 *		<p>foo|<b>bar</b></p> // _toModelOffset( p, 3, p ) -> 3
+	 *		<p>foo<b>ba|r</b></p> // _toModelOffset( b, 2, b ) -> 2
+	 *
+	 * @private
+	 * @param {module:engine/view/element~Element} viewParent Position parent.
+	 * @param {Number} viewOffset Position offset.
+	 * @param {module:engine/view/element~Element} viewBlock Block used as a base to calculate offset.
+	 * @returns {Number} Offset in the model.
+	 */
+	_toModelOffset( viewParent, viewOffset, viewBlock ) {
+		if ( viewBlock != viewParent ) {
+			// See example.
+			const offsetToParentStart = this._toModelOffset( viewParent.parent, viewParent.index, viewBlock );
+			const offsetInParent = this._toModelOffset( viewParent, viewOffset, viewParent );
+
+			return offsetToParentStart + offsetInParent;
+		}
+
+		// viewBlock == viewParent, so we need to calculate the offset in the parent element.
+
+		// If the position is a text it is simple ("ba|r" -> 2).
+		if ( viewParent.is( 'text' ) ) {
+			return viewOffset;
+		}
+
+		// If the position is in an element we need to sum lengths of siblings ( <b> bar </b> foo | -> 3 + 3 = 6 ).
+		let modelOffset = 0;
+
+		for ( let i = 0; i < viewOffset; i++ ) {
+			modelOffset += this.getModelLength( viewParent.getChild( i ) );
+		}
+
+		return modelOffset;
+	}
+
+	/**
+	 * Removes binding between given elements.
+	 *
+	 * @private
+	 * @param {module:engine/model/element~Element} modelElement Model element to unbind.
+	 * @param {module:engine/view/element~Element} viewElement View element to unbind.
+	 */
+	_unbindElements( modelElement, viewElement ) {
+		this._viewToModelMapping.delete( viewElement );
+		this._modelToViewMapping.delete( modelElement );
+	}
+
+	/**
+	 * Gets the length of the view element in the model.
+	 *
+	 * The length is calculated as follows:
+	 * * if {@link #registerViewToModelLength length mapping callback} is provided for given `viewNode` it is used to
+	 * evaluate model length (`viewNode` is used as first and only parameter passed to the callback),
+	 * * length of a {@link module:engine/view/text~Text text node} is equal to the length of it's
+	 * {@link module:engine/view/text~Text#data data},
+	 * * length of a {@link module:engine/view/uielement~UIElement ui element} is equal to 0,
+	 * * length of a mapped {@link module:engine/view/element~Element element} is equal to 1,
+	 * * length of a not-mapped {@link module:engine/view/element~Element element} is equal to the length of it's children.
+	 *
+	 * Examples:
+	 *
+	 *		foo                          -> 3 // Text length is equal to it's data length.
+	 *		<p>foo</p>                   -> 1 // Length of an element which is mapped is by default equal to 1.
+	 *		<b>foo</b>                   -> 3 // Length of an element which is not mapped is a length of its children.
+	 *		<div><p>x</p><p>y</p></div>  -> 2 // Assuming that <div> is not mapped and <p> are mapped.
+	 *
+	 * @param {module:engine/view/element~Element} viewNode View node.
+	 * @returns {Number} Length of the node in the tree model.
+	 */
+	getModelLength( viewNode ) {
+		if ( this._viewToModelLengthCallbacks.get( viewNode.name ) ) {
+			const callback = this._viewToModelLengthCallbacks.get( viewNode.name );
+
+			return callback( viewNode );
+		} else if ( this._viewToModelMapping.has( viewNode ) ) {
+			return 1;
+		} else if ( viewNode.is( 'text' ) ) {
+			return viewNode.data.length;
+		} else if ( viewNode.is( 'uiElement' ) ) {
+			return 0;
+		} else {
+			let len = 0;
+
+			for ( const child of viewNode.getChildren() ) {
+				len += this.getModelLength( child );
+			}
+
+			return len;
+		}
+	}
+
+	/**
+	 * Finds the position in the view node (or its children) with the expected model offset.
+	 *
+	 * Example:
+	 *
+	 *		<p>fo<b>bar</b>bom</p> -> expected offset: 4
+	 *
+	 *		_findPositionIn( p, 4 ):
+	 *		<p>|fo<b>bar</b>bom</p> -> expected offset: 4, actual offset: 0
+	 *		<p>fo|<b>bar</b>bom</p> -> expected offset: 4, actual offset: 2
+	 *		<p>fo<b>bar</b>|bom</p> -> expected offset: 4, actual offset: 5 -> we are too far
+	 *
+	 *		_findPositionIn( b, 4 - ( 5 - 3 ) ):
+	 *		<p>fo<b>|bar</b>bom</p> -> expected offset: 2, actual offset: 0
+	 *		<p>fo<b>bar|</b>bom</p> -> expected offset: 2, actual offset: 3 -> we are too far
+	 *
+	 *		_findPositionIn( bar, 2 - ( 3 - 3 ) ):
+	 *		We are in the text node so we can simple find the offset.
+	 *		<p>fo<b>ba|r</b>bom</p> -> expected offset: 2, actual offset: 2 -> position found
+	 *
+	 * @private
+	 * @param {module:engine/view/element~Element} viewParent Tree view element in which we are looking for the position.
+	 * @param {Number} expectedOffset Expected offset.
+	 * @returns {module:engine/view/position~Position} Found position.
+	 */
+	_findPositionIn( viewParent, expectedOffset ) {
+		// Last scanned view node.
+		let viewNode;
+		// Length of the last scanned view node.
+		let lastLength = 0;
+
+		let modelOffset = 0;
+		let viewOffset = 0;
+
+		// In the text node it is simple: offset in the model equals offset in the text.
+		if ( viewParent.is( 'text' ) ) {
+			return new __WEBPACK_IMPORTED_MODULE_2__view_position__["a" /* default */]( viewParent, expectedOffset );
+		}
+
+		// In other cases we add lengths of child nodes to find the proper offset.
+
+		// If it is smaller we add the length.
+		while ( modelOffset < expectedOffset ) {
+			viewNode = viewParent.getChild( viewOffset );
+			lastLength = this.getModelLength( viewNode );
+			modelOffset += lastLength;
+			viewOffset++;
+		}
+
+		// If it equals we found the position.
+		if ( modelOffset == expectedOffset ) {
+			return this._moveViewPositionToTextNode( new __WEBPACK_IMPORTED_MODULE_2__view_position__["a" /* default */]( viewParent, viewOffset ) );
+		}
+		// If it is higher we need to enter last child.
+		else {
+			// ( modelOffset - lastLength ) is the offset to the child we enter,
+			// so we subtract it from the expected offset to fine the offset in the child.
+			return this._findPositionIn( viewNode, expectedOffset - ( modelOffset - lastLength ) );
+		}
+	}
+
+	/**
+	 * Because we prefer positions in text nodes over positions next to text node moves view position to the text node
+	 * if it was next to it.
+	 *
+	 *		<p>[]<b>foo</b></p> -> <p>[]<b>foo</b></p> // do not touch if position is not directly next to text
+	 *		<p>foo[]<b>foo</b></p> -> <p>foo{}<b>foo</b></p> // move to text node
+	 *		<p><b>[]foo</b></p> -> <p><b>{}foo</b></p> // move to text node
+	 *
+	 * @private
+	 * @param {module:engine/view/position~Position} viewPosition Position potentially next to text node.
+	 * @returns {module:engine/view/position~Position} Position in text node if possible.
+	 */
+	_moveViewPositionToTextNode( viewPosition ) {
+		// If the position is just after text node, put it at the end of that text node.
+		// If the position is just before text node, put it at the beginning of that text node.
+		const nodeBefore = viewPosition.nodeBefore;
+		const nodeAfter = viewPosition.nodeAfter;
+
+		if ( nodeBefore instanceof __WEBPACK_IMPORTED_MODULE_4__view_text__["a" /* default */] ) {
+			return new __WEBPACK_IMPORTED_MODULE_2__view_position__["a" /* default */]( nodeBefore, nodeBefore.data.length );
+		} else if ( nodeAfter instanceof __WEBPACK_IMPORTED_MODULE_4__view_text__["a" /* default */] ) {
+			return new __WEBPACK_IMPORTED_MODULE_2__view_position__["a" /* default */]( nodeAfter, 0 );
+		}
+
+		// Otherwise, just return the given position.
+		return viewPosition;
+	}
+
+	/**
+	 * Fired for each model-to-view position mapping request. The purpose of this event is to enable custom model-to-view position
+	 * mapping. Callbacks added to this event take {@link module:engine/model/position~Position model position} and are expected to
+	 * calculate {@link module:engine/view/position~Position view position}. Calculated view position should be added as `viewPosition`
+	 * value in `data` object that is passed as one of parameters to the event callback.
+	 *
+	 * 		// Assume that "captionedImage" model element is converted to <img> and following <span> elements in view,
+	 * 		// and the model element is bound to <img> element. Force mapping model positions inside "captionedImage" to that
+	 * 		// <span> element.
+	 *		mapper.on( 'modelToViewPosition', ( evt, data ) => {
+	 *			const positionParent = modelPosition.parent;
+	 *
+	 *			if ( positionParent.name == 'captionedImage' ) {
+	 *				const viewImg = data.mapper.toViewElement( positionParent );
+	 *				const viewCaption = viewImg.nextSibling; // The <span> element.
+	 *
+	 *				data.viewPosition = new ViewPosition( viewCaption, modelPosition.offset );
+	 *
+	 *				// Stop the event if other callbacks should not modify calculated value.
+	 *				evt.stop();
+	 *			}
+	 *		} );
+	 *
+	 * **Note:** keep in mind that custom callback provided for this event should use provided `data.modelPosition` only to check
+	 * what is before the position (or position's parent). This is important when model-to-view position mapping is used in
+	 * remove change conversion. Model after the removed position (that is being mapped) does not correspond to view, so it cannot be used:
+	 *
+	 *		// Incorrect:
+	 *		const modelElement = data.modelPosition.nodeAfter;
+	 *		const viewElement = data.mapper.toViewElement( modelElement );
+	 *		// ... Do something with `viewElement` and set `data.viewPosition`.
+	 *
+	 *		// Correct:
+	 *		const prevModelElement = data.modelPosition.nodeBefore;
+	 *		const prevViewElement = data.mapper.toViewElement( prevModelElement );
+	 *		// ... Use `prevViewElement` to find correct `data.viewPosition`.
+	 *
+	 * **Note:** default mapping callback is provided with `low` priority setting and does not cancel the event, so it is possible to
+	 * attach a custom callback after default callback and also use `data.viewPosition` calculated by default callback
+	 * (for example to fix it).
+	 *
+	 * **Note:** default mapping callback will not fire if `data.viewPosition` is already set.
+	 *
+	 * **Note:** these callbacks are called **very often**. For efficiency reasons, it is advised to use them only when position
+	 * mapping between given model and view elements is unsolvable using just elements mapping and default algorithm. Also,
+	 * the condition that checks if special case scenario happened should be as simple as possible.
+	 *
+	 * @event modelToViewPosition
+	 * @param {Object} data Data pipeline object that can store and pass data between callbacks. The callback should add
+	 * `viewPosition` value to that object with calculated {@link module:engine/view/position~Position view position}.
+	 * @param {module:engine/conversion/mapper~Mapper} data.mapper Mapper instance that fired the event.
+	 */
+
+	/**
+	 * Fired for each view-to-model position mapping request. See {@link module:engine/conversion/mapper~Mapper#event:modelToViewPosition}.
+	 *
+	 * 		// See example in `modelToViewPosition` event description.
+	 * 		// This custom mapping will map positions from <span> element next to <img> to the "captionedImage" element.
+	 *		mapper.on( 'viewToModelPosition', ( evt, data ) => {
+	 *			const positionParent = viewPosition.parent;
+	 *
+	 *			if ( positionParent.hasClass( 'image-caption' ) ) {
+	 *				const viewImg = positionParent.previousSibling;
+	 *				const modelImg = data.mapper.toModelElement( viewImg );
+	 *
+	 *				data.modelPosition = new ModelPosition( modelImg, viewPosition.offset );
+	 *				evt.stop();
+	 *			}
+	 *		} );
+	 *
+	 * **Note:** default mapping callback is provided with `low` priority setting and does not cancel the event, so it is possible to
+	 * attach a custom callback after default callback and also use `data.modelPosition` calculated by default callback
+	 * (for example to fix it).
+	 *
+	 * **Note:** default mapping callback will not fire if `data.modelPosition` is already set.
+	 *
+	 * **Note:** these callbacks are called **very often**. For efficiency reasons, it is advised to use them only when position
+	 * mapping between given model and view elements is unsolvable using just elements mapping and default algorithm. Also,
+	 * the condition that checks if special case scenario happened should be as simple as possible.
+	 *
+	 * @event viewToModelPosition
+	 * @param {Object} data Data pipeline object that can store and pass data between callbacks. The callback should add
+	 * `modelPosition` value to that object with calculated {@link module:engine/model/position~Position model position}.
+	 * @param {module:engine/conversion/mapper~Mapper} data.mapper Mapper instance that fired the event.
+	 */
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Mapper;
+
+
+Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( Mapper, __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
+
+
+/***/ }),
+/* 161 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = objectToMap;
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module utils/objecttomap
+ */
+
+/**
+ * Transforms object to map.
+ *
+ *		const map = objectToMap( { 'foo': 1, 'bar': 2 } );
+ *		map.get( 'foo' ); // 1
+ *
+ * @param {Object} obj Object to transform.
+ * @returns {Map} Map created from object.
+ */
+function objectToMap( obj ) {
+	const map = new Map();
+
+	for ( const key in obj ) {
+		map.set( key, obj[ key ] );
+	}
+
+	return map;
+}
+
+
+/***/ }),
+/* 162 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module engine/view/matcher
+ */
+
+/**
+ * View matcher class.
+ * Instance of this class can be used to find {@link module:engine/view/element~Element elements} that match given pattern.
+ */
+class Matcher {
+	/**
+	 * Creates new instance of Matcher.
+	 *
+	 * @param {String|RegExp|Object} [pattern] Match patterns. See {@link module:engine/view/matcher~Matcher#add add method} for
+	 * more information.
+	 */
+	constructor( ...pattern ) {
+		this._patterns = [];
+
+		this.add( ...pattern );
+	}
+
+	/**
+	 * Adds pattern or patterns to matcher instance.
+	 *
+	 * Example patterns matching element's name:
+	 *
+	 *		// String.
+	 *		matcher.add( 'div' );
+	 *		matcher.add( { name: 'div' } );
+	 *
+	 *		// Regular expression.
+	 *		matcher.add( /^\w/ );
+	 *		matcher.add( { name: /^\w/ } );
+	 *
+	 * Example pattern matching element's attributes:
+	 *
+	 *		matcher.add( {
+	 *			attribute: {
+	 *				title: 'foobar',
+	 *				foo: /^\w+/
+	 *			}
+	 *		} );
+	 *
+	 * Example patterns matching element's classes:
+	 *
+	 *		// Single class.
+	 *		matcher.add( {
+	 *			class: 'foobar'
+	 *		} );
+	 *
+	 *		// Single class using regular expression.
+	 *		matcher.add( {
+	 *			class: /foo.../
+	 *		} );
+	 *
+	 *		// Multiple classes to match.
+	 *		matcher.add( {
+	 *			class: [ 'baz', 'bar', /foo.../ ]
+	 *		} ):
+	 *
+	 * Example pattern matching element's styles:
+	 *
+	 *		matcher.add( {
+	 *			style: {
+	 *				position: 'absolute',
+	 *				color: /^\w*blue$/
+	 *			}
+	 *		} );
+	 *
+	 * Example function pattern:
+	 *
+	 *		matcher.add( ( element ) => {
+	 *			// Result of this function will be included in `match`
+	 *			// property of the object returned from matcher.match() call.
+	 *			if ( element.name === 'div' && element.childCount > 0 ) {
+	 *				return { name: true };
+	 *			}
+	 *
+	 *			return null;
+	 *		} );
+	 *
+	 * Multiple patterns can be added in one call:
+	 *
+	 * 		matcher.add( 'div', { class: 'foobar' } );
+	 *
+	 * @param {Object|String|RegExp|Function} pattern Object describing pattern details. If string or regular expression
+	 * is provided it will be used to match element's name. Pattern can be also provided in a form
+	 * of a function - then this function will be called with each {@link module:engine/view/element~Element element} as a parameter.
+	 * Function's return value will be stored under `match` key of the object returned from
+	 * {@link module:engine/view/matcher~Matcher#match match} or {@link module:engine/view/matcher~Matcher#matchAll matchAll} methods.
+	 * @param {String|RegExp} [pattern.name] Name or regular expression to match element's name.
+	 * @param {Object} [pattern.attribute] Object with key-value pairs representing attributes to match. Each object key
+	 * represents attribute name. Value under that key can be either a string or a regular expression and it will be
+	 * used to match attribute value.
+	 * @param {String|RegExp|Array} [pattern.class] Class name or array of class names to match. Each name can be
+	 * provided in a form of string or regular expression.
+	 * @param {Object} [pattern.style] Object with key-value pairs representing styles to match. Each object key
+	 * represents style name. Value under that key can be either a string or a regular expression and it will be used
+	 * to match style value.
+	 */
+	add( ...pattern ) {
+		for ( let item of pattern ) {
+			// String or RegExp pattern is used as element's name.
+			if ( typeof item == 'string' || item instanceof RegExp ) {
+				item = { name: item };
+			}
+
+			// Single class name/RegExp can be provided.
+			if ( item.class && ( typeof item.class == 'string' || item.class instanceof RegExp ) ) {
+				item.class = [ item.class ];
+			}
+
+			this._patterns.push( item );
+		}
+	}
+
+	/**
+	 * Matches elements for currently stored patterns. Returns match information about first found
+	 * {@link module:engine/view/element~Element element}, otherwise returns `null`.
+	 *
+	 * Example of returned object:
+	 *
+	 *		{
+	 *			element: <instance of found element>,
+	 *			pattern: <pattern used to match found element>,
+	 *			match: {
+	 *				name: true,
+	 *				attribute: [ 'title', 'href' ],
+	 *				class: [ 'foo' ],
+	 *				style: [ 'color', 'position' ]
+	 *			}
+	 *		}
+	 *
+	 * @see module:engine/view/matcher~Matcher#add
+	 * @see module:engine/view/matcher~Matcher#matchAll
+	 * @param {...module:engine/view/element~Element} element View element to match against stored patterns.
+	 * @returns {Object|null} result
+	 * @returns {module:engine/view/element~Element} result.element Matched view element.
+	 * @returns {Object|String|RegExp|Function} result.pattern Pattern that was used to find matched element.
+	 * @returns {Object} result.match Object representing matched element parts.
+	 * @returns {Boolean} [result.match.name] True if name of the element was matched.
+	 * @returns {Array} [result.match.attribute] Array with matched attribute names.
+	 * @returns {Array} [result.match.class] Array with matched class names.
+	 * @returns {Array} [result.match.style] Array with matched style names.
+	 */
+	match( ...element ) {
+		for ( const singleElement of element ) {
+			for ( const pattern of this._patterns ) {
+				const match = isElementMatching( singleElement, pattern );
+
+				if ( match ) {
+					return {
+						element: singleElement,
+						pattern,
+						match
+					};
+				}
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Matches elements for currently stored patterns. Returns array of match information with all found
+	 * {@link module:engine/view/element~Element elements}. If no element is found - returns `null`.
+	 *
+	 * @see module:engine/view/matcher~Matcher#add
+	 * @see module:engine/view/matcher~Matcher#match
+	 * @param {...module:engine/view/element~Element} element View element to match against stored patterns.
+	 * @returns {Array.<Object>|null} Array with match information about found elements or `null`. For more information
+	 * see {@link module:engine/view/matcher~Matcher#match match method} description.
+	 */
+	matchAll( ...element ) {
+		const results = [];
+
+		for ( const singleElement of element ) {
+			for ( const pattern of this._patterns ) {
+				const match = isElementMatching( singleElement, pattern );
+
+				if ( match ) {
+					results.push( {
+						element: singleElement,
+						pattern,
+						match
+					} );
+				}
+			}
+		}
+
+		return results.length > 0 ? results : null;
+	}
+
+	/**
+	 * Returns the name of the element to match if there is exactly one pattern added to the matcher instance
+	 * and it matches element name defined by `string` (not `RegExp`). Otherwise, returns `null`.
+	 *
+	 * @returns {String|null} Element name trying to match.
+	 */
+	getElementName() {
+		if ( this._patterns.length !== 1 ) {
+			return null;
+		}
+
+		const pattern = this._patterns[ 0 ];
+		const name = pattern.name;
+
+		return ( typeof pattern != 'function' && name && !( name instanceof RegExp ) ) ? name : null;
+	}
+
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Matcher;
+
+
+// Returns match information if {@link module:engine/view/element~Element element} is matching provided pattern.
+// If element cannot be matched to provided pattern - returns `null`.
+//
+// @param {module:engine/view/element~Element} element
+// @param {Object|String|RegExp|Function} pattern
+// @returns {Object|null} Returns object with match information or null if element is not matching.
+function isElementMatching( element, pattern ) {
+	// If pattern is provided as function - return result of that function;
+	if ( typeof pattern == 'function' ) {
+		return pattern( element );
+	}
+
+	const match = {};
+	// Check element's name.
+	if ( pattern.name ) {
+		match.name = matchName( pattern.name, element.name );
+
+		if ( !match.name ) {
+			return null;
+		}
+	}
+
+	// Check element's attributes.
+	if ( pattern.attribute ) {
+		match.attribute = matchAttributes( pattern.attribute, element );
+
+		if ( !match.attribute ) {
+			return null;
+		}
+	}
+
+	// Check element's classes.
+	if ( pattern.class ) {
+		match.class = matchClasses( pattern.class, element );
+
+		if ( !match.class ) {
+			return false;
+		}
+	}
+
+	// Check element's styles.
+	if ( pattern.style ) {
+		match.style = matchStyles( pattern.style, element );
+
+		if ( !match.style ) {
+			return false;
+		}
+	}
+
+	return match;
+}
+
+// Checks if name can be matched by provided pattern.
+//
+// @param {String|RegExp} pattern
+// @param {String} name
+// @returns {Boolean} Returns `true` if name can be matched, `false` otherwise.
+function matchName( pattern, name ) {
+	// If pattern is provided as RegExp - test against this regexp.
+	if ( pattern instanceof RegExp ) {
+		return pattern.test( name );
+	}
+
+	return pattern === name;
+}
+
+// Checks if attributes of provided element can be matched against provided patterns.
+//
+// @param {Object} patterns Object with information about attributes to match. Each key of the object will be
+// used as attribute name. Value of each key can be a string or regular expression to match against attribute value.
+// @param {module:engine/view/element~Element} element Element which attributes will be tested.
+// @returns {Array|null} Returns array with matched attribute names or `null` if no attributes were matched.
+function matchAttributes( patterns, element ) {
+	const match = [];
+
+	for ( const name in patterns ) {
+		const pattern = patterns[ name ];
+
+		if ( element.hasAttribute( name ) ) {
+			const attribute = element.getAttribute( name );
+
+			if ( pattern instanceof RegExp ) {
+				if ( pattern.test( attribute ) ) {
+					match.push( name );
+				} else {
+					return null;
+				}
+			} else if ( attribute === pattern ) {
+				match.push( name );
+			} else {
+				return null;
+			}
+		} else {
+			return null;
+		}
+	}
+
+	return match;
+}
+
+// Checks if classes of provided element can be matched against provided patterns.
+//
+// @param {Array.<String|RegExp>} patterns Array of strings or regular expressions to match against element's classes.
+// @param {module:engine/view/element~Element} element Element which classes will be tested.
+// @returns {Array|null} Returns array with matched class names or `null` if no classes were matched.
+function matchClasses( patterns, element ) {
+	const match = [];
+
+	for ( const pattern of patterns ) {
+		if ( pattern instanceof RegExp ) {
+			const classes = element.getClassNames();
+
+			for ( const name of classes ) {
+				if ( pattern.test( name ) ) {
+					match.push( name );
+				}
+			}
+
+			if ( match.length === 0 ) {
+				return null;
+			}
+		} else if ( element.hasClass( pattern ) ) {
+			match.push( pattern );
+		} else {
+			return null;
+		}
+	}
+
+	return match;
+}
+
+// Checks if styles of provided element can be matched against provided patterns.
+//
+// @param {Object} patterns Object with information about styles to match. Each key of the object will be
+// used as style name. Value of each key can be a string or regular expression to match against style value.
+// @param {module:engine/view/element~Element} element Element which styles will be tested.
+// @returns {Array|null} Returns array with matched style names or `null` if no styles were matched.
+function matchStyles( patterns, element ) {
+	const match = [];
+
+	for ( const name in patterns ) {
+		const pattern = patterns[ name ];
+
+		if ( element.hasStyle( name ) ) {
+			const style = element.getStyle( name );
+
+			if ( pattern instanceof RegExp ) {
+				if ( pattern.test( style ) ) {
+					match.push( name );
+				} else {
+					return null;
+				}
+			} else if ( style === pattern ) {
+				match.push( name );
+			} else {
+				return null;
+			}
+		} else {
+			return null;
+		}
+	}
+
+	return match;
+}
+
+
+/***/ }),
+/* 163 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modelconsumable__ = __webpack_require__(296);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_range__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_position__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_documentfragment__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_lib_lodash_extend__ = __webpack_require__(44);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module engine/conversion/modelconversiondispatcher
+ */
+
+
+
+
+
+
+
+
+
+/**
+ * `ModelConversionDispatcher` is a central point of {@link module:engine/model/model model} conversion, which is
+ * a process of reacting to changes in the model and reflecting them by listeners that listen to those changes.
+ * In default application, {@link module:engine/model/model model} is converted to {@link module:engine/view/view view}. This means
+ * that changes in the model are reflected by changing the view (i.e. adding view nodes or changing attributes on view elements).
+ *
+ * During conversion process, `ModelConversionDispatcher` fires data-manipulation events, basing on state of the model and prepares
+ * data for those events. It is important to note that the events are connected with "change actions" like "inserting"
+ * or "removing" so one might say that we are converting "changes". This is in contrary to view to model conversion,
+ * where we convert view nodes (the structure, not "changes" to the view). Note, that because changes are converted
+ * and not the structure itself, there is a need to have a mapping between model and the structure on which changes are
+ * reflected. To map elements during model to view conversion use {@link module:engine/conversion/mapper~Mapper}.
+ *
+ * The main use for this class is to listen to {@link module:engine/model/document~Document#event:change Document change event}, process it
+ * and then fire specific events telling what exactly has changed. For those events, `ModelConversionDispatcher`
+ * creates {@link module:engine/conversion/modelconsumable~ModelConsumable list of consumable values} that should be handled by event
+ * callbacks. Those events are listened to by model-to-view converters which convert changes done in the
+ * {@link module:engine/model/model model} to changes in the {@link module:engine/view/view view}. `ModelConversionController` also checks
+ * the current state of consumables, so it won't fire events for parts of model that were already consumed. This is
+ * especially important in callbacks that consume multiple values. See {@link module:engine/conversion/modelconsumable~ModelConsumable}
+ * for an example of such callback.
+ *
+ * Although the primary usage for this class is the model-to-view conversion, `ModelConversionDispatcher` can be used
+ * to build custom data processing pipelines that converts model to anything that is needed. Existing model structure can
+ * be used to generate events (listening to {@link module:engine/model/document~Document#event:change Document change event} is not
+ * required)
+ * and custom callbacks can be added to the events (these does not have to be limited to changes in the view).
+ *
+ * When providing your own event listeners for `ModelConversionDispatcher` keep in mind that any callback that had
+ * {@link module:engine/conversion/modelconsumable~ModelConsumable#consume consumed} a value from consumable (and did some changes, i.e. to
+ * the view) should also stop the event. This is because whenever a callback is fired it is assumed that there is something
+ * to be consumed. Thanks to that approach, you do not have to test whether there is anything to consume at the beginning
+ * of your listener callback.
+ *
+ * Example of providing a converter for `ModelConversionDispatcher`:
+ *
+ *		// We will convert inserting "paragraph" model element into the model.
+ *		modelDispatcher.on( 'insert:paragraph', ( evt, data, consumable, conversionApi ) => {
+ *			// Remember to consume the part of consumable.
+ *			consumable.consume( data.item, 'insert' );
+ *
+ *			// Translate position in model to position in the view.
+ *			const viewPosition = conversionApi.mapper.toViewPosition( data.range.start );
+ *
+ *			// Create a P element (note that this converter is for inserting P elements -> 'insert:paragraph').
+ *			const viewElement = new ViewElement( 'p' );
+ *
+ *			// Bind the newly created view element to model element so positions will map accordingly in future.
+ *			conversionApi.mapper.bindElements( data.item, viewElement );
+ *
+ *			// Add the newly created view element to the view.
+ *			viewWriter.insert( viewPosition, viewElement );
+ *
+ *			// Remember to stop the event propagation if the data.item was consumed.
+ *			evt.stop();
+ *		} );
+ *
+ * Callback that "overrides" other callback:
+ *
+ *		// Special converter for `linkHref` attribute added on custom `quote` element. Note, that this
+ *		// attribute may be the same as the attribute added by other features (link feature in this case).
+ *		// It might be even added by that feature! It makes sense that a part of content that is a quote is linked
+ *		// to an external source so it makes sense that link feature works on the custom quote element.
+ *		// However, we have to make sure that the attributes added by link feature are correctly converted.
+ *		// To block default `linkHref` conversion we have to:
+ *		// 1) add this callback with higher priority than link feature callback,
+ *		// 2) consume `linkHref` attribute add change.
+ *		modelConversionDispatcher.on( 'addAttribute:linkHref:quote', ( evt, data, consumable, conversionApi ) => {
+ *			consumable.consume( data.item, 'addAttribute:linkHref' );
+ *
+ *			// Create a button that will represent the `linkHref` attribute.
+ *			let viewSourceBtn = new ViewElement( 'a', {
+ *				href: data.item.getAttribute( 'linkHref' ),
+ *				title: 'source'
+ *			} );
+ *
+ *			// Add a class for the button.
+ *			viewSourceBtn.addClass( 'source' );
+ *
+ *			// Insert the button using writer API.
+ *			// If `addAttribute` event is fired by
+ *			// `module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher#convertInsert` it is fired
+ *			// after `data.item` insert conversion was done. If the event is fired due to attribute insertion coming from
+ *			// different source, `data.item` already existed. This means we are safe to get `viewQuote` from mapper.
+ *			const viewQuote = conversionApi.mapper.toViewElement( data.item );
+ *			const position = new ViewPosition( viewQuote, viewQuote.childCount );
+ *			viewWriter.insert( position, viewSourceBtn );
+ *
+ *			evt.stop();
+ *		}, { priority: 'high' } );
+ */
+class ModelConversionDispatcher {
+	/**
+	 * Creates a `ModelConversionDispatcher` that operates using passed API.
+	 *
+	 * @param {module:engine/model/document~Document} modelDocument Model document instance bound with this dispatcher.
+	 * @param {Object} [conversionApi] Interface passed by dispatcher to the events callbacks.
+	 */
+	constructor( modelDocument, conversionApi = {} ) {
+		/**
+		 * Model document instance bound with this dispatcher.
+		 *
+		 * @private
+		 * @member {module:engine/model/document~Document}
+		 */
+		this._modelDocument = modelDocument;
+
+		/**
+		 * Interface passed by dispatcher to the events callbacks.
+		 *
+		 * @member {Object}
+		 */
+		this.conversionApi = Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_lib_lodash_extend__["a" /* default */])( { dispatcher: this }, conversionApi );
+	}
+
+	/**
+	 * Prepares data and fires a proper event.
+	 *
+	 * The method is crafted to take use of parameters passed in {@link module:engine/model/document~Document#event:change Document change
+	 * event}.
+	 *
+	 * @see module:engine/model/document~Document#event:change
+	 * @fires insert
+	 * @fires remove
+	 * @fires addAttribute
+	 * @fires removeAttribute
+	 * @fires changeAttribute
+	 * @fires addMarker
+	 * @param {String} type Change type.
+	 * @param {Object} data Additional information about the change.
+	 */
+	convertChange( type, data ) {
+		// Do not convert changes if they happen in graveyard.
+		// Graveyard is a special root that has no view / no other representation and changes done in it should not be converted.
+		if ( type !== 'remove' && data.range && data.range.root.rootName == '$graveyard' ) {
+			return;
+		}
+
+		if ( type == 'remove' && data.sourcePosition.root.rootName == '$graveyard' ) {
+			return;
+		}
+
+		if ( type == 'rename' && data.element.root.rootName == '$graveyard' ) {
+			return;
+		}
+
+		// We can safely dispatch changes.
+		if ( type == 'insert' || type == 'reinsert' ) {
+			this.convertInsertion( data.range );
+		} else if ( type == 'move' ) {
+			this.convertMove( data.sourcePosition, data.range );
+		} else if ( type == 'remove' ) {
+			this.convertRemove( data.sourcePosition, data.range );
+		} else if ( type == 'addAttribute' || type == 'removeAttribute' || type == 'changeAttribute' ) {
+			this.convertAttribute( type, data.range, data.key, data.oldValue, data.newValue );
+		} else if ( type == 'rename' ) {
+			this.convertRename( data.element, data.oldName );
+		}
+	}
+
+	/**
+	 * Starts conversion of insertion-change on given `range`.
+	 *
+	 * Analyzes given range and fires insertion-connected events with data based on that range.
+	 *
+	 * **Note**: This method will fire separate events for node insertion and attributes insertion. All
+	 * attributes that are set on inserted nodes are treated like they were added just after node insertion.
+	 *
+	 * @fires insert
+	 * @fires addAttribute
+	 * @fires addMarker
+	 * @param {module:engine/model/range~Range} range Inserted range.
+	 */
+	convertInsertion( range ) {
+		// Create a list of things that can be consumed, consisting of nodes and their attributes.
+		const consumable = this._createInsertConsumable( range );
+
+		// Fire a separate insert event for each node and text fragment contained in the range.
+		for ( const value of range ) {
+			const item = value.item;
+			const itemRange = __WEBPACK_IMPORTED_MODULE_1__model_range__["a" /* default */].createFromPositionAndShift( value.previousPosition, value.length );
+			const data = {
+				item,
+				range: itemRange
+			};
+
+			this._testAndFire( 'insert', data, consumable );
+
+			// Fire a separate addAttribute event for each attribute that was set on inserted items.
+			// This is important because most attributes converters will listen only to add/change/removeAttribute events.
+			// If we would not add this part, attributes on inserted nodes would not be converted.
+			for ( const key of item.getAttributeKeys() ) {
+				data.attributeKey = key;
+				data.attributeOldValue = null;
+				data.attributeNewValue = item.getAttribute( key );
+
+				this._testAndFire( `addAttribute:${ key }`, data, consumable );
+			}
+		}
+
+		for ( const marker of this._modelDocument.markers ) {
+			const markerRange = marker.getRange();
+
+			// Check if inserted content is inserted into a marker.
+			if ( markerRange.containsPosition( range.start ) ) {
+				this.convertMarker( 'addMarker', marker.name, markerRange.getIntersection( range ) );
+			}
+
+			// Check if inserted content contains a marker.
+			if ( range.containsRange( markerRange, true ) ) {
+				this.convertMarker( 'addMarker', marker.name, markerRange );
+			}
+		}
+	}
+
+	/**
+	 * Starts conversion of move-change of given `range`, that was moved from given `sourcePosition`.
+	 *
+	 * Fires {@link ~#event:remove remove event} and {@link ~#event:insert insert event} based on passed parameters.
+	 *
+	 * @fires remove
+	 * @fires insert
+	 * @param {module:engine/model/position~Position} sourcePosition The original position from which the range was moved.
+	 * @param {module:engine/model/range~Range} range The range containing the moved content.
+	 */
+	convertMove( sourcePosition, range ) {
+		// Move left – convert insertion first (#847).
+		if ( range.start.isBefore( sourcePosition ) ) {
+			this.convertInsertion( range );
+
+			const sourcePositionAfterInsertion =
+				sourcePosition._getTransformedByInsertion( range.start, range.end.offset - range.start.offset );
+
+			this.convertRemove( sourcePositionAfterInsertion, range );
+		} else {
+			this.convertRemove( sourcePosition, range );
+			this.convertInsertion( range );
+		}
+	}
+
+	/**
+	 * Starts conversion of remove-change of given `range`, that was removed from given `sourcePosition`.
+	 *
+	 * Fires {@link ~#event:remove remove event} with data based on passed values.
+	 *
+	 * @fires remove
+	 * @param {module:engine/model/position~Position} sourcePosition Position from where the range has been removed.
+	 * @param {module:engine/model/range~Range} range Removed range (after remove, in
+	 * {@link module:engine/model/document~Document#graveyard graveyard root}).
+	 */
+	convertRemove( sourcePosition, range ) {
+		const consumable = this._createConsumableForRange( range, 'remove' );
+
+		for ( const item of range.getItems( { shallow: true } ) ) {
+			const data = {
+				sourcePosition,
+				item
+			};
+
+			this._testAndFire( 'remove', data, consumable );
+		}
+	}
+
+	/**
+	 * Starts conversion of attribute-change on given `range`.
+	 *
+	 * Analyzes given attribute change and fires attributes-connected events with data based on passed values.
+	 *
+	 * @fires addAttribute
+	 * @fires removeAttribute
+	 * @fires changeAttribute
+	 * @param {String} type Change type. Possible values: `addAttribute`, `removeAttribute`, `changeAttribute`.
+	 * @param {module:engine/model/range~Range} range Changed range.
+	 * @param {String} key Attribute key.
+	 * @param {*} oldValue Attribute value before the change or `null` if attribute has not been set.
+	 * @param {*} newValue New attribute value or `null` if attribute has been removed.
+	 */
+	convertAttribute( type, range, key, oldValue, newValue ) {
+		// Create a list with attributes to consume.
+		const consumable = this._createConsumableForRange( range, type + ':' + key );
+
+		// Create a separate attribute event for each node in the range.
+		for ( const value of range ) {
+			const item = value.item;
+			const itemRange = __WEBPACK_IMPORTED_MODULE_1__model_range__["a" /* default */].createFromPositionAndShift( value.previousPosition, value.length );
+			const data = {
+				item,
+				range: itemRange,
+				attributeKey: key,
+				attributeOldValue: oldValue,
+				attributeNewValue: newValue
+			};
+
+			this._testAndFire( `${ type }:${ key }`, data, consumable );
+		}
+	}
+
+	/**
+	 * Starts conversion of rename-change of given `element` that had given `oldName`.
+	 *
+	 * Fires {@link ~#event:remove remove event} and {@link ~#event:insert insert event} based on passed values.
+	 *
+	 * @fires remove
+	 * @fires insert
+	 * @param {module:engine/model/element~Element} element Renamed element.
+	 * @param {String} oldName Name of the renamed element before it was renamed.
+	 */
+	convertRename( element, oldName ) {
+		// Create fake element that will be used to fire remove event. The fake element will have the old element name.
+		const fakeElement = element.clone( true );
+		fakeElement.name = oldName;
+
+		// Bind fake element with original view element so the view element will be removed.
+		this.conversionApi.mapper.bindElements(
+			fakeElement,
+			this.conversionApi.mapper.toViewElement( element )
+		);
+
+		// Create fake document fragment so a range can be created on fake element.
+		const fakeDocumentFragment = new __WEBPACK_IMPORTED_MODULE_3__model_documentfragment__["a" /* default */]();
+		fakeDocumentFragment.appendChildren( fakeElement );
+
+		this.convertRemove( __WEBPACK_IMPORTED_MODULE_2__model_position__["a" /* default */].createBefore( element ), __WEBPACK_IMPORTED_MODULE_1__model_range__["a" /* default */].createOn( fakeElement ) );
+		this.convertInsertion( __WEBPACK_IMPORTED_MODULE_1__model_range__["a" /* default */].createOn( element ) );
+	}
+
+	/**
+	 * Starts selection conversion.
+	 *
+	 * Fires events for given {@link module:engine/model/selection~Selection selection} to start selection conversion.
+	 *
+	 * @fires selection
+	 * @fires selectionAttribute
+	 * @param {module:engine/model/selection~Selection} selection Selection to convert.
+	 */
+	convertSelection( selection ) {
+		const markers = Array.from( this._modelDocument.markers.getMarkersAtPosition( selection.getFirstPosition() ) );
+		const consumable = this._createSelectionConsumable( selection, markers );
+
+		this.fire( 'selection', { selection }, consumable, this.conversionApi );
+
+		for ( const marker of markers ) {
+			const data = {
+				selection,
+				name: marker.name
+			};
+
+			if ( consumable.test( selection, 'selectionMarker:' + marker.name ) ) {
+				this.fire( 'selectionMarker:' + marker.name, data, consumable, this.conversionApi );
+			}
+		}
+
+		for ( const key of selection.getAttributeKeys() ) {
+			const data = {
+				selection,
+				key,
+				value: selection.getAttribute( key )
+			};
+
+			// Do not fire event if the attribute has been consumed.
+			if ( consumable.test( selection, 'selectionAttribute:' + data.key ) ) {
+				this.fire( 'selectionAttribute:' + data.key, data, consumable, this.conversionApi );
+			}
+		}
+	}
+
+	/**
+	 * Starts marker-conversion.
+	 *
+	 * Fires {@link ~#event:addMarker addMarker event} or {@link ~#event:removeMarker removeMarker event} based on
+	 * given `type` with data based on passed parameters.
+	 *
+	 * @fires addMarker
+	 * @fires removeMarker
+	 * @param {'addMarker'|'removeMarker'} type Change type.
+	 * @param {String} name Marker name.
+	 * @param {module:engine/model/range~Range} range Marker range.
+	 */
+	convertMarker( type, name, range ) {
+		// Do not convert if range is in graveyard or not in the document (e.g. in DocumentFragment).
+		if ( !range.root.document || range.root.rootName == '$graveyard' ) {
+			return;
+		}
+
+		const consumable = this._createMarkerConsumable( type, range );
+		const data = { name, range };
+
+		this.fire( type + ':' + name, data, consumable, this.conversionApi );
+	}
+
+	/**
+	 * Creates {@link module:engine/conversion/modelconsumable~ModelConsumable} with values to consume from given range, assuming that
+	 * given range has just been inserted to the model.
+	 *
+	 * @private
+	 * @param {module:engine/model/range~Range} range Inserted range.
+	 * @returns {module:engine/conversion/modelconsumable~ModelConsumable} Values to consume.
+	 */
+	_createInsertConsumable( range ) {
+		const consumable = new __WEBPACK_IMPORTED_MODULE_0__modelconsumable__["a" /* default */]();
+
+		for ( const value of range ) {
+			const item = value.item;
+
+			consumable.add( item, 'insert' );
+
+			for ( const key of item.getAttributeKeys() ) {
+				consumable.add( item, 'addAttribute:' + key );
+			}
+		}
+
+		return consumable;
+	}
+
+	/**
+	 * Creates {@link module:engine/conversion/modelconsumable~ModelConsumable} with values of given `type`
+	 * for each item from given `range`.
+	 *
+	 * @private
+	 * @param {module:engine/model/range~Range} range Affected range.
+	 * @param {String} type Consumable type.
+	 * @returns {module:engine/conversion/modelconsumable~ModelConsumable} Values to consume.
+	 */
+	_createConsumableForRange( range, type ) {
+		const consumable = new __WEBPACK_IMPORTED_MODULE_0__modelconsumable__["a" /* default */]();
+
+		for ( const item of range.getItems() ) {
+			consumable.add( item, type );
+		}
+
+		return consumable;
+	}
+
+	/**
+	 * Creates {@link module:engine/conversion/modelconsumable~ModelConsumable} with selection consumable values.
+	 *
+	 * @private
+	 * @param {module:engine/model/selection~Selection} selection Selection to create consumable from.
+	 * @param {Iterable.<module:engine/model/markercollection~Marker>} markers Markers which contains selection.
+	 * @returns {module:engine/conversion/modelconsumable~ModelConsumable} Values to consume.
+	 */
+	_createSelectionConsumable( selection, markers ) {
+		const consumable = new __WEBPACK_IMPORTED_MODULE_0__modelconsumable__["a" /* default */]();
+
+		consumable.add( selection, 'selection' );
+
+		for ( const marker of markers ) {
+			consumable.add( selection, 'selectionMarker:' + marker.name );
+		}
+
+		for ( const key of selection.getAttributeKeys() ) {
+			consumable.add( selection, 'selectionAttribute:' + key );
+		}
+
+		return consumable;
+	}
+
+	/**
+	 * Creates {@link module:engine/conversion/modelconsumable~ModelConsumable} for adding or removing marker on given `range`.
+	 *
+	 * @private
+	 * @param {'addMarker'|'removeMarker'} type Change type.
+	 * @param {module:engine/model/range~Range} range Range on which marker was added or removed.
+	 * @returns {module:engine/conversion/modelconsumable~ModelConsumable} Values to consume.
+	 */
+	_createMarkerConsumable( type, range ) {
+		const consumable = new __WEBPACK_IMPORTED_MODULE_0__modelconsumable__["a" /* default */]();
+
+		consumable.add( range, type );
+
+		return consumable;
+	}
+
+	/**
+	 * Tests passed `consumable` to check whether given event can be fired and if so, fires it.
+	 *
+	 * @private
+	 * @fires insert
+	 * @fires remove
+	 * @fires addAttribute
+	 * @fires removeAttribute
+	 * @fires changeAttribute
+	 * @param {String} type Event type.
+	 * @param {Object} data Event data.
+	 * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume.
+	 */
+	_testAndFire( type, data, consumable ) {
+		if ( !consumable.test( data.item, type ) ) {
+			// Do not fire event if the item was consumed.
+			return;
+		}
+
+		const name = data.item.name || '$text';
+
+		this.fire( type + ':' + name, data, consumable, this.conversionApi );
+	}
+
+	/**
+	 * Fired for inserted nodes.
+	 *
+	 * `insert` is a namespace for a class of events. Names of actually called events follow this pattern:
+	 * `insert:<name>`. `name` is either `'$text'` when one or more characters has been inserted or
+	 * {@link module:engine/model/element~Element#name name} of inserted element.
+	 *
+	 * This way listeners can either listen to a general `insert` event or specific event (for example `insert:paragraph`).
+	 *
+	 * @event insert
+	 * @param {Object} data Additional information about the change.
+	 * @param {module:engine/model/item~Item} data.item Inserted item.
+	 * @param {module:engine/model/range~Range} data.range Range spanning over inserted item.
+	 * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume.
+	 * @param {Object} conversionApi Conversion interface to be used by callback, passed in `ModelConversionDispatcher` constructor.
+	 */
+
+	/**
+	 * Fired for removed nodes.
+	 *
+	 * `remove` is a namespace for a class of events. Names of actually called events follow this pattern:
+	 * `remove:<name>`. `name` is either `'$text'` when one or more characters has been removed or the
+	 * {@link module:engine/model/element~Element#name name} of removed element.
+	 *
+	 * This way listeners can either listen to a general `remove` event or specific event (for example `remove:paragraph`).
+	 *
+	 * @event remove
+	 * @param {Object} data Additional information about the change.
+	 * @param {module:engine/model/position~Position} data.sourcePosition Position from where the range has been removed.
+	 * @param {module:engine/model/range~Range} data.range Removed range (in {@link module:engine/model/document~Document#graveyard
+	 * graveyard root}).
+	 * @param {Object} conversionApi Conversion interface to be used by callback, passed in `ModelConversionDispatcher` constructor.
+	 */
+
+	/**
+	 * Fired when attribute has been added on a node.
+	 *
+	 * `addAttribute` is a namespace for a class of events. Names of actually called events follow this pattern:
+	 * `addAttribute:<attributeKey>:<name>`. `attributeKey` is the key of added attribute. `name` is either `'$text'`
+	 * if attribute was added on one or more characters, or the {@link module:engine/model/element~Element#name name} of
+	 * the element on which attribute was added.
+	 *
+	 * This way listeners can either listen to a general `addAttribute:bold` event or specific event
+	 * (for example `addAttribute:link:image`).
+	 *
+	 * @event addAttribute
+	 * @param {Object} data Additional information about the change.
+	 * @param {module:engine/model/item~Item} data.item Changed item.
+	 * @param {module:engine/model/range~Range} data.range Range spanning over changed item.
+	 * @param {String} data.attributeKey Attribute key.
+	 * @param {null} data.attributeOldValue Attribute value before the change - always `null`. Kept for the sake of unifying events.
+	 * @param {*} data.attributeNewValue New attribute value.
+	 * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume.
+	 * @param {Object} conversionApi Conversion interface to be used by callback, passed in `ModelConversionDispatcher` constructor.
+	 */
+
+	/**
+	 * Fired when attribute has been removed from a node.
+	 *
+	 * `removeAttribute` is a namespace for a class of events. Names of actually called events follow this pattern:
+	 * `removeAttribute:<attributeKey>:<name>`. `attributeKey` is the key of removed attribute. `name` is either `'$text'`
+	 * if attribute was removed from one or more characters, or the {@link module:engine/model/element~Element#name name} of
+	 * the element from which attribute was removed.
+	 *
+	 * This way listeners can either listen to a general `removeAttribute:bold` event or specific event
+	 * (for example `removeAttribute:link:image`).
+	 *
+	 * @event removeAttribute
+	 * @param {Object} data Additional information about the change.
+	 * @param {module:engine/model/item~Item} data.item Changed item.
+	 * @param {module:engine/model/range~Range} data.range Range spanning over changed item.
+	 * @param {String} data.attributeKey Attribute key.
+	 * @param {*} data.attributeOldValue Attribute value before it was removed.
+	 * @param {null} data.attributeNewValue New attribute value - always `null`. Kept for the sake of unifying events.
+	 * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume.
+	 * @param {Object} conversionApi Conversion interface to be used by callback, passed in `ModelConversionDispatcher` constructor.
+	 */
+
+	/**
+	 * Fired when attribute of a node has been changed.
+	 *
+	 * `changeAttribute` is a namespace for a class of events. Names of actually called events follow this pattern:
+	 * `changeAttribute:<attributeKey>:<name>`. `attributeKey` is the key of changed attribute. `name` is either `'$text'`
+	 * if attribute was changed on one or more characters, or the {@link module:engine/model/element~Element#name name} of
+	 * the element on which attribute was changed.
+	 *
+	 * This way listeners can either listen to a general `changeAttribute:link` event or specific event
+	 * (for example `changeAttribute:link:image`).
+	 *
+	 * @event changeAttribute
+	 * @param {Object} data Additional information about the change.
+	 * @param {module:engine/model/item~Item} data.item Changed item.
+	 * @param {module:engine/model/range~Range} data.range Range spanning over changed item.
+	 * @param {String} data.attributeKey Attribute key.
+	 * @param {*} data.attributeOldValue Attribute value before the change.
+	 * @param {*} data.attributeNewValue New attribute value.
+	 * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume.
+	 * @param {Object} conversionApi Conversion interface to be used by callback, passed in `ModelConversionDispatcher` constructor.
+	 */
+
+	/**
+	 * Fired for {@link module:engine/model/selection~Selection selection} changes.
+	 *
+	 * @event selection
+	 * @param {module:engine/model/selection~Selection} selection `Selection` instance that is converted.
+	 * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume.
+	 * @param {Object} conversionApi Conversion interface to be used by callback, passed in `ModelConversionDispatcher` constructor.
+	 */
+
+	/**
+	 * Fired for {@link module:engine/model/selection~Selection selection} attributes changes.
+	 *
+	 * `selectionAttribute` is a namespace for a class of events. Names of actually called events follow this pattern:
+	 * `selectionAttribute:<attributeKey>`. `attributeKey` is the key of selection attribute. This way listen can listen to
+	 * certain attribute, i.e. `addAttribute:bold`.
+	 *
+	 * @event selectionAttribute
+	 * @param {Object} data Additional information about the change.
+	 * @param {module:engine/model/selection~Selection} data.selection Selection that is converted.
+	 * @param {String} data.attributeKey Key of changed attribute.
+	 * @param {*} data.attributeValue Value of changed attribute.
+	 * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume.
+	 * @param {Object} conversionApi Conversion interface to be used by callback, passed in `ModelConversionDispatcher` constructor.
+	 */
+
+	/**
+	 * Fired when a new marker is added to the model.
+	 *
+	 * `addMarker` is a namespace for a class of events. Names of actually called events follow this pattern:
+	 * `addMarker:<markerName>`. By specifying certain marker names, you can make the events even more gradual. For example,
+	 * markers can be named `foo:abc`, `foo:bar`, then it is possible to listen to `addMarker:foo` or `addMarker:foo:abc` and
+	 * `addMarker:foo:bar` events.
+	 *
+	 * @event addMarker
+	 * @param {Object} data Additional information about the change.
+	 * @param {String} data.name Marker name.
+	 * @param {module:engine/model/range~Range} data.range Marker range.
+	 * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume.
+	 * @param {Object} conversionApi Conversion interface to be used by callback, passed in `ModelConversionDispatcher` constructor.
+	 */
+
+	/**
+	 * Fired when marker is removed from the model.
+	 *
+	 * `removeMarker` is a namespace for a class of events. Names of actually called events follow this pattern:
+	 * `removeMarker:<markerName>`. By specifying certain marker names, you can make the events even more gradual. For example,
+	 * markers can be named `foo:abc`, `foo:bar`, then it is possible to listen to `removeMarker:foo` or `removeMarker:foo:abc` and
+	 * `removeMarker:foo:bar` events.
+	 *
+	 * @event removeMarker
+	 * @param {Object} data Additional information about the change.
+	 * @param {String} data.name Marker name.
+	 * @param {module:engine/model/range~Range} data.range Marker range.
+	 * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume.
+	 * @param {Object} conversionApi Conversion interface to be used by callback, passed in `ModelConversionDispatcher` constructor.
+	 */
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = ModelConversionDispatcher;
+
+
+Object(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( ModelConversionDispatcher, __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
+
+
+/***/ }),
+/* 164 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__element__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node__ = __webpack_require__(81);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module engine/view/emptyelement
+ */
+
+
+
+
+
+/**
+ * EmptyElement class. It is used to represent elements that cannot contain any child nodes.
+ */
+class EmptyElement extends __WEBPACK_IMPORTED_MODULE_0__element__["a" /* default */] {
+	/**
+	 * Creates new instance of EmptyElement.
+	 *
+	 * Throws {@link module:utils/ckeditorerror~CKEditorError CKEditorError} `view-emptyelement-cannot-add` when third parameter is passed,
+	 * to inform that usage of EmptyElement is incorrect (adding child nodes to EmptyElement is forbidden).
+	 *
+	 * @param {String} name Node name.
+	 * @param {Object|Iterable} [attributes] Collection of attributes.
+	 */
+	constructor( name, attributes, children ) {
+		super( name, attributes, children );
+
+		/**
+		 * Returns `null` because filler is not needed for EmptyElements.
+		 *
+		 * @method #getFillerOffset
+		 * @returns {null} Always returns null.
+		 */
+		this.getFillerOffset = getFillerOffset;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	is( type, name = null ) {
+		if ( !name ) {
+			return type == 'emptyElement' || super.is( type );
+		} else {
+			return ( type == 'emptyElement' && name == this.name ) || super.is( type, name );
+		}
+	}
+
+	/**
+	 * Overrides {@link module:engine/view/element~Element#insertChildren} method.
+	 * Throws {@link module:utils/ckeditorerror~CKEditorError CKEditorError} `view-emptyelement-cannot-add` to prevent
+	 * adding any child nodes to EmptyElement.
+	 */
+	insertChildren( index, nodes ) {
+		if ( nodes && ( nodes instanceof __WEBPACK_IMPORTED_MODULE_2__node__["a" /* default */] || Array.from( nodes ).length > 0 ) ) {
+			/**
+			 * Cannot add children to {@link module:engine/view/emptyelement~EmptyElement}.
+			 *
+			 * @error view-emptyelement-cannot-add
+			 */
+			throw new __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-emptyelement-cannot-add: Cannot add child nodes to EmptyElement instance.' );
+		}
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = EmptyElement;
+
+
+// Returns `null` because block filler is not needed for EmptyElements.
+//
+// @returns {null}
+function getFillerOffset() {
+	return null;
+}
+
+
+/***/ }),
+/* 165 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__element__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node__ = __webpack_require__(81);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module engine/view/uielement
+ */
+
+
+
+
+
+/**
+ * UIElement class. It is used to represent UI not a content of the document.
+ * This element can't be split and selection can't be placed inside this element.
+ */
+class UIElement extends __WEBPACK_IMPORTED_MODULE_0__element__["a" /* default */] {
+	/**
+	 * Creates new instance of UIElement.
+	 *
+	 * Throws {@link module:utils/ckeditorerror~CKEditorError CKEditorError} `view-uielement-cannot-add` when third parameter is passed,
+	 * to inform that usage of UIElement is incorrect (adding child nodes to UIElement is forbidden).
+	 *
+	 * @param {String} name Node name.
+	 * @param {Object|Iterable} [attributes] Collection of attributes.
+	 */
+	constructor( name, attributes, children ) {
+		super( name, attributes, children );
+
+		/**
+		 * Returns `null` because filler is not needed for UIElements.
+		 *
+		 * @method #getFillerOffset
+		 * @returns {null} Always returns null.
+		 */
+		this.getFillerOffset = getFillerOffset;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	is( type, name = null ) {
+		if ( !name ) {
+			return type == 'uiElement' || super.is( type );
+		} else {
+			return ( type == 'uiElement' && name == this.name ) || super.is( type, name );
+		}
+	}
+
+	/**
+	 * Overrides {@link module:engine/view/element~Element#insertChildren} method.
+	 * Throws {@link module:utils/ckeditorerror~CKEditorError CKEditorError} `view-uielement-cannot-add` to prevent adding any child nodes
+	 * to UIElement.
+	 */
+	insertChildren( index, nodes ) {
+		if ( nodes && ( nodes instanceof __WEBPACK_IMPORTED_MODULE_2__node__["a" /* default */] || Array.from( nodes ).length > 0 ) ) {
+			/**
+			 * Cannot add children to {@link module:engine/view/uielement~UIElement}.
+			 *
+			 * @error view-uielement-cannot-add
+			 */
+			throw new __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-uielement-cannot-add: Cannot add child nodes to UIElement instance.' );
+		}
+	}
+
+	/**
+	 * Renders this {@link module:engine/view/uielement~UIElement} to DOM. This method is called by
+	 * {@link module:engine/view/domconverter~DomConverter}.
+	 *
+	 * @param {Document} domDocument
+	 * @return {HTMLElement}
+	 */
+	render( domDocument ) {
+		const domElement = domDocument.createElement( this.name );
+
+		for ( const key of this.getAttributeKeys() ) {
+			domElement.setAttribute( key, this.getAttribute( key ) );
+		}
+
+		return domElement;
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = UIElement;
+
+
+// Returns `null` because block filler is not needed for UIElements.
+//
+// @returns {null}
+function getFillerOffset() {
+	return null;
+}
+
+
+/***/ }),
+/* 166 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__position__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__range__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module engine/model/liveposition
+ */
+
+
+
+
+
+
+
+/**
+ * `LivePosition` is a type of {@link module:engine/model/position~Position Position}
+ * that updates itself as {@link module:engine/model/document~Document document}
+ * is changed through operations. It may be used as a bookmark.
+ *
+ * **Note:** Contrary to {@link module:engine/model/position~Position}, `LivePosition` works only in roots that are
+ * {@link module:engine/model/rootelement~RootElement}.
+ * If {@link module:engine/model/documentfragment~DocumentFragment} is passed, error will be thrown.
+ *
+ * **Note:** Be very careful when dealing with `LivePosition`. Each `LivePosition` instance bind events that might
+ * have to be unbound.
+ * Use {@link module:engine/model/liveposition~LivePosition#detach} whenever you don't need `LivePosition` anymore.
+ *
+ * @extends module:engine/model/position~Position
+ */
+class LivePosition extends __WEBPACK_IMPORTED_MODULE_0__position__["a" /* default */] {
+	/**
+	 * Creates a live position.
+	 *
+	 * @see module:engine/model/position~Position
+	 * @param {module:engine/model/rootelement~RootElement} root
+	 * @param {Array.<Number>} path
+	 * @param {module:engine/model/position~PositionStickiness} [stickiness] Defaults to `'sticksToNext'`.
+	 * See {@link module:engine/model/liveposition~LivePosition#stickiness}.
+	 */
+	constructor( root, path, stickiness ) {
+		super( root, path );
+
+		if ( !this.root.is( 'rootElement' ) ) {
+			/**
+			 * LivePosition root has to be an instance of RootElement.
+			 *
+			 * @error liveposition-root-not-rootelement
+			 */
+			throw new __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'model-liveposition-root-not-rootelement: LivePosition root has to be an instance of RootElement.' );
+		}
+
+		/**
+		 * Flag representing `LivePosition` stickiness. `LivePosition` might be sticking to previous node or next node.
+		 * Whenever some nodes are inserted at the same position as `LivePosition`, `stickiness` is checked to decide if
+		 * LivePosition should be moved. Similar applies when a range of nodes is moved and one of it's boundary
+		 * position is same as `LivePosition`.
+		 *
+		 * Examples:
+		 *
+		 *		Insert:
+		 *		Position is at | and we insert at the same position, marked as ^:
+		 *		- | sticks to previous node: `<p>f|^oo</p>` => `<p>f|baroo</p>`
+		 *		- | sticks to next node: `<p>f^|oo</p>` => `<p>fbar|oo</p>`
+		 *
+		 *		Move:
+		 *		Position is at | and range [ ] is moved to position ^:
+		 *		- | sticks to previous node: `<p>f|[oo]</p><p>b^ar</p>` => `<p>f|</p><p>booar</p>`
+		 *		- | sticks to next node: `<p>f|[oo]</p><p>b^ar</p>` => `<p>f</p><p>b|ooar</p>`
+		 *
+		 * @member {module:engine/model/position~PositionStickiness} module:engine/model/liveposition~LivePosition#stickiness
+		 */
+		this.stickiness = stickiness || 'sticksToNext';
+
+		bindWithDocument.call( this );
+	}
+
+	/**
+	 * Unbinds all events previously bound by `LivePosition`. Use it whenever you don't need `LivePosition` instance
+	 * anymore (i.e. when leaving scope in which it was declared or before re-assigning variable that was
+	 * referring to it).
+	 */
+	detach() {
+		this.stopListening();
+	}
+
+	/**
+	 * @static
+	 * @method module:engine/model/liveposition~LivePosition.createAfter
+	 * @see module:engine/model/position~Position.createAfter
+	 * @param {module:engine/model/node~Node} node
+	 * @returns {module:engine/model/liveposition~LivePosition}
+	 */
+
+	/**
+	 * @static
+	 * @method module:engine/model/liveposition~LivePosition.createBefore
+	 * @see module:engine/model/position~Position.createBefore
+	 * @param {module:engine/model/node~Node} node
+	 * @returns {module:engine/model/liveposition~LivePosition}
+	 */
+
+	/**
+	 * @static
+	 * @method module:engine/model/liveposition~LivePosition.createFromParentAndOffset
+	 * @see module:engine/model/position~Position.createFromParentAndOffset
+	 * @param {module:engine/model/element~Element} parent
+	 * @param {Number} offset
+	 * @returns {module:engine/model/liveposition~LivePosition}
+	 */
+
+	/**
+	 * @static
+	 * @method module:engine/model/liveposition~LivePosition.createFromPosition
+	 * @see module:engine/model/position~Position.createFromPosition
+	 * @param {module:engine/model/position~Position} position
+	 * @returns {module:engine/model/liveposition~LivePosition}
+	 */
+
+	/**
+	 * Fired when `LivePosition` instance is changed due to changes on {@link module:engine/model/document~Document}.
+	 *
+	 * @event module:engine/model/liveposition~LivePosition#change
+	 * @param {module:engine/model/position~Position} oldPosition Position equal to this live position before it got changed.
+	 */
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = LivePosition;
+
+
+/**
+ * Binds this `LivePosition` to the {@link module:engine/model/document~Document document} that owns
+ * this position's {@link module:engine/model/position~Position#root root}.
+ *
+ * @ignore
+ * @private
+ * @method module:engine/model/liveposition~LivePosition.bindWithDocument
+ */
+function bindWithDocument() {
+	// Operation types handled by LivePosition (these are operations that change model tree structure).
+	const supportedTypes = new Set( [ 'insert', 'move', 'remove', 'reinsert' ] );
+
+	this.listenTo(
+		this.root.document,
+		'change',
+		( event, type, changes ) => {
+			if ( supportedTypes.has( type ) ) {
+				transform.call( this, type, changes.range, changes.sourcePosition );
+			}
+		},
+		{ priority: 'high' }
+	);
+}
+
+/**
+ * Updates this position accordingly to the updates applied to the model. Bases on change events.
+ *
+ * @ignore
+ * @private
+ * @method transform
+ * @param {String} type Type of changes applied to the Tree Model.
+ * @param {module:engine/model/range~Range} range Range containing the result of applied change.
+ * @param {module:engine/model/position~Position} [position] Additional position parameter provided by some change events.
+ */
+function transform( type, range, position ) {
+	/* eslint-disable no-case-declarations */
+	const howMany = range.end.offset - range.start.offset;
+	let transformed;
+
+	switch ( type ) {
+		case 'insert':
+			const insertBefore = this.stickiness == 'sticksToNext';
+			transformed = this._getTransformedByInsertion( range.start, howMany, insertBefore );
+			break;
+
+		case 'move':
+		case 'remove':
+		case 'reinsert':
+			const originalRange = __WEBPACK_IMPORTED_MODULE_1__range__["a" /* default */].createFromPositionAndShift( position, howMany );
+
+			const gotMoved = originalRange.containsPosition( this ) ||
+				( originalRange.start.isEqual( this ) && this.stickiness == 'sticksToNext' ) ||
+				( originalRange.end.isEqual( this ) && this.stickiness == 'sticksToPrevious' );
+
+			// We can't use ._getTransformedByMove() because we have a different if-condition.
+			if ( gotMoved ) {
+				transformed = this._getCombined( position, range.start );
+			} else {
+				const insertBefore = this.stickiness == 'sticksToNext';
+				transformed = this._getTransformedByMove( position, range.start, howMany, insertBefore );
+			}
+			break;
+	}
+
+	if ( !this.isEqual( transformed ) ) {
+		const oldPosition = __WEBPACK_IMPORTED_MODULE_0__position__["a" /* default */].createFromPosition( this );
+
+		this.path = transformed.path;
+		this.root = transformed.root;
+
+		this.fire( 'change', oldPosition );
+	}
+	/* eslint-enable no-case-declarations */
+}
+
+Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( LivePosition, __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
+
+/**
+ * Enum representing how position is "sticking" with their neighbour nodes.
+ * Possible values: `'sticksToNext'`, `'sticksToPrevious'`.
+ *
+ * @typedef {String} module:engine/model/position~PositionStickiness
+ */
+
+
+
+/***/ }),
+/* 167 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export isCombiningMark */
+/* unused harmony export isHighSurrogateHalf */
+/* unused harmony export isLowSurrogateHalf */
+/* harmony export (immutable) */ __webpack_exports__["b"] = isInsideSurrogatePair;
+/* harmony export (immutable) */ __webpack_exports__["a"] = isInsideCombinedSymbol;
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * Set of utils to handle unicode characters.
+ *
+ * @module utils/unicode
+ */
+
+/**
+ * Checks whether given `character` is a combining mark.
+ *
+ * @param {String} character Character to check.
+ * @returns {Boolean}
+ */
+function isCombiningMark( character ) {
+	return !!character && character.length == 1 && /[\u0300-\u036f\u1ab0-\u1aff\u1dc0-\u1dff\u20d0-\u20ff\ufe20-\ufe2f]/.test( character );
+}
+
+/**
+ * Checks whether given `character` is a high half of surrogate pair.
+ *
+ * Using UTF-16 terminology, a surrogate pair denotes UTF-16 character using two UTF-8 characters. The surrogate pair
+ * consist of high surrogate pair character followed by low surrogate pair character.
+ *
+ * @param {String} character Character to check.
+ * @returns {Boolean}
+ */
+function isHighSurrogateHalf( character ) {
+	return !!character && character.length == 1 && /[\ud800-\udbff]/.test( character );
+}
+
+/**
+ * Checks whether given `character` is a low half of surrogate pair.
+ *
+ * Using UTF-16 terminology, a surrogate pair denotes UTF-16 character using two UTF-8 characters. The surrogate pair
+ * consist of high surrogate pair character followed by low surrogate pair character.
+ *
+ * @param {String} character Character to check.
+ * @returns {Boolean}
+ */
+function isLowSurrogateHalf( character ) {
+	return !!character && character.length == 1 && /[\udc00-\udfff]/.test( character );
+}
+
+/**
+ * Checks whether given offset in a string is inside a surrogate pair (between two surrogate halves).
+ *
+ * @param {String} string String to check.
+ * @param {Number} offset Offset to check.
+ * @returns {Boolean}
+ */
+function isInsideSurrogatePair( string, offset ) {
+	return isHighSurrogateHalf( string.charAt( offset - 1 ) ) && isLowSurrogateHalf( string.charAt( offset ) );
+}
+
+/**
+ * Checks whether given offset in a string is between base character and combining mark or between two combining marks.
+ *
+ * @param {String} string String to check.
+ * @param {Number} offset Offset to check.
+ * @returns {Boolean}
+ */
+function isInsideCombinedSymbol( string, offset ) {
+	return isCombiningMark( string.charAt( offset ) );
+}
+
+
+/***/ }),
+/* 168 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Stack__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arrayEach__ = __webpack_require__(328);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__assignValue__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__baseAssign__ = __webpack_require__(329);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__cloneBuffer__ = __webpack_require__(331);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__copyArray__ = __webpack_require__(173);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__copySymbols__ = __webpack_require__(332);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__getAllKeys__ = __webpack_require__(333);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__getTag__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__initCloneArray__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__initCloneByTag__ = __webpack_require__(339);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__initCloneObject__ = __webpack_require__(348);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__isArray__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__isBuffer__ = __webpack_require__(350);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__isHostObject__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__isObject__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__keys__ = __webpack_require__(64);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/** `Object#toString` result references. */
+var argsTag = '[object Arguments]',
+    arrayTag = '[object Array]',
+    boolTag = '[object Boolean]',
+    dateTag = '[object Date]',
+    errorTag = '[object Error]',
+    funcTag = '[object Function]',
+    genTag = '[object GeneratorFunction]',
+    mapTag = '[object Map]',
+    numberTag = '[object Number]',
+    objectTag = '[object Object]',
+    regexpTag = '[object RegExp]',
+    setTag = '[object Set]',
+    stringTag = '[object String]',
+    symbolTag = '[object Symbol]',
+    weakMapTag = '[object WeakMap]';
+
+var arrayBufferTag = '[object ArrayBuffer]',
+    dataViewTag = '[object DataView]',
+    float32Tag = '[object Float32Array]',
+    float64Tag = '[object Float64Array]',
+    int8Tag = '[object Int8Array]',
+    int16Tag = '[object Int16Array]',
+    int32Tag = '[object Int32Array]',
+    uint8Tag = '[object Uint8Array]',
+    uint8ClampedTag = '[object Uint8ClampedArray]',
+    uint16Tag = '[object Uint16Array]',
+    uint32Tag = '[object Uint32Array]';
+
+/** Used to identify `toStringTag` values supported by `_.clone`. */
+var cloneableTags = {};
+cloneableTags[argsTag] = cloneableTags[arrayTag] =
+cloneableTags[arrayBufferTag] = cloneableTags[dataViewTag] =
+cloneableTags[boolTag] = cloneableTags[dateTag] =
+cloneableTags[float32Tag] = cloneableTags[float64Tag] =
+cloneableTags[int8Tag] = cloneableTags[int16Tag] =
+cloneableTags[int32Tag] = cloneableTags[mapTag] =
+cloneableTags[numberTag] = cloneableTags[objectTag] =
+cloneableTags[regexpTag] = cloneableTags[setTag] =
+cloneableTags[stringTag] = cloneableTags[symbolTag] =
+cloneableTags[uint8Tag] = cloneableTags[uint8ClampedTag] =
+cloneableTags[uint16Tag] = cloneableTags[uint32Tag] = true;
+cloneableTags[errorTag] = cloneableTags[funcTag] =
+cloneableTags[weakMapTag] = false;
+
+/**
+ * The base implementation of `_.clone` and `_.cloneDeep` which tracks
+ * traversed objects.
+ *
+ * @private
+ * @param {*} value The value to clone.
+ * @param {boolean} [isDeep] Specify a deep clone.
+ * @param {boolean} [isFull] Specify a clone including symbols.
+ * @param {Function} [customizer] The function to customize cloning.
+ * @param {string} [key] The key of `value`.
+ * @param {Object} [object] The parent object of `value`.
+ * @param {Object} [stack] Tracks traversed objects and their clone counterparts.
+ * @returns {*} Returns the cloned value.
+ */
+function baseClone(value, isDeep, isFull, customizer, key, object, stack) {
+  var result;
+  if (customizer) {
+    result = object ? customizer(value, key, object, stack) : customizer(value);
+  }
+  if (result !== undefined) {
+    return result;
+  }
+  if (!Object(__WEBPACK_IMPORTED_MODULE_15__isObject__["a" /* default */])(value)) {
+    return value;
+  }
+  var isArr = Object(__WEBPACK_IMPORTED_MODULE_12__isArray__["a" /* default */])(value);
+  if (isArr) {
+    result = Object(__WEBPACK_IMPORTED_MODULE_9__initCloneArray__["a" /* default */])(value);
+    if (!isDeep) {
+      return Object(__WEBPACK_IMPORTED_MODULE_5__copyArray__["a" /* default */])(value, result);
+    }
+  } else {
+    var tag = Object(__WEBPACK_IMPORTED_MODULE_8__getTag__["a" /* default */])(value),
+        isFunc = tag == funcTag || tag == genTag;
+
+    if (Object(__WEBPACK_IMPORTED_MODULE_13__isBuffer__["a" /* default */])(value)) {
+      return Object(__WEBPACK_IMPORTED_MODULE_4__cloneBuffer__["a" /* default */])(value, isDeep);
+    }
+    if (tag == objectTag || tag == argsTag || (isFunc && !object)) {
+      if (Object(__WEBPACK_IMPORTED_MODULE_14__isHostObject__["a" /* default */])(value)) {
+        return object ? value : {};
+      }
+      result = Object(__WEBPACK_IMPORTED_MODULE_11__initCloneObject__["a" /* default */])(isFunc ? {} : value);
+      if (!isDeep) {
+        return Object(__WEBPACK_IMPORTED_MODULE_6__copySymbols__["a" /* default */])(value, Object(__WEBPACK_IMPORTED_MODULE_3__baseAssign__["a" /* default */])(result, value));
+      }
+    } else {
+      if (!cloneableTags[tag]) {
+        return object ? value : {};
+      }
+      result = Object(__WEBPACK_IMPORTED_MODULE_10__initCloneByTag__["a" /* default */])(value, tag, baseClone, isDeep);
+    }
+  }
+  // Check for circular references and return its corresponding clone.
+  stack || (stack = new __WEBPACK_IMPORTED_MODULE_0__Stack__["a" /* default */]);
+  var stacked = stack.get(value);
+  if (stacked) {
+    return stacked;
+  }
+  stack.set(value, result);
+
+  if (!isArr) {
+    var props = isFull ? Object(__WEBPACK_IMPORTED_MODULE_7__getAllKeys__["a" /* default */])(value) : Object(__WEBPACK_IMPORTED_MODULE_16__keys__["a" /* default */])(value);
+  }
+  // Recursively populate clone (susceptible to call stack limits).
+  Object(__WEBPACK_IMPORTED_MODULE_1__arrayEach__["a" /* default */])(props || value, function(subValue, key) {
+    if (props) {
+      key = subValue;
+      subValue = value[key];
+    }
+    Object(__WEBPACK_IMPORTED_MODULE_2__assignValue__["a" /* default */])(result, key, baseClone(subValue, isDeep, isFull, customizer, key, value, stack));
+  });
+  return result;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (baseClone);
+
+
+/***/ }),
+/* 169 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isFunction__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isHostObject__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObject__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__toSource__ = __webpack_require__(170);
+
+
+
+
+
+/**
+ * Used to match `RegExp`
+ * [syntax characters](http://ecma-international.org/ecma-262/6.0/#sec-patterns).
+ */
+var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
+
+/** Used to detect host constructors (Safari). */
+var reIsHostCtor = /^\[object .+?Constructor\]$/;
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to resolve the decompiled source of functions. */
+var funcToString = Function.prototype.toString;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/** Used to detect if a method is native. */
+var reIsNative = RegExp('^' +
+  funcToString.call(hasOwnProperty).replace(reRegExpChar, '\\$&')
+  .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
+);
+
+/**
+ * Checks if `value` is a native function.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a native function,
+ *  else `false`.
+ * @example
+ *
+ * _.isNative(Array.prototype.push);
+ * // => true
+ *
+ * _.isNative(_);
+ * // => false
+ */
+function isNative(value) {
+  if (!Object(__WEBPACK_IMPORTED_MODULE_2__isObject__["a" /* default */])(value)) {
+    return false;
+  }
+  var pattern = (Object(__WEBPACK_IMPORTED_MODULE_0__isFunction__["a" /* default */])(value) || Object(__WEBPACK_IMPORTED_MODULE_1__isHostObject__["a" /* default */])(value)) ? reIsNative : reIsHostCtor;
+  return pattern.test(Object(__WEBPACK_IMPORTED_MODULE_3__toSource__["a" /* default */])(value));
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (isNative);
+
+
+/***/ }),
+/* 170 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/** Used to resolve the decompiled source of functions. */
+var funcToString = Function.prototype.toString;
+
+/**
+ * Converts `func` to its source code.
+ *
+ * @private
+ * @param {Function} func The function to process.
+ * @returns {string} Returns the source code.
+ */
+function toSource(func) {
+  if (func != null) {
+    try {
+      return funcToString.call(func);
+    } catch (e) {}
+    try {
+      return (func + '');
+    } catch (e) {}
+  }
+  return '';
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (toSource);
+
+
+/***/ }),
+/* 171 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getNative__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__root__ = __webpack_require__(30);
+
+
+
+/* Built-in method references that are verified to be native. */
+var Map = Object(__WEBPACK_IMPORTED_MODULE_0__getNative__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_1__root__["a" /* default */], 'Map');
+
+/* harmony default export */ __webpack_exports__["a"] = (Map);
+
+
+/***/ }),
+/* 172 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getPrototype__ = __webpack_require__(107);
+
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * The base implementation of `_.has` without support for deep paths.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {Array|string} key The key to check.
+ * @returns {boolean} Returns `true` if `key` exists, else `false`.
+ */
+function baseHas(object, key) {
+  // Avoid a bug in IE 10-11 where objects with a [[Prototype]] of `null`,
+  // that are composed entirely of index properties, return `false` for
+  // `hasOwnProperty` checks of them.
+  return hasOwnProperty.call(object, key) ||
+    (typeof object == 'object' && key in object && Object(__WEBPACK_IMPORTED_MODULE_0__getPrototype__["a" /* default */])(object) === null);
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (baseHas);
+
+
+/***/ }),
+/* 173 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * Copies the values of `source` to `array`.
+ *
+ * @private
+ * @param {Array} source The array to copy values from.
+ * @param {Array} [array=[]] The array to copy values to.
+ * @returns {Array} Returns `array`.
+ */
+function copyArray(source, array) {
+  var index = -1,
+      length = source.length;
+
+  array || (array = Array(length));
+  while (++index < length) {
+    array[index] = source[index];
+  }
+  return array;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (copyArray);
+
+
+/***/ }),
+/* 174 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/** Built-in value references. */
+var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+
+/**
+ * Creates an array of the own enumerable symbol properties of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of symbols.
+ */
+function getSymbols(object) {
+  // Coerce `object` to an object to avoid non-object errors in V8.
+  // See https://bugs.chromium.org/p/v8/issues/detail?id=3443 for more details.
+  return getOwnPropertySymbols(Object(object));
+}
+
+// Fallback for IE < 11.
+if (!getOwnPropertySymbols) {
+  getSymbols = function() {
+    return [];
+  };
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (getSymbols);
+
+
+/***/ }),
+/* 175 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getNative__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__root__ = __webpack_require__(30);
+
+
+
+/* Built-in method references that are verified to be native. */
+var Set = Object(__WEBPACK_IMPORTED_MODULE_0__getNative__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_1__root__["a" /* default */], 'Set');
+
+/* harmony default export */ __webpack_exports__["a"] = (Set);
+
+
+/***/ }),
+/* 176 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root__ = __webpack_require__(30);
+
+
+/** Built-in value references. */
+var Uint8Array = __WEBPACK_IMPORTED_MODULE_0__root__["a" /* default */].Uint8Array;
+
+/* harmony default export */ __webpack_exports__["a"] = (Uint8Array);
+
+
+/***/ }),
+/* 177 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * A specialized version of `_.reduce` for arrays without support for
+ * iteratee shorthands.
+ *
+ * @private
+ * @param {Array} array The array to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @param {*} [accumulator] The initial value.
+ * @param {boolean} [initAccum] Specify using the first element of `array` as
+ *  the initial value.
+ * @returns {*} Returns the accumulated value.
+ */
+function arrayReduce(array, iteratee, accumulator, initAccum) {
+  var index = -1,
+      length = array.length;
+
+  if (initAccum && length) {
+    accumulator = array[++index];
+  }
+  while (++index < length) {
+    accumulator = iteratee(accumulator, array[index], index, array);
+  }
+  return accumulator;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (arrayReduce);
+
+
+/***/ }),
+/* 178 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SetCache__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arraySome__ = __webpack_require__(357);
+
+
+
+/** Used to compose bitmasks for comparison styles. */
+var UNORDERED_COMPARE_FLAG = 1,
+    PARTIAL_COMPARE_FLAG = 2;
+
+/**
+ * A specialized version of `baseIsEqualDeep` for arrays with support for
+ * partial deep comparisons.
+ *
+ * @private
+ * @param {Array} array The array to compare.
+ * @param {Array} other The other array to compare.
+ * @param {Function} equalFunc The function to determine equivalents of values.
+ * @param {Function} customizer The function to customize comparisons.
+ * @param {number} bitmask The bitmask of comparison flags. See `baseIsEqual`
+ *  for more details.
+ * @param {Object} stack Tracks traversed `array` and `other` objects.
+ * @returns {boolean} Returns `true` if the arrays are equivalent, else `false`.
+ */
+function equalArrays(array, other, equalFunc, customizer, bitmask, stack) {
+  var isPartial = bitmask & PARTIAL_COMPARE_FLAG,
+      arrLength = array.length,
+      othLength = other.length;
+
+  if (arrLength != othLength && !(isPartial && othLength > arrLength)) {
+    return false;
+  }
+  // Assume cyclic values are equal.
+  var stacked = stack.get(array);
+  if (stacked) {
+    return stacked == other;
+  }
+  var index = -1,
+      result = true,
+      seen = (bitmask & UNORDERED_COMPARE_FLAG) ? new __WEBPACK_IMPORTED_MODULE_0__SetCache__["a" /* default */] : undefined;
+
+  stack.set(array, other);
+
+  // Ignore non-index properties.
+  while (++index < arrLength) {
+    var arrValue = array[index],
+        othValue = other[index];
+
+    if (customizer) {
+      var compared = isPartial
+        ? customizer(othValue, arrValue, index, other, array, stack)
+        : customizer(arrValue, othValue, index, array, other, stack);
+    }
+    if (compared !== undefined) {
+      if (compared) {
+        continue;
+      }
+      result = false;
+      break;
+    }
+    // Recursively compare arrays (susceptible to call stack limits).
+    if (seen) {
+      if (!Object(__WEBPACK_IMPORTED_MODULE_1__arraySome__["a" /* default */])(other, function(othValue, othIndex) {
+            if (!seen.has(othIndex) &&
+                (arrValue === othValue || equalFunc(arrValue, othValue, customizer, bitmask, stack))) {
+              return seen.add(othIndex);
+            }
+          })) {
+        result = false;
+        break;
+      }
+    } else if (!(
+          arrValue === othValue ||
+            equalFunc(arrValue, othValue, customizer, bitmask, stack)
+        )) {
+      result = false;
+      break;
+    }
+  }
+  stack['delete'](array);
+  return result;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (equalArrays);
+
+
+/***/ }),
+/* 179 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__insertdelta__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__batch__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__deltafactory__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_insertoperation__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__writer__ = __webpack_require__(20);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module engine/model/delta/weakinsertdelta
+ */
+
+
+
+
+
+
+
+/**
+ * @classdesc
+ * To provide specific OT behavior and better collisions solving, the {@link module:engine/model/batch~Batch#insert} method
+ * uses the `WeakInsertDelta` class which inherits from the `Delta` class and may overwrite some methods.
+ */
+class WeakInsertDelta extends __WEBPACK_IMPORTED_MODULE_0__insertdelta__["a" /* default */] {
+	/**
+	 * @inheritDoc
+	 */
+	static get className() {
+		return 'engine.model.delta.WeakInsertDelta';
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = WeakInsertDelta;
+
+
+/**
+ * Inserts a node or nodes at given position. {@link module:engine/model/batch~Batch#weakInsert weakInsert} is commonly used for actions
+ * like typing or plain-text paste (without formatting). There are two differences between
+ * {@link module:engine/model/batch~Batch#insert insert} and {@link module:engine/model/batch~Batch#weakInsert weakInsert}:
+ *
+ * * When using `weakInsert`, inserted nodes will have same attributes as the current attributes of
+ * {@link module:engine/model/document~Document#selection document selection}.
+ * * If {@link module:engine/model/operation/insertoperation~InsertOperation insert operation} position is inside a range changed by
+ * {@link module:engine/model/operation/attributeoperation~AttributeOperation attribute operation},
+ * the attribute operation is split into two operations.
+ * Thanks to this, attribute change "omits" the inserted nodes. The correct behavior for `WeakInsertDelta` is that
+ * {@link module:engine/model/operation/attributeoperation~AttributeOperation AttributeOperation} does not "break" and also
+ * applies attributes for inserted nodes. This behavior has to be reflected during
+ * {@link module:engine/model/delta/transform~transform delta transformation}.
+ *
+ * @chainable
+ * @method module:engine/model/batch~Batch#weakInsert
+ * @param {module:engine/model/position~Position} position Position of insertion.
+ * @param {module:engine/model/node~NodeSet} nodes The list of nodes to be inserted.
+ */
+Object(__WEBPACK_IMPORTED_MODULE_1__batch__["b" /* register */])( 'weakInsert', function( position, nodes ) {
+	const delta = new WeakInsertDelta();
+	this.addDelta( delta );
+
+	nodes = Object(__WEBPACK_IMPORTED_MODULE_4__writer__["c" /* normalizeNodes */])( nodes );
+
+	for ( const node of nodes ) {
+		node.setAttributesTo( this.document.selection.getAttributes() );
+	}
+
+	const operation = new __WEBPACK_IMPORTED_MODULE_3__operation_insertoperation__["a" /* default */]( position, nodes, this.document.version );
+	delta.addOperation( operation );
+	this.document.applyOperation( operation );
+
+	return this;
+} );
+
+__WEBPACK_IMPORTED_MODULE_2__deltafactory__["a" /* default */].register( WeakInsertDelta );
+
+
+/***/ }),
+/* 180 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__movedelta__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__removedelta__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mergedelta__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__splitdelta__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__wrapdelta__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__unwrapdelta__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__renamedelta__ = __webpack_require__(130);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__attributedelta__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__operation_transform__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__operation_nooperation__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__operation_moveoperation__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__operation_removeoperation__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ckeditor_ckeditor5_utils_src_lib_lodash_array__ = __webpack_require__(363);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ckeditor_ckeditor5_utils_src_comparearrays__ = __webpack_require__(54);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @protected
+ * @module engine/model/delta/transform
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const specialCases = new Map();
+
+/**
+ * @namespace
+ */
+const transform = {
+	/**
+	 * Transforms given {@link module:engine/model/delta/delta~Delta delta} by another {@link module:engine/model/delta/delta~Delta delta}
+	 * and returns the result of that transformation as an array containing one or more {@link module:engine/model/delta/delta~Delta delta}
+	 * instances.
+	 *
+	 * Delta transformations heavily base on {@link module:engine/model/operation/transform~transform operational transformations}. Since
+	 * delta is a list of operations most situations can be handled thanks to operational transformation. Unfortunately,
+	 * deltas are more complicated than operations and have they semantic meaning, as they represent user's editing intentions.
+	 *
+	 * Sometimes, simple operational transformation on deltas' operations might result in some unexpected results. Those
+	 * results would be fine from OT point of view, but would not reflect user's intentions. Because of such conflicts
+	 * we need to handle transformations in special cases in a custom way.
+	 *
+	 * The function itself looks whether two given delta types have a special case function registered. If so, the deltas are
+	 * transformed using that function. If not,
+	 * {@link module:engine/model/delta/transform~transform.defaultTransform default transformation algorithm} is used.
+	 *
+	 * @param {module:engine/model/delta/delta~Delta} a Delta that will be transformed.
+	 * @param {module:engine/model/delta/delta~Delta} b Delta to transform by.
+	 * @param {module:engine/model/delta/transform~transformationContext} context Transformation context object.
+	 * @returns {Array.<module:engine/model/delta/delta~Delta>} Result of the transformation.
+	 */
+	transform( a, b, context ) {
+		const transformAlgorithm = transform.getTransformationCase( a, b ) || transform.defaultTransform;
+
+		// Make new instance of context object, so all changes done during transformation are not saved in original object.
+		const transformed = transformAlgorithm( a, b, Object.assign( {}, context ) );
+		const baseVersion = __WEBPACK_IMPORTED_MODULE_13__ckeditor_ckeditor5_utils_src_lib_lodash_array__["a" /* default */].last( b.operations ).baseVersion;
+
+		return updateBaseVersion( baseVersion, transformed );
+	},
+
+	/**
+	 * The default delta transformation function. It is used for those deltas that are not in special case conflict.
+	 *
+	 * This algorithm is similar to a popular `dOPT` algorithm used in operational transformation, as we are in fact
+	 * transforming two sets of operations by each other.
+	 *
+	 * @param {module:engine/model/delta/delta~Delta} a Delta that will be transformed.
+	 * @param {module:engine/model/delta/delta~Delta} b Delta to transform by.
+	 * @param {module:engine/model/delta/transform~transformationContext} context Transformation context object.
+	 * @returns {Array.<module:engine/model/delta/delta~Delta>} Result of the transformation.
+	 */
+	defaultTransform( a, b, context ) {
+		// This will hold operations from delta `a` that will be transformed by operations from delta `b`.
+		// Eventually, those operations will be used to create result delta(s).
+		const transformed = [];
+
+		// Array containing operations that we will transform by. At the beginning these are just operations from
+		let byOps = b.operations;
+
+		// This array is storing operations from `byOps` which got transformed by operation from delta `a`.
+		let newByOps = [];
+
+		// We take each operation from original set of operations to transform.
+		for ( const opA of a.operations ) {
+			// We wrap the operation in the array. This is important, because operation transformation algorithm returns
+			// an array of operations so we need to make sure that our algorithm is ready to handle arrays.
+			const ops = [ opA ];
+
+			// Now the real algorithm takes place.
+			for ( const opB of byOps ) {
+				// For each operation that we need transform by...
+				for ( let i = 0; i < ops.length; i++ ) {
+					// We take each operation to transform...
+					const op = ops[ i ];
+
+					// And transform both of them by themselves.
+
+					// The result of transforming operation from delta B by operation from delta A is saved in
+					// `newByOps` array. We will use that array for transformations in next loops. We need delta B
+					// operations after transformed by delta A operations to get correct results of transformations
+					// of next operations from delta A.
+					//
+					// It's like this because 2nd operation from delta A assumes that 1st operation from delta A
+					// is "already applied". When we transform 2nd operation from delta A by operations from delta B
+					// we have to be sure that operations from delta B are in a state that acknowledges 1st operation
+					// from delta A.
+					//
+					// This can be easier understood when operations sets to transform are represented by diamond diagrams:
+					// http://www.codecommit.com/blog/java/understanding-and-applying-operational-transformation
+
+					// Transform operation from delta A by operation from delta B.
+					const results = Object(__WEBPACK_IMPORTED_MODULE_9__operation_transform__["a" /* default */])( op, opB, context );
+
+					// We replace currently processed operation from `ops` array by the results of transformation.
+					// Note, that we process single operation but `operationTransform` result is an array, so we
+					// might have to splice-in more than one operation. Save them in `ops` array and move `i` pointer by a proper offset.
+					Array.prototype.splice.apply( ops, [ i, 1 ].concat( results ) );
+
+					i += results.length - 1;
+
+					// Then, transform operation from delta B by operation from delta A.
+					// Since this is a "mirror" transformation, first, we "mirror" some of context values.
+					const reverseContext = Object.assign( {}, context );
+					reverseContext.isStrong = !context.isStrong;
+					reverseContext.insertBefore = context.insertBefore !== undefined ? !context.insertBefore : undefined;
+
+					// Transform operations.
+					const updatedOpB = Object(__WEBPACK_IMPORTED_MODULE_9__operation_transform__["a" /* default */])( opB, op, reverseContext );
+
+					// Update `newByOps` by transformed, updated `opB`.
+					// Using push.apply because `operationTransform` returns an array with one or multiple results.
+					Array.prototype.push.apply( newByOps, updatedOpB );
+				}
+
+				// At this point a single operation from delta A got transformed by a single operation from delta B.
+				// The transformation result is in `ops` array and it may be one or more operations. This was just the first step.
+				// Operation from delta A has to be further transformed by the other operations from delta B.
+				// So in next iterator loop we will take another operation from delta B and use transformed delta A (`ops`)
+				// to transform it further.
+			}
+
+			// We got through all delta B operations and have a final transformed state of an operation from delta A.
+
+			// As previously mentioned, we substitute operations from delta B by their transformed equivalents.
+			byOps = newByOps;
+			newByOps = [];
+
+			// We add transformed operation from delta A to newly created delta.
+			// Remember that transformed operation from delta A may consist of multiple operations.
+			for ( const op of ops ) {
+				transformed.push( op );
+			}
+
+			// In next loop, we will take another operation from delta A and transform it through (transformed) operations
+			// from delta B...
+		}
+
+		return getNormalizedDeltas( a.constructor, transformed );
+	},
+
+	/**
+	 * Adds a special case callback for given delta classes.
+	 *
+	 * @param {Function} A Delta constructor which instance will get transformed.
+	 * @param {Function} B Delta constructor which instance will be transformed by.
+	 * @param {Function} resolver A callback that will handle custom special case transformation for instances of given delta classes.
+	 */
+	addTransformationCase( A, B, resolver ) {
+		let casesA = specialCases.get( A );
+
+		if ( !casesA ) {
+			casesA = new Map();
+			specialCases.set( A, casesA );
+		}
+
+		casesA.set( B, resolver );
+	},
+
+	/**
+	 * Gets a special case callback which was previously {@link module:engine/model/delta/transform~transform.addTransformationCase added}.
+	 *
+	 * @param {module:engine/model/delta/delta~Delta} a Delta to transform.
+	 * @param {module:engine/model/delta/delta~Delta} b Delta to be transformed by.
+	 */
+	getTransformationCase( a, b ) {
+		let casesA = specialCases.get( a.constructor );
+
+		// If there are no special cases registered for class which `a` is instance of, we will
+		// check if there are special cases registered for any parent class.
+		if ( !casesA || !casesA.get( b.constructor ) ) {
+			const cases = specialCases.keys();
+
+			for ( const caseClass of cases ) {
+				if ( a instanceof caseClass && specialCases.get( caseClass ).get( b.constructor ) ) {
+					casesA = specialCases.get( caseClass );
+
+					break;
+				}
+			}
+		}
+
+		if ( casesA ) {
+			return casesA.get( b.constructor );
+		}
+
+		return undefined;
+	},
+
+	/**
+	 * Transforms two sets of deltas by themselves. Returns both transformed sets.
+	 *
+	 * @param {Array.<module:engine/model/delta/delta~Delta>} deltasA Array with the first set of deltas to transform. These
+	 * deltas are considered more important (than `deltasB`) when resolving conflicts.
+	 * @param {Array.<module:engine/model/delta/delta~Delta>} deltasB Array with the second set of deltas to transform. These
+	 * deltas are considered less important (than `deltasA`) when resolving conflicts.
+	 * @param {module:engine/model/document~Document} [document=null] If set, deltas will be transformed in "context mode"
+	 * and given `document` will be used to determine relations between deltas. If not set (default), deltas will be
+	 * transforming without additional context information.
+	 * @returns {Object}
+	 * @returns {Array.<module:engine/model/delta/delta~Delta>} return.deltasA The first set of deltas transformed
+	 * by the second set of deltas.
+	 * @returns {Array.<module:engine/model/delta/delta~Delta>} return.deltasB The second set of deltas transformed
+	 * by the first set of deltas.
+	 */
+	transformDeltaSets( deltasA, deltasB, document = null ) {
+		const transformedDeltasA = Array.from( deltasA );
+		const transformedDeltasB = Array.from( deltasB );
+
+		const useAdditionalContext = document !== null;
+
+		const contextAB = {
+			isStrong: true
+		};
+
+		if ( useAdditionalContext ) {
+			contextAB.wasAffected = new Map();
+			contextAB.originalDelta = new Map();
+			contextAB.document = document;
+
+			for ( const delta of transformedDeltasB ) {
+				contextAB.originalDelta.set( delta, delta );
+			}
+		}
+
+		for ( let i = 0; i < transformedDeltasA.length; i++ ) {
+			const deltaA = [ transformedDeltasA[ i ] ];
+
+			for ( let j = 0; j < transformedDeltasB.length; j++ ) {
+				const deltaB = [ transformedDeltasB[ j ] ];
+
+				for ( let k = 0; k < deltaA.length; k++ ) {
+					for ( let l = 0; l < deltaB.length; l++ ) {
+						if ( useAdditionalContext ) {
+							_setContext( deltaA[ k ], deltaB[ l ], contextAB );
+						}
+
+						const resultAB = transform.transform( deltaA[ k ], deltaB[ l ], {
+							insertBefore: contextAB.insertBefore,
+							forceNotSticky: contextAB.forceNotSticky,
+							isStrong: contextAB.isStrong,
+							forceWeakRemove: contextAB.forceWeakRemove
+						} );
+
+						const resultBA = transform.transform( deltaB[ l ], deltaA[ k ], {
+							insertBefore: !contextAB.insertBefore,
+							forceNotSticky: contextAB.forceNotSticky,
+							isStrong: !contextAB.isStrong,
+							forceWeakRemove: contextAB.forceWeakRemove
+						} );
+
+						if ( useAdditionalContext ) {
+							_updateContext( deltaA[ k ], resultAB, contextAB );
+
+							const originalDelta = contextAB.originalDelta.get( deltaB[ l ] );
+
+							for ( const deltaBA of resultBA ) {
+								contextAB.originalDelta.set( deltaBA, originalDelta );
+							}
+						}
+
+						deltaA.splice( k, 1, ...resultAB );
+						k += resultAB.length - 1;
+
+						deltaB.splice( l, 1, ...resultBA );
+						l += resultBA.length - 1;
+					}
+				}
+
+				transformedDeltasB.splice( j, 1, ...deltaB );
+				j += deltaB.length - 1;
+			}
+
+			transformedDeltasA.splice( i, 1, ...deltaA );
+			i += deltaA.length - 1;
+		}
+
+		const opsDiffA = getOpsCount( transformedDeltasA ) - getOpsCount( deltasA );
+		const opsDiffB = getOpsCount( transformedDeltasB ) - getOpsCount( deltasB );
+
+		if ( opsDiffB < opsDiffA ) {
+			padWithNoOps( transformedDeltasB, opsDiffA - opsDiffB );
+		} else if ( opsDiffA < opsDiffB ) {
+			padWithNoOps( transformedDeltasA, opsDiffB - opsDiffA );
+		}
+
+		return { deltasA: transformedDeltasA, deltasB: transformedDeltasB };
+	}
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (transform);
+
+// Updates base versions of operations inside deltas (which are the results of delta transformation).
+function updateBaseVersion( baseVersion, deltas ) {
+	for ( const delta of deltas ) {
+		for ( const op of delta.operations ) {
+			op.baseVersion = ++baseVersion;
+		}
+	}
+
+	return deltas;
+}
+
+// Returns number of operations in given array of deltas.
+function getOpsCount( deltas ) {
+	return deltas.reduce( ( current, delta ) => {
+		return current + delta.operations.length;
+	}, 0 );
+}
+
+// Adds a delta containing `howMany` `NoOperation` instances to given array with deltas.
+// Used to "synchronize" the number of operations in two delta sets.
+function padWithNoOps( deltas, howMany ) {
+	const lastDelta = deltas[ deltas.length - 1 ];
+	let baseVersion = lastDelta.operations.length + lastDelta.baseVersion;
+
+	const noDelta = new __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */]();
+
+	for ( let i = 0; i < howMany; i++ ) {
+		noDelta.addOperation( new __WEBPACK_IMPORTED_MODULE_10__operation_nooperation__["a" /* default */]( baseVersion++ ) );
+	}
+
+	deltas.push( noDelta );
+}
+
+// Sets context data before delta `a` by delta `b` transformation.
+// Using data given in `context` object, sets `context.insertBefore` and `context.forceNotSticky` flags.
+// Also updates `context.wasAffected`.
+function _setContext( a, b, context ) {
+	_setWasAffected( a, b, context );
+	_setInsertBeforeContext( a, b, context );
+	_setForceWeakRemove( b, context );
+	_setForceNotSticky( b, context );
+}
+
+// Sets `context.insertBefore` basing on `context.document` history for `a` by `b` transformation.
+//
+// Simply saying, if `b` is "undoing delta" it means that `a` might already be transformed by the delta
+// which was undone by `b` (let's call it `oldB`). If this is true, `a` by `b` transformation has to consider
+// how `a` was transformed by `oldB` to get an expected result.
+//
+// This is used to resolve conflict when two operations want to insert nodes at the same position. If the operations
+// are not related, it doesn't matter in what order operations insert those nodes. However if the operations are
+// related (for example, in undo) we need to keep the same order.
+//
+// For example, assume that editor has two letters: 'ab'. Then, both letters are removed, creating two operations:
+// (op. 1) REM [ 1 ] - [ 2 ] => (graveyard) [ 0 ]
+// (op. 2) REM [ 0 ] - [ 1 ] => (graveyard) [ 1 ]
+// Then, we undo operation 2:
+// REM [ 0 ] - [ 1 ] => (graveyard) [ 1 ] is reversed to REI (graveyard) [ 1 ] => [ 0 ] - [ 1 ] and is applied.
+// History stack is:
+// (op. 1) REM [ 1 ] - [ 2 ] => (graveyard) [ 0 ]
+// (op. 2) REM [ 0 ] - [ 1 ] => (graveyard) [ 1 ]
+// (op. 3) REI (graveyard) [ 1 ] => [ 0 ] - [ 1 ]
+// Then, we undo operation 1:
+// REM [ 1 ] - [ 2 ] => (graveyard) [ 0 ] is reversed to REI (graveyard) [ 0 ] => [ 1 ] - [ 2 ] then,
+// is transformed by (op. 2) REM [ 0 ] - [ 1 ] => (graveyard) [ 1 ] and becomes REI (graveyard) [ 0 ] => [ 0 ] - [ 1 ] then,
+// is transformed by (op. 3) REI (graveyard) [ 1 ] => [ 0 ] - [ 1 ] and we have a conflict because both operations
+// insert at the same position, but thanks to keeping the context, we know that in this case, the transformed operation should
+// insert the node after operation 3.
+//
+// Keep in mind, that `context.insertBefore` may be either `Boolean` or `undefined`. If it is `Boolean` then the order is
+// known (deltas are related and `a` should insert nodes before or after `b`). However, if deltas were not related,
+// `context.isBefore` is `undefined` and other factors will be taken into consideration when resolving the order
+// (this, however, happens in operational transformation algorithms).
+//
+// This affects both `MoveOperation` (and its derivatives) and `InsertOperation`.
+function _setInsertBeforeContext( a, b, context ) {
+	// If `b` is a delta that undoes other delta...
+	const originalDelta = context.originalDelta.get( b );
+
+	if ( context.document.history.isUndoingDelta( originalDelta ) ) {
+		// Get the undone delta...
+		const undoneDelta = context.document.history.getUndoneDelta( originalDelta );
+		// Get a map with deltas related to `a` delta...
+		const aWasAffectedBy = context.wasAffected.get( a );
+		// And check if the undone delta is related with delta `a`.
+		const affected = aWasAffectedBy.get( undoneDelta );
+
+		if ( affected !== undefined ) {
+			// If deltas are related, set `context.insertBefore` basing on whether `a` was affected by the undone delta.
+			context.insertBefore = affected;
+		}
+	}
+}
+
+// Sets `context.forceNotSticky` basing on `context.document` history for transformation by `b` delta.
+//
+// `MoveOperation` may be "sticky" which means, that anything that was inserted at the boundary of moved range, should
+// also be moved. This is particularly helpful for actions like splitting or merging a node. However, this behavior
+// sometimes leads to an error, for example in undo.
+//
+// Simply saying, if delta is going to be transformed by delta `b`, stickiness should not be taken into consideration
+// if delta `b` was already undone or if delta `b` is an undoing delta.
+//
+// This affects `MoveOperation` (and its derivatives).
+function _setForceNotSticky( b, context ) {
+	const history = context.document.history;
+	const originalB = context.originalDelta.get( b );
+
+	// If `b` delta is undoing or undone delta, stickiness should not be taken into consideration.
+	if ( history.isUndoingDelta( originalB ) || history.isUndoneDelta( originalB ) ) {
+		context.forceNotSticky = true;
+	}
+}
+
+// Sets `context.forceWeakRemove` basing on `context.document` history for transformation by `b` delta.
+//
+// When additional context is not used, default `MoveOperation` x `RemoveOperation` transformation
+// always treats `RemoveOperation` as a stronger one, no matter how `context.isStrong` is set. It is like this
+// to provide better results when transformations happen.
+//
+// This is however works fine only when additional context is not used.
+//
+// When additional context is used, we need a better way to decide whether `RemoveOperation` is "dominating" (or in other
+// words, whether nodes removed by given operation should stay in graveyard if other operation wants to move them).
+//
+// The answer to this is easy: if `RemoveOperation` has been already undone, we are not forcing given nodes to stay
+// in graveyard. In such scenario, we set `context.forceWeakRemove` to `true`. However, if the `RemoveOperation` has
+// not been undone, we set `context.forceWeakRemove` to `false` because we want remove to be "dominating".
+function _setForceWeakRemove( b, context ) {
+	const history = context.document.history;
+	const originalB = context.originalDelta.get( b );
+
+	// If `b` delta is a remove delta, that has not been undone yet, forceWeakRemove should be `false`.
+	// It should be `true` in any other case, if additional context is used.
+	context.forceWeakRemove = !( originalB instanceof __WEBPACK_IMPORTED_MODULE_2__removedelta__["a" /* default */] && !history.isUndoneDelta( originalB ) );
+}
+
+// Sets `context.wasAffected` which holds context information about how transformed deltas are related. `context.wasAffected`
+// is used by `_setInsertBeforeContext` helper function.
+function _setWasAffected( a, b, context ) {
+	if ( !context.wasAffected.get( a ) ) {
+		// Create a new map with relations for `a` delta.
+		context.wasAffected.set( a, new Map() );
+	}
+
+	const originalDelta = context.originalDelta.get( b );
+	let wasAffected = !!context.wasAffected.get( a ).get( originalDelta );
+
+	// Cross-check all operations from both deltas...
+	for ( const opA of a.operations ) {
+		for ( const opB of b.operations ) {
+			if ( opA instanceof __WEBPACK_IMPORTED_MODULE_11__operation_moveoperation__["a" /* default */] && opB instanceof __WEBPACK_IMPORTED_MODULE_11__operation_moveoperation__["a" /* default */] ) {
+				if ( _isOperationAffected( opA, opB ) ) {
+					// If any of them are move operations that affect each other, set the relation accordingly.
+					wasAffected = true;
+
+					break;
+				}
+			}
+		}
+
+		// Break both loops if affecting pair has been found.
+		if ( wasAffected ) {
+			break;
+		}
+	}
+
+	context.wasAffected.get( a ).set( originalDelta, wasAffected );
+}
+
+// Checks whether `opA` is affected by `opB`. It is assumed that both operations are `MoveOperation`.
+// Operation is affected only if the other operation's source range is before that operation's source range.
+function _isOperationAffected( opA, opB ) {
+	const target = opA.targetPosition;
+	const source = opB.sourcePosition;
+
+	const cmpResult = Object(__WEBPACK_IMPORTED_MODULE_14__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */])( source.getParentPath(), target.getParentPath() );
+
+	if ( target.root != source.root ) {
+		return false;
+	}
+
+	return cmpResult == 'same' && source.offset < target.offset;
+}
+
+// Updates `context` object after delta by delta transformation is done.
+//
+// This means two things:
+// 1. Some information are removed from context (those that apply only to the transformation that just happened).
+// 2. `context.wasAffected` is updated because `oldDelta` has been transformed to one or many `newDeltas` and we
+// need to update entries in `context.wasAffected`. Basically, anything that was in `context.wasAffected` under
+// `oldDelta` key should be rewritten to `newDeltas`. This way in next transformation steps, `newDeltas` "remember"
+// the context of `oldDelta`.
+function _updateContext( oldDelta, newDeltas, context ) {
+	delete context.insertBefore;
+	delete context.forceNotSticky;
+	delete context.forceWeakRemove;
+
+	const wasAffected = context.wasAffected.get( oldDelta );
+
+	context.wasAffected.delete( oldDelta );
+
+	for ( const delta of newDeltas ) {
+		context.wasAffected.set( delta, new Map( wasAffected ) );
+	}
+}
+
+// Takes base delta class (`DeltaClass`) and a set of `operations` that are transformation results and creates
+// one or more deltas, acknowledging that the result is a transformation of a delta that is of `DeltaClass`.
+//
+// The normalization ensures that each delta has it's "normal" state, that is, for example, `MoveDelta` has
+// just one `MoveOperation`, `SplitDelta` has just two operations of which first is `InsertOperation` and second
+// is `MoveOperation` or `NoOperation`, etc.
+function getNormalizedDeltas( DeltaClass, operations ) {
+	let deltas = [];
+	let delta = null;
+	let attributeOperationIndex;
+
+	switch ( DeltaClass ) {
+		case __WEBPACK_IMPORTED_MODULE_1__movedelta__["a" /* default */]:
+		case __WEBPACK_IMPORTED_MODULE_2__removedelta__["a" /* default */]:
+			// Normal MoveDelta has just one MoveOperation.
+			// Take all operations and create MoveDelta for each of them.
+			for ( const o of operations ) {
+				if ( o instanceof __WEBPACK_IMPORTED_MODULE_10__operation_nooperation__["a" /* default */] ) {
+					// An operation may be instance of NoOperation and this may be correct.
+					// If that's the case, do not create a MoveDelta with singular NoOperation.
+					// Create "no delta" instead, that is Delta instance with NoOperation.
+					delta = new __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */]();
+				} else {
+					if ( o instanceof __WEBPACK_IMPORTED_MODULE_12__operation_removeoperation__["a" /* default */] ) {
+						delta = new __WEBPACK_IMPORTED_MODULE_2__removedelta__["a" /* default */]();
+					} else {
+						delta = new __WEBPACK_IMPORTED_MODULE_1__movedelta__["a" /* default */]();
+					}
+
+					// Unsticky the operation. Only operations in "special" deltas can be sticky.
+					o.isSticky = false;
+				}
+
+				delta.addOperation( o );
+				deltas.push( delta );
+			}
+
+			// Return all created MoveDeltas.
+			return deltas;
+		case __WEBPACK_IMPORTED_MODULE_4__splitdelta__["a" /* default */]:
+		case __WEBPACK_IMPORTED_MODULE_5__wrapdelta__["a" /* default */]:
+			// Normal SplitDelta and WrapDelta have two operations: first is InsertOperation and second is MoveOperation.
+			// The MoveOperation may be split into multiple MoveOperations.
+			// If that's the case, convert additional MoveOperations into MoveDeltas.
+			// First, create normal SplitDelta or WrapDelta, using first two operations.
+			delta = new DeltaClass();
+			delta.addOperation( operations[ 0 ] );
+			delta.addOperation( operations[ 1 ] );
+			// Then, take all but last two operations and use them to create normalized MoveDeltas.
+			deltas = getNormalizedDeltas( __WEBPACK_IMPORTED_MODULE_1__movedelta__["a" /* default */], operations.slice( 2 ) );
+
+			// Return all deltas as one array, in proper order.
+			return [ delta ].concat( deltas );
+		case __WEBPACK_IMPORTED_MODULE_3__mergedelta__["a" /* default */]:
+		case __WEBPACK_IMPORTED_MODULE_6__unwrapdelta__["a" /* default */]:
+			// Normal MergeDelta and UnwrapDelta have two operations: first is MoveOperation and second is RemoveOperation.
+			// The MoveOperation may be split into multiple MoveOperations.
+			// If that's the case, convert additional MoveOperations into MoveDeltas.
+			// Take all but last two operations and use them to create normalized MoveDeltas.
+			deltas = getNormalizedDeltas( __WEBPACK_IMPORTED_MODULE_1__movedelta__["a" /* default */], operations.slice( 0, -2 ) );
+			// Then, create normal MergeDelta or UnwrapDelta, using last two operations.
+			delta = new DeltaClass();
+			delta.addOperation( operations[ operations.length - 2 ] );
+			delta.addOperation( operations[ operations.length - 1 ] );
+
+			// Return all deltas as one array, in proper order.
+			return deltas.concat( delta );
+		case __WEBPACK_IMPORTED_MODULE_7__renamedelta__["a" /* default */]:
+			// RenameDelta may become a "no delta" if it's only operation is transformed to NoOperation.
+			// This may happen when RenameOperation is transformed by RenameOperation.
+			// Keep in mind that RenameDelta always have just one operation.
+			if ( operations[ 0 ] instanceof __WEBPACK_IMPORTED_MODULE_10__operation_nooperation__["a" /* default */] ) {
+				delta = new __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */]();
+			} else {
+				delta = new __WEBPACK_IMPORTED_MODULE_7__renamedelta__["a" /* default */]();
+			}
+
+			delta.addOperation( operations[ 0 ] );
+
+			return [ delta ];
+		case __WEBPACK_IMPORTED_MODULE_8__attributedelta__["a" /* default */]:
+			// AttributeDelta is allowed to have multiple AttributeOperations and also NoOperations but
+			// the first operation has to be an AttributeOperation as it is used as a reference for deltas properties.
+			// Keep in mind that we cannot simply remove NoOperations cause that would mess up base versions.
+			// Find an index of first operation that is not a NoOperation.
+			for ( attributeOperationIndex = 0; attributeOperationIndex < operations.length; attributeOperationIndex++ ) {
+				if ( !( operations[ attributeOperationIndex ] instanceof __WEBPACK_IMPORTED_MODULE_10__operation_nooperation__["a" /* default */] ) ) {
+					break;
+				}
+			}
+
+			// No AttributeOperations has been found. Convert AttributeDelta to "no delta".
+			if ( attributeOperationIndex == operations.length ) {
+				delta = new __WEBPACK_IMPORTED_MODULE_0__delta__["a" /* default */]();
+			}
+			// AttributeOperation found.
+			else {
+				delta = new __WEBPACK_IMPORTED_MODULE_8__attributedelta__["a" /* default */]();
+
+				// AttributeOperation wasn't the first operation.
+				if ( attributeOperationIndex != 0 ) {
+					// Move AttributeOperation to the beginning.
+					operations.unshift( operations.splice( attributeOperationIndex, 1 )[ 0 ] );
+					// No need to update base versions - they are updated at the end of transformation algorithm anyway.
+				}
+			}
+
+			// Add all operations to the delta (even if it is just a couple of NoOperations we have to keep them all).
+			for ( const o of operations ) {
+				delta.addOperation( o );
+			}
+
+			return [ delta ];
+		default:
+			// For all other deltas no normalization is needed.
+			delta = new DeltaClass();
+
+			for ( const o of operations ) {
+				delta.addOperation( o );
+			}
+
+			return [ delta ];
+	}
+}
+
+/**
+ * Object containing values and flags describing context of a transformation.
+ *
+ * @typedef {Object} module:engine/model/delta/transform~transformationContext
+ * @property {Boolean} useAdditionalContext Whether additional context should be evaluated and used during transformations.
+ * @property {Boolean} isStrong Whether transformed deltas are more (`true`) or less (`false`) important than deltas to transform by.
+ * @property {module:engine/model/document~Document} [document] Model document which is a context for transformations.
+ * Available only if `useAdditionalContext` is `true`.
+ * @property {Boolean|undefined} forceWeakRemove Whether {@link module:engine/model/operation/removeoperation~RemoveOperation}
+ * should be always more important than other operations. Available only if `useAdditionalContext` is `true`.
+ * @property {Boolean|undefined} insertBefore Used when transforming {@link module:engine/model/operation/moveoperation~MoveOperation}s
+ * If two `MoveOperation`s target to the same position, `insertBefore` is used to resolve such conflict. This flag
+ * is set and used internally by transformation algorithms. Available only if `useAdditionalContext` is `true`.
+ * @property {Boolean|undefined} forceNotSticky Used when transforming
+ * {@link module:engine/model/operation/moveoperation~MoveOperation#isSticky sticky MoveOperation}. If set to `true`,
+ * `isSticky` flag is discarded during transformations. This flag is set and used internally by transformation algorithms.
+ * Available only if `useAdditionalContext` is `true`.
+ * @property {Map|undefined} wasAffected Used to evaluate `insertBefore` flag. This map is set and used internally by
+ * transformation algorithms. Available only if `useAdditionalContext` is `true`.
+ */
+
+
+/***/ }),
+/* 181 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSlice__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isIterateeCall__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__toInteger__ = __webpack_require__(12);
+
+
+
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeCeil = Math.ceil,
+    nativeMax = Math.max;
+
+/**
+ * Creates an array of elements split into groups the length of `size`.
+ * If `array` can't be split evenly, the final chunk will be the remaining
+ * elements.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Array
+ * @param {Array} array The array to process.
+ * @param {number} [size=1] The length of each chunk
+ * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
+ * @returns {Array} Returns the new array of chunks.
+ * @example
+ *
+ * _.chunk(['a', 'b', 'c', 'd'], 2);
+ * // => [['a', 'b'], ['c', 'd']]
+ *
+ * _.chunk(['a', 'b', 'c', 'd'], 3);
+ * // => [['a', 'b', 'c'], ['d']]
+ */
+function chunk(array, size, guard) {
+  if ((guard ? Object(__WEBPACK_IMPORTED_MODULE_1__isIterateeCall__["a" /* default */])(array, size, guard) : size === undefined)) {
+    size = 1;
+  } else {
+    size = nativeMax(Object(__WEBPACK_IMPORTED_MODULE_2__toInteger__["a" /* default */])(size), 0);
+  }
+  var length = array ? array.length : 0;
+  if (!length || size < 1) {
+    return [];
+  }
+  var index = 0,
+      resIndex = 0,
+      result = Array(nativeCeil(length / size));
+
+  while (index < length) {
+    result[resIndex++] = Object(__WEBPACK_IMPORTED_MODULE_0__baseSlice__["a" /* default */])(array, index, (index += size));
+  }
+  return result;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (chunk);
+
+
+/***/ }),
+/* 182 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * Creates an array with all falsey values removed. The values `false`, `null`,
+ * `0`, `""`, `undefined`, and `NaN` are falsey.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Array
+ * @param {Array} array The array to compact.
+ * @returns {Array} Returns the new array of filtered values.
+ * @example
+ *
+ * _.compact([0, 1, false, 2, '', 3]);
+ * // => [1, 2, 3]
+ */
+function compact(array) {
+  var index = -1,
+      length = array ? array.length : 0,
+      resIndex = 0,
+      result = [];
+
+  while (++index < length) {
+    var value = array[index];
+    if (value) {
+      result[resIndex++] = value;
+    }
+  }
+  return result;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (compact);
+
+
+/***/ }),
+/* 183 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayPush__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__copyArray__ = __webpack_require__(173);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArray__ = __webpack_require__(14);
+
+
+
+
+
+/**
+ * Creates a new array concatenating `array` with any additional arrays
+ * and/or values.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Array
+ * @param {Array} array The array to concatenate.
+ * @param {...*} [values] The values to concatenate.
+ * @returns {Array} Returns the new concatenated array.
+ * @example
+ *
+ * var array = [1];
+ * var other = _.concat(array, 2, [3], [[4]]);
+ *
+ * console.log(other);
+ * // => [1, 2, 3, [4]]
+ *
+ * console.log(array);
+ * // => [1]
+ */
+function concat() {
+  var length = arguments.length,
+      args = Array(length ? length - 1 : 0),
+      array = arguments[0],
+      index = length;
+
+  while (index--) {
+    args[index - 1] = arguments[index];
+  }
+  return length
+    ? Object(__WEBPACK_IMPORTED_MODULE_0__arrayPush__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_3__isArray__["a" /* default */])(array) ? Object(__WEBPACK_IMPORTED_MODULE_2__copyArray__["a" /* default */])(array) : [array], Object(__WEBPACK_IMPORTED_MODULE_1__baseFlatten__["a" /* default */])(args, 1))
+    : [];
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (concat);
+
+
+/***/ }),
+/* 184 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rest__ = __webpack_require__(7);
+
+
+
+
+
+/**
+ * Creates an array of unique `array` values not included in the other given
+ * arrays using [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+ * for equality comparisons. The order of result values is determined by the
+ * order they occur in the first array.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Array
+ * @param {Array} array The array to inspect.
+ * @param {...Array} [values] The values to exclude.
+ * @returns {Array} Returns the new array of filtered values.
+ * @see _.without, _.xor
+ * @example
+ *
+ * _.difference([3, 2, 1], [4, 2]);
+ * // => [3, 1]
+ */
+var difference = Object(__WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */])(function(array, values) {
+  return Object(__WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */])(array)
+    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseDifference__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_1__baseFlatten__["a" /* default */])(values, 1, __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */], true))
+    : [];
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (difference);
+
+
+/***/ }),
+/* 185 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * Gets the index at which the first occurrence of `NaN` is found in `array`.
+ *
+ * @private
+ * @param {Array} array The array to search.
+ * @param {number} fromIndex The index to search from.
+ * @param {boolean} [fromRight] Specify iterating from right to left.
+ * @returns {number} Returns the index of the matched `NaN`, else `-1`.
+ */
+function indexOfNaN(array, fromIndex, fromRight) {
+  var length = array.length,
+      index = fromIndex + (fromRight ? 0 : -1);
+
+  while ((fromRight ? index-- : ++index < length)) {
+    var other = array[index];
+    if (other !== other) {
+      return index;
+    }
+  }
+  return -1;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (indexOfNaN);
+
+
+/***/ }),
+/* 186 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseIteratee__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__last__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rest__ = __webpack_require__(7);
+
+
+
+
+
+
+
+/**
+ * This method is like `_.difference` except that it accepts `iteratee` which
+ * is invoked for each element of `array` and `values` to generate the criterion
+ * by which they're compared. Result values are chosen from the first array.
+ * The iteratee is invoked with one argument: (value).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Array
+ * @param {Array} array The array to inspect.
+ * @param {...Array} [values] The values to exclude.
+ * @param {Array|Function|Object|string} [iteratee=_.identity]
+ *  The iteratee invoked per element.
+ * @returns {Array} Returns the new array of filtered values.
+ * @example
+ *
+ * _.differenceBy([3.1, 2.2, 1.3], [4.4, 2.5], Math.floor);
+ * // => [3.1, 1.3]
+ *
+ * // The `_.property` iteratee shorthand.
+ * _.differenceBy([{ 'x': 2 }, { 'x': 1 }], [{ 'x': 1 }], 'x');
+ * // => [{ 'x': 2 }]
+ */
+var differenceBy = Object(__WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */])(function(array, values) {
+  var iteratee = Object(__WEBPACK_IMPORTED_MODULE_4__last__["a" /* default */])(values);
+  if (Object(__WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__["a" /* default */])(iteratee)) {
+    iteratee = undefined;
+  }
+  return Object(__WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__["a" /* default */])(array)
+    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseDifference__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_1__baseFlatten__["a" /* default */])(values, 1, __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__["a" /* default */], true), Object(__WEBPACK_IMPORTED_MODULE_2__baseIteratee__["a" /* default */])(iteratee))
+    : [];
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (differenceBy);
+
+
+/***/ }),
+/* 187 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isObject__ = __webpack_require__(16);
+
+
+/**
+ * Checks if `value` is suitable for strict equality comparisons, i.e. `===`.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` if suitable for strict
+ *  equality comparisons, else `false`.
+ */
+function isStrictComparable(value) {
+  return value === value && !Object(__WEBPACK_IMPORTED_MODULE_0__isObject__["a" /* default */])(value);
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (isStrictComparable);
+
+
+/***/ }),
+/* 188 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * A specialized version of `matchesProperty` for source values suitable
+ * for strict equality comparisons, i.e. `===`.
+ *
+ * @private
+ * @param {string} key The key of the property to get.
+ * @param {*} srcValue The value to match.
+ * @returns {Function} Returns the new spec function.
+ */
+function matchesStrictComparable(key, srcValue) {
+  return function(object) {
+    if (object == null) {
+      return false;
+    }
+    return object[key] === srcValue &&
+      (srcValue !== undefined || (key in Object(object)));
+  };
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (matchesStrictComparable);
+
+
+/***/ }),
+/* 189 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseGet__ = __webpack_require__(136);
+
+
+/**
+ * Gets the value at `path` of `object`. If the resolved value is
+ * `undefined`, the `defaultValue` is used in its place.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.7.0
+ * @category Object
+ * @param {Object} object The object to query.
+ * @param {Array|string} path The path of the property to get.
+ * @param {*} [defaultValue] The value returned for `undefined` resolved values.
+ * @returns {*} Returns the resolved value.
+ * @example
+ *
+ * var object = { 'a': [{ 'b': { 'c': 3 } }] };
+ *
+ * _.get(object, 'a[0].b.c');
+ * // => 3
+ *
+ * _.get(object, ['a', '0', 'b', 'c']);
+ * // => 3
+ *
+ * _.get(object, 'a.b.c', 'default');
+ * // => 'default'
+ */
+function get(object, path, defaultValue) {
+  var result = object == null ? undefined : Object(__WEBPACK_IMPORTED_MODULE_0__baseGet__["a" /* default */])(object, path);
+  return result === undefined ? defaultValue : result;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (get);
+
+
+/***/ }),
+/* 190 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * This method returns the first argument given to it.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Util
+ * @param {*} value Any value.
+ * @returns {*} Returns `value`.
+ * @example
+ *
+ * var object = { 'user': 'fred' };
+ *
+ * _.identity(object) === object;
+ * // => true
+ */
+function identity(value) {
+  return value;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (identity);
+
+
+/***/ }),
+/* 191 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__rest__ = __webpack_require__(7);
+
+
+
+
+
+
+/**
+ * This method is like `_.difference` except that it accepts `comparator`
+ * which is invoked to compare elements of `array` to `values`. Result values
+ * are chosen from the first array. The comparator is invoked with two arguments:
+ * (arrVal, othVal).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Array
+ * @param {Array} array The array to inspect.
+ * @param {...Array} [values] The values to exclude.
+ * @param {Function} [comparator] The comparator invoked per element.
+ * @returns {Array} Returns the new array of filtered values.
+ * @example
+ *
+ * var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
+ *
+ * _.differenceWith(objects, [{ 'x': 1, 'y': 2 }], _.isEqual);
+ * // => [{ 'x': 2, 'y': 1 }]
+ */
+var differenceWith = Object(__WEBPACK_IMPORTED_MODULE_4__rest__["a" /* default */])(function(array, values) {
+  var comparator = Object(__WEBPACK_IMPORTED_MODULE_3__last__["a" /* default */])(values);
+  if (Object(__WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */])(comparator)) {
+    comparator = undefined;
+  }
+  return Object(__WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */])(array)
+    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseDifference__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_1__baseFlatten__["a" /* default */])(values, 1, __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */], true), undefined, comparator)
+    : [];
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (differenceWith);
+
+
+/***/ }),
+/* 192 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseWhile__ = __webpack_require__(100);
+
+
+
+/**
+ * Creates a slice of `array` excluding elements dropped from the end.
+ * Elements are dropped until `predicate` returns falsey. The predicate is
+ * invoked with three arguments: (value, index, array).
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Array
+ * @param {Array} array The array to query.
+ * @param {Array|Function|Object|string} [predicate=_.identity]
+ *  The function invoked per iteration.
+ * @returns {Array} Returns the slice of `array`.
+ * @example
+ *
+ * var users = [
+ *   { 'user': 'barney',  'active': true },
+ *   { 'user': 'fred',    'active': false },
+ *   { 'user': 'pebbles', 'active': false }
+ * ];
+ *
+ * _.dropRightWhile(users, function(o) { return !o.active; });
+ * // => objects for ['barney']
+ *
+ * // The `_.matches` iteratee shorthand.
+ * _.dropRightWhile(users, { 'user': 'pebbles', 'active': false });
+ * // => objects for ['barney', 'fred']
+ *
+ * // The `_.matchesProperty` iteratee shorthand.
+ * _.dropRightWhile(users, ['active', false]);
+ * // => objects for ['barney']
+ *
+ * // The `_.property` iteratee shorthand.
+ * _.dropRightWhile(users, 'active');
+ * // => objects for ['barney', 'fred', 'pebbles']
+ */
+function dropRightWhile(array, predicate) {
+  return (array && array.length)
+    ? Object(__WEBPACK_IMPORTED_MODULE_1__baseWhile__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(predicate, 3), true, true)
+    : [];
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (dropRightWhile);
+
+
+/***/ }),
+/* 193 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseWhile__ = __webpack_require__(100);
+
+
+
+/**
+ * Creates a slice of `array` excluding elements dropped from the beginning.
+ * Elements are dropped until `predicate` returns falsey. The predicate is
+ * invoked with three arguments: (value, index, array).
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Array
+ * @param {Array} array The array to query.
+ * @param {Array|Function|Object|string} [predicate=_.identity]
+ *  The function invoked per iteration.
+ * @returns {Array} Returns the slice of `array`.
+ * @example
+ *
+ * var users = [
+ *   { 'user': 'barney',  'active': false },
+ *   { 'user': 'fred',    'active': false },
+ *   { 'user': 'pebbles', 'active': true }
+ * ];
+ *
+ * _.dropWhile(users, function(o) { return !o.active; });
+ * // => objects for ['pebbles']
+ *
+ * // The `_.matches` iteratee shorthand.
+ * _.dropWhile(users, { 'user': 'barney', 'active': false });
+ * // => objects for ['fred', 'pebbles']
+ *
+ * // The `_.matchesProperty` iteratee shorthand.
+ * _.dropWhile(users, ['active', false]);
+ * // => objects for ['pebbles']
+ *
+ * // The `_.property` iteratee shorthand.
+ * _.dropWhile(users, 'active');
+ * // => objects for ['barney', 'fred', 'pebbles']
+ */
+function dropWhile(array, predicate) {
+  return (array && array.length)
+    ? Object(__WEBPACK_IMPORTED_MODULE_1__baseWhile__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(predicate, 3), true)
+    : [];
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (dropWhile);
+
+
+/***/ }),
+/* 194 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFill__ = __webpack_require__(382);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isIterateeCall__ = __webpack_require__(76);
+
+
+
+/**
+ * Fills elements of `array` with `value` from `start` up to, but not
+ * including, `end`.
+ *
+ * **Note:** This method mutates `array`.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.2.0
+ * @category Array
+ * @param {Array} array The array to fill.
+ * @param {*} value The value to fill `array` with.
+ * @param {number} [start=0] The start position.
+ * @param {number} [end=array.length] The end position.
+ * @returns {Array} Returns `array`.
+ * @example
+ *
+ * var array = [1, 2, 3];
+ *
+ * _.fill(array, 'a');
+ * console.log(array);
+ * // => ['a', 'a', 'a']
+ *
+ * _.fill(Array(3), 2);
+ * // => [2, 2, 2]
+ *
+ * _.fill([4, 6, 8, 10], '*', 1, 3);
+ * // => [4, '*', '*', 10]
+ */
+function fill(array, value, start, end) {
+  var length = array ? array.length : 0;
+  if (!length) {
+    return [];
+  }
+  if (start && typeof start != 'number' && Object(__WEBPACK_IMPORTED_MODULE_1__isIterateeCall__["a" /* default */])(array, value, start)) {
+    start = 0;
+    end = length;
+  }
+  return Object(__WEBPACK_IMPORTED_MODULE_0__baseFill__["a" /* default */])(array, value, start, end);
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (fill);
+
+
+/***/ }),
+/* 195 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFindIndex__ = __webpack_require__(196);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIteratee__ = __webpack_require__(10);
+
+
+
+/**
+ * This method is like `_.find` except that it returns the index of the first
+ * element `predicate` returns truthy for instead of the element itself.
+ *
+ * @static
+ * @memberOf _
+ * @since 1.1.0
+ * @category Array
+ * @param {Array} array The array to search.
+ * @param {Array|Function|Object|string} [predicate=_.identity]
+ *  The function invoked per iteration.
+ * @returns {number} Returns the index of the found element, else `-1`.
+ * @example
+ *
+ * var users = [
+ *   { 'user': 'barney',  'active': false },
+ *   { 'user': 'fred',    'active': false },
+ *   { 'user': 'pebbles', 'active': true }
+ * ];
+ *
+ * _.findIndex(users, function(o) { return o.user == 'barney'; });
+ * // => 0
+ *
+ * // The `_.matches` iteratee shorthand.
+ * _.findIndex(users, { 'user': 'fred', 'active': false });
+ * // => 1
+ *
+ * // The `_.matchesProperty` iteratee shorthand.
+ * _.findIndex(users, ['active', false]);
+ * // => 0
+ *
+ * // The `_.property` iteratee shorthand.
+ * _.findIndex(users, 'active');
+ * // => 2
+ */
+function findIndex(array, predicate) {
+  return (array && array.length)
+    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseFindIndex__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_1__baseIteratee__["a" /* default */])(predicate, 3))
+    : -1;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (findIndex);
+
+
+/***/ }),
+/* 196 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * The base implementation of `_.findIndex` and `_.findLastIndex` without
+ * support for iteratee shorthands.
+ *
+ * @private
+ * @param {Array} array The array to search.
+ * @param {Function} predicate The function invoked per iteration.
+ * @param {boolean} [fromRight] Specify iterating from right to left.
+ * @returns {number} Returns the index of the matched value, else `-1`.
+ */
+function baseFindIndex(array, predicate, fromRight) {
+  var length = array.length,
+      index = fromRight ? length : -1;
+
+  while ((fromRight ? index-- : ++index < length)) {
+    if (predicate(array[index], index, array)) {
+      return index;
+    }
+  }
+  return -1;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (baseFindIndex);
+
+
+/***/ }),
+/* 197 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFindIndex__ = __webpack_require__(196);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIteratee__ = __webpack_require__(10);
+
+
+
+/**
+ * This method is like `_.findIndex` except that it iterates over elements
+ * of `collection` from right to left.
+ *
+ * @static
+ * @memberOf _
+ * @since 2.0.0
+ * @category Array
+ * @param {Array} array The array to search.
+ * @param {Array|Function|Object|string} [predicate=_.identity]
+ *  The function invoked per iteration.
+ * @returns {number} Returns the index of the found element, else `-1`.
+ * @example
+ *
+ * var users = [
+ *   { 'user': 'barney',  'active': true },
+ *   { 'user': 'fred',    'active': false },
+ *   { 'user': 'pebbles', 'active': false }
+ * ];
+ *
+ * _.findLastIndex(users, function(o) { return o.user == 'pebbles'; });
+ * // => 2
+ *
+ * // The `_.matches` iteratee shorthand.
+ * _.findLastIndex(users, { 'user': 'barney', 'active': true });
+ * // => 0
+ *
+ * // The `_.matchesProperty` iteratee shorthand.
+ * _.findLastIndex(users, ['active', false]);
+ * // => 2
+ *
+ * // The `_.property` iteratee shorthand.
+ * _.findLastIndex(users, 'active');
+ * // => 0
+ */
+function findLastIndex(array, predicate) {
+  return (array && array.length)
+    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseFindIndex__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_1__baseIteratee__["a" /* default */])(predicate, 3), true)
+    : -1;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (findLastIndex);
+
+
+/***/ }),
+/* 198 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__head__ = __webpack_require__(139);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__head__["a"]; });
+
+
+
+/***/ }),
+/* 199 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(22);
+
+
+/**
+ * Flattens `array` a single level deep.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Array
+ * @param {Array} array The array to flatten.
+ * @returns {Array} Returns the new flattened array.
+ * @example
+ *
+ * _.flatten([1, [2, [3, [4]], 5]]);
+ * // => [1, 2, [3, [4]], 5]
+ */
+function flatten(array) {
+  var length = array ? array.length : 0;
+  return length ? Object(__WEBPACK_IMPORTED_MODULE_0__baseFlatten__["a" /* default */])(array, 1) : [];
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (flatten);
+
+
+/***/ }),
+/* 200 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(22);
+
+
+/** Used as references for various `Number` constants. */
+var INFINITY = 1 / 0;
+
+/**
+ * Recursively flattens `array`.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Array
+ * @param {Array} array The array to flatten.
+ * @returns {Array} Returns the new flattened array.
+ * @example
+ *
+ * _.flattenDeep([1, [2, [3, [4]], 5]]);
+ * // => [1, 2, 3, 4, 5]
+ */
+function flattenDeep(array) {
+  var length = array ? array.length : 0;
+  return length ? Object(__WEBPACK_IMPORTED_MODULE_0__baseFlatten__["a" /* default */])(array, INFINITY) : [];
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (flattenDeep);
+
+
+/***/ }),
+/* 201 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toInteger__ = __webpack_require__(12);
+
+
+
+/**
+ * Recursively flatten `array` up to `depth` times.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.4.0
+ * @category Array
+ * @param {Array} array The array to flatten.
+ * @param {number} [depth=1] The maximum recursion depth.
+ * @returns {Array} Returns the new flattened array.
+ * @example
+ *
+ * var array = [1, [2, [3, [4]], 5]];
+ *
+ * _.flattenDepth(array, 1);
+ * // => [1, 2, [3, [4]], 5]
+ *
+ * _.flattenDepth(array, 2);
+ * // => [1, 2, 3, [4], 5]
+ */
+function flattenDepth(array, depth) {
+  var length = array ? array.length : 0;
+  if (!length) {
+    return [];
+  }
+  depth = depth === undefined ? 1 : Object(__WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */])(depth);
+  return Object(__WEBPACK_IMPORTED_MODULE_0__baseFlatten__["a" /* default */])(array, depth);
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (flattenDepth);
+
+
+/***/ }),
+/* 202 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * The inverse of `_.toPairs`; this method returns an object composed
+ * from key-value `pairs`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Array
+ * @param {Array} pairs The key-value pairs.
+ * @returns {Object} Returns the new object.
+ * @example
+ *
+ * _.fromPairs([['fred', 30], ['barney', 40]]);
+ * // => { 'fred': 30, 'barney': 40 }
+ */
+function fromPairs(pairs) {
+  var index = -1,
+      length = pairs ? pairs.length : 0,
+      result = {};
+
+  while (++index < length) {
+    var pair = pairs[index];
+    result[pair[0]] = pair[1];
+  }
+  return result;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (fromPairs);
+
+
+/***/ }),
+/* 203 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIndexOf__ = __webpack_require__(132);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toInteger__ = __webpack_require__(12);
+
+
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeMax = Math.max;
+
+/**
+ * Gets the index at which the first occurrence of `value` is found in `array`
+ * using [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+ * for equality comparisons. If `fromIndex` is negative, it's used as the
+ * offset from the end of `array`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Array
+ * @param {Array} array The array to search.
+ * @param {*} value The value to search for.
+ * @param {number} [fromIndex=0] The index to search from.
+ * @returns {number} Returns the index of the matched value, else `-1`.
+ * @example
+ *
+ * _.indexOf([1, 2, 1, 2], 2);
+ * // => 1
+ *
+ * // Search from the `fromIndex`.
+ * _.indexOf([1, 2, 1, 2], 2, 2);
+ * // => 3
+ */
+function indexOf(array, value, fromIndex) {
+  var length = array ? array.length : 0;
+  if (!length) {
+    return -1;
+  }
+  fromIndex = Object(__WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */])(fromIndex);
+  if (fromIndex < 0) {
+    fromIndex = nativeMax(length + fromIndex, 0);
+  }
+  return Object(__WEBPACK_IMPORTED_MODULE_0__baseIndexOf__["a" /* default */])(array, value, fromIndex);
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (indexOf);
+
+
+/***/ }),
+/* 204 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dropRight__ = __webpack_require__(138);
+
+
+/**
+ * Gets all but the last element of `array`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Array
+ * @param {Array} array The array to query.
+ * @returns {Array} Returns the slice of `array`.
+ * @example
+ *
+ * _.initial([1, 2, 3]);
+ * // => [1, 2]
+ */
+function initial(array) {
+  return Object(__WEBPACK_IMPORTED_MODULE_0__dropRight__["a" /* default */])(array, 1);
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (initial);
+
+
+/***/ }),
+/* 205 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayMap__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIntersection__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__castArrayLikeObject__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rest__ = __webpack_require__(7);
+
+
+
+
+
+/**
+ * Creates an array of unique values that are included in all given arrays
+ * using [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+ * for equality comparisons. The order of result values is determined by the
+ * order they occur in the first array.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Array
+ * @param {...Array} [arrays] The arrays to inspect.
+ * @returns {Array} Returns the new array of intersecting values.
+ * @example
+ *
+ * _.intersection([2, 1], [4, 2], [1, 2]);
+ * // => [2]
+ */
+var intersection = Object(__WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */])(function(arrays) {
+  var mapped = Object(__WEBPACK_IMPORTED_MODULE_0__arrayMap__["a" /* default */])(arrays, __WEBPACK_IMPORTED_MODULE_2__castArrayLikeObject__["a" /* default */]);
+  return (mapped.length && mapped[0] === arrays[0])
+    ? Object(__WEBPACK_IMPORTED_MODULE_1__baseIntersection__["a" /* default */])(mapped)
+    : [];
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (intersection);
+
+
+/***/ }),
+/* 206 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayMap__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIntersection__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseIteratee__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__castArrayLikeObject__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__last__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rest__ = __webpack_require__(7);
+
+
+
+
+
+
+
+/**
+ * This method is like `_.intersection` except that it accepts `iteratee`
+ * which is invoked for each element of each `arrays` to generate the criterion
+ * by which they're compared. Result values are chosen from the first array.
+ * The iteratee is invoked with one argument: (value).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Array
+ * @param {...Array} [arrays] The arrays to inspect.
+ * @param {Array|Function|Object|string} [iteratee=_.identity]
+ *  The iteratee invoked per element.
+ * @returns {Array} Returns the new array of intersecting values.
+ * @example
+ *
+ * _.intersectionBy([2.1, 1.2], [4.3, 2.4], Math.floor);
+ * // => [2.1]
+ *
+ * // The `_.property` iteratee shorthand.
+ * _.intersectionBy([{ 'x': 1 }], [{ 'x': 2 }, { 'x': 1 }], 'x');
+ * // => [{ 'x': 1 }]
+ */
+var intersectionBy = Object(__WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */])(function(arrays) {
+  var iteratee = Object(__WEBPACK_IMPORTED_MODULE_4__last__["a" /* default */])(arrays),
+      mapped = Object(__WEBPACK_IMPORTED_MODULE_0__arrayMap__["a" /* default */])(arrays, __WEBPACK_IMPORTED_MODULE_3__castArrayLikeObject__["a" /* default */]);
+
+  if (iteratee === Object(__WEBPACK_IMPORTED_MODULE_4__last__["a" /* default */])(mapped)) {
+    iteratee = undefined;
+  } else {
+    mapped.pop();
+  }
+  return (mapped.length && mapped[0] === arrays[0])
+    ? Object(__WEBPACK_IMPORTED_MODULE_1__baseIntersection__["a" /* default */])(mapped, Object(__WEBPACK_IMPORTED_MODULE_2__baseIteratee__["a" /* default */])(iteratee))
+    : [];
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (intersectionBy);
+
+
+/***/ }),
+/* 207 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayMap__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIntersection__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__castArrayLikeObject__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__rest__ = __webpack_require__(7);
+
+
+
+
+
+
+/**
+ * This method is like `_.intersection` except that it accepts `comparator`
+ * which is invoked to compare elements of `arrays`. Result values are chosen
+ * from the first array. The comparator is invoked with two arguments:
+ * (arrVal, othVal).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Array
+ * @param {...Array} [arrays] The arrays to inspect.
+ * @param {Function} [comparator] The comparator invoked per element.
+ * @returns {Array} Returns the new array of intersecting values.
+ * @example
+ *
+ * var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
+ * var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 2 }];
+ *
+ * _.intersectionWith(objects, others, _.isEqual);
+ * // => [{ 'x': 1, 'y': 2 }]
+ */
+var intersectionWith = Object(__WEBPACK_IMPORTED_MODULE_4__rest__["a" /* default */])(function(arrays) {
+  var comparator = Object(__WEBPACK_IMPORTED_MODULE_3__last__["a" /* default */])(arrays),
+      mapped = Object(__WEBPACK_IMPORTED_MODULE_0__arrayMap__["a" /* default */])(arrays, __WEBPACK_IMPORTED_MODULE_2__castArrayLikeObject__["a" /* default */]);
+
+  if (comparator === Object(__WEBPACK_IMPORTED_MODULE_3__last__["a" /* default */])(mapped)) {
+    comparator = undefined;
+  } else {
+    mapped.pop();
+  }
+  return (mapped.length && mapped[0] === arrays[0])
+    ? Object(__WEBPACK_IMPORTED_MODULE_1__baseIntersection__["a" /* default */])(mapped, undefined, comparator)
+    : [];
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (intersectionWith);
+
+
+/***/ }),
+/* 208 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/** Used for built-in method references. */
+var arrayProto = Array.prototype;
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeJoin = arrayProto.join;
+
+/**
+ * Converts all elements in `array` into a string separated by `separator`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Array
+ * @param {Array} array The array to convert.
+ * @param {string} [separator=','] The element separator.
+ * @returns {string} Returns the joined string.
+ * @example
+ *
+ * _.join(['a', 'b', 'c'], '~');
+ * // => 'a~b~c'
+ */
+function join(array, separator) {
+  return array ? nativeJoin.call(array, separator) : '';
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (join);
+
+
+/***/ }),
+/* 209 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__indexOfNaN__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toInteger__ = __webpack_require__(12);
+
+
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeMax = Math.max,
+    nativeMin = Math.min;
+
+/**
+ * This method is like `_.indexOf` except that it iterates over elements of
+ * `array` from right to left.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Array
+ * @param {Array} array The array to search.
+ * @param {*} value The value to search for.
+ * @param {number} [fromIndex=array.length-1] The index to search from.
+ * @returns {number} Returns the index of the matched value, else `-1`.
+ * @example
+ *
+ * _.lastIndexOf([1, 2, 1, 2], 2);
+ * // => 3
+ *
+ * // Search from the `fromIndex`.
+ * _.lastIndexOf([1, 2, 1, 2], 2, 2);
+ * // => 1
+ */
+function lastIndexOf(array, value, fromIndex) {
+  var length = array ? array.length : 0;
+  if (!length) {
+    return -1;
+  }
+  var index = length;
+  if (fromIndex !== undefined) {
+    index = Object(__WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */])(fromIndex);
+    index = (
+      index < 0
+        ? nativeMax(length + index, 0)
+        : nativeMin(index, length - 1)
+    ) + 1;
+  }
+  if (value !== value) {
+    return Object(__WEBPACK_IMPORTED_MODULE_0__indexOfNaN__["a" /* default */])(array, index, true);
+  }
+  while (index--) {
+    if (array[index] === value) {
+      return index;
+    }
+  }
+  return -1;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (lastIndexOf);
+
+
+/***/ }),
+/* 210 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseNth__ = __webpack_require__(385);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toInteger__ = __webpack_require__(12);
+
+
+
+/**
+ * Gets the element at `n` index of `array`. If `n` is negative, the nth
+ * element from the end is returned.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.11.0
+ * @category Array
+ * @param {Array} array The array to query.
+ * @param {number} [n=0] The index of the element to return.
+ * @returns {*} Returns the nth element of `array`.
+ * @example
+ *
+ * var array = ['a', 'b', 'c', 'd'];
+ *
+ * _.nth(array, 1);
+ * // => 'b'
+ *
+ * _.nth(array, -2);
+ * // => 'c';
+ */
+function nth(array, n) {
+  return (array && array.length) ? Object(__WEBPACK_IMPORTED_MODULE_0__baseNth__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */])(n)) : undefined;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (nth);
+
+
+/***/ }),
+/* 211 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pullAll__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__rest__ = __webpack_require__(7);
+
+
+
+/**
+ * Removes all given values from `array` using
+ * [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+ * for equality comparisons.
+ *
+ * **Note:** Unlike `_.without`, this method mutates `array`. Use `_.remove`
+ * to remove elements from an array by predicate.
+ *
+ * @static
+ * @memberOf _
+ * @since 2.0.0
+ * @category Array
+ * @param {Array} array The array to modify.
+ * @param {...*} [values] The values to remove.
+ * @returns {Array} Returns `array`.
+ * @example
+ *
+ * var array = [1, 2, 3, 1, 2, 3];
+ *
+ * _.pull(array, 2, 3);
+ * console.log(array);
+ * // => [1, 1]
+ */
+var pull = Object(__WEBPACK_IMPORTED_MODULE_1__rest__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_0__pullAll__["a" /* default */]);
+
+/* harmony default export */ __webpack_exports__["a"] = (pull);
+
+
+/***/ }),
+/* 212 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__basePullAll__ = __webpack_require__(143);
+
+
+
+/**
+ * This method is like `_.pullAll` except that it accepts `iteratee` which is
+ * invoked for each element of `array` and `values` to generate the criterion
+ * by which they're compared. The iteratee is invoked with one argument: (value).
+ *
+ * **Note:** Unlike `_.differenceBy`, this method mutates `array`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Array
+ * @param {Array} array The array to modify.
+ * @param {Array} values The values to remove.
+ * @param {Array|Function|Object|string} [iteratee=_.identity]
+ *  The iteratee invoked per element.
+ * @returns {Array} Returns `array`.
+ * @example
+ *
+ * var array = [{ 'x': 1 }, { 'x': 2 }, { 'x': 3 }, { 'x': 1 }];
+ *
+ * _.pullAllBy(array, [{ 'x': 1 }, { 'x': 3 }], 'x');
+ * console.log(array);
+ * // => [{ 'x': 2 }]
+ */
+function pullAllBy(array, values, iteratee) {
+  return (array && array.length && values && values.length)
+    ? Object(__WEBPACK_IMPORTED_MODULE_1__basePullAll__["a" /* default */])(array, values, Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(iteratee))
+    : array;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (pullAllBy);
+
+
+/***/ }),
+/* 213 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__basePullAll__ = __webpack_require__(143);
+
+
+/**
+ * This method is like `_.pullAll` except that it accepts `comparator` which
+ * is invoked to compare elements of `array` to `values`. The comparator is
+ * invoked with two arguments: (arrVal, othVal).
+ *
+ * **Note:** Unlike `_.differenceWith`, this method mutates `array`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.6.0
+ * @category Array
+ * @param {Array} array The array to modify.
+ * @param {Array} values The values to remove.
+ * @param {Function} [comparator] The comparator invoked per element.
+ * @returns {Array} Returns `array`.
+ * @example
+ *
+ * var array = [{ 'x': 1, 'y': 2 }, { 'x': 3, 'y': 4 }, { 'x': 5, 'y': 6 }];
+ *
+ * _.pullAllWith(array, [{ 'x': 3, 'y': 4 }], _.isEqual);
+ * console.log(array);
+ * // => [{ 'x': 1, 'y': 2 }, { 'x': 5, 'y': 6 }]
+ */
+function pullAllWith(array, values, comparator) {
+  return (array && array.length && values && values.length)
+    ? Object(__WEBPACK_IMPORTED_MODULE_0__basePullAll__["a" /* default */])(array, values, undefined, comparator)
+    : array;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (pullAllWith);
+
+
+/***/ }),
+/* 214 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayMap__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseAt__ = __webpack_require__(387);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseFlatten__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__basePullAt__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__compareAscending__ = __webpack_require__(389);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__isIndex__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__rest__ = __webpack_require__(7);
+
+
+
+
+
+
+
+
+/**
+ * Removes elements from `array` corresponding to `indexes` and returns an
+ * array of removed elements.
+ *
+ * **Note:** Unlike `_.at`, this method mutates `array`.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Array
+ * @param {Array} array The array to modify.
+ * @param {...(number|number[])} [indexes] The indexes of elements to remove.
+ * @returns {Array} Returns the new array of removed elements.
+ * @example
+ *
+ * var array = [5, 10, 15, 20];
+ * var evens = _.pullAt(array, 1, 3);
+ *
+ * console.log(array);
+ * // => [5, 15]
+ *
+ * console.log(evens);
+ * // => [10, 20]
+ */
+var pullAt = Object(__WEBPACK_IMPORTED_MODULE_6__rest__["a" /* default */])(function(array, indexes) {
+  indexes = Object(__WEBPACK_IMPORTED_MODULE_2__baseFlatten__["a" /* default */])(indexes, 1);
+
+  var length = array ? array.length : 0,
+      result = Object(__WEBPACK_IMPORTED_MODULE_1__baseAt__["a" /* default */])(array, indexes);
+
+  Object(__WEBPACK_IMPORTED_MODULE_3__basePullAt__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_0__arrayMap__["a" /* default */])(indexes, function(index) {
+    return Object(__WEBPACK_IMPORTED_MODULE_5__isIndex__["a" /* default */])(index, length) ? +index : index;
+  }).sort(__WEBPACK_IMPORTED_MODULE_4__compareAscending__["a" /* default */]));
+
+  return result;
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (pullAt);
+
+
+/***/ }),
+/* 215 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__castPath__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isIndex__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isKey__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__parent__ = __webpack_require__(388);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__toKey__ = __webpack_require__(58);
+
+
+
+
+
+
+
+/** Used for built-in method references. */
+var arrayProto = Array.prototype;
+
+/** Built-in value references. */
+var splice = arrayProto.splice;
+
+/**
+ * The base implementation of `_.pullAt` without support for individual
+ * indexes or capturing the removed elements.
+ *
+ * @private
+ * @param {Array} array The array to modify.
+ * @param {number[]} indexes The indexes of elements to remove.
+ * @returns {Array} Returns `array`.
+ */
+function basePullAt(array, indexes) {
+  var length = array ? indexes.length : 0,
+      lastIndex = length - 1;
+
+  while (length--) {
+    var index = indexes[length];
+    if (length == lastIndex || index !== previous) {
+      var previous = index;
+      if (Object(__WEBPACK_IMPORTED_MODULE_1__isIndex__["a" /* default */])(index)) {
+        splice.call(array, index, 1);
+      }
+      else if (!Object(__WEBPACK_IMPORTED_MODULE_2__isKey__["a" /* default */])(index, array)) {
+        var path = Object(__WEBPACK_IMPORTED_MODULE_0__castPath__["a" /* default */])(index),
+            object = Object(__WEBPACK_IMPORTED_MODULE_4__parent__["a" /* default */])(array, path);
+
+        if (object != null) {
+          delete object[Object(__WEBPACK_IMPORTED_MODULE_5__toKey__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_3__last__["a" /* default */])(path))];
+        }
+      }
+      else {
+        delete array[Object(__WEBPACK_IMPORTED_MODULE_5__toKey__["a" /* default */])(index)];
+      }
+    }
+  }
+  return array;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (basePullAt);
+
+
+/***/ }),
+/* 216 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__basePullAt__ = __webpack_require__(215);
+
+
+
+/**
+ * Removes all elements from `array` that `predicate` returns truthy for
+ * and returns an array of the removed elements. The predicate is invoked
+ * with three arguments: (value, index, array).
+ *
+ * **Note:** Unlike `_.filter`, this method mutates `array`. Use `_.pull`
+ * to pull elements from an array by value.
+ *
+ * @static
+ * @memberOf _
+ * @since 2.0.0
+ * @category Array
+ * @param {Array} array The array to modify.
+ * @param {Array|Function|Object|string} [predicate=_.identity]
+ *  The function invoked per iteration.
+ * @returns {Array} Returns the new array of removed elements.
+ * @example
+ *
+ * var array = [1, 2, 3, 4];
+ * var evens = _.remove(array, function(n) {
+ *   return n % 2 == 0;
+ * });
+ *
+ * console.log(array);
+ * // => [1, 3]
+ *
+ * console.log(evens);
+ * // => [2, 4]
+ */
+function remove(array, predicate) {
+  var result = [];
+  if (!(array && array.length)) {
+    return result;
+  }
+  var index = -1,
+      indexes = [],
+      length = array.length;
+
+  predicate = Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(predicate, 3);
+  while (++index < length) {
+    var value = array[index];
+    if (predicate(value, index, array)) {
+      result.push(value);
+      indexes.push(index);
+    }
+  }
+  Object(__WEBPACK_IMPORTED_MODULE_1__basePullAt__["a" /* default */])(array, indexes);
+  return result;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (remove);
+
+
+/***/ }),
+/* 217 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/** Used for built-in method references. */
+var arrayProto = Array.prototype;
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeReverse = arrayProto.reverse;
+
+/**
+ * Reverses `array` so that the first element becomes the last, the second
+ * element becomes the second to last, and so on.
+ *
+ * **Note:** This method mutates `array` and is based on
+ * [`Array#reverse`](https://mdn.io/Array/reverse).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Array
+ * @param {Array} array The array to modify.
+ * @returns {Array} Returns `array`.
+ * @example
+ *
+ * var array = [1, 2, 3];
+ *
+ * _.reverse(array);
+ * // => [3, 2, 1]
+ *
+ * console.log(array);
+ * // => [3, 2, 1]
+ */
+function reverse(array) {
+  return array ? nativeReverse.call(array) : array;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (reverse);
+
+
+/***/ }),
+/* 218 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSlice__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isIterateeCall__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__toInteger__ = __webpack_require__(12);
+
+
+
+
+/**
+ * Creates a slice of `array` from `start` up to, but not including, `end`.
+ *
+ * **Note:** This method is used instead of
+ * [`Array#slice`](https://mdn.io/Array/slice) to ensure dense arrays are
+ * returned.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Array
+ * @param {Array} array The array to slice.
+ * @param {number} [start=0] The start position.
+ * @param {number} [end=array.length] The end position.
+ * @returns {Array} Returns the slice of `array`.
+ */
+function slice(array, start, end) {
+  var length = array ? array.length : 0;
+  if (!length) {
+    return [];
+  }
+  if (end && typeof end != 'number' && Object(__WEBPACK_IMPORTED_MODULE_1__isIterateeCall__["a" /* default */])(array, start, end)) {
+    start = 0;
+    end = length;
+  }
+  else {
+    start = start == null ? 0 : Object(__WEBPACK_IMPORTED_MODULE_2__toInteger__["a" /* default */])(start);
+    end = end === undefined ? length : Object(__WEBPACK_IMPORTED_MODULE_2__toInteger__["a" /* default */])(end);
+  }
+  return Object(__WEBPACK_IMPORTED_MODULE_0__baseSlice__["a" /* default */])(array, start, end);
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (slice);
+
+
+/***/ }),
+/* 219 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__ = __webpack_require__(101);
+
+
+/**
+ * Uses a binary search to determine the lowest index at which `value`
+ * should be inserted into `array` in order to maintain its sort order.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Array
+ * @param {Array} array The sorted array to inspect.
+ * @param {*} value The value to evaluate.
+ * @returns {number} Returns the index at which `value` should be inserted
+ *  into `array`.
+ * @example
+ *
+ * _.sortedIndex([30, 50], 40);
+ * // => 1
+ *
+ * _.sortedIndex([4, 5], 4);
+ * // => 0
+ */
+function sortedIndex(array, value) {
+  return Object(__WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__["a" /* default */])(array, value);
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (sortedIndex);
+
+
+/***/ }),
+/* 220 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseSortedIndexBy__ = __webpack_require__(144);
+
+
+
+/**
+ * This method is like `_.sortedIndex` except that it accepts `iteratee`
+ * which is invoked for `value` and each element of `array` to compute their
+ * sort ranking. The iteratee is invoked with one argument: (value).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Array
+ * @param {Array} array The sorted array to inspect.
+ * @param {*} value The value to evaluate.
+ * @param {Array|Function|Object|string} [iteratee=_.identity]
+ *  The iteratee invoked per element.
+ * @returns {number} Returns the index at which `value` should be inserted
+ *  into `array`.
+ * @example
+ *
+ * var dict = { 'thirty': 30, 'forty': 40, 'fifty': 50 };
+ *
+ * _.sortedIndexBy(['thirty', 'fifty'], 'forty', _.propertyOf(dict));
+ * // => 1
+ *
+ * // The `_.property` iteratee shorthand.
+ * _.sortedIndexBy([{ 'x': 4 }, { 'x': 5 }], { 'x': 4 }, 'x');
+ * // => 0
+ */
+function sortedIndexBy(array, value, iteratee) {
+  return Object(__WEBPACK_IMPORTED_MODULE_1__baseSortedIndexBy__["a" /* default */])(array, value, Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(iteratee));
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (sortedIndexBy);
+
+
+/***/ }),
+/* 221 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__eq__ = __webpack_require__(52);
+
+
+
+/**
+ * This method is like `_.indexOf` except that it performs a binary
+ * search on a sorted `array`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Array
+ * @param {Array} array The array to search.
+ * @param {*} value The value to search for.
+ * @returns {number} Returns the index of the matched value, else `-1`.
+ * @example
+ *
+ * _.sortedIndexOf([1, 1, 2, 2], 2);
+ * // => 2
+ */
+function sortedIndexOf(array, value) {
+  var length = array ? array.length : 0;
+  if (length) {
+    var index = Object(__WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__["a" /* default */])(array, value);
+    if (index < length && Object(__WEBPACK_IMPORTED_MODULE_1__eq__["a" /* default */])(array[index], value)) {
+      return index;
+    }
+  }
+  return -1;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (sortedIndexOf);
+
+
+/***/ }),
+/* 222 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__ = __webpack_require__(101);
+
+
+/**
+ * This method is like `_.sortedIndex` except that it returns the highest
+ * index at which `value` should be inserted into `array` in order to
+ * maintain its sort order.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Array
+ * @param {Array} array The sorted array to inspect.
+ * @param {*} value The value to evaluate.
+ * @returns {number} Returns the index at which `value` should be inserted
+ *  into `array`.
+ * @example
+ *
+ * _.sortedLastIndex([4, 5], 4);
+ * // => 1
+ */
+function sortedLastIndex(array, value) {
+  return Object(__WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__["a" /* default */])(array, value, true);
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (sortedLastIndex);
+
+
+/***/ }),
+/* 223 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseSortedIndexBy__ = __webpack_require__(144);
+
+
+
+/**
+ * This method is like `_.sortedLastIndex` except that it accepts `iteratee`
+ * which is invoked for `value` and each element of `array` to compute their
+ * sort ranking. The iteratee is invoked with one argument: (value).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Array
+ * @param {Array} array The sorted array to inspect.
+ * @param {*} value The value to evaluate.
+ * @param {Array|Function|Object|string} [iteratee=_.identity]
+ *  The iteratee invoked per element.
+ * @returns {number} Returns the index at which `value` should be inserted
+ *  into `array`.
+ * @example
+ *
+ * // The `_.property` iteratee shorthand.
+ * _.sortedLastIndexBy([{ 'x': 4 }, { 'x': 5 }], { 'x': 4 }, 'x');
+ * // => 1
+ */
+function sortedLastIndexBy(array, value, iteratee) {
+  return Object(__WEBPACK_IMPORTED_MODULE_1__baseSortedIndexBy__["a" /* default */])(array, value, Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(iteratee), true);
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (sortedLastIndexBy);
+
+
+/***/ }),
+/* 224 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__eq__ = __webpack_require__(52);
+
+
+
+/**
+ * This method is like `_.lastIndexOf` except that it performs a binary
+ * search on a sorted `array`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Array
+ * @param {Array} array The array to search.
+ * @param {*} value The value to search for.
+ * @returns {number} Returns the index of the matched value, else `-1`.
+ * @example
+ *
+ * _.sortedLastIndexOf([1, 1, 2, 2], 2);
+ * // => 3
+ */
+function sortedLastIndexOf(array, value) {
+  var length = array ? array.length : 0;
+  if (length) {
+    var index = Object(__WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__["a" /* default */])(array, value, true) - 1;
+    if (Object(__WEBPACK_IMPORTED_MODULE_1__eq__["a" /* default */])(array[index], value)) {
+      return index;
+    }
+  }
+  return -1;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (sortedLastIndexOf);
+
+
+/***/ }),
+/* 225 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedUniq__ = __webpack_require__(226);
+
+
+/**
+ * This method is like `_.uniq` except that it's designed and optimized
+ * for sorted arrays.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Array
+ * @param {Array} array The array to inspect.
+ * @returns {Array} Returns the new duplicate free array.
+ * @example
+ *
+ * _.sortedUniq([1, 1, 2]);
+ * // => [1, 2]
+ */
+function sortedUniq(array) {
+  return (array && array.length)
+    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseSortedUniq__["a" /* default */])(array)
+    : [];
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (sortedUniq);
+
+
+/***/ }),
+/* 226 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__eq__ = __webpack_require__(52);
+
+
+/**
+ * The base implementation of `_.sortedUniq` and `_.sortedUniqBy` without
+ * support for iteratee shorthands.
+ *
+ * @private
+ * @param {Array} array The array to inspect.
+ * @param {Function} [iteratee] The iteratee invoked per element.
+ * @returns {Array} Returns the new duplicate free array.
+ */
+function baseSortedUniq(array, iteratee) {
+  var index = -1,
+      length = array.length,
+      resIndex = 0,
+      result = [];
+
+  while (++index < length) {
+    var value = array[index],
+        computed = iteratee ? iteratee(value) : value;
+
+    if (!index || !Object(__WEBPACK_IMPORTED_MODULE_0__eq__["a" /* default */])(computed, seen)) {
+      var seen = computed;
+      result[resIndex++] = value === 0 ? 0 : value;
+    }
+  }
+  return result;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (baseSortedUniq);
+
+
+/***/ }),
+/* 227 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseSortedUniq__ = __webpack_require__(226);
+
+
+
+/**
+ * This method is like `_.uniqBy` except that it's designed and optimized
+ * for sorted arrays.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Array
+ * @param {Array} array The array to inspect.
+ * @param {Function} [iteratee] The iteratee invoked per element.
+ * @returns {Array} Returns the new duplicate free array.
+ * @example
+ *
+ * _.sortedUniqBy([1.1, 1.2, 2.3, 2.4], Math.floor);
+ * // => [1.1, 2.3]
+ */
+function sortedUniqBy(array, iteratee) {
+  return (array && array.length)
+    ? Object(__WEBPACK_IMPORTED_MODULE_1__baseSortedUniq__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(iteratee))
+    : [];
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (sortedUniqBy);
+
+
+/***/ }),
+/* 228 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__drop__ = __webpack_require__(137);
+
+
+/**
+ * Gets all but the first element of `array`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Array
+ * @param {Array} array The array to query.
+ * @returns {Array} Returns the slice of `array`.
+ * @example
+ *
+ * _.tail([1, 2, 3]);
+ * // => [2, 3]
+ */
+function tail(array) {
+  return Object(__WEBPACK_IMPORTED_MODULE_0__drop__["a" /* default */])(array, 1);
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (tail);
+
+
+/***/ }),
+/* 229 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSlice__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toInteger__ = __webpack_require__(12);
+
+
+
+/**
+ * Creates a slice of `array` with `n` elements taken from the beginning.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Array
+ * @param {Array} array The array to query.
+ * @param {number} [n=1] The number of elements to take.
+ * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
+ * @returns {Array} Returns the slice of `array`.
+ * @example
+ *
+ * _.take([1, 2, 3]);
+ * // => [1]
+ *
+ * _.take([1, 2, 3], 2);
+ * // => [1, 2]
+ *
+ * _.take([1, 2, 3], 5);
+ * // => [1, 2, 3]
+ *
+ * _.take([1, 2, 3], 0);
+ * // => []
+ */
+function take(array, n, guard) {
+  if (!(array && array.length)) {
+    return [];
+  }
+  n = (guard || n === undefined) ? 1 : Object(__WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */])(n);
+  return Object(__WEBPACK_IMPORTED_MODULE_0__baseSlice__["a" /* default */])(array, 0, n < 0 ? 0 : n);
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (take);
+
+
+/***/ }),
+/* 230 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSlice__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toInteger__ = __webpack_require__(12);
+
+
+
+/**
+ * Creates a slice of `array` with `n` elements taken from the end.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Array
+ * @param {Array} array The array to query.
+ * @param {number} [n=1] The number of elements to take.
+ * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
+ * @returns {Array} Returns the slice of `array`.
+ * @example
+ *
+ * _.takeRight([1, 2, 3]);
+ * // => [3]
+ *
+ * _.takeRight([1, 2, 3], 2);
+ * // => [2, 3]
+ *
+ * _.takeRight([1, 2, 3], 5);
+ * // => [1, 2, 3]
+ *
+ * _.takeRight([1, 2, 3], 0);
+ * // => []
+ */
+function takeRight(array, n, guard) {
+  var length = array ? array.length : 0;
+  if (!length) {
+    return [];
+  }
+  n = (guard || n === undefined) ? 1 : Object(__WEBPACK_IMPORTED_MODULE_1__toInteger__["a" /* default */])(n);
+  n = length - n;
+  return Object(__WEBPACK_IMPORTED_MODULE_0__baseSlice__["a" /* default */])(array, n < 0 ? 0 : n, length);
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (takeRight);
+
+
+/***/ }),
+/* 231 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseWhile__ = __webpack_require__(100);
+
+
+
+/**
+ * Creates a slice of `array` with elements taken from the end. Elements are
+ * taken until `predicate` returns falsey. The predicate is invoked with
+ * three arguments: (value, index, array).
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Array
+ * @param {Array} array The array to query.
+ * @param {Array|Function|Object|string} [predicate=_.identity]
+ *  The function invoked per iteration.
+ * @returns {Array} Returns the slice of `array`.
+ * @example
+ *
+ * var users = [
+ *   { 'user': 'barney',  'active': true },
+ *   { 'user': 'fred',    'active': false },
+ *   { 'user': 'pebbles', 'active': false }
+ * ];
+ *
+ * _.takeRightWhile(users, function(o) { return !o.active; });
+ * // => objects for ['fred', 'pebbles']
+ *
+ * // The `_.matches` iteratee shorthand.
+ * _.takeRightWhile(users, { 'user': 'pebbles', 'active': false });
+ * // => objects for ['pebbles']
+ *
+ * // The `_.matchesProperty` iteratee shorthand.
+ * _.takeRightWhile(users, ['active', false]);
+ * // => objects for ['fred', 'pebbles']
+ *
+ * // The `_.property` iteratee shorthand.
+ * _.takeRightWhile(users, 'active');
+ * // => []
+ */
+function takeRightWhile(array, predicate) {
+  return (array && array.length)
+    ? Object(__WEBPACK_IMPORTED_MODULE_1__baseWhile__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(predicate, 3), false, true)
+    : [];
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (takeRightWhile);
+
+
+/***/ }),
+/* 232 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseWhile__ = __webpack_require__(100);
+
+
+
+/**
+ * Creates a slice of `array` with elements taken from the beginning. Elements
+ * are taken until `predicate` returns falsey. The predicate is invoked with
+ * three arguments: (value, index, array).
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Array
+ * @param {Array} array The array to query.
+ * @param {Array|Function|Object|string} [predicate=_.identity]
+ *  The function invoked per iteration.
+ * @returns {Array} Returns the slice of `array`.
+ * @example
+ *
+ * var users = [
+ *   { 'user': 'barney',  'active': false },
+ *   { 'user': 'fred',    'active': false},
+ *   { 'user': 'pebbles', 'active': true }
+ * ];
+ *
+ * _.takeWhile(users, function(o) { return !o.active; });
+ * // => objects for ['barney', 'fred']
+ *
+ * // The `_.matches` iteratee shorthand.
+ * _.takeWhile(users, { 'user': 'barney', 'active': false });
+ * // => objects for ['barney']
+ *
+ * // The `_.matchesProperty` iteratee shorthand.
+ * _.takeWhile(users, ['active', false]);
+ * // => objects for ['barney', 'fred']
+ *
+ * // The `_.property` iteratee shorthand.
+ * _.takeWhile(users, 'active');
+ * // => []
+ */
+function takeWhile(array, predicate) {
+  return (array && array.length)
+    ? Object(__WEBPACK_IMPORTED_MODULE_1__baseWhile__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(predicate, 3))
+    : [];
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (takeWhile);
+
+
+/***/ }),
+/* 233 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseUniq__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rest__ = __webpack_require__(7);
+
+
+
+
+
+/**
+ * Creates an array of unique values, in order, from all given arrays using
+ * [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+ * for equality comparisons.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Array
+ * @param {...Array} [arrays] The arrays to inspect.
+ * @returns {Array} Returns the new array of combined values.
+ * @example
+ *
+ * _.union([2, 1], [4, 2], [1, 2]);
+ * // => [2, 1, 4]
+ */
+var union = Object(__WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */])(function(arrays) {
+  return Object(__WEBPACK_IMPORTED_MODULE_1__baseUniq__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_0__baseFlatten__["a" /* default */])(arrays, 1, __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */], true));
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (union);
+
+
+/***/ }),
+/* 234 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIteratee__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseUniq__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__last__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rest__ = __webpack_require__(7);
+
+
+
+
+
+
+
+/**
+ * This method is like `_.union` except that it accepts `iteratee` which is
+ * invoked for each element of each `arrays` to generate the criterion by
+ * which uniqueness is computed. The iteratee is invoked with one argument:
+ * (value).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Array
+ * @param {...Array} [arrays] The arrays to inspect.
+ * @param {Array|Function|Object|string} [iteratee=_.identity]
+ *  The iteratee invoked per element.
+ * @returns {Array} Returns the new array of combined values.
+ * @example
+ *
+ * _.unionBy([2.1, 1.2], [4.3, 2.4], Math.floor);
+ * // => [2.1, 1.2, 4.3]
+ *
+ * // The `_.property` iteratee shorthand.
+ * _.unionBy([{ 'x': 1 }], [{ 'x': 2 }, { 'x': 1 }], 'x');
+ * // => [{ 'x': 1 }, { 'x': 2 }]
+ */
+var unionBy = Object(__WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */])(function(arrays) {
+  var iteratee = Object(__WEBPACK_IMPORTED_MODULE_4__last__["a" /* default */])(arrays);
+  if (Object(__WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__["a" /* default */])(iteratee)) {
+    iteratee = undefined;
+  }
+  return Object(__WEBPACK_IMPORTED_MODULE_2__baseUniq__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_0__baseFlatten__["a" /* default */])(arrays, 1, __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__["a" /* default */], true), Object(__WEBPACK_IMPORTED_MODULE_1__baseIteratee__["a" /* default */])(iteratee));
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (unionBy);
+
+
+/***/ }),
+/* 235 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseUniq__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__rest__ = __webpack_require__(7);
+
+
+
+
+
+
+/**
+ * This method is like `_.union` except that it accepts `comparator` which
+ * is invoked to compare elements of `arrays`. The comparator is invoked
+ * with two arguments: (arrVal, othVal).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Array
+ * @param {...Array} [arrays] The arrays to inspect.
+ * @param {Function} [comparator] The comparator invoked per element.
+ * @returns {Array} Returns the new array of combined values.
+ * @example
+ *
+ * var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
+ * var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 2 }];
+ *
+ * _.unionWith(objects, others, _.isEqual);
+ * // => [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }, { 'x': 1, 'y': 1 }]
+ */
+var unionWith = Object(__WEBPACK_IMPORTED_MODULE_4__rest__["a" /* default */])(function(arrays) {
+  var comparator = Object(__WEBPACK_IMPORTED_MODULE_3__last__["a" /* default */])(arrays);
+  if (Object(__WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */])(comparator)) {
+    comparator = undefined;
+  }
+  return Object(__WEBPACK_IMPORTED_MODULE_1__baseUniq__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_0__baseFlatten__["a" /* default */])(arrays, 1, __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */], true), undefined, comparator);
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (unionWith);
+
+
+/***/ }),
+/* 236 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseUniq__ = __webpack_require__(49);
+
+
+/**
+ * Creates a duplicate-free version of an array, using
+ * [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+ * for equality comparisons, in which only the first occurrence of each
+ * element is kept.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Array
+ * @param {Array} array The array to inspect.
+ * @returns {Array} Returns the new duplicate free array.
+ * @example
+ *
+ * _.uniq([2, 1, 2]);
+ * // => [2, 1]
+ */
+function uniq(array) {
+  return (array && array.length)
+    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseUniq__["a" /* default */])(array)
+    : [];
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (uniq);
+
+
+/***/ }),
+/* 237 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseUniq__ = __webpack_require__(49);
+
+
+
+/**
+ * This method is like `_.uniq` except that it accepts `iteratee` which is
+ * invoked for each element in `array` to generate the criterion by which
+ * uniqueness is computed. The iteratee is invoked with one argument: (value).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Array
+ * @param {Array} array The array to inspect.
+ * @param {Array|Function|Object|string} [iteratee=_.identity]
+ *  The iteratee invoked per element.
+ * @returns {Array} Returns the new duplicate free array.
+ * @example
+ *
+ * _.uniqBy([2.1, 1.2, 2.3], Math.floor);
+ * // => [2.1, 1.2]
+ *
+ * // The `_.property` iteratee shorthand.
+ * _.uniqBy([{ 'x': 1 }, { 'x': 2 }, { 'x': 1 }], 'x');
+ * // => [{ 'x': 1 }, { 'x': 2 }]
+ */
+function uniqBy(array, iteratee) {
+  return (array && array.length)
+    ? Object(__WEBPACK_IMPORTED_MODULE_1__baseUniq__["a" /* default */])(array, Object(__WEBPACK_IMPORTED_MODULE_0__baseIteratee__["a" /* default */])(iteratee))
+    : [];
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (uniqBy);
+
+
+/***/ }),
+/* 238 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseUniq__ = __webpack_require__(49);
+
+
+/**
+ * This method is like `_.uniq` except that it accepts `comparator` which
+ * is invoked to compare elements of `array`. The comparator is invoked with
+ * two arguments: (arrVal, othVal).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Array
+ * @param {Array} array The array to inspect.
+ * @param {Function} [comparator] The comparator invoked per element.
+ * @returns {Array} Returns the new duplicate free array.
+ * @example
+ *
+ * var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 },  { 'x': 1, 'y': 2 }];
+ *
+ * _.uniqWith(objects, _.isEqual);
+ * // => [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }]
+ */
+function uniqWith(array, comparator) {
+  return (array && array.length)
+    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseUniq__["a" /* default */])(array, undefined, comparator)
+    : [];
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (uniqWith);
+
+
+/***/ }),
+/* 239 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArrayLikeObject__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__rest__ = __webpack_require__(7);
+
+
+
+
+/**
+ * Creates an array excluding all given values using
+ * [`SameValueZero`](http://ecma-international.org/ecma-262/6.0/#sec-samevaluezero)
+ * for equality comparisons.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Array
+ * @param {Array} array The array to inspect.
+ * @param {...*} [values] The values to exclude.
+ * @returns {Array} Returns the new array of filtered values.
+ * @see _.difference, _.xor
+ * @example
+ *
+ * _.without([1, 2, 1, 3], 1, 2);
+ * // => [3]
+ */
+var without = Object(__WEBPACK_IMPORTED_MODULE_2__rest__["a" /* default */])(function(array, values) {
+  return Object(__WEBPACK_IMPORTED_MODULE_1__isArrayLikeObject__["a" /* default */])(array)
+    ? Object(__WEBPACK_IMPORTED_MODULE_0__baseDifference__["a" /* default */])(array, values)
+    : [];
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (without);
+
+
+/***/ }),
+/* 240 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayFilter__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseXor__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rest__ = __webpack_require__(7);
+
+
+
+
+
+/**
+ * Creates an array of unique values that is the
+ * [symmetric difference](https://en.wikipedia.org/wiki/Symmetric_difference)
+ * of the given arrays. The order of result values is determined by the order
+ * they occur in the arrays.
+ *
+ * @static
+ * @memberOf _
+ * @since 2.4.0
+ * @category Array
+ * @param {...Array} [arrays] The arrays to inspect.
+ * @returns {Array} Returns the new array of filtered values.
+ * @see _.difference, _.without
+ * @example
+ *
+ * _.xor([2, 1], [4, 2]);
+ * // => [1, 4]
+ */
+var xor = Object(__WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */])(function(arrays) {
+  return Object(__WEBPACK_IMPORTED_MODULE_1__baseXor__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_0__arrayFilter__["a" /* default */])(arrays, __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */]));
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (xor);
+
+
+/***/ }),
+/* 241 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayFilter__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIteratee__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseXor__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__last__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__rest__ = __webpack_require__(7);
+
+
+
+
+
+
+
+/**
+ * This method is like `_.xor` except that it accepts `iteratee` which is
+ * invoked for each element of each `arrays` to generate the criterion by
+ * which by which they're compared. The iteratee is invoked with one argument:
+ * (value).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Array
+ * @param {...Array} [arrays] The arrays to inspect.
+ * @param {Array|Function|Object|string} [iteratee=_.identity]
+ *  The iteratee invoked per element.
+ * @returns {Array} Returns the new array of filtered values.
+ * @example
+ *
+ * _.xorBy([2.1, 1.2], [4.3, 2.4], Math.floor);
+ * // => [1.2, 4.3]
+ *
+ * // The `_.property` iteratee shorthand.
+ * _.xorBy([{ 'x': 1 }], [{ 'x': 2 }, { 'x': 1 }], 'x');
+ * // => [{ 'x': 2 }]
+ */
+var xorBy = Object(__WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */])(function(arrays) {
+  var iteratee = Object(__WEBPACK_IMPORTED_MODULE_4__last__["a" /* default */])(arrays);
+  if (Object(__WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__["a" /* default */])(iteratee)) {
+    iteratee = undefined;
+  }
+  return Object(__WEBPACK_IMPORTED_MODULE_2__baseXor__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_0__arrayFilter__["a" /* default */])(arrays, __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__["a" /* default */]), Object(__WEBPACK_IMPORTED_MODULE_1__baseIteratee__["a" /* default */])(iteratee));
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (xorBy);
+
+
+/***/ }),
+/* 242 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayFilter__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseXor__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__rest__ = __webpack_require__(7);
+
+
+
+
+
+
+/**
+ * This method is like `_.xor` except that it accepts `comparator` which is
+ * invoked to compare elements of `arrays`. The comparator is invoked with
+ * two arguments: (arrVal, othVal).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Array
+ * @param {...Array} [arrays] The arrays to inspect.
+ * @param {Function} [comparator] The comparator invoked per element.
+ * @returns {Array} Returns the new array of filtered values.
+ * @example
+ *
+ * var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
+ * var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 2 }];
+ *
+ * _.xorWith(objects, others, _.isEqual);
+ * // => [{ 'x': 2, 'y': 1 }, { 'x': 1, 'y': 1 }]
+ */
+var xorWith = Object(__WEBPACK_IMPORTED_MODULE_4__rest__["a" /* default */])(function(arrays) {
+  var comparator = Object(__WEBPACK_IMPORTED_MODULE_3__last__["a" /* default */])(arrays);
+  if (Object(__WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */])(comparator)) {
+    comparator = undefined;
+  }
+  return Object(__WEBPACK_IMPORTED_MODULE_1__baseXor__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_0__arrayFilter__["a" /* default */])(arrays, __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__["a" /* default */]), undefined, comparator);
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (xorWith);
+
+
+/***/ }),
+/* 243 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rest__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__unzip__ = __webpack_require__(102);
+
+
+
+/**
+ * Creates an array of grouped elements, the first of which contains the
+ * first elements of the given arrays, the second of which contains the
+ * second elements of the given arrays, and so on.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Array
+ * @param {...Array} [arrays] The arrays to process.
+ * @returns {Array} Returns the new array of grouped elements.
+ * @example
+ *
+ * _.zip(['fred', 'barney'], [30, 40], [true, false]);
+ * // => [['fred', 30, true], ['barney', 40, false]]
+ */
+var zip = Object(__WEBPACK_IMPORTED_MODULE_0__rest__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_1__unzip__["a" /* default */]);
+
+/* harmony default export */ __webpack_exports__["a"] = (zip);
+
+
+/***/ }),
+/* 244 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assignValue__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseZipObject__ = __webpack_require__(245);
+
+
+
+/**
+ * This method is like `_.fromPairs` except that it accepts two arrays,
+ * one of property identifiers and one of corresponding values.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.4.0
+ * @category Array
+ * @param {Array} [props=[]] The property identifiers.
+ * @param {Array} [values=[]] The property values.
+ * @returns {Object} Returns the new object.
+ * @example
+ *
+ * _.zipObject(['a', 'b'], [1, 2]);
+ * // => { 'a': 1, 'b': 2 }
+ */
+function zipObject(props, values) {
+  return Object(__WEBPACK_IMPORTED_MODULE_1__baseZipObject__["a" /* default */])(props || [], values || [], __WEBPACK_IMPORTED_MODULE_0__assignValue__["a" /* default */]);
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (zipObject);
+
+
+/***/ }),
+/* 245 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/**
+ * This base implementation of `_.zipObject` which assigns values using `assignFunc`.
+ *
+ * @private
+ * @param {Array} props The property identifiers.
+ * @param {Array} values The property values.
+ * @param {Function} assignFunc The function to assign values.
+ * @returns {Object} Returns the new object.
+ */
+function baseZipObject(props, values, assignFunc) {
+  var index = -1,
+      length = props.length,
+      valsLength = values.length,
+      result = {};
+
+  while (++index < length) {
+    var value = index < valsLength ? values[index] : undefined;
+    assignFunc(result, props[index], value);
+  }
+  return result;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (baseZipObject);
+
+
+/***/ }),
+/* 246 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSet__ = __webpack_require__(392);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseZipObject__ = __webpack_require__(245);
+
+
+
+/**
+ * This method is like `_.zipObject` except that it supports property paths.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.1.0
+ * @category Array
+ * @param {Array} [props=[]] The property identifiers.
+ * @param {Array} [values=[]] The property values.
+ * @returns {Object} Returns the new object.
+ * @example
+ *
+ * _.zipObjectDeep(['a.b[0].c', 'a.b[1].d'], [1, 2]);
+ * // => { 'a': { 'b': [{ 'c': 1 }, { 'd': 2 }] } }
+ */
+function zipObjectDeep(props, values) {
+  return Object(__WEBPACK_IMPORTED_MODULE_1__baseZipObject__["a" /* default */])(props || [], values || [], __WEBPACK_IMPORTED_MODULE_0__baseSet__["a" /* default */]);
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (zipObjectDeep);
+
+
+/***/ }),
+/* 247 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rest__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__unzipWith__ = __webpack_require__(145);
+
+
+
+/**
+ * This method is like `_.zip` except that it accepts `iteratee` to specify
+ * how grouped values should be combined. The iteratee is invoked with the
+ * elements of each group: (...group).
+ *
+ * @static
+ * @memberOf _
+ * @since 3.8.0
+ * @category Array
+ * @param {...Array} [arrays] The arrays to process.
+ * @param {Function} [iteratee=_.identity] The function to combine grouped values.
+ * @returns {Array} Returns the new array of grouped elements.
+ * @example
+ *
+ * _.zipWith([1, 2], [10, 20], [100, 200], function(a, b, c) {
+ *   return a + b + c;
+ * });
+ * // => [111, 222]
+ */
+var zipWith = Object(__WEBPACK_IMPORTED_MODULE_0__rest__["a" /* default */])(function(arrays) {
+  var length = arrays.length,
+      iteratee = length > 1 ? arrays[length - 1] : undefined;
+
+  iteratee = typeof iteratee == 'function' ? (arrays.pop(), iteratee) : undefined;
+  return Object(__WEBPACK_IMPORTED_MODULE_1__unzipWith__["a" /* default */])(arrays, iteratee);
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (zipWith);
+
+
+/***/ }),
+/* 248 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = diff;
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module utils/diff
+ */
+
+// The following code is based on the "O(NP) Sequence Comparison Algorithm"
+// by Sun Wu, Udi Manber, Gene Myers, Webb Miller.
+
+/**
+ * Calculates the difference between two arrays or strings producing an array containing a list of changes
+ * necessary to transform input into output.
+ *
+ *		diff( 'aba', 'acca' ); // [ 'equal', 'insert', 'insert', 'delete', 'equal' ]
+ *
+ * @param {Array|String} a Input array or string.
+ * @param {Array|String} b Output array or string.
+ * @param {Function} [cmp] Optional function used to compare array values, by default === is used.
+ * @returns {Array} Array of changes.
+ */
+function diff( a, b, cmp ) {
+	// Set the comparator function.
+	cmp = cmp || function( a, b ) {
+		return a === b;
+	};
+
+	// Temporary action type statics.
+	let _insert, _delete;
+
+	// Swapped the arrays to use the shorter one as the first one.
+	if ( b.length < a.length ) {
+		const tmp = a;
+
+		a = b;
+		b = tmp;
+
+		// We swap the action types as well.
+		_insert = 'delete';
+		_delete = 'insert';
+	} else {
+		_insert = 'insert';
+		_delete = 'delete';
+	}
+
+	const m = a.length;
+	const n = b.length;
+	const delta = n - m;
+
+	// Edit scripts, for each diagonal.
+	const es = {};
+	// Furthest points, the furthest y we can get on each diagonal.
+	const fp = {};
+
+	function snake( k ) {
+		// We use -1 as an alternative below to handle initial values ( instead of filling the fp with -1 first ).
+		// Furthest points (y) on the diagonal below k.
+		const y1 = ( fp[ k - 1 ] !== undefined ? fp[ k - 1 ] : -1 ) + 1;
+		// Furthest points (y) on the diagonal above k.
+		const y2 = fp[ k + 1 ] !== undefined ? fp[ k + 1 ] : -1;
+		// The way we should go to get further.
+		const dir = y1 > y2 ? -1 : 1;
+
+		// Clone previous changes array (if any).
+		if ( es[ k + dir ] ) {
+			es[ k ] = es[ k + dir ].slice( 0 );
+		}
+
+		// Create changes array.
+		if ( !es[ k ] ) {
+			es[ k ] = [];
+		}
+
+		// Push the action.
+		es[ k ].push( y1 > y2 ? _insert : _delete );
+
+		// Set the beginning coordinates.
+		let y = Math.max( y1, y2 );
+		let x = y - k;
+
+		// Traverse the diagonal as long as the values match.
+		while ( x < m && y < n && cmp( a[ x ], b[ y ] ) ) {
+			x++;
+			y++;
+			// Push no change action.
+			es[ k ].push( 'equal' );
+		}
+
+		return y;
+	}
+
+	let p = 0;
+	let k;
+
+	// Traverse the graph until we reach the end of the longer string.
+	do {
+		// Updates furthest points and edit scripts for diagonals below delta.
+		for ( k = -p; k < delta; k++ ) {
+			fp[ k ] = snake( k );
+		}
+
+		// Updates furthest points and edit scripts for diagonals above delta.
+		for ( k = delta + p; k > delta; k-- ) {
+			fp[ k ] = snake( k );
+		}
+
+		// Updates furthest point and edit script for the delta diagonal.
+		// note that the delta diagonal is the one which goes through the sink (m, n).
+		fp[ delta ] = snake( delta );
+
+		p++;
+	} while ( fp[ delta ] !== n );
+
+	// Return the final list of edit changes.
+	// We remove the first item that represents the action for the injected nulls.
+	return es[ delta ].slice( 1 );
+}
+
+
+/***/ }),
 /* 249 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -34062,7 +34068,7 @@ class MutationObserver extends __WEBPACK_IMPORTED_MODULE_0__observer__["a" /* de
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isObject__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__now__ = __webpack_require__(411);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__toNumber__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__toNumber__ = __webpack_require__(156);
 
 
 
@@ -34559,7 +34565,7 @@ function setDataInElement( el, data ) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__basichtmlwriter__ = __webpack_require__(417);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_domconverter__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_domconverter__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_filler__ = __webpack_require__(69);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -34765,7 +34771,7 @@ function preventDefault( view ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__focuscycler__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__focuscycler__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keystrokehandler__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__toolbarseparatorview__ = __webpack_require__(430);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__bindings_preventdefault_js__ = __webpack_require__(258);
@@ -35519,7 +35525,7 @@ class AttributeCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_c
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_engine_src_view_containerelement__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_engine_src_view_emptyelement__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_engine_src_view_emptyelement__ = __webpack_require__(164);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -35962,7 +35968,7 @@ function submitHandler( { view } ) {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = repositionContextualBalloon;
 /* harmony export (immutable) */ __webpack_exports__["a"] = getBalloonPositionData;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_src_panel_balloon_balloonpanelview__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_src_panel_balloon_balloonpanelview__ = __webpack_require__(151);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils__ = __webpack_require__(42);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -37445,8 +37451,8 @@ function _clear() {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__conversion_mapper__ = __webpack_require__(159);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__conversion_modelconversiondispatcher__ = __webpack_require__(162);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__conversion_mapper__ = __webpack_require__(160);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__conversion_modelconversiondispatcher__ = __webpack_require__(163);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__conversion_model_to_view_converters__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__conversion_viewconversiondispatcher__ = __webpack_require__(297);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__conversion_view_to_model_converters__ = __webpack_require__(299);
@@ -38121,7 +38127,7 @@ var getLength = Object(__WEBPACK_IMPORTED_MODULE_0__baseProperty__["a" /* defaul
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__toNumber__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__toNumber__ = __webpack_require__(156);
 
 
 /** Used as references for various `Number` constants. */
@@ -38172,7 +38178,7 @@ function toFinite(value) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseKeysIn__ = __webpack_require__(290);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__indexKeys__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__indexKeys__ = __webpack_require__(158);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isIndex__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isPrototype__ = __webpack_require__(79);
 
@@ -38516,14 +38522,14 @@ class TextProxy {
 	 * Returns ancestors array of this text proxy.
 	 *
 	 * @param {Object} options Options object.
-	 * @param {Boolean} [options.includeNode=false] When set to `true` {#textNode} will be also included in parent's array.
+	 * @param {Boolean} [options.includeSelf=false] When set to `true` {#textNode} will be also included in parent's array.
 	 * @param {Boolean} [options.parentFirst=false] When set to `true`, array will be sorted from text proxy parent to
 	 * root element, otherwise root element will be the first item in the array.
 	 * @returns {Array} Array with ancestors.
 	 */
-	getAncestors( options = { includeNode: false, parentFirst: false } ) {
+	getAncestors( options = { includeSelf: false, parentFirst: false } ) {
 		const ancestors = [];
-		let parent = options.includeNode ? this.textNode : this.parent;
+		let parent = options.includeSelf ? this.textNode : this.parent;
 
 		while ( parent !== null ) {
 			ancestors[ options.parentFirst ? 'push' : 'unshift' ]( parent );
@@ -39914,7 +39920,7 @@ function convertText() {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = insertContent;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_liveposition__ = __webpack_require__(165);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_liveposition__ = __webpack_require__(166);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(34);
@@ -40358,7 +40364,7 @@ class Insertion {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = deleteContent;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_liveposition__ = __webpack_require__(165);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_liveposition__ = __webpack_require__(166);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_element__ = __webpack_require__(5);
@@ -40600,7 +40606,7 @@ function shouldEntireContentBeReplacedWithParagraph( schema, selection ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_treewalker__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_range__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_unicode__ = __webpack_require__(166);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_unicode__ = __webpack_require__(167);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -40918,12 +40924,12 @@ function removeRangeContent( range ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__schema__ = __webpack_require__(399);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__treewalker__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__markercollection__ = __webpack_require__(400);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__delta_transform__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__delta_transform__ = __webpack_require__(180);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ckeditor_ckeditor5_utils_src_lib_lodash_clone__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ckeditor_ckeditor5_utils_src_unicode__ = __webpack_require__(166);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__ckeditor_ckeditor5_utils_src_unicode__ = __webpack_require__(167);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -41464,7 +41470,7 @@ function* combineWalkers( backward, forward ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__renamedelta__ = __webpack_require__(130);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__splitdelta__ = __webpack_require__(96);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__unwrapdelta__ = __webpack_require__(97);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__weakinsertdelta__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__weakinsertdelta__ = __webpack_require__(179);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__wrapdelta__ = __webpack_require__(98);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -41766,7 +41772,7 @@ function stackSet(key, value) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Hash__ = __webpack_require__(317);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ListCache__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Map__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Map__ = __webpack_require__(171);
 
 
 
@@ -42205,7 +42211,7 @@ function cloneBuffer(buffer, isDeep) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__copyObject__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getSymbols__ = __webpack_require__(173);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getSymbols__ = __webpack_require__(174);
 
 
 
@@ -42230,7 +42236,7 @@ function copySymbols(source, object) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseGetAllKeys__ = __webpack_require__(334);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getSymbols__ = __webpack_require__(173);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getSymbols__ = __webpack_require__(174);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__keys__ = __webpack_require__(64);
 
 
@@ -42484,7 +42490,7 @@ function cloneDataView(dataView, isDeep) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addMapEntry__ = __webpack_require__(342);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arrayReduce__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arrayReduce__ = __webpack_require__(177);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mapToArray__ = __webpack_require__(122);
 
 
@@ -42559,7 +42565,7 @@ function cloneRegExp(regexp) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addSetEntry__ = __webpack_require__(345);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arrayReduce__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arrayReduce__ = __webpack_require__(177);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__setToArray__ = __webpack_require__(90);
 
 
@@ -42764,7 +42770,7 @@ var isBuffer = !Buffer ? Object(__WEBPACK_IMPORTED_MODULE_0__constant__["a" /* d
 
 /* harmony default export */ __webpack_exports__["a"] = (isBuffer);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(156)(module)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(157)(module)))
 
 /***/ }),
 /* 351 */
@@ -42915,7 +42921,7 @@ function isEqual(value, other) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Stack__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__equalArrays__ = __webpack_require__(177);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__equalArrays__ = __webpack_require__(178);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__equalByTag__ = __webpack_require__(358);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__equalObjects__ = __webpack_require__(359);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__getTag__ = __webpack_require__(120);
@@ -43089,8 +43095,8 @@ function arraySome(array, predicate) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol__ = __webpack_require__(123);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Uint8Array__ = __webpack_require__(175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__equalArrays__ = __webpack_require__(177);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Uint8Array__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__equalArrays__ = __webpack_require__(178);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mapToArray__ = __webpack_require__(122);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__setToArray__ = __webpack_require__(90);
 
@@ -43214,7 +43220,7 @@ function equalByTag(object, other, tag, equalFunc, customizer, bitmask, stack) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseHas__ = __webpack_require__(171);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseHas__ = __webpack_require__(172);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__keys__ = __webpack_require__(64);
 
 
@@ -43395,7 +43401,7 @@ function isTypedArray(value) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__transform__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__transform__ = __webpack_require__(180);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_nooperation__ = __webpack_require__(65);
@@ -43408,7 +43414,7 @@ function isTypedArray(value) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__mergedelta__ = __webpack_require__(95);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__movedelta__ = __webpack_require__(94);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__splitdelta__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__weakinsertdelta__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__weakinsertdelta__ = __webpack_require__(179);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__wrapdelta__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__unwrapdelta__ = __webpack_require__(97);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__renamedelta__ = __webpack_require__(130);
@@ -44597,135 +44603,135 @@ function makeMoveOperationsFromRanges( a, ranges, targetPosition ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__chunk__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__chunk__ = __webpack_require__(181);
 /* unused harmony reexport chunk */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__compact__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__compact__ = __webpack_require__(182);
 /* unused harmony reexport compact */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__concat__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__concat__ = __webpack_require__(183);
 /* unused harmony reexport concat */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__difference__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__difference__ = __webpack_require__(184);
 /* unused harmony reexport difference */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__differenceBy__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__differenceBy__ = __webpack_require__(186);
 /* unused harmony reexport differenceBy */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__differenceWith__ = __webpack_require__(190);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__differenceWith__ = __webpack_require__(191);
 /* unused harmony reexport differenceWith */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__drop__ = __webpack_require__(137);
 /* unused harmony reexport drop */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__dropRight__ = __webpack_require__(138);
 /* unused harmony reexport dropRight */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dropRightWhile__ = __webpack_require__(191);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dropRightWhile__ = __webpack_require__(192);
 /* unused harmony reexport dropRightWhile */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dropWhile__ = __webpack_require__(192);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dropWhile__ = __webpack_require__(193);
 /* unused harmony reexport dropWhile */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__fill__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__fill__ = __webpack_require__(194);
 /* unused harmony reexport fill */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__findIndex__ = __webpack_require__(194);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__findIndex__ = __webpack_require__(195);
 /* unused harmony reexport findIndex */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__findLastIndex__ = __webpack_require__(196);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__findLastIndex__ = __webpack_require__(197);
 /* unused harmony reexport findLastIndex */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__first__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__first__ = __webpack_require__(198);
 /* unused harmony reexport first */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__flatten__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__flatten__ = __webpack_require__(199);
 /* unused harmony reexport flatten */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__flattenDeep__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__flattenDeep__ = __webpack_require__(200);
 /* unused harmony reexport flattenDeep */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__flattenDepth__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__flattenDepth__ = __webpack_require__(201);
 /* unused harmony reexport flattenDepth */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__fromPairs__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__fromPairs__ = __webpack_require__(202);
 /* unused harmony reexport fromPairs */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__head__ = __webpack_require__(139);
 /* unused harmony reexport head */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__indexOf__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__indexOf__ = __webpack_require__(203);
 /* unused harmony reexport indexOf */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__initial__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__initial__ = __webpack_require__(204);
 /* unused harmony reexport initial */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__intersection__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__intersection__ = __webpack_require__(205);
 /* unused harmony reexport intersection */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__intersectionBy__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__intersectionBy__ = __webpack_require__(206);
 /* unused harmony reexport intersectionBy */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__intersectionWith__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__intersectionWith__ = __webpack_require__(207);
 /* unused harmony reexport intersectionWith */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__join__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__join__ = __webpack_require__(208);
 /* unused harmony reexport join */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__last__ = __webpack_require__(17);
 /* unused harmony reexport last */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__lastIndexOf__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__lastIndexOf__ = __webpack_require__(209);
 /* unused harmony reexport lastIndexOf */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__nth__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__nth__ = __webpack_require__(210);
 /* unused harmony reexport nth */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pull__ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pull__ = __webpack_require__(211);
 /* unused harmony reexport pull */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pullAll__ = __webpack_require__(142);
 /* unused harmony reexport pullAll */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pullAllBy__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pullAllBy__ = __webpack_require__(212);
 /* unused harmony reexport pullAllBy */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pullAllWith__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pullAllWith__ = __webpack_require__(213);
 /* unused harmony reexport pullAllWith */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pullAt__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pullAt__ = __webpack_require__(214);
 /* unused harmony reexport pullAt */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__remove__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__remove__ = __webpack_require__(216);
 /* unused harmony reexport remove */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__reverse__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__reverse__ = __webpack_require__(217);
 /* unused harmony reexport reverse */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__slice__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__slice__ = __webpack_require__(218);
 /* unused harmony reexport slice */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__sortedIndex__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__sortedIndex__ = __webpack_require__(219);
 /* unused harmony reexport sortedIndex */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__sortedIndexBy__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__sortedIndexBy__ = __webpack_require__(220);
 /* unused harmony reexport sortedIndexBy */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__sortedIndexOf__ = __webpack_require__(220);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__sortedIndexOf__ = __webpack_require__(221);
 /* unused harmony reexport sortedIndexOf */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__sortedLastIndex__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__sortedLastIndex__ = __webpack_require__(222);
 /* unused harmony reexport sortedLastIndex */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__sortedLastIndexBy__ = __webpack_require__(222);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__sortedLastIndexBy__ = __webpack_require__(223);
 /* unused harmony reexport sortedLastIndexBy */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__sortedLastIndexOf__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__sortedLastIndexOf__ = __webpack_require__(224);
 /* unused harmony reexport sortedLastIndexOf */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__sortedUniq__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__sortedUniq__ = __webpack_require__(225);
 /* unused harmony reexport sortedUniq */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__sortedUniqBy__ = __webpack_require__(226);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__sortedUniqBy__ = __webpack_require__(227);
 /* unused harmony reexport sortedUniqBy */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__tail__ = __webpack_require__(227);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__tail__ = __webpack_require__(228);
 /* unused harmony reexport tail */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__take__ = __webpack_require__(228);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__take__ = __webpack_require__(229);
 /* unused harmony reexport take */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__takeRight__ = __webpack_require__(229);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__takeRight__ = __webpack_require__(230);
 /* unused harmony reexport takeRight */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__takeRightWhile__ = __webpack_require__(230);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__takeRightWhile__ = __webpack_require__(231);
 /* unused harmony reexport takeRightWhile */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__takeWhile__ = __webpack_require__(231);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__takeWhile__ = __webpack_require__(232);
 /* unused harmony reexport takeWhile */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__union__ = __webpack_require__(232);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__union__ = __webpack_require__(233);
 /* unused harmony reexport union */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__unionBy__ = __webpack_require__(233);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__unionBy__ = __webpack_require__(234);
 /* unused harmony reexport unionBy */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__unionWith__ = __webpack_require__(234);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__unionWith__ = __webpack_require__(235);
 /* unused harmony reexport unionWith */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__uniq__ = __webpack_require__(235);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__uniq__ = __webpack_require__(236);
 /* unused harmony reexport uniq */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__uniqBy__ = __webpack_require__(236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__uniqBy__ = __webpack_require__(237);
 /* unused harmony reexport uniqBy */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__uniqWith__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__uniqWith__ = __webpack_require__(238);
 /* unused harmony reexport uniqWith */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__unzip__ = __webpack_require__(102);
 /* unused harmony reexport unzip */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__unzipWith__ = __webpack_require__(145);
 /* unused harmony reexport unzipWith */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__without__ = __webpack_require__(238);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__without__ = __webpack_require__(239);
 /* unused harmony reexport without */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__xor__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__xor__ = __webpack_require__(240);
 /* unused harmony reexport xor */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__xorBy__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__xorBy__ = __webpack_require__(241);
 /* unused harmony reexport xorBy */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__xorWith__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__xorWith__ = __webpack_require__(242);
 /* unused harmony reexport xorWith */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__zip__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__zip__ = __webpack_require__(243);
 /* unused harmony reexport zip */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__zipObject__ = __webpack_require__(243);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__zipObject__ = __webpack_require__(244);
 /* unused harmony reexport zipObject */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__zipObjectDeep__ = __webpack_require__(245);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__zipObjectDeep__ = __webpack_require__(246);
 /* unused harmony reexport zipObjectDeep */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__zipWith__ = __webpack_require__(246);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__zipWith__ = __webpack_require__(247);
 /* unused harmony reexport zipWith */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_65__array_default__ = __webpack_require__(393);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_65__array_default__["a"]; });
@@ -44828,7 +44834,7 @@ function isFlattenable(value) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIsMatch__ = __webpack_require__(366);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getMatchData__ = __webpack_require__(367);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__matchesStrictComparable__ = __webpack_require__(187);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__matchesStrictComparable__ = __webpack_require__(188);
 
 
 
@@ -44929,7 +44935,7 @@ function baseIsMatch(object, source, matchData, customizer) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isStrictComparable__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isStrictComparable__ = __webpack_require__(187);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toPairs__ = __webpack_require__(368);
 
 
@@ -45091,11 +45097,11 @@ function setToPairs(set) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIsEqual__ = __webpack_require__(124);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__get__ = __webpack_require__(188);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__get__ = __webpack_require__(189);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__hasIn__ = __webpack_require__(377);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isKey__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isStrictComparable__ = __webpack_require__(186);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__matchesStrictComparable__ = __webpack_require__(187);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isStrictComparable__ = __webpack_require__(187);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__matchesStrictComparable__ = __webpack_require__(188);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__toKey__ = __webpack_require__(58);
 
 
@@ -45689,7 +45695,7 @@ function baseIndexOfWith(array, value, fromIndex, comparator) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__get__ = __webpack_require__(188);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__get__ = __webpack_require__(189);
 
 
 /**
@@ -45794,7 +45800,7 @@ function compareAscending(value, other) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Set__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Set__ = __webpack_require__(175);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__noop__ = __webpack_require__(391);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__setToArray__ = __webpack_require__(90);
 
@@ -45909,71 +45915,71 @@ function baseSet(object, path, value, customizer) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__chunk__ = __webpack_require__(180);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__compact__ = __webpack_require__(181);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__concat__ = __webpack_require__(182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__difference__ = __webpack_require__(183);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__differenceBy__ = __webpack_require__(185);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__differenceWith__ = __webpack_require__(190);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__chunk__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__compact__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__concat__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__difference__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__differenceBy__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__differenceWith__ = __webpack_require__(191);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__drop__ = __webpack_require__(137);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__dropRight__ = __webpack_require__(138);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dropRightWhile__ = __webpack_require__(191);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dropWhile__ = __webpack_require__(192);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__fill__ = __webpack_require__(193);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__findIndex__ = __webpack_require__(194);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__findLastIndex__ = __webpack_require__(196);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__first__ = __webpack_require__(197);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__flatten__ = __webpack_require__(198);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__flattenDeep__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__flattenDepth__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__fromPairs__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__dropRightWhile__ = __webpack_require__(192);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dropWhile__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__fill__ = __webpack_require__(194);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__findIndex__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__findLastIndex__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__first__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__flatten__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__flattenDeep__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__flattenDepth__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__fromPairs__ = __webpack_require__(202);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__head__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__indexOf__ = __webpack_require__(202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__initial__ = __webpack_require__(203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__intersection__ = __webpack_require__(204);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__intersectionBy__ = __webpack_require__(205);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__intersectionWith__ = __webpack_require__(206);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__join__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__indexOf__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__initial__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__intersection__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__intersectionBy__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__intersectionWith__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__join__ = __webpack_require__(208);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__last__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__lastIndexOf__ = __webpack_require__(208);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__nth__ = __webpack_require__(209);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pull__ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__lastIndexOf__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__nth__ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pull__ = __webpack_require__(211);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pullAll__ = __webpack_require__(142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pullAllBy__ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pullAllWith__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pullAt__ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__remove__ = __webpack_require__(215);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__reverse__ = __webpack_require__(216);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__slice__ = __webpack_require__(217);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__sortedIndex__ = __webpack_require__(218);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__sortedIndexBy__ = __webpack_require__(219);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__sortedIndexOf__ = __webpack_require__(220);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__sortedLastIndex__ = __webpack_require__(221);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__sortedLastIndexBy__ = __webpack_require__(222);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__sortedLastIndexOf__ = __webpack_require__(223);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__sortedUniq__ = __webpack_require__(224);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__sortedUniqBy__ = __webpack_require__(226);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__tail__ = __webpack_require__(227);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__take__ = __webpack_require__(228);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__takeRight__ = __webpack_require__(229);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__takeRightWhile__ = __webpack_require__(230);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__takeWhile__ = __webpack_require__(231);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__union__ = __webpack_require__(232);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__unionBy__ = __webpack_require__(233);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__unionWith__ = __webpack_require__(234);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__uniq__ = __webpack_require__(235);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__uniqBy__ = __webpack_require__(236);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__uniqWith__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pullAllBy__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__pullAllWith__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pullAt__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__remove__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__reverse__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__slice__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__sortedIndex__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__sortedIndexBy__ = __webpack_require__(220);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__sortedIndexOf__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__sortedLastIndex__ = __webpack_require__(222);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__sortedLastIndexBy__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__sortedLastIndexOf__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__sortedUniq__ = __webpack_require__(225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__sortedUniqBy__ = __webpack_require__(227);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__tail__ = __webpack_require__(228);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__take__ = __webpack_require__(229);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__takeRight__ = __webpack_require__(230);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__takeRightWhile__ = __webpack_require__(231);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__takeWhile__ = __webpack_require__(232);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__union__ = __webpack_require__(233);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__unionBy__ = __webpack_require__(234);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__unionWith__ = __webpack_require__(235);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__uniq__ = __webpack_require__(236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__uniqBy__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__uniqWith__ = __webpack_require__(238);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__unzip__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__unzipWith__ = __webpack_require__(145);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__without__ = __webpack_require__(238);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__xor__ = __webpack_require__(239);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__xorBy__ = __webpack_require__(240);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__xorWith__ = __webpack_require__(241);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__zip__ = __webpack_require__(242);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__zipObject__ = __webpack_require__(243);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__zipObjectDeep__ = __webpack_require__(245);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__zipWith__ = __webpack_require__(246);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__without__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__xor__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__xorBy__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__xorWith__ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__zip__ = __webpack_require__(243);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62__zipObject__ = __webpack_require__(244);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__zipObjectDeep__ = __webpack_require__(246);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__zipWith__ = __webpack_require__(247);
 
 
 
@@ -48445,8 +48451,8 @@ function isMac( userAgent ) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_document__ = __webpack_require__(404);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__conversion_mapper__ = __webpack_require__(159);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__conversion_modelconversiondispatcher__ = __webpack_require__(162);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__conversion_mapper__ = __webpack_require__(160);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__conversion_modelconversiondispatcher__ = __webpack_require__(163);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__conversion_model_to_view_converters__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__conversion_view_selection_to_model_converters__ = __webpack_require__(415);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__conversion_model_selection_to_view_converters__ = __webpack_require__(253);
@@ -48614,7 +48620,7 @@ Object(__WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_mix__["a" /* de
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__selection__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__renderer__ = __webpack_require__(405);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__domconverter__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__domconverter__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rooteditableelement__ = __webpack_require__(250);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__filler__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(34);
@@ -48988,7 +48994,7 @@ Object(__WEBPACK_IMPORTED_MODULE_11__ckeditor_ckeditor5_utils_src_mix__["a" /* d
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__selection__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__filler__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_diff__ = __webpack_require__(247);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_diff__ = __webpack_require__(248);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_dom_insertat__ = __webpack_require__(406);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_dom_remove__ = __webpack_require__(407);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(34);
@@ -50885,7 +50891,7 @@ function enableToolbarKeyboardFocus( {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_src_editorui_editoruiview__ = __webpack_require__(422);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_editableui_inline_inlineeditableuiview__ = __webpack_require__(424);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_panel_balloon_balloonpanelview__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_panel_balloon_balloonpanelview__ = __webpack_require__(151);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_toolbar_toolbarview__ = __webpack_require__(259);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_ui_src_template__ = __webpack_require__(6);
 /**
@@ -51176,7 +51182,7 @@ class EditorUIView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseClone__ = __webpack_require__(167);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseClone__ = __webpack_require__(168);
 
 
 /**
@@ -53195,7 +53201,7 @@ function splitBlock( batch, selection, splitPos ) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_view_observer_observer__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_observer_domeventdata__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_observer_domeventdata__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(29);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -53296,10 +53302,11 @@ class Typing extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_view_position__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_view_text__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_diff__ = __webpack_require__(247);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_diff__ = __webpack_require__(248);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_difftochanges__ = __webpack_require__(447);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__inputcommand__ = __webpack_require__(448);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_engine_src_view_domconverter__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__inputcommand__ = __webpack_require__(448);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -53308,6 +53315,7 @@ class Typing extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_pl
 /**
  * @module typing/input
  */
+
 
 
 
@@ -53337,7 +53345,7 @@ class Input extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plu
 	init() {
 		const editor = this.editor;
 		const editingView = editor.editing.view;
-		const inputCommand = new __WEBPACK_IMPORTED_MODULE_7__inputcommand__["a" /* default */]( editor, editor.config.get( 'typing.undoStep' ) || 20 );
+		const inputCommand = new __WEBPACK_IMPORTED_MODULE_8__inputcommand__["a" /* default */]( editor, editor.config.get( 'typing.undoStep' ) || 20 );
 
 		// TODO The above default configuration value should be defined using editor.config.define() once it's fixed.
 
@@ -53446,11 +53454,104 @@ class MutationHandler {
 	 * @param {module:engine/view/selection~Selection|null} viewSelection
 	 */
 	handle( mutations, viewSelection ) {
-		for ( const mutation of mutations ) {
-			// Fortunately it will never be both.
-			this._handleTextMutation( mutation, viewSelection );
-			this._handleTextNodeInsertion( mutation );
+		if ( containerChildrenMutated( mutations ) ) {
+			this._handleContainerChildrenMutations( mutations, viewSelection );
+		} else {
+			for ( const mutation of mutations ) {
+				// Fortunately it will never be both.
+				this._handleTextMutation( mutation, viewSelection );
+				this._handleTextNodeInsertion( mutation );
+			}
 		}
+	}
+
+	/**
+	 * Handles situations when container's children mutated during input. This can happen when
+	 * browser is trying to "fix" DOM in certain situations. For example, when user starts to type
+	 * in `<p><a href=""><i>Link{}</i></a></p>` browser might change order of elements
+	 * to `<p><i><a href="">Link</a>x{}</i></p>`. Similar situation happens when spell checker
+	 * replaces a word wrapped with `<strong>` to a word wrapped with `<b>` element.
+	 *
+	 * To handle such situations, DOM common ancestor of all mutations is converted to the model representation
+	 * and then compared with current model to calculate proper text change.
+	 *
+	 * NOTE: Single text node insertion is handled in {@link #_handleTextNodeInsertion} and text node mutation is handled
+	 * in {@link #_handleTextMutation}).
+	 *
+	 * @private
+	 * @param {Array.<module:engine/view/observer/mutationobserver~MutatedText|
+	 * module:engine/view/observer/mutationobserver~MutatedChildren>} mutations
+	 * @param {module:engine/view/selection~Selection|null} viewSelection
+	 */
+	_handleContainerChildrenMutations( mutations, viewSelection ) {
+		// Get common ancestor of all mutations.
+		const mutationsCommonAncestor = getMutationsContainer( mutations );
+
+		// Quit if there is no common ancestor.
+		if ( !mutationsCommonAncestor ) {
+			return;
+		}
+
+		const domConverter = this.editor.editing.view.domConverter;
+
+		// Get common ancestor in DOM.
+		const domMutationCommonAncestor = domConverter.mapViewToDom( mutationsCommonAncestor );
+
+		if ( !domMutationCommonAncestor ) {
+			return;
+		}
+
+		// Create fresh DomConverter so it will not use existing mapping and convert current DOM to model.
+		// This wouldn't be needed if DomConverter would allow to create fresh view without checking any mappings.
+		const freshDomConverter = new __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_engine_src_view_domconverter__["a" /* default */]();
+		const modelFromCurrentDom = this.editor.data.toModel( freshDomConverter.domToView( domMutationCommonAncestor ) ).getChild( 0 );
+
+		// Current model.
+		const currentModel = this.editor.editing.mapper.toModelElement( mutationsCommonAncestor );
+
+		// Get children from both ancestors.
+		const modelFromDomChildren = Array.from( modelFromCurrentDom.getChildren() );
+		const currentModelChildren = Array.from( currentModel.getChildren() );
+
+		// Skip situations when common ancestor has any elements (cause they are too hard).
+		if ( !hasOnlyTextNodes( modelFromDomChildren ) || !hasOnlyTextNodes( currentModelChildren ) ) {
+			return;
+		}
+
+		// Replace &nbsp; inserted by the browser with normal space.
+		// See comment in `_handleTextMutation`.
+		const newText = modelFromDomChildren.map( item => item.data ).join( '' ).replace( /\u00A0/g, ' ' );
+		const oldText = currentModelChildren.map( item => item.data ).join( '' );
+
+		// Do nothing if mutations created same text.
+		if ( oldText === newText ) {
+			return;
+		}
+
+		const diffResult = Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_diff__["a" /* default */])( oldText, newText );
+
+		const { firstChangeAt, insertions, deletions } = calculateChanges( diffResult );
+
+		// Try setting new model selection according to passed view selection.
+		let modelSelectionRange = null;
+
+		if ( viewSelection ) {
+			modelSelectionRange = this.editing.mapper.toModelRange( viewSelection.getFirstRange() );
+		}
+
+		const insertText = newText.substr( firstChangeAt, insertions );
+		const removeRange = __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_range__["a" /* default */].createFromParentsAndOffsets(
+			currentModel,
+			firstChangeAt,
+			currentModel,
+			firstChangeAt + deletions
+		);
+
+		this.editor.execute( 'input', {
+			text: insertText,
+			range: removeRange,
+			resultRange: modelSelectionRange
+		} );
 	}
 
 	_handleTextMutation( mutation, viewSelection ) {
@@ -53473,37 +53574,7 @@ class MutationHandler {
 
 		const diffResult = Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_diff__["a" /* default */])( oldText, newText );
 
-		// Index where the first change happens. Used to set the position from which nodes will be removed and where will be inserted.
-		let firstChangeAt = null;
-		// Index where the last change happens. Used to properly count how many characters have to be removed and inserted.
-		let lastChangeAt = null;
-
-		// Get `firstChangeAt` and `lastChangeAt`.
-		for ( let i = 0; i < diffResult.length; i++ ) {
-			const change = diffResult[ i ];
-
-			if ( change != 'equal' ) {
-				firstChangeAt = firstChangeAt === null ? i : firstChangeAt;
-				lastChangeAt = i;
-			}
-		}
-
-		// How many characters, starting from `firstChangeAt`, should be removed.
-		let deletions = 0;
-		// How many characters, starting from `firstChangeAt`, should be inserted (basing on mutation.newText).
-		let insertions = 0;
-
-		for ( let i = firstChangeAt; i <= lastChangeAt; i++ ) {
-			// If there is no change (equal) or delete, the character is existing in `oldText`. We count it for removing.
-			if ( diffResult[ i ] != 'insert' ) {
-				deletions++;
-			}
-
-			// If there is no change (equal) or insert, the character is existing in `newText`. We count it for inserting.
-			if ( diffResult[ i ] != 'delete' ) {
-				insertions++;
-			}
-		}
+		const { firstChangeAt, insertions, deletions } = calculateChanges( diffResult );
 
 		// Try setting new model selection according to passed view selection.
 		let modelSelectionRange = null;
@@ -53530,27 +53601,7 @@ class MutationHandler {
 			return;
 		}
 
-		// One new node.
-		if ( mutation.newChildren.length - mutation.oldChildren.length != 1 ) {
-			return;
-		}
-
-		// Which is text.
-		const diffResult = Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_diff__["a" /* default */])( mutation.oldChildren, mutation.newChildren, compareChildNodes );
-		const changes = Object(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_difftochanges__["a" /* default */])( diffResult, mutation.newChildren );
-
-		// In case of [ delete, insert, insert ] the previous check will not exit.
-		if ( changes.length > 1 ) {
-			return;
-		}
-
-		const change = changes[ 0 ];
-
-		// Which is text.
-		if ( !( change.values[ 0 ] instanceof __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_view_text__["a" /* default */] ) ) {
-			return;
-		}
-
+		const change = getSingleTextNodeChange( mutation );
 		const viewPos = new __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_view_position__["a" /* default */]( mutation.node, change.index );
 		const modelPos = this.editing.mapper.toModelPosition( viewPos );
 		const insertedText = change.values[ 0 ].data;
@@ -53593,6 +53644,7 @@ for ( let code = 112; code <= 135; code++ ) {
 //
 // Note: This implementation is very simple and will need to be refined with time.
 //
+// @private
 // @param {engine.view.observer.keyObserver.KeyEventData} keyData
 // @returns {Boolean}
 function isSafeKeystroke( keyData ) {
@@ -53612,6 +53664,131 @@ function compareChildNodes( oldChild, newChild ) {
 	} else {
 		return oldChild === newChild;
 	}
+}
+
+// Returns change made to a single text node. Returns `undefined` if more than a single text node was changed.
+//
+// @private
+// @param mutation
+function getSingleTextNodeChange( mutation ) {
+	// One new node.
+	if ( mutation.newChildren.length - mutation.oldChildren.length != 1 ) {
+		return;
+	}
+
+	// Which is text.
+	const diffResult = Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_diff__["a" /* default */])( mutation.oldChildren, mutation.newChildren, compareChildNodes );
+	const changes = Object(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_difftochanges__["a" /* default */])( diffResult, mutation.newChildren );
+
+	// In case of [ delete, insert, insert ] the previous check will not exit.
+	if ( changes.length > 1 ) {
+		return;
+	}
+
+	const change = changes[ 0 ];
+
+	// Which is text.
+	if ( !( change.values[ 0 ] instanceof __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_view_text__["a" /* default */] ) ) {
+		return;
+	}
+
+	return change;
+}
+
+// Returns first common ancestor of all mutations that is either {@link module:engine/view/containerelement~ContainerElement}
+// or {@link module:engine/view/rootelement~RootElement}.
+//
+// @private
+// @param {Array.<module:engine/view/observer/mutationobserver~MutatedText|
+// module:engine/view/observer/mutationobserver~MutatedChildren>} mutations
+// @returns {module:engine/view/containerelement~ContainerElement|engine/view/rootelement~RootElement|undefined}
+function getMutationsContainer( mutations ) {
+	const lca = mutations
+		.map( mutation => mutation.node )
+		.reduce( ( commonAncestor, node ) => {
+			return commonAncestor.getCommonAncestor( node, { includeSelf: true } );
+		} );
+
+	if ( !lca ) {
+		return;
+	}
+
+	// We need to look for container and root elements only, so check all LCA's
+	// ancestors (starting from itself).
+	return lca.getAncestors( { includeSelf: true, parentFirst: true } )
+		.find( element => element.is( 'containerElement' ) || element.is( 'rootElement' ) );
+}
+
+// Returns true if container children have mutated and more than a single text node was changed. Single text node
+// child insertion is handled in {@link module:typing/input~MutationHandler#_handleTextNodeInsertion} and text
+// mutation is handled in {@link module:typing/input~MutationHandler#_handleTextMutation}.
+//
+// @private
+// @param {Array.<module:engine/view/observer/mutationobserver~MutatedText|
+// module:engine/view/observer/mutationobserver~MutatedChildren>} mutations
+// @returns {Boolean}
+function containerChildrenMutated( mutations ) {
+	if ( mutations.length == 0 ) {
+		return false;
+	}
+
+	// Check if all mutations are `children` type, and there is no single text node mutation.
+	for ( const mutation of mutations ) {
+		if ( mutation.type !== 'children' || getSingleTextNodeChange( mutation ) ) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
+// Returns true if provided array contains only {@link module:engine/model/text~Text model text nodes}.
+//
+// @param {Array.<module:engine/model/node~Node>} children
+// @returns {Boolean}
+function hasOnlyTextNodes( children ) {
+	return children.every( child => child.is( 'text' ) );
+}
+
+// Calculates first change index and number of characters that should be inserted and deleted starting from that index.
+//
+// @private
+// @param diffResult
+// @return {{insertions: number, deletions: number, firstChangeAt: *}}
+function calculateChanges( diffResult ) {
+	// Index where the first change happens. Used to set the position from which nodes will be removed and where will be inserted.
+	let firstChangeAt = null;
+	// Index where the last change happens. Used to properly count how many characters have to be removed and inserted.
+	let lastChangeAt = null;
+
+	// Get `firstChangeAt` and `lastChangeAt`.
+	for ( let i = 0; i < diffResult.length; i++ ) {
+		const change = diffResult[ i ];
+
+		if ( change != 'equal' ) {
+			firstChangeAt = firstChangeAt === null ? i : firstChangeAt;
+			lastChangeAt = i;
+		}
+	}
+
+	// How many characters, starting from `firstChangeAt`, should be removed.
+	let deletions = 0;
+	// How many characters, starting from `firstChangeAt`, should be inserted.
+	let insertions = 0;
+
+	for ( let i = firstChangeAt; i <= lastChangeAt; i++ ) {
+		// If there is no change (equal) or delete, the character is existing in `oldText`. We count it for removing.
+		if ( diffResult[ i ] != 'insert' ) {
+			deletions++;
+		}
+
+		// If there is no change (equal) or insert, the character is existing in `newText`. We count it for inserting.
+		if ( diffResult[ i ] != 'delete' ) {
+			insertions++;
+		}
+	}
+
+	return { insertions, deletions, firstChangeAt };
 }
 
 
@@ -53988,7 +54165,7 @@ class DeleteCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_view_observer_observer__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_observer_domeventdata__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_observer_domeventdata__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(29);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -56403,7 +56580,7 @@ function attachDocumentClickListener( dropdownView ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__focuscycler__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__focuscycler__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keystrokehandler__ = __webpack_require__(50);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -57364,7 +57541,7 @@ function hoistImageThroughElement( evt, data ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_view_editableelement__ = __webpack_require__(82);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_engine_src_view_rooteditableelement__ = __webpack_require__(250);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils__ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__theme_theme_scss__ = __webpack_require__(488);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__theme_theme_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__theme_theme_scss__);
@@ -57764,7 +57941,7 @@ exports.push([module.i, ".ck-widget{margin:.8em 0;padding:0}.ck-widget.ck-widget
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__imagetextalternative_imagetextalternativeengine__ = __webpack_require__(491);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_bindings_clickoutsidehandler__ = __webpack_require__(265);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__imagetextalternative_ui_textalternativeformview__ = __webpack_require__(493);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_panel_balloon_contextualballoon__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_panel_balloon_contextualballoon__ = __webpack_require__(154);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_core_theme_icons_low_vision_svg__ = __webpack_require__(495);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_core_theme_icons_low_vision_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_core_theme_icons_low_vision_svg__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__image_ui_utils__ = __webpack_require__(269);
@@ -58700,7 +58877,7 @@ function insertViewCaptionAndBind( viewCaption, modelCaption, viewImage, mapper 
  * @returns {module:engine/model/element~Element|null}
  */
 function getParentCaption( node ) {
-	const ancestors = node.getAncestors( { includeNode: true } );
+	const ancestors = node.getAncestors( { includeSelf: true } );
 	const caption = ancestors.find( ancestor => ancestor.name == 'caption' );
 
 	if ( caption && caption.parent && caption.parent.name == 'image' ) {
@@ -58723,7 +58900,7 @@ function getParentCaption( node ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_editableelement__ = __webpack_require__(82);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_view_placeholder__ = __webpack_require__(503);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_widget_src_utils__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_widget_src_utils__ = __webpack_require__(153);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -59491,7 +59668,7 @@ module.exports = "<svg viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_src_template__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_toolbar_toolbarview__ = __webpack_require__(259);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_panel_balloon_contextualballoon__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_panel_balloon_contextualballoon__ = __webpack_require__(154);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__image_utils__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__image_ui_utils__ = __webpack_require__(269);
 /**
@@ -59824,7 +60001,7 @@ module.exports = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_view_range__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__linkengine__ = __webpack_require__(520);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__linkelement__ = __webpack_require__(270);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_panel_balloon_contextualballoon__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_panel_balloon_contextualballoon__ = __webpack_require__(154);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_ui_src_bindings_clickoutsidehandler__ = __webpack_require__(265);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ui_linkformview__ = __webpack_require__(523);
@@ -60552,13 +60729,13 @@ class UnlinkCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_src_view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_template__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_viewcollection__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_viewcollection__ = __webpack_require__(150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_ui_src_labeledinput_labeledinputview__ = __webpack_require__(266);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_inputtext_inputtextview__ = __webpack_require__(267);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_ui_src_bindings_submithandler__ = __webpack_require__(268);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_ui_src_focuscycler__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_ui_src_focuscycler__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_keystrokehandler__ = __webpack_require__(50);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
