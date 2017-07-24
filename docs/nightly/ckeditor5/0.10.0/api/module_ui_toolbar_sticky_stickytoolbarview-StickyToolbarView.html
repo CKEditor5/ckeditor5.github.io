@@ -196,6 +196,22 @@ actual toolbar is sticky. It prevents flickering of the UI.</p>
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-protected="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="_hasViewportTopOffset">
+                      <h3><code><a class="member-name" href="#_hasViewportTopOffset">_hasViewportTopOffset</a> : Boolean</code></h3>
+                      <p class="badges">
+<span class="badge badge--orange ">protected</span>
+<span class="badge badge--gray ">readonly</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">Set <code>true</code> if the sticky toolbar uses the <a href="module_ui_toolbar_sticky_stickytoolbarview-StickyToolbarView.html#viewportTopOffset"><code>viewportTopOffset</code></a>,
+i.e. not <a href="module_ui_toolbar_sticky_stickytoolbarview-StickyToolbarView.html#_isStickyToTheLimiter"><code>_isStickyToTheLimiter</code></a> and the <a href="module_ui_toolbar_sticky_stickytoolbarview-StickyToolbarView.html#viewportTopOffset"><code>viewportTopOffset</code></a>
+is not <code>0</code>.</p>
+                      <div class="collapsing-list__content">
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-protected="true">
                     <div class="collapsing-list__term toggler--collapsed" id="_isStickyToTheLimiter">
                       <h3><code><a class="member-name" href="#_isStickyToTheLimiter">_isStickyToTheLimiter</a> : Boolean</code></h3>
                       <p class="badges">
@@ -364,6 +380,22 @@ is focused in the editor, toolbar becomes active.</p>
                     </div>
                   </li>
                   <li class="collapsing-list__item" data-public="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="limiterBottomOffset">
+                      <h3><code><a class="member-name" href="#limiterBottomOffset">limiterBottomOffset</a> : Number</code></h3>
+                      <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">The offset from the bottom edge of <a href="module_ui_toolbar_sticky_stickytoolbarview-StickyToolbarView.html#limiterElement"><code>limiterElement</code></a>
+which stops the toolbar from stickying any further to prevent limiter&apos;s content
+from being completely covered.</p>
+                      <div class="collapsing-list__content">
+                        <p>Defaults to<code>50</code></p>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-public="true">
                     <div class="collapsing-list__term toggler--collapsed" id="limiterElement">
                       <h3><code><a class="member-name" href="#limiterElement">limiterElement</a> : HTMLElement</code></h3>
                       <p class="badges">
@@ -377,22 +409,6 @@ edge of the limiter, it becomes sticky to that edge and does not float
 off the limiter. It is mandatory for the toolbar to work properly and once
 set, it cannot be changed.</p>
                       <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="limiterOffset">
-                      <h3><code><a class="member-name" href="#limiterOffset">limiterOffset</a> : Number</code></h3>
-                      <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">The offset from the bottom edge of <a href="module_ui_toolbar_sticky_stickytoolbarview-StickyToolbarView.html#limiterElement"><code>limiterElement</code></a>
-which stops the toolbar from stickying any further to prevent limiter&apos;s content
-from being completely covered.</p>
-                      <div class="collapsing-list__content">
-                        <p>Defaults to<code>50</code></p>
                       </div>
                     </div>
                   </li>
@@ -434,6 +450,25 @@ from being completely covered.</p>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Template of this view.</p>
                       <div class="collapsing-list__content">
+                      </div>
+                    </div>
+                  </li>
+                  <li class="collapsing-list__item" data-public="true">
+                    <div class="collapsing-list__term toggler--collapsed" id="viewportTopOffset">
+                      <h3><code><a class="member-name" href="#viewportTopOffset">viewportTopOffset</a> : Number</code></h3>
+                      <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+                      </p>
+                    </div>
+                    <div class="collapsing-list__description">
+                      <p class="collapsing-list__excerpt">The offset from the top edge of the web browser&apos;s viewport which makes the
+toolbar become sticky. The default value is <code>0</code>, which means the toolbar becomes
+sticky when it&apos;s upper edge touches the top of the page viewport.</p>
+                      <div class="collapsing-list__content">
+<p>This attribute is useful when the web page has UI elements positioned to the top
+either using <code>position: fixed</code> or <code>position: sticky</code>, which would cover the
+sticky toolbar or vice&#x2013;versa (depending on the <code>z-index</code> hierarchy).</p>
+                        <p>Defaults to<code>0</code></p>
                       </div>
                     </div>
                   </li>
@@ -3369,6 +3404,9 @@ be released if no attributes provided.</p>
                                         </li>
                                         <li><a href="module_ui_toolbar_enabletoolbarkeyboardfocus.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">enabletoolbarkeyboardfocus</span></div></a>
+                                        </li>
+                                        <li><a href="module_ui_toolbar_normalizetoolbarconfig.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">normalizetoolbarconfig</span></div></a>
                                         </li>
                                         <li class="toggler--collapsed">
                                           <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_ui_toolbar_toolbarseparatorview.html">toolbarseparatorview</a>
