@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Inline editor example</title>
+	<link rel="stylesheet" href="./build/editor-inline.css">
+	<link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+	<div id="editor">
+		<p>With love from PK to Wojtek.</p>
+	</div>
+	<script src="./build/editor-inline.js"></script>
+	<script>
+		InlineEditor.create( document.getElementById( 'editor' ) )
+			.then( editor => {
+				window.editor = editor;
+			} )
+			.catch( err => {
+				console.error( err.stack );
+			} );
+	</script>
+</body>
+</html>

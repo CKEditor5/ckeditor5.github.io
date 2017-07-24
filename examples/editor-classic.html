@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Classic editor example</title>
+	<link rel="stylesheet" href="./build/editor-classic.css">
+	<link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+	<div id="editor">
+		<p>With love from PK to Wojtek.</p>
+	</div>
+	<script src="./build/editor-classic.js"></script>
+	<script>
+		ClassicEditor.create( document.getElementById( 'editor' ) )
+			.then( editor => {
+				window.editor = editor;
+			} )
+			.catch( err => {
+				console.error( err.stack );
+			} );
+	</script>
+</body>
+</html>

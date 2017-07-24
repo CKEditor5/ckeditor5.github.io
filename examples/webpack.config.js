@@ -6,21 +6,22 @@
 
 const path = require( 'path' );
 const webpack = require( 'webpack' );
-const { bundler } = require( '@ckeditor/ckeditor5-dev-utils' );
 
-const BabiliPlugin = require( 'babili-webpack-plugin' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 
 module.exports = {
 	target: 'web',
 
-	entry: [
-		'./js/app'
-	],
+	entry: {
+		'editor-classic': './js/editor-classic',
+		'editor-inline': './js/editor-inline',
+		'editor-balloon-toolbar': './js/editor-balloon-toolbar'
+	},
 
 	output: {
 		path: path.resolve( __dirname, 'build' ),
-		filename: 'app.js'
+		filename: '[name].js',
+		libraryTarget: 'umd'
 	},
 
 	module: {
@@ -49,20 +50,13 @@ module.exports = {
 
 	resolve: {
 		modules: [
-			path.resolve( __dirname, 'packages' ),
+			path.resolve( __dirname, '../packages' ),
 			'node_modules'
 		]
 	},
 
 	plugins: [
-        new ExtractTextPlugin( 'styles.css' ),
-		new BabiliPlugin( null, {
-			comments: false
-		} ),
-		new webpack.BannerPlugin( {
-			banner: bundler.getLicenseBanner(),
-			raw: true
-		} )
+        new ExtractTextPlugin( '[name].css' )
 	],
 
 	devtool: 'source-map',
