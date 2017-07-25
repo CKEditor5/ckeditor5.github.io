@@ -36230,7 +36230,7 @@ class InlineEditor extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_
 	 */
 	static create( element, config ) {
 		return new Promise( resolve => {
-			const editor = new InlineEditor( element, config );
+			const editor = new this( element, config );
 
 			resolve(
 				editor.initPlugins()
@@ -50633,7 +50633,7 @@ class InlineEditorUI {
 	 * Creates an instance of the editor UI class.
 	 *
 	 * @param {module:core/editor/editor~Editor} editor The editor instance.
-	 * @param {module:ui/editorui/editoruiview~EditorUIView} view View of the ui.
+	 * @param {module:ui/editorui/editoruiview~EditorUIView} view The view of the UI.
 	 */
 	constructor( editor, view ) {
 		/**
@@ -50970,7 +50970,7 @@ function normalizeToolbarConfig( config ) {
 
 
 /**
- * Inline editor UI view. Uses inline editable and floating toolbar.
+ * Inline editor UI view. Uses an nline editable and a floating toolbar.
  *
  * @extends module:ui/editorui/editoruiview~EditorUIView
  */
@@ -50993,8 +50993,8 @@ class InlineEditorUIView extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5
 
 		/**
 		 * The offset from the top edge of the web browser's viewport which makes the
-		 * UI become sticky. The default value is `0`, which means the UI becomes
-		 * sticky when it's upper edge touches the top of the page viewport.
+		 * UI become sticky. The default value is `0`, which means that the UI becomes
+		 * sticky when its upper edge touches the top of the page viewport.
 		 *
 		 * This attribute is useful when the web page has UI elements positioned to the top
 		 * either using `position: fixed` or `position: sticky`, which would cover the
@@ -51109,7 +51109,7 @@ class InlineEditorUIView extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5
 	}
 
 	/**
-	 * Determines panel top position of the {@link #panel} in {@link #panelPositions}.
+	 * Determines the panel top position of the {@link #panel} in {@link #panelPositions}.
 	 *
 	 * @private
 	 * @param {module:utils/dom/rect~Rect} editableRect Rect of the {@link #editableElement}.

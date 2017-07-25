@@ -36175,7 +36175,7 @@ __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_editor_classic_src_classiceditor
 
 
 /**
- * Classic editor. Uses inline editable and sticky toolbar, all
+ * Classic editor. Uses an inline editable and a sticky toolbar, all
  * enclosed in a boxed UI.
  *
  * @extends module:core/editor/standardeditor~StandardEditor
@@ -50677,7 +50677,7 @@ class ClassicEditorUI {
 	 * Creates an instance of the editor UI class.
 	 *
 	 * @param {module:core/editor/editor~Editor} editor The editor instance.
-	 * @param {module:ui/editorui/editoruiview~EditorUIView} view View of the ui.
+	 * @param {module:ui/editorui/editoruiview~EditorUIView} view The view of the UI.
 	 */
 	constructor( editor, view ) {
 		/**
@@ -51001,7 +51001,7 @@ function normalizeToolbarConfig( config ) {
 
 
 /**
- * Classic editor UI view. Uses inline editable and sticky toolbar, all
+ * Classic editor UI view. Uses an inline editable and a sticky toolbar, all
  * enclosed in a boxed UI view.
  *
  * @extends module:ui/editorui/boxed/boxededitoruiview~BoxedEditorUIView
