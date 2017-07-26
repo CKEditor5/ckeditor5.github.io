@@ -4,9 +4,9 @@
     <meta charset="utf8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Class Document (engine/view/document~Document) - CKEditor 5 API docs</title>
-    <link rel="stylesheet" href="../../../assets/0.2.24/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../assets/0.2.25/css/styles.css" type="text/css" media="screen">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
-    <script src="../../../assets/0.2.24/scripts/app.js"></script>
+    <script src="../../../assets/0.2.25/scripts/app.js"></script>
   </head>
   <body>
     <header class="top">
@@ -19,12 +19,12 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.2.24/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.2.25/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
-        <div class="api-header"><img src="../../../assets/0.2.24/img/cog.svg" alt="Class" title="Class"/>
+        <div class="api-header"><img src="../../../assets/0.2.25/img/cog.svg" alt="Class" title="Class"/>
           <div class="api-header__title">
             <h1>Document
             </h1>
@@ -979,15 +979,18 @@ to <a href="module_engine_viewithdocument-Document.html"><code>Document</code></
                   </li>
                   <li class="collapsing-list__item" data-public="true">
                     <div class="collapsing-list__term toggler--collapsed" id="event:clipboardInput">
-                      <h3><code><a class="member-name" href="#event:clipboardInput">clipboardInput</a>( data = { data.dataTransfer } )</code></h3>
+                      <h3><code><a class="member-name" href="#event:clipboardInput">clipboardInput</a>( data = { data.dataTransfer, data.targetRanges } )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Fired with a <code>dataTransfer</code> which comes from the clipboard (was <a href="module_engine_viewithdocument-Document.html#event:paste">pasted</a>
-or <a href="module_engine_viewithdocument-Document.html#event:drop">dropped</a>) and
-should be processed in order to be inserted into the editor.
+                      <p class="collapsing-list__excerpt">Fired as a continuation of <a href="module_engine_viewithdocument-Document.html#event:paste"><code>paste</code></a> and <a href="module_engine_viewithdocument-Document.html#event:drop"><code>drop</code></a> events.
 It&apos;s part of the <a href="module_clipboard_clipboard-Clipboard.html">&quot;clipboard pipeline&quot;</a>.
                       </p>
                       <div class="collapsing-list__content">
+<p>Fired with a <code>dataTransfer</code> which comes from the clipboard and which content should be processed
+and inserted into the editor.</p>
+<p>Note that this event is not available by default. To make it available <a href="module_clipboard_clipboardobserver-ClipboardObserver.html"><code>ClipboardObserver</code></a>
+needs to be added to <a href="module_engine_viewithdocument-Document.html"><code>Document</code></a> by the <a href="module_engine_viewithdocument-Document.html#addObserver"><code>addObserver</code></a> method.
+It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>Clipboard</code></a> feature. If it&apos;s not loaded, it must be done manually.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> data : Object</code></dt>
@@ -996,6 +999,12 @@ It&apos;s part of the <a href="module_clipboard_clipboard-Clipboard.html">&quot;
                                               <h5>Properties</h5>
                                               <dt><code> data.dataTransfer : <span><a class="collapsing-list__type" href="module_clipboard_datatransfer-DataTransfer.html">DataTransfer</a></span></code></dt>
                                               <dd><p>Data transfer instance.</p>
+                                              </dd>
+                                              <dt><code> data.targetRanges : <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_viewithrange-Range.html">Range</a>&gt;</span></code></dt>
+                                              <dd><p>Ranges which are the target of the operation
+(usually &#x2013; into which the content should be inserted).
+If clipboard input was triggered by a paste operation, then these are the selection ranges. If by a drop operation,
+then it&apos;s the drop position (which can be different than the selection at the moment of drop).</p>
                                               </dd>
                                             </dl>
                                   </dd>
@@ -1091,7 +1100,7 @@ It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>
                   </li>
                   <li class="collapsing-list__item" data-public="true">
                     <div class="collapsing-list__term toggler--collapsed" id="event:drop">
-                      <h3><code><a class="member-name" href="#event:drop">drop</a>( data )</code></h3>
+                      <h3><code><a class="member-name" href="#event:drop">drop</a>( data, dropRange )</code></h3>
                     </div>
                     <div class="collapsing-list__description">
                       <p class="collapsing-list__excerpt">Fired when user dropped content into one of the editables.
@@ -1105,6 +1114,9 @@ It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>
                                 <dl>
                                   <dt><code> data : <span><a class="collapsing-list__type" href="module_clipboard_clipboardobserver-ClipboardEventData.html">ClipboardEventData</a></span></code></dt>
                                   <dd><p>Event data.</p>
+                                  </dd>
+                                  <dt><code> dropRange : <span><a class="collapsing-list__type" href="module_engine_viewithrange-Range.html">Range</a></span></code></dt>
+                                  <dd><p>The position into which the content is dropped.</p>
                                   </dd>
                                 </dl>
                       </div>
@@ -3571,6 +3583,21 @@ this event with default priority. This way other listeners can be used to run co
                                           <ul>
                                                   <li><a href="module_ui_toolbar_toolbarview-ToolbarView.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">ToolbarView</span></div></a>
+                                                  </li>
+                                          </ul>
+                                        </li>
+                                </ul>
+                              </li>
+                              <li class="toggler--collapsed">
+                                <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">tooltip</span>
+                                </div>
+                                <ul>
+                                        <li class="toggler--collapsed">
+                                          <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_ui_tooltip_tooltipview.html">tooltipview</a>
+                                          </div>
+                                          <ul>
+                                                  <li><a href="module_ui_tooltip_tooltipview-TooltipView.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">TooltipView</span></div></a>
                                                   </li>
                                           </ul>
                                         </li>
