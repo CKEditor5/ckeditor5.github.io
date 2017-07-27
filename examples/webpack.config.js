@@ -32,18 +32,16 @@ module.exports = {
 			},
 			{
 				test: /\.scss$/,
-				use: ExtractTextPlugin.extract( {
-					fallback: 'style-loader',
-					use: [
-						{
-							loader: 'css-loader',
-							options: {
-								minimize: true
-							}
-						},
-						'sass-loader'
-					]
-				} )
+				use: [
+					'style-loader',
+					{
+						loader: 'css-loader',
+						options: {
+							minimize: true
+						}
+					},
+					'sass-loader'
+				]
 			}
 		]
 	},
@@ -54,10 +52,6 @@ module.exports = {
 			'node_modules'
 		]
 	},
-
-	plugins: [
-		new ExtractTextPlugin( '[name].css' )
-	],
 
 	devtool: 'source-map',
 	stats: true
