@@ -13,9 +13,9 @@ module.exports = {
 	target: 'web',
 
 	entry: {
-		'editor-classic': './js/editor-classic',
+		// 'editor-classic': './js/editor-classic',
 		'editor-inline': './js/editor-inline',
-		'editor-balloon-toolbar': './js/editor-balloon-toolbar'
+		// 'editor-balloon-toolbar': './js/editor-balloon-toolbar'
 	},
 
 	output: {
