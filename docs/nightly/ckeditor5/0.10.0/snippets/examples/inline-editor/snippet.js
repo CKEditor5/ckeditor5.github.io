@@ -40443,12 +40443,21 @@ class Insertion {
  * @param {Object} [options]
  * @param {Boolean} [options.leaveUnmerged=false] Whether to merge elements after removing the content of the selection.
  *
- * For example `<h>x[x</h><p>y]y</p>` will become:
- * * `<h>x^y</h>` with the option disabled (`leaveUnmerged == false`)
- * * `<h>x^</h><p>y</p>` with enabled (`leaveUnmerged == true`).
+ * For example `<heading>x[x</heading><paragraph>y]y</paragraph>` will become:
+ *
+ * * `<heading>x^y</heading>` with the option disabled (`leaveUnmerged == false`)
+ * * `<heading>x^</heading><paragraph>y</paragraph>` with enabled (`leaveUnmerged == true`).
  *
  * Note: {@link module:engine/model/schema~Schema#objects object} and {@link module:engine/model/schema~Schema#limits limit}
  * elements will not be merged.
+ *
+ * @param {Boolean} [options.doNotResetEntireContent=false] Whether to skip replacing the entire content with a
+ * paragraph when the entire content was selected.
+ *
+ * For example `<heading>[x</heading><paragraph>y]</paragraph> will become:
+ *
+ * * `<paragraph>^</paragraph>` with the option disabled (`doNotResetEntireContent == false`)
+ * * `<heading>^</heading>` with enabled (`doNotResetEntireContent == true`).
  */
 function deleteContent( selection, batch, options = {} ) {
 	if ( selection.isCollapsed ) {
@@ -40457,7 +40466,7 @@ function deleteContent( selection, batch, options = {} ) {
 
 	// 1. Replace the entire content with paragraph.
 	// See: https://github.com/ckeditor/ckeditor5-engine/issues/1012#issuecomment-315017594.
-	if ( shouldEntireContentBeReplacedWithParagraph( batch.document.schema, selection ) ) {
+	if ( !options.doNotResetEntireContent && shouldEntireContentBeReplacedWithParagraph( batch.document.schema, selection ) ) {
 		replaceEntireContentWithParagraph( batch, selection );
 
 		return;
@@ -54364,6 +54373,13 @@ class DeleteCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core
 
 			const selection = __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_selection__["a" /* default */].createFromSelection( doc.selection );
 
+			// Do not replace the whole selected content if selection was collapsed.
+			// This prevents such situation:
+			//
+			// <h1></h1><p>[]</p>	-->  <h1>[</h1><p>]</p> 		-->  <p></p>
+			// starting content		-->   after `modifySelection`	-->  after `deleteContent`.
+			const doNotResetEntireContent = selection.isCollapsed;
+
 			// Try to extend the selection in the specified direction.
 			if ( selection.isCollapsed ) {
 				dataController.modifySelection( selection, { direction: this.direction, unit: options.unit } );
@@ -54382,7 +54398,7 @@ class DeleteCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core
 				);
 			} );
 
-			dataController.deleteContent( selection, this._buffer.batch );
+			dataController.deleteContent( selection, this._buffer.batch, { doNotResetEntireContent } );
 			this._buffer.input( changeCount );
 
 			doc.selection.setRanges( selection.getRanges(), selection.isBackward );

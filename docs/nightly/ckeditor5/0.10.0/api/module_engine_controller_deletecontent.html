@@ -67,7 +67,7 @@
         <ul class="collapsing-list collapsing-list--filtered">
                   <li class="collapsing-list__item" data-public="true">
                     <div class="collapsing-list__term toggler--collapsed" id="deleteContent">
-                      <h3><code><a class="member-name" href="#deleteContent">deleteContent</a>( selection, batch, [ options ] = { [options.leaveUnmerged] } )</code></h3>
+                      <h3><code><a class="member-name" href="#deleteContent">deleteContent</a>( selection, batch, [ options ] = { [options.leaveUnmerged], [options.doNotResetEntireContent] } )</code></h3>
                       <p class="badges">
 <span class="badge badge--gray ">static</span>
                       </p>
@@ -90,13 +90,23 @@
                                               <h5>Properties</h5>
                                               <dt><code> [ options.leaveUnmerged ] : Boolean</code></dt>
                                               <dd><p>Whether to merge elements after removing the content of the selection.</p>
-<p>For example <code>&lt;h&gt;x[x&lt;/h&gt;&lt;p&gt;y]y&lt;/p&gt;</code> will become:</p>
+<p>For example <code>&lt;heading&gt;x[x&lt;/heading&gt;&lt;paragraph&gt;y]y&lt;/paragraph&gt;</code> will become:</p>
 <ul>
-<li><code>&lt;h&gt;x^y&lt;/h&gt;</code> with the option disabled (<code>leaveUnmerged == false</code>)</li>
-<li><code>&lt;h&gt;x^&lt;/h&gt;&lt;p&gt;y&lt;/p&gt;</code> with enabled (<code>leaveUnmerged == true</code>).</li>
+<li><code>&lt;heading&gt;x^y&lt;/heading&gt;</code> with the option disabled (<code>leaveUnmerged == false</code>)</li>
+<li><code>&lt;heading&gt;x^&lt;/heading&gt;&lt;paragraph&gt;y&lt;/paragraph&gt;</code> with enabled (<code>leaveUnmerged == true</code>).</li>
 </ul>
 <p>Note: <a href="module_engine_model_schema-Schema.html#objects">object</a> and <a href="module_engine_model_schema-Schema.html#limits">limit</a>
 elements will not be merged.</p>
+                                                <p>Defaults to <code>false</code></p>
+                                              </dd>
+                                              <dt><code> [ options.doNotResetEntireContent ] : Boolean</code></dt>
+                                              <dd><p>Whether to skip replacing the entire content with a
+paragraph when the entire content was selected.</p>
+<p>For example `<heading>[x</heading><paragraph>y]</paragraph> will become:</p>
+<ul>
+<li><code>&lt;paragraph&gt;^&lt;/paragraph&gt;</code> with the option disabled (<code>doNotResetEntireContent == false</code>)</li>
+<li><code>&lt;heading&gt;^&lt;/heading&gt;</code> with enabled (<code>doNotResetEntireContent == true</code>).</li>
+</ul>
                                                 <p>Defaults to <code>false</code></p>
                                               </dd>
                                             </dl>
