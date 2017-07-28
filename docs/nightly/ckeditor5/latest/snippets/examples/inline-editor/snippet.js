@@ -2226,7 +2226,7 @@ class Element extends __WEBPACK_IMPORTED_MODULE_0__node__["a" /* default */] {
 		let node = this; // eslint-disable-line consistent-this
 
 		for ( const index of relativePath ) {
-			node = node.getChild( index );
+			node = node.getChild( node.offsetToIndex( index ) );
 		}
 
 		return node;
@@ -10251,7 +10251,7 @@ class DocumentFragment {
 		let node = this; // eslint-disable-line consistent-this
 
 		for ( const index of relativePath ) {
-			node = node.getChild( index );
+			node = node.getChild( node.offsetToIndex( index ) );
 		}
 
 		return node;
