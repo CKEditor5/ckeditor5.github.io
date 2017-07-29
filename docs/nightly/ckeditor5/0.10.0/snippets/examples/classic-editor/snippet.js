@@ -11181,12 +11181,12 @@ function buildViewConverter() {
 const imageSymbol = Symbol( 'isImage' );
 
 /**
- * Converts given {@link module:engine/view/element~Element} to image widget:
- * * adds {@link module:engine/view/element~Element#setCustomProperty custom property} allowing to recognize image widget element,
- * * calls {@link module:widget/utils~toWidget toWidget} function with proper element's label creator.
+ * Converts a given {@link module:engine/view/element~Element} to an image widget:
+ * * adds a {@link module:engine/view/element~Element#setCustomProperty custom property} allowing to recognize the image widget element,
+ * * calls the {@link module:widget/utils~toWidget toWidget} function with the proper element's label creator.
  *
  * @param {module:engine/view/element~Element} viewElement
- * @param {String} label Element's label. It will be concatenated with image's `alt` attribute if one is present.
+ * @param {String} label Element's label. It will be concatenated with the image `alt` attribute if one is present.
  * @returns {module:engine/view/element~Element}
  */
 function toImageWidget( viewElement, label ) {
@@ -11203,7 +11203,7 @@ function toImageWidget( viewElement, label ) {
 }
 
 /**
- * Checks if given view element is an image widget.
+ * Checks if a given view element is an image widget.
  *
  * @param {module:engine/view/element~Element} viewElement
  * @returns {Boolean}
@@ -11213,7 +11213,7 @@ function isImageWidget( viewElement ) {
 }
 
 /**
- * Checks if provided modelElement is an instance of {@link module:engine/model/element~Element Element} and its name
+ * Checks if the provided model element is an instance of {@link module:engine/model/element~Element Element} and its name
  * is `image`.
  *
  * @param {module:engine/model/element~Element} modelElement
@@ -29635,14 +29635,18 @@ const transform = {
 							insertBefore: contextAB.insertBefore,
 							forceNotSticky: contextAB.forceNotSticky,
 							isStrong: contextAB.isStrong,
-							forceWeakRemove: contextAB.forceWeakRemove
+							forceWeakRemove: contextAB.forceWeakRemove,
+							aWasUndone: false,
+							bWasUndone: contextAB.bWasUndone
 						} );
 
 						const resultBA = transform.transform( deltaB[ l ], deltaA[ k ], {
 							insertBefore: !contextAB.insertBefore,
 							forceNotSticky: contextAB.forceNotSticky,
 							isStrong: !contextAB.isStrong,
-							forceWeakRemove: contextAB.forceWeakRemove
+							forceWeakRemove: contextAB.forceWeakRemove,
+							aWasUndone: contextAB.bWasUndone,
+							bWasUndone: false
 						} );
 
 						if ( useAdditionalContext ) {
@@ -29723,10 +29727,21 @@ function padWithNoOps( deltas, howMany ) {
 // Using data given in `context` object, sets `context.insertBefore` and `context.forceNotSticky` flags.
 // Also updates `context.wasAffected`.
 function _setContext( a, b, context ) {
+	_setBWasUndone( b, context );
 	_setWasAffected( a, b, context );
 	_setInsertBeforeContext( a, b, context );
 	_setForceWeakRemove( b, context );
-	_setForceNotSticky( b, context );
+	_setForceNotSticky( context );
+}
+
+// Sets `context.bWasUndone` basing on `context.document` history for `b` delta.
+//
+// `context.bWasUndone` is set to `true` if the (originally transformed) `b` delta was undone or was undoing delta.
+function _setBWasUndone( b, context ) {
+	const originalDelta = context.originalDelta.get( b );
+	const history = context.document.history;
+
+	context.bWasUndone = history.isUndoneDelta( originalDelta ) || history.isUndoingDelta( originalDelta );
 }
 
 // Sets `context.insertBefore` basing on `context.document` history for `a` by `b` transformation.
@@ -29790,12 +29805,8 @@ function _setInsertBeforeContext( a, b, context ) {
 // if delta `b` was already undone or if delta `b` is an undoing delta.
 //
 // This affects `MoveOperation` (and its derivatives).
-function _setForceNotSticky( b, context ) {
-	const history = context.document.history;
-	const originalB = context.originalDelta.get( b );
-
-	// If `b` delta is undoing or undone delta, stickiness should not be taken into consideration.
-	if ( history.isUndoingDelta( originalB ) || history.isUndoneDelta( originalB ) ) {
+function _setForceNotSticky( context ) {
+	if ( context.bWasUndone ) {
 		context.forceNotSticky = true;
 	}
 }
@@ -34877,7 +34888,7 @@ class AttributeCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_c
 
 /**
  * The image engine plugin.
- * Registers `image` as a block element in document's schema and allows it to have two attributes: `src` and `alt`.
+ * Registers `<image>` as a block element in the document schema and allows it to have two attributes: `src` and `alt`.
  * Registers converters for editing and data pipelines.
  *
  * @extends module:core/plugin~Plugin
@@ -34952,11 +34963,11 @@ class ImageEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_s
 /* harmony export (immutable) */ __webpack_exports__["a"] = ImageEngine;
 
 
-// Creates view element representing the image.
+// Creates a view element representing the image.
 //
 //		<figure class="image"><img></img></figure>
 //
-// Note that `alt` and `src` attributes are converted separately, so they're not included.
+// Note that `alt` and `src` attributes are converted separately, so they are not included.
 //
 // @private
 // @return {module:engine/view/containerelement~ContainerElement}
@@ -36041,9 +36052,9 @@ function isElement(value) {
 /**
  * A helper utility which positions the
  * {@link module:ui/panel/balloon/contextualballoon~ContextualBalloon} instance
- * with respect to the image in the editor's content, if one is selected.
+ * with respect to the image in the editor content, if one is selected.
  *
- * @param {module:core/editor/editor~Editor} editor Editor instance.
+ * @param {module:core/editor/editor~Editor} editor The editor instance.
  */
 function repositionContextualBalloon( editor ) {
 	const editingView = editor.editing.view;
@@ -36062,7 +36073,7 @@ function repositionContextualBalloon( editor ) {
  * {@link module:ui/panel/balloon/contextualballoon~ContextualBalloon}, with respect
  * to the selected element in the editor content.
  *
- * @param {module:core/editor/editor~Editor} editor Editor instance.
+ * @param {module:core/editor/editor~Editor} editor The editor instance.
  * @returns {module:utils/dom/position~Options}
  */
 function getBalloonPositionData( editor ) {
@@ -43829,15 +43840,16 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_14__wrapdelta__["a" /* default 
 
 // Add special case for RenameDelta x SplitDelta transformation.
 addTransformationCase( __WEBPACK_IMPORTED_MODULE_16__renamedelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], ( a, b, context ) => {
-	const splitPosition = new __WEBPACK_IMPORTED_MODULE_2__position__["a" /* default */]( b.position.root, b.position.path.slice( 0, -1 ) );
+	const undoMode = context.aWasUndone || context.bWasUndone;
+	const posBeforeSplitParent = new __WEBPACK_IMPORTED_MODULE_2__position__["a" /* default */]( b.position.root, b.position.path.slice( 0, -1 ) );
 
 	const deltas = defaultTransform( a, b, context );
 
-	if ( a.operations[ 0 ].position.isEqual( splitPosition ) ) {
+	if ( !undoMode && a.operations[ 0 ].position.isEqual( posBeforeSplitParent ) ) {
 		// If a node that has been split has it's name changed, we should also change name of
 		// the node created during splitting.
 		const additionalRenameDelta = a.clone();
-		additionalRenameDelta.operations[ 0 ].position = a.operations[ 0 ].position.getShiftedBy( 1 );
+		additionalRenameDelta.operations[ 0 ].position = posBeforeSplitParent.getShiftedBy( 1 );
 
 		deltas.push( additionalRenameDelta );
 	}
@@ -43846,20 +43858,25 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_16__renamedelta__["a" /* defaul
 } );
 
 // Add special case for SplitDelta x RenameDelta transformation.
-addTransformationCase( __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_16__renamedelta__["a" /* default */], ( a, b ) => {
-	a = a.clone();
+addTransformationCase( __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_16__renamedelta__["a" /* default */], ( a, b, context ) => {
+	const undoMode = context.aWasUndone || context.bWasUndone;
+	const posBeforeSplitParent = new __WEBPACK_IMPORTED_MODULE_2__position__["a" /* default */]( a.position.root, a.position.path.slice( 0, -1 ) );
 
-	const splitPosition = new __WEBPACK_IMPORTED_MODULE_2__position__["a" /* default */]( a.position.root, a.position.path.slice( 0, -1 ) );
+	// If element to split had it's name changed, we have to reflect this by creating additional rename operation.
+	if ( !undoMode && b.operations[ 0 ].position.isEqual( posBeforeSplitParent ) ) {
+		const additionalRenameDelta = b.clone();
+		additionalRenameDelta.operations[ 0 ].position = posBeforeSplitParent.getShiftedBy( 1 );
 
-	if ( a._cloneOperation instanceof __WEBPACK_IMPORTED_MODULE_5__operation_insertoperation__["a" /* default */] ) {
-		// If element to split had it's name changed, we have to reflect this change in an element
-		// that is in SplitDelta's InsertOperation.
-		if ( b.operations[ 0 ].position.isEqual( splitPosition ) ) {
-			a._cloneOperation.nodes.getNode( 0 ).name = b.operations[ 0 ].newName;
-		}
+		// `nodes` is a property that is available only if `SplitDelta` `a` has `InsertOperation`.
+		// `SplitDelta` may have `ReinsertOperation` instead of `InsertOperation`.
+		// However, such delta is only created when `MergeDelta` is reversed.
+		// So if this is not undo mode, it means that `SplitDelta` has `InsertOperation`.
+		additionalRenameDelta.operations[ 0 ].oldName = a._cloneOperation.nodes.getNode( 0 ).name;
+
+		return [ a.clone(), additionalRenameDelta ];
 	}
 
-	return [ a ];
+	return [ a.clone() ];
 } );
 
 // Add special case for RemoveDelta x SplitDelta transformation.
@@ -57176,7 +57193,7 @@ exports.push([module.i, ".ck-heading_heading1{font-size:1.5em}.ck-heading_headin
 /**
  * The image plugin.
  *
- * Uses {@link module:image/image/imageengine~ImageEngine}.
+ * Uses the {@link module:image/image/imageengine~ImageEngine}.
  *
  * @extends module:core/plugin~Plugin
  */
@@ -57246,15 +57263,15 @@ class Image extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plu
 
 
 /**
- * Returns function that converts image view representation:
+ * Returns a function that converts the image view representation:
  *
  *		<figure class="image"><img src="..." alt="..."></img></figure>
  *
- * to model representation:
+ * to the model representation:
  *
  *		<image src="..." alt="..."></image>
  *
- * The entire contents of `<figure>` except the first `<img>` is being converted as children
+ * The entire content of the `<figure>` element except the first `<img>` is being converted as children
  * of the `<image>` model element.
  *
  * @returns {Function}
@@ -57299,12 +57316,12 @@ function viewFigureToModel() {
 }
 
 /**
- * Creates image attribute converter for provided model conversion dispatchers.
+ * Creates the image attribute converter for provided model conversion dispatchers.
  *
  * @param {Array.<module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher>} dispatchers
  * @param {String} attributeName
- * @param {function} [conversionCallback] Function that will be called each time given attribute conversion is performed.
- * It will be called with two params: a view image element and type of the conversion: 'addAttribute`, `changeAttribute` or
+ * @param {function} [conversionCallback] The function that will be called each time given attribute conversion is performed.
+ * It will be called with two parameters: a view image element and the type of the conversion: 'addAttribute`, `changeAttribute` or
  * `removeAttribute`. This callback can be used to perform additional processing on view image element.
  */
 function createImageAttributeConverter( dispatchers, attributeName, conversionCallback ) {
@@ -57348,10 +57365,10 @@ function modelToViewAttributeConverter( conversionCallback ) {
 const autohoistedImages = new WeakSet();
 
 /**
- * Converter which converts `<img>` {@link module:engine/view/element~Element view elements} that can be hoisted.
+ * A converter which converts `<img>` {@link module:engine/view/element~Element view elements} that can be hoisted.
  *
  * If an `<img>` view element has not been converted, this converter checks if that element could be converted in any
- * context "above". If it could, the converter converts the `<img>` element even though it is not allowed in current
+ * context "above". If it could, the converter converts the `<img>` element even though it is not allowed in the current
  * context and marks it to be autohoisted. Then {@link module:image/image/converters~hoistImageThroughElement another converter}
  * moves the converted element to the correct location.
  */
@@ -57421,19 +57438,19 @@ function _findAllowedContext( modelData, context, schema ) {
 }
 
 /**
- * Converter which hoists `image` {@link module:engine/model/element~Element model elements} to allowed context.
+ * A converter which hoists `<image>` {@link module:engine/model/element~Element model elements} to allowed context.
  *
- * Looks through all children of converted {@link module:engine/view/element~Element view element} if it
- * has been converted to model element. Breaks model element if `image` to-be-hoisted is found.
+ * It looks through all children of the converted {@link module:engine/view/element~Element view element} if it
+ * was converted to a model element. It breaks the model element if an `<image>` to-be-hoisted is found.
  *
  *		<div><paragraph>x<image src="foo.jpg"></image>x</paragraph></div> ->
  *		<div><paragraph>x</paragraph></div><image src="foo.jpg"></image><div><paragraph>x</paragraph></div>
  *
- * This works deeply, as shown in the example. This converter added for `paragraph` element will break `paragraph` element and
- * pass {@link module:engine/model/documentfragment~DocumentFragment document fragment} in `data.output`. Then,
- * `div` will be handled by this converter and will be once again broken to hoist `image` up to the root.
+ * This works deeply, as shown in the example. This converter added for the `<paragraph>` element will break the `<paragraph>`
+ *  element and pass the {@link module:engine/model/documentfragment~DocumentFragment document fragment} in `data.output`.
+ *  Then, the `<div>` will be handled by this converter and will be once again broken to hoist the `<image>` up to the root.
  *
- * **Note:** This converter should be executed only after the view element has been already converted, meaning that
+ * **Note:** This converter should be executed only after the view element has already been converted, which means that
  * `data.output` for that view element should be already generated when this converter is fired.
  */
 function hoistImageThroughElement( evt, data ) {
@@ -57984,8 +58001,8 @@ class ImageTextAlternative extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckedito
 	}
 
 	/**
-	 * Creates button showing text alternative change balloon panel and registers it in
-	 * editor's {@link module:ui/componentfactory~ComponentFactory ComponentFactory}.
+	 * Creates a button showing the balloon panel for changing the image text alternative and
+	 * registers it in the editor {@link module:ui/componentfactory~ComponentFactory ComponentFactory}.
 	 *
 	 * @private
 	 */
@@ -58030,7 +58047,7 @@ class ImageTextAlternative extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckedito
 		this._balloon = this.editor.plugins.get( 'ContextualBalloon' );
 
 		/**
-		 * Form containing textarea and buttons, used to change `alt` text value.
+		 * A form containing a textarea and buttons, used to change the `alt` text value.
 		 *
 		 * @member {module:image/imagetextalternative/ui/textalternativeformview~TextAlternativeFormView} #form
 		 */
@@ -58111,7 +58128,7 @@ class ImageTextAlternative extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckedito
 	/**
 	 * Removes the {@link #_form} from the {@link #_balloon}.
 	 *
-	 * @param {Boolean} focusEditable Control whether the editing view is focused afterwards.
+	 * @param {Boolean} focusEditable Controls whether the editing view is focused afterwards.
 	 * @private
 	 */
 	_hideForm( focusEditable ) {
@@ -58161,8 +58178,8 @@ class ImageTextAlternative extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckedito
 
 
 /**
- * The ImageTextAlternativeEngine plugin.
- * Registers `imageTextAlternative` command.
+ * The image text alternative engine plugin.
+ * Registers the `imageTextAlternative` command.
  *
  * @extends module:core/plugin~Plugin
  */
@@ -58198,13 +58215,13 @@ class ImageTextAlternativeEngine extends __WEBPACK_IMPORTED_MODULE_1__ckeditor_c
 
 
 /**
- * The image text alternative command. It is used to change `alt` attribute on `image` elements.
+ * The image text alternative command. It is used to change the `alt` attribute on `<image>` elements.
  *
  * @extends module:core/command~Command
  */
 class ImageTextAlternativeCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_command__["a" /* default */] {
 	/**
-	 * The command value - `false` if there is no `alt` attribute, otherwise the value of the `alt` attribute.
+	 * The command value: `false` if there is no `alt` attribute, otherwise the value of the `alt` attribute.
 	 *
 	 * @readonly
 	 * @observable
@@ -58280,7 +58297,7 @@ class ImageTextAlternativeCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_
 
 
 /**
- * TextAlternativeFormView class.
+ * The TextAlternativeFormView class.
  *
  * @extends module:ui/view~View
  */
@@ -58294,7 +58311,7 @@ class TextAlternativeFormView extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_cked
 		const t = this.locale.t;
 
 		/**
-		 * Instance of the {@link module:utils/keystrokehandler~KeystrokeHandler}.
+		 * An instance of the {@link module:utils/keystrokehandler~KeystrokeHandler}.
 		 *
 		 * @readonly
 		 * @member {module:utils/keystrokehandler~KeystrokeHandler}
@@ -58302,14 +58319,14 @@ class TextAlternativeFormView extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_cked
 		this.keystrokes = new __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_keystrokehandler__["a" /* default */]();
 
 		/**
-		 * Text area with label.
+		 * A textarea with a label.
 		 *
 		 * @member {module:ui/labeledinput/labeledinputview~LabeledInputView} #labeledTextarea
 		 */
 		this.labeledInput = this._createLabeledInputView();
 
 		/**
-		 * Button used to submit the form.
+		 * A button used to submit the form.
 		 *
 		 * @member {module:ui/button/buttonview~ButtonView} #saveButtonView
 		 */
@@ -58317,7 +58334,7 @@ class TextAlternativeFormView extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_cked
 		this.saveButtonView.type = 'submit';
 
 		/**
-		 * Button used to cancel the form.
+		 * A button used to cancel the form.
 		 *
 		 * @member {module:ui/button/buttonview~ButtonView} #cancelButtonView
 		 */
@@ -58374,12 +58391,12 @@ class TextAlternativeFormView extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_cked
 	}
 
 	/**
-	 * Creates button view.
+	 * Creates the button view.
 	 *
 	 * @private
-	 * @param {String} label Button label
-	 * @param {String} [eventName] Event name which ButtonView#execute event will be delegated to.
-	 * @returns {module:ui/button/buttonview~ButtonView} Button view instance.
+	 * @param {String} label The button label
+	 * @param {String} [eventName] The event name that the ButtonView#execute event will be delegated to.
+	 * @returns {module:ui/button/buttonview~ButtonView} The button view instance.
 	 */
 	_createButton( label, eventName ) {
 		const button = new __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_button_buttonview__["a" /* default */]( this.locale );
@@ -58395,7 +58412,7 @@ class TextAlternativeFormView extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_cked
 	}
 
 	/**
-	 * Creates input with label.
+	 * Creates an input with a label.
 	 *
 	 * @private
 	 * @return {module:ui/labeledinput/labeledinputview~LabeledInputView}
@@ -59306,7 +59323,8 @@ class ImageCaption extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_
 /**
  * The image caption engine plugin.
  *
- * Registers proper converters. Takes care of adding caption element if image without it is inserted to model document.
+ * It registers proper converters. It takes care of adding a caption element if the image without it is inserted
+ * to the model document.
  *
  * @extends module:core/plugin~Plugin
  */
@@ -59325,14 +59343,14 @@ class ImageCaptionEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5
 
 		/**
 		 * Last selected caption editable.
-		 * It is used for hiding editable when is empty and image widget is no longer selected.
+		 * It is used for hiding the editable when it is empty and the image widget is no longer selected.
 		 *
 		 * @private
 		 * @member {module:engine/view/editableelement~EditableElement} #_lastSelectedCaption
 		 */
 
 		/**
-		 * Function used to create editable caption element in the editing view.
+		 * A function used to create the editable caption element in the editing view.
 		 *
 		 * @private
 		 * @member {Function}
@@ -59371,7 +59389,7 @@ class ImageCaptionEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5
 	}
 
 	/**
-	 * Updates view before each rendering, making sure that empty captions (so unnecessary ones) are hidden
+	 * Updates the view before each rendering, making sure that empty captions (so unnecessary ones) are hidden
 	 * and then visible when the image is selected.
 	 *
 	 * @private
@@ -59406,8 +59424,8 @@ class ImageCaptionEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5
 	}
 
 	/**
-	 * Fixes caption visibility during model to view conversion.
-	 * Checks if changed node is placed inside caption element and fixes it's visibility in the view.
+	 * Fixes caption visibility during the model-to-view conversion.
+	 * Checks if the changed node is placed inside the caption element and fixes its visibility in the view.
 	 *
 	 * @private
 	 * @param {module:engine/model/node~Node} node
@@ -59510,7 +59528,7 @@ function insertViewCaptionAndBind( viewCaption, modelCaption, viewImage, mapper 
 }
 
 /**
- * Checks if provided node or one of its ancestors is caption element and returns it.
+ * Checks if the provided node or one of its ancestors is a caption element, and returns it.
  *
  * @param {module:engine/model/node~Node} node
  * @returns {module:engine/model/element~Element|null}
@@ -59557,10 +59575,10 @@ function getParentCaption( node ) {
 const captionSymbol = Symbol( 'imageCaption' );
 
 /**
- * Returns a function that creates caption editable element for the given {@link module:engine/view/document~Document}.
+ * Returns a function that creates a caption editable element for the given {@link module:engine/view/document~Document}.
  *
  * @param {module:engine/view/document~Document} viewDocument
- * @param {String} placeholderText Text to be displayed when caption is empty.
+ * @param {String} placeholderText The text to be displayed when the caption is empty.
  * @return {Function}
  */
 function captionElementCreator( viewDocument, placeholderText ) {
@@ -59575,7 +59593,7 @@ function captionElementCreator( viewDocument, placeholderText ) {
 }
 
 /**
- * Returns `true` if given view element is image's caption editable.
+ * Returns `true` if a given view element is the image caption editable.
  *
  * @param {module:engine/view/element~Element} viewElement
  * @return {Boolean}
@@ -59585,7 +59603,7 @@ function isCaption( viewElement ) {
 }
 
 /**
- * Returns caption model element from given image element. Returns `null` if no caption is found.
+ * Returns the caption model element from a given image element. Returns `null` if no caption is found.
  *
  * @param {module:engine/model/element~Element} imageModelElement
  * @return {module:engine/model/element~Element|null}
@@ -59601,11 +59619,11 @@ function getCaptionFromImage( imageModelElement ) {
 }
 
 /**
- * {@link module:engine/view/matcher~Matcher} pattern. Checks if given element is `figcaption` element and is placed
- * inside image `figure` element.
+ * {@link module:engine/view/matcher~Matcher} pattern. Checks if a given element is a `<figcaption>` element that is placed
+ * inside the image `<figure>` element.
  *
  * @param {module:engine/view/element~Element} element
- * @returns {Object|null} Returns object accepted by {@link module:engine/view/matcher~Matcher} or `null` if element
+ * @returns {Object|null} Returns the object accepted by {@link module:engine/view/matcher~Matcher} or `null` if the element
  * cannot be matched.
  */
 function matchImageCaption( element ) {
@@ -59868,7 +59886,7 @@ exports.push([module.i, ".ck-editor__editable .image>figcaption{background-color
 /**
  * The image style plugin.
  *
- * Uses {@link module:image/imagestyle/imagestyleengine~ImageStyleEngine}.
+ * Uses the {@link module:image/imagestyle/imagestyleengine~ImageStyleEngine}.
  *
  * @extends module:core/plugin~Plugin
  */
@@ -59899,7 +59917,7 @@ class ImageStyle extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_sr
 	}
 
 	/**
-	 * Creates button for each style and stores it in editor's {@link module:ui/componentfactory~ComponentFactory ComponentFactory}.
+	 * Creates a button for each style and stores it in the editor {@link module:ui/componentfactory~ComponentFactory ComponentFactory}.
 	 *
 	 * @private
 	 * @param {module:image/imagestyle/imagestyleengine~ImageStyleFormat} style
@@ -59960,7 +59978,7 @@ class ImageStyle extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_sr
 
 
 /**
- * The image style engine plugin. Sets default configuration, creates converters and registers
+ * The image style engine plugin. It sets the default configuration, creates converters and registers
  * {@link module:image/imagestyle/imagestylecommand~ImageStyleCommand ImageStyleCommand}.
  *
  * @extends {module:core/plugin~Plugin}
@@ -60035,14 +60053,14 @@ class ImageStyleEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_c
  *	}
  *
  * @typedef {Object} module:image/imagestyle/imagestyleengine~ImageStyleFormat
- * @property {String} name Name of the style. It will be used to:
- * * register {@link module:core/command~Command command} which will apply this style,
- * * store style's button in editor's {@link module:ui/componentfactory~ComponentFactory ComponentFactory}.
- * @property {String} value Value used to store this style in model attribute.
- * When value is `null` style will be used as default one. Default style does not apply any CSS class to the view element.
- * @property {String} icon SVG icon representation to use when creating style's button.
- * @property {String} title Style's title.
- * @property {String} className CSS class used to represent style in view.
+ * @property {String} name The name of the style. It will be used to:
+ * * register the {@link module:core/command~Command command} which will apply this style,
+ * * store the style's button in the editor {@link module:ui/componentfactory~ComponentFactory ComponentFactory}.
+ * @property {String} value A value used to store this style in the model attribute.
+ * When the value is `null`, the style will be used as the default one. A default style does not apply any CSS class to the view element.
+ * @property {String} icon An SVG icon representation to use when creating the style's button.
+ * @property {String} title The style's title.
+ * @property {String} className The CSS class used to represent the style in view.
  */
 
 
@@ -60072,16 +60090,16 @@ class ImageStyleEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_c
  */
 class ImageStyleCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_command__["a" /* default */] {
 	/**
-	 * Creates instance of the image style command. Each command instance is handling one style.
+	 * Creates an instance of the image style command. Each command instance is handling one style.
 	 *
-	 * @param {module:core/editor/editor~Editor} editor Editor instance.
-	 * @param {module:image/imagestyle/imagestyleengine~ImageStyleFormat} styles Style to apply by this command.
+	 * @param {module:core/editor/editor~Editor} editor The editor instance.
+	 * @param {module:image/imagestyle/imagestyleengine~ImageStyleFormat} styles A style to be applied by this command.
 	 */
 	constructor( editor, style ) {
 		super( editor );
 
 		/**
-		 * The value of the command - `true` if style handled by the command is applied on currently selected image,
+		 * The value of the command &mdash; `true` if a style handled by the command is applied on a currently selected image,
 		 * `false` otherwise.
 		 *
 		 * @readonly
@@ -60090,7 +60108,7 @@ class ImageStyleCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_
 		 */
 
 		/**
-		 * Style handled by this command.
+		 * A style handled by this command.
 		 *
 		 * @readonly
 		 * @member {module:image/imagestyle/imagestyleengine~ImageStyleFormat} #style
@@ -60116,11 +60134,11 @@ class ImageStyleCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_
 	}
 
 	/**
-	 * Executes command.
+	 * Executes the command.
 	 *
 	 * @fires execute
 	 * @param {Object} options
-	 * @param {module:engine/model/batch~Batch} [options.batch] Batch to collect all the change steps. New batch will be
+	 * @param {module:engine/model/batch~Batch} [options.batch] A batch to collect all the change steps. A new batch will be
 	 * created if this option is not set.
 	 */
 	execute( options = {} ) {
@@ -60162,11 +60180,11 @@ class ImageStyleCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_
 
 
 /**
- * Returns converter for the `imageStyle` attribute. It can be used for adding, changing and removing the attribute.
+ * Returns a converter for the `imageStyle` attribute. It can be used for adding, changing and removing the attribute.
  *
- * @param {Object} styles Object containing available styles. See {@link module:image/imagestyle/imagestyleengine~ImageStyleFormat}
+ * @param {Object} styles An object containing available styles. See {@link module:image/imagestyle/imagestyleengine~ImageStyleFormat}
  * for more details.
- * @returns {Function} Model to view attribute converter.
+ * @returns {Function} A model-to-view attribute converter.
  */
 function modelToViewStyleAttribute( styles ) {
 	return ( evt, data, consumable, conversionApi ) => {
@@ -60189,10 +60207,10 @@ function modelToViewStyleAttribute( styles ) {
 }
 
 /**
- * Returns view to model converter converting image CSS classes to proper value in the model.
+ * Returns a view-to-model converter converting image CSS classes to a proper value in the model.
  *
- * @param {Array.<module:image/imagestyle/imagestyleengine~ImageStyleFormat>} styles Styles for which converter is created.
- * @returns {Function} View to model converter.
+ * @param {Array.<module:image/imagestyle/imagestyleengine~ImageStyleFormat>} styles Styles for which the converter is created.
+ * @returns {Function} A view-to-model converter.
  */
 function viewToModelStyleAttribute( styles ) {
 	// Convert only styles without `null` value.
@@ -60329,12 +60347,12 @@ module.exports = "<svg viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\
 const balloonClassName = 'ck-toolbar-container ck-editor-toolbar-container';
 
 /**
- * The image toolbar class. Creates an image toolbar that shows up when image widget is selected.
+ * The image toolbar class. Creates an image toolbar that shows up when the image widget is selected.
  *
- * Toolbar components are created using editor's {@link module:ui/componentfactory~ComponentFactory ComponentFactory}
- * based on {@link module:core/editor/editor~Editor#config configuration} stored under `image.toolbar`.
+ * Toolbar components are created using the editor {@link module:ui/componentfactory~ComponentFactory ComponentFactory}
+ * based on the {@link module:core/editor/editor~Editor#config configuration} stored under `image.toolbar`.
  *
- * The toolbar uses {@link module:ui/panel/balloon/contextualballoon~ContextualBalloon}.
+ * The toolbar uses the {@link module:ui/panel/balloon/contextualballoon~ContextualBalloon}.
  *
  * @extends module:core/plugin~Plugin
  */

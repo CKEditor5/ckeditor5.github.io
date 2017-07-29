@@ -73,11 +73,11 @@
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Converter which converts <code>&lt;img&gt;</code> <a href="module_engine_viewithelement-Element.html">view elements</a> that can be hoisted.
+                      <p class="collapsing-list__excerpt">A converter which converts <code>&lt;img&gt;</code> <a href="module_engine_viewithelement-Element.html">view elements</a> that can be hoisted.
                       </p>
                       <div class="collapsing-list__content">
 <p>If an <code>&lt;img&gt;</code> view element has not been converted, this converter checks if that element could be converted in any
-context &quot;above&quot;. If it could, the converter converts the <code>&lt;img&gt;</code> element even though it is not allowed in current
+context &quot;above&quot;. If it could, the converter converts the <code>&lt;img&gt;</code> element even though it is not allowed in the current
 context and marks it to be autohoisted. Then <a href="module_image_image_converters.html#hoistImageThroughElement">another converter</a>
 moves the converted element to the correct location.</p>
                       </div>
@@ -91,7 +91,7 @@ moves the converted element to the correct location.</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Creates image attribute converter for provided model conversion dispatchers.
+                      <p class="collapsing-list__excerpt">Creates the image attribute converter for provided model conversion dispatchers.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
@@ -103,8 +103,8 @@ moves the converted element to the correct location.</p>
                                   <dd>
                                   </dd>
                                   <dt><code> [ conversionCallback ] : function</code></dt>
-                                  <dd><p>Function that will be called each time given attribute conversion is performed.
-It will be called with two params: a view image element and type of the conversion: &apos;addAttribute<code>,</code>changeAttribute<code>or</code>removeAttribute`. This callback can be used to perform additional processing on view image element.</p>
+                                  <dd><p>The function that will be called each time given attribute conversion is performed.
+It will be called with two parameters: a view image element and the type of the conversion: &apos;addAttribute<code>,</code>changeAttribute<code>or</code>removeAttribute`. This callback can be used to perform additional processing on view image element.</p>
                                   </dd>
                                 </dl>
                       </div>
@@ -118,16 +118,16 @@ It will be called with two params: a view image element and type of the conversi
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Converter which hoists <code>image</code> <a href="module_engine_model_element-Element.html">model elements</a> to allowed context.
+                      <p class="collapsing-list__excerpt">A converter which hoists <code>&lt;image&gt;</code> <a href="module_engine_model_element-Element.html">model elements</a> to allowed context.
                       </p>
                       <div class="collapsing-list__content">
-<p>Looks through all children of converted <a href="module_engine_viewithelement-Element.html">view element</a> if it
-has been converted to model element. Breaks model element if <code>image</code> to-be-hoisted is found.</p>
+<p>It looks through all children of the converted <a href="module_engine_viewithelement-Element.html">view element</a> if it
+was converted to a model element. It breaks the model element if an <code>&lt;image&gt;</code> to-be-hoisted is found.</p>
 <pre class="prettyprint source"><code>&lt;div&gt;&lt;paragraph&gt;x&lt;image src=&quot;foo.jpg&quot;&gt;&lt;/image&gt;x&lt;/paragraph&gt;&lt;/div&gt; -&gt;
-&lt;div&gt;&lt;paragraph&gt;x&lt;/paragraph&gt;&lt;/div&gt;&lt;image src=&quot;foo.jpg&quot;&gt;&lt;/image&gt;&lt;div&gt;&lt;paragraph&gt;x&lt;/paragraph&gt;&lt;/div&gt;</code></pre><p>This works deeply, as shown in the example. This converter added for <code>paragraph</code> element will break <code>paragraph</code> element and
-pass <a href="module_engine_model_documentfragment-DocumentFragment.html">document fragment</a> in <code>data.output</code>. Then,
-<code>div</code> will be handled by this converter and will be once again broken to hoist <code>image</code> up to the root.</p>
-<p><strong>Note:</strong> This converter should be executed only after the view element has been already converted, meaning that
+&lt;div&gt;&lt;paragraph&gt;x&lt;/paragraph&gt;&lt;/div&gt;&lt;image src=&quot;foo.jpg&quot;&gt;&lt;/image&gt;&lt;div&gt;&lt;paragraph&gt;x&lt;/paragraph&gt;&lt;/div&gt;</code></pre><p>This works deeply, as shown in the example. This converter added for the <code>&lt;paragraph&gt;</code> element will break the <code>&lt;paragraph&gt;</code>
+ element and pass the <a href="module_engine_model_documentfragment-DocumentFragment.html">document fragment</a> in <code>data.output</code>.
+ Then, the <code>&lt;div&gt;</code> will be handled by this converter and will be once again broken to hoist the <code>&lt;image&gt;</code> up to the root.</p>
+<p><strong>Note:</strong> This converter should be executed only after the view element has already been converted, which means that
 <code>data.output</code> for that view element should be already generated when this converter is fired.</p>
                       </div>
                     </div>
@@ -140,11 +140,11 @@ pass <a href="module_engine_model_documentfragment-DocumentFragment.html">docume
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Returns function that converts image view representation:
+                      <p class="collapsing-list__excerpt">Returns a function that converts the image view representation:
                       </p>
                       <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>&lt;figure class=&quot;image&quot;&gt;&lt;img src=&quot;...&quot; alt=&quot;...&quot;&gt;&lt;/img&gt;&lt;/figure&gt;</code></pre><p>to model representation:</p>
-<pre class="prettyprint source"><code>&lt;image src=&quot;...&quot; alt=&quot;...&quot;&gt;&lt;/image&gt;</code></pre><p>The entire contents of <code>&lt;figure&gt;</code> except the first <code>&lt;img&gt;</code> is being converted as children
+<pre class="prettyprint source"><code>&lt;figure class=&quot;image&quot;&gt;&lt;img src=&quot;...&quot; alt=&quot;...&quot;&gt;&lt;/img&gt;&lt;/figure&gt;</code></pre><p>to the model representation:</p>
+<pre class="prettyprint source"><code>&lt;image src=&quot;...&quot; alt=&quot;...&quot;&gt;&lt;/image&gt;</code></pre><p>The entire content of the <code>&lt;figure&gt;</code> element except the first <code>&lt;img&gt;</code> is being converted as children
 of the <code>&lt;image&gt;</code> model element.</p>
                         <h4>Returns</h4>
                         <dl>
