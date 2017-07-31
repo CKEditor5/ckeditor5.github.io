@@ -58587,8 +58587,8 @@ class ImageTextAlternativeCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_
 	 *
 	 * @fires execute
 	 * @param {Object} options
-	 * @param {String} options.newValue New value of `alt` attribute to set.
-	 * @param {module:engine/model/batch~Batch} [options.batch] Batch to collect all the change steps. New batch will be
+	 * @param {String} options.newValue The new value of the `alt` attribute to set.
+	 * @param {module:engine/model/batch~Batch} [options.batch] A batch to collect all the change steps. A new batch will be
 	 * created if this option is not set.
 	 */
 	execute( options ) {
