@@ -36105,8 +36105,8 @@ function getBalloonPositionData( editor ) {
 
 
 /**
- * This class is to mark specific {@link module:engine/view/node~Node} as {@link module:link/linkelement~LinkElement}.
- * E.g. There could be a situation when different features will create nodes with the same names,
+ * This class is to mark a specific {@link module:engine/view/node~Node} as a {@link module:link/linkelement~LinkElement}.
+ * For example, there could be a situation when different features will create nodes with the same names,
  * and hence they must be identified somehow.
  *
  * @extends module:engine/view/attributelement~AttributeElement
@@ -36138,24 +36138,24 @@ class LinkElement extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine
 
 
 /**
- * Walk backward and forward from start position, node by node as long as they have the same `linkHref` attribute value and return
- * {@link module:engine/model/range~Range Range} with found link.
+ * Walks backward and forward from the start position, node by node, as long as they have the same `linkHref` attribute value and return
+ * a {@link module:engine/model/range~Range Range} with the found link.
  *
- * @param {module:engine/model/position~Position} position Start position.
- * @param {String} value `linkHref` attribute value.
- * @returns {module:engine/model/range~Range} Link range.
+ * @param {module:engine/model/position~Position} position The start position.
+ * @param {String} value The `linkHref` attribute value.
+ * @returns {module:engine/model/range~Range} The link range.
  */
 function findLinkRange( position, value ) {
 	return new __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_model_range__["a" /* default */]( _findBound( position, value, true ), _findBound( position, value, false ) );
 }
 
-// Walk forward or backward (depends on `lookBack` flag), node by node as long as they have the same `linkHref` attribute value
-// and return position just before or after (depends on `lookBack` flag) last matched node.
+// Walks forward or backward (depends on the `lookBack` flag), node by node, as long as they have the same `linkHref` attribute value
+// and returns a position just before or after (depends on the `lookBack` flag) the last matched node.
 //
-// @param {module:engine/model/position~Position} position Start position.
-// @param {String} value `linkHref` attribute value.
-// @param {Boolean} lookBack Whether walk direction is forward `false` or backward `true`.
-// @returns {module:engine/model/position~Position} Position just before last matched node.
+// @param {module:engine/model/position~Position} position The start position.
+// @param {String} value The `linkHref` attribute value.
+// @param {Boolean} lookBack Whether the walk direction is forward (`false`) or backward (`true`).
+// @returns {module:engine/model/position~Position} The position just before the last matched node.
 function _findBound( position, value, lookBack ) {
 	// Get node before or after position (depends on `lookBack` flag).
 	// When position is inside text node then start searching from text node.
@@ -60412,7 +60412,7 @@ class Link extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plug
 		this.editor.editing.view.addObserver( __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_observer_clickobserver__["a" /* default */] );
 
 		/**
-		 * The form view displayed inside of the balloon.
+		 * The form view displayed inside the balloon.
 		 *
 		 * @member {module:link/ui/linkformview~LinkFormView}
 		 */
@@ -60438,7 +60438,7 @@ class Link extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plug
 	 * Creates the {@link module:link/ui/linkformview~LinkFormView} instance.
 	 *
 	 * @private
-	 * @returns {module:link/ui/linkformview~LinkFormView} Link form instance.
+	 * @returns {module:link/ui/linkformview~LinkFormView} The link form instance.
 	 */
 	_createForm() {
 		const editor = this.editor;
@@ -60478,8 +60478,8 @@ class Link extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plug
 	}
 
 	/**
-	 * Creates a toolbar link button. Clicking this button will show
-	 * {@link #_balloon} attached to the selection.
+	 * Creates a toolbar Link button. Clicking this button will show
+	 * a {@link #_balloon} attached to the selection.
 	 *
 	 * @private
 	 */
@@ -60488,7 +60488,7 @@ class Link extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plug
 		const linkCommand = editor.commands.get( 'link' );
 		const t = editor.t;
 
-		// Handle `Ctrl+K` keystroke and show the panel.
+		// Handle the `Ctrl+K` keystroke and show the panel.
 		editor.keystrokes.set( linkKeystroke, () => {
 			if ( linkCommand.isEnabled ) {
 				this._showPanel( true );
@@ -60515,7 +60515,7 @@ class Link extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plug
 	}
 
 	/**
-	 * Creates a toolbar unlink button. Clicking this button will unlink
+	 * Creates a toolbar Unlink button. Clicking this button will unlink
 	 * the selected link.
 	 *
 	 * @private
@@ -60544,7 +60544,7 @@ class Link extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plug
 	}
 
 	/**
-	 * Attaches actions which control whether the balloon panel containing the
+	 * Attaches actions that control whether the balloon panel containing the
 	 * {@link #formView} is visible or not.
 	 *
 	 * @private
@@ -60590,10 +60590,9 @@ class Link extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plug
 
 	/**
 	 * Adds the {@link #formView} to the {@link #_balloon}.
-	 * When view is already added then try to focus it `focusInput` parameter is set as true.
 	 *
 	 * @protected
-	 * @param {Boolean} [focusInput=false] When `true`, link form will be focused on panel show.
+	 * @param {Boolean} [focusInput=false] When `true`, the link form will be focused on panel show.
 	 */
 	_showPanel( focusInput ) {
 		const editor = this.editor;
@@ -60685,10 +60684,10 @@ class Link extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plug
 	}
 
 	/**
-	 * Returns positioning options for the {@link #_balloon}. They control the way balloon is attached
+	 * Returns positioning options for the {@link #_balloon}. They control the way the balloon is attached
 	 * to the target element or selection.
 	 *
-	 * If the selection is collapsed and inside a link element, then the panel will be attached to the
+	 * If the selection is collapsed and inside a link element, the panel will be attached to the
 	 * entire link element. Otherwise, it will be attached to the selection.
 	 *
 	 * @private
@@ -60712,10 +60711,10 @@ class Link extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plug
 
 	/**
 	 * Returns the {@link module:link/linkelement~LinkElement} under
-	 * {@link module:engine/view/document~Document editing view's} selection or `null`
-	 * if there's none.
+	 * the {@link module:engine/view/document~Document editing view's} selection or `null`
+	 * if there is none.
 	 *
-	 * **Note**: For non–collapsed selection the `LinkElement` is only returned when **fully**
+	 * **Note**: For a non–collapsed selection the `LinkElement` is only returned when **fully**
 	 * selected and the **only** element within the selection boundaries.
 	 *
 	 * @private
@@ -60922,7 +60921,7 @@ class LinkEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_sr
  */
 class LinkCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_command__["a" /* default */] {
 	/**
-	 * The value of `'linkHref'` attribute if the start of a selection is located in a node with this attribute.
+	 * The value of the `'linkHref'` attribute if the start of the selection is located in a node with this attribute.
 	 *
 	 * @observable
 	 * @readonly
@@ -60942,15 +60941,15 @@ class LinkCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_s
 	/**
 	 * Executes the command.
 	 *
-	 * When selection is non-collapsed, then `linkHref` attribute will be applied to nodes inside selection, but only to
-	 * those nodes where `linkHref` attribute is allowed (disallowed nodes will be omitted).
+	 * When the selection is non-collapsed, the `linkHref` attribute will be applied to nodes inside the selection, but only to
+	 * those nodes where the `linkHref` attribute is allowed (disallowed nodes will be omitted).
 	 *
-	 * When selection is collapsed and is not inside text with `linkHref` attribute, then
-	 * new {@link module:engine/model/text~Text Text node} with `linkHref` attribute will be inserted in place of caret, but only if such
-	 * an element is allowed in this place. `_data` of the inserted text will equal `href` parameter. Selection will be updated to
-	 * wrap just inserted text node.
+	 * When the selection is collapsed and is not inside the text with the `linkHref` attribute, the
+	 * new {@link module:engine/model/text~Text Text node} with the `linkHref` attribute will be inserted in place of caret, but
+	 * only if such element is allowed in this place. The `_data` of the inserted text will equal the `href` parameter.
+	 * The selection will be updated to wrap the just inserted text node.
 	 *
-	 * When selection is collapsed and inside text with `linkHref` attribute, the attribute value will be updated.
+	 * When the selection is collapsed and inside the text with the `linkHref` attribute, the attribute value will be updated.
 	 *
 	 * @fires execute
 	 * @param {String} href Link destination.
@@ -61037,8 +61036,8 @@ class UnlinkCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core
 	/**
 	 * Executes the command.
 	 *
-	 * When the selection is collapsed, removes `linkHref` attribute from each node with the same `linkHref` attribute value.
-	 * When the selection is non-collapsed, removes `linkHref` from each node in selected ranges.
+	 * When the selection is collapsed, removes the `linkHref` attribute from each node with the same `linkHref` attribute value.
+	 * When the selection is non-collapsed, removes the `linkHref` attribute from each node in selected ranges.
 	 *
 	 * @fires execute
 	 */
@@ -61127,7 +61126,7 @@ class LinkFormView extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_sr
 		this.focusTracker = new __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_focustracker__["a" /* default */]();
 
 		/**
-		 * Instance of the {@link module:utils/keystrokehandler~KeystrokeHandler}.
+		 * An instance of the {@link module:utils/keystrokehandler~KeystrokeHandler}.
 		 *
 		 * @readonly
 		 * @member {module:utils/keystrokehandler~KeystrokeHandler}
@@ -61135,14 +61134,14 @@ class LinkFormView extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_sr
 		this.keystrokes = new __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_keystrokehandler__["a" /* default */]();
 
 		/**
-		 * The url input view.
+		 * The URL input view.
 		 *
 		 * @member {module:ui/labeledinput/labeledinputview~LabeledInputView}
 		 */
 		this.urlInputView = this._createUrlInput();
 
 		/**
-		 * The save button view.
+		 * The Save button view.
 		 *
 		 * @member {module:ui/button/buttonview~ButtonView}
 		 */
@@ -61150,14 +61149,14 @@ class LinkFormView extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_sr
 		this.saveButtonView.type = 'submit';
 
 		/**
-		 * The cancel button view.
+		 * The Cancel button view.
 		 *
 		 * @member {module:ui/button/buttonview~ButtonView}
 		 */
 		this.cancelButtonView = this._createButton( t( 'Cancel' ), 'cancel' );
 
 		/**
-		 * The unlink button view.
+		 * The Unlink button view.
 		 *
 		 * @member {module:ui/button/buttonview~ButtonView}
 		 */
@@ -61184,10 +61183,10 @@ class LinkFormView extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_sr
 			focusTracker: this.focusTracker,
 			keystrokeHandler: this.keystrokes,
 			actions: {
-				// Navigate form fields backwards using the shift + tab keystroke.
+				// Navigate form fields backwards using the Shift + Tab keystroke.
 				focusPrevious: 'shift + tab',
 
-				// Navigate form fields forwards using the tab key.
+				// Navigate form fields forwards using the Tab key.
 				focusNext: 'tab'
 			}
 		} );
@@ -61270,7 +61269,7 @@ class LinkFormView extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_sr
 	}
 
 	/**
-	 * Create labeled input view.
+	 * Creates a labeled input view.
 	 *
 	 * @private
 	 * @returns {module:ui/labeledinput/labeledinputview~LabeledInputView} Labeled input view instance.
@@ -61287,12 +61286,12 @@ class LinkFormView extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_sr
 	}
 
 	/**
-	 * Creates button View.
+	 * Creates a button view.
 	 *
 	 * @private
-	 * @param {String} label Button label
-	 * @param {String} [eventName] Event name which ButtonView#execute event will be delegated to.
-	 * @returns {module:ui/button/buttonview~ButtonView} Button view instance.
+	 * @param {String} label The button label
+	 * @param {String} [eventName] An event name that the `ButtonView#execute` event will be delegated to.
+	 * @returns {module:ui/button/buttonview~ButtonView} The button view instance.
 	 */
 	_createButton( label, eventName ) {
 		const button = new __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_button_buttonview__["a" /* default */]( this.locale );
@@ -61311,8 +61310,8 @@ class LinkFormView extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_sr
 
 
 /**
- * Fired when the form view is submitted (when one of the child triggered submit event).
- * E.g. click on {@link #saveButtonView}.
+ * Fired when the form view is submitted (when one of the children triggered the submit event),
+ * e.g. click on {@link #saveButtonView}.
  *
  * @event submit
  */
@@ -61414,8 +61413,8 @@ exports.push([module.i, ".ck-link-form{padding:1.2em;overflow:hidden}.ck-link-fo
 
 
 /**
- * The lists feature. It introduces the `numberedList` and `bulletedList` buttons which
- * allows to convert paragraphs to/from list items and indent/outdent them.
+ * The list feature. It introduces the `numberedList` and `bulletedList` buttons that
+ * allow to convert paragraphs to and from list items and indent or outdent them.
  *
  * See also {@link module:list/listengine~ListEngine}.
  *
@@ -61445,8 +61444,8 @@ class List extends __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_core_src_plug
 		this._addButton( 'numberedList', t( 'Numbered List' ), __WEBPACK_IMPORTED_MODULE_1__theme_icons_numberedlist_svg___default.a );
 		this._addButton( 'bulletedList', t( 'Bulleted List' ), __WEBPACK_IMPORTED_MODULE_2__theme_icons_bulletedlist_svg___default.a );
 
-		// Overwrite default enter key behavior.
-		// If enter key is pressed with selection collapsed in empty list item, outdent it instead of breaking it.
+		// Overwrite default Enter key behavior.
+		// If Enter key is pressed with selection collapsed in empty list item, outdent it instead of breaking it.
 		this.listenTo( this.editor.editing.view, 'enter', ( evt, data ) => {
 			const doc = this.editor.document;
 			const positionParent = doc.selection.getLastPosition().parent;
@@ -61459,9 +61458,9 @@ class List extends __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_core_src_plug
 			}
 		} );
 
-		// Add tab key support.
-		// When in list item, pressing tab should indent list item, if possible.
-		// Pressing Shift+Tab shout outdent list item.
+		// Add Tab key support.
+		// When in list item, pressing Tab should indent list item, if possible.
+		// Pressing Shift+Tab should outdent list item.
 		this.listenTo( this.editor.editing.view, 'keydown', ( evt, data ) => {
 			let commandName;
 
@@ -61488,9 +61487,9 @@ class List extends __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_core_src_plug
 	 * Helper method for initializing a button and linking it with an appropriate command.
 	 *
 	 * @private
-	 * @param {String} commandName Name of the command.
-	 * @param {Object} label Button label.
-	 * @param {String} icon Source of the icon.
+	 * @param {String} commandName The name of the command.
+	 * @param {Object} label The button label.
+	 * @param {String} icon The source of the icon.
 	 */
 	_addButton( commandName, label, icon ) {
 		const editor = this.editor;
@@ -61547,7 +61546,7 @@ class List extends __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_core_src_plug
 
 
 /**
- * The engine of the lists feature. It handles creating, editing and removing lists and list items.
+ * The engine of the list feature. It handles creating, editing and removing lists and list items.
  * It registers the `numberedList`, `bulletedList`, `indentList` and `outdentList` commands.
  *
  * @extends module:core/plugin~Plugin
@@ -61687,14 +61686,14 @@ class ListCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_s
 	/**
 	 * Creates an instance of the command.
 	 *
-	 * @param {module:core/editor/editor~Editor} editor Editor instance.
+	 * @param {module:core/editor/editor~Editor} editor The editor instance.
 	 * @param {'numbered'|'bulleted'} type List type that will be handled by this command.
 	 */
 	constructor( editor, type ) {
 		super( editor );
 
 		/**
-		 * The type of list created by the command.
+		 * The type of the list created by the command.
 		 *
 		 * @readonly
 		 * @member {'numbered'|'bulleted'}
@@ -61702,7 +61701,7 @@ class ListCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_s
 		this.type = type == 'bulleted' ? 'bulleted' : 'numbered';
 
 		/**
-		 * Flag indicating whether the command is active, which means that selection starts in a list of the same type.
+		 * A flag indicating whether the command is active, which means that the selection starts in a list of the same type.
 		 *
 		 * @observable
 		 * @readonly
@@ -61719,12 +61718,12 @@ class ListCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_s
 	}
 
 	/**
-	 * Executes command.
+	 * Executes the command.
 	 *
 	 * @protected
-	 * @param {Object} [options] Options for executed command.
-	 * @param {module:engine/model/batch~Batch} [options.batch] Batch to collect all the change steps.
-	 * New batch will be created if this option is not set.
+	 * @param {Object} [options] Options for the executed command.
+	 * @param {module:engine/model/batch~Batch} [options.batch] A batch to collect all the change steps.
+	 * A new batch will be created if this option is not set.
 	 */
 	execute( options = {} ) {
 		const document = this.editor.document;
@@ -62016,15 +62015,15 @@ class IndentCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core
 	/**
 	 * Creates an instance of the command.
 	 *
-	 * @param {module:core/editor/editor~Editor} editor Editor instance.
-	 * @param {'forward'|'backward'} indentDirection Direction of indent. If it is equal to `backward`, the command
+	 * @param {module:core/editor/editor~Editor} editor The editor instance.
+	 * @param {'forward'|'backward'} indentDirection The direction of indent. If it is equal to `backward`, the command
 	 * will outdent a list item.
 	 */
 	constructor( editor, indentDirection ) {
 		super( editor );
 
 		/**
-		 * By how much the command will change list item's indent attribute.
+		 * Determines by how much the command will change the list item's indent attribute.
 		 *
 		 * @readonly
 		 * @private
@@ -62041,7 +62040,7 @@ class IndentCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core
 	}
 
 	/**
-	 * Indents or outdents (depends on {@link #constructor}'s `indentDirection` parameter) selected list items.
+	 * Indents or outdents (depends on the {@link #constructor}'s `indentDirection` parameter) selected list items.
 	 *
 	 * @fires execute
 	 */
@@ -62239,13 +62238,13 @@ function _seekListItem( item, seekForward ) {
 
 
 /**
- * Model to view converter for `listItem` model element insertion.
+ * A model-to-view converter for `listItem` model element insertion.
  *
- * It creates `<ul><li></li><ul>` (or `<ol>`) view structure out of `listItem` model element, inserts it at correct
- * position, and merges the list with surrounding lists (if able).
+ * It creates a `<ul><li></li><ul>` (or `<ol>`) view structure out of a `listItem` model element, inserts it at the correct
+ * position, and merges the list with surrounding lists (if available).
  *
  * @see module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher#event:insert
- * @param {module:utils/eventinfo~EventInfo} evt Object containing information about the fired event.
+ * @param {module:utils/eventinfo~EventInfo} evt An object containing information about the fired event.
  * @param {Object} data Additional information about the change.
  * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume.
  * @param {Object} conversionApi Conversion interface.
@@ -62272,13 +62271,13 @@ function modelViewInsertion( evt, data, consumable, conversionApi ) {
 }
 
 /**
- * Model to view converter for `type` attribute change on `listItem` model element.
+ * A model-to-view converter for `type` attribute change on `listItem` model element.
  *
- * This change means that `<li>`s parent changes from `<ul>` to `<ol>` (or vice versa). This is accomplished by breaking
- * view elements, changing their name and merging them.
+ * This change means that `<li>` elements parent changes from `<ul>` to `<ol>` (or vice versa). This is accomplished
+ * by breaking view elements, changing their name and merging them.
  *
  * @see module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher#event:changeAttribute
- * @param {module:utils/eventinfo~EventInfo} evt Object containing information about the fired event.
+ * @param {module:utils/eventinfo~EventInfo} evt An object containing information about the fired event.
  * @param {Object} data Additional information about the change.
  * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume.
  * @param {Object} conversionApi Conversion interface.
@@ -62307,10 +62306,10 @@ function modelViewChangeType( evt, data, consumable, conversionApi ) {
 }
 
 /**
- * Model to view converter for `listItem` model element remove.
+ * A model-to-view converter for `listItem` model element removal.
  *
  * @see module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher#event:remove
- * @param {module:utils/eventinfo~EventInfo} evt Object containing information about the fired event.
+ * @param {module:utils/eventinfo~EventInfo} evt An object containing information about the fired event.
  * @param {Object} data Additional information about the change.
  * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume.
  * @param {Object} conversionApi Conversion interface.
@@ -62349,10 +62348,10 @@ function modelViewRemove( evt, data, consumable, conversionApi ) {
 }
 
 /**
- * Model to view converter for `indent` attribute change on `listItem` model element.
+ * A model-to-view converter for `indent` attribute change on `listItem` model element.
  *
  * @see module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher#event:changeAttribute
- * @param {module:utils/eventinfo~EventInfo} evt Object containing information about the fired event.
+ * @param {module:utils/eventinfo~EventInfo} evt An object containing information about the fired event.
  * @param {Object} data Additional information about the change.
  * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume.
  * @param {Object} conversionApi Conversion interface.
@@ -62394,8 +62393,8 @@ function modelViewChangeIndent( evt, data, consumable, conversionApi ) {
 }
 
 /**
- * A special model to view converter introduced by {@link module:list/list~List List feature}. This converter is fired for
- * insert change of every model item, and should be fired before actual converter. The converter checks whether inserted
+ * A special model-to-view converter introduced by the {@link module:list/list~List list feature}. This converter is fired for
+ * insert change of every model item, and should be fired before the actual converter. The converter checks whether the inserted
  * model item is a non-`listItem` element. If it is, and it is inserted inside a view list, the converter breaks the
  * list so the model element is inserted to the view parent element corresponding to its model parent element.
  *
@@ -62413,7 +62412,7 @@ function modelViewChangeIndent( evt, data, consumable, conversionApi ) {
  *		<listItem>bar</listItem>         <ul><li>foo</li><p>xxx</p><li>bar</li></ul>
  *
  * @see module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher#event:insert
- * @param {module:utils/eventinfo~EventInfo} evt Object containing information about the fired event.
+ * @param {module:utils/eventinfo~EventInfo} evt An object containing information about the fired event.
  * @param {Object} data Additional information about the change.
  * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume.
  * @param {Object} conversionApi Conversion interface.
@@ -62517,7 +62516,7 @@ function modelViewSplitOnInsert( evt, data, consumable, conversionApi ) {
 }
 
 /**
- * A special model to view converter introduced by {@link module:list/list~List List feature}. This converter takes care of
+ * A special model-to-view converter introduced by the {@link module:list/list~List list feature}. This converter takes care of
  * merging view lists after something is removed or moved from near them.
  *
  * Example:
@@ -62534,7 +62533,7 @@ function modelViewSplitOnInsert( evt, data, consumable, conversionApi ) {
  *		                                 </ul>
  *
  * @see module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher#event:remove
- * @param {module:utils/eventinfo~EventInfo} evt Object containing information about the fired event.
+ * @param {module:utils/eventinfo~EventInfo} evt An object containing information about the fired event.
  * @param {Object} data Additional information about the change.
  * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume.
  * @param {Object} conversionApi Conversion interface.
@@ -62553,17 +62552,17 @@ function modelViewMergeAfter( evt, data, consumable, conversionApi ) {
 }
 
 /**
- * View to model converter that converts view `<li>` elements into `listItem` model elements.
+ * A view-to-model converter that converts `<li>` view elements into `listItem` model elements.
  *
- * To set correct values of `type` and `indent` attribute the converter:
+ * To set correct values of the `type` and `indent` attributes the converter:
  * * checks `<li>`'s parent,
- * * passes `data.indent` value when `<li>`'s sub-items are converted.
+ * * passes the `data.indent` value when `<li>`'s sub-items are converted.
  *
  * @see module:engine/conversion/viewconversiondispatcher~ViewConversionDispatcher#event:element
- * @param {module:utils/eventinfo~EventInfo} evt Object containing information about the fired event.
- * @param {Object} data Object containing conversion input and a placeholder for conversion output and possibly other values.
+ * @param {module:utils/eventinfo~EventInfo} evt An object containing information about the fired event.
+ * @param {Object} data An object containing conversion input and a placeholder for conversion output and possibly other values.
  * @param {module:engine/conversion/viewconsumable~ViewConsumable} consumable Values to consume.
- * @param {Object} conversionApi Conversion interface to be used by callback.
+ * @param {Object} conversionApi Conversion interface to be used by the callback.
  */
 function viewModelConverter( evt, data, consumable, conversionApi ) {
 	if ( consumable.consume( data.input, { name: true } ) ) {
@@ -62613,13 +62612,13 @@ function viewModelConverter( evt, data, consumable, conversionApi ) {
 }
 
 /**
- * View to model converter for `<ul>` and `<ol>` view elements, that cleans the input view out of garbage.
- * This is mostly to clean white spaces from between `<li>` view elements inside the view list element, however also
+ * A view-to-model converter for `<ul>` and `<ol>` view elements that cleans the input view of garbage.
+ * This is mostly to clean whitespaces from between `<li>` view elements inside the view list element, however, also
  * incorrect data can be cleared if the view was incorrect.
  *
  * @see module:engine/conversion/viewconversiondispatcher~ViewConversionDispatcher#event:element
- * @param {module:utils/eventinfo~EventInfo} evt Object containing information about the fired event.
- * @param {Object} data Object containing conversion input and a placeholder for conversion output and possibly other values.
+ * @param {module:utils/eventinfo~EventInfo} evt An object containing information about the fired event.
+ * @param {Object} data An object containing conversion input and a placeholder for conversion output and possibly other values.
  * @param {module:engine/conversion/viewconsumable~ViewConsumable} consumable Values to consume.
  */
 function cleanList( evt, data, consumable ) {
@@ -62636,11 +62635,11 @@ function cleanList( evt, data, consumable ) {
 }
 
 /**
- * View to model converter for `<li>`, that cleans white space formatting from the input view.
+ * A view-to-model converter for `<li>` elements that cleans whitespace formatting from the input view.
  *
  * @see module:engine/conversion/viewconversiondispatcher~ViewConversionDispatcher#event:element
- * @param {module:utils/eventinfo~EventInfo} evt Object containing information about the fired event.
- * @param {Object} data Object containing conversion input and a placeholder for conversion output and possibly other values.
+ * @param {module:utils/eventinfo~EventInfo} evt An object containing information about the fired event.
+ * @param {Object} data An object containing conversion input and a placeholder for conversion output and possibly other values.
  * @param {module:engine/conversion/viewconsumable~ViewConsumable} consumable Values to consume.
  */
 function cleanListItem( evt, data, consumable ) {
@@ -62680,13 +62679,13 @@ function cleanListItem( evt, data, consumable ) {
 }
 
 /**
- * Callback for model position to view position mapping for {@link module:engine/conversion/mapper~Mapper}. The callback fixes positions
- * between `listItem` elements, that would be incorrectly mapped because of how list items are represented in model
+ * The callback for model position to view position mapping for {@link module:engine/conversion/mapper~Mapper}. The callback fixes
+ * positions between `listItem` elements that would be incorrectly mapped because of how list items are represented in model
  * and view.
  *
  * @see module:engine/conversion/mapper~Mapper#event:modelToViewPosition
- * @param {module:utils/eventinfo~EventInfo} evt Object containing information about the fired event.
- * @param {Object} data Object containing additional data and placeholder for mapping result.
+ * @param {module:utils/eventinfo~EventInfo} evt An object containing information about the fired event.
+ * @param {Object} data An object containing additional data and placeholder for mapping result.
  */
 function modelToViewPosition( evt, data ) {
 	const modelItem = data.modelPosition.nodeBefore;
@@ -62713,13 +62712,13 @@ function modelToViewPosition( evt, data ) {
 }
 
 /**
- * Callback for view position to model position mapping for {@link module:engine/conversion/mapper~Mapper}. The callback fixes positions
- * between `<li>` elements, that would be incorrectly mapped because of how list items are represented in model
+ * The callback for view position to model position mapping for {@link module:engine/conversion/mapper~Mapper}. The callback fixes
+ * positions between `<li>` elements that would be incorrectly mapped because of how list items are represented in model
  * and view.
  *
  * @see module:engine/conversion/mapper~Mapper#event:viewToModelPosition
- * @param {module:utils/eventinfo~EventInfo} evt Object containing information about the fired event.
- * @param {Object} data Object containing additional data and placeholder for mapping result.
+ * @param {module:utils/eventinfo~EventInfo} evt An object containing information about the fired event.
+ * @param {Object} data An object containing additional data and placeholder for mapping result.
  */
 function viewToModelPosition( evt, data ) {
 	const viewPos = data.viewPosition;
@@ -62770,7 +62769,7 @@ function viewToModelPosition( evt, data ) {
 }
 
 /**
- * Post fixer that reacts to changes on document and fixed incorrect model states.
+ * Post-fixer that reacts to changes on document and fixes incorrect model states.
  *
  * Example:
  *
@@ -62781,10 +62780,10 @@ function viewToModelPosition( evt, data ) {
  * Should become:
  *
  *		<listItem type="bulleted" indent=0>Item 1</listItem>
- *		<listItem type="bulleted" indent=1>Item 3</listItem>   <--- note that indent got postfixed.
+ *		<listItem type="bulleted" indent=1>Item 3</listItem>   <--- note that indent got post-fixed.
  *
- * @param {module:engine/model/document~Document} document Document to observe.
- * @returns {Function} Callback to be attached to {@link module:engine/model/document~Document#event:change document change event}.
+ * @param {module:engine/model/document~Document} document The document to observe.
+ * @returns {Function} A callback to be attached to the {@link module:engine/model/document~Document#event:change document change event}.
  */
 function modelChangePostFixer( document ) {
 	return ( evt, type, changes, batch ) => {
@@ -62918,9 +62917,9 @@ function _fixItemsType( changePosition, fixPrevious, document, batch ) {
 }
 
 /**
- * Fixer for pasted content that includes list items.
+ * A fixer for pasted content that includes list items.
  *
- * Fixes indent of pasted list items so the pasted items match correctly to the context they are pasted into.
+ * It fixes indentation of pasted list items so the pasted items match correctly to the context they are pasted into.
  *
  * Example:
  *
@@ -62937,7 +62936,7 @@ function _fixItemsType( changePosition, fixPrevious, document, batch ) {
  *		<listItem type="bulleted" indent=2>Y/listItem>
  *		<listItem type="bulleted" indent=2>C</listItem>
  *
- * @param {module:utils/eventinfo~EventInfo} evt Event info object.
+ * @param {module:utils/eventinfo~EventInfo} evt An object containing information about the fired event.
  * @param {Array} args Arguments of {@link module:engine/controller/datacontroller~DataController#insertContent}.
  */
 function modelIndentPasteFixer( evt, [ content, selection ] ) {
@@ -63281,7 +63280,7 @@ function positionAfterUiElements( viewPosition ) {
 
 
 /**
- * View element class representing list item (`<li>`). It extends {@link module:engine/view/containerelement~ContainerElement}
+ * View element class representing a list item (`<li>`). It extends {@link module:engine/view/containerelement~ContainerElement}
  * and overwrites {@link module:list/viewlistitemelement~ViewListItemElement#getFillerOffset evaluating whether filler offset}
  * is needed.
  *
@@ -63289,11 +63288,11 @@ function positionAfterUiElements( viewPosition ) {
  */
 class ViewListItemElement extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_view_containerelement__["a" /* default */] {
 	/**
-	 * Creates `<li>` view item.
+	 * Creates a `<li>` view item.
 	 *
-	 * @param {Object|Iterable} [attrs] Collection of attributes.
-	 * @param {module:engine/view/node~Node|Iterable.<module:engine/view/node~Node>} [children] List of nodes to be inserted
-	 * into created element.
+	 * @param {Object|Iterable} [attrs] A collection of attributes.
+	 * @param {module:engine/view/node~Node|Iterable.<module:engine/view/node~Node>} [children] The list of nodes to be inserted
+	 * into the created element.
 	 */
 	constructor( attrs, children ) {
 		super( 'li', attrs, children );

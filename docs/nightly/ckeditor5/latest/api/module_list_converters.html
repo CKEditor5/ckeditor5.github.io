@@ -73,18 +73,18 @@
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">View to model converter for <code>&lt;ul&gt;</code> and <code>&lt;ol&gt;</code> view elements, that cleans the input view out of garbage.
-This is mostly to clean white spaces from between <code>&lt;li&gt;</code> view elements inside the view list element, however also
+                      <p class="collapsing-list__excerpt">A view-to-model converter for <code>&lt;ul&gt;</code> and <code>&lt;ol&gt;</code> view elements that cleans the input view of garbage.
+This is mostly to clean whitespaces from between <code>&lt;li&gt;</code> view elements inside the view list element, however, also
 incorrect data can be cleared if the view was incorrect.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> evt : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                  <dd><p>Object containing information about the fired event.</p>
+                                  <dd><p>An object containing information about the fired event.</p>
                                   </dd>
                                   <dt><code> data : Object</code></dt>
-                                  <dd><p>Object containing conversion input and a placeholder for conversion output and possibly other values.</p>
+                                  <dd><p>An object containing conversion input and a placeholder for conversion output and possibly other values.</p>
                                   </dd>
                                   <dt><code> consumable : <span><a class="collapsing-list__type" href="module_engine_conversion_viewconsumable-ViewConsumable.html">ViewConsumable</a></span></code></dt>
                                   <dd><p>Values to consume.</p>
@@ -101,16 +101,16 @@ incorrect data can be cleared if the view was incorrect.
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">View to model converter for <code>&lt;li&gt;</code>, that cleans white space formatting from the input view.
+                      <p class="collapsing-list__excerpt">A view-to-model converter for <code>&lt;li&gt;</code> elements that cleans whitespace formatting from the input view.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> evt : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                  <dd><p>Object containing information about the fired event.</p>
+                                  <dd><p>An object containing information about the fired event.</p>
                                   </dd>
                                   <dt><code> data : Object</code></dt>
-                                  <dd><p>Object containing conversion input and a placeholder for conversion output and possibly other values.</p>
+                                  <dd><p>An object containing conversion input and a placeholder for conversion output and possibly other values.</p>
                                   </dd>
                                   <dt><code> consumable : <span><a class="collapsing-list__type" href="module_engine_conversion_viewconsumable-ViewConsumable.html">ViewConsumable</a></span></code></dt>
                                   <dd><p>Values to consume.</p>
@@ -127,7 +127,7 @@ incorrect data can be cleared if the view was incorrect.
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Post fixer that reacts to changes on document and fixed incorrect model states.
+                      <p class="collapsing-list__excerpt">Post-fixer that reacts to changes on document and fixes incorrect model states.
                       </p>
                       <div class="collapsing-list__content">
 <p>Example:</p>
@@ -135,17 +135,17 @@ incorrect data can be cleared if the view was incorrect.
 &lt;listItem type=&quot;bulleted&quot; indent=1&gt;Item 2&lt;/listItem&gt;   &lt;--- this is removed.
 &lt;listItem type=&quot;bulleted&quot; indent=2&gt;Item 3&lt;/listItem&gt;</code></pre><p>Should become:</p>
 <pre class="prettyprint source"><code>&lt;listItem type=&quot;bulleted&quot; indent=0&gt;Item 1&lt;/listItem&gt;
-&lt;listItem type=&quot;bulleted&quot; indent=1&gt;Item 3&lt;/listItem&gt;   &lt;--- note that indent got postfixed.</code></pre>
+&lt;listItem type=&quot;bulleted&quot; indent=1&gt;Item 3&lt;/listItem&gt;   &lt;--- note that indent got post-fixed.</code></pre>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> document : <span><a class="collapsing-list__type" href="module_engine_model_document-Document.html">Document</a></span></code></dt>
-                                  <dd><p>Document to observe.</p>
+                                  <dd><p>The document to observe.</p>
                                   </dd>
                                 </dl>
                         <h4>Returns</h4>
                         <dl>
                                   <dt><code>function</code></dt>
-                                  <dd><p>Callback to be attached to <a href="module_engine_model_document-Document.html#event:change">document change event</a>.</p>
+                                  <dd><p>A callback to be attached to the <a href="module_engine_model_document-Document.html#event:change">document change event</a>.</p>
                                   </dd>
                         </dl>
                       </div>
@@ -159,10 +159,10 @@ incorrect data can be cleared if the view was incorrect.
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Fixer for pasted content that includes list items.
+                      <p class="collapsing-list__excerpt">A fixer for pasted content that includes list items.
                       </p>
                       <div class="collapsing-list__content">
-<p>Fixes indent of pasted list items so the pasted items match correctly to the context they are pasted into.</p>
+<p>It fixes indentation of pasted list items so the pasted items match correctly to the context they are pasted into.</p>
 <p>Example:</p>
 <pre class="prettyprint source"><code>&lt;listItem type=&quot;bulleted&quot; indent=0&gt;A&lt;/listItem&gt;
 &lt;listItem type=&quot;bulleted&quot; indent=1&gt;B^&lt;/listItem&gt;
@@ -176,7 +176,7 @@ incorrect data can be cleared if the view was incorrect.
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> evt : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                  <dd><p>Event info object.</p>
+                                  <dd><p>An object containing information about the fired event.</p>
                                   </dd>
                                   <dt><code> args : Array</code></dt>
                                   <dd><p>Arguments of <a href="module_engine_controller_datacontroller-DataController.html#insertContent"><code>insertContent</code></a>.</p>
@@ -193,18 +193,18 @@ incorrect data can be cleared if the view was incorrect.
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Callback for model position to view position mapping for <a href="module_engine_conversion_mapper-Mapper.html"><code>Mapper</code></a>. The callback fixes positions
-between <code>listItem</code> elements, that would be incorrectly mapped because of how list items are represented in model
+                      <p class="collapsing-list__excerpt">The callback for model position to view position mapping for <a href="module_engine_conversion_mapper-Mapper.html"><code>Mapper</code></a>. The callback fixes
+positions between <code>listItem</code> elements that would be incorrectly mapped because of how list items are represented in model
 and view.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> evt : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                  <dd><p>Object containing information about the fired event.</p>
+                                  <dd><p>An object containing information about the fired event.</p>
                                   </dd>
                                   <dt><code> data : Object</code></dt>
-                                  <dd><p>Object containing additional data and placeholder for mapping result.</p>
+                                  <dd><p>An object containing additional data and placeholder for mapping result.</p>
                                   </dd>
                                 </dl>
                       </div>
@@ -218,13 +218,13 @@ and view.
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Model to view converter for <code>indent</code> attribute change on <code>listItem</code> model element.
+                      <p class="collapsing-list__excerpt">A model-to-view converter for <code>indent</code> attribute change on <code>listItem</code> model element.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> evt : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                  <dd><p>Object containing information about the fired event.</p>
+                                  <dd><p>An object containing information about the fired event.</p>
                                   </dd>
                                   <dt><code> data : Object</code></dt>
                                   <dd><p>Additional information about the change.</p>
@@ -247,15 +247,15 @@ and view.
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Model to view converter for <code>type</code> attribute change on <code>listItem</code> model element.
+                      <p class="collapsing-list__excerpt">A model-to-view converter for <code>type</code> attribute change on <code>listItem</code> model element.
                       </p>
                       <div class="collapsing-list__content">
-<p>This change means that <code>&lt;li&gt;</code>s parent changes from <code>&lt;ul&gt;</code> to <code>&lt;ol&gt;</code> (or vice versa). This is accomplished by breaking
-view elements, changing their name and merging them.</p>
+<p>This change means that <code>&lt;li&gt;</code> elements parent changes from <code>&lt;ul&gt;</code> to <code>&lt;ol&gt;</code> (or vice versa). This is accomplished
+by breaking view elements, changing their name and merging them.</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> evt : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                  <dd><p>Object containing information about the fired event.</p>
+                                  <dd><p>An object containing information about the fired event.</p>
                                   </dd>
                                   <dt><code> data : Object</code></dt>
                                   <dd><p>Additional information about the change.</p>
@@ -278,15 +278,15 @@ view elements, changing their name and merging them.</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Model to view converter for <code>listItem</code> model element insertion.
+                      <p class="collapsing-list__excerpt">A model-to-view converter for <code>listItem</code> model element insertion.
                       </p>
                       <div class="collapsing-list__content">
-<p>It creates <code>&lt;ul&gt;&lt;li&gt;&lt;/li&gt;&lt;ul&gt;</code> (or <code>&lt;ol&gt;</code>) view structure out of <code>listItem</code> model element, inserts it at correct
-position, and merges the list with surrounding lists (if able).</p>
+<p>It creates a <code>&lt;ul&gt;&lt;li&gt;&lt;/li&gt;&lt;ul&gt;</code> (or <code>&lt;ol&gt;</code>) view structure out of a <code>listItem</code> model element, inserts it at the correct
+position, and merges the list with surrounding lists (if available).</p>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> evt : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                  <dd><p>Object containing information about the fired event.</p>
+                                  <dd><p>An object containing information about the fired event.</p>
                                   </dd>
                                   <dt><code> data : Object</code></dt>
                                   <dd><p>Additional information about the change.</p>
@@ -309,7 +309,7 @@ position, and merges the list with surrounding lists (if able).</p>
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">A special model to view converter introduced by <a href="module_list_list-List.html">List feature</a>. This converter takes care of
+                      <p class="collapsing-list__excerpt">A special model-to-view converter introduced by the <a href="module_list_list-List.html">list feature</a>. This converter takes care of
 merging view lists after something is removed or moved from near them.
                       </p>
                       <div class="collapsing-list__content">
@@ -327,7 +327,7 @@ merging view lists after something is removed or moved from near them.
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> evt : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                  <dd><p>Object containing information about the fired event.</p>
+                                  <dd><p>An object containing information about the fired event.</p>
                                   </dd>
                                   <dt><code> data : Object</code></dt>
                                   <dd><p>Additional information about the change.</p>
@@ -350,13 +350,13 @@ merging view lists after something is removed or moved from near them.
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Model to view converter for <code>listItem</code> model element remove.
+                      <p class="collapsing-list__excerpt">A model-to-view converter for <code>listItem</code> model element removal.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> evt : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                  <dd><p>Object containing information about the fired event.</p>
+                                  <dd><p>An object containing information about the fired event.</p>
                                   </dd>
                                   <dt><code> data : Object</code></dt>
                                   <dd><p>Additional information about the change.</p>
@@ -379,8 +379,8 @@ merging view lists after something is removed or moved from near them.
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">A special model to view converter introduced by <a href="module_list_list-List.html">List feature</a>. This converter is fired for
-insert change of every model item, and should be fired before actual converter. The converter checks whether inserted
+                      <p class="collapsing-list__excerpt">A special model-to-view converter introduced by the <a href="module_list_list-List.html">list feature</a>. This converter is fired for
+insert change of every model item, and should be fired before the actual converter. The converter checks whether the inserted
 model item is a non-<code>listItem</code> element. If it is, and it is inserted inside a view list, the converter breaks the
 list so the model element is inserted to the view parent element corresponding to its model parent element.
                       </p>
@@ -399,7 +399,7 @@ list so the model element is inserted to the view parent element corresponding t
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> evt : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                  <dd><p>Object containing information about the fired event.</p>
+                                  <dd><p>An object containing information about the fired event.</p>
                                   </dd>
                                   <dt><code> data : Object</code></dt>
                                   <dd><p>Additional information about the change.</p>
@@ -422,27 +422,27 @@ list so the model element is inserted to the view parent element corresponding t
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">View to model converter that converts view <code>&lt;li&gt;</code> elements into <code>listItem</code> model elements.
+                      <p class="collapsing-list__excerpt">A view-to-model converter that converts <code>&lt;li&gt;</code> view elements into <code>listItem</code> model elements.
                       </p>
                       <div class="collapsing-list__content">
-<p>To set correct values of <code>type</code> and <code>indent</code> attribute the converter:</p>
+<p>To set correct values of the <code>type</code> and <code>indent</code> attributes the converter:</p>
 <ul>
 <li>checks <code>&lt;li&gt;</code>&apos;s parent,</li>
-<li>passes <code>data.indent</code> value when <code>&lt;li&gt;</code>&apos;s sub-items are converted.</li>
+<li>passes the <code>data.indent</code> value when <code>&lt;li&gt;</code>&apos;s sub-items are converted.</li>
 </ul>
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> evt : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                  <dd><p>Object containing information about the fired event.</p>
+                                  <dd><p>An object containing information about the fired event.</p>
                                   </dd>
                                   <dt><code> data : Object</code></dt>
-                                  <dd><p>Object containing conversion input and a placeholder for conversion output and possibly other values.</p>
+                                  <dd><p>An object containing conversion input and a placeholder for conversion output and possibly other values.</p>
                                   </dd>
                                   <dt><code> consumable : <span><a class="collapsing-list__type" href="module_engine_conversion_viewconsumable-ViewConsumable.html">ViewConsumable</a></span></code></dt>
                                   <dd><p>Values to consume.</p>
                                   </dd>
                                   <dt><code> conversionApi : Object</code></dt>
-                                  <dd><p>Conversion interface to be used by callback.</p>
+                                  <dd><p>Conversion interface to be used by the callback.</p>
                                   </dd>
                                 </dl>
                       </div>
@@ -456,18 +456,18 @@ list so the model element is inserted to the view parent element corresponding t
                       </p>
                     </div>
                     <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Callback for view position to model position mapping for <a href="module_engine_conversion_mapper-Mapper.html"><code>Mapper</code></a>. The callback fixes positions
-between <code>&lt;li&gt;</code> elements, that would be incorrectly mapped because of how list items are represented in model
+                      <p class="collapsing-list__excerpt">The callback for view position to model position mapping for <a href="module_engine_conversion_mapper-Mapper.html"><code>Mapper</code></a>. The callback fixes
+positions between <code>&lt;li&gt;</code> elements that would be incorrectly mapped because of how list items are represented in model
 and view.
                       </p>
                       <div class="collapsing-list__content">
                         <h4>Parameters</h4>
                                 <dl>
                                   <dt><code> evt : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                  <dd><p>Object containing information about the fired event.</p>
+                                  <dd><p>An object containing information about the fired event.</p>
                                   </dd>
                                   <dt><code> data : Object</code></dt>
-                                  <dd><p>Object containing additional data and placeholder for mapping result.</p>
+                                  <dd><p>An object containing additional data and placeholder for mapping result.</p>
                                   </dd>
                                 </dl>
                       </div>
