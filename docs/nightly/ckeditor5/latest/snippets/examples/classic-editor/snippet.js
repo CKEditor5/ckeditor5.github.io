@@ -7054,17 +7054,18 @@ class ButtonView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */] 
 		);
 
 		/**
-		 * Icon of the button view.
-		 *
-		 * @readonly
-		 * @member {module:ui/icon/iconview~IconView} #iconView
-		 */
-
-		/**
 		 * Tooltip of the button view.
 		 *
 		 * @readonly
 		 * @member {module:ui/tooltip/tooltipview~TooltipView} #tooltipView
+		 */
+		this.tooltipView = this._createTooltipView();
+
+		/**
+		 * Icon of the button view.
+		 *
+		 * @readonly
+		 * @member {module:ui/icon/iconview~IconView} #iconView
 		 */
 
 		const bind = this.bindTemplate;
@@ -7097,7 +7098,8 @@ class ButtonView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */] 
 							text: bind.to( 'label' )
 						}
 					]
-				}
+				},
+				this.tooltipView
 			],
 
 			on: {
@@ -7140,17 +7142,6 @@ class ButtonView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */] 
 			this.addChildren( iconView );
 		}
 
-		if ( this.tooltip ) {
-			const tooltipView = this.tooltipView = new __WEBPACK_IMPORTED_MODULE_3__tooltip_tooltipview__["a" /* default */]();
-
-			tooltipView.bind( 'text' ).to( this, '_tooltipString' );
-			tooltipView.bind( 'position' ).to( this, 'tooltipPosition' );
-			this.element.appendChild( tooltipView.element );
-
-			// Make sure the tooltip will be destroyed along with the button.
-			this.addChildren( tooltipView );
-		}
-
 		super.init();
 	}
 
@@ -7159,6 +7150,21 @@ class ButtonView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */] 
 	 */
 	focus() {
 		this.element.focus();
+	}
+
+	/**
+	 * Creates TooltipView instance and bind with button properties.
+	 *
+	 * @private
+	 * @returns {module:ui/tooltip/tooltipview~TooltipView}
+	 */
+	_createTooltipView() {
+		const tooltipView = new __WEBPACK_IMPORTED_MODULE_3__tooltip_tooltipview__["a" /* default */]();
+
+		tooltipView.bind( 'text' ).to( this, '_tooltipString' );
+		tooltipView.bind( 'position' ).to( this, 'tooltipPosition' );
+
+		return tooltipView;
 	}
 
 	/**
@@ -7184,13 +7190,13 @@ class ButtonView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */] 
 
 				if ( tooltip instanceof Function ) {
 					return tooltip( label, keystroke );
-				} else if ( tooltip === true ) {
+				} else {
 					return `${ label }${ keystroke ? ` (${ keystroke })` : '' }`;
 				}
 			}
 		}
 
-		return false;
+		return '';
 	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = ButtonView;
@@ -20698,7 +20704,7 @@ Object(__WEBPACK_IMPORTED_MODULE_3__mix__["a" /* default */])( Collection, __WEB
 
 /**
  * The paragraph feature for the editor.
- * Introduces the `<paragraph>` element in the model which renders as a `<p>` element in the DOM and data.
+ * It introduces the `<paragraph>` element in the model which renders as a `<p>` element in the DOM and data.
  *
  * @extends module:core/plugin~Plugin
  */
@@ -20777,7 +20783,7 @@ class Paragraph extends __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_core_src
 
 
 /**
- * List of element names which should be treated by the autoparagraphing algorithms as
+ * A list of element names which should be treated by the autoparagraphing algorithms as
  * paragraph-like. This means that e.g. the following content:
  *
  *		<h1>Foo</h1>
@@ -20793,8 +20799,8 @@ class Paragraph extends __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_core_src
  *			</tr>
  *		</table>
  *
- * Contains five paragraph-like elements – `<h1>` and two `<td>` and two `<li>`.
- * Hence, if none of the features is going to convert  those elements the above content will be automatically handled
+ * contains five paragraph-like elements: `<h1>`, two `<td>`s and two `<li>`s.
+ * Hence, if none of the features is going to convert those elements the above content will be automatically handled
  * by the paragraph feature and converted to:
  *
  *		<p>Foo</p>
@@ -20802,8 +20808,8 @@ class Paragraph extends __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_core_src
  *		<p>Y</p>
  *		<p>Z</p>
  *
- * Note: The `<td>` containing two `<li>` elements was ignored – the inner-most paragraph-like elements
- * have priority upon conversion.
+ * Note: The `<td>` containing two `<li>` elements was ignored as the innermost paragraph-like elements
+ * have a priority upon conversion.
  *
  * @member {Set.<String>} module:paragraph/paragraph~Paragraph.paragraphLikeElements
  */
@@ -52189,8 +52195,8 @@ module.exports = function (css) {
 
 
 /**
- * Article editor preset. Represents a set of features which enable in the editor
- * all functionalities of a simple article editor.
+ * Article editor preset. Represents a set of features that enables all functionalities
+ * of a simple article editor.
  *
  * This preset follows [Editor Recommendations](https://github.com/ckeditor/editor-recommendations) plus
  * a couple of additions:
@@ -52250,11 +52256,15 @@ class Article extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_p
 
 
 /**
- * Essential editing features preset. Represents a set of features which enable in the editor
- * similar functionalities to a `<textarea>`.
+ * Essential editing features preset. Represents a set of features that enables similar functionalities
+ * to a `<textarea>` element.
  *
- * It includes: {@link module:clipboard/clipboard~Clipboard}, {@link module:enter/enter~Enter},
- * {@link module:typing/typing~Typing}, {@link module:undo/undo~Undo}.
+ * It includes:
+ *
+ * * {@link module:clipboard/clipboard~Clipboard},
+ * * {@link module:enter/enter~Enter},
+ * * {@link module:typing/typing~Typing},
+ * * {@link module:undo/undo~Undo}.
  *
  * This preset does not define any block-level containers (such as {@link module:paragraph/paragraph~Paragraph}).
  * If your editor is supposed to handle block content, make sure to include it. You can also inlcude
@@ -54680,7 +54690,7 @@ class TooltipView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */]
 		 * @observable
 		 * @member {String} #text
 		 */
-		this.set( 'text' );
+		this.set( 'text', '' );
 
 		/**
 		 * The position of the tooltip (south or north).
@@ -54710,7 +54720,8 @@ class TooltipView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */]
 			attributes: {
 				class: [
 					'ck-tooltip',
-					bind.to( 'position', position => 'ck-tooltip_' + position )
+					bind.to( 'position', position => 'ck-tooltip_' + position ),
+					bind.if( 'text', 'ck-hidden', value => !value.trim() )
 				]
 			},
 			children: [
@@ -56133,7 +56144,7 @@ function getCommandsBindingTargets( commands, attribute ) {
  */
 class ParagraphCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_command__["a" /* default */] {
 	/**
-	 * The value of the command. Indicates whether the selection's start is placed in a paragraph.
+	 * The value of the command. Indicates whether the selection start is placed in a paragraph.
 	 *
 	 * @readonly
 	 * @observable
@@ -56156,11 +56167,11 @@ class ParagraphCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_c
 	 * will be turned to paragraphs.
 	 *
 	 * @fires execute
-	 * @param {Object} [options] Options for executed command.
-	 * @param {module:engine/model/batch~Batch} [options.batch] Batch to collect all the change steps.
-	 * New batch will be created if this option is not set.
-	 * @param {module:engine/model/selection~Selection} [options.selection] Selection the command should be applied to.
-	 * By default, if not provided, the command is applied to {@link module:engine/model/document~Document#selection}.
+	 * @param {Object} [options] Options for the executed command.
+	 * @param {module:engine/model/batch~Batch} [options.batch] A batch to collect all the change steps.
+	 * A new batch will be created if this option is not set.
+	 * @param {module:engine/model/selection~Selection} [options.selection] The selection that the command should be applied to.
+	 * By default, if not provided, the command is applied to the {@link module:engine/model/document~Document#selection}.
 	 */
 	execute( options = {} ) {
 		const document = this.editor.document;
@@ -57229,7 +57240,7 @@ class Image extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plu
 				if ( selectedElement && Object(__WEBPACK_IMPORTED_MODULE_4__image_utils__["b" /* isImageWidget */])( selectedElement ) ) {
 					evt.stop();
 				}
-			} );
+			}, { priority: 'high' } );
 		}
 	}
 }
