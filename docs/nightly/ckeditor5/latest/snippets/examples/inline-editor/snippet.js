@@ -35053,7 +35053,7 @@ class ChangeBuffer {
 		this.limit = limit;
 
 		/**
-		 * Whether the buffer is locked. The locked buffer cannot be reset unless it gets unlocked.
+		 * Whether the buffer is locked. A locked buffer cannot be reset unless it gets unlocked.
 		 *
 		 * @readonly
 		 * @member {Boolean} #isLocked
@@ -35089,7 +35089,7 @@ class ChangeBuffer {
 		 */
 
 		/**
-		 * The callback to document selection change:attribute and change:range events which resets the buffer.
+		 * The callback to document selection `change:attribute` and `change:range` events which resets the buffer.
 		 *
 		 * @private
 		 * @member #_selectionChangeCallback
@@ -53545,7 +53545,7 @@ class EnterObserver extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engi
 
 
 /**
- * The typing feature. Handles typing.
+ * The typing feature. It handles typing.
  *
  * @extends module:core/plugin~Plugin
  */
@@ -53739,15 +53739,15 @@ class MutationHandler {
 
 	/**
 	 * Handles situations when container's children mutated during input. This can happen when
-	 * browser is trying to "fix" DOM in certain situations. For example, when user starts to type
-	 * in `<p><a href=""><i>Link{}</i></a></p>` browser might change order of elements
-	 * to `<p><i><a href="">Link</a>x{}</i></p>`. Similar situation happens when spell checker
-	 * replaces a word wrapped with `<strong>` to a word wrapped with `<b>` element.
+	 * the browser is trying to "fix" DOM in certain situations. For example, when the user starts to type
+	 * in `<p><a href=""><i>Link{}</i></a></p>`, the browser might change the order of elements
+	 * to `<p><i><a href="">Link</a>x{}</i></p>`. A similar situation happens when the spell checker
+	 * replaces a word wrapped with `<strong>` with a word wrapped with a `<b>` element.
 	 *
-	 * To handle such situations, DOM common ancestor of all mutations is converted to the model representation
-	 * and then compared with current model to calculate proper text change.
+	 * To handle such situations, the common DOM ancestor of all mutations is converted to the model representation
+	 * and then compared with the current model to calculate the proper text change.
 	 *
-	 * NOTE: Single text node insertion is handled in {@link #_handleTextNodeInsertion} and text node mutation is handled
+	 * Note: Single text node insertion is handled in {@link #_handleTextNodeInsertion} and text node mutation is handled
 	 * in {@link #_handleTextMutation}).
 	 *
 	 * @private
@@ -54223,15 +54223,15 @@ class InputCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_
 
 	/**
 	 * Executes the input command. It replaces the content within the given range with the given text.
-	 * Replacing is a two step process, first content within the range is removed and then new text is inserted
-	 * on the beginning of the range (which after removal is a collapsed range).
+	 * Replacing is a two step process, first the content within the range is removed and then the new text is inserted
+	 * at the beginning of the range (which after the removal is a collapsed range).
 	 *
 	 * @fires execute
 	 * @param {Object} [options] The command options.
-	 * @param {String} [options.text=''] Text to be inserted.
-	 * @param {module:engine/model/range~Range} [options.range] Range in which the text is inserted. Defaults
+	 * @param {String} [options.text=''] The text to be inserted.
+	 * @param {module:engine/model/range~Range} [options.range] The range in which the text is inserted. Defaults
 	 * to the first range in the current selection.
-	 * @param {module:engine/model/range~Range} [options.resultRange] Range at which the selection
+	 * @param {module:engine/model/range~Range} [options.resultRange] The range where the selection
 	 * should be placed after the insertion. If not specified, the selection will be placed right after
 	 * the inserted text.
 	 */
