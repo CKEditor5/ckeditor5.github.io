@@ -4,9 +4,9 @@
     <meta charset="utf8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Class Batch (engine/model/batch~Batch) - CKEditor 5 API docs</title>
-    <link rel="stylesheet" href="../../../assets/0.2.27/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../assets/0.3.0/css/styles.css" type="text/css" media="screen">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
-    <script src="../../../assets/0.2.27/scripts/app.js"></script>
+    <script src="../../../assets/0.3.0/scripts/app.js"></script>
   </head>
   <body>
     <header class="top">
@@ -19,21 +19,22 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.2.27/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.0/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
-      <section class="main__content formatted">
-        <div class="api-header"><img src="../../../assets/0.2.27/img/cog.svg" alt="Class" title="Class"/>
-          <div class="api-header__title">
-            <h1>Batch
-            </h1>
-            <p class="header__import">@ckeditor/ckeditor5-engine/src/model/batch
-            </p>
+      <section class="main__content formatted main__content--api">
+        <div class="main__content-inner">
+          <div class="api-header"><img src="../../../assets/0.3.0/img/cog.svg" alt="Class" title="Class"/>
+            <div class="api-header__title">
+              <h1>Batch
+              </h1>
+              <p class="header__import">@ckeditor/ckeditor5-engine/src/model/batch
+              </p>
+            </div>
           </div>
-        </div>
-        <p><span class="badge">class</span>
-        </p><p><code>Batch</code> instance groups document changes (<a href="module_engine_model_delta_delta-Delta.html">deltas</a>). All deltas grouped in a single <code>Batch</code>
+          <p><span class="badge">class</span>
+          </p><p><code>Batch</code> instance groups document changes (<a href="module_engine_model_delta_delta-Delta.html">deltas</a>). All deltas grouped in a single <code>Batch</code>
 can be reverted together, so you can think about <code>Batch</code> as of a single undo step. If you want to extend given undo step you
 can call another method on the same <code>Batch</code> object. If you want to create a separate undo step you can create a new <code>Batch</code>.</p>
 <p>For example to create two separate undo steps you can call:</p>
@@ -43,329 +44,331 @@ doc.batch().insert( secondPosition, &apos;bar&apos; );</code></pre><p>To create 
 batch.insert( firstPosition, &apos;foo&apos; );
 batch.insert( secondPosition, &apos;bar&apos; );</code></pre><p>Note that all document modification methods (insert, remove, split, etc.) are chainable so you can shorten code to:</p>
 <pre class="prettyprint source"><code>doc.batch().insert( firstPosition, &apos;foo&apos; ).insert( secondPosition, &apos;bar&apos; );</code></pre>
-        <div class="notice notice__filter api-props-filter">
-          <h4>Filtering</h4>
-          <ul>
-            <li>
-              <input type="checkbox" id="f1" value="public" checked>
-              <label for="f1"><span class="badge badge--gray">Public</span></label>
-            </li>
-            <li>
-              <input type="checkbox" id="f4" value="inherited" checked>
-              <label for="f4"><span class="badge badge--gray">Inherited</span></label>
-            </li>
-            <li>
-              <input type="checkbox" id="f6" value="mixed">
-              <label for="f6"><span class="badge badge--gray">Mixed</span></label>
-            </li>
-            <li>
-              <input type="checkbox" id="f2" value="protected">
-              <label for="f2"><span class="badge badge--orange">Protected</span></label>
-            </li>
-            <li>
-              <input type="checkbox" id="f3" value="private">
-              <label for="f3"><span class="badge badge--red">Private</span></label>
-            </li>
-            <li>
-              <input type="checkbox" id="f5" value="deprecated">
-              <label for="f5"><span class="badge badge--red">Deprecated</span></label>
-            </li>
-          </ul>
-        </div>
-        <h2>Properties</h2>
-        <ul class="collapsing-list collapsing-list--filtered">
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="baseVersion">
-                      <h3><code><a class="member-name" href="#baseVersion">baseVersion</a> : Number | null</code></h3>
-                      <p class="badges">
+          <div class="notice notice__filter api-props-filter">
+            <div class="api-props-filter__inner">
+              <h4>Filtering</h4>
+              <ul>
+                <li>
+                  <input type="checkbox" id="f1" value="public" checked>
+                  <label for="f1"><span class="badge badge--gray">Public</span></label>
+                </li>
+                <li>
+                  <input type="checkbox" id="f4" value="inherited" checked>
+                  <label for="f4"><span class="badge badge--gray">Inherited</span></label>
+                </li>
+                <li>
+                  <input type="checkbox" id="f6" value="mixed" checked>
+                  <label for="f6"><span class="badge badge--gray">Mixed</span></label>
+                </li>
+                <li>
+                  <input type="checkbox" id="f2" value="protected">
+                  <label for="f2"><span class="badge badge--orange">Protected</span></label>
+                </li>
+                <li>
+                  <input type="checkbox" id="f3" value="private">
+                  <label for="f3"><span class="badge badge--red">Private</span></label>
+                </li>
+                <li>
+                  <input type="checkbox" id="f5" value="deprecated">
+                  <label for="f5"><span class="badge badge--red">Deprecated</span></label>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <h2>Properties</h2>
+          <ul class="collapsing-list collapsing-list--filtered">
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="baseVersion">
+                          <h3><code><a class="member-name" href="#baseVersion">baseVersion</a> : Number | null</code></h3>
+                          <p class="badges">
 <span class="badge badge--gray ">readonly</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Returns this batch base version, which is equal to the base version of first delta in the batch.
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Returns this batch base version, which is equal to the base version of first delta in the batch.
 If there are no deltas in the batch, it returns <code>null</code>.</p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="deltas">
-                      <h3><code><a class="member-name" href="#deltas">deltas</a> : <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_delta_delta-Delta.html">Delta</a>&gt;</span></code></h3>
-                      <p class="badges">
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="deltas">
+                          <h3><code><a class="member-name" href="#deltas">deltas</a> : <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_delta_delta-Delta.html">Delta</a>&gt;</span></code></h3>
+                          <p class="badges">
 <span class="badge badge--gray ">readonly</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Array of deltas which compose this batch.</p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="document">
-                      <h3><code><a class="member-name" href="#document">document</a> : <span><a class="collapsing-list__type" href="module_engine_model_document-Document.html">Document</a></span></code></h3>
-                      <p class="badges">
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Array of deltas which compose this batch.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="document">
+                          <h3><code><a class="member-name" href="#document">document</a> : <span><a class="collapsing-list__type" href="module_engine_model_document-Document.html">Document</a></span></code></h3>
+                          <p class="badges">
 <span class="badge badge--gray ">readonly</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Document which this batch changes.</p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="type">
-                      <h3><code><a class="member-name" href="#type">type</a> :  | </code></h3>
-                      <p class="badges">
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Document which this batch changes.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="type">
+                          <h3><code><a class="member-name" href="#type">type</a> :  | </code></h3>
+                          <p class="badges">
 <span class="badge badge--gray ">readonly</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Type of the batch.</p>
-                      <div class="collapsing-list__content">
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Type of the batch.</p>
+                          <div class="collapsing-list__content">
 <p>Can be one of the following values:</p>
 <ul>
 <li><code>&apos;default&apos;</code> - all &quot;normal&quot; batches, most commonly used type.</li>
 <li><code>&apos;transparent&apos;</code> - batch that should be ignored by other features, i.e. initial batch or collaborative editing changes.</li>
 </ul>
-                      </div>
-                    </div>
-                  </li>
-        </ul>
-        <h2>Methods</h2>
-        <h4>Instance methods</h4>
-        <ul class="collapsing-list collapsing-list--filtered">
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="constructor">
-                      <h3><code><a class="member-name" href="#constructor">constructor</a>( document, [ type ] )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Creates <code>Batch</code> instance. Not recommended to use directly, use <a href="module_engine_model_document-Document.html#batch"><code>batch</code></a> instead.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> document : <span><a class="collapsing-list__type" href="module_engine_model_document-Document.html">Document</a></span></code></dt>
-                                  <dd><p>Document which this Batch changes.</p>
-                                  </dd>
-                                  <dt><code> [ type ] :  | </code></dt>
-                                  <dd><p>Type of the batch.</p>
-                                    <p>Defaults to <code>'default'</code></p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="removeAttribute">
-                      <h3><code><a class="member-name" href="#removeAttribute">removeAttribute</a>( itemOrRange, key )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Removes an attribute with given key from a <a href="module_engine_model_item-Item.html">model item</a>
+                          </div>
+                        </div>
+                      </li>
+          </ul>
+          <h2>Methods</h2>
+          <h4>Instance methods</h4>
+          <ul class="collapsing-list collapsing-list--filtered">
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="constructor">
+                          <h3><code><a class="member-name" href="#constructor">constructor</a>( document, [ type ] )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Creates <code>Batch</code> instance. Not recommended to use directly, use <a href="module_engine_model_document-Document.html#batch"><code>batch</code></a> instead.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> document : <span><a class="collapsing-list__type" href="module_engine_model_document-Document.html">Document</a></span></code></dt>
+                                        <dd><p>Document which this Batch changes.</p>
+                                        </dd>
+                                        <dt><code> [ type ] :  | </code></dt>
+                                        <dd><p>Type of the batch.</p>
+                                          <p>Defaults to <code>'default'</code></p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="removeAttribute">
+                          <h3><code><a class="member-name" href="#removeAttribute">removeAttribute</a>( itemOrRange, key )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Removes an attribute with given key from a <a href="module_engine_model_item-Item.html">model item</a>
 or from a <a href="module_engine_model_range-Range.html">range</a>.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> itemOrRange : <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
-                                  <dd><p>Model item or range from which the attribute will be removed.</p>
-                                  </dd>
-                                  <dt><code> key : String</code></dt>
-                                  <dd><p>Attribute key.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="getOperations">
-                      <h3><code><a class="member-name" href="#getOperations">getOperations</a>() &rarr;  <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_model_operation_operation-Operation.html">Operation</a>&gt;</span></code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Gets an iterable collection of operations.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code><span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_model_operation_operation-Operation.html">Operation</a>&gt;</span></code></dt>
-                                  <dd>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="insert">
-                      <h3><code><a class="member-name" href="#insert">insert</a>( position, nodes )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Inserts a node or nodes at the given position.
-                      </p>
-                      <div class="collapsing-list__content">
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> itemOrRange : <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
+                                        <dd><p>Model item or range from which the attribute will be removed.</p>
+                                        </dd>
+                                        <dt><code> key : String</code></dt>
+                                        <dd><p>Attribute key.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="getOperations">
+                          <h3><code><a class="member-name" href="#getOperations">getOperations</a>() &rarr;  <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_model_operation_operation-Operation.html">Operation</a>&gt;</span></code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Gets an iterable collection of operations.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_model_operation_operation-Operation.html">Operation</a>&gt;</span></code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="insert">
+                          <h3><code><a class="member-name" href="#insert">insert</a>( position, nodes )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Inserts a node or nodes at the given position.
+                          </p>
+                          <div class="collapsing-list__content">
 <p>When inserted element is a <a href="module_engine_model_documentfragment-DocumentFragment.html"><code>DocumentFragment</code></a> and has markers its markers will
 be set to <a href="module_engine_model_document-Document.html#markers"><code>markers</code></a>.</p>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> position : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
-                                  <dd><p>Position of insertion.</p>
-                                  </dd>
-                                  <dt><code> nodes : <span><a class="collapsing-list__type" href="module_engine_model_node-NodeSet.html">NodeSet</a></span></code></dt>
-                                  <dd><p>The list of nodes to be inserted.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="merge">
-                      <h3><code><a class="member-name" href="#merge">merge</a>( position )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Merges two siblings at the given position.
-                      </p>
-                      <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> position : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
+                                        <dd><p>Position of insertion.</p>
+                                        </dd>
+                                        <dt><code> nodes : <span><a class="collapsing-list__type" href="module_engine_model_node-NodeSet.html">NodeSet</a></span></code></dt>
+                                        <dd><p>The list of nodes to be inserted.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="merge">
+                          <h3><code><a class="member-name" href="#merge">merge</a>( position )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Merges two siblings at the given position.
+                          </p>
+                          <div class="collapsing-list__content">
 <p>Node before and after the position have to be an element. Otherwise <code>batch-merge-no-element-before</code> or
 <code>batch-merge-no-element-after</code> error will be thrown.</p>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> position : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
-                                  <dd><p>Position of merge.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="move">
-                      <h3><code><a class="member-name" href="#move">move</a>( itemOrRange, targetPosition )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Moves given <a href="module_engine_model_item-Item.html">model item</a> or given range to target position.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> itemOrRange : <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
-                                  <dd><p>Model item or range of nodes to move.</p>
-                                  </dd>
-                                  <dt><code> targetPosition : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
-                                  <dd><p>Position where moved nodes will be inserted.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="remove">
-                      <h3><code><a class="member-name" href="#remove">remove</a>( itemOrRange )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Removes given <a href="module_engine_model_item-Item.html">model item</a> or given range.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> itemOrRange : <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
-                                  <dd><p>Model item or range to remove.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="addDelta">
-                      <h3><code><a class="member-name" href="#addDelta">addDelta</a>( delta ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_delta_delta-Delta.html">Delta</a></span></code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Adds delta to the batch instance. All modification methods (insert, remove, split, etc.) use this method
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> position : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
+                                        <dd><p>Position of merge.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="move">
+                          <h3><code><a class="member-name" href="#move">move</a>( itemOrRange, targetPosition )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Moves given <a href="module_engine_model_item-Item.html">model item</a> or given range to target position.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> itemOrRange : <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
+                                        <dd><p>Model item or range of nodes to move.</p>
+                                        </dd>
+                                        <dt><code> targetPosition : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
+                                        <dd><p>Position where moved nodes will be inserted.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="remove">
+                          <h3><code><a class="member-name" href="#remove">remove</a>( itemOrRange )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Removes given <a href="module_engine_model_item-Item.html">model item</a> or given range.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> itemOrRange : <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
+                                        <dd><p>Model item or range to remove.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="addDelta">
+                          <h3><code><a class="member-name" href="#addDelta">addDelta</a>( delta ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_delta_delta-Delta.html">Delta</a></span></code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Adds delta to the batch instance. All modification methods (insert, remove, split, etc.) use this method
 to add created deltas.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> delta : <span><a class="collapsing-list__type" href="module_engine_model_delta_delta-Delta.html">Delta</a></span></code></dt>
-                                  <dd><p>Delta to add.</p>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code><span><a class="collapsing-list__type" href="module_engine_model_delta_delta-Delta.html">Delta</a></span></code></dt>
-                                  <dd><p>Added delta.</p>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="removeMarker">
-                      <h3><code><a class="member-name" href="#removeMarker">removeMarker</a>( markerOrName )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Removes given <a href="module_engine_model_markercollection-Marker.html">marker</a> or marker with given name.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> markerOrName : <span><a class="collapsing-list__type" href="module_engine_model_markercollection-Marker.html">Marker</a></span> | String</code></dt>
-                                  <dd><p>Marker or marker name to remove.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="rename">
-                      <h3><code><a class="member-name" href="#rename">rename</a>( element, newName )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Renames given element.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> element : <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
-                                  <dd><p>The element to rename.</p>
-                                  </dd>
-                                  <dt><code> newName : String</code></dt>
-                                  <dd><p>New element name.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="setAttribute">
-                      <h3><code><a class="member-name" href="#setAttribute">setAttribute</a>( itemOrRange, key, value )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Sets value of the attribute with given key on a <a href="module_engine_model_item-Item.html">model item</a>
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> delta : <span><a class="collapsing-list__type" href="module_engine_model_delta_delta-Delta.html">Delta</a></span></code></dt>
+                                        <dd><p>Delta to add.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_delta_delta-Delta.html">Delta</a></span></code></dt>
+                                        <dd><p>Added delta.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="removeMarker">
+                          <h3><code><a class="member-name" href="#removeMarker">removeMarker</a>( markerOrName )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Removes given <a href="module_engine_model_markercollection-Marker.html">marker</a> or marker with given name.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> markerOrName : <span><a class="collapsing-list__type" href="module_engine_model_markercollection-Marker.html">Marker</a></span> | String</code></dt>
+                                        <dd><p>Marker or marker name to remove.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="rename">
+                          <h3><code><a class="member-name" href="#rename">rename</a>( element, newName )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Renames given element.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> element : <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
+                                        <dd><p>The element to rename.</p>
+                                        </dd>
+                                        <dt><code> newName : String</code></dt>
+                                        <dd><p>New element name.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="setAttribute">
+                          <h3><code><a class="member-name" href="#setAttribute">setAttribute</a>( itemOrRange, key, value )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Sets value of the attribute with given key on a <a href="module_engine_model_item-Item.html">model item</a>
 or on a <a href="module_engine_model_range-Range.html">range</a>.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> itemOrRange : <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
-                                  <dd><p>Model item or range on which the attribute will be set.</p>
-                                  </dd>
-                                  <dt><code> key : String</code></dt>
-                                  <dd><p>Attribute key.</p>
-                                  </dd>
-                                  <dt><code> value : </code></dt>
-                                  <dd><p>Attribute new value.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="setMarker">
-                      <h3><code><a class="member-name" href="#setMarker">setMarker</a>( markerOrName, [ newRange ] )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Adds or updates <a href="module_engine_model_markercollection-Marker.html">marker</a> with given name to given <code>range</code>.
-                      </p>
-                      <div class="collapsing-list__content">
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> itemOrRange : <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
+                                        <dd><p>Model item or range on which the attribute will be set.</p>
+                                        </dd>
+                                        <dt><code> key : String</code></dt>
+                                        <dd><p>Attribute key.</p>
+                                        </dd>
+                                        <dt><code> value : </code></dt>
+                                        <dd><p>Attribute new value.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="setMarker">
+                          <h3><code><a class="member-name" href="#setMarker">setMarker</a>( markerOrName, [ newRange ] )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Adds or updates <a href="module_engine_model_markercollection-Marker.html">marker</a> with given name to given <code>range</code>.
+                          </p>
+                          <div class="collapsing-list__content">
 <p>If passed name is a name of already existing marker (or <a href="module_engine_model_markercollection-Marker.html">Marker</a> instance
 is passed), <code>range</code> parameter may be omitted. In this case marker will not be updated in
 <a href="module_engine_model_document-Document.html#markers">document marker collection</a>. However the marker will be added to
@@ -374,65 +377,65 @@ look like the marker was created and added to the document at the moment when it
 <p>This is useful if the marker is created before it can be added to document history (e.g. a feature creating the marker
 is waiting for additional data, etc.). In this case, the marker may be first created directly through
 <a href="module_engine_model_markercollection-MarkerCollection.html">MarkerCollection API</a> and only later added using <code>Batch</code> API.</p>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> markerOrName : <span><a class="collapsing-list__type" href="module_engine_model_markercollection-Marker.html">Marker</a></span> | String</code></dt>
-                                  <dd><p>Marker or marker name to add or update.</p>
-                                  </dd>
-                                  <dt><code> [ newRange ] : <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
-                                  <dd><p>Marker range.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="split">
-                      <h3><code><a class="member-name" href="#split">split</a>( position )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Splits an element at the given position.
-                      </p>
-                      <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> markerOrName : <span><a class="collapsing-list__type" href="module_engine_model_markercollection-Marker.html">Marker</a></span> | String</code></dt>
+                                        <dd><p>Marker or marker name to add or update.</p>
+                                        </dd>
+                                        <dt><code> [ newRange ] : <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
+                                        <dd><p>Marker range.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="split">
+                          <h3><code><a class="member-name" href="#split">split</a>( position )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Splits an element at the given position.
+                          </p>
+                          <div class="collapsing-list__content">
 <p>The element cannot be a root element, as root element cannot be split. The <code>batch-split-root</code> error will be thrown if
 you try to split the root element.</p>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> position : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
-                                  <dd><p>Position of split.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="unwrap">
-                      <h3><code><a class="member-name" href="#unwrap">unwrap</a>( position )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Unwraps children of the given element &#x2013; all its children are moved before it and then the element is removed.
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> position : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
+                                        <dd><p>Position of split.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="unwrap">
+                          <h3><code><a class="member-name" href="#unwrap">unwrap</a>( position )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Unwraps children of the given element &#x2013; all its children are moved before it and then the element is removed.
 Throws error if you try to unwrap an element which does not have a parent.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> position : <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
-                                  <dd><p>Element to unwrap.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="weakInsert">
-                      <h3><code><a class="member-name" href="#weakInsert">weakInsert</a>( position, nodes )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Inserts a node or nodes at given position. <a href="module_engine_model_batch-Batch.html#weakInsert">weakInsert</a> is commonly used for actions
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> position : <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
+                                        <dd><p>Element to unwrap.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="weakInsert">
+                          <h3><code><a class="member-name" href="#weakInsert">weakInsert</a>( position, nodes )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Inserts a node or nodes at given position. <a href="module_engine_model_batch-Batch.html#weakInsert">weakInsert</a> is commonly used for actions
 like typing or plain-text paste (without formatting). There are two differences between
 <a href="module_engine_model_batch-Batch.html#insert">insert</a> and <a href="module_engine_model_batch-Batch.html#weakInsert">weakInsert</a>:
-                      </p>
-                      <div class="collapsing-list__content">
+                          </p>
+                          <div class="collapsing-list__content">
 <ul>
 <li>When using <code>weakInsert</code>, inserted nodes will have same attributes as the current attributes of
 <a href="module_engine_model_document-Document.html#selection">document selection</a>.</li>
@@ -444,54 +447,54 @@ Thanks to this, attribute change &quot;omits&quot; the inserted nodes. The corre
 applies attributes for inserted nodes. This behavior has to be reflected during
 <a href="module_engine_model_delta_transform-transform.html">delta transformation</a>.</li>
 </ul>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> position : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
-                                  <dd><p>Position of insertion.</p>
-                                  </dd>
-                                  <dt><code> nodes : <span><a class="collapsing-list__type" href="module_engine_model_node-NodeSet.html">NodeSet</a></span></code></dt>
-                                  <dd><p>The list of nodes to be inserted.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="wrap">
-                      <h3><code><a class="member-name" href="#wrap">wrap</a>( range, elementOrString )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Wraps given range with given element or with a new element with specified name, if string has been passed.
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> position : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
+                                        <dd><p>Position of insertion.</p>
+                                        </dd>
+                                        <dt><code> nodes : <span><a class="collapsing-list__type" href="module_engine_model_node-NodeSet.html">NodeSet</a></span></code></dt>
+                                        <dd><p>The list of nodes to be inserted.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="wrap">
+                          <h3><code><a class="member-name" href="#wrap">wrap</a>( range, elementOrString )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Wraps given range with given element or with a new element with specified name, if string has been passed.
 <strong>Note:</strong> range to wrap should be a &quot;flat range&quot; (see <a href="module_engine_model_range-Range.html#isFlat"><code>isFlat</code></a>). If not, error will be thrown.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> range : <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
-                                  <dd><p>Range to wrap.</p>
-                                  </dd>
-                                  <dt><code> elementOrString : <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | String</code></dt>
-                                  <dd><p>Element or name of element to wrap the range with.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-        </ul>
-        <h4>Static methods</h4>
-        <ul class="collapsing-list collapsing-list--filtered">
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="register">
-                      <h3><code><a class="member-name" href="#register">register</a>( name, creator )</code></h3>
-                      <p class="badges">
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> range : <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
+                                        <dd><p>Range to wrap.</p>
+                                        </dd>
+                                        <dt><code> elementOrString : <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | String</code></dt>
+                                        <dd><p>Element or name of element to wrap the range with.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+          </ul>
+          <h4>Static methods</h4>
+          <ul class="collapsing-list collapsing-list--filtered">
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="register">
+                          <h3><code><a class="member-name" href="#register">register</a>( name, creator )</code></h3>
+                          <p class="badges">
 <span class="badge badge--gray ">static</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Function to register batch methods. To make code scalable <code>Batch</code> do not have modification
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Function to register batch methods. To make code scalable <code>Batch</code> do not have modification
 methods built in. They can be registered using this method.
-                      </p>
-                      <div class="collapsing-list__content">
+                          </p>
+                          <div class="collapsing-list__content">
 <p>This method checks if there is no naming collision and throws <code>batch-register-taken</code> if the method name
 is already taken.</p>
 <p>Besides that no magic happens here, the method is added to the <code>Batch</code> class prototype.</p>
@@ -515,19 +518,20 @@ is already taken.</p>
     // Make this method chainable.
     return this;
 } );</code></pre>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> name : String</code></dt>
-                                  <dd><p>Method name.</p>
-                                  </dd>
-                                  <dt><code> creator : function</code></dt>
-                                  <dd><p>Method body.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-        </ul>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> name : String</code></dt>
+                                        <dd><p>Method name.</p>
+                                        </dd>
+                                        <dt><code> creator : function</code></dt>
+                                        <dd><p>Method body.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+          </ul>
+        </div>
       </section>
       <div class="side-navigation">
         <div class="side-navigation__wrapper">
@@ -3312,7 +3316,7 @@ is already taken.</p>
     </main>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">docsearch({apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:10}});</script>
     <footer class="footer">
-      <p>&copy; 2017 CKSource sp. z.o.o. sp.k. All rights reserved.</p>
+      <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
     </footer>
   </body>
 </html>

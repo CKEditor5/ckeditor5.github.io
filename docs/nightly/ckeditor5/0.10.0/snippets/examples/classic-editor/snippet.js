@@ -35012,7 +35012,7 @@ function createImageViewElement() {
  * @param {Function} options.callback Function fired after clicking outside of specified elements.
  */
 function clickOutsideHandler( { emitter, activator, callback, contextElements } ) {
-	emitter.listenTo( document, 'mouseup', ( evt, { target } ) => {
+	emitter.listenTo( document, 'mousedown', ( evt, { target } ) => {
 		if ( !activator() ) {
 			return;
 		}

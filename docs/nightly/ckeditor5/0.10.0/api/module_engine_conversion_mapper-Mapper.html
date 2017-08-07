@@ -4,9 +4,9 @@
     <meta charset="utf8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Class Mapper (engine/conversion/mapper~Mapper) - CKEditor 5 API docs</title>
-    <link rel="stylesheet" href="../../../assets/0.2.27/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../assets/0.3.0/css/styles.css" type="text/css" media="screen">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
-    <script src="../../../assets/0.2.27/scripts/app.js"></script>
+    <script src="../../../assets/0.3.0/scripts/app.js"></script>
   </head>
   <body>
     <header class="top">
@@ -19,21 +19,22 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.2.27/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.0/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
-      <section class="main__content formatted">
-        <div class="api-header"><img src="../../../assets/0.2.27/img/cog.svg" alt="Class" title="Class"/>
-          <div class="api-header__title">
-            <h1>Mapper
-            </h1>
-            <p class="header__import">@ckeditor/ckeditor5-engine/src/conversion/mapper
-            </p>
+      <section class="main__content formatted main__content--api">
+        <div class="main__content-inner">
+          <div class="api-header"><img src="../../../assets/0.3.0/img/cog.svg" alt="Class" title="Class"/>
+            <div class="api-header__title">
+              <h1>Mapper
+              </h1>
+              <p class="header__import">@ckeditor/ckeditor5-engine/src/conversion/mapper
+              </p>
+            </div>
           </div>
-        </div>
-        <p><span class="badge">class</span>
-        </p><p>Maps elements and positions between <a href="module_engine_viewithdocument-Document.html">view</a> and <a href="module_engine_model_model.html">model</a>.</p>
+          <p><span class="badge">class</span>
+          </p><p>Maps elements and positions between <a href="module_engine_viewithdocument-Document.html">view</a> and <a href="module_engine_model_model.html">model</a>.</p>
 <p>Mapper use bound elements to find corresponding elements and positions, so, to get proper results,
 all model elements should be <a href="module_engine_conversion_mapper-Mapper.html#bindElements">bound</a>.</p>
 <p>To map complex model to/from view relations, you may provide custom callbacks for
@@ -44,99 +45,101 @@ Those events are fired by <a href="module_engine_conversion_mapper-Mapper.html#t
 and <a href="module_engine_conversion_mapper-Mapper.html#toModelPosition">toModelPosition</a> methods. <code>Mapper</code> adds it&apos;s own default callbacks
 with <code>&apos;lowest&apos;</code> priority. To override default <code>Mapper</code> mapping, add custom callback with higher priority and
 stop the event.</p>
-        <div class="notice notice__filter api-props-filter">
-          <h4>Filtering</h4>
-          <ul>
-            <li>
-              <input type="checkbox" id="f1" value="public" checked>
-              <label for="f1"><span class="badge badge--gray">Public</span></label>
-            </li>
-            <li>
-              <input type="checkbox" id="f4" value="inherited" checked>
-              <label for="f4"><span class="badge badge--gray">Inherited</span></label>
-            </li>
-            <li>
-              <input type="checkbox" id="f6" value="mixed">
-              <label for="f6"><span class="badge badge--gray">Mixed</span></label>
-            </li>
-            <li>
-              <input type="checkbox" id="f2" value="protected">
-              <label for="f2"><span class="badge badge--orange">Protected</span></label>
-            </li>
-            <li>
-              <input type="checkbox" id="f3" value="private">
-              <label for="f3"><span class="badge badge--red">Private</span></label>
-            </li>
-            <li>
-              <input type="checkbox" id="f5" value="deprecated">
-              <label for="f5"><span class="badge badge--red">Deprecated</span></label>
-            </li>
-          </ul>
-        </div>
-        <h2>Properties</h2>
-        <ul class="collapsing-list collapsing-list--filtered">
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_modelToViewMapping">
-                      <h3><code><a class="member-name" href="#_modelToViewMapping">_modelToViewMapping</a> : WeakMap</code></h3>
-                      <p class="badges">
+          <div class="notice notice__filter api-props-filter">
+            <div class="api-props-filter__inner">
+              <h4>Filtering</h4>
+              <ul>
+                <li>
+                  <input type="checkbox" id="f1" value="public" checked>
+                  <label for="f1"><span class="badge badge--gray">Public</span></label>
+                </li>
+                <li>
+                  <input type="checkbox" id="f4" value="inherited" checked>
+                  <label for="f4"><span class="badge badge--gray">Inherited</span></label>
+                </li>
+                <li>
+                  <input type="checkbox" id="f6" value="mixed" checked>
+                  <label for="f6"><span class="badge badge--gray">Mixed</span></label>
+                </li>
+                <li>
+                  <input type="checkbox" id="f2" value="protected">
+                  <label for="f2"><span class="badge badge--orange">Protected</span></label>
+                </li>
+                <li>
+                  <input type="checkbox" id="f3" value="private">
+                  <label for="f3"><span class="badge badge--red">Private</span></label>
+                </li>
+                <li>
+                  <input type="checkbox" id="f5" value="deprecated">
+                  <label for="f5"><span class="badge badge--red">Deprecated</span></label>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <h2>Properties</h2>
+          <ul class="collapsing-list collapsing-list--filtered">
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_modelToViewMapping">
+                          <h3><code><a class="member-name" href="#_modelToViewMapping">_modelToViewMapping</a> : WeakMap</code></h3>
+                          <p class="badges">
 <span class="badge badge--red ">private</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Model element to view element mapping.</p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_viewToModelLengthCallbacks">
-                      <h3><code><a class="member-name" href="#_viewToModelLengthCallbacks">_viewToModelLengthCallbacks</a> : Map</code></h3>
-                      <p class="badges">
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Model element to view element mapping.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_viewToModelLengthCallbacks">
+                          <h3><code><a class="member-name" href="#_viewToModelLengthCallbacks">_viewToModelLengthCallbacks</a> : Map</code></h3>
+                          <p class="badges">
 <span class="badge badge--red ">private</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">A map containing callbacks between view element names and functions evaluating length of view elements
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">A map containing callbacks between view element names and functions evaluating length of view elements
 in model.</p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_viewToModelMapping">
-                      <h3><code><a class="member-name" href="#_viewToModelMapping">_viewToModelMapping</a> : WeakMap</code></h3>
-                      <p class="badges">
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_viewToModelMapping">
+                          <h3><code><a class="member-name" href="#_viewToModelMapping">_viewToModelMapping</a> : WeakMap</code></h3>
+                          <p class="badges">
 <span class="badge badge--red ">private</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">View element to model element mapping.</p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-        </ul>
-        <h2>Methods</h2>
-        <ul class="collapsing-list collapsing-list--filtered">
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="constructor">
-                      <h3><code><a class="member-name" href="#constructor">constructor</a>()</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Creates an instance of the mapper.
-                      </p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="registerViewToModelLength">
-                      <h3><code><a class="member-name" href="#registerViewToModelLength">registerViewToModelLength</a>( viewElementName, lengthCallback )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Registers a callback that evaluates the length in the model of a view element with given name.
-                      </p>
-                      <div class="collapsing-list__content">
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">View element to model element mapping.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+          </ul>
+          <h2>Methods</h2>
+          <ul class="collapsing-list collapsing-list--filtered">
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="constructor">
+                          <h3><code><a class="member-name" href="#constructor">constructor</a>()</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Creates an instance of the mapper.
+                          </p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="registerViewToModelLength">
+                          <h3><code><a class="member-name" href="#registerViewToModelLength">registerViewToModelLength</a>( viewElementName, lengthCallback )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Registers a callback that evaluates the length in the model of a view element with given name.
+                          </p>
+                          <div class="collapsing-list__content">
 <p>The callback is fired with one argument, which is a view element instance. The callback is expected to return
 a number representing the length of view element in model.</p>
 <pre class="prettyprint source"><code>// List item in view may contain nested list, which have other list items. In model though,
@@ -158,122 +161,122 @@ function getViewListItemLength( element ) {
 }
 
 mapper.registerViewToModelLength( &apos;li&apos;, getViewListItemLength );</code></pre>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> viewElementName : String</code></dt>
-                                  <dd><p>Name of view element for which callback is registered.</p>
-                                  </dd>
-                                  <dt><code> lengthCallback : function</code></dt>
-                                  <dd><p>Function return a length of view element instance in model.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_toModelOffset">
-                      <h3><code><a class="member-name" href="#_toModelOffset">_toModelOffset</a>( viewParent, viewOffset, viewBlock ) &rarr;  Number</code></h3>
-                      <p class="badges">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> viewElementName : String</code></dt>
+                                        <dd><p>Name of view element for which callback is registered.</p>
+                                        </dd>
+                                        <dt><code> lengthCallback : function</code></dt>
+                                        <dd><p>Function return a length of view element instance in model.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_toModelOffset">
+                          <h3><code><a class="member-name" href="#_toModelOffset">_toModelOffset</a>( viewParent, viewOffset, viewBlock ) &rarr;  Number</code></h3>
+                          <p class="badges">
 <span class="badge badge--red ">private</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Calculates model offset based on the view position and the block element.
-                      </p>
-                      <div class="collapsing-list__content">
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Calculates model offset based on the view position and the block element.
+                          </p>
+                          <div class="collapsing-list__content">
 <p>Example:</p>
 <pre class="prettyprint source"><code>&lt;p&gt;foo&lt;b&gt;ba|r&lt;/b&gt;&lt;/p&gt; // _toModelOffset( b, 2, p ) -&gt; 5</code></pre><p>Is a sum of:</p>
 <pre class="prettyprint source"><code>&lt;p&gt;foo|&lt;b&gt;bar&lt;/b&gt;&lt;/p&gt; // _toModelOffset( p, 3, p ) -&gt; 3
 &lt;p&gt;foo&lt;b&gt;ba|r&lt;/b&gt;&lt;/p&gt; // _toModelOffset( b, 2, b ) -&gt; 2</code></pre>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> viewParent : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span></code></dt>
-                                  <dd><p>Position parent.</p>
-                                  </dd>
-                                  <dt><code> viewOffset : Number</code></dt>
-                                  <dd><p>Position offset.</p>
-                                  </dd>
-                                  <dt><code> viewBlock : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span></code></dt>
-                                  <dd><p>Block used as a base to calculate offset.</p>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code>Number</code></dt>
-                                  <dd><p>Offset in the model.</p>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_unbindElements">
-                      <h3><code><a class="member-name" href="#_unbindElements">_unbindElements</a>( modelElement, viewElement )</code></h3>
-                      <p class="badges">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> viewParent : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span></code></dt>
+                                        <dd><p>Position parent.</p>
+                                        </dd>
+                                        <dt><code> viewOffset : Number</code></dt>
+                                        <dd><p>Position offset.</p>
+                                        </dd>
+                                        <dt><code> viewBlock : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span></code></dt>
+                                        <dd><p>Block used as a base to calculate offset.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code>Number</code></dt>
+                                        <dd><p>Offset in the model.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_unbindElements">
+                          <h3><code><a class="member-name" href="#_unbindElements">_unbindElements</a>( modelElement, viewElement )</code></h3>
+                          <p class="badges">
 <span class="badge badge--red ">private</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Removes binding between given elements.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> modelElement : <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
-                                  <dd><p>Model element to unbind.</p>
-                                  </dd>
-                                  <dt><code> viewElement : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span></code></dt>
-                                  <dd><p>View element to unbind.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="bindElements">
-                      <h3><code><a class="member-name" href="#bindElements">bindElements</a>( modelElement, viewElement )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Marks model and view elements as corresponding. Corresponding elements can be retrieved by using
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Removes binding between given elements.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> modelElement : <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
+                                        <dd><p>Model element to unbind.</p>
+                                        </dd>
+                                        <dt><code> viewElement : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span></code></dt>
+                                        <dd><p>View element to unbind.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="bindElements">
+                          <h3><code><a class="member-name" href="#bindElements">bindElements</a>( modelElement, viewElement )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Marks model and view elements as corresponding. Corresponding elements can be retrieved by using
 the <a href="module_engine_conversion_mapper-Mapper.html#toModelElement">toModelElement</a> and
 <a href="module_engine_conversion_mapper-Mapper.html#toViewElement">toViewElement</a> methods.
 The information that elements are bound is also used to translate positions.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> modelElement : <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
-                                  <dd><p>Model element.</p>
-                                  </dd>
-                                  <dt><code> viewElement : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span></code></dt>
-                                  <dd><p>View element.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="clearBindings">
-                      <h3><code><a class="member-name" href="#clearBindings">clearBindings</a>()</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Removes all model to view and view to model bindings.
-                      </p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_findPositionIn">
-                      <h3><code><a class="member-name" href="#_findPositionIn">_findPositionIn</a>( viewParent, expectedOffset ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></h3>
-                      <p class="badges">
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> modelElement : <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
+                                        <dd><p>Model element.</p>
+                                        </dd>
+                                        <dt><code> viewElement : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span></code></dt>
+                                        <dd><p>View element.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="clearBindings">
+                          <h3><code><a class="member-name" href="#clearBindings">clearBindings</a>()</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Removes all model to view and view to model bindings.
+                          </p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_findPositionIn">
+                          <h3><code><a class="member-name" href="#_findPositionIn">_findPositionIn</a>( viewParent, expectedOffset ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></h3>
+                          <p class="badges">
 <span class="badge badge--red ">private</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Finds the position in the view node (or its children) with the expected model offset.
-                      </p>
-                      <div class="collapsing-list__content">
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Finds the position in the view node (or its children) with the expected model offset.
+                          </p>
+                          <div class="collapsing-list__content">
 <p>Example:</p>
 <pre class="prettyprint source"><code>&lt;p&gt;fo&lt;b&gt;bar&lt;/b&gt;bom&lt;/p&gt; -&gt; expected offset: 4
 
@@ -289,32 +292,32 @@ _findPositionIn( b, 4 - ( 5 - 3 ) ):
 _findPositionIn( bar, 2 - ( 3 - 3 ) ):
 We are in the text node so we can simple find the offset.
 &lt;p&gt;fo&lt;b&gt;ba|r&lt;/b&gt;bom&lt;/p&gt; -&gt; expected offset: 2, actual offset: 2 -&gt; position found</code></pre>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> viewParent : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span></code></dt>
-                                  <dd><p>Tree view element in which we are looking for the position.</p>
-                                  </dd>
-                                  <dt><code> expectedOffset : Number</code></dt>
-                                  <dd><p>Expected offset.</p>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></dt>
-                                  <dd><p>Found position.</p>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="getModelLength">
-                      <h3><code><a class="member-name" href="#getModelLength">getModelLength</a>( viewNode ) &rarr;  Number</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Gets the length of the view element in the model.
-                      </p>
-                      <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> viewParent : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span></code></dt>
+                                        <dd><p>Tree view element in which we are looking for the position.</p>
+                                        </dd>
+                                        <dt><code> expectedOffset : Number</code></dt>
+                                        <dd><p>Expected offset.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></dt>
+                                        <dd><p>Found position.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="getModelLength">
+                          <h3><code><a class="member-name" href="#getModelLength">getModelLength</a>( viewNode ) &rarr;  Number</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Gets the length of the view element in the model.
+                          </p>
+                          <div class="collapsing-list__content">
 <p>The length is calculated as follows:</p>
 <ul>
 <li>if <a href="module_engine_conversion_mapper-Mapper.html#registerViewToModelLength">length  mapping  callback</a> is provided for given <code>viewNode</code> it is used to
@@ -330,238 +333,238 @@ evaluate model length (<code>viewNode</code> is used as first and only parameter
 &lt;p&gt;foo&lt;/p&gt;                   -&gt; 1 // Length of an element which is mapped is by default equal to 1.
 &lt;b&gt;foo&lt;/b&gt;                   -&gt; 3 // Length of an element which is not mapped is a length of its children.
 &lt;div&gt;&lt;p&gt;x&lt;/p&gt;&lt;p&gt;y&lt;/p&gt;&lt;/div&gt;  -&gt; 2 // Assuming that &lt;div&gt; is not mapped and &lt;p&gt; are mapped.</code></pre>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> viewNode : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span></code></dt>
-                                  <dd><p>View node.</p>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code>Number</code></dt>
-                                  <dd><p>Length of the node in the tree model.</p>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_moveViewPositionToTextNode">
-                      <h3><code><a class="member-name" href="#_moveViewPositionToTextNode">_moveViewPositionToTextNode</a>( viewPosition ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></h3>
-                      <p class="badges">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> viewNode : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span></code></dt>
+                                        <dd><p>View node.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code>Number</code></dt>
+                                        <dd><p>Length of the node in the tree model.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_moveViewPositionToTextNode">
+                          <h3><code><a class="member-name" href="#_moveViewPositionToTextNode">_moveViewPositionToTextNode</a>( viewPosition ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></h3>
+                          <p class="badges">
 <span class="badge badge--red ">private</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Because we prefer positions in text nodes over positions next to text node moves view position to the text node
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Because we prefer positions in text nodes over positions next to text node moves view position to the text node
 if it was next to it.
-                      </p>
-                      <div class="collapsing-list__content">
+                          </p>
+                          <div class="collapsing-list__content">
 <pre class="prettyprint source"><code>&lt;p&gt;[]&lt;b&gt;foo&lt;/b&gt;&lt;/p&gt; -&gt; &lt;p&gt;[]&lt;b&gt;foo&lt;/b&gt;&lt;/p&gt; // do not touch if position is not directly next to text
 &lt;p&gt;foo[]&lt;b&gt;foo&lt;/b&gt;&lt;/p&gt; -&gt; &lt;p&gt;foo{}&lt;b&gt;foo&lt;/b&gt;&lt;/p&gt; // move to text node
 &lt;p&gt;&lt;b&gt;[]foo&lt;/b&gt;&lt;/p&gt; -&gt; &lt;p&gt;&lt;b&gt;{}foo&lt;/b&gt;&lt;/p&gt; // move to text node</code></pre>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> viewPosition : <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></dt>
-                                  <dd><p>Position potentially next to text node.</p>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></dt>
-                                  <dd><p>Position in text node if possible.</p>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="toModelElement">
-                      <h3><code><a class="member-name" href="#toModelElement">toModelElement</a>( viewElement ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | undefined</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Gets the corresponding model element.
-                      </p>
-                      <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> viewPosition : <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></dt>
+                                        <dd><p>Position potentially next to text node.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></dt>
+                                        <dd><p>Position in text node if possible.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="toModelElement">
+                          <h3><code><a class="member-name" href="#toModelElement">toModelElement</a>( viewElement ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | undefined</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Gets the corresponding model element.
+                          </p>
+                          <div class="collapsing-list__content">
 <p><strong>Note:</strong> <a href="module_engine_viewithuielement-UIElement.html"><code>UIElement</code></a> does not have corresponding element in model.</p>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> viewElement : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span></code></dt>
-                                  <dd><p>View element.</p>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code><span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | undefined</code></dt>
-                                  <dd><p>Corresponding model element or <code>undefined</code> if not found.</p>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="toModelPosition">
-                      <h3><code><a class="member-name" href="#toModelPosition">toModelPosition</a>( viewPosition ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Gets the corresponding model position.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> viewPosition : <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></dt>
-                                  <dd><p>View position.</p>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code><span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
-                                  <dd><p>Corresponding model position.</p>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="toModelRange">
-                      <h3><code><a class="member-name" href="#toModelRange">toModelRange</a>( viewRange ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Gets the corresponding model range.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> viewRange : <span><a class="collapsing-list__type" href="module_engine_viewithrange-Range.html">Range</a></span></code></dt>
-                                  <dd><p>View range.</p>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code><span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
-                                  <dd><p>Corresponding model range.</p>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="toViewElement">
-                      <h3><code><a class="member-name" href="#toViewElement">toViewElement</a>( modelElement ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | undefined</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Gets the corresponding view element.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> modelElement : <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
-                                  <dd><p>Model element.</p>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | undefined</code></dt>
-                                  <dd><p>Corresponding view element or <code>undefined</code> if not found.</p>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="toViewPosition">
-                      <h3><code><a class="member-name" href="#toViewPosition">toViewPosition</a>( modelPosition ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Gets the corresponding view position.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> modelPosition : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
-                                  <dd><p>Model position.</p>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></dt>
-                                  <dd><p>Corresponding view position.</p>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="toViewRange">
-                      <h3><code><a class="member-name" href="#toViewRange">toViewRange</a>( modelRange ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithrange-Range.html">Range</a></span></code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Gets the corresponding view range.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> modelRange : <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
-                                  <dd><p>Model range.</p>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithrange-Range.html">Range</a></span></code></dt>
-                                  <dd><p>Corresponding view range.</p>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="unbindModelElement">
-                      <h3><code><a class="member-name" href="#unbindModelElement">unbindModelElement</a>( modelElement )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Unbinds given <a href="module_engine_model_element-Element.html">model element</a> from the map.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> modelElement : <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
-                                  <dd><p>Model element to unbind.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="unbindViewElement">
-                      <h3><code><a class="member-name" href="#unbindViewElement">unbindViewElement</a>( viewElement )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Unbinds given <a href="module_engine_viewithelement-Element.html">view element</a> from the map.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> viewElement : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span></code></dt>
-                                  <dd><p>View element to unbind.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-        </ul>
-        <h2>Events</h2>
-        <ul class="collapsing-list collapsing-list--filtered">
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="event:modelToViewPosition">
-                      <h3><code><a class="member-name" href="#event:modelToViewPosition">modelToViewPosition</a>( data = { data.mapper } )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Fired for each model-to-view position mapping request. The purpose of this event is to enable custom model-to-view position
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> viewElement : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span></code></dt>
+                                        <dd><p>View element.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | undefined</code></dt>
+                                        <dd><p>Corresponding model element or <code>undefined</code> if not found.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="toModelPosition">
+                          <h3><code><a class="member-name" href="#toModelPosition">toModelPosition</a>( viewPosition ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Gets the corresponding model position.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> viewPosition : <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></dt>
+                                        <dd><p>View position.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
+                                        <dd><p>Corresponding model position.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="toModelRange">
+                          <h3><code><a class="member-name" href="#toModelRange">toModelRange</a>( viewRange ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Gets the corresponding model range.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> viewRange : <span><a class="collapsing-list__type" href="module_engine_viewithrange-Range.html">Range</a></span></code></dt>
+                                        <dd><p>View range.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
+                                        <dd><p>Corresponding model range.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="toViewElement">
+                          <h3><code><a class="member-name" href="#toViewElement">toViewElement</a>( modelElement ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | undefined</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Gets the corresponding view element.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> modelElement : <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
+                                        <dd><p>Model element.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | undefined</code></dt>
+                                        <dd><p>Corresponding view element or <code>undefined</code> if not found.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="toViewPosition">
+                          <h3><code><a class="member-name" href="#toViewPosition">toViewPosition</a>( modelPosition ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Gets the corresponding view position.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> modelPosition : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
+                                        <dd><p>Model position.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></dt>
+                                        <dd><p>Corresponding view position.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="toViewRange">
+                          <h3><code><a class="member-name" href="#toViewRange">toViewRange</a>( modelRange ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithrange-Range.html">Range</a></span></code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Gets the corresponding view range.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> modelRange : <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
+                                        <dd><p>Model range.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithrange-Range.html">Range</a></span></code></dt>
+                                        <dd><p>Corresponding view range.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="unbindModelElement">
+                          <h3><code><a class="member-name" href="#unbindModelElement">unbindModelElement</a>( modelElement )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Unbinds given <a href="module_engine_model_element-Element.html">model element</a> from the map.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> modelElement : <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
+                                        <dd><p>Model element to unbind.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="unbindViewElement">
+                          <h3><code><a class="member-name" href="#unbindViewElement">unbindViewElement</a>( viewElement )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Unbinds given <a href="module_engine_viewithelement-Element.html">view element</a> from the map.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> viewElement : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span></code></dt>
+                                        <dd><p>View element to unbind.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+          </ul>
+          <h2>Events</h2>
+          <ul class="collapsing-list collapsing-list--filtered">
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="event:modelToViewPosition">
+                          <h3><code><a class="member-name" href="#event:modelToViewPosition">modelToViewPosition</a>( data = { data.mapper } )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Fired for each model-to-view position mapping request. The purpose of this event is to enable custom model-to-view position
 mapping. Callbacks added to this event take <a href="module_engine_model_position-Position.html">model position</a> and are expected to
 calculate <a href="module_engine_viewithposition-Position.html">view position</a>. Calculated view position should be added as <code>viewPosition</code>
 value in <code>data</code> object that is passed as one of parameters to the event callback.
-                      </p>
-                      <div class="collapsing-list__content">
+                          </p>
+                          <div class="collapsing-list__content">
 <pre class="prettyprint source"><code>// Assume that &quot;captionedImage&quot; model element is converted to &lt;img&gt; and following &lt;span&gt; elements in view,
 // and the model element is bound to &lt;img&gt; element. Force mapping model positions inside &quot;captionedImage&quot; to that
 // &lt;span&gt; element.
@@ -595,30 +598,30 @@ attach a custom callback after default callback and also use <code>data.viewPosi
 <p><strong>Note:</strong> these callbacks are called <strong>very often</strong>. For efficiency reasons, it is advised to use them only when position
 mapping between given model and view elements is unsolvable using just elements mapping and default algorithm. Also,
 the condition that checks if special case scenario happened should be as simple as possible.</p>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> data : Object</code></dt>
-                                  <dd><p>Data pipeline object that can store and pass data between callbacks. The callback should add
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> data : Object</code></dt>
+                                        <dd><p>Data pipeline object that can store and pass data between callbacks. The callback should add
 <code>viewPosition</code> value to that object with calculated <a href="module_engine_viewithposition-Position.html">view position</a>.</p>
-                                            <dl>
-                                              <h5>Properties</h5>
-                                              <dt><code> data.mapper : <span><a class="collapsing-list__type" href="module_engine_conversion_mapper-Mapper.html">Mapper</a></span></code></dt>
-                                              <dd><p>Mapper instance that fired the event.</p>
-                                              </dd>
-                                            </dl>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="event:viewToModelPosition">
-                      <h3><code><a class="member-name" href="#event:viewToModelPosition">viewToModelPosition</a>( data = { data.mapper } )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Fired for each view-to-model position mapping request. See <a href="module_engine_conversion_mapper-Mapper.html#event:modelToViewPosition"><code>modelToViewPosition</code></a>.
-                      </p>
-                      <div class="collapsing-list__content">
+                                                    <dl>
+                                                      <h5>Properties</h5>
+                                                      <dt><code> data.mapper : <span><a class="collapsing-list__type" href="module_engine_conversion_mapper-Mapper.html">Mapper</a></span></code></dt>
+                                                      <dd><p>Mapper instance that fired the event.</p>
+                                                      </dd>
+                                                    </dl>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="event:viewToModelPosition">
+                          <h3><code><a class="member-name" href="#event:viewToModelPosition">viewToModelPosition</a>( data = { data.mapper } )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Fired for each view-to-model position mapping request. See <a href="module_engine_conversion_mapper-Mapper.html#event:modelToViewPosition"><code>modelToViewPosition</code></a>.
+                          </p>
+                          <div class="collapsing-list__content">
 <pre class="prettyprint source"><code>// See example in `modelToViewPosition` event description.
 // This custom mapping will map positions from &lt;span&gt; element next to &lt;img&gt; to the &quot;captionedImage&quot; element.
 mapper.on( &apos;viewToModelPosition&apos;, ( evt, data ) =&gt; {
@@ -638,23 +641,24 @@ attach a custom callback after default callback and also use <code>data.modelPos
 <p><strong>Note:</strong> these callbacks are called <strong>very often</strong>. For efficiency reasons, it is advised to use them only when position
 mapping between given model and view elements is unsolvable using just elements mapping and default algorithm. Also,
 the condition that checks if special case scenario happened should be as simple as possible.</p>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> data : Object</code></dt>
-                                  <dd><p>Data pipeline object that can store and pass data between callbacks. The callback should add
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> data : Object</code></dt>
+                                        <dd><p>Data pipeline object that can store and pass data between callbacks. The callback should add
 <code>modelPosition</code> value to that object with calculated <a href="module_engine_model_position-Position.html">model position</a>.</p>
-                                            <dl>
-                                              <h5>Properties</h5>
-                                              <dt><code> data.mapper : <span><a class="collapsing-list__type" href="module_engine_conversion_mapper-Mapper.html">Mapper</a></span></code></dt>
-                                              <dd><p>Mapper instance that fired the event.</p>
-                                              </dd>
-                                            </dl>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-        </ul>
+                                                    <dl>
+                                                      <h5>Properties</h5>
+                                                      <dt><code> data.mapper : <span><a class="collapsing-list__type" href="module_engine_conversion_mapper-Mapper.html">Mapper</a></span></code></dt>
+                                                      <dd><p>Mapper instance that fired the event.</p>
+                                                      </dd>
+                                                    </dl>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+          </ul>
+        </div>
       </section>
       <div class="side-navigation">
         <div class="side-navigation__wrapper">
@@ -3439,7 +3443,7 @@ the condition that checks if special case scenario happened should be as simple 
     </main>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">docsearch({apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:10}});</script>
     <footer class="footer">
-      <p>&copy; 2017 CKSource sp. z.o.o. sp.k. All rights reserved.</p>
+      <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
     </footer>
   </body>
 </html>

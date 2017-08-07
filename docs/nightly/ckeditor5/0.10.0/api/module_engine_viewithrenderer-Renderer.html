@@ -4,9 +4,9 @@
     <meta charset="utf8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Class Renderer (engine/view/renderer~Renderer) - CKEditor 5 API docs</title>
-    <link rel="stylesheet" href="../../../assets/0.2.27/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../assets/0.3.0/css/styles.css" type="text/css" media="screen">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
-    <script src="../../../assets/0.2.27/scripts/app.js"></script>
+    <script src="../../../assets/0.3.0/scripts/app.js"></script>
   </head>
   <body>
     <header class="top">
@@ -19,21 +19,22 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.2.27/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.0/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
-      <section class="main__content formatted">
-        <div class="api-header"><img src="../../../assets/0.2.27/img/cog.svg" alt="Class" title="Class"/>
-          <div class="api-header__title">
-            <h1>Renderer
-            </h1>
-            <p class="header__import">@ckeditor/ckeditor5-engine/src/view/renderer
-            </p>
+      <section class="main__content formatted main__content--api">
+        <div class="main__content-inner">
+          <div class="api-header"><img src="../../../assets/0.3.0/img/cog.svg" alt="Class" title="Class"/>
+            <div class="api-header__title">
+              <h1>Renderer
+              </h1>
+              <p class="header__import">@ckeditor/ckeditor5-engine/src/view/renderer
+              </p>
+            </div>
           </div>
-        </div>
-        <p><span class="badge">class</span>
-        </p><p>Renderer updates DOM structure and selection, to make them a reflection of the view structure and selection.</p>
+          <p><span class="badge">class</span>
+          </p><p>Renderer updates DOM structure and selection, to make them a reflection of the view structure and selection.</p>
 <p>View nodes which may need to be rendered needs to be <a href="module_engine_viewithrenderer-Renderer.html#markToSync">marked</a>.
 Then, on <a href="module_engine_viewithrenderer-Renderer.html#render">render</a>, renderer compares view nodes with DOM nodes
 in order to check which ones really need to be refreshed. Finally, it creates DOM nodes from these view nodes,
@@ -41,496 +42,498 @@ in order to check which ones really need to be refreshed. Finally, it creates DO
 <p>Every time <a href="module_engine_viewithrenderer-Renderer.html#render">render</a> is called, renderer additionally checks if
 <a href="module_engine_viewithrenderer-Renderer.html#selection">selection</a> needs update and updates it if so.</p>
 <p>Renderer uses <a href="module_engine_viewithdomconverter-DomConverter.html"><code>DomConverter</code></a> to transform and bind nodes.</p>
-        <div class="notice notice__filter api-props-filter">
-          <h4>Filtering</h4>
-          <ul>
-            <li>
-              <input type="checkbox" id="f1" value="public" checked>
-              <label for="f1"><span class="badge badge--gray">Public</span></label>
-            </li>
-            <li>
-              <input type="checkbox" id="f4" value="inherited" checked>
-              <label for="f4"><span class="badge badge--gray">Inherited</span></label>
-            </li>
-            <li>
-              <input type="checkbox" id="f6" value="mixed">
-              <label for="f6"><span class="badge badge--gray">Mixed</span></label>
-            </li>
-            <li>
-              <input type="checkbox" id="f2" value="protected">
-              <label for="f2"><span class="badge badge--orange">Protected</span></label>
-            </li>
-            <li>
-              <input type="checkbox" id="f3" value="private">
-              <label for="f3"><span class="badge badge--red">Private</span></label>
-            </li>
-            <li>
-              <input type="checkbox" id="f5" value="deprecated">
-              <label for="f5"><span class="badge badge--red">Deprecated</span></label>
-            </li>
-          </ul>
-        </div>
-        <h2>Properties</h2>
-        <ul class="collapsing-list collapsing-list--filtered">
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_fakeSelectionContainer">
-                      <h3><code><a class="member-name" href="#_fakeSelectionContainer">_fakeSelectionContainer</a> : null | HTMLElement</code></h3>
-                      <p class="badges">
+          <div class="notice notice__filter api-props-filter">
+            <div class="api-props-filter__inner">
+              <h4>Filtering</h4>
+              <ul>
+                <li>
+                  <input type="checkbox" id="f1" value="public" checked>
+                  <label for="f1"><span class="badge badge--gray">Public</span></label>
+                </li>
+                <li>
+                  <input type="checkbox" id="f4" value="inherited" checked>
+                  <label for="f4"><span class="badge badge--gray">Inherited</span></label>
+                </li>
+                <li>
+                  <input type="checkbox" id="f6" value="mixed" checked>
+                  <label for="f6"><span class="badge badge--gray">Mixed</span></label>
+                </li>
+                <li>
+                  <input type="checkbox" id="f2" value="protected">
+                  <label for="f2"><span class="badge badge--orange">Protected</span></label>
+                </li>
+                <li>
+                  <input type="checkbox" id="f3" value="private">
+                  <label for="f3"><span class="badge badge--red">Private</span></label>
+                </li>
+                <li>
+                  <input type="checkbox" id="f5" value="deprecated">
+                  <label for="f5"><span class="badge badge--red">Deprecated</span></label>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <h2>Properties</h2>
+          <ul class="collapsing-list collapsing-list--filtered">
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_fakeSelectionContainer">
+                          <h3><code><a class="member-name" href="#_fakeSelectionContainer">_fakeSelectionContainer</a> : null | HTMLElement</code></h3>
+                          <p class="badges">
 <span class="badge badge--red ">private</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">DOM element containing fake selection.</p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_inlineFiller">
-                      <h3><code><a class="member-name" href="#_inlineFiller">_inlineFiller</a> : Text</code></h3>
-                      <p class="badges">
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">DOM element containing fake selection.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_inlineFiller">
+                          <h3><code><a class="member-name" href="#_inlineFiller">_inlineFiller</a> : Text</code></h3>
+                          <p class="badges">
 <span class="badge badge--red ">private</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">The text node in which the inline filler was rendered.</p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="domConverter">
-                      <h3><code><a class="member-name" href="#domConverter">domConverter</a> : <span><a class="collapsing-list__type" href="module_engine_viewithdomconverter-DomConverter.html">DomConverter</a></span></code></h3>
-                      <p class="badges">
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">The text node in which the inline filler was rendered.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="domConverter">
+                          <h3><code><a class="member-name" href="#domConverter">domConverter</a> : <span><a class="collapsing-list__type" href="module_engine_viewithdomconverter-DomConverter.html">DomConverter</a></span></code></h3>
+                          <p class="badges">
 <span class="badge badge--gray ">readonly</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Converter instance.</p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="domDocuments">
-                      <h3><code><a class="member-name" href="#domDocuments">domDocuments</a> : Document</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Set of DOM Documents instances.</p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="isFocused">
-                      <h3><code><a class="member-name" href="#isFocused">isFocused</a> : Boolean</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Indicates if the view document is focused and selection can be rendered. Selection will not be rendered if
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Converter instance.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="domDocuments">
+                          <h3><code><a class="member-name" href="#domDocuments">domDocuments</a> : Document</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Set of DOM Documents instances.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="isFocused">
+                          <h3><code><a class="member-name" href="#isFocused">isFocused</a> : Boolean</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Indicates if the view document is focused and selection can be rendered. Selection will not be rendered if
 this is set to <code>false</code>.</p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="markedAttributes">
-                      <h3><code><a class="member-name" href="#markedAttributes">markedAttributes</a> : <span>Set.&lt;<a class="collapsing-list__type" href="module_engine_viewithnode-Node.html">Node</a>&gt;</span></code></h3>
-                      <p class="badges">
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="markedAttributes">
+                          <h3><code><a class="member-name" href="#markedAttributes">markedAttributes</a> : <span>Set.&lt;<a class="collapsing-list__type" href="module_engine_viewithnode-Node.html">Node</a>&gt;</span></code></h3>
+                          <p class="badges">
 <span class="badge badge--gray ">readonly</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Set of nodes which attributes changed and may need to be rendered.</p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="markedChildren">
-                      <h3><code><a class="member-name" href="#markedChildren">markedChildren</a> : <span>Set.&lt;<a class="collapsing-list__type" href="module_engine_viewithnode-Node.html">Node</a>&gt;</span></code></h3>
-                      <p class="badges">
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Set of nodes which attributes changed and may need to be rendered.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="markedChildren">
+                          <h3><code><a class="member-name" href="#markedChildren">markedChildren</a> : <span>Set.&lt;<a class="collapsing-list__type" href="module_engine_viewithnode-Node.html">Node</a>&gt;</span></code></h3>
+                          <p class="badges">
 <span class="badge badge--gray ">readonly</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Set of elements which child lists changed and may need to be rendered.</p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="markedTexts">
-                      <h3><code><a class="member-name" href="#markedTexts">markedTexts</a> : <span>Set.&lt;<a class="collapsing-list__type" href="module_engine_viewithnode-Node.html">Node</a>&gt;</span></code></h3>
-                      <p class="badges">
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Set of elements which child lists changed and may need to be rendered.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="markedTexts">
+                          <h3><code><a class="member-name" href="#markedTexts">markedTexts</a> : <span>Set.&lt;<a class="collapsing-list__type" href="module_engine_viewithnode-Node.html">Node</a>&gt;</span></code></h3>
+                          <p class="badges">
 <span class="badge badge--gray ">readonly</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Set of text nodes which text data changed and may need to be rendered.</p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="selection">
-                      <h3><code><a class="member-name" href="#selection">selection</a> : <span><a class="collapsing-list__type" href="module_engine_viewithselection-Selection.html">Selection</a></span></code></h3>
-                      <p class="badges">
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Set of text nodes which text data changed and may need to be rendered.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="selection">
+                          <h3><code><a class="member-name" href="#selection">selection</a> : <span><a class="collapsing-list__type" href="module_engine_viewithselection-Selection.html">Selection</a></span></code></h3>
+                          <p class="badges">
 <span class="badge badge--gray ">readonly</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">View selection. Renderer updates DOM selection based on the view selection.</p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-        </ul>
-        <h2>Methods</h2>
-        <ul class="collapsing-list collapsing-list--filtered">
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="constructor">
-                      <h3><code><a class="member-name" href="#constructor">constructor</a>( domConverter, selection )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Creates a renderer instance.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> domConverter : <span><a class="collapsing-list__type" href="module_engine_viewithdomconverter-DomConverter.html">DomConverter</a></span></code></dt>
-                                  <dd><p>Converter instance.</p>
-                                  </dd>
-                                  <dt><code> selection : <span><a class="collapsing-list__type" href="module_engine_viewithselection-Selection.html">Selection</a></span></code></dt>
-                                  <dd><p>View selection.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_updateChildren">
-                      <h3><code><a class="member-name" href="#_updateChildren">_updateChildren</a>( viewElement, options = { options.inlineFillerPosition } )</code></h3>
-                      <p class="badges">
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">View selection. Renderer updates DOM selection based on the view selection.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+          </ul>
+          <h2>Methods</h2>
+          <ul class="collapsing-list collapsing-list--filtered">
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="constructor">
+                          <h3><code><a class="member-name" href="#constructor">constructor</a>( domConverter, selection )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Creates a renderer instance.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> domConverter : <span><a class="collapsing-list__type" href="module_engine_viewithdomconverter-DomConverter.html">DomConverter</a></span></code></dt>
+                                        <dd><p>Converter instance.</p>
+                                        </dd>
+                                        <dt><code> selection : <span><a class="collapsing-list__type" href="module_engine_viewithselection-Selection.html">Selection</a></span></code></dt>
+                                        <dd><p>View selection.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_updateChildren">
+                          <h3><code><a class="member-name" href="#_updateChildren">_updateChildren</a>( viewElement, options = { options.inlineFillerPosition } )</code></h3>
+                          <p class="badges">
 <span class="badge badge--red ">private</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Checks if elements child list needs to be updated and possibly updates it.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> viewElement : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span></code></dt>
-                                  <dd><p>View element to update.</p>
-                                  </dd>
-                                  <dt><code> options : Object</code></dt>
-                                  <dd>
-                                            <dl>
-                                              <h5>Properties</h5>
-                                              <dt><code> options.inlineFillerPosition : <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></dt>
-                                              <dd><p>The position on which the inline
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Checks if elements child list needs to be updated and possibly updates it.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> viewElement : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span></code></dt>
+                                        <dd><p>View element to update.</p>
+                                        </dd>
+                                        <dt><code> options : Object</code></dt>
+                                        <dd>
+                                                    <dl>
+                                                      <h5>Properties</h5>
+                                                      <dt><code> options.inlineFillerPosition : <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></dt>
+                                                      <dd><p>The position on which the inline
 filler should be rendered.</p>
-                                              </dd>
-                                            </dl>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_isSelectionInInlineFiller">
-                      <h3><code><a class="member-name" href="#_isSelectionInInlineFiller">_isSelectionInInlineFiller</a>() &rarr;  Boolean</code></h3>
-                      <p class="badges">
+                                                      </dd>
+                                                    </dl>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_isSelectionInInlineFiller">
+                          <h3><code><a class="member-name" href="#_isSelectionInInlineFiller">_isSelectionInInlineFiller</a>() &rarr;  Boolean</code></h3>
+                          <p class="badges">
 <span class="badge badge--red ">private</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Returns <code>true</code> if the selection hasn&apos;t left the inline filler&apos;s text node.
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Returns <code>true</code> if the selection hasn&apos;t left the inline filler&apos;s text node.
 If it is <code>true</code> it means that the filler had been added for a reason and the selection does not
 left the filler&apos;s text node. E.g. the user can be in the middle of a composition so it should not be touched.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code>Boolean</code></dt>
-                                  <dd><p>True if the inline filler and selection are in the same place.</p>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_needsInlineFillerAtSelection">
-                      <h3><code><a class="member-name" href="#_needsInlineFillerAtSelection">_needsInlineFillerAtSelection</a>() &rarr;  Boolean</code></h3>
-                      <p class="badges">
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code>Boolean</code></dt>
+                                        <dd><p>True if the inline filler and selection are in the same place.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_needsInlineFillerAtSelection">
+                          <h3><code><a class="member-name" href="#_needsInlineFillerAtSelection">_needsInlineFillerAtSelection</a>() &rarr;  Boolean</code></h3>
+                          <p class="badges">
 <span class="badge badge--red ">private</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Checks if the inline <a href="module_engine_viewithfiller.html">filler</a> should be added.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code>Boolean</code></dt>
-                                  <dd><p>True if the inline fillers should be added.</p>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_removeDomSelection">
-                      <h3><code><a class="member-name" href="#_removeDomSelection">_removeDomSelection</a>()</code></h3>
-                      <p class="badges">
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Checks if the inline <a href="module_engine_viewithfiller.html">filler</a> should be added.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code>Boolean</code></dt>
+                                        <dd><p>True if the inline fillers should be added.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_removeDomSelection">
+                          <h3><code><a class="member-name" href="#_removeDomSelection">_removeDomSelection</a>()</code></h3>
+                          <p class="badges">
 <span class="badge badge--red ">private</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Removes DOM selection.
-                      </p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_removeFakeSelection">
-                      <h3><code><a class="member-name" href="#_removeFakeSelection">_removeFakeSelection</a>()</code></h3>
-                      <p class="badges">
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Removes DOM selection.
+                          </p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_removeFakeSelection">
+                          <h3><code><a class="member-name" href="#_removeFakeSelection">_removeFakeSelection</a>()</code></h3>
+                          <p class="badges">
 <span class="badge badge--red ">private</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Removes fake selection.
-                      </p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_removeInlineFiller">
-                      <h3><code><a class="member-name" href="#_removeInlineFiller">_removeInlineFiller</a>()</code></h3>
-                      <p class="badges">
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Removes fake selection.
+                          </p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_removeInlineFiller">
+                          <h3><code><a class="member-name" href="#_removeInlineFiller">_removeInlineFiller</a>()</code></h3>
+                          <p class="badges">
 <span class="badge badge--red ">private</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Removes the inline filler.
-                      </p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_updateAttrs">
-                      <h3><code><a class="member-name" href="#_updateAttrs">_updateAttrs</a>( viewElement )</code></h3>
-                      <p class="badges">
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Removes the inline filler.
+                          </p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_updateAttrs">
+                          <h3><code><a class="member-name" href="#_updateAttrs">_updateAttrs</a>( viewElement )</code></h3>
+                          <p class="badges">
 <span class="badge badge--red ">private</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Checks if attributes list needs to be updated and possibly updates it.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> viewElement : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span></code></dt>
-                                  <dd><p>View element to update.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_getInlineFillerPosition">
-                      <h3><code><a class="member-name" href="#_getInlineFillerPosition">_getInlineFillerPosition</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></h3>
-                      <p class="badges">
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Checks if attributes list needs to be updated and possibly updates it.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> viewElement : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span></code></dt>
+                                        <dd><p>View element to update.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_getInlineFillerPosition">
+                          <h3><code><a class="member-name" href="#_getInlineFillerPosition">_getInlineFillerPosition</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></h3>
+                          <p class="badges">
 <span class="badge badge--red ">private</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Gets the position of the inline filler based on the current selection.
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Gets the position of the inline filler based on the current selection.
 Here, we assume that we know that the filler is needed and
 <a href="module_engine_viewithrenderer-Renderer.html#_isSelectionInInlineFiller">is  at  the  selection  position</a>, and, since it&apos;s needed,
 it&apos;s somewhere at the selection postion.
-                      </p>
-                      <div class="collapsing-list__content">
+                          </p>
+                          <div class="collapsing-list__content">
 <p>Note: we cannot restore the filler position based on the filler&apos;s DOM text node, because
 when this method is called (before rendering) the bindings will often be broken. View to DOM
 bindings are only dependable after rendering.</p>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></dt>
-                                  <dd>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_updateDomSelection">
-                      <h3><code><a class="member-name" href="#_updateDomSelection">_updateDomSelection</a>( domRoot )</code></h3>
-                      <p class="badges">
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_updateDomSelection">
+                          <h3><code><a class="member-name" href="#_updateDomSelection">_updateDomSelection</a>( domRoot )</code></h3>
+                          <p class="badges">
 <span class="badge badge--red ">private</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Updates DOM selection.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> domRoot : HTMLElement</code></dt>
-                                  <dd><p>Valid DOM root where DOM selection should be rendered.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_updateFakeSelection">
-                      <h3><code><a class="member-name" href="#_updateFakeSelection">_updateFakeSelection</a>( domRoot )</code></h3>
-                      <p class="badges">
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Updates DOM selection.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> domRoot : HTMLElement</code></dt>
+                                        <dd><p>Valid DOM root where DOM selection should be rendered.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_updateFakeSelection">
+                          <h3><code><a class="member-name" href="#_updateFakeSelection">_updateFakeSelection</a>( domRoot )</code></h3>
+                          <p class="badges">
 <span class="badge badge--red ">private</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Updates fake selection.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> domRoot : HTMLElement</code></dt>
-                                  <dd><p>Valid DOM root where fake selection container should be added.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_updateFocus">
-                      <h3><code><a class="member-name" href="#_updateFocus">_updateFocus</a>()</code></h3>
-                      <p class="badges">
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Updates fake selection.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> domRoot : HTMLElement</code></dt>
+                                        <dd><p>Valid DOM root where fake selection container should be added.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_updateFocus">
+                          <h3><code><a class="member-name" href="#_updateFocus">_updateFocus</a>()</code></h3>
+                          <p class="badges">
 <span class="badge badge--red ">private</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Checks if focus needs to be updated and possibly updates it.
-                      </p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_updateSelection">
-                      <h3><code><a class="member-name" href="#_updateSelection">_updateSelection</a>()</code></h3>
-                      <p class="badges">
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Checks if focus needs to be updated and possibly updates it.
+                          </p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_updateSelection">
+                          <h3><code><a class="member-name" href="#_updateSelection">_updateSelection</a>()</code></h3>
+                          <p class="badges">
 <span class="badge badge--red ">private</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Checks if selection needs to be updated and possibly updates it.
-                      </p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_updateText">
-                      <h3><code><a class="member-name" href="#_updateText">_updateText</a>( viewText, options = { options.inlineFillerPosition } )</code></h3>
-                      <p class="badges">
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Checks if selection needs to be updated and possibly updates it.
+                          </p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_updateText">
+                          <h3><code><a class="member-name" href="#_updateText">_updateText</a>( viewText, options = { options.inlineFillerPosition } )</code></h3>
+                          <p class="badges">
 <span class="badge badge--red ">private</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Checks if text needs to be updated and possibly updates it.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> viewText : <span><a class="collapsing-list__type" href="module_engine_viewithtext-Text.html">Text</a></span></code></dt>
-                                  <dd><p>View text to update.</p>
-                                  </dd>
-                                  <dt><code> options : Object</code></dt>
-                                  <dd>
-                                            <dl>
-                                              <h5>Properties</h5>
-                                              <dt><code> options.inlineFillerPosition : <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></dt>
-                                              <dd><p>The position on which the inline
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Checks if text needs to be updated and possibly updates it.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> viewText : <span><a class="collapsing-list__type" href="module_engine_viewithtext-Text.html">Text</a></span></code></dt>
+                                        <dd><p>View text to update.</p>
+                                        </dd>
+                                        <dt><code> options : Object</code></dt>
+                                        <dd>
+                                                    <dl>
+                                                      <h5>Properties</h5>
+                                                      <dt><code> options.inlineFillerPosition : <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></dt>
+                                                      <dd><p>The position on which the inline
 filler should be rendered.</p>
-                                              </dd>
-                                            </dl>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_addInlineFiller">
-                      <h3><code><a class="member-name" href="#_addInlineFiller">_addInlineFiller</a>( domDocument, domParentOrArray, offset ) &rarr;  Text</code></h3>
-                      <p class="badges">
+                                                      </dd>
+                                                    </dl>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_addInlineFiller">
+                          <h3><code><a class="member-name" href="#_addInlineFiller">_addInlineFiller</a>( domDocument, domParentOrArray, offset ) &rarr;  Text</code></h3>
+                          <p class="badges">
 <span class="badge badge--red ">private</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Adds inline filler at given position.
-                      </p>
-                      <div class="collapsing-list__content">
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Adds inline filler at given position.
+                          </p>
+                          <div class="collapsing-list__content">
 <p>The position can be given as an array of DOM nodes and an offset in that array,
 or a DOM parent element and offset in that element.</p>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> domDocument : Document</code></dt>
-                                  <dd>
-                                  </dd>
-                                  <dt><code> domParentOrArray : Element | Node</code></dt>
-                                  <dd>
-                                  </dd>
-                                  <dt><code> offset : Number</code></dt>
-                                  <dd>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code>Text</code></dt>
-                                  <dd><p>The DOM text node that contains inline filler.</p>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="markToSync">
-                      <h3><code><a class="member-name" href="#markToSync">markToSync</a>( type, node )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Mark node to be synchronized.
-                      </p>
-                      <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> domDocument : Document</code></dt>
+                                        <dd>
+                                        </dd>
+                                        <dt><code> domParentOrArray : Element | Node</code></dt>
+                                        <dd>
+                                        </dd>
+                                        <dt><code> offset : Number</code></dt>
+                                        <dd>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code>Text</code></dt>
+                                        <dd><p>The DOM text node that contains inline filler.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="markToSync">
+                          <h3><code><a class="member-name" href="#markToSync">markToSync</a>( type, node )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Mark node to be synchronized.
+                          </p>
+                          <div class="collapsing-list__content">
 <p>Note that only view nodes which parents have corresponding DOM elements need to be marked to be synchronized.</p>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> type : <span><a class="collapsing-list__type" href="module_engine_viewithdocument-ChangeType.html">ChangeType</a></span></code></dt>
-                                  <dd><p>Type of the change.</p>
-                                  </dd>
-                                  <dt><code> node : <span><a class="collapsing-list__type" href="module_engine_viewithnode-Node.html">Node</a></span></code></dt>
-                                  <dd><p>Node to be marked.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="render">
-                      <h3><code><a class="member-name" href="#render">render</a>()</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Render method checks <a href="module_engine_viewithrenderer-Renderer.html#markedAttributes"><code>markedAttributes</code></a>,
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> type : <span><a class="collapsing-list__type" href="module_engine_viewithdocument-ChangeType.html">ChangeType</a></span></code></dt>
+                                        <dd><p>Type of the change.</p>
+                                        </dd>
+                                        <dt><code> node : <span><a class="collapsing-list__type" href="module_engine_viewithnode-Node.html">Node</a></span></code></dt>
+                                        <dd><p>Node to be marked.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="render">
+                          <h3><code><a class="member-name" href="#render">render</a>()</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Render method checks <a href="module_engine_viewithrenderer-Renderer.html#markedAttributes"><code>markedAttributes</code></a>,
 <a href="module_engine_viewithrenderer-Renderer.html#markedChildren"><code>markedChildren</code></a> and <a href="module_engine_viewithrenderer-Renderer.html#markedTexts"><code>markedTexts</code></a> and updates all
 nodes which need to be updated. Then it clears all three sets. Also, every time render is called it compares and
 if needed updates the selection.
-                      </p>
-                      <div class="collapsing-list__content">
+                          </p>
+                          <div class="collapsing-list__content">
 <p>Renderer tries not to break text composition (e.g. IME) and x-index of the selection,
 so it does as little as it is needed to update the DOM.</p>
 <p>For attributes it adds new attributes to DOM elements, updates values and removes
@@ -544,10 +547,11 @@ changed.</p>
 <p>Rendering also handles <a href="module_engine_viewithfiller.html">fillers</a>. Especially, it checks if the inline filler is needed
 at selection position and adds or removes it. To prevent breaking text composition inline filler will not be
 removed as long selection is in the text node which needed it at first.</p>
-                      </div>
-                    </div>
-                  </li>
-        </ul>
+                          </div>
+                        </div>
+                      </li>
+          </ul>
+        </div>
       </section>
       <div class="side-navigation">
         <div class="side-navigation__wrapper">
@@ -3332,7 +3336,7 @@ removed as long selection is in the text node which needed it at first.</p>
     </main>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">docsearch({apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:10}});</script>
     <footer class="footer">
-      <p>&copy; 2017 CKSource sp. z.o.o. sp.k. All rights reserved.</p>
+      <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
     </footer>
   </body>
 </html>

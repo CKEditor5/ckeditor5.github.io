@@ -4,9 +4,9 @@
     <meta charset="utf8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Class Schema (engine/model/schema~Schema) - CKEditor 5 API docs</title>
-    <link rel="stylesheet" href="../../../assets/0.2.27/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../assets/0.3.0/css/styles.css" type="text/css" media="screen">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
-    <script src="../../../assets/0.2.27/scripts/app.js"></script>
+    <script src="../../../assets/0.3.0/scripts/app.js"></script>
   </head>
   <body>
     <header class="top">
@@ -19,21 +19,22 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.2.27/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.0/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
-      <section class="main__content formatted">
-        <div class="api-header"><img src="../../../assets/0.2.27/img/cog.svg" alt="Class" title="Class"/>
-          <div class="api-header__title">
-            <h1>Schema
-            </h1>
-            <p class="header__import">@ckeditor/ckeditor5-engine/src/model/schema
-            </p>
+      <section class="main__content formatted main__content--api">
+        <div class="main__content-inner">
+          <div class="api-header"><img src="../../../assets/0.3.0/img/cog.svg" alt="Class" title="Class"/>
+            <div class="api-header__title">
+              <h1>Schema
+              </h1>
+              <p class="header__import">@ckeditor/ckeditor5-engine/src/model/schema
+              </p>
+            </div>
           </div>
-        </div>
-        <p><span class="badge">class</span>
-        </p><p>Schema is a definition of the structure of the document. It allows to define which tree model items (element, text, etc.)
+          <p><span class="badge">class</span>
+          </p><p>Schema is a definition of the structure of the document. It allows to define which tree model items (element, text, etc.)
 can be nested within which ones and which attributes can be applied to them. It&apos;s created during the run-time of the application,
 typically by features. Also, the features can query the schema to learn what structure is allowed and act accordingly.</p>
 <p>For instance, if a feature wants to define that an attribute bold is allowed on the text it needs to register this rule like this:</p>
@@ -47,127 +48,129 @@ typically by features. Also, the features can query the schema to learn what str
 <p>When registering an item it&apos;s possible to tell that this item should inherit from some other existing item.
 E.g. <code>p</code> can inherit from <code>$block</code>, so whenever given attribute is allowed on the <code>$block</code> it will automatically be
 also allowed on the <code>p</code> element. By default, <code>$text</code> item already inherits from <code>$inline</code>.</p>
-        <div class="notice notice__filter api-props-filter">
-          <h4>Filtering</h4>
-          <ul>
-            <li>
-              <input type="checkbox" id="f1" value="public" checked>
-              <label for="f1"><span class="badge badge--gray">Public</span></label>
-            </li>
-            <li>
-              <input type="checkbox" id="f4" value="inherited" checked>
-              <label for="f4"><span class="badge badge--gray">Inherited</span></label>
-            </li>
-            <li>
-              <input type="checkbox" id="f6" value="mixed">
-              <label for="f6"><span class="badge badge--gray">Mixed</span></label>
-            </li>
-            <li>
-              <input type="checkbox" id="f2" value="protected">
-              <label for="f2"><span class="badge badge--orange">Protected</span></label>
-            </li>
-            <li>
-              <input type="checkbox" id="f3" value="private">
-              <label for="f3"><span class="badge badge--red">Private</span></label>
-            </li>
-            <li>
-              <input type="checkbox" id="f5" value="deprecated">
-              <label for="f5"><span class="badge badge--red">Deprecated</span></label>
-            </li>
-          </ul>
-        </div>
-        <h2>Properties</h2>
-        <ul class="collapsing-list collapsing-list--filtered">
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_extensionChains">
-                      <h3><code><a class="member-name" href="#_extensionChains">_extensionChains</a> : Map</code></h3>
-                      <p class="badges">
+          <div class="notice notice__filter api-props-filter">
+            <div class="api-props-filter__inner">
+              <h4>Filtering</h4>
+              <ul>
+                <li>
+                  <input type="checkbox" id="f1" value="public" checked>
+                  <label for="f1"><span class="badge badge--gray">Public</span></label>
+                </li>
+                <li>
+                  <input type="checkbox" id="f4" value="inherited" checked>
+                  <label for="f4"><span class="badge badge--gray">Inherited</span></label>
+                </li>
+                <li>
+                  <input type="checkbox" id="f6" value="mixed" checked>
+                  <label for="f6"><span class="badge badge--gray">Mixed</span></label>
+                </li>
+                <li>
+                  <input type="checkbox" id="f2" value="protected">
+                  <label for="f2"><span class="badge badge--orange">Protected</span></label>
+                </li>
+                <li>
+                  <input type="checkbox" id="f3" value="private">
+                  <label for="f3"><span class="badge badge--red">Private</span></label>
+                </li>
+                <li>
+                  <input type="checkbox" id="f5" value="deprecated">
+                  <label for="f5"><span class="badge badge--red">Deprecated</span></label>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <h2>Properties</h2>
+          <ul class="collapsing-list collapsing-list--filtered">
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_extensionChains">
+                          <h3><code><a class="member-name" href="#_extensionChains">_extensionChains</a> : Map</code></h3>
+                          <p class="badges">
 <span class="badge badge--red ">private</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Description of what entities are a base for given entity.</p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_items">
-                      <h3><code><a class="member-name" href="#_items">_items</a> : Map</code></h3>
-                      <p class="badges">
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Description of what entities are a base for given entity.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_items">
+                          <h3><code><a class="member-name" href="#_items">_items</a> : Map</code></h3>
+                          <p class="badges">
 <span class="badge badge--red ">private</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Schema items registered in the schema.</p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="limits">
-                      <h3><code><a class="member-name" href="#limits">limits</a> : String</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Names of elements to which editing operations should be limited.
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Schema items registered in the schema.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="limits">
+                          <h3><code><a class="member-name" href="#limits">limits</a> : String</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Names of elements to which editing operations should be limited.
 For example, the <kbd>Enter</kbd> should not split such elements and
 <kbd>Backspace</kbd> should not be able to leave or modify such elements.</p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="objects">
-                      <h3><code><a class="member-name" href="#objects">objects</a> : String</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Names of elements which have &quot;object&quot; nature. This means that these
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="objects">
+                          <h3><code><a class="member-name" href="#objects">objects</a> : String</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Names of elements which have &quot;object&quot; nature. This means that these
 elements should be treated as whole, never merged, can be selected from outside, etc.
 Just like images, placeholder widgets, etc.</p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-        </ul>
-        <h2>Methods</h2>
-        <h4>Instance methods</h4>
-        <ul class="collapsing-list collapsing-list--filtered">
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="constructor">
-                      <h3><code><a class="member-name" href="#constructor">constructor</a>()</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Creates Schema instance.
-                      </p>
-                      <div class="collapsing-list__content">
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="disallow">
-                      <h3><code><a class="member-name" href="#disallow">disallow</a>( query )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Disallows given query in the schema.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> query : <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaQuery.html">SchemaQuery</a></span></code></dt>
-                                  <dd><p>Disallowed query.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="allow">
-                      <h3><code><a class="member-name" href="#allow">allow</a>( query )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Allows given query in the schema.
-                      </p>
-                      <div class="collapsing-list__content">
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+          </ul>
+          <h2>Methods</h2>
+          <h4>Instance methods</h4>
+          <ul class="collapsing-list collapsing-list--filtered">
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="constructor">
+                          <h3><code><a class="member-name" href="#constructor">constructor</a>()</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Creates Schema instance.
+                          </p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="disallow">
+                          <h3><code><a class="member-name" href="#disallow">disallow</a>( query )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Disallows given query in the schema.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> query : <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaQuery.html">SchemaQuery</a></span></code></dt>
+                                        <dd><p>Disallowed query.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="allow">
+                          <h3><code><a class="member-name" href="#allow">allow</a>( query )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Allows given query in the schema.
+                          </p>
+                          <div class="collapsing-list__content">
 <pre class="prettyprint source"><code>// Allow text with bold attribute in all P elements.
 schema.registerItem( &apos;p&apos;, &apos;$block&apos; );
 schema.allow( { name: &apos;$text&apos;, attributes: &apos;bold&apos;, inside: &apos;p&apos; } );
@@ -176,23 +179,23 @@ schema.allow( { name: &apos;$text&apos;, attributes: &apos;bold&apos;, inside: &
 schema.registerItem( &apos;header&apos;, &apos;$block&apos; );
 schema.registerItem( &apos;div&apos;, &apos;$block&apos; );
 schema.allow( { name: &apos;header&apos;, inside: &apos;div p&apos; } ); // inside: [ &apos;div&apos;, &apos;p&apos; ] would also work.</code></pre>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> query : <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaQuery.html">SchemaQuery</a></span></code></dt>
-                                  <dd><p>Allowed query.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="check">
-                      <h3><code><a class="member-name" href="#check">check</a>( query ) &rarr;  Boolean</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Checks whether given query is allowed in schema.
-                      </p>
-                      <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> query : <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaQuery.html">SchemaQuery</a></span></code></dt>
+                                        <dd><p>Allowed query.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="check">
+                          <h3><code><a class="member-name" href="#check">check</a>( query ) &rarr;  Boolean</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Checks whether given query is allowed in schema.
+                          </p>
+                          <div class="collapsing-list__content">
 <pre class="prettyprint source"><code>// Check whether bold text is allowed in header element.
 let query = {
     name: &apos;$text&apos;,
@@ -220,258 +223,259 @@ let query = {
     inside: [ &apos;$block&apos;, quoteElement ]
 };
 if ( schema.check( query ) ) { ... }</code></pre>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> query : <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaQuery.html">SchemaQuery</a></span></code></dt>
-                                  <dd><p>Query to check.</p>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code>Boolean</code></dt>
-                                  <dd><p><code>true</code> if given query is allowed in schema, <code>false</code> otherwise.</p>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="checkAttributeInSelection">
-                      <h3><code><a class="member-name" href="#checkAttributeInSelection">checkAttributeInSelection</a>( selection, attribute ) &rarr;  Boolean</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Checks whether the attribute is allowed in selection:
-                      </p>
-                      <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> query : <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaQuery.html">SchemaQuery</a></span></code></dt>
+                                        <dd><p>Query to check.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code>Boolean</code></dt>
+                                        <dd><p><code>true</code> if given query is allowed in schema, <code>false</code> otherwise.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="checkAttributeInSelection">
+                          <h3><code><a class="member-name" href="#checkAttributeInSelection">checkAttributeInSelection</a>( selection, attribute ) &rarr;  Boolean</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Checks whether the attribute is allowed in selection:
+                          </p>
+                          <div class="collapsing-list__content">
 <ul>
 <li>if the selection is not collapsed, then checks if the attribute is allowed on any of nodes in that range,</li>
 <li>if the selection is collapsed, then checks if on the selection position there&apos;s a text with the
 specified attribute allowed.</li>
 </ul>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> selection : <span><a class="collapsing-list__type" href="module_engine_model_selection-Selection.html">Selection</a></span></code></dt>
-                                  <dd><p>Selection which will be checked.</p>
-                                  </dd>
-                                  <dt><code> attribute : String</code></dt>
-                                  <dd><p>The name of the attribute to check.</p>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code>Boolean</code></dt>
-                                  <dd>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-private="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_getItem">
-                      <h3><code><a class="member-name" href="#_getItem">_getItem</a>( itemName ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaItem.html">SchemaItem</a></span></code></h3>
-                      <p class="badges">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> selection : <span><a class="collapsing-list__type" href="module_engine_model_selection-Selection.html">Selection</a></span></code></dt>
+                                        <dd><p>Selection which will be checked.</p>
+                                        </dd>
+                                        <dt><code> attribute : String</code></dt>
+                                        <dd><p>The name of the attribute to check.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code>Boolean</code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_getItem">
+                          <h3><code><a class="member-name" href="#_getItem">_getItem</a>( itemName ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaItem.html">SchemaItem</a></span></code></h3>
+                          <p class="badges">
 <span class="badge badge--red ">private</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Returns <a href="module_engine_model_schema-SchemaItem.html">schema item</a> that was registered in the schema under given name.
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Returns <a href="module_engine_model_schema-SchemaItem.html">schema item</a> that was registered in the schema under given name.
 If item has not been found, throws error.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> itemName : String</code></dt>
-                                  <dd><p>Name to look for in schema.</p>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code><span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaItem.html">SchemaItem</a></span></code></dt>
-                                  <dd><p>Schema item registered under given name.</p>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="getLimitElement">
-                      <h3><code><a class="member-name" href="#getLimitElement">getLimitElement</a>( selection ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Returns the lowest <a href="module_engine_model_schema-Schema.html#limits">limit element</a> containing the entire
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> itemName : String</code></dt>
+                                        <dd><p>Name to look for in schema.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaItem.html">SchemaItem</a></span></code></dt>
+                                        <dd><p>Schema item registered under given name.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="getLimitElement">
+                          <h3><code><a class="member-name" href="#getLimitElement">getLimitElement</a>( selection ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Returns the lowest <a href="module_engine_model_schema-Schema.html#limits">limit element</a> containing the entire
 selection or the root otherwise.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> selection : <span><a class="collapsing-list__type" href="module_engine_model_selection-Selection.html">Selection</a></span></code></dt>
-                                  <dd><p>Selection which returns the common ancestor.</p>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code><span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
-                                  <dd>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="getValidRanges">
-                      <h3><code><a class="member-name" href="#getValidRanges">getValidRanges</a>( ranges, attribute ) &rarr;  <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span></code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Transforms the given set ranges into a set of ranges where the given attribute is allowed (and can be applied).
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> ranges : <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span></code></dt>
-                                  <dd><p>Ranges to be validated.</p>
-                                  </dd>
-                                  <dt><code> attribute : String</code></dt>
-                                  <dd><p>The name of the attribute to check.</p>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code><span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span></code></dt>
-                                  <dd><p>Ranges in which the attribute is allowed.</p>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="hasItem">
-                      <h3><code><a class="member-name" href="#hasItem">hasItem</a>( itemName ) &rarr;  Boolean</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Checks whether there is an item registered under given name in schema.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> itemName : </code></dt>
-                                  <dd>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code>Boolean</code></dt>
-                                  <dd>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="itemExtends">
-                      <h3><code><a class="member-name" href="#itemExtends">itemExtends</a>( childItemName, parentItemName ) &rarr;  Boolean</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Checks whether item of given name is extending item of another given name.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> childItemName : String</code></dt>
-                                  <dd><p>Name of the child item.</p>
-                                  </dd>
-                                  <dt><code> parentItemName : String</code></dt>
-                                  <dd><p>Name of the parent item.</p>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code>Boolean</code></dt>
-                                  <dd><p><code>true</code> if child item extends parent item, <code>false</code> otherwise.</p>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="registerItem">
-                      <h3><code><a class="member-name" href="#registerItem">registerItem</a>( itemName, [ isExtending ] )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Registers given item name in schema.
-                      </p>
-                      <div class="collapsing-list__content">
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> selection : <span><a class="collapsing-list__type" href="module_engine_model_selection-Selection.html">Selection</a></span></code></dt>
+                                        <dd><p>Selection which returns the common ancestor.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="getValidRanges">
+                          <h3><code><a class="member-name" href="#getValidRanges">getValidRanges</a>( ranges, attribute ) &rarr;  <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span></code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Transforms the given set ranges into a set of ranges where the given attribute is allowed (and can be applied).
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> ranges : <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span></code></dt>
+                                        <dd><p>Ranges to be validated.</p>
+                                        </dd>
+                                        <dt><code> attribute : String</code></dt>
+                                        <dd><p>The name of the attribute to check.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span></code></dt>
+                                        <dd><p>Ranges in which the attribute is allowed.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="hasItem">
+                          <h3><code><a class="member-name" href="#hasItem">hasItem</a>( itemName ) &rarr;  Boolean</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Checks whether there is an item registered under given name in schema.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> itemName : </code></dt>
+                                        <dd>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code>Boolean</code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="itemExtends">
+                          <h3><code><a class="member-name" href="#itemExtends">itemExtends</a>( childItemName, parentItemName ) &rarr;  Boolean</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Checks whether item of given name is extending item of another given name.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> childItemName : String</code></dt>
+                                        <dd><p>Name of the child item.</p>
+                                        </dd>
+                                        <dt><code> parentItemName : String</code></dt>
+                                        <dd><p>Name of the parent item.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code>Boolean</code></dt>
+                                        <dd><p><code>true</code> if child item extends parent item, <code>false</code> otherwise.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="registerItem">
+                          <h3><code><a class="member-name" href="#registerItem">registerItem</a>( itemName, [ isExtending ] )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Registers given item name in schema.
+                          </p>
+                          <div class="collapsing-list__content">
 <pre class="prettyprint source"><code>// Register P element that should be treated like all block elements.
 schema.registerItem( &apos;p&apos;, &apos;$block&apos; );</code></pre>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> itemName : String</code></dt>
-                                  <dd><p>Name to register.</p>
-                                  </dd>
-                                  <dt><code> [ isExtending ] : </code></dt>
-                                  <dd><p>If set, new item will extend item with given name.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-                  <li class="collapsing-list__item" data-public="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="requireAttributes">
-                      <h3><code><a class="member-name" href="#requireAttributes">requireAttributes</a>( name, attributes )</code></h3>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Makes a requirement in schema that entity represented by given item has to have given set of attributes. Some
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> itemName : String</code></dt>
+                                        <dd><p>Name to register.</p>
+                                        </dd>
+                                        <dt><code> [ isExtending ] : </code></dt>
+                                        <dd><p>If set, new item will extend item with given name.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="requireAttributes">
+                          <h3><code><a class="member-name" href="#requireAttributes">requireAttributes</a>( name, attributes )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Makes a requirement in schema that entity represented by given item has to have given set of attributes. Some
 elements in the model might require some attributes to be set. If multiple sets of attributes are required it
 is enough that the entity fulfills only one set.
-                      </p>
-                      <div class="collapsing-list__content">
+                          </p>
+                          <div class="collapsing-list__content">
 <pre class="prettyprint source"><code>// &quot;a&quot; element must either have &quot;href&quot; attribute or &quot;name&quot; attribute
 schema.requireAttributes( &apos;a&apos;, [ &apos;href&apos; ] );
 schema.requireAttributes( &apos;a&apos;, [ &apos;name&apos; ] );
 // &quot;img&quot; element must have both &quot;src&quot; and &quot;alt&quot; attributes
 schema.requireAttributes( &apos;img&apos;, [ &apos;src&apos;, &apos;alt&apos; ] );</code></pre>
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> name : String</code></dt>
-                                  <dd><p>Entity name.</p>
-                                  </dd>
-                                  <dt><code> attributes : String</code></dt>
-                                  <dd><p>Attributes that has to be set on the entity to make it valid.</p>
-                                  </dd>
-                                </dl>
-                      </div>
-                    </div>
-                  </li>
-        </ul>
-        <h4>Static methods</h4>
-        <ul class="collapsing-list collapsing-list--filtered">
-                  <li class="collapsing-list__item" data-protected="true">
-                    <div class="collapsing-list__term toggler--collapsed" id="_normalizeQueryPath">
-                      <h3><code><a class="member-name" href="#_normalizeQueryPath">_normalizeQueryPath</a>( path ) &rarr;  String</code></h3>
-                      <p class="badges">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> name : String</code></dt>
+                                        <dd><p>Entity name.</p>
+                                        </dd>
+                                        <dt><code> attributes : String</code></dt>
+                                        <dd><p>Attributes that has to be set on the entity to make it valid.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+          </ul>
+          <h4>Static methods</h4>
+          <ul class="collapsing-list collapsing-list--filtered">
+                      <li class="collapsing-list__item" data-protected="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_normalizeQueryPath">
+                          <h3><code><a class="member-name" href="#_normalizeQueryPath">_normalizeQueryPath</a>( path ) &rarr;  String</code></h3>
+                          <p class="badges">
 <span class="badge badge--orange ">protected</span>
 <span class="badge badge--gray ">static</span>
-                      </p>
-                    </div>
-                    <div class="collapsing-list__description">
-                      <p class="collapsing-list__excerpt">Normalizes a path to an entity by converting it from <a href="module_engine_model_schema-SchemaPath.html"><code>SchemaPath</code></a> to an array of strings.
-                      </p>
-                      <div class="collapsing-list__content">
-                        <h4>Parameters</h4>
-                                <dl>
-                                  <dt><code> path : <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaPath.html">SchemaPath</a></span></code></dt>
-                                  <dd><p>Path to normalize.</p>
-                                  </dd>
-                                </dl>
-                        <h4>Returns</h4>
-                        <dl>
-                                  <dt><code>String</code></dt>
-                                  <dd><p>Normalized path.</p>
-                                  </dd>
-                        </dl>
-                      </div>
-                    </div>
-                  </li>
-        </ul>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Normalizes a path to an entity by converting it from <a href="module_engine_model_schema-SchemaPath.html"><code>SchemaPath</code></a> to an array of strings.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> path : <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaPath.html">SchemaPath</a></span></code></dt>
+                                        <dd><p>Path to normalize.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code>String</code></dt>
+                                        <dd><p>Normalized path.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+          </ul>
+        </div>
       </section>
       <div class="side-navigation">
         <div class="side-navigation__wrapper">
@@ -3256,7 +3260,7 @@ schema.requireAttributes( &apos;img&apos;, [ &apos;src&apos;, &apos;alt&apos; ] 
     </main>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">docsearch({apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:10}});</script>
     <footer class="footer">
-      <p>&copy; 2017 CKSource sp. z.o.o. sp.k. All rights reserved.</p>
+      <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
     </footer>
   </body>
 </html>

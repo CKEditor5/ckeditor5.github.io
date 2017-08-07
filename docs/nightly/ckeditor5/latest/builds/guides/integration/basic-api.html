@@ -4,9 +4,9 @@
     <meta charset="utf8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Basic API - CKEditor 5</title>
-    <link rel="stylesheet" href="../../../../../assets/0.2.27/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../../../assets/0.3.0/css/styles.css" type="text/css" media="screen">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
-    <script src="../../../../../assets/0.2.27/scripts/app.js"></script>
+    <script src="../../../../../assets/0.3.0/scripts/app.js"></script>
   </head>
   <body>
     <header class="top">
@@ -19,13 +19,14 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
-        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.2.27/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.0/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
-        <h1><img src="../../../../../assets/0.2.27/img/book.svg">Basic API
-        </h1><nav class="toc"><h3>In this page</h3><ol><li><a href="#Creators">Creators</a></li><li><a href="#Interacting-with-the-editor">Interacting with the editor</a></li><ol><li><a href="#Setting-the-editor-data">Setting the editor data</a></li><li><a href="#Getting-the-editor-data">Getting the editor data</a></li><li><a href="#Destroying-the-editor">Destroying the editor</a></li></ol><li><a href="#What&#x2019;s-more">What&#x2019;s more?</a></li></ol></nav><h2 id="Creators"><a href="#Creators" class="headerlink" title="Creators"></a>Creators</h2><p>Each CKEditor 5 build provides a class that handles the creation of editor instances inside a page. For this reason they are called &#x201C;creators&#x201D;. Every creator comes with a static <code>create()</code> method.</p>
+        <div class="main__content-inner">
+          <h1><img src="../../../../../assets/0.3.0/img/book.svg">Basic API
+          </h1><nav class="toc"><h3>In this page</h3><ol><li><a href="#Creators">Creators</a></li><li><a href="#Interacting-with-the-editor">Interacting with the editor</a></li><ol><li><a href="#Setting-the-editor-data">Setting the editor data</a></li><li><a href="#Getting-the-editor-data">Getting the editor data</a></li><li><a href="#Destroying-the-editor">Destroying the editor</a></li></ol><li><a href="#What&#x2019;s-more">What&#x2019;s more?</a></li></ol></nav><h2 id="Creators"><a href="#Creators" class="headerlink" title="Creators"></a>Creators</h2><p>Each CKEditor 5 build provides a class that handles the creation of editor instances inside a page. For this reason they are called &#x201C;creators&#x201D;. Every creator comes with a static <code>create()</code> method.</p>
 <p>The following are creator class names for each build:</p>
 <ul>
 <li>Classic Editor &#x2013; <a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html">ClassicEditor</a></li>
@@ -68,8 +69,9 @@ ClassicEditor.create; // [Function]
     } );
 </code></pre>
 <p>In the above case, the <code>&lt;textarea&gt;</code> element is hidden and replaced with an editor. The <code>&lt;textarea&gt;</code> data is used to initialize the editor content. A <code>&lt;div&gt;</code> element can be used in the same fashion.</p>
-<div class="side-box notice notice__info"><p>Every creator may accept different parameters and handle initialization differently. For instance, the classic editor will replace a given element with an editor, while the inline editor will use the given element to initialize the editor on it. See each editor&#x2019;s documentation to learn the details.</p><p>The interface of the editor class is not enforced either. Since different implementations of editors may vary heavily in terms of functionality, the editor class implementers have full freedom regarding the API. Therefore, the examples in this guide may not work with some editor classes.</p></div>
-
+<p><side-box info=""><br>    Every creator may accept different parameters and handle initialization differently. For instance, the classic editor will replace a given element with an editor, while the inline editor will use the given element to initialize the editor on it. See each editor&#x2019;s documentation to learn the details.</side-box></p>
+<pre><code>The interface of the editor class is not enforced either. Since different implementations of editors may vary heavily in terms of functionality, the editor class implementers have full freedom regarding the API. Therefore, the examples in this guide may not work with some editor classes.
+</code></pre><p></p>
 <h2 id="Interacting-with-the-editor"><a href="#Interacting-with-the-editor" class="headerlink" title="Interacting with the editor"></a>Interacting with the editor</h2><p>Once the editor is created, it is possible to interact with it through its API. The <code>editor</code> variable from the examples above should enable that.</p>
 <h3 id="Setting-the-editor-data"><a href="#Setting-the-editor-data" class="headerlink" title="Setting the editor data"></a>Setting the editor data</h3><p>To replace the editor content with new data, just use the <code>setData</code> method:</p>
 <pre><code class="js">editor.setData( &apos;&lt;p&gt;Some text.&lt;/p&gt;&apos; );
@@ -86,6 +88,7 @@ ClassicEditor.create; // [Function]
 <p>Once destroyed, resources used by the editor instance are released and the original element used to create the editor is automatically displayed and updated to reflect the final editor data.</p>
 <h2 id="What&#x2019;s-more"><a href="#What&#x2019;s-more" class="headerlink" title="What&#x2019;s more?"></a>What&#x2019;s more?</h2><p>CKEditor offers a rich API to interact with editors. Check out the <a href="../../../api/TODO.html">API documentation</a> for more.</p>
 
+        </div>
       </section>
       <div class="side-navigation">
         <div class="side-navigation__wrapper">
@@ -133,7 +136,7 @@ ClassicEditor.create; // [Function]
     </main>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">docsearch({apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:10}});</script>
     <footer class="footer">
-      <p>&copy; 2017 CKSource sp. z.o.o. sp.k. All rights reserved.</p>
+      <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
     </footer>
   </body>
 </html>
