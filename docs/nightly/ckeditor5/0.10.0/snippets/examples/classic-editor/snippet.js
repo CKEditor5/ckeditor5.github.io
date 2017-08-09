@@ -1171,7 +1171,7 @@ class Range {
 	 *
 	 * @returns {Iterable.<module:engine/model/treewalker~TreeWalkerValue>}
 	 */
-	* [ Symbol.iterator ]() {
+	*[ Symbol.iterator ]() {
 		yield* new __WEBPACK_IMPORTED_MODULE_1__treewalker__["a" /* default */]( { boundaries: this, ignoreElementEnd: true } );
 	}
 
@@ -1449,7 +1449,7 @@ class Range {
 	 * @param {Object} options Object with configuration options. See {@link module:engine/model/treewalker~TreeWalker}.
 	 * @returns {Iterable.<module:engine/model/item~Item>}
 	 */
-	* getItems( options = {} ) {
+	*getItems( options = {} ) {
 		options.boundaries = this;
 		options.ignoreElementEnd = true;
 
@@ -1473,7 +1473,7 @@ class Range {
 	 * @param {Object} options Object with configuration options. See {@link module:engine/model/treewalker~TreeWalker}.
 	 * @returns {Iterable.<module:engine/model/position~Position>}
 	 */
-	* getPositions( options = {} ) {
+	*getPositions( options = {} ) {
 		options.boundaries = this;
 
 		const treeWalker = new __WEBPACK_IMPORTED_MODULE_1__treewalker__["a" /* default */]( options );
@@ -6271,7 +6271,7 @@ class Batch {
 	 *
 	 * @returns {Iterable.<module:engine/model/operation/operation~Operation>}
 	 */
-	* getOperations() {
+	*getOperations() {
 		for ( const delta of this.deltas ) {
 			yield* delta.operations;
 		}
@@ -7962,7 +7962,7 @@ class Element extends __WEBPACK_IMPORTED_MODULE_0__node__["a" /* default */] {
 	 *
 	 * @returns {Iterator.<String>} Keys for attributes.
 	 */
-	* getAttributeKeys() {
+	*getAttributeKeys() {
 		if ( this._classes.size > 0 ) {
 			yield 'class';
 		}
@@ -7986,7 +7986,7 @@ class Element extends __WEBPACK_IMPORTED_MODULE_0__node__["a" /* default */] {
 	 *
 	 * @returns {Iterable.<*>}
 	 */
-	* getAttributes() {
+	*getAttributes() {
 		yield* this._attrs.entries();
 
 		if ( this._classes.size > 0 ) {
@@ -8397,7 +8397,7 @@ class Element extends __WEBPACK_IMPORTED_MODULE_0__node__["a" /* default */] {
 	 *
 	 * @returns {Iterable.<*>}
 	 */
-	* getCustomProperties() {
+	*getCustomProperties() {
 		yield* this._customProperties.entries();
 	}
 
@@ -9660,7 +9660,7 @@ class Range {
 	 *
 	 * @returns {Iterable.<module:engine/view/treewalker~TreeWalkerValue>}
 	 */
-	* [ Symbol.iterator ]() {
+	*[ Symbol.iterator ]() {
 		yield* new __WEBPACK_IMPORTED_MODULE_1__treewalker__["a" /* default */]( { boundaries: this, ignoreElementEnd: true } );
 	}
 
@@ -9709,8 +9709,8 @@ class Range {
 	 * @returns {module:engine/view/range~Range} Enlarged range.
 	 */
 	getEnlarged() {
-		let start = this.start.getLastMatchingPosition( enlargeShrinkSkip, { direction: 'backward' } );
-		let end = this.end.getLastMatchingPosition( enlargeShrinkSkip );
+		let start = this.start.getLastMatchingPosition( enlargeTrimSkip, { direction: 'backward' } );
+		let end = this.end.getLastMatchingPosition( enlargeTrimSkip );
 
 		// Fix positions, in case if they are in Text node.
 		if ( start.parent.is( 'text' ) && start.isAtStart ) {
@@ -9741,8 +9741,8 @@ class Range {
 	 * @returns {module:engine/view/range~Range} Shrink range.
 	 */
 	getTrimmed() {
-		let start = this.start.getLastMatchingPosition( enlargeShrinkSkip );
-		let end = this.end.getLastMatchingPosition( enlargeShrinkSkip, { direction: 'backward' } );
+		let start = this.start.getLastMatchingPosition( enlargeTrimSkip, { boundaries: new Range( this.start, this.end ) } );
+		let end = this.end.getLastMatchingPosition( enlargeTrimSkip, { boundaries: new Range( start, this.end ), direction: 'backward' } );
 		const nodeAfterStart = start.nodeAfter;
 		const nodeBeforeEnd = end.nodeBefore;
 
@@ -9939,7 +9939,7 @@ class Range {
 	 * @param {Object} options Object with configuration options. See {@link module:engine/view/treewalker~TreeWalker}.
 	 * @returns {Iterable.<module:engine/view/item~Item>}
 	 */
-	* getItems( options = {} ) {
+	*getItems( options = {} ) {
 		options.boundaries = this;
 		options.ignoreElementEnd = true;
 
@@ -9963,7 +9963,7 @@ class Range {
 	 * @param {Object} options Object with configuration options. See {@link module:engine/view/treewalker~TreeWalker}.
 	 * @returns {Iterable.<module:engine/view/position~Position>}
 	 */
-	* getPositions( options = {} ) {
+	*getPositions( options = {} ) {
 		options.boundaries = this;
 
 		const treeWalker = new __WEBPACK_IMPORTED_MODULE_1__treewalker__["a" /* default */]( options );
@@ -10051,7 +10051,7 @@ class Range {
 
 
 // Function used by getEnlagred and getShrinked methods.
-function enlargeShrinkSkip( value ) {
+function enlargeTrimSkip( value ) {
 	if ( value.item.is( 'attributeElement' ) || value.item.is( 'uiElement' ) ) {
 		return true;
 	}
@@ -14665,7 +14665,7 @@ class Selection {
 	 *
 	 * @returns {Iterator.<module:engine/view/range~Range>}
 	 */
-	* getRanges() {
+	*getRanges() {
 		for ( const range of this._ranges ) {
 			yield __WEBPACK_IMPORTED_MODULE_1__range__["a" /* default */].createFromRange( range );
 		}
@@ -19274,7 +19274,7 @@ class Selection {
 	 *
 	 * @returns {Iterator.<module:engine/model/range~Range>}
 	 */
-	* getRanges() {
+	*getRanges() {
 		for ( const range of this._ranges ) {
 			yield __WEBPACK_IMPORTED_MODULE_2__range__["a" /* default */].createFromRange( range );
 		}
@@ -19696,7 +19696,7 @@ class Selection {
 	 *
 	 * @returns {Iterator.<module:engine/model/element~Element>}
 	 */
-	* getSelectedBlocks() {
+	*getSelectedBlocks() {
 		const visited = new WeakSet();
 
 		for ( const range of this.getRanges() ) {
@@ -22444,9 +22444,9 @@ function changeRange( batch, doc, attributeKey, attributeValue, range ) {
 	// Currently position in the scanning range. Because we need value after the position, it is not a current
 	// position of the iterator but the previous one (we need to iterate one more time to get the value after).
 	let position,
-	// Value before the currently position.
+		// Value before the currently position.
 		attributeValueBefore,
-	// Value after the currently position.
+		// Value after the currently position.
 		attributeValueAfter;
 
 	for ( const value of range ) {
@@ -24593,7 +24593,7 @@ class DomConverter {
 	 * @param {Object} options See {@link module:engine/view/domconverter~DomConverter#viewToDom} options parameter.
 	 * @returns {Iterable.<Node>} DOM nodes.
 	 */
-	* viewChildrenToDom( viewElement, domDocument, options = {} ) {
+	*viewChildrenToDom( viewElement, domDocument, options = {} ) {
 		const fillerPositionOffset = viewElement.getFillerOffset && viewElement.getFillerOffset();
 		let offset = 0;
 
@@ -24786,7 +24786,7 @@ class DomConverter {
 	 * @param {Object} options See {@link module:engine/view/domconverter~DomConverter#domToView} options parameter.
 	 * @returns {Iterable.<module:engine/view/node~Node>} View nodes.
 	 */
-	* domChildrenToView( domElement, options = {} ) {
+	*domChildrenToView( domElement, options = {} ) {
 		for ( let i = 0; i < domElement.childNodes.length; i++ ) {
 			const domChild = domElement.childNodes[ i ];
 			const viewChild = this.domToView( domChild, options );
@@ -27405,7 +27405,6 @@ class Matcher {
 
 		return ( typeof pattern != 'function' && name && !( name instanceof RegExp ) ) ? name : null;
 	}
-
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Matcher;
 
@@ -39651,7 +39650,6 @@ class ViewConsumable {
  * @private
  */
 class ViewElementConsumables {
-
 	/**
 	 * Creates ViewElementConsumables instance.
 	 */
@@ -41500,7 +41498,7 @@ function validateTextNodePosition( rangeBoundary ) {
 // @param {module:engine/module/treewalker~TreeWalker} [forward] Walker iterating in forward direction.
 // @returns {Iterable.<Object>} Object returned at each iteration contains `value` and `walker` (informing which walker returned
 // given value) fields.
-function* combineWalkers( backward, forward ) {
+function *combineWalkers( backward, forward ) {
 	let done = false;
 
 	while ( !done ) {
@@ -46461,7 +46459,7 @@ class History {
 	 * Defaults to `Number.POSITIVE_INFINITY` which means that deltas up to the last one will be returned.
 	 * @returns {Iterator.<module:engine/model/delta/delta~Delta>} Deltas added to the history from given base versions range.
 	 */
-	* getDeltas( from = 0, to = Number.POSITIVE_INFINITY ) {
+	*getDeltas( from = 0, to = Number.POSITIVE_INFINITY ) {
 		// No deltas added, nothing to yield.
 		if ( this._deltas.length === 0 ) {
 			return;
@@ -46725,7 +46723,7 @@ class DocumentSelection extends __WEBPACK_IMPORTED_MODULE_8__selection__["a" /* 
 	/**
 	 * @inheritDoc
 	 */
-	* getRanges() {
+	*getRanges() {
 		if ( this._ranges.length ) {
 			yield* super.getRanges();
 		} else {
@@ -47092,7 +47090,7 @@ class DocumentSelection extends __WEBPACK_IMPORTED_MODULE_8__selection__["a" /* 
 	 * @private
 	 * @returns {Iterable.<*>}
 	 */
-	* _getStoredAttributes() {
+	*_getStoredAttributes() {
 		const selectionParent = this.getFirstPosition().parent;
 
 		if ( this.isCollapsed && selectionParent.isEmpty ) {
@@ -48223,7 +48221,7 @@ class MarkerCollection {
 	 * @param {module:engine/model/position~Position} position
 	 * @returns {Iterator.<module:engine/model/markercollection~Marker>}
 	 */
-	* getMarkersAtPosition( position ) {
+	*getMarkersAtPosition( position ) {
 		for ( const marker of this ) {
 			if ( marker.getRange().containsPosition( position ) ) {
 				yield marker;
@@ -48257,7 +48255,7 @@ class MarkerCollection {
 	 * @param prefix
 	 * @returns {Iterator.<module:engine/model/markercollection~Marker>}
 	 */
-	* getMarkersGroup( prefix ) {
+	*getMarkersGroup( prefix ) {
 		for ( const marker of this._markers.values() ) {
 			if ( marker.name.startsWith( prefix + ':' ) ) {
 				yield marker;
@@ -53555,7 +53553,7 @@ const safeKeycodes = [
 	Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_keyboard__["a" /* getCode */])( 'arrowRight' ),
 	Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_keyboard__["a" /* getCode */])( 'arrowDown' ),
 	Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_keyboard__["a" /* getCode */])( 'arrowLeft' ),
-	9,  // Tab
+	9, // Tab
 	16, // Shift
 	17, // Ctrl
 	18, // Alt
