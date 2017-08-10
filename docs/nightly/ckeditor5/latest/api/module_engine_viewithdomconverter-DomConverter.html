@@ -208,6 +208,35 @@ corresponding node.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_isDomSelectionPositionCorrect">
+                          <h3><code><a class="member-name" href="#_isDomSelectionPositionCorrect">_isDomSelectionPositionCorrect</a>( domParent, offset ) &rarr;  Boolean</code></h3>
+                          <p class="badges">
+<span class="badge badge--red ">private</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Checks if the given DOM position is a correct place for selection boundary. See <a href="module_engine_viewithdomconverter-DomConverter.html#isDomSelectionCorrect"><code>isDomSelectionCorrect</code></a>.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> domParent : Element</code></dt>
+                                        <dd><p>Position parent.</p>
+                                        </dd>
+                                        <dt><code> offset : Number</code></dt>
+                                        <dd><p>Position offset.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code>Boolean</code></dt>
+                                        <dd><p><code>true</code> if given position is at a correct place for selection boundary, <code>false</code> otherwise.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
                         <div class="collapsing-list__term toggler--collapsed" id="_processDataFromDomText">
                           <h3><code><a class="member-name" href="#_processDataFromDomText">_processDataFromDomText</a>( node ) &rarr;  String</code></h3>
                           <p class="badges">
@@ -710,6 +739,34 @@ parent UIElement.
                             <dl>
                                         <dt><code>Boolean</code></dt>
                                         <dd>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="isDomSelectionCorrect">
+                          <h3><code><a class="member-name" href="#isDomSelectionCorrect">isDomSelectionCorrect</a>( domSelection ) &rarr;  Boolean</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Checks if given selection&apos;s boundaries are at correct places.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>The following places are considered as incorrect for selection boundaries:</p>
+<ul>
+<li>before or in the middle of the inline filler sequence,</li>
+<li>inside the DOM element which represents <a href="module_engine_viewithuielement-UIElement.html">a view ui element</a>.</li>
+</ul>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> domSelection : Selection</code></dt>
+                                        <dd><p>DOM Selection object to be checked.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code>Boolean</code></dt>
+                                        <dd><p><code>true</code> if the given selection is at a correct place, <code>false</code> otherwise.</p>
                                         </dd>
                             </dl>
                           </div>

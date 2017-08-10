@@ -243,6 +243,32 @@ filler should be rendered.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_getInlineFillerPosition">
+                          <h3><code><a class="member-name" href="#_getInlineFillerPosition">_getInlineFillerPosition</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></h3>
+                          <p class="badges">
+<span class="badge badge--red ">private</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Gets the position of the inline filler based on the current selection.
+Here, we assume that we know that the filler is needed and
+<a href="module_engine_viewithrenderer-Renderer.html#_isSelectionInInlineFiller">is  at  the  selection  position</a>, and, since it&apos;s needed,
+it&apos;s somewhere at the selection postion.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>Note: we cannot restore the filler position based on the filler&apos;s DOM text node, because
+when this method is called (before rendering) the bindings will often be broken. View to DOM
+bindings are only dependable after rendering.</p>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
                         <div class="collapsing-list__term toggler--collapsed" id="_isSelectionInInlineFiller">
                           <h3><code><a class="member-name" href="#_isSelectionInInlineFiller">_isSelectionInInlineFiller</a>() &rarr;  Boolean</code></h3>
                           <p class="badges">
@@ -347,25 +373,25 @@ left the filler&apos;s text node. E.g. the user can be in the middle of a compos
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_getInlineFillerPosition">
-                          <h3><code><a class="member-name" href="#_getInlineFillerPosition">_getInlineFillerPosition</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="_domSelectionNeedsUpdate">
+                          <h3><code><a class="member-name" href="#_domSelectionNeedsUpdate">_domSelectionNeedsUpdate</a>( domSelection ) &rarr;  Boolean</code></h3>
                           <p class="badges">
 <span class="badge badge--red ">private</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Gets the position of the inline filler based on the current selection.
-Here, we assume that we know that the filler is needed and
-<a href="module_engine_viewithrenderer-Renderer.html#_isSelectionInInlineFiller">is  at  the  selection  position</a>, and, since it&apos;s needed,
-it&apos;s somewhere at the selection postion.
+                          <p class="collapsing-list__excerpt">Checks whether given DOM selection needs to be updated.
                           </p>
                           <div class="collapsing-list__content">
-<p>Note: we cannot restore the filler position based on the filler&apos;s DOM text node, because
-when this method is called (before rendering) the bindings will often be broken. View to DOM
-bindings are only dependable after rendering.</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> domSelection : Selection</code></dt>
+                                        <dd><p>DOM selection to check.</p>
+                                        </dd>
+                                      </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></dt>
+                                        <dt><code>Boolean</code></dt>
                                         <dd>
                                         </dd>
                             </dl>
