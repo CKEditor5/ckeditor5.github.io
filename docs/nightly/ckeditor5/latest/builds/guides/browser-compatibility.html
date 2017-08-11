@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Browser compatibility - CKEditor 5</title>
+    <link rel="canonical" href="/ckeditor5/latest/builds/guides/browser-compatibility.html">
+    <link rel="stylesheet" href="../../../../assets/0.3.2/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
+    <script src="../../../../assets/0.3.2/scripts/app.js"></script>
+  </head>
+  <body>
+    <header class="top">
+      <div class="top__logo"><a class="top__logo__link" href="../../index.html"><img src="../../assets/img/project-logo.svg" alt="CKEditor 5"></a></div>
+      <ul class="top__menu">
+        <li><a href="../../api/index.html">API</a></li>
+        <li><a href="../../framework/index.html">Framework</a></li>
+        <li><a class="top__menu__item--active" href="../index.html">Builds</a></li>
+        <li><a href="../../examples/index.html">Examples</a></li>
+      </ul>
+      <div class="top__search">
+        <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
+        <button class="top__search__button" type="submit"><img src="../../../../assets/0.3.2/img/loupe.svg" alt="Search"></button>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <h1><img src="../../../../assets/0.3.2/img/book.svg" alt="guide">Browser compatibility
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Desktop-environment">Desktop environment</a><ol><li><a href="#Notes">Notes</a></li></ol></li><li><a href="#Mobile-environment">Mobile environment</a></li></ol></nav><h2 id="Desktop-environment"><a href="#Desktop-environment" class="headerlink" title="Desktop environment"></a>Desktop environment</h2><p>CKEditor 5 is currently supported on the following desktop browsers:</p>
+<ul>
+<li>Close to full support (see <a href="#notes">notes below</a>):<ul>
+<li>Chrome (latest stable release).</li>
+<li>Firefox (latest stable release).</li>
+<li>Safari (latest stable release).</li>
+<li>Opera (latest stable release).</li>
+</ul>
+</li>
+<li><p>Good support:</p>
+<ul>
+<li><p>Edge (latest stable release).</p>
+<p>  Known issues:</p>
+<ul>
+<li>Minor issues with selection: <a href="https://github.com/ckeditor/ckeditor5-engine/issues/974" target="_blank" rel="external">1</a>, <a href="https://github.com/ckeditor/ckeditor5-engine/issues/928" target="_blank" rel="external">2</a>.</li>
+<li>The editor becomes unstable when F12 tools are enabled.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Not yet supported:</p>
+<ul>
+<li>Internet Explorer 11 is not yet supported. See the <a href="https://github.com/ckeditor/ckeditor5/issues/330" target="_blank" rel="external">Compatibility with IE11</a> ticket.</li>
+</ul>
+<h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h3><p>Features known to not be fully supported yet:</p>
+<ul>
+<li>Text composition (IME) &#x2013; Input Method Engine is a mechanism which allows inputting text in languages such as Japanese and Chinese. It&#x2019;s so called &#x201C;text composition&#x201D;. This mechanism is not yet fully supported and we&#x2019;ll be polishing that feature after 1.0.0.</li>
+<li>Drag and drop inside editor doesn&#x2019;t work yet. It is possible to drop images from your system if the <a href="../../api/module_upload_imageupload-ImageUpload.html">ImageUpload</a> feature is enabled.</li>
+</ul>
+<h2 id="Mobile-environment"><a href="#Mobile-environment" class="headerlink" title="Mobile environment"></a>Mobile environment</h2><p>Although CKEditor 5 works on Safari for iOS and Chrome for Android it has not been fully tested yet and there are known bugs and inconveniences. Full support for mobile browsers will be our goal after releasing 1.0.0.</p>
+<p>When working on mobile support we need to consider two complex aspects:</p>
+<ul>
+<li><p><strong>Special UI, designed for mobile.</strong></p>
+<p>  During the design phase we understood that creating a responsive and touch-friendly UI will not guarantee a desired UX level by itself. Also, that the &#x201C;mobile first&#x201D; approach has no application in this case due to constraints of the mobile environment and specific editing method. Therefore, we plan to introduce a completely customized, mobile-oriented UI.</p>
+<p>  We begun research on how to display necessary UI controls on the screen and, sadly, it turned out that mobile Safari&#x2019;s viewport mechanics makes it extremely complicated to display the UI in a reliable way. You can read more in the <a href="https://github.com/ckeditor/ckeditor5-design/issues/149" target="_blank" rel="external">UX: Mobile editing</a> ticket.</p>
+</li>
+<li><p><strong>Handling mobile browsers&#x2019; quirks.</strong></p>
+<p>  Mobile browsers (especially mobile Safari) work differently than their desktop equivalents. <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=118639" target="_blank" rel="external">Chrome&#x2019;s incomplete <code>keydown</code> event</a> is just one of issues with which we need to deal with.</p>
+<p>  For several years we&#x2019;ve worked with W3C on <a href="https://medium.com/content-uneditable/fixing-contenteditable-1a9a5073c35d" target="_blank" rel="external">fixing contentEditable</a> &#x2013; a technology on which the entire browser-based editing is based. Recently, browser vendors started implementing the core part of <a href="http://w3c.github.io/editing/" target="_blank" rel="external">the new specifications</a> &#x2013; the <code>beforeinput</code> event which has a chance to improve the situation. CKEditor 5&#x2019;s architecture was designed with this event in mind, so we will start taking advantage of it as soon as it proves to be stable enough.</p>
+</li>
+</ul>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li>
+                            <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Guides</span></div>
+                            <ul>
+                                    <li><a href="overview.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="whats-new.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">What's new?</span></div></a></li>
+                                    <li><a href="migrate.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migration</span></div></a></li>
+                                    <li>
+                                      <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Integration</span></div>
+                                      <ul>
+                                              <li><a href="integration/installation.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Installation</span></div></a></li>
+                                              <li><a href="integration/basic-api.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic API</span></div></a></li>
+                                              <li><a href="integration/configuration.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Configuration</span></div></a></li>
+                                              <li><a href="integration/plugins.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugins</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Development</span></div>
+                                      <ul>
+                                              <li><a href="development/custom-builds.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating custom builds</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li><a href="">
+                                        <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Browser compatibility</span></div></a></li>
+                                    <li><a href="license-and-legal.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span></div></a></li>
+                                    <li><a href="reporting-issues.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span></div></a></li>
+                            </ul>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">docsearch({apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:10}});</script>
+    <footer class="footer">
+      <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

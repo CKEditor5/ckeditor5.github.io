@@ -27,7 +27,7 @@
       <section class="main__content formatted">
         <div class="main__content-inner">
           <h1><img src="../../../../../assets/0.3.2/img/book.svg" alt="guide">Configuration
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Enabling-features">Enabling features</a><ol><li><a href="#List-of-plugins">List of plugins</a></li></ol></li><li><a href="#Toolbar-setup">Toolbar setup</a></li></ol></nav><p>When creating an editor in your page, it is possible to set up configurations that change many of its aspects. For example:</p>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Enabling-features">Enabling features</a><ol><li><a href="#List-of-plugins">List of plugins</a></li></ol></li><li><a href="#Toolbar-setup">Toolbar setup</a></li><li><a href="#Other-configuration-options">Other configuration options</a></li></ol></nav><p>When creating an editor in your page, it is possible to set up configurations that change many of its aspects. For example:</p>
 <pre><code class="js">ClassicEditor
     .create( document.querySelector( &apos;#text-editor&apos; ), {
         toolbar: [ &apos;bold&apos;, &apos;link&apos; ],
@@ -58,7 +58,8 @@ ClassicEditor
         console.log( error );
     } );
 </code></pre>
-<p><side-box tip=""><br>    If a build contains too many or too few features, the best approach is to create a custom build instead of simply using configurations.<br></side-box></p>
+<div class="info-box notice notice__hint"><p>If a build contains too many or too few features, the best approach is to create a custom build instead of simply using configurations.</p></div>
+
 <h3 id="List-of-plugins"><a href="#List-of-plugins" class="headerlink" title="List of plugins"></a>List of plugins</h3><p>Each build has a number of plugins available. You can easily list all plugins available in your build:</p>
 <pre><code class="js">ClassicEditor.build.plugins.map( plugin =&gt; plugin.pluginName );
 </code></pre>
@@ -72,8 +73,10 @@ ClassicEditor
         console.log( error );
     } );
 </code></pre>
-<p><side-box tip=""><br>    The above is a strict UI-related configuration. Removing a toolbar item does not remove the feature from the editor internals. If your goal with the toolbar configuration is to remove features, the right solution is to remove their relative plugins. Check <a href="#Enabling-features">Enabling features</a> above for more information.<br></side-box></p>
-<!-- TODO Add section about other configuration options. -->
+<div class="info-box notice notice__hint"><p>The above is a strict UI-related configuration. Removing a toolbar item does not remove the feature from the editor internals. If your goal with the toolbar configuration is to remove features, the right solution is to remove their relative plugins. Check <a href="#Enabling-features">Enabling features</a> above for more information.</p></div>
+
+<h2 id="Other-configuration-options"><a href="#Other-configuration-options" class="headerlink" title="Other configuration options"></a>Other configuration options</h2><p>See <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html">EditorConfig</a> to learn about all available configuration options.</p>
+<p>Some of the options may require loading plugins which are not available in the build you use. Read more about undefined.</p>
 
         </div>
       </section>
@@ -110,6 +113,8 @@ ClassicEditor
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating custom builds</span></div></a></li>
                                       </ul>
                                     </li>
+                                    <li><a href="../browser-compatibility.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Browser compatibility</span></div></a></li>
                                     <li><a href="../license-and-legal.html">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span></div></a></li>
                                     <li><a href="../reporting-issues.html">

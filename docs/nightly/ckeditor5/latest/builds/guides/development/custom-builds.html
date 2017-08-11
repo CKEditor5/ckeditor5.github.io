@@ -41,7 +41,8 @@
 <pre><code>git clone https://github.com/&lt;your-username&gt;/ckeditor5-build-classic.git
 </code></pre><p>To make updating easier you may optionally add the original build repository to your Git remotes:</p>
 <pre><code>git remote add upstream https://github.com/ckeditor/ckeditor5-build-classic.git
-</code></pre><p><side-box tip=""><br>    If you do not want to fork the official build, you can just clone it. However, you will not be able to commit and push your customizations back to <a href="https://github.com" target="_blank" rel="external">GitHub</a>.<br></side-box></p>
+</code></pre><div class="info-box notice notice__hint"><p>If you do not want to fork the official build, you can just clone it. However, you will not be able to commit and push your customizations back to <a href="https://github.com" target="_blank" rel="external">GitHub</a>.</p></div>
+
 <h2 id="Build-anatomy"><a href="#Build-anatomy" class="headerlink" title="Build anatomy"></a>Build anatomy</h2><p>Every build contains the following files:</p>
 <ul>
 <li><code>package.json</code> &#x2013; The definition of the npm package. It specifies the package name, version, dependencies, license, etc.</li>
@@ -62,9 +63,8 @@
 <h3 id="Installing-dependencies"><a href="#Installing-dependencies" class="headerlink" title="Installing dependencies"></a>Installing dependencies</h3><p>The easiest way to install missing dependencies is by typing:</p>
 <pre><code>npm install --save &lt;package-name&gt;
 </code></pre><p>This will install the package and add it to <code>package.json</code>. You can also edit <code>package.json</code> manually.</p>
-<p><side-box tip=""><br>    Due to a non-deterministic way how npm installs packages, it is recommended to run <code>rm -rf node_modules &amp;&amp; npm install</code> when in doubt. This will prevent some packages from getting installed more than once in <code>node_modules/</code> (which might lead to broken builds).</side-box></p>
-<pre><code>You can also give [Yarn](https://yarnpkg.com/lang/en/) a try.
-</code></pre><p></p>
+<div class="info-box notice notice__hint"><p>Due to a non-deterministic way how npm installs packages, it is recommended to run <code>rm -rf node_modules &amp;&amp; npm install</code> when in doubt. This will prevent some packages from getting installed more than once in <code>node_modules/</code> (which might lead to broken builds).</p><p>You can also give <a href="https://yarnpkg.com/lang/en/" target="_blank" rel="external">Yarn</a> a try.</p></div>
+
 <h3 id="Updating-build-configuration"><a href="#Updating-build-configuration" class="headerlink" title="Updating build configuration"></a>Updating build configuration</h3><p>If you added or removed dependencies, you will also need to modify the <code>build-config.js</code> file. Based on it the bundler entry file (<code>ckeditor.js</code>) will be created. You can also opt out from automatically creating the entry file and modify <code>ckeditor.js</code> manually, which can be useful in some non-standard cases.</p>
 <p>Either way, every plugin that you want to include in the bundle should be included at this stage. You can also change the editor creator and specify the default editor configuration. For instance, your build configuration might look like this:</p>
 <pre><code>&apos;use strict&apos;;
@@ -101,7 +101,8 @@ npm run build-ckeditor-compat
 <pre><code>git fetch upstream
 git merge upstream/master
 </code></pre><p>You should handle eventual conflicts and verify the merged changes. After that, just follow the previous instructions for creating your build and test it.</p>
-<p><side-box tip=""><br>    It is recommended to run <code>rm -rf node_modules &amp;&amp; npm install</code> after you fetched changes from the upstream or updated versions of dependencies in <code>package.json</code> manually. This will prevent npm from installing packages more than once (which may lead to broken builds).<br></side-box></p>
+<div class="info-box notice notice__hint"><p>It is recommended to run <code>rm -rf node_modules &amp;&amp; npm install</code> after you fetched changes from the upstream or updated versions of dependencies in <code>package.json</code> manually. This will prevent npm from installing packages more than once (which may lead to broken builds).</p></div>
+
 <h2 id="Publishing-your-builds"><a href="#Publishing-your-builds" class="headerlink" title="Publishing your builds"></a>Publishing your builds</h2><p>If you think that your custom builds can be useful to others, it is a great idea to publish them on GitHub and npm. When doing so, just be sure to give them meaningful names that would fit the <code>ckeditor5-build-(the name)</code> pattern, making them easy to find. To avoid conflicts with other existing builds you can use <a href="https://docs.npmjs.com/misc/scope" target="_blank" rel="external">scoped packages</a>.</p>
 <p>After your build is out, <a href="https://twitter.com/ckeditor" target="_blank" rel="external">ping us on Twitter</a>!</p>
 
@@ -140,6 +141,8 @@ git merge upstream/master
                                                   <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Creating custom builds</span></div></a></li>
                                       </ul>
                                     </li>
+                                    <li><a href="../browser-compatibility.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Browser compatibility</span></div></a></li>
                                     <li><a href="../license-and-legal.html">
                                         <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span></div></a></li>
                                     <li><a href="../reporting-issues.html">

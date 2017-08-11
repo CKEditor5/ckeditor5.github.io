@@ -34401,7 +34401,7 @@ class ToolbarView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */]
 	 * A utility which expands a plain toolbar configuration into
 	 * {@link module:ui/toolbar/toolbarview~ToolbarView#items} using a given component factory.
 	 *
-	 * @param {Array} config The toolbar config.
+	 * @param {Array.<String>} config The toolbar items config.
 	 * @param {module:ui/componentfactory~ComponentFactory} factory A factory producing toolbar items.
 	 */
 	fillFromConfig( config, factory ) {
@@ -36644,7 +36644,8 @@ class StandardEditor extends __WEBPACK_IMPORTED_MODULE_0__editor__["a" /* defaul
 	 * Creates a standard editor instance.
 	 *
 	 * @param {HTMLElement} element See {@link module:core/editor/standardeditor~StandardEditor}'s param.
-	 * @param {Object} config See {@link module:core/editor/standardeditor~StandardEditor}'s param.
+	 * @param {Object} config The editor config. You can find the list of config options in
+	 * {@link module:core/editor/editorconfig~EditorConfig}.
 	 * @returns {Promise} Promise resolved once editor is ready.
 	 * @returns {module:core/editor/standardeditor~StandardEditor} return.editor The editor instance.
 	 */
@@ -36878,7 +36879,8 @@ class Editor {
 	/**
 	 * Creates a basic editor instance.
 	 *
-	 * @param {Object} config See {@link module:core/editor/editor~Editor}'s param.
+	 * @param {Object} config The editor config. You can find the list of config options in
+	 * {@link module:core/editor/editorconfig~EditorConfig}.
 	 * @returns {Promise} Promise resolved once editor is ready.
 	 * @returns {module:core/editor/editor~Editor} return.editor The editor instance.
 	 */
@@ -51170,6 +51172,15 @@ class ComponentFactory {
 	}
 
 	/**
+	 * Returns iterator of component names.
+	 *
+	 * @returns {Iterator.<String>}
+	 */
+	* names() {
+		yield* this._components.keys();
+	}
+
+	/**
 	 * Registers a component factory.
 	 *
 	 * @param {String} name The name of the component.
@@ -51310,11 +51321,11 @@ function enableToolbarKeyboardFocus( {
  */
 
 /**
- * Normalizes the toolbar configuration (`config.toolbar`), which may be defined as an `Array`
+ * Normalizes the toolbar configuration (`config.toolbar`), which may be defined as an `Array`:
  *
  * 		toolbar: [ 'headings', 'bold', 'italic', 'link', 'unlink', ... ]
  *
- * or an `Object`
+ * or an `Object`:
  *
  *		toolbar: {
  *			items: [ 'headings', 'bold', 'italic', 'link', 'unlink', ... ],
@@ -53436,6 +53447,36 @@ class Typing extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_pl
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Typing;
 
+
+/**
+ * The configuration of the typing features. Used by the features from the `@ckeditor/ckeditor5-typing` package.
+ *
+ * Read more in {@link module:typing/typing~TypingConfig}.
+ *
+ * @member {module:typing/typing~TypingConfig} module:core/editor/editorconfig~EditorConfig#typing
+ */
+
+/**
+ * The configuration of the typing features. Used by the typing features in `@ckeditor/ckeditor5-typing` package.
+ *
+ *		ClassicEditor
+ *			.create( {
+ * 				typing: ... // Typing feature options.
+ *			} )
+ *			.then( ... )
+ *			.catch( ... );
+ *
+ * See {@link module:core/editor/editorconfig~EditorConfig all editor options}.
+ *
+ * @interface TypingConfig
+ */
+
+/**
+ * The granularity of undo/redo for typing and deleting. The value `20` means (more or less) that a new undo step
+ * is created every 20 characters are inserted or deleted.
+ *
+ * @member {Number} [module:typing/typing~TypingConfig#undoStep=20]
+ */
 
 
 /***/ }),
@@ -56325,6 +56366,68 @@ function getCommandsBindingTargets( commands, attribute ) {
  * @property {String} modelElement Element's name in the model.
  * @property {String} viewElement The name of the view element that will be used to represent the model element in the view.
  * @property {String} title The user-readable title of the option.
+ * @property {String} class The class which will be added to the dropdown item representing this option.
+ */
+
+/**
+ * The configuration of the heading feature. Introduced by the {@link module:heading/headingengine~HeadingEngine} feature.
+ *
+ * Read more in {@link module:heading/heading~HeadingConfig}.
+ *
+ * @member {module:heading/heading~HeadingConfig} module:core/editor/editorconfig~EditorConfig#heading
+ */
+
+/**
+ * The configuration of the heading feature.
+ * The option is used by the {@link module:heading/headingengine~HeadingEngine} feature.
+ *
+ *		ClassicEditor
+ *			.create( {
+ * 				heading: ... // Heading feature config.
+ *			} )
+ *			.then( ... )
+ *			.catch( ... );
+ *
+ * See {@link module:core/editor/editorconfig~EditorConfig all editor options}.
+ *
+ * @interface HeadingConfig
+ */
+
+/**
+ * The available heading options.
+ *
+ * The default value is:
+ *
+ *		const headingConfig = {
+ *			options: [
+ *				{ modelElement: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+ *				{ modelElement: 'heading1', viewElement: 'h2', title: 'Heading 1', class: 'ck-heading_heading1' },
+ *				{ modelElement: 'heading2', viewElement: 'h3', title: 'Heading 2', class: 'ck-heading_heading2' },
+ *				{ modelElement: 'heading3', viewElement: 'h4', title: 'Heading 3', class: 'ck-heading_heading3' }
+ *			]
+ *		};
+ *
+ * It defines 3 levels of headings. In the editor model they will use `heading1`, `heading2`, and `heading3` elements.
+ * Their respective view elements (so the elements output by the editor) will be: `h2`, `h3`, and `h4`. This means that
+ * if you choose "Heading 1" in the headings dropdown the editor will turn the current block to `<heading1>` in the model
+ * which will result in rendering (and outputting to data) the `<h2>` element.
+ *
+ * The `title` and `class` properties will be used by the `headings` dropdown to render available options.
+ * Usually, the first option in the headings dropdown is the "Paragraph" option, hence it's also defined on the list.
+ * However, you don't need to define its view representation because it's handled by
+ * the {@link module:paragraph/paragraph~Paragraph} feature (which is required by
+ * the {@link module:heading/headingengine~HeadingEngine} feature).
+ *
+ * Note: In the model you should always start from `heading1`, regardless of how the headings are represented in the view.
+ * That's assumption is used by features like {@link module:autoformat/autoformat~Autoformat} to know which element
+ * they should use when applying the first level heading.
+ *
+ * The defined headings are also available in {@link module:core/commandcollection~CommandCollection} under their model names.
+ * For example, the below code will apply `<heading1>` to the current selection:
+ *
+ *		editor.execute( 'heading1' );
+ *
+ * @member {Array.<module:heading/heading~HeadingOption>} module:heading/heading~HeadingConfig#options
  */
 
 
@@ -56448,7 +56551,7 @@ const defaultModelElement = 'paragraph';
  * The headings engine feature. It handles switching between block formats &ndash; headings and paragraph.
  * This class represents the engine part of the heading feature. See also {@link module:heading/heading~Heading}.
  *
- * @extends modules:core/plugin~Plugin
+ * @extends module:core/plugin~Plugin
  */
 class HeadingEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__["a" /* default */] {
 	/**
@@ -56457,9 +56560,6 @@ class HeadingEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core
 	constructor( editor ) {
 		super( editor );
 
-		// TODO: This needs proper documentation, i.e. why paragraph entry does not need
-		// more properties (https://github.com/ckeditor/ckeditor5/issues/403).
-		// TODO: Document CSS classes as well.
 		editor.config.define( 'heading', {
 			options: [
 				{ modelElement: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
@@ -57459,6 +57559,29 @@ class Image extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plu
 /* harmony export (immutable) */ __webpack_exports__["a"] = Image;
 
 
+/**
+ * The configuration of the image features. Used by the image features in `@ckeditor/ckeditor5-image` package.
+ *
+ * Read more in {@link module:image/image~ImageConfig}.
+ *
+ * @member {module:image/image~ImageConfig} module:core/editor/editorconfig~EditorConfig#image
+ */
+
+/**
+ * The configuration of the image features. Used by the image features in `@ckeditor/ckeditor5-image` package.
+ *
+ *		ClassicEditor
+ *			.create( {
+ * 				image: ... // Image feature options.
+ *			} )
+ *			.then( ... )
+ *			.catch( ... );
+ *
+ * See {@link module:core/editor/editorconfig~EditorConfig all editor options}.
+ *
+ * @interface ImageConfig
+ */
+
 
 /***/ }),
 /* 488 */
@@ -58431,7 +58554,7 @@ class ImageTextAlternativeEngine extends __WEBPACK_IMPORTED_MODULE_1__ckeditor_c
  */
 
 /**
- * @module image/imagelaternatetext/imagetextalternativecommand
+ * @module image/imagetextalternative/imagetextalternativecommand
  */
 
 
@@ -60170,6 +60293,46 @@ class ImageStyle extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_sr
 /* harmony export (immutable) */ __webpack_exports__["a"] = ImageStyle;
 
 
+/**
+ * Available image styles.
+ * The option is used by the {@link module:image/imagestyle/imagestyleengine~ImageStyleEngine} feature.
+ *
+ * The default value is:
+ *
+ *		import fullSizeIcon from '@ckeditor/ckeditor5-core/theme/icons/object-center.svg';
+ *		import sideIcon from '@ckeditor/ckeditor5-core/theme/icons/object-right.svg';
+ *
+ *		// ...
+ *
+ *		const imageConfig = {
+ *			styles: [
+ *				// Option which defines a style which doesn't apply any class.
+ *				// The style is titled "full" because such images are often styled to take 100% width of the content.
+ *				{ name: 'imageStyleFull', title: t( 'Full size image' ), icon: fullSizeIcon, value: null },
+ *
+ *				// Option which represents a side image.
+ *				{ name: 'imageStyleSide', title: t( 'Side image' ), icon: sideIcon, value: 'side', className: 'image-style-side' }
+ *			]
+ *		};
+ *
+ * Read more about styling images in the {@linkTODO Image styles guide}.
+ *
+ * The feature creates commands based on defined styles, so you can change the style of a selected image by executing
+ * the following command:
+ *
+ *		editor.execute( 'imageStyleSide' );
+ *
+ * The features creates also buttons which execute the commands, so assuming that you use the
+ * default image styles setting you can {@link module:image/image~ImageConfig#toolbar configure the image toolbar}
+ * to contain these options:
+ *
+ *		const imageConfig = {
+ *			toolbar: [ 'imageStyleFull', 'imageStyleSide' ]
+ *		};
+ *
+ * @member {Array.<module:image/imagestyle/imagestyleengine~ImageStyleFormat>} module:image/image~ImageConfig#styles
+ */
+
 
 /***/ }),
 /* 515 */
@@ -60265,23 +60428,23 @@ class ImageStyleEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_c
 /**
  * Image style format descriptor.
  *
- *	import fullIcon from 'path/to/icon.svg`;
+ *		import fullIcon from 'path/to/icon.svg`;
  *
- *	const imageStyleFormat = {
- *		name: 'fullSizeImage',
- *		value: 'full',
- *		icon: fullIcon,
- *		title: `Full size image`,
- *		class: `image-full-size`
- *	}
+ *		const imageStyleFormat = {
+ *			name: 'fullSizeImage',
+ *			value: 'full',
+ *			icon: fullIcon,
+ *			title: 'Full size image',
+ *			class: 'image-full-size'
+ *		}
  *
  * @typedef {Object} module:image/imagestyle/imagestyleengine~ImageStyleFormat
  * @property {String} name The name of the style. It will be used to:
  * * register the {@link module:core/command~Command command} which will apply this style,
- * * store the style's button in the editor {@link module:ui/componentfactory~ComponentFactory ComponentFactory}.
+ * * store the style's button in the editor {@link module:ui/componentfactory~ComponentFactory}.
  * @property {String} value A value used to store this style in the model attribute.
  * When the value is `null`, the style will be used as the default one. A default style does not apply any CSS class to the view element.
- * @property {String} icon An SVG icon representation to use when creating the style's button.
+ * @property {String} icon An SVG icon source (as XML string) to use when creating the style's button.
  * @property {String} title The style's title.
  * @property {String} className The CSS class used to represent the style in view.
  */
@@ -60714,6 +60877,30 @@ class ImageToolbar extends __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_core_
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = ImageToolbar;
 
+
+/**
+ * Items to be placed in the image toolbar.
+ * The option is used by the {@link module:image/imagetoolbar~ImageToolbar} feature.
+ *
+ * Assuming that you use the following features:
+ *
+ * * {@link module:image/imagestyle~ImageStyle} (with a default configuration),
+ * * {@link module:image/imagetextalternative~ImageTextAlternative}.
+ *
+ * Three toolbar items will be available in {@link module:ui/componentfactory~ComponentFactory}:
+ * `'imageStyleFull'`, `'imageStyleSide'`, and `'imageTextAlternative'` so you can configure the toolbar like this:
+ *
+ *		const imageConfig = {
+ *			toolbar: [ 'imageStyleFull', 'imageStyleSide', '|', 'imageTextAlternative' ]
+ *		};
+ *
+ * Of course, the same buttons can also be used in the
+ * {@link module:core/editor/editorconfig~EditorConfig#toolbar main editor toolbar}.
+ *
+ * Read more about configuring toolbar in {@link module:core/editor/editorconfig~EditorConfig#toolbar}.
+ *
+ * @member {Array.<String>} module:image/image~ImageConfig#toolbar
+ */
 
 
 /***/ }),
