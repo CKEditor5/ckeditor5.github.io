@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Headings - CKEditor 5</title>
+    <link rel="canonical" href="/ckeditor5/latest/features/heading.html">
+    <link rel="stylesheet" href="../../../assets/0.3.2/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
+    <script src="../../../assets/0.3.2/scripts/app.js"></script>
+  </head>
+  <body>
+    <header class="top">
+      <div class="top__logo"><a class="top__logo__link" href="../index.html"><img src="../assets/img/project-logo.svg" alt="CKEditor 5"></a></div>
+      <ul class="top__menu">
+        <li><a href="../api/index.html">API</a></li>
+        <li><a href="../framework/index.html">Framework</a></li>
+        <li><a href="../builds/index.html">Builds</a></li>
+        <li><a class="top__menu__item--active" href="index.html">Features</a></li>
+        <li><a href="../examples/index.html">Examples</a></li>
+      </ul>
+      <div class="top__search">
+        <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.2/img/loupe.svg" alt="Search"></button>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <h1><img src="../../../assets/0.3.2/img/book.svg" alt="guide">Headings
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Heading-levels">Heading levels</a><ol><li><a href="#Configuring-heading-levels">Configuring heading levels</a></li></ol></li><li><a href="#Installation">Installation</a><ol><li><a href="#Common-API">Common API</a></li></ol></li><li><a href="#Contribute">Contribute</a></li></ol></nav><p>The <a href="../api/module_heading_heading-Heading.html">Heading</a> feature enables support for headings.</p>
+<div class="info-box notice notice__info"><p>This feature is enabled by default in all builds. It is also included in the <a href="../api/module_presets_article-Article.html">Article preset</a>.</p></div>
+
+<h2 id="Heading-levels"><a href="#Heading-levels" class="headerlink" title="Heading levels"></a>Heading levels</h2><p>By default this feature is configured to support <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code> and <code>&lt;h4&gt;</code> elements which are named accordingly &#x201C;Heading 1&#x201D;, &#x201C;Heading 2&#x201D; and &#x201C;Heading 3&#x201D;. The rationale behind starting from <code>&lt;h2&gt;</code> is that <code>&lt;h1&gt;</code> should be reserved for page&#x2019;s main title and the page&#x2019;s content will usually start from <code>&lt;h2&gt;</code>.</p>
+<div class="info-box notice notice__hint"><p>You can read more about why the editor should not create <code>&lt;h1&gt;</code> elements in <a href="http://ckeditor.github.io/editor-recommendations/features/headings.html" target="_blank" rel="external">Headings page of Editor Recommendations</a>.</p></div>
+
+<h3 id="Configuring-heading-levels"><a href="#Configuring-heading-levels" class="headerlink" title="Configuring heading levels"></a>Configuring heading levels</h3><p>It is possible, of course, to configure which heading levels the editor should support and how should they be named in the Headings dropdown. Use the <a href="../api/module_heading_heading-HeadingConfig.html#options"><code>heading.options</code></a> config option to do so.</p>
+<p>The following editor will support only two levels of headings &#x2013; <code>&lt;h1&gt;</code> and <code>&lt;h2&gt;</code>:</p>
+<pre><code class="js">ClassicEditor
+    .create( {
+        heading: {
+            options: [
+                { modelElement: &apos;paragraph&apos;, title: &apos;Paragraph&apos;, class: &apos;ck-heading_paragraph&apos; },
+                { modelElement: &apos;heading1&apos;, viewElement: &apos;h1&apos;, title: &apos;Heading 1&apos;, class: &apos;ck-heading_heading1&apos; },
+                { modelElement: &apos;heading2&apos;, viewElement: &apos;h2&apos;, title: &apos;Heading 2&apos;, class: &apos;ck-heading_heading2&apos; }
+            ]
+        }
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<p>{@snippetTODO custom-heading-levels}</p>
+<p>Read more about the <code>heading.options</code> format in <a href="../api/module_heading_heading-HeadingConfig.html#options">the option&#x2019;s API documentation</a>.</p>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><p>To add this feature to your editor install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-heading" target="_blank" rel="external"><code>@ckeditor/ckeditor5-heading</code></a> package:</p>
+<pre><code>npm install --save @ckeditor/ckeditor5-heading
+</code></pre><p>And add it to your plugin list and toolbar configuration:</p>
+<pre><code class="js">import Heading from &apos;@ckeditor/ckeditor5-heading/src/heading&apos;;
+
+ClassicEditor
+    .create( {
+        plugins: [ Heading, ... ],
+        toolbar: [ &apos;headings&apos;, ... ]
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<p>If you are using editor build see how to undefined.</p>
+<h3 id="Common-API"><a href="#Common-API" class="headerlink" title="Common API"></a>Common API</h3><p>The <a href="../api/module_heading_heading-Heading.html">Heading</a> plugin registers:</p>
+<ul>
+<li>the <code>&apos;headings&apos;</code> dropdown.</li>
+<li><p><code>&apos;heading1&apos;</code>, <code>&apos;heading2&apos;</code>, &#x2026;, <code>&apos;headingN&apos;</code> commands based on the <a href="../api/module_heading_heading-HeadingConfig.html#options"><code>heading.options</code></a> config option.</p>
+<p>  You can turn the currently selected block(s) to headings by executing one of these commands:</p>
+<pre><code class="js">  editor.execute( &apos;heading2&apos; );
+</code></pre>
+</li>
+</ul>
+<h2 id="Contribute"><a href="#Contribute" class="headerlink" title="Contribute"></a>Contribute</h2><p>The source code of the feature is available on GitHub in <a href="https://github.com/ckeditor/ckeditor5-heading" target="_blank" rel="external">https://github.com/ckeditor/ckeditor5-heading</a>.</p>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li><a href="autoformat.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Autoformatting</span></div></a></li>
+                          <li><a href="">
+                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Headings</span></div></a></li>
+                          <li><a href="keyboard-support.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Keyboard support</span></div></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">docsearch({apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:10}});</script>
+    <footer class="footer">
+      <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

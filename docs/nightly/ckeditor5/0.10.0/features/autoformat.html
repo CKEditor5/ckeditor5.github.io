@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Autoformatting - CKEditor 5</title>
+    <link rel="canonical" href="/ckeditor5/latest/features/autoformat.html">
+    <link rel="stylesheet" href="../../../assets/0.3.2/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
+    <script src="../../../assets/0.3.2/scripts/app.js"></script>
+  </head>
+  <body>
+    <header class="top">
+      <div class="top__logo"><a class="top__logo__link" href="../index.html"><img src="../assets/img/project-logo.svg" alt="CKEditor 5"></a></div>
+      <ul class="top__menu">
+        <li><a href="../api/index.html">API</a></li>
+        <li><a href="../framework/index.html">Framework</a></li>
+        <li><a href="../builds/index.html">Builds</a></li>
+        <li><a class="top__menu__item--active" href="index.html">Features</a></li>
+        <li><a href="../examples/index.html">Examples</a></li>
+      </ul>
+      <div class="top__search">
+        <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.2/img/loupe.svg" alt="Search"></button>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <h1><img src="../../../assets/0.3.2/img/book.svg" alt="guide">Autoformatting
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Block-formatting">Block formatting</a></li><li><a href="#Inline-formatting">Inline formatting</a></li><li><a href="#Test-here">Test here</a></li><li><a href="#Installation">Installation</a></li><li><a href="#Create-your-own-autoformatters">Create your own autoformatters</a></li><li><a href="#Contribute">Contribute</a></li></ol></nav><p>The <a href="../api/module_autoformat_autoformat-Auformat.html">Auformat</a> feature allows you to quickly apply formatting to the content you&#x2019;re writing.</p>
+<div class="info-box notice notice__info"><p>This feature is enabled by default in all builds. It is also included in the <a href="../api/module_presets_article-Article.html">Article preset</a>.</p></div>
+
+<h2 id="Block-formatting"><a href="#Block-formatting" class="headerlink" title="Block formatting"></a>Block formatting</h2><ul>
+<li>Start a line with <code>*</code> or <code>-</code> followed by a space to create a bulleted list.</li>
+<li>Start a line with <code>1.</code> or <code>1)</code> followed by a space to create a numbered list.</li>
+<li>Start a line with <code>#</code> or <code>##</code> or <code>###</code> followed by a space to create a heading 1, heading 2 or heading 3 (up to heading 6 if <a href="../api/module_heading_heading-HeadingConfig.html#options">options</a> defines more headings).</li>
+<li>Start a line with <code>&gt;</code> followed by a space to create a block quote.</li>
+</ul>
+<h2 id="Inline-formatting"><a href="#Inline-formatting" class="headerlink" title="Inline formatting"></a>Inline formatting</h2><ul>
+<li>Type <code>**text**</code> or <code>__text__</code> to make &#x201C;text&#x201D; bold.</li>
+<li>Type <code>*text*</code> or <code>_text_</code> to make &#x201C;text&#x201D; italic.</li>
+</ul>
+<h2 id="Test-here"><a href="#Test-here" class="headerlink" title="Test here"></a>Test here</h2><p>Example:</p>
+<ol>
+<li>Delete all content.</li>
+<li>Press <kbd>#</kbd> and then <kbd>Space</kbd>.</li>
+<li>The current line will be turned into a heading.</li>
+</ol>
+<p><div class="live-snippet"><div id="snippet-classic-editor">
+	<p>This is <a href="https://ckeditor5.github.io">CKEditor&#xA0;5</a>.</p>
+</div>
+<script src="../snippets/examples/classic-editor/snippet.js"></script></div></p>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><p>To add this feature to your editor install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-autoformat" target="_blank" rel="external"><code>@ckeditor/ckeditor5-autoformat</code></a> package:</p>
+<pre><code>npm install --save @ckeditor/ckeditor5-autoformat
+</code></pre><p>And add it to your plugin list:</p>
+<pre><code class="js">import Autoformat from &apos;@ckeditor/ckeditor5-autoformat/src/autoformat&apos;;
+
+ClassicEditor
+    .create( {
+        plugins: [ Autoformat, ... ]
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<p>If you are using editor build see how to undefined.</p>
+<h2 id="Create-your-own-autoformatters"><a href="#Create-your-own-autoformatters" class="headerlink" title="Create your own autoformatters"></a>Create your own autoformatters</h2><p>The <a href="../api/module_autoformat_autoformat-Auformat.html">Auformat</a> feature bases on <a href="../api/module_autoformat_blockautoformatengine-BlockAuformatEngine.html">BlockAuformatEngine</a> and <a href="../api/module_autoformat_inlineautoformatengine-InlineAuformatEngine.html">InlineAuformatEngine</a> tools to create the autoformatters mentioned above.</p>
+<p>You can use these tools to create your own autoformatters. Check the <a href="https://github.com/ckeditor/ckeditor5-autoformat/blob/master/src/autoformat.js" target="_blank" rel="external"><code>Autoformat</code> feature&#x2019;s code</a> as an example.</p>
+<h2 id="Contribute"><a href="#Contribute" class="headerlink" title="Contribute"></a>Contribute</h2><p>The source code of the feature is available on GitHub in <a href="https://github.com/ckeditor/ckeditor5-autoformat" target="_blank" rel="external">https://github.com/ckeditor/ckeditor5-autoformat</a>.</p>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li><a href="">
+                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Autoformatting</span></div></a></li>
+                          <li><a href="heading.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Headings</span></div></a></li>
+                          <li><a href="keyboard-support.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Keyboard support</span></div></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">docsearch({apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:10}});</script>
+    <footer class="footer">
+      <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
