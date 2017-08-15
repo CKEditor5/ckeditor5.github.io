@@ -147,7 +147,7 @@ class CKEditorError extends Error {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_lib_lodash_last__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_comparearrays__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__text__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__text__ = __webpack_require__(26);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -1981,7 +1981,7 @@ function mix( baseClass, ...mixins ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nodelist__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__text__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__text__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(46);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -6337,1170 +6337,6 @@ function register( name, creator ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = getCode;
-/* harmony export (immutable) */ __webpack_exports__["d"] = parseKeystroke;
-/* harmony export (immutable) */ __webpack_exports__["b"] = getEnvKeystrokeText;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__env__ = __webpack_require__(343);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * Set of utils related to keyboard support.
- *
- * @module utils/keyboard
- */
-
-
-
-
-/**
- * Object with `keyName => keyCode` pairs for a set of known keys.
- *
- * Contains:
- *
- * * `a-z`,
- * * `0-9`,
- * * `f1-f12`,
- * * `arrow(left|up|right|bottom)`,
- * * `backspace`, `delete`, `enter`, `esc`, `tab`,
- * * `ctrl`, `cmd`, `shift`, `alt`.
- */
-const keyCodes = generateKnownKeyCodes();
-/* harmony export (immutable) */ __webpack_exports__["c"] = keyCodes;
-
-
-/**
- * Converts a key name or a {@link module:utils/keyboard~KeystrokeInfo keystroke info} into a key code.
- *
- * Note: Key names are matched with {@link module:utils/keyboard~keyCodes} in a case-insensitive way.
- *
- * @param {String|module:utils/keyboard~KeystrokeInfo} Key name (see {@link module:utils/keyboard~keyCodes})
- * or a keystroke data object.
- * @returns {Number} Key or keystroke code.
- */
-function getCode( key ) {
-	let keyCode;
-
-	if ( typeof key == 'string' ) {
-		keyCode = keyCodes[ key.toLowerCase() ];
-
-		if ( !keyCode ) {
-			/**
-			 * Unknown key name. Only key names contained by the {@link module:utils/keyboard~keyCodes} can be used.
-			 *
-			 * @errror keyboard-unknown-key
-			 * @param {String} key
-			 */
-			throw new __WEBPACK_IMPORTED_MODULE_0__ckeditorerror__["a" /* default */]( 'keyboard-unknown-key: Unknown key name.', { key } );
-		}
-	} else {
-		keyCode = key.keyCode +
-			( key.altKey ? keyCodes.alt : 0 ) +
-			( key.ctrlKey ? keyCodes.ctrl : 0 ) +
-			( key.shiftKey ? keyCodes.shift : 0 );
-	}
-
-	return keyCode;
-}
-
-/**
- * Parses keystroke and returns a keystroke code that will match the code returned by
- * link {@link module:utils/keyboard.getCode} for a corresponding {@link module:utils/keyboard~KeystrokeInfo keystroke info}.
- *
- * The keystroke can be passed in two formats:
- *
- * * as a single string – e.g. `ctrl + A`,
- * * as an array of {@link module:utils/keyboard~keyCodes known key names} and key codes – e.g.:
- *   * `[ 'ctrl', 32 ]` (ctrl + space),
- *   * `[ 'ctrl', 'a' ]` (ctrl + A).
- *
- * Note: Key names are matched with {@link module:utils/keyboard~keyCodes} in a case-insensitive way.
- *
- * Note: Only keystrokes with a single non-modifier key are supported (e.g. `ctrl+A` is OK, but `ctrl+A+B` is not).
- *
- * @param {String|Array.<Number|String>} keystroke Keystroke definition.
- * @returns {Number} Keystroke code.
- */
-function parseKeystroke( keystroke ) {
-	if ( typeof keystroke == 'string' ) {
-		keystroke = splitKeystrokeText( keystroke );
-	}
-
-	return keystroke
-		.map( key => ( typeof key == 'string' ) ? getCode( key ) : key )
-		.reduce( ( key, sum ) => sum + key, 0 );
-}
-
-/**
- * It translates any keystroke string text like `"CTRL+A"` to an
- * environment–specific keystroke, i.e. `"⌘A"` on Mac OSX.
- *
- * @param {String} keystroke Keystroke text.
- * @returns {String} Keystroke text specific for the environment.
- */
-function getEnvKeystrokeText( keystroke ) {
-	const split = splitKeystrokeText( keystroke );
-
-	if ( __WEBPACK_IMPORTED_MODULE_1__env__["a" /* default */].mac ) {
-		if ( split[ 0 ].toLowerCase() == 'ctrl' ) {
-			return '⌘' + ( split[ 1 ] || '' );
-		}
-	}
-
-	return keystroke;
-}
-
-function generateKnownKeyCodes() {
-	const keyCodes = {
-		arrowleft: 37,
-		arrowup: 38,
-		arrowright: 39,
-		arrowdown: 40,
-		backspace: 8,
-		delete: 46,
-		enter: 13,
-		space: 32,
-		esc: 27,
-		tab: 9,
-
-		// The idea about these numbers is that they do not collide with any real key codes, so we can use them
-		// like bit masks.
-		ctrl: 0x110000,
-		// Has the same code as ctrl, because their behaviour should be unified across the editor.
-		// See http://ckeditor.github.io/editor-recommendations/general-policies#ctrl-vs-cmd
-		cmd: 0x110000,
-		shift: 0x220000,
-		alt: 0x440000
-	};
-
-	// a-z
-	for ( let code = 65; code <= 90; code++ ) {
-		const letter = String.fromCharCode( code );
-
-		keyCodes[ letter.toLowerCase() ] = code;
-	}
-
-	// 0-9
-	for ( let code = 48; code <= 57; code++ ) {
-		keyCodes[ code - 48 ] = code;
-	}
-
-	// F1-F12
-	for ( let code = 112; code <= 123; code++ ) {
-		keyCodes[ 'f' + ( code - 111 ) ] = code;
-	}
-
-	return keyCodes;
-}
-
-function splitKeystrokeText( keystroke ) {
-	return keystroke.split( /\s*\+\s*/ );
-}
-
-/**
- * Information about a keystroke.
- *
- * @interface module:utils/keyboard~KeystrokeInfo
- */
-
-/**
- * The [key code](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode).
- *
- * @member {Number} module:utils/keyboard~KeystrokeInfo#keyCode
- */
-
-/**
- * Whether the <kbd>Alt</kbd> modifier was pressed.
- *
- * @member {Bolean} module:utils/keyboard~KeystrokeInfo#altKey
- */
-
-/**
- * Whether the <kbd>Ctrl</kbd> or <kbd>Cmd</kbd> modifier was pressed.
- *
- * @member {Bolean} module:utils/keyboard~KeystrokeInfo#ctrlKey
- */
-
-/**
- * Whether the <kbd>Shift</kbd> modifier was pressed.
- *
- * @member {Bolean} module:utils/keyboard~KeystrokeInfo#shiftKey
- */
-
-
-/***/ }),
-/* 21 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["b"] = insert;
-/* harmony export (immutable) */ __webpack_exports__["d"] = remove;
-/* unused harmony export move */
-/* unused harmony export setAttribute */
-/* unused harmony export removeAttribute */
-/* harmony export (immutable) */ __webpack_exports__["c"] = normalizeNodes;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__text__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__textproxy__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__range__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__documentfragment__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__nodelist__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module engine/model/writer
- */
-
-
-
-
-
-
-
-
-
-/**
- * Contains functions used for composing model tree, grouped together under "model writer" name. Those functions
- * are built on top of {@link module:engine/model/node~Node node}, and it's child classes', APIs.
- *
- * Model writer API has multiple advantages and it is highly recommended to use it when changing model tree and nodes:
- * * model writer API {@link module:engine/model/writer~writer.normalizeNodes normalizes inserted nodes}, which means that you can insert
- * not only {@link module:engine/model/node~Node nodes}, but also `String`s, {@link module:engine/model/textproxy~TextProxy text proxies}
- * and
- * {@link module:engine/model/documentfragment~DocumentFragment document fragments},
- * * model writer API operates on {@link module:engine/model/position~Position positions}, which means that you have
- * better control over manipulating model tree as positions operate on offsets rather than indexes,
- * * model writer API automatically merges {@link module:engine/model/text~Text text nodes} with same attributes, which means
- * lower memory usage and better efficiency.
- *
- * @namespace writer
- */
-const writer = {
-	insert,
-	remove,
-	move,
-	setAttribute,
-	removeAttribute,
-	normalizeNodes
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (writer);
-
-/**
- * Inserts given nodes at given position.
- *
- * @function module:engine/model/writer~writer.insert
- * @param {module:engine/model/position~Position} position Position at which nodes should be inserted.
- * @param {module:engine/model/node~NodeSet} nodes Nodes to insert.
- * @returns {module:engine/model/range~Range} Range spanning over inserted elements.
- */
-function insert( position, nodes ) {
-	nodes = normalizeNodes( nodes );
-
-	// We have to count offset before inserting nodes because they can get merged and we would get wrong offsets.
-	const offset = nodes.reduce( ( sum, node ) => sum + node.offsetSize, 0 );
-	const parent = position.parent;
-
-	// Insertion might be in a text node, we should split it if that's the case.
-	_splitNodeAtPosition( position );
-	const index = position.index;
-
-	// Insert nodes at given index. After splitting we have a proper index and insertion is between nodes,
-	// using basic `Element` API.
-	parent.insertChildren( index, nodes );
-
-	// Merge text nodes, if possible. Merging is needed only at points where inserted nodes "touch" "old" nodes.
-	_mergeNodesAtIndex( parent, index + nodes.length );
-	_mergeNodesAtIndex( parent, index );
-
-	return new __WEBPACK_IMPORTED_MODULE_3__range__["a" /* default */]( position, position.getShiftedBy( offset ) );
-}
-
-/**
- * Removed nodes in given range. Only {@link module:engine/model/range~Range#isFlat flat} ranges are accepted.
- *
- * @function module:engine/model/writer~writer.remove
- * @param {module:engine/model/range~Range} range Range containing nodes to remove.
- * @returns {Array.<module:engine/model/node~Node>}
- */
-function remove( range ) {
-	if ( !range.isFlat ) {
-		/**
-		 * Trying to remove a range that starts and ends in different element.
-		 *
-		 * @error model-writer-remove-range-not-flat
-		 */
-		throw new __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'model-writer-remove-range-not-flat: ' +
-			'Trying to remove a range that starts and ends in different element.' );
-	}
-
-	const parent = range.start.parent;
-
-	// Range may be inside text nodes, we have to split them if that's the case.
-	_splitNodeAtPosition( range.start );
-	_splitNodeAtPosition( range.end );
-
-	// Remove the text nodes using basic `Element` API.
-	const removed = parent.removeChildren( range.start.index, range.end.index - range.start.index );
-
-	// Merge text nodes, if possible. After some nodes were removed, node before and after removed range will be
-	// touching at the position equal to the removed range beginning. We check merging possibility there.
-	_mergeNodesAtIndex( parent, range.start.index );
-
-	return removed;
-}
-
-/**
- * Moves nodes in given range to given target position. Only {@link module:engine/model/range~Range#isFlat flat} ranges are accepted.
- *
- * @param {module:engine/model/range~Range} sourceRange Range containing nodes to move.
- * @param {module:engine/model/position~Position} targetPosition Position to which nodes should be moved.
- * @returns {module:engine/model/range~Range} Range containing moved nodes.
- */
-function move( sourceRange, targetPosition ) {
-	if ( !sourceRange.isFlat ) {
-		/**
-		 * Trying to move a range that starts and ends in different element.
-		 *
-		 * @error model-writer-move-range-not-flat
-		 */
-		throw new __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'model-writer-move-range-not-flat: ' +
-			'Trying to move a range that starts and ends in different element.' );
-	}
-
-	const nodes = this.remove( sourceRange );
-
-	// We have to fix `targetPosition` because model changed after nodes from `sourceRange` got removed and
-	// that change might have an impact on `targetPosition`.
-	targetPosition = targetPosition._getTransformedByDeletion( sourceRange.start, sourceRange.end.offset - sourceRange.start.offset );
-
-	return this.insert( targetPosition, nodes );
-}
-
-/**
- * Sets given attribute on nodes in given range.
- *
- * @param {module:engine/model/range~Range} range Range containing nodes that should have the attribute set.
- * @param {String} key Key of attribute to set.
- * @param {*} value Attribute value.
- */
-function setAttribute( range, key, value ) {
-	// Range might start or end in text nodes, so we have to split them.
-	_splitNodeAtPosition( range.start );
-	_splitNodeAtPosition( range.end );
-
-	// Iterate over all items in the range.
-	for ( const item of range.getItems() ) {
-		// Iterator will return `TextProxy` instances but we know that those text proxies will
-		// always represent full text nodes (this is guaranteed thanks to splitting we did before).
-		// So, we can operate on those text proxies' text nodes.
-		const node = item.is( 'textProxy' ) ? item.textNode : item;
-
-		if ( value !== null ) {
-			node.setAttribute( key, value );
-		} else {
-			node.removeAttribute( key );
-		}
-
-		// After attributes changing it may happen that some text nodes can be merged. Try to merge with previous node.
-		_mergeNodesAtIndex( node.parent, node.index );
-	}
-
-	// Try to merge last changed node with it's previous sibling (not covered by the loop above).
-	_mergeNodesAtIndex( range.end.parent, range.end.index );
-}
-
-/**
- * Removes given attribute from nodes in given range.
- *
- * @param {module:engine/model/range~Range} range Range containing nodes that should have the attribute removed.
- * @param {String} key Key of attribute to remove.
- */
-function removeAttribute( range, key ) {
-	this.setAttribute( range, key, null );
-}
-
-/**
- * Normalizes given object or an array of objects to an array of {@link module:engine/model/node~Node nodes}. See
- * {@link module:engine/model/node~NodeSet NodeSet} for details on how normalization is performed.
- *
- * @param {module:engine/model/node~NodeSet} nodes Objects to normalize.
- * @returns {Array.<module:engine/model/node~Node>} Normalized nodes.
- */
-function normalizeNodes( nodes ) {
-	const normalized = [];
-
-	if ( !( nodes instanceof Array ) ) {
-		nodes = [ nodes ];
-	}
-
-	// Convert instances of classes other than Node.
-	for ( let i = 0; i < nodes.length; i++ ) {
-		if ( typeof nodes[ i ] == 'string' ) {
-			normalized.push( new __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */]( nodes[ i ] ) );
-		} else if ( nodes[ i ] instanceof __WEBPACK_IMPORTED_MODULE_2__textproxy__["a" /* default */] ) {
-			normalized.push( new __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */]( nodes[ i ].data, nodes[ i ].getAttributes() ) );
-		} else if ( nodes[ i ] instanceof __WEBPACK_IMPORTED_MODULE_4__documentfragment__["a" /* default */] || nodes[ i ] instanceof __WEBPACK_IMPORTED_MODULE_5__nodelist__["a" /* default */] ) {
-			for ( const child of nodes[ i ] ) {
-				normalized.push( child );
-			}
-		} else if ( nodes[ i ] instanceof __WEBPACK_IMPORTED_MODULE_0__node__["a" /* default */] ) {
-			normalized.push( nodes[ i ] );
-		}
-		// Skip unrecognized type.
-	}
-
-	// Merge text nodes.
-	for ( let i = 1; i < normalized.length; i++ ) {
-		const node = normalized[ i ];
-		const prev = normalized[ i - 1 ];
-
-		if ( node instanceof __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */] && prev instanceof __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */] && _haveSameAttributes( node, prev ) ) {
-			// Doing this instead changing prev.data because .data is readonly.
-			normalized.splice( i - 1, 2, new __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */]( prev.data + node.data, prev.getAttributes() ) );
-			i--;
-		}
-	}
-
-	return normalized;
-}
-
-/**
- * Checks if nodes before and after given index in given element are {@link module:engine/model/text~Text text nodes} and
- * merges them into one node if they have same attributes.
- *
- * Merging is done by removing two text nodes and inserting a new text node containing data from both merged text nodes.
- *
- * @ignore
- * @private
- * @param {module:engine/model/element~Element} element Parent element of nodes to merge.
- * @param {Number} index Index between nodes to merge.
- */
-function _mergeNodesAtIndex( element, index ) {
-	const nodeBefore = element.getChild( index - 1 );
-	const nodeAfter = element.getChild( index );
-
-	// Check if both of those nodes are text objects with same attributes.
-	if ( nodeBefore && nodeAfter && nodeBefore.is( 'text' ) && nodeAfter.is( 'text' ) && _haveSameAttributes( nodeBefore, nodeAfter ) ) {
-		// Append text of text node after index to the before one.
-		const mergedNode = new __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */]( nodeBefore.data + nodeAfter.data, nodeBefore.getAttributes() );
-
-		// Remove separate text nodes.
-		element.removeChildren( index - 1, 2 );
-
-		// Insert merged text node.
-		element.insertChildren( index - 1, mergedNode );
-	}
-}
-
-/**
- * Checks if given position is in a text node, and if so, splits the text node in two text nodes, each of them
- * containing a part of original text node.
- *
- * @ignore
- * @private
- * @param {module:engine/model/position~Position} position Position at which node should be split.
- */
-function _splitNodeAtPosition( position ) {
-	const textNode = position.textNode;
-	const element = position.parent;
-
-	if ( textNode ) {
-		const offsetDiff = position.offset - textNode.startOffset;
-		const index = textNode.index;
-
-		element.removeChildren( index, 1 );
-
-		const firstPart = new __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */]( textNode.data.substr( 0, offsetDiff ), textNode.getAttributes() );
-		const secondPart = new __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */]( textNode.data.substr( offsetDiff ), textNode.getAttributes() );
-
-		element.insertChildren( index, [ firstPart, secondPart ] );
-	}
-}
-
-/**
- * Checks whether two given nodes have same attributes.
- *
- * @ignore
- * @private
- * @param {module:engine/model/node~Node} nodeA Node to check.
- * @param {module:engine/model/node~Node} nodeB Node to check.
- * @returns {Boolean} `true` if nodes have same attributes, `false` otherwise.
- */
-function _haveSameAttributes( nodeA, nodeB ) {
-	const iteratorA = nodeA.getAttributes();
-	const iteratorB = nodeB.getAttributes();
-
-	for ( const attr of iteratorA ) {
-		if ( attr[ 1 ] !== nodeB.getAttribute( attr[ 0 ] ) ) {
-			return false;
-		}
-
-		iteratorB.next();
-	}
-
-	return iteratorB.next().done;
-}
-
-/**
- * Value that can be normalized to an array of {@link module:engine/model/node~Node nodes}.
- *
- * Non-arrays are normalized as follows:
- * * {@link module:engine/model/node~Node Node} is left as is,
- * * {@link module:engine/model/textproxy~TextProxy TextProxy} and `String` are normalized to {@link module:engine/model/text~Text Text},
- * * {@link module:engine/model/nodelist~NodeList NodeList} is normalized to an array containing all nodes that are in that node list,
- * * {@link module:engine/model/documentfragment~DocumentFragment DocumentFragment} is normalized to an array containing all of it's
- * * children.
- *
- * Arrays are processed item by item like non-array values and flattened to one array. Normalization always results in
- * a flat array of {@link module:engine/model/node~Node nodes}. Consecutive text nodes (or items normalized to text nodes) will be
- * merged if they have same attributes.
- *
- * @typedef {module:engine/model/node~Node|module:engine/model/textproxy~TextProxy|String|
- * module:engine/model/nodelist~NodeList|module:engine/model/documentfragment~DocumentFragment|Iterable}
- * module:engine/model/node~NodeSet
- */
-
-
-/***/ }),
-/* 22 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_clone__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module engine/model/delta/delta
- */
-
-
-
-
-/**
- * Base class for all deltas.
- *
- * Delta is a single, from the user action point of view, change in the editable document, like insert, split or
- * rename element. Delta is composed of operations, which are unit changes needed to be done to execute user action.
- *
- * Multiple deltas are grouped into a single {@link module:engine/model/batch~Batch}.
- */
-class Delta {
-	/**
-	 * Creates a delta instance.
-	 */
-	constructor() {
-		/**
-		 * {@link module:engine/model/batch~Batch} which delta is a part of. This property is null by default and set by the
-		 * {@link module:engine/model/batch~Batch#addDelta} method.
-		 *
-		 * @readonly
-		 * @member {module:engine/model/batch~Batch} module:engine/model/delta/delta~Delta#batch
-		 */
-		this.batch = null;
-
-		/**
-		 * Array of operations which compose delta.
-		 *
-		 * @readonly
-		 * @member {module:engine/model/operation/operation~Operation[]} module:engine/model/delta/delta~Delta#operations
-		 */
-		this.operations = [];
-	}
-
-	/**
-	 * Returns delta base version which is equal to the base version of the first operation in delta. If there
-	 * are no operations in delta, returns `null`.
-	 *
-	 * @see module:engine/model/document~Document
-	 * @type {Number|null}
-	 */
-	get baseVersion() {
-		if ( this.operations.length > 0 ) {
-			return this.operations[ 0 ].baseVersion;
-		}
-
-		return null;
-	}
-
-	/**
-	 * @param {Number} baseVersion
-	 */
-	set baseVersion( baseVersion ) {
-		for ( const operation of this.operations ) {
-			operation.baseVersion = baseVersion++;
-		}
-	}
-
-	/**
-	 * A class that will be used when creating reversed delta.
-	 *
-	 * @private
-	 * @type {Function}
-	 */
-	get _reverseDeltaClass() {
-		return Delta;
-	}
-
-	/**
-	 * Delta type.
-	 *
-	 * @readonly
-	 * @member {String} #type
-	 */
-
-	/**
-	 * Add operation to the delta.
-	 *
-	 * @param {module:engine/model/operation/operation~Operation} operation Operation instance.
-	 */
-	addOperation( operation ) {
-		operation.delta = this;
-		this.operations.push( operation );
-
-		return operation;
-	}
-
-	/**
-	 * Creates and returns a delta that has the same parameters as this delta.
-	 *
-	 * @returns {module:engine/model/delta/delta~Delta} Clone of this delta.
-	 */
-	clone() {
-		const delta = new this.constructor();
-
-		for ( const op of this.operations ) {
-			delta.addOperation( op.clone() );
-		}
-
-		return delta;
-	}
-
-	/**
-	 * Creates and returns a reverse delta. Reverse delta when executed right after the original delta will bring back
-	 * tree model state to the point before the original delta execution. In other words, it reverses changes done
-	 * by the original delta.
-	 *
-	 * Keep in mind that tree model state may change since executing the original delta, so reverse delta may be "outdated".
-	 * In that case you will need to {@link module:engine/model/delta/transform~transform} it by all deltas that were executed after
-	 * the original delta.
-	 *
-	 * @returns {module:engine/model/delta/delta~Delta} Reversed delta.
-	 */
-	getReversed() {
-		const delta = new this._reverseDeltaClass();
-
-		for ( const op of this.operations ) {
-			delta.addOperation( op.getReversed() );
-		}
-
-		delta.operations.reverse();
-
-		for ( let i = 0; i < delta.operations.length; i++ ) {
-			delta.operations[ i ].baseVersion = this.operations[ this.operations.length - 1 ].baseVersion + i + 1;
-		}
-
-		return delta;
-	}
-
-	/**
-	 * Custom toJSON method to make deltas serializable.
-	 *
-	 * @returns {Object} Clone of this delta with added class name.
-	 */
-	toJSON() {
-		const json = Object(__WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_clone__["a" /* default */])( this );
-
-		json.__className = this.constructor.className;
-
-		// Remove parent batch to avoid circular dependencies.
-		delete json.batch;
-
-		return json;
-	}
-
-	/**
-	 * Delta class name. Used by {@link #toJSON} method for serialization and
-	 * {@link module:engine/model/delta/deltafactory~DeltaFactory.fromJSON} during deserialization.
-	 *
-	 * @type {String}
-	 * @readonly
-	 */
-	static get className() {
-		return 'engine.model.delta.Delta';
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Delta;
-
-
-__WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( Delta );
-
-
-/***/ }),
-/* 23 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayPush__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isFlattenable__ = __webpack_require__(365);
-
-
-
-/**
- * The base implementation of `_.flatten` with support for restricting flattening.
- *
- * @private
- * @param {Array} array The array to flatten.
- * @param {number} depth The maximum recursion depth.
- * @param {boolean} [predicate=isFlattenable] The function invoked per iteration.
- * @param {boolean} [isStrict] Restrict to values that pass `predicate` checks.
- * @param {Array} [result=[]] The initial result value.
- * @returns {Array} Returns the new flattened array.
- */
-function baseFlatten(array, depth, predicate, isStrict, result) {
-  var index = -1,
-      length = array.length;
-
-  predicate || (predicate = __WEBPACK_IMPORTED_MODULE_1__isFlattenable__["a" /* default */]);
-  result || (result = []);
-
-  while (++index < length) {
-    var value = array[index];
-    if (depth > 0 && predicate(value)) {
-      if (depth > 1) {
-        // Recursively flatten arrays (susceptible to call stack limits).
-        baseFlatten(value, depth - 1, predicate, isStrict, result);
-      } else {
-        Object(__WEBPACK_IMPORTED_MODULE_0__arrayPush__["a" /* default */])(result, value);
-      }
-    } else if (!isStrict) {
-      result[result.length] = value;
-    }
-  }
-  return result;
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (baseFlatten);
-
-
-/***/ }),
-/* 24 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__icon_iconview__ = __webpack_require__(458);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__tooltip_tooltipview__ = __webpack_require__(459);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(20);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module ui/button/buttonview
- */
-
-
-
-
-
-
-
-
-/**
- * The button view class.
- *
- * @extends module:ui/view~View
- */
-class ButtonView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */] {
-	/**
-	 * @inheritDoc
-	 */
-	constructor( locale ) {
-		super( locale );
-
-		/**
-		 * The label of the button view visible to the user.
-		 *
-		 * @observable
-		 * @member {String} #label
-		 */
-		this.set( 'label' );
-
-		/**
-		 * (Optional) The keystroke associated with the button, i.e. <kbd>CTRL+B</kbd>,
-		 * in the string format compatible with {@link module:utils/keyboard}.
-		 *
-		 * @observable
-		 * @member {Boolean} #keystroke
-		 */
-		this.set( 'keystroke' );
-
-		/**
-		 * (Optional) Tooltip of the button, i.e. displayed when hovering the button with the mouse cursor.
-		 *
-		 * * If defined as a `Boolean` (e.g. `true`), then combination of `label` and `keystroke` will be set as a tooltip.
-		 * * If defined as a `String`, tooltip will equal the exact text of that `String`.
-		 * * If defined as a `Function`, `label` and `keystroke` will be passed to that function, which is to return
-		 * a string with the tooltip text.
-		 *
-		 *		const view = new ButtonView( locale );
-		 *		view.tooltip = ( label, keystroke ) => `A tooltip for ${ label } and ${ keystroke }.`
-		 *
-		 * @observable
-		 * @default false
-		 * @member {Boolean|String|Function} #tooltip
-		 */
-		this.set( 'tooltip' );
-
-		/**
-		 * The position of the tooltip. See {@link module:ui/tooltip/tooltipview~TooltipView#position}
-		 * to learn more about the available position values.
-		 *
-		 * **Note:** It makes sense only when the {@link #tooltip} is active.
-		 *
-		 * @observable
-		 * @default 's'
-		 * @member {'s'|'n'} #position
-		 */
-		this.set( 'tooltipPosition', 's' );
-
-		/**
-		 * The HTML type of the button. Default `button`.
-		 *
-		 * @observable
-		 * @member {'button'|'submit'|'reset'|'menu'} #type
-		 */
-		this.set( 'type', 'button' );
-
-		/**
-		 * Controls whether the button view is "on", e.g. some feature which it represents
-		 * is currently enabled.
-		 *
-		 * @observable
-		 * @member {Boolean} #isOn
-		 */
-		this.set( 'isOn', false );
-
-		/**
-		 * Controls whether the button view is enabled (can be clicked).
-		 *
-		 * @observable
-		 * @member {Boolean} #isEnabled
-		 */
-		this.set( 'isEnabled', true );
-
-		/**
-		 * Controls whether the button view is visible.
-		 *
-		 * @observable
-		 * @member {Boolean} #isVisible
-		 */
-		this.set( 'isVisible', true );
-
-		/**
-		 * (Optional) Whether the label of the button is hidden (e.g. button with icon only).
-		 *
-		 * @observable
-		 * @member {Boolean} #withText
-		 */
-		this.set( 'withText', false );
-
-		/**
-		 * (Optional) Source of the icon. See {@link module:ui/icon/iconview~IconView#content}.
-		 *
-		 * @observable
-		 * @member {String} #icon
-		 */
-		this.set( 'icon' );
-
-		/**
-		 * Controls the `tabindex` attribute of the button.
-		 *
-		 * @observable
-		 * @default -1
-		 * @member {String} #tabindex
-		 */
-		this.set( 'tabindex', -1 );
-
-		/**
-		 * Tooltip of the button bound to the template.
-		 *
-		 * @see #tooltip
-		 * @see #_getTooltipString
-		 * @private
-		 * @observable
-		 * @member {Boolean} #_tooltipString
-		 */
-		this.bind( '_tooltipString' ).to(
-			this, 'tooltip',
-			this, 'label',
-			this, 'keystroke',
-			this._getTooltipString.bind( this )
-		);
-
-		/**
-		 * Tooltip of the button view.
-		 *
-		 * @readonly
-		 * @member {module:ui/tooltip/tooltipview~TooltipView} #tooltipView
-		 */
-		this.tooltipView = this._createTooltipView();
-
-		/**
-		 * Icon of the button view.
-		 *
-		 * @readonly
-		 * @member {module:ui/icon/iconview~IconView} #iconView
-		 */
-
-		const bind = this.bindTemplate;
-
-		this.template = new __WEBPACK_IMPORTED_MODULE_1__template__["a" /* default */]( {
-			tag: 'button',
-
-			attributes: {
-				class: [
-					'ck-button',
-					bind.to( 'isEnabled', value => value ? 'ck-enabled' : 'ck-disabled' ),
-					bind.if( 'isVisible', 'ck-hidden', value => !value ),
-					bind.to( 'isOn', value => value ? 'ck-on' : 'ck-off' ),
-					bind.if( 'withText', 'ck-button_with-text' )
-				],
-				type: bind.to( 'type', value => value ? value : 'button' ),
-				tabindex: bind.to( 'tabindex' )
-			},
-
-			children: [
-				{
-					tag: 'span',
-
-					attributes: {
-						class: [ 'ck-button__label' ]
-					},
-
-					children: [
-						{
-							text: bind.to( 'label' )
-						}
-					]
-				},
-				this.tooltipView
-			],
-
-			on: {
-				mousedown: bind.to( evt => {
-					evt.preventDefault();
-				} ),
-
-				click: bind.to( evt => {
-					// We can't make the button disabled using the disabled attribute, because it won't be focusable.
-					// Though, shouldn't this condition be moved to the button controller?
-					if ( this.isEnabled ) {
-						this.fire( 'execute' );
-					} else {
-						// Prevent the default when button is disabled, to block e.g.
-						// automatic form submitting. See ckeditor/ckeditor5-link#74.
-						evt.preventDefault();
-					}
-				} )
-			}
-		} );
-
-		/**
-		 * Fired when the button view is clicked. It won't be fired when the button is disabled.
-		 *
-		 * @event #execute
-		 */
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	init() {
-		if ( this.icon ) {
-			const iconView = this.iconView = new __WEBPACK_IMPORTED_MODULE_2__icon_iconview__["a" /* default */]();
-
-			iconView.bind( 'content' ).to( this, 'icon' );
-			this.element.insertBefore( iconView.element, this.element.firstChild );
-
-			// Make sure the icon will be destroyed along with the button.
-			this.addChildren( iconView );
-		}
-
-		super.init();
-	}
-
-	/**
-	 * Focuses the button.
-	 */
-	focus() {
-		this.element.focus();
-	}
-
-	/**
-	 * Creates TooltipView instance and bind with button properties.
-	 *
-	 * @private
-	 * @returns {module:ui/tooltip/tooltipview~TooltipView}
-	 */
-	_createTooltipView() {
-		const tooltipView = new __WEBPACK_IMPORTED_MODULE_3__tooltip_tooltipview__["a" /* default */]();
-
-		tooltipView.bind( 'text' ).to( this, '_tooltipString' );
-		tooltipView.bind( 'position' ).to( this, 'tooltipPosition' );
-
-		return tooltipView;
-	}
-
-	/**
-	 * Gets the text for the {@link #tooltipView} from the combination of
-	 * {@link #tooltip}, {@link #label} and {@link #keystroke} attributes.
-	 *
-	 * @private
-	 * @see #tooltip
-	 * @see #_tooltipString
-	 * @param {Boolean|String|Function} tooltip Button tooltip.
-	 * @param {String} label Button label.
-	 * @param {String} keystroke Button keystroke.
-	 * @returns {String}
-	 */
-	_getTooltipString( tooltip, label, keystroke ) {
-		if ( tooltip ) {
-			if ( typeof tooltip == 'string' ) {
-				return tooltip;
-			} else {
-				if ( keystroke ) {
-					keystroke = Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keyboard__["b" /* getEnvKeystrokeText */])( keystroke );
-				}
-
-				if ( tooltip instanceof Function ) {
-					return tooltip( label, keystroke );
-				} else {
-					return `${ label }${ keystroke ? ` (${ keystroke })` : '' }`;
-				}
-			}
-		}
-
-		return '';
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = ButtonView;
-
-
-
-/***/ }),
-/* 25 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node__ = __webpack_require__(62);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module engine/model/text
- */
-
-
-
-/**
- * Model text node. Type of {@link module:engine/model/node~Node node} that contains {@link module:engine/model/text~Text#data text data}.
- *
- * **Important:** see {@link module:engine/model/node~Node} to read about restrictions using `Text` and `Node` API.
- *
- * **Note:** keep in mind that `Text` instances might indirectly got removed from model tree when model is changed.
- * This happens when {@link module:engine/model/writer~writer model writer} is used to change model and the text node is merged with
- * another text node. Then, both text nodes are removed and a new text node is inserted into the model. Because of
- * this behavior, keeping references to `Text` is not recommended. Instead, consider creating
- * {@link module:engine/model/liveposition~LivePosition live position} placed before the text node.
- */
-class Text extends __WEBPACK_IMPORTED_MODULE_0__node__["a" /* default */] {
-	/**
-	 * Creates a text node.
-	 *
-	 * @param {String} data Node's text.
-	 * @param {Object} [attrs] Node's attributes. See {@link module:utils/tomap~toMap} for a list of accepted values.
-	 */
-	constructor( data, attrs ) {
-		super( attrs );
-
-		/**
-		 * Text data contained in this text node.
-		 *
-		 * @type {String}
-		 */
-		this.data = data || '';
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	get offsetSize() {
-		return this.data.length;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	is( type ) {
-		return type == 'text';
-	}
-
-	/**
-	 * Creates a copy of this text node and returns it. Created text node has same text data and attributes as original text node.
-	 */
-	clone() {
-		return new Text( this.data, this.getAttributes() );
-	}
-
-	/**
-	 * Converts `Text` instance to plain object and returns it.
-	 *
-	 * @returns {Object} `Text` instance converted to plain object.
-	 */
-	toJSON() {
-		const json = super.toJSON();
-
-		json.data = this.data;
-
-		return json;
-	}
-
-	/**
-	 * Creates a `Text` instance from given plain object (i.e. parsed JSON string).
-	 *
-	 * @param {Object} json Plain object to be converted to `Text`.
-	 * @returns {module:engine/model/text~Text} `Text` instance created using given plain object.
-	 */
-	static fromJSON( json ) {
-		return new Text( json.data, json.attributes );
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Text;
-
-
-
-/***/ }),
-/* 26 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__treewalker__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_comparearrays__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
@@ -7912,6 +6748,1170 @@ class Position {
  *
  * @typedef {String} module:engine/view/position~PositionRelation
  */
+
+
+/***/ }),
+/* 21 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = getCode;
+/* harmony export (immutable) */ __webpack_exports__["d"] = parseKeystroke;
+/* harmony export (immutable) */ __webpack_exports__["b"] = getEnvKeystrokeText;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditorerror__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__env__ = __webpack_require__(343);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * Set of utils related to keyboard support.
+ *
+ * @module utils/keyboard
+ */
+
+
+
+
+/**
+ * Object with `keyName => keyCode` pairs for a set of known keys.
+ *
+ * Contains:
+ *
+ * * `a-z`,
+ * * `0-9`,
+ * * `f1-f12`,
+ * * `arrow(left|up|right|bottom)`,
+ * * `backspace`, `delete`, `enter`, `esc`, `tab`,
+ * * `ctrl`, `cmd`, `shift`, `alt`.
+ */
+const keyCodes = generateKnownKeyCodes();
+/* harmony export (immutable) */ __webpack_exports__["c"] = keyCodes;
+
+
+/**
+ * Converts a key name or a {@link module:utils/keyboard~KeystrokeInfo keystroke info} into a key code.
+ *
+ * Note: Key names are matched with {@link module:utils/keyboard~keyCodes} in a case-insensitive way.
+ *
+ * @param {String|module:utils/keyboard~KeystrokeInfo} Key name (see {@link module:utils/keyboard~keyCodes})
+ * or a keystroke data object.
+ * @returns {Number} Key or keystroke code.
+ */
+function getCode( key ) {
+	let keyCode;
+
+	if ( typeof key == 'string' ) {
+		keyCode = keyCodes[ key.toLowerCase() ];
+
+		if ( !keyCode ) {
+			/**
+			 * Unknown key name. Only key names contained by the {@link module:utils/keyboard~keyCodes} can be used.
+			 *
+			 * @errror keyboard-unknown-key
+			 * @param {String} key
+			 */
+			throw new __WEBPACK_IMPORTED_MODULE_0__ckeditorerror__["a" /* default */]( 'keyboard-unknown-key: Unknown key name.', { key } );
+		}
+	} else {
+		keyCode = key.keyCode +
+			( key.altKey ? keyCodes.alt : 0 ) +
+			( key.ctrlKey ? keyCodes.ctrl : 0 ) +
+			( key.shiftKey ? keyCodes.shift : 0 );
+	}
+
+	return keyCode;
+}
+
+/**
+ * Parses keystroke and returns a keystroke code that will match the code returned by
+ * link {@link module:utils/keyboard.getCode} for a corresponding {@link module:utils/keyboard~KeystrokeInfo keystroke info}.
+ *
+ * The keystroke can be passed in two formats:
+ *
+ * * as a single string – e.g. `ctrl + A`,
+ * * as an array of {@link module:utils/keyboard~keyCodes known key names} and key codes – e.g.:
+ *   * `[ 'ctrl', 32 ]` (ctrl + space),
+ *   * `[ 'ctrl', 'a' ]` (ctrl + A).
+ *
+ * Note: Key names are matched with {@link module:utils/keyboard~keyCodes} in a case-insensitive way.
+ *
+ * Note: Only keystrokes with a single non-modifier key are supported (e.g. `ctrl+A` is OK, but `ctrl+A+B` is not).
+ *
+ * @param {String|Array.<Number|String>} keystroke Keystroke definition.
+ * @returns {Number} Keystroke code.
+ */
+function parseKeystroke( keystroke ) {
+	if ( typeof keystroke == 'string' ) {
+		keystroke = splitKeystrokeText( keystroke );
+	}
+
+	return keystroke
+		.map( key => ( typeof key == 'string' ) ? getCode( key ) : key )
+		.reduce( ( key, sum ) => sum + key, 0 );
+}
+
+/**
+ * It translates any keystroke string text like `"CTRL+A"` to an
+ * environment–specific keystroke, i.e. `"⌘A"` on Mac OSX.
+ *
+ * @param {String} keystroke Keystroke text.
+ * @returns {String} Keystroke text specific for the environment.
+ */
+function getEnvKeystrokeText( keystroke ) {
+	const split = splitKeystrokeText( keystroke );
+
+	if ( __WEBPACK_IMPORTED_MODULE_1__env__["a" /* default */].mac ) {
+		if ( split[ 0 ].toLowerCase() == 'ctrl' ) {
+			return '⌘' + ( split[ 1 ] || '' );
+		}
+	}
+
+	return keystroke;
+}
+
+function generateKnownKeyCodes() {
+	const keyCodes = {
+		arrowleft: 37,
+		arrowup: 38,
+		arrowright: 39,
+		arrowdown: 40,
+		backspace: 8,
+		delete: 46,
+		enter: 13,
+		space: 32,
+		esc: 27,
+		tab: 9,
+
+		// The idea about these numbers is that they do not collide with any real key codes, so we can use them
+		// like bit masks.
+		ctrl: 0x110000,
+		// Has the same code as ctrl, because their behaviour should be unified across the editor.
+		// See http://ckeditor.github.io/editor-recommendations/general-policies#ctrl-vs-cmd
+		cmd: 0x110000,
+		shift: 0x220000,
+		alt: 0x440000
+	};
+
+	// a-z
+	for ( let code = 65; code <= 90; code++ ) {
+		const letter = String.fromCharCode( code );
+
+		keyCodes[ letter.toLowerCase() ] = code;
+	}
+
+	// 0-9
+	for ( let code = 48; code <= 57; code++ ) {
+		keyCodes[ code - 48 ] = code;
+	}
+
+	// F1-F12
+	for ( let code = 112; code <= 123; code++ ) {
+		keyCodes[ 'f' + ( code - 111 ) ] = code;
+	}
+
+	return keyCodes;
+}
+
+function splitKeystrokeText( keystroke ) {
+	return keystroke.split( /\s*\+\s*/ );
+}
+
+/**
+ * Information about a keystroke.
+ *
+ * @interface module:utils/keyboard~KeystrokeInfo
+ */
+
+/**
+ * The [key code](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode).
+ *
+ * @member {Number} module:utils/keyboard~KeystrokeInfo#keyCode
+ */
+
+/**
+ * Whether the <kbd>Alt</kbd> modifier was pressed.
+ *
+ * @member {Bolean} module:utils/keyboard~KeystrokeInfo#altKey
+ */
+
+/**
+ * Whether the <kbd>Ctrl</kbd> or <kbd>Cmd</kbd> modifier was pressed.
+ *
+ * @member {Bolean} module:utils/keyboard~KeystrokeInfo#ctrlKey
+ */
+
+/**
+ * Whether the <kbd>Shift</kbd> modifier was pressed.
+ *
+ * @member {Bolean} module:utils/keyboard~KeystrokeInfo#shiftKey
+ */
+
+
+/***/ }),
+/* 22 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = insert;
+/* harmony export (immutable) */ __webpack_exports__["d"] = remove;
+/* unused harmony export move */
+/* unused harmony export setAttribute */
+/* unused harmony export removeAttribute */
+/* harmony export (immutable) */ __webpack_exports__["c"] = normalizeNodes;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__text__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__textproxy__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__range__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__documentfragment__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__nodelist__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module engine/model/writer
+ */
+
+
+
+
+
+
+
+
+
+/**
+ * Contains functions used for composing model tree, grouped together under "model writer" name. Those functions
+ * are built on top of {@link module:engine/model/node~Node node}, and it's child classes', APIs.
+ *
+ * Model writer API has multiple advantages and it is highly recommended to use it when changing model tree and nodes:
+ * * model writer API {@link module:engine/model/writer~writer.normalizeNodes normalizes inserted nodes}, which means that you can insert
+ * not only {@link module:engine/model/node~Node nodes}, but also `String`s, {@link module:engine/model/textproxy~TextProxy text proxies}
+ * and
+ * {@link module:engine/model/documentfragment~DocumentFragment document fragments},
+ * * model writer API operates on {@link module:engine/model/position~Position positions}, which means that you have
+ * better control over manipulating model tree as positions operate on offsets rather than indexes,
+ * * model writer API automatically merges {@link module:engine/model/text~Text text nodes} with same attributes, which means
+ * lower memory usage and better efficiency.
+ *
+ * @namespace writer
+ */
+const writer = {
+	insert,
+	remove,
+	move,
+	setAttribute,
+	removeAttribute,
+	normalizeNodes
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (writer);
+
+/**
+ * Inserts given nodes at given position.
+ *
+ * @function module:engine/model/writer~writer.insert
+ * @param {module:engine/model/position~Position} position Position at which nodes should be inserted.
+ * @param {module:engine/model/node~NodeSet} nodes Nodes to insert.
+ * @returns {module:engine/model/range~Range} Range spanning over inserted elements.
+ */
+function insert( position, nodes ) {
+	nodes = normalizeNodes( nodes );
+
+	// We have to count offset before inserting nodes because they can get merged and we would get wrong offsets.
+	const offset = nodes.reduce( ( sum, node ) => sum + node.offsetSize, 0 );
+	const parent = position.parent;
+
+	// Insertion might be in a text node, we should split it if that's the case.
+	_splitNodeAtPosition( position );
+	const index = position.index;
+
+	// Insert nodes at given index. After splitting we have a proper index and insertion is between nodes,
+	// using basic `Element` API.
+	parent.insertChildren( index, nodes );
+
+	// Merge text nodes, if possible. Merging is needed only at points where inserted nodes "touch" "old" nodes.
+	_mergeNodesAtIndex( parent, index + nodes.length );
+	_mergeNodesAtIndex( parent, index );
+
+	return new __WEBPACK_IMPORTED_MODULE_3__range__["a" /* default */]( position, position.getShiftedBy( offset ) );
+}
+
+/**
+ * Removed nodes in given range. Only {@link module:engine/model/range~Range#isFlat flat} ranges are accepted.
+ *
+ * @function module:engine/model/writer~writer.remove
+ * @param {module:engine/model/range~Range} range Range containing nodes to remove.
+ * @returns {Array.<module:engine/model/node~Node>}
+ */
+function remove( range ) {
+	if ( !range.isFlat ) {
+		/**
+		 * Trying to remove a range that starts and ends in different element.
+		 *
+		 * @error model-writer-remove-range-not-flat
+		 */
+		throw new __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'model-writer-remove-range-not-flat: ' +
+			'Trying to remove a range that starts and ends in different element.' );
+	}
+
+	const parent = range.start.parent;
+
+	// Range may be inside text nodes, we have to split them if that's the case.
+	_splitNodeAtPosition( range.start );
+	_splitNodeAtPosition( range.end );
+
+	// Remove the text nodes using basic `Element` API.
+	const removed = parent.removeChildren( range.start.index, range.end.index - range.start.index );
+
+	// Merge text nodes, if possible. After some nodes were removed, node before and after removed range will be
+	// touching at the position equal to the removed range beginning. We check merging possibility there.
+	_mergeNodesAtIndex( parent, range.start.index );
+
+	return removed;
+}
+
+/**
+ * Moves nodes in given range to given target position. Only {@link module:engine/model/range~Range#isFlat flat} ranges are accepted.
+ *
+ * @param {module:engine/model/range~Range} sourceRange Range containing nodes to move.
+ * @param {module:engine/model/position~Position} targetPosition Position to which nodes should be moved.
+ * @returns {module:engine/model/range~Range} Range containing moved nodes.
+ */
+function move( sourceRange, targetPosition ) {
+	if ( !sourceRange.isFlat ) {
+		/**
+		 * Trying to move a range that starts and ends in different element.
+		 *
+		 * @error model-writer-move-range-not-flat
+		 */
+		throw new __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'model-writer-move-range-not-flat: ' +
+			'Trying to move a range that starts and ends in different element.' );
+	}
+
+	const nodes = this.remove( sourceRange );
+
+	// We have to fix `targetPosition` because model changed after nodes from `sourceRange` got removed and
+	// that change might have an impact on `targetPosition`.
+	targetPosition = targetPosition._getTransformedByDeletion( sourceRange.start, sourceRange.end.offset - sourceRange.start.offset );
+
+	return this.insert( targetPosition, nodes );
+}
+
+/**
+ * Sets given attribute on nodes in given range.
+ *
+ * @param {module:engine/model/range~Range} range Range containing nodes that should have the attribute set.
+ * @param {String} key Key of attribute to set.
+ * @param {*} value Attribute value.
+ */
+function setAttribute( range, key, value ) {
+	// Range might start or end in text nodes, so we have to split them.
+	_splitNodeAtPosition( range.start );
+	_splitNodeAtPosition( range.end );
+
+	// Iterate over all items in the range.
+	for ( const item of range.getItems() ) {
+		// Iterator will return `TextProxy` instances but we know that those text proxies will
+		// always represent full text nodes (this is guaranteed thanks to splitting we did before).
+		// So, we can operate on those text proxies' text nodes.
+		const node = item.is( 'textProxy' ) ? item.textNode : item;
+
+		if ( value !== null ) {
+			node.setAttribute( key, value );
+		} else {
+			node.removeAttribute( key );
+		}
+
+		// After attributes changing it may happen that some text nodes can be merged. Try to merge with previous node.
+		_mergeNodesAtIndex( node.parent, node.index );
+	}
+
+	// Try to merge last changed node with it's previous sibling (not covered by the loop above).
+	_mergeNodesAtIndex( range.end.parent, range.end.index );
+}
+
+/**
+ * Removes given attribute from nodes in given range.
+ *
+ * @param {module:engine/model/range~Range} range Range containing nodes that should have the attribute removed.
+ * @param {String} key Key of attribute to remove.
+ */
+function removeAttribute( range, key ) {
+	this.setAttribute( range, key, null );
+}
+
+/**
+ * Normalizes given object or an array of objects to an array of {@link module:engine/model/node~Node nodes}. See
+ * {@link module:engine/model/node~NodeSet NodeSet} for details on how normalization is performed.
+ *
+ * @param {module:engine/model/node~NodeSet} nodes Objects to normalize.
+ * @returns {Array.<module:engine/model/node~Node>} Normalized nodes.
+ */
+function normalizeNodes( nodes ) {
+	const normalized = [];
+
+	if ( !( nodes instanceof Array ) ) {
+		nodes = [ nodes ];
+	}
+
+	// Convert instances of classes other than Node.
+	for ( let i = 0; i < nodes.length; i++ ) {
+		if ( typeof nodes[ i ] == 'string' ) {
+			normalized.push( new __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */]( nodes[ i ] ) );
+		} else if ( nodes[ i ] instanceof __WEBPACK_IMPORTED_MODULE_2__textproxy__["a" /* default */] ) {
+			normalized.push( new __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */]( nodes[ i ].data, nodes[ i ].getAttributes() ) );
+		} else if ( nodes[ i ] instanceof __WEBPACK_IMPORTED_MODULE_4__documentfragment__["a" /* default */] || nodes[ i ] instanceof __WEBPACK_IMPORTED_MODULE_5__nodelist__["a" /* default */] ) {
+			for ( const child of nodes[ i ] ) {
+				normalized.push( child );
+			}
+		} else if ( nodes[ i ] instanceof __WEBPACK_IMPORTED_MODULE_0__node__["a" /* default */] ) {
+			normalized.push( nodes[ i ] );
+		}
+		// Skip unrecognized type.
+	}
+
+	// Merge text nodes.
+	for ( let i = 1; i < normalized.length; i++ ) {
+		const node = normalized[ i ];
+		const prev = normalized[ i - 1 ];
+
+		if ( node instanceof __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */] && prev instanceof __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */] && _haveSameAttributes( node, prev ) ) {
+			// Doing this instead changing prev.data because .data is readonly.
+			normalized.splice( i - 1, 2, new __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */]( prev.data + node.data, prev.getAttributes() ) );
+			i--;
+		}
+	}
+
+	return normalized;
+}
+
+/**
+ * Checks if nodes before and after given index in given element are {@link module:engine/model/text~Text text nodes} and
+ * merges them into one node if they have same attributes.
+ *
+ * Merging is done by removing two text nodes and inserting a new text node containing data from both merged text nodes.
+ *
+ * @ignore
+ * @private
+ * @param {module:engine/model/element~Element} element Parent element of nodes to merge.
+ * @param {Number} index Index between nodes to merge.
+ */
+function _mergeNodesAtIndex( element, index ) {
+	const nodeBefore = element.getChild( index - 1 );
+	const nodeAfter = element.getChild( index );
+
+	// Check if both of those nodes are text objects with same attributes.
+	if ( nodeBefore && nodeAfter && nodeBefore.is( 'text' ) && nodeAfter.is( 'text' ) && _haveSameAttributes( nodeBefore, nodeAfter ) ) {
+		// Append text of text node after index to the before one.
+		const mergedNode = new __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */]( nodeBefore.data + nodeAfter.data, nodeBefore.getAttributes() );
+
+		// Remove separate text nodes.
+		element.removeChildren( index - 1, 2 );
+
+		// Insert merged text node.
+		element.insertChildren( index - 1, mergedNode );
+	}
+}
+
+/**
+ * Checks if given position is in a text node, and if so, splits the text node in two text nodes, each of them
+ * containing a part of original text node.
+ *
+ * @ignore
+ * @private
+ * @param {module:engine/model/position~Position} position Position at which node should be split.
+ */
+function _splitNodeAtPosition( position ) {
+	const textNode = position.textNode;
+	const element = position.parent;
+
+	if ( textNode ) {
+		const offsetDiff = position.offset - textNode.startOffset;
+		const index = textNode.index;
+
+		element.removeChildren( index, 1 );
+
+		const firstPart = new __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */]( textNode.data.substr( 0, offsetDiff ), textNode.getAttributes() );
+		const secondPart = new __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */]( textNode.data.substr( offsetDiff ), textNode.getAttributes() );
+
+		element.insertChildren( index, [ firstPart, secondPart ] );
+	}
+}
+
+/**
+ * Checks whether two given nodes have same attributes.
+ *
+ * @ignore
+ * @private
+ * @param {module:engine/model/node~Node} nodeA Node to check.
+ * @param {module:engine/model/node~Node} nodeB Node to check.
+ * @returns {Boolean} `true` if nodes have same attributes, `false` otherwise.
+ */
+function _haveSameAttributes( nodeA, nodeB ) {
+	const iteratorA = nodeA.getAttributes();
+	const iteratorB = nodeB.getAttributes();
+
+	for ( const attr of iteratorA ) {
+		if ( attr[ 1 ] !== nodeB.getAttribute( attr[ 0 ] ) ) {
+			return false;
+		}
+
+		iteratorB.next();
+	}
+
+	return iteratorB.next().done;
+}
+
+/**
+ * Value that can be normalized to an array of {@link module:engine/model/node~Node nodes}.
+ *
+ * Non-arrays are normalized as follows:
+ * * {@link module:engine/model/node~Node Node} is left as is,
+ * * {@link module:engine/model/textproxy~TextProxy TextProxy} and `String` are normalized to {@link module:engine/model/text~Text Text},
+ * * {@link module:engine/model/nodelist~NodeList NodeList} is normalized to an array containing all nodes that are in that node list,
+ * * {@link module:engine/model/documentfragment~DocumentFragment DocumentFragment} is normalized to an array containing all of it's
+ * * children.
+ *
+ * Arrays are processed item by item like non-array values and flattened to one array. Normalization always results in
+ * a flat array of {@link module:engine/model/node~Node nodes}. Consecutive text nodes (or items normalized to text nodes) will be
+ * merged if they have same attributes.
+ *
+ * @typedef {module:engine/model/node~Node|module:engine/model/textproxy~TextProxy|String|
+ * module:engine/model/nodelist~NodeList|module:engine/model/documentfragment~DocumentFragment|Iterable}
+ * module:engine/model/node~NodeSet
+ */
+
+
+/***/ }),
+/* 23 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_clone__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module engine/model/delta/delta
+ */
+
+
+
+
+/**
+ * Base class for all deltas.
+ *
+ * Delta is a single, from the user action point of view, change in the editable document, like insert, split or
+ * rename element. Delta is composed of operations, which are unit changes needed to be done to execute user action.
+ *
+ * Multiple deltas are grouped into a single {@link module:engine/model/batch~Batch}.
+ */
+class Delta {
+	/**
+	 * Creates a delta instance.
+	 */
+	constructor() {
+		/**
+		 * {@link module:engine/model/batch~Batch} which delta is a part of. This property is null by default and set by the
+		 * {@link module:engine/model/batch~Batch#addDelta} method.
+		 *
+		 * @readonly
+		 * @member {module:engine/model/batch~Batch} module:engine/model/delta/delta~Delta#batch
+		 */
+		this.batch = null;
+
+		/**
+		 * Array of operations which compose delta.
+		 *
+		 * @readonly
+		 * @member {module:engine/model/operation/operation~Operation[]} module:engine/model/delta/delta~Delta#operations
+		 */
+		this.operations = [];
+	}
+
+	/**
+	 * Returns delta base version which is equal to the base version of the first operation in delta. If there
+	 * are no operations in delta, returns `null`.
+	 *
+	 * @see module:engine/model/document~Document
+	 * @type {Number|null}
+	 */
+	get baseVersion() {
+		if ( this.operations.length > 0 ) {
+			return this.operations[ 0 ].baseVersion;
+		}
+
+		return null;
+	}
+
+	/**
+	 * @param {Number} baseVersion
+	 */
+	set baseVersion( baseVersion ) {
+		for ( const operation of this.operations ) {
+			operation.baseVersion = baseVersion++;
+		}
+	}
+
+	/**
+	 * A class that will be used when creating reversed delta.
+	 *
+	 * @private
+	 * @type {Function}
+	 */
+	get _reverseDeltaClass() {
+		return Delta;
+	}
+
+	/**
+	 * Delta type.
+	 *
+	 * @readonly
+	 * @member {String} #type
+	 */
+
+	/**
+	 * Add operation to the delta.
+	 *
+	 * @param {module:engine/model/operation/operation~Operation} operation Operation instance.
+	 */
+	addOperation( operation ) {
+		operation.delta = this;
+		this.operations.push( operation );
+
+		return operation;
+	}
+
+	/**
+	 * Creates and returns a delta that has the same parameters as this delta.
+	 *
+	 * @returns {module:engine/model/delta/delta~Delta} Clone of this delta.
+	 */
+	clone() {
+		const delta = new this.constructor();
+
+		for ( const op of this.operations ) {
+			delta.addOperation( op.clone() );
+		}
+
+		return delta;
+	}
+
+	/**
+	 * Creates and returns a reverse delta. Reverse delta when executed right after the original delta will bring back
+	 * tree model state to the point before the original delta execution. In other words, it reverses changes done
+	 * by the original delta.
+	 *
+	 * Keep in mind that tree model state may change since executing the original delta, so reverse delta may be "outdated".
+	 * In that case you will need to {@link module:engine/model/delta/transform~transform} it by all deltas that were executed after
+	 * the original delta.
+	 *
+	 * @returns {module:engine/model/delta/delta~Delta} Reversed delta.
+	 */
+	getReversed() {
+		const delta = new this._reverseDeltaClass();
+
+		for ( const op of this.operations ) {
+			delta.addOperation( op.getReversed() );
+		}
+
+		delta.operations.reverse();
+
+		for ( let i = 0; i < delta.operations.length; i++ ) {
+			delta.operations[ i ].baseVersion = this.operations[ this.operations.length - 1 ].baseVersion + i + 1;
+		}
+
+		return delta;
+	}
+
+	/**
+	 * Custom toJSON method to make deltas serializable.
+	 *
+	 * @returns {Object} Clone of this delta with added class name.
+	 */
+	toJSON() {
+		const json = Object(__WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_clone__["a" /* default */])( this );
+
+		json.__className = this.constructor.className;
+
+		// Remove parent batch to avoid circular dependencies.
+		delete json.batch;
+
+		return json;
+	}
+
+	/**
+	 * Delta class name. Used by {@link #toJSON} method for serialization and
+	 * {@link module:engine/model/delta/deltafactory~DeltaFactory.fromJSON} during deserialization.
+	 *
+	 * @type {String}
+	 * @readonly
+	 */
+	static get className() {
+		return 'engine.model.delta.Delta';
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Delta;
+
+
+__WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( Delta );
+
+
+/***/ }),
+/* 24 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayPush__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isFlattenable__ = __webpack_require__(365);
+
+
+
+/**
+ * The base implementation of `_.flatten` with support for restricting flattening.
+ *
+ * @private
+ * @param {Array} array The array to flatten.
+ * @param {number} depth The maximum recursion depth.
+ * @param {boolean} [predicate=isFlattenable] The function invoked per iteration.
+ * @param {boolean} [isStrict] Restrict to values that pass `predicate` checks.
+ * @param {Array} [result=[]] The initial result value.
+ * @returns {Array} Returns the new flattened array.
+ */
+function baseFlatten(array, depth, predicate, isStrict, result) {
+  var index = -1,
+      length = array.length;
+
+  predicate || (predicate = __WEBPACK_IMPORTED_MODULE_1__isFlattenable__["a" /* default */]);
+  result || (result = []);
+
+  while (++index < length) {
+    var value = array[index];
+    if (depth > 0 && predicate(value)) {
+      if (depth > 1) {
+        // Recursively flatten arrays (susceptible to call stack limits).
+        baseFlatten(value, depth - 1, predicate, isStrict, result);
+      } else {
+        Object(__WEBPACK_IMPORTED_MODULE_0__arrayPush__["a" /* default */])(result, value);
+      }
+    } else if (!isStrict) {
+      result[result.length] = value;
+    }
+  }
+  return result;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (baseFlatten);
+
+
+/***/ }),
+/* 25 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__icon_iconview__ = __webpack_require__(458);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__tooltip_tooltipview__ = __webpack_require__(459);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(21);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module ui/button/buttonview
+ */
+
+
+
+
+
+
+
+
+/**
+ * The button view class.
+ *
+ * @extends module:ui/view~View
+ */
+class ButtonView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */] {
+	/**
+	 * @inheritDoc
+	 */
+	constructor( locale ) {
+		super( locale );
+
+		/**
+		 * The label of the button view visible to the user.
+		 *
+		 * @observable
+		 * @member {String} #label
+		 */
+		this.set( 'label' );
+
+		/**
+		 * (Optional) The keystroke associated with the button, i.e. <kbd>CTRL+B</kbd>,
+		 * in the string format compatible with {@link module:utils/keyboard}.
+		 *
+		 * @observable
+		 * @member {Boolean} #keystroke
+		 */
+		this.set( 'keystroke' );
+
+		/**
+		 * (Optional) Tooltip of the button, i.e. displayed when hovering the button with the mouse cursor.
+		 *
+		 * * If defined as a `Boolean` (e.g. `true`), then combination of `label` and `keystroke` will be set as a tooltip.
+		 * * If defined as a `String`, tooltip will equal the exact text of that `String`.
+		 * * If defined as a `Function`, `label` and `keystroke` will be passed to that function, which is to return
+		 * a string with the tooltip text.
+		 *
+		 *		const view = new ButtonView( locale );
+		 *		view.tooltip = ( label, keystroke ) => `A tooltip for ${ label } and ${ keystroke }.`
+		 *
+		 * @observable
+		 * @default false
+		 * @member {Boolean|String|Function} #tooltip
+		 */
+		this.set( 'tooltip' );
+
+		/**
+		 * The position of the tooltip. See {@link module:ui/tooltip/tooltipview~TooltipView#position}
+		 * to learn more about the available position values.
+		 *
+		 * **Note:** It makes sense only when the {@link #tooltip} is active.
+		 *
+		 * @observable
+		 * @default 's'
+		 * @member {'s'|'n'} #position
+		 */
+		this.set( 'tooltipPosition', 's' );
+
+		/**
+		 * The HTML type of the button. Default `button`.
+		 *
+		 * @observable
+		 * @member {'button'|'submit'|'reset'|'menu'} #type
+		 */
+		this.set( 'type', 'button' );
+
+		/**
+		 * Controls whether the button view is "on", e.g. some feature which it represents
+		 * is currently enabled.
+		 *
+		 * @observable
+		 * @member {Boolean} #isOn
+		 */
+		this.set( 'isOn', false );
+
+		/**
+		 * Controls whether the button view is enabled (can be clicked).
+		 *
+		 * @observable
+		 * @member {Boolean} #isEnabled
+		 */
+		this.set( 'isEnabled', true );
+
+		/**
+		 * Controls whether the button view is visible.
+		 *
+		 * @observable
+		 * @member {Boolean} #isVisible
+		 */
+		this.set( 'isVisible', true );
+
+		/**
+		 * (Optional) Whether the label of the button is hidden (e.g. button with icon only).
+		 *
+		 * @observable
+		 * @member {Boolean} #withText
+		 */
+		this.set( 'withText', false );
+
+		/**
+		 * (Optional) Source of the icon. See {@link module:ui/icon/iconview~IconView#content}.
+		 *
+		 * @observable
+		 * @member {String} #icon
+		 */
+		this.set( 'icon' );
+
+		/**
+		 * Controls the `tabindex` attribute of the button.
+		 *
+		 * @observable
+		 * @default -1
+		 * @member {String} #tabindex
+		 */
+		this.set( 'tabindex', -1 );
+
+		/**
+		 * Tooltip of the button bound to the template.
+		 *
+		 * @see #tooltip
+		 * @see #_getTooltipString
+		 * @private
+		 * @observable
+		 * @member {Boolean} #_tooltipString
+		 */
+		this.bind( '_tooltipString' ).to(
+			this, 'tooltip',
+			this, 'label',
+			this, 'keystroke',
+			this._getTooltipString.bind( this )
+		);
+
+		/**
+		 * Tooltip of the button view.
+		 *
+		 * @readonly
+		 * @member {module:ui/tooltip/tooltipview~TooltipView} #tooltipView
+		 */
+		this.tooltipView = this._createTooltipView();
+
+		/**
+		 * Icon of the button view.
+		 *
+		 * @readonly
+		 * @member {module:ui/icon/iconview~IconView} #iconView
+		 */
+
+		const bind = this.bindTemplate;
+
+		this.template = new __WEBPACK_IMPORTED_MODULE_1__template__["a" /* default */]( {
+			tag: 'button',
+
+			attributes: {
+				class: [
+					'ck-button',
+					bind.to( 'isEnabled', value => value ? 'ck-enabled' : 'ck-disabled' ),
+					bind.if( 'isVisible', 'ck-hidden', value => !value ),
+					bind.to( 'isOn', value => value ? 'ck-on' : 'ck-off' ),
+					bind.if( 'withText', 'ck-button_with-text' )
+				],
+				type: bind.to( 'type', value => value ? value : 'button' ),
+				tabindex: bind.to( 'tabindex' )
+			},
+
+			children: [
+				{
+					tag: 'span',
+
+					attributes: {
+						class: [ 'ck-button__label' ]
+					},
+
+					children: [
+						{
+							text: bind.to( 'label' )
+						}
+					]
+				},
+				this.tooltipView
+			],
+
+			on: {
+				mousedown: bind.to( evt => {
+					evt.preventDefault();
+				} ),
+
+				click: bind.to( evt => {
+					// We can't make the button disabled using the disabled attribute, because it won't be focusable.
+					// Though, shouldn't this condition be moved to the button controller?
+					if ( this.isEnabled ) {
+						this.fire( 'execute' );
+					} else {
+						// Prevent the default when button is disabled, to block e.g.
+						// automatic form submitting. See ckeditor/ckeditor5-link#74.
+						evt.preventDefault();
+					}
+				} )
+			}
+		} );
+
+		/**
+		 * Fired when the button view is clicked. It won't be fired when the button is disabled.
+		 *
+		 * @event #execute
+		 */
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	init() {
+		if ( this.icon ) {
+			const iconView = this.iconView = new __WEBPACK_IMPORTED_MODULE_2__icon_iconview__["a" /* default */]();
+
+			iconView.bind( 'content' ).to( this, 'icon' );
+			this.element.insertBefore( iconView.element, this.element.firstChild );
+
+			// Make sure the icon will be destroyed along with the button.
+			this.addChildren( iconView );
+		}
+
+		super.init();
+	}
+
+	/**
+	 * Focuses the button.
+	 */
+	focus() {
+		this.element.focus();
+	}
+
+	/**
+	 * Creates TooltipView instance and bind with button properties.
+	 *
+	 * @private
+	 * @returns {module:ui/tooltip/tooltipview~TooltipView}
+	 */
+	_createTooltipView() {
+		const tooltipView = new __WEBPACK_IMPORTED_MODULE_3__tooltip_tooltipview__["a" /* default */]();
+
+		tooltipView.bind( 'text' ).to( this, '_tooltipString' );
+		tooltipView.bind( 'position' ).to( this, 'tooltipPosition' );
+
+		return tooltipView;
+	}
+
+	/**
+	 * Gets the text for the {@link #tooltipView} from the combination of
+	 * {@link #tooltip}, {@link #label} and {@link #keystroke} attributes.
+	 *
+	 * @private
+	 * @see #tooltip
+	 * @see #_tooltipString
+	 * @param {Boolean|String|Function} tooltip Button tooltip.
+	 * @param {String} label Button label.
+	 * @param {String} keystroke Button keystroke.
+	 * @returns {String}
+	 */
+	_getTooltipString( tooltip, label, keystroke ) {
+		if ( tooltip ) {
+			if ( typeof tooltip == 'string' ) {
+				return tooltip;
+			} else {
+				if ( keystroke ) {
+					keystroke = Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keyboard__["b" /* getEnvKeystrokeText */])( keystroke );
+				}
+
+				if ( tooltip instanceof Function ) {
+					return tooltip( label, keystroke );
+				} else {
+					return `${ label }${ keystroke ? ` (${ keystroke })` : '' }`;
+				}
+			}
+		}
+
+		return '';
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = ButtonView;
+
+
+
+/***/ }),
+/* 26 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node__ = __webpack_require__(62);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module engine/model/text
+ */
+
+
+
+/**
+ * Model text node. Type of {@link module:engine/model/node~Node node} that contains {@link module:engine/model/text~Text#data text data}.
+ *
+ * **Important:** see {@link module:engine/model/node~Node} to read about restrictions using `Text` and `Node` API.
+ *
+ * **Note:** keep in mind that `Text` instances might indirectly got removed from model tree when model is changed.
+ * This happens when {@link module:engine/model/writer~writer model writer} is used to change model and the text node is merged with
+ * another text node. Then, both text nodes are removed and a new text node is inserted into the model. Because of
+ * this behavior, keeping references to `Text` is not recommended. Instead, consider creating
+ * {@link module:engine/model/liveposition~LivePosition live position} placed before the text node.
+ */
+class Text extends __WEBPACK_IMPORTED_MODULE_0__node__["a" /* default */] {
+	/**
+	 * Creates a text node.
+	 *
+	 * @param {String} data Node's text.
+	 * @param {Object} [attrs] Node's attributes. See {@link module:utils/tomap~toMap} for a list of accepted values.
+	 */
+	constructor( data, attrs ) {
+		super( attrs );
+
+		/**
+		 * Text data contained in this text node.
+		 *
+		 * @type {String}
+		 */
+		this.data = data || '';
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	get offsetSize() {
+		return this.data.length;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	is( type ) {
+		return type == 'text';
+	}
+
+	/**
+	 * Creates a copy of this text node and returns it. Created text node has same text data and attributes as original text node.
+	 */
+	clone() {
+		return new Text( this.data, this.getAttributes() );
+	}
+
+	/**
+	 * Converts `Text` instance to plain object and returns it.
+	 *
+	 * @returns {Object} `Text` instance converted to plain object.
+	 */
+	toJSON() {
+		const json = super.toJSON();
+
+		json.data = this.data;
+
+		return json;
+	}
+
+	/**
+	 * Creates a `Text` instance from given plain object (i.e. parsed JSON string).
+	 *
+	 * @param {Object} json Plain object to be converted to `Text`.
+	 * @returns {module:engine/model/text~Text} `Text` instance created using given plain object.
+	 */
+	static fromJSON( json ) {
+		return new Text( json.data, json.attributes );
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Text;
+
 
 
 /***/ }),
@@ -8729,7 +8729,7 @@ function normalize( nodes ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_comparearrays__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__writer__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__writer__ = __webpack_require__(22);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -9607,7 +9607,7 @@ function isIndex(value, length) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__position__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__position__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__treewalker__ = __webpack_require__(55);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -10072,7 +10072,7 @@ function enlargeTrimSkip( value ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nodelist__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__element__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__text__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__text__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(46);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -10623,7 +10623,7 @@ function baseSlice(array, start, end) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_matcher__ = __webpack_require__(174);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_writer__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_writer__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(46);
 /**
@@ -11463,8 +11463,8 @@ function getFillerOffset() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__nodelist__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__removeoperation__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__writer__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__text__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__writer__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__text__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__element__ = __webpack_require__(5);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -11687,7 +11687,7 @@ function baseUniq(array, iteratee, comparator) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dom_emittermixin__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__keyboard__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__keyboard__ = __webpack_require__(21);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -12270,7 +12270,7 @@ function eq(value, other) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__text__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__text__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__textproxy__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__position__ = __webpack_require__(1);
@@ -12743,7 +12743,7 @@ function compareArrays( a, b ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__element__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__text__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__textproxy__ = __webpack_require__(341);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__position__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__position__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -14454,7 +14454,7 @@ function baseDifference(array, values, iteratee, comparator) {
 /* harmony export (immutable) */ __webpack_exports__["e"] = getDataWithoutFiller;
 /* harmony export (immutable) */ __webpack_exports__["g"] = isBlockFiller;
 /* harmony export (immutable) */ __webpack_exports__["f"] = injectQuirksHandling;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(21);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -15999,7 +15999,7 @@ Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_mix__["a" /* de
 /* unused harmony export wrapPosition */
 /* unused harmony export unwrap */
 /* unused harmony export rename */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__position__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__position__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__containerelement__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__attributeelement__ = __webpack_require__(122);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__emptyelement__ = __webpack_require__(176);
@@ -17262,7 +17262,7 @@ function validateRangeContainer( range ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__operation__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__writer__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__writer__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isEqual__ = __webpack_require__(354);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -17607,7 +17607,7 @@ __WEBPACK_IMPORTED_MODULE_2__deltafactory__["a" /* default */].register( RemoveD
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_moveoperation__ = __webpack_require__(28);
@@ -17747,7 +17747,7 @@ __WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( MoveDel
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__splitdelta__ = __webpack_require__(95);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__batch__ = __webpack_require__(19);
@@ -17896,7 +17896,7 @@ __WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( MergeDe
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__position__ = __webpack_require__(1);
@@ -18051,7 +18051,7 @@ __WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( SplitDe
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__wrapdelta__ = __webpack_require__(97);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__batch__ = __webpack_require__(19);
@@ -18180,7 +18180,7 @@ __WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( UnwrapD
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__unwrapdelta__ = __webpack_require__(96);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__batch__ = __webpack_require__(19);
@@ -19622,7 +19622,7 @@ function isDomNode( node ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__range__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__position__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__position__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__element__ = __webpack_require__(27);
@@ -21589,12 +21589,14 @@ var Symbol = __WEBPACK_IMPORTED_MODULE_0__root__["a" /* default */].Symbol;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_element__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_text__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_range__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_treewalker__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_writer__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_position__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_treewalker__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__view_writer__ = __webpack_require__(88);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
  */
+
 
 
 
@@ -21654,7 +21656,7 @@ function insertElement( elementCreator ) {
 		const viewPosition = conversionApi.mapper.toViewPosition( data.range.start );
 
 		conversionApi.mapper.bindElements( data.item, viewElement );
-		__WEBPACK_IMPORTED_MODULE_4__view_writer__["a" /* default */].insert( viewPosition, viewElement );
+		__WEBPACK_IMPORTED_MODULE_5__view_writer__["a" /* default */].insert( viewPosition, viewElement );
 	};
 }
 
@@ -21677,7 +21679,7 @@ function insertText() {
 		const viewPosition = conversionApi.mapper.toViewPosition( data.range.start );
 		const viewText = new __WEBPACK_IMPORTED_MODULE_1__view_text__["a" /* default */]( data.item.data );
 
-		__WEBPACK_IMPORTED_MODULE_4__view_writer__["a" /* default */].insert( viewPosition, viewText );
+		__WEBPACK_IMPORTED_MODULE_5__view_writer__["a" /* default */].insert( viewPosition, viewText );
 	};
 }
 
@@ -21719,10 +21721,10 @@ function insertUIElement( elementCreator ) {
 
 		const mapper = conversionApi.mapper;
 
-		__WEBPACK_IMPORTED_MODULE_4__view_writer__["a" /* default */].insert( mapper.toViewPosition( data.range.start ), viewStartElement );
+		__WEBPACK_IMPORTED_MODULE_5__view_writer__["a" /* default */].insert( mapper.toViewPosition( data.range.start ), viewStartElement );
 
 		if ( !data.range.isCollapsed ) {
-			__WEBPACK_IMPORTED_MODULE_4__view_writer__["a" /* default */].insert( mapper.toViewPosition( data.range.end ), viewEndElement );
+			__WEBPACK_IMPORTED_MODULE_5__view_writer__["a" /* default */].insert( mapper.toViewPosition( data.range.end ), viewEndElement );
 		}
 	};
 }
@@ -21868,10 +21870,10 @@ function wrapItem( elementCreator ) {
 		// view element basing on old value and unwrap it before wrapping with a newly created view element.
 		if ( data.attributeOldValue !== null && !( elementCreator instanceof __WEBPACK_IMPORTED_MODULE_0__view_element__["a" /* default */] ) ) {
 			const oldViewElement = elementCreator( data.attributeOldValue, data, consumable, conversionApi );
-			viewRange = __WEBPACK_IMPORTED_MODULE_4__view_writer__["a" /* default */].unwrap( viewRange, oldViewElement );
+			viewRange = __WEBPACK_IMPORTED_MODULE_5__view_writer__["a" /* default */].unwrap( viewRange, oldViewElement );
 		}
 
-		__WEBPACK_IMPORTED_MODULE_4__view_writer__["a" /* default */].wrap( viewRange, viewElement );
+		__WEBPACK_IMPORTED_MODULE_5__view_writer__["a" /* default */].wrap( viewRange, viewElement );
 	};
 }
 
@@ -21913,7 +21915,7 @@ function unwrapItem( elementCreator ) {
 
 		const viewRange = conversionApi.mapper.toViewRange( data.range );
 
-		__WEBPACK_IMPORTED_MODULE_4__view_writer__["a" /* default */].unwrap( viewRange, viewElement );
+		__WEBPACK_IMPORTED_MODULE_5__view_writer__["a" /* default */].unwrap( viewRange, viewElement );
 	};
 }
 
@@ -21964,10 +21966,10 @@ function wrapRange( elementCreator ) {
 		}
 
 		const viewRange = conversionApi.mapper.toViewRange( data.range );
-		const flatViewRanges = __WEBPACK_IMPORTED_MODULE_4__view_writer__["a" /* default */].breakViewRangePerContainer( viewRange );
+		const flatViewRanges = __WEBPACK_IMPORTED_MODULE_5__view_writer__["a" /* default */].breakViewRangePerContainer( viewRange );
 
 		for ( const range of flatViewRanges ) {
-			__WEBPACK_IMPORTED_MODULE_4__view_writer__["a" /* default */].wrap( range, viewElement );
+			__WEBPACK_IMPORTED_MODULE_5__view_writer__["a" /* default */].wrap( range, viewElement );
 		}
 	};
 }
@@ -22008,10 +22010,10 @@ function unwrapRange( elementCreator ) {
 		}
 
 		const viewRange = conversionApi.mapper.toViewRange( data.range );
-		const flatViewRanges = __WEBPACK_IMPORTED_MODULE_4__view_writer__["a" /* default */].breakViewRangePerContainer( viewRange );
+		const flatViewRanges = __WEBPACK_IMPORTED_MODULE_5__view_writer__["a" /* default */].breakViewRangePerContainer( viewRange );
 
 		for ( const range of flatViewRanges ) {
-			__WEBPACK_IMPORTED_MODULE_4__view_writer__["a" /* default */].unwrap( range, viewElement );
+			__WEBPACK_IMPORTED_MODULE_5__view_writer__["a" /* default */].unwrap( range, viewElement );
 		}
 	};
 }
@@ -22034,13 +22036,22 @@ function remove() {
 		// end of that range is incorrect.
 		// Instead we will use `data.sourcePosition` as this is the last correct model position and
 		// it is a position before the removed item. Then, we will calculate view range to remove "manually".
-		const viewPosition = conversionApi.mapper.toViewPosition( data.sourcePosition );
+		let viewPosition = conversionApi.mapper.toViewPosition( data.sourcePosition );
 		let viewRange;
 
 		if ( data.item.is( 'element' ) ) {
 			// Note: in remove conversion we cannot use model-to-view element mapping because `data.item` may be
 			// already mapped to another element (this happens when move change is converted).
 			// In this case however, `viewPosition` is the position before view element that corresponds to removed model element.
+			//
+			// First, fix the position. Traverse the tree forward until the container element is found. The `viewPosition`
+			// may be before a ui element, before attribute element or at the end of text element.
+			viewPosition = viewPosition.getLastMatchingPosition( value => !value.item.is( 'containerElement' ) );
+
+			if ( viewPosition.parent.is( 'text' ) && viewPosition.isAtEnd ) {
+				viewPosition = __WEBPACK_IMPORTED_MODULE_3__view_position__["a" /* default */].createAfter( viewPosition.parent );
+			}
+
 			viewRange = __WEBPACK_IMPORTED_MODULE_2__view_range__["a" /* default */].createOn( viewPosition.nodeAfter );
 		} else {
 			// If removed item is a text node, we need to traverse view tree to find the view range to remove.
@@ -22050,7 +22061,7 @@ function remove() {
 		}
 
 		// Trim the range to remove in case some UI elements are on the view range boundaries.
-		__WEBPACK_IMPORTED_MODULE_4__view_writer__["a" /* default */].remove( viewRange.getTrimmed() );
+		__WEBPACK_IMPORTED_MODULE_5__view_writer__["a" /* default */].remove( viewRange.getTrimmed() );
 
 		// Unbind this element only if it was moved to graveyard.
 		// The dispatcher#remove event will also be fired if the element was moved to another place (remove+insert are fired).
@@ -22076,7 +22087,7 @@ function remove() {
 // Because in view there might be view ui elements splitting text nodes, we cannot simply use `ViewPosition#getShiftedBy()`.
 function _shiftViewPositionByCharacters( position, howMany ) {
 	// Create a walker that will walk the view tree starting from given position and walking characters one-by-one.
-	const walker = new __WEBPACK_IMPORTED_MODULE_3__view_treewalker__["a" /* default */]( { startPosition: position, singleCharacters: true } );
+	const walker = new __WEBPACK_IMPORTED_MODULE_4__view_treewalker__["a" /* default */]( { startPosition: position, singleCharacters: true } );
 	// We will count visited characters and return the position after `howMany` characters.
 	let charactersFound = 0;
 
@@ -22125,11 +22136,11 @@ function removeUIElement( elementCreator ) {
 		const viewRange = conversionApi.mapper.toViewRange( data.range );
 
 		// First remove closing element.
-		__WEBPACK_IMPORTED_MODULE_4__view_writer__["a" /* default */].clear( viewRange.getEnlarged(), viewEndElement );
+		__WEBPACK_IMPORTED_MODULE_5__view_writer__["a" /* default */].clear( viewRange.getEnlarged(), viewEndElement );
 
 		// If closing and opening elements are not the same then remove opening element.
 		if ( !viewStartElement.isSimilar( viewEndElement ) ) {
-			__WEBPACK_IMPORTED_MODULE_4__view_writer__["a" /* default */].clear( viewRange.getEnlarged(), viewStartElement );
+			__WEBPACK_IMPORTED_MODULE_5__view_writer__["a" /* default */].clear( viewRange.getEnlarged(), viewStartElement );
 		}
 	};
 }
@@ -22299,7 +22310,7 @@ function nonUiChildrenCount( element ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__element__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(21);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -22695,7 +22706,7 @@ function normalize( nodes ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_attributeoperation__ = __webpack_require__(89);
@@ -23517,12 +23528,12 @@ class RootAttributeOperation extends __WEBPACK_IMPORTED_MODULE_0__operation__["a
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__removedelta__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__deltafactory__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_insertoperation__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__batch__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__writer__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__writer__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__documentfragment__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__model_range_js__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__model_position_js__ = __webpack_require__(1);
@@ -23658,7 +23669,7 @@ __WEBPACK_IMPORTED_MODULE_2__deltafactory__["a" /* default */].register( InsertD
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_renameoperation__ = __webpack_require__(128);
@@ -24621,7 +24632,7 @@ function count( iterator ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__text__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__element__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__position__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__position__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__range__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__selection__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__documentfragment__ = __webpack_require__(124);
@@ -27607,7 +27618,7 @@ function baseTimes(n, iteratee) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_range__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_position__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_position__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_range__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_text__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
@@ -30174,7 +30185,7 @@ function equalArrays(array, other, equalFunc, customizer, bitmask, stack) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__deltafactory__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_insertoperation__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__writer__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__writer__ = __webpack_require__(22);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -30251,7 +30262,7 @@ __WEBPACK_IMPORTED_MODULE_2__deltafactory__["a" /* default */].register( WeakIns
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__movedelta__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__removedelta__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mergedelta__ = __webpack_require__(94);
@@ -31050,7 +31061,7 @@ function compact(array) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayPush__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__copyArray__ = __webpack_require__(169);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArray__ = __webpack_require__(14);
 
@@ -31103,7 +31114,7 @@ function concat() {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rest__ = __webpack_require__(7);
 
@@ -31175,7 +31186,7 @@ function indexOfNaN(array, fromIndex, fromRight) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseIteratee__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__last__ = __webpack_require__(17);
@@ -31349,7 +31360,7 @@ function identity(value) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__rest__ = __webpack_require__(7);
@@ -31710,7 +31721,7 @@ function findLastIndex(array, predicate) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(24);
 
 
 /**
@@ -31740,7 +31751,7 @@ function flatten(array) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(24);
 
 
 /** Used as references for various `Number` constants. */
@@ -31773,7 +31784,7 @@ function flattenDeep(array) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toInteger__ = __webpack_require__(12);
 
 
@@ -32340,7 +32351,7 @@ function pullAllWith(array, values, comparator) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayMap__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseAt__ = __webpack_require__(388);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseFlatten__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseFlatten__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__basePullAt__ = __webpack_require__(216);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__compareAscending__ = __webpack_require__(390);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__isIndex__ = __webpack_require__(35);
@@ -33179,7 +33190,7 @@ function takeWhile(array, predicate) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseUniq__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rest__ = __webpack_require__(7);
@@ -33216,7 +33227,7 @@ var union = Object(__WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */])(funct
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIteratee__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseUniq__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__ = __webpack_require__(13);
@@ -33268,7 +33279,7 @@ var unionBy = Object(__WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */])(fun
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseUniq__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(17);
@@ -35791,12 +35802,9 @@ class AttributeCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_c
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
  */
-
 /**
  * @module image/image/imageengine
  */
-
-
 
 
 
@@ -35813,74 +35821,83 @@ class AttributeCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_c
  * @extends module:core/plugin~Plugin
  */
 class ImageEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__["a" /* default */] {
-	/**
+    /**
 	 * @inheritDoc
 	 */
-	init() {
-		const editor = this.editor;
-		const doc = editor.document;
-		const schema = doc.schema;
-		const data = editor.data;
-		const editing = editor.editing;
-		const t = editor.t;
-
-		// Configure schema.
-		schema.registerItem( 'image' );
-		schema.requireAttributes( 'image', [ 'src' ] );
-		schema.allow( { name: 'image', attributes: [ 'alt', 'src', 'srcset' ], inside: '$root' } );
-		schema.objects.add( 'image' );
-
-		// Build converter from model to view for data pipeline.
-		Object(__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__["a" /* default */])().for( data.modelToView )
-			.fromElement( 'image' )
-			.toElement( () => createImageViewElement() );
-
-		// Build converter from model to view for editing pipeline.
-		Object(__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__["a" /* default */])().for( editing.modelToView )
-			.fromElement( 'image' )
-			.toElement( () => Object(__WEBPACK_IMPORTED_MODULE_4__utils__["c" /* toImageWidget */])( createImageViewElement(), t( 'image widget' ) ) );
-
-		Object(__WEBPACK_IMPORTED_MODULE_3__converters__["b" /* createImageAttributeConverter */])( [ editing.modelToView, data.modelToView ], 'src' );
-		Object(__WEBPACK_IMPORTED_MODULE_3__converters__["b" /* createImageAttributeConverter */])( [ editing.modelToView, data.modelToView ], 'alt' );
-
-		// Convert `srcset` attribute changes and add or remove `sizes` attribute when necessary.
-		Object(__WEBPACK_IMPORTED_MODULE_3__converters__["b" /* createImageAttributeConverter */])( [ editing.modelToView, data.modelToView ], 'srcset', ( viewImg, type ) => {
-			if ( type == 'removeAttribute' ) {
-				viewImg.removeAttribute( 'sizes' );
-			} else {
-				// Always outputting `100vw`. See https://github.com/ckeditor/ckeditor5-image/issues/2.
-				viewImg.setAttribute( 'sizes', '100vw' );
-			}
-		} );
-
-		// Build converter for view img element to model image element.
-		Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__["a" /* default */])().for( data.viewToModel )
-			.from( { name: 'img', attribute: { src: /./ } } )
-			.toElement( viewImage => new __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_model_element__["a" /* default */]( 'image', { src: viewImage.getAttribute( 'src' ) } ) );
-
-		data.viewToModel.on( 'element:img', __WEBPACK_IMPORTED_MODULE_3__converters__["a" /* convertHoistableImage */], { priority: 'low' } );
-		data.viewToModel.on( 'element', __WEBPACK_IMPORTED_MODULE_3__converters__["c" /* hoistImageThroughElement */], { priority: 'low' } );
-
-		// Build converter for alt attribute.
-		// Note that by default attribute converters are added with `low` priority.
-		// This converter will be thus fired after `convertHoistableImage` converter.
-		Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__["a" /* default */])().for( data.viewToModel )
-			.from( { name: 'img', attribute: { alt: /./ } } )
-			.consuming( { attribute: [ 'alt' ] } )
-			.toAttribute( viewImage => ( { key: 'alt', value: viewImage.getAttribute( 'alt' ) } ) );
-
-		// Build converter for srcset attribute.
-		Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__["a" /* default */])().for( data.viewToModel )
-			.from( { name: 'img', attribute: { srcset: /./ } } )
-			.consuming( { attribute: [ 'srcset' ] } )
-			.toAttribute( viewImage => ( { key: 'srcset', value: viewImage.getAttribute( 'srcset' ) } ) );
-
-		// Converter for figure element from view to model.
-		data.viewToModel.on( 'element:figure', Object(__WEBPACK_IMPORTED_MODULE_3__converters__["d" /* viewFigureToModel */])() );
-	}
+    init() {
+        const editor = this.editor;
+        const doc = editor.document;
+        const schema = doc.schema;
+        const data = editor.data;
+        const editing = editor.editing;
+        const t = editor.t;
+        // Configure schema.
+        schema.registerItem('image');
+        schema.requireAttributes('image', ['src']);
+        schema.allow({
+            name: 'image',
+            attributes: [
+                'alt',
+                'src',
+                'srcset'
+            ],
+            inside: '$root'
+        });
+        schema.objects.add('image');
+        // Build converter from model to view for data pipeline.
+        Object(__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__["a" /* default */])().for(data.modelToView).fromElement('image').toElement(() => createImageViewElement());
+        // Build converter from model to view for editing pipeline.
+        Object(__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__["a" /* default */])().for(editing.modelToView).fromElement('image').toElement(() => Object(__WEBPACK_IMPORTED_MODULE_4__utils__["c" /* toImageWidget */])(createImageViewElement(), t('image widget')));
+        Object(__WEBPACK_IMPORTED_MODULE_3__converters__["b" /* createImageAttributeConverter */])([
+            editing.modelToView,
+            data.modelToView
+        ], 'src');
+        Object(__WEBPACK_IMPORTED_MODULE_3__converters__["b" /* createImageAttributeConverter */])([
+            editing.modelToView,
+            data.modelToView
+        ], 'alt');
+        // Convert `srcset` attribute changes and add or remove `sizes` attribute when necessary.
+        Object(__WEBPACK_IMPORTED_MODULE_3__converters__["b" /* createImageAttributeConverter */])([
+            editing.modelToView,
+            data.modelToView
+        ], 'srcset', (viewImg, type) => {
+            if (type == 'removeAttribute') {
+                viewImg.removeAttribute('sizes');
+            } else {
+                // Always outputting `100vw`. See https://github.com/ckeditor/ckeditor5-image/issues/2.
+                viewImg.setAttribute('sizes', '100vw');
+            }
+        });
+        // Build converter for view img element to model image element.
+        Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__["a" /* default */])().for(data.viewToModel).from({
+            name: 'img',
+            attribute: { src: /./ }
+        }).toElement(viewImage => new __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_model_element__["a" /* default */]('image', { src: viewImage.getAttribute('src') }));
+        data.viewToModel.on('element:img', __WEBPACK_IMPORTED_MODULE_3__converters__["a" /* convertHoistableImage */], { priority: 'low' });
+        data.viewToModel.on('element', __WEBPACK_IMPORTED_MODULE_3__converters__["c" /* hoistImageThroughElement */], { priority: 'low' });
+        // Build converter for alt attribute.
+        // Note that by default attribute converters are added with `low` priority.
+        // This converter will be thus fired after `convertHoistableImage` converter.
+        Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__["a" /* default */])().for(data.viewToModel).from({
+            name: 'img',
+            attribute: { alt: /./ }
+        }).consuming({ attribute: ['alt'] }).toAttribute(viewImage => ({
+            key: 'alt',
+            value: viewImage.getAttribute('alt')
+        }));
+        // Build converter for srcset attribute.
+        Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__["a" /* default */])().for(data.viewToModel).from({
+            name: 'img',
+            attribute: { srcset: /./ }
+        }).consuming({ attribute: ['srcset'] }).toAttribute(viewImage => ({
+            key: 'srcset',
+            value: viewImage.getAttribute('srcset')
+        }));
+        // Converter for figure element from view to model.
+        data.viewToModel.on('element:figure', Object(__WEBPACK_IMPORTED_MODULE_3__converters__["d" /* viewFigureToModel */])());
+    }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = ImageEngine;
-
 
 // Creates a view element representing the image.
 //
@@ -35891,9 +35908,8 @@ class ImageEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_s
 // @private
 // @return {module:engine/view/containerelement~ContainerElement}
 function createImageViewElement() {
-	return new __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_engine_src_view_containerelement__["a" /* default */]( 'figure', { class: 'image' }, new __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_engine_src_view_emptyelement__["a" /* default */]( 'img' ) );
+    return new __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_engine_src_view_containerelement__["a" /* default */]('figure', { class: 'image' }, new __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_engine_src_view_emptyelement__["a" /* default */]('img'));
 }
-
 
 /***/ }),
 /* 265 */
@@ -36388,19 +36404,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-__WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_editor_inline_src_inlineeditor__["a" /* default */].create( document.querySelector( '#snippet-inline-editor' ), {
-	plugins: [ __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_presets_src_article__["a" /* default */] ],
-	toolbar: [ 'headings', 'bold', 'italic', 'link', 'unlink', 'bulletedList', 'numberedList', 'blockQuote', 'undo', 'redo' ],
-	image: {
-		toolbar: [ 'imageStyleFull', 'imageStyleSide', '|', 'imageTextAlternative' ]
-	}
-} )
-.then( editor => {
-	window.editor = editor;
-} )
-.catch( err => {
-	console.error( err.stack );
-} );
+__WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_editor_inline_src_inlineeditor__["a" /* default */]
+	.create( document.querySelector( '#snippet-inline-editor' ), {
+		plugins: [ __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_presets_src_article__["a" /* default */] ],
+		toolbar: [ 'headings', 'bold', 'italic', 'link', 'unlink', 'bulletedList', 'numberedList', 'blockQuote', 'undo', 'redo' ],
+		image: {
+			toolbar: [ 'imageStyleFull', 'imageStyleSide', '|', 'imageTextAlternative' ]
+		}
+	} )
+	.then( editor => {
+		window.editor = editor;
+	} )
+	.catch( err => {
+		console.error( err.stack );
+	} );
 
 
 /***/ }),
@@ -40481,7 +40498,7 @@ function isMac( userAgent ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_treewalker__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_node__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__model_documentfragment__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__model_writer__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__model_writer__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_lib_lodash_extend__ = __webpack_require__(44);
@@ -41460,8 +41477,8 @@ class ViewElementConsumables {
 /* harmony export (immutable) */ __webpack_exports__["b"] = convertToModelFragment;
 /* harmony export (immutable) */ __webpack_exports__["a"] = convertText;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_documentfragment__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_text__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_writer__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_text__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_writer__ = __webpack_require__(22);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -42363,8 +42380,8 @@ function getSearchRange( start, isForward ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_documentfragment__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_text__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_writer__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_text__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_writer__ = __webpack_require__(22);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -43710,7 +43727,7 @@ function isTypedArray(value) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_nooperation__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__operation_attributeoperation__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__operation_insertoperation__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__delta__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__delta__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__attributedelta__ = __webpack_require__(125);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__insertdelta__ = __webpack_require__(130);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__markerdelta__ = __webpack_require__(395);
@@ -44115,7 +44132,13 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default
 // Add special case for RemoveDelta x SplitDelta transformation.
 addTransformationCase( __WEBPACK_IMPORTED_MODULE_17__removedelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], ( a, b, context ) => {
 	const deltas = defaultTransform( a, b, context );
-	const insertPosition = b._cloneOperation.position;
+	// The "clone operation" may be InsertOperation, ReinsertOperation, MoveOperation or NoOperation.
+	const insertPosition = b._cloneOperation.position || b._cloneOperation.targetPosition;
+
+	// NoOperation.
+	if ( !insertPosition ) {
+		return defaultTransform( a, b, context );
+	}
 
 	// In case if `defaultTransform` returned more than one delta.
 	for ( const delta of deltas ) {
@@ -44138,9 +44161,16 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default
 	// This case is very trickily solved.
 	// Instead of fixing `a` delta, we change `b` delta for a while and fire default transformation with fixed `b` delta.
 	// Thanks to that fixing `a` delta will be differently (correctly) transformed.
-	b = b.clone();
+	//
+	// The "clone operation" may be InsertOperation, ReinsertOperation, MoveOperation or NoOperation.
+	const insertPosition = a._cloneOperation.position || a._cloneOperation.targetPosition;
 
-	const insertPosition = a._cloneOperation.position;
+	// NoOperation.
+	if ( !insertPosition ) {
+		return defaultTransform( a, b, context );
+	}
+
+	b = b.clone();
 	const operation = b._moveOperation;
 	const rangeEnd = operation.sourcePosition.getShiftedBy( operation.howMany );
 
@@ -46399,7 +46429,7 @@ function baseSet(object, path, value, customizer) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_markeroperation__ = __webpack_require__(127);
@@ -46833,7 +46863,7 @@ class History {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__liverange__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__text__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__text__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__textproxy__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_tomap__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
@@ -49305,7 +49335,7 @@ Object(__WEBPACK_IMPORTED_MODULE_12__ckeditor_ckeditor5_utils_src_mix__["a" /* d
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__text__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__position__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__position__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__filler__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_diff__ = __webpack_require__(249);
@@ -50604,7 +50634,7 @@ class FocusObserver extends __WEBPACK_IMPORTED_MODULE_0__domeventobserver__["a" 
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__domeventobserver__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(21);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -50700,7 +50730,7 @@ class KeyObserver extends __WEBPACK_IMPORTED_MODULE_0__domeventobserver__["a" /*
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observer__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__selection__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_lib_lodash_debounce__ = __webpack_require__(253);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -51677,12 +51707,9 @@ function cloneDeepWith(value, customizer) {
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
  */
-
 /**
  * @module ui/editableui/inline/inlineeditableuiview
  */
-
-
 
 
 /**
@@ -51691,7 +51718,7 @@ function cloneDeepWith(value, customizer) {
  * @extends module:ui/editableui/editableuiview~EditableUIView
  */
 class InlineEditableUIView extends __WEBPACK_IMPORTED_MODULE_0__editableui_editableuiview__["a" /* default */] {
-	/**
+    /**
 	 * Creates an instance of the InlineEditableUIView class.
 	 *
 	 * @param {module:utils/locale~Locale} [locale] The locale instance.
@@ -51699,35 +51726,30 @@ class InlineEditableUIView extends __WEBPACK_IMPORTED_MODULE_0__editableui_edita
 	 * {@link module:ui/editableui/editableuiview~EditableUIView}
 	 * should create it. Otherwise, the existing element should be used.
 	 */
-	constructor( locale, editableElement ) {
-		super( locale, editableElement );
-
-		const bind = this.bindTemplate;
-		const t = this.t;
-
-		/**
+    constructor(locale, editableElement) {
+        super(locale, editableElement);
+        const bind = this.bindTemplate;
+        const t = this.t;
+        /**
 		 * The name of the editable UI view.
 		 *
 		 * @observable
 		 * @member {String} #name
 		 */
-		this.set( 'name', null );
-
-		const getLabel = value => {
-			return t( 'Rich Text Editor, %0', [ value ] );
-		};
-
-		__WEBPACK_IMPORTED_MODULE_1__template__["a" /* default */].extend( this.template, {
-			attributes: {
-				role: 'textbox',
-				'aria-label': bind.to( 'name', getLabel ),
-				class: 'ck-editor__editable_inline'
-			}
-		} );
-	}
+        this.set('name', null);
+        const getLabel = value => {
+            return t('Rich Text Editor, %0', [value]);
+        };
+        __WEBPACK_IMPORTED_MODULE_1__template__["a" /* default */].extend(this.template, {
+            attributes: {
+                role: 'textbox',
+                'aria-label': bind.to('name', getLabel),
+                class: 'ck-editor__editable_inline'
+            }
+        });
+    }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = InlineEditableUIView;
-
 
 
 /***/ }),
@@ -53697,7 +53719,7 @@ function splitBlock( batch, selection, splitPos ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_view_observer_observer__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_observer_domeventdata__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(21);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -53825,11 +53847,11 @@ class Typing extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_pl
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_range__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_view_position__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_view_position__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_view_text__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_diff__ = __webpack_require__(249);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_difftochanges__ = __webpack_require__(449);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_engine_src_view_domconverter__ = __webpack_require__(150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__inputcommand__ = __webpack_require__(450);
 /**
@@ -54698,7 +54720,7 @@ class DeleteCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_view_observer_observer__ = __webpack_require__(60);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_observer_domeventdata__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(21);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -54768,7 +54790,7 @@ class DeleteObserver extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_eng
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__undoengine__ = __webpack_require__(455);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__theme_icons_undo_svg__ = __webpack_require__(460);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__theme_icons_undo_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__theme_icons_undo_svg__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__theme_icons_redo_svg__ = __webpack_require__(461);
@@ -54777,13 +54799,9 @@ class DeleteObserver extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_eng
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
  */
-
 /**
  * @module undo/undo
  */
-
-
-
 
 
 
@@ -54877,36 +54895,31 @@ class DeleteObserver extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_eng
  * @extends module:core/plugin~Plugin
  */
 class Undo extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__["a" /* default */] {
-	/**
+    /**
 	 * @inheritDoc
 	 */
-	static get requires() {
-		return [ __WEBPACK_IMPORTED_MODULE_1__undoengine__["a" /* default */] ];
-	}
-
-	/**
+    static get requires() {
+        return [__WEBPACK_IMPORTED_MODULE_1__undoengine__["a" /* default */]];
+    }
+    /**
 	 * @inheritDoc
 	 */
-	static get pluginName() {
-		return 'Undo';
-	}
-
-	/**
+    static get pluginName() {
+        return 'Undo';
+    }
+    /**
 	 * @inheritDoc
 	 */
-	init() {
-		const editor = this.editor;
-		const t = editor.t;
-
-		this._addButton( 'undo', t( 'Undo' ), 'CTRL+Z', __WEBPACK_IMPORTED_MODULE_3__theme_icons_undo_svg___default.a );
-		this._addButton( 'redo', t( 'Redo' ), 'CTRL+Y', __WEBPACK_IMPORTED_MODULE_4__theme_icons_redo_svg___default.a );
-
-		editor.keystrokes.set( 'CTRL+Z', 'undo' );
-		editor.keystrokes.set( 'CTRL+Y', 'redo' );
-		editor.keystrokes.set( 'CTRL+SHIFT+Z', 'redo' );
-	}
-
-	/**
+    init() {
+        const editor = this.editor;
+        const t = editor.t;
+        this._addButton('undo', t('Undo'), 'CTRL+Z', __WEBPACK_IMPORTED_MODULE_3__theme_icons_undo_svg___default.a);
+        this._addButton('redo', t('Redo'), 'CTRL+Y', __WEBPACK_IMPORTED_MODULE_4__theme_icons_redo_svg___default.a);
+        editor.keystrokes.set('CTRL+Z', 'undo');
+        editor.keystrokes.set('CTRL+Y', 'redo');
+        editor.keystrokes.set('CTRL+SHIFT+Z', 'redo');
+    }
+    /**
 	 * Creates a button for the specified command.
 	 *
 	 * @private
@@ -54915,30 +54928,24 @@ class Undo extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plug
 	 * @param {String} keystroke Command keystroke.
 	 * @param {String} Icon Source of the icon.
 	 */
-	_addButton( name, label, keystroke, Icon ) {
-		const editor = this.editor;
-		const command = editor.commands.get( name );
-
-		editor.ui.componentFactory.add( name, locale => {
-			const view = new __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__["a" /* default */]( locale );
-
-			view.set( {
-				label,
-				icon: Icon,
-				keystroke,
-				tooltip: true
-			} );
-
-			view.bind( 'isEnabled' ).to( command, 'isEnabled' );
-
-			this.listenTo( view, 'execute', () => editor.execute( name ) );
-
-			return view;
-		} );
-	}
+    _addButton(name, label, keystroke, Icon) {
+        const editor = this.editor;
+        const command = editor.commands.get(name);
+        editor.ui.componentFactory.add(name, locale => {
+            const view = new __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__["a" /* default */](locale);
+            view.set({
+                label,
+                icon: Icon,
+                keystroke,
+                tooltip: true
+            });
+            view.bind('isEnabled').to(command, 'isEnabled');
+            this.listenTo(view, 'execute', () => editor.execute(name));
+            return view;
+        });
+    }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Undo;
-
 
 
 /***/ }),
@@ -55890,7 +55897,7 @@ function getText( element ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blockquoteengine__ = __webpack_require__(466);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_core_theme_icons_quote_svg__ = __webpack_require__(468);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_core_theme_icons_quote_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_core_theme_icons_quote_svg__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__theme_theme_scss__ = __webpack_require__(469);
@@ -55899,14 +55906,9 @@ function getText( element ) {
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
  */
-
 /**
  * @module block-quote/blockquote
  */
-
-
-
-
 
 
 
@@ -55922,74 +55924,62 @@ function getText( element ) {
  * @extends module:core/plugin~Plugin
  */
 class BlockQuote extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__["a" /* default */] {
-	/**
+    /**
 	 * @inheritDoc
 	 */
-	static get requires() {
-		return [ __WEBPACK_IMPORTED_MODULE_1__blockquoteengine__["a" /* default */] ];
-	}
-
-	/**
+    static get requires() {
+        return [__WEBPACK_IMPORTED_MODULE_1__blockquoteengine__["a" /* default */]];
+    }
+    /**
 	 * @inheritDoc
 	 */
-	static get pluginName() {
-		return 'BlockQuote';
-	}
-
-	/**
+    static get pluginName() {
+        return 'BlockQuote';
+    }
+    /**
 	 * @inheritDoc
 	 */
-	init() {
-		const editor = this.editor;
-		const t = editor.t;
-		const command = editor.commands.get( 'blockQuote' );
-
-		editor.ui.componentFactory.add( 'blockQuote', locale => {
-			const buttonView = new __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__["a" /* default */]( locale );
-
-			buttonView.set( {
-				label: t( 'Block quote' ),
-				icon: __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_core_theme_icons_quote_svg___default.a,
-				tooltip: true
-			} );
-
-			// Bind button model to command.
-			buttonView.bind( 'isOn', 'isEnabled' ).to( command, 'value', 'isEnabled' );
-
-			// Execute command.
-			this.listenTo( buttonView, 'execute', () => editor.execute( 'blockQuote' ) );
-
-			return buttonView;
-		} );
-	}
-
-	/**
+    init() {
+        const editor = this.editor;
+        const t = editor.t;
+        const command = editor.commands.get('blockQuote');
+        editor.ui.componentFactory.add('blockQuote', locale => {
+            const buttonView = new __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__["a" /* default */](locale);
+            buttonView.set({
+                label: t('Block quote'),
+                icon: __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_core_theme_icons_quote_svg___default.a,
+                tooltip: true
+            });
+            // Bind button model to command.
+            buttonView.bind('isOn', 'isEnabled').to(command, 'value', 'isEnabled');
+            // Execute command.
+            this.listenTo(buttonView, 'execute', () => editor.execute('blockQuote'));
+            return buttonView;
+        });
+    }
+    /**
 	 * @inheritDoc
 	 */
-	afterInit() {
-		const editor = this.editor;
-		const command = editor.commands.get( 'blockQuote' );
-
-		// Overwrite default Enter key behavior.
-		// If Enter key is pressed with selection collapsed in empty block inside a quote, break the quote.
-		// This listener is added in afterInit in order to register it after list's feature listener.
-		// We can't use a priority for this, because 'low' is already used by the enter feature, unless
-		// we'd use numeric priority in this case.
-		this.listenTo( this.editor.editing.view, 'enter', ( evt, data ) => {
-			const doc = this.editor.document;
-			const positionParent = doc.selection.getLastPosition().parent;
-
-			if ( doc.selection.isCollapsed && positionParent.isEmpty && command.value ) {
-				this.editor.execute( 'blockQuote' );
-
-				data.preventDefault();
-				evt.stop();
-			}
-		} );
-	}
+    afterInit() {
+        const editor = this.editor;
+        const command = editor.commands.get('blockQuote');
+        // Overwrite default Enter key behavior.
+        // If Enter key is pressed with selection collapsed in empty block inside a quote, break the quote.
+        // This listener is added in afterInit in order to register it after list's feature listener.
+        // We can't use a priority for this, because 'low' is already used by the enter feature, unless
+        // we'd use numeric priority in this case.
+        this.listenTo(this.editor.editing.view, 'enter', (evt, data) => {
+            const doc = this.editor.document;
+            const positionParent = doc.selection.getLastPosition().parent;
+            if (doc.selection.isCollapsed && positionParent.isEmpty && command.value) {
+                this.editor.execute('blockQuote');
+                data.preventDefault();
+                evt.stop();
+            }
+        });
+    }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = BlockQuote;
-
 
 
 /***/ }),
@@ -56372,19 +56362,16 @@ exports.push([module.i, "blockquote{border-left:5px solid #ccc;padding-left:20px
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__boldengine__ = __webpack_require__(472);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__theme_icons_bold_svg__ = __webpack_require__(473);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__theme_icons_bold_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__theme_icons_bold_svg__);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
  */
-
 /**
  * @module basic-styles/bold
  */
-
-
 
 
 
@@ -56397,54 +56384,45 @@ exports.push([module.i, "blockquote{border-left:5px solid #ccc;padding-left:20px
  * @extends module:core/plugin~Plugin
  */
 class Bold extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__["a" /* default */] {
-	/**
+    /**
 	 * @inheritDoc
 	 */
-	static get requires() {
-		return [ __WEBPACK_IMPORTED_MODULE_1__boldengine__["a" /* default */] ];
-	}
-
-	/**
+    static get requires() {
+        return [__WEBPACK_IMPORTED_MODULE_1__boldengine__["a" /* default */]];
+    }
+    /**
 	 * @inheritDoc
 	 */
-	static get pluginName() {
-		return 'Bold';
-	}
-
-	/**
+    static get pluginName() {
+        return 'Bold';
+    }
+    /**
 	 * @inheritDoc
 	 */
-	init() {
-		const editor = this.editor;
-		const t = editor.t;
-		const command = editor.commands.get( 'bold' );
-		const keystroke = 'CTRL+B';
-
-		// Add bold button to feature components.
-		editor.ui.componentFactory.add( 'bold', locale => {
-			const view = new __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__["a" /* default */]( locale );
-
-			view.set( {
-				label: t( 'Bold' ),
-				icon: __WEBPACK_IMPORTED_MODULE_3__theme_icons_bold_svg___default.a,
-				keystroke,
-				tooltip: true
-			} );
-
-			view.bind( 'isOn', 'isEnabled' ).to( command, 'value', 'isEnabled' );
-
-			// Execute command.
-			this.listenTo( view, 'execute', () => editor.execute( 'bold' ) );
-
-			return view;
-		} );
-
-		// Set the Ctrl+B keystroke.
-		editor.keystrokes.set( keystroke, 'bold' );
-	}
+    init() {
+        const editor = this.editor;
+        const t = editor.t;
+        const command = editor.commands.get('bold');
+        const keystroke = 'CTRL+B';
+        // Add bold button to feature components.
+        editor.ui.componentFactory.add('bold', locale => {
+            const view = new __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__["a" /* default */](locale);
+            view.set({
+                label: t('Bold'),
+                icon: __WEBPACK_IMPORTED_MODULE_3__theme_icons_bold_svg___default.a,
+                keystroke,
+                tooltip: true
+            });
+            view.bind('isOn', 'isEnabled').to(command, 'value', 'isEnabled');
+            // Execute command.
+            this.listenTo(view, 'execute', () => editor.execute('bold'));
+            return view;
+        });
+        // Set the Ctrl+B keystroke.
+        editor.keystrokes.set(keystroke, 'bold');
+    }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Bold;
-
 
 
 /***/ }),
@@ -56538,13 +56516,9 @@ module.exports = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
  */
-
 /**
  * @module heading/heading
  */
-
-
-
 
 
 
@@ -56560,97 +56534,73 @@ module.exports = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"
  * @extends module:core/plugin~Plugin
  */
 class Heading extends __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_core_src_plugin__["a" /* default */] {
-	/**
+    /**
 	 * @inheritDoc
 	 */
-	static get requires() {
-		return [ __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_paragraph_src_paragraph__["a" /* default */], __WEBPACK_IMPORTED_MODULE_1__headingengine__["a" /* default */] ];
-	}
-
-	/**
+    static get requires() {
+        return [
+            __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_paragraph_src_paragraph__["a" /* default */],
+            __WEBPACK_IMPORTED_MODULE_1__headingengine__["a" /* default */]
+        ];
+    }
+    /**
 	 * @inheritDoc
 	 */
-	static get pluginName() {
-		return 'Heading';
-	}
-
-	/**
+    static get pluginName() {
+        return 'Heading';
+    }
+    /**
 	 * @inheritDoc
 	 */
-	init() {
-		const editor = this.editor;
-		const dropdownItems = new __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_collection__["a" /* default */]();
-		const options = this._getLocalizedOptions();
-		const commands = [];
-		const t = editor.t;
-		const defaultTitle = t( 'Choose heading' );
-		const dropdownTooltip = t( 'Heading' );
-
-		for ( const option of options ) {
-			const command = editor.commands.get( option.modelElement );
-			const itemModel = new __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_model__["a" /* default */]( {
-				commandName: option.modelElement,
-				label: option.title,
-				class: option.class
-			} );
-
-			itemModel.bind( 'isActive' ).to( command, 'value' );
-
-			// Add the option to the collection.
-			dropdownItems.add( itemModel );
-
-			commands.push( command );
-		}
-
-		// Create dropdown model.
-		const dropdownModel = new __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_model__["a" /* default */]( {
-			withText: true,
-			items: dropdownItems,
-			tooltip: dropdownTooltip
-		} );
-
-		dropdownModel.bind( 'isEnabled' ).to(
-			// Bind to #isEnabled of each command...
-			...getCommandsBindingTargets( commands, 'isEnabled' ),
-			// ...and set it true if any command #isEnabled is true.
-			( ...areEnabled ) => areEnabled.some( isEnabled => isEnabled )
-		);
-
-		dropdownModel.bind( 'label' ).to(
-			// Bind to #value of each command...
-			...getCommandsBindingTargets( commands, 'value' ),
-			// ...and chose the title of the first one which #value is true.
-			( ...areActive ) => {
-				const index = areActive.findIndex( value => value );
-
-				// If none of the commands is active, display default title.
-				return options[ index ] ? options[ index ].title : defaultTitle;
-			}
-		);
-
-		// Register UI component.
-		editor.ui.componentFactory.add( 'headings', locale => {
-			const dropdown = Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_ui_src_dropdown_list_createlistdropdown__["a" /* default */])( dropdownModel, locale );
-
-			__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_ui_src_template__["a" /* default */].extend( dropdown.template, {
-				attributes: {
-					class: [
-						'ck-heading-dropdown'
-					]
-				}
-			} );
-
-			// Execute command when an item from the dropdown is selected.
-			this.listenTo( dropdown, 'execute', evt => {
-				editor.execute( evt.source.commandName );
-				editor.editing.view.focus();
-			} );
-
-			return dropdown;
-		} );
-	}
-
-	/**
+    init() {
+        const editor = this.editor;
+        const dropdownItems = new __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_collection__["a" /* default */]();
+        const options = this._getLocalizedOptions();
+        const commands = [];
+        const t = editor.t;
+        const defaultTitle = t('Choose heading');
+        const dropdownTooltip = t('Heading');
+        for (const option of options) {
+            const command = editor.commands.get(option.modelElement);
+            const itemModel = new __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_model__["a" /* default */]({
+                commandName: option.modelElement,
+                label: option.title,
+                class: option.class
+            });
+            itemModel.bind('isActive').to(command, 'value');
+            // Add the option to the collection.
+            dropdownItems.add(itemModel);
+            commands.push(command);
+        }
+        // Create dropdown model.
+        const dropdownModel = new __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_model__["a" /* default */]({
+            withText: true,
+            items: dropdownItems,
+            tooltip: dropdownTooltip
+        });
+        dropdownModel.bind('isEnabled').to(// Bind to #isEnabled of each command...
+        ...getCommandsBindingTargets(commands, 'isEnabled'), // ...and set it true if any command #isEnabled is true.
+        (...areEnabled) => areEnabled.some(isEnabled => isEnabled));
+        dropdownModel.bind('label').to(// Bind to #value of each command...
+        ...getCommandsBindingTargets(commands, 'value'), // ...and chose the title of the first one which #value is true.
+        (...areActive) => {
+            const index = areActive.findIndex(value => value);
+            // If none of the commands is active, display default title.
+            return options[index] ? options[index].title : defaultTitle;
+        });
+        // Register UI component.
+        editor.ui.componentFactory.add('headings', locale => {
+            const dropdown = Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_ui_src_dropdown_list_createlistdropdown__["a" /* default */])(dropdownModel, locale);
+            __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_ui_src_template__["a" /* default */].extend(dropdown.template, { attributes: { class: ['ck-heading-dropdown'] } });
+            // Execute command when an item from the dropdown is selected.
+            this.listenTo(dropdown, 'execute', evt => {
+                editor.execute(evt.source.commandName);
+                editor.editing.view.focus();
+            });
+            return dropdown;
+        });
+    }
+    /**
 	 * Returns heading options as defined in `config.heading.options` but processed to consider
 	 * editor localization, i.e. to display {@link module:heading/heading~HeadingOption}
 	 * in the correct language.
@@ -56661,30 +56611,26 @@ class Heading extends __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_core_src_p
 	 * @private
 	 * @returns {Array.<module:heading/heading~HeadingOption>}.
 	 */
-	_getLocalizedOptions() {
-		const editor = this.editor;
-		const t = editor.t;
-		const localizedTitles = {
-			Paragraph: t( 'Paragraph' ),
-			'Heading 1': t( 'Heading 1' ),
-			'Heading 2': t( 'Heading 2' ),
-			'Heading 3': t( 'Heading 3' )
-		};
-
-		return editor.config.get( 'heading.options' ).map( option => {
-			const title = localizedTitles[ option.title ];
-
-			if ( title && title != option.title ) {
-				// Clone the option to avoid altering the original `config.heading.options`.
-				option = Object.assign( {}, option, { title } );
-			}
-
-			return option;
-		} );
-	}
+    _getLocalizedOptions() {
+        const editor = this.editor;
+        const t = editor.t;
+        const localizedTitles = {
+            Paragraph: t('Paragraph'),
+            'Heading 1': t('Heading 1'),
+            'Heading 2': t('Heading 2'),
+            'Heading 3': t('Heading 3')
+        };
+        return editor.config.get('heading.options').map(option => {
+            const title = localizedTitles[option.title];
+            if (title && title != option.title) {
+                // Clone the option to avoid altering the original `config.heading.options`.
+                option = Object.assign({}, option, { title });
+            }
+            return option;
+        });
+    }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Heading;
-
 
 // Returns an array of binding components for
 // {@link module:utils/observablemixin~Observable#bind} from a set of iterable
@@ -56694,11 +56640,12 @@ class Heading extends __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_core_src_p
 // @param {Iterable.<module:core/command~Command>} commands
 // @param {String} attribute
 // @returns {Array.<String>}
-function getCommandsBindingTargets( commands, attribute ) {
-	return Array.prototype.concat( ...commands.map( c => [ c, attribute ] ) );
-}
-
-/**
+function getCommandsBindingTargets(commands, attribute) {
+    return Array.prototype.concat(...commands.map(c => [
+        c,
+        attribute
+    ]));
+}    /**
  * Heading option descriptor.
  *
  * @typedef {Object} module:heading/heading~HeadingOption
@@ -56707,16 +56654,14 @@ function getCommandsBindingTargets( commands, attribute ) {
  * @property {String} title The user-readable title of the option.
  * @property {String} class The class which will be added to the dropdown item representing this option.
  */
-
-/**
+     /**
  * The configuration of the heading feature. Introduced by the {@link module:heading/headingengine~HeadingEngine} feature.
  *
  * Read more in {@link module:heading/heading~HeadingConfig}.
  *
  * @member {module:heading/heading~HeadingConfig} module:core/editor/editorconfig~EditorConfig#heading
  */
-
-/**
+     /**
  * The configuration of the heading feature.
  * The option is used by the {@link module:heading/headingengine~HeadingEngine} feature.
  *
@@ -56731,8 +56676,7 @@ function getCommandsBindingTargets( commands, attribute ) {
  *
  * @interface HeadingConfig
  */
-
-/**
+     /**
  * The available heading options.
  *
  * The default value is:
@@ -56768,7 +56712,6 @@ function getCommandsBindingTargets( commands, attribute ) {
  *
  * @member {Array.<module:heading/heading~HeadingOption>} module:heading/heading~HeadingConfig#options
  */
-
 
 /***/ }),
 /* 475 */
@@ -57512,7 +57455,7 @@ class ListItemView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = createDropdown;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__button_buttonview__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__button_buttonview__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dropdownview__ = __webpack_require__(483);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dropdownpanelview__ = __webpack_require__(484);
 /**
@@ -57933,7 +57876,7 @@ class Image extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plu
 /* harmony export (immutable) */ __webpack_exports__["c"] = hoistImageThroughElement;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_model_position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_documentfragment__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_writer__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_writer__ = __webpack_require__(22);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -58230,7 +58173,7 @@ function hoistImageThroughElement( evt, data ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_view_editableelement__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_engine_src_view_rooteditableelement__ = __webpack_require__(251);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils__ = __webpack_require__(155);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__theme_theme_scss__ = __webpack_require__(491);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__theme_theme_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__theme_theme_scss__);
 /**
@@ -58625,7 +58568,7 @@ exports.push([module.i, ".ck-widget{margin:.8em 0;padding:0}.ck-widget.ck-widget
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__imagetextalternative_imagetextalternativeengine__ = __webpack_require__(494);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_bindings_clickoutsidehandler__ = __webpack_require__(265);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__imagetextalternative_ui_textalternativeformview__ = __webpack_require__(496);
@@ -58639,13 +58582,9 @@ exports.push([module.i, ".ck-widget{margin:.8em 0;padding:0}.ck-widget.ck-widget
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
  */
-
 /**
  * @module image/imagetextalternative
  */
-
-
-
 
 
 
@@ -58663,184 +58602,157 @@ exports.push([module.i, ".ck-widget{margin:.8em 0;padding:0}.ck-widget.ck-widget
  * @extends module:core/plugin~Plugin
  */
 class ImageTextAlternative extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__["a" /* default */] {
-	/**
+    /**
 	 * @inheritDoc
 	 */
-	static get requires() {
-		return [ __WEBPACK_IMPORTED_MODULE_2__imagetextalternative_imagetextalternativeengine__["a" /* default */], __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_panel_balloon_contextualballoon__["a" /* default */] ];
-	}
-
-	/**
+    static get requires() {
+        return [
+            __WEBPACK_IMPORTED_MODULE_2__imagetextalternative_imagetextalternativeengine__["a" /* default */],
+            __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_panel_balloon_contextualballoon__["a" /* default */]
+        ];
+    }
+    /**
 	 * @inheritDoc
 	 */
-	static get pluginName() {
-		return 'ImageTextAlternative';
-	}
-
-	/**
+    static get pluginName() {
+        return 'ImageTextAlternative';
+    }
+    /**
 	 * @inheritDoc
 	 */
-	init() {
-		this._createButton();
-		this._createForm();
-	}
-
-	/**
+    init() {
+        this._createButton();
+        this._createForm();
+    }
+    /**
 	 * Creates a button showing the balloon panel for changing the image text alternative and
 	 * registers it in the editor {@link module:ui/componentfactory~ComponentFactory ComponentFactory}.
 	 *
 	 * @private
 	 */
-	_createButton() {
-		const editor = this.editor;
-		const command = editor.commands.get( 'imageTextAlternative' );
-		const t = editor.t;
-
-		editor.ui.componentFactory.add( 'imageTextAlternative', locale => {
-			const view = new __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_button_buttonview__["a" /* default */]( locale );
-
-			view.set( {
-				label: t( 'Change image text alternative' ),
-				icon: __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_core_theme_icons_low_vision_svg___default.a,
-				tooltip: true
-			} );
-
-			view.bind( 'isEnabled' ).to( command, 'isEnabled' );
-
-			this.listenTo( view, 'execute', () => this._showForm() );
-
-			return view;
-		} );
-	}
-
-	/**
+    _createButton() {
+        const editor = this.editor;
+        const command = editor.commands.get('imageTextAlternative');
+        const t = editor.t;
+        editor.ui.componentFactory.add('imageTextAlternative', locale => {
+            const view = new __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_button_buttonview__["a" /* default */](locale);
+            view.set({
+                label: t('Change image text alternative'),
+                icon: __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_core_theme_icons_low_vision_svg___default.a,
+                tooltip: true
+            });
+            view.bind('isEnabled').to(command, 'isEnabled');
+            this.listenTo(view, 'execute', () => this._showForm());
+            return view;
+        });
+    }
+    /**
 	 * Creates the {@link module:image/imagetextalternative/ui/textalternativeformview~TextAlternativeFormView}
 	 * form.
 	 *
 	 * @private
 	 */
-	_createForm() {
-		const editor = this.editor;
-		const editingView = editor.editing.view;
-
-		/**
+    _createForm() {
+        const editor = this.editor;
+        const editingView = editor.editing.view;
+        /**
 		 * The contextual balloon plugin instance.
 		 *
 		 * @private
 		 * @member {module:ui/panel/balloon/contextualballoon~ContextualBalloon}
 		 */
-		this._balloon = this.editor.plugins.get( 'ContextualBalloon' );
-
-		/**
+        this._balloon = this.editor.plugins.get('ContextualBalloon');
+        /**
 		 * A form containing a textarea and buttons, used to change the `alt` text value.
 		 *
 		 * @member {module:image/imagetextalternative/ui/textalternativeformview~TextAlternativeFormView} #form
 		 */
-		this._form = new __WEBPACK_IMPORTED_MODULE_4__imagetextalternative_ui_textalternativeformview__["a" /* default */]( editor.locale );
-
-		this.listenTo( this._form, 'submit', () => {
-			editor.execute( 'imageTextAlternative', {
-				newValue: this._form.labeledInput.inputView.element.value
-			} );
-
-			this._hideForm( true );
-		} );
-
-		this.listenTo( this._form, 'cancel', () => {
-			this._hideForm( true );
-		} );
-
-		// Close the form on Esc key press.
-		this._form.keystrokes.set( 'Esc', ( data, cancel ) => {
-			this._hideForm( true );
-			cancel();
-		} );
-
-		// Reposition the balloon upon #render.
-		this.listenTo( editingView, 'render', () => {
-			if ( this._isVisible ) {
-				Object(__WEBPACK_IMPORTED_MODULE_7__image_ui_utils__["b" /* repositionContextualBalloon */])( editor );
-			}
-		}, { priority: 'low' } );
-
-		// Hide the form when the editor is blurred.
-		this.listenTo( editor.ui.focusTracker, 'change:isFocused', ( evt, name, is ) => {
-			if ( !is ) {
-				this._hideForm();
-			}
-		}, { priority: 'low' } );
-
-		// Close on click outside of balloon panel element.
-		Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_bindings_clickoutsidehandler__["a" /* default */])( {
-			emitter: this._form,
-			activator: () => this._isVisible,
-			contextElements: [ this._form.element ],
-			callback: () => this._hideForm()
-		} );
-	}
-
-	/**
+        this._form = new __WEBPACK_IMPORTED_MODULE_4__imagetextalternative_ui_textalternativeformview__["a" /* default */](editor.locale);
+        this.listenTo(this._form, 'submit', () => {
+            editor.execute('imageTextAlternative', { newValue: this._form.labeledInput.inputView.element.value });
+            this._hideForm(true);
+        });
+        this.listenTo(this._form, 'cancel', () => {
+            this._hideForm(true);
+        });
+        // Close the form on Esc key press.
+        this._form.keystrokes.set('Esc', (data, cancel) => {
+            this._hideForm(true);
+            cancel();
+        });
+        // Reposition the balloon upon #render.
+        this.listenTo(editingView, 'render', () => {
+            if (this._isVisible) {
+                Object(__WEBPACK_IMPORTED_MODULE_7__image_ui_utils__["b" /* repositionContextualBalloon */])(editor);
+            }
+        }, { priority: 'low' });
+        // Hide the form when the editor is blurred.
+        this.listenTo(editor.ui.focusTracker, 'change:isFocused', (evt, name, is) => {
+            if (!is) {
+                this._hideForm();
+            }
+        }, { priority: 'low' });
+        // Close on click outside of balloon panel element.
+        Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_bindings_clickoutsidehandler__["a" /* default */])({
+            emitter: this._form,
+            activator: () => this._isVisible,
+            contextElements: [this._form.element],
+            callback: () => this._hideForm()
+        });
+    }
+    /**
 	 * Shows the {@link #_form} in the {@link #_balloon}.
 	 *
 	 * @private
 	 */
-	_showForm() {
-		if ( this._isVisible ) {
-			return;
-		}
-
-		const editor = this.editor;
-		const command = editor.commands.get( 'imageTextAlternative' );
-		const labeledInput = this._form.labeledInput;
-
-		if ( !this._balloon.hasView( this._form ) ) {
-			this._balloon.add( {
-				view: this._form,
-				position: Object(__WEBPACK_IMPORTED_MODULE_7__image_ui_utils__["a" /* getBalloonPositionData */])( editor )
-			} );
-		}
-
-		// Make sure that each time the panel shows up, the field remains in sync with the value of
-		// the command. If the user typed in the input, then canceled the balloon (`labeledInput#value`
-		// stays unaltered) and re-opened it without changing the value of the command, they would see the
-		// old value instead of the actual value of the command.
-		// https://github.com/ckeditor/ckeditor5-image/issues/114
-		labeledInput.value = labeledInput.inputView.element.value = command.value || '';
-
-		this._form.labeledInput.select();
-	}
-
-	/**
+    _showForm() {
+        if (this._isVisible) {
+            return;
+        }
+        const editor = this.editor;
+        const command = editor.commands.get('imageTextAlternative');
+        const labeledInput = this._form.labeledInput;
+        if (!this._balloon.hasView(this._form)) {
+            this._balloon.add({
+                view: this._form,
+                position: Object(__WEBPACK_IMPORTED_MODULE_7__image_ui_utils__["a" /* getBalloonPositionData */])(editor)
+            });
+        }
+        // Make sure that each time the panel shows up, the field remains in sync with the value of
+        // the command. If the user typed in the input, then canceled the balloon (`labeledInput#value`
+        // stays unaltered) and re-opened it without changing the value of the command, they would see the
+        // old value instead of the actual value of the command.
+        // https://github.com/ckeditor/ckeditor5-image/issues/114
+        labeledInput.value = labeledInput.inputView.element.value = command.value || '';
+        this._form.labeledInput.select();
+    }
+    /**
 	 * Removes the {@link #_form} from the {@link #_balloon}.
 	 *
 	 * @param {Boolean} focusEditable Controls whether the editing view is focused afterwards.
 	 * @private
 	 */
-	_hideForm( focusEditable ) {
-		if ( !this._isVisible ) {
-			return;
-		}
-
-		this._balloon.remove( this._form );
-
-		if ( focusEditable ) {
-			this.editor.editing.view.focus();
-		}
-	}
-
-	/**
+    _hideForm(focusEditable) {
+        if (!this._isVisible) {
+            return;
+        }
+        this._balloon.remove(this._form);
+        if (focusEditable) {
+            this.editor.editing.view.focus();
+        }
+    }
+    /**
 	 * Returns `true` when the {@link #_form} is the visible view
 	 * in the {@link #_balloon}.
 	 *
 	 * @private
 	 * @type {Boolean}
 	 */
-	get _isVisible() {
-		return this._balloon.visibleView == this._form;
-	}
+    get _isVisible() {
+        return this._balloon.visibleView == this._form;
+    }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = ImageTextAlternative;
-
 
 
 /***/ }),
@@ -58958,7 +58870,7 @@ class ImageTextAlternativeCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_src_view__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_template__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_labeledinput_labeledinputview__ = __webpack_require__(266);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_ui_src_inputtext_inputtextview__ = __webpack_require__(267);
@@ -58968,12 +58880,9 @@ class ImageTextAlternativeCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
  */
-
 /**
  * @module image/imagetextalternative/ui/textalternativeformview
  */
-
-
 
 
 
@@ -58987,95 +58896,64 @@ class ImageTextAlternativeCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_
  * @extends module:ui/view~View
  */
 class TextAlternativeFormView extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_src_view__["a" /* default */] {
-	/**
+    /**
 	 * @inheritDoc
 	 */
-	constructor( locale ) {
-		super( locale );
-
-		const t = this.locale.t;
-
-		/**
+    constructor(locale) {
+        super(locale);
+        const t = this.locale.t;
+        /**
 		 * An instance of the {@link module:utils/keystrokehandler~KeystrokeHandler}.
 		 *
 		 * @readonly
 		 * @member {module:utils/keystrokehandler~KeystrokeHandler}
 		 */
-		this.keystrokes = new __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_keystrokehandler__["a" /* default */]();
-
-		/**
+        this.keystrokes = new __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_keystrokehandler__["a" /* default */]();
+        /**
 		 * A textarea with a label.
 		 *
 		 * @member {module:ui/labeledinput/labeledinputview~LabeledInputView} #labeledTextarea
 		 */
-		this.labeledInput = this._createLabeledInputView();
-
-		/**
+        this.labeledInput = this._createLabeledInputView();
+        /**
 		 * A button used to submit the form.
 		 *
 		 * @member {module:ui/button/buttonview~ButtonView} #saveButtonView
 		 */
-		this.saveButtonView = this._createButton( t( 'Save' ) );
-		this.saveButtonView.type = 'submit';
-
-		/**
+        this.saveButtonView = this._createButton(t('Save'));
+        this.saveButtonView.type = 'submit';
+        /**
 		 * A button used to cancel the form.
 		 *
 		 * @member {module:ui/button/buttonview~ButtonView} #cancelButtonView
 		 */
-		this.cancelButtonView = this._createButton( t( 'Cancel' ), 'cancel' );
-
-		__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_template__["a" /* default */].extend( this.saveButtonView.template, {
-			attributes: {
-				class: [
-					'ck-button-action'
-				]
-			}
-		} );
-
-		this.template = new __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_template__["a" /* default */]( {
-			tag: 'form',
-
-			attributes: {
-				class: [
-					'cke-text-alternative-form',
-				]
-			},
-
-			children: [
-				this.labeledInput,
-				{
-					tag: 'div',
-
-					attributes: {
-						class: [
-							'cke-text-alternative-form__actions'
-						]
-					},
-
-					children: [
-						this.saveButtonView,
-						this.cancelButtonView
-					]
-				}
-			]
-		} );
-
-		Object(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_bindings_submithandler__["a" /* default */])( {
-			view: this
-		} );
-	}
-
-	/**
+        this.cancelButtonView = this._createButton(t('Cancel'), 'cancel');
+        __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_template__["a" /* default */].extend(this.saveButtonView.template, { attributes: { class: ['ck-button-action'] } });
+        this.template = new __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_template__["a" /* default */]({
+            tag: 'form',
+            attributes: { class: ['cke-text-alternative-form'] },
+            children: [
+                this.labeledInput,
+                {
+                    tag: 'div',
+                    attributes: { class: ['cke-text-alternative-form__actions'] },
+                    children: [
+                        this.saveButtonView,
+                        this.cancelButtonView
+                    ]
+                }
+            ]
+        });
+        Object(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_bindings_submithandler__["a" /* default */])({ view: this });
+    }
+    /**
 	 * @inheritDoc
 	 */
-	init() {
-		super.init();
-
-		this.keystrokes.listenTo( this.element );
-	}
-
-	/**
+    init() {
+        super.init();
+        this.keystrokes.listenTo(this.element);
+    }
+    /**
 	 * Creates the button view.
 	 *
 	 * @private
@@ -59083,35 +58961,29 @@ class TextAlternativeFormView extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_cked
 	 * @param {String} [eventName] The event name that the ButtonView#execute event will be delegated to.
 	 * @returns {module:ui/button/buttonview~ButtonView} The button view instance.
 	 */
-	_createButton( label, eventName ) {
-		const button = new __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_button_buttonview__["a" /* default */]( this.locale );
-
-		button.label = label;
-		button.withText = true;
-
-		if ( eventName ) {
-			button.delegate( 'execute' ).to( this, eventName );
-		}
-
-		return button;
-	}
-
-	/**
+    _createButton(label, eventName) {
+        const button = new __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_button_buttonview__["a" /* default */](this.locale);
+        button.label = label;
+        button.withText = true;
+        if (eventName) {
+            button.delegate('execute').to(this, eventName);
+        }
+        return button;
+    }
+    /**
 	 * Creates an input with a label.
 	 *
 	 * @private
 	 * @return {module:ui/labeledinput/labeledinputview~LabeledInputView}
 	 */
-	_createLabeledInputView() {
-		const t = this.locale.t;
-		const labeledInput = new __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_labeledinput_labeledinputview__["a" /* default */]( this.locale, __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_ui_src_inputtext_inputtextview__["a" /* default */] );
-		labeledInput.label = t( 'Text alternative' );
-
-		return labeledInput;
-	}
+    _createLabeledInputView() {
+        const t = this.locale.t;
+        const labeledInput = new __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_labeledinput_labeledinputview__["a" /* default */](this.locale, __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_ui_src_inputtext_inputtextview__["a" /* default */]);
+        labeledInput.label = t('Text alternative');
+        return labeledInput;
+    }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = TextAlternativeFormView;
-
 
 
 /***/ }),
@@ -59327,7 +59199,7 @@ class ImageCaption extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_engine_src_view_element__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_view_writer__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_engine_src_model_position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_engine_src_view_position__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_engine_src_view_position__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__image_utils__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__utils__ = __webpack_require__(505);
@@ -59335,12 +59207,9 @@ class ImageCaption extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
  */
-
 /**
  * @module image/imagecaption/imagecaptionengine
  */
-
-
 
 
 
@@ -59361,154 +59230,135 @@ class ImageCaption extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_
  * @extends module:core/plugin~Plugin
  */
 class ImageCaptionEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__["a" /* default */] {
-	/**
+    /**
 	 * @inheritDoc
 	 */
-	init() {
-		const editor = this.editor;
-		const document = editor.document;
-		const viewDocument = editor.editing.view;
-		const schema = document.schema;
-		const data = editor.data;
-		const editing = editor.editing;
-		const t = editor.t;
-
-		/**
+    init() {
+        const editor = this.editor;
+        const document = editor.document;
+        const viewDocument = editor.editing.view;
+        const schema = document.schema;
+        const data = editor.data;
+        const editing = editor.editing;
+        const t = editor.t;
+        /**
 		 * Last selected caption editable.
 		 * It is used for hiding the editable when it is empty and the image widget is no longer selected.
 		 *
 		 * @private
 		 * @member {module:engine/view/editableelement~EditableElement} #_lastSelectedCaption
 		 */
-
-		/**
+        /**
 		 * A function used to create the editable caption element in the editing view.
 		 *
 		 * @private
 		 * @member {Function}
 		 */
-		this._createCaption = Object(__WEBPACK_IMPORTED_MODULE_10__utils__["a" /* captionElementCreator */])( viewDocument, t( 'Enter image caption' ) );
-
-		// Schema configuration.
-		schema.registerItem( 'caption', '$block' );
-		schema.allow( { name: '$inline', inside: 'caption' } );
-		schema.allow( { name: 'caption', inside: 'image' } );
-		schema.limits.add( 'caption' );
-
-		// Add caption element to each image inserted without it.
-		document.on( 'change', insertMissingModelCaptionElement );
-
-		// View to model converter for the data pipeline.
-		Object(__WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__["a" /* default */])()
-			.for( data.viewToModel )
-			.from( __WEBPACK_IMPORTED_MODULE_10__utils__["d" /* matchImageCaption */] )
-			.toElement( 'caption' );
-
-		// Model to view converter for the data pipeline.
-		data.modelToView.on( 'insert:caption', captionModelToView( new __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_view_containerelement__["a" /* default */]( 'figcaption' ), false ) );
-
-		// Model to view converter for the editing pipeline.
-		editing.modelToView.on( 'insert:caption', captionModelToView( this._createCaption ) );
-
-		// Always show caption in view when something is inserted in model.
-		editing.modelToView.on( 'insert', ( evt, data ) => this._fixCaptionVisibility( data.item ), { priority: 'high' } );
-
-		// Hide caption when everything is removed from it.
-		editing.modelToView.on( 'remove', ( evt, data ) => this._fixCaptionVisibility( data.sourcePosition.parent ), { priority: 'high' } );
-
-		// Update view before each rendering.
-		this.listenTo( viewDocument, 'render', () => this._updateCaptionVisibility(), { priority: 'high' } );
-	}
-
-	/**
+        this._createCaption = Object(__WEBPACK_IMPORTED_MODULE_10__utils__["a" /* captionElementCreator */])(viewDocument, t('Enter image caption'));
+        // Schema configuration.
+        schema.registerItem('caption', '$block');
+        schema.allow({
+            name: '$inline',
+            inside: 'caption'
+        });
+        schema.allow({
+            name: 'caption',
+            inside: 'image'
+        });
+        schema.limits.add('caption');
+        // Add caption element to each image inserted without it.
+        document.on('change', insertMissingModelCaptionElement);
+        // View to model converter for the data pipeline.
+        Object(__WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__["a" /* default */])().for(data.viewToModel).from(__WEBPACK_IMPORTED_MODULE_10__utils__["d" /* matchImageCaption */]).toElement('caption');
+        // Model to view converter for the data pipeline.
+        data.modelToView.on('insert:caption', captionModelToView(new __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_view_containerelement__["a" /* default */]('figcaption'), false));
+        // Model to view converter for the editing pipeline.
+        editing.modelToView.on('insert:caption', captionModelToView(this._createCaption));
+        // Always show caption in view when something is inserted in model.
+        editing.modelToView.on('insert', (evt, data) => this._fixCaptionVisibility(data.item), { priority: 'high' });
+        // Hide caption when everything is removed from it.
+        editing.modelToView.on('remove', (evt, data) => this._fixCaptionVisibility(data.sourcePosition.parent), { priority: 'high' });
+        // Update view before each rendering.
+        this.listenTo(viewDocument, 'render', () => this._updateCaptionVisibility(), { priority: 'high' });
+    }
+    /**
 	 * Updates the view before each rendering, making sure that empty captions (so unnecessary ones) are hidden
 	 * and then visible when the image is selected.
 	 *
 	 * @private
 	 */
-	_updateCaptionVisibility() {
-		const mapper = this.editor.editing.mapper;
-		const viewSelection = this.editor.editing.view.selection;
-		const selectedElement = viewSelection.getSelectedElement();
-		let viewCaption;
-
-		// Hide last selected caption if have no child elements.
-		if ( this._lastSelectedCaption && !this._lastSelectedCaption.childCount ) {
-			this._lastSelectedCaption.addClass( 'ck-hidden' );
-		}
-
-		// If whole image widget is selected.
-		if ( selectedElement && Object(__WEBPACK_IMPORTED_MODULE_9__image_utils__["b" /* isImageWidget */])( selectedElement ) ) {
-			const modelImage = mapper.toModelElement( selectedElement );
-			const modelCaption = Object(__WEBPACK_IMPORTED_MODULE_10__utils__["b" /* getCaptionFromImage */])( modelImage );
-			viewCaption = mapper.toViewElement( modelCaption );
-		}
-
-		// If selection is placed inside caption.
-		if ( Object(__WEBPACK_IMPORTED_MODULE_10__utils__["c" /* isCaption */])( viewSelection.editableElement ) ) {
-			viewCaption = viewSelection.editableElement;
-		}
-
-		if ( viewCaption ) {
-			viewCaption.removeClass( 'ck-hidden' );
-			this._lastSelectedCaption = viewCaption;
-		}
-	}
-
-	/**
+    _updateCaptionVisibility() {
+        const mapper = this.editor.editing.mapper;
+        const viewSelection = this.editor.editing.view.selection;
+        const selectedElement = viewSelection.getSelectedElement();
+        let viewCaption;
+        // Hide last selected caption if have no child elements.
+        if (this._lastSelectedCaption && !this._lastSelectedCaption.childCount) {
+            this._lastSelectedCaption.addClass('ck-hidden');
+        }
+        // If whole image widget is selected.
+        if (selectedElement && Object(__WEBPACK_IMPORTED_MODULE_9__image_utils__["b" /* isImageWidget */])(selectedElement)) {
+            const modelImage = mapper.toModelElement(selectedElement);
+            const modelCaption = Object(__WEBPACK_IMPORTED_MODULE_10__utils__["b" /* getCaptionFromImage */])(modelImage);
+            viewCaption = mapper.toViewElement(modelCaption);
+        }
+        // If selection is placed inside caption.
+        if (Object(__WEBPACK_IMPORTED_MODULE_10__utils__["c" /* isCaption */])(viewSelection.editableElement)) {
+            viewCaption = viewSelection.editableElement;
+        }
+        if (viewCaption) {
+            viewCaption.removeClass('ck-hidden');
+            this._lastSelectedCaption = viewCaption;
+        }
+    }
+    /**
 	 * Fixes caption visibility during the model-to-view conversion.
 	 * Checks if the changed node is placed inside the caption element and fixes its visibility in the view.
 	 *
 	 * @private
 	 * @param {module:engine/model/node~Node} node
 	 */
-	_fixCaptionVisibility( node ) {
-		const modelCaption = getParentCaption( node );
-		const mapper = this.editor.editing.mapper;
-
-		if ( modelCaption ) {
-			const viewCaption = mapper.toViewElement( modelCaption );
-
-			if ( viewCaption ) {
-				if ( modelCaption.childCount ) {
-					viewCaption.removeClass( 'ck-hidden' );
-				} else {
-					viewCaption.addClass( 'ck-hidden' );
-				}
-			}
-		}
-	}
+    _fixCaptionVisibility(node) {
+        const modelCaption = getParentCaption(node);
+        const mapper = this.editor.editing.mapper;
+        if (modelCaption) {
+            const viewCaption = mapper.toViewElement(modelCaption);
+            if (viewCaption) {
+                if (modelCaption.childCount) {
+                    viewCaption.removeClass('ck-hidden');
+                } else {
+                    viewCaption.addClass('ck-hidden');
+                }
+            }
+        }
+    }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = ImageCaptionEngine;
-
 
 // Checks whether data inserted to the model document have image element that has no caption element inside it.
 // If there is none - adds it to the image element.
 //
 // @private
-function insertMissingModelCaptionElement( evt, changeType, data, batch ) {
-	if ( changeType !== 'insert' ) {
-		return;
-	}
-
-	const walker = new __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_treewalker__["a" /* default */]( {
-		boundaries: data.range,
-		ignoreElementEnd: true
-	} );
-
-	for ( const value of walker ) {
-		const item = value.item;
-
-		if ( value.type == 'elementStart' && Object(__WEBPACK_IMPORTED_MODULE_9__image_utils__["a" /* isImage */])( item ) && !Object(__WEBPACK_IMPORTED_MODULE_10__utils__["b" /* getCaptionFromImage */])( item ) ) {
-			batch.document.enqueueChanges( () => {
-				// Make sure that the image does not have caption already.
-				// https://github.com/ckeditor/ckeditor5-image/issues/78
-				if ( !Object(__WEBPACK_IMPORTED_MODULE_10__utils__["b" /* getCaptionFromImage */])( item ) ) {
-					batch.insert( __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_engine_src_model_position__["a" /* default */].createAt( item, 'end' ), new __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_element__["a" /* default */]( 'caption' ) );
-				}
-			} );
-		}
-	}
+function insertMissingModelCaptionElement(evt, changeType, data, batch) {
+    if (changeType !== 'insert') {
+        return;
+    }
+    const walker = new __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_treewalker__["a" /* default */]({
+        boundaries: data.range,
+        ignoreElementEnd: true
+    });
+    for (const value of walker) {
+        const item = value.item;
+        if (value.type == 'elementStart' && Object(__WEBPACK_IMPORTED_MODULE_9__image_utils__["a" /* isImage */])(item) && !Object(__WEBPACK_IMPORTED_MODULE_10__utils__["b" /* getCaptionFromImage */])(item)) {
+            batch.document.enqueueChanges(() => {
+                // Make sure that the image does not have caption already.
+                // https://github.com/ckeditor/ckeditor5-image/issues/78
+                if (!Object(__WEBPACK_IMPORTED_MODULE_10__utils__["b" /* getCaptionFromImage */])(item)) {
+                    batch.insert(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_engine_src_model_position__["a" /* default */].createAt(item, 'end'), new __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_element__["a" /* default */]('caption'));
+                }
+            });
+        }
+    }
 }
 // Creates a converter that converts image caption model element to view element.
 //
@@ -59516,35 +59366,27 @@ function insertMissingModelCaptionElement( evt, changeType, data, batch ) {
 // @param {Function|module:engine/view/element~Element} elementCreator
 // @param {Boolean} [hide=true] When set to `false` view element will not be inserted when it's empty.
 // @return {Function}
-function captionModelToView( elementCreator, hide = true ) {
-	return ( evt, data, consumable, conversionApi ) => {
-		const captionElement = data.item;
-
-		// Return if element shouldn't be present when empty.
-		if ( !captionElement.childCount && !hide ) {
-			return;
-		}
-
-		if ( Object(__WEBPACK_IMPORTED_MODULE_9__image_utils__["a" /* isImage */])( captionElement.parent ) ) {
-			if ( !consumable.consume( data.item, 'insert' ) ) {
-				return;
-			}
-
-			const viewImage = conversionApi.mapper.toViewElement( data.range.start.parent );
-			const viewCaption = ( elementCreator instanceof __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_engine_src_view_element__["a" /* default */] ) ?
-				elementCreator.clone( true ) :
-				elementCreator();
-
-			// Hide if empty.
-			if ( !captionElement.childCount ) {
-				viewCaption.addClass( 'ck-hidden' );
-			}
-
-			insertViewCaptionAndBind( viewCaption, data.item, viewImage, conversionApi.mapper );
-		}
-	};
+function captionModelToView(elementCreator, hide = true) {
+    return (evt, data, consumable, conversionApi) => {
+        const captionElement = data.item;
+        // Return if element shouldn't be present when empty.
+        if (!captionElement.childCount && !hide) {
+            return;
+        }
+        if (Object(__WEBPACK_IMPORTED_MODULE_9__image_utils__["a" /* isImage */])(captionElement.parent)) {
+            if (!consumable.consume(data.item, 'insert')) {
+                return;
+            }
+            const viewImage = conversionApi.mapper.toViewElement(data.range.start.parent);
+            const viewCaption = elementCreator instanceof __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_engine_src_view_element__["a" /* default */] ? elementCreator.clone(true) : elementCreator();
+            // Hide if empty.
+            if (!captionElement.childCount) {
+                viewCaption.addClass('ck-hidden');
+            }
+            insertViewCaptionAndBind(viewCaption, data.item, viewImage, conversionApi.mapper);
+        }
+    };
 }
-
 // Inserts `viewCaption` at the end of `viewImage` and binds it to `modelCaption`.
 //
 // @private
@@ -59552,30 +59394,25 @@ function captionModelToView( elementCreator, hide = true ) {
 // @param {module:engine/model/element~Element} modelCaption
 // @param {module:engine/view/containerelement~ContainerElement} viewImage
 // @param {module:engine/conversion/mapper~Mapper} mapper
-function insertViewCaptionAndBind( viewCaption, modelCaption, viewImage, mapper ) {
-	const viewPosition = __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_engine_src_view_position__["a" /* default */].createAt( viewImage, 'end' );
-
-	__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_view_writer__["a" /* default */].insert( viewPosition, viewCaption );
-	mapper.bindElements( modelCaption, viewCaption );
+function insertViewCaptionAndBind(viewCaption, modelCaption, viewImage, mapper) {
+    const viewPosition = __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_engine_src_view_position__["a" /* default */].createAt(viewImage, 'end');
+    __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_view_writer__["a" /* default */].insert(viewPosition, viewCaption);
+    mapper.bindElements(modelCaption, viewCaption);
 }
-
 /**
  * Checks if the provided node or one of its ancestors is a caption element, and returns it.
  *
  * @param {module:engine/model/node~Node} node
  * @returns {module:engine/model/element~Element|null}
  */
-function getParentCaption( node ) {
-	const ancestors = node.getAncestors( { includeSelf: true } );
-	const caption = ancestors.find( ancestor => ancestor.name == 'caption' );
-
-	if ( caption && caption.parent && caption.parent.name == 'image' ) {
-		return caption;
-	}
-
-	return null;
+function getParentCaption(node) {
+    const ancestors = node.getAncestors({ includeSelf: true });
+    const caption = ancestors.find(ancestor => ancestor.name == 'caption');
+    if (caption && caption.parent && caption.parent.name == 'image') {
+        return caption;
+    }
+    return null;
 }
-
 
 /***/ }),
 /* 505 */
@@ -59901,7 +59738,7 @@ exports.push([module.i, ".ck-editor__editable .image>figcaption{background-color
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__imagestyle_imagestyleengine__ = __webpack_require__(512);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(25);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -60037,12 +59874,9 @@ class ImageStyle extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_sr
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
  */
-
 /**
  * @module image/imagestyle/imagestyleengine
  */
-
-
 
 
 
@@ -60056,62 +59890,67 @@ class ImageStyle extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_sr
  * @extends {module:core/plugin~Plugin}
  */
 class ImageStyleEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__["a" /* default */] {
-	/**
+    /**
 	 * @inheritDoc
 	 */
-	static get requires() {
-		return [ __WEBPACK_IMPORTED_MODULE_2__image_imageengine__["a" /* default */] ];
-	}
-
-	/**
+    static get requires() {
+        return [__WEBPACK_IMPORTED_MODULE_2__image_imageengine__["a" /* default */]];
+    }
+    /**
 	 * @inheritDoc
 	 */
-	init() {
-		const editor = this.editor;
-		const t = editor.t;
-		const doc = editor.document;
-		const schema = doc.schema;
-		const data = editor.data;
-		const editing = editor.editing;
-
-		// Define default configuration.
-		editor.config.define( 'image.styles', [
-			// This option is equal to situation when no style is applied.
-			{ name: 'imageStyleFull', title: t( 'Full size image' ), icon: __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_core_theme_icons_object_center_svg___default.a, value: null },
-
-			// This represents side image.
-			{ name: 'imageStyleSide', title: t( 'Side image' ), icon: __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_core_theme_icons_object_right_svg___default.a, value: 'side', className: 'image-style-side' }
-		] );
-
-		// Get configuration.
-		const styles = editor.config.get( 'image.styles' );
-
-		// Allow imageStyle attribute in image.
-		// We could call it 'style' but https://github.com/ckeditor/ckeditor5-engine/issues/559.
-		schema.allow( { name: 'image', attributes: 'imageStyle', inside: '$root' } );
-
-		// Converters for imageStyle attribute from model to view.
-		const modelToViewConverter = Object(__WEBPACK_IMPORTED_MODULE_3__converters__["a" /* modelToViewStyleAttribute */])( styles );
-		editing.modelToView.on( 'addAttribute:imageStyle:image', modelToViewConverter );
-		data.modelToView.on( 'addAttribute:imageStyle:image', modelToViewConverter );
-		editing.modelToView.on( 'changeAttribute:imageStyle:image', modelToViewConverter );
-		data.modelToView.on( 'changeAttribute:imageStyle:image', modelToViewConverter );
-		editing.modelToView.on( 'removeAttribute:imageStyle:image', modelToViewConverter );
-		data.modelToView.on( 'removeAttribute:imageStyle:image', modelToViewConverter );
-
-		// Converter for figure element from view to model.
-		data.viewToModel.on( 'element:figure', Object(__WEBPACK_IMPORTED_MODULE_3__converters__["b" /* viewToModelStyleAttribute */])( styles ), { priority: 'low' } );
-
-		// Register separate command for each style.
-		for ( const style of styles ) {
-			editor.commands.add( style.name, new __WEBPACK_IMPORTED_MODULE_1__imagestylecommand__["a" /* default */]( editor, style ) );
-		}
-	}
+    init() {
+        const editor = this.editor;
+        const t = editor.t;
+        const doc = editor.document;
+        const schema = doc.schema;
+        const data = editor.data;
+        const editing = editor.editing;
+        // Define default configuration.
+        editor.config.define('image.styles', [
+            // This option is equal to situation when no style is applied.
+            {
+                name: 'imageStyleFull',
+                title: t('Full size image'),
+                icon: __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_core_theme_icons_object_center_svg___default.a,
+                value: null
+            },
+            // This represents side image.
+            {
+                name: 'imageStyleSide',
+                title: t('Side image'),
+                icon: __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_core_theme_icons_object_right_svg___default.a,
+                value: 'side',
+                className: 'image-style-side'
+            }
+        ]);
+        // Get configuration.
+        const styles = editor.config.get('image.styles');
+        // Allow imageStyle attribute in image.
+        // We could call it 'style' but https://github.com/ckeditor/ckeditor5-engine/issues/559.
+        schema.allow({
+            name: 'image',
+            attributes: 'imageStyle',
+            inside: '$root'
+        });
+        // Converters for imageStyle attribute from model to view.
+        const modelToViewConverter = Object(__WEBPACK_IMPORTED_MODULE_3__converters__["a" /* modelToViewStyleAttribute */])(styles);
+        editing.modelToView.on('addAttribute:imageStyle:image', modelToViewConverter);
+        data.modelToView.on('addAttribute:imageStyle:image', modelToViewConverter);
+        editing.modelToView.on('changeAttribute:imageStyle:image', modelToViewConverter);
+        data.modelToView.on('changeAttribute:imageStyle:image', modelToViewConverter);
+        editing.modelToView.on('removeAttribute:imageStyle:image', modelToViewConverter);
+        data.modelToView.on('removeAttribute:imageStyle:image', modelToViewConverter);
+        // Converter for figure element from view to model.
+        data.viewToModel.on('element:figure', Object(__WEBPACK_IMPORTED_MODULE_3__converters__["b" /* viewToModelStyleAttribute */])(styles), { priority: 'low' });
+        // Register separate command for each style.
+        for (const style of styles) {
+            editor.commands.add(style.name, new __WEBPACK_IMPORTED_MODULE_1__imagestylecommand__["a" /* default */](editor, style));
+        }
+    }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = ImageStyleEngine;
-
-
-/**
+    /**
  * Image style format descriptor.
  *
  *		import fullIcon from 'path/to/icon.svg`;
@@ -60134,7 +59973,6 @@ class ImageStyleEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_c
  * @property {String} title The style's title.
  * @property {String} className The CSS class used to represent the style in view.
  */
-
 
 /***/ }),
 /* 513 */
@@ -60596,19 +60434,16 @@ class ImageToolbar extends __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_core_
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__italicengine__ = __webpack_require__(519);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__theme_icons_italic_svg__ = __webpack_require__(520);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__theme_icons_italic_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__theme_icons_italic_svg__);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
  */
-
 /**
  * @module basic-styles/italic
  */
-
-
 
 
 
@@ -60621,54 +60456,45 @@ class ImageToolbar extends __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_core_
  * @extends module:core/plugin~Plugin
  */
 class Italic extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__["a" /* default */] {
-	/**
+    /**
 	 * @inheritDoc
 	 */
-	static get requires() {
-		return [ __WEBPACK_IMPORTED_MODULE_1__italicengine__["a" /* default */] ];
-	}
-
-	/**
+    static get requires() {
+        return [__WEBPACK_IMPORTED_MODULE_1__italicengine__["a" /* default */]];
+    }
+    /**
 	 * @inheritDoc
 	 */
-	static get pluginName() {
-		return 'Italic';
-	}
-
-	/**
+    static get pluginName() {
+        return 'Italic';
+    }
+    /**
 	 * @inheritDoc
 	 */
-	init() {
-		const editor = this.editor;
-		const t = editor.t;
-		const command = editor.commands.get( 'italic' );
-		const keystroke = 'CTRL+I';
-
-		// Add bold button to feature components.
-		editor.ui.componentFactory.add( 'italic', locale => {
-			const view = new __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__["a" /* default */]( locale );
-
-			view.set( {
-				label: t( 'Italic' ),
-				icon: __WEBPACK_IMPORTED_MODULE_3__theme_icons_italic_svg___default.a,
-				keystroke,
-				tooltip: true
-			} );
-
-			view.bind( 'isOn', 'isEnabled' ).to( command, 'value', 'isEnabled' );
-
-			// Execute command.
-			this.listenTo( view, 'execute', () => editor.execute( 'italic' ) );
-
-			return view;
-		} );
-
-		// Set the Ctrl+I keystroke.
-		editor.keystrokes.set( keystroke, 'italic' );
-	}
+    init() {
+        const editor = this.editor;
+        const t = editor.t;
+        const command = editor.commands.get('italic');
+        const keystroke = 'CTRL+I';
+        // Add bold button to feature components.
+        editor.ui.componentFactory.add('italic', locale => {
+            const view = new __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__["a" /* default */](locale);
+            view.set({
+                label: t('Italic'),
+                icon: __WEBPACK_IMPORTED_MODULE_3__theme_icons_italic_svg___default.a,
+                keystroke,
+                tooltip: true
+            });
+            view.bind('isOn', 'isEnabled').to(command, 'value', 'isEnabled');
+            // Execute command.
+            this.listenTo(view, 'execute', () => editor.execute('italic'));
+            return view;
+        });
+        // Set the Ctrl+I keystroke.
+        editor.keystrokes.set(keystroke, 'italic');
+    }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Italic;
-
 
 
 /***/ }),
@@ -60756,7 +60582,7 @@ module.exports = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__linkelement__ = __webpack_require__(270);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_panel_balloon_contextualballoon__ = __webpack_require__(156);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_ui_src_bindings_clickoutsidehandler__ = __webpack_require__(265);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ui_linkformview__ = __webpack_require__(526);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__theme_icons_link_svg__ = __webpack_require__(527);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__theme_icons_link_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__theme_icons_link_svg__);
@@ -60768,7 +60594,6 @@ module.exports = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
  */
-
 /**
  * @module link/link
  */
@@ -60784,14 +60609,7 @@ module.exports = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"
 
 
 
-
-
-
-
-
-
 const linkKeystroke = 'Ctrl+K';
-
 /**
  * The link plugin. It introduces the Link and Unlink buttons and the <kbd>Ctrl+K</kbd> keystroke.
  *
@@ -60801,276 +60619,236 @@ const linkKeystroke = 'Ctrl+K';
  * @extends module:core/plugin~Plugin
  */
 class Link extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__["a" /* default */] {
-	/**
+    /**
 	 * @inheritDoc
 	 */
-	static get requires() {
-		return [ __WEBPACK_IMPORTED_MODULE_3__linkengine__["a" /* default */], __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_panel_balloon_contextualballoon__["a" /* default */] ];
-	}
-
-	/**
+    static get requires() {
+        return [
+            __WEBPACK_IMPORTED_MODULE_3__linkengine__["a" /* default */],
+            __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_panel_balloon_contextualballoon__["a" /* default */]
+        ];
+    }
+    /**
 	 * @inheritDoc
 	 */
-	static get pluginName() {
-		return 'Link';
-	}
-
-	/**
+    static get pluginName() {
+        return 'Link';
+    }
+    /**
 	 * @inheritDoc
 	 */
-	init() {
-		this.editor.editing.view.addObserver( __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_observer_clickobserver__["a" /* default */] );
-
-		/**
+    init() {
+        this.editor.editing.view.addObserver(__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_observer_clickobserver__["a" /* default */]);
+        /**
 		 * The form view displayed inside the balloon.
 		 *
 		 * @member {module:link/ui/linkformview~LinkFormView}
 		 */
-		this.formView = this._createForm();
-
-		/**
+        this.formView = this._createForm();
+        /**
 		 * The contextual balloon plugin instance.
 		 *
 		 * @private
 		 * @member {module:ui/panel/balloon/contextualballoon~ContextualBalloon}
 		 */
-		this._balloon = this.editor.plugins.get( __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_panel_balloon_contextualballoon__["a" /* default */] );
-
-		// Create toolbar buttons.
-		this._createToolbarLinkButton();
-		this._createToolbarUnlinkButton();
-
-		// Attach lifecycle actions to the the balloon.
-		this._attachActions();
-	}
-
-	/**
+        this._balloon = this.editor.plugins.get(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_panel_balloon_contextualballoon__["a" /* default */]);
+        // Create toolbar buttons.
+        this._createToolbarLinkButton();
+        this._createToolbarUnlinkButton();
+        // Attach lifecycle actions to the the balloon.
+        this._attachActions();
+    }
+    /**
 	 * Creates the {@link module:link/ui/linkformview~LinkFormView} instance.
 	 *
 	 * @private
 	 * @returns {module:link/ui/linkformview~LinkFormView} The link form instance.
 	 */
-	_createForm() {
-		const editor = this.editor;
-		const formView = new __WEBPACK_IMPORTED_MODULE_8__ui_linkformview__["a" /* default */]( editor.locale );
-		const linkCommand = editor.commands.get( 'link' );
-		const unlinkCommand = editor.commands.get( 'unlink' );
-
-		formView.urlInputView.bind( 'value' ).to( linkCommand, 'value' );
-
-		// Form elements should be read-only when corresponding commands are disabled.
-		formView.urlInputView.bind( 'isReadOnly' ).to( linkCommand, 'isEnabled', value => !value );
-		formView.saveButtonView.bind( 'isEnabled' ).to( linkCommand );
-		formView.unlinkButtonView.bind( 'isEnabled' ).to( unlinkCommand );
-
-		// Execute link command after clicking on formView `Save` button.
-		this.listenTo( formView, 'submit', () => {
-			editor.execute( 'link', formView.urlInputView.inputView.element.value );
-			this._hidePanel( true );
-		} );
-
-		// Execute unlink command after clicking on formView `Unlink` button.
-		this.listenTo( formView, 'unlink', () => {
-			editor.execute( 'unlink' );
-			this._hidePanel( true );
-		} );
-
-		// Hide the panel after clicking on formView `Cancel` button.
-		this.listenTo( formView, 'cancel', () => this._hidePanel( true ) );
-
-		// Close the panel on esc key press when the form has focus.
-		formView.keystrokes.set( 'Esc', ( data, cancel ) => {
-			this._hidePanel( true );
-			cancel();
-		} );
-
-		return formView;
-	}
-
-	/**
+    _createForm() {
+        const editor = this.editor;
+        const formView = new __WEBPACK_IMPORTED_MODULE_8__ui_linkformview__["a" /* default */](editor.locale);
+        const linkCommand = editor.commands.get('link');
+        const unlinkCommand = editor.commands.get('unlink');
+        formView.urlInputView.bind('value').to(linkCommand, 'value');
+        // Form elements should be read-only when corresponding commands are disabled.
+        formView.urlInputView.bind('isReadOnly').to(linkCommand, 'isEnabled', value => !value);
+        formView.saveButtonView.bind('isEnabled').to(linkCommand);
+        formView.unlinkButtonView.bind('isEnabled').to(unlinkCommand);
+        // Execute link command after clicking on formView `Save` button.
+        this.listenTo(formView, 'submit', () => {
+            editor.execute('link', formView.urlInputView.inputView.element.value);
+            this._hidePanel(true);
+        });
+        // Execute unlink command after clicking on formView `Unlink` button.
+        this.listenTo(formView, 'unlink', () => {
+            editor.execute('unlink');
+            this._hidePanel(true);
+        });
+        // Hide the panel after clicking on formView `Cancel` button.
+        this.listenTo(formView, 'cancel', () => this._hidePanel(true));
+        // Close the panel on esc key press when the form has focus.
+        formView.keystrokes.set('Esc', (data, cancel) => {
+            this._hidePanel(true);
+            cancel();
+        });
+        return formView;
+    }
+    /**
 	 * Creates a toolbar Link button. Clicking this button will show
 	 * a {@link #_balloon} attached to the selection.
 	 *
 	 * @private
 	 */
-	_createToolbarLinkButton() {
-		const editor = this.editor;
-		const linkCommand = editor.commands.get( 'link' );
-		const t = editor.t;
-
-		// Handle the `Ctrl+K` keystroke and show the panel.
-		editor.keystrokes.set( linkKeystroke, () => {
-			if ( linkCommand.isEnabled ) {
-				this._showPanel( true );
-			}
-		} );
-
-		editor.ui.componentFactory.add( 'link', locale => {
-			const button = new __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_ui_src_button_buttonview__["a" /* default */]( locale );
-
-			button.isEnabled = true;
-			button.label = t( 'Link' );
-			button.icon = __WEBPACK_IMPORTED_MODULE_9__theme_icons_link_svg___default.a;
-			button.keystroke = linkKeystroke;
-			button.tooltip = true;
-
-			// Bind button to the command.
-			button.bind( 'isEnabled' ).to( linkCommand, 'isEnabled' );
-
-			// Show the panel on button click.
-			this.listenTo( button, 'execute', () => this._showPanel( true ) );
-
-			return button;
-		} );
-	}
-
-	/**
+    _createToolbarLinkButton() {
+        const editor = this.editor;
+        const linkCommand = editor.commands.get('link');
+        const t = editor.t;
+        // Handle the `Ctrl+K` keystroke and show the panel.
+        editor.keystrokes.set(linkKeystroke, () => {
+            if (linkCommand.isEnabled) {
+                this._showPanel(true);
+            }
+        });
+        editor.ui.componentFactory.add('link', locale => {
+            const button = new __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_ui_src_button_buttonview__["a" /* default */](locale);
+            button.isEnabled = true;
+            button.label = t('Link');
+            button.icon = __WEBPACK_IMPORTED_MODULE_9__theme_icons_link_svg___default.a;
+            button.keystroke = linkKeystroke;
+            button.tooltip = true;
+            // Bind button to the command.
+            button.bind('isEnabled').to(linkCommand, 'isEnabled');
+            // Show the panel on button click.
+            this.listenTo(button, 'execute', () => this._showPanel(true));
+            return button;
+        });
+    }
+    /**
 	 * Creates a toolbar Unlink button. Clicking this button will unlink
 	 * the selected link.
 	 *
 	 * @private
 	 */
-	_createToolbarUnlinkButton() {
-		const editor = this.editor;
-		const t = editor.t;
-		const unlinkCommand = editor.commands.get( 'unlink' );
-
-		editor.ui.componentFactory.add( 'unlink', locale => {
-			const button = new __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_ui_src_button_buttonview__["a" /* default */]( locale );
-
-			button.isEnabled = false;
-			button.label = t( 'Unlink' );
-			button.icon = __WEBPACK_IMPORTED_MODULE_10__theme_icons_unlink_svg___default.a;
-			button.tooltip = true;
-
-			// Bind button to the command.
-			button.bind( 'isEnabled' ).to( unlinkCommand, 'isEnabled' );
-
-			// Execute unlink command and hide panel, if open on button click.
-			this.listenTo( button, 'execute', () => editor.execute( 'unlink' ) );
-
-			return button;
-		} );
-	}
-
-	/**
+    _createToolbarUnlinkButton() {
+        const editor = this.editor;
+        const t = editor.t;
+        const unlinkCommand = editor.commands.get('unlink');
+        editor.ui.componentFactory.add('unlink', locale => {
+            const button = new __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_ui_src_button_buttonview__["a" /* default */](locale);
+            button.isEnabled = false;
+            button.label = t('Unlink');
+            button.icon = __WEBPACK_IMPORTED_MODULE_10__theme_icons_unlink_svg___default.a;
+            button.tooltip = true;
+            // Bind button to the command.
+            button.bind('isEnabled').to(unlinkCommand, 'isEnabled');
+            // Execute unlink command and hide panel, if open on button click.
+            this.listenTo(button, 'execute', () => editor.execute('unlink'));
+            return button;
+        });
+    }
+    /**
 	 * Attaches actions that control whether the balloon panel containing the
 	 * {@link #formView} is visible or not.
 	 *
 	 * @private
 	 */
-	_attachActions() {
-		const viewDocument = this.editor.editing.view;
-
-		// Handle click on view document and show panel when selection is placed inside the link element.
-		// Keep panel open until selection will be inside the same link element.
-		this.listenTo( viewDocument, 'click', () => {
-			const parentLink = this._getSelectedLinkElement();
-
-			if ( parentLink ) {
-				// Then show panel but keep focus inside editor editable.
-				this._showPanel();
-			}
-		} );
-
-		// Focus the form if the balloon is visible and the Tab key has been pressed.
-		this.editor.keystrokes.set( 'Tab', ( data, cancel ) => {
-			if ( this._balloon.visibleView === this.formView && !this.formView.focusTracker.isFocused ) {
-				this.formView.focus();
-				cancel();
-			}
-		} );
-
-		// Close the panel on the Esc key press when the editable has focus and the balloon is visible.
-		this.editor.keystrokes.set( 'Esc', ( data, cancel ) => {
-			if ( this._balloon.visibleView === this.formView ) {
-				this._hidePanel();
-				cancel();
-			}
-		} );
-
-		// Close on click outside of balloon panel element.
-		Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_ui_src_bindings_clickoutsidehandler__["a" /* default */])( {
-			emitter: this.formView,
-			activator: () => this._balloon.hasView( this.formView ),
-			contextElements: [ this._balloon.view.element ],
-			callback: () => this._hidePanel()
-		} );
-	}
-
-	/**
+    _attachActions() {
+        const viewDocument = this.editor.editing.view;
+        // Handle click on view document and show panel when selection is placed inside the link element.
+        // Keep panel open until selection will be inside the same link element.
+        this.listenTo(viewDocument, 'click', () => {
+            const parentLink = this._getSelectedLinkElement();
+            if (parentLink) {
+                // Then show panel but keep focus inside editor editable.
+                this._showPanel();
+            }
+        });
+        // Focus the form if the balloon is visible and the Tab key has been pressed.
+        this.editor.keystrokes.set('Tab', (data, cancel) => {
+            if (this._balloon.visibleView === this.formView && !this.formView.focusTracker.isFocused) {
+                this.formView.focus();
+                cancel();
+            }
+        });
+        // Close the panel on the Esc key press when the editable has focus and the balloon is visible.
+        this.editor.keystrokes.set('Esc', (data, cancel) => {
+            if (this._balloon.visibleView === this.formView) {
+                this._hidePanel();
+                cancel();
+            }
+        });
+        // Close on click outside of balloon panel element.
+        Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_ui_src_bindings_clickoutsidehandler__["a" /* default */])({
+            emitter: this.formView,
+            activator: () => this._balloon.hasView(this.formView),
+            contextElements: [this._balloon.view.element],
+            callback: () => this._hidePanel()
+        });
+    }
+    /**
 	 * Adds the {@link #formView} to the {@link #_balloon}.
 	 *
 	 * @protected
 	 * @param {Boolean} [focusInput=false] When `true`, the link form will be focused on panel show.
 	 */
-	_showPanel( focusInput ) {
-		const editor = this.editor;
-		const linkCommand = editor.commands.get( 'link' );
-		const unlinkCommand = editor.commands.get( 'unlink' );
-		const editing = editor.editing;
-		const showViewDocument = editing.view;
-		const showIsCollapsed = showViewDocument.selection.isCollapsed;
-		const showSelectedLink = this._getSelectedLinkElement();
-
-		// https://github.com/ckeditor/ckeditor5-link/issues/53
-		this.formView.unlinkButtonView.isVisible = unlinkCommand.isEnabled;
-
-		// Make sure that each time the panel shows up, the URL field remains in sync with the value of
-		// the command. If the user typed in the input, then canceled the balloon (`urlInputView#value` stays
-		// unaltered) and re-opened it without changing the value of the link command (e.g. because they
-		// clicked the same link), they would see the old value instead of the actual value of the command.
-		// https://github.com/ckeditor/ckeditor5-link/issues/78
-		// https://github.com/ckeditor/ckeditor5-link/issues/123
-		this.formView.urlInputView.inputView.element.value = linkCommand.value || '';
-
-		this.listenTo( showViewDocument, 'render', () => {
-			const renderSelectedLink = this._getSelectedLinkElement();
-			const renderIsCollapsed = showViewDocument.selection.isCollapsed;
-			const hasSellectionExpanded = showIsCollapsed && !renderIsCollapsed;
-
-			// Hide the panel if:
-			//   * the selection went out of the original link element
-			//     (e.g. paragraph containing the link was removed),
-			//   * the selection has expanded
-			// upon the #render event.
-			if ( hasSellectionExpanded || showSelectedLink !== renderSelectedLink ) {
-				this._hidePanel( true );
-			}
-			// Update the position of the panel when:
-			//  * the selection remains in the original link element,
-			//  * there was no link element in the first place, i.e. creating a new link
-			else {
-				// If still in a link element, simply update the position of the balloon.
-				if ( renderSelectedLink ) {
-					this._balloon.updatePosition();
-				}
-				// If there was no link, upon #render, the balloon must be moved
-				// to the new position in the editing view (a new native DOM range).
-				else {
-					this._balloon.updatePosition( this._getBalloonPositionData() );
-				}
-			}
-		} );
-
-		if ( this._balloon.hasView( this.formView ) ) {
-			// Check if formView should be focused and focus it if is visible.
-			if ( focusInput && this._balloon.visibleView === this.formView ) {
-				this.formView.urlInputView.select();
-			}
-		} else {
-			this._balloon.add( {
-				view: this.formView,
-				position: this._getBalloonPositionData()
-			} );
-
-			if ( focusInput ) {
-				this.formView.urlInputView.select();
-			}
-		}
-	}
-
-	/**
+    _showPanel(focusInput) {
+        const editor = this.editor;
+        const linkCommand = editor.commands.get('link');
+        const unlinkCommand = editor.commands.get('unlink');
+        const editing = editor.editing;
+        const showViewDocument = editing.view;
+        const showIsCollapsed = showViewDocument.selection.isCollapsed;
+        const showSelectedLink = this._getSelectedLinkElement();
+        // https://github.com/ckeditor/ckeditor5-link/issues/53
+        this.formView.unlinkButtonView.isVisible = unlinkCommand.isEnabled;
+        // Make sure that each time the panel shows up, the URL field remains in sync with the value of
+        // the command. If the user typed in the input, then canceled the balloon (`urlInputView#value` stays
+        // unaltered) and re-opened it without changing the value of the link command (e.g. because they
+        // clicked the same link), they would see the old value instead of the actual value of the command.
+        // https://github.com/ckeditor/ckeditor5-link/issues/78
+        // https://github.com/ckeditor/ckeditor5-link/issues/123
+        this.formView.urlInputView.inputView.element.value = linkCommand.value || '';
+        this.listenTo(showViewDocument, 'render', () => {
+            const renderSelectedLink = this._getSelectedLinkElement();
+            const renderIsCollapsed = showViewDocument.selection.isCollapsed;
+            const hasSellectionExpanded = showIsCollapsed && !renderIsCollapsed;
+            // Hide the panel if:
+            //   * the selection went out of the original link element
+            //     (e.g. paragraph containing the link was removed),
+            //   * the selection has expanded
+            // upon the #render event.
+            if (hasSellectionExpanded || showSelectedLink !== renderSelectedLink) {
+                this._hidePanel(true);
+            }    // Update the position of the panel when:
+                 //  * the selection remains in the original link element,
+                 //  * there was no link element in the first place, i.e. creating a new link
+            else {
+                // If still in a link element, simply update the position of the balloon.
+                if (renderSelectedLink) {
+                    this._balloon.updatePosition();
+                }    // If there was no link, upon #render, the balloon must be moved
+                     // to the new position in the editing view (a new native DOM range).
+                else {
+                    this._balloon.updatePosition(this._getBalloonPositionData());
+                }
+            }
+        });
+        if (this._balloon.hasView(this.formView)) {
+            // Check if formView should be focused and focus it if is visible.
+            if (focusInput && this._balloon.visibleView === this.formView) {
+                this.formView.urlInputView.select();
+            }
+        } else {
+            this._balloon.add({
+                view: this.formView,
+                position: this._getBalloonPositionData()
+            });
+            if (focusInput) {
+                this.formView.urlInputView.select();
+            }
+        }
+    }
+    /**
 	 * Removes the {@link #formView} from the {@link #_balloon}.
 	 *
 	 * See {@link #_showPanel}.
@@ -61078,22 +60856,18 @@ class Link extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plug
 	 * @protected
 	 * @param {Boolean} [focusEditable=false] When `true`, editable focus will be restored on panel hide.
 	 */
-	_hidePanel( focusEditable ) {
-		this.stopListening( this.editor.editing.view, 'render' );
-
-		if ( !this._balloon.hasView( this.formView ) ) {
-			return;
-		}
-
-		if ( focusEditable ) {
-			this.editor.editing.view.focus();
-		}
-
-		this.stopListening( this.editor.editing.view, 'render' );
-		this._balloon.remove( this.formView );
-	}
-
-	/**
+    _hidePanel(focusEditable) {
+        this.stopListening(this.editor.editing.view, 'render');
+        if (!this._balloon.hasView(this.formView)) {
+            return;
+        }
+        if (focusEditable) {
+            this.editor.editing.view.focus();
+        }
+        this.stopListening(this.editor.editing.view, 'render');
+        this._balloon.remove(this.formView);
+    }
+    /**
 	 * Returns positioning options for the {@link #_balloon}. They control the way the balloon is attached
 	 * to the target element or selection.
 	 *
@@ -61103,23 +60877,18 @@ class Link extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plug
 	 * @private
 	 * @returns {module:utils/dom/position~Options}
 	 */
-	_getBalloonPositionData() {
-		const viewDocument = this.editor.editing.view;
-		const targetLink = this._getSelectedLinkElement();
-
-		const target = targetLink ?
-			// When selection is inside link element, then attach panel to this element.
-			viewDocument.domConverter.mapViewToDom( targetLink ) :
-			// Otherwise attach panel to the selection.
-			viewDocument.domConverter.viewRangeToDom( viewDocument.selection.getFirstRange() );
-
-		return {
-			target,
-			limiter: viewDocument.domConverter.mapViewToDom( viewDocument.selection.editableElement )
-		};
-	}
-
-	/**
+    _getBalloonPositionData() {
+        const viewDocument = this.editor.editing.view;
+        const targetLink = this._getSelectedLinkElement();
+        const target = targetLink ? // When selection is inside link element, then attach panel to this element.
+        viewDocument.domConverter.mapViewToDom(targetLink) : // Otherwise attach panel to the selection.
+        viewDocument.domConverter.viewRangeToDom(viewDocument.selection.getFirstRange());
+        return {
+            target,
+            limiter: viewDocument.domConverter.mapViewToDom(viewDocument.selection.editableElement)
+        };
+    }
+    /**
 	 * Returns the {@link module:link/linkelement~LinkElement} under
 	 * the {@link module:engine/view/document~Document editing view's} selection or `null`
 	 * if there is none.
@@ -61130,43 +60899,38 @@ class Link extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plug
 	 * @private
 	 * @returns {module:link/linkelement~LinkElement|null}
 	 */
-	_getSelectedLinkElement() {
-		const selection = this.editor.editing.view.selection;
-
-		if ( selection.isCollapsed ) {
-			return findLinkElementAncestor( selection.getFirstPosition() );
-		} else {
-			// The range for fully selected link is usually anchored in adjacent text nodes.
-			// Trim it to get closer to the actual LinkElement.
-			const range = selection.getFirstRange().getTrimmed();
-			const startLink = findLinkElementAncestor( range.start );
-			const endLink = findLinkElementAncestor( range.end );
-
-			if ( !startLink || startLink != endLink ) {
-				return null;
-			}
-
-			// Check if the LinkElement is fully selected.
-			if ( __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_view_range__["a" /* default */].createIn( startLink ).getTrimmed().isEqual( range ) ) {
-				return startLink;
-			} else {
-				return null;
-			}
-		}
-	}
+    _getSelectedLinkElement() {
+        const selection = this.editor.editing.view.selection;
+        if (selection.isCollapsed) {
+            return findLinkElementAncestor(selection.getFirstPosition());
+        } else {
+            // The range for fully selected link is usually anchored in adjacent text nodes.
+            // Trim it to get closer to the actual LinkElement.
+            const range = selection.getFirstRange().getTrimmed();
+            const startLink = findLinkElementAncestor(range.start);
+            const endLink = findLinkElementAncestor(range.end);
+            if (!startLink || startLink != endLink) {
+                return null;
+            }
+            // Check if the LinkElement is fully selected.
+            if (__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_view_range__["a" /* default */].createIn(startLink).getTrimmed().isEqual(range)) {
+                return startLink;
+            } else {
+                return null;
+            }
+        }
+    }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Link;
-
 
 // Returns a `LinkElement` if there's one among the ancestors of the provided `Position`.
 //
 // @private
 // @param {module:engine/view/position~Position} View position to analyze.
 // @returns {module:link/linkelement~LinkElement|null} LinkElement at the position or null.
-function findLinkElementAncestor( position ) {
-	return position.getAncestors().find( ancestor => ancestor instanceof __WEBPACK_IMPORTED_MODULE_4__linkelement__["a" /* default */] );
+function findLinkElementAncestor(position) {
+    return position.getAncestors().find(ancestor => ancestor instanceof __WEBPACK_IMPORTED_MODULE_4__linkelement__["a" /* default */]);
 }
-
 
 /***/ }),
 /* 522 */
@@ -61307,7 +61071,7 @@ class LinkEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_sr
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_command__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_text__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_text__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__findlinkrange__ = __webpack_require__(271);
 /**
@@ -61482,7 +61246,7 @@ class UnlinkCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_src_view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_template__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_viewcollection__ = __webpack_require__(152);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_ui_src_labeledinput_labeledinputview__ = __webpack_require__(266);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_inputtext_inputtextview__ = __webpack_require__(267);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_ui_src_bindings_submithandler__ = __webpack_require__(268);
@@ -61493,14 +61257,9 @@ class UnlinkCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
  */
-
 /**
  * @module link/ui/linkformview
  */
-
-
-
-
 
 
 
@@ -61519,183 +61278,140 @@ class UnlinkCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core
  * @extends module:ui/view~View
  */
 class LinkFormView extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_src_view__["a" /* default */] {
-	/**
+    /**
 	 * @inheritDoc
 	 */
-	constructor( locale ) {
-		super( locale );
-
-		const t = locale.t;
-
-		/**
+    constructor(locale) {
+        super(locale);
+        const t = locale.t;
+        /**
 		 * Tracks information about DOM focus in the form.
 		 *
 		 * @readonly
 		 * @member {module:utils/focustracker~FocusTracker}
 		 */
-		this.focusTracker = new __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_focustracker__["a" /* default */]();
-
-		/**
+        this.focusTracker = new __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_focustracker__["a" /* default */]();
+        /**
 		 * An instance of the {@link module:utils/keystrokehandler~KeystrokeHandler}.
 		 *
 		 * @readonly
 		 * @member {module:utils/keystrokehandler~KeystrokeHandler}
 		 */
-		this.keystrokes = new __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_keystrokehandler__["a" /* default */]();
-
-		/**
+        this.keystrokes = new __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_keystrokehandler__["a" /* default */]();
+        /**
 		 * The URL input view.
 		 *
 		 * @member {module:ui/labeledinput/labeledinputview~LabeledInputView}
 		 */
-		this.urlInputView = this._createUrlInput();
-
-		/**
+        this.urlInputView = this._createUrlInput();
+        /**
 		 * The Save button view.
 		 *
 		 * @member {module:ui/button/buttonview~ButtonView}
 		 */
-		this.saveButtonView = this._createButton( t( 'Save' ) );
-		this.saveButtonView.type = 'submit';
-
-		/**
+        this.saveButtonView = this._createButton(t('Save'));
+        this.saveButtonView.type = 'submit';
+        /**
 		 * The Cancel button view.
 		 *
 		 * @member {module:ui/button/buttonview~ButtonView}
 		 */
-		this.cancelButtonView = this._createButton( t( 'Cancel' ), 'cancel' );
-
-		/**
+        this.cancelButtonView = this._createButton(t('Cancel'), 'cancel');
+        /**
 		 * The Unlink button view.
 		 *
 		 * @member {module:ui/button/buttonview~ButtonView}
 		 */
-		this.unlinkButtonView = this._createButton( t( 'Unlink' ), 'unlink' );
-
-		/**
+        this.unlinkButtonView = this._createButton(t('Unlink'), 'unlink');
+        /**
 		 * A collection of views which can be focused in the form.
 		 *
 		 * @readonly
 		 * @protected
 		 * @member {module:ui/viewcollection~ViewCollection}
 		 */
-		this._focusables = new __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_viewcollection__["a" /* default */]();
-
-		/**
+        this._focusables = new __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_viewcollection__["a" /* default */]();
+        /**
 		 * Helps cycling over {@link #_focusables} in the form.
 		 *
 		 * @readonly
 		 * @protected
 		 * @member {module:ui/focuscycler~FocusCycler}
 		 */
-		this._focusCycler = new __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_ui_src_focuscycler__["a" /* default */]( {
-			focusables: this._focusables,
-			focusTracker: this.focusTracker,
-			keystrokeHandler: this.keystrokes,
-			actions: {
-				// Navigate form fields backwards using the Shift + Tab keystroke.
-				focusPrevious: 'shift + tab',
-
-				// Navigate form fields forwards using the Tab key.
-				focusNext: 'tab'
-			}
-		} );
-
-		__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_template__["a" /* default */].extend( this.saveButtonView.template, {
-			attributes: {
-				class: [
-					'ck-button-action'
-				]
-			}
-		} );
-
-		this.template = new __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_template__["a" /* default */]( {
-			tag: 'form',
-
-			attributes: {
-				class: [
-					'ck-link-form',
-				],
-
-				// https://github.com/ckeditor/ckeditor5-link/issues/90
-				tabindex: '-1'
-			},
-
-			children: [
-				this.urlInputView,
-				{
-					tag: 'div',
-
-					attributes: {
-						class: [
-							'ck-link-form__actions'
-						]
-					},
-
-					children: [
-						this.saveButtonView,
-						this.cancelButtonView,
-						this.unlinkButtonView
-					]
-				}
-			]
-		} );
-
-		Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_ui_src_bindings_submithandler__["a" /* default */])( {
-			view: this
-		} );
-
-		const childViews = [
-			this.urlInputView,
-			this.saveButtonView,
-			this.cancelButtonView,
-			this.unlinkButtonView
-		];
-
-		childViews.forEach( v => {
-			// Register the view as focusable.
-			this._focusables.add( v );
-
-			// Register the view in the focus tracker.
-			this.focusTracker.add( v.element );
-		} );
-	}
-
-	/**
+        this._focusCycler = new __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_ui_src_focuscycler__["a" /* default */]({
+            focusables: this._focusables,
+            focusTracker: this.focusTracker,
+            keystrokeHandler: this.keystrokes,
+            actions: {
+                // Navigate form fields backwards using the Shift + Tab keystroke.
+                focusPrevious: 'shift + tab',
+                // Navigate form fields forwards using the Tab key.
+                focusNext: 'tab'
+            }
+        });
+        __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_template__["a" /* default */].extend(this.saveButtonView.template, { attributes: { class: ['ck-button-action'] } });
+        this.template = new __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_template__["a" /* default */]({
+            tag: 'form',
+            attributes: {
+                class: ['ck-link-form'],
+                // https://github.com/ckeditor/ckeditor5-link/issues/90
+                tabindex: '-1'
+            },
+            children: [
+                this.urlInputView,
+                {
+                    tag: 'div',
+                    attributes: { class: ['ck-link-form__actions'] },
+                    children: [
+                        this.saveButtonView,
+                        this.cancelButtonView,
+                        this.unlinkButtonView
+                    ]
+                }
+            ]
+        });
+        Object(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_ui_src_bindings_submithandler__["a" /* default */])({ view: this });
+        const childViews = [
+            this.urlInputView,
+            this.saveButtonView,
+            this.cancelButtonView,
+            this.unlinkButtonView
+        ];
+        childViews.forEach(v => {
+            // Register the view as focusable.
+            this._focusables.add(v);
+            // Register the view in the focus tracker.
+            this.focusTracker.add(v.element);
+        });
+    }
+    /**
 	 * @inheritDoc
 	 */
-	init() {
-		// Start listening for the keystrokes coming from #element.
-		this.keystrokes.listenTo( this.element );
-
-		return super.init();
-	}
-
-	/**
+    init() {
+        // Start listening for the keystrokes coming from #element.
+        this.keystrokes.listenTo(this.element);
+        return super.init();
+    }
+    /**
 	 * Focuses the fist {@link #_focusables} in the form.
 	 */
-	focus() {
-		this._focusCycler.focusFirst();
-	}
-
-	/**
+    focus() {
+        this._focusCycler.focusFirst();
+    }
+    /**
 	 * Creates a labeled input view.
 	 *
 	 * @private
 	 * @returns {module:ui/labeledinput/labeledinputview~LabeledInputView} Labeled input view instance.
 	 */
-	_createUrlInput() {
-		const t = this.locale.t;
-
-		const labeledInput = new __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_ui_src_labeledinput_labeledinputview__["a" /* default */]( this.locale, __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_inputtext_inputtextview__["a" /* default */] );
-
-		labeledInput.label = t( 'Link URL' );
-		labeledInput.inputView.placeholder = 'https://example.com';
-
-		return labeledInput;
-	}
-
-	/**
+    _createUrlInput() {
+        const t = this.locale.t;
+        const labeledInput = new __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_ui_src_labeledinput_labeledinputview__["a" /* default */](this.locale, __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_inputtext_inputtextview__["a" /* default */]);
+        labeledInput.label = t('Link URL');
+        labeledInput.inputView.placeholder = 'https://example.com';
+        return labeledInput;
+    }
+    /**
 	 * Creates a button view.
 	 *
 	 * @private
@@ -61703,41 +61419,33 @@ class LinkFormView extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_sr
 	 * @param {String} [eventName] An event name that the `ButtonView#execute` event will be delegated to.
 	 * @returns {module:ui/button/buttonview~ButtonView} The button view instance.
 	 */
-	_createButton( label, eventName ) {
-		const button = new __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_button_buttonview__["a" /* default */]( this.locale );
-
-		button.label = label;
-		button.withText = true;
-
-		if ( eventName ) {
-			button.delegate( 'execute' ).to( this, eventName );
-		}
-
-		return button;
-	}
+    _createButton(label, eventName) {
+        const button = new __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_button_buttonview__["a" /* default */](this.locale);
+        button.label = label;
+        button.withText = true;
+        if (eventName) {
+            button.delegate('execute').to(this, eventName);
+        }
+        return button;
+    }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = LinkFormView;
-
-
-/**
+    /**
  * Fired when the form view is submitted (when one of the children triggered the submit event),
  * e.g. click on {@link #saveButtonView}.
  *
  * @event submit
  */
-
-/**
+     /**
  * Fired when the form view is canceled, e.g. click on {@link #cancelButtonView}.
  *
  * @event cancel
  */
-
-/**
+     /**
  * Fired when the {@link #unlinkButtonView} is clicked.
  *
  * @event unlink
  */
-
 
 /***/ }),
 /* 527 */
@@ -61802,20 +61510,15 @@ exports.push([module.i, ".ck-link-form{padding:1.2em;overflow:hidden}.ck-link-fo
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__theme_icons_bulletedlist_svg__ = __webpack_require__(538);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__theme_icons_bulletedlist_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__theme_icons_bulletedlist_svg__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(25);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
  */
-
 /**
  * @module list/list
  */
-
-
-
-
 
 
 
@@ -61831,69 +61534,58 @@ exports.push([module.i, ".ck-link-form{padding:1.2em;overflow:hidden}.ck-link-fo
  * @extends module:core/plugin~Plugin
  */
 class List extends __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_core_src_plugin__["a" /* default */] {
-	/**
+    /**
 	 * @inheritDoc
 	 */
-	static get requires() {
-		return [ __WEBPACK_IMPORTED_MODULE_0__listengine__["a" /* default */] ];
-	}
-
-	/**
+    static get requires() {
+        return [__WEBPACK_IMPORTED_MODULE_0__listengine__["a" /* default */]];
+    }
+    /**
 	 * @inheritDoc
 	 */
-	static get pluginName() {
-		return 'List';
-	}
-
-	/**
+    static get pluginName() {
+        return 'List';
+    }
+    /**
 	 * @inheritDoc
 	 */
-	init() {
-		// Create two buttons and link them with numberedList and bulletedList commands.
-		const t = this.editor.t;
-		this._addButton( 'numberedList', t( 'Numbered List' ), __WEBPACK_IMPORTED_MODULE_1__theme_icons_numberedlist_svg___default.a );
-		this._addButton( 'bulletedList', t( 'Bulleted List' ), __WEBPACK_IMPORTED_MODULE_2__theme_icons_bulletedlist_svg___default.a );
-
-		// Overwrite default Enter key behavior.
-		// If Enter key is pressed with selection collapsed in empty list item, outdent it instead of breaking it.
-		this.listenTo( this.editor.editing.view, 'enter', ( evt, data ) => {
-			const doc = this.editor.document;
-			const positionParent = doc.selection.getLastPosition().parent;
-
-			if ( doc.selection.isCollapsed && positionParent.name == 'listItem' && positionParent.isEmpty ) {
-				this.editor.execute( 'outdentList' );
-
-				data.preventDefault();
-				evt.stop();
-			}
-		} );
-
-		// Add Tab key support.
-		// When in list item, pressing Tab should indent list item, if possible.
-		// Pressing Shift+Tab should outdent list item.
-		this.listenTo( this.editor.editing.view, 'keydown', ( evt, data ) => {
-			let commandName;
-
-			if ( data.keystroke == Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keyboard__["d" /* parseKeystroke */])( 'Tab' ) ) {
-				commandName = 'indentList';
-			} else if ( data.keystroke == Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keyboard__["d" /* parseKeystroke */])( 'Shift+Tab' ) ) {
-				commandName = 'outdentList';
-			}
-
-			if ( commandName ) {
-				const command = this.editor.commands.get( commandName );
-
-				if ( command.isEnabled ) {
-					this.editor.execute( commandName );
-
-					data.preventDefault();
-					evt.stop();
-				}
-			}
-		} );
-	}
-
-	/**
+    init() {
+        // Create two buttons and link them with numberedList and bulletedList commands.
+        const t = this.editor.t;
+        this._addButton('numberedList', t('Numbered List'), __WEBPACK_IMPORTED_MODULE_1__theme_icons_numberedlist_svg___default.a);
+        this._addButton('bulletedList', t('Bulleted List'), __WEBPACK_IMPORTED_MODULE_2__theme_icons_bulletedlist_svg___default.a);
+        // Overwrite default Enter key behavior.
+        // If Enter key is pressed with selection collapsed in empty list item, outdent it instead of breaking it.
+        this.listenTo(this.editor.editing.view, 'enter', (evt, data) => {
+            const doc = this.editor.document;
+            const positionParent = doc.selection.getLastPosition().parent;
+            if (doc.selection.isCollapsed && positionParent.name == 'listItem' && positionParent.isEmpty) {
+                this.editor.execute('outdentList');
+                data.preventDefault();
+                evt.stop();
+            }
+        });
+        // Add Tab key support.
+        // When in list item, pressing Tab should indent list item, if possible.
+        // Pressing Shift+Tab should outdent list item.
+        this.listenTo(this.editor.editing.view, 'keydown', (evt, data) => {
+            let commandName;
+            if (data.keystroke == Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keyboard__["d" /* parseKeystroke */])('Tab')) {
+                commandName = 'indentList';
+            } else if (data.keystroke == Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keyboard__["d" /* parseKeystroke */])('Shift+Tab')) {
+                commandName = 'outdentList';
+            }
+            if (commandName) {
+                const command = this.editor.commands.get(commandName);
+                if (command.isEnabled) {
+                    this.editor.execute(commandName);
+                    data.preventDefault();
+                    evt.stop();
+                }
+            }
+        });
+    }
+    /**
 	 * Helper method for initializing a button and linking it with an appropriate command.
 	 *
 	 * @private
@@ -61901,31 +61593,25 @@ class List extends __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_core_src_plug
 	 * @param {Object} label The button label.
 	 * @param {String} icon The source of the icon.
 	 */
-	_addButton( commandName, label, icon ) {
-		const editor = this.editor;
-		const command = editor.commands.get( commandName );
-
-		editor.ui.componentFactory.add( commandName, locale => {
-			const buttonView = new __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_button_buttonview__["a" /* default */]( locale );
-
-			buttonView.set( {
-				label,
-				icon,
-				tooltip: true
-			} );
-
-			// Bind button model to command.
-			buttonView.bind( 'isOn', 'isEnabled' ).to( command, 'value', 'isEnabled' );
-
-			// Execute command.
-			this.listenTo( buttonView, 'execute', () => editor.execute( commandName ) );
-
-			return buttonView;
-		} );
-	}
+    _addButton(commandName, label, icon) {
+        const editor = this.editor;
+        const command = editor.commands.get(commandName);
+        editor.ui.componentFactory.add(commandName, locale => {
+            const buttonView = new __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_button_buttonview__["a" /* default */](locale);
+            buttonView.set({
+                label,
+                icon,
+                tooltip: true
+            });
+            // Bind button model to command.
+            buttonView.bind('isOn', 'isEnabled').to(command, 'value', 'isEnabled');
+            // Execute command.
+            this.listenTo(buttonView, 'execute', () => editor.execute(commandName));
+            return buttonView;
+        });
+    }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = List;
-
 
 
 /***/ }),
@@ -62619,9 +62305,9 @@ function _seekListItem( item, seekForward ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_documentfragment__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_model_position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_engine_src_model_writer__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_engine_src_model_writer__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_view_containerelement__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_engine_src_view_position__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_engine_src_view_position__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_engine_src_view_range__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_engine_src_view_treewalker__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_engine_src_view_writer__ = __webpack_require__(88);
