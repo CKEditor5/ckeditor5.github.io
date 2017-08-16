@@ -654,31 +654,54 @@ and <code>ignoreElementEnd</code> option set to <code>true</code>.</p>
           <h4>Static methods</h4>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="fromJSON">
-                          <h3><code><a class="member-name" href="#fromJSON">fromJSON</a>( json, doc ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="createOn">
+                          <h3><code><a class="member-name" href="#createOn">createOn</a>( item ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">static</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Creates a <code>Range</code> instance from given plain object (i.e. parsed JSON string).
+                          <p class="collapsing-list__excerpt">Creates a range that starts before given <a href="module_engine_model_item-Item.html">model item</a> and ends after it.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> json : Object</code></dt>
-                                        <dd><p>Plain object to be converted to <code>Range</code>.</p>
-                                        </dd>
-                                        <dt><code> doc : <span><a class="collapsing-list__type" href="module_engine_model_document-Document.html">Document</a></span></code></dt>
-                                        <dd><p>Document object that will be range owner.</p>
+                                        <dt><code> item : <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span></code></dt>
+                                        <dd>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
-                                        <dd><p><code>Range</code> instance created using given plain object.</p>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
+                                        <dd>
                                         </dd>
                             </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="createCollapsedAt">
+                          <h3><code><a class="member-name" href="#createCollapsedAt">createCollapsedAt</a>( itemOrPosition, [ offset ] )</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">static</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Creates a collapsed range at given <a href="module_engine_model_position-Position.html">position</a>
+or on the given <a href="module_engine_model_item-Item.html">item</a>.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> itemOrPosition : <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
+                                        <dd>
+                                        </dd>
+                                        <dt><code> [ offset ] : Number |  |  | </code></dt>
+                                        <dd><p>Offset or one of the flags. Used only when
+first parameter is a <a href="module_engine_model_item-Item.html">model item</a>.</p>
+                                          <p>Defaults to <code>0</code></p>
+                                        </dd>
+                                      </dl>
                           </div>
                         </div>
                       </li>
@@ -834,26 +857,29 @@ that element and ends after the last child of that element.
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="createOn">
-                          <h3><code><a class="member-name" href="#createOn">createOn</a>( item ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="fromJSON">
+                          <h3><code><a class="member-name" href="#fromJSON">fromJSON</a>( json, doc ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">static</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Creates a range that starts before given <a href="module_engine_model_item-Item.html">model item</a> and ends after it.
+                          <p class="collapsing-list__excerpt">Creates a <code>Range</code> instance from given plain object (i.e. parsed JSON string).
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> item : <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span></code></dt>
-                                        <dd>
+                                        <dt><code> json : Object</code></dt>
+                                        <dd><p>Plain object to be converted to <code>Range</code>.</p>
+                                        </dd>
+                                        <dt><code> doc : <span><a class="collapsing-list__type" href="module_engine_model_document-Document.html">Document</a></span></code></dt>
+                                        <dd><p>Document object that will be range owner.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
-                                        <dd>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
+                                        <dd><p><code>Range</code> instance created using given plain object.</p>
                                         </dd>
                             </dl>
                           </div>
@@ -3376,6 +3402,9 @@ that element and ends after the last child of that element.
                                         <li><a href="module_utils_dom_getancestors.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">getancestors</span></div></a>
                                         </li>
+                                        <li><a href="module_utils_dom_getborderwidths.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">getborderwidths</span></div></a>
+                                        </li>
                                         <li><a href="module_utils_dom_getcommonancestor.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">getcommonancestor</span></div></a>
                                         </li>
@@ -3420,6 +3449,9 @@ that element and ends after the last child of that element.
                                         </li>
                                         <li><a href="module_utils_dom_remove.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">remove</span></div></a>
+                                        </li>
+                                        <li><a href="module_utils_dom_scroll.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">scroll</span></div></a>
                                         </li>
                                         <li><a href="module_utils_dom_setdatainelement.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">setdatainelement</span></div></a>

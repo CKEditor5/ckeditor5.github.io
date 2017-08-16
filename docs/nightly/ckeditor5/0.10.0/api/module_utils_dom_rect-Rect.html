@@ -38,7 +38,7 @@
           <p><span class="badge">class</span>
           </p><p>A helper class representing a <code>ClientRect</code> object, e.g. value returned by
 the native <code>object.getBoundingClientRect()</code> method. Provides a set of methods
-to manipulate the rect and compare it against other <code>Rect</code> instances.</p>
+to manipulate the rect and compare it against other rect instances.</p>
           <div class="notice notice__filter api-props-filter">
             <div class="api-props-filter__inner">
               <h4>Filtering</h4>
@@ -182,17 +182,22 @@ const rectA = new Rect( document.body );
 // Rect of a DOM Range.
 const rectB = new Rect( document.getSelection().getRangeAt( 0 ) );
 
+// Rect of a window (web browser viewport).
+const rectC = new Rect( window );
+
 // Rect out of an object.
-const rectC = new Rect( { top: 0, right: 10, bottom: 10, left: 0, width: 10, height: 10 } );
+const rectD = new Rect( { top: 0, right: 10, bottom: 10, left: 0, width: 10, height: 10 } );
 
 // Rect out of another Rect instance.
-const rectD = new Rect( rectC );
+const rectE = new Rect( rectD );
 
 // Rect out of a ClientRect.
-const rectE = new Rect( document.body.getClientRects().item( 0 ) );</code></pre>
+const rectF = new Rect( document.body.getClientRects().item( 0 ) );</code></pre><p><strong>Note</strong>: By default a rect of an HTML element includes its CSS borders and scrollbars (if any)
+ant the rect of a <code>window</code> includes scrollbars too. Use <a href="module_utils_dom_rect-Rect.html#excludeScrollbarsAndBorders"><code>excludeScrollbarsAndBorders</code></a>
+to get the inner part of the rect.</p>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> source : HTMLElement | Range | ClientRect | <span><a class="collapsing-list__type" href="module_utils_dom_rect-Rect.html">Rect</a></span> | Object</code></dt>
+                                        <dt><code> source : HTMLElement | Range | Window | ClientRect | <span><a class="collapsing-list__type" href="module_utils_dom_rect-Rect.html">Rect</a></span> | Object</code></dt>
                                         <dd><p>A source object to create the rect.</p>
                                         </dd>
                                       </dl>
@@ -200,17 +205,67 @@ const rectE = new Rect( document.body.getClientRects().item( 0 ) );</code></pre>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="clone">
-                          <h3><code><a class="member-name" href="#clone">clone</a>() &rarr;  <span><a class="collapsing-list__type" href="module_utils_dom_rect-Rect.html">Rect</a></span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="getIntersection">
+                          <h3><code><a class="member-name" href="#getIntersection">getIntersection</a>( anotherRect ) &rarr;  <span><a class="collapsing-list__type" href="module_utils_dom_rect-Rect.html">Rect</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Returns a clone of the rect.
+                          <p class="collapsing-list__excerpt">Returns a new rect a a result of intersection with another rect.
                           </p>
                           <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> anotherRect : <span><a class="collapsing-list__type" href="module_utils_dom_rect-Rect.html">Rect</a></span></code></dt>
+                                        <dd>
+                                        </dd>
+                                      </dl>
                             <h4>Returns</h4>
                             <dl>
                                         <dt><code><span><a class="collapsing-list__type" href="module_utils_dom_rect-Rect.html">Rect</a></span></code></dt>
-                                        <dd><p>A cloned rect.</p>
+                                        <dd>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="contains">
+                          <h3><code><a class="member-name" href="#contains">contains</a>( anotherRect ) &rarr;  Boolean</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Checks whether a rect fully contains another rect instance.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> anotherRect : <span><a class="collapsing-list__type" href="module_utils_dom_rect-Rect.html">Rect</a></span></code></dt>
+                                        <dd>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code>Boolean</code></dt>
+                                        <dd><p><code>true</code> if contains, <code>false</code> otherwise.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="excludeScrollbarsAndBorders">
+                          <h3><code><a class="member-name" href="#excludeScrollbarsAndBorders">excludeScrollbarsAndBorders</a>() &rarr;  <span><a class="collapsing-list__type" href="module_utils_dom_rect-Rect.html">Rect</a></span></code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Excludes scrollbars and CSS borders from the rect.
+                          </p>
+                          <div class="collapsing-list__content">
+<ul>
+<li>Borders are removed when <a href="module_utils_dom_rect-Rect.html#_source"><code>_source</code></a> is an HTML element.</li>
+<li>Scrollbars are excluded from HTML elements and the <code>window</code>.</li>
+</ul>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_utils_dom_rect-Rect.html">Rect</a></span></code></dt>
+                                        <dd><p>A rect which has been updated.</p>
                                         </dd>
                             </dl>
                           </div>
@@ -234,23 +289,17 @@ const rectE = new Rect( document.body.getClientRects().item( 0 ) );</code></pre>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="getIntersection">
-                          <h3><code><a class="member-name" href="#getIntersection">getIntersection</a>( anotherRect ) &rarr;  <span><a class="collapsing-list__type" href="module_utils_dom_rect-Rect.html">Rect</a></span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="clone">
+                          <h3><code><a class="member-name" href="#clone">clone</a>() &rarr;  <span><a class="collapsing-list__type" href="module_utils_dom_rect-Rect.html">Rect</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Returns a new rect a a result of intersection with another rect.
+                          <p class="collapsing-list__excerpt">Returns a clone of the rect.
                           </p>
                           <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> anotherRect : <span><a class="collapsing-list__type" href="module_utils_dom_rect-Rect.html">Rect</a></span></code></dt>
-                                        <dd>
-                                        </dd>
-                                      </dl>
                             <h4>Returns</h4>
                             <dl>
                                         <dt><code><span><a class="collapsing-list__type" href="module_utils_dom_rect-Rect.html">Rect</a></span></code></dt>
-                                        <dd>
+                                        <dd><p>A cloned rect.</p>
                                         </dd>
                             </dl>
                           </div>
@@ -295,6 +344,31 @@ the ancestors, <code>null</code> is returned.</p>
                             <dl>
                                         <dt><code><span><a class="collapsing-list__type" href="module_utils_dom_rect-Rect.html">Rect</a></span> | null</code></dt>
                                         <dd><p>A visible rect instance or <code>null</code>, if there&apos;s none.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="isEqual">
+                          <h3><code><a class="member-name" href="#isEqual">isEqual</a>( rect ) &rarr;  Boolean</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Checks if all property values (<a href="module_utils_dom_rect-Rect.html#top"><code>top</code></a>, <a href="module_utils_dom_rect-Rect.html#left"><code>left</code></a>, <a href="module_utils_dom_rect-Rect.html#right"><code>right</code></a>,
+<a href="module_utils_dom_rect-Rect.html#bottom"><code>bottom</code></a>, <a href="module_utils_dom_rect-Rect.html#width"><code>width</code></a> and <a href="module_utils_dom_rect-Rect.html#height"><code>height</code></a>) are the equal in both rect
+instances.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> rect : <span><a class="collapsing-list__type" href="module_utils_dom_rect-Rect.html">Rect</a></span></code></dt>
+                                        <dd><p>A rect instance to compare with.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code>Boolean</code></dt>
+                                        <dd><p><code>true</code> when Rects are equal. <code>false</code> otherwise.</p>
                                         </dd>
                             </dl>
                           </div>
@@ -376,26 +450,6 @@ the ancestors, <code>null</code> is returned.</p>
                             <dl>
                                         <dt><code><span>Array.&lt;<a class="collapsing-list__type" href="module_utils_dom_rect-Rect.html">Rect</a>&gt;</span></code></dt>
                                         <dd><p>DOM Range rects.</p>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="getViewportRect">
-                          <h3><code><a class="member-name" href="#getViewportRect">getViewportRect</a>() &rarr;  <span><a class="collapsing-list__type" href="module_utils_dom_rect-Rect.html">Rect</a></span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">static</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Returns a rect of the web browser viewport.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_utils_dom_rect-Rect.html">Rect</a></span></code></dt>
-                                        <dd><p>A viewport rect.</p>
                                         </dd>
                             </dl>
                           </div>
@@ -2918,6 +2972,9 @@ the ancestors, <code>null</code> is returned.</p>
                                         <li><a href="module_utils_dom_getancestors.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">getancestors</span></div></a>
                                         </li>
+                                        <li><a href="module_utils_dom_getborderwidths.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">getborderwidths</span></div></a>
+                                        </li>
                                         <li><a href="module_utils_dom_getcommonancestor.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">getcommonancestor</span></div></a>
                                         </li>
@@ -2962,6 +3019,9 @@ the ancestors, <code>null</code> is returned.</p>
                                         </li>
                                         <li><a href="module_utils_dom_remove.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">remove</span></div></a>
+                                        </li>
+                                        <li><a href="module_utils_dom_scroll.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">scroll</span></div></a>
                                         </li>
                                         <li><a href="module_utils_dom_setdatainelement.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">setdatainelement</span></div></a>

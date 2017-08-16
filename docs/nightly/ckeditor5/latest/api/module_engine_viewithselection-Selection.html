@@ -245,49 +245,21 @@ collapsed.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="getLastRange">
-                          <h3><code><a class="member-name" href="#getLastRange">getLastRange</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithrange-Range.html">Range</a></span> | null</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="getSelectedElement">
+                          <h3><code><a class="member-name" href="#getSelectedElement">getSelectedElement</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | null</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Returns copy of the last range in the selection. Last range is the one which <a href="module_engine_viewithrange-Range.html#end">end</a>
-position <a href="module_engine_viewithposition-Position.html#isAfter">is after</a> end position of all other ranges (not to confuse
-with the last range added to the selection). Returns <code>null</code> if no ranges are added to selection.
+                          <p class="collapsing-list__excerpt">Returns the selected element. <a href="module_engine_viewithelement-Element.html">Element</a> is considered as selected if there is only
+one range in the selection, and that range contains exactly one element.
+Returns <code>null</code> if there is no selected element.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithrange-Range.html">Range</a></span> | null</code></dt>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | null</code></dt>
                                         <dd>
                                         </dd>
                             </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="collapse">
-                          <h3><code><a class="member-name" href="#collapse">collapse</a>( itemOrPosition, [ offset ] )</code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Sets collapsed selection in the specified location.
-                          </p>
-                          <div class="collapsing-list__content">
-<p>The location can be specified in the same form as <a href="module_engine_viewithposition-Position.html#createAt"><code>createAt</code></a> parameters.</p>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> itemOrPosition : <span><a class="collapsing-list__type" href="module_engine_viewithitem-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></dt>
-                                        <dd>
-                                        </dd>
-                                        <dt><code> [ offset ] : Number |  |  | </code></dt>
-                                        <dd><p>Offset or one of the flags. Used only when
-first parameter is a <a href="module_engine_viewithitem-Item.html">view item</a>.</p>
-                                          <p>Defaults to <code>0</code></p>
-                                        </dd>
-                                      </dl>
-                            <h4>Fires</h4>
-                            <ul>
-                                        <li><span><a href="module_engine_viewithselection-Selection.html#event:change">change</a></span>
-                                        </li>
-                            </ul>
                           </div>
                         </div>
                       </li>
@@ -408,6 +380,42 @@ Returns <code>null</code> if no ranges are added to selection.
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="getLastRange">
+                          <h3><code><a class="member-name" href="#getLastRange">getLastRange</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithrange-Range.html">Range</a></span> | null</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Returns copy of the last range in the selection. Last range is the one which <a href="module_engine_viewithrange-Range.html#end">end</a>
+position <a href="module_engine_viewithposition-Position.html#isAfter">is after</a> end position of all other ranges (not to confuse
+with the last range added to the selection). Returns <code>null</code> if no ranges are added to selection.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithrange-Range.html">Range</a></span> | null</code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="getRanges">
+                          <h3><code><a class="member-name" href="#getRanges">getRanges</a>() &rarr;  <span>Iterator.&lt;<a class="collapsing-list__type" href="module_engine_viewithrange-Range.html">Range</a>&gt;</span></code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Returns an iterator that contains copies of all ranges added to the selection.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Iterator.&lt;<a class="collapsing-list__type" href="module_engine_viewithrange-Range.html">Range</a>&gt;</span></code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="addRange">
                           <h3><code><a class="member-name" href="#addRange">addRange</a>( range, isBackward )</code></h3>
                         </div>
@@ -436,42 +444,6 @@ with ranges already stored in Selection instance.</p>
                                         <li><span><a href="module_engine_viewithselection-Selection.html#event:change">change</a></span>
                                         </li>
                             </ul>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="getRanges">
-                          <h3><code><a class="member-name" href="#getRanges">getRanges</a>() &rarr;  <span>Iterator.&lt;<a class="collapsing-list__type" href="module_engine_viewithrange-Range.html">Range</a>&gt;</span></code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Returns an iterator that contains copies of all ranges added to the selection.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span>Iterator.&lt;<a class="collapsing-list__type" href="module_engine_viewithrange-Range.html">Range</a>&gt;</span></code></dt>
-                                        <dd>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="getSelectedElement">
-                          <h3><code><a class="member-name" href="#getSelectedElement">getSelectedElement</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | null</code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Returns the selected element. <a href="module_engine_viewithelement-Element.html">Element</a> is considered as selected if there is only
-one range in the selection, and that range contains exactly one element.
-Returns <code>null</code> if there is no selected element.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | null</code></dt>
-                                        <dd>
-                                        </dd>
-                            </dl>
                           </div>
                         </div>
                       </li>
@@ -525,6 +497,34 @@ equal to any trimmed range from other selection.
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="moveFocusTo">
+                          <h3><code><a class="member-name" href="#moveFocusTo">moveFocusTo</a>( itemOrPosition, [ offset ] )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Moves <a href="module_engine_viewithselection-Selection.html#focus"><code>focus</code></a> to the specified location.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>The location can be specified in the same form as <a href="module_engine_viewithposition-Position.html#createAt"><code>createAt</code></a> parameters.</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> itemOrPosition : <span><a class="collapsing-list__type" href="module_engine_viewithitem-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></dt>
+                                        <dd>
+                                        </dd>
+                                        <dt><code> [ offset ] : Number |  |  | </code></dt>
+                                        <dd><p>Offset or one of the flags. Used only when
+first parameter is a <a href="module_engine_viewithitem-Item.html">view item</a>.</p>
+                                          <p>Defaults to <code>0</code></p>
+                                        </dd>
+                                      </dl>
+                            <h4>Fires</h4>
+                            <ul>
+                                        <li><span><a href="module_engine_viewithselection-Selection.html#event:change">change</a></span>
+                                        </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="removeAllRanges">
                           <h3><code><a class="member-name" href="#removeAllRanges">removeAllRanges</a>()</code></h3>
                         </div>
@@ -532,6 +532,34 @@ equal to any trimmed range from other selection.
                           <p class="collapsing-list__excerpt">Removes all ranges that were added to the selection.
                           </p>
                           <div class="collapsing-list__content">
+                            <h4>Fires</h4>
+                            <ul>
+                                        <li><span><a href="module_engine_viewithselection-Selection.html#event:change">change</a></span>
+                                        </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="setCollapsedAt">
+                          <h3><code><a class="member-name" href="#setCollapsedAt">setCollapsedAt</a>( itemOrPosition, [ offset ] )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Sets collapsed selection at the specified location.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>The location can be specified in the same form as <a href="module_engine_viewithposition-Position.html#createAt"><code>createAt</code></a> parameters.</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> itemOrPosition : <span><a class="collapsing-list__type" href="module_engine_viewithitem-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></dt>
+                                        <dd>
+                                        </dd>
+                                        <dt><code> [ offset ] : Number |  |  | </code></dt>
+                                        <dd><p>Offset or one of the flags. Used only when
+first parameter is a <a href="module_engine_viewithitem-Item.html">view item</a>.</p>
+                                          <p>Defaults to <code>0</code></p>
+                                        </dd>
+                                      </dl>
                             <h4>Fires</h4>
                             <ul>
                                         <li><span><a href="module_engine_viewithselection-Selection.html#event:change">change</a></span>
@@ -579,30 +607,36 @@ properly handled by screen readers).</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="setFocus">
-                          <h3><code><a class="member-name" href="#setFocus">setFocus</a>( itemOrPosition, [ offset ] )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="setIn">
+                          <h3><code><a class="member-name" href="#setIn">setIn</a>( element )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Sets <a href="module_engine_viewithselection-Selection.html#focus"><code>focus</code></a> to the specified location.
+                          <p class="collapsing-list__excerpt">Sets this selection in the provided element.
                           </p>
                           <div class="collapsing-list__content">
-<p>The location can be specified in the same form as <a href="module_engine_viewithposition-Position.html#createAt"><code>createAt</code></a> parameters.</p>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> itemOrPosition : <span><a class="collapsing-list__type" href="module_engine_viewithitem-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></dt>
+                                        <dt><code> element : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span></code></dt>
                                         <dd>
                                         </dd>
-                                        <dt><code> [ offset ] : Number |  |  | </code></dt>
-                                        <dd><p>Offset or one of the flags. Used only when
-first parameter is a <a href="module_engine_viewithitem-Item.html">view item</a>.</p>
-                                          <p>Defaults to <code>0</code></p>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="setOn">
+                          <h3><code><a class="member-name" href="#setOn">setOn</a>( item )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Sets this selection on the provided item.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> item : <span><a class="collapsing-list__type" href="module_engine_viewithitem-Item.html">Item</a></span></code></dt>
+                                        <dd>
                                         </dd>
                                       </dl>
-                            <h4>Fires</h4>
-                            <ul>
-                                        <li><span><a href="module_engine_viewithselection-Selection.html#event:change">change</a></span>
-                                        </li>
-                            </ul>
                           </div>
                         </div>
                       </li>
@@ -636,15 +670,17 @@ Accepts a flag describing in which way the selection is made (see <a href="modul
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="setTo">
-                          <h3><code><a class="member-name" href="#setTo">setTo</a>( otherSelection )</code></h3>
+                          <h3><code><a class="member-name" href="#setTo">setTo</a>( selectable )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Sets this selection&apos;s ranges and direction to the ranges and direction of the given selection.
+                          <p class="collapsing-list__excerpt">Sets this selection&apos;s ranges and direction to the specified location based on the given
+<a href="module_engine_viewithselection-Selection.html">selection</a>, <a href="module_engine_viewithposition-Position.html">position</a>,
+<a href="module_engine_viewithrange-Range.html">range</a> or an iterable of <a href="module_engine_viewithrange-Range.html">ranges</a>.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> otherSelection : <span><a class="collapsing-list__type" href="module_engine_viewithselection-Selection.html">Selection</a></span></code></dt>
+                                        <dt><code> selectable : <span><a class="collapsing-list__type" href="module_engine_viewithselection-Selection.html">Selection</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span> | <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_viewithrange-Range.html">Range</a>&gt;</span> | <span><a class="collapsing-list__type" href="module_engine_viewithrange-Range.html">Range</a></span></code></dt>
                                         <dd>
                                         </dd>
                                       </dl>
@@ -3206,6 +3242,9 @@ ranges and same direction as this selection.
                                         <li><a href="module_utils_dom_getancestors.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">getancestors</span></div></a>
                                         </li>
+                                        <li><a href="module_utils_dom_getborderwidths.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">getborderwidths</span></div></a>
+                                        </li>
                                         <li><a href="module_utils_dom_getcommonancestor.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">getcommonancestor</span></div></a>
                                         </li>
@@ -3250,6 +3289,9 @@ ranges and same direction as this selection.
                                         </li>
                                         <li><a href="module_utils_dom_remove.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">remove</span></div></a>
+                                        </li>
+                                        <li><a href="module_utils_dom_scroll.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">scroll</span></div></a>
                                         </li>
                                         <li><a href="module_utils_dom_setdatainelement.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">setdatainelement</span></div></a>

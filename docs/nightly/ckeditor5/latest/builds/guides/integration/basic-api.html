@@ -31,9 +31,9 @@
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Creators">Creators</a></li><li><a href="#Interacting-with-the-editor">Interacting with the editor</a><ol><li><a href="#Setting-the-editor-data">Setting the editor data</a></li><li><a href="#Getting-the-editor-data">Getting the editor data</a></li><li><a href="#Destroying-the-editor">Destroying the editor</a></li></ol></li><li><a href="#What&#x2019;s-more">What&#x2019;s more?</a></li></ol></nav><h2 id="Creators"><a href="#Creators" class="headerlink" title="Creators"></a>Creators</h2><p>Each CKEditor 5 build provides a class that handles the creation of editor instances ininfo a page. For this reason they are called &#x201C;creators&#x201D;. Every creator comes with a static <code>create()</code> method.</p>
 <p>The following are creator class names for each build:</p>
 <ul>
-<li>Classic Editor &#x2013; <a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html">ClassicEditor</a></li>
-<li>Inline Editor &#x2013; <a href="../../../api/module_editor-inline_inlineeditor-InlineEditor.html">InlineEditor</a></li>
-<li>Medium-like Editor &#x2013; <a href="../../../api/module_editor-medium-like_mediumlikeeditor-MediumLikeEditor.html">MediumLikeEditor</a></li>
+<li>Classic editor &#x2013; <a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html">ClassicEditor</a></li>
+<li>Inline editor &#x2013; <a href="../../../api/module_editor-inline_inlineeditor-InlineEditor.html">InlineEditor</a></li>
+<li>Editor with balloon toolbar (Medium-like) &#x2013; <a href="../../../api/module_editor-balloon-toolbar_balloontoolbareditor-BalloonToolbarEditor.html">BalloonToolbarEditor</a></li>
 </ul>
 <p>Most of the examples in the documentation use the <code>ClassicEditor</code> class, but things should work in a similar way with other creator classes.</p>
 <p>Because builds are distributed as <a href="https://github.com/umdjs/umd" target="_blank" rel="external">UMD modules</a>, these classes can be retrieved:</p>
@@ -62,7 +62,8 @@ ClassicEditor.create; // [Function]
 &lt;/textarea&gt;
 </code></pre>
 <p>In the script:</p>
-<pre><code class="js">ClassicEditor.create( document.querySelector( &apos;#text-editor&apos; ) )
+<pre><code class="js">ClassicEditor
+    .create( document.querySelector( &apos;#text-editor&apos; ) )
     .then( editor =&gt; {
         console.log( editor );
     } )
