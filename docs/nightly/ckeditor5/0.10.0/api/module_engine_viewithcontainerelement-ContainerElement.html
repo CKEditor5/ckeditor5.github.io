@@ -330,26 +330,31 @@ This means that view tree got broken.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="getStyle">
-                          <h3><code><a class="member-name" href="#getStyle">getStyle</a>( property ) &rarr;  String | undefined</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="getIdentity">
+                          <h3><code><a class="member-name" href="#getIdentity">getIdentity</a>() &rarr;  String</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">inherited</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Returns style value for given property.
-Undefined is returned if style does not exist.
+                          <p class="collapsing-list__excerpt">Returns identity string based on element&apos;s name, styles, classes and other attributes.
+Two elements that <a href="module_engine_viewithelement-Element.html#isSimilar">are  similar</a> will have same identity string.
+It has the following format:
                           </p>
                           <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> property : String</code></dt>
-                                        <dd>
-                                        </dd>
-                                      </dl>
+<pre class="prettyprint source"><code>&apos;name class=&quot;class1,class2&quot; style=&quot;style1:value1;style2:value2&quot; attr1=&quot;val1&quot; attr2=&quot;val2&quot;&apos;</code></pre><p>For example:</p>
+<pre class="prettyprint source"><code>const element = new ViewElement( &apos;foo&apos; );
+element.setAttribute( &apos;banana&apos;, &apos;10&apos; );
+element.setAttribute( &apos;apple&apos;, &apos;20&apos; );
+element.setStyle( &apos;color&apos;, &apos;red&apos; );
+element.setStyle( &apos;border-color&apos;, &apos;white&apos; );
+element.addClass( &apos;baz&apos; );
+
+// returns &apos;foo class=&quot;baz&quot; style=&quot;border-color:white;color:red&quot; apple=&quot;20&quot; banana=&quot;10&quot;&apos;
+element.getIdentity();</code></pre><p>NOTE: Classes, styles and other attributes are sorted alphabetically.</p>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code>String | undefined</code></dt>
+                                        <dt><code>String</code></dt>
                                         <dd>
                                         </dd>
                             </dl>
@@ -798,6 +803,33 @@ element.addClass( &apos;foo&apos;, &apos;bar&apos; ); // Adds &apos;foo&apos; an
                                         <li><span><a href="module_engine_viewithnode-Node.html#event:change">change</a></span>
                                         </li>
                             </ul>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="getStyle">
+                          <h3><code><a class="member-name" href="#getStyle">getStyle</a>( property ) &rarr;  String | undefined</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Returns style value for given property.
+Undefined is returned if style does not exist.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> property : String</code></dt>
+                                        <dd>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code>String | undefined</code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
                           </div>
                         </div>
                       </li>

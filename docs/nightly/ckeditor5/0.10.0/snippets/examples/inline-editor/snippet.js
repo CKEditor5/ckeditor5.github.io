@@ -8616,6 +8616,40 @@ class Element extends __WEBPACK_IMPORTED_MODULE_0__node__["a" /* default */] {
 	}
 
 	/**
+	 * Returns identity string based on element's name, styles, classes and other attributes.
+	 * Two elements that {@link #isSimilar are similar} will have same identity string.
+	 * It has the following format:
+	 *
+	 *		'name class="class1,class2" style="style1:value1;style2:value2" attr1="val1" attr2="val2"'
+ 	 *
+	 * For example:
+	 *
+	 *		const element = new ViewElement( 'foo' );
+	 *		element.setAttribute( 'banana', '10' );
+	 *		element.setAttribute( 'apple', '20' );
+	 *		element.setStyle( 'color', 'red' );
+	 *		element.setStyle( 'border-color', 'white' );
+	 *		element.addClass( 'baz' );
+	 *
+	 *		// returns 'foo class="baz" style="border-color:white;color:red" apple="20" banana="10"'
+	 *		element.getIdentity();
+	 *
+	 * NOTE: Classes, styles and other attributes are sorted alphabetically.
+	 *
+	 * @returns {String}
+	 */
+	getIdentity() {
+		const classes = Array.from( this._classes ).sort().join( ',' );
+		const styles = Array.from( this._styles ).map( i => `${ i[ 0 ] }:${ i[ 1 ] }` ).sort().join( ';' );
+		const attributes = Array.from( this._attrs ).map( i => `${ i[ 0 ] }="${ i[ 1 ] }"` ).sort().join( ' ' );
+
+		return this.name +
+			( classes == '' ? '' : ` class="${ classes }"` ) +
+			( styles == '' ? '' : ` style="${ styles }"` ) +
+			( attributes == '' ? '' : ` ${ attributes }` );
+	}
+
+	/**
 	 * Returns block {@link module:engine/view/filler filler} offset or `null` if block filler is not needed.
 	 *
 	 * @abstract
@@ -16975,7 +17009,7 @@ function wrapChildren( parent, startOffset, endOffset, attribute ) {
 		const isUI = child.is( 'uiElement' );
 
 		// Wrap text, empty elements, ui elements or attributes with higher or equal priority.
-		if ( isText || isEmpty || isUI || ( isAttribute && attribute.priority <= child.priority ) ) {
+		if ( isText || isEmpty || isUI || ( isAttribute && shouldABeOutsideB( attribute, child ) ) ) {
 			// Clone attribute.
 			const newAttribute = attribute.clone();
 
@@ -17015,6 +17049,25 @@ function wrapChildren( parent, startOffset, endOffset, attribute ) {
 	}
 
 	return __WEBPACK_IMPORTED_MODULE_6__range__["a" /* default */].createFromParentsAndOffsets( parent, startOffset, parent, endOffset );
+}
+
+// Checks if first {@link module:engine/view/attributeelement~AttributeElement AttributeElement} provided to the function
+// can be wrapped otuside second element. It is done by comparing elements'
+// {@link module:engine/view/attributeelement~AttributeElement#priority priorities}, if both have same priority
+// {@link module:engine/view/element~Element#getIdentity identities} are compared.
+//
+// @param {module:engine/view/attributeelement~AttributeElement} a
+// @param {module:engine/view/attributeelement~AttributeElement} b
+// @returns {Boolean}
+function shouldABeOutsideB( a, b ) {
+	if ( a.priority < b.priority ) {
+		return true;
+	} else if ( a.priority > b.priority ) {
+		return false;
+	}
+
+	// When priorities are equal and names are different - use identities.
+	return a.getIdentity() < b.getIdentity();
 }
 
 // Returns new position that is moved to near text node. Returns same position if there is no text node before of after
@@ -17088,7 +17141,6 @@ function mergeTextNodes( t1, t2 ) {
 }
 
 // Wraps one {@link module:engine/view/attributeelement~AttributeElement AttributeElement} into another by merging them if possible.
-// Two AttributeElements can be merged when there is no attribute or style conflicts between them.
 // When merging is possible - all attributes, styles and classes are moved from wrapper element to element being
 // wrapped.
 //
@@ -19258,7 +19310,7 @@ class Selection {
 	 * @param {module:engine/model/element~Element} [element=this.anchor.root]
 	 * @returns {Boolean}
 	 */
-	isEntireContentSelected( element = this.anchor.root ) {
+	containsEntireContent( element = this.anchor.root ) {
 		const limitStartPosition = __WEBPACK_IMPORTED_MODULE_0__position__["a" /* default */].createAt( element );
 		const limitEndPosition = __WEBPACK_IMPORTED_MODULE_0__position__["a" /* default */].createAt( element, 'end' );
 
@@ -42751,7 +42803,7 @@ function replaceEntireContentWithParagraph( batch, selection ) {
 function shouldEntireContentBeReplacedWithParagraph( schema, selection ) {
 	const limitElement = schema.getLimitElement( selection );
 
-	if ( !selection.isEntireContentSelected( limitElement ) ) {
+	if ( !selection.containsEntireContent( limitElement ) ) {
 		return false;
 	}
 
@@ -60555,7 +60607,11 @@ function modelToViewStyleAttribute( styles ) {
 		const oldStyle = getStyleByValue( data.attributeOldValue, styles );
 		const viewElement = conversionApi.mapper.toViewElement( data.item );
 
-		if ( handleRemoval( eventType, oldStyle, viewElement ) || handleAddition( eventType, newStyle, viewElement ) ) {
+		const isRemovalHandled = handleRemoval( eventType, oldStyle, viewElement );
+		const isAdditionHandled = handleAddition( eventType, newStyle, viewElement );
+
+		// https://github.com/ckeditor/ckeditor5-image/issues/132
+		if ( isRemovalHandled || isAdditionHandled ) {
 			consumable.consume( data.item, consumableType );
 		}
 	};

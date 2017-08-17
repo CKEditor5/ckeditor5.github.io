@@ -269,29 +269,14 @@ collapsed.</p>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="getAttribute">
-                          <h3><code><a class="member-name" href="#getAttribute">getAttribute</a>( key ) &rarr;  </code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="destroy">
+                          <h3><code><a class="member-name" href="#destroy">destroy</a>()</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Gets an attribute value for given key or <code>undefined</code> if that attribute is not set on the selection.
+                          <p class="collapsing-list__excerpt">Unbinds all events previously bound by document selection.
                           </p>
                           <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> key : String</code></dt>
-                                        <dd><p>Key of attribute to look for.</p>
-                                        </dd>
-                                      </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code></code></dt>
-                                        <dd><p>Attribute value or <code>undefined</code>.</p>
-                                        </dd>
-                            </dl>
                           </div>
                         </div>
                       </li>
@@ -721,14 +706,34 @@ inside selection.
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="destroy">
-                          <h3><code><a class="member-name" href="#destroy">destroy</a>()</code></h3>
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="containsEntireContent">
+                          <h3><code><a class="member-name" href="#containsEntireContent">containsEntireContent</a>( [ element ] ) &rarr;  Boolean</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                          </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Unbinds all events previously bound by document selection.
+                          <p class="collapsing-list__excerpt">Checks whether the selection contains the entire content of the given element. This means that selection must start
+at a position <a href="module_engine_model_position-Position.html#isTouching">touching</a> the element&apos;s start and ends at position
+touching the element&apos;s end.
                           </p>
                           <div class="collapsing-list__content">
+<p>By default, this method will check whether the entire content of the selection&apos;s current root is selected.
+Useful to check if e.g. the user has just pressed <kbd>Ctrl</kbd> + <kbd>A</kbd>.</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> [ element ] : <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
+                                        <dd>
+                                          <p>Defaults to <code>this.anchor.root</code></p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code>Boolean</code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
                           </div>
                         </div>
                       </li>
@@ -752,6 +757,32 @@ inside selection.
                                         <dd><p>Range which removing had caused moving <code>liveRange</code> to the graveyard root.</p>
                                         </dd>
                                       </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="getAttribute">
+                          <h3><code><a class="member-name" href="#getAttribute">getAttribute</a>( key ) &rarr;  </code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Gets an attribute value for given key or <code>undefined</code> if that attribute is not set on the selection.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> key : String</code></dt>
+                                        <dd><p>Key of attribute to look for.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code></code></dt>
+                                        <dd><p>Attribute value or <code>undefined</code>.</p>
+                                        </dd>
+                            </dl>
                           </div>
                         </div>
                       </li>
@@ -987,37 +1018,6 @@ Returns <code>null</code> if there is no selected element.
                             <dl>
                                         <dt><code>Boolean</code></dt>
                                         <dd><p><code>true</code> if attribute with given key is set on selection, <code>false</code> otherwise.</p>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="isEntireContentSelected">
-                          <h3><code><a class="member-name" href="#isEntireContentSelected">isEntireContentSelected</a>( [ element ] ) &rarr;  Boolean</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Checks whether the selection contains the entire content of the given element. This means that selection must start
-at a position <a href="module_engine_model_position-Position.html#isTouching">touching</a> the element&apos;s start and ends at position
-touching the element&apos;s end.
-                          </p>
-                          <div class="collapsing-list__content">
-<p>By default, this method will check whether the entire content of the selection&apos;s current root is selected.
-Useful to check if e.g. the user has just pressed <kbd>Ctrl</kbd> + <kbd>A</kbd>.</p>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> [ element ] : <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
-                                        <dd>
-                                          <p>Defaults to <code>this.anchor.root</code></p>
-                                        </dd>
-                                      </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code>Boolean</code></dt>
-                                        <dd>
                                         </dd>
                             </dl>
                           </div>

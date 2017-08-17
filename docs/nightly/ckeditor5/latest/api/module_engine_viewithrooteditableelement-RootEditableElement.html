@@ -418,26 +418,20 @@ other name is set, <code>main</code> name is used.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="hasAttribute">
-                          <h3><code><a class="member-name" href="#hasAttribute">hasAttribute</a>( key ) &rarr;  Boolean</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="getStyleNames">
+                          <h3><code><a class="member-name" href="#getStyleNames">getStyleNames</a>() &rarr;  String</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">inherited</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Returns a boolean indicating whether an attribute with the specified key exists in the element.
+                          <p class="collapsing-list__excerpt">Returns iterator that contains all style names.
                           </p>
                           <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> key : String</code></dt>
-                                        <dd><p>Attribute key.</p>
-                                        </dd>
-                                      </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code>Boolean</code></dt>
-                                        <dd><p><code>true</code> if attribute with the specified key exists in the element, false otherwise.</p>
+                                        <dt><code>String</code></dt>
+                                        <dd>
                                         </dd>
                             </dl>
                           </div>
@@ -1023,6 +1017,38 @@ Iterator provides [key, value] pair for each stored property.
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="getIdentity">
+                          <h3><code><a class="member-name" href="#getIdentity">getIdentity</a>() &rarr;  String</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Returns identity string based on element&apos;s name, styles, classes and other attributes.
+Two elements that <a href="module_engine_viewithelement-Element.html#isSimilar">are  similar</a> will have same identity string.
+It has the following format:
+                          </p>
+                          <div class="collapsing-list__content">
+<pre class="prettyprint source"><code>&apos;name class=&quot;class1,class2&quot; style=&quot;style1:value1;style2:value2&quot; attr1=&quot;val1&quot; attr2=&quot;val2&quot;&apos;</code></pre><p>For example:</p>
+<pre class="prettyprint source"><code>const element = new ViewElement( &apos;foo&apos; );
+element.setAttribute( &apos;banana&apos;, &apos;10&apos; );
+element.setAttribute( &apos;apple&apos;, &apos;20&apos; );
+element.setStyle( &apos;color&apos;, &apos;red&apos; );
+element.setStyle( &apos;border-color&apos;, &apos;white&apos; );
+element.addClass( &apos;baz&apos; );
+
+// returns &apos;foo class=&quot;baz&quot; style=&quot;border-color:white;color:red&quot; apple=&quot;20&quot; banana=&quot;10&quot;&apos;
+element.getIdentity();</code></pre><p>NOTE: Classes, styles and other attributes are sorted alphabetically.</p>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code>String</code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="getStyle">
                           <h3><code><a class="member-name" href="#getStyle">getStyle</a>( property ) &rarr;  String | undefined</code></h3>
                           <p class="badges">
@@ -1043,26 +1069,6 @@ Undefined is returned if style does not exist.
                             <h4>Returns</h4>
                             <dl>
                                         <dt><code>String | undefined</code></dt>
-                                        <dd>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="getStyleNames">
-                          <h3><code><a class="member-name" href="#getStyleNames">getStyleNames</a>() &rarr;  String</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Returns iterator that contains all style names.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code>String</code></dt>
                                         <dd>
                                         </dd>
                             </dl>
@@ -1093,6 +1099,32 @@ element.addClass( &apos;foo&apos;, &apos;bar&apos; ); // Adds &apos;foo&apos; an
                                         <li><span><a href="module_engine_viewithnode-Node.html#event:change">change</a></span>
                                         </li>
                             </ul>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="hasAttribute">
+                          <h3><code><a class="member-name" href="#hasAttribute">hasAttribute</a>( key ) &rarr;  Boolean</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Returns a boolean indicating whether an attribute with the specified key exists in the element.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> key : String</code></dt>
+                                        <dd><p>Attribute key.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code>Boolean</code></dt>
+                                        <dd><p><code>true</code> if attribute with the specified key exists in the element, false otherwise.</p>
+                                        </dd>
+                            </dl>
                           </div>
                         </div>
                       </li>
