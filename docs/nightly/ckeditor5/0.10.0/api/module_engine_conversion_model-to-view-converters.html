@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Module engine/conversion/model-to-view-converters - CKEditor 5 API docs</title>
     <link rel="canonical" href="/ckeditor5/latest/api/module_engine_conversion_model-to-view-converters.html">
-    <link rel="stylesheet" href="../../../assets/0.3.2/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../assets/0.3.5/css/styles.css" type="text/css" media="screen">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
-    <script src="../../../assets/0.3.2/scripts/app.js"></script>
+    <script src="../../../assets/0.3.5/scripts/app.js"></script>
   </head>
   <body>
     <header class="top">
@@ -21,13 +21,13 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.2/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.5/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="api-header"><img src="../../../assets/0.3.2/img/box-red.svg" alt="Module" title="Module"/>
+          <div class="api-header"><img src="../../../assets/0.3.5/img/box-red.svg" alt="Module" title="Module"/>
             <div class="api-header__title">
               <h1>engine/conversion/model-to-view-converters
               </h1>
@@ -73,7 +73,7 @@
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="eventNameToConsumableType">
-                          <h3><code><a class="member-name" href="#eventNameToConsumableType">eventNameToConsumableType</a>( evtName ) &rarr;  String</code></h3>
+                          <h3><code><a class="member-name" href="#eventNameToConsumableType">eventNameToConsumableType</a>( evtName ) &rarr;  <span>String</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">static</span>
                           </p>
@@ -84,13 +84,13 @@
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> evtName : String</code></dt>
+                                        <dt><code> evtName : <span>String</span></code></dt>
                                         <dd><p>Event name.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code>String</code></dt>
+                                        <dt><code><span>String</span></code></dt>
                                         <dd><p>Consumable type.</p>
                                         </dd>
                             </dl>
@@ -98,8 +98,98 @@
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="highlightDescriptorToAttributeElement">
+                          <h3><code><a class="member-name" href="#highlightDescriptorToAttributeElement">highlightDescriptorToAttributeElement</a>( descriptor ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithattributeelement-AttributeElement.html">AttributeElement</a></span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">static</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Creates <code>span</code> <a href="module_engine_viewithattributeelement-AttributeElement.html">view attribute element</a> from information
+provided by <a href="module_engine_conversion_buildmodelconverter-HighlightDescriptor.html"><code>HighlightDescriptor</code></a> object. If priority
+is not provided in descriptor - default priority will be used.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> descriptor : <span><a class="collapsing-list__type" href="module_engine_conversion_buildmodelconverter-HighlightDescriptor.html">HighlightDescriptor</a></span></code></dt>
+                                        <dd>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithattributeelement-AttributeElement.html">AttributeElement</a></span></code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="highlightElement">
+                          <h3><code><a class="member-name" href="#highlightElement">highlightElement</a>( highlightDescriptor ) &rarr;  <span>function</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">static</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Function factory, creates converter that converts all elements inside marker&apos;s range. Converter checks if element has
+functions stored under <code>addHighlight</code> and <code>removeHighlight</code> custom properties and calls them passing
+<a href="module_engine_conversion_buildmodelconverter-HighlightDescriptor.html"><code>HighlightDescriptor</code></a>. In such case converter will consume
+all element&apos;s children, assuming that they were handled by element itself. If highlight descriptor will not provide
+priority, priority 10 will be used as default, to be compliant with
+<a href="module_engine_conversion_model-to-view-converters.html#highlightText"><code>highlightText</code></a> method which uses default priority of
+<a href="module_engine_viewithattributeelement-AttributeElement.html"><code>AttributeElement</code></a>.
+When <code>addHighlight</code> and <code>removeHighlight</code> custom properties are not present, element is not converted
+in any special way. This means that converters will proceed to convert element&apos;s child nodes.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> highlightDescriptor : <span><a class="collapsing-list__type" href="module_engine_conversion_buildmodelconverter-HighlightDescriptor.html">HighlightDescriptor</a></span> | <span>function</span></code></dt>
+                                        <dd>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>function</span></code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="highlightText">
+                          <h3><code><a class="member-name" href="#highlightText">highlightText</a>( highlightDescriptor ) &rarr;  <span>function</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">static</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Function factory, creates converter that converts all texts inside marker&apos;s range. Converter wraps each text with
+<a href="module_engine_viewithattributeelement-AttributeElement.html"><code>AttributeElement</code></a> created from provided descriptor.
+See {link module:engine/conversion/model-to-view-converters~highlightDescriptorToAttributeElement}.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> highlightDescriptor : <span><a class="collapsing-list__type" href="module_engine_conversion_buildmodelconverter-HighlightDescriptor.html">HighlightDescriptor</a></span> | <span>function</span></code></dt>
+                                        <dd>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>function</span></code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="insertElement">
-                          <h3><code><a class="member-name" href="#insertElement">insertElement</a>( elementCreator ) &rarr;  function</code></h3>
+                          <h3><code><a class="member-name" href="#insertElement">insertElement</a>( elementCreator ) &rarr;  <span>function</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">static</span>
                           </p>
@@ -129,14 +219,14 @@ modelDispatcher.on(
 ) );</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> elementCreator : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | function</code></dt>
+                                        <dt><code> elementCreator : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | <span>function</span></code></dt>
                                         <dd><p>View element, or function returning a view element, which
 will be inserted.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code>function</code></dt>
+                                        <dt><code><span>function</span></code></dt>
                                         <dd><p>Insert element event converter.</p>
                                         </dd>
                             </dl>
@@ -145,7 +235,7 @@ will be inserted.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="insertText">
-                          <h3><code><a class="member-name" href="#insertText">insertText</a>() &rarr;  function</code></h3>
+                          <h3><code><a class="member-name" href="#insertText">insertText</a>() &rarr;  <span>function</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">static</span>
                           </p>
@@ -159,7 +249,7 @@ will be inserted.</p>
 <pre class="prettyprint source"><code>modelDispatcher.on( &apos;insert:$text&apos;, insertText() );</code></pre>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code>function</code></dt>
+                                        <dt><code><span>function</span></code></dt>
                                         <dd><p>Insert text event converter.</p>
                                         </dd>
                             </dl>
@@ -168,7 +258,7 @@ will be inserted.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="insertUIElement">
-                          <h3><code><a class="member-name" href="#insertUIElement">insertUIElement</a>( elementCreator ) &rarr;  function</code></h3>
+                          <h3><code><a class="member-name" href="#insertUIElement">insertUIElement</a>( elementCreator ) &rarr;  <span>function</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">static</span>
                           </p>
@@ -184,14 +274,14 @@ and at the end of the range.
 uses marker as &quot;model source of data&quot;. This means that view ui element does not have corresponding model element.</p>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> elementCreator : <span><a class="collapsing-list__type" href="module_engine_viewithuielement-UIElement.html">UIElement</a></span> | function</code></dt>
+                                        <dt><code> elementCreator : <span><a class="collapsing-list__type" href="module_engine_viewithuielement-UIElement.html">UIElement</a></span> | <span>function</span></code></dt>
                                         <dd><p>View ui element, or function returning a view element, which
 will be inserted.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code>function</code></dt>
+                                        <dt><code><span>function</span></code></dt>
                                         <dd><p>Insert element event converter.</p>
                                         </dd>
                             </dl>
@@ -200,7 +290,7 @@ will be inserted.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="remove">
-                          <h3><code><a class="member-name" href="#remove">remove</a>() &rarr;  function</code></h3>
+                          <h3><code><a class="member-name" href="#remove">remove</a>() &rarr;  <span>function</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">static</span>
                           </p>
@@ -212,7 +302,7 @@ will be inserted.</p>
 <pre class="prettyprint source"><code>modelDispatcher.on( &apos;remove&apos;, remove() );</code></pre>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code>function</code></dt>
+                                        <dt><code><span>function</span></code></dt>
                                         <dd><p>Remove event converter.</p>
                                         </dd>
                             </dl>
@@ -221,7 +311,7 @@ will be inserted.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="removeAttribute">
-                          <h3><code><a class="member-name" href="#removeAttribute">removeAttribute</a>( [ attributeCreator ] ) &rarr;  function</code></h3>
+                          <h3><code><a class="member-name" href="#removeAttribute">removeAttribute</a>( [ attributeCreator ] ) &rarr;  <span>function</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">static</span>
                           </p>
@@ -251,7 +341,7 @@ key-value attribute pair to remove. If not provided, model attributes will be re
 } ) );</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> [ attributeCreator ] : function</code></dt>
+                                        <dt><code> [ attributeCreator ] : <span>function</span></code></dt>
                                         <dd><p>Function returning an object with two properties: <code>key</code> and <code>value</code>, which
 represents attribute key and attribute value to be removed from <a href="module_engine_viewithelement-Element.html">view element</a>.
 The function is passed all the parameters of the
@@ -261,7 +351,7 @@ or <a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDi
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code>function</code></dt>
+                                        <dt><code><span>function</span></code></dt>
                                         <dd><p>Remove attribute converter.</p>
                                         </dd>
                             </dl>
@@ -270,7 +360,7 @@ or <a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDi
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="removeUIElement">
-                          <h3><code><a class="member-name" href="#removeUIElement">removeUIElement</a>( elementCreator ) &rarr;  function</code></h3>
+                          <h3><code><a class="member-name" href="#removeUIElement">removeUIElement</a>( elementCreator ) &rarr;  <span>function</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">static</span>
                           </p>
@@ -282,14 +372,14 @@ basing on marker remove change.
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> elementCreator : <span><a class="collapsing-list__type" href="module_engine_viewithuielement-UIElement.html">UIElement</a></span> | function</code></dt>
+                                        <dt><code> elementCreator : <span><a class="collapsing-list__type" href="module_engine_viewithuielement-UIElement.html">UIElement</a></span> | <span>function</span></code></dt>
                                         <dd><p>View ui element, or function returning
 a view ui element, which will be used as a pattern when look for element to remove at the marker start position.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code>function</code></dt>
+                                        <dt><code><span>function</span></code></dt>
                                         <dd><p>Remove ui element converter.</p>
                                         </dd>
                             </dl>
@@ -298,7 +388,7 @@ a view ui element, which will be used as a pattern when look for element to remo
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="setAttribute">
-                          <h3><code><a class="member-name" href="#setAttribute">setAttribute</a>( [ attributeCreator ] ) &rarr;  function</code></h3>
+                          <h3><code><a class="member-name" href="#setAttribute">setAttribute</a>( [ attributeCreator ] ) &rarr;  <span>function</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">static</span>
                           </p>
@@ -328,7 +418,7 @@ on 1-to-1 basis.
 } ) );</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> [ attributeCreator ] : function</code></dt>
+                                        <dt><code> [ attributeCreator ] : <span>function</span></code></dt>
                                         <dd><p>Function returning an object with two properties: <code>key</code> and <code>value</code>, which
 represents attribute key and attribute value to be set on a <a href="module_engine_viewithelement-Element.html">view element</a>.
 The function is passed all the parameters of the
@@ -338,7 +428,7 @@ or <a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDi
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code>function</code></dt>
+                                        <dt><code><span>function</span></code></dt>
                                         <dd><p>Set/change attribute converter.</p>
                                         </dd>
                             </dl>
@@ -347,7 +437,7 @@ or <a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDi
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="unwrapItem">
-                          <h3><code><a class="member-name" href="#unwrapItem">unwrapItem</a>( elementCreator ) &rarr;  function</code></h3>
+                          <h3><code><a class="member-name" href="#unwrapItem">unwrapItem</a>( elementCreator ) &rarr;  <span>function</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">static</span>
                           </p>
@@ -369,14 +459,14 @@ The result of the function will be used to look for similar element in the view 
 <pre class="prettyprint source"><code>modelDispatcher.on( &apos;removeAttribute:bold&apos;, unwrapItem( new ViewAttributeElement( &apos;strong&apos; ) ) );</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> elementCreator : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | function</code></dt>
+                                        <dt><code> elementCreator : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | <span>function</span></code></dt>
                                         <dd><p>View element, or function returning a view element, which will
 be used for unwrapping.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code>function</code></dt>
+                                        <dt><code><span>function</span></code></dt>
                                         <dd><p>Remove attribute converter.</p>
                                         </dd>
                             </dl>
@@ -384,45 +474,8 @@ be used for unwrapping.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="unwrapRange">
-                          <h3><code><a class="member-name" href="#unwrapRange">unwrapRange</a>( elementCreator ) &rarr;  function</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">static</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Function factory, creates a converter that converts removing of a model marker to view attribute element.
-This converter will unwrap view nodes from corresponding view range.
-                          </p>
-                          <div class="collapsing-list__content">
-<p>The view element that will be unwrapped depends on passed parameter. If <a href="module_engine_viewithattributeelement-AttributeElement.html"><code>AttributeElement</code></a>
-was passed, it will be used to look for similar element in the view for unwrapping. If <code>Function</code> is provided, it is passed all
-the parameters of the
-<a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:removeMarker">removeMarker event</a>.
-It&apos;s expected that the function returns a <a href="module_engine_viewithattributeelement-AttributeElement.html"><code>AttributeElement</code></a>. The result of
-the function will be used to look for similar element in the view for unwrapping.</p>
-<p>The converter automatically consumes corresponding value from consumables list, stops the event (see
-<a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html"><code>ModelConversionDispatcher</code></a>) and bind model and view elements.</p>
-<pre class="prettyprint source"><code>modelDispatcher.on( &apos;removeMarker:searchResult&apos;, unwrapRange( new ViewAttributeElement( &apos;span&apos;, { class: &apos;searchResult&apos; } ) ) );</code></pre>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> elementCreator : <span><a class="collapsing-list__type" href="module_engine_viewithattributeelement-AttributeElement.html">AttributeElement</a></span> | function</code></dt>
-                                        <dd><p>View attribute element, or function returning
-a view attribute element, which will be used for unwrapping.</p>
-                                        </dd>
-                                      </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code>function</code></dt>
-                                        <dd><p>Unwrap range converter.</p>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="wrapItem">
-                          <h3><code><a class="member-name" href="#wrapItem">wrapItem</a>( elementCreator ) &rarr;  function</code></h3>
+                          <h3><code><a class="member-name" href="#wrapItem">wrapItem</a>( elementCreator ) &rarr;  <span>function</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">static</span>
                           </p>
@@ -448,60 +501,15 @@ When provided <code>Function</code> does not return element, then will be no con
 <pre class="prettyprint source"><code>modelDispatcher.on( &apos;addAttribute:bold&apos;, wrapItem( new ViewAttributeElement( &apos;strong&apos; ) ) );</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> elementCreator : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | function</code></dt>
+                                        <dt><code> elementCreator : <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | <span>function</span></code></dt>
                                         <dd><p>View element, or function returning a view element, which will
 be used for wrapping.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code>function</code></dt>
+                                        <dt><code><span>function</span></code></dt>
                                         <dd><p>Set/change attribute converter.</p>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="wrapRange">
-                          <h3><code><a class="member-name" href="#wrapRange">wrapRange</a>( elementCreator ) &rarr;  function</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">static</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Function factory, creates a converter that wraps model range.
-                          </p>
-                          <div class="collapsing-list__content">
-<p>In contrary to <a href="module_engine_conversion_model-to-view-converters.html#wrapItem"><code>wrapItem</code></a>, this converter&apos;s input is a
-<a href="module_engine_model_range-Range.html">model range</a> (not changed model item). The model range is mapped
-to <a href="module_engine_viewithrange-Range.html">view range</a> and then, view items within that view range are wrapped in a
-<a href="module_engine_viewithattributeelement-AttributeElement.html">view attribute element</a>. Note, that <code>elementCreator</code>
-function of this converter takes different parameters that <code>elementCreator</code> of <code>wrapItem</code>.</p>
-<p>Let&apos;s assume following model and view. <code>{}</code> represents a range that is added as a marker with <code>searchResult</code> name.
-The range represents a result of search <code>ab</code> string in the model document. The range has to be visualized in view.</p>
-<pre class="prettyprint source"><code>[paragraph]              MODEL ====&gt; VIEW        &lt;p&gt;
-    |- {a                                         |- &lt;span class=&quot;searchResult&quot;&gt;
-    |-  b}                                        |   |- ab
-    |-  c                                         |- c</code></pre><p>The wrapping node depends on passed parameter. If <a href="module_engine_viewithattributeelement-AttributeElement.html"><code>AttributeElement</code></a> was passed, it
-will be cloned and the copy will become the wrapping element. If <code>Function</code> is provided, it is passed all the parameters of the
-<a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:addMarker">addMarker event</a>. It&apos;s expected
-that the function returns a <a href="module_engine_viewithattributeelement-AttributeElement.html"><code>AttributeElement</code></a>. The result of the function will be the
-wrapping element. When provided <code>Function</code> does not return element, then will be no conversion.</p>
-<p>The converter automatically consumes corresponding value from consumables list, stops the event (see
-<a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html"><code>ModelConversionDispatcher</code></a>).</p>
-<pre class="prettyprint source"><code>modelDispatcher.on( &apos;addMarker:searchResult&apos;, wrapRange( new ViewAttributeElement( &apos;span&apos;, { class: &apos;searchResult&apos; } ) ) );</code></pre>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> elementCreator : <span><a class="collapsing-list__type" href="module_engine_viewithattributeelement-AttributeElement.html">AttributeElement</a></span> | function</code></dt>
-                                        <dd><p>View attribute element, or function returning
-a view attribute element, which will be used for wrapping.</p>
-                                        </dd>
-                                      </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code>function</code></dt>
-                                        <dd><p>Wrap range converter.</p>
                                         </dd>
                             </dl>
                           </div>
@@ -512,7 +520,7 @@ a view attribute element, which will be used for wrapping.</p>
       </section>
       <div class="side-navigation">
         <div class="side-navigation__wrapper">
-          <nav class="side-navigation__inner">
+          <nav class="side-navigation__inner side-navigation__inner--api">
             <ul class="tree api-tree">
                     <li class="toggler--collapsed">
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">adapter-ckfinder</span>
@@ -958,8 +966,11 @@ a view attribute element, which will be used for wrapping.</p>
                                                   <li><a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">ModelConverterBuilder</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_conversion_buildmodelconverter-StampCreatorData.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">StampCreatorData</span></div></a>
+                                                  <li><a href="module_engine_conversion_buildmodelconverter-HighlightDescriptor.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">HighlightDescriptor</span></div></a>
+                                                  </li>
+                                                  <li><a href="module_engine_conversion_buildmodelconverter-MarkerViewElementCreatorData.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">MarkerViewElementCreatorData</span></div></a>
                                                   </li>
                                           </ul>
                                         </li>
@@ -3284,6 +3295,15 @@ a view attribute element, which will be used for wrapping.</p>
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">widget</span>
                       </div>
                       <ul>
+                              <li class="toggler--collapsed">
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_widget_highlightstack.html">highlightstack</a>
+                                </div>
+                                <ul>
+                                        <li><a href="module_widget_highlightstack-HighlightStack.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">HighlightStack</span></div></a>
+                                        </li>
+                                </ul>
+                              </li>
                               <li><a href="module_widget_utils.html">
                                   <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">utils</span></div></a>
                               </li>

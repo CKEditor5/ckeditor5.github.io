@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Class TreeWalker (engine/model/treewalker~TreeWalker) - CKEditor 5 API docs</title>
     <link rel="canonical" href="/ckeditor5/latest/api/module_engine_model_treewalker-TreeWalker.html">
-    <link rel="stylesheet" href="../../../assets/0.3.2/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../assets/0.3.5/css/styles.css" type="text/css" media="screen">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
-    <script src="../../../assets/0.3.2/scripts/app.js"></script>
+    <script src="../../../assets/0.3.5/scripts/app.js"></script>
   </head>
   <body>
     <header class="top">
@@ -21,13 +21,13 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.2/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.5/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="api-header"><img src="../../../assets/0.3.2/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.5/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1>TreeWalker
               </h1>
@@ -70,6 +70,95 @@
           </div>
           <h2>Properties</h2>
           <ul class="collapsing-list collapsing-list--filtered">
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="boundaries">
+                          <h3><code><a class="member-name" href="#boundaries">boundaries</a> : <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Iterator boundaries.</p>
+                          <div class="collapsing-list__content">
+<p>When the iterator is walking <code>&apos;forward&apos;</code> on the end of boundary or is walking <code>&apos;backward&apos;</code>
+on the start of boundary, then <code>{ done: true }</code> is returned.</p>
+<p>If boundaries are not defined they are set before first and after last child of the root node.</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="direction">
+                          <h3><code><a class="member-name" href="#direction">direction</a> : <span>'backward'</span> | <span>'forward'</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Walking direction. Defaults <code>&apos;forward&apos;</code>.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="ignoreElementEnd">
+                          <h3><code><a class="member-name" href="#ignoreElementEnd">ignoreElementEnd</a> : <span>Boolean</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Flag indicating whether iterator should ignore <code>elementEnd</code> tags. If the option is true walker will not
+return a parent node of the start position. If this option is <code>true</code> each <a href="module_engine_model_element-Element.html"><code>Element</code></a> will
+be returned once, while if the option is <code>false</code> they might be returned twice:
+for <code>&apos;elementStart&apos;</code> and <code>&apos;elementEnd&apos;</code>.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="position">
+                          <h3><code><a class="member-name" href="#position">position</a> : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Iterator position. This is always static position, even if the initial position was a
+<a href="module_engine_model_liveposition-LivePosition.html">live position</a>. If start position is not defined then position depends
+on <a href="module_engine_model_treewalker-TreeWalker.html#direction"><code>direction</code></a>. If direction is <code>&apos;forward&apos;</code> position starts form the beginning, when direction
+is <code>&apos;backward&apos;</code> position starts from the end.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="shallow">
+                          <h3><code><a class="member-name" href="#shallow">shallow</a> : <span>Boolean</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Flag indicating whether iterator should enter elements or not. If the iterator is shallow child nodes of any
+iterated node will not be returned along with <code>elementEnd</code> tag.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="singleCharacters">
+                          <h3><code><a class="member-name" href="#singleCharacters">singleCharacters</a> : <span>Boolean</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Flag indicating whether all consecutive characters with the same attributes should be
+returned as one <a href="module_engine_model_textproxy-TextProxy.html"><code>TextProxy</code></a> (<code>true</code>) or one by one (<code>false</code>).</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
                       <li class="collapsing-list__item" data-private="true">
                         <div class="collapsing-list__term toggler--collapsed" id="_boundaryEndParent">
                           <h3><code><a class="member-name" href="#_boundaryEndParent">_boundaryEndParent</a> : <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></h3>
@@ -109,95 +198,6 @@
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="boundaries">
-                          <h3><code><a class="member-name" href="#boundaries">boundaries</a> : <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Iterator boundaries.</p>
-                          <div class="collapsing-list__content">
-<p>When the iterator is walking <code>&apos;forward&apos;</code> on the end of boundary or is walking <code>&apos;backward&apos;</code>
-on the start of boundary, then <code>{ done: true }</code> is returned.</p>
-<p>If boundaries are not defined they are set before first and after last child of the root node.</p>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="direction">
-                          <h3><code><a class="member-name" href="#direction">direction</a> :  | </code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Walking direction. Defaults <code>&apos;forward&apos;</code>.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="ignoreElementEnd">
-                          <h3><code><a class="member-name" href="#ignoreElementEnd">ignoreElementEnd</a> : Boolean</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Flag indicating whether iterator should ignore <code>elementEnd</code> tags. If the option is true walker will not
-return a parent node of the start position. If this option is <code>true</code> each <a href="module_engine_model_element-Element.html"><code>Element</code></a> will
-be returned once, while if the option is <code>false</code> they might be returned twice:
-for <code>&apos;elementStart&apos;</code> and <code>&apos;elementEnd&apos;</code>.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="position">
-                          <h3><code><a class="member-name" href="#position">position</a> : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Iterator position. This is always static position, even if the initial position was a
-<a href="module_engine_model_liveposition-LivePosition.html">live position</a>. If start position is not defined then position depends
-on <a href="module_engine_model_treewalker-TreeWalker.html#direction"><code>direction</code></a>. If direction is <code>&apos;forward&apos;</code> position starts form the beginning, when direction
-is <code>&apos;backward&apos;</code> position starts from the end.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="shallow">
-                          <h3><code><a class="member-name" href="#shallow">shallow</a> : Boolean</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Flag indicating whether iterator should enter elements or not. If the iterator is shallow child nodes of any
-iterated node will not be returned along with <code>elementEnd</code> tag.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="singleCharacters">
-                          <h3><code><a class="member-name" href="#singleCharacters">singleCharacters</a> : Boolean</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Flag indicating whether all consecutive characters with the same attributes should be
-returned as one <a href="module_engine_model_textproxy-TextProxy.html"><code>TextProxy</code></a> (<code>true</code>) or one by one (<code>false</code>).</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
           </ul>
           <h2>Methods</h2>
           <ul class="collapsing-list collapsing-list--filtered">
@@ -211,12 +211,12 @@ returned as one <a href="module_engine_model_textproxy-TextProxy.html"><code>Tex
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> [ options ] : Object</code></dt>
+                                        <dt><code> [ options ] : <span>Object</span></code></dt>
                                         <dd><p>Object with configuration.</p>
                                                     <div class="dlheading5">Properties
                                                     </div>
                                                     <dl>
-                                                      <dt><code> [ options.direction ] :  | </code></dt>
+                                                      <dt><code> [ options.direction ] : <span>'forward'</span> | <span>'backward'</span></code></dt>
                                                       <dd><p>Walking direction.</p>
                                                         <p>Defaults to <code>'forward'</code></p>
                                                       </dd>
@@ -226,18 +226,18 @@ returned as one <a href="module_engine_model_textproxy-TextProxy.html"><code>Tex
                                                       <dt><code> [ options.startPosition ] : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
                                                       <dd><p>Starting position.</p>
                                                       </dd>
-                                                      <dt><code> [ options.singleCharacters ] : Boolean</code></dt>
+                                                      <dt><code> [ options.singleCharacters ] : <span>Boolean</span></code></dt>
                                                       <dd><p>Flag indicating whether all consecutive characters with the same attributes
 should be returned one by one as multiple <a href="module_engine_model_textproxy-TextProxy.html"><code>TextProxy</code></a> (<code>true</code>) objects or as one
 <a href="module_engine_model_textproxy-TextProxy.html"><code>TextProxy</code></a> (<code>false</code>).</p>
                                                         <p>Defaults to <code>false</code></p>
                                                       </dd>
-                                                      <dt><code> [ options.shallow ] : Boolean</code></dt>
+                                                      <dt><code> [ options.shallow ] : <span>Boolean</span></code></dt>
                                                       <dd><p>Flag indicating whether iterator should enter elements or not. If the
 iterator is shallow child nodes of any iterated node will not be returned along with <code>elementEnd</code> tag.</p>
                                                         <p>Defaults to <code>false</code></p>
                                                       </dd>
-                                                      <dt><code> [ options.ignoreElementEnd ] : Boolean</code></dt>
+                                                      <dt><code> [ options.ignoreElementEnd ] : <span>Boolean</span></code></dt>
                                                       <dd><p>Flag indicating whether iterator should ignore <code>elementEnd</code>
 tags. If the option is true walker will not return a parent node of start position. If this option is <code>true</code>
 each <a href="module_engine_model_element-Element.html"><code>Element</code></a> will be returned once, while if the option is <code>false</code> they might be returned
@@ -251,61 +251,20 @@ twice: for <code>&apos;elementStart&apos;</code> and <code>&apos;elementEnd&apos
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_next">
-                          <h3><code><a class="member-name" href="#_next">_next</a>() &rarr;  Object</code></h3>
-                          <p class="badges">
-<span class="badge badge--red ">private</span>
-                          </p>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="iterator">
+                          <h3><code><a class="member-name" href="#iterator">Symbol.iterator</a>()</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Makes a step forward in model. Moves the <a href="module_engine_model_treewalker-TreeWalker.html#position"><code>position</code></a> to the next position and returns the encountered value.
+                          <p class="collapsing-list__excerpt">Iterator interface.
                           </p>
                           <div class="collapsing-list__content">
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code>Object</code></dt>
-                                        <dd>
-                                        </dd>
-                                        <dt><code>Boolean</code></dt>
-                                        <dd><p>return.done True if iterator is done.</p>
-                                        </dd>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_treewalker-TreeWalkerValue.html">TreeWalkerValue</a></span></code></dt>
-                                        <dd><p>return.value Information about taken step.</p>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_previous">
-                          <h3><code><a class="member-name" href="#_previous">_previous</a>() &rarr;  Object</code></h3>
-                          <p class="badges">
-<span class="badge badge--red ">private</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Makes a step backward in model. Moves the <a href="module_engine_model_treewalker-TreeWalker.html#position"><code>position</code></a> to the previous position and returns the encountered value.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code>Object</code></dt>
-                                        <dd>
-                                        </dd>
-                                        <dt><code>Boolean</code></dt>
-                                        <dd><p>return.done True if iterator is done.</p>
-                                        </dd>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_treewalker-TreeWalkerValue.html">TreeWalkerValue</a></span></code></dt>
-                                        <dd><p>return.value Information about taken step.</p>
-                                        </dd>
-                            </dl>
                           </div>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="next">
-                          <h3><code><a class="member-name" href="#next">next</a>() &rarr;  Object</code></h3>
+                          <h3><code><a class="member-name" href="#next">next</a>() &rarr;  <span>Object</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Iterator interface method.
@@ -314,7 +273,7 @@ Detects walking direction and makes step forward or backward.
                           <div class="collapsing-list__content">
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code>Object</code></dt>
+                                        <dt><code><span>Object</span></code></dt>
                                         <dd><p>Object implementing iterator interface, returning information about taken step.</p>
                                         </dd>
                             </dl>
@@ -335,7 +294,7 @@ walker.skip( () =&gt; true ); // Move the position to the end: &lt;paragraph&gt;
 walker.skip( () =&gt; false ); // Do not move the position.</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> skip : function</code></dt>
+                                        <dt><code> skip : <span>function</span></code></dt>
                                         <dd><p>Callback function. Gets <a href="module_engine_model_treewalker-TreeWalkerValue.html"><code>TreeWalkerValue</code></a> and should
 return <code>true</code> if the value should be skipped or <code>false</code> if not.</p>
                                         </dd>
@@ -343,14 +302,55 @@ return <code>true</code> if the value should be skipped or <code>false</code> if
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="iterator">
-                          <h3><code><a class="member-name" href="#iterator">Symbol.iterator</a>()</code></h3>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_next">
+                          <h3><code><a class="member-name" href="#_next">_next</a>() &rarr;  <span>Object</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--red ">private</span>
+                          </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Iterator interface.
+                          <p class="collapsing-list__excerpt">Makes a step forward in model. Moves the <a href="module_engine_model_treewalker-TreeWalker.html#position"><code>position</code></a> to the next position and returns the encountered value.
                           </p>
                           <div class="collapsing-list__content">
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Object</span></code></dt>
+                                        <dd>
+                                        </dd>
+                                        <dt><code><span>Boolean</span></code></dt>
+                                        <dd><p>return.done True if iterator is done.</p>
+                                        </dd>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_treewalker-TreeWalkerValue.html">TreeWalkerValue</a></span></code></dt>
+                                        <dd><p>return.value Information about taken step.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_previous">
+                          <h3><code><a class="member-name" href="#_previous">_previous</a>() &rarr;  <span>Object</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--red ">private</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Makes a step backward in model. Moves the <a href="module_engine_model_treewalker-TreeWalker.html#position"><code>position</code></a> to the previous position and returns the encountered value.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Object</span></code></dt>
+                                        <dd>
+                                        </dd>
+                                        <dt><code><span>Boolean</span></code></dt>
+                                        <dd><p>return.done True if iterator is done.</p>
+                                        </dd>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_treewalker-TreeWalkerValue.html">TreeWalkerValue</a></span></code></dt>
+                                        <dd><p>return.value Information about taken step.</p>
+                                        </dd>
+                            </dl>
                           </div>
                         </div>
                       </li>
@@ -359,7 +359,7 @@ return <code>true</code> if the value should be skipped or <code>false</code> if
       </section>
       <div class="side-navigation">
         <div class="side-navigation__wrapper">
-          <nav class="side-navigation__inner">
+          <nav class="side-navigation__inner side-navigation__inner--api">
             <ul class="tree api-tree">
                     <li class="toggler--collapsed">
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">adapter-ckfinder</span>
@@ -805,8 +805,11 @@ return <code>true</code> if the value should be skipped or <code>false</code> if
                                                   <li><a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">ModelConverterBuilder</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_conversion_buildmodelconverter-StampCreatorData.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">StampCreatorData</span></div></a>
+                                                  <li><a href="module_engine_conversion_buildmodelconverter-HighlightDescriptor.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">HighlightDescriptor</span></div></a>
+                                                  </li>
+                                                  <li><a href="module_engine_conversion_buildmodelconverter-MarkerViewElementCreatorData.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">MarkerViewElementCreatorData</span></div></a>
                                                   </li>
                                           </ul>
                                         </li>
@@ -3131,6 +3134,15 @@ return <code>true</code> if the value should be skipped or <code>false</code> if
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">widget</span>
                       </div>
                       <ul>
+                              <li class="toggler--collapsed">
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_widget_highlightstack.html">highlightstack</a>
+                                </div>
+                                <ul>
+                                        <li><a href="module_widget_highlightstack-HighlightStack.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">HighlightStack</span></div></a>
+                                        </li>
+                                </ul>
+                              </li>
                               <li><a href="module_widget_utils.html">
                                   <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">utils</span></div></a>
                               </li>

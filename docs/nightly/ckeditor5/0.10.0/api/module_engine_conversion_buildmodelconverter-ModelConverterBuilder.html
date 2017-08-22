@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Class ModelConverterBuilder (engine/conversion/buildmodelconverter~ModelConverterBuilder) - CKEditor 5 API docs</title>
     <link rel="canonical" href="/ckeditor5/latest/api/module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html">
-    <link rel="stylesheet" href="../../../assets/0.3.2/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../assets/0.3.5/css/styles.css" type="text/css" media="screen">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
-    <script src="../../../assets/0.3.2/scripts/app.js"></script>
+    <script src="../../../assets/0.3.5/scripts/app.js"></script>
   </head>
   <body>
     <header class="top">
@@ -21,13 +21,13 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.2/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.5/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="api-header"><img src="../../../assets/0.3.2/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.5/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1>ModelConverterBuilder
               </h1>
@@ -43,7 +43,7 @@ attributes should be represented in the view (and then later in DOM). Instances 
 <p>If you need more complex converters, see <a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html"><code>ModelConversionDispatcher</code></a>,
 <a href="module_engine_conversion_model-to-view-converters.html"><code>converters</code></a>, <a href="module_engine_conversion_modelconsumable-ModelConsumable.html"><code>ModelConsumable</code></a>,
 <a href="module_engine_conversion_mapper-Mapper.html"><code>Mapper</code></a>.</p>
-<p>Using this API it is possible to create four kinds of converters:</p>
+<p>Using this API it is possible to create five kinds of converters:</p>
 <ol>
 <li><p>Model element to view element converter. This is a converter that takes the model element and represents it
 in the view.</p>
@@ -58,16 +58,22 @@ as view elements. Elements created by this kind of converter are wrapping other 
 correspond to model nodes had converter attribute. It is suitable for attributes like <code>bold</code>, where <code>bold</code> attribute
 set on model text nodes is converter to <code>strong</code> view element.</p>
 <pre class="prettyprint source"><code> buildModelConverter().for( dispatcher ).fromAttribute( &apos;bold&apos; ).toElement( &apos;strong&apos; );</code></pre></li>
-<li><p>Model marker to view element converter. This is a converter that converts markers from given group to view attribute element.
-Markers, basically, are <a href="module_engine_model_liverange-LiveRange.html"><code>LiveRange</code></a> instances, that are named. In this conversion, model range is
-converted to view range, then that view range is wrapped (or unwrapped, if range is removed) in a view attribute element.
-To learn more about markers, see <a href="module_engine_model_markercollection-MarkerCollection.html"><code>MarkerCollection</code></a>.</p>
-<pre class="prettyprint source"><code> const viewSpanSearchResult = new ViewAttributeElement( &apos;span&apos;, { class: &apos;search-result&apos; } );
- buildModelConverter().for( dispatcher ).fromMarker( &apos;searchResult&apos; ).toElement( viewSpanSearchResult );</code></pre></li>
+<li><p>Model marker to view highlight converter. This is a converter that converts model markers to view highlight
+described by <a href="module_engine_conversion_buildmodelconverter-HighlightDescriptor.html"><code>HighlightDescriptor</code></a> object passed to
+<a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html#toHighlight"><code>toHighlight</code></a> method.</p>
+<pre class="prettyprint source"><code> buildModelConverter().for( dispatcher ).fromMarker( &apos;search&apos; ).toHighlight( {
+     class: &apos;search&apos;,
+     priority: 20
+ } );</code></pre></li>
+<li><p>Model marker to element converter. This is a converter that takes model marker and creates separate elements at
+the beginning and at the end of the marker&apos;s range. For more information see
+<a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html#toElement"><code>toElement</code></a> method.</p>
+<pre class="prettyprint source"><code> buildModelConverter().for( dispatcher ).fromMarker( &apos;search&apos; ).toElement( &apos;span&apos; );</code></pre></li>
 </ol>
 <p>It is possible to provide various different parameters for
-<a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html#toElement"><code>toElement</code></a>
-and <a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html#toAttribute"><code>toAttribute</code></a> methods.
+<a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html#toElement"><code>toElement</code></a>,
+<a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html#toAttribute"><code>toAttribute</code></a> and
+<a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html#toHighlight"><code>toHighlight</code></a> methods.
 See their descriptions to learn more.</p>
 <p>It is also possible to <a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html#withPriority">change default priority</a>
 of created converters to decide which converter should be fired earlier and which later. This is useful if you have
@@ -125,7 +131,7 @@ to create &quot;opposite&quot; converters - from view to model.</p>
                       </li>
                       <li class="collapsing-list__item" data-private="true">
                         <div class="collapsing-list__term toggler--collapsed" id="_from">
-                          <h3><code><a class="member-name" href="#_from">_from</a> : Object</code></h3>
+                          <h3><code><a class="member-name" href="#_from">_from</a> : <span>Object</span></code></h3>
                           <p class="badges">
 <span class="badge badge--red ">private</span>
                           </p>
@@ -183,7 +189,7 @@ to create &quot;opposite&quot; converters - from view to model.</p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> key : String</code></dt>
+                                        <dt><code> key : <span>String</span></code></dt>
                                         <dd><p>Key of attribute to convert.</p>
                                         </dd>
                                       </dl>
@@ -206,7 +212,7 @@ to create &quot;opposite&quot; converters - from view to model.</p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> elementName : String</code></dt>
+                                        <dt><code> elementName : <span>String</span></code></dt>
                                         <dd><p>Name of element to convert.</p>
                                         </dd>
                                       </dl>
@@ -229,7 +235,7 @@ to create &quot;opposite&quot; converters - from view to model.</p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> markerName : String</code></dt>
+                                        <dt><code> markerName : <span>String</span></code></dt>
                                         <dd><p>Name of marker to convert.</p>
                                         </dd>
                                       </dl>
@@ -275,10 +281,10 @@ parameters.</p>
 <a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html">conversion dispatcher</a> event.</p>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> [ keyOrCreator ] : String | function</code></dt>
+                                        <dt><code> [ keyOrCreator ] : <span>String</span> | <span>function</span></code></dt>
                                         <dd><p>Attribute key or a creator function.</p>
                                         </dd>
-                                        <dt><code> [ value ] : </code></dt>
+                                        <dt><code> [ value ] : <span>*</span></code></dt>
                                         <dd><p>Attribute value.</p>
                                         </dd>
                                       </dl>
@@ -297,7 +303,12 @@ parameters.</p>
 <code>string</code>, view element instance which will be cloned and used, or creator function which returns view element that
 will be used. Keep in mind that when you view element instance or creator function, it has to be/return a
 proper type of view element: <a href="module_engine_viewithcontainerelement-ContainerElement.html">ViewContainerElement</a> if you convert
-from element or <a href="module_engine_viewithattributeelement-AttributeElement.html">ViewAttributeElement</a> if you convert from attribute.</p>
+from element, <a href="module_engine_viewithattributeelement-AttributeElement.html">ViewAttributeElement</a> if you convert
+from attribute and <a href="module_engine_viewithuielement-UIElement.html">ViewUIElement</a> if you convert from marker.</p>
+<p>NOTE: When converting from model&apos;s marker, separate elements will be created at the beginning and at the end of the
+marker&apos;s range. If range is collapsed then only one element will be created. See how markers
+{module:engine/model/buildviewconverter~ViewConverterBuilder#toMarker view -&gt; model serialization}
+works to find out what view element format is the best for you.</p>
 <pre class="prettyprint source"><code>buildModelConverter().for( dispatcher ).fromElement( &apos;paragraph&apos; ).toElement( &apos;p&apos; );
 
 buildModelConverter().for( dispatcher ).fromElement( &apos;image&apos; ).toElement( new ViewContainerElement( &apos;img&apos; ) );
@@ -306,19 +317,24 @@ buildModelConverter().for( dispatcher )
     .fromElement( &apos;header&apos; )
     .toElement( ( data ) =&gt; new ViewContainerElement( &apos;h&apos; + data.item.getAttribute( &apos;level&apos; ) ) );
 
-buildModelConverter().for( dispatcher ).fromAttribute( &apos;bold&apos; ).toElement( new ViewAttributeElement( &apos;strong&apos; ) );</code></pre><p>Creator function will be passed different values depending whether conversion is from element or from attribute:</p>
+buildModelConverter().for( dispatcher ).fromAttribute( &apos;bold&apos; ).toElement( new ViewAttributeElement( &apos;strong&apos; ) );
+
+buildModelConverter().for( dispatcher ).fromMarker( &apos;search&apos; ).toElement( &apos;span&apos; );
+
+buildModelConverter().for( dispatcher ).fromMarker( &apos;search&apos; ).toElement( new ViewUIElement( &apos;span&apos; ) );</code></pre><p>Creator function will be passed different values depending whether conversion is from element or from attribute:</p>
 <ul>
 <li>from element: dispatcher&apos;s
 <a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html#event:insert">insert event</a>
 parameters will be passed,</li>
-<li>from attribute: there is one parameter and it is attribute value.</li>
+<li>from attribute: there is one parameter and it is attribute value,</li>
+<li>from marker: <a href="module_engine_conversion_buildmodelconverter-MarkerViewElementCreatorData.html"><code>MarkerViewElementCreatorData</code></a>.</li>
 </ul>
 <p>This method also registers model selection to view selection converter, if conversion is from attribute.</p>
 <p>This method creates the converter and adds it as a callback to a proper
 <a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html">conversion dispatcher</a> event.</p>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> element : String | <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | function</code></dt>
+                                        <dt><code> element : <span>String</span> | <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | <span>function</span></code></dt>
                                         <dd><p>Element created by converter or
 a function that returns view element.</p>
                                         </dd>
@@ -327,45 +343,41 @@ a function that returns view element.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="toStamp">
-                          <h3><code><a class="member-name" href="#toStamp">toStamp</a>( element )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="toHighlight">
+                          <h3><code><a class="member-name" href="#toHighlight">toHighlight</a>( highlightDescriptor )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Registers what view stamp will be created by converter to mark marker range bounds. Separate elements will be
-created at the beginning and at the end of the range. If range is collapsed then only one element will be created.
+                          <p class="collapsing-list__excerpt">Registers that marker should be converted to view highlight. Markers, basically,
+are <a href="module_engine_model_liverange-LiveRange.html"><code>LiveRange</code></a> instances, that are named. View highlight is
+a representation of the model marker in the view:
                           </p>
                           <div class="collapsing-list__content">
-<p>Method accepts various ways of providing how the view element will be created. You can pass view element name as
-<code>string</code>, view element instance which will be cloned and used, or creator function which returns view element that
-will be used. Keep in mind that when you provide view element instance or creator function, it has to be/return a
-proper type of view element: <a href="module_engine_viewithuielement-UIElement.html">UIElement</a>.</p>
-<pre class="prettyprint source"><code>buildModelConverter().for( dispatcher ).fromMarker( &apos;search&apos; ).toStamp( &apos;span&apos; );
+<ul>
+<li>each <a href="module_engine_viewithtext-Text.html">view text node</a> in the marker&apos;s range will be wrapped with <code>span</code>
+<a href="module_engine_viewithattributeelement-AttributeElement.html"><code>AttributeElement</code></a>,</li>
+<li><p>each <a href="module_engine_viewithcontainerelement-ContainerElement.html">container view element</a> in the marker&apos;s
+range can handle highlighting individually by providing <code>addHighlight</code> and <code>removeHighlight</code>
+custom properties:</p>
+<pre class="prettyprint source"><code>  viewElement.setCustomProperty( &apos;addHighlight&apos;, ( element, descriptor ) =&gt; {} );
+  viewElement.setCustomProperty( &apos;removeHighlight&apos;, ( element, descriptor ) =&gt; {} );</code></pre></li>
+</ul>
+<p><a href="module_engine_conversion_buildmodelconverter-HighlightDescriptor.html"><code>HighlightDescriptor</code></a> will be used to create
+spans over text nodes and also will be provided to <code>addHighlight</code> and <code>removeHighlight</code> methods
+each time highlight should be set or removed from view elements.
+NOTE: When <code>addHighlight</code> and <code>removeHighlight</code> custom properties are present, converter assumes
+that element itself is taking care of presenting highlight on its child nodes, so it won&apos;t convert them.</p>
+<p>Highlight descriptor can be provided as plain object:</p>
+<pre class="prettyprint source"><code>buildModelConverter.for( dispatcher ).fromMarker( &apos;search&apos; ).toHighlight( { class: &apos;search-highlight&apos; } );</code></pre><p>Also, descriptor creator function can be provided:</p>
+<pre class="prettyprint source"><code>buildModelConverter.for( dispatcher ).fromMarker( &apos;search:blue&apos; ).toHighlight( data =&gt; {
+    const color = data.markerName.split( &apos;:&apos; )[ 1 ];
 
-buildModelConverter().for( dispatcher )
-    .fromMarker( &apos;search&apos; )
-    .toStamp( new UIElement( &apos;span&apos;, { &apos;data-name&apos;: &apos;search&apos; } ) );
-
-buildModelConverter().for( dispatcher )
-    .fromMarker( &apos;search&apos; )
-    .toStamp( ( data ) =&gt; new UIElement( &apos;span&apos;, { &apos;data-name&apos;: data.name ) );</code></pre><p>Creator function provides additional <code>data.isOpening</code> parameter which defined if currently converted element is
-a beginning or end of the marker range. This makes possible to create different opening and closing stamp.</p>
-<pre class="prettyprint source"><code>buildModelConverter().for( dispatcher )
-    .fromMarker( &apos;search&apos; )
-    .toStamp( ( data ) =&gt; {
-        if ( data.isOpening ) {
-            return new UIElement( &apos;span&apos;, { &apos;data-name&apos;: data.name, &apos;data-start&apos;: true ) );
-        }
-
-        return new UIElement( &apos;span&apos;, { &apos;data-name&apos;: data.name, &apos;data-end&apos;: true ) );
-    }</code></pre><p>Creator function provides
-<a href="module_engine_conversion_buildmodelconverter-StampCreatorData.html"><code>StampCreatorData</code></a> parameters.</p>
-<p>See how markers {module:engine/model/buildviewconverter~ViewConverterBuilder#toMarker view -&gt; model serialization}
-works to find out what view element format is the best for you.</p>
+    return { class: &apos;search-&apos; + color };
+} );</code></pre><p>Throws <a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a>
+<code>build-model-converter-non-marker-to-highlight</code> when trying to convert not from marker.</p>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> element : String | <span><a class="collapsing-list__type" href="module_engine_viewithuielement-UIElement.html">UIElement</a></span> | function</code></dt>
-                                        <dd><p>UIElement created by converter or
-a function that returns view element.</p>
+                                        <dt><code> highlightDescriptor : <span>function</span> | <span><a class="collapsing-list__type" href="module_engine_conversion_buildmodelconverter-HighlightDescriptor.html">HighlightDescriptor</a></span></code></dt>
+                                        <dd>
                                         </dd>
                                       </dl>
                           </div>
@@ -389,7 +401,7 @@ If you want to prevent merging, just set different priority for both converters.
 buildModelConverter().for( dispatcher ).fromAttribute( &apos;italic&apos; ).withPriority( 3 ).toElement( &apos;em&apos; );</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> priority : Number</code></dt>
+                                        <dt><code> priority : <span>Number</span></code></dt>
                                         <dd><p>Converter priority.</p>
                                         </dd>
                                       </dl>
@@ -407,7 +419,7 @@ buildModelConverter().for( dispatcher ).fromAttribute( &apos;italic&apos; ).with
       </section>
       <div class="side-navigation">
         <div class="side-navigation__wrapper">
-          <nav class="side-navigation__inner">
+          <nav class="side-navigation__inner side-navigation__inner--api">
             <ul class="tree api-tree">
                     <li class="toggler--collapsed">
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">adapter-ckfinder</span>
@@ -853,8 +865,11 @@ buildModelConverter().for( dispatcher ).fromAttribute( &apos;italic&apos; ).with
                                                   <li><a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html">
                                                       <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--class tree__item__text">ModelConverterBuilder</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_conversion_buildmodelconverter-StampCreatorData.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">StampCreatorData</span></div></a>
+                                                  <li><a href="module_engine_conversion_buildmodelconverter-HighlightDescriptor.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">HighlightDescriptor</span></div></a>
+                                                  </li>
+                                                  <li><a href="module_engine_conversion_buildmodelconverter-MarkerViewElementCreatorData.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">MarkerViewElementCreatorData</span></div></a>
                                                   </li>
                                           </ul>
                                         </li>
@@ -3179,6 +3194,15 @@ buildModelConverter().for( dispatcher ).fromAttribute( &apos;italic&apos; ).with
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">widget</span>
                       </div>
                       <ul>
+                              <li class="toggler--collapsed">
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_widget_highlightstack.html">highlightstack</a>
+                                </div>
+                                <ul>
+                                        <li><a href="module_widget_highlightstack-HighlightStack.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">HighlightStack</span></div></a>
+                                        </li>
+                                </ul>
+                              </li>
                               <li><a href="module_widget_utils.html">
                                   <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">utils</span></div></a>
                               </li>

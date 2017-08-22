@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Class KeystrokeHandler (utils/keystrokehandler~KeystrokeHandler) - CKEditor 5 API docs</title>
     <link rel="canonical" href="/ckeditor5/latest/api/module_utils_keystrokehandler-KeystrokeHandler.html">
-    <link rel="stylesheet" href="../../../assets/0.3.2/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../assets/0.3.5/css/styles.css" type="text/css" media="screen">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
-    <script src="../../../assets/0.3.2/scripts/app.js"></script>
+    <script src="../../../assets/0.3.5/scripts/app.js"></script>
   </head>
   <body>
     <header class="top">
@@ -21,13 +21,13 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.2/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.5/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="api-header"><img src="../../../assets/0.3.2/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.5/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1>KeystrokeHandler
               </h1>
@@ -43,8 +43,8 @@ by a defined emitter.</p>
 
 handler.listenTo( emitter );
 
-handler.set( &apos;ctrl + a&apos;, ( keyEventData, cancel ) =&gt; {
-    console.log( &apos;ctrl + a has been pressed&apos; );
+handler.set( &apos;Ctrl+A&apos;, ( keyEvtData, cancel ) =&gt; {
+    console.log( &apos;Ctrl+A has been pressed&apos; );
     cancel();
 } );</code></pre>
           <div class="notice notice__filter api-props-filter">
@@ -80,19 +80,6 @@ handler.set( &apos;ctrl + a&apos;, ( keyEventData, cancel ) =&gt; {
           </div>
           <h2>Properties</h2>
           <ul class="collapsing-list collapsing-list--filtered">
-                      <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_keystrokes">
-                          <h3><code><a class="member-name" href="#_keystrokes">_keystrokes</a> : Map</code></h3>
-                          <p class="badges">
-<span class="badge badge--red ">private</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Map of the defined keystrokes. Keystroke codes are the keys.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
                       <li class="collapsing-list__item" data-protected="true">
                         <div class="collapsing-list__term toggler--collapsed" id="_listener">
                           <h3><code><a class="member-name" href="#_listener">_listener</a> : <span><a class="collapsing-list__type" href="module_utils_dom_emittermixin-Emitter.html">Emitter</a></span></code></h3>
@@ -150,7 +137,7 @@ handler.set( &apos;ctrl + a&apos;, ( keyEventData, cancel ) =&gt; {
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="press">
-                          <h3><code><a class="member-name" href="#press">press</a>( keyEventData ) &rarr;  Boolean</code></h3>
+                          <h3><code><a class="member-name" href="#press">press</a>( keyEvtData ) &rarr;  <span>Boolean</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Triggers a keystroke handler for a specified key combination, if such a keystroke was <a href="module_utils_keystrokehandler-KeystrokeHandler.html#set">defined</a>.
@@ -158,13 +145,13 @@ handler.set( &apos;ctrl + a&apos;, ( keyEventData, cancel ) =&gt; {
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> keyEventData : <span><a class="collapsing-list__type" href="module_engine_viewithobserver_keyobserver-KeyEventData.html">KeyEventData</a></span></code></dt>
+                                        <dt><code> keyEvtData : <span><a class="collapsing-list__type" href="module_engine_viewithobserver_keyobserver-KeyEventData.html">KeyEventData</a></span></code></dt>
                                         <dd><p>Key event data.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code>Boolean</code></dt>
+                                        <dt><code><span>Boolean</span></code></dt>
                                         <dd><p>Whether the keystroke was handled.</p>
                                         </dd>
                             </dl>
@@ -173,7 +160,7 @@ handler.set( &apos;ctrl + a&apos;, ( keyEventData, cancel ) =&gt; {
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="set">
-                          <h3><code><a class="member-name" href="#set">set</a>( keystroke, callback )</code></h3>
+                          <h3><code><a class="member-name" href="#set">set</a>( keystroke, callback, [ options ] = { [options.priority] } )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Registers a handler for the specified keystroke.
@@ -181,14 +168,28 @@ handler.set( &apos;ctrl + a&apos;, ( keyEventData, cancel ) =&gt; {
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> keystroke : String | </code></dt>
+                                        <dt><code> keystroke : <span>String</span> | <span>Array.&lt;(String|Number)&gt;</span></code></dt>
                                         <dd><p>Keystroke defined in a format accepted by
 the <a href="module_utils_keyboard.html#parseKeystroke"><code>parseKeystroke</code></a> function.</p>
                                         </dd>
-                                        <dt><code> callback : function</code></dt>
+                                        <dt><code> callback : <span>function</span></code></dt>
                                         <dd><p>A function called with the
 <a href="module_engine_viewithobserver_keyobserver-KeyEventData.html">key event data</a> object and
 a helper to both <code>preventDefault</code> and <code>stopPropagation</code> of the event.</p>
+                                        </dd>
+                                        <dt><code> [ options ] : <span>Object</span></code></dt>
+                                        <dd><p>Additional options.</p>
+                                                    <div class="dlheading5">Properties
+                                                    </div>
+                                                    <dl>
+                                                      <dt><code> [ options.priority ] : <span><a class="collapsing-list__type" href="module_utils_priorities-PriorityString.html">PriorityString</a></span> | <span>Number</span></code></dt>
+                                                      <dd><p>The priority of the keystroke
+callback. The higher the priority value the sooner the callback will be executed. Keystrokes having the same priority
+are called in the order they were added.</p>
+                                                        <p>Defaults to <code>'normal'</code></p>
+                                                      </dd>
+                                                    </dl>
+                                          <p>Defaults to <code>{}</code></p>
                                         </dd>
                                       </dl>
                           </div>
@@ -199,7 +200,7 @@ a helper to both <code>preventDefault</code> and <code>stopPropagation</code> of
       </section>
       <div class="side-navigation">
         <div class="side-navigation__wrapper">
-          <nav class="side-navigation__inner">
+          <nav class="side-navigation__inner side-navigation__inner--api">
             <ul class="tree api-tree">
                     <li class="toggler--collapsed">
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">adapter-ckfinder</span>
@@ -645,8 +646,11 @@ a helper to both <code>preventDefault</code> and <code>stopPropagation</code> of
                                                   <li><a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">ModelConverterBuilder</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_conversion_buildmodelconverter-StampCreatorData.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">StampCreatorData</span></div></a>
+                                                  <li><a href="module_engine_conversion_buildmodelconverter-HighlightDescriptor.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">HighlightDescriptor</span></div></a>
+                                                  </li>
+                                                  <li><a href="module_engine_conversion_buildmodelconverter-MarkerViewElementCreatorData.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">MarkerViewElementCreatorData</span></div></a>
                                                   </li>
                                           </ul>
                                         </li>
@@ -2971,6 +2975,15 @@ a helper to both <code>preventDefault</code> and <code>stopPropagation</code> of
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">widget</span>
                       </div>
                       <ul>
+                              <li class="toggler--collapsed">
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_widget_highlightstack.html">highlightstack</a>
+                                </div>
+                                <ul>
+                                        <li><a href="module_widget_highlightstack-HighlightStack.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">HighlightStack</span></div></a>
+                                        </li>
+                                </ul>
+                              </li>
                               <li><a href="module_widget_utils.html">
                                   <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">utils</span></div></a>
                               </li>

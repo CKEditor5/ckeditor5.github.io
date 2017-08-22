@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Class Insertion (engine/controller/insertcontent~Insertion) - CKEditor 5 API docs</title>
     <link rel="canonical" href="/ckeditor5/latest/api/module_engine_controller_insertcontent-Insertion.html">
-    <link rel="stylesheet" href="../../../assets/0.3.2/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../assets/0.3.5/css/styles.css" type="text/css" media="screen">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
-    <script src="../../../assets/0.3.2/scripts/app.js"></script>
+    <script src="../../../assets/0.3.5/scripts/app.js"></script>
   </head>
   <body>
     <header class="top">
@@ -21,13 +21,13 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.2/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.5/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="api-header"><img src="../../../assets/0.3.2/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.5/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1>Insertion
               </h1>
@@ -73,7 +73,7 @@
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="batch">
-                          <h3><code><a class="member-name" href="#batch">batch</a> : Batch</code></h3>
+                          <h3><code><a class="member-name" href="#batch">batch</a> : <span>Batch</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Batch to which deltas will be added.</p>
@@ -83,7 +83,7 @@
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="canMergeWith">
-                          <h3><code><a class="member-name" href="#canMergeWith">canMergeWith</a> : Set</code></h3>
+                          <h3><code><a class="member-name" href="#canMergeWith">canMergeWith</a> : <span>Set</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Elements with which the inserted elements can be merged.</p>
@@ -129,38 +129,8 @@
           <h2>Methods</h2>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_handleNode">
-                          <h3><code><a class="member-name" href="#_handleNode">_handleNode</a>( node, context = { context.isFirst, context.isLast } )</code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Handles insertion of a single node.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> node : <span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span></code></dt>
-                                        <dd>
-                                        </dd>
-                                        <dt><code> context : Object</code></dt>
-                                        <dd>
-                                                    <div class="dlheading5">Properties
-                                                    </div>
-                                                    <dl>
-                                                      <dt><code> context.isFirst : Boolean</code></dt>
-                                                      <dd><p>Whether the given node is the first one in the content to be inserted.</p>
-                                                      </dd>
-                                                      <dt><code> context.isLast : Boolean</code></dt>
-                                                      <dd><p>Whether the given node is the last one in the content to be inserted.</p>
-                                                      </dd>
-                                                    </dl>
-                                        </dd>
-                                      </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="_checkAndSplitToAllowedPosition">
-                          <h3><code><a class="member-name" href="#_checkAndSplitToAllowedPosition">_checkAndSplitToAllowedPosition</a>( node ) &rarr;  Boolean</code></h3>
+                          <h3><code><a class="member-name" href="#_checkAndSplitToAllowedPosition">_checkAndSplitToAllowedPosition</a>( node ) &rarr;  <span>Boolean</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">
@@ -174,11 +144,31 @@
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code>Boolean</code></dt>
+                                        <dt><code><span>Boolean</span></code></dt>
                                         <dd><p>Whether an allowed position was found.
 <code>false</code> is returned if the node isn&apos;t allowed at any position up in the tree, <code>true</code> if was.</p>
                                         </dd>
                             </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_checkIsAllowed">
+                          <h3><code><a class="member-name" href="#_checkIsAllowed">_checkIsAllowed</a>( node, path )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Check whether the given node is allowed in the specified schema path.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> node : <span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span></code></dt>
+                                        <dd>
+                                        </dd>
+                                        <dt><code> path : <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaPath.html">SchemaPath</a></span></code></dt>
+                                        <dd>
+                                        </dd>
+                                      </dl>
                           </div>
                         </div>
                       </li>
@@ -201,7 +191,7 @@
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="_getAllowedIn">
-                          <h3><code><a class="member-name" href="#_getAllowedIn">_getAllowedIn</a>( node, element ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | null</code></h3>
+                          <h3><code><a class="member-name" href="#_getAllowedIn">_getAllowedIn</a>( node, element ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | <span>null</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Gets the element in which the given node is allowed. It checks the passed element and all its ancestors.
@@ -218,7 +208,7 @@
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | null</code></dt>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | <span>null</span></code></dt>
                                         <dd>
                                         </dd>
                             </dl>
@@ -255,7 +245,7 @@
                                         <dt><code> node : <span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span></code></dt>
                                         <dd><p>The disallowed node which needs to be handled.</p>
                                         </dd>
-                                        <dt><code> context : Object</code></dt>
+                                        <dt><code> context : <span>Object</span></code></dt>
                                         <dd>
                                         </dd>
                                       </dl>
@@ -263,11 +253,11 @@
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_checkIsAllowed">
-                          <h3><code><a class="member-name" href="#_checkIsAllowed">_checkIsAllowed</a>( node, path )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="_handleNode">
+                          <h3><code><a class="member-name" href="#_handleNode">_handleNode</a>( node, context = { context.isFirst, context.isLast } )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Check whether the given node is allowed in the specified schema path.
+                          <p class="collapsing-list__excerpt">Handles insertion of a single node.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -275,8 +265,18 @@
                                         <dt><code> node : <span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span></code></dt>
                                         <dd>
                                         </dd>
-                                        <dt><code> path : <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaPath.html">SchemaPath</a></span></code></dt>
+                                        <dt><code> context : <span>Object</span></code></dt>
                                         <dd>
+                                                    <div class="dlheading5">Properties
+                                                    </div>
+                                                    <dl>
+                                                      <dt><code> context.isFirst : <span>Boolean</span></code></dt>
+                                                      <dd><p>Whether the given node is the first one in the content to be inserted.</p>
+                                                      </dd>
+                                                      <dt><code> context.isLast : <span>Boolean</span></code></dt>
+                                                      <dd><p>Whether the given node is the last one in the content to be inserted.</p>
+                                                      </dd>
+                                                    </dl>
                                         </dd>
                                       </dl>
                           </div>
@@ -295,7 +295,7 @@
                                         <dt><code> node : <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
                                         <dd><p>The object element.</p>
                                         </dd>
-                                        <dt><code> context : Object</code></dt>
+                                        <dt><code> context : <span>Object</span></code></dt>
                                         <dd>
                                         </dd>
                                       </dl>
@@ -332,7 +332,7 @@
                                         <dt><code> node : <span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span></code></dt>
                                         <dd><p>The node which could potentially be merged.</p>
                                         </dd>
-                                        <dt><code> context : Object</code></dt>
+                                        <dt><code> context : <span>Object</span></code></dt>
                                         <dd>
                                         </dd>
                                       </dl>
@@ -352,7 +352,7 @@
                                         <dt><code> node : <span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span></code></dt>
                                         <dd><p>The node which needs to be autoparagraphed.</p>
                                         </dd>
-                                        <dt><code> context : Object</code></dt>
+                                        <dt><code> context : <span>Object</span></code></dt>
                                         <dd>
                                         </dd>
                                       </dl>
@@ -361,7 +361,7 @@
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="getSelectionRange">
-                          <h3><code><a class="member-name" href="#getSelectionRange">getSelectionRange</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | null</code></h3>
+                          <h3><code><a class="member-name" href="#getSelectionRange">getSelectionRange</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | <span>null</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Returns range to be selected after insertion.
@@ -370,7 +370,7 @@ Returns null if there is no valid range to select after insertion.
                           <div class="collapsing-list__content">
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | null</code></dt>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | <span>null</span></code></dt>
                                         <dd>
                                         </dd>
                             </dl>
@@ -390,7 +390,7 @@ Returns null if there is no valid range to select after insertion.
                                         <dt><code> nodes : <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a>&gt;</span></code></dt>
                                         <dd><p>Nodes to insert.</p>
                                         </dd>
-                                        <dt><code> parentContext : Object</code></dt>
+                                        <dt><code> parentContext : <span>Object</span></code></dt>
                                         <dd><p>Context in which parent of these nodes was supposed to be inserted.
 If the parent context is passed it means that the parent element was stripped (was not allowed).</p>
                                         </dd>
@@ -403,7 +403,7 @@ If the parent context is passed it means that the parent element was stripped (w
       </section>
       <div class="side-navigation">
         <div class="side-navigation__wrapper">
-          <nav class="side-navigation__inner">
+          <nav class="side-navigation__inner side-navigation__inner--api">
             <ul class="tree api-tree">
                     <li class="toggler--collapsed">
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">adapter-ckfinder</span>
@@ -849,8 +849,11 @@ If the parent context is passed it means that the parent element was stripped (w
                                                   <li><a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">ModelConverterBuilder</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_conversion_buildmodelconverter-StampCreatorData.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">StampCreatorData</span></div></a>
+                                                  <li><a href="module_engine_conversion_buildmodelconverter-HighlightDescriptor.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">HighlightDescriptor</span></div></a>
+                                                  </li>
+                                                  <li><a href="module_engine_conversion_buildmodelconverter-MarkerViewElementCreatorData.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">MarkerViewElementCreatorData</span></div></a>
                                                   </li>
                                           </ul>
                                         </li>
@@ -3175,6 +3178,15 @@ If the parent context is passed it means that the parent element was stripped (w
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">widget</span>
                       </div>
                       <ul>
+                              <li class="toggler--collapsed">
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_widget_highlightstack.html">highlightstack</a>
+                                </div>
+                                <ul>
+                                        <li><a href="module_widget_highlightstack-HighlightStack.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">HighlightStack</span></div></a>
+                                        </li>
+                                </ul>
+                              </li>
                               <li><a href="module_widget_utils.html">
                                   <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">utils</span></div></a>
                               </li>

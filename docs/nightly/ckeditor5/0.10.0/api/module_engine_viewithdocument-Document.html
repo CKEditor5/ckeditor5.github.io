@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Class Document (engine/view/document~Document) - CKEditor 5 API docs</title>
     <link rel="canonical" href="/ckeditor5/latest/api/module_engine_viewithdocument-Document.html">
-    <link rel="stylesheet" href="../../../assets/0.3.2/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../assets/0.3.5/css/styles.css" type="text/css" media="screen">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
-    <script src="../../../assets/0.3.2/scripts/app.js"></script>
+    <script src="../../../assets/0.3.5/scripts/app.js"></script>
   </head>
   <body>
     <header class="top">
@@ -21,13 +21,13 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.2/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.5/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="api-header"><img src="../../../assets/0.3.2/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.5/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1>Document
               </h1>
@@ -42,15 +42,15 @@
                         <dt>Implements</dt>
                         <dd>
                           <ul>
-                                      <li><code><span><a href="module_utils_emittermixin-Emitter.html">Emitter</a></span></code></li>
-                                      <li><code><span><a href="module_utils_observablemixin-Observable.html">Observable</a></span></code></li>
+                                      <li title="@ckeditor/ckeditor5-utils/src/emittermixin~Emitter"><code><span><a href="module_utils_emittermixin-Emitter.html">Emitter</a></span></code></li>
+                                      <li title="@ckeditor/ckeditor5-utils/src/observablemixin~Observable"><code><span><a href="module_utils_observablemixin-Observable.html">Observable</a></span></code></li>
                           </ul>
                         </dd>
                         <dt>Mixes</dt>
                         <dd>
                           <ul>
-                                      <li><code><span><a href="module_utils_emittermixin-EmitterMixin.html">EmitterMixin</a></span></code></li>
-                                      <li><code><span><a href="module_utils_observablemixin-ObservableMixin.html">ObservableMixin</a></span></code></li>
+                                      <li title="@ckeditor/ckeditor5-utils/src/emittermixin~EmitterMixin"><code><span><a href="module_utils_emittermixin-EmitterMixin.html">EmitterMixin</a></span></code></li>
+                                      <li title="@ckeditor/ckeditor5-utils/src/observablemixin~ObservableMixin"><code><span><a href="module_utils_observablemixin-ObservableMixin.html">ObservableMixin</a></span></code></li>
                           </ul>
                         </dd>
             </dl>
@@ -101,6 +101,99 @@ It combines the actual tree of view elements, tree of DOM elements,
           </div>
           <h2>Properties</h2>
           <ul class="collapsing-list collapsing-list--filtered">
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="domConverter">
+                          <h3><code><a class="member-name" href="#domConverter">domConverter</a> : <span><a class="collapsing-list__type" href="module_engine_viewithdomconverter-DomConverter.html">DomConverter</a></span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Instance of the <a href="module_engine_viewithdomconverter-DomConverter.html">domConverter</a> use by
+<a href="module_engine_viewithdocument-Document.html#renderer">renderer</a>
+and <a href="module_engine_viewithobserver_observer-Observer.html">observers</a>.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="domRoots">
+                          <h3><code><a class="member-name" href="#domRoots">domRoots</a> : <span>Map</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Roots of the DOM tree. Map on the <code>HTMLElement</code>s with roots names as keys.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="isFocused">
+                          <h3><code><a class="member-name" href="#isFocused">isFocused</a> : <span>Boolean</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">True if document is focused.</p>
+                          <div class="collapsing-list__content">
+<p>This property is updated by the <a href="module_engine_viewithobserver_focusobserver-FocusObserver.html"><code>FocusObserver</code></a>.
+If the <a href="module_engine_viewithobserver_focusobserver-FocusObserver.html"><code>FocusObserver</code></a> is disabled this property will not change.</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="isReadOnly">
+                          <h3><code><a class="member-name" href="#isReadOnly">isReadOnly</a> : <span>Boolean</span></code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Defines whether document is in read-only mode.</p>
+                          <div class="collapsing-list__content">
+<p>When document is read-ony then all roots are read-only as well and caret placed inside this root is hidden.</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="renderer">
+                          <h3><code><a class="member-name" href="#renderer">renderer</a> : <span><a class="collapsing-list__type" href="module_engine_viewithrenderer-Renderer.html">Renderer</a></span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Instance of the <a href="module_engine_viewithdocument-Document.html#renderer">renderer</a>.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="roots">
+                          <h3><code><a class="member-name" href="#roots">roots</a> : <span>Map</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Roots of the view tree. Map of the {module:engine/view/element~Element view elements} with roots names as keys.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="selection">
+                          <h3><code><a class="member-name" href="#selection">selection</a> : <span><a class="collapsing-list__type" href="module_engine_viewithselection-Selection.html">Selection</a></span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Selection done on this document.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
                       <li class="collapsing-list__item" data-private="true" data-mixed="true">
                         <div class="collapsing-list__term toggler--collapsed" id="_bindTo">
                           <h3><code><a class="member-name" href="#_bindTo">_bindTo</a></code></h3>
@@ -142,106 +235,13 @@ It combines the actual tree of view elements, tree of DOM elements,
                       </li>
                       <li class="collapsing-list__item" data-private="true">
                         <div class="collapsing-list__term toggler--collapsed" id="_observers">
-                          <h3><code><a class="member-name" href="#_observers">_observers</a> : </code></h3>
+                          <h3><code><a class="member-name" href="#_observers">_observers</a> : <span>Map.&ltFunction, module:engine/view/observer/observer~Observer></span></code></h3>
                           <p class="badges">
 <span class="badge badge--red ">private</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Map of registered <a href="module_engine_viewithobserver_observer-Observer.html">observers</a>.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="domConverter">
-                          <h3><code><a class="member-name" href="#domConverter">domConverter</a> : <span><a class="collapsing-list__type" href="module_engine_viewithdomconverter-DomConverter.html">DomConverter</a></span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Instance of the <a href="module_engine_viewithdomconverter-DomConverter.html">domConverter</a> use by
-<a href="module_engine_viewithdocument-Document.html#renderer">renderer</a>
-and <a href="module_engine_viewithobserver_observer-Observer.html">observers</a>.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="domRoots">
-                          <h3><code><a class="member-name" href="#domRoots">domRoots</a> : Map</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Roots of the DOM tree. Map on the <code>HTMLElement</code>s with roots names as keys.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="isFocused">
-                          <h3><code><a class="member-name" href="#isFocused">isFocused</a> : Boolean</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">True if document is focused.</p>
-                          <div class="collapsing-list__content">
-<p>This property is updated by the <a href="module_engine_viewithobserver_focusobserver-FocusObserver.html"><code>FocusObserver</code></a>.
-If the <a href="module_engine_viewithobserver_focusobserver-FocusObserver.html"><code>FocusObserver</code></a> is disabled this property will not change.</p>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="isReadOnly">
-                          <h3><code><a class="member-name" href="#isReadOnly">isReadOnly</a> : Boolean</code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Defines whether document is in read-only mode.</p>
-                          <div class="collapsing-list__content">
-<p>When document is read-ony then all roots are read-only as well and caret placed inside this root is hidden.</p>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="renderer">
-                          <h3><code><a class="member-name" href="#renderer">renderer</a> : <span><a class="collapsing-list__type" href="module_engine_viewithrenderer-Renderer.html">Renderer</a></span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Instance of the <a href="module_engine_viewithdocument-Document.html#renderer">renderer</a>.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="roots">
-                          <h3><code><a class="member-name" href="#roots">roots</a> : Map</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Roots of the view tree. Map of the {module:engine/view/element~Element view elements} with roots names as keys.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="selection">
-                          <h3><code><a class="member-name" href="#selection">selection</a> : <span><a class="collapsing-list__type" href="module_engine_viewithselection-Selection.html">Selection</a></span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Selection done on this document.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -261,26 +261,56 @@ If the <a href="module_engine_viewithobserver_focusobserver-FocusObserver.html">
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="getDomRoot">
-                          <h3><code><a class="member-name" href="#getDomRoot">getDomRoot</a>( [ name ] ) &rarr;  Element</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="addObserver">
+                          <h3><code><a class="member-name" href="#addObserver">addObserver</a>( Observer ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithobserver_observer-Observer.html">Observer</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Gets DOM root element.
+                          <p class="collapsing-list__excerpt">Creates observer of the given type if not yet created, <a href="module_engine_viewithobserver_observer-Observer.html#enable">enables</a> it
+and <a href="module_engine_viewithobserver_observer-Observer.html#observe">attaches</a> to all existing and future
+<a href="module_engine_viewithdocument-Document.html#domRoots">DOM roots</a>.
                           </p>
                           <div class="collapsing-list__content">
+<p>Note: Observers are recognized by their constructor (classes). A single observer will be instantiated and used only
+when registered for the first time. This means that features and other components can register a single observer
+multiple times without caring whether it has been already added or not.</p>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> [ name ] : String</code></dt>
-                                        <dd><p>Name of the root.</p>
-                                          <p>Defaults to <code>'main'</code></p>
+                                        <dt><code> Observer : <span>function</span></code></dt>
+                                        <dd><p>The constructor of an observer to add.
+Should create an instance inheriting from <a href="module_engine_viewithobserver_observer-Observer.html"><code>Observer</code></a>.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code>Element</code></dt>
-                                        <dd><p>DOM root element instance.</p>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithobserver_observer-Observer.html">Observer</a></span></code></dt>
+                                        <dd><p>Added observer instance.</p>
                                         </dd>
                             </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="attachDomRoot">
+                          <h3><code><a class="member-name" href="#attachDomRoot">attachDomRoot</a>( domRoot, [ name ] )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Attaches DOM root element to the view element and enable all observers on that element. This method also
+<a href="module_engine_viewithrenderer-Renderer.html#markToSync">mark element</a> to be synchronized with the view what means that all child
+nodes will be removed and replaced with content of the view root.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>Note that <a href="module_engine_viewithdocument-Document.html#createRoot"><code>createRoot</code></a> will call this method automatically if the DOM element is
+passed to it.</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> domRoot : <span>Element</span> | <span>String</span></code></dt>
+                                        <dd><p>DOM root element.</p>
+                                        </dd>
+                                        <dt><code> [ name ] : <span>String</span></code></dt>
+                                        <dd><p>Name of the root.</p>
+                                          <p>Defaults to <code>'main'</code></p>
+                                        </dd>
+                                      </dl>
                           </div>
                         </div>
                       </li>
@@ -306,7 +336,7 @@ A.bind( &apos;a&apos;, &apos;b&apos; ).to( B, &apos;c&apos;, &apos;d&apos; );
 A.bind( &apos;a&apos; ).to( B, &apos;b&apos;, C, &apos;d&apos;, ( b, d ) =&gt; b + d );</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> bindAttrs : String</code></dt>
+                                        <dt><code> bindAttrs : <span>String</span></code></dt>
                                         <dd><p>Observable attributes that will be bound to another observable(s).</p>
                                         </dd>
                                       </dl>
@@ -314,35 +344,6 @@ A.bind( &apos;a&apos; ).to( B, &apos;b&apos;, C, &apos;d&apos;, ( b, d ) =&gt; b
                             <dl>
                                         <dt><code><span><a class="collapsing-list__type" href="module_utils_observablemixin-BindChain.html">BindChain</a></span></code></dt>
                                         <dd>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="addObserver">
-                          <h3><code><a class="member-name" href="#addObserver">addObserver</a>( Observer ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithobserver_observer-Observer.html">Observer</a></span></code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Creates observer of the given type if not yet created, <a href="module_engine_viewithobserver_observer-Observer.html#enable">enables</a> it
-and <a href="module_engine_viewithobserver_observer-Observer.html#observe">attaches</a> to all existing and future
-<a href="module_engine_viewithdocument-Document.html#domRoots">DOM roots</a>.
-                          </p>
-                          <div class="collapsing-list__content">
-<p>Note: Observers are recognized by their constructor (classes). A single observer will be instantiated and used only
-when registered for the first time. This means that features and other components can register a single observer
-multiple times without caring whether it has been already added or not.</p>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> Observer : function</code></dt>
-                                        <dd><p>The constructor of an observer to add.
-Should create an instance inheriting from <a href="module_engine_viewithobserver_observer-Observer.html"><code>Observer</code></a>.</p>
-                                        </dd>
-                                      </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithobserver_observer-Observer.html">Observer</a></span></code></dt>
-                                        <dd><p>Added observer instance.</p>
                                         </dd>
                             </dl>
                           </div>
@@ -366,11 +367,11 @@ transformed to lower
 case.</p>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> domRoot : Element | String</code></dt>
+                                        <dt><code> domRoot : <span>Element</span> | <span>String</span></code></dt>
                                         <dd><p>DOM root element or the tag name of view root element if the DOM element will be
 attached later.</p>
                                         </dd>
-                                        <dt><code> [ name ] : String</code></dt>
+                                        <dt><code> [ name ] : <span>String</span></code></dt>
                                         <dd><p>Name of the root.</p>
                                           <p>Defaults to <code>'main'</code></p>
                                         </dd>
@@ -437,7 +438,7 @@ foo.on( &apos;method&apos;, ( evt, args ) =&gt; {
 foo.method( 1, 2 ); // -&gt; &apos;3, 2&apos;</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> methodName : String</code></dt>
+                                        <dt><code> methodName : <span>String</span></code></dt>
                                         <dd><p>Name of the method to decorate.</p>
                                         </dd>
                                       </dl>
@@ -461,7 +462,7 @@ emitterA.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( emitterC );</cod
 <pre class="prettyprint source"><code>emitterA.fire( &apos;eventY&apos;, data );</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> events : String</code></dt>
+                                        <dt><code> events : <span>String</span></code></dt>
                                         <dd><p>Event names that will be delegated to another emitter.</p>
                                         </dd>
                                       </dl>
@@ -509,7 +510,7 @@ emitterA.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( emitterC );</cod
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
                         <div class="collapsing-list__term toggler--collapsed" id="fire">
-                          <h3><code><a class="member-name" href="#fire">fire</a>( eventOrInfo, [ args ] ) &rarr;  </code></h3>
+                          <h3><code><a class="member-name" href="#fire">fire</a>( eventOrInfo, [ args ] ) &rarr;  <span>*</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
@@ -522,16 +523,16 @@ emitterA.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( emitterC );</cod
 followed by the optional <code>args</code> provided in the <code>fire()</code> method call.</p>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> eventOrInfo : String | <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dt><code> eventOrInfo : <span>String</span> | <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
                                         <dd><p>The name of the event or <code>EventInfo</code> object if event is delegated.</p>
                                         </dd>
-                                        <dt><code> [ args ] : </code></dt>
+                                        <dt><code> [ args ] : <span>*</span></code></dt>
                                         <dd><p>Additional arguments to be passed to the callbacks.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code></code></dt>
+                                        <dt><code><span>*</span></code></dt>
                                         <dd><p>By default the method returns <code>undefined</code>. However, the return value can be changed by listeners
 through modification of the <a href="module_utils_eventinfo-EventInfo.html#return"><code>return</code></a>&apos;s value (the event info
 is the first param of every callback).</p>
@@ -553,33 +554,32 @@ selection inside.
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="attachDomRoot">
-                          <h3><code><a class="member-name" href="#attachDomRoot">attachDomRoot</a>( domRoot, [ name ] )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="getDomRoot">
+                          <h3><code><a class="member-name" href="#getDomRoot">getDomRoot</a>( [ name ] ) &rarr;  <span>Element</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Attaches DOM root element to the view element and enable all observers on that element. This method also
-<a href="module_engine_viewithrenderer-Renderer.html#markToSync">mark element</a> to be synchronized with the view what means that all child
-nodes will be removed and replaced with content of the view root.
+                          <p class="collapsing-list__excerpt">Gets DOM root element.
                           </p>
                           <div class="collapsing-list__content">
-<p>Note that <a href="module_engine_viewithdocument-Document.html#createRoot"><code>createRoot</code></a> will call this method automatically if the DOM element is
-passed to it.</p>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> domRoot : Element | String</code></dt>
-                                        <dd><p>DOM root element.</p>
-                                        </dd>
-                                        <dt><code> [ name ] : String</code></dt>
+                                        <dt><code> [ name ] : <span>String</span></code></dt>
                                         <dd><p>Name of the root.</p>
                                           <p>Defaults to <code>'main'</code></p>
                                         </dd>
                                       </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Element</span></code></dt>
+                                        <dd><p>DOM root element instance.</p>
+                                        </dd>
+                            </dl>
                           </div>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="getObserver">
-                          <h3><code><a class="member-name" href="#getObserver">getObserver</a>( Observer ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithobserver_observer-Observer.html">Observer</a></span> | undefined</code></h3>
+                          <h3><code><a class="member-name" href="#getObserver">getObserver</a>( Observer ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithobserver_observer-Observer.html">Observer</a></span> | <span>undefined</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Returns observer of the given type or <code>undefined</code> if such observer has not been added yet.
@@ -587,13 +587,13 @@ passed to it.</p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> Observer : function</code></dt>
+                                        <dt><code> Observer : <span>function</span></code></dt>
                                         <dd><p>The constructor of an observer to get.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithobserver_observer-Observer.html">Observer</a></span> | undefined</code></dt>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_viewithobserver_observer-Observer.html">Observer</a></span> | <span>undefined</span></code></dt>
                                         <dd><p>Observer instance or undefined.</p>
                                         </dd>
                             </dl>
@@ -611,7 +611,7 @@ specific &quot;main&quot; root is returned.
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> [ name ] : String</code></dt>
+                                        <dt><code> [ name ] : <span>String</span></code></dt>
                                         <dd><p>Name of the root.</p>
                                           <p>Defaults to <code>'main'</code></p>
                                         </dd>
@@ -641,24 +641,24 @@ specific &quot;main&quot; root is returned.
                                         <dt><code> emitter : <span><a class="collapsing-list__type" href="module_utils_emittermixin-Emitter.html">Emitter</a></span></code></dt>
                                         <dd><p>The object that fires the event.</p>
                                         </dd>
-                                        <dt><code> event : String</code></dt>
+                                        <dt><code> event : <span>String</span></code></dt>
                                         <dd><p>The name of the event.</p>
                                         </dd>
-                                        <dt><code> callback : function</code></dt>
+                                        <dt><code> callback : <span>function</span></code></dt>
                                         <dd><p>The function to be called on event.</p>
                                         </dd>
-                                        <dt><code> [ options ] : Object</code></dt>
+                                        <dt><code> [ options ] : <span>Object</span></code></dt>
                                         <dd><p>Additional options.</p>
                                                     <div class="dlheading5">Properties
                                                     </div>
                                                     <dl>
-                                                      <dt><code> [ options.priority ] : <span><a class="collapsing-list__type" href="module_utils_priorities-PriorityString.html">PriorityString</a></span> | Number</code></dt>
+                                                      <dt><code> [ options.priority ] : <span><a class="collapsing-list__type" href="module_utils_priorities-PriorityString.html">PriorityString</a></span> | <span>Number</span></code></dt>
                                                       <dd><p>The priority of this event callback. The higher
 the priority value the sooner the callback will be fired. Events having the same priority are called in the
 order they were added.</p>
                                                         <p>Defaults to <code>'normal'</code></p>
                                                       </dd>
-                                                      <dt><code> [ options.context ] : Object</code></dt>
+                                                      <dt><code> [ options.context ] : <span>Object</span></code></dt>
                                                       <dd><p>The object that represents <code>this</code> in the callback. Defaults to the object firing the event.</p>
                                                       </dd>
                                                     </dl>
@@ -681,13 +681,13 @@ order they were added.</p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> event : String</code></dt>
+                                        <dt><code> event : <span>String</span></code></dt>
                                         <dd><p>The name of the event.</p>
                                         </dd>
-                                        <dt><code> callback : function</code></dt>
+                                        <dt><code> callback : <span>function</span></code></dt>
                                         <dd><p>The function to stop being called.</p>
                                         </dd>
-                                        <dt><code> [ context ] : Object</code></dt>
+                                        <dt><code> [ context ] : <span>Object</span></code></dt>
                                         <dd><p>The context object to be removed, pared with the given callback. To handle cases where
 the same callback is used several times with different contexts.</p>
                                         </dd>
@@ -720,24 +720,24 @@ myEmitter.fire( &apos;myGroup:foo&apos; );</code></pre><p>An event callback can 
 set the <a href="module_utils_eventinfo-EventInfo.html#return">return value</a> of the <a href="module_utils_emittermixin-EmitterMixin.html#fire"><code>fire</code></a> method.</p>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> event : String</code></dt>
+                                        <dt><code> event : <span>String</span></code></dt>
                                         <dd><p>The name of the event.</p>
                                         </dd>
-                                        <dt><code> callback : function</code></dt>
+                                        <dt><code> callback : <span>function</span></code></dt>
                                         <dd><p>The function to be called on event.</p>
                                         </dd>
-                                        <dt><code> [ options ] : Object</code></dt>
+                                        <dt><code> [ options ] : <span>Object</span></code></dt>
                                         <dd><p>Additional options.</p>
                                                     <div class="dlheading5">Properties
                                                     </div>
                                                     <dl>
-                                                      <dt><code> [ options.priority ] : <span><a class="collapsing-list__type" href="module_utils_priorities-PriorityString.html">PriorityString</a></span> | Number</code></dt>
+                                                      <dt><code> [ options.priority ] : <span><a class="collapsing-list__type" href="module_utils_priorities-PriorityString.html">PriorityString</a></span> | <span>Number</span></code></dt>
                                                       <dd><p>The priority of this event callback. The higher
 the priority value the sooner the callback will be fired. Events having the same priority are called in the
 order they were added.</p>
                                                         <p>Defaults to <code>'normal'</code></p>
                                                       </dd>
-                                                      <dt><code> [ options.context ] : Object</code></dt>
+                                                      <dt><code> [ options.context ] : <span>Object</span></code></dt>
                                                       <dd><p>The object that represents <code>this</code> in the callback. Defaults to the object firing the event.</p>
                                                       </dd>
                                                     </dl>
@@ -761,24 +761,24 @@ calling <a href="module_utils_emittermixin-EmitterMixin.html#on"><code>on</code>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> event : String</code></dt>
+                                        <dt><code> event : <span>String</span></code></dt>
                                         <dd><p>The name of the event.</p>
                                         </dd>
-                                        <dt><code> callback : function</code></dt>
+                                        <dt><code> callback : <span>function</span></code></dt>
                                         <dd><p>The function to be called on event.</p>
                                         </dd>
-                                        <dt><code> [ options ] : Object</code></dt>
+                                        <dt><code> [ options ] : <span>Object</span></code></dt>
                                         <dd><p>Additional options.</p>
                                                     <div class="dlheading5">Properties
                                                     </div>
                                                     <dl>
-                                                      <dt><code> [ options.priority ] : <span><a class="collapsing-list__type" href="module_utils_priorities-PriorityString.html">PriorityString</a></span> | Number</code></dt>
+                                                      <dt><code> [ options.priority ] : <span><a class="collapsing-list__type" href="module_utils_priorities-PriorityString.html">PriorityString</a></span> | <span>Number</span></code></dt>
                                                       <dd><p>The priority of this event callback. The higher
 the priority value the sooner the callback will be fired. Events having the same priority are called in the
 order they were added.</p>
                                                         <p>Defaults to <code>'normal'</code></p>
                                                       </dd>
-                                                      <dt><code> [ options.context ] : Object</code></dt>
+                                                      <dt><code> [ options.context ] : <span>Object</span></code></dt>
                                                       <dd><p>The object that represents <code>this</code> in the callback. Defaults to the object firing the event.</p>
                                                       </dd>
                                                     </dl>
@@ -835,10 +835,10 @@ have a property with a given attribute name. This prevents from mistakenly overr
 properties and methods, but means that <code>foo.set( &apos;bar&apos;, 1 )</code> may be slightly slower than <code>foo.bar = 1</code>.</p>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> name : String</code></dt>
+                                        <dt><code> name : <span>String</span></code></dt>
                                         <dd><p>The attributes name.</p>
                                         </dd>
-                                        <dt><code> value : </code></dt>
+                                        <dt><code> value : <span>*</span></code></dt>
                                         <dd><p>The attributes value.</p>
                                         </dd>
                                       </dl>
@@ -863,7 +863,7 @@ properties and methods, but means that <code>foo.set( &apos;bar&apos;, 1 )</code
 </ul>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> [ event ] : String</code></dt>
+                                        <dt><code> [ event ] : <span>String</span></code></dt>
                                         <dd><p>The name of the event to stop delegating. If omitted, stops it all delegations.</p>
                                         </dd>
                                         <dt><code> [ emitter ] : <span><a class="collapsing-list__type" href="module_utils_emittermixin-Emitter.html">Emitter</a></span></code></dt>
@@ -896,11 +896,11 @@ If omitted, stops delegation of <code>event</code> to all emitters.</p>
                                         <dt><code> [ emitter ] : <span><a class="collapsing-list__type" href="module_utils_emittermixin-Emitter.html">Emitter</a></span></code></dt>
                                         <dd><p>The object to stop listening to. If omitted, stops it for all objects.</p>
                                         </dd>
-                                        <dt><code> [ event ] : String</code></dt>
+                                        <dt><code> [ event ] : <span>String</span></code></dt>
                                         <dd><p>(Requires the <code>emitter</code>) The name of the event to stop listening to. If omitted, stops it
 for all events from <code>emitter</code>.</p>
                                         </dd>
-                                        <dt><code> [ callback ] : function</code></dt>
+                                        <dt><code> [ callback ] : <span>function</span></code></dt>
                                         <dd><p>(Requires the <code>event</code>) The function to be removed from the call list for the given
 <code>event</code>.</p>
                                         </dd>
@@ -923,7 +923,7 @@ for all events from <code>emitter</code>.</p>
 A.unbind();</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> [ unbindAttrs ] : String</code></dt>
+                                        <dt><code> [ unbindAttrs ] : <span>String</span></code></dt>
                                         <dd><p>Observable attributes to be unbound. All the bindings will
 be released if no attributes provided.</p>
                                         </dd>
@@ -936,7 +936,7 @@ be released if no attributes provided.</p>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:change:{attribute}">
-                          <h3><code><a class="member-name" href="#event:change:{attribute}">change:{attribute}</a>( name, value, oldValue )</code></h3>
+                          <h3><code><a class="member-name" href="#event:change:{attribute}">change:{attribute}</a>( eventInfo, name, value, oldValue )</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
@@ -947,13 +947,16 @@ be released if no attributes provided.</p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> name : String</code></dt>
+                                        <dt><code> eventInfo : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
+                                        <dt><code> name : <span>String</span></code></dt>
                                         <dd><p>The attribute name.</p>
                                         </dd>
-                                        <dt><code> value : </code></dt>
+                                        <dt><code> value : <span>*</span></code></dt>
                                         <dd><p>The new attribute value.</p>
                                         </dd>
-                                        <dt><code> oldValue : </code></dt>
+                                        <dt><code> oldValue : <span>*</span></code></dt>
                                         <dd><p>The previous attribute value.</p>
                                         </dd>
                                       </dl>
@@ -962,7 +965,7 @@ be released if no attributes provided.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:blur">
-                          <h3><code><a class="member-name" href="#event:blur">blur</a>( data )</code></h3>
+                          <h3><code><a class="member-name" href="#event:blur">blur</a>( eventInfo, data )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when one of the editables loses focus.
@@ -974,6 +977,9 @@ be released if no attributes provided.</p>
 this event is available by default.</p>
                             <h4>Parameters</h4>
                                       <dl>
+                                        <dt><code> eventInfo : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
                                         <dt><code> data : <span><a class="collapsing-list__type" href="module_engine_viewithobserver_domeventdata-DomEventData.html">DomEventData</a></span></code></dt>
                                         <dd><p>Event data.</p>
                                         </dd>
@@ -983,7 +989,7 @@ this event is available by default.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:click">
-                          <h3><code><a class="member-name" href="#event:click">click</a>( data )</code></h3>
+                          <h3><code><a class="member-name" href="#event:click">click</a>( eventInfo, data )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when one of the editables has been clicked.
@@ -995,6 +1001,9 @@ this event is available by default.</p>
 to <a href="module_engine_viewithdocument-Document.html"><code>Document</code></a> by a <a href="module_engine_viewithdocument-Document.html#addObserver"><code>addObserver</code></a> method.</p>
                             <h4>Parameters</h4>
                                       <dl>
+                                        <dt><code> eventInfo : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
                                         <dt><code> data : <span><a class="collapsing-list__type" href="module_engine_viewithobserver_domeventdata-DomEventData.html">DomEventData</a></span></code></dt>
                                         <dd><p>Event data.</p>
                                         </dd>
@@ -1004,7 +1013,7 @@ to <a href="module_engine_viewithdocument-Document.html"><code>Document</code></
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:clipboardInput">
-                          <h3><code><a class="member-name" href="#event:clipboardInput">clipboardInput</a>( data = { data.dataTransfer, data.targetRanges } )</code></h3>
+                          <h3><code><a class="member-name" href="#event:clipboardInput">clipboardInput</a>( eventInfo, data = { data.dataTransfer, data.targetRanges } )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired as a continuation of <a href="module_engine_viewithdocument-Document.html#event:paste"><code>paste</code></a> and <a href="module_engine_viewithdocument-Document.html#event:drop"><code>drop</code></a> events.
@@ -1018,7 +1027,10 @@ needs to be added to <a href="module_engine_viewithdocument-Document.html"><code
 It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>Clipboard</code></a> feature. If it&apos;s not loaded, it must be done manually.</p>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> data : Object</code></dt>
+                                        <dt><code> eventInfo : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
+                                        <dt><code> data : <span>Object</span></code></dt>
                                         <dd><p>Event data.</p>
                                                     <div class="dlheading5">Properties
                                                     </div>
@@ -1040,7 +1052,7 @@ then it&apos;s the drop position (which can be different than the selection at t
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:clipboardOutput">
-                          <h3><code><a class="member-name" href="#event:clipboardOutput">clipboardOutput</a>( data )</code></h3>
+                          <h3><code><a class="member-name" href="#event:clipboardOutput">clipboardOutput</a>( eventInfo, data )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired on <a href="module_engine_viewithdocument-Document.html#event:copy"><code>copy</code></a> and <a href="module_engine_viewithdocument-Document.html#event:cut"><code>cut</code></a>
@@ -1050,6 +1062,9 @@ It&apos;s part of the <a href="module_clipboard_clipboard-Clipboard.html">&quot;
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
+                                        <dt><code> eventInfo : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
                                         <dt><code> data : <span><a class="collapsing-list__type" href="module_clipboard_clipboard-ClipboardOutputEventData.html">ClipboardOutputEventData</a></span></code></dt>
                                         <dd><p>Event data.</p>
                                         </dd>
@@ -1059,7 +1074,7 @@ It&apos;s part of the <a href="module_clipboard_clipboard-Clipboard.html">&quot;
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:copy">
-                          <h3><code><a class="member-name" href="#event:copy">copy</a>( data )</code></h3>
+                          <h3><code><a class="member-name" href="#event:copy">copy</a>( eventInfo, data )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when user copied content from one of the editables.
@@ -1071,6 +1086,9 @@ needs to be added to <a href="module_engine_viewithdocument-Document.html"><code
 It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>Clipboard</code></a> feature. If it&apos;s not loaded, it must be done manually.</p>
                             <h4>Parameters</h4>
                                       <dl>
+                                        <dt><code> eventInfo : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
                                         <dt><code> data : <span><a class="collapsing-list__type" href="module_clipboard_clipboardobserver-ClipboardEventData.html">ClipboardEventData</a></span></code></dt>
                                         <dd><p>Event data.</p>
                                         </dd>
@@ -1080,7 +1098,7 @@ It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:cut">
-                          <h3><code><a class="member-name" href="#event:cut">cut</a>( data )</code></h3>
+                          <h3><code><a class="member-name" href="#event:cut">cut</a>( eventInfo, data )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when user cut content from one of the editables.
@@ -1092,6 +1110,9 @@ needs to be added to <a href="module_engine_viewithdocument-Document.html"><code
 It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>Clipboard</code></a> feature. If it&apos;s not loaded, it must be done manually.</p>
                             <h4>Parameters</h4>
                                       <dl>
+                                        <dt><code> eventInfo : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
                                         <dt><code> data : <span><a class="collapsing-list__type" href="module_clipboard_clipboardobserver-ClipboardEventData.html">ClipboardEventData</a></span></code></dt>
                                         <dd><p>Event data.</p>
                                         </dd>
@@ -1101,7 +1122,7 @@ It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:delete">
-                          <h3><code><a class="member-name" href="#event:delete">delete</a>( data, data.direction, data.unit )</code></h3>
+                          <h3><code><a class="member-name" href="#event:delete">delete</a>( eventInfo, data, data.direction, data.unit )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Event fired when the user tries to delete content (e.g. presses <kbd>Delete</kbd> or <kbd>Backspace</kbd>).
@@ -1111,13 +1132,16 @@ It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>
 (usually registered by the <a href="module_typing_delete-Delete.html">delete feature</a>).</p>
                             <h4>Parameters</h4>
                                       <dl>
+                                        <dt><code> eventInfo : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
                                         <dt><code> data : <span><a class="collapsing-list__type" href="module_engine_viewithobserver_domeventdata-DomEventData.html">DomEventData</a></span></code></dt>
                                         <dd>
                                         </dd>
-                                        <dt><code> data.direction :  | </code></dt>
+                                        <dt><code> data.direction : <span>'forward'</span> | <span>'delete'</span></code></dt>
                                         <dd><p>The direction in which the deletion should happen.</p>
                                         </dd>
-                                        <dt><code> data.unit :  | </code></dt>
+                                        <dt><code> data.unit : <span>'character'</span> | <span>'word'</span></code></dt>
                                         <dd><p>The &quot;amount&quot; of content that should be deleted.</p>
                                         </dd>
                                       </dl>
@@ -1126,7 +1150,7 @@ It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:drop">
-                          <h3><code><a class="member-name" href="#event:drop">drop</a>( data, dropRange )</code></h3>
+                          <h3><code><a class="member-name" href="#event:drop">drop</a>( eventInfo, data, dropRange )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when user dropped content into one of the editables.
@@ -1138,6 +1162,9 @@ needs to be added to <a href="module_engine_viewithdocument-Document.html"><code
 It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>Clipboard</code></a> feature. If it&apos;s not loaded, it must be done manually.</p>
                             <h4>Parameters</h4>
                                       <dl>
+                                        <dt><code> eventInfo : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
                                         <dt><code> data : <span><a class="collapsing-list__type" href="module_clipboard_clipboardobserver-ClipboardEventData.html">ClipboardEventData</a></span></code></dt>
                                         <dd><p>Event data.</p>
                                         </dd>
@@ -1150,7 +1177,7 @@ It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:enter">
-                          <h3><code><a class="member-name" href="#event:enter">enter</a>( data )</code></h3>
+                          <h3><code><a class="member-name" href="#event:enter">enter</a>( eventInfo, data )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Event fired when the user presses the <kbd>Enter</kbd> key.
@@ -1160,6 +1187,9 @@ It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>
 (usually registered by the <a href="module_enter_enter-Enter.html">Enter feature</a>).</p>
                             <h4>Parameters</h4>
                                       <dl>
+                                        <dt><code> eventInfo : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
                                         <dt><code> data : <span><a class="collapsing-list__type" href="module_engine_viewithobserver_domeventdata-DomEventData.html">DomEventData</a></span></code></dt>
                                         <dd>
                                         </dd>
@@ -1169,7 +1199,7 @@ It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:focus">
-                          <h3><code><a class="member-name" href="#event:focus">focus</a>( data )</code></h3>
+                          <h3><code><a class="member-name" href="#event:focus">focus</a>( eventInfo, data )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when one of the editables gets focus.
@@ -1181,6 +1211,9 @@ It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>
 this event is available by default.</p>
                             <h4>Parameters</h4>
                                       <dl>
+                                        <dt><code> eventInfo : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
                                         <dt><code> data : <span><a class="collapsing-list__type" href="module_engine_viewithobserver_domeventdata-DomEventData.html">DomEventData</a></span></code></dt>
                                         <dd><p>Event data.</p>
                                         </dd>
@@ -1190,7 +1223,7 @@ this event is available by default.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:keydown">
-                          <h3><code><a class="member-name" href="#event:keydown">keydown</a>( keyEventData )</code></h3>
+                          <h3><code><a class="member-name" href="#event:keydown">keydown</a>( eventInfo, keyEventData )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when a key has been pressed.
@@ -1202,6 +1235,9 @@ this event is available by default.</p>
 this event is available by default.</p>
                             <h4>Parameters</h4>
                                       <dl>
+                                        <dt><code> eventInfo : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
                                         <dt><code> keyEventData : <span><a class="collapsing-list__type" href="module_engine_viewithobserver_keyobserver-KeyEventData.html">KeyEventData</a></span></code></dt>
                                         <dd>
                                         </dd>
@@ -1211,7 +1247,7 @@ this event is available by default.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:keyup">
-                          <h3><code><a class="member-name" href="#event:keyup">keyup</a>( keyEventData )</code></h3>
+                          <h3><code><a class="member-name" href="#event:keyup">keyup</a>( eventInfo, keyEventData )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when a key has been released.
@@ -1223,6 +1259,9 @@ this event is available by default.</p>
 this event is available by default.</p>
                             <h4>Parameters</h4>
                                       <dl>
+                                        <dt><code> eventInfo : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
                                         <dt><code> keyEventData : <span><a class="collapsing-list__type" href="module_engine_viewithobserver_keyobserver-KeyEventData.html">KeyEventData</a></span></code></dt>
                                         <dd>
                                         </dd>
@@ -1232,7 +1271,7 @@ this event is available by default.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:mousedown">
-                          <h3><code><a class="member-name" href="#event:mousedown">mousedown</a>( data )</code></h3>
+                          <h3><code><a class="member-name" href="#event:mousedown">mousedown</a>( eventInfo, data )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when mouse button is pressed down on one of the editables.
@@ -1243,6 +1282,9 @@ this event is available by default.</p>
 needs to be added to <a href="module_engine_viewithdocument-Document.html"><code>Document</code></a> by a <a href="module_engine_viewithdocument-Document.html#addObserver"><code>addObserver</code></a> method.</p>
                             <h4>Parameters</h4>
                                       <dl>
+                                        <dt><code> eventInfo : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
                                         <dt><code> data : <span><a class="collapsing-list__type" href="module_engine_viewithobserver_domeventdata-DomEventData.html">DomEventData</a></span></code></dt>
                                         <dd><p>Event data.</p>
                                         </dd>
@@ -1252,7 +1294,7 @@ needs to be added to <a href="module_engine_viewithdocument-Document.html"><code
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:mutations">
-                          <h3><code><a class="member-name" href="#event:mutations">mutations</a>( viewMutations, viewSelection )</code></h3>
+                          <h3><code><a class="member-name" href="#event:mutations">mutations</a>( eventInfo, viewMutations, viewSelection )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when mutation occurred. If tree view is not changed on this event, DOM will be reverter to the state before
@@ -1265,12 +1307,15 @@ mutation, so all changes which should be applied, should be handled on this even
 this event is available by default.</p>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> viewMutations : </code></dt>
+                                        <dt><code> eventInfo : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
+                                        <dt><code> viewMutations : <span>Array.&lt;(module:engine/view/observer/mutationobserver~MutatedText|module:engine/view/observer/mutationobserver~MutatedChildren)&gt;</span></code></dt>
                                         <dd><p>Array of mutations.
 For mutated texts it will be <a href="module_engine_viewithobserver_mutationobserver-MutatedText.html"><code>MutatedText</code></a> and for mutated elements it will be
 <a href="module_engine_viewithobserver_mutationobserver-MutatedChildren.html"><code>MutatedChildren</code></a>. You can recognize the type based on the <code>type</code> property.</p>
                                         </dd>
-                                        <dt><code> viewSelection : <span><a class="collapsing-list__type" href="module_engine_viewithselection-Selection.html">Selection</a></span> | null</code></dt>
+                                        <dt><code> viewSelection : <span><a class="collapsing-list__type" href="module_engine_viewithselection-Selection.html">Selection</a></span> | <span>null</span></code></dt>
                                         <dd><p>View selection that is a result of converting DOM selection to view.
 Keep in
 mind that the DOM selection is already &quot;updated&quot;, meaning that it already acknowledges changes done in mutation.</p>
@@ -1281,7 +1326,7 @@ mind that the DOM selection is already &quot;updated&quot;, meaning that it alre
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:paste">
-                          <h3><code><a class="member-name" href="#event:paste">paste</a>( data )</code></h3>
+                          <h3><code><a class="member-name" href="#event:paste">paste</a>( eventInfo, data )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when user pasted content into one of the editables.
@@ -1293,6 +1338,9 @@ needs to be added to <a href="module_engine_viewithdocument-Document.html"><code
 It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>Clipboard</code></a> feature. If it&apos;s not loaded, it must be done manually.</p>
                             <h4>Parameters</h4>
                                       <dl>
+                                        <dt><code> eventInfo : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
                                         <dt><code> data : <span><a class="collapsing-list__type" href="module_clipboard_clipboardobserver-ClipboardEventData.html">ClipboardEventData</a></span></code></dt>
                                         <dd><p>Event data.</p>
                                         </dd>
@@ -1302,7 +1350,7 @@ It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:selectionChange">
-                          <h3><code><a class="member-name" href="#event:selectionChange">selectionChange</a>( data = { data.oldSelection, data.newSelection, data.domSelection } )</code></h3>
+                          <h3><code><a class="member-name" href="#event:selectionChange">selectionChange</a>( eventInfo, data = { data.oldSelection, data.newSelection, data.domSelection } )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when selection has changed. This event is fired only when the selection change was the only change that happened
@@ -1315,7 +1363,10 @@ in the document, and old selection is different then the new selection.
 this event is available by default.</p>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> data : Object</code></dt>
+                                        <dt><code> eventInfo : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
+                                        <dt><code> data : <span>Object</span></code></dt>
                                         <dd>
                                                     <div class="dlheading5">Properties
                                                     </div>
@@ -1327,7 +1378,7 @@ this event is available by default.</p>
                                                       <dt><code> data.newSelection : <span><a class="collapsing-list__type" href="module_engine_viewithselection-Selection.html">Selection</a></span></code></dt>
                                                       <dd><p>New View selection which is converted DOM selection.</p>
                                                       </dd>
-                                                      <dt><code> data.domSelection : Selection</code></dt>
+                                                      <dt><code> data.domSelection : <span>Selection</span></code></dt>
                                                       <dd><p>Native DOM selection.</p>
                                                       </dd>
                                                     </dl>
@@ -1338,7 +1389,7 @@ this event is available by default.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:selectionChangeDone">
-                          <h3><code><a class="member-name" href="#event:selectionChangeDone">selectionChangeDone</a>( data = { data.oldSelection, data.newSelection, data.domSelection } )</code></h3>
+                          <h3><code><a class="member-name" href="#event:selectionChangeDone">selectionChangeDone</a>( eventInfo, data = { data.oldSelection, data.newSelection, data.domSelection } )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when selection stops changing.
@@ -1350,7 +1401,10 @@ this event is available by default.</p>
 this event is available by default.</p>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> data : Object</code></dt>
+                                        <dt><code> eventInfo : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
+                                        <dt><code> data : <span>Object</span></code></dt>
                                         <dd>
                                                     <div class="dlheading5">Properties
                                                     </div>
@@ -1362,7 +1416,7 @@ this event is available by default.</p>
                                                       <dt><code> data.newSelection : <span><a class="collapsing-list__type" href="module_engine_viewithselection-Selection.html">Selection</a></span></code></dt>
                                                       <dd><p>New View selection which is converted DOM selection.</p>
                                                       </dd>
-                                                      <dt><code> data.domSelection : Selection</code></dt>
+                                                      <dt><code> data.domSelection : <span>Selection</span></code></dt>
                                                       <dd><p>Native DOM selection.</p>
                                                       </dd>
                                                     </dl>
@@ -1373,13 +1427,19 @@ this event is available by default.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:render">
-                          <h3><code><a class="member-name" href="#event:render">render</a>()</code></h3>
+                          <h3><code><a class="member-name" href="#event:render">render</a>( eventInfo )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when <a href="module_engine_viewithdocument-Document.html#render">render</a> method is called. Actual rendering is executed as a listener to
 this event with default priority. This way other listeners can be used to run code before or after rendering.
                           </p>
                           <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> eventInfo : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
+                                      </dl>
                           </div>
                         </div>
                       </li>
@@ -1388,7 +1448,7 @@ this event with default priority. This way other listeners can be used to run co
       </section>
       <div class="side-navigation">
         <div class="side-navigation__wrapper">
-          <nav class="side-navigation__inner">
+          <nav class="side-navigation__inner side-navigation__inner--api">
             <ul class="tree api-tree">
                     <li class="toggler--collapsed">
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">adapter-ckfinder</span>
@@ -1834,8 +1894,11 @@ this event with default priority. This way other listeners can be used to run co
                                                   <li><a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">ModelConverterBuilder</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_conversion_buildmodelconverter-StampCreatorData.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">StampCreatorData</span></div></a>
+                                                  <li><a href="module_engine_conversion_buildmodelconverter-HighlightDescriptor.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">HighlightDescriptor</span></div></a>
+                                                  </li>
+                                                  <li><a href="module_engine_conversion_buildmodelconverter-MarkerViewElementCreatorData.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">MarkerViewElementCreatorData</span></div></a>
                                                   </li>
                                           </ul>
                                         </li>
@@ -4160,6 +4223,15 @@ this event with default priority. This way other listeners can be used to run co
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">widget</span>
                       </div>
                       <ul>
+                              <li class="toggler--collapsed">
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_widget_highlightstack.html">highlightstack</a>
+                                </div>
+                                <ul>
+                                        <li><a href="module_widget_highlightstack-HighlightStack.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">HighlightStack</span></div></a>
+                                        </li>
+                                </ul>
+                              </li>
                               <li><a href="module_widget_utils.html">
                                   <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">utils</span></div></a>
                               </li>

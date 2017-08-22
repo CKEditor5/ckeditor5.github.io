@@ -147,7 +147,7 @@ class CKEditorError extends Error {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_lib_lodash_last__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_comparearrays__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__text__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__text__ = __webpack_require__(25);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -1997,12 +1997,12 @@ function mix( baseClass, ...mixins ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_collection__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_collection__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__viewcollection__ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_lib_lodash_cloneDeepWith__ = __webpack_require__(430);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_lib_lodash_isObject__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(30);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -3622,8 +3622,8 @@ function shouldExtend( attrName ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nodelist__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__text__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__text__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(32);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -4027,11 +4027,11 @@ function rest(func, start) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__viewcollection__ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__template__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_dom_emittermixin__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_dom_emittermixin__ = __webpack_require__(106);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_collection__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_collection__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(32);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -6352,7 +6352,7 @@ function register( name, creator ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__treewalker__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__treewalker__ = __webpack_require__(65);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_comparearrays__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__editableelement__ = __webpack_require__(87);
@@ -6770,205 +6770,6 @@ class Position {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = getCode;
-/* harmony export (immutable) */ __webpack_exports__["d"] = parseKeystroke;
-/* harmony export (immutable) */ __webpack_exports__["b"] = getEnvKeystrokeText;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__env__ = __webpack_require__(345);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * Set of utils related to keyboard support.
- *
- * @module utils/keyboard
- */
-
-
-
-
-/**
- * Object with `keyName => keyCode` pairs for a set of known keys.
- *
- * Contains:
- *
- * * `a-z`,
- * * `0-9`,
- * * `f1-f12`,
- * * `arrow(left|up|right|bottom)`,
- * * `backspace`, `delete`, `enter`, `esc`, `tab`,
- * * `ctrl`, `cmd`, `shift`, `alt`.
- */
-const keyCodes = generateKnownKeyCodes();
-/* harmony export (immutable) */ __webpack_exports__["c"] = keyCodes;
-
-
-/**
- * Converts a key name or a {@link module:utils/keyboard~KeystrokeInfo keystroke info} into a key code.
- *
- * Note: Key names are matched with {@link module:utils/keyboard~keyCodes} in a case-insensitive way.
- *
- * @param {String|module:utils/keyboard~KeystrokeInfo} Key name (see {@link module:utils/keyboard~keyCodes})
- * or a keystroke data object.
- * @returns {Number} Key or keystroke code.
- */
-function getCode( key ) {
-	let keyCode;
-
-	if ( typeof key == 'string' ) {
-		keyCode = keyCodes[ key.toLowerCase() ];
-
-		if ( !keyCode ) {
-			/**
-			 * Unknown key name. Only key names contained by the {@link module:utils/keyboard~keyCodes} can be used.
-			 *
-			 * @errror keyboard-unknown-key
-			 * @param {String} key
-			 */
-			throw new __WEBPACK_IMPORTED_MODULE_0__ckeditorerror__["a" /* default */]( 'keyboard-unknown-key: Unknown key name.', { key } );
-		}
-	} else {
-		keyCode = key.keyCode +
-			( key.altKey ? keyCodes.alt : 0 ) +
-			( key.ctrlKey ? keyCodes.ctrl : 0 ) +
-			( key.shiftKey ? keyCodes.shift : 0 );
-	}
-
-	return keyCode;
-}
-
-/**
- * Parses keystroke and returns a keystroke code that will match the code returned by
- * link {@link module:utils/keyboard.getCode} for a corresponding {@link module:utils/keyboard~KeystrokeInfo keystroke info}.
- *
- * The keystroke can be passed in two formats:
- *
- * * as a single string – e.g. `ctrl + A`,
- * * as an array of {@link module:utils/keyboard~keyCodes known key names} and key codes – e.g.:
- *   * `[ 'ctrl', 32 ]` (ctrl + space),
- *   * `[ 'ctrl', 'a' ]` (ctrl + A).
- *
- * Note: Key names are matched with {@link module:utils/keyboard~keyCodes} in a case-insensitive way.
- *
- * Note: Only keystrokes with a single non-modifier key are supported (e.g. `ctrl+A` is OK, but `ctrl+A+B` is not).
- *
- * @param {String|Array.<Number|String>} keystroke Keystroke definition.
- * @returns {Number} Keystroke code.
- */
-function parseKeystroke( keystroke ) {
-	if ( typeof keystroke == 'string' ) {
-		keystroke = splitKeystrokeText( keystroke );
-	}
-
-	return keystroke
-		.map( key => ( typeof key == 'string' ) ? getCode( key ) : key )
-		.reduce( ( key, sum ) => sum + key, 0 );
-}
-
-/**
- * It translates any keystroke string text like `"CTRL+A"` to an
- * environment–specific keystroke, i.e. `"⌘A"` on Mac OSX.
- *
- * @param {String} keystroke Keystroke text.
- * @returns {String} Keystroke text specific for the environment.
- */
-function getEnvKeystrokeText( keystroke ) {
-	const split = splitKeystrokeText( keystroke );
-
-	if ( __WEBPACK_IMPORTED_MODULE_1__env__["a" /* default */].mac ) {
-		if ( split[ 0 ].toLowerCase() == 'ctrl' ) {
-			return '⌘' + ( split[ 1 ] || '' );
-		}
-	}
-
-	return keystroke;
-}
-
-function generateKnownKeyCodes() {
-	const keyCodes = {
-		arrowleft: 37,
-		arrowup: 38,
-		arrowright: 39,
-		arrowdown: 40,
-		backspace: 8,
-		delete: 46,
-		enter: 13,
-		space: 32,
-		esc: 27,
-		tab: 9,
-
-		// The idea about these numbers is that they do not collide with any real key codes, so we can use them
-		// like bit masks.
-		ctrl: 0x110000,
-		// Has the same code as ctrl, because their behaviour should be unified across the editor.
-		// See http://ckeditor.github.io/editor-recommendations/general-policies#ctrl-vs-cmd
-		cmd: 0x110000,
-		shift: 0x220000,
-		alt: 0x440000
-	};
-
-	// a-z
-	for ( let code = 65; code <= 90; code++ ) {
-		const letter = String.fromCharCode( code );
-
-		keyCodes[ letter.toLowerCase() ] = code;
-	}
-
-	// 0-9
-	for ( let code = 48; code <= 57; code++ ) {
-		keyCodes[ code - 48 ] = code;
-	}
-
-	// F1-F12
-	for ( let code = 112; code <= 123; code++ ) {
-		keyCodes[ 'f' + ( code - 111 ) ] = code;
-	}
-
-	return keyCodes;
-}
-
-function splitKeystrokeText( keystroke ) {
-	return keystroke.split( /\s*\+\s*/ );
-}
-
-/**
- * Information about a keystroke.
- *
- * @interface module:utils/keyboard~KeystrokeInfo
- */
-
-/**
- * The [key code](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode).
- *
- * @member {Number} module:utils/keyboard~KeystrokeInfo#keyCode
- */
-
-/**
- * Whether the <kbd>Alt</kbd> modifier was pressed.
- *
- * @member {Bolean} module:utils/keyboard~KeystrokeInfo#altKey
- */
-
-/**
- * Whether the <kbd>Ctrl</kbd> or <kbd>Cmd</kbd> modifier was pressed.
- *
- * @member {Bolean} module:utils/keyboard~KeystrokeInfo#ctrlKey
- */
-
-/**
- * Whether the <kbd>Shift</kbd> modifier was pressed.
- *
- * @member {Bolean} module:utils/keyboard~KeystrokeInfo#shiftKey
- */
-
-
-/***/ }),
-/* 22 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = insert;
 /* harmony export (immutable) */ __webpack_exports__["d"] = remove;
 /* unused harmony export move */
@@ -6976,7 +6777,7 @@ function splitKeystrokeText( keystroke ) {
 /* unused harmony export removeAttribute */
 /* harmony export (immutable) */ __webpack_exports__["c"] = normalizeNodes;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__text__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__text__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__textproxy__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__documentfragment__ = __webpack_require__(39);
@@ -7303,11 +7104,11 @@ function _haveSameAttributes( nodeA, nodeB ) {
 
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_clone__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_clone__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -7481,7 +7282,7 @@ __WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( Delta )
 
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7528,7 +7329,7 @@ function baseFlatten(array, depth, predicate, isStrict, result) {
 
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7536,7 +7337,7 @@ function baseFlatten(array, depth, predicate, isStrict, result) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__icon_iconview__ = __webpack_require__(461);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__tooltip_tooltipview__ = __webpack_require__(462);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(27);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -7836,7 +7637,7 @@ class ButtonView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */] 
 
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7930,14 +7731,14 @@ class Text extends __WEBPACK_IMPORTED_MODULE_0__node__["a" /* default */] {
 
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__text__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__text__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_objecttomap__ = __webpack_require__(163);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isPlainObject__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__matcher__ = __webpack_require__(174);
 /**
@@ -8769,6 +8570,205 @@ function normalize( nodes ) {
 
 
 /***/ }),
+/* 27 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = getCode;
+/* harmony export (immutable) */ __webpack_exports__["d"] = parseKeystroke;
+/* harmony export (immutable) */ __webpack_exports__["b"] = getEnvKeystrokeText;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditorerror__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__env__ = __webpack_require__(345);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * Set of utils related to keyboard support.
+ *
+ * @module utils/keyboard
+ */
+
+
+
+
+/**
+ * Object with `keyName => keyCode` pairs for a set of known keys.
+ *
+ * Contains:
+ *
+ * * `a-z`,
+ * * `0-9`,
+ * * `f1-f12`,
+ * * `arrow(left|up|right|bottom)`,
+ * * `backspace`, `delete`, `enter`, `esc`, `tab`,
+ * * `ctrl`, `cmd`, `shift`, `alt`.
+ */
+const keyCodes = generateKnownKeyCodes();
+/* harmony export (immutable) */ __webpack_exports__["c"] = keyCodes;
+
+
+/**
+ * Converts a key name or a {@link module:utils/keyboard~KeystrokeInfo keystroke info} into a key code.
+ *
+ * Note: Key names are matched with {@link module:utils/keyboard~keyCodes} in a case-insensitive way.
+ *
+ * @param {String|module:utils/keyboard~KeystrokeInfo} Key name (see {@link module:utils/keyboard~keyCodes})
+ * or a keystroke data object.
+ * @returns {Number} Key or keystroke code.
+ */
+function getCode( key ) {
+	let keyCode;
+
+	if ( typeof key == 'string' ) {
+		keyCode = keyCodes[ key.toLowerCase() ];
+
+		if ( !keyCode ) {
+			/**
+			 * Unknown key name. Only key names contained by the {@link module:utils/keyboard~keyCodes} can be used.
+			 *
+			 * @errror keyboard-unknown-key
+			 * @param {String} key
+			 */
+			throw new __WEBPACK_IMPORTED_MODULE_0__ckeditorerror__["a" /* default */]( 'keyboard-unknown-key: Unknown key name.', { key } );
+		}
+	} else {
+		keyCode = key.keyCode +
+			( key.altKey ? keyCodes.alt : 0 ) +
+			( key.ctrlKey ? keyCodes.ctrl : 0 ) +
+			( key.shiftKey ? keyCodes.shift : 0 );
+	}
+
+	return keyCode;
+}
+
+/**
+ * Parses keystroke and returns a keystroke code that will match the code returned by
+ * link {@link module:utils/keyboard.getCode} for a corresponding {@link module:utils/keyboard~KeystrokeInfo keystroke info}.
+ *
+ * The keystroke can be passed in two formats:
+ *
+ * * as a single string – e.g. `ctrl + A`,
+ * * as an array of {@link module:utils/keyboard~keyCodes known key names} and key codes – e.g.:
+ *   * `[ 'ctrl', 32 ]` (ctrl + space),
+ *   * `[ 'ctrl', 'a' ]` (ctrl + A).
+ *
+ * Note: Key names are matched with {@link module:utils/keyboard~keyCodes} in a case-insensitive way.
+ *
+ * Note: Only keystrokes with a single non-modifier key are supported (e.g. `ctrl+A` is OK, but `ctrl+A+B` is not).
+ *
+ * @param {String|Array.<Number|String>} keystroke Keystroke definition.
+ * @returns {Number} Keystroke code.
+ */
+function parseKeystroke( keystroke ) {
+	if ( typeof keystroke == 'string' ) {
+		keystroke = splitKeystrokeText( keystroke );
+	}
+
+	return keystroke
+		.map( key => ( typeof key == 'string' ) ? getCode( key ) : key )
+		.reduce( ( key, sum ) => sum + key, 0 );
+}
+
+/**
+ * It translates any keystroke string text like `"CTRL+A"` to an
+ * environment–specific keystroke, i.e. `"⌘A"` on Mac OSX.
+ *
+ * @param {String} keystroke Keystroke text.
+ * @returns {String} Keystroke text specific for the environment.
+ */
+function getEnvKeystrokeText( keystroke ) {
+	const split = splitKeystrokeText( keystroke );
+
+	if ( __WEBPACK_IMPORTED_MODULE_1__env__["a" /* default */].mac ) {
+		if ( split[ 0 ].toLowerCase() == 'ctrl' ) {
+			return '⌘' + ( split[ 1 ] || '' );
+		}
+	}
+
+	return keystroke;
+}
+
+function generateKnownKeyCodes() {
+	const keyCodes = {
+		arrowleft: 37,
+		arrowup: 38,
+		arrowright: 39,
+		arrowdown: 40,
+		backspace: 8,
+		delete: 46,
+		enter: 13,
+		space: 32,
+		esc: 27,
+		tab: 9,
+
+		// The idea about these numbers is that they do not collide with any real key codes, so we can use them
+		// like bit masks.
+		ctrl: 0x110000,
+		// Has the same code as ctrl, because their behaviour should be unified across the editor.
+		// See http://ckeditor.github.io/editor-recommendations/general-policies#ctrl-vs-cmd
+		cmd: 0x110000,
+		shift: 0x220000,
+		alt: 0x440000
+	};
+
+	// a-z
+	for ( let code = 65; code <= 90; code++ ) {
+		const letter = String.fromCharCode( code );
+
+		keyCodes[ letter.toLowerCase() ] = code;
+	}
+
+	// 0-9
+	for ( let code = 48; code <= 57; code++ ) {
+		keyCodes[ code - 48 ] = code;
+	}
+
+	// F1-F12
+	for ( let code = 112; code <= 123; code++ ) {
+		keyCodes[ 'f' + ( code - 111 ) ] = code;
+	}
+
+	return keyCodes;
+}
+
+function splitKeystrokeText( keystroke ) {
+	return keystroke.split( /\s*\+\s*/ );
+}
+
+/**
+ * Information about a keystroke.
+ *
+ * @interface module:utils/keyboard~KeystrokeInfo
+ */
+
+/**
+ * The [key code](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode).
+ *
+ * @member {Number} module:utils/keyboard~KeystrokeInfo#keyCode
+ */
+
+/**
+ * Whether the <kbd>Alt</kbd> modifier was pressed.
+ *
+ * @member {Bolean} module:utils/keyboard~KeystrokeInfo#altKey
+ */
+
+/**
+ * Whether the <kbd>Ctrl</kbd> or <kbd>Cmd</kbd> modifier was pressed.
+ *
+ * @member {Bolean} module:utils/keyboard~KeystrokeInfo#ctrlKey
+ */
+
+/**
+ * Whether the <kbd>Shift</kbd> modifier was pressed.
+ *
+ * @member {Bolean} module:utils/keyboard~KeystrokeInfo#shiftKey
+ */
+
+
+/***/ }),
 /* 28 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -8778,7 +8778,7 @@ function normalize( nodes ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_comparearrays__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__writer__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__writer__ = __webpack_require__(21);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -9026,6 +9026,87 @@ function arrayMap(array, iteratee) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/* global console */
+
+/**
+ * @module utils/log
+ */
+
+/**
+ * The logging module.
+ *
+ * This object features two functions that should be used across CKEditor code base to log errors and warnings.
+ * Despite being an overridable interface for native `console.*` this module serves also the goal to limit the
+ * code size of a minified CKEditor package. During minification process the messages will be shortened and
+ * links to their documentation will be logged to the console.
+ *
+ * All errors and warning should be documented in the following way:
+ *
+ *		/**
+ *		 * Error thrown when a plugin cannot be loaded due to JavaScript errors, lack of plugins with a given name, etc.
+ *		 *
+ *		 * @error plugin-load
+ *		 * @param pluginName The name of the plugin that could not be loaded.
+ *		 * @param moduleName The name of the module which tried to load this plugin.
+ *		 * /
+ *		log.error( 'plugin-load: It was not possible to load the "{$pluginName}" plugin in module "{$moduleName}', {
+ *			pluginName: 'foo',
+ *			moduleName: 'bar'
+ *		} );
+ *
+ * ### Warning vs Error vs Throw
+ *
+ * * Whenever a potentially incorrect situation occurs, which does not directly lead to an incorrect behavior,
+ * log a warning.
+ * * Whenever an incorrect situation occurs, but the app may continue working (although perhaps incorrectly),
+ * log an error.
+ * * Whenever it's really bad and it does not make sense to continue working, throw a {@link module:utils/ckeditorerror~CKEditorError}.
+ *
+ * @namespace
+ */
+const log = {
+	/**
+	 * Logs an error to the console.
+	 *
+	 * Read more about error logging in the {@link module:utils/log} module.
+	 *
+	 * @param {String} message The error message in an `error-name: Error message.` format.
+	 * During the minification process the "Error message" part will be removed to limit the code size
+	 * and a link to this error documentation will be logged to the console.
+	 * @param {Object} [data] Additional data describing the error.
+	 */
+	error( message, data ) {
+		console.error( message, data );
+	},
+
+	/**
+	 * Logs a warning to the console.
+	 *
+	 * Read more about error logging in the {@link module:utils/log} module.
+	 *
+	 * @param {String} message The warning message in a `warning-name: Warning message.` format.
+	 * During the minification process the "Warning message" part will be removed to limit the code size
+	 * and a link to this error documentation will be logged to the console.
+	 * @param {Object} [data] Additional data describing the warning.
+	 */
+	warn( message, data ) {
+		console.warn( message, data );
+	}
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (log);
+
+
+/***/ }),
+/* 31 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(module, global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__checkGlobal__ = __webpack_require__(295);
 
 
@@ -9072,7 +9153,7 @@ var root = freeGlobal ||
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(159)(module), __webpack_require__(294)))
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9098,7 +9179,7 @@ function isIterable( value ) {
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9190,7 +9271,7 @@ class Text extends __WEBPACK_IMPORTED_MODULE_0__node__["a" /* default */] {
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9223,7 +9304,7 @@ class Text extends __WEBPACK_IMPORTED_MODULE_0__node__["a" /* default */] {
 
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports) {
 
 /*
@@ -9305,7 +9386,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -9601,87 +9682,6 @@ function updateLink(linkElement, options, obj) {
 
 
 /***/ }),
-/* 36 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/* global console */
-
-/**
- * @module utils/log
- */
-
-/**
- * The logging module.
- *
- * This object features two functions that should be used across CKEditor code base to log errors and warnings.
- * Despite being an overridable interface for native `console.*` this module serves also the goal to limit the
- * code size of a minified CKEditor package. During minification process the messages will be shortened and
- * links to their documentation will be logged to the console.
- *
- * All errors and warning should be documented in the following way:
- *
- *		/**
- *		 * Error thrown when a plugin cannot be loaded due to JavaScript errors, lack of plugins with a given name, etc.
- *		 *
- *		 * @error plugin-load
- *		 * @param pluginName The name of the plugin that could not be loaded.
- *		 * @param moduleName The name of the module which tried to load this plugin.
- *		 * /
- *		log.error( 'plugin-load: It was not possible to load the "{$pluginName}" plugin in module "{$moduleName}', {
- *			pluginName: 'foo',
- *			moduleName: 'bar'
- *		} );
- *
- * ### Warning vs Error vs Throw
- *
- * * Whenever a potentially incorrect situation occurs, which does not directly lead to an incorrect behavior,
- * log a warning.
- * * Whenever an incorrect situation occurs, but the app may continue working (although perhaps incorrectly),
- * log an error.
- * * Whenever it's really bad and it does not make sense to continue working, throw a {@link module:utils/ckeditorerror~CKEditorError}.
- *
- * @namespace
- */
-const log = {
-	/**
-	 * Logs an error to the console.
-	 *
-	 * Read more about error logging in the {@link module:utils/log} module.
-	 *
-	 * @param {String} message The error message in an `error-name: Error message.` format.
-	 * During the minification process the "Error message" part will be removed to limit the code size
-	 * and a link to this error documentation will be logged to the console.
-	 * @param {Object} [data] Additional data describing the error.
-	 */
-	error( message, data ) {
-		console.error( message, data );
-	},
-
-	/**
-	 * Logs a warning to the console.
-	 *
-	 * Read more about error logging in the {@link module:utils/log} module.
-	 *
-	 * @param {String} message The warning message in a `warning-name: Warning message.` format.
-	 * During the minification process the "Warning message" part will be removed to limit the code size
-	 * and a link to this error documentation will be logged to the console.
-	 * @param {Object} [data] Additional data describing the warning.
-	 */
-	warn( message, data ) {
-		console.warn( message, data );
-	}
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (log);
-
-
-/***/ }),
 /* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -9716,7 +9716,7 @@ function isIndex(value, length) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__position__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__treewalker__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__treewalker__ = __webpack_require__(65);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -10195,8 +10195,8 @@ function enlargeTrimSkip( value ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nodelist__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__element__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__text__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__text__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(32);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -10527,7 +10527,7 @@ function normalize( nodes ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_clone__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_clone__ = __webpack_require__(66);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -10746,9 +10746,9 @@ function baseSlice(array, start, end) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_matcher__ = __webpack_require__(174);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_element__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_writer__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_writer__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(32);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -11456,7 +11456,7 @@ function isSymbol(value) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__element__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__element__ = __webpack_require__(26);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -11560,8 +11560,8 @@ function getFillerOffset() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__nodelist__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__removeoperation__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__writer__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__text__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__writer__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__text__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__element__ = __webpack_require__(6);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -11698,7 +11698,7 @@ class InsertOperation extends __WEBPACK_IMPORTED_MODULE_0__operation__["a" /* de
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SetCache__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SetCache__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arrayIncludes__ = __webpack_require__(132);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__arrayIncludesWith__ = __webpack_require__(134);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cacheHas__ = __webpack_require__(136);
@@ -11783,8 +11783,8 @@ function baseUniq(array, iteratee, comparator) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dom_emittermixin__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__keyboard__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dom_emittermixin__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__keyboard__ = __webpack_require__(27);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -11806,8 +11806,8 @@ function baseUniq(array, iteratee, comparator) {
  *
  *		handler.listenTo( emitter );
  *
- *		handler.set( 'ctrl + a', ( keyEventData, cancel ) => {
- *			console.log( 'ctrl + a has been pressed' );
+ *		handler.set( 'Ctrl+A', ( keyEvtData, cancel ) => {
+ *			console.log( 'Ctrl+A has been pressed' );
  *			cancel();
  *		} );
  */
@@ -11823,14 +11823,6 @@ class KeystrokeHandler {
 		 * @member {module:utils/dom/emittermixin~Emitter}
 		 */
 		this._listener = Object.create( __WEBPACK_IMPORTED_MODULE_0__dom_emittermixin__["a" /* default */] );
-
-		/**
-		 * Map of the defined keystrokes. Keystroke codes are the keys.
-		 *
-		 * @private
-		 * @member {Map}
-		 */
-		this._keystrokes = new Map();
 	}
 
 	/**
@@ -11839,8 +11831,17 @@ class KeystrokeHandler {
 	 * @param {module:utils/emittermixin~Emitter} emitter
 	 */
 	listenTo( emitter ) {
-		this._listener.listenTo( emitter, 'keydown', ( evt, data ) => {
-			this.press( data );
+		// The #_listener works here as a kind of dispatcher. It groups the events coming from the same
+		// keystroke so the listeners can be attached to them with different priorities.
+		//
+		// E.g. all the keystrokes with the `keyCode` of 42 coming from the `emitter` are propagated
+		// as a `_keydown:42` event by the `_listener`. If there's a callback created by the `set`
+		// method for this 42 keystroke, it listens to the `_listener#_keydown:42` event only and interacts
+		// only with other listeners of this particular event, thus making it possible to prioritize
+		// the listeners and safely cancel execution, when needed. Instead of duplicating the Emitter logic,
+		// the KeystrokeHandler re–uses it to do its job.
+		this._listener.listenTo( emitter, 'keydown', ( evt, keyEvtData ) => {
+			this._listener.fire( '_keydown:' + Object(__WEBPACK_IMPORTED_MODULE_1__keyboard__["a" /* getCode */])( keyEvtData ), keyEvtData );
 		} );
 	}
 
@@ -11852,47 +11853,48 @@ class KeystrokeHandler {
 	 * @param {Function} callback A function called with the
 	 * {@link module:engine/view/observer/keyobserver~KeyEventData key event data} object and
 	 * a helper to both `preventDefault` and `stopPropagation` of the event.
+	 * @param {Object} [options={}] Additional options.
+	 * @param {module:utils/priorities~PriorityString|Number} [options.priority='normal'] The priority of the keystroke
+	 * callback. The higher the priority value the sooner the callback will be executed. Keystrokes having the same priority
+	 * are called in the order they were added.
 	 */
-	set( keystroke, callback ) {
+	set( keystroke, callback, options = {} ) {
 		const keyCode = Object(__WEBPACK_IMPORTED_MODULE_1__keyboard__["d" /* parseKeystroke */])( keystroke );
-		const callbacks = this._keystrokes.get( keyCode );
+		const priority = options.priority;
 
-		if ( callbacks ) {
-			callbacks.push( callback );
-		} else {
-			this._keystrokes.set( keyCode, [ callback ] );
-		}
+		// Execute the passed callback on KeystrokeHandler#_keydown.
+		// TODO: https://github.com/ckeditor/ckeditor5-utils/issues/144
+		this._listener.listenTo( this._listener, '_keydown:' + keyCode, ( evt, keyEvtData ) => {
+			callback( keyEvtData, () => {
+				// Stop the event in the DOM: no listener in the web page
+				// will be triggered by this event.
+				keyEvtData.preventDefault();
+				keyEvtData.stopPropagation();
+
+				// Stop the event in the KeystrokeHandler: no more callbacks
+				// will be executed for this keystroke.
+				evt.stop();
+			} );
+
+			// Mark this keystroke as handled by the callback. See: #press.
+			evt.return = true;
+		}, { priority } );
 	}
 
 	/**
 	 * Triggers a keystroke handler for a specified key combination, if such a keystroke was {@link #set defined}.
 	 *
-	 * @param {module:engine/view/observer/keyobserver~KeyEventData} keyEventData Key event data.
+	 * @param {module:engine/view/observer/keyobserver~KeyEventData} keyEvtData Key event data.
 	 * @returns {Boolean} Whether the keystroke was handled.
 	 */
-	press( keyEventData ) {
-		const keyCode = Object(__WEBPACK_IMPORTED_MODULE_1__keyboard__["a" /* getCode */])( keyEventData );
-		const callbacks = this._keystrokes.get( keyCode );
-
-		if ( !callbacks ) {
-			return false;
-		}
-
-		for ( const callback of callbacks ) {
-			callback( keyEventData, () => {
-				keyEventData.preventDefault();
-				keyEventData.stopPropagation();
-			} );
-		}
-
-		return true;
+	press( keyEvtData ) {
+		return !!this._listener.fire( '_keydown:' + Object(__WEBPACK_IMPORTED_MODULE_1__keyboard__["a" /* getCode */])( keyEvtData ), keyEvtData );
 	}
 
 	/**
 	 * Destroys the keystroke handler.
 	 */
 	destroy() {
-		this._keystrokes = new Map();
 		this._listener.stopListening();
 	}
 }
@@ -11906,9 +11908,9 @@ class KeystrokeHandler {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = buildModelConverter;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_selection_to_view_converters__ = __webpack_require__(257);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_attributeelement__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_attributeelement__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_containerelement__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_uielement__ = __webpack_require__(123);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
@@ -11941,7 +11943,7 @@ class KeystrokeHandler {
  * {@link module:engine/conversion/model-to-view-converters}, {@link module:engine/conversion/modelconsumable~ModelConsumable},
  * {@link module:engine/conversion/mapper~Mapper}.
  *
- * Using this API it is possible to create four kinds of converters:
+ * Using this API it is possible to create five kinds of converters:
  *
  * 1. Model element to view element converter. This is a converter that takes the model element and represents it
  * in the view.
@@ -11962,17 +11964,25 @@ class KeystrokeHandler {
  *
  *		buildModelConverter().for( dispatcher ).fromAttribute( 'bold' ).toElement( 'strong' );
  *
- * 4. Model marker to view element converter. This is a converter that converts markers from given group to view attribute element.
- * Markers, basically, are {@link module:engine/model/liverange~LiveRange} instances, that are named. In this conversion, model range is
- * converted to view range, then that view range is wrapped (or unwrapped, if range is removed) in a view attribute element.
- * To learn more about markers, see {@link module:engine/model/markercollection~MarkerCollection}.
+ * 4. Model marker to view highlight converter. This is a converter that converts model markers to view highlight
+ * described by {@link module:engine/conversion/buildmodelconverter~HighlightDescriptor} object passed to
+ * {@link module:engine/conversion/buildmodelconverter~ModelConverterBuilder#toHighlight} method.
  *
- *		const viewSpanSearchResult = new ViewAttributeElement( 'span', { class: 'search-result' } );
- *		buildModelConverter().for( dispatcher ).fromMarker( 'searchResult' ).toElement( viewSpanSearchResult );
+ *		buildModelConverter().for( dispatcher ).fromMarker( 'search' ).toHighlight( {
+ *			class: 'search',
+ *			priority: 20
+ *		} );
+ *
+ * 5. Model marker to element converter. This is a converter that takes model marker and creates separate elements at
+ * the beginning and at the end of the marker's range. For more information see
+ * {@link module:engine/conversion/buildmodelconverter~ModelConverterBuilder#toElement} method.
+ *
+ *		buildModelConverter().for( dispatcher ).fromMarker( 'search' ).toElement( 'span' );
  *
  * It is possible to provide various different parameters for
- * {@link module:engine/conversion/buildmodelconverter~ModelConverterBuilder#toElement}
- * and {@link module:engine/conversion/buildmodelconverter~ModelConverterBuilder#toAttribute} methods.
+ * {@link module:engine/conversion/buildmodelconverter~ModelConverterBuilder#toElement},
+ * {@link module:engine/conversion/buildmodelconverter~ModelConverterBuilder#toAttribute} and
+ * {@link module:engine/conversion/buildmodelconverter~ModelConverterBuilder#toHighlight} methods.
  * See their descriptions to learn more.
  *
  * It is also possible to {@link module:engine/conversion/buildmodelconverter~ModelConverterBuilder#withPriority change default priority}
@@ -12102,7 +12112,13 @@ class ModelConverterBuilder {
 	 * `string`, view element instance which will be cloned and used, or creator function which returns view element that
 	 * will be used. Keep in mind that when you view element instance or creator function, it has to be/return a
 	 * proper type of view element: {@link module:engine/view/containerelement~ContainerElement ViewContainerElement} if you convert
-	 * from element or {@link module:engine/view/attributeelement~AttributeElement ViewAttributeElement} if you convert from attribute.
+	 * from element, {@link module:engine/view/attributeelement~AttributeElement ViewAttributeElement} if you convert
+	 * from attribute and {@link module:engine/view/uielement~UIElement ViewUIElement} if you convert from marker.
+	 *
+	 * NOTE: When converting from model's marker, separate elements will be created at the beginning and at the end of the
+	 * marker's range. If range is collapsed then only one element will be created. See how markers
+	 * {module:engine/model/buildviewconverter~ViewConverterBuilder#toMarker view -> model serialization}
+	 * works to find out what view element format is the best for you.
 	 *
 	 *		buildModelConverter().for( dispatcher ).fromElement( 'paragraph' ).toElement( 'p' );
 	 *
@@ -12114,12 +12130,17 @@ class ModelConverterBuilder {
 	 *
 	 *		buildModelConverter().for( dispatcher ).fromAttribute( 'bold' ).toElement( new ViewAttributeElement( 'strong' ) );
 	 *
+	 *		buildModelConverter().for( dispatcher ).fromMarker( 'search' ).toElement( 'span' );
+	 *
+	 *		buildModelConverter().for( dispatcher ).fromMarker( 'search' ).toElement( new ViewUIElement( 'span' ) );
+	 *
 	 * Creator function will be passed different values depending whether conversion is from element or from attribute:
 	 *
 	 * * from element: dispatcher's
 	 * {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher#event:insert insert event}
 	 * parameters will be passed,
-	 * * from attribute: there is one parameter and it is attribute value.
+	 * * from attribute: there is one parameter and it is attribute value,
+	 * * from marker: {@link module:engine/conversion/buildmodelconverter~MarkerViewElementCreatorData}.
 	 *
 	 * This method also registers model selection to view selection converter, if conversion is from attribute.
 	 *
@@ -12137,87 +12158,87 @@ class ModelConverterBuilder {
 				// From model element to view element -> insert element.
 				element = typeof element == 'string' ? new __WEBPACK_IMPORTED_MODULE_3__view_containerelement__["a" /* default */]( element ) : element;
 
-				dispatcher.on( 'insert:' + this._from.name, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["a" /* insertElement */])( element ), { priority } );
+				dispatcher.on( 'insert:' + this._from.name, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["d" /* insertElement */])( element ), { priority } );
 			} else if ( this._from.type == 'attribute' ) {
 				// From model attribute to view element -> wrap and unwrap.
 				element = typeof element == 'string' ? new __WEBPACK_IMPORTED_MODULE_2__view_attributeelement__["a" /* default */]( element ) : element;
 
-				dispatcher.on( 'addAttribute:' + this._from.key, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["j" /* wrapItem */])( element ), { priority } );
-				dispatcher.on( 'changeAttribute:' + this._from.key, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["j" /* wrapItem */])( element ), { priority } );
-				dispatcher.on( 'removeAttribute:' + this._from.key, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["h" /* unwrapItem */])( element ), { priority } );
+				dispatcher.on( 'addAttribute:' + this._from.key, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["l" /* wrapItem */])( element ), { priority } );
+				dispatcher.on( 'changeAttribute:' + this._from.key, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["l" /* wrapItem */])( element ), { priority } );
+				dispatcher.on( 'removeAttribute:' + this._from.key, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["k" /* unwrapItem */])( element ), { priority } );
 
 				dispatcher.on( 'selectionAttribute:' + this._from.key, Object(__WEBPACK_IMPORTED_MODULE_1__model_selection_to_view_converters__["e" /* convertSelectionAttribute */])( element ), { priority } );
-			} else {
-				element = typeof element == 'string' ? new __WEBPACK_IMPORTED_MODULE_2__view_attributeelement__["a" /* default */]( element ) : element;
+			} else { // From marker to element.
+				const priority = this._from.priority === null ? 'normal' : this._from.priority;
 
-				dispatcher.on( 'addMarker:' + this._from.name, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["k" /* wrapRange */])( element ), { priority } );
-				dispatcher.on( 'removeMarker:' + this._from.name, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["i" /* unwrapRange */])( element ), { priority } );
+				element = typeof element == 'string' ? new __WEBPACK_IMPORTED_MODULE_4__view_uielement__["a" /* default */]( element ) : element;
 
-				dispatcher.on( 'selectionMarker:' + this._from.name, Object(__WEBPACK_IMPORTED_MODULE_1__model_selection_to_view_converters__["f" /* convertSelectionMarker */])( element ), { priority } );
+				dispatcher.on( 'addMarker:' + this._from.name, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["f" /* insertUIElement */])( element ), { priority } );
+				dispatcher.on( 'removeMarker:' + this._from.name, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["i" /* removeUIElement */])( element ), { priority } );
 			}
 		}
 	}
 
 	/**
-	 * Registers what view stamp will be created by converter to mark marker range bounds. Separate elements will be
-	 * created at the beginning and at the end of the range. If range is collapsed then only one element will be created.
+	 * Registers that marker should be converted to view highlight. Markers, basically,
+	 * are {@link module:engine/model/liverange~LiveRange} instances, that are named. View highlight is
+	 * a representation of the model marker in the view:
+	 * * each {@link module:engine/view/text~Text view text node} in the marker's range will be wrapped with `span`
+	 * {@link module:engine/view/attributeelement~AttributeElement},
+	 * * each {@link module:engine/view/containerelement~ContainerElement container view element} in the marker's
+	 * range can handle highlighting individually by providing `addHighlight` and `removeHighlight`
+	 * custom properties:
 	 *
-	 * Method accepts various ways of providing how the view element will be created. You can pass view element name as
-	 * `string`, view element instance which will be cloned and used, or creator function which returns view element that
-	 * will be used. Keep in mind that when you provide view element instance or creator function, it has to be/return a
-	 * proper type of view element: {@link module:engine/view/uielement~UIElement UIElement}.
+	 *		viewElement.setCustomProperty( 'addHighlight', ( element, descriptor ) => {} );
+	 *		viewElement.setCustomProperty( 'removeHighlight', ( element, descriptor ) => {} );
 	 *
-	 *		buildModelConverter().for( dispatcher ).fromMarker( 'search' ).toStamp( 'span' );
+	 * {@link module:engine/conversion/buildmodelconverter~HighlightDescriptor} will be used to create
+	 * spans over text nodes and also will be provided to `addHighlight` and `removeHighlight` methods
+	 * each time highlight should be set or removed from view elements.
+	 * NOTE: When `addHighlight` and `removeHighlight` custom properties are present, converter assumes
+	 * that element itself is taking care of presenting highlight on its child nodes, so it won't convert them.
 	 *
-	 *		buildModelConverter().for( dispatcher )
-	 *			.fromMarker( 'search' )
-	 *			.toStamp( new UIElement( 'span', { 'data-name': 'search' } ) );
+	 * Highlight descriptor can be provided as plain object:
 	 *
-	 *		buildModelConverter().for( dispatcher )
-	 *			.fromMarker( 'search' )
-	 *			.toStamp( ( data ) => new UIElement( 'span', { 'data-name': data.name ) );
+	 *		buildModelConverter.for( dispatcher ).fromMarker( 'search' ).toHighlight( { class: 'search-highlight' } );
+ 	 *
+	 * Also, descriptor creator function can be provided:
 	 *
-	 * Creator function provides additional `data.isOpening` parameter which defined if currently converted element is
-	 * a beginning or end of the marker range. This makes possible to create different opening and closing stamp.
+	 *		buildModelConverter.for( dispatcher ).fromMarker( 'search:blue' ).toHighlight( data => {
+	 *			const color = data.markerName.split( ':' )[ 1 ];
 	 *
-	 *		buildModelConverter().for( dispatcher )
-	 *			.fromMarker( 'search' )
-	 *			.toStamp( ( data ) => {
-	 *				if ( data.isOpening ) {
-	 *					return new UIElement( 'span', { 'data-name': data.name, 'data-start': true ) );
-	 *				}
+	 *			return { class: 'search-' + color };
+	 *		} );
 	 *
-	 *				return new UIElement( 'span', { 'data-name': data.name, 'data-end': true ) );
-	 *			}
+	 * Throws {@link module:utils/ckeditorerror~CKEditorError CKEditorError}
+	 * `build-model-converter-non-marker-to-highlight` when trying to convert not from marker.
 	 *
-	 * Creator function provides
-	 * {@link module:engine/conversion/buildmodelconverter~StampCreatorData} parameters.
-	 *
-	 * See how markers {module:engine/model/buildviewconverter~ViewConverterBuilder#toMarker view -> model serialization}
-	 * works to find out what view element format is the best for you.
-	 *
-	 * @param {String|module:engine/view/uielement~UIElement|Function} element UIElement created by converter or
-	 * a function that returns view element.
+	 * @param {function|module:engine/conversion/buildmodelconverter~HighlightDescriptor} highlightDescriptor
 	 */
-	toStamp( element ) {
+	toHighlight( highlightDescriptor ) {
+		const priority = this._from.priority === null ? 'normal' : this._from.priority;
+
+		if ( this._from.type != 'marker' ) {
+			/**
+			 * To highlight conversion is supported only for model markers.
+			 *
+			 * @error build-model-converter-non-marker-to-highlight
+			 */
+			throw new __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */](
+				'build-model-converter-non-marker-to-highlight: Conversion to highlight is supported ' +
+				'only from model markers.'
+			);
+		}
+
 		for ( const dispatcher of this._dispatchers ) {
-			if ( this._from.type != 'marker' ) {
-				/**
-				 * To-stamp conversion is supported only for model markers.
-				 *
-				 * @error build-model-converter-element-to-stamp
-				 */
-				throw new __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */](
-					'build-model-converter-non-marker-to-stamp: To-stamp conversion is supported only from model markers.'
-				);
-			}
+			// Separate converters for converting texts and elements inside marker's range.
+			dispatcher.on( 'addMarker:' + this._from.name, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["c" /* highlightText */])( highlightDescriptor ), { priority } );
+			dispatcher.on( 'addMarker:' + this._from.name, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["b" /* highlightElement */])( highlightDescriptor ), { priority } );
 
-			const priority = this._from.priority === null ? 'normal' : this._from.priority;
+			dispatcher.on( 'removeMarker:' + this._from.name, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["c" /* highlightText */])( highlightDescriptor ), { priority } );
+			dispatcher.on( 'removeMarker:' + this._from.name, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["b" /* highlightElement */])( highlightDescriptor ), { priority } );
 
-			element = typeof element == 'string' ? new __WEBPACK_IMPORTED_MODULE_4__view_uielement__["a" /* default */]( element ) : element;
-
-			dispatcher.on( 'addMarker:' + this._from.name, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["c" /* insertUIElement */])( element ), { priority } );
-			dispatcher.on( 'removeMarker:' + this._from.name, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["f" /* removeUIElement */])( element ), { priority } );
+			dispatcher.on( 'selectionMarker:' + this._from.name, Object(__WEBPACK_IMPORTED_MODULE_1__model_selection_to_view_converters__["f" /* convertSelectionMarker */])( highlightDescriptor ), { priority } );
 		}
 	}
 
@@ -12291,9 +12312,9 @@ class ModelConverterBuilder {
 		for ( const dispatcher of this._dispatchers ) {
 			const options = { priority: this._from.priority || 'normal' };
 
-			dispatcher.on( 'addAttribute:' + this._from.key, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["g" /* setAttribute */])( attributeCreator ), options );
-			dispatcher.on( 'changeAttribute:' + this._from.key, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["g" /* setAttribute */])( attributeCreator ), options );
-			dispatcher.on( 'removeAttribute:' + this._from.key, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["e" /* removeAttribute */])( attributeCreator ), options );
+			dispatcher.on( 'addAttribute:' + this._from.key, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["j" /* setAttribute */])( attributeCreator ), options );
+			dispatcher.on( 'changeAttribute:' + this._from.key, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["j" /* setAttribute */])( attributeCreator ), options );
+			dispatcher.on( 'removeAttribute:' + this._from.key, Object(__WEBPACK_IMPORTED_MODULE_0__model_to_view_converters__["h" /* removeAttribute */])( attributeCreator ), options );
 		}
 	}
 }
@@ -12308,13 +12329,28 @@ function buildModelConverter() {
 }
 
 /**
- * @typedef StampCreatorData
+ * @typedef MarkerViewElementCreatorData
  * @param {Object} data Additional information about the change.
- * @param {String} data.name Marker name.
- * @param {module:engine/model/range~Range} data.range Marker range.
+ * @param {String} data.markerName Marker name.
+ * @param {module:engine/model/range~Range} data.markerRange Marker range.
  * @param {Boolean} data.isOpening Defines if currently converted element is a beginning or end of the marker range.
  * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume.
  * @param {Object} conversionApi Conversion interface to be used by callback, passed in `ModelConversionDispatcher` constructor.
+ */
+
+/**
+ * @typedef HighlightDescriptor
+ * Object describing how content highlight should be created in the view. Each text node contained in highlight
+ * will be wrapped with `span` element with CSS class, attributes and priority described by this object. Each element
+ * can handle displaying highlight separately by providing `addHighlight` and `removeHighlight` custom
+ * properties.
+ *
+ * @property {String} class CSS class that will be added to `span`
+ * {@link module:engine/view/attributeelement~AttributeElement} wrapping each text node in the highlighted content.
+ * @property {Number} [priority] {@link module:engine/view/attributeelement~AttributeElement#priority} of the `span`
+ * wrapping each text node in the highlighted content. If not provided, default 10 priority will be used.
+ * @property {Object} [attributes] Attributes that will be added to `span`
+ * {@link module:engine/view/attributeelement~AttributeElement} wrapping each text node it the highlighted content.
  */
 
 
@@ -12367,7 +12403,7 @@ function eq(value, other) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__text__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__text__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__textproxy__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__element__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__position__ = __webpack_require__(1);
@@ -12837,507 +12873,6 @@ function compareArrays( a, b ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__element__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__text__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__textproxy__ = __webpack_require__(343);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__position__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module engine/view/treewalker
- */
-
-
-
-
-
-
-
-/**
- * Position iterator class. It allows to iterate forward and backward over the document.
- */
-class TreeWalker {
-	/**
-	 * Creates a range iterator. All parameters are optional, but you have to specify either `boundaries` or `startPosition`.
-	 *
-	 * @constructor
-	 * @param {Object} options Object with configuration.
-	 * @param {module:engine/view/range~Range} [options.boundaries=null] Range to define boundaries of the iterator.
-	 * @param {module:engine/view/position~Position} [options.startPosition] Starting position.
-	 * @param {'forward'|'backward'} [options.direction='forward'] Walking direction.
-	 * @param {Boolean} [options.singleCharacters=false] Flag indicating whether all characters from
-	 * {@link module:engine/view/text~Text} should be returned as one {@link module:engine/view/text~Text} (`false`) ore one by one as
-	 * {@link module:engine/view/textproxy~TextProxy} (`true`).
-	 * @param {Boolean} [options.shallow=false] Flag indicating whether iterator should enter elements or not. If the
-	 * iterator is shallow child nodes of any iterated node will not be returned along with `elementEnd` tag.
-	 * @param {Boolean} [options.ignoreElementEnd=false] Flag indicating whether iterator should ignore `elementEnd`
-	 * tags. If the option is true walker will not return a parent node of start position. If this option is `true`
-	 * each {@link module:engine/view/element~Element} will be returned once, while if the option is `false` they might be returned
-	 * twice: for `'elementStart'` and `'elementEnd'`.
-	 */
-	constructor( options = {} ) {
-		if ( !options.boundaries && !options.startPosition ) {
-			/**
-			 * Neither boundaries nor starting position have been defined.
-			 *
-			 * @error tree-walker-no-start-position
-			 */
-			throw new __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-tree-walker-no-start-position: Neither boundaries nor starting position have been defined.' );
-		}
-
-		if ( options.direction && options.direction != 'forward' && options.direction != 'backward' ) {
-			throw new __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */](
-				'view-tree-walker-unknown-direction: Only `backward` and `forward` direction allowed.',
-				{ direction: options.direction }
-			);
-		}
-
-		/**
-		 * Iterator boundaries.
-		 *
-		 * When the iterator is walking `'forward'` on the end of boundary or is walking `'backward'`
-		 * on the start of boundary, then `{ done: true }` is returned.
-		 *
-		 * If boundaries are not defined they are set before first and after last child of the root node.
-		 *
-		 * @readonly
-		 * @member {module:engine/view/range~Range} module:engine/view/treewalker~TreeWalker#boundaries
-		 */
-		this.boundaries = options.boundaries || null;
-
-		/**
-		 * Iterator position. If start position is not defined then position depends on {@link #direction}. If direction is
-		 * `'forward'` position starts form the beginning, when direction is `'backward'` position starts from the end.
-		 *
-		 * @readonly
-		 * @member {module:engine/view/position~Position} module:engine/view/treewalker~TreeWalker#position
-		 */
-		if ( options.startPosition ) {
-			this.position = __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createFromPosition( options.startPosition );
-		} else {
-			this.position = __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createFromPosition( options.boundaries[ options.direction == 'backward' ? 'end' : 'start' ] );
-		}
-
-		/**
-		 * Walking direction. Defaults `'forward'`.
-		 *
-		 * @readonly
-		 * @member {'backward'|'forward'} module:engine/view/treewalker~TreeWalker#direction
-		 */
-		this.direction = options.direction || 'forward';
-
-		/**
-		 * Flag indicating whether all characters from {@link module:engine/view/text~Text} should be returned as one
-		 * {@link module:engine/view/text~Text} or one by one as {@link module:engine/view/textproxy~TextProxy}.
-		 *
-		 * @readonly
-		 * @member {Boolean} module:engine/view/treewalker~TreeWalker#singleCharacters
-		 */
-		this.singleCharacters = !!options.singleCharacters;
-
-		/**
-		 * Flag indicating whether iterator should enter elements or not. If the iterator is shallow child nodes of any
-		 * iterated node will not be returned along with `elementEnd` tag.
-		 *
-		 * @readonly
-		 * @member {Boolean} module:engine/view/treewalker~TreeWalker#shallow
-		 */
-		this.shallow = !!options.shallow;
-
-		/**
-		 * Flag indicating whether iterator should ignore `elementEnd` tags. If set to `true`, walker will not
-		 * return a parent node of the start position. Each {@link module:engine/view/element~Element} will be returned once.
-		 * When set to `false` each element might be returned twice: for `'elementStart'` and `'elementEnd'`.
-		 *
-		 * @readonly
-		 * @member {Boolean} module:engine/view/treewalker~TreeWalker#ignoreElementEnd
-		 */
-		this.ignoreElementEnd = !!options.ignoreElementEnd;
-
-		/**
-		 * Start boundary parent.
-		 *
-		 * @private
-		 * @member {module:engine/view/node~Node} module:engine/view/treewalker~TreeWalker#_boundaryStartParent
-		 */
-		this._boundaryStartParent = this.boundaries ? this.boundaries.start.parent : null;
-
-		/**
-		 * End boundary parent.
-		 *
-		 * @private
-		 * @member {module:engine/view/node~Node} module:engine/view/treewalker~TreeWalker#_boundaryEndParent
-		 */
-		this._boundaryEndParent = this.boundaries ? this.boundaries.end.parent : null;
-	}
-
-	/**
-	 * Iterator interface.
-	 */
-	[ Symbol.iterator ]() {
-		return this;
-	}
-
-	/**
-	 * Moves {@link #position} in the {@link #direction} skipping values as long as the callback function returns `true`.
-	 *
-	 * For example:
-	 *
-	 * 		walker.skip( value => value.type == 'text' ); // <p>{}foo</p> -> <p>foo[]</p>
-	 * 		walker.skip( value => true ); // Move the position to the end: <p>{}foo</p> -> <p>foo</p>[]
-	 * 		walker.skip( value => false ); // Do not move the position.
-	 *
-	 * @param {Function} skip Callback function. Gets {@link module:engine/view/treewalker~TreeWalkerValue} and should
-	 * return `true` if the value should be skipped or `false` if not.
-	 */
-	skip( skip ) {
-		let done, value, prevPosition;
-
-		do {
-			prevPosition = this.position;
-
-			( { done, value } = this.next() );
-		} while ( !done && skip( value ) );
-
-		if ( !done ) {
-			this.position = prevPosition;
-		}
-	}
-
-	/**
-	 * Iterator interface method.
-	 * Detects walking direction and makes step forward or backward.
-	 *
-	 * @returns {Object} Object implementing iterator interface, returning information about taken step.
-	 */
-	next() {
-		if ( this.direction == 'forward' ) {
-			return this._next();
-		} else {
-			return this._previous();
-		}
-	}
-
-	/**
-	 * Makes a step forward in view. Moves the {@link #position} to the next position and returns the encountered value.
-	 *
-	 * @private
-	 * @returns {Object}
-	 * @returns {Boolean} return.done `true` if iterator is done, `false` otherwise.
-	 * @returns {module:engine/view/treewalker~TreeWalkerValue} return.value Information about taken step.
-	 */
-	_next() {
-		let position = __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createFromPosition( this.position );
-		const previousPosition = this.position;
-		const parent = position.parent;
-
-		// We are at the end of the root.
-		if ( parent.parent === null && position.offset === parent.childCount ) {
-			return { done: true };
-		}
-
-		// We reached the walker boundary.
-		if ( parent === this._boundaryEndParent && position.offset == this.boundaries.end.offset ) {
-			return { done: true };
-		}
-
-		// Get node just after current position.
-		let node;
-
-		// Text is a specific parent because it contains string instead of child nodes.
-		if ( parent instanceof __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */] ) {
-			if ( position.isAtEnd ) {
-				// Prevent returning "elementEnd" for Text node. Skip that value and return the next walker step.
-				this.position = __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createAfter( parent );
-
-				return this._next();
-			}
-
-			node = parent.data[ position.offset ];
-		} else {
-			node = parent.getChild( position.offset );
-		}
-
-		if ( node instanceof __WEBPACK_IMPORTED_MODULE_0__element__["a" /* default */] ) {
-			if ( !this.shallow ) {
-				position = new __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */]( node, 0 );
-			} else {
-				position.offset++;
-			}
-
-			this.position = position;
-
-			return this._formatReturnValue( 'elementStart', node, previousPosition, position, 1 );
-		} else if ( node instanceof __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */] ) {
-			if ( this.singleCharacters ) {
-				position = new __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */]( node, 0 );
-				this.position = position;
-
-				return this._next();
-			} else {
-				let charactersCount = node.data.length;
-				let item = node;
-
-				// If text stick out of walker range, we need to cut it and wrap by TextProxy.
-				if ( node == this._boundaryEndParent ) {
-					charactersCount = this.boundaries.end.offset;
-					item = new __WEBPACK_IMPORTED_MODULE_2__textproxy__["a" /* default */]( node, 0, charactersCount );
-					position = __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createAfter( item );
-				} else {
-					// If not just keep moving forward.
-					position.offset++;
-				}
-
-				this.position = position;
-
-				return this._formatReturnValue( 'text', item, previousPosition, position, charactersCount );
-			}
-		} else if ( typeof node == 'string' ) {
-			let textLength;
-
-			if ( this.singleCharacters ) {
-				textLength = 1;
-			} else {
-				// Check if text stick out of walker range.
-				const endOffset = parent === this._boundaryEndParent ? this.boundaries.end.offset : parent.data.length;
-
-				textLength = endOffset - position.offset;
-			}
-
-			const textProxy = new __WEBPACK_IMPORTED_MODULE_2__textproxy__["a" /* default */]( parent, position.offset, textLength );
-
-			position.offset += textLength;
-			this.position = position;
-
-			return this._formatReturnValue( 'text', textProxy, previousPosition, position, textLength );
-		} else {
-			// `node` is not set, we reached the end of current `parent`.
-			position = __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createAfter( parent );
-			this.position = position;
-
-			if ( this.ignoreElementEnd ) {
-				return this._next();
-			} else {
-				return this._formatReturnValue( 'elementEnd', parent, previousPosition, position );
-			}
-		}
-	}
-
-	/**
-	 * Makes a step backward in view. Moves the {@link #position} to the previous position and returns the encountered value.
-	 *
-	 * @private
-	 * @returns {Object}
-	 * @returns {Boolean} return.done True if iterator is done.
-	 * @returns {module:engine/view/treewalker~TreeWalkerValue} return.value Information about taken step.
-	 */
-	_previous() {
-		let position = __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createFromPosition( this.position );
-		const previousPosition = this.position;
-		const parent = position.parent;
-
-		// We are at the beginning of the root.
-		if ( parent.parent === null && position.offset === 0 ) {
-			return { done: true };
-		}
-
-		// We reached the walker boundary.
-		if ( parent == this._boundaryStartParent && position.offset == this.boundaries.start.offset ) {
-			return { done: true };
-		}
-
-		// Get node just before current position.
-		let node;
-
-		// Text {@link module:engine/view/text~Text} element is a specific parent because contains string instead of child nodes.
-		if ( parent instanceof __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */] ) {
-			if ( position.isAtStart ) {
-				// Prevent returning "elementStart" for Text node. Skip that value and return the next walker step.
-				this.position = __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createBefore( parent );
-
-				return this._previous();
-			}
-
-			node = parent.data[ position.offset - 1 ];
-		} else {
-			node = parent.getChild( position.offset - 1 );
-		}
-
-		if ( node instanceof __WEBPACK_IMPORTED_MODULE_0__element__["a" /* default */] ) {
-			if ( !this.shallow ) {
-				position = new __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */]( node, node.childCount );
-				this.position = position;
-
-				if ( this.ignoreElementEnd ) {
-					return this._previous();
-				} else {
-					return this._formatReturnValue( 'elementEnd', node, previousPosition, position );
-				}
-			} else {
-				position.offset--;
-				this.position = position;
-
-				return this._formatReturnValue( 'elementStart', node, previousPosition, position, 1 );
-			}
-		} else if ( node instanceof __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */] ) {
-			if ( this.singleCharacters ) {
-				position = new __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */]( node, node.data.length );
-				this.position = position;
-
-				return this._previous();
-			} else {
-				let charactersCount = node.data.length;
-				let item = node;
-
-				// If text stick out of walker range, we need to cut it and wrap by TextProxy.
-				if ( node == this._boundaryStartParent ) {
-					const offset = this.boundaries.start.offset;
-
-					item = new __WEBPACK_IMPORTED_MODULE_2__textproxy__["a" /* default */]( node, offset, node.data.length - offset );
-					charactersCount = item.data.length;
-					position = __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createBefore( item );
-				} else {
-					// If not just keep moving backward.
-					position.offset--;
-				}
-
-				this.position = position;
-
-				return this._formatReturnValue( 'text', item, previousPosition, position, charactersCount );
-			}
-		} else if ( typeof node == 'string' ) {
-			let textLength;
-
-			if ( !this.singleCharacters ) {
-				// Check if text stick out of walker range.
-				const startOffset = parent === this._boundaryStartParent ? this.boundaries.start.offset : 0;
-
-				textLength = position.offset - startOffset;
-			} else {
-				textLength = 1;
-			}
-
-			position.offset -= textLength;
-
-			const textProxy = new __WEBPACK_IMPORTED_MODULE_2__textproxy__["a" /* default */]( parent, position.offset, textLength );
-
-			this.position = position;
-
-			return this._formatReturnValue( 'text', textProxy, previousPosition, position, textLength );
-		} else {
-			// `node` is not set, we reached the beginning of current `parent`.
-			position = __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createBefore( parent );
-			this.position = position;
-
-			return this._formatReturnValue( 'elementStart', parent, previousPosition, position, 1 );
-		}
-	}
-
-	/**
-	 * Format returned data and adjust `previousPosition` and `nextPosition` if reach the bound of the {@link module:engine/view/text~Text}.
-	 *
-	 * @private
-	 * @param {module:engine/view/treewalker~TreeWalkerValueType} type Type of step.
-	 * @param {module:engine/view/item~Item} item Item between old and new position.
-	 * @param {module:engine/view/position~Position} previousPosition Previous position of iterator.
-	 * @param {module:engine/view/position~Position} nextPosition Next position of iterator.
-	 * @param {Number} [length] Length of the item.
-	 * @returns {module:engine/view/treewalker~TreeWalkerValue}
-	 */
-	_formatReturnValue( type, item, previousPosition, nextPosition, length ) {
-		// Text is a specific parent, because contains string instead of children.
-		// Walker doesn't enter to the Text except situations when walker is iterating over every single character,
-		// or the bound starts/ends inside the Text. So when the position is at the beginning or at the end of the Text
-		// we move it just before or just after Text.
-		if ( item instanceof __WEBPACK_IMPORTED_MODULE_2__textproxy__["a" /* default */] ) {
-			// Position is at the end of Text.
-			if ( item.offsetInText + item.data.length == item.textNode.data.length ) {
-				if ( this.direction == 'forward' && !( this.boundaries && this.boundaries.end.isEqual( this.position ) ) ) {
-					nextPosition = __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createAfter( item.textNode );
-					// When we change nextPosition of returned value we need also update walker current position.
-					this.position = nextPosition;
-				} else {
-					previousPosition = __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createAfter( item.textNode );
-				}
-			}
-
-			// Position is at the begining ot the text.
-			if ( item.offsetInText === 0 ) {
-				if ( this.direction == 'backward' && !( this.boundaries && this.boundaries.start.isEqual( this.position ) ) ) {
-					nextPosition = __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createBefore( item.textNode );
-					// When we change nextPosition of returned value we need also update walker current position.
-					this.position = nextPosition;
-				} else {
-					previousPosition = __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createBefore( item.textNode );
-				}
-			}
-		}
-
-		return {
-			done: false,
-			value: {
-				type,
-				item,
-				previousPosition,
-				nextPosition,
-				length
-			}
-		};
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = TreeWalker;
-
-
-/**
- * Type of the step made by {@link module:engine/view/treewalker~TreeWalker}.
- * Possible values: `'elementStart'` if walker is at the beginning of a node, `'elementEnd'` if walker is at the end
- * of node, or `'text'` if walker traversed over single and multiple characters.
- * For {@link module:engine/view/text~Text} `elementStart` and `elementEnd` is not returned.
- *
- * @typedef {String} module:engine/view/treewalker~TreeWalkerValueType
- */
-
-/**
- * Object returned by {@link module:engine/view/treewalker~TreeWalker} when traversing tree view.
- *
- * @typedef {Object} module:engine/view/treewalker~TreeWalkerValue
- * @property {module:engine/view/treewalker~TreeWalkerValueType} type
- * @property {module:engine/view/item~Item} item Item between old and new positions of {@link module:engine/view/treewalker~TreeWalker}.
- * @property {module:engine/view/position~Position} previousPosition Previous position of the iterator.
- * * Forward iteration: For `'elementEnd'` it is the last position inside the element. For all other types it is the
- * position before the item. Note that it is more efficient to use this position then calculate the position before
- * the node using {@link module:engine/view/position~Position.createBefore}.
- * * Backward iteration: For `'elementStart'` it is the first position inside the element. For all other types it is
- * the position after item.
- * * If the position is at the beginning or at the end of the {@link module:engine/view/text~Text} it is always moved from the
- * inside of the Text to its parent just before or just after Text.
- * @property {module:engine/view/position~Position} nextPosition Next position of the iterator.
- * * Forward iteration: For `'elementStart'` it is the first position inside the element. For all other types it is
- * the position after the item.
- * * Backward iteration: For `'elementEnd'` it is last position inside element. For all other types it is the position
- * before the item.
- * * If the position is at the beginning or at the end of the {@link module:engine/view/text~Text} it is always moved from the
- * inside of the Text to its parent just before or just after Text.
- * @property {Number} [length] Length of the item. For `'elementStart'` it is 1. For `'text'` it is
- * the length of the text. For `'elementEnd'` it is undefined.
- */
-
-/**
- * Tree walking directions.
- *
- * @typedef {'forward'|'backward'} module:engine/view/treewalker~TreeWalkerDirection
- */
-
-
-/***/ }),
-/* 57 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isNative__ = __webpack_require__(165);
 
 
@@ -13358,7 +12893,7 @@ function getNative(object, key) {
 
 
 /***/ }),
-/* 58 */
+/* 57 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13396,7 +12931,7 @@ function isKey(value, object) {
 
 
 /***/ }),
-/* 59 */
+/* 58 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13425,11 +12960,11 @@ function toKey(value) {
 
 
 /***/ }),
-/* 60 */
+/* 59 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_dom_emittermixin__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_dom_emittermixin__ = __webpack_require__(106);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -13521,6 +13056,38 @@ Object(__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__["a" /* de
 
 
 /***/ }),
+/* 60 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = first;
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module utils/first
+ */
+
+/**
+ * Returns first item of the given `iterable`.
+ *
+ * @param {Iterable.<*>} iterable
+ * @returns {*}
+ */
+function first( iterable ) {
+	const iteratorItem = iterable.next();
+
+	if ( iteratorItem.done ) {
+		return null;
+	}
+
+	return iteratorItem.value;
+}
+
+
+/***/ }),
 /* 61 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -13592,7 +13159,7 @@ function assignValue(object, key, value) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_tomap__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_tomap__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -14290,6 +13857,507 @@ class TextProxy {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__element__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__text__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__textproxy__ = __webpack_require__(343);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__position__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module engine/view/treewalker
+ */
+
+
+
+
+
+
+
+/**
+ * Position iterator class. It allows to iterate forward and backward over the document.
+ */
+class TreeWalker {
+	/**
+	 * Creates a range iterator. All parameters are optional, but you have to specify either `boundaries` or `startPosition`.
+	 *
+	 * @constructor
+	 * @param {Object} options Object with configuration.
+	 * @param {module:engine/view/range~Range} [options.boundaries=null] Range to define boundaries of the iterator.
+	 * @param {module:engine/view/position~Position} [options.startPosition] Starting position.
+	 * @param {'forward'|'backward'} [options.direction='forward'] Walking direction.
+	 * @param {Boolean} [options.singleCharacters=false] Flag indicating whether all characters from
+	 * {@link module:engine/view/text~Text} should be returned as one {@link module:engine/view/text~Text} (`false`) ore one by one as
+	 * {@link module:engine/view/textproxy~TextProxy} (`true`).
+	 * @param {Boolean} [options.shallow=false] Flag indicating whether iterator should enter elements or not. If the
+	 * iterator is shallow child nodes of any iterated node will not be returned along with `elementEnd` tag.
+	 * @param {Boolean} [options.ignoreElementEnd=false] Flag indicating whether iterator should ignore `elementEnd`
+	 * tags. If the option is true walker will not return a parent node of start position. If this option is `true`
+	 * each {@link module:engine/view/element~Element} will be returned once, while if the option is `false` they might be returned
+	 * twice: for `'elementStart'` and `'elementEnd'`.
+	 */
+	constructor( options = {} ) {
+		if ( !options.boundaries && !options.startPosition ) {
+			/**
+			 * Neither boundaries nor starting position have been defined.
+			 *
+			 * @error tree-walker-no-start-position
+			 */
+			throw new __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-tree-walker-no-start-position: Neither boundaries nor starting position have been defined.' );
+		}
+
+		if ( options.direction && options.direction != 'forward' && options.direction != 'backward' ) {
+			throw new __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */](
+				'view-tree-walker-unknown-direction: Only `backward` and `forward` direction allowed.',
+				{ direction: options.direction }
+			);
+		}
+
+		/**
+		 * Iterator boundaries.
+		 *
+		 * When the iterator is walking `'forward'` on the end of boundary or is walking `'backward'`
+		 * on the start of boundary, then `{ done: true }` is returned.
+		 *
+		 * If boundaries are not defined they are set before first and after last child of the root node.
+		 *
+		 * @readonly
+		 * @member {module:engine/view/range~Range} module:engine/view/treewalker~TreeWalker#boundaries
+		 */
+		this.boundaries = options.boundaries || null;
+
+		/**
+		 * Iterator position. If start position is not defined then position depends on {@link #direction}. If direction is
+		 * `'forward'` position starts form the beginning, when direction is `'backward'` position starts from the end.
+		 *
+		 * @readonly
+		 * @member {module:engine/view/position~Position} module:engine/view/treewalker~TreeWalker#position
+		 */
+		if ( options.startPosition ) {
+			this.position = __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createFromPosition( options.startPosition );
+		} else {
+			this.position = __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createFromPosition( options.boundaries[ options.direction == 'backward' ? 'end' : 'start' ] );
+		}
+
+		/**
+		 * Walking direction. Defaults `'forward'`.
+		 *
+		 * @readonly
+		 * @member {'backward'|'forward'} module:engine/view/treewalker~TreeWalker#direction
+		 */
+		this.direction = options.direction || 'forward';
+
+		/**
+		 * Flag indicating whether all characters from {@link module:engine/view/text~Text} should be returned as one
+		 * {@link module:engine/view/text~Text} or one by one as {@link module:engine/view/textproxy~TextProxy}.
+		 *
+		 * @readonly
+		 * @member {Boolean} module:engine/view/treewalker~TreeWalker#singleCharacters
+		 */
+		this.singleCharacters = !!options.singleCharacters;
+
+		/**
+		 * Flag indicating whether iterator should enter elements or not. If the iterator is shallow child nodes of any
+		 * iterated node will not be returned along with `elementEnd` tag.
+		 *
+		 * @readonly
+		 * @member {Boolean} module:engine/view/treewalker~TreeWalker#shallow
+		 */
+		this.shallow = !!options.shallow;
+
+		/**
+		 * Flag indicating whether iterator should ignore `elementEnd` tags. If set to `true`, walker will not
+		 * return a parent node of the start position. Each {@link module:engine/view/element~Element} will be returned once.
+		 * When set to `false` each element might be returned twice: for `'elementStart'` and `'elementEnd'`.
+		 *
+		 * @readonly
+		 * @member {Boolean} module:engine/view/treewalker~TreeWalker#ignoreElementEnd
+		 */
+		this.ignoreElementEnd = !!options.ignoreElementEnd;
+
+		/**
+		 * Start boundary parent.
+		 *
+		 * @private
+		 * @member {module:engine/view/node~Node} module:engine/view/treewalker~TreeWalker#_boundaryStartParent
+		 */
+		this._boundaryStartParent = this.boundaries ? this.boundaries.start.parent : null;
+
+		/**
+		 * End boundary parent.
+		 *
+		 * @private
+		 * @member {module:engine/view/node~Node} module:engine/view/treewalker~TreeWalker#_boundaryEndParent
+		 */
+		this._boundaryEndParent = this.boundaries ? this.boundaries.end.parent : null;
+	}
+
+	/**
+	 * Iterator interface.
+	 */
+	[ Symbol.iterator ]() {
+		return this;
+	}
+
+	/**
+	 * Moves {@link #position} in the {@link #direction} skipping values as long as the callback function returns `true`.
+	 *
+	 * For example:
+	 *
+	 * 		walker.skip( value => value.type == 'text' ); // <p>{}foo</p> -> <p>foo[]</p>
+	 * 		walker.skip( value => true ); // Move the position to the end: <p>{}foo</p> -> <p>foo</p>[]
+	 * 		walker.skip( value => false ); // Do not move the position.
+	 *
+	 * @param {Function} skip Callback function. Gets {@link module:engine/view/treewalker~TreeWalkerValue} and should
+	 * return `true` if the value should be skipped or `false` if not.
+	 */
+	skip( skip ) {
+		let done, value, prevPosition;
+
+		do {
+			prevPosition = this.position;
+
+			( { done, value } = this.next() );
+		} while ( !done && skip( value ) );
+
+		if ( !done ) {
+			this.position = prevPosition;
+		}
+	}
+
+	/**
+	 * Iterator interface method.
+	 * Detects walking direction and makes step forward or backward.
+	 *
+	 * @returns {Object} Object implementing iterator interface, returning information about taken step.
+	 */
+	next() {
+		if ( this.direction == 'forward' ) {
+			return this._next();
+		} else {
+			return this._previous();
+		}
+	}
+
+	/**
+	 * Makes a step forward in view. Moves the {@link #position} to the next position and returns the encountered value.
+	 *
+	 * @private
+	 * @returns {Object}
+	 * @returns {Boolean} return.done `true` if iterator is done, `false` otherwise.
+	 * @returns {module:engine/view/treewalker~TreeWalkerValue} return.value Information about taken step.
+	 */
+	_next() {
+		let position = __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createFromPosition( this.position );
+		const previousPosition = this.position;
+		const parent = position.parent;
+
+		// We are at the end of the root.
+		if ( parent.parent === null && position.offset === parent.childCount ) {
+			return { done: true };
+		}
+
+		// We reached the walker boundary.
+		if ( parent === this._boundaryEndParent && position.offset == this.boundaries.end.offset ) {
+			return { done: true };
+		}
+
+		// Get node just after current position.
+		let node;
+
+		// Text is a specific parent because it contains string instead of child nodes.
+		if ( parent instanceof __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */] ) {
+			if ( position.isAtEnd ) {
+				// Prevent returning "elementEnd" for Text node. Skip that value and return the next walker step.
+				this.position = __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createAfter( parent );
+
+				return this._next();
+			}
+
+			node = parent.data[ position.offset ];
+		} else {
+			node = parent.getChild( position.offset );
+		}
+
+		if ( node instanceof __WEBPACK_IMPORTED_MODULE_0__element__["a" /* default */] ) {
+			if ( !this.shallow ) {
+				position = new __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */]( node, 0 );
+			} else {
+				position.offset++;
+			}
+
+			this.position = position;
+
+			return this._formatReturnValue( 'elementStart', node, previousPosition, position, 1 );
+		} else if ( node instanceof __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */] ) {
+			if ( this.singleCharacters ) {
+				position = new __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */]( node, 0 );
+				this.position = position;
+
+				return this._next();
+			} else {
+				let charactersCount = node.data.length;
+				let item = node;
+
+				// If text stick out of walker range, we need to cut it and wrap by TextProxy.
+				if ( node == this._boundaryEndParent ) {
+					charactersCount = this.boundaries.end.offset;
+					item = new __WEBPACK_IMPORTED_MODULE_2__textproxy__["a" /* default */]( node, 0, charactersCount );
+					position = __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createAfter( item );
+				} else {
+					// If not just keep moving forward.
+					position.offset++;
+				}
+
+				this.position = position;
+
+				return this._formatReturnValue( 'text', item, previousPosition, position, charactersCount );
+			}
+		} else if ( typeof node == 'string' ) {
+			let textLength;
+
+			if ( this.singleCharacters ) {
+				textLength = 1;
+			} else {
+				// Check if text stick out of walker range.
+				const endOffset = parent === this._boundaryEndParent ? this.boundaries.end.offset : parent.data.length;
+
+				textLength = endOffset - position.offset;
+			}
+
+			const textProxy = new __WEBPACK_IMPORTED_MODULE_2__textproxy__["a" /* default */]( parent, position.offset, textLength );
+
+			position.offset += textLength;
+			this.position = position;
+
+			return this._formatReturnValue( 'text', textProxy, previousPosition, position, textLength );
+		} else {
+			// `node` is not set, we reached the end of current `parent`.
+			position = __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createAfter( parent );
+			this.position = position;
+
+			if ( this.ignoreElementEnd ) {
+				return this._next();
+			} else {
+				return this._formatReturnValue( 'elementEnd', parent, previousPosition, position );
+			}
+		}
+	}
+
+	/**
+	 * Makes a step backward in view. Moves the {@link #position} to the previous position and returns the encountered value.
+	 *
+	 * @private
+	 * @returns {Object}
+	 * @returns {Boolean} return.done True if iterator is done.
+	 * @returns {module:engine/view/treewalker~TreeWalkerValue} return.value Information about taken step.
+	 */
+	_previous() {
+		let position = __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createFromPosition( this.position );
+		const previousPosition = this.position;
+		const parent = position.parent;
+
+		// We are at the beginning of the root.
+		if ( parent.parent === null && position.offset === 0 ) {
+			return { done: true };
+		}
+
+		// We reached the walker boundary.
+		if ( parent == this._boundaryStartParent && position.offset == this.boundaries.start.offset ) {
+			return { done: true };
+		}
+
+		// Get node just before current position.
+		let node;
+
+		// Text {@link module:engine/view/text~Text} element is a specific parent because contains string instead of child nodes.
+		if ( parent instanceof __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */] ) {
+			if ( position.isAtStart ) {
+				// Prevent returning "elementStart" for Text node. Skip that value and return the next walker step.
+				this.position = __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createBefore( parent );
+
+				return this._previous();
+			}
+
+			node = parent.data[ position.offset - 1 ];
+		} else {
+			node = parent.getChild( position.offset - 1 );
+		}
+
+		if ( node instanceof __WEBPACK_IMPORTED_MODULE_0__element__["a" /* default */] ) {
+			if ( !this.shallow ) {
+				position = new __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */]( node, node.childCount );
+				this.position = position;
+
+				if ( this.ignoreElementEnd ) {
+					return this._previous();
+				} else {
+					return this._formatReturnValue( 'elementEnd', node, previousPosition, position );
+				}
+			} else {
+				position.offset--;
+				this.position = position;
+
+				return this._formatReturnValue( 'elementStart', node, previousPosition, position, 1 );
+			}
+		} else if ( node instanceof __WEBPACK_IMPORTED_MODULE_1__text__["a" /* default */] ) {
+			if ( this.singleCharacters ) {
+				position = new __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */]( node, node.data.length );
+				this.position = position;
+
+				return this._previous();
+			} else {
+				let charactersCount = node.data.length;
+				let item = node;
+
+				// If text stick out of walker range, we need to cut it and wrap by TextProxy.
+				if ( node == this._boundaryStartParent ) {
+					const offset = this.boundaries.start.offset;
+
+					item = new __WEBPACK_IMPORTED_MODULE_2__textproxy__["a" /* default */]( node, offset, node.data.length - offset );
+					charactersCount = item.data.length;
+					position = __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createBefore( item );
+				} else {
+					// If not just keep moving backward.
+					position.offset--;
+				}
+
+				this.position = position;
+
+				return this._formatReturnValue( 'text', item, previousPosition, position, charactersCount );
+			}
+		} else if ( typeof node == 'string' ) {
+			let textLength;
+
+			if ( !this.singleCharacters ) {
+				// Check if text stick out of walker range.
+				const startOffset = parent === this._boundaryStartParent ? this.boundaries.start.offset : 0;
+
+				textLength = position.offset - startOffset;
+			} else {
+				textLength = 1;
+			}
+
+			position.offset -= textLength;
+
+			const textProxy = new __WEBPACK_IMPORTED_MODULE_2__textproxy__["a" /* default */]( parent, position.offset, textLength );
+
+			this.position = position;
+
+			return this._formatReturnValue( 'text', textProxy, previousPosition, position, textLength );
+		} else {
+			// `node` is not set, we reached the beginning of current `parent`.
+			position = __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createBefore( parent );
+			this.position = position;
+
+			return this._formatReturnValue( 'elementStart', parent, previousPosition, position, 1 );
+		}
+	}
+
+	/**
+	 * Format returned data and adjust `previousPosition` and `nextPosition` if reach the bound of the {@link module:engine/view/text~Text}.
+	 *
+	 * @private
+	 * @param {module:engine/view/treewalker~TreeWalkerValueType} type Type of step.
+	 * @param {module:engine/view/item~Item} item Item between old and new position.
+	 * @param {module:engine/view/position~Position} previousPosition Previous position of iterator.
+	 * @param {module:engine/view/position~Position} nextPosition Next position of iterator.
+	 * @param {Number} [length] Length of the item.
+	 * @returns {module:engine/view/treewalker~TreeWalkerValue}
+	 */
+	_formatReturnValue( type, item, previousPosition, nextPosition, length ) {
+		// Text is a specific parent, because contains string instead of children.
+		// Walker doesn't enter to the Text except situations when walker is iterating over every single character,
+		// or the bound starts/ends inside the Text. So when the position is at the beginning or at the end of the Text
+		// we move it just before or just after Text.
+		if ( item instanceof __WEBPACK_IMPORTED_MODULE_2__textproxy__["a" /* default */] ) {
+			// Position is at the end of Text.
+			if ( item.offsetInText + item.data.length == item.textNode.data.length ) {
+				if ( this.direction == 'forward' && !( this.boundaries && this.boundaries.end.isEqual( this.position ) ) ) {
+					nextPosition = __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createAfter( item.textNode );
+					// When we change nextPosition of returned value we need also update walker current position.
+					this.position = nextPosition;
+				} else {
+					previousPosition = __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createAfter( item.textNode );
+				}
+			}
+
+			// Position is at the begining ot the text.
+			if ( item.offsetInText === 0 ) {
+				if ( this.direction == 'backward' && !( this.boundaries && this.boundaries.start.isEqual( this.position ) ) ) {
+					nextPosition = __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createBefore( item.textNode );
+					// When we change nextPosition of returned value we need also update walker current position.
+					this.position = nextPosition;
+				} else {
+					previousPosition = __WEBPACK_IMPORTED_MODULE_3__position__["a" /* default */].createBefore( item.textNode );
+				}
+			}
+		}
+
+		return {
+			done: false,
+			value: {
+				type,
+				item,
+				previousPosition,
+				nextPosition,
+				length
+			}
+		};
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = TreeWalker;
+
+
+/**
+ * Type of the step made by {@link module:engine/view/treewalker~TreeWalker}.
+ * Possible values: `'elementStart'` if walker is at the beginning of a node, `'elementEnd'` if walker is at the end
+ * of node, or `'text'` if walker traversed over single and multiple characters.
+ * For {@link module:engine/view/text~Text} `elementStart` and `elementEnd` is not returned.
+ *
+ * @typedef {String} module:engine/view/treewalker~TreeWalkerValueType
+ */
+
+/**
+ * Object returned by {@link module:engine/view/treewalker~TreeWalker} when traversing tree view.
+ *
+ * @typedef {Object} module:engine/view/treewalker~TreeWalkerValue
+ * @property {module:engine/view/treewalker~TreeWalkerValueType} type
+ * @property {module:engine/view/item~Item} item Item between old and new positions of {@link module:engine/view/treewalker~TreeWalker}.
+ * @property {module:engine/view/position~Position} previousPosition Previous position of the iterator.
+ * * Forward iteration: For `'elementEnd'` it is the last position inside the element. For all other types it is the
+ * position before the item. Note that it is more efficient to use this position then calculate the position before
+ * the node using {@link module:engine/view/position~Position.createBefore}.
+ * * Backward iteration: For `'elementStart'` it is the first position inside the element. For all other types it is
+ * the position after item.
+ * * If the position is at the beginning or at the end of the {@link module:engine/view/text~Text} it is always moved from the
+ * inside of the Text to its parent just before or just after Text.
+ * @property {module:engine/view/position~Position} nextPosition Next position of the iterator.
+ * * Forward iteration: For `'elementStart'` it is the first position inside the element. For all other types it is
+ * the position after the item.
+ * * Backward iteration: For `'elementEnd'` it is last position inside element. For all other types it is the position
+ * before the item.
+ * * If the position is at the beginning or at the end of the {@link module:engine/view/text~Text} it is always moved from the
+ * inside of the Text to its parent just before or just after Text.
+ * @property {Number} [length] Length of the item. For `'elementStart'` it is 1. For `'text'` it is
+ * the length of the text. For `'elementEnd'` it is undefined.
+ */
+
+/**
+ * Tree walking directions.
+ *
+ * @typedef {'forward'|'backward'} module:engine/view/treewalker~TreeWalkerDirection
+ */
+
+
+/***/ }),
+/* 66 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseClone__ = __webpack_require__(164);
 
 
@@ -14327,7 +14395,7 @@ function clone(value) {
 
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14396,7 +14464,7 @@ function keys(object) {
 
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14460,11 +14528,11 @@ class NoOperation extends __WEBPACK_IMPORTED_MODULE_0__operation__["a" /* defaul
 
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SetCache__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SetCache__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arrayIncludes__ = __webpack_require__(132);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__arrayIncludesWith__ = __webpack_require__(134);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__arrayMap__ = __webpack_require__(29);
@@ -14540,7 +14608,7 @@ function baseDifference(array, values, iteratee, comparator) {
 
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14550,7 +14618,7 @@ function baseDifference(array, values, iteratee, comparator) {
 /* harmony export (immutable) */ __webpack_exports__["e"] = getDataWithoutFiller;
 /* harmony export (immutable) */ __webpack_exports__["g"] = isBlockFiller;
 /* harmony export (immutable) */ __webpack_exports__["f"] = injectQuirksHandling;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(27);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -14729,11 +14797,11 @@ function jumpOverInlineFiller( evt, data ) {
 
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observer__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observer__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__domeventdata__ = __webpack_require__(151);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -14839,11 +14907,11 @@ class DomEventObserver extends __WEBPACK_IMPORTED_MODULE_0__observer__["a" /* de
 
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dom_emittermixin__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dom_emittermixin__ = __webpack_require__(106);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__observablemixin__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mix__ = __webpack_require__(4);
@@ -14988,43 +15056,11 @@ Object(__WEBPACK_IMPORTED_MODULE_3__mix__["a" /* default */])( FocusTracker, __W
 
 
 /***/ }),
-/* 72 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = first;
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module utils/first
- */
-
-/**
- * Returns first item of the given `iterable`.
- *
- * @param {Iterable.<*>} iterable
- * @returns {*}
- */
-function first( iterable ) {
-	const iteratorItem = iterable.next();
-
-	if ( iteratorItem.done ) {
-		return null;
-	}
-
-	return iteratorItem.value;
-}
-
-
-/***/ }),
 /* 73 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getPrototype__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getPrototype__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isHostObject__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObjectLike__ = __webpack_require__(45);
 
@@ -15173,7 +15209,7 @@ function isIterateeCall(value, index, object) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getLength__ = __webpack_require__(289);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isFunction__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isFunction__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isLength__ = __webpack_require__(77);
 
 
@@ -15502,7 +15538,7 @@ class NodeList {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_lib_lodash_clone__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_lib_lodash_clone__ = __webpack_require__(66);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -15850,7 +15886,7 @@ function assocIndexOf(array, key) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getNative__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getNative__ = __webpack_require__(56);
 
 
 /* Built-in method references that are verified to be native. */
@@ -16050,11 +16086,781 @@ Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_mix__["a" /* de
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["d"] = insertElement;
+/* harmony export (immutable) */ __webpack_exports__["e"] = insertText;
+/* harmony export (immutable) */ __webpack_exports__["f"] = insertUIElement;
+/* harmony export (immutable) */ __webpack_exports__["j"] = setAttribute;
+/* harmony export (immutable) */ __webpack_exports__["h"] = removeAttribute;
+/* harmony export (immutable) */ __webpack_exports__["l"] = wrapItem;
+/* harmony export (immutable) */ __webpack_exports__["k"] = unwrapItem;
+/* harmony export (immutable) */ __webpack_exports__["g"] = remove;
+/* harmony export (immutable) */ __webpack_exports__["c"] = highlightText;
+/* harmony export (immutable) */ __webpack_exports__["b"] = highlightElement;
+/* harmony export (immutable) */ __webpack_exports__["i"] = removeUIElement;
+/* unused harmony export eventNameToConsumableType */
+/* harmony export (immutable) */ __webpack_exports__["a"] = highlightDescriptorToAttributeElement;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_element__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_attributeelement__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_text__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_range__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_position__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__view_treewalker__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__view_writer__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__model_range__ = __webpack_require__(3);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+
+
+
+
+
+
+
+
+
+/**
+ * Contains {@link module:engine/model/model model} to {@link module:engine/view/view view} converters for
+ * {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher}.
+ *
+ * @module engine/conversion/model-to-view-converters
+ */
+
+/**
+ * Function factory, creates a converter that converts node insertion changes from the model to the view.
+ * The view element that will be added to the view depends on passed parameter. If {@link module:engine/view/element~Element} was passed,
+ * it will be cloned and the copy will be inserted. If `Function` is provided, it is passed all the parameters of the
+ * dispatcher's {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher#event:insert insert event}.
+ * It's expected that the function returns a {@link module:engine/view/element~Element}.
+ * The result of the function will be inserted to the view.
+ *
+ * The converter automatically consumes corresponding value from consumables list, stops the event (see
+ * {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher}) and bind model and view elements.
+ *
+ *		modelDispatcher.on( 'insert:paragraph', insertElement( new ViewElement( 'p' ) ) );
+ *
+ *		modelDispatcher.on(
+ *			'insert:myElem',
+ *			insertElement( ( data, consumable, conversionApi ) => {
+ *				let myElem = new ViewElement( 'myElem', { myAttr: true }, new ViewText( 'myText' ) );
+ *
+ *				// Do something fancy with myElem using data/consumable/conversionApi ...
+ *
+ *				return myElem;
+ *			}
+ *		) );
+ *
+ * @param {module:engine/view/element~Element|Function} elementCreator View element, or function returning a view element, which
+ * will be inserted.
+ * @returns {Function} Insert element event converter.
+ */
+function insertElement( elementCreator ) {
+	return ( evt, data, consumable, conversionApi ) => {
+		const viewElement = ( elementCreator instanceof __WEBPACK_IMPORTED_MODULE_0__view_element__["a" /* default */] ) ?
+			elementCreator.clone( true ) :
+			elementCreator( data, consumable, conversionApi );
+
+		if ( !viewElement ) {
+			return;
+		}
+
+		if ( !consumable.consume( data.item, 'insert' ) ) {
+			return;
+		}
+
+		const viewPosition = conversionApi.mapper.toViewPosition( data.range.start );
+
+		conversionApi.mapper.bindElements( data.item, viewElement );
+		__WEBPACK_IMPORTED_MODULE_6__view_writer__["a" /* default */].insert( viewPosition, viewElement );
+	};
+}
+
+/**
+ * Function factory, creates a default model-to-view converter for text insertion changes.
+ *
+ * The converter automatically consumes corresponding value from consumables list and stops the event (see
+ * {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher}).
+ *
+ *		modelDispatcher.on( 'insert:$text', insertText() );
+ *
+ * @returns {Function} Insert text event converter.
+ */
+function insertText() {
+	return ( evt, data, consumable, conversionApi ) => {
+		if ( !consumable.consume( data.item, 'insert' ) ) {
+			return;
+		}
+
+		const viewPosition = conversionApi.mapper.toViewPosition( data.range.start );
+		const viewText = new __WEBPACK_IMPORTED_MODULE_2__view_text__["a" /* default */]( data.item.data );
+
+		__WEBPACK_IMPORTED_MODULE_6__view_writer__["a" /* default */].insert( viewPosition, viewText );
+	};
+}
+
+/**
+ * Function factory, creates a converter that converts marker adding change to the view ui element.
+ * The view ui element that will be added to the view depends on passed parameter. See {@link ~insertElement}.
+ * In a case of collapsed range element will not wrap range but separate elements will be placed at the beginning
+ * and at the end of the range.
+ *
+ * **Note:** unlike {@link ~insertElement}, the converter does not bind view element to model, because this converter
+ * uses marker as "model source of data". This means that view ui element does not have corresponding model element.
+ *
+ * @param {module:engine/view/uielement~UIElement|Function} elementCreator View ui element, or function returning a view element, which
+ * will be inserted.
+ * @returns {Function} Insert element event converter.
+ */
+function insertUIElement( elementCreator ) {
+	return ( evt, data, consumable, conversionApi ) => {
+		let viewStartElement, viewEndElement;
+
+		if ( elementCreator instanceof __WEBPACK_IMPORTED_MODULE_0__view_element__["a" /* default */] ) {
+			viewStartElement = elementCreator.clone( true );
+			viewEndElement = elementCreator.clone( true );
+		} else {
+			data.isOpening = true;
+			viewStartElement = elementCreator( data, consumable, conversionApi );
+
+			data.isOpening = false;
+			viewEndElement = elementCreator( data, consumable, conversionApi );
+		}
+
+		if ( !viewStartElement || !viewEndElement ) {
+			return;
+		}
+
+		const markerRange = data.markerRange;
+		const eventName = evt.name;
+
+		// Marker that is collapsed has consumable build differently that non-collapsed one.
+		// For more information see `addMarker` and `removeMarker` events description.
+		// If marker's range is collapsed - check if it can be consumed.
+		if ( markerRange.isCollapsed && !consumable.consume( markerRange, eventName ) ) {
+			return;
+		}
+
+		// If marker's range is not collapsed - consume all items inside.
+		for ( const value of markerRange ) {
+			if ( !consumable.consume( value.item, eventName ) ) {
+				return;
+			}
+		}
+
+		const mapper = conversionApi.mapper;
+
+		__WEBPACK_IMPORTED_MODULE_6__view_writer__["a" /* default */].insert( mapper.toViewPosition( markerRange.start ), viewStartElement );
+
+		if ( !markerRange.isCollapsed ) {
+			__WEBPACK_IMPORTED_MODULE_6__view_writer__["a" /* default */].insert( mapper.toViewPosition( markerRange.end ), viewEndElement );
+		}
+	};
+}
+
+/**
+ * Function factory, creates a converter that converts set/change attribute changes from the model to the view. Attributes
+ * from model are converted to the view element attributes in the view. You may provide a custom function to generate a
+ * key-value attribute pair to add/change. If not provided, model attributes will be converted to view elements attributes
+ * on 1-to-1 basis.
+ *
+ * **Note:** Provided attribute creator should always return the same `key` for given attribute from the model.
+ *
+ * The converter automatically consumes corresponding value from consumables list and stops the event (see
+ * {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher}).
+ *
+ *		modelDispatcher.on( 'addAttribute:customAttr:myElem', setAttribute( ( data ) => {
+ *			// Change attribute key from `customAttr` to `class` in view.
+ *			const key = 'class';
+ *			let value = data.attributeNewValue;
+ *
+ *			// Force attribute value to 'empty' if the model element is empty.
+ *			if ( data.item.childCount === 0 ) {
+ *				value = 'empty';
+ *			}
+ *
+ *			// Return key-value pair.
+ *			return { key, value };
+ *		} ) );
+ *
+ * @param {Function} [attributeCreator] Function returning an object with two properties: `key` and `value`, which
+ * represents attribute key and attribute value to be set on a {@link module:engine/view/element~Element view element}.
+ * The function is passed all the parameters of the
+ * {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher#event:addAttribute}
+ * or {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher#event:changeAttribute} event.
+ * @returns {Function} Set/change attribute converter.
+ */
+function setAttribute( attributeCreator ) {
+	attributeCreator = attributeCreator || ( ( value, key ) => ( { value, key } ) );
+
+	return ( evt, data, consumable, conversionApi ) => {
+		if ( !consumable.consume( data.item, eventNameToConsumableType( evt.name ) ) ) {
+			return;
+		}
+
+		const { key, value } = attributeCreator( data.attributeNewValue, data.attributeKey, data, consumable, conversionApi );
+
+		conversionApi.mapper.toViewElement( data.item ).setAttribute( key, value );
+	};
+}
+
+/**
+ * Function factory, creates a converter that converts remove attribute changes from the model to the view. Removes attributes
+ * that were converted to the view element attributes in the view. You may provide a custom function to generate a
+ * key-value attribute pair to remove. If not provided, model attributes will be removed from view elements on 1-to-1 basis.
+ *
+ * **Note:** Provided attribute creator should always return the same `key` for given attribute from the model.
+ *
+ * **Note:** You can use the same attribute creator as in {@link module:engine/conversion/model-to-view-converters~setAttribute}.
+ *
+ * The converter automatically consumes corresponding value from consumables list and stops the event (see
+ * {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher}).
+ *
+ *		modelDispatcher.on( 'removeAttribute:customAttr:myElem', removeAttribute( ( data ) => {
+ *			// Change attribute key from `customAttr` to `class` in view.
+ *			const key = 'class';
+ *			let value = data.attributeNewValue;
+ *
+ *			// Force attribute value to 'empty' if the model element is empty.
+ *			if ( data.item.childCount === 0 ) {
+ *				value = 'empty';
+ *			}
+ *
+ *			// Return key-value pair.
+ *			return { key, value };
+ *		} ) );
+ *
+ * @param {Function} [attributeCreator] Function returning an object with two properties: `key` and `value`, which
+ * represents attribute key and attribute value to be removed from {@link module:engine/view/element~Element view element}.
+ * The function is passed all the parameters of the
+ * {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher#event:addAttribute addAttribute event}
+ * or {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher#event:changeAttribute changeAttribute event}.
+ * @returns {Function} Remove attribute converter.
+ */
+function removeAttribute( attributeCreator ) {
+	attributeCreator = attributeCreator || ( ( value, key ) => ( { key } ) );
+
+	return ( evt, data, consumable, conversionApi ) => {
+		if ( !consumable.consume( data.item, eventNameToConsumableType( evt.name ) ) ) {
+			return;
+		}
+
+		const { key } = attributeCreator( data.attributeOldValue, data.attributeKey, data, consumable, conversionApi );
+
+		conversionApi.mapper.toViewElement( data.item ).removeAttribute( key );
+	};
+}
+
+/**
+ * Function factory, creates a converter that converts set/change attribute changes from the model to the view. In this case,
+ * model attributes are converted to a view element that will be wrapping view nodes which corresponding model nodes had
+ * the attribute set. This is useful for attributes like `bold`, which may be set on text nodes in model but are
+ * represented as an element in the view:
+ *
+ *		[paragraph]              MODEL ====> VIEW        <p>
+ *			|- a {bold: true}                             |- <b>
+ *			|- b {bold: true}                             |   |- ab
+ *			|- c                                          |- c
+ *
+ * The wrapping node depends on passed parameter. If {@link module:engine/view/element~Element} was passed, it will be cloned and
+ * the copy will become the wrapping element. If `Function` is provided, it is passed attribute value and then all the parameters of the
+ * {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher#event:addAttribute addAttribute event}.
+ * It's expected that the function returns a {@link module:engine/view/element~Element}.
+ * The result of the function will be the wrapping element.
+ * When provided `Function` does not return element, then will be no conversion.
+ *
+ * The converter automatically consumes corresponding value from consumables list, stops the event (see
+ * {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher}).
+ *
+ *		modelDispatcher.on( 'addAttribute:bold', wrapItem( new ViewAttributeElement( 'strong' ) ) );
+ *
+ * @param {module:engine/view/element~Element|Function} elementCreator View element, or function returning a view element, which will
+ * be used for wrapping.
+ * @returns {Function} Set/change attribute converter.
+ */
+function wrapItem( elementCreator ) {
+	return ( evt, data, consumable, conversionApi ) => {
+		const viewElement = ( elementCreator instanceof __WEBPACK_IMPORTED_MODULE_0__view_element__["a" /* default */] ) ?
+			elementCreator.clone( true ) :
+			elementCreator( data.attributeNewValue, data, consumable, conversionApi );
+
+		if ( !viewElement ) {
+			return;
+		}
+
+		if ( !consumable.consume( data.item, eventNameToConsumableType( evt.name ) ) ) {
+			return;
+		}
+
+		let viewRange = conversionApi.mapper.toViewRange( data.range );
+
+		// If this is a change event (because old value is not empty) and the creator is a function (so
+		// it may create different view elements basing on attribute value) we have to create
+		// view element basing on old value and unwrap it before wrapping with a newly created view element.
+		if ( data.attributeOldValue !== null && !( elementCreator instanceof __WEBPACK_IMPORTED_MODULE_0__view_element__["a" /* default */] ) ) {
+			const oldViewElement = elementCreator( data.attributeOldValue, data, consumable, conversionApi );
+			viewRange = __WEBPACK_IMPORTED_MODULE_6__view_writer__["a" /* default */].unwrap( viewRange, oldViewElement );
+		}
+
+		__WEBPACK_IMPORTED_MODULE_6__view_writer__["a" /* default */].wrap( viewRange, viewElement );
+	};
+}
+
+/**
+ * Function factory, creates a converter that converts remove attribute changes from the model to the view. It assumes, that
+ * attributes from model were converted to elements in the view. This converter will unwrap view nodes from corresponding
+ * view element if given attribute was removed.
+ *
+ * The view element type that will be unwrapped depends on passed parameter.
+ * If {@link module:engine/view/element~Element} was passed, it will be used to look for similar element in the view for unwrapping.
+ * If `Function` is provided, it is passed all the parameters of the
+ * {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher#event:addAttribute addAttribute event}.
+ * It's expected that the function returns a {@link module:engine/view/element~Element}.
+ * The result of the function will be used to look for similar element in the view for unwrapping.
+ *
+ * The converter automatically consumes corresponding value from consumables list, stops the event (see
+ * {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher}) and bind model and view elements.
+ *
+ *		modelDispatcher.on( 'removeAttribute:bold', unwrapItem( new ViewAttributeElement( 'strong' ) ) );
+ *
+ * @see module:engine/conversion/model-to-view-converters~wrapItem
+ * @param {module:engine/view/element~Element|Function} elementCreator View element, or function returning a view element, which will
+ * be used for unwrapping.
+ * @returns {Function} Remove attribute converter.
+ */
+function unwrapItem( elementCreator ) {
+	return ( evt, data, consumable, conversionApi ) => {
+		const viewElement = ( elementCreator instanceof __WEBPACK_IMPORTED_MODULE_0__view_element__["a" /* default */] ) ?
+			elementCreator.clone( true ) :
+			elementCreator( data.attributeOldValue, data, consumable, conversionApi );
+
+		if ( !viewElement ) {
+			return;
+		}
+
+		if ( !consumable.consume( data.item, eventNameToConsumableType( evt.name ) ) ) {
+			return;
+		}
+
+		const viewRange = conversionApi.mapper.toViewRange( data.range );
+
+		__WEBPACK_IMPORTED_MODULE_6__view_writer__["a" /* default */].unwrap( viewRange, viewElement );
+	};
+}
+
+/**
+ * Function factory, creates a default model-to-view converter for node remove changes.
+ *
+ *		modelDispatcher.on( 'remove', remove() );
+ *
+ * @returns {Function} Remove event converter.
+ */
+function remove() {
+	return ( evt, data, consumable, conversionApi ) => {
+		if ( !consumable.consume( data.item, 'remove' ) ) {
+			return;
+		}
+
+		// We cannot map non-existing positions from model to view. Since a range was removed
+		// from the model, we cannot recreate that range and map it to view, because
+		// end of that range is incorrect.
+		// Instead we will use `data.sourcePosition` as this is the last correct model position and
+		// it is a position before the removed item. Then, we will calculate view range to remove "manually".
+		let viewPosition = conversionApi.mapper.toViewPosition( data.sourcePosition );
+		let viewRange;
+
+		if ( data.item.is( 'element' ) ) {
+			// Note: in remove conversion we cannot use model-to-view element mapping because `data.item` may be
+			// already mapped to another element (this happens when move change is converted).
+			// In this case however, `viewPosition` is the position before view element that corresponds to removed model element.
+			//
+			// First, fix the position. Traverse the tree forward until the container element is found. The `viewPosition`
+			// may be before a ui element, before attribute element or at the end of text element.
+			viewPosition = viewPosition.getLastMatchingPosition( value => !value.item.is( 'containerElement' ) );
+
+			if ( viewPosition.parent.is( 'text' ) && viewPosition.isAtEnd ) {
+				viewPosition = __WEBPACK_IMPORTED_MODULE_4__view_position__["a" /* default */].createAfter( viewPosition.parent );
+			}
+
+			viewRange = __WEBPACK_IMPORTED_MODULE_3__view_range__["a" /* default */].createOn( viewPosition.nodeAfter );
+		} else {
+			// If removed item is a text node, we need to traverse view tree to find the view range to remove.
+			// Range to remove will start `viewPosition` and should contain amount of characters equal to the amount of removed characters.
+			const viewRangeEnd = _shiftViewPositionByCharacters( viewPosition, data.item.offsetSize );
+			viewRange = new __WEBPACK_IMPORTED_MODULE_3__view_range__["a" /* default */]( viewPosition, viewRangeEnd );
+		}
+
+		// Trim the range to remove in case some UI elements are on the view range boundaries.
+		__WEBPACK_IMPORTED_MODULE_6__view_writer__["a" /* default */].remove( viewRange.getTrimmed() );
+
+		// Unbind this element only if it was moved to graveyard.
+		// The dispatcher#remove event will also be fired if the element was moved to another place (remove+insert are fired).
+		// Let's say that <b> is moved before <a>. The view will be changed like this:
+		//
+		// 1) start:    <a></a><b></b>
+		// 2) insert:   <b (new)></b><a></a><b></b>
+		// 3) remove:   <b (new)></b><a></a>
+		//
+		// If we'll unbind the <b> element in step 3 we'll also lose binding of the <b (new)> element in the view,
+		// because unbindModelElement() cancels both bindings – (model <b> => view <b (new)>) and (view <b (new)> => model <b>).
+		// We can't lose any of these.
+		//
+		// See #847.
+		if ( data.item.root.rootName == '$graveyard' ) {
+			conversionApi.mapper.unbindModelElement( data.item );
+		}
+	};
+}
+
+/**
+ * Function factory, creates converter that converts all texts inside marker's range. Converter wraps each text with
+ * {@link module:engine/view/attributeelement~AttributeElement} created from provided descriptor.
+ * See {link module:engine/conversion/model-to-view-converters~highlightDescriptorToAttributeElement}.
+ *
+ * @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor|Function} highlightDescriptor
+ * @return {Function}
+ */
+function highlightText( highlightDescriptor ) {
+	return ( evt, data, consumable, conversionApi ) => {
+		const descriptor = typeof highlightDescriptor == 'function' ?
+			highlightDescriptor( data, consumable, conversionApi ) :
+			highlightDescriptor;
+
+		const modelItem = data.item;
+
+		if ( !descriptor || data.markerRange.isCollapsed || !modelItem.is( 'textProxy' ) ) {
+			return;
+		}
+
+		if ( !consumable.consume( modelItem, evt.name ) ) {
+			return;
+		}
+
+		const viewElement = highlightDescriptorToAttributeElement( descriptor );
+		const viewRange = conversionApi.mapper.toViewRange( data.range );
+
+		if ( evt.name.split( ':' )[ 0 ] == 'addMarker' ) {
+			__WEBPACK_IMPORTED_MODULE_6__view_writer__["a" /* default */].wrap( viewRange, viewElement );
+		} else {
+			__WEBPACK_IMPORTED_MODULE_6__view_writer__["a" /* default */].unwrap( viewRange, viewElement );
+		}
+	};
+}
+
+/**
+ * Function factory, creates converter that converts all elements inside marker's range. Converter checks if element has
+ * functions stored under `addHighlight` and `removeHighlight` custom properties and calls them passing
+ * {@link module:engine/conversion/buildmodelconverter~HighlightDescriptor}. In such case converter will consume
+ * all element's children, assuming that they were handled by element itself. If highlight descriptor will not provide
+ * priority, priority 10 will be used as default, to be compliant with
+ * {@link module:engine/conversion/model-to-view-converters~highlightText} method which uses default priority of
+ * {@link module:engine/view/attributeelement~AttributeElement}.
+ * When `addHighlight` and `removeHighlight` custom properties are not present, element is not converted
+ * in any special way. This means that converters will proceed to convert element's child nodes.
+ *
+ * @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor|Function} highlightDescriptor
+ * @return {Function}
+ */
+function highlightElement( highlightDescriptor ) {
+	return ( evt, data, consumable, conversionApi ) => {
+		const descriptor = typeof highlightDescriptor == 'function' ?
+			highlightDescriptor( data, consumable, conversionApi ) :
+			highlightDescriptor;
+
+		const modelItem = data.item;
+
+		if ( !descriptor || data.markerRange.isCollapsed || !modelItem.is( 'element' ) ) {
+			return;
+		}
+
+		if ( !consumable.test( data.item, evt.name ) ) {
+			return;
+		}
+
+		if ( !descriptor.priority ) {
+			descriptor.priority = 10;
+		}
+
+		const viewElement = conversionApi.mapper.toViewElement( modelItem );
+		const addMarker = evt.name.split( ':' )[ 0 ] == 'addMarker';
+		const highlightHandlingMethod = addMarker ? 'addHighlight' : 'removeHighlight';
+
+		if ( viewElement && viewElement.getCustomProperty( highlightHandlingMethod ) ) {
+			// Consume element itself.
+			consumable.consume( data.item, evt.name );
+
+			// Consume all children nodes.
+			for ( const value of __WEBPACK_IMPORTED_MODULE_7__model_range__["a" /* default */].createIn( modelItem ) ) {
+				consumable.consume( value.item, evt.name );
+			}
+
+			viewElement.getCustomProperty( highlightHandlingMethod )( viewElement, descriptor );
+		}
+	};
+}
+
+/**
+ * Function factory, creates a default model-to-view converter for removing {@link module:engine/view/uielement~UIElement ui element}
+ * basing on marker remove change.
+ *
+ * @param {module:engine/view/uielement~UIElement|Function} elementCreator View ui element, or function returning
+ * a view ui element, which will be used as a pattern when look for element to remove at the marker start position.
+ * @returns {Function} Remove ui element converter.
+ */
+function removeUIElement( elementCreator ) {
+	return ( evt, data, consumable, conversionApi ) => {
+		let viewStartElement, viewEndElement;
+
+		if ( elementCreator instanceof __WEBPACK_IMPORTED_MODULE_0__view_element__["a" /* default */] ) {
+			viewStartElement = elementCreator.clone( true );
+			viewEndElement = elementCreator.clone( true );
+		} else {
+			data.isOpening = true;
+			viewStartElement = elementCreator( data, consumable, conversionApi );
+
+			data.isOpening = false;
+			viewEndElement = elementCreator( data, consumable, conversionApi );
+		}
+
+		if ( !viewStartElement || !viewEndElement ) {
+			return;
+		}
+
+		const markerRange = data.markerRange;
+		const eventName = evt.name;
+
+		// If marker's range is collapsed - check if it can be consumed.
+		if ( markerRange.isCollapsed && !consumable.consume( markerRange, eventName ) ) {
+			return;
+		}
+
+		// Check if all items in the range can be consumed, and consume them.
+		for ( const value of markerRange ) {
+			if ( !consumable.consume( value.item, eventName ) ) {
+				return;
+			}
+		}
+
+		const viewRange = conversionApi.mapper.toViewRange( markerRange );
+
+		// First remove closing element.
+		__WEBPACK_IMPORTED_MODULE_6__view_writer__["a" /* default */].clear( viewRange.getEnlarged(), viewEndElement );
+
+		// If closing and opening elements are not the same then remove opening element.
+		if ( !viewStartElement.isSimilar( viewEndElement ) ) {
+			__WEBPACK_IMPORTED_MODULE_6__view_writer__["a" /* default */].clear( viewRange.getEnlarged(), viewStartElement );
+		}
+	};
+}
+
+/**
+ * Returns the consumable type that is to be consumed in an event, basing on that event name.
+ *
+ * @param {String} evtName Event name.
+ * @returns {String} Consumable type.
+ */
+function eventNameToConsumableType( evtName ) {
+	const parts = evtName.split( ':' );
+
+	return parts[ 0 ] + ':' + parts[ 1 ];
+}
+
+/**
+ * Creates `span` {@link module:engine/view/attributeelement~AttributeElement view attribute element} from information
+ * provided by {@link module:engine/conversion/buildmodelconverter~HighlightDescriptor} object. If priority
+ * is not provided in descriptor - default priority will be used.
+ *
+ * @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor } descriptor
+ * @return {module:engine/view/attributeelement~AttributeElement}
+ */
+function highlightDescriptorToAttributeElement( descriptor ) {
+	const attributeElement = new __WEBPACK_IMPORTED_MODULE_1__view_attributeelement__["a" /* default */]( 'span', descriptor.attributes );
+
+	if ( descriptor.class ) {
+		attributeElement.addClass( descriptor.class );
+	}
+
+	if ( descriptor.priority ) {
+		attributeElement.priority = descriptor.priority;
+	}
+
+	return attributeElement;
+}
+
+// Helper function that shifts given view `position` in a way that returned position is after `howMany` characters compared
+// to the original `position`.
+// Because in view there might be view ui elements splitting text nodes, we cannot simply use `ViewPosition#getShiftedBy()`.
+function _shiftViewPositionByCharacters( position, howMany ) {
+	// Create a walker that will walk the view tree starting from given position and walking characters one-by-one.
+	const walker = new __WEBPACK_IMPORTED_MODULE_5__view_treewalker__["a" /* default */]( { startPosition: position, singleCharacters: true } );
+	// We will count visited characters and return the position after `howMany` characters.
+	let charactersFound = 0;
+
+	for ( const value of walker ) {
+		if ( value.type == 'text' ) {
+			charactersFound++;
+
+			if ( charactersFound == howMany ) {
+				return walker.position;
+			}
+		}
+	}
+}
+
+
+/***/ }),
+/* 89 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__element__ = __webpack_require__(26);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module engine/view/attributeelement
+ */
+
+
+
+// Default attribute priority.
+const DEFAULT_PRIORITY = 10;
+
+/**
+ * Attributes are elements which define document presentation. They are mostly elements like `<b>` or `<span>`.
+ * Attributes can be broken and merged by the {@link module:engine/view/writer~writer view writer}.
+ *
+ * Editing engine does not define fixed HTML DTD. This is why the type of the {@link module:engine/view/element~Element} need to
+ * be defined by the feature developer. Creating an element you should use {@link module:engine/view/containerelement~ContainerElement}
+ * class or `AttributeElement`.
+ *
+ * @extends module:engine/view/element~Element
+ */
+class AttributeElement extends __WEBPACK_IMPORTED_MODULE_0__element__["a" /* default */] {
+	/**
+	 * Creates a attribute element.
+	 *
+	 * @see module:engine/view/element~Element
+	 */
+	constructor( name, attrs, children ) {
+		super( name, attrs, children );
+
+		/**
+		 * Element priority. Attributes have to have the same priority to be
+		 * {@link module:engine/view/element~Element#isSimilar similar}. Setting different priorities on similar
+ 		 * nodes may prevent merging, e.g. two `<abbr>` nodes next each other shouldn't be merged.
+		 *
+		 * @member {Number}
+		 */
+		this.priority = DEFAULT_PRIORITY;
+
+		/**
+		 * Returns block {@link module:engine/view/filler filler} offset or `null` if block filler is not needed.
+		 *
+		 * @method #getFillerOffset
+		 * @returns {Number|null} Block filler offset or `null` if block filler is not needed.
+		 */
+		this.getFillerOffset = getFillerOffset;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	is( type, name = null ) {
+		if ( !name ) {
+			return type == 'attributeElement' || super.is( type );
+		} else {
+			return ( type == 'attributeElement' && name == this.name ) || super.is( type, name );
+		}
+	}
+
+	/**
+	 * Clones provided element with priority.
+	 *
+	 * @param {Boolean} deep If set to `true` clones element and all its children recursively. When set to `false`,
+	 * element will be cloned without any children.
+	 * @returns {module:engine/view/attributeelement~AttributeElement} Clone of this element.
+	 */
+	clone( deep ) {
+		const cloned = super.clone( deep );
+
+		// Clone priority too.
+		cloned.priority = this.priority;
+
+		return cloned;
+	}
+
+	/**
+	 * Checks if this element is similar to other element.
+	 * Both elements should have the same name, attributes and priority to be considered as similar.
+	 * Two similar elements can contain different set of children nodes.
+	 *
+	 * @param {module:engine/view/element~Element} otherElement
+	 * @returns {Boolean}
+	 */
+	isSimilar( otherElement ) {
+		return super.isSimilar( otherElement ) && this.priority == otherElement.priority;
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = AttributeElement;
+
+
+/**
+ * Default attribute priority.
+ *
+ * @member {Number} module:engine/view/attributeelement~AttributeElement.DEFAULT_PRIORITY
+ */
+AttributeElement.DEFAULT_PRIORITY = DEFAULT_PRIORITY;
+
+// Returns block {@link module:engine/view/filler~Filler filler} offset or `null` if block filler is not needed.
+//
+// @returns {Number|null} Block filler offset or `null` if block filler is not needed.
+function getFillerOffset() {
+	// <b>foo</b> does not need filler.
+	if ( nonUiChildrenCount( this ) ) {
+		return null;
+	}
+
+	let element = this.parent;
+
+	// <p><b></b></p> needs filler -> <p><b><br></b></p>
+	while ( element && element.is( 'attributeElement' ) ) {
+		if ( nonUiChildrenCount( element ) > 1 ) {
+			return null;
+		}
+
+		element = element.parent;
+	}
+
+	if ( !element || nonUiChildrenCount( element ) > 1 ) {
+		return null;
+	}
+
+	// Render block filler at the end of element (after all ui elements).
+	return this.childCount;
+}
+
+// Returns total count of children that are not {@link module:engine/view/uielement~UIElement UIElements}.
+//
+// @param {module:engine/view/element~Element} element
+// @return {Number}
+function nonUiChildrenCount( element ) {
+	return Array.from( element.getChildren() ).filter( element => !element.is( 'uiElement' ) ).length;
+}
+
+
+/***/ }),
+/* 90 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* unused harmony export breakAttributes */
 /* unused harmony export breakContainer */
 /* unused harmony export mergeAttributes */
 /* unused harmony export mergeContainers */
-/* unused harmony export breakViewRangePerContainer */
 /* unused harmony export insert */
 /* unused harmony export remove */
 /* unused harmony export clear */
@@ -16065,15 +16871,14 @@ Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_mix__["a" /* de
 /* unused harmony export rename */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__position__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__containerelement__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__attributeelement__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__attributeelement__ = __webpack_require__(89);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__emptyelement__ = __webpack_require__(176);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__uielement__ = __webpack_require__(123);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__text__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__text__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__range__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__treewalker__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__documentfragment__ = __webpack_require__(124);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__documentfragment__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(32);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -16082,7 +16887,6 @@ Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_mix__["a" /* de
 /**
  * @module module:engine/view/writer
  */
-
 
 
 
@@ -16113,8 +16917,7 @@ const writer = {
 	wrap,
 	wrapPosition,
 	unwrap,
-	rename,
-	breakViewRangePerContainer
+	rename
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (writer);
@@ -16201,7 +17004,7 @@ function breakContainer( position ) {
 		 *
 		 * @error view-writer-break-non-container-element
 		 */
-		throw new __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-writer-break-non-container-element: Trying to break an element which is not a container element.' );
+		throw new __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-writer-break-non-container-element: Trying to break an element which is not a container element.' );
 	}
 
 	if ( !element.parent ) {
@@ -16210,7 +17013,7 @@ function breakContainer( position ) {
 		 *
 		 * @error view-writer-break-root
 		 */
-		throw new __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-writer-break-root: Trying to break root element.' );
+		throw new __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-writer-break-root: Trying to break root element.' );
 	}
 
 	if ( position.isAtStart ) {
@@ -16330,7 +17133,7 @@ function mergeContainers( position ) {
 		 *
 		 * @error view-writer-merge-containers-invalid-position
 		 */
-		throw new __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-writer-merge-containers-invalid-position: ' +
+		throw new __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-writer-merge-containers-invalid-position: ' +
 			'Element before and after given position cannot be merged.' );
 	}
 
@@ -16341,37 +17144,6 @@ function mergeContainers( position ) {
 	remove( __WEBPACK_IMPORTED_MODULE_6__range__["a" /* default */].createOn( next ) );
 
 	return newPosition;
-}
-
-/**
- * Breaks given `range` on a set of {@link module:engine/view/range~Range ranges}, that each are contained within a
- * {@link module:engine/view/containerelement~ContainerElement container element}. After `range` is broken, it's "pieces" can
- * be used by other {@link module:engine/view/writer~writer} methods (which expect that passed ranges are contained within
- * one container element).
- *
- * @function module:engine/view/writer~writer.breakViewRangePerContainer
- * @param {module:engine/view/range~Range} range Range to break.
- * @returns {Array.<module:engine/view/range~Range>} Ranges that combine into passed `viewRange`.
- */
-function breakViewRangePerContainer( range ) {
-	const ranges = [];
-	const walker = new __WEBPACK_IMPORTED_MODULE_7__treewalker__["a" /* default */]( { boundaries: range } );
-
-	let start = range.start;
-
-	for ( const value of walker ) {
-		if ( value.item.is( 'containerElement' ) ) {
-			if ( !start.isEqual( value.previousPosition ) ) {
-				ranges.push( new __WEBPACK_IMPORTED_MODULE_6__range__["a" /* default */]( start, value.previousPosition ) );
-			}
-
-			start = value.nextPosition;
-		}
-	}
-
-	ranges.push( new __WEBPACK_IMPORTED_MODULE_6__range__["a" /* default */]( start, range.end ) );
-
-	return ranges;
 }
 
 /**
@@ -16395,7 +17167,7 @@ function breakViewRangePerContainer( range ) {
  * @returns {module:engine/view/range~Range} Range around inserted nodes.
  */
 function insert( position, nodes ) {
-	nodes = Object(__WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_utils_src_isiterable__["a" /* default */])( nodes ) ? [ ...nodes ] : [ nodes ];
+	nodes = Object(__WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_isiterable__["a" /* default */])( nodes ) ? [ ...nodes ] : [ nodes ];
 
 	// Check if nodes to insert are instances of AttributeElements, ContainerElements, EmptyElements, UIElements or Text.
 	validateNodesToInsert( nodes );
@@ -16408,7 +17180,7 @@ function insert( position, nodes ) {
 		 *
 		 * @error view-writer-invalid-position-container
 		 */
-		throw new __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-writer-invalid-position-container' );
+		throw new __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-writer-invalid-position-container' );
 	}
 
 	const insertionPosition = _breakAttributes( position, true );
@@ -16449,7 +17221,7 @@ function remove( range ) {
 
 	// If range is collapsed - nothing to remove.
 	if ( range.isCollapsed ) {
-		return new __WEBPACK_IMPORTED_MODULE_9__documentfragment__["a" /* default */]();
+		return new __WEBPACK_IMPORTED_MODULE_8__documentfragment__["a" /* default */]();
 	}
 
 	// Break attributes at range start and end.
@@ -16467,7 +17239,7 @@ function remove( range ) {
 	range.end = __WEBPACK_IMPORTED_MODULE_0__position__["a" /* default */].createFromPosition( mergePosition );
 
 	// Return removed nodes.
-	return new __WEBPACK_IMPORTED_MODULE_9__documentfragment__["a" /* default */]( removed );
+	return new __WEBPACK_IMPORTED_MODULE_8__documentfragment__["a" /* default */]( removed );
 }
 
 /**
@@ -16584,7 +17356,7 @@ function wrap( range, attribute ) {
 		 *
 		 * @error view-writer-wrap-invalid-attribute
 		 */
-		throw new __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-writer-wrap-invalid-attribute' );
+		throw new __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-writer-wrap-invalid-attribute' );
 	}
 
 	validateRangeContainer( range );
@@ -16651,7 +17423,7 @@ function wrapPosition( position, attribute ) {
 		 *
 		 * @error view-writer-wrap-invalid-attribute
 		 */
-		throw new __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-writer-wrap-invalid-attribute' );
+		throw new __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-writer-wrap-invalid-attribute' );
 	}
 
 	// Return same position when trying to wrap with attribute similar to position parent.
@@ -16711,7 +17483,7 @@ function unwrap( range, attribute ) {
 		 *
 		 * @error view-writer-unwrap-invalid-attribute
 		 */
-		throw new __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-writer-unwrap-invalid-attribute' );
+		throw new __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-writer-unwrap-invalid-attribute' );
 	}
 
 	validateRangeContainer( range );
@@ -16850,7 +17622,7 @@ function _breakAttributes( position, forceSplitText = false ) {
 		 *
 		 * @error view-writer-cannot-break-empty-element
 		 */
-		throw new __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-writer-cannot-break-empty-element' );
+		throw new __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-writer-cannot-break-empty-element' );
 	}
 
 	// If position is placed inside UIElement - throw an exception as we cannot break inside.
@@ -16860,7 +17632,7 @@ function _breakAttributes( position, forceSplitText = false ) {
 		 *
 		 * @error view-writer-cannot-break-ui-element
 		 */
-		throw new __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-writer-cannot-break-ui-element' );
+		throw new __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-writer-cannot-break-ui-element' );
 	}
 
 	// There are no attributes to break and text nodes breaking is not forced.
@@ -17295,7 +18067,7 @@ function validateNodesToInsert( nodes ) {
 			 *
 			 * @error view-writer-insert-invalid-node
 			 */
-			throw new __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-writer-insert-invalid-node' );
+			throw new __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-writer-insert-invalid-node' );
 		}
 
 		if ( !node.is( 'text' ) ) {
@@ -17331,20 +18103,20 @@ function validateRangeContainer( range ) {
 		 *
 		 * @error view-writer-invalid-range-container
 		 */
-		throw new __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-writer-invalid-range-container' );
+		throw new __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_ckeditorerror__["a" /* default */]( 'view-writer-invalid-range-container' );
 	}
 }
 
 
 /***/ }),
-/* 89 */
+/* 91 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__operation__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__writer__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__writer__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isEqual__ = __webpack_require__(356);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -17528,7 +18300,7 @@ class AttributeOperation extends __WEBPACK_IMPORTED_MODULE_0__operation__["a" /*
 
 
 /***/ }),
-/* 90 */
+/* 92 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17568,11 +18340,11 @@ function baseIsEqual(value, other, customizer, bitmask, stack) {
 
 
 /***/ }),
-/* 91 */
+/* 93 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__MapCache__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__MapCache__ = __webpack_require__(118);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__setCacheAdd__ = __webpack_require__(358);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__setCacheHas__ = __webpack_require__(359);
 
@@ -17605,11 +18377,11 @@ SetCache.prototype.has = __WEBPACK_IMPORTED_MODULE_2__setCacheHas__["a" /* defau
 
 
 /***/ }),
-/* 92 */
+/* 94 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__movedelta__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__movedelta__ = __webpack_require__(95);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__deltafactory__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_removeoperation__ = __webpack_require__(41);
@@ -17685,11 +18457,11 @@ __WEBPACK_IMPORTED_MODULE_2__deltafactory__["a" /* default */].register( RemoveD
 
 
 /***/ }),
-/* 93 */
+/* 95 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_moveoperation__ = __webpack_require__(28);
@@ -17825,13 +18597,13 @@ __WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( MoveDel
 
 
 /***/ }),
-/* 94 */
+/* 96 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__splitdelta__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__splitdelta__ = __webpack_require__(97);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__element__ = __webpack_require__(6);
@@ -17974,11 +18746,11 @@ __WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( MergeDe
 
 
 /***/ }),
-/* 95 */
+/* 97 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__position__ = __webpack_require__(1);
@@ -17986,7 +18758,7 @@ __WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( MergeDe
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__operation_insertoperation__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__operation_moveoperation__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__delta_mergedelta__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__delta_mergedelta__ = __webpack_require__(96);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -18129,13 +18901,13 @@ __WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( SplitDe
 
 
 /***/ }),
-/* 96 */
+/* 98 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__wrapdelta__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__wrapdelta__ = __webpack_require__(99);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__operation_removeoperation__ = __webpack_require__(41);
@@ -18258,13 +19030,13 @@ __WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( UnwrapD
 
 
 /***/ }),
-/* 97 */
+/* 99 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__unwrapdelta__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__unwrapdelta__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__range__ = __webpack_require__(3);
@@ -18429,7 +19201,7 @@ __WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( WrapDel
 
 
 /***/ }),
-/* 98 */
+/* 100 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18453,7 +19225,7 @@ function castPath(value) {
 
 
 /***/ }),
-/* 99 */
+/* 101 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18487,7 +19259,7 @@ function baseWhile(array, predicate, isDrop, fromRight) {
 
 
 /***/ }),
-/* 100 */
+/* 102 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18539,13 +19311,13 @@ function baseSortedIndex(array, value, retHighest) {
 
 
 /***/ }),
-/* 101 */
+/* 103 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayFilter__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayFilter__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arrayMap__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseProperty__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseProperty__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__baseTimes__ = __webpack_require__(161);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isArrayLikeObject__ = __webpack_require__(13);
 
@@ -18596,7 +19368,7 @@ function unzip(array) {
 
 
 /***/ }),
-/* 102 */
+/* 104 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18628,7 +19400,7 @@ function arrayFilter(array, predicate) {
 
 
 /***/ }),
-/* 103 */
+/* 105 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18638,9 +19410,9 @@ function arrayFilter(array, predicate) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_tomap__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_tomap__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_mapsequal__ = __webpack_require__(401);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(32);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -19450,7 +20222,7 @@ function getParentBlock( position, visited ) {
 
 
 /***/ }),
-/* 104 */
+/* 106 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -19750,7 +20522,7 @@ function isDomNode( node ) {
 
 
 /***/ }),
-/* 105 */
+/* 107 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -19759,9 +20531,9 @@ function isDomNode( node ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__position__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__element__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__element__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_count__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(32);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -20396,7 +21168,7 @@ Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__["a" /* de
 
 
 /***/ }),
-/* 106 */
+/* 108 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -20917,7 +21689,7 @@ Object(__WEBPACK_IMPORTED_MODULE_3__mix__["a" /* default */])( Collection, __WEB
 
 
 /***/ }),
-/* 107 */
+/* 109 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21234,7 +22006,7 @@ function autoparagraphEmptyRoots() {
 
 
 /***/ }),
-/* 108 */
+/* 110 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21256,7 +22028,7 @@ function getPrototype(value) {
 
 
 /***/ }),
-/* 109 */
+/* 111 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21295,7 +22067,7 @@ function copyObject(source, props, object, customizer) {
 
 
 /***/ }),
-/* 110 */
+/* 112 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21316,7 +22088,7 @@ function baseProperty(key) {
 
 
 /***/ }),
-/* 111 */
+/* 113 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21367,7 +22139,7 @@ function isFunction(value) {
 
 
 /***/ }),
-/* 112 */
+/* 114 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21421,7 +22193,7 @@ function isArguments(value) {
 
 
 /***/ }),
-/* 113 */
+/* 115 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21470,7 +22242,7 @@ function isString(value) {
 
 
 /***/ }),
-/* 114 */
+/* 116 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21509,7 +22281,7 @@ function toMap( data ) {
 
 
 /***/ }),
-/* 115 */
+/* 117 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21548,7 +22320,7 @@ Stack.prototype.set = __WEBPACK_IMPORTED_MODULE_5__stackSet__["a" /* default */]
 
 
 /***/ }),
-/* 116 */
+/* 118 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21592,7 +22364,7 @@ MapCache.prototype.set = __WEBPACK_IMPORTED_MODULE_4__mapCacheSet__["a" /* defau
 
 
 /***/ }),
-/* 117 */
+/* 119 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21675,7 +22447,7 @@ if ((__WEBPACK_IMPORTED_MODULE_0__DataView__["a" /* default */] && getTag(new __
 
 
 /***/ }),
-/* 118 */
+/* 120 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21699,7 +22471,7 @@ function cloneArrayBuffer(arrayBuffer) {
 
 
 /***/ }),
-/* 119 */
+/* 121 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21724,11 +22496,11 @@ function mapToArray(map) {
 
 
 /***/ }),
-/* 120 */
+/* 122 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root__ = __webpack_require__(31);
 
 
 /** Built-in value references. */
@@ -21738,747 +22510,15 @@ var Symbol = __WEBPACK_IMPORTED_MODULE_0__root__["a" /* default */].Symbol;
 
 
 /***/ }),
-/* 121 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = insertElement;
-/* harmony export (immutable) */ __webpack_exports__["b"] = insertText;
-/* harmony export (immutable) */ __webpack_exports__["c"] = insertUIElement;
-/* harmony export (immutable) */ __webpack_exports__["g"] = setAttribute;
-/* harmony export (immutable) */ __webpack_exports__["e"] = removeAttribute;
-/* harmony export (immutable) */ __webpack_exports__["j"] = wrapItem;
-/* harmony export (immutable) */ __webpack_exports__["h"] = unwrapItem;
-/* harmony export (immutable) */ __webpack_exports__["k"] = wrapRange;
-/* harmony export (immutable) */ __webpack_exports__["i"] = unwrapRange;
-/* harmony export (immutable) */ __webpack_exports__["d"] = remove;
-/* harmony export (immutable) */ __webpack_exports__["f"] = removeUIElement;
-/* unused harmony export eventNameToConsumableType */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_element__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_text__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_range__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_position__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_treewalker__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__view_writer__ = __webpack_require__(88);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-
-
-
-
-
-
-
-/**
- * Contains {@link module:engine/model/model model} to {@link module:engine/view/view view} converters for
- * {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher}.
- *
- * @module engine/conversion/model-to-view-converters
- */
-
-/**
- * Function factory, creates a converter that converts node insertion changes from the model to the view.
- * The view element that will be added to the view depends on passed parameter. If {@link module:engine/view/element~Element} was passed,
- * it will be cloned and the copy will be inserted. If `Function` is provided, it is passed all the parameters of the
- * dispatcher's {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher#event:insert insert event}.
- * It's expected that the function returns a {@link module:engine/view/element~Element}.
- * The result of the function will be inserted to the view.
- *
- * The converter automatically consumes corresponding value from consumables list, stops the event (see
- * {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher}) and bind model and view elements.
- *
- *		modelDispatcher.on( 'insert:paragraph', insertElement( new ViewElement( 'p' ) ) );
- *
- *		modelDispatcher.on(
- *			'insert:myElem',
- *			insertElement( ( data, consumable, conversionApi ) => {
- *				let myElem = new ViewElement( 'myElem', { myAttr: true }, new ViewText( 'myText' ) );
- *
- *				// Do something fancy with myElem using data/consumable/conversionApi ...
- *
- *				return myElem;
- *			}
- *		) );
- *
- * @param {module:engine/view/element~Element|Function} elementCreator View element, or function returning a view element, which
- * will be inserted.
- * @returns {Function} Insert element event converter.
- */
-function insertElement( elementCreator ) {
-	return ( evt, data, consumable, conversionApi ) => {
-		const viewElement = ( elementCreator instanceof __WEBPACK_IMPORTED_MODULE_0__view_element__["a" /* default */] ) ?
-			elementCreator.clone( true ) :
-			elementCreator( data, consumable, conversionApi );
-
-		if ( !viewElement ) {
-			return;
-		}
-
-		if ( !consumable.consume( data.item, 'insert' ) ) {
-			return;
-		}
-
-		const viewPosition = conversionApi.mapper.toViewPosition( data.range.start );
-
-		conversionApi.mapper.bindElements( data.item, viewElement );
-		__WEBPACK_IMPORTED_MODULE_5__view_writer__["a" /* default */].insert( viewPosition, viewElement );
-	};
-}
-
-/**
- * Function factory, creates a default model-to-view converter for text insertion changes.
- *
- * The converter automatically consumes corresponding value from consumables list and stops the event (see
- * {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher}).
- *
- *		modelDispatcher.on( 'insert:$text', insertText() );
- *
- * @returns {Function} Insert text event converter.
- */
-function insertText() {
-	return ( evt, data, consumable, conversionApi ) => {
-		if ( !consumable.consume( data.item, 'insert' ) ) {
-			return;
-		}
-
-		const viewPosition = conversionApi.mapper.toViewPosition( data.range.start );
-		const viewText = new __WEBPACK_IMPORTED_MODULE_1__view_text__["a" /* default */]( data.item.data );
-
-		__WEBPACK_IMPORTED_MODULE_5__view_writer__["a" /* default */].insert( viewPosition, viewText );
-	};
-}
-
-/**
- * Function factory, creates a converter that converts marker adding change to the view ui element.
- * The view ui element that will be added to the view depends on passed parameter. See {@link ~insertElement}.
- * In a case of collapsed range element will not wrap range but separate elements will be placed at the beginning
- * and at the end of the range.
- *
- * **Note:** unlike {@link ~insertElement}, the converter does not bind view element to model, because this converter
- * uses marker as "model source of data". This means that view ui element does not have corresponding model element.
- *
- * @param {module:engine/view/uielement~UIElement|Function} elementCreator View ui element, or function returning a view element, which
- * will be inserted.
- * @returns {Function} Insert element event converter.
- */
-function insertUIElement( elementCreator ) {
-	return ( evt, data, consumable, conversionApi ) => {
-		let viewStartElement, viewEndElement;
-
-		if ( elementCreator instanceof __WEBPACK_IMPORTED_MODULE_0__view_element__["a" /* default */] ) {
-			viewStartElement = elementCreator.clone( true );
-			viewEndElement = elementCreator.clone( true );
-		} else {
-			data.isOpening = true;
-			viewStartElement = elementCreator( data, consumable, conversionApi );
-
-			data.isOpening = false;
-			viewEndElement = elementCreator( data, consumable, conversionApi );
-		}
-
-		if ( !viewStartElement || !viewEndElement ) {
-			return;
-		}
-
-		if ( !consumable.consume( data.range, 'addMarker' ) ) {
-			return;
-		}
-
-		const mapper = conversionApi.mapper;
-
-		__WEBPACK_IMPORTED_MODULE_5__view_writer__["a" /* default */].insert( mapper.toViewPosition( data.range.start ), viewStartElement );
-
-		if ( !data.range.isCollapsed ) {
-			__WEBPACK_IMPORTED_MODULE_5__view_writer__["a" /* default */].insert( mapper.toViewPosition( data.range.end ), viewEndElement );
-		}
-	};
-}
-
-/**
- * Function factory, creates a converter that converts set/change attribute changes from the model to the view. Attributes
- * from model are converted to the view element attributes in the view. You may provide a custom function to generate a
- * key-value attribute pair to add/change. If not provided, model attributes will be converted to view elements attributes
- * on 1-to-1 basis.
- *
- * **Note:** Provided attribute creator should always return the same `key` for given attribute from the model.
- *
- * The converter automatically consumes corresponding value from consumables list and stops the event (see
- * {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher}).
- *
- *		modelDispatcher.on( 'addAttribute:customAttr:myElem', setAttribute( ( data ) => {
- *			// Change attribute key from `customAttr` to `class` in view.
- *			const key = 'class';
- *			let value = data.attributeNewValue;
- *
- *			// Force attribute value to 'empty' if the model element is empty.
- *			if ( data.item.childCount === 0 ) {
- *				value = 'empty';
- *			}
- *
- *			// Return key-value pair.
- *			return { key, value };
- *		} ) );
- *
- * @param {Function} [attributeCreator] Function returning an object with two properties: `key` and `value`, which
- * represents attribute key and attribute value to be set on a {@link module:engine/view/element~Element view element}.
- * The function is passed all the parameters of the
- * {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher#event:addAttribute}
- * or {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher#event:changeAttribute} event.
- * @returns {Function} Set/change attribute converter.
- */
-function setAttribute( attributeCreator ) {
-	attributeCreator = attributeCreator || ( ( value, key ) => ( { value, key } ) );
-
-	return ( evt, data, consumable, conversionApi ) => {
-		if ( !consumable.consume( data.item, eventNameToConsumableType( evt.name ) ) ) {
-			return;
-		}
-
-		const { key, value } = attributeCreator( data.attributeNewValue, data.attributeKey, data, consumable, conversionApi );
-
-		conversionApi.mapper.toViewElement( data.item ).setAttribute( key, value );
-	};
-}
-
-/**
- * Function factory, creates a converter that converts remove attribute changes from the model to the view. Removes attributes
- * that were converted to the view element attributes in the view. You may provide a custom function to generate a
- * key-value attribute pair to remove. If not provided, model attributes will be removed from view elements on 1-to-1 basis.
- *
- * **Note:** Provided attribute creator should always return the same `key` for given attribute from the model.
- *
- * **Note:** You can use the same attribute creator as in {@link module:engine/conversion/model-to-view-converters~setAttribute}.
- *
- * The converter automatically consumes corresponding value from consumables list and stops the event (see
- * {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher}).
- *
- *		modelDispatcher.on( 'removeAttribute:customAttr:myElem', removeAttribute( ( data ) => {
- *			// Change attribute key from `customAttr` to `class` in view.
- *			const key = 'class';
- *			let value = data.attributeNewValue;
- *
- *			// Force attribute value to 'empty' if the model element is empty.
- *			if ( data.item.childCount === 0 ) {
- *				value = 'empty';
- *			}
- *
- *			// Return key-value pair.
- *			return { key, value };
- *		} ) );
- *
- * @param {Function} [attributeCreator] Function returning an object with two properties: `key` and `value`, which
- * represents attribute key and attribute value to be removed from {@link module:engine/view/element~Element view element}.
- * The function is passed all the parameters of the
- * {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher#event:addAttribute addAttribute event}
- * or {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher#event:changeAttribute changeAttribute event}.
- * @returns {Function} Remove attribute converter.
- */
-function removeAttribute( attributeCreator ) {
-	attributeCreator = attributeCreator || ( ( value, key ) => ( { key } ) );
-
-	return ( evt, data, consumable, conversionApi ) => {
-		if ( !consumable.consume( data.item, eventNameToConsumableType( evt.name ) ) ) {
-			return;
-		}
-
-		const { key } = attributeCreator( data.attributeOldValue, data.attributeKey, data, consumable, conversionApi );
-
-		conversionApi.mapper.toViewElement( data.item ).removeAttribute( key );
-	};
-}
-
-/**
- * Function factory, creates a converter that converts set/change attribute changes from the model to the view. In this case,
- * model attributes are converted to a view element that will be wrapping view nodes which corresponding model nodes had
- * the attribute set. This is useful for attributes like `bold`, which may be set on text nodes in model but are
- * represented as an element in the view:
- *
- *		[paragraph]              MODEL ====> VIEW        <p>
- *			|- a {bold: true}                             |- <b>
- *			|- b {bold: true}                             |   |- ab
- *			|- c                                          |- c
- *
- * The wrapping node depends on passed parameter. If {@link module:engine/view/element~Element} was passed, it will be cloned and
- * the copy will become the wrapping element. If `Function` is provided, it is passed attribute value and then all the parameters of the
- * {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher#event:addAttribute addAttribute event}.
- * It's expected that the function returns a {@link module:engine/view/element~Element}.
- * The result of the function will be the wrapping element.
- * When provided `Function` does not return element, then will be no conversion.
- *
- * The converter automatically consumes corresponding value from consumables list, stops the event (see
- * {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher}).
- *
- *		modelDispatcher.on( 'addAttribute:bold', wrapItem( new ViewAttributeElement( 'strong' ) ) );
- *
- * @param {module:engine/view/element~Element|Function} elementCreator View element, or function returning a view element, which will
- * be used for wrapping.
- * @returns {Function} Set/change attribute converter.
- */
-function wrapItem( elementCreator ) {
-	return ( evt, data, consumable, conversionApi ) => {
-		const viewElement = ( elementCreator instanceof __WEBPACK_IMPORTED_MODULE_0__view_element__["a" /* default */] ) ?
-			elementCreator.clone( true ) :
-			elementCreator( data.attributeNewValue, data, consumable, conversionApi );
-
-		if ( !viewElement ) {
-			return;
-		}
-
-		if ( !consumable.consume( data.item, eventNameToConsumableType( evt.name ) ) ) {
-			return;
-		}
-
-		let viewRange = conversionApi.mapper.toViewRange( data.range );
-
-		// If this is a change event (because old value is not empty) and the creator is a function (so
-		// it may create different view elements basing on attribute value) we have to create
-		// view element basing on old value and unwrap it before wrapping with a newly created view element.
-		if ( data.attributeOldValue !== null && !( elementCreator instanceof __WEBPACK_IMPORTED_MODULE_0__view_element__["a" /* default */] ) ) {
-			const oldViewElement = elementCreator( data.attributeOldValue, data, consumable, conversionApi );
-			viewRange = __WEBPACK_IMPORTED_MODULE_5__view_writer__["a" /* default */].unwrap( viewRange, oldViewElement );
-		}
-
-		__WEBPACK_IMPORTED_MODULE_5__view_writer__["a" /* default */].wrap( viewRange, viewElement );
-	};
-}
-
-/**
- * Function factory, creates a converter that converts remove attribute changes from the model to the view. It assumes, that
- * attributes from model were converted to elements in the view. This converter will unwrap view nodes from corresponding
- * view element if given attribute was removed.
- *
- * The view element type that will be unwrapped depends on passed parameter.
- * If {@link module:engine/view/element~Element} was passed, it will be used to look for similar element in the view for unwrapping.
- * If `Function` is provided, it is passed all the parameters of the
- * {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher#event:addAttribute addAttribute event}.
- * It's expected that the function returns a {@link module:engine/view/element~Element}.
- * The result of the function will be used to look for similar element in the view for unwrapping.
- *
- * The converter automatically consumes corresponding value from consumables list, stops the event (see
- * {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher}) and bind model and view elements.
- *
- *		modelDispatcher.on( 'removeAttribute:bold', unwrapItem( new ViewAttributeElement( 'strong' ) ) );
- *
- * @see module:engine/conversion/model-to-view-converters~wrapItem
- * @param {module:engine/view/element~Element|Function} elementCreator View element, or function returning a view element, which will
- * be used for unwrapping.
- * @returns {Function} Remove attribute converter.
- */
-function unwrapItem( elementCreator ) {
-	return ( evt, data, consumable, conversionApi ) => {
-		const viewElement = ( elementCreator instanceof __WEBPACK_IMPORTED_MODULE_0__view_element__["a" /* default */] ) ?
-			elementCreator.clone( true ) :
-			elementCreator( data.attributeOldValue, data, consumable, conversionApi );
-
-		if ( !viewElement ) {
-			return;
-		}
-
-		if ( !consumable.consume( data.item, eventNameToConsumableType( evt.name ) ) ) {
-			return;
-		}
-
-		const viewRange = conversionApi.mapper.toViewRange( data.range );
-
-		__WEBPACK_IMPORTED_MODULE_5__view_writer__["a" /* default */].unwrap( viewRange, viewElement );
-	};
-}
-
-/**
- * Function factory, creates a converter that wraps model range.
- *
- * In contrary to {@link module:engine/conversion/model-to-view-converters~wrapItem}, this converter's input is a
- * {@link module:engine/model/range~Range model range} (not changed model item). The model range is mapped
- * to {@link module:engine/view/range~Range view range} and then, view items within that view range are wrapped in a
- * {@link module:engine/view/attributeelement~AttributeElement view attribute element}. Note, that `elementCreator`
- * function of this converter takes different parameters that `elementCreator` of `wrapItem`.
- *
- * Let's assume following model and view. `{}` represents a range that is added as a marker with `searchResult` name.
- * The range represents a result of search `ab` string in the model document. The range has to be visualized in view.
- *
- *		[paragraph]              MODEL ====> VIEW        <p>
- *			|- {a                                         |- <span class="searchResult">
- *			|-  b}                                        |   |- ab
- *			|-  c                                         |- c
- *
- * The wrapping node depends on passed parameter. If {@link module:engine/view/attributeelement~AttributeElement} was passed, it
- * will be cloned and the copy will become the wrapping element. If `Function` is provided, it is passed all the parameters of the
- * {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher#event:addMarker addMarker event}. It's expected
- * that the function returns a {@link module:engine/view/attributeelement~AttributeElement}. The result of the function will be the
- * wrapping element. When provided `Function` does not return element, then will be no conversion.
- *
- * The converter automatically consumes corresponding value from consumables list, stops the event (see
- * {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher}).
- *
- *		modelDispatcher.on( 'addMarker:searchResult', wrapRange( new ViewAttributeElement( 'span', { class: 'searchResult' } ) ) );
- *
- * @param {module:engine/view/attributeelement~AttributeElement|Function} elementCreator View attribute element, or function returning
- * a view attribute element, which will be used for wrapping.
- * @returns {Function} Wrap range converter.
- */
-function wrapRange( elementCreator ) {
-	return ( evt, data, consumable, conversionApi ) => {
-		const viewElement = ( elementCreator instanceof __WEBPACK_IMPORTED_MODULE_0__view_element__["a" /* default */] ) ?
-			elementCreator.clone( true ) :
-			elementCreator( data, consumable, conversionApi );
-
-		if ( !viewElement ) {
-			return;
-		}
-
-		if ( !consumable.consume( data.range, 'addMarker' ) ) {
-			return;
-		}
-
-		const viewRange = conversionApi.mapper.toViewRange( data.range );
-		const flatViewRanges = __WEBPACK_IMPORTED_MODULE_5__view_writer__["a" /* default */].breakViewRangePerContainer( viewRange );
-
-		for ( const range of flatViewRanges ) {
-			__WEBPACK_IMPORTED_MODULE_5__view_writer__["a" /* default */].wrap( range, viewElement );
-		}
-	};
-}
-
-/**
- * Function factory, creates a converter that converts removing of a model marker to view attribute element.
- * This converter will unwrap view nodes from corresponding view range.
- *
- * The view element that will be unwrapped depends on passed parameter. If {@link module:engine/view/attributeelement~AttributeElement}
- * was passed, it will be used to look for similar element in the view for unwrapping. If `Function` is provided, it is passed all
- * the parameters of the
- * {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher#event:removeMarker removeMarker event}.
- * It's expected that the function returns a {@link module:engine/view/attributeelement~AttributeElement}. The result of
- * the function will be used to look for similar element in the view for unwrapping.
- *
- * The converter automatically consumes corresponding value from consumables list, stops the event (see
- * {@link module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher}) and bind model and view elements.
- *
- *		modelDispatcher.on( 'removeMarker:searchResult', unwrapRange( new ViewAttributeElement( 'span', { class: 'searchResult' } ) ) );
- *
- * @see module:engine/conversion/model-to-view-converters~wrapRange
- * @param {module:engine/view/attributeelement~AttributeElement|Function} elementCreator View attribute element, or function returning
- * a view attribute element, which will be used for unwrapping.
- * @returns {Function} Unwrap range converter.
- */
-function unwrapRange( elementCreator ) {
-	return ( evt, data, consumable, conversionApi ) => {
-		const viewElement = ( elementCreator instanceof __WEBPACK_IMPORTED_MODULE_0__view_element__["a" /* default */] ) ?
-			elementCreator.clone( true ) :
-			elementCreator( data, consumable, conversionApi );
-
-		if ( !viewElement ) {
-			return;
-		}
-
-		if ( !consumable.consume( data.range, 'removeMarker' ) ) {
-			return;
-		}
-
-		const viewRange = conversionApi.mapper.toViewRange( data.range );
-		const flatViewRanges = __WEBPACK_IMPORTED_MODULE_5__view_writer__["a" /* default */].breakViewRangePerContainer( viewRange );
-
-		for ( const range of flatViewRanges ) {
-			__WEBPACK_IMPORTED_MODULE_5__view_writer__["a" /* default */].unwrap( range, viewElement );
-		}
-	};
-}
-
-/**
- * Function factory, creates a default model-to-view converter for node remove changes.
- *
- *		modelDispatcher.on( 'remove', remove() );
- *
- * @returns {Function} Remove event converter.
- */
-function remove() {
-	return ( evt, data, consumable, conversionApi ) => {
-		if ( !consumable.consume( data.item, 'remove' ) ) {
-			return;
-		}
-
-		// We cannot map non-existing positions from model to view. Since a range was removed
-		// from the model, we cannot recreate that range and map it to view, because
-		// end of that range is incorrect.
-		// Instead we will use `data.sourcePosition` as this is the last correct model position and
-		// it is a position before the removed item. Then, we will calculate view range to remove "manually".
-		let viewPosition = conversionApi.mapper.toViewPosition( data.sourcePosition );
-		let viewRange;
-
-		if ( data.item.is( 'element' ) ) {
-			// Note: in remove conversion we cannot use model-to-view element mapping because `data.item` may be
-			// already mapped to another element (this happens when move change is converted).
-			// In this case however, `viewPosition` is the position before view element that corresponds to removed model element.
-			//
-			// First, fix the position. Traverse the tree forward until the container element is found. The `viewPosition`
-			// may be before a ui element, before attribute element or at the end of text element.
-			viewPosition = viewPosition.getLastMatchingPosition( value => !value.item.is( 'containerElement' ) );
-
-			if ( viewPosition.parent.is( 'text' ) && viewPosition.isAtEnd ) {
-				viewPosition = __WEBPACK_IMPORTED_MODULE_3__view_position__["a" /* default */].createAfter( viewPosition.parent );
-			}
-
-			viewRange = __WEBPACK_IMPORTED_MODULE_2__view_range__["a" /* default */].createOn( viewPosition.nodeAfter );
-		} else {
-			// If removed item is a text node, we need to traverse view tree to find the view range to remove.
-			// Range to remove will start `viewPosition` and should contain amount of characters equal to the amount of removed characters.
-			const viewRangeEnd = _shiftViewPositionByCharacters( viewPosition, data.item.offsetSize );
-			viewRange = new __WEBPACK_IMPORTED_MODULE_2__view_range__["a" /* default */]( viewPosition, viewRangeEnd );
-		}
-
-		// Trim the range to remove in case some UI elements are on the view range boundaries.
-		__WEBPACK_IMPORTED_MODULE_5__view_writer__["a" /* default */].remove( viewRange.getTrimmed() );
-
-		// Unbind this element only if it was moved to graveyard.
-		// The dispatcher#remove event will also be fired if the element was moved to another place (remove+insert are fired).
-		// Let's say that <b> is moved before <a>. The view will be changed like this:
-		//
-		// 1) start:    <a></a><b></b>
-		// 2) insert:   <b (new)></b><a></a><b></b>
-		// 3) remove:   <b (new)></b><a></a>
-		//
-		// If we'll unbind the <b> element in step 3 we'll also lose binding of the <b (new)> element in the view,
-		// because unbindModelElement() cancels both bindings – (model <b> => view <b (new)>) and (view <b (new)> => model <b>).
-		// We can't lose any of these.
-		//
-		// See #847.
-		if ( data.item.root.rootName == '$graveyard' ) {
-			conversionApi.mapper.unbindModelElement( data.item );
-		}
-	};
-}
-
-// Helper function that shifts given view `position` in a way that returned position is after `howMany` characters compared
-// to the original `position`.
-// Because in view there might be view ui elements splitting text nodes, we cannot simply use `ViewPosition#getShiftedBy()`.
-function _shiftViewPositionByCharacters( position, howMany ) {
-	// Create a walker that will walk the view tree starting from given position and walking characters one-by-one.
-	const walker = new __WEBPACK_IMPORTED_MODULE_4__view_treewalker__["a" /* default */]( { startPosition: position, singleCharacters: true } );
-	// We will count visited characters and return the position after `howMany` characters.
-	let charactersFound = 0;
-
-	for ( const value of walker ) {
-		if ( value.type == 'text' ) {
-			charactersFound++;
-
-			if ( charactersFound == howMany ) {
-				return walker.position;
-			}
-		}
-	}
-}
-
-/**
- * Function factory, creates a default model-to-view converter for removing {@link module:engine/view/uielement~UIElement ui element}
- * basing on marker remove change.
- *
- * @param {module:engine/view/uielement~UIElement|Function} elementCreator View ui element, or function returning
- * a view ui element, which will be used as a pattern when look for element to remove at the marker start position.
- * @returns {Function} Remove ui element converter.
- */
-function removeUIElement( elementCreator ) {
-	return ( evt, data, consumable, conversionApi ) => {
-		let viewStartElement, viewEndElement;
-
-		if ( elementCreator instanceof __WEBPACK_IMPORTED_MODULE_0__view_element__["a" /* default */] ) {
-			viewStartElement = elementCreator.clone( true );
-			viewEndElement = elementCreator.clone( true );
-		} else {
-			data.isOpening = true;
-			viewStartElement = elementCreator( data, consumable, conversionApi );
-
-			data.isOpening = false;
-			viewEndElement = elementCreator( data, consumable, conversionApi );
-		}
-
-		if ( !viewStartElement || !viewEndElement ) {
-			return;
-		}
-
-		if ( !consumable.consume( data.range, 'removeMarker' ) ) {
-			return;
-		}
-
-		const viewRange = conversionApi.mapper.toViewRange( data.range );
-
-		// First remove closing element.
-		__WEBPACK_IMPORTED_MODULE_5__view_writer__["a" /* default */].clear( viewRange.getEnlarged(), viewEndElement );
-
-		// If closing and opening elements are not the same then remove opening element.
-		if ( !viewStartElement.isSimilar( viewEndElement ) ) {
-			__WEBPACK_IMPORTED_MODULE_5__view_writer__["a" /* default */].clear( viewRange.getEnlarged(), viewStartElement );
-		}
-	};
-}
-
-/**
- * Returns the consumable type that is to be consumed in an event, basing on that event name.
- *
- * @param {String} evtName Event name.
- * @returns {String} Consumable type.
- */
-function eventNameToConsumableType( evtName ) {
-	const parts = evtName.split( ':' );
-
-	return parts[ 0 ] + ':' + parts[ 1 ];
-}
-
-
-/***/ }),
-/* 122 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__element__ = __webpack_require__(27);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module engine/view/attributeelement
- */
-
-
-
-// Default attribute priority.
-const DEFAULT_PRIORITY = 10;
-
-/**
- * Attributes are elements which define document presentation. They are mostly elements like `<b>` or `<span>`.
- * Attributes can be broken and merged by the {@link module:engine/view/writer~writer view writer}.
- *
- * Editing engine does not define fixed HTML DTD. This is why the type of the {@link module:engine/view/element~Element} need to
- * be defined by the feature developer. Creating an element you should use {@link module:engine/view/containerelement~ContainerElement}
- * class or `AttributeElement`.
- *
- * @extends module:engine/view/element~Element
- */
-class AttributeElement extends __WEBPACK_IMPORTED_MODULE_0__element__["a" /* default */] {
-	/**
-	 * Creates a attribute element.
-	 *
-	 * @see module:engine/view/element~Element
-	 */
-	constructor( name, attrs, children ) {
-		super( name, attrs, children );
-
-		/**
-		 * Element priority. Attributes have to have the same priority to be
-		 * {@link module:engine/view/element~Element#isSimilar similar}. Setting different priorities on similar
- 		 * nodes may prevent merging, e.g. two `<abbr>` nodes next each other shouldn't be merged.
-		 *
-		 * @member {Number}
-		 */
-		this.priority = DEFAULT_PRIORITY;
-
-		/**
-		 * Returns block {@link module:engine/view/filler filler} offset or `null` if block filler is not needed.
-		 *
-		 * @method #getFillerOffset
-		 * @returns {Number|null} Block filler offset or `null` if block filler is not needed.
-		 */
-		this.getFillerOffset = getFillerOffset;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	is( type, name = null ) {
-		if ( !name ) {
-			return type == 'attributeElement' || super.is( type );
-		} else {
-			return ( type == 'attributeElement' && name == this.name ) || super.is( type, name );
-		}
-	}
-
-	/**
-	 * Clones provided element with priority.
-	 *
-	 * @param {Boolean} deep If set to `true` clones element and all its children recursively. When set to `false`,
-	 * element will be cloned without any children.
-	 * @returns {module:engine/view/attributeelement~AttributeElement} Clone of this element.
-	 */
-	clone( deep ) {
-		const cloned = super.clone( deep );
-
-		// Clone priority too.
-		cloned.priority = this.priority;
-
-		return cloned;
-	}
-
-	/**
-	 * Checks if this element is similar to other element.
-	 * Both elements should have the same name, attributes and priority to be considered as similar.
-	 * Two similar elements can contain different set of children nodes.
-	 *
-	 * @param {module:engine/view/element~Element} otherElement
-	 * @returns {Boolean}
-	 */
-	isSimilar( otherElement ) {
-		return super.isSimilar( otherElement ) && this.priority == otherElement.priority;
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = AttributeElement;
-
-
-/**
- * Default attribute priority.
- *
- * @member {Number} module:engine/view/attributeelement~AttributeElement.DEFAULT_PRIORITY
- */
-AttributeElement.DEFAULT_PRIORITY = DEFAULT_PRIORITY;
-
-// Returns block {@link module:engine/view/filler~Filler filler} offset or `null` if block filler is not needed.
-//
-// @returns {Number|null} Block filler offset or `null` if block filler is not needed.
-function getFillerOffset() {
-	// <b>foo</b> does not need filler.
-	if ( nonUiChildrenCount( this ) ) {
-		return null;
-	}
-
-	let element = this.parent;
-
-	// <p><b></b></p> needs filler -> <p><b><br></b></p>
-	while ( element && element.is( 'attributeElement' ) ) {
-		if ( nonUiChildrenCount( element ) > 1 ) {
-			return null;
-		}
-
-		element = element.parent;
-	}
-
-	if ( !element || nonUiChildrenCount( element ) > 1 ) {
-		return null;
-	}
-
-	// Render block filler at the end of element (after all ui elements).
-	return this.childCount;
-}
-
-// Returns total count of children that are not {@link module:engine/view/uielement~UIElement UIElements}.
-//
-// @param {module:engine/view/element~Element} element
-// @return {Number}
-function nonUiChildrenCount( element ) {
-	return Array.from( element.getChildren() ).filter( element => !element.is( 'uiElement' ) ).length;
-}
-
-
-/***/ }),
 /* 123 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = injectUiElementHandling;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__element__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__element__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(27);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -22647,9 +22687,9 @@ function jumpOverUiElement( evt, data, domConverter ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__text__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__text__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -22874,12 +22914,12 @@ function normalize( nodes ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_attributeoperation__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_attributeoperation__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__operation_rootattributeoperation__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__operation_nooperation__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__operation_nooperation__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__range__ = __webpack_require__(3);
 /**
@@ -23696,12 +23736,12 @@ class RootAttributeOperation extends __WEBPACK_IMPORTED_MODULE_0__operation__["a
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__removedelta__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__removedelta__ = __webpack_require__(94);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__deltafactory__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_insertoperation__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__batch__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__writer__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__writer__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__documentfragment__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__model_range_js__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__model_position_js__ = __webpack_require__(1);
@@ -23837,7 +23877,7 @@ __WEBPACK_IMPORTED_MODULE_2__deltafactory__["a" /* default */].register( InsertD
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_renameoperation__ = __webpack_require__(128);
@@ -24059,9 +24099,9 @@ function cacheHas(cache, key) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__castPath__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isKey__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__toKey__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__castPath__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isKey__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__toKey__ = __webpack_require__(58);
 
 
 
@@ -24219,7 +24259,7 @@ function head(array) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SetCache__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SetCache__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arrayIncludes__ = __webpack_require__(132);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__arrayIncludesWith__ = __webpack_require__(134);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__arrayMap__ = __webpack_require__(29);
@@ -24497,7 +24537,7 @@ function baseSortedIndexBy(array, value, iteratee, retHighest) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__apply__ = __webpack_require__(157);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arrayMap__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__unzip__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__unzip__ = __webpack_require__(103);
 
 
 
@@ -24545,7 +24585,7 @@ function unzipWith(array, iteratee) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayPush__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseDifference__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseDifference__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseUniq__ = __webpack_require__(50);
 
 
@@ -24666,11 +24706,27 @@ class LiveRange extends __WEBPACK_IMPORTED_MODULE_0__range__["a" /* default */] 
 	 */
 
 	/**
-	 * Fired when `LiveRange` instance is changed due to changes in the {@link module:engine/model/document~Document document}.
+	 * Fired when `LiveRange` instance boundaries have changed due to changes in the
+	 * {@link module:engine/model/document~Document document}.
 	 *
-	 * @event change
+	 * @event change:range
 	 * @param {module:engine/model/range~Range} oldRange Range with start and end position equal to start and end position of this live
 	 * range before it got changed.
+	 * @param {Object} data Object with additional information about the change. Those parameters are passed from
+	 * {@link module:engine/model/document~Document#event:change document change event}.
+	 * @param {String} data.type Change type.
+	 * @param {module:engine/model/batch~Batch} data.batch Batch which changed the live range.
+	 * @param {module:engine/model/range~Range} data.range Range containing the result of applied change.
+	 * @param {module:engine/model/position~Position} data.sourcePosition Source position for move, remove and reinsert change types.
+	 */
+
+	/**
+	 * Fired when `LiveRange` instance boundaries have not changed after a change in {@link module:engine/model/document~Document document}
+	 * but the change took place inside the range, effectively changing its content.
+	 *
+	 * @event change:content
+	 * @param {module:engine/model/range~Range} range Range with start and end position equal to start and end position of
+	 * change range.
 	 * @param {Object} data Object with additional information about the change. Those parameters are passed from
 	 * {@link module:engine/model/document~Document#event:change document change event}.
 	 * @param {String} data.type Change type.
@@ -24743,14 +24799,28 @@ function transform( changeType, deltaType, batch, targetRange, sourcePosition ) 
 
 	const updated = __WEBPACK_IMPORTED_MODULE_0__range__["a" /* default */].createFromRanges( result );
 
-	// If anything changed, update the range and fire an event.
-	if ( !updated.isEqual( this ) ) {
+	const boundariesChanged = !updated.isEqual( this );
+
+	const rangeExpanded = this.containsPosition( targetPosition );
+	const rangeShrunk = sourcePosition && ( this.containsPosition( sourcePosition ) || this.start.isEqual( sourcePosition ) );
+	const contentChanged = rangeExpanded || rangeShrunk;
+
+	if ( boundariesChanged ) {
+		// If range boundaries have changed, fire `change:range` event.
 		const oldRange = __WEBPACK_IMPORTED_MODULE_0__range__["a" /* default */].createFromRange( this );
 
 		this.start = updated.start;
 		this.end = updated.end;
 
-		this.fire( 'change', oldRange, {
+		this.fire( 'change:range', oldRange, {
+			type: changeType,
+			batch,
+			range: targetRange,
+			sourcePosition
+		} );
+	} else if ( contentChanged ) {
+		// If range boundaries have not changed, but there was change inside the range, fire `change:content` event.
+		this.fire( 'change:content', __WEBPACK_IMPORTED_MODULE_0__range__["a" /* default */].createFromRange( this ), {
 			type: changeType,
 			batch,
 			range: targetRange,
@@ -24801,15 +24871,15 @@ function count( iterator ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__text__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__element__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__text__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__element__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__position__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__range__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__selection__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__selection__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__documentfragment__ = __webpack_require__(124);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__treewalker__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__filler__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_dom_global__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__treewalker__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__filler__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_dom_global__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_dom_indexof__ = __webpack_require__(410);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_utils_src_dom_getancestors__ = __webpack_require__(250);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ckeditor_ckeditor5_utils_src_dom_getcommonancestor__ = __webpack_require__(411);
@@ -24880,7 +24950,7 @@ class DomConverter {
 		 *
 		 * @member {Array.<String>} module:engine/view/domconverter~DomConverter#preElements
 		 */
-		this.preElements = [ 'pre' ];
+		this.preElements = [ 'pre', 'code' ];
 
 		/**
 		 * Tag names of DOM `Element`s which are considered block elements.
@@ -24992,7 +25062,7 @@ class DomConverter {
 	 * @param {Document} domDocument Document which will be used to create DOM nodes.
 	 * @param {Object} [options] Conversion options.
 	 * @param {Boolean} [options.bind=false] Determines whether new elements will be bound.
-	 * @param {Boolean} [options.withChildren=true] If true node's and document fragment's children  will be converted too.
+	 * @param {Boolean} [options.withChildren=true] If `true`, node's and document fragment's children will be converted too.
 	 * @returns {Node|DocumentFragment} Converted node or DocumentFragment.
 	 */
 	viewToDom( viewNode, domDocument, options = {} ) {
@@ -25700,21 +25770,24 @@ class DomConverter {
 	}
 
 	/**
-	 * Takes text data from given {@link module:engine/view/text~Text#data} and processes it so it is correctly displayed in DOM.
+	 * Takes text data from a given {@link module:engine/view/text~Text#data} and processes it so
+	 * it is correctly displayed in the DOM.
 	 *
 	 * Following changes are done:
 	 *
-	 * * multiple spaces are replaced to a chain of spaces and `&nbsp;`,
-	 * * space at the beginning of the text node is changed to `&nbsp;` if it is a first text node in it's container
-	 * element or if previous text node ends by space character,
-	 * * space at the end of the text node is changed to `&nbsp;` if it is a last text node in it's container.
+	 * * a space at the beginning is changed to `&nbsp;` if this is the first text node in its container
+	 * element or if a previous text node ends with a space character,
+	 * * space at the end of the text node is changed to `&nbsp;` if this is the last text node in its container,
+	 * * remaining spaces are replaced to a chain of spaces and `&nbsp;` (e.g. `'x   x'` becomes `'x &nbsp; x'`).
+	 *
+	 * Content of {@link #preElements} is not processed.
 	 *
 	 * @private
 	 * @param {module:engine/view/text~Text} node View text node to process.
 	 * @returns {String} Processed text data.
 	 */
 	_processDataFromViewText( node ) {
-		const data = node.data;
+		let data = node.data;
 
 		// If any of node ancestors has a name which is in `preElements` array, then currently processed
 		// view text node is (will be) in preformatted element. We should not change whitespaces then.
@@ -25722,105 +25795,44 @@ class DomConverter {
 			return data;
 		}
 
-		const prevNode = this._getTouchingViewTextNode( node, false );
-		const nextNode = this._getTouchingViewTextNode( node, true );
+		// 1. Replace the first space with a nbsp if the previous node ends with a space or there is no previous node
+		// (container element boundary).
+		if ( data.charAt( 0 ) == ' ' ) {
+			const prevNode = this._getTouchingViewTextNode( node, false );
+			const prevEndsWithSpace = prevNode && this._nodeEndsWithSpace( prevNode );
 
-		// Second part of text data, from the space after the last non-space character to the end.
-		// We separate `textEnd` and `textStart` because `textEnd` needs some special handling.
-		let textEnd = data.match( / *$/ )[ 0 ];
-		// First part of data, between first and last part of data.
-		let textStart = data.substr( 0, data.length - textEnd.length );
-
-		// If previous text node does not exist or it ends by space character, replace space character at the beginning of text.
-		// ` x`			-> `_x`
-		// `  x`		-> `_ x`
-		// `   x`		-> `_  x`
-		if ( !prevNode || prevNode.data.charAt( prevNode.data.length - 1 ) == ' ' ) {
-			textStart = textStart.replace( /^ /, '\u00A0' );
+			if ( prevEndsWithSpace || !prevNode ) {
+				data = '\u00A0' + data.substr( 1 );
+			}
 		}
 
-		// Multiple consecutive spaces. Change them to ` &nbsp;` pairs.
-		// `_x  x`		-> `_x _x`
-		// `_ x  x`		-> `_ x _x`
-		// `_  x  x`	-> `_ _x _x`
-		// `_  x   x`	-> `_ _x _ x`
-		// `_  x    x`	-> `_ _x _ _x`
-		// `_   x    x` -> `_ _ x _ _x`
-		textStart = textStart.replace( / {2}/g, ' \u00A0' );
-
-		// Process `textEnd` only if there is anything to process.
-		if ( textEnd.length > 0 ) {
-			// (1) We need special treatment for the last part of text node, it has to end on `&nbsp;`, not space:
-			// `x `		-> `x_`
-			// `x  `	-> `x _`
-			// `x   `	-> `x_ _`
-			// `x    `	-> `x _ _`
-			// (2) Different case when there is a node after:
-			// `x <b>b</b>`		-> `x <b>b</b>`
-			// `x  <b>b</b>`	-> `x _<b>b</b>`
-			// `x   <b>b</b>`	-> `x _ <b>b</b>`
-			// `x    <b>b</b>`	-> `x _ _<b>b</b>`
-			// (3) But different, when that node starts by &nbsp; (or space that will be converted to &nbsp;):
-			// `x <b>_b</b>`	-> `x <b>_b</b>`
-			// `x  <b>_b</b>`	-> `x_ <b>_b</b>`
-			// `x   <b>_b</b>`	-> `x _ <b>_b</b>`
-			// `x    <b>_b</b>`	-> `x_ _ <b>_b</b>`
-			// Let's assume that starting from space is normal behavior, because starting from &nbsp; is a less frequent case.
-			let textEndStartsFromNbsp = false;
+		// 2. Replace the last space with a nbsp if this is the last text node (container element boundary).
+		if ( data.charAt( data.length - 1 ) == ' ' ) {
+			const nextNode = this._getTouchingViewTextNode( node, true );
 
 			if ( !nextNode ) {
-				// (1)
-				if ( textEnd.length % 2 ) {
-					textEndStartsFromNbsp = true;
-				}
-			} else if ( nextNode.data.charAt( 0 ) == ' ' || nextNode.data.charAt( 0 ) == '\u00A0' ) {
-				// (3)
-				if ( textEnd.length % 2 === 0 ) {
-					textEndStartsFromNbsp = true;
-				}
+				data = data.substr( 0, data.length - 1 ) + '\u00A0';
 			}
-
-			if ( textEndStartsFromNbsp ) {
-				textEnd = '\u00A0' + textEnd.substr( 0, textEnd.length - 1 );
-			}
-
-			textEnd = textEnd.replace( / {2}/g, ' \u00A0' );
 		}
 
-		return textStart + textEnd;
+		return data.replace( / {2}/g, ' \u00A0' );
 	}
 
 	/**
-	 * Helper function. For given {@link module:engine/view/text~Text view text node}, it finds previous or next sibling that is contained
-	 * in the same block element. If there is no such sibling, `null` is returned.
+	 * Checks whether given node ends with a space character after changing appropriate space characters to `&nbsp;`s.
 	 *
 	 * @private
-	 * @param {module:engine/view/text~Text} node
-	 * @param {Boolean} getNext
-	 * @returns {module:engine/view/text~Text}
+	 * @param {module:engine/view/text~Text} node Node to check.
+	 * @returns {Boolean} `true` if given `node` ends with space, `false` otherwise.
 	 */
-	_getTouchingViewTextNode( node, getNext ) {
-		if ( !node.parent ) {
-			return null;
+	_nodeEndsWithSpace( node ) {
+		if ( node.getAncestors().some( parent => this.preElements.includes( parent.name ) ) ) {
+			return false;
 		}
 
-		const treeWalker = new __WEBPACK_IMPORTED_MODULE_6__treewalker__["a" /* default */]( {
-			startPosition: getNext ? __WEBPACK_IMPORTED_MODULE_2__position__["a" /* default */].createAfter( node ) : __WEBPACK_IMPORTED_MODULE_2__position__["a" /* default */].createBefore( node ),
-			direction: getNext ? 'forward' : 'backward'
-		} );
+		const data = this._processDataFromViewText( node );
 
-		for ( const value of treeWalker ) {
-			if ( value.item.is( 'containerElement' ) ) {
-				// ViewContainerElement is found on a way to next ViewText node, so given `node` was first/last
-				// text node in it's container element.
-				return null;
-			} else if ( value.item.is( 'text' ) ) {
-				// Found a text node in the same container element.
-				return value.item;
-			}
-		}
-
-		return null;
+		return data.charAt( data.length - 1 ) == ' ';
 	}
 
 	/**
@@ -25888,6 +25900,34 @@ class DomConverter {
 		// At this point, all whitespaces should be removed and all &nbsp; created for rendering reasons should be
 		// changed to normal space. All left &nbsp; are &nbsp; inserted intentionally.
 		return data;
+	}
+
+	/**
+	 * Helper function. For given {@link module:engine/view/text~Text view text node}, it finds previous or next sibling
+	 * that is contained in the same container element. If there is no such sibling, `null` is returned.
+	 *
+	 * @param {module:engine/view/text~Text} node Reference node.
+	 * @param {Boolean} getNext
+	 * @returns {module:engine/view/text~Text|null} Touching text node or `null` if there is no next or previous touching text node.
+	 */
+	_getTouchingViewTextNode( node, getNext ) {
+		const treeWalker = new __WEBPACK_IMPORTED_MODULE_6__treewalker__["a" /* default */]( {
+			startPosition: getNext ? __WEBPACK_IMPORTED_MODULE_2__position__["a" /* default */].createAfter( node ) : __WEBPACK_IMPORTED_MODULE_2__position__["a" /* default */].createBefore( node ),
+			direction: getNext ? 'forward' : 'backward'
+		} );
+
+		for ( const value of treeWalker ) {
+			if ( value.item.is( 'containerElement' ) ) {
+				// ViewContainerElement is found on a way to next ViewText node, so given `node` was first/last
+				// text node in its container element.
+				return null;
+			} else if ( value.item.is( 'text' ) ) {
+				// Found a text node in the same container element.
+				return value.item;
+			}
+		}
+
+		return null;
 	}
 
 	/**
@@ -26081,7 +26121,7 @@ function isRange( obj ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_collection__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_collection__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -26300,7 +26340,7 @@ function isStringArray( arr ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_dom_global__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_dom_global__ = __webpack_require__(34);
 /**
  * @license Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -26595,9 +26635,11 @@ function isFocusable( view ) {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["c"] = isWidget;
 /* harmony export (immutable) */ __webpack_exports__["d"] = toWidget;
+/* unused harmony export setHighlightHandling */
 /* unused harmony export setLabel */
 /* harmony export (immutable) */ __webpack_exports__["b"] = getLabel;
 /* harmony export (immutable) */ __webpack_exports__["e"] = toWidgetEditable;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__highlightstack__ = __webpack_require__(492);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -26606,6 +26648,8 @@ function isFocusable( view ) {
 /**
  * @module widget/utils
  */
+
+
 
 const widgetSymbol = Symbol( 'isWidget' );
 const labelSymbol = Symbol( 'label' );
@@ -26643,7 +26687,8 @@ function isWidget( element ) {
  * * sets `contenteditable` attribute to `true`,
  * * adds custom `getFillerOffset` method returning `null`,
  * * adds `ck-widget` CSS class,
- * * adds custom property allowing to recognize widget elements by using {@link ~isWidget}.
+ * * adds custom property allowing to recognize widget elements by using {@link ~isWidget},
+ * * implements `addHighlight` and `removeHighlight` custom properties to handle view highlight on widgets.
  *
  * @param {module:engine/view/element~Element} element
  * @param {Object} [options={}]
@@ -26661,7 +26706,38 @@ function toWidget( element, options = {} ) {
 		setLabel( element, options.label );
 	}
 
+	setHighlightHandling(
+		element,
+		( element, descriptor ) => element.addClass( descriptor.class ),
+		( element, descriptor ) => element.removeClass( descriptor.class )
+	);
+
 	return element;
+}
+
+/**
+ * Sets highlight handling methods. Uses {@link module:widget/highlightstack~HighlightStack} to
+ * properly determine which highlight descriptor should be used at given time.
+ *
+ * @param {module:engine/view/element~Element} element
+ * @param {Function} add
+ * @param {Function} remove
+ */
+function setHighlightHandling( element, add, remove ) {
+	const stack = new __WEBPACK_IMPORTED_MODULE_0__highlightstack__["a" /* default */]();
+
+	stack.on( 'change:top', ( evt, data ) => {
+		if ( data.oldDescriptor ) {
+			remove( element, data.oldDescriptor );
+		}
+
+		if ( data.newDescriptor ) {
+			add( element, data.newDescriptor );
+		}
+	} );
+
+	element.setCustomProperty( 'addHighlight', ( element, descriptor ) => stack.add( descriptor ) );
+	element.setCustomProperty( 'removeHighlight', ( element, descriptor ) => stack.remove( descriptor ) );
 }
 
 /**
@@ -26740,6 +26816,7 @@ function getFillerOffset() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__balloonpanelview__ = __webpack_require__(270);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_first__ = __webpack_require__(60);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -26748,6 +26825,7 @@ function getFillerOffset() {
 /**
  * @module ui/panel/balloon/contextualballoon
  */
+
 
 
 
@@ -26788,6 +26866,28 @@ class ContextualBalloon extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_
 		 * @member {module:ui/panel/balloon/balloonpanelview~BalloonPanelView} #view
 		 */
 		this.view = new __WEBPACK_IMPORTED_MODULE_1__balloonpanelview__["a" /* default */]();
+
+		/**
+		 * The {@link module:utils/dom/position~Options#limiter position limiter}
+		 * for the {@link #view}, used when no `limiter` has been passed into {@link #add}
+		 * or {@link #updatePosition}.
+		 *
+		 * By default, a function, which obtains the farthest DOM
+		 * {@link module:engine/view/rooteditableelement~RootEditableElement}
+		 * of the {@link module:engine/view/document~Document#selection}.
+		 *
+		 * @member {module:utils/dom/position~Options#limiter} #positionLimiter
+		 */
+		this.positionLimiter = () => {
+			const view = this.editor.editing.view;
+			const editableElement = view.selection.editableElement;
+
+			if ( editableElement ) {
+				return view.domConverter.mapViewToDom( editableElement.root );
+			}
+
+			return null;
+		};
 
 		/**
 		 * Stack of the views injected into the balloon. Last one in the stack is displayed
@@ -26938,7 +27038,17 @@ class ContextualBalloon extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_
 	 * @returns {module:utils/dom/position~Options}
 	 */
 	_getBalloonPosition() {
-		return this._stack.values().next().value.position;
+		let position = Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_first__["a" /* default */])( this._stack.values() ).position;
+
+		// Use the default limiter if none has been specified.
+		if ( position && !position.limiter ) {
+			// Don't modify the original options object.
+			position = Object.assign( {}, position, {
+				limiter: this.positionLimiter
+			} );
+		}
+
+		return position;
 	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = ContextualBalloon;
@@ -26979,7 +27089,7 @@ function apply(func, thisArg, args) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isFunction__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isFunction__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isObject__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isSymbol__ = __webpack_require__(47);
 
@@ -27087,10 +27197,10 @@ module.exports = function(originalModule) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseTimes__ = __webpack_require__(161);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArguments__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArguments__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArray__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isLength__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isString__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isString__ = __webpack_require__(115);
 
 
 
@@ -27153,7 +27263,7 @@ function baseTimes(n, iteratee) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_position__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_range__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_text__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_text__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /**
@@ -27727,7 +27837,7 @@ function objectToMap( obj ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Stack__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Stack__ = __webpack_require__(117);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arrayEach__ = __webpack_require__(319);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__assignValue__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__baseAssign__ = __webpack_require__(320);
@@ -27735,7 +27845,7 @@ function objectToMap( obj ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__copyArray__ = __webpack_require__(169);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__copySymbols__ = __webpack_require__(323);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__getAllKeys__ = __webpack_require__(324);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__getTag__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__getTag__ = __webpack_require__(119);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__initCloneArray__ = __webpack_require__(329);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__initCloneByTag__ = __webpack_require__(330);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__initCloneObject__ = __webpack_require__(339);
@@ -27743,7 +27853,7 @@ function objectToMap( obj ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__isBuffer__ = __webpack_require__(341);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__isHostObject__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__isObject__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__keys__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__keys__ = __webpack_require__(67);
 
 
 
@@ -27890,7 +28000,7 @@ function baseClone(value, isDeep, isFull, customizer, key, object, stack) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isFunction__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isFunction__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isHostObject__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isObject__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__toSource__ = __webpack_require__(166);
@@ -27987,8 +28097,8 @@ function toSource(func) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getNative__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__root__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getNative__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__root__ = __webpack_require__(31);
 
 
 
@@ -28003,7 +28113,7 @@ var Map = Object(__WEBPACK_IMPORTED_MODULE_0__getNative__["a" /* default */])(__
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getPrototype__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getPrototype__ = __webpack_require__(110);
 
 
 /** Used for built-in method references. */
@@ -28094,8 +28204,8 @@ if (!getOwnPropertySymbols) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getNative__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__root__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getNative__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__root__ = __webpack_require__(31);
 
 
 
@@ -28110,7 +28220,7 @@ var Set = Object(__WEBPACK_IMPORTED_MODULE_0__getNative__["a" /* default */])(__
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root__ = __webpack_require__(31);
 
 
 /** Built-in value references. */
@@ -28914,7 +29024,8 @@ class ModelConversionDispatcher {
 		for ( const marker of markers ) {
 			const data = {
 				selection,
-				name: marker.name
+				markerName: marker.name,
+				markerRange: marker.getRange()
 			};
 
 			if ( consumable.test( selection, 'selectionMarker:' + marker.name ) ) {
@@ -28937,10 +29048,10 @@ class ModelConversionDispatcher {
 	}
 
 	/**
-	 * Starts marker-conversion.
+	 * Starts marker conversion.
 	 *
-	 * Fires {@link ~#event:addMarker addMarker event} or {@link ~#event:removeMarker removeMarker event} based on
-	 * given `type` with data based on passed parameters.
+	 * Fires {@link ~#event:addMarker addMarker} or {@link ~#event:removeMarker removeMarker} events for each item
+	 * in marker's range. If range is collapsed single event is dispatched. See events description for more details.
 	 *
 	 * @fires addMarker
 	 * @fires removeMarker
@@ -28954,10 +29065,43 @@ class ModelConversionDispatcher {
 			return;
 		}
 
-		const consumable = this._createMarkerConsumable( type, range );
-		const data = { name, range };
+		// In markers case, event name == consumable name.
+		const eventName = type + ':' + name;
 
-		this.fire( type + ':' + name, data, consumable, this.conversionApi );
+		// When range is collapsed - fire single event with collapsed range in consumable.
+		if ( range.isCollapsed ) {
+			const consumable = new __WEBPACK_IMPORTED_MODULE_0__modelconsumable__["a" /* default */]();
+			consumable.add( range, eventName );
+
+			this.fire( eventName, {
+				markerName: name,
+				markerRange: range
+			}, consumable, this.conversionApi );
+
+			return;
+		}
+
+		// Create consumable for each item in range.
+		const consumable = this._createConsumableForRange( range, eventName );
+
+		// Create separate event for each node in the range.
+		for ( const value of range ) {
+			const item = value.item;
+
+			// Do not fire event for already consumed items.
+			if ( !consumable.test( item, eventName ) ) {
+				continue;
+			}
+
+			const data = {
+				item,
+				range: __WEBPACK_IMPORTED_MODULE_1__model_range__["a" /* default */].createFromPositionAndShift( value.previousPosition, value.length ),
+				markerName: name,
+				markerRange: range
+			};
+
+			this.fire( eventName, data, consumable, this.conversionApi );
+		}
 	}
 
 	/**
@@ -29023,22 +29167,6 @@ class ModelConversionDispatcher {
 		for ( const key of selection.getAttributeKeys() ) {
 			consumable.add( selection, 'selectionAttribute:' + key );
 		}
-
-		return consumable;
-	}
-
-	/**
-	 * Creates {@link module:engine/conversion/modelconsumable~ModelConsumable} for adding or removing marker on given `range`.
-	 *
-	 * @private
-	 * @param {'addMarker'|'removeMarker'} type Change type.
-	 * @param {module:engine/model/range~Range} range Range on which marker was added or removed.
-	 * @returns {module:engine/conversion/modelconsumable~ModelConsumable} Values to consume.
-	 */
-	_createMarkerConsumable( type, range ) {
-		const consumable = new __WEBPACK_IMPORTED_MODULE_0__modelconsumable__["a" /* default */]();
-
-		consumable.add( range, type );
 
 		return consumable;
 	}
@@ -29194,6 +29322,9 @@ class ModelConversionDispatcher {
 
 	/**
 	 * Fired when a new marker is added to the model.
+	 * * If marker's range is not collapsed, event is fired separately for each item contained in that range. In this
+	 * situation, consumable contains all items from that range.
+	 * * If marker's range is collapsed, single event is fired. In this situation, consumable contains only the collapsed range.
 	 *
 	 * `addMarker` is a namespace for a class of events. Names of actually called events follow this pattern:
 	 * `addMarker:<markerName>`. By specifying certain marker names, you can make the events even more gradual. For example,
@@ -29202,14 +29333,23 @@ class ModelConversionDispatcher {
 	 *
 	 * @event addMarker
 	 * @param {Object} data Additional information about the change.
-	 * @param {String} data.name Marker name.
-	 * @param {module:engine/model/range~Range} data.range Marker range.
-	 * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume.
+	 * @param {module:engine/model/item~Item} [data.item] Item contained in marker's range. Not present if collapsed range
+	 * is being converted.
+	 * @param {module:engine/model/range~Range} [data.range] Range spanning over item. Not present if collapsed range
+	 * is being converted.
+	 * @param {String} data.markerName Name of the marker.
+	 * @param {module:engine/model/range~Range} data.markerRange Marker's range spanning on all items.
+	 * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume. When non-collapsed
+	 * marker is being converted then consumable contains all items in marker's range. For collapsed markers it contains
+	 * only marker's range to consume.
 	 * @param {Object} conversionApi Conversion interface to be used by callback, passed in `ModelConversionDispatcher` constructor.
 	 */
 
 	/**
 	 * Fired when marker is removed from the model.
+	 * * If marker's range is not collapsed, event is fired separately for each item contained in that range. In this
+	 * situation, consumable contains all items from that range.
+	 * * If marker's range is collapsed, single event is fired. In this situation, consumable contains only the collapsed range.
 	 *
 	 * `removeMarker` is a namespace for a class of events. Names of actually called events follow this pattern:
 	 * `removeMarker:<markerName>`. By specifying certain marker names, you can make the events even more gradual. For example,
@@ -29218,9 +29358,15 @@ class ModelConversionDispatcher {
 	 *
 	 * @event removeMarker
 	 * @param {Object} data Additional information about the change.
-	 * @param {String} data.name Marker name.
-	 * @param {module:engine/model/range~Range} data.range Marker range.
-	 * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume.
+	 * @param {module:engine/model/item~Item} [data.item] Item contained in marker's range. Not present if collapsed range
+	 * is being converted.
+	 * @param {module:engine/model/range~Range} [data.range] Range spanning over item. Not present if collapsed range
+	 * is being converted.
+	 * @param {String} data.markerName Name of the marker.
+	 * @param {module:engine/model/range~Range} data.markerRange Whole marker's range.
+	 * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume. When non-collapsed
+	 * marker is being converted then consumable contains all items in marker's range. For collapsed markers it contains
+	 * only marker's range to consume.
 	 * @param {Object} conversionApi Conversion interface to be used by callback, passed in `ModelConversionDispatcher` constructor.
 	 */
 }
@@ -29235,7 +29381,7 @@ Object(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_mix__["a" /* de
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__element__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__element__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node__ = __webpack_require__(80);
 /**
@@ -29624,7 +29770,7 @@ function isInsideCombinedSymbol( string, offset ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SetCache__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SetCache__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arraySome__ = __webpack_require__(360);
 
 
@@ -29718,7 +29864,7 @@ function equalArrays(array, other, equalFunc, customizer, bitmask, stack) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__deltafactory__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_insertoperation__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__writer__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__writer__ = __webpack_require__(21);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -29795,17 +29941,17 @@ __WEBPACK_IMPORTED_MODULE_2__deltafactory__["a" /* default */].register( WeakIns
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__movedelta__ = __webpack_require__(93);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__removedelta__ = __webpack_require__(92);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mergedelta__ = __webpack_require__(94);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__splitdelta__ = __webpack_require__(95);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__wrapdelta__ = __webpack_require__(97);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__unwrapdelta__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__movedelta__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__removedelta__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mergedelta__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__splitdelta__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__wrapdelta__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__unwrapdelta__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__renamedelta__ = __webpack_require__(131);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__attributedelta__ = __webpack_require__(125);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__operation_transform__ = __webpack_require__(365);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__operation_nooperation__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__operation_nooperation__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__operation_moveoperation__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__operation_removeoperation__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ckeditor_ckeditor5_utils_src_lib_lodash_array__ = __webpack_require__(366);
@@ -30594,7 +30740,7 @@ function compact(array) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayPush__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__copyArray__ = __webpack_require__(169);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArray__ = __webpack_require__(14);
 
@@ -30646,8 +30792,8 @@ function concat() {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rest__ = __webpack_require__(7);
 
@@ -30718,8 +30864,8 @@ function indexOfNaN(array, fromIndex, fromRight) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseIteratee__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__last__ = __webpack_require__(17);
@@ -30892,8 +31038,8 @@ function identity(value) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseFlatten__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__rest__ = __webpack_require__(7);
@@ -30943,7 +31089,7 @@ var differenceWith = Object(__WEBPACK_IMPORTED_MODULE_4__rest__["a" /* default *
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseWhile__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseWhile__ = __webpack_require__(101);
 
 
 
@@ -30998,7 +31144,7 @@ function dropRightWhile(array, predicate) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseWhile__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseWhile__ = __webpack_require__(101);
 
 
 
@@ -31254,7 +31400,7 @@ function findLastIndex(array, predicate) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(23);
 
 
 /**
@@ -31284,7 +31430,7 @@ function flatten(array) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(23);
 
 
 /** Used as references for various `Number` constants. */
@@ -31317,7 +31463,7 @@ function flattenDeep(array) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toInteger__ = __webpack_require__(12);
 
 
@@ -31884,7 +32030,7 @@ function pullAllWith(array, values, comparator) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayMap__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseAt__ = __webpack_require__(390);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseFlatten__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseFlatten__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__basePullAt__ = __webpack_require__(216);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__compareAscending__ = __webpack_require__(392);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__isIndex__ = __webpack_require__(37);
@@ -31942,12 +32088,12 @@ var pullAt = Object(__WEBPACK_IMPORTED_MODULE_6__rest__["a" /* default */])(func
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__castPath__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__castPath__ = __webpack_require__(100);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isIndex__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isKey__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isKey__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__parent__ = __webpack_require__(391);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__toKey__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__toKey__ = __webpack_require__(58);
 
 
 
@@ -32156,7 +32302,7 @@ function slice(array, start, end) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__ = __webpack_require__(102);
 
 
 /**
@@ -32234,7 +32380,7 @@ function sortedIndexBy(array, value, iteratee) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__eq__ = __webpack_require__(53);
 
 
@@ -32274,7 +32420,7 @@ function sortedIndexOf(array, value) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__ = __webpack_require__(102);
 
 
 /**
@@ -32345,7 +32491,7 @@ function sortedLastIndexBy(array, value, iteratee) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseSortedIndex__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__eq__ = __webpack_require__(53);
 
 
@@ -32614,7 +32760,7 @@ function takeRight(array, n, guard) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseWhile__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseWhile__ = __webpack_require__(101);
 
 
 
@@ -32669,7 +32815,7 @@ function takeRightWhile(array, predicate) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIteratee__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseWhile__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseWhile__ = __webpack_require__(101);
 
 
 
@@ -32723,7 +32869,7 @@ function takeWhile(array, predicate) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseUniq__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rest__ = __webpack_require__(7);
@@ -32760,7 +32906,7 @@ var union = Object(__WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */])(funct
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIteratee__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseUniq__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__ = __webpack_require__(13);
@@ -32812,7 +32958,7 @@ var unionBy = Object(__WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */])(fun
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseFlatten__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseUniq__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(17);
@@ -32970,7 +33116,7 @@ function uniqWith(array, comparator) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseDifference__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArrayLikeObject__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__rest__ = __webpack_require__(7);
 
@@ -33009,7 +33155,7 @@ var without = Object(__WEBPACK_IMPORTED_MODULE_2__rest__["a" /* default */])(fun
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayFilter__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayFilter__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseXor__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rest__ = __webpack_require__(7);
@@ -33048,7 +33194,7 @@ var xor = Object(__WEBPACK_IMPORTED_MODULE_3__rest__["a" /* default */])(functio
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayFilter__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayFilter__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIteratee__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__baseXor__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArrayLikeObject__ = __webpack_require__(13);
@@ -33100,7 +33246,7 @@ var xorBy = Object(__WEBPACK_IMPORTED_MODULE_5__rest__["a" /* default */])(funct
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayFilter__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__arrayFilter__ = __webpack_require__(104);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseXor__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArrayLikeObject__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__last__ = __webpack_require__(17);
@@ -33148,7 +33294,7 @@ var xorWith = Object(__WEBPACK_IMPORTED_MODULE_4__rest__["a" /* default */])(fun
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rest__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__unzip__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__unzip__ = __webpack_require__(103);
 
 
 
@@ -33548,9 +33694,9 @@ class RootEditableElement extends __WEBPACK_IMPORTED_MODULE_0__editableelement__
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observer__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__selection__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__filler__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observer__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__selection__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__filler__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_lib_lodash_isEqualWith__ = __webpack_require__(412);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -34101,10 +34247,11 @@ function debounce(func, wait, options) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isrange__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lib_lodash_isElement__ = __webpack_require__(255);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__getborderwidths__ = __webpack_require__(256);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__log__ = __webpack_require__(30);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -34113,6 +34260,7 @@ function debounce(func, wait, options) {
 /**
  * @module utils/dom/rect
  */
+
 
 
 
@@ -34153,6 +34301,8 @@ class Rect {
 	 * @param {HTMLElement|Range|Window|ClientRect|module:utils/dom/rect~Rect|Object} source A source object to create the rect.
 	 */
 	constructor( source ) {
+		const isSourceRange = Object(__WEBPACK_IMPORTED_MODULE_1__isrange__["a" /* default */])( source );
+
 		/**
 		 * The object this rect is for.
 		 *
@@ -34167,10 +34317,33 @@ class Rect {
 			enumerable: false
 		} );
 
-		if ( Object(__WEBPACK_IMPORTED_MODULE_2__lib_lodash_isElement__["a" /* default */])( source ) ) {
-			copyRectProperties( this, source.getBoundingClientRect() );
-		} else if ( Object(__WEBPACK_IMPORTED_MODULE_1__isrange__["a" /* default */])( source ) ) {
-			copyRectProperties( this, Rect.getDomRangeRects( source )[ 0 ] );
+		if ( Object(__WEBPACK_IMPORTED_MODULE_2__lib_lodash_isElement__["a" /* default */])( source ) || isSourceRange ) {
+			const sourceNode = isSourceRange ? source.startContainer : source;
+
+			if ( !sourceNode.ownerDocument || !sourceNode.ownerDocument.body.contains( sourceNode ) ) {
+				/**
+				 * The `Rect` class depends on `getBoundingClientRect` and `getClientRects` DOM methods.
+				 * If the {@link #constructor source} of a rect in an HTML element or a DOM range but it does
+				 * not belong to any rendered DOM tree, these methods will fail to obtain the geometry and
+				 * the rect instance makes little sense to the features using it.
+				 *
+				 * To get rid of this warning make sure the source passed to the constructor
+				 * is a descendant of `window.document.body`.
+				 *
+				 * @error rect-source-not-in-dom
+				 * @param {String} source The source of the Rect instance.
+				 */
+				__WEBPACK_IMPORTED_MODULE_4__log__["a" /* default */].warn(
+					'rect-source-not-in-dom: The source of this rect does not belong to any rendered DOM tree.',
+					{ source }
+				);
+			}
+
+			if ( isSourceRange ) {
+				copyRectProperties( this, Rect.getDomRangeRects( source )[ 0 ] );
+			} else {
+				copyRectProperties( this, source.getBoundingClientRect() );
+			}
 		} else if ( source === __WEBPACK_IMPORTED_MODULE_0__global__["a" /* default */].window ) {
 			const { innerWidth, innerHeight } = __WEBPACK_IMPORTED_MODULE_0__global__["a" /* default */].window;
 
@@ -34511,7 +34684,7 @@ function isElement(value) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = getBorderWidths;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(34);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -34553,13 +34726,15 @@ function getBorderWidths( element ) {
 /* harmony export (immutable) */ __webpack_exports__["f"] = convertSelectionMarker;
 /* harmony export (immutable) */ __webpack_exports__["a"] = clearAttributes;
 /* harmony export (immutable) */ __webpack_exports__["b"] = clearFakeSelection;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_element__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_element__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_range__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_writer__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_writer__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_to_view_converters__ = __webpack_require__(88);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
  */
+
 
 
 
@@ -34670,11 +34845,6 @@ function convertCollapsedSelection() {
  *			}
  *		}
  *		modelDispatcher.on( 'selectionAttribute:style', convertSelectionAttribute( styleCreator ) );
- *
- * **Note:** You can use the same `elementCreator` function for this converter factory
- * and {@link module:engine/conversion/model-to-view-converters~wrapRange}
- * model to view converter, as long as the `elementCreator` function uses only the first parameter (attribute value).
- *
  *		modelDispatcher.on( 'selection', convertCollapsedSelection() );
  *		modelDispatcher.on( 'selectionAttribute:italic', convertSelectionAttribute( new ViewAttributeElement( 'em' ) ) );
  *		modelDispatcher.on( 'selectionAttribute:bold', convertSelectionAttribute( new ViewAttributeElement( 'strong' ) ) );
@@ -34721,27 +34891,25 @@ function convertSelectionAttribute( elementCreator ) {
  * Performs similar conversion as {@link ~convertSelectionAttribute}, but depends on a marker name of a marker in which
  * collapsed selection is placed.
  *
- *		modelDispatcher.on( 'selectionMarker:searchResult', wrapRange( new ViewAttributeElement( 'span', { class: 'searchResult' } ) ) );
- *
- * **Note:** You can use the same `elementCreator` function for this converter factory
- * and {@link module:engine/conversion/model-to-view-converters~wrapRange}.
+ *		modelDispatcher.on( 'selectionMarker:searchResult', convertSelectionMarker( { class: 'search' } ) );
  *
  * @see module:engine/conversion/model-selection-to-view-converters~convertSelectionAttribute
- * @param {module:engine/view/attributeelement~AttributeElement|Function} elementCreator View element,
- * or function returning a view element, which will be used for wrapping.
+ * @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor|Function} highlightDescriptor Highlight
+ * descriptor object or function returning a descriptor object.
  * @returns {Function} Selection converter.
  */
-function convertSelectionMarker( elementCreator ) {
+function convertSelectionMarker( highlightDescriptor ) {
 	return ( evt, data, consumable, conversionApi ) => {
-		const viewElement = elementCreator instanceof __WEBPACK_IMPORTED_MODULE_0__view_element__["a" /* default */] ?
-			elementCreator.clone( true ) :
-			elementCreator( data, consumable, conversionApi );
+		const descriptor = typeof highlightDescriptor == 'function' ?
+			highlightDescriptor( data, consumable, conversionApi ) :
+			highlightDescriptor;
 
-		if ( !viewElement ) {
+		if ( !descriptor ) {
 			return;
 		}
 
-		const consumableName = 'selectionMarker:' + data.name;
+		const viewElement = Object(__WEBPACK_IMPORTED_MODULE_3__model_to_view_converters__["a" /* highlightDescriptorToAttributeElement */])( descriptor );
+		const consumableName = 'selectionMarker:' + data.markerName;
 
 		wrapCollapsedSelectionPosition( data.selection, conversionApi.viewSelection, viewElement, consumable, consumableName );
 	};
@@ -34843,7 +35011,7 @@ function clearFakeSelection() {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__basichtmlwriter__ = __webpack_require__(422);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_domconverter__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_filler__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_filler__ = __webpack_require__(70);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -34955,7 +35123,7 @@ class HtmlDataProcessor {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__focuscycler__ = __webpack_require__(154);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keystrokehandler__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__toolbarseparatorview__ = __webpack_require__(434);
@@ -35910,7 +36078,7 @@ function clickOutsideHandler( { emitter, activator, callback, contextElements } 
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_uid__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__label_labelview__ = __webpack_require__(500);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__label_labelview__ = __webpack_require__(501);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -36190,12 +36358,12 @@ function submitHandler( { view } ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_dom_position__ = __webpack_require__(501);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_dom_position__ = __webpack_require__(502);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_dom_isrange__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isElement__ = __webpack_require__(255);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_dom_tounit__ = __webpack_require__(261);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__bindings_preventdefault_js__ = __webpack_require__(260);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_dom_global__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_dom_global__ = __webpack_require__(34);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -36451,15 +36619,8 @@ class BalloonPanelView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* defaul
 	_startPinning( options ) {
 		this.attachTo( options );
 
-		const limiter = options.limiter || defaultLimiterElement;
-		let targetElement = null;
-
-		// We need to take HTMLElement related to the target if it is possible.
-		if ( Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isElement__["a" /* default */])( options.target ) ) {
-			targetElement = options.target;
-		} else if ( Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_dom_isrange__["a" /* default */])( options.target ) ) {
-			targetElement = options.target.commonAncestorContainer;
-		}
+		const targetElement = getDomElement( options.target );
+		const limiterElement = options.limiter ? getDomElement( options.limiter ) : defaultLimiterElement;
 
 		// Then we need to listen on scroll event of eny element in the document.
 		this.listenTo( __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_dom_global__["a" /* default */].document, 'scroll', ( evt, domEvt ) => {
@@ -36469,10 +36630,11 @@ class BalloonPanelView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* defaul
 			const isWithinScrollTarget = targetElement && scrollTarget.contains( targetElement );
 
 			// The position needs to be updated if the positioning limiter is within the scrolled element.
-			const isLimiterWithinScrollTarget = scrollTarget.contains( limiter );
+			const isLimiterWithinScrollTarget = limiterElement && scrollTarget.contains( limiterElement );
 
-			// The positioning target can be a Rect, object etc.. There's no way to optimize the listener then.
-			if ( isWithinScrollTarget || isLimiterWithinScrollTarget || !targetElement ) {
+			// The positioning target and/or limiter can be a Rect, object etc..
+			// There's no way to optimize the listener then.
+			if ( isWithinScrollTarget || isLimiterWithinScrollTarget || !targetElement || !limiterElement ) {
 				this.attachTo( options );
 			}
 		}, { useCapture: true } );
@@ -36495,6 +36657,28 @@ class BalloonPanelView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* defaul
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = BalloonPanelView;
 
+
+// Returns the DOM element for given object or null, if there's none,
+// e.g. when passed object is a Rect instance or so.
+//
+// @private
+// @param {*} object
+// @returns {HTMLElement|null}
+function getDomElement( object ) {
+	if ( Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isElement__["a" /* default */])( object ) ) {
+		return object;
+	}
+
+	if ( Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_dom_isrange__["a" /* default */])( object ) ) {
+		return object.commonAncestorContainer;
+	}
+
+	if ( typeof object == 'function' ) {
+		return getDomElement( object() );
+	}
+
+	return null;
+}
 
 /**
  * A horizontal offset of the arrow tip from the edge of the balloon. Controlled by CSS.
@@ -36914,7 +37098,7 @@ function getBalloonPositionData( editor ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_view_attributeelement__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_view_attributeelement__ = __webpack_require__(89);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -37810,7 +37994,7 @@ class Config {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(30);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -38353,7 +38537,7 @@ function _clear() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__conversion_mapper__ = __webpack_require__(162);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__conversion_modelconversiondispatcher__ = __webpack_require__(175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__conversion_model_to_view_converters__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__conversion_model_to_view_converters__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__conversion_viewconversiondispatcher__ = __webpack_require__(346);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__conversion_view_to_model_converters__ = __webpack_require__(348);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__view_documentfragment__ = __webpack_require__(124);
@@ -38454,7 +38638,7 @@ class DataController {
 		this.modelToView = new __WEBPACK_IMPORTED_MODULE_3__conversion_modelconversiondispatcher__["a" /* default */]( this.model, {
 			mapper: this.mapper
 		} );
-		this.modelToView.on( 'insert:$text', Object(__WEBPACK_IMPORTED_MODULE_4__conversion_model_to_view_converters__["b" /* insertText */])(), { priority: 'lowest' } );
+		this.modelToView.on( 'insert:$text', Object(__WEBPACK_IMPORTED_MODULE_4__conversion_model_to_view_converters__["e" /* insertText */])(), { priority: 'lowest' } );
 
 		/**
 		 * View to model conversion dispatcher used by the {@link #set set method}.
@@ -38590,7 +38774,7 @@ class DataController {
 	 * {@link module:engine/view/documentfragment~DocumentFragment view document fragment} converted by the
 	 * {@link #viewToModel view to model converters}.
 	 *
-	 * When marker stamps were converted during conversion process then will be set as DocumentFragment's
+	 * When marker elements were converted during conversion process then will be set as DocumentFragment's
 	 * {@link module:engine/model/documentfragment~DocumentFragment#markers static markers map}.
 	 *
 	 * @param {module:engine/view/element~Element|module:engine/view/documentfragment~DocumentFragment} viewElementOrFragment
@@ -38887,7 +39071,7 @@ const priorities = {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assignValue__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__copyObject__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__copyObject__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__createAssigner__ = __webpack_require__(288);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isArrayLike__ = __webpack_require__(76);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isPrototype__ = __webpack_require__(78);
@@ -39003,7 +39187,7 @@ function createAssigner(assigner) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseProperty__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseProperty__ = __webpack_require__(112);
 
 
 /**
@@ -39188,7 +39372,7 @@ if (enumerate && !propertyIsEnumerable.call({ 'valueOf': 1 }, 'valueOf')) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__root__ = __webpack_require__(31);
 
 
 /** Built-in value references. */
@@ -39504,7 +39688,7 @@ function stackHas(key) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ListCache__ = __webpack_require__(81);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__MapCache__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__MapCache__ = __webpack_require__(118);
 
 
 
@@ -39904,8 +40088,8 @@ function arrayEach(array, iteratee) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__copyObject__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__keys__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__copyObject__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__keys__ = __webpack_require__(67);
 
 
 
@@ -39978,7 +40162,7 @@ function cloneBuffer(buffer, isDeep) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__copyObject__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__copyObject__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getSymbols__ = __webpack_require__(170);
 
 
@@ -40005,7 +40189,7 @@ function copySymbols(source, object) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseGetAllKeys__ = __webpack_require__(325);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getSymbols__ = __webpack_require__(170);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__keys__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__keys__ = __webpack_require__(67);
 
 
 
@@ -40058,8 +40242,8 @@ function baseGetAllKeys(object, keysFunc, symbolsFunc) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getNative__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__root__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getNative__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__root__ = __webpack_require__(31);
 
 
 
@@ -40074,8 +40258,8 @@ var DataView = Object(__WEBPACK_IMPORTED_MODULE_0__getNative__["a" /* default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getNative__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__root__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getNative__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__root__ = __webpack_require__(31);
 
 
 
@@ -40090,8 +40274,8 @@ var Promise = Object(__WEBPACK_IMPORTED_MODULE_0__getNative__["a" /* default */]
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getNative__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__root__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getNative__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__root__ = __webpack_require__(31);
 
 
 
@@ -40139,7 +40323,7 @@ function initCloneArray(array) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cloneArrayBuffer__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cloneArrayBuffer__ = __webpack_require__(120);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cloneDataView__ = __webpack_require__(331);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cloneMap__ = __webpack_require__(332);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cloneRegExp__ = __webpack_require__(334);
@@ -40233,7 +40417,7 @@ function initCloneByTag(object, tag, cloneFunc, isDeep) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cloneArrayBuffer__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cloneArrayBuffer__ = __webpack_require__(120);
 
 
 /**
@@ -40259,7 +40443,7 @@ function cloneDataView(dataView, isDeep) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__addMapEntry__ = __webpack_require__(333);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__arrayReduce__ = __webpack_require__(173);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mapToArray__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mapToArray__ = __webpack_require__(121);
 
 
 
@@ -40382,7 +40566,7 @@ function addSetEntry(set, value) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol__ = __webpack_require__(122);
 
 
 /** Used to convert symbols to primitives and strings. */
@@ -40408,7 +40592,7 @@ function cloneSymbol(symbol) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cloneArrayBuffer__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cloneArrayBuffer__ = __webpack_require__(120);
 
 
 /**
@@ -40433,7 +40617,7 @@ function cloneTypedArray(typedArray, isDeep) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseCreate__ = __webpack_require__(340);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getPrototype__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getPrototype__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isPrototype__ = __webpack_require__(78);
 
 
@@ -40487,7 +40671,7 @@ function baseCreate(proto) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__constant__ = __webpack_require__(342);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__root__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__root__ = __webpack_require__(31);
 
 
 
@@ -41118,11 +41302,11 @@ function isMac( userAgent ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_treewalker__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_node__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__model_documentfragment__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__model_writer__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__model_writer__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_lib_lodash_extend__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(30);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -41262,7 +41446,7 @@ class ViewConversionDispatcher {
 	 * @param {Object} [additionalData] Additional data to be passed in `data` argument when firing `ViewConversionDispatcher`
 	 * events. See also {@link ~ViewConversionDispatcher#event:element element event}.
 	 * @returns {module:engine/model/documentfragment~DocumentFragment} Model data that is a result of the conversion process
-	 * wrapped in `DocumentFragment`. Converted marker stamps will be set as that document fragment's
+	 * wrapped in `DocumentFragment`. Converted marker elements will be set as that document fragment's
 	 * {@link module:engine/model/documentfragment~DocumentFragment#markers static markers map}.
 	 */
 	convert( viewItem, additionalData = {} ) {
@@ -41282,7 +41466,7 @@ class ViewConversionDispatcher {
 			conversionResult = new __WEBPACK_IMPORTED_MODULE_5__model_documentfragment__["a" /* default */]( [ conversionResult ] );
 		}
 
-		// Extract temporary markers stamp from model and set as static markers collection.
+		// Extract temporary markers elements from model and set as static markers collection.
 		conversionResult.markers = extractMarkersFromModelFragment( conversionResult );
 
 		return conversionResult;
@@ -41406,7 +41590,7 @@ Object(__WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_mix__["a" /* de
 // @param {module:engine/view/documentfragment~DocumentFragment|module:engine/view/node~Node} modelItem Fragment of model.
 // @returns {Map<String, module:engine/model/range~Range>} List of static markers.
 function extractMarkersFromModelFragment( modelItem ) {
-	const markerStamps = new Set();
+	const markerElements = new Set();
 	const markers = new Map();
 
 	// Create ModelTreeWalker.
@@ -41417,16 +41601,16 @@ function extractMarkersFromModelFragment( modelItem ) {
 
 	// Walk through DocumentFragment and collect marker elements.
 	for ( const value of walker ) {
-		// Check if current element is a marker stamp.
+		// Check if current element is a marker.
 		if ( value.item.name == '$marker' ) {
-			markerStamps.add( value.item );
+			markerElements.add( value.item );
 		}
 	}
 
 	// Walk through collected marker elements store its path and remove its from the DocumentFragment.
-	for ( const stamp of markerStamps ) {
-		const markerName = stamp.getAttribute( 'data-name' );
-		const currentPosition = __WEBPACK_IMPORTED_MODULE_2__model_position__["a" /* default */].createBefore( stamp );
+	for ( const markerElement of markerElements ) {
+		const markerName = markerElement.getAttribute( 'data-name' );
+		const currentPosition = __WEBPACK_IMPORTED_MODULE_2__model_position__["a" /* default */].createBefore( markerElement );
 
 		// When marker of given name is not stored it means that we have found the beginning of the range.
 		if ( !markers.has( markerName ) ) {
@@ -41436,8 +41620,8 @@ function extractMarkersFromModelFragment( modelItem ) {
 			markers.get( markerName ).end = __WEBPACK_IMPORTED_MODULE_2__model_position__["a" /* default */].createFromPosition( currentPosition );
 		}
 
-		// Remove marker stamp element from DocumentFragment.
-		Object(__WEBPACK_IMPORTED_MODULE_6__model_writer__["d" /* remove */])( __WEBPACK_IMPORTED_MODULE_1__model_range__["a" /* default */].createOn( stamp ) );
+		// Remove marker element from DocumentFragment.
+		Object(__WEBPACK_IMPORTED_MODULE_6__model_writer__["d" /* remove */])( __WEBPACK_IMPORTED_MODULE_1__model_range__["a" /* default */].createOn( markerElement ) );
 	}
 
 	return markers;
@@ -42097,8 +42281,8 @@ class ViewElementConsumables {
 /* harmony export (immutable) */ __webpack_exports__["b"] = convertToModelFragment;
 /* harmony export (immutable) */ __webpack_exports__["a"] = convertText;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_documentfragment__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_text__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_writer__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_text__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_writer__ = __webpack_require__(21);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -42172,7 +42356,7 @@ function convertText() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_liveposition__ = __webpack_require__(177);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_element__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_range__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(30);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -42995,8 +43179,8 @@ function getSearchRange( start, isForward ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_documentfragment__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_text__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_writer__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_text__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model_writer__ = __webpack_require__(21);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -43163,7 +43347,7 @@ function removeRangeContent( range ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__treewalker__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__markercollection__ = __webpack_require__(403);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__delta_transform__ = __webpack_require__(181);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ckeditor_ckeditor5_utils_src_lib_lodash_clone__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ckeditor_ckeditor5_utils_src_lib_lodash_clone__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
@@ -43702,14 +43886,14 @@ function* combineWalkers( backward, forward ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__attributedelta__ = __webpack_require__(125);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__insertdelta__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mergedelta__ = __webpack_require__(94);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__movedelta__ = __webpack_require__(93);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__removedelta__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mergedelta__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__movedelta__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__removedelta__ = __webpack_require__(94);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__renamedelta__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__splitdelta__ = __webpack_require__(95);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__unwrapdelta__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__splitdelta__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__unwrapdelta__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__weakinsertdelta__ = __webpack_require__(180);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__wrapdelta__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__wrapdelta__ = __webpack_require__(99);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -43743,11 +43927,11 @@ function* combineWalkers( backward, forward ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__operation_attributeoperation__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__operation_attributeoperation__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__operation_insertoperation__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__operation_markeroperation__ = __webpack_require__(127);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_moveoperation__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__operation_nooperation__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__operation_nooperation__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__operation_operation__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__operation_reinsertoperation__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__operation_removeoperation__ = __webpack_require__(41);
@@ -43811,7 +43995,7 @@ class OperationFactory {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIsEqual__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIsEqual__ = __webpack_require__(92);
 
 
 /**
@@ -43855,11 +44039,11 @@ function isEqual(value, other) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Stack__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Stack__ = __webpack_require__(117);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__equalArrays__ = __webpack_require__(179);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__equalByTag__ = __webpack_require__(361);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__equalObjects__ = __webpack_require__(362);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__getTag__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__getTag__ = __webpack_require__(119);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__isArray__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__isHostObject__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__isTypedArray__ = __webpack_require__(363);
@@ -44029,10 +44213,10 @@ function arraySome(array, predicate) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol__ = __webpack_require__(122);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Uint8Array__ = __webpack_require__(172);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__equalArrays__ = __webpack_require__(179);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mapToArray__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mapToArray__ = __webpack_require__(121);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__setToArray__ = __webpack_require__(86);
 
 
@@ -44156,7 +44340,7 @@ function equalByTag(object, other, tag, equalFunc, customizer, bitmask, stack) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseHas__ = __webpack_require__(168);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__keys__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__keys__ = __webpack_require__(67);
 
 
 
@@ -44339,21 +44523,21 @@ function isTypedArray(value) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__transform__ = __webpack_require__(181);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_nooperation__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__operation_attributeoperation__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_nooperation__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__operation_attributeoperation__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__operation_insertoperation__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__delta__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__delta__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__attributedelta__ = __webpack_require__(125);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__insertdelta__ = __webpack_require__(130);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__markerdelta__ = __webpack_require__(397);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__mergedelta__ = __webpack_require__(94);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__movedelta__ = __webpack_require__(93);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__splitdelta__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__mergedelta__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__movedelta__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__splitdelta__ = __webpack_require__(97);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__weakinsertdelta__ = __webpack_require__(180);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__wrapdelta__ = __webpack_require__(97);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__unwrapdelta__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__wrapdelta__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__unwrapdelta__ = __webpack_require__(98);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__renamedelta__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__removedelta__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__removedelta__ = __webpack_require__(94);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__ = __webpack_require__(55);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -44407,9 +44591,20 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_7__attributedelta__["a" /* defa
 
 // Add special case for AttributeDelta x SplitDelta transformation.
 addTransformationCase( __WEBPACK_IMPORTED_MODULE_7__attributedelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], ( a, b, context ) => {
+	// Do not apply special transformation case if `SplitDelta` has `NoOperation` as the second operation.
+	if ( !b.position ) {
+		return defaultTransform( a, b, context );
+	}
+
+	const undoMode = context.aWasUndone || context.bWasUndone;
 	const splitPosition = new __WEBPACK_IMPORTED_MODULE_2__position__["a" /* default */]( b.position.root, b.position.path.slice( 0, -1 ) );
 
 	const deltas = defaultTransform( a, b, context );
+
+	// Special case applies only if undo is not a context and only if `SplitDelta` has `InsertOperation` (not `ReinsertOperation`).
+	if ( undoMode || !( b._cloneOperation instanceof __WEBPACK_IMPORTED_MODULE_5__operation_insertoperation__["a" /* default */] ) ) {
+		return deltas;
+	}
 
 	for ( const operation of a.operations ) {
 		// If a node that has been split has it's attribute updated, we should also update attribute of
@@ -44530,6 +44725,11 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_10__mergedelta__["a" /* default
 
 // Add special case for SplitDelta x SplitDelta transformation.
 addTransformationCase( __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], ( a, b, context ) => {
+	// Do not apply special transformation case if `SplitDelta` has `NoOperation` as the second operation.
+	if ( !a.position || !b.position ) {
+		return defaultTransform( a, b, context );
+	}
+
 	const pathA = a.position.getParentPath();
 	const pathB = b.position.getParentPath();
 
@@ -44559,6 +44759,11 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default
 
 // Add special case for SplitDelta x UnwrapDelta transformation.
 addTransformationCase( __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_15__unwrapdelta__["a" /* default */], ( a, b, context ) => {
+	// Do not apply special transformation case if `SplitDelta` has `NoOperation` as the second operation.
+	if ( !a.position ) {
+		return defaultTransform( a, b, context );
+	}
+
 	// If incoming split delta tries to split a node that just got unwrapped, there is actually nothing to split,
 	// so we discard that delta.
 	if ( a.position.root == b.position.root && Object(__WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */])( b.position.path, a.position.getParentPath() ) === 'same' ) {
@@ -44570,6 +44775,11 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default
 
 // Add special case for SplitDelta x WrapDelta transformation.
 addTransformationCase( __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_14__wrapdelta__["a" /* default */], ( a, b, context ) => {
+	// Do not apply special transformation case if `SplitDelta` has `NoOperation` as the second operation.
+	if ( !a.position ) {
+		return defaultTransform( a, b, context );
+	}
+
 	// If split is applied at the position between wrapped nodes, we cancel the split as it's results may be unexpected and
 	// very weird. Even if we do some "magic" we don't know what really are users' expectations.
 
@@ -44621,24 +44831,33 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default
 } );
 
 // Add special case for SplitDelta x WrapDelta transformation.
-addTransformationCase( __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_7__attributedelta__["a" /* default */], ( a, b ) => {
+addTransformationCase( __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_7__attributedelta__["a" /* default */], ( a, b, context ) => {
+	// Do not apply special transformation case if `SplitDelta` has `NoOperation` as the second operation.
+	if ( !a.position ) {
+		return defaultTransform( a, b, context );
+	}
+
 	a = a.clone();
 
+	const undoMode = context.aWasUndone || context.bWasUndone;
 	const splitPosition = new __WEBPACK_IMPORTED_MODULE_2__position__["a" /* default */]( a.position.root, a.position.path.slice( 0, -1 ) );
 
-	if ( a._cloneOperation instanceof __WEBPACK_IMPORTED_MODULE_5__operation_insertoperation__["a" /* default */] ) {
-		// If element to split had it's attribute changed, we have to reflect this change in an element
-		// that is in SplitDelta's InsertOperation.
-		for ( const operation of b.operations ) {
-			if ( operation.range.containsPosition( splitPosition ) || operation.range.start.isEqual( splitPosition ) ) {
-				if ( operation.newValue !== null ) {
-					a._cloneOperation.nodes.getNode( 0 ).setAttribute( operation.key, operation.newValue );
-				} else {
-					a._cloneOperation.nodes.getNode( 0 ).removeAttribute( operation.key );
-				}
+	// Special case applies only if undo is not a context and only if `SplitDelta` has `InsertOperation` (not `ReinsertOperation`).
+	if ( undoMode || !( a._cloneOperation instanceof __WEBPACK_IMPORTED_MODULE_5__operation_insertoperation__["a" /* default */] ) ) {
+		return [ a ];
+	}
 
-				break;
+	// If element to split had it's attribute changed, we have to reflect this change in an element
+	// that is in SplitDelta's InsertOperation.
+	for ( const operation of b.operations ) {
+		if ( operation.range.containsPosition( splitPosition ) || operation.range.start.isEqual( splitPosition ) ) {
+			if ( operation.newValue !== null ) {
+				a._cloneOperation.nodes.getNode( 0 ).setAttribute( operation.key, operation.newValue );
+			} else {
+				a._cloneOperation.nodes.getNode( 0 ).removeAttribute( operation.key );
 			}
+
+			break;
 		}
 	}
 
@@ -44647,6 +44866,11 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default
 
 // Add special case for UnwrapDelta x SplitDelta transformation.
 addTransformationCase( __WEBPACK_IMPORTED_MODULE_15__unwrapdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], ( a, b, context ) => {
+	// Do not apply special transformation case if `SplitDelta` has `NoOperation` as the second operation.
+	if ( !b.position ) {
+		return defaultTransform( a, b, context );
+	}
+
 	// If incoming unwrap delta tries to unwrap node that got split we should unwrap the original node and the split copy.
 	// This can be achieved either by reverting split and applying unwrap to singular node, or creating additional unwrap delta.
 	if ( a.position.root == b.position.root && Object(__WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */])( a.position.path, b.position.getParentPath() ) === 'same' ) {
@@ -44673,9 +44897,13 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_13__weakinsertdelta__["a" /* de
 
 // Add special case for WrapDelta x SplitDelta transformation.
 addTransformationCase( __WEBPACK_IMPORTED_MODULE_14__wrapdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], ( a, b, context ) => {
+	// Do not apply special transformation case if `SplitDelta` has `NoOperation` as the second operation.
+	if ( !b.position ) {
+		return defaultTransform( a, b, context );
+	}
+
 	// If incoming wrap delta tries to wrap range that contains split position, we have to cancel the split and apply
 	// the wrap. Since split was already applied, we have to revert it.
-
 	const sameRoot = a.range.start.root == b.position.root;
 	const operateInSameParent = sameRoot && Object(__WEBPACK_IMPORTED_MODULE_18__ckeditor_ckeditor5_utils_src_comparearrays__["a" /* default */])( a.range.start.getParentPath(), b.position.getParentPath() ) === 'same';
 	const splitInsideWrapRange = a.range.start.offset < b.position.offset && a.range.end.offset >= b.position.offset;
@@ -44706,15 +44934,20 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_14__wrapdelta__["a" /* default 
 // Add special case for RenameDelta x SplitDelta transformation.
 addTransformationCase( __WEBPACK_IMPORTED_MODULE_16__renamedelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], ( a, b, context ) => {
 	const undoMode = context.aWasUndone || context.bWasUndone;
-	const posBeforeSplitParent = new __WEBPACK_IMPORTED_MODULE_2__position__["a" /* default */]( b.position.root, b.position.path.slice( 0, -1 ) );
-
 	const deltas = defaultTransform( a, b, context );
 
-	if ( !undoMode && a.operations[ 0 ].position.isEqual( posBeforeSplitParent ) ) {
+	// Special case applies only if undo is not a context and only if `SplitDelta` has `InsertOperation` (not `ReinsertOperation`).
+	if ( undoMode || !( b._cloneOperation instanceof __WEBPACK_IMPORTED_MODULE_5__operation_insertoperation__["a" /* default */] ) ) {
+		return deltas;
+	}
+
+	const insertPosition = b._cloneOperation.position.getShiftedBy( -1 );
+
+	if ( insertPosition && a.operations[ 0 ].position.isEqual( insertPosition ) ) {
 		// If a node that has been split has it's name changed, we should also change name of
 		// the node created during splitting.
 		const additionalRenameDelta = a.clone();
-		additionalRenameDelta.operations[ 0 ].position = posBeforeSplitParent.getShiftedBy( 1 );
+		additionalRenameDelta.operations[ 0 ].position = insertPosition.getShiftedBy( 1 );
 
 		deltas.push( additionalRenameDelta );
 	}
@@ -44724,24 +44957,27 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_16__renamedelta__["a" /* defaul
 
 // Add special case for SplitDelta x RenameDelta transformation.
 addTransformationCase( __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_16__renamedelta__["a" /* default */], ( a, b, context ) => {
+	a = a.clone();
+
 	const undoMode = context.aWasUndone || context.bWasUndone;
-	const posBeforeSplitParent = new __WEBPACK_IMPORTED_MODULE_2__position__["a" /* default */]( a.position.root, a.position.path.slice( 0, -1 ) );
 
-	// If element to split had it's name changed, we have to reflect this by creating additional rename operation.
-	if ( !undoMode && b.operations[ 0 ].position.isEqual( posBeforeSplitParent ) ) {
-		const additionalRenameDelta = b.clone();
-		additionalRenameDelta.operations[ 0 ].position = posBeforeSplitParent.getShiftedBy( 1 );
-
-		// `nodes` is a property that is available only if `SplitDelta` `a` has `InsertOperation`.
-		// `SplitDelta` may have `ReinsertOperation` instead of `InsertOperation`.
-		// However, such delta is only created when `MergeDelta` is reversed.
-		// So if this is not undo mode, it means that `SplitDelta` has `InsertOperation`.
-		additionalRenameDelta.operations[ 0 ].oldName = a._cloneOperation.nodes.getNode( 0 ).name;
-
-		return [ a.clone(), additionalRenameDelta ];
+	// Special case applies only if undo is not a context and only if `SplitDelta` has `InsertOperation` (not `ReinsertOperation`).
+	if ( undoMode || !( a._cloneOperation instanceof __WEBPACK_IMPORTED_MODULE_5__operation_insertoperation__["a" /* default */] ) ) {
+		return [ a ];
 	}
 
-	return [ a.clone() ];
+	const insertPosition = a._cloneOperation.position.getShiftedBy( -1 );
+
+	// If element to split had it's name changed, we have to reflect this by creating additional rename operation.
+	if ( insertPosition && !undoMode && b.operations[ 0 ].position.isEqual( insertPosition ) ) {
+		const additionalRenameDelta = b.clone();
+		additionalRenameDelta.operations[ 0 ].position = insertPosition.getShiftedBy( 1 );
+		additionalRenameDelta.operations[ 0 ].oldName = a._cloneOperation.nodes.getNode( 0 ).name;
+
+		return [ a, additionalRenameDelta ];
+	}
+
+	return [ a ];
 } );
 
 // Add special case for RemoveDelta x SplitDelta transformation.
@@ -44753,6 +44989,13 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_17__removedelta__["a" /* defaul
 	// NoOperation.
 	if ( !insertPosition ) {
 		return defaultTransform( a, b, context );
+	}
+
+	const undoMode = context.aWasUndone || context.bWasUndone;
+
+	// Special case applies only if undo is not a context.
+	if ( undoMode ) {
+		return deltas;
 	}
 
 	// In case if `defaultTransform` returned more than one delta.
@@ -44773,6 +45016,13 @@ addTransformationCase( __WEBPACK_IMPORTED_MODULE_17__removedelta__["a" /* defaul
 
 // Add special case for SplitDelta x RemoveDelta transformation.
 addTransformationCase( __WEBPACK_IMPORTED_MODULE_12__splitdelta__["a" /* default */], __WEBPACK_IMPORTED_MODULE_17__removedelta__["a" /* default */], ( a, b, context ) => {
+	const undoMode = context.aWasUndone || context.bWasUndone;
+
+	// Special case applies only if undo is not a context.
+	if ( undoMode ) {
+		return defaultTransform( a, b, context );
+	}
+
 	// This case is very trickily solved.
 	// Instead of fixing `a` delta, we change `b` delta for a while and fire default transformation with fixed `b` delta.
 	// Thanks to that fixing `a` delta will be differently (correctly) transformed.
@@ -44866,14 +45116,14 @@ function noDelta() {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__insertoperation__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__attributeoperation__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__attributeoperation__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__rootattributeoperation__ = __webpack_require__(129);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__renameoperation__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__markeroperation__ = __webpack_require__(127);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__moveoperation__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__removeoperation__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__reinsertoperation__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__nooperation__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__nooperation__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_utils_src_comparearrays__ = __webpack_require__(55);
 /**
@@ -45689,7 +45939,7 @@ function makeMoveOperation( range, targetPosition, isSticky ) {
 /* unused harmony reexport uniqBy */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__uniqWith__ = __webpack_require__(239);
 /* unused harmony reexport uniqWith */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__unzip__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__unzip__ = __webpack_require__(103);
 /* unused harmony reexport unzip */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__unzipWith__ = __webpack_require__(146);
 /* unused harmony reexport unzipWith */
@@ -45784,7 +46034,7 @@ function makeMoveOperation( range, targetPosition, isSticky ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isArguments__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__isArguments__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArray__ = __webpack_require__(14);
 
 
@@ -45840,8 +46090,8 @@ function baseMatches(source) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Stack__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIsEqual__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Stack__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__baseIsEqual__ = __webpack_require__(92);
 
 
 
@@ -45942,7 +46192,7 @@ function getMatchData(object) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createToPairs__ = __webpack_require__(372);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__keys__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__keys__ = __webpack_require__(67);
 
 
 
@@ -45981,8 +46231,8 @@ var toPairs = Object(__WEBPACK_IMPORTED_MODULE_0__createToPairs__["a" /* default
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseToPairs__ = __webpack_require__(373);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getTag__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mapToArray__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__getTag__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mapToArray__ = __webpack_require__(121);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__setToPairs__ = __webpack_require__(374);
 
 
@@ -46072,13 +46322,13 @@ function setToPairs(set) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIsEqual__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIsEqual__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__get__ = __webpack_require__(190);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__hasIn__ = __webpack_require__(380);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isKey__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isKey__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isStrictComparable__ = __webpack_require__(188);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__matchesStrictComparable__ = __webpack_require__(189);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__toKey__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__toKey__ = __webpack_require__(58);
 
 
 
@@ -46153,7 +46403,7 @@ var stringToPath = Object(__WEBPACK_IMPORTED_MODULE_0__memoize__["a" /* default 
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__MapCache__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__MapCache__ = __webpack_require__(118);
 
 
 /** Used as the `TypeError` message for "Functions" methods. */
@@ -46270,7 +46520,7 @@ function toString(value) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Symbol__ = __webpack_require__(122);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isSymbol__ = __webpack_require__(47);
 
 
@@ -46373,14 +46623,14 @@ function baseHasIn(object, key) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__castPath__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArguments__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__castPath__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isArguments__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isArray__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isIndex__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isKey__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isKey__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__isLength__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__isString__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__toKey__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__isString__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__toKey__ = __webpack_require__(58);
 
 
 
@@ -46429,10 +46679,10 @@ function hasPath(object, path, hasFunc) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseProperty__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseProperty__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__basePropertyDeep__ = __webpack_require__(384);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isKey__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__toKey__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isKey__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__toKey__ = __webpack_require__(58);
 
 
 
@@ -46833,11 +47083,11 @@ function noop() {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assignValue__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__castPath__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__castPath__ = __webpack_require__(100);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__isIndex__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isKey__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isKey__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__isObject__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__toKey__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__toKey__ = __webpack_require__(58);
 
 
 
@@ -46946,7 +47196,7 @@ function baseSet(object, path, value, customizer) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__uniq__ = __webpack_require__(237);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__uniqBy__ = __webpack_require__(238);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__uniqWith__ = __webpack_require__(239);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__unzip__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__unzip__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__unzipWith__ = __webpack_require__(146);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__without__ = __webpack_require__(240);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__xor__ = __webpack_require__(241);
@@ -47044,7 +47294,7 @@ function baseSet(object, path, value, customizer) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__delta__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_markeroperation__ = __webpack_require__(127);
@@ -47478,12 +47728,12 @@ class History {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__liverange__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__text__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__text__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__textproxy__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_tomap__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_tomap__ = __webpack_require__(116);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__selection__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__selection__ = __webpack_require__(105);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -47571,7 +47821,7 @@ class DocumentSelection extends __WEBPACK_IMPORTED_MODULE_8__selection__["a" /* 
 
 			// Whenever element which had selection's attributes stored in it stops being empty,
 			// the attributes need to be removed.
-			clearAttributesStoredInElement( changes, batch );
+			clearAttributesStoredInElement( changes, batch, this._document );
 		} );
 	}
 
@@ -47798,7 +48048,7 @@ class DocumentSelection extends __WEBPACK_IMPORTED_MODULE_8__selection__["a" /* 
 
 		const liveRange = __WEBPACK_IMPORTED_MODULE_2__liverange__["a" /* default */].createFromRange( range );
 
-		this.listenTo( liveRange, 'change', ( evt, oldRange, data ) => {
+		this.listenTo( liveRange, 'change:range', ( evt, oldRange, data ) => {
 			// If `LiveRange` is in whole moved to the graveyard, fix that range.
 			if ( liveRange.root == this._document.graveyard ) {
 				const sourceStart = data.sourcePosition;
@@ -48179,7 +48429,7 @@ function getAttrsIfCharacter( node ) {
 }
 
 // Removes selection attributes from element which is not empty anymore.
-function clearAttributesStoredInElement( changes, batch ) {
+function clearAttributesStoredInElement( changes, batch, document ) {
 	// Batch may not be passed to the document#change event in some tests.
 	// See https://github.com/ckeditor/ckeditor5-engine/issues/1001#issuecomment-314202352
 	// Ignore also transparent batches because they are... transparent.
@@ -48195,11 +48445,13 @@ function clearAttributesStoredInElement( changes, batch ) {
 		return;
 	}
 
-	const storedAttributes = Array.from( changeParent.getAttributeKeys() ).filter( key => key.startsWith( storePrefix ) );
+	document.enqueueChanges( () => {
+		const storedAttributes = Array.from( changeParent.getAttributeKeys() ).filter( key => key.startsWith( storePrefix ) );
 
-	for ( const key of storedAttributes ) {
-		batch.removeAttribute( changeParent, key );
-	}
+		for ( const key of storedAttributes ) {
+			batch.removeAttribute( changeParent, key );
+		}
+	} );
 }
 
 
@@ -48248,9 +48500,9 @@ function mapsEqual( mapA, mapB ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__element__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_lib_lodash_clone__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_lib_lodash_clone__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_lib_lodash_isArray__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isString__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isString__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__range__ = __webpack_require__(3);
 /**
@@ -49242,7 +49494,9 @@ class Marker {
 		 */
 		this._liveRange = liveRange;
 
-		this._liveRange.delegate( 'change' ).to( this );
+		// Delegating does not work with namespaces. Alternatively, we could delegate all events (using `*`).
+		this._liveRange.delegate( 'change:range' ).to( this );
+		this._liveRange.delegate( 'change:content' ).to( this );
 	}
 
 	/**
@@ -49308,16 +49562,30 @@ class Marker {
 
 	/**
 	 * Fired whenever {@link ~Marker#_liveRange marker range} is changed due to changes on {@link module:engine/model/document~Document}.
-	 * This is actually a delegated {@link module:engine/model/liverange~LiveRange#event:change LiveRange change event}.
+	 * This is a delegated {@link module:engine/model/liverange~LiveRange#event:change:range LiveRange change:range event}.
 	 *
 	 * When marker is removed from {@link module:engine/model/markercollection~MarkerCollection MarkerCollection},
 	 * all event listeners listening to it should be removed. It is best to do it on
 	 * {@link module:engine/model/markercollection~MarkerCollection#event:remove MarkerCollection remove event}.
 	 *
-	 * @see module:engine/model/liverange~LiveRange#event:change
-	 * @event change
-	 * @param {module:engine/model/range~Range} oldRange Range with start and end position equal to start and end position of
-	 * this marker range before it got changed.
+	 * @see module:engine/model/liverange~LiveRange#event:change:range
+	 * @event change:range
+	 * @param {module:engine/model/range~Range} oldRange
+	 * @param {Object} data
+	 */
+
+	/**
+	 * Fired whenever change on {@link module:engine/model/document~Document} is done inside {@link ~Marker#_liveRange marker range}.
+	 * This is a delegated {@link module:engine/model/liverange~LiveRange#event:change:content LiveRange change:content event}.
+	 *
+	 * When marker is removed from {@link module:engine/model/markercollection~MarkerCollection MarkerCollection},
+	 * all event listeners listening to it should be removed. It is best to do it on
+	 * {@link module:engine/model/markercollection~MarkerCollection#event:remove MarkerCollection remove event}.
+	 *
+	 * @see module:engine/model/liverange~LiveRange#event:change:content
+	 * @event change:content
+	 * @param {module:engine/model/range~Range} oldRange
+	 * @param {Object} data
 	 */
 }
 
@@ -49384,8 +49652,12 @@ class EditingKeystrokeHandler extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_cked
 	 * If a function, then it will be called with the
 	 * {@link module:engine/view/observer/keyobserver~KeyEventData key event data} object and
 	 * a `cancel()` helper to both `preventDefault()` and `stopPropagation()` of the event.
+	 * @param {Object} [options={}] Additional options.
+	 * @param {module:utils/priorities~PriorityString|Number} [options.priority='normal'] The priority of the keystroke
+	 * callback. The higher the priority value the sooner the callback will be executed. Keystrokes having the same priority
+	 * are called in the order they were added.
 	 */
-	set( keystroke, callback ) {
+	set( keystroke, callback, options = {} ) {
 		if ( typeof callback == 'string' ) {
 			const commandName = callback;
 
@@ -49395,7 +49667,7 @@ class EditingKeystrokeHandler extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_cked
 			};
 		}
 
-		super.set( keystroke, callback );
+		super.set( keystroke, callback, options );
 	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = EditingKeystrokeHandler;
@@ -49410,7 +49682,7 @@ class EditingKeystrokeHandler extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_cked
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_document__ = __webpack_require__(406);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__conversion_mapper__ = __webpack_require__(162);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__conversion_modelconversiondispatcher__ = __webpack_require__(175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__conversion_model_to_view_converters__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__conversion_model_to_view_converters__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__conversion_view_selection_to_model_converters__ = __webpack_require__(419);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__conversion_model_selection_to_view_converters__ = __webpack_require__(257);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(15);
@@ -49518,8 +49790,8 @@ class EditingController {
 		this.listenTo( this.view, 'selectionChange', Object(__WEBPACK_IMPORTED_MODULE_4__conversion_view_selection_to_model_converters__["a" /* convertSelectionChange */])( this.model, this.mapper ) );
 
 		// Attach default content converters.
-		this.modelToView.on( 'insert:$text', Object(__WEBPACK_IMPORTED_MODULE_3__conversion_model_to_view_converters__["b" /* insertText */])(), { priority: 'lowest' } );
-		this.modelToView.on( 'remove', Object(__WEBPACK_IMPORTED_MODULE_3__conversion_model_to_view_converters__["d" /* remove */])(), { priority: 'low' } );
+		this.modelToView.on( 'insert:$text', Object(__WEBPACK_IMPORTED_MODULE_3__conversion_model_to_view_converters__["e" /* insertText */])(), { priority: 'lowest' } );
+		this.modelToView.on( 'remove', Object(__WEBPACK_IMPORTED_MODULE_3__conversion_model_to_view_converters__["g" /* remove */])(), { priority: 'low' } );
 
 		// Attach default selection converters.
 		this.modelToView.on( 'selection', Object(__WEBPACK_IMPORTED_MODULE_5__conversion_model_selection_to_view_converters__["a" /* clearAttributes */])(), { priority: 'low' } );
@@ -49575,13 +49847,13 @@ Object(__WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_mix__["a" /* de
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__selection__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__selection__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__renderer__ = __webpack_require__(407);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__domconverter__ = __webpack_require__(150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rooteditableelement__ = __webpack_require__(251);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__filler__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__filler__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__uielement__ = __webpack_require__(123);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__observer_mutationobserver__ = __webpack_require__(252);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__observer_selectionobserver__ = __webpack_require__(413);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__observer_focusobserver__ = __webpack_require__(415);
@@ -49966,14 +50238,14 @@ Object(__WEBPACK_IMPORTED_MODULE_12__ckeditor_ckeditor5_utils_src_mix__["a" /* d
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__text__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__text__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__position__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__filler__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__filler__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_diff__ = __webpack_require__(249);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_dom_insertat__ = __webpack_require__(408);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_dom_remove__ = __webpack_require__(409);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /**
@@ -50824,7 +51096,7 @@ function getCommonAncestor( nodeA, nodeB ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIsEqual__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseIsEqual__ = __webpack_require__(92);
 
 
 /**
@@ -50874,9 +51146,9 @@ function isEqualWith(value, other, customizer) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observer__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observer__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mutationobserver__ = __webpack_require__(252);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_lib_lodash_debounce__ = __webpack_require__(253);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -51153,7 +51425,7 @@ var now = Date.now;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__domeventobserver__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__domeventobserver__ = __webpack_require__(71);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -51265,8 +51537,8 @@ class FocusObserver extends __WEBPACK_IMPORTED_MODULE_0__domeventobserver__["a" 
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__domeventobserver__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__domeventobserver__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(27);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -51360,9 +51632,9 @@ class KeyObserver extends __WEBPACK_IMPORTED_MODULE_0__domeventobserver__["a" /*
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observer__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__selection__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__observer__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__selection__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_lib_lodash_debounce__ = __webpack_require__(253);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -51502,7 +51774,7 @@ function _isArrowKeyCode( keyCode ) {
 /* harmony export (immutable) */ __webpack_exports__["a"] = scrollViewportToShowTarget;
 /* unused harmony export scrollAncestorsToShowTarget */
 /* unused harmony export _test */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__isrange__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__rect__ = __webpack_require__(254);
 /**
@@ -51680,7 +51952,7 @@ function isRightOf( firstRect, secondRect ) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = convertSelectionChange;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_selection__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_selection__ = __webpack_require__(105);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -51842,7 +52114,7 @@ class BasicHtmlWriter {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_src_componentfactory__ = __webpack_require__(424);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_toolbar_enabletoolbarkeyboardfocus__ = __webpack_require__(425);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_toolbar_normalizetoolbarconfig__ = __webpack_require__(426);
 /**
@@ -52674,7 +52946,7 @@ class EditableUIView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default 
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_dom_global__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_dom_global__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__toolbarview__ = __webpack_require__(259);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_dom_tounit__ = __webpack_require__(261);
@@ -53055,7 +53327,7 @@ class ElementReplacer {
 var content = __webpack_require__(437);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(35)(content, {});
+var update = __webpack_require__(36)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -53075,7 +53347,7 @@ if(false) {
 /* 437 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(34)(undefined);
+exports = module.exports = __webpack_require__(35)(undefined);
 // imports
 
 
@@ -53192,13 +53464,13 @@ module.exports = function (css) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_basic_styles_src_bold__ = __webpack_require__(474);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_heading_src_heading__ = __webpack_require__(477);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_image_src_image__ = __webpack_require__(490);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_image_src_imagecaption__ = __webpack_require__(508);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_image_src_imagestyle__ = __webpack_require__(516);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_image_src_imagetoolbar__ = __webpack_require__(522);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_basic_styles_src_italic__ = __webpack_require__(523);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ckeditor_ckeditor5_link_src_link__ = __webpack_require__(526);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ckeditor_ckeditor5_list_src_list__ = __webpack_require__(536);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ckeditor_ckeditor5_paragraph_src_paragraph__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_image_src_imagecaption__ = __webpack_require__(509);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_image_src_imagestyle__ = __webpack_require__(517);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_image_src_imagetoolbar__ = __webpack_require__(523);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ckeditor_ckeditor5_basic_styles_src_italic__ = __webpack_require__(524);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__ckeditor_ckeditor5_link_src_link__ = __webpack_require__(527);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__ckeditor_ckeditor5_list_src_list__ = __webpack_require__(537);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ckeditor_ckeditor5_paragraph_src_paragraph__ = __webpack_require__(109);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -53591,7 +53863,7 @@ class Clipboard extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_view_observer_domeventobserver__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_view_observer_domeventobserver__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__datatransfer__ = __webpack_require__(443);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -54167,9 +54439,9 @@ function splitBlock( batch, selection, splitPos ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_view_observer_observer__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_view_observer_observer__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_observer_domeventdata__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(27);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -54298,10 +54570,10 @@ class Typing extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_view_position__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_view_text__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_view_text__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_diff__ = __webpack_require__(249);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_difftochanges__ = __webpack_require__(452);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_engine_src_view_domconverter__ = __webpack_require__(150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__inputcommand__ = __webpack_require__(453);
 /**
@@ -55055,7 +55327,7 @@ class Delete extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_pl
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_command__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_selection__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_selection__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__changebuffer__ = __webpack_require__(262);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_count__ = __webpack_require__(149);
 /**
@@ -55169,9 +55441,9 @@ class DeleteCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_view_observer_observer__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_view_observer_observer__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_observer_domeventdata__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(27);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -55241,7 +55513,7 @@ class DeleteObserver extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_eng
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__undoengine__ = __webpack_require__(458);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__theme_icons_undo_svg__ = __webpack_require__(463);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__theme_icons_undo_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__theme_icons_undo_svg__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__theme_icons_redo_svg__ = __webpack_require__(464);
@@ -56348,7 +56620,7 @@ function getText( element ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blockquoteengine__ = __webpack_require__(469);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_core_theme_icons_quote_svg__ = __webpack_require__(471);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_core_theme_icons_quote_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_core_theme_icons_quote_svg__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__theme_theme_scss__ = __webpack_require__(472);
@@ -56519,7 +56791,7 @@ class BlockQuoteEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_c
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_model_range__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_first__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_first__ = __webpack_require__(60);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -56777,7 +57049,7 @@ module.exports = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"
 var content = __webpack_require__(473);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(35)(content, {});
+var update = __webpack_require__(36)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -56797,7 +57069,7 @@ if(false) {
 /* 473 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(34)(undefined);
+exports = module.exports = __webpack_require__(35)(undefined);
 // imports
 
 
@@ -56814,7 +57086,7 @@ exports.push([module.i, "blockquote{border-left:5px solid #ccc;padding-left:20px
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__boldengine__ = __webpack_require__(475);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__theme_icons_bold_svg__ = __webpack_require__(476);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__theme_icons_bold_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__theme_icons_bold_svg__);
 /**
@@ -56955,12 +57227,12 @@ module.exports = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_paragraph_src_paragraph__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_paragraph_src_paragraph__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__headingengine__ = __webpack_require__(479);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_model__ = __webpack_require__(481);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_ui_src_dropdown_list_createlistdropdown__ = __webpack_require__(482);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_collection__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_collection__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_ui_src_template__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__theme_theme_scss__ = __webpack_require__(488);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__theme_theme_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__theme_theme_scss__);
@@ -57172,7 +57444,7 @@ function getCommandsBindingTargets(commands, attribute) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_command__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_first__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_first__ = __webpack_require__(60);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -57262,7 +57534,7 @@ function checkCanBecomeParagraph( block, schema ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_paragraph_src_paragraph__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_paragraph_src_paragraph__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__headingcommand__ = __webpack_require__(480);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -57376,7 +57648,7 @@ class HeadingEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_command__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_first__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_first__ = __webpack_require__(60);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -57639,7 +57911,7 @@ function attachDocumentClickListener( dropdownView ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__focuscycler__ = __webpack_require__(154);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keystrokehandler__ = __webpack_require__(51);
 /**
@@ -57907,7 +58179,7 @@ class ListItemView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = createDropdown;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__button_buttonview__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__button_buttonview__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dropdownview__ = __webpack_require__(486);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dropdownpanelview__ = __webpack_require__(487);
 /**
@@ -57948,7 +58220,7 @@ function createDropdown( model, locale ) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_keystrokehandler__ = __webpack_require__(51);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -58188,7 +58460,7 @@ class DropdownPanelView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* defau
 var content = __webpack_require__(489);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(35)(content, {});
+var update = __webpack_require__(36)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -58208,7 +58480,7 @@ if(false) {
 /* 489 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(34)(undefined);
+exports = module.exports = __webpack_require__(35)(undefined);
 // imports
 
 
@@ -58225,10 +58497,10 @@ exports.push([module.i, ".ck-heading_heading1{font-size:1.5em}.ck-heading_headin
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__image_imageengine__ = __webpack_require__(265);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_widget_src_widget__ = __webpack_require__(492);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__imagetextalternative__ = __webpack_require__(496);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_widget_src_widget__ = __webpack_require__(493);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__imagetextalternative__ = __webpack_require__(497);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__image_utils__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__theme_theme_scss__ = __webpack_require__(506);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__theme_theme_scss__ = __webpack_require__(507);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__theme_theme_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__theme_theme_scss__);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -58328,7 +58600,7 @@ class Image extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plu
 /* harmony export (immutable) */ __webpack_exports__["c"] = hoistImageThroughElement;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_model_position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_documentfragment__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_writer__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_writer__ = __webpack_require__(21);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -58617,16 +58889,183 @@ function hoistImageThroughElement( evt, data ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module widget/highlightstack
+ */
+
+
+
+
+/**
+ * Class used to handle correct order of
+ * {@link module:engine/conversion/buildmodelconverter~ModelConverterBuilder#toHighlight highlights} on
+ * elements. When different highlights are applied to same element correct order should be preserved:
+ * * highlight with highest priority should be applied,
+ * * if two highlights have same priority - sort by CSS class provided in
+ * {@link module:engine/conversion/buildmodelconverter~HighlightDescriptor}.
+ * This way, highlight will be applied with the same rules it is applied on texts.
+ */
+class HighlightStack {
+	/**
+	 * Creates class instance.
+	 */
+	constructor() {
+		this._stack = [];
+	}
+
+	/**
+	 * Adds highlight descriptor to the stack.
+	 *
+	 * @fires change:top
+	 * @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor} descriptor
+	 */
+	add( descriptor ) {
+		const stack = this._stack;
+		let i = 0;
+
+		// Find correct place to insert descriptor in the stack.
+		while ( stack[ i ] && shouldABeBeforeB( stack[ i ], descriptor ) ) {
+			i++;
+		}
+
+		stack.splice( i, 0, descriptor );
+
+		// New element at the stack top.
+		if ( i === 0 ) {
+			const data = {
+				newDescriptor: descriptor
+			};
+
+			// If old descriptor is present it was pushed down the stack.
+			if ( stack[ 1 ] ) {
+				const oldDescriptor = stack[ 1 ];
+
+				// New descriptor on the top is same as previous one - do not fire any event.
+				if ( compareDescriptors( descriptor, oldDescriptor ) ) {
+					return;
+				}
+
+				data.oldDescriptor = oldDescriptor;
+			}
+
+			this.fire( 'change:top', data );
+		}
+	}
+
+	/**
+	 * Removes highlight descriptor from the stack.
+	 *
+	 * @fires change:top
+	 * @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor} descriptor
+	 */
+	remove( descriptor ) {
+		const stack = this._stack;
+		const length = stack.length;
+
+		if ( length === 0 ) {
+			return;
+		}
+
+		let i = 0;
+
+		while ( stack[ i ] && !compareDescriptors( descriptor, stack[ i ] ) ) {
+			i++;
+
+			// Descriptor not found.
+			if ( i >= stack.length ) {
+				return;
+			}
+		}
+
+		stack.splice( i, 1 );
+
+		// Element from stack top was removed - fire `change:top` event with new first element. It might be `undefined`
+		// which informs that no descriptor is currently at the top.
+		if ( i === 0 ) {
+			const data = {
+				oldDescriptor: descriptor
+			};
+
+			if ( stack[ 0 ] ) {
+				const newDescriptor = stack[ 0 ];
+
+				// New descriptor on the top is same as removed one - do not fire any event.
+				if ( compareDescriptors( descriptor, newDescriptor ) ) {
+					return;
+				}
+
+				data.newDescriptor = newDescriptor;
+			}
+
+			this.fire( 'change:top', data );
+		}
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = HighlightStack;
+
+
+Object(__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( HighlightStack, __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
+
+// Compares two highlight descriptors by priority and CSS class names. Returns `true` when both descriptors are
+// considered equal.
+//
+// @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor} descriptorA
+// @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor} descriptorB
+// @returns {Boolean}
+function compareDescriptors( descriptorA, descriptorB ) {
+	return descriptorA.priority == descriptorB.priority && descriptorA.class == descriptorB.class;
+}
+
+// Checks whenever first descriptor should be placed in the stack before second one.
+//
+// @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor} a
+// @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor} b
+// @returns {Boolean}
+function shouldABeBeforeB( a, b ) {
+	if ( a.priority > b.priority ) {
+		return true;
+	} else if ( a.priority < b.priority ) {
+		return false;
+	}
+
+	// When priorities are equal and names are different - use classes to compare.
+	return a.class > b.class;
+}
+
+/**
+ * Fired when top element on {@link module:widget/highlightstack~HighlightStack} has been changed
+ *
+ * @event change:top
+ * @param {Object} data Additional information about the change.
+ * @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor} [data.newDescriptor] New highlight
+ * descriptor. It will be `undefined` when last descriptor is removed from the stack.
+ * @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor} [data.oldDescriptor] Old highlight
+ * descriptor. It will be `undefined` when first descriptor is added to the stack.
+ */
+
+
+/***/ }),
+/* 493 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_observer_mouseobserver__ = __webpack_require__(493);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_observer_mouseobserver__ = __webpack_require__(494);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_range__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_model_selection__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_model_selection__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_view_editableelement__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_engine_src_view_rooteditableelement__ = __webpack_require__(251);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils__ = __webpack_require__(155);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__theme_theme_scss__ = __webpack_require__(494);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__theme_theme_scss__ = __webpack_require__(495);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__theme_theme_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__theme_theme_scss__);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -58921,11 +59360,11 @@ function isInsideNestedEditable( element ) {
 
 
 /***/ }),
-/* 493 */
+/* 494 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__domeventobserver__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__domeventobserver__ = __webpack_require__(71);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -58975,16 +59414,16 @@ class MouseObserver extends __WEBPACK_IMPORTED_MODULE_0__domeventobserver__["a" 
 
 
 /***/ }),
-/* 494 */
+/* 495 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(495);
+var content = __webpack_require__(496);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(35)(content, {});
+var update = __webpack_require__(36)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -59001,10 +59440,10 @@ if(false) {
 }
 
 /***/ }),
-/* 495 */
+/* 496 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(34)(undefined);
+exports = module.exports = __webpack_require__(35)(undefined);
 // imports
 
 
@@ -59015,20 +59454,20 @@ exports.push([module.i, ".ck-widget{margin:.8em 0;padding:0}.ck-widget.ck-widget
 
 
 /***/ }),
-/* 496 */
+/* 497 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__imagetextalternative_imagetextalternativeengine__ = __webpack_require__(497);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__imagetextalternative_imagetextalternativeengine__ = __webpack_require__(498);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_bindings_clickoutsidehandler__ = __webpack_require__(266);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__imagetextalternative_ui_textalternativeformview__ = __webpack_require__(499);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__imagetextalternative_ui_textalternativeformview__ = __webpack_require__(500);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_panel_balloon_contextualballoon__ = __webpack_require__(156);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_core_theme_icons_low_vision_svg__ = __webpack_require__(503);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_core_theme_icons_low_vision_svg__ = __webpack_require__(504);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_core_theme_icons_low_vision_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_core_theme_icons_low_vision_svg__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__image_ui_utils__ = __webpack_require__(271);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__theme_imagetextalternative_theme_scss__ = __webpack_require__(504);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__theme_imagetextalternative_theme_scss__ = __webpack_require__(505);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__theme_imagetextalternative_theme_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__theme_imagetextalternative_theme_scss__);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -59208,11 +59647,11 @@ class ImageTextAlternative extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckedito
 
 
 /***/ }),
-/* 497 */
+/* 498 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__imagetextalternativecommand__ = __webpack_require__(498);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__imagetextalternativecommand__ = __webpack_require__(499);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -59245,7 +59684,7 @@ class ImageTextAlternativeEngine extends __WEBPACK_IMPORTED_MODULE_1__ckeditor_c
 
 
 /***/ }),
-/* 498 */
+/* 499 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -59317,12 +59756,12 @@ class ImageTextAlternativeCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_
 
 
 /***/ }),
-/* 499 */
+/* 500 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_src_view__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_template__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_labeledinput_labeledinputview__ = __webpack_require__(267);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_ui_src_inputtext_inputtextview__ = __webpack_require__(268);
@@ -59439,7 +59878,7 @@ class TextAlternativeFormView extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_cked
 
 
 /***/ }),
-/* 500 */
+/* 501 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -59508,14 +59947,14 @@ class LabelView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */] {
 
 
 /***/ }),
-/* 501 */
+/* 502 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = getOptimalPosition;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__rect__ = __webpack_require__(254);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__getpositionedancestor__ = __webpack_require__(502);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__getpositionedancestor__ = __webpack_require__(503);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__getborderwidths__ = __webpack_require__(256);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -59600,6 +60039,12 @@ function getOptimalPosition( { element, target, positions, limiter, fitInViewpor
 	// https://github.com/ckeditor/ckeditor5-utils/issues/157
 	if ( typeof target == 'function' ) {
 		target = target();
+	}
+
+	// If the {@link module:utils/dom/position~Options#limiter} is a function, use what it returns.
+	// https://github.com/ckeditor/ckeditor5-ui/issues/260
+	if ( typeof limiter == 'function' ) {
+		limiter = limiter();
 	}
 
 	const positionedElementAncestor = Object(__WEBPACK_IMPORTED_MODULE_2__getpositionedancestor__["a" /* default */])( element.parentElement );
@@ -59781,7 +60226,7 @@ function getAbsoluteRectCoordinates( { left, top } ) {
 /**
  * Target with respect to which the `element` is to be positioned.
  *
- * @member {HTMLElement|Range|ClientRect|Function} #target
+ * @member {HTMLElement|Range|ClientRect|Rect|Function} #target
  */
 
 /**
@@ -59795,7 +60240,7 @@ function getAbsoluteRectCoordinates( { left, top } ) {
  * When set, the algorithm will chose position which fits the most in the
  * limiter's bounding rect.
  *
- * @member {HTMLElement|Range|ClientRect} #limiter
+ * @member {HTMLElement|Range|ClientRect|Rect|Function} #limiter
  */
 
 /**
@@ -59818,12 +60263,12 @@ function getAbsoluteRectCoordinates( { left, top } ) {
 
 
 /***/ }),
-/* 502 */
+/* 503 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = getPositionedAncestor;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(34);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -59855,22 +60300,22 @@ function getPositionedAncestor( element ) {
 
 
 /***/ }),
-/* 503 */
+/* 504 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\" fill-rule=\"evenodd\" clip-rule=\"evenodd\" stroke-linejoin=\"round\" stroke-miterlimit=\"1.414\"><path d=\"M5.414 6.749L2.903 4.237a.49.49 0 1 1 .694-.694L6.394 6.34a10.662 10.662 0 0 1 2.127-.53c.366-.051.734-.081 1.103-.095a10.628 10.628 0 0 1 1.524.07c1.109.134 2.204.449 3.243.936a9.65 9.65 0 0 1 2.12 1.331c.276.231.542.484.784.766.18.211.349.439.488.692.169.307.301.664.301 1.039 0 .375-.132.732-.301 1.039a4.143 4.143 0 0 1-.488.691 6.668 6.668 0 0 1-.784.767 9.628 9.628 0 0 1-2.092 1.318l2.196 2.197a.49.49 0 1 1-.694.694l-2.485-2.484-.008.003-.931-.931.009-.003-6.215-6.215a9.887 9.887 0 0 0-.945.444l6.239 6.24-.006.005.78.78c-.388.094-.78.166-1.174.215l-1.11-1.11h.011L4.483 8.596a7.2 7.2 0 0 0-.665.514l-.112.098 4.897 4.897-.005.006 1.276 1.276a10.164 10.164 0 0 1-1.477-.117l-.479-.479-.009.009-4.863-4.863-.022.031a2.563 2.563 0 0 0-.124.2 1.497 1.497 0 0 0-.108.241.534.534 0 0 0-.028.133.29.29 0 0 0 .008.072.927.927 0 0 0 .082.226 2.613 2.613 0 0 0 .234.379l3.463 3.594a10.565 10.565 0 0 1-2.125-1 9.096 9.096 0 0 1-1.015-.721 6.672 6.672 0 0 1-.798-.764 4.325 4.325 0 0 1-.502-.69c-.184-.319-.329-.693-.329-1.089 0-.375.131-.732.301-1.039.139-.253.307-.481.488-.692.225-.263.471-.5.728-.719a9.538 9.538 0 0 1 2.096-1.341l.019-.009zm6.674.401a4.632 4.632 0 0 1 1.108 5.992l.345.344.046-.018a9.313 9.313 0 0 0 2-1.112 6.86 6.86 0 0 0 .727-.613c.137-.134.27-.277.392-.431.072-.091.141-.185.203-.286a1.966 1.966 0 0 0 .148-.292.72.72 0 0 0 .036-.12.29.29 0 0 0 .008-.072.492.492 0 0 0-.028-.133.999.999 0 0 0-.036-.096 2.165 2.165 0 0 0-.071-.145 2.917 2.917 0 0 0-.125-.2 3.592 3.592 0 0 0-.263-.335 5.444 5.444 0 0 0-.53-.523 7.955 7.955 0 0 0-1.054-.768 9.766 9.766 0 0 0-1.879-.891 10.119 10.119 0 0 0-1.027-.301zm-2.85.21l-.069.002a.508.508 0 0 0-.254.097.496.496 0 0 0-.104.679.498.498 0 0 0 .326.199l.045.005c.091.003.181.003.272.012a2.449 2.449 0 0 1 2.017 1.513c.024.061.043.125.069.185a.494.494 0 0 0 .45.287h.008a.496.496 0 0 0 .35-.158.482.482 0 0 0 .13-.335.638.638 0 0 0-.048-.219 3.379 3.379 0 0 0-.36-.723 3.438 3.438 0 0 0-2.791-1.543l-.028-.001h-.013z\"/></svg>"
 
 /***/ }),
-/* 504 */
+/* 505 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(505);
+var content = __webpack_require__(506);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(35)(content, {});
+var update = __webpack_require__(36)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -59887,10 +60332,10 @@ if(false) {
 }
 
 /***/ }),
-/* 505 */
+/* 506 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(34)(undefined);
+exports = module.exports = __webpack_require__(35)(undefined);
 // imports
 
 
@@ -59901,16 +60346,16 @@ exports.push([module.i, ".cke-text-alternative-form{padding:1.2em;overflow:hidde
 
 
 /***/ }),
-/* 506 */
+/* 507 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(507);
+var content = __webpack_require__(508);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(35)(content, {});
+var update = __webpack_require__(36)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -59927,10 +60372,10 @@ if(false) {
 }
 
 /***/ }),
-/* 507 */
+/* 508 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(34)(undefined);
+exports = module.exports = __webpack_require__(35)(undefined);
 // imports
 
 
@@ -59941,13 +60386,13 @@ exports.push([module.i, ".ck-editor__editable .image{text-align:center;clear:bot
 
 
 /***/ }),
-/* 508 */
+/* 509 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__imagecaption_imagecaptionengine__ = __webpack_require__(509);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__theme_imagecaption_theme_scss__ = __webpack_require__(514);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__imagecaption_imagecaptionengine__ = __webpack_require__(510);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__theme_imagecaption_theme_scss__ = __webpack_require__(515);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__theme_imagecaption_theme_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__theme_imagecaption_theme_scss__);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -59987,7 +60432,7 @@ class ImageCaption extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_
 
 
 /***/ }),
-/* 509 */
+/* 510 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -59995,13 +60440,13 @@ class ImageCaption extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_treewalker__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_view_containerelement__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_engine_src_view_element__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_view_writer__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_engine_src_view_element__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_view_writer__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_engine_src_model_position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_engine_src_view_position__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__image_utils__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__utils__ = __webpack_require__(510);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__utils__ = __webpack_require__(511);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -60214,7 +60659,7 @@ function getParentCaption(node) {
 }
 
 /***/ }),
-/* 510 */
+/* 511 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -60224,7 +60669,7 @@ function getParentCaption(node) {
 /* harmony export (immutable) */ __webpack_exports__["d"] = matchImageCaption;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_editableelement__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_view_placeholder__ = __webpack_require__(511);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_view_placeholder__ = __webpack_require__(512);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_widget_src_utils__ = __webpack_require__(155);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -60307,7 +60752,7 @@ function matchImageCaption( element ) {
 
 
 /***/ }),
-/* 511 */
+/* 512 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -60316,7 +60761,7 @@ function matchImageCaption( element ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_lib_lodash_extend__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__theme_placeholder_scss__ = __webpack_require__(512);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__theme_placeholder_scss__ = __webpack_require__(513);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__theme_placeholder_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__theme_placeholder_scss__);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -60451,16 +60896,16 @@ function updateSinglePlaceholder( element, checkFunction ) {
 
 
 /***/ }),
-/* 512 */
+/* 513 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(513);
+var content = __webpack_require__(514);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(35)(content, {});
+var update = __webpack_require__(36)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -60477,10 +60922,10 @@ if(false) {
 }
 
 /***/ }),
-/* 513 */
+/* 514 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(34)(undefined);
+exports = module.exports = __webpack_require__(35)(undefined);
 // imports
 
 
@@ -60491,16 +60936,16 @@ exports.push([module.i, ".ck-placeholder:before{content:attr(data-placeholder);c
 
 
 /***/ }),
-/* 514 */
+/* 515 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(515);
+var content = __webpack_require__(516);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(35)(content, {});
+var update = __webpack_require__(36)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -60517,10 +60962,10 @@ if(false) {
 }
 
 /***/ }),
-/* 515 */
+/* 516 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(34)(undefined);
+exports = module.exports = __webpack_require__(35)(undefined);
 // imports
 
 
@@ -60531,13 +60976,13 @@ exports.push([module.i, ".ck-editor__editable .image>figcaption{background-color
 
 
 /***/ }),
-/* 516 */
+/* 517 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__imagestyle_imagestyleengine__ = __webpack_require__(517);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__imagestyle_imagestyleengine__ = __webpack_require__(518);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -60657,17 +61102,17 @@ class ImageStyle extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_sr
 
 
 /***/ }),
-/* 517 */
+/* 518 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__imagestylecommand__ = __webpack_require__(518);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__imagestylecommand__ = __webpack_require__(519);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__image_imageengine__ = __webpack_require__(265);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__converters__ = __webpack_require__(519);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_core_theme_icons_object_center_svg__ = __webpack_require__(520);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__converters__ = __webpack_require__(520);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_core_theme_icons_object_center_svg__ = __webpack_require__(521);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_core_theme_icons_object_center_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_core_theme_icons_object_center_svg__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_core_theme_icons_object_right_svg__ = __webpack_require__(521);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_core_theme_icons_object_right_svg__ = __webpack_require__(522);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_core_theme_icons_object_right_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_core_theme_icons_object_right_svg__);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -60774,7 +61219,7 @@ class ImageStyleEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_c
  */
 
 /***/ }),
-/* 518 */
+/* 519 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -60870,7 +61315,7 @@ class ImageStyleCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_
 
 
 /***/ }),
-/* 519 */
+/* 520 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61019,19 +61464,19 @@ function handleAddition( evenType, style, viewElement ) {
 
 
 /***/ }),
-/* 520 */
+/* 521 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M2 16h16v1H2v-1zm15-2H3V6h14v8zm-1-7H4v6h12V7zM2 3h16v1H2V3z\"/></svg>"
 
 /***/ }),
-/* 521 */
+/* 522 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M18 16H2v-1h16v1zM6.978 13H2v-1h4.978v1zM18 6v7H9V6h9zm-1 6V7h-7v5h7zM6.978 10H2V9h4.978v1zm0-3H2V6h4.978v1zM18 4H2V3h16v1z\"/></svg>"
 
 /***/ }),
-/* 522 */
+/* 523 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61231,14 +61676,14 @@ class ImageToolbar extends __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_core_
 
 
 /***/ }),
-/* 523 */
+/* 524 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__italicengine__ = __webpack_require__(524);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__theme_icons_italic_svg__ = __webpack_require__(525);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__italicengine__ = __webpack_require__(525);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__theme_icons_italic_svg__ = __webpack_require__(526);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__theme_icons_italic_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__theme_icons_italic_svg__);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -61301,7 +61746,7 @@ class Italic extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_pl
 
 
 /***/ }),
-/* 524 */
+/* 525 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61368,30 +61813,30 @@ class ItalicEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_
 
 
 /***/ }),
-/* 525 */
+/* 526 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M13.825 3.914l-.126.558a5.701 5.701 0 0 0-.685.076c-.282.045-.49.088-.626.127-.237.073-.406.186-.508.338a1.586 1.586 0 0 0-.22.5l-2.03 8.769a1.24 1.24 0 0 0-.034.27c.001.13.03.24.086.33.056.09.157.17.304.237.085.04.27.086.558.14.288.053.502.086.643.097l-.127.558H5.656l.127-.558.677-.05c.293-.023.501-.057.625-.102a1.11 1.11 0 0 0 .5-.326c.112-.138.188-.306.228-.503l2.02-8.778a1.428 1.428 0 0 0 .035-.305.59.59 0 0 0-.072-.295c-.048-.085-.148-.161-.3-.229a3.457 3.457 0 0 0-.622-.19 5.001 5.001 0 0 0-.58-.106l.128-.558h5.403z\" fill=\"#454545\" fill-rule=\"evenodd\"/></svg>"
 
 /***/ }),
-/* 526 */
+/* 527 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_observer_clickobserver__ = __webpack_require__(527);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_observer_clickobserver__ = __webpack_require__(528);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_view_range__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__linkengine__ = __webpack_require__(528);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__linkengine__ = __webpack_require__(529);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__linkelement__ = __webpack_require__(272);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_panel_balloon_contextualballoon__ = __webpack_require__(156);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_ui_src_bindings_clickoutsidehandler__ = __webpack_require__(266);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ui_linkformview__ = __webpack_require__(531);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__theme_icons_link_svg__ = __webpack_require__(532);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ui_linkformview__ = __webpack_require__(532);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__theme_icons_link_svg__ = __webpack_require__(533);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__theme_icons_link_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__theme_icons_link_svg__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__theme_icons_unlink_svg__ = __webpack_require__(533);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__theme_icons_unlink_svg__ = __webpack_require__(534);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__theme_icons_unlink_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__theme_icons_unlink_svg__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__theme_theme_scss__ = __webpack_require__(534);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__theme_theme_scss__ = __webpack_require__(535);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__theme_theme_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__theme_theme_scss__);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -61441,7 +61886,8 @@ class Link extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plug
 	 * @inheritDoc
 	 */
     init() {
-        this.editor.editing.view.addObserver(__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_observer_clickobserver__["a" /* default */]);
+        const editor = this.editor;
+        editor.editing.view.addObserver(__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_observer_clickobserver__["a" /* default */]);
         /**
 		 * The form view displayed inside the balloon.
 		 *
@@ -61454,7 +61900,7 @@ class Link extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plug
 		 * @private
 		 * @member {module:ui/panel/balloon/contextualballoon~ContextualBalloon}
 		 */
-        this._balloon = this.editor.plugins.get(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_panel_balloon_contextualballoon__["a" /* default */]);
+        this._balloon = editor.plugins.get(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_panel_balloon_contextualballoon__["a" /* default */]);
         // Create toolbar buttons.
         this._createToolbarLinkButton();
         this._createToolbarUnlinkButton();
@@ -61572,6 +62018,11 @@ class Link extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plug
                 this.formView.focus();
                 cancel();
             }
+        }, {
+            // Use the high priority because the link UI navigation is more important
+            // than other feature's actions, e.g. list indentation.
+            // https://github.com/ckeditor/ckeditor5-link/issues/146
+            priority: 'high'
         });
         // Close the panel on the Esc key press when the editable has focus and the balloon is visible.
         this.editor.keystrokes.set('Esc', (data, cancel) => {
@@ -61627,13 +62078,9 @@ class Link extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plug
                  //  * there was no link element in the first place, i.e. creating a new link
             else {
                 // If still in a link element, simply update the position of the balloon.
-                if (renderSelectedLink) {
-                    this._balloon.updatePosition();
-                }    // If there was no link, upon #render, the balloon must be moved
-                     // to the new position in the editing view (a new native DOM range).
-                else {
-                    this._balloon.updatePosition(this._getBalloonPositionData());
-                }
+                // If there was no link, upon #render, the balloon must be moved
+                // to the new position in the editing view (a new native DOM range).
+                this._balloon.updatePosition(this._getBalloonPositionData());
             }
         });
         if (this._balloon.hasView(this.formView)) {
@@ -61686,10 +62133,7 @@ class Link extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plug
         const target = targetLink ? // When selection is inside link element, then attach panel to this element.
         viewDocument.domConverter.mapViewToDom(targetLink) : // Otherwise attach panel to the selection.
         viewDocument.domConverter.viewRangeToDom(viewDocument.selection.getFirstRange());
-        return {
-            target,
-            limiter: viewDocument.domConverter.mapViewToDom(viewDocument.selection.editableElement)
-        };
+        return { target };
     }
     /**
 	 * Returns the {@link module:link/linkelement~LinkElement} under
@@ -61736,11 +62180,11 @@ function findLinkElementAncestor(position) {
 }
 
 /***/ }),
-/* 527 */
+/* 528 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__domeventobserver__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__domeventobserver__ = __webpack_require__(71);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -61791,7 +62235,7 @@ class ClickObserver extends __WEBPACK_IMPORTED_MODULE_0__domeventobserver__["a" 
 
 
 /***/ }),
-/* 528 */
+/* 529 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61799,8 +62243,8 @@ class ClickObserver extends __WEBPACK_IMPORTED_MODULE_0__domeventobserver__["a" 
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__linkelement__ = __webpack_require__(272);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__linkcommand__ = __webpack_require__(529);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__unlinkcommand__ = __webpack_require__(530);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__linkcommand__ = __webpack_require__(530);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__unlinkcommand__ = __webpack_require__(531);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -61869,12 +62313,12 @@ class LinkEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_sr
 
 
 /***/ }),
-/* 529 */
+/* 530 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_command__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_text__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_text__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_range__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__findlinkrange__ = __webpack_require__(273);
 /**
@@ -61979,7 +62423,7 @@ class LinkCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_s
 
 
 /***/ }),
-/* 530 */
+/* 531 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -62042,18 +62486,18 @@ class UnlinkCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core
 
 
 /***/ }),
-/* 531 */
+/* 532 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_src_view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_template__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_viewcollection__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_ui_src_labeledinput_labeledinputview__ = __webpack_require__(267);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_inputtext_inputtextview__ = __webpack_require__(268);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_ui_src_bindings_submithandler__ = __webpack_require__(269);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_ui_src_focuscycler__ = __webpack_require__(154);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_keystrokehandler__ = __webpack_require__(51);
 /**
@@ -62251,28 +62695,28 @@ class LinkFormView extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_sr
  */
 
 /***/ }),
-/* 532 */
+/* 533 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"#222\" fill-rule=\"evenodd\"><path d=\"M14.2 10.956l1.227-1.227a3.995 3.995 0 0 0-.002-5.654 4 4 0 0 0-5.654-.002L7.698 6.145a3.995 3.995 0 0 0 .003 5.654c.39.39.84.682 1.32.878l-.305-.307.638-.638a2.99 2.99 0 0 1-.946-.64 2.995 2.995 0 0 1-.003-4.24l2.073-2.072a3 3 0 0 1 4.242 4.242l-1.226 1.227.707.707z\"/><path d=\"M10.166 7.405c.41.192.795.457 1.133.796a3.995 3.995 0 0 1 .003 5.654l-2.073 2.072a4 4 0 0 1-5.654-.002 3.995 3.995 0 0 1-.002-5.654l1.362-1.363.707.707-1.362 1.363a3 3 0 0 0 4.243 4.243l2.072-2.073a2.995 2.995 0 0 0-.003-4.24 2.987 2.987 0 0 0-1.196-.733l.77-.77z\"/></g></svg>"
 
 /***/ }),
-/* 533 */
+/* 534 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"#222\" fill-rule=\"evenodd\"><path d=\"M14.2 10.956l1.227-1.227a3.995 3.995 0 0 0-.002-5.654 4 4 0 0 0-5.654-.002L7.698 6.145a3.995 3.995 0 0 0 .003 5.654c.39.39.84.682 1.32.878l-.305-.307.638-.638a2.99 2.99 0 0 1-.946-.64 2.995 2.995 0 0 1-.003-4.24l2.073-2.072a3 3 0 0 1 4.242 4.242l-1.226 1.227.707.707z\"/><path d=\"M14.906 16.092l2.557-2.557-.722-.721-2.556 2.556-2.345-2.345-.722.721 2.345 2.346-2.556 2.556.721.722 2.557-2.557 2.768 2.768.721-.722-2.768-2.767zm-2.513-3.999A4.067 4.067 0 0 0 10.148 7.5l-.794.794c.448.142.869.39 1.223.745a3.054 3.054 0 0 1 .758 3.055h1.058zm-2.204 3.104l-1.049 1.05c-1.609 1.608-4.208 1.62-5.8.028-1.595-1.595-1.584-4.188.028-5.8l1.406-1.406.721.722-1.405 1.405c-1.21 1.21-1.216 3.154-.02 4.35 1.192 1.192 3.142 1.186 4.349-.021l1.77-1.771v1.443z\"/></g></svg>"
 
 /***/ }),
-/* 534 */
+/* 535 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(535);
+var content = __webpack_require__(536);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(35)(content, {});
+var update = __webpack_require__(36)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -62289,10 +62733,10 @@ if(false) {
 }
 
 /***/ }),
-/* 535 */
+/* 536 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(34)(undefined);
+exports = module.exports = __webpack_require__(35)(undefined);
 // imports
 
 
@@ -62303,18 +62747,17 @@ exports.push([module.i, ".ck-link-form{padding:1.2em;overflow:hidden}.ck-link-fo
 
 
 /***/ }),
-/* 536 */
+/* 537 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__listengine__ = __webpack_require__(537);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__theme_icons_numberedlist_svg__ = __webpack_require__(542);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__listengine__ = __webpack_require__(538);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__theme_icons_numberedlist_svg__ = __webpack_require__(543);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__theme_icons_numberedlist_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__theme_icons_numberedlist_svg__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__theme_icons_bulletedlist_svg__ = __webpack_require__(543);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__theme_icons_bulletedlist_svg__ = __webpack_require__(544);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__theme_icons_bulletedlist_svg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__theme_icons_bulletedlist_svg__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -62322,7 +62765,6 @@ exports.push([module.i, ".ck-link-form{padding:1.2em;overflow:hidden}.ck-link-fo
 /**
  * @module list/list
  */
-
 
 
 
@@ -62368,25 +62810,17 @@ class List extends __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_core_src_plug
                 evt.stop();
             }
         });
-        // Add Tab key support.
-        // When in list item, pressing Tab should indent list item, if possible.
-        // Pressing Shift+Tab should outdent list item.
-        this.listenTo(this.editor.editing.view, 'keydown', (evt, data) => {
-            let commandName;
-            if (data.keystroke == Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keyboard__["d" /* parseKeystroke */])('Tab')) {
-                commandName = 'indentList';
-            } else if (data.keystroke == Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keyboard__["d" /* parseKeystroke */])('Shift+Tab')) {
-                commandName = 'outdentList';
-            }
-            if (commandName) {
+        const getCommandExecuter = commandName => {
+            return (data, cancel) => {
                 const command = this.editor.commands.get(commandName);
                 if (command.isEnabled) {
                     this.editor.execute(commandName);
-                    data.preventDefault();
-                    evt.stop();
+                    cancel();
                 }
-            }
-        });
+            };
+        };
+        this.editor.keystrokes.set('Tab', getCommandExecuter('indentList'));
+        this.editor.keystrokes.set('Shift+Tab', getCommandExecuter('outdentList'));
     }
     /**
 	 * Helper method for initializing a button and linking it with an appropriate command.
@@ -62400,7 +62834,7 @@ class List extends __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_core_src_plug
         const editor = this.editor;
         const command = editor.commands.get(commandName);
         editor.ui.componentFactory.add(commandName, locale => {
-            const buttonView = new __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_button_buttonview__["a" /* default */](locale);
+            const buttonView = new __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_ui_src_button_buttonview__["a" /* default */](locale);
             buttonView.set({
                 label,
                 icon,
@@ -62418,15 +62852,15 @@ class List extends __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_core_src_plug
 
 
 /***/ }),
-/* 537 */
+/* 538 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__listcommand__ = __webpack_require__(538);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__indentcommand__ = __webpack_require__(539);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__listcommand__ = __webpack_require__(539);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__indentcommand__ = __webpack_require__(540);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_paragraph_src_paragraph__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__converters__ = __webpack_require__(540);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_paragraph_src_paragraph__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__converters__ = __webpack_require__(541);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -62556,13 +62990,13 @@ function getViewListItemLength( element ) {
 
 
 /***/ }),
-/* 538 */
+/* 539 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_command__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_first__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_first__ = __webpack_require__(60);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -62887,12 +63321,12 @@ function checkCanBecomeListItem( block, schema ) {
 
 
 /***/ }),
-/* 539 */
+/* 540 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_command__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_first__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_first__ = __webpack_require__(60);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -63087,7 +63521,7 @@ function _seekListItem( item, seekForward ) {
 
 
 /***/ }),
-/* 540 */
+/* 541 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63104,16 +63538,16 @@ function _seekListItem( item, seekForward ) {
 /* harmony export (immutable) */ __webpack_exports__["m"] = viewToModelPosition;
 /* harmony export (immutable) */ __webpack_exports__["c"] = modelChangePostFixer;
 /* harmony export (immutable) */ __webpack_exports__["d"] = modelIndentPasteFixer;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__viewlistitemelement__ = __webpack_require__(541);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__viewlistitemelement__ = __webpack_require__(542);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_documentfragment__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_model_position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_engine_src_model_writer__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_engine_src_model_writer__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_view_containerelement__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_engine_src_view_position__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_engine_src_view_range__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_engine_src_view_treewalker__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_engine_src_view_writer__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_engine_src_view_treewalker__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_engine_src_view_writer__ = __webpack_require__(90);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -63218,8 +63652,10 @@ function modelViewRemove( evt, data, consumable, conversionApi ) {
 		return;
 	}
 
-	const viewPosition = conversionApi.mapper.toViewPosition( data.sourcePosition );
-	const viewItem = viewPosition.nodeAfter.is( 'li' ) ? viewPosition.nodeAfter : viewPosition.nodeAfter.getChild( 0 );
+	let viewPosition = conversionApi.mapper.toViewPosition( data.sourcePosition );
+	viewPosition = viewPosition.getLastMatchingPosition( value => !value.item.is( 'li' ) );
+
+	const viewItem = viewPosition.nodeAfter;
 
 	// 1. Break the container after and before the list item.
 	// This will create a view list with one view list item -- the one that changed type.
@@ -64162,7 +64598,7 @@ function positionAfterUiElements( viewPosition ) {
 
 
 /***/ }),
-/* 541 */
+/* 542 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -64216,13 +64652,13 @@ function getFillerOffset() {
 
 
 /***/ }),
-/* 542 */
+/* 543 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M7 17h10v-1H7v1zM6 4v1h13V4H6zm1 6v1h11v-1H7zM2 2.5c0 .277.223.5.5.5H3v3.5a.499.499 0 1 0 1 0v-4c0-.277-.223-.5-.5-.5h-1c-.277 0-.5.223-.5.5zM2.5 8a.499.499 0 1 0 0 1H4v1H2.5c-.277 0-.5.223-.5.5v2c0 .277.223.5.5.5h2a.499.499 0 1 0 0-1H3v-1h1.5a.46.46 0 0 0 .188-.031.45.45 0 0 0 .28-.281A.461.461 0 0 0 5 10.5v-2a.46.46 0 0 0-.031-.187.45.45 0 0 0-.282-.282.463.463 0 0 0-.125-.03H2.5V8zm2.352 10.853a.493.493 0 0 0 .148-.35v-4.005A.493.493 0 0 0 4.505 14h-2.01a.494.494 0 0 0-.495.5c0 .268.222.5.495.5H4v1H2.495a.494.494 0 0 0-.495.5c0 .268.222.5.495.5H4v1H2.495a.494.494 0 0 0-.495.5c0 .268.222.5.495.5h2.01a.49.49 0 0 0 .351-.146z\" fill=\"#454545\" fill-rule=\"evenodd\"/></svg>"
 
 /***/ }),
-/* 543 */
+/* 544 */
 /***/ (function(module, exports) {
 
 module.exports = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M6 16v1h10v-1H6zM6 4v1h12V4H6zm0 6v1h11v-1H6zM1 4.5C1 3.672 1.666 3 2.5 3 3.328 3 4 3.666 4 4.5 4 5.328 3.334 6 2.5 6 1.672 6 1 5.334 1 4.5zm0 6C1 9.672 1.666 9 2.5 9c.828 0 1.5.666 1.5 1.5 0 .828-.666 1.5-1.5 1.5-.828 0-1.5-.666-1.5-1.5zm0 6c0-.828.666-1.5 1.5-1.5.828 0 1.5.666 1.5 1.5 0 .828-.666 1.5-1.5 1.5-.828 0-1.5-.666-1.5-1.5z\" fill=\"#454545\" fill-rule=\"evenodd\"/></svg>"

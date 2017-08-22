@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Images - CKEditor 5</title>
     <link rel="canonical" href="/ckeditor5/latest/features/image.html">
-    <link rel="stylesheet" href="../../../assets/0.3.2/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../assets/0.3.5/css/styles.css" type="text/css" media="screen">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
-    <script src="../../../assets/0.3.2/scripts/app.js"></script>
+    <script src="../../../assets/0.3.5/scripts/app.js"></script>
   </head>
   <body>
     <header class="top">
@@ -21,24 +21,24 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.2/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.5/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <h1><img src="../../../assets/0.3.2/img/book.svg" alt="guide">Images
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Base-image-support">Base image support</a></li><li><a href="#Image-contextual-toolbar">Image contextual toolbar</a></li><li><a href="#Image-captions">Image captions</a></li><li><a href="#Image-styles">Image styles</a><ol><li><a href="#Configuring-image-styles">Configuring image styles</a></li></ol></li><li><a href="#Image-upload">Image upload</a></li><li><a href="#Responsive-images">Responsive images</a></li><li><a href="#Installation">Installation</a></li><li><a href="#Common-API">Common API</a></li><li><a href="#Contribute">Contribute</a></li></ol></nav><p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-image" target="_blank" rel="external"><code>@ckeditor/ckeditor5-image</code></a> package contains multiple plugins which implements various image-related features:</p>
+          <h1><img src="../../../assets/0.3.5/img/book.svg" alt="guide">Images
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Base-image-support">Base image support</a></li><li><a href="#Image-contextual-toolbar">Image contextual toolbar</a></li><li><a href="#Image-captions">Image captions</a></li><li><a href="#Image-styles">Image styles</a><ol><li><a href="#Configuring-image-styles">Configuring image styles</a></li></ol></li><li><a href="#Image-upload">Image upload</a></li><li><a href="#Responsive-images">Responsive images</a></li><li><a href="#Installation">Installation</a></li><li><a href="#Common-API">Common API</a></li><li><a href="#Contribute">Contribute</a></li></ol></nav><p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-image" target="_blank" rel="external"><code>@ckeditor/ckeditor5-image</code></a> package contains multiple plugins that implement various image-related features:</p>
 <ul>
-<li><a href="../api/module_image_image-Image.html">Image</a> implements basic support for images,</li>
-<li><a href="../api/module_image_imagetoolbar-ImageToolbar.html">ImageToolbar</a> adds image feature&#x2019;s contextual toolbar,</li>
-<li><a href="../api/module_image_imagecaption-ImageCaption.html">ImageCaption</a> adds support for captions,</li>
-<li><a href="../api/module_image_imagestyle-ImageStyle.html">ImageStyle</a> adds support for image styles,</li>
-<li><a href="../api/module_upload_imageupload-ImageUpload.html">ImageUpload</a> adds support for uploading dropped or pasted images (note: it&#x2019;s currently located in the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-upload" target="_blank" rel="external"><code>@ckeditor/ckeditor5-upload</code></a> package but it will be moved to the <code>@ckeditor/ckeditor5-image</code> package).</li>
+<li><a href="../api/module_image_image-Image.html"><code>Image</code></a> implements basic support for images,</li>
+<li><a href="../api/module_image_imagetoolbar-ImageToolbar.html"><code>ImageToolbar</code></a> adds the image feature&#x2019;s contextual toolbar,</li>
+<li><a href="../api/module_image_imagecaption-ImageCaption.html"><code>ImageCaption</code></a> adds support for captions,</li>
+<li><a href="../api/module_image_imagestyle-ImageStyle.html"><code>ImageStyle</code></a> adds support for image styles,</li>
+<li><a href="../api/module_upload_imageupload-ImageUpload.html"><code>ImageUpload</code></a> adds support for uploading dropped or pasted images (note: it is currently located in the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-upload" target="_blank" rel="external"><code>@ckeditor/ckeditor5-upload</code></a> package but will be moved to the <code>@ckeditor/ckeditor5-image</code> package).</li>
 </ul>
-<div class="info-box notice notice__info"><p>The first 4 features (so all except the upload support) are enabled by default in all builds. They are also included in the <a href="../api/module_presets_article-Article.html">Article preset</a>.</p></div>
+<div class="info-box notice notice__info"><p>The first four features listed above (so all except upload support) are enabled by default in all builds. They are also included in the <a href="../api/module_presets_article-Article.html">Article preset</a>.</p></div>
 
-<h2 id="Base-image-support"><a href="#Base-image-support" class="headerlink" title="Base image support"></a>Base image support</h2><p>The <a href="../api/module_image_image-Image.html">Image</a> feature adds support for plain images with just the <code>alt</code> attribute set. That translates to the following HTML:</p>
+<h2 id="Base-image-support"><a href="#Base-image-support" class="headerlink" title="Base image support"></a>Base image support</h2><p>The <a href="../api/module_image_image-Image.html"><code>Image</code></a> feature adds support for plain images with just the <code>alt</code> attribute set. This translates to the following HTML:</p>
 <pre><code class="html">&lt;figure class=&quot;image&quot;&gt;
     &lt;img src=&quot;...&quot; alt=&quot;...&quot;&gt;
 &lt;/figure&gt;
@@ -47,9 +47,9 @@
 
 <p>You can see the demo of an editor with the base image feature enabled below:</p>
 <p>{@snippetTODO image}</p>
-<div class="info-box notice notice__hint"><p>The base image feature, unlike in CKEditor 4, does not support any user interface for inserting or managing images. Its sole purpose is to lay ground for other plugins (mentioned above) to build the target user experience. This pattern (composition of atomic features) is common for CKEditor 5 and allows developer to build their own customized experience by implementing specific subfeatures differently.</p></div>
+<div class="info-box notice notice__hint"><p>The base image feature, unlike in CKEditor 4, does not support any user interface for inserting or managing images. Its sole purpose is to lay ground for other plugins (mentioned above) to build the target user experience. This pattern (composition of atomic features) is common for CKEditor 5 and allows the developers to build their own customized experience by implementing specific subfeatures differently.</p></div>
 
-<h2 id="Image-contextual-toolbar"><a href="#Image-contextual-toolbar" class="headerlink" title="Image contextual toolbar"></a>Image contextual toolbar</h2><p>The <a href="../api/module_image_imagetoolbar-ImageToobar.html">ImageToobar</a> introduces contextual toolbar for images. The toolbar appears when an image is selected and can be configured to contain any buttons you want. Usually, these will be image-related options such as the text alternative (which is introduced by the base image plugin) button and <a href="#image-styles">image styles buttons</a>.</p>
+<h2 id="Image-contextual-toolbar"><a href="#Image-contextual-toolbar" class="headerlink" title="Image contextual toolbar"></a>Image contextual toolbar</h2><p>The <a href="../api/module_image_imagetoolbar-ImageToobar.html"><code>ImageToobar</code></a> plugin introduces contextual toolbar for images. The toolbar appears when an image is selected and can be configured to contain any buttons you want. Usually, these will be image-related options such as the text alternative (which is introduced by the base image plugin) button and <a href="#image-styles">image styles buttons</a>.</p>
 <p>See a demo of an editor with the contextual toolbar enabled:</p>
 <p>{@snippetTODO image-toolbar}</p>
 <p>The image toolbar is configured to contain the image text alternative button:</p>
@@ -60,31 +60,31 @@
         }
     } )
 </code></pre>
-<h2 id="Image-captions"><a href="#Image-captions" class="headerlink" title="Image captions"></a>Image captions</h2><p>The <a href="../api/module_image_imagecaption-ImageCaption.html">ImageCaption</a> feature adds support for image captions:</p>
+<h2 id="Image-captions"><a href="#Image-captions" class="headerlink" title="Image captions"></a>Image captions</h2><p>The <a href="../api/module_image_imagecaption-ImageCaption.html"><code>ImageCaption</code></a> plugin adds support for image captions:</p>
 <pre><code class="html">&lt;figure class=&quot;image&quot;&gt;
     &lt;img src=&quot;...&quot; alt=&quot;...&quot;&gt;
     &lt;figcaption&gt;Caption goes here...&lt;/figcaption&gt;
 &lt;/figure&gt;
 </code></pre>
-<p>By default, if image&#x2019;s caption is empty, the <code>&lt;figcaption&gt;</code> element is not visible to the user. You can click the image to reveal the caption. See the demo below:</p>
+<p>By default, if the image caption is empty, the <code>&lt;figcaption&gt;</code> element is not visible to the user. You can click the image to reveal the caption. See the demo below:</p>
 <p>{@snippetTODO image-caption}</p>
-<h2 id="Image-styles"><a href="#Image-styles" class="headerlink" title="Image styles"></a>Image styles</h2><p>In simple integrations it&#x2019;s enough to let the user insert images, set their text alternative and the editor&#x2019;s job is done. An example of such a simple solution are e.g. <a href="https://github.com" target="_blank" rel="external">GitHub</a> comments. The styling of the images (e.g. their maximum width and margins) is controlled by GitHub through stylesheets.</p>
-<p>In more advanced scenarios, the user may need to be able to decide whether the image should take the whole width (e.g. if it&#x2019;s the article&#x2019;s main photo) or it should take e.g. 50% of the width and be pulled out of the content (so called pulled images). Various integration scenarios require different types of images to be used.</p>
-<p>This is what the <a href="../api/module_image_imagestyle-ImageStyle.html">ImageStyle</a> feature is designed for.</p>
-<p>However, unlike in CKEditor 4, the user does not set the border, alignment, margins, width, etc. separately. Instead, the user can pick one of the styles defined by the developer who prepared the editor&#x2019;s integration. This gives the developer a control over how the users style images and makes the user&#x2019;s life easier by setting multiple properties at once.</p>
-<p>A style is applied to the image in form of a class. By default, the editor is configured to support two styles &#x2013; &#x201C;full width&#x201D; (which doesn&#x2019;t apply any class &#x2013; it&#x2019;s the default style) and &#x201C;side image&#x201D; (which applies the <code>image-style-side</code> class).</p>
-<p>Normal (full width) image:</p>
+<h2 id="Image-styles"><a href="#Image-styles" class="headerlink" title="Image styles"></a>Image styles</h2><p>In simple integrations it is enough to let the user insert images, set their text alternative and the editor&#x2019;s job is done. An example of such a simple solution are e.g. <a href="https://github.com" target="_blank" rel="external">GitHub</a> comments. The styling of the images (e.g. their maximum width and margins) is controlled by GitHub through stylesheets.</p>
+<p>In more advanced scenarios, the user may need to be able to decide whether the image should take the whole width (e.g. if it is the article&#x2019;s main photo) or it should take e.g. 50% of the width and be pulled out of the content (so called &#x201C;pulled images&#x201D;). Various integration scenarios require different types of images to be used.</p>
+<p>This is what the <a href="../api/module_image_imagestyle-ImageStyle.html"><code>ImageStyle</code></a> feature is designed for.</p>
+<p>However, unlike in CKEditor 4, the user does not set the border, alignment, margins, width, etc. separately. Instead, the user can pick one of the styles defined by the developer who prepared the editor integration. This gives the developer control over how the users style images and makes the user&#x2019;s life easier by setting multiple properties at once.</p>
+<p>A style is applied to the image in form of a class. By default, the editor is configured to support two styles: &#x201C;full width&#x201D; (which does not apply any class &#x2014; it is the default style) and &#x201C;side image&#x201D; (which applies the <code>image-style-side</code> class).</p>
+<p>A normal (full width) image:</p>
 <pre><code class="html">&lt;figure class=&quot;image&quot;&gt;&lt;img src=&quot;...&quot; alt=&quot;...&quot;&gt;&lt;/figure&gt;
 </code></pre>
-<p>Side image:</p>
+<p>A side image:</p>
 <pre><code class="html">&lt;figure class=&quot;image image-style-side&quot;&gt;&lt;img src=&quot;...&quot; alt=&quot;...&quot;&gt;&lt;/figure&gt;
 </code></pre>
 <div class="info-box notice"><p>The actual styling of the images is the developer&#x2019;s job. The editor comes with some default styles, but they will only be applied to images inside the editor. The developer needs to style them on the target pages.</p><p>Here you can find the source of the default styles applied by the editor: <a href="https://github.com/ckeditor/ckeditor5-image/blob/master/theme/theme.scss" target="_blank" rel="external"><code>ckeditor5-image/theme/theme.scss</code></a>.</p></div>
 
-<p>Below you can see a demo of the editor with the image styles feature enabled. The default configuration is used. You can change styles of images through the image&#x2019;s contextual toolbar.</p>
+<p>Below you can see a demo of the editor with the image styles feature enabled. The default configuration is used. You can change the styles of images through the image&#x2019;s contextual toolbar.</p>
 <p>{@snippetTODO image-style}</p>
 <h3 id="Configuring-image-styles"><a href="#Configuring-image-styles" class="headerlink" title="Configuring image styles"></a>Configuring image styles</h3><p>The available image styles can be configured using the <a href="../api/module_image_image-ImageConfig.html#styles"><code>image.styles</code></a> option.</p>
-<p>The following editor supports default style plus left and right aligned images:</p>
+<p>The following editor supports the default style plus left- and right-aligned images:</p>
 <pre><code class="js">import fullSizeIcon from &apos;@ckeditor/ckeditor5-core/theme/icons/object-center.svg&apos;;
 import alignLeftIcon from &apos;@ckeditor/ckeditor5-core/theme/icons/object-left.svg&apos;;
 import alignRightIcon from &apos;@ckeditor/ckeditor5-core/theme/icons/object-right.svg&apos;;
@@ -93,13 +93,13 @@ ClassicEditor
     .create( {
         image: {
             styles: [
-                // This option is equal to situation when no style is applied.
+                // This option is equal to a situation where no style is applied.
                 { name: &apos;imageStyleFull&apos;, title: &apos;Full size image&apos;, icon: fullSizeIcon, value: null },
 
-                // This represents image aligned to left.
+                // This represents an image aligned to left.
                 { name: &apos;imageStyleLeft&apos;, title: &apos;Left aligned image&apos;, icon: alignLeftIcon, value: &apos;left&apos;, className: &apos;image-style-left&apos; },
 
-                // This represents image aligned to right.
+                // This represents an image aligned to right.
                 { name: &apos;imageStyleRight&apos;, title: &apos;Right aligned image&apos;, icon: alignRightIcon, value: &apos;right&apos;, className: &apos;image-style-right&apos; }
             ],
 
@@ -120,7 +120,7 @@ ClassicEditor
 }
 </code></pre>
 <p>{@snippetTODO image-style-custom}</p>
-<div class="info-box notice notice__hint"><p>In the example above we use options which represent a simple &#x201C;align left&#x201D; and &#x201C;align right&#x201D; styles. Most text editors support left, center, right alignments, however, try not to think about CKEditor 5&#x2019;s image styles in this way. Try to understand what use cases the system needs to support and define semantically options accordingly. Defining useful and clear styles is one of the steps towards a good user experience and clear, portable output. For example, the &#x201C;side image&#x201D; style can be displayed as a floated image on wide screens and as a normal image on low-resolutions.</p></div>
+<div class="info-box notice notice__hint"><p>In the example above the options used represent simple &#x201C;align left&#x201D; and &#x201C;align right&#x201D; styles. Most text editors support left, center, right alignments, however, try not to think about CKEditor 5&#x2019;s image styles in this way. Try to understand what use cases the system needs to support and define semantical options accordingly. Defining useful and clear styles is one of the steps towards a good user experience and clear, portable output. For example, the &#x201C;side image&#x201D; style can be displayed as a floated image on wide screens and as a normal image on low resolution screens.</p></div>
 
 <h2 id="Image-upload"><a href="#Image-upload" class="headerlink" title="Image upload"></a>Image upload</h2><p>TODO&#x2026;</p>
 <!-- TODO 6 -->
@@ -144,15 +144,15 @@ ClassicEditor
     .then( ... )
     .catch( ... );
 </code></pre>
-<p>If you are using editor build see how to undefined.</p>
-<h2 id="Common-API"><a href="#Common-API" class="headerlink" title="Common API"></a>Common API</h2><p>The <a href="../api/module_image_image-Image.html">Image</a> plugin registers:</p>
+<p>If you are using an editor build, see how to {@linkTODO customize builds}.</p>
+<h2 id="Common-API"><a href="#Common-API" class="headerlink" title="Common API"></a>Common API</h2><p>The <a href="../api/module_image_image-Image.html"><code>Image</code></a> plugin registers:</p>
 <ul>
-<li>the <code>&apos;imageTextAlternative&apos;</code> button.</li>
+<li>The <code>&apos;imageTextAlternative&apos;</code> button.</li>
 </ul>
-<p>The <a href="../api/module_image_imagestyle-ImageStyle.html">ImageStyle</a> plugin registers:</p>
+<p>The <a href="../api/module_image_imagestyle-ImageStyle.html"><code>ImageStyle</code></a> plugin registers:</p>
 <ul>
-<li>command for each defined style (based on the <a href="../api/module_image_image-ImageConfig.html#styles"><code>image.styles</code></a> config option) &#x2013; e.g. <code>&apos;imageStyleFull&apos;</code> and <code>&apos;imageStyleSide&apos;</code>,</li>
-<li>button for each defined style &#x2013; e.g. <code>&apos;imageStyleFull&apos;</code> and <code>&apos;imageStyleSide&apos;</code>.</li>
+<li>A command for each defined style (based on the <a href="../api/module_image_image-ImageConfig.html#styles"><code>image.styles</code></a> configuration option) &#x2014; e.g. <code>&apos;imageStyleFull&apos;</code> and <code>&apos;imageStyleSide&apos;</code>,</li>
+<li>A button for each defined style &#x2014; e.g. <code>&apos;imageStyleFull&apos;</code> and <code>&apos;imageStyleSide&apos;</code>.</li>
 </ul>
 <h2 id="Contribute"><a href="#Contribute" class="headerlink" title="Contribute"></a>Contribute</h2><p>The source code of the feature is available on GitHub in <a href="https://github.com/ckeditor/ckeditor5-image" target="_blank" rel="external">https://github.com/ckeditor/ckeditor5-image</a>.</p>
 
@@ -173,7 +173,7 @@ ClassicEditor
                           <li><a href="read-only.html">
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Read-only support</span></div></a></li>
                           <li><a href="ui-language.html">
-                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Setting editor UI language</span></div></a></li>
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Setting the editor UI language</span></div></a></li>
             </ul>
           </nav>
         </div>

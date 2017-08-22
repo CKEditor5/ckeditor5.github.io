@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Class PluginCollection (core/plugincollection~PluginCollection) - CKEditor 5 API docs</title>
     <link rel="canonical" href="/ckeditor5/latest/api/module_core_plugincollection-PluginCollection.html">
-    <link rel="stylesheet" href="../../../assets/0.3.2/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../assets/0.3.5/css/styles.css" type="text/css" media="screen">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
-    <script src="../../../assets/0.3.2/scripts/app.js"></script>
+    <script src="../../../assets/0.3.5/scripts/app.js"></script>
   </head>
   <body>
     <header class="top">
@@ -21,13 +21,13 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.2/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.5/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="api-header"><img src="../../../assets/0.3.2/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.5/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1>PluginCollection
               </h1>
@@ -84,7 +84,7 @@ Allows loading and initializing plugins and their dependencies.
                                         <dt><code> editor : <span><a class="collapsing-list__type" href="module_core_editor_editor-Editor.html">Editor</a></span></code></dt>
                                         <dd>
                                         </dd>
-                                        <dt><code> [ availablePlugins ] : </code></dt>
+                                        <dt><code> [ availablePlugins ] : <span>Array.&lt;Function&gt;</span></code></dt>
                                         <dd><p>Plugins (constructors) which the collection will be able to use
 when <a href="module_core_plugincollection-PluginCollection.html#load"><code>load</code></a> is used with plugin names (strings, instead of constructors).
 Usually, the editor will pass its built-in plugins to the collection so they can later be
@@ -94,32 +94,20 @@ used in <code>config.plugins</code> or <code>config.removePlugins</code> by name
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-protected="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_add">
-                          <h3><code><a class="member-name" href="#_add">_add</a>( PluginConstructor, plugin )</code></h3>
-                          <p class="badges">
-<span class="badge badge--orange ">protected</span>
-                          </p>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="iterator">
+                          <h3><code><a class="member-name" href="#iterator">Symbol.iterator</a>()</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Adds the plugin to the collection. Exposed mainly for testing purposes.
+                          <p class="collapsing-list__excerpt">Collection iterator. Returns <code>[ PluginConstructor, pluginInstance ]</code> pairs.
                           </p>
                           <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> PluginConstructor : function</code></dt>
-                                        <dd><p>The plugin constructor.</p>
-                                        </dd>
-                                        <dt><code> plugin : <span><a class="collapsing-list__type" href="module_core_plugin-PluginInterface.html">PluginInterface</a></span></code></dt>
-                                        <dd><p>The instance of the plugin.</p>
-                                        </dd>
-                                      </dl>
                           </div>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="destroy">
-                          <h3><code><a class="member-name" href="#destroy">destroy</a>() &rarr;  Promise</code></h3>
+                          <h3><code><a class="member-name" href="#destroy">destroy</a>() &rarr;  <span>Promise</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Destroys all loaded plugins.
@@ -127,7 +115,7 @@ used in <code>config.plugins</code> or <code>config.removePlugins</code> by name
                           <div class="collapsing-list__content">
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code>Promise</code></dt>
+                                        <dt><code><span>Promise</span></code></dt>
                                         <dd>
                                         </dd>
                             </dl>
@@ -144,7 +132,7 @@ used in <code>config.plugins</code> or <code>config.removePlugins</code> by name
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> key : function | String</code></dt>
+                                        <dt><code> key : <span>function</span> | <span>String</span></code></dt>
                                         <dd><p>The plugin constructor or <a href="module_core_plugin-PluginInterface.html#pluginName">name</a>.</p>
                                         </dd>
                                       </dl>
@@ -159,7 +147,7 @@ used in <code>config.plugins</code> or <code>config.removePlugins</code> by name
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="load">
-                          <h3><code><a class="member-name" href="#load">load</a>( plugins, [ removePlugins ] ) &rarr;  Promise</code></h3>
+                          <h3><code><a class="member-name" href="#load">load</a>( plugins, [ removePlugins ] ) &rarr;  <span>Promise</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Loads a set of plugins and adds them to the collection.
@@ -167,37 +155,49 @@ used in <code>config.plugins</code> or <code>config.removePlugins</code> by name
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> plugins : </code></dt>
+                                        <dt><code> plugins : <span>Array.&lt;(Function|String)&gt;</span></code></dt>
                                         <dd><p>An array of <a href="module_core_plugin-PluginInterface.html">plugin constructors</a>
 or <a href="module_core_plugin-PluginInterface.html#pluginName">plugin names</a>. The second option (names) work only if
 <code>availablePlugins</code> were passed to the <code>#constructor</code>.</p>
                                         </dd>
-                                        <dt><code> [ removePlugins ] : </code></dt>
+                                        <dt><code> [ removePlugins ] : <span>Array.&lt;(String|Function)&gt;</span></code></dt>
                                         <dd><p>Names of plugins or plugin constructors
 which should not be loaded (despite being specified in the <code>plugins</code> array).</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code>Promise</code></dt>
+                                        <dt><code><span>Promise</span></code></dt>
                                         <dd><p>A promise which gets resolved once all plugins are loaded and available into the
 collection.</p>
                                         </dd>
-                                        <dt><code>PluginInterface</code></dt>
+                                        <dt><code><span>Promise.&lt;PluginInterface&gt;</span></code></dt>
                                         <dd><p>returns.loadedPlugins The array of loaded plugins.</p>
                                         </dd>
                             </dl>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="iterator">
-                          <h3><code><a class="member-name" href="#iterator">Symbol.iterator</a>()</code></h3>
+                      <li class="collapsing-list__item" data-protected="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_add">
+                          <h3><code><a class="member-name" href="#_add">_add</a>( PluginConstructor, plugin )</code></h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+                          </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Collection iterator. Returns <code>[ PluginConstructor, pluginInstance ]</code> pairs.
+                          <p class="collapsing-list__excerpt">Adds the plugin to the collection. Exposed mainly for testing purposes.
                           </p>
                           <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> PluginConstructor : <span>function</span></code></dt>
+                                        <dd><p>The plugin constructor.</p>
+                                        </dd>
+                                        <dt><code> plugin : <span><a class="collapsing-list__type" href="module_core_plugin-PluginInterface.html">PluginInterface</a></span></code></dt>
+                                        <dd><p>The instance of the plugin.</p>
+                                        </dd>
+                                      </dl>
                           </div>
                         </div>
                       </li>
@@ -206,7 +206,7 @@ collection.</p>
       </section>
       <div class="side-navigation">
         <div class="side-navigation__wrapper">
-          <nav class="side-navigation__inner">
+          <nav class="side-navigation__inner side-navigation__inner--api">
             <ul class="tree api-tree">
                     <li class="toggler--collapsed">
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">adapter-ckfinder</span>
@@ -652,8 +652,11 @@ collection.</p>
                                                   <li><a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">ModelConverterBuilder</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_conversion_buildmodelconverter-StampCreatorData.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">StampCreatorData</span></div></a>
+                                                  <li><a href="module_engine_conversion_buildmodelconverter-HighlightDescriptor.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">HighlightDescriptor</span></div></a>
+                                                  </li>
+                                                  <li><a href="module_engine_conversion_buildmodelconverter-MarkerViewElementCreatorData.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">MarkerViewElementCreatorData</span></div></a>
                                                   </li>
                                           </ul>
                                         </li>
@@ -2978,6 +2981,15 @@ collection.</p>
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">widget</span>
                       </div>
                       <ul>
+                              <li class="toggler--collapsed">
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_widget_highlightstack.html">highlightstack</a>
+                                </div>
+                                <ul>
+                                        <li><a href="module_widget_highlightstack-HighlightStack.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">HighlightStack</span></div></a>
+                                        </li>
+                                </ul>
+                              </li>
                               <li><a href="module_widget_utils.html">
                                   <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">utils</span></div></a>
                               </li>

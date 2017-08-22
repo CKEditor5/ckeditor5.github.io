@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Class DocumentSelection (engine/model/documentselection~DocumentSelection) - CKEditor 5 API docs</title>
     <link rel="canonical" href="/ckeditor5/latest/api/module_engine_model_documentselection-DocumentSelection.html">
-    <link rel="stylesheet" href="../../../assets/0.3.2/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../assets/0.3.5/css/styles.css" type="text/css" media="screen">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
-    <script src="../../../assets/0.3.2/scripts/app.js"></script>
+    <script src="../../../assets/0.3.5/scripts/app.js"></script>
   </head>
   <body>
     <header class="top">
@@ -21,13 +21,13 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.2/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.5/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="api-header"><img src="../../../assets/0.3.2/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.5/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1>DocumentSelection
               </h1>
@@ -42,9 +42,9 @@
                         <dt>Hierarchy</dt>
                         <dd>
                           <ul class="hierarchy-list">
-                                      <li><code><span><a href="module_engine_model_selection-Selection.html">Selection</a></span></code>
+                                      <li title="@ckeditor/ckeditor5-engine/src/model/selection~Selection"><code><span><a href="module_engine_model_selection-Selection.html">Selection</a></span></code>
                                         <ul>
-                                                    <li><code><span><a href="module_engine_model_documentselection-DocumentSelection.html">DocumentSelection</a></span></code>
+                                                    <li title="@ckeditor/ckeditor5-engine/src/model/documentselection~DocumentSelection"><code><span><a href="module_engine_model_documentselection-DocumentSelection.html">DocumentSelection</a></span></code>
                                                     </li>
                                         </ul>
                                       </li>
@@ -102,25 +102,84 @@ use <a href="module_engine_model_selection-Selection.html">Selection class</a> i
           </div>
           <h2>Properties</h2>
           <ul class="collapsing-list collapsing-list--filtered">
-                      <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_attributePriority">
-                          <h3><code><a class="member-name" href="#_attributePriority">_attributePriority</a> : Map</code></h3>
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="anchor">
+                          <h3><code><a class="member-name" href="#anchor">anchor</a> : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span> | <span>null</span></code></h3>
                           <p class="badges">
-<span class="badge badge--red ">private</span>
+<span class="badge badge--gray ">readonly</span>
+<span class="badge badge--gray ">inherited</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Keeps mapping of attribute name to priority with which the attribute got modified (added/changed/removed)
-last time. Possible values of priority are: <code>&apos;low&apos;</code> and <code>&apos;normal&apos;</code>.</p>
+                          <p class="collapsing-list__excerpt">Selection anchor. Anchor may be described as a position where the most recent part of the selection starts.
+Together with <a href="module_engine_model_selection-Selection.html#focus"><code>focus</code></a> they define the direction of selection, which is important
+when expanding/shrinking selection. Anchor is always <a href="module_engine_model_range-Range.html#start">start</a> or
+<a href="module_engine_model_range-Range.html#end">end</a> position of the most recently added range.</p>
                           <div class="collapsing-list__content">
-<p>Priorities are used by internal <code>DocumentSelection</code> mechanisms. All attributes set using <code>DocumentSelection</code>
-attributes API are set with <code>&apos;normal&apos;</code> priority.</p>
+<p>Is set to <code>null</code> if there are no ranges in selection.</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="focus">
+                          <h3><code><a class="member-name" href="#focus">focus</a> : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span> | <span>null</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+<span class="badge badge--gray ">inherited</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Selection focus. Focus is a position where the selection ends.</p>
+                          <div class="collapsing-list__content">
+<p>Is set to <code>null</code> if there are no ranges in selection.</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="isBackward">
+                          <h3><code><a class="member-name" href="#isBackward">isBackward</a> : <span>Boolean</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Specifies whether the <a href="module_engine_model_selection-Selection.html#focus"><code>focus</code></a>
+precedes <a href="module_engine_model_selection-Selection.html#anchor"><code>anchor</code></a>.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="isCollapsed">
+                          <h3><code><a class="member-name" href="#isCollapsed">isCollapsed</a> : <span>Boolean</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+<span class="badge badge--gray ">inherited</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Returns whether the selection is collapsed. Selection is collapsed when there is exactly one range which is
+collapsed.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="rangeCount">
+                          <h3><code><a class="member-name" href="#rangeCount">rangeCount</a> : <span>Number</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Returns number of ranges in selection.</p>
+                          <div class="collapsing-list__content">
                           </div>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-protected="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="_attrs">
-                          <h3><code><a class="member-name" href="#_attrs">_attrs</a> : Map</code></h3>
+                          <h3><code><a class="member-name" href="#_attrs">_attrs</a> : <span>Map</span></code></h3>
                           <p class="badges">
 <span class="badge badge--orange ">protected</span>
 <span class="badge badge--gray ">inherited</span>
@@ -145,20 +204,6 @@ attributes API are set with <code>&apos;normal&apos;</code> priority.</p>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-private="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_lastRangeBackward">
-                          <h3><code><a class="member-name" href="#_lastRangeBackward">_lastRangeBackward</a> : Boolean</code></h3>
-                          <p class="badges">
-<span class="badge badge--red ">private</span>
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Specifies whether the last added range was added as a backward or forward range.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
                       <li class="collapsing-list__item" data-protected="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="_ranges">
                           <h3><code><a class="member-name" href="#_ranges">_ranges</a> : <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span></code></h3>
@@ -173,84 +218,38 @@ attributes API are set with <code>&apos;normal&apos;</code> priority.</p>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="anchor">
-                          <h3><code><a class="member-name" href="#anchor">anchor</a> : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span> | null</code></h3>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_attributePriority">
+                          <h3><code><a class="member-name" href="#_attributePriority">_attributePriority</a> : <span>Map</span></code></h3>
                           <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-<span class="badge badge--gray ">inherited</span>
+<span class="badge badge--red ">private</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Selection anchor. Anchor may be described as a position where the most recent part of the selection starts.
-Together with <a href="module_engine_model_selection-Selection.html#focus"><code>focus</code></a> they define the direction of selection, which is important
-when expanding/shrinking selection. Anchor is always <a href="module_engine_model_range-Range.html#start">start</a> or
-<a href="module_engine_model_range-Range.html#end">end</a> position of the most recently added range.</p>
+                          <p class="collapsing-list__excerpt">Keeps mapping of attribute name to priority with which the attribute got modified (added/changed/removed)
+last time. Possible values of priority are: <code>&apos;low&apos;</code> and <code>&apos;normal&apos;</code>.</p>
                           <div class="collapsing-list__content">
-<p>Is set to <code>null</code> if there are no ranges in selection.</p>
+<p>Priorities are used by internal <code>DocumentSelection</code> mechanisms. All attributes set using <code>DocumentSelection</code>
+attributes API are set with <code>&apos;normal&apos;</code> priority.</p>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="focus">
-                          <h3><code><a class="member-name" href="#focus">focus</a> : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span> | null</code></h3>
+                      <li class="collapsing-list__item" data-private="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_lastRangeBackward">
+                          <h3><code><a class="member-name" href="#_lastRangeBackward">_lastRangeBackward</a> : <span>Boolean</span></code></h3>
                           <p class="badges">
-<span class="badge badge--gray ">readonly</span>
+<span class="badge badge--red ">private</span>
 <span class="badge badge--gray ">inherited</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Selection focus. Focus is a position where the selection ends.</p>
-                          <div class="collapsing-list__content">
-<p>Is set to <code>null</code> if there are no ranges in selection.</p>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="isBackward">
-                          <h3><code><a class="member-name" href="#isBackward">isBackward</a> : Boolean</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Specifies whether the <a href="module_engine_model_selection-Selection.html#focus"><code>focus</code></a>
-precedes <a href="module_engine_model_selection-Selection.html#anchor"><code>anchor</code></a>.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="isCollapsed">
-                          <h3><code><a class="member-name" href="#isCollapsed">isCollapsed</a> : Boolean</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Returns whether the selection is collapsed. Selection is collapsed when there is exactly one range which is
-collapsed.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="rangeCount">
-                          <h3><code><a class="member-name" href="#rangeCount">rangeCount</a> : Number</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Returns number of ranges in selection.</p>
+                          <p class="collapsing-list__excerpt">Specifies whether the last added range was added as a backward or forward range.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
                       </li>
           </ul>
           <h2>Methods</h2>
-          <h4>Instance methods</h4>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="constructor">
@@ -266,322 +265,6 @@ collapsed.</p>
                                         <dd><p>Document which owns this selection.</p>
                                         </dd>
                                       </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="destroy">
-                          <h3><code><a class="member-name" href="#destroy">destroy</a>()</code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Unbinds all events previously bound by document selection.
-                          </p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_getStoredAttributes">
-                          <h3><code><a class="member-name" href="#_getStoredAttributes">_getStoredAttributes</a>() &rarr;  </code></h3>
-                          <p class="badges">
-<span class="badge badge--red ">private</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Returns an iterator that iterates through all selection attributes stored in current selection&apos;s parent.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code></code></dt>
-                                        <dd>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_getSurroundingAttributes">
-                          <h3><code><a class="member-name" href="#_getSurroundingAttributes">_getSurroundingAttributes</a>() &rarr;  </code></h3>
-                          <p class="badges">
-<span class="badge badge--red ">private</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Checks model text nodes that are closest to the selection&apos;s first position and returns attributes of first
-found element. If there are no text nodes in selection&apos;s first position parent, it returns selection
-attributes stored in that parent.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code></code></dt>
-                                        <dd><p>Collection of attributes.</p>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-protected="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_popRange">
-                          <h3><code><a class="member-name" href="#_popRange">_popRange</a>()</code></h3>
-                          <p class="badges">
-<span class="badge badge--orange ">protected</span>
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Removes most recently added range from the selection.
-                          </p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_prepareRange">
-                          <h3><code><a class="member-name" href="#_prepareRange">_prepareRange</a>( range )</code></h3>
-                          <p class="badges">
-<span class="badge badge--red ">private</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Prepares given range to be added to selection. Checks if it is correct,
-converts it to <a href="module_engine_model_liverange-LiveRange.html">LiveRange</a>
-and sets listeners listening to the range&apos;s change event.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> range : <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
-                                        <dd>
-                                        </dd>
-                                      </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-protected="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_pushRange">
-                          <h3><code><a class="member-name" href="#_pushRange">_pushRange</a>( range )</code></h3>
-                          <p class="badges">
-<span class="badge badge--orange ">protected</span>
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Adds given range to internal <a href="module_engine_model_selection-Selection.html#_ranges">ranges  array</a>. Throws an error
-if given range is intersecting with any range that is already stored in this selection.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> range : <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
-                                        <dd><p>Range to add.</p>
-                                        </dd>
-                                      </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-private="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_removeAllRanges">
-                          <h3><code><a class="member-name" href="#_removeAllRanges">_removeAllRanges</a>()</code></h3>
-                          <p class="badges">
-<span class="badge badge--red ">private</span>
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Deletes ranges from internal range array. Uses <a href="module_engine_model_selection-Selection.html#_popRange">_popRange</a> to
-ensure proper ranges removal.
-                          </p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_removeAttribute">
-                          <h3><code><a class="member-name" href="#_removeAttribute">_removeAttribute</a>( key, [ directChange ] ) &rarr;  Boolean</code></h3>
-                          <p class="badges">
-<span class="badge badge--red ">private</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Internal method for removing <code>DocumentSelection</code> attribute. Supports attribute priorities (through <code>directChange</code>
-parameter).
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> key : String</code></dt>
-                                        <dd><p>Attribute key.</p>
-                                        </dd>
-                                        <dt><code> [ directChange ] : Boolean</code></dt>
-                                        <dd><p><code>true</code> if the change is caused by <code>Selection</code> API, <code>false</code> if change
-is caused by <code>Batch</code> API.</p>
-                                          <p>Defaults to <code>true</code></p>
-                                        </dd>
-                                      </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code>Boolean</code></dt>
-                                        <dd><p>Whether attribute was removed. May not be true if such attributes didn&apos;t exist or the
-existing attribute had higher priority.</p>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_removeStoredAttribute">
-                          <h3><code><a class="member-name" href="#_removeStoredAttribute">_removeStoredAttribute</a>( key )</code></h3>
-                          <p class="badges">
-<span class="badge badge--red ">private</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Removes attribute with given key from attributes stored in current selection&apos;s parent node.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> key : String</code></dt>
-                                        <dd><p>Key of attribute to remove.</p>
-                                        </dd>
-                                      </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_setAttribute">
-                          <h3><code><a class="member-name" href="#_setAttribute">_setAttribute</a>( key, value, [ directChange ] ) &rarr;  Boolean</code></h3>
-                          <p class="badges">
-<span class="badge badge--red ">private</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Internal method for setting <code>DocumentSelection</code> attribute. Supports attribute priorities (through <code>directChange</code>
-parameter).
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> key : String</code></dt>
-                                        <dd><p>Attribute key.</p>
-                                        </dd>
-                                        <dt><code> value : </code></dt>
-                                        <dd><p>Attribute value.</p>
-                                        </dd>
-                                        <dt><code> [ directChange ] : Boolean</code></dt>
-                                        <dd><p><code>true</code> if the change is caused by <code>Selection</code> API, <code>false</code> if change
-is caused by <code>Batch</code> API.</p>
-                                          <p>Defaults to <code>true</code></p>
-                                        </dd>
-                                      </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code>Boolean</code></dt>
-                                        <dd><p>Whether value has changed.</p>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_setAttributesTo">
-                          <h3><code><a class="member-name" href="#_setAttributesTo">_setAttributesTo</a>( attrs, [ directChange ] ) &rarr;  String</code></h3>
-                          <p class="badges">
-<span class="badge badge--red ">private</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Internal method for setting multiple <code>DocumentSelection</code> attributes. Supports attribute priorities (through
-<code>directChange</code> parameter).
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> attrs : Iterable | Object</code></dt>
-                                        <dd><p>Iterable object containing attributes to be set.</p>
-                                        </dd>
-                                        <dt><code> [ directChange ] : Boolean</code></dt>
-                                        <dd><p><code>true</code> if the change is caused by <code>Selection</code> API, <code>false</code> if change
-is caused by <code>Batch</code> API.</p>
-                                          <p>Defaults to <code>true</code></p>
-                                        </dd>
-                                      </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code>String</code></dt>
-                                        <dd><p>Changed attribute keys.</p>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_setStoredAttributesTo">
-                          <h3><code><a class="member-name" href="#_setStoredAttributesTo">_setStoredAttributesTo</a>( attrs )</code></h3>
-                          <p class="badges">
-<span class="badge badge--red ">private</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Sets selection attributes stored in current selection&apos;s parent node to given set of attributes.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> attrs : Iterable | Object</code></dt>
-                                        <dd><p>Iterable object containing attributes to be set.</p>
-                                        </dd>
-                                      </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_storeAttribute">
-                          <h3><code><a class="member-name" href="#_storeAttribute">_storeAttribute</a>( key, value )</code></h3>
-                          <p class="badges">
-<span class="badge badge--red ">private</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Stores given attribute key and value in current selection&apos;s parent node.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> key : String</code></dt>
-                                        <dd><p>Key of attribute to set.</p>
-                                        </dd>
-                                        <dt><code> value : </code></dt>
-                                        <dd><p>Attribute value.</p>
-                                        </dd>
-                                      </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-protected="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_updateAttributes">
-                          <h3><code><a class="member-name" href="#_updateAttributes">_updateAttributes</a>( clearAll )</code></h3>
-                          <p class="badges">
-<span class="badge badge--orange ">protected</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Updates this selection attributes according to its ranges and the <a href="module_engine_model_document-Document.html">model document</a>.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> clearAll : Boolean</code></dt>
-                                        <dd>
-                                        </dd>
-                                      </dl>
-                            <h4>Fires</h4>
-                            <ul>
-                                        <li><span><a href="module_engine_model_documentselection-DocumentSelection.html#event:change:attribute">change:attribute</a></span>
-                                        </li>
-                            </ul>
                           </div>
                         </div>
                       </li>
@@ -608,7 +291,7 @@ The flag is used to set <a href="module_engine_model_selection-Selection.html#an
                                         <dt><code> range : <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
                                         <dd><p>Range to add.</p>
                                         </dd>
-                                        <dt><code> [ isBackward ] : Boolean</code></dt>
+                                        <dt><code> [ isBackward ] : <span>Boolean</span></code></dt>
                                         <dd><p>Flag describing if added range was selected forward - from start to end (<code>false</code>)
 or backward - from end to start (<code>true</code>).</p>
                                           <p>Defaults to <code>false</code></p>
@@ -685,30 +368,9 @@ inside selection.
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-protected="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_checkRange">
-                          <h3><code><a class="member-name" href="#_checkRange">_checkRange</a>( range )</code></h3>
-                          <p class="badges">
-<span class="badge badge--orange ">protected</span>
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Checks if given range intersects with ranges that are already in the selection. Throws an error if it does.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> range : <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
-                                        <dd><p>Range to check.</p>
-                                        </dd>
-                                      </dl>
-                          </div>
-                        </div>
-                      </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="containsEntireContent">
-                          <h3><code><a class="member-name" href="#containsEntireContent">containsEntireContent</a>( [ element ] ) &rarr;  Boolean</code></h3>
+                          <h3><code><a class="member-name" href="#containsEntireContent">containsEntireContent</a>( [ element ] ) &rarr;  <span>Boolean</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">inherited</span>
                           </p>
@@ -730,39 +392,27 @@ Useful to check if e.g. the user has just pressed <kbd>Ctrl</kbd> + <kbd>A</kbd>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code>Boolean</code></dt>
+                                        <dt><code><span>Boolean</span></code></dt>
                                         <dd>
                                         </dd>
                             </dl>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_fixGraveyardSelection">
-                          <h3><code><a class="member-name" href="#_fixGraveyardSelection">_fixGraveyardSelection</a>( liveRange, removedRange )</code></h3>
-                          <p class="badges">
-<span class="badge badge--red ">private</span>
-                          </p>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="destroy">
+                          <h3><code><a class="member-name" href="#destroy">destroy</a>()</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Fixes a selection range after it ends up in graveyard root.
+                          <p class="collapsing-list__excerpt">Unbinds all events previously bound by document selection.
                           </p>
                           <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> liveRange : <span><a class="collapsing-list__type" href="module_engine_model_liverange-LiveRange.html">LiveRange</a></span></code></dt>
-                                        <dd><p>The range from selection, that ended up in the graveyard root.</p>
-                                        </dd>
-                                        <dt><code> removedRange : <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
-                                        <dd><p>Range which removing had caused moving <code>liveRange</code> to the graveyard root.</p>
-                                        </dd>
-                                      </dl>
                           </div>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="getAttribute">
-                          <h3><code><a class="member-name" href="#getAttribute">getAttribute</a>( key ) &rarr;  </code></h3>
+                          <h3><code><a class="member-name" href="#getAttribute">getAttribute</a>( key ) &rarr;  <span>*</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">inherited</span>
                           </p>
@@ -773,13 +423,13 @@ Useful to check if e.g. the user has just pressed <kbd>Ctrl</kbd> + <kbd>A</kbd>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> key : String</code></dt>
+                                        <dt><code> key : <span>String</span></code></dt>
                                         <dd><p>Key of attribute to look for.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code></code></dt>
+                                        <dt><code><span>*</span></code></dt>
                                         <dd><p>Attribute value or <code>undefined</code>.</p>
                                         </dd>
                             </dl>
@@ -788,7 +438,7 @@ Useful to check if e.g. the user has just pressed <kbd>Ctrl</kbd> + <kbd>A</kbd>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="getAttributeKeys">
-                          <h3><code><a class="member-name" href="#getAttributeKeys">getAttributeKeys</a>() &rarr;  String</code></h3>
+                          <h3><code><a class="member-name" href="#getAttributeKeys">getAttributeKeys</a>() &rarr;  <span>Iterator.&lt;String&gt;</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">inherited</span>
                           </p>
@@ -799,7 +449,7 @@ Useful to check if e.g. the user has just pressed <kbd>Ctrl</kbd> + <kbd>A</kbd>
                           <div class="collapsing-list__content">
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code>String</code></dt>
+                                        <dt><code><span>Iterator.&lt;String&gt;</span></code></dt>
                                         <dd>
                                         </dd>
                             </dl>
@@ -808,7 +458,7 @@ Useful to check if e.g. the user has just pressed <kbd>Ctrl</kbd> + <kbd>A</kbd>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="getAttributes">
-                          <h3><code><a class="member-name" href="#getAttributes">getAttributes</a>() &rarr;  </code></h3>
+                          <h3><code><a class="member-name" href="#getAttributes">getAttributes</a>() &rarr;  <span>Iterable.&lt;*&gt;</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">inherited</span>
                           </p>
@@ -821,7 +471,7 @@ Useful to check if e.g. the user has just pressed <kbd>Ctrl</kbd> + <kbd>A</kbd>
 This format is accepted by native <code>Map</code> object and also can be passed in <code>Node</code> constructor.</p>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code></code></dt>
+                                        <dt><code><span>Iterable.&lt;*&gt;</span></code></dt>
                                         <dd>
                                         </dd>
                             </dl>
@@ -830,7 +480,7 @@ This format is accepted by native <code>Map</code> object and also can be passed
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="getFirstPosition">
-                          <h3><code><a class="member-name" href="#getFirstPosition">getFirstPosition</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span> | null</code></h3>
+                          <h3><code><a class="member-name" href="#getFirstPosition">getFirstPosition</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span> | <span>null</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">inherited</span>
                           </p>
@@ -844,7 +494,7 @@ any other position in the selection.
 <p>Returns <code>null</code> if there are no ranges in selection.</p>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span> | null</code></dt>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span> | <span>null</span></code></dt>
                                         <dd>
                                         </dd>
                             </dl>
@@ -853,7 +503,7 @@ any other position in the selection.
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="getFirstRange">
-                          <h3><code><a class="member-name" href="#getFirstRange">getFirstRange</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | null</code></h3>
+                          <h3><code><a class="member-name" href="#getFirstRange">getFirstRange</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | <span>null</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">inherited</span>
                           </p>
@@ -868,7 +518,7 @@ First range is the one which <a href="module_engine_model_range-Range.html#start
 <p>Returns <code>null</code> if there are no ranges in selection.</p>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | null</code></dt>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | <span>null</span></code></dt>
                                         <dd>
                                         </dd>
                             </dl>
@@ -877,7 +527,7 @@ First range is the one which <a href="module_engine_model_range-Range.html#start
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="getLastPosition">
-                          <h3><code><a class="member-name" href="#getLastPosition">getLastPosition</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span> | null</code></h3>
+                          <h3><code><a class="member-name" href="#getLastPosition">getLastPosition</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span> | <span>null</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">inherited</span>
                           </p>
@@ -891,7 +541,7 @@ any other position in the selection.
 <p>Returns <code>null</code> if there are no ranges in selection.</p>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span> | null</code></dt>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span> | <span>null</span></code></dt>
                                         <dd>
                                         </dd>
                             </dl>
@@ -900,7 +550,7 @@ any other position in the selection.
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="getLastRange">
-                          <h3><code><a class="member-name" href="#getLastRange">getLastRange</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | null</code></h3>
+                          <h3><code><a class="member-name" href="#getLastRange">getLastRange</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | <span>null</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">inherited</span>
                           </p>
@@ -915,7 +565,7 @@ recently added to the selection).
 <p>Returns <code>null</code> if there are no ranges in selection.</p>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | null</code></dt>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | <span>null</span></code></dt>
                                         <dd>
                                         </dd>
                             </dl>
@@ -977,7 +627,7 @@ this block wasn&apos;t selected. See <a href="https://github.com/ckeditor/ckedit
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="getSelectedElement">
-                          <h3><code><a class="member-name" href="#getSelectedElement">getSelectedElement</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | null</code></h3>
+                          <h3><code><a class="member-name" href="#getSelectedElement">getSelectedElement</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | <span>null</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">inherited</span>
                           </p>
@@ -990,7 +640,7 @@ Returns <code>null</code> if there is no selected element.
                           <div class="collapsing-list__content">
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | null</code></dt>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | <span>null</span></code></dt>
                                         <dd>
                                         </dd>
                             </dl>
@@ -999,7 +649,7 @@ Returns <code>null</code> if there is no selected element.
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="hasAttribute">
-                          <h3><code><a class="member-name" href="#hasAttribute">hasAttribute</a>( key ) &rarr;  Boolean</code></h3>
+                          <h3><code><a class="member-name" href="#hasAttribute">hasAttribute</a>( key ) &rarr;  <span>Boolean</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">inherited</span>
                           </p>
@@ -1010,13 +660,13 @@ Returns <code>null</code> if there is no selected element.
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> key : String</code></dt>
+                                        <dt><code> key : <span>String</span></code></dt>
                                         <dd><p>Key of attribute to check.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code>Boolean</code></dt>
+                                        <dt><code><span>Boolean</span></code></dt>
                                         <dd><p><code>true</code> if attribute with given key is set on selection, <code>false</code> otherwise.</p>
                                         </dd>
                             </dl>
@@ -1025,7 +675,7 @@ Returns <code>null</code> if there is no selected element.
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="isEqual">
-                          <h3><code><a class="member-name" href="#isEqual">isEqual</a>( otherSelection ) &rarr;  Boolean</code></h3>
+                          <h3><code><a class="member-name" href="#isEqual">isEqual</a>( otherSelection ) &rarr;  <span>Boolean</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">inherited</span>
                           </p>
@@ -1043,7 +693,7 @@ same number of ranges and all ranges from one selection equal to a range from ot
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code>Boolean</code></dt>
+                                        <dt><code><span>Boolean</span></code></dt>
                                         <dd><p><code>true</code> if selections are equal, <code>false</code> otherwise.</p>
                                         </dd>
                             </dl>
@@ -1067,7 +717,7 @@ same number of ranges and all ranges from one selection equal to a range from ot
                                         <dt><code> itemOrPosition : <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
                                         <dd>
                                         </dd>
-                                        <dt><code> [ offset ] : Number |  |  | </code></dt>
+                                        <dt><code> [ offset ] : <span>Number</span> | <span>'end'</span> | <span>'before'</span> | <span>'after'</span></code></dt>
                                         <dd><p>Offset or one of the flags. Used only when
 first parameter is a <a href="module_engine_model_item-Item.html">model item</a>.</p>
                                           <p>Defaults to <code>0</code></p>
@@ -1126,7 +776,7 @@ first parameter is a <a href="module_engine_model_item-Item.html">model item</a>
 removed attribute key.</p>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> key : String</code></dt>
+                                        <dt><code> key : <span>String</span></code></dt>
                                         <dd><p>Key of attribute to remove.</p>
                                         </dd>
                                       </dl>
@@ -1153,10 +803,10 @@ removed attribute key.</p>
 the attribute key.</p>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> key : String</code></dt>
+                                        <dt><code> key : <span>String</span></code></dt>
                                         <dd><p>Key of attribute to set.</p>
                                         </dd>
-                                        <dt><code> value : </code></dt>
+                                        <dt><code> value : <span>*</span></code></dt>
                                         <dd><p>Attribute value.</p>
                                         </dd>
                                       </dl>
@@ -1183,7 +833,7 @@ the attribute key.</p>
 <a href="module_engine_model_selection-Selection.html#event:change">change  event</a> with keys of attributes that changed.</p>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> attrs : Iterable | Object</code></dt>
+                                        <dt><code> attrs : <span>Iterable</span> | <span>Object</span></code></dt>
                                         <dd><p>Iterable object containing attributes to be set.</p>
                                         </dd>
                                       </dl>
@@ -1212,7 +862,7 @@ the attribute key.</p>
                                         <dt><code> itemOrPosition : <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
                                         <dd>
                                         </dd>
-                                        <dt><code> [ offset ] : Number |  |  | </code></dt>
+                                        <dt><code> [ offset ] : <span>Number</span> | <span>'end'</span> | <span>'before'</span> | <span>'after'</span></code></dt>
                                         <dd><p>Offset or one of the flags. Used only when
 first parameter is a <a href="module_engine_model_item-Item.html">model item</a>.</p>
                                           <p>Defaults to <code>0</code></p>
@@ -1285,7 +935,7 @@ is treated like the last added range and is used to set <a href="module_engine_m
                                         <dt><code> newRanges : <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span></code></dt>
                                         <dd><p>Ranges to set.</p>
                                         </dd>
-                                        <dt><code> [ isLastBackward ] : Boolean</code></dt>
+                                        <dt><code> [ isLastBackward ] : <span>Boolean</span></code></dt>
                                         <dd><p>Flag describing if last added range was selected forward - from start to end (<code>false</code>)
 or backward - from end to start (<code>true</code>).</p>
                                           <p>Defaults to <code>false</code></p>
@@ -1321,36 +971,358 @@ or backward - from end to start (<code>true</code>).</p>
                           </div>
                         </div>
                       </li>
-          </ul>
-          <h4>Static methods</h4>
-          <ul class="collapsing-list collapsing-list--filtered">
-                      <li class="collapsing-list__item" data-protected="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_getStoreAttributeKey">
-                          <h3><code><a class="member-name" href="#_getStoreAttributeKey">_getStoreAttributeKey</a>( key ) &rarr;  String</code></h3>
+                      <li class="collapsing-list__item" data-protected="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_checkRange">
+                          <h3><code><a class="member-name" href="#_checkRange">_checkRange</a>( range )</code></h3>
                           <p class="badges">
 <span class="badge badge--orange ">protected</span>
-<span class="badge badge--gray ">static</span>
+<span class="badge badge--gray ">inherited</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Generates and returns an attribute key for selection attributes store, basing on original attribute key.
+                          <p class="collapsing-list__excerpt">Checks if given range intersects with ranges that are already in the selection. Throws an error if it does.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> key : String</code></dt>
-                                        <dd><p>Attribute key to convert.</p>
+                                        <dt><code> range : <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
+                                        <dd><p>Range to check.</p>
                                         </dd>
                                       </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-protected="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_popRange">
+                          <h3><code><a class="member-name" href="#_popRange">_popRange</a>()</code></h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+<span class="badge badge--gray ">inherited</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Removes most recently added range from the selection.
+                          </p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-protected="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_pushRange">
+                          <h3><code><a class="member-name" href="#_pushRange">_pushRange</a>( range )</code></h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+<span class="badge badge--gray ">inherited</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Adds given range to internal <a href="module_engine_model_selection-Selection.html#_ranges">ranges  array</a>. Throws an error
+if given range is intersecting with any range that is already stored in this selection.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> range : <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
+                                        <dd><p>Range to add.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-protected="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_updateAttributes">
+                          <h3><code><a class="member-name" href="#_updateAttributes">_updateAttributes</a>( clearAll )</code></h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Updates this selection attributes according to its ranges and the <a href="module_engine_model_document-Document.html">model document</a>.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> clearAll : <span>Boolean</span></code></dt>
+                                        <dd>
+                                        </dd>
+                                      </dl>
+                            <h4>Fires</h4>
+                            <ul>
+                                        <li><span><a href="module_engine_model_documentselection-DocumentSelection.html#event:change:attribute">change:attribute</a></span>
+                                        </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_fixGraveyardSelection">
+                          <h3><code><a class="member-name" href="#_fixGraveyardSelection">_fixGraveyardSelection</a>( liveRange, removedRange )</code></h3>
+                          <p class="badges">
+<span class="badge badge--red ">private</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Fixes a selection range after it ends up in graveyard root.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> liveRange : <span><a class="collapsing-list__type" href="module_engine_model_liverange-LiveRange.html">LiveRange</a></span></code></dt>
+                                        <dd><p>The range from selection, that ended up in the graveyard root.</p>
+                                        </dd>
+                                        <dt><code> removedRange : <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
+                                        <dd><p>Range which removing had caused moving <code>liveRange</code> to the graveyard root.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_getStoredAttributes">
+                          <h3><code><a class="member-name" href="#_getStoredAttributes">_getStoredAttributes</a>() &rarr;  <span>Iterable.&lt;*&gt;</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--red ">private</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Returns an iterator that iterates through all selection attributes stored in current selection&apos;s parent.
+                          </p>
+                          <div class="collapsing-list__content">
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code>String</code></dt>
-                                        <dd><p>Converted attribute key, applicable for selection store.</p>
+                                        <dt><code><span>Iterable.&lt;*&gt;</span></code></dt>
+                                        <dd>
                                         </dd>
                             </dl>
                           </div>
                         </div>
                       </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_getSurroundingAttributes">
+                          <h3><code><a class="member-name" href="#_getSurroundingAttributes">_getSurroundingAttributes</a>() &rarr;  <span>Iterable.&lt;*&gt;</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--red ">private</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Checks model text nodes that are closest to the selection&apos;s first position and returns attributes of first
+found element. If there are no text nodes in selection&apos;s first position parent, it returns selection
+attributes stored in that parent.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Iterable.&lt;*&gt;</span></code></dt>
+                                        <dd><p>Collection of attributes.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_prepareRange">
+                          <h3><code><a class="member-name" href="#_prepareRange">_prepareRange</a>( range )</code></h3>
+                          <p class="badges">
+<span class="badge badge--red ">private</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Prepares given range to be added to selection. Checks if it is correct,
+converts it to <a href="module_engine_model_liverange-LiveRange.html">LiveRange</a>
+and sets listeners listening to the range&apos;s change event.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> range : <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
+                                        <dd>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_removeAllRanges">
+                          <h3><code><a class="member-name" href="#_removeAllRanges">_removeAllRanges</a>()</code></h3>
+                          <p class="badges">
+<span class="badge badge--red ">private</span>
+<span class="badge badge--gray ">inherited</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Deletes ranges from internal range array. Uses <a href="module_engine_model_selection-Selection.html#_popRange">_popRange</a> to
+ensure proper ranges removal.
+                          </p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_removeAttribute">
+                          <h3><code><a class="member-name" href="#_removeAttribute">_removeAttribute</a>( key, [ directChange ] ) &rarr;  <span>Boolean</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--red ">private</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Internal method for removing <code>DocumentSelection</code> attribute. Supports attribute priorities (through <code>directChange</code>
+parameter).
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> key : <span>String</span></code></dt>
+                                        <dd><p>Attribute key.</p>
+                                        </dd>
+                                        <dt><code> [ directChange ] : <span>Boolean</span></code></dt>
+                                        <dd><p><code>true</code> if the change is caused by <code>Selection</code> API, <code>false</code> if change
+is caused by <code>Batch</code> API.</p>
+                                          <p>Defaults to <code>true</code></p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Boolean</span></code></dt>
+                                        <dd><p>Whether attribute was removed. May not be true if such attributes didn&apos;t exist or the
+existing attribute had higher priority.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_removeStoredAttribute">
+                          <h3><code><a class="member-name" href="#_removeStoredAttribute">_removeStoredAttribute</a>( key )</code></h3>
+                          <p class="badges">
+<span class="badge badge--red ">private</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Removes attribute with given key from attributes stored in current selection&apos;s parent node.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> key : <span>String</span></code></dt>
+                                        <dd><p>Key of attribute to remove.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_setAttribute">
+                          <h3><code><a class="member-name" href="#_setAttribute">_setAttribute</a>( key, value, [ directChange ] ) &rarr;  <span>Boolean</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--red ">private</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Internal method for setting <code>DocumentSelection</code> attribute. Supports attribute priorities (through <code>directChange</code>
+parameter).
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> key : <span>String</span></code></dt>
+                                        <dd><p>Attribute key.</p>
+                                        </dd>
+                                        <dt><code> value : <span>*</span></code></dt>
+                                        <dd><p>Attribute value.</p>
+                                        </dd>
+                                        <dt><code> [ directChange ] : <span>Boolean</span></code></dt>
+                                        <dd><p><code>true</code> if the change is caused by <code>Selection</code> API, <code>false</code> if change
+is caused by <code>Batch</code> API.</p>
+                                          <p>Defaults to <code>true</code></p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Boolean</span></code></dt>
+                                        <dd><p>Whether value has changed.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_setAttributesTo">
+                          <h3><code><a class="member-name" href="#_setAttributesTo">_setAttributesTo</a>( attrs, [ directChange ] ) &rarr;  <span>Set.&lt;String&gt;</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--red ">private</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Internal method for setting multiple <code>DocumentSelection</code> attributes. Supports attribute priorities (through
+<code>directChange</code> parameter).
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> attrs : <span>Iterable</span> | <span>Object</span></code></dt>
+                                        <dd><p>Iterable object containing attributes to be set.</p>
+                                        </dd>
+                                        <dt><code> [ directChange ] : <span>Boolean</span></code></dt>
+                                        <dd><p><code>true</code> if the change is caused by <code>Selection</code> API, <code>false</code> if change
+is caused by <code>Batch</code> API.</p>
+                                          <p>Defaults to <code>true</code></p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Set.&lt;String&gt;</span></code></dt>
+                                        <dd><p>Changed attribute keys.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_setStoredAttributesTo">
+                          <h3><code><a class="member-name" href="#_setStoredAttributesTo">_setStoredAttributesTo</a>( attrs )</code></h3>
+                          <p class="badges">
+<span class="badge badge--red ">private</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Sets selection attributes stored in current selection&apos;s parent node to given set of attributes.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> attrs : <span>Iterable</span> | <span>Object</span></code></dt>
+                                        <dd><p>Iterable object containing attributes to be set.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_storeAttribute">
+                          <h3><code><a class="member-name" href="#_storeAttribute">_storeAttribute</a>( key, value )</code></h3>
+                          <p class="badges">
+<span class="badge badge--red ">private</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Stores given attribute key and value in current selection&apos;s parent node.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> key : <span>String</span></code></dt>
+                                        <dd><p>Key of attribute to set.</p>
+                                        </dd>
+                                        <dt><code> value : <span>*</span></code></dt>
+                                        <dd><p>Attribute value.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+          </ul>
+          <h4>Static methods</h4>
+          <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="createFromSelection">
                           <h3><code><a class="member-name" href="#createFromSelection">createFromSelection</a>()</code></h3>
@@ -1367,12 +1339,39 @@ would be unsafe.
                           </div>
                         </div>
                       </li>
+                      <li class="collapsing-list__item" data-protected="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_getStoreAttributeKey">
+                          <h3><code><a class="member-name" href="#_getStoreAttributeKey">_getStoreAttributeKey</a>( key ) &rarr;  <span>String</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+<span class="badge badge--gray ">static</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Generates and returns an attribute key for selection attributes store, basing on original attribute key.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> key : <span>String</span></code></dt>
+                                        <dd><p>Attribute key to convert.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>String</span></code></dt>
+                                        <dd><p>Converted attribute key, applicable for selection store.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
           </ul>
           <h2>Events</h2>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:change">
-                          <h3><code><a class="member-name" href="#event:change">change</a>()</code></h3>
+                          <h3><code><a class="member-name" href="#event:change">change</a>( eventInfo )</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">inherited</span>
                           </p>
@@ -1381,23 +1380,35 @@ would be unsafe.
                           <p class="collapsing-list__excerpt">
                           </p>
                           <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> eventInfo : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
+                                      </dl>
                           </div>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:change:attribute">
-                          <h3><code><a class="member-name" href="#event:change:attribute">change:attribute</a>()</code></h3>
+                          <h3><code><a class="member-name" href="#event:change:attribute">change:attribute</a>( eventInfo )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">
                           </p>
                           <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> eventInfo : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
+                                      </dl>
                           </div>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:change:range">
-                          <h3><code><a class="member-name" href="#event:change:range">change:range</a>( directChange )</code></h3>
+                          <h3><code><a class="member-name" href="#event:change:range">change:range</a>( eventInfo, directChange )</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">inherited</span>
                           </p>
@@ -1408,7 +1419,10 @@ would be unsafe.
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> directChange : Boolean</code></dt>
+                                        <dt><code> eventInfo : <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
+                                        <dt><code> directChange : <span>Boolean</span></code></dt>
                                         <dd><p>Specifies whether the range change was caused by direct usage of <code>Selection</code> API (<code>true</code>)
 or by changes done to <a href="module_engine_model_document-Document.html">model document</a>
 using <a href="module_engine_model_batch-Batch.html">Batch</a> API (<code>false</code>).</p>
@@ -1422,7 +1436,7 @@ using <a href="module_engine_model_batch-Batch.html">Batch</a> API (<code>false<
       </section>
       <div class="side-navigation">
         <div class="side-navigation__wrapper">
-          <nav class="side-navigation__inner">
+          <nav class="side-navigation__inner side-navigation__inner--api">
             <ul class="tree api-tree">
                     <li class="toggler--collapsed">
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">adapter-ckfinder</span>
@@ -1868,8 +1882,11 @@ using <a href="module_engine_model_batch-Batch.html">Batch</a> API (<code>false<
                                                   <li><a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">ModelConverterBuilder</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_conversion_buildmodelconverter-StampCreatorData.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">StampCreatorData</span></div></a>
+                                                  <li><a href="module_engine_conversion_buildmodelconverter-HighlightDescriptor.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">HighlightDescriptor</span></div></a>
+                                                  </li>
+                                                  <li><a href="module_engine_conversion_buildmodelconverter-MarkerViewElementCreatorData.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">MarkerViewElementCreatorData</span></div></a>
                                                   </li>
                                           </ul>
                                         </li>
@@ -4194,6 +4211,15 @@ using <a href="module_engine_model_batch-Batch.html">Batch</a> API (<code>false<
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">widget</span>
                       </div>
                       <ul>
+                              <li class="toggler--collapsed">
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_widget_highlightstack.html">highlightstack</a>
+                                </div>
+                                <ul>
+                                        <li><a href="module_widget_highlightstack-HighlightStack.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">HighlightStack</span></div></a>
+                                        </li>
+                                </ul>
+                              </li>
                               <li><a href="module_widget_utils.html">
                                   <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">utils</span></div></a>
                               </li>

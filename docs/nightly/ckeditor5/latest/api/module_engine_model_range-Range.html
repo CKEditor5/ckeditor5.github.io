@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Class Range (engine/model/range~Range) - CKEditor 5 API docs</title>
     <link rel="canonical" href="/ckeditor5/latest/api/module_engine_model_range-Range.html">
-    <link rel="stylesheet" href="../../../assets/0.3.2/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../assets/0.3.5/css/styles.css" type="text/css" media="screen">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
-    <script src="../../../assets/0.3.2/scripts/app.js"></script>
+    <script src="../../../assets/0.3.5/scripts/app.js"></script>
   </head>
   <body>
     <header class="top">
@@ -21,13 +21,13 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.2/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.5/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="api-header"><img src="../../../assets/0.3.2/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.5/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1>Range
               </h1>
@@ -85,7 +85,7 @@
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="isCollapsed">
-                          <h3><code><a class="member-name" href="#isCollapsed">isCollapsed</a> : Boolean</code></h3>
+                          <h3><code><a class="member-name" href="#isCollapsed">isCollapsed</a> : <span>Boolean</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Returns whether the range is collapsed, that is if <a href="module_engine_model_range-Range.html#start"><code>start</code></a> and
@@ -96,7 +96,7 @@
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="isFlat">
-                          <h3><code><a class="member-name" href="#isFlat">isFlat</a> : Boolean</code></h3>
+                          <h3><code><a class="member-name" href="#isFlat">isFlat</a> : <span>Boolean</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Returns whether this range is flat, that is if <a href="module_engine_model_range-Range.html#start"><code>start</code></a> position and
@@ -130,7 +130,6 @@
                       </li>
           </ul>
           <h2>Methods</h2>
-          <h4>Instance methods</h4>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="constructor">
@@ -153,71 +152,23 @@
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-protected="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_getTransformedByMove">
-                          <h3><code><a class="member-name" href="#_getTransformedByMove">_getTransformedByMove</a>( sourcePosition, targetPosition, howMany ) &rarr;  <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--orange ">protected</span>
-                          </p>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="iterator">
+                          <h3><code><a class="member-name" href="#iterator">Symbol.iterator</a>() &rarr;  <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_model_treewalker-TreeWalkerValue.html">TreeWalkerValue</a>&gt;</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Returns an array containing <a href="module_engine_model_range-Range.html">ranges</a> that are a result of transforming this
-<a href="module_engine_model_range-Range.html">range</a> by moving <code>howMany</code> nodes from <code>sourcePosition</code> to <code>targetPosition</code>.
+                          <p class="collapsing-list__excerpt">Returns an iterator that iterates over all <a href="module_engine_model_item-Item.html">items</a> that are in this range and returns
+them together with additional information like length or <a href="module_engine_model_position-Position.html">positions</a>,
+grouped as <a href="module_engine_model_treewalker-TreeWalkerValue.html"><code>TreeWalkerValue</code></a>.
+It iterates over all <a href="module_engine_model_textproxy-TextProxy.html">text contents</a> that are inside the range
+and all the <a href="module_engine_model_element-Element.html"><code>Element</code></a>s that are entered into when iterating over this range.
                           </p>
                           <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> sourcePosition : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
-                                        <dd><p>Position from which nodes are moved.</p>
-                                        </dd>
-                                        <dt><code> targetPosition : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
-                                        <dd><p>Position to where nodes are moved.</p>
-                                        </dd>
-                                        <dt><code> howMany : Number</code></dt>
-                                        <dd><p>How many nodes are moved.</p>
-                                        </dd>
-                                      </dl>
+<p>This iterator uses <a href="module_engine_model_treewalker-TreeWalker.html"><code>TreeWalker</code></a> with <code>boundaries</code> set to this range
+and <code>ignoreElementEnd</code> option set to <code>true</code>.</p>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code><span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span></code></dt>
-                                        <dd><p>Result of the transformation.</p>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-protected="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_getTransformedByDocumentChange">
-                          <h3><code><a class="member-name" href="#_getTransformedByDocumentChange">_getTransformedByDocumentChange</a>( type, deltaType, targetPosition, howMany, sourcePosition ) &rarr;  <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--orange ">protected</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Returns a range that is a result of transforming this range by a change in the model document.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> type :  |  |  | </code></dt>
-                                        <dd><p>Change type.</p>
-                                        </dd>
-                                        <dt><code> deltaType : String</code></dt>
-                                        <dd><p>Type of delta that introduced the change.</p>
-                                        </dd>
-                                        <dt><code> targetPosition : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
-                                        <dd><p>Position before the first changed node.</p>
-                                        </dd>
-                                        <dt><code> howMany : Number</code></dt>
-                                        <dd><p>How many nodes has been changed.</p>
-                                        </dd>
-                                        <dt><code> sourcePosition : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
-                                        <dd><p>Source position of changes.</p>
-                                        </dd>
-                                      </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span></code></dt>
+                                        <dt><code><span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_model_treewalker-TreeWalkerValue.html">TreeWalkerValue</a>&gt;</span></code></dt>
                                         <dd>
                                         </dd>
                             </dl>
@@ -226,7 +177,7 @@
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="containsPosition">
-                          <h3><code><a class="member-name" href="#containsPosition">containsPosition</a>( position ) &rarr;  Boolean</code></h3>
+                          <h3><code><a class="member-name" href="#containsPosition">containsPosition</a>( position ) &rarr;  <span>Boolean</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Checks whether this range contains given <a href="module_engine_model_position-Position.html">position</a>.
@@ -240,7 +191,7 @@
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code>Boolean</code></dt>
+                                        <dt><code><span>Boolean</span></code></dt>
                                         <dd><p><code>true</code> if given <a href="module_engine_model_position-Position.html">position</a> is contained
 in this range,<code>false</code> otherwise.</p>
                                         </dd>
@@ -250,7 +201,7 @@ in this range,<code>false</code> otherwise.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="containsRange">
-                          <h3><code><a class="member-name" href="#containsRange">containsRange</a>( otherRange, [ loose ] ) &rarr;  Boolean</code></h3>
+                          <h3><code><a class="member-name" href="#containsRange">containsRange</a>( otherRange, [ loose ] ) &rarr;  <span>Boolean</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Checks whether this range contains given <a href="module_engine_model_range-Range.html">range</a>.
@@ -261,7 +212,7 @@ in this range,<code>false</code> otherwise.</p>
                                         <dt><code> otherRange : <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
                                         <dd><p>Range to check.</p>
                                         </dd>
-                                        <dt><code> [ loose ] : Boolean</code></dt>
+                                        <dt><code> [ loose ] : <span>Boolean</span></code></dt>
                                         <dd><p>Whether the check is loose or strict. If the check is strict (<code>false</code>), compared range cannot
 start or end at the same position as this range boundaries. If the check is loose (<code>true</code>), compared range can start, end or
 even be equal to this range. Note that collapsed ranges are always compared in strict mode.</p>
@@ -270,68 +221,8 @@ even be equal to this range. Note that collapsed ranges are always compared in s
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code>Boolean</code></dt>
+                                        <dt><code><span>Boolean</span></code></dt>
                                         <dd><p><code>true</code> if given <code>range (~Range)</code> boundaries are contained by this range, <code>false</code> otherwise.</p>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-protected="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_getTransformedByInsertion">
-                          <h3><code><a class="member-name" href="#_getTransformedByInsertion">_getTransformedByInsertion</a>( insertPosition, howMany, [ spread ], [ isSticky ] ) &rarr;  <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--orange ">protected</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Returns an array containing one or two <a href="module_engine_model_range-Range.html">ranges</a> that are a result of transforming this
-<a href="module_engine_model_range-Range.html">range</a> by inserting <code>howMany</code> nodes at <code>insertPosition</code>. Two <a href="module_engine_model_range-Range.html">ranges</a> are
-returned if the insertion was inside this <a href="module_engine_model_range-Range.html">range</a> and <code>spread</code> is set to <code>true</code>.
-                          </p>
-                          <div class="collapsing-list__content">
-<p>Examples:</p>
-<pre class="prettyprint source"><code>let range = new Range( new Position( root, [ 2, 7 ] ), new Position( root, [ 4, 0, 1 ] ) );
-let transformed = range._getTransformedByInsertion( new Position( root, [ 1 ] ), 2 );
-// transformed array has one range from [ 4, 7 ] to [ 6, 0, 1 ]
-
-transformed = range._getTransformedByInsertion( new Position( root, [ 4, 0, 0 ] ), 4 );
-// transformed array has one range from [ 2, 7 ] to [ 4, 0, 5 ]
-
-transformed = range._getTransformedByInsertion( new Position( root, [ 3, 2 ] ), 4 );
-// transformed array has one range, which is equal to original range
-
-transformed = range._getTransformedByInsertion( new Position( root, [ 3, 2 ] ), 4, true );
-// transformed array has two ranges: from [ 2, 7 ] to [ 3, 2 ] and from [ 3, 6 ] to [ 4, 0, 1 ]
-
-transformed = range._getTransformedByInsertion( new Position( root, [ 4, 0, 1 ] ), 4, false, false );
-// transformed array has one range which is equal to original range because insertion is after the range boundary
-
-transformed = range._getTransformedByInsertion( new Position( root, [ 4, 0, 1 ] ), 4, false, true );
-// transformed array has one range: from [ 2, 7 ] to [ 4, 0, 5 ] because range was expanded</code></pre>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> insertPosition : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
-                                        <dd><p>Position where nodes are inserted.</p>
-                                        </dd>
-                                        <dt><code> howMany : Number</code></dt>
-                                        <dd><p>How many nodes are inserted.</p>
-                                        </dd>
-                                        <dt><code> [ spread ] : Boolean</code></dt>
-                                        <dd><p>Flag indicating whether this {~Range range} should be spread if insertion
-was inside the range. Defaults to <code>false</code>.</p>
-                                          <p>Defaults to <code>false</code></p>
-                                        </dd>
-                                        <dt><code> [ isSticky ] : Boolean</code></dt>
-                                        <dd><p>Flag indicating whether insertion should expand a range if it is in a place of
-range boundary. Defaults to <code>false</code>.</p>
-                                          <p>Defaults to <code>false</code></p>
-                                        </dd>
-                                      </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span></code></dt>
-                                        <dd><p>Result of the transformation.</p>
                                         </dd>
                             </dl>
                           </div>
@@ -339,7 +230,7 @@ range boundary. Defaults to <code>false</code>.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="getCommonAncestor">
-                          <h3><code><a class="member-name" href="#getCommonAncestor">getCommonAncestor</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span> | null</code></h3>
+                          <h3><code><a class="member-name" href="#getCommonAncestor">getCommonAncestor</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span> | <span>null</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Returns an <a href="module_engine_model_element-Element.html"><code>Element</code></a> or <a href="module_engine_model_documentfragment-DocumentFragment.html"><code>DocumentFragment</code></a>
@@ -348,7 +239,7 @@ which is a common ancestor of the range&apos;s both ends (in which the entire ra
                           <div class="collapsing-list__content">
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span> | null</code></dt>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span> | <span>null</span></code></dt>
                                         <dd>
                                         </dd>
                             </dl>
@@ -394,7 +285,7 @@ transformed = range.getDifference( otherRange );
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="getIntersection">
-                          <h3><code><a class="member-name" href="#getIntersection">getIntersection</a>( otherRange ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | null</code></h3>
+                          <h3><code><a class="member-name" href="#getIntersection">getIntersection</a>( otherRange ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | <span>null</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Returns an intersection of this <a href="module_engine_model_range-Range.html">range</a> and given <a href="module_engine_model_range-Range.html">range</a>.
@@ -416,7 +307,7 @@ transformed = range.getIntersection( otherRange ); // range from [ 3 ] to [ 4, 0
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | null</code></dt>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | <span>null</span></code></dt>
                                         <dd><p>A common part of given ranges or <code>null</code> if ranges have no common part.</p>
                                         </dd>
                             </dl>
@@ -480,7 +371,7 @@ contained in this range.
 a full list of available options.</p>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> options : Object</code></dt>
+                                        <dt><code> options : <span>Object</span></code></dt>
                                         <dd><p>Object with configuration options. See <a href="module_engine_model_treewalker-TreeWalker.html"><code>TreeWalker</code></a>.</p>
                                         </dd>
                                       </dl>
@@ -555,7 +446,7 @@ may contain one or more <code>Range</code> instances.</p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> options : Object</code></dt>
+                                        <dt><code> options : <span>Object</span></code></dt>
                                         <dd><p>Object with configuration options. See <a href="module_engine_model_treewalker-TreeWalker.html"><code>TreeWalker</code></a>.</p>
                                                     <div class="dlheading5">Properties
                                                     </div>
@@ -563,15 +454,15 @@ may contain one or more <code>Range</code> instances.</p>
                                                       <dt><code> [ options.startPosition ] : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
                                                       <dd>
                                                       </dd>
-                                                      <dt><code> [ options.singleCharacters ] : Boolean</code></dt>
+                                                      <dt><code> [ options.singleCharacters ] : <span>Boolean</span></code></dt>
                                                       <dd>
                                                         <p>Defaults to <code>false</code></p>
                                                       </dd>
-                                                      <dt><code> [ options.shallow ] : Boolean</code></dt>
+                                                      <dt><code> [ options.shallow ] : <span>Boolean</span></code></dt>
                                                       <dd>
                                                         <p>Defaults to <code>false</code></p>
                                                       </dd>
-                                                      <dt><code> [ options.ignoreElementEnd ] : Boolean</code></dt>
+                                                      <dt><code> [ options.ignoreElementEnd ] : <span>Boolean</span></code></dt>
                                                       <dd>
                                                         <p>Defaults to <code>false</code></p>
                                                       </dd>
@@ -583,7 +474,7 @@ may contain one or more <code>Range</code> instances.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="isEqual">
-                          <h3><code><a class="member-name" href="#isEqual">isEqual</a>( otherRange ) &rarr;  Boolean</code></h3>
+                          <h3><code><a class="member-name" href="#isEqual">isEqual</a>( otherRange ) &rarr;  <span>Boolean</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Two ranges are equal if their <a href="module_engine_model_range-Range.html#start"><code>start</code></a> and <a href="module_engine_model_range-Range.html#end"><code>end</code></a> positions are equal.
@@ -597,7 +488,7 @@ may contain one or more <code>Range</code> instances.</p>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code>Boolean</code></dt>
+                                        <dt><code><span>Boolean</span></code></dt>
                                         <dd><p><code>true</code> if ranges are equal, <code>false</code> otherwise.</p>
                                         </dd>
                             </dl>
@@ -606,7 +497,7 @@ may contain one or more <code>Range</code> instances.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="isIntersecting">
-                          <h3><code><a class="member-name" href="#isIntersecting">isIntersecting</a>( otherRange ) &rarr;  Boolean</code></h3>
+                          <h3><code><a class="member-name" href="#isIntersecting">isIntersecting</a>( otherRange ) &rarr;  <span>Boolean</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Checks and returns whether this range intersects with given range.
@@ -620,31 +511,139 @@ may contain one or more <code>Range</code> instances.</p>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code>Boolean</code></dt>
+                                        <dt><code><span>Boolean</span></code></dt>
                                         <dd><p><code>true</code> if ranges intersect, <code>false</code> otherwise.</p>
                                         </dd>
                             </dl>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="iterator">
-                          <h3><code><a class="member-name" href="#iterator">Symbol.iterator</a>() &rarr;  <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_model_treewalker-TreeWalkerValue.html">TreeWalkerValue</a>&gt;</span></code></h3>
+                      <li class="collapsing-list__item" data-protected="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_getTransformedByDocumentChange">
+                          <h3><code><a class="member-name" href="#_getTransformedByDocumentChange">_getTransformedByDocumentChange</a>( type, deltaType, targetPosition, howMany, sourcePosition ) &rarr;  <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+                          </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Returns an iterator that iterates over all <a href="module_engine_model_item-Item.html">items</a> that are in this range and returns
-them together with additional information like length or <a href="module_engine_model_position-Position.html">positions</a>,
-grouped as <a href="module_engine_model_treewalker-TreeWalkerValue.html"><code>TreeWalkerValue</code></a>.
-It iterates over all <a href="module_engine_model_textproxy-TextProxy.html">text contents</a> that are inside the range
-and all the <a href="module_engine_model_element-Element.html"><code>Element</code></a>s that are entered into when iterating over this range.
+                          <p class="collapsing-list__excerpt">Returns a range that is a result of transforming this range by a change in the model document.
                           </p>
                           <div class="collapsing-list__content">
-<p>This iterator uses <a href="module_engine_model_treewalker-TreeWalker.html"><code>TreeWalker</code></a> with <code>boundaries</code> set to this range
-and <code>ignoreElementEnd</code> option set to <code>true</code>.</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> type : <span>'insert'</span> | <span>'move'</span> | <span>'remove'</span> | <span>'reinsert'</span></code></dt>
+                                        <dd><p>Change type.</p>
+                                        </dd>
+                                        <dt><code> deltaType : <span>String</span></code></dt>
+                                        <dd><p>Type of delta that introduced the change.</p>
+                                        </dd>
+                                        <dt><code> targetPosition : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
+                                        <dd><p>Position before the first changed node.</p>
+                                        </dd>
+                                        <dt><code> howMany : <span>Number</span></code></dt>
+                                        <dd><p>How many nodes has been changed.</p>
+                                        </dd>
+                                        <dt><code> sourcePosition : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
+                                        <dd><p>Source position of changes.</p>
+                                        </dd>
+                                      </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code><span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_model_treewalker-TreeWalkerValue.html">TreeWalkerValue</a>&gt;</span></code></dt>
+                                        <dt><code><span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span></code></dt>
                                         <dd>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-protected="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_getTransformedByInsertion">
+                          <h3><code><a class="member-name" href="#_getTransformedByInsertion">_getTransformedByInsertion</a>( insertPosition, howMany, [ spread ], [ isSticky ] ) &rarr;  <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Returns an array containing one or two <a href="module_engine_model_range-Range.html">ranges</a> that are a result of transforming this
+<a href="module_engine_model_range-Range.html">range</a> by inserting <code>howMany</code> nodes at <code>insertPosition</code>. Two <a href="module_engine_model_range-Range.html">ranges</a> are
+returned if the insertion was inside this <a href="module_engine_model_range-Range.html">range</a> and <code>spread</code> is set to <code>true</code>.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>Examples:</p>
+<pre class="prettyprint source"><code>let range = new Range( new Position( root, [ 2, 7 ] ), new Position( root, [ 4, 0, 1 ] ) );
+let transformed = range._getTransformedByInsertion( new Position( root, [ 1 ] ), 2 );
+// transformed array has one range from [ 4, 7 ] to [ 6, 0, 1 ]
+
+transformed = range._getTransformedByInsertion( new Position( root, [ 4, 0, 0 ] ), 4 );
+// transformed array has one range from [ 2, 7 ] to [ 4, 0, 5 ]
+
+transformed = range._getTransformedByInsertion( new Position( root, [ 3, 2 ] ), 4 );
+// transformed array has one range, which is equal to original range
+
+transformed = range._getTransformedByInsertion( new Position( root, [ 3, 2 ] ), 4, true );
+// transformed array has two ranges: from [ 2, 7 ] to [ 3, 2 ] and from [ 3, 6 ] to [ 4, 0, 1 ]
+
+transformed = range._getTransformedByInsertion( new Position( root, [ 4, 0, 1 ] ), 4, false, false );
+// transformed array has one range which is equal to original range because insertion is after the range boundary
+
+transformed = range._getTransformedByInsertion( new Position( root, [ 4, 0, 1 ] ), 4, false, true );
+// transformed array has one range: from [ 2, 7 ] to [ 4, 0, 5 ] because range was expanded</code></pre>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> insertPosition : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
+                                        <dd><p>Position where nodes are inserted.</p>
+                                        </dd>
+                                        <dt><code> howMany : <span>Number</span></code></dt>
+                                        <dd><p>How many nodes are inserted.</p>
+                                        </dd>
+                                        <dt><code> [ spread ] : <span>Boolean</span></code></dt>
+                                        <dd><p>Flag indicating whether this {~Range range} should be spread if insertion
+was inside the range. Defaults to <code>false</code>.</p>
+                                          <p>Defaults to <code>false</code></p>
+                                        </dd>
+                                        <dt><code> [ isSticky ] : <span>Boolean</span></code></dt>
+                                        <dd><p>Flag indicating whether insertion should expand a range if it is in a place of
+range boundary. Defaults to <code>false</code>.</p>
+                                          <p>Defaults to <code>false</code></p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span></code></dt>
+                                        <dd><p>Result of the transformation.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-protected="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_getTransformedByMove">
+                          <h3><code><a class="member-name" href="#_getTransformedByMove">_getTransformedByMove</a>( sourcePosition, targetPosition, howMany ) &rarr;  <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Returns an array containing <a href="module_engine_model_range-Range.html">ranges</a> that are a result of transforming this
+<a href="module_engine_model_range-Range.html">range</a> by moving <code>howMany</code> nodes from <code>sourcePosition</code> to <code>targetPosition</code>.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> sourcePosition : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
+                                        <dd><p>Position from which nodes are moved.</p>
+                                        </dd>
+                                        <dt><code> targetPosition : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
+                                        <dd><p>Position to where nodes are moved.</p>
+                                        </dd>
+                                        <dt><code> howMany : <span>Number</span></code></dt>
+                                        <dd><p>How many nodes are moved.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span></code></dt>
+                                        <dd><p>Result of the transformation.</p>
                                         </dd>
                             </dl>
                           </div>
@@ -653,32 +652,6 @@ and <code>ignoreElementEnd</code> option set to <code>true</code>.</p>
           </ul>
           <h4>Static methods</h4>
           <ul class="collapsing-list collapsing-list--filtered">
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="createOn">
-                          <h3><code><a class="member-name" href="#createOn">createOn</a>( item ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">static</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Creates a range that starts before given <a href="module_engine_model_item-Item.html">model item</a> and ends after it.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> item : <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span></code></dt>
-                                        <dd>
-                                        </dd>
-                                      </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
-                                        <dd>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="createCollapsedAt">
                           <h3><code><a class="member-name" href="#createCollapsedAt">createCollapsedAt</a>( itemOrPosition, [ offset ] )</code></h3>
@@ -696,7 +669,7 @@ or on the given <a href="module_engine_model_item-Item.html">item</a>.
                                         <dt><code> itemOrPosition : <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
                                         <dd>
                                         </dd>
-                                        <dt><code> [ offset ] : Number |  |  | </code></dt>
+                                        <dt><code> [ offset ] : <span>Number</span> | <span>'end'</span> | <span>'before'</span> | <span>'after'</span></code></dt>
                                         <dd><p>Offset or one of the flags. Used only when
 first parameter is a <a href="module_engine_model_item-Item.html">model item</a>.</p>
                                           <p>Defaults to <code>0</code></p>
@@ -721,13 +694,13 @@ first parameter is a <a href="module_engine_model_item-Item.html">model item</a>
                                         <dt><code> startElement : <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
                                         <dd><p>Start position parent element.</p>
                                         </dd>
-                                        <dt><code> startOffset : Number</code></dt>
+                                        <dt><code> startOffset : <span>Number</span></code></dt>
                                         <dd><p>Start position offset.</p>
                                         </dd>
                                         <dt><code> endElement : <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
                                         <dd><p>End position parent element.</p>
                                         </dd>
-                                        <dt><code> endOffset : Number</code></dt>
+                                        <dt><code> endOffset : <span>Number</span></code></dt>
                                         <dd><p>End position offset.</p>
                                         </dd>
                                       </dl>
@@ -757,7 +730,7 @@ given <code>shift</code>. If <code>shift</code> is a negative value, shifted pos
                                         <dt><code> position : <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
                                         <dd><p>Beginning of the range.</p>
                                         </dd>
-                                        <dt><code> shift : Number</code></dt>
+                                        <dt><code> shift : <span>Number</span></code></dt>
                                         <dd><p>How long the range should be.</p>
                                         </dd>
                                       </dl>
@@ -857,6 +830,32 @@ that element and ends after the last child of that element.
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="createOn">
+                          <h3><code><a class="member-name" href="#createOn">createOn</a>( item ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">static</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Creates a range that starts before given <a href="module_engine_model_item-Item.html">model item</a> and ends after it.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> item : <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span></code></dt>
+                                        <dd>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="fromJSON">
                           <h3><code><a class="member-name" href="#fromJSON">fromJSON</a>( json, doc ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></h3>
                           <p class="badges">
@@ -869,7 +868,7 @@ that element and ends after the last child of that element.
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> json : Object</code></dt>
+                                        <dt><code> json : <span>Object</span></code></dt>
                                         <dd><p>Plain object to be converted to <code>Range</code>.</p>
                                         </dd>
                                         <dt><code> doc : <span><a class="collapsing-list__type" href="module_engine_model_document-Document.html">Document</a></span></code></dt>
@@ -890,7 +889,7 @@ that element and ends after the last child of that element.
       </section>
       <div class="side-navigation">
         <div class="side-navigation__wrapper">
-          <nav class="side-navigation__inner">
+          <nav class="side-navigation__inner side-navigation__inner--api">
             <ul class="tree api-tree">
                     <li class="toggler--collapsed">
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">adapter-ckfinder</span>
@@ -1336,8 +1335,11 @@ that element and ends after the last child of that element.
                                                   <li><a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">ModelConverterBuilder</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_conversion_buildmodelconverter-StampCreatorData.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">StampCreatorData</span></div></a>
+                                                  <li><a href="module_engine_conversion_buildmodelconverter-HighlightDescriptor.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">HighlightDescriptor</span></div></a>
+                                                  </li>
+                                                  <li><a href="module_engine_conversion_buildmodelconverter-MarkerViewElementCreatorData.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">MarkerViewElementCreatorData</span></div></a>
                                                   </li>
                                           </ul>
                                         </li>
@@ -3662,6 +3664,15 @@ that element and ends after the last child of that element.
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">widget</span>
                       </div>
                       <ul>
+                              <li class="toggler--collapsed">
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_widget_highlightstack.html">highlightstack</a>
+                                </div>
+                                <ul>
+                                        <li><a href="module_widget_highlightstack-HighlightStack.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">HighlightStack</span></div></a>
+                                        </li>
+                                </ul>
+                              </li>
                               <li><a href="module_widget_utils.html">
                                   <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">utils</span></div></a>
                               </li>
