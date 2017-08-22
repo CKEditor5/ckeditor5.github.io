@@ -1122,7 +1122,7 @@ It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:delete">
-                          <h3><code><a class="member-name" href="#event:delete">delete</a>( eventInfo, data, data.direction, data.unit )</code></h3>
+                          <h3><code><a class="member-name" href="#event:delete">delete</a>( eventInfo, data, data.direction, data.unit, data.sequence )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Event fired when the user tries to delete content (e.g. presses <kbd>Delete</kbd> or <kbd>Backspace</kbd>).
@@ -1143,6 +1143,10 @@ It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>
                                         </dd>
                                         <dt><code> data.unit : <span>'character'</span> | <span>'word'</span></code></dt>
                                         <dd><p>The &quot;amount&quot; of content that should be deleted.</p>
+                                        </dd>
+                                        <dt><code> data.sequence : <span>Number</span></code></dt>
+                                        <dd><p>A number describing which subsequent delete event it is without the key being released.
+If it&apos;s 2 or more it means that the key was pressed and hold.</p>
                                         </dd>
                                       </dl>
                           </div>

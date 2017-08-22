@@ -378,7 +378,7 @@ emitterA.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( emitterC );</cod
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="execute">
-                          <h3><code><a class="member-name" href="#execute">execute</a>( [ options ] = { [options.unit] } )</code></h3>
+                          <h3><code><a class="member-name" href="#execute">execute</a>( [ options ] = { [options.unit], [options.sequence] } )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Executes the delete command. Depending on whether the selection is collapsed or not, deletes its content
@@ -393,9 +393,13 @@ or a piece of content in the <a href="module_typing_deletecommand-DeleteCommand.
                                                     </div>
                                                     <dl>
                                                       <dt><code> [ options.unit ] : <span>'character'</span></code></dt>
-                                                      <dd><p>See <a href="module_engine_controller_modifyselection.html#modifySelection"><code>modifySelection</code></a>&apos;s
-options.</p>
+                                                      <dd><p>See <a href="module_engine_controller_modifyselection.html#modifySelection"><code>modifySelection</code></a>&apos;s options.</p>
                                                         <p>Defaults to <code>'character'</code></p>
+                                                      </dd>
+                                                      <dt><code> [ options.sequence ] : <span>Number</span></code></dt>
+                                                      <dd><p>A number describing which subsequent delete event it is without the key being released.
+See the <a href="module_engine_viewithdocument-Document.html#event:delete"><code>delete</code></a> event data.</p>
+                                                        <p>Defaults to <code>1</code></p>
                                                       </dd>
                                                     </dl>
                                         </dd>
@@ -732,6 +736,56 @@ A.unbind();</code></pre>
 be released if no attributes provided.</p>
                                         </dd>
                                       </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_replaceEntireContentWithParagraph">
+                          <h3><code><a class="member-name" href="#_replaceEntireContentWithParagraph">_replaceEntireContentWithParagraph</a>()</code></h3>
+                          <p class="badges">
+<span class="badge badge--red ">private</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">The entire content is replaced with the paragraph. Selection is moved inside the paragraph.
+                          </p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_shouldEntireContentBeReplacedWithParagraph">
+                          <h3><code><a class="member-name" href="#_shouldEntireContentBeReplacedWithParagraph">_shouldEntireContentBeReplacedWithParagraph</a>( sequence ) &rarr;  <span>Boolean</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--red ">private</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">If the user keeps <kbd>Backspace</kbd> or <kbd>Delete</kbd> key pressed, the content of the current
+editable will be cleared. However, this will not yet lead to resetting the remaining block to a paragraph
+(which happens e.g. when the user does <kbd>Ctrl</kbd> + <kbd>A</kbd>, <kbd>Backspace</kbd>).
+                          </p>
+                          <div class="collapsing-list__content">
+<p>But, if the user pressed the key in an empty editable for the first time,
+we want to replace the entire content with a paragraph if:</p>
+<ul>
+<li>the current limit element is empty,</li>
+<li>the paragraph is allowed in the limit element,</li>
+<li>the limit doesn&apos;t already have a paragraph inside.</li>
+</ul>
+<p>See https://github.com/ckeditor/ckeditor5-typing/issues/61.</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> sequence : <span>Number</span></code></dt>
+                                        <dd><p>A number describing which subsequent delete event it is without the key being released.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Boolean</span></code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
                           </div>
                         </div>
                       </li>
