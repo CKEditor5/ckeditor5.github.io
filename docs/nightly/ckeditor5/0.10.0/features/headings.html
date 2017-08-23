@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Headings - CKEditor 5</title>
     <link rel="canonical" href="/ckeditor5/latest/features/headings.html">
-    <link rel="stylesheet" href="../../../assets/0.3.5/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../assets/0.3.6/css/styles.css" type="text/css" media="screen">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
-    <script src="../../../assets/0.3.5/scripts/app.js"></script>
+    <link rel="stylesheet" href="../snippets/features/custom-heading-levels/snippet.css" type="text/css">
+    <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
+    <script src="../../../assets/0.3.6/scripts/app.js"></script>
   </head>
   <body>
     <header class="top">
@@ -21,13 +23,13 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.5/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.6/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <h1><img src="../../../assets/0.3.5/img/book.svg" alt="guide">Headings
+          <h1><img src="../../../assets/0.3.6/img/book.svg" alt="guide">Headings
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Heading-levels">Heading levels</a><ol><li><a href="#Configuring-heading-levels">Configuring heading levels</a></li></ol></li><li><a href="#Installation">Installation</a></li><li><a href="#Common-API">Common API</a></li><li><a href="#Contribute">Contribute</a></li></ol></nav><p>The <a href="../api/module_heading_heading-Heading.html"><code>Heading</code></a> feature enables support for headings.</p>
 <div class="info-box notice notice__info"><p>This feature is enabled by default in all builds. It is also included in the <a href="../api/module_presets_article-Article.html">Article preset</a>.</p></div>
 
@@ -36,8 +38,14 @@
 
 <h3 id="Configuring-heading-levels"><a href="#Configuring-heading-levels" class="headerlink" title="Configuring heading levels"></a>Configuring heading levels</h3><p>It is, of course, possible to configure which heading levels the editor should support and how they should be named in the Headings dropdown. Use the <a href="../api/module_heading_heading-HeadingConfig.html#options"><code>heading.options</code></a> configuration option to do so.</p>
 <p>The following editor will support only two levels of headings &#x2014; <code>&lt;h1&gt;</code> and <code>&lt;h2&gt;</code>:</p>
+<pre><code class="html">&lt;div id=&quot;editor&quot;&gt;
+    &lt;h1&gt;Heading 1&lt;/h1&gt;
+    &lt;h2&gt;Heading 2&lt;/h2&gt;
+    &lt;p&gt;This is &lt;a href=&quot;https://ckeditor5.github.io&quot;&gt;CKEditor&amp;nbsp;5&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
 <pre><code class="js">ClassicEditor
-    .create( {
+    .create( document.querySelector( &apos;#editor&apos; ), {
         heading: {
             options: [
                 { modelElement: &apos;paragraph&apos;, title: &apos;Paragraph&apos;, class: &apos;ck-heading_paragraph&apos; },
@@ -49,7 +57,12 @@
     .then( ... )
     .catch( ... );
 </code></pre>
-<p>{@snippetTODO custom-heading-levels}</p>
+<p><div class="live-snippet"><div id="snippet-custom-heading-levels">
+	<h1>Heading 1</h1>
+	<h2>Heading 2</h2>
+	<p>This is <a href="https://ckeditor5.github.io">CKEditor&#xA0;5</a>.</p>
+</div>
+</div></p>
 <p>Read more about the <code>heading.options</code> format in <a href="../api/module_heading_heading-HeadingConfig.html#options">the API documentation</a>.</p>
 <h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><p>To add this feature to your editor install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-heading" target="_blank" rel="external"><code>@ckeditor/ckeditor5-heading</code></a> package:</p>
 <pre><code>npm install --save @ckeditor/ckeditor5-heading
@@ -103,5 +116,6 @@ ClassicEditor
     <footer class="footer">
       <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
     </footer>
+    <script src="../snippets/features/custom-heading-levels/snippet.js"></script>
   </body>
 </html>
