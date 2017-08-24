@@ -7,6 +7,11 @@
     <link rel="canonical" href="/ckeditor5/latest/features/image.html">
     <link rel="stylesheet" href="../../../assets/0.3.6/css/styles.css" type="text/css" media="screen">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
+    <link rel="stylesheet" href="../snippets/features/image/snippet.css" type="text/css">
+    <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
+    <link rel="stylesheet" href="../snippets/features/image-toolbar/snippet.css" type="text/css">
+    <link rel="stylesheet" href="../snippets/features/image-caption/snippet.css" type="text/css">
+    <link rel="stylesheet" href="../snippets/build-classic-source/snippet.css" type="text/css">
     <script src="../../../assets/0.3.6/scripts/app.js"></script>
   </head>
   <body>
@@ -28,7 +33,8 @@
       <section class="main__content formatted">
         <div class="main__content-inner">
           <h1><img src="../../../assets/0.3.6/img/book.svg" alt="guide">Images
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Base-image-support">Base image support</a></li><li><a href="#Image-contextual-toolbar">Image contextual toolbar</a></li><li><a href="#Image-captions">Image captions</a></li><li><a href="#Image-styles">Image styles</a><ol><li><a href="#Configuring-image-styles">Configuring image styles</a></li></ol></li><li><a href="#Image-upload">Image upload</a></li><li><a href="#Responsive-images">Responsive images</a></li><li><a href="#Installation">Installation</a></li><li><a href="#Common-API">Common API</a></li><li><a href="#Contribute">Contribute</a></li></ol></nav><p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-image" target="_blank" rel="external"><code>@ckeditor/ckeditor5-image</code></a> package contains multiple plugins that implement various image-related features:</p>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Base-image-support">Base image support</a></li><li><a href="#Image-contextual-toolbar">Image contextual toolbar</a></li><li><a href="#Image-captions">Image captions</a></li><li><a href="#Image-styles">Image styles</a><ol><li><a href="#Configuring-image-styles">Configuring image styles</a></li></ol></li><li><a href="#Image-upload">Image upload</a></li><li><a href="#Responsive-images">Responsive images</a></li><li><a href="#Installation">Installation</a></li><li><a href="#Common-API">Common API</a></li><li><a href="#Contribute">Contribute</a></li></ol></nav><p><div class="live-snippet"></div></p>
+<p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-image" target="_blank" rel="external"><code>@ckeditor/ckeditor5-image</code></a> package contains multiple plugins that implement various image-related features:</p>
 <ul>
 <li><a href="../api/module_image_image-Image.html"><code>Image</code></a> implements basic support for images,</li>
 <li><a href="../api/module_image_imagetoolbar-ImageToolbar.html"><code>ImageToolbar</code></a> adds the image feature&#x2019;s contextual toolbar,</li>
@@ -46,12 +52,26 @@
 <div class="info-box notice notice__hint"><p>This feature follows the markup proposed by the <a href="http://ckeditor.github.io/editor-recommendations/features/images.html" target="_blank" rel="external">Editor Recommendations</a> project.</p></div>
 
 <p>You can see the demo of an editor with the base image feature enabled below:</p>
-<p>{@snippetTODO image}</p>
+<p><div class="live-snippet"><div id="snippet-image">
+	<p>This is <a href="https://ckeditor5.github.io">CKEditor&#xA0;5</a>.</p>
+
+	<figure class="image">
+		<img src="%BASE_PATH%/assets/img/fields.jpg" alt="Autumn fields">
+	</figure>
+</div>
+</div></p>
 <div class="info-box notice notice__hint"><p>The base image feature, unlike in CKEditor 4, does not support any user interface for inserting or managing images. Its sole purpose is to lay ground for other plugins (mentioned above) to build the target user experience. This pattern (composition of atomic features) is common for CKEditor 5 and allows the developers to build their own customized experience by implementing specific subfeatures differently.</p></div>
 
 <h2 id="Image-contextual-toolbar"><a href="#Image-contextual-toolbar" class="headerlink" title="Image contextual toolbar"></a>Image contextual toolbar</h2><p>The <a href="../api/module_image_imagetoolbar-ImageToobar.html"><code>ImageToobar</code></a> plugin introduces contextual toolbar for images. The toolbar appears when an image is selected and can be configured to contain any buttons you want. Usually, these will be image-related options such as the text alternative (which is introduced by the base image plugin) button and <a href="#image-styles">image styles buttons</a>.</p>
 <p>See a demo of an editor with the contextual toolbar enabled:</p>
-<p>{@snippetTODO image-toolbar}</p>
+<p><div class="live-snippet"><div id="snippet-image-toolbar">
+	<p>This is <a href="https://ckeditor5.github.io">CKEditor&#xA0;5</a>.</p>
+
+	<figure class="image">
+		<img src="%BASE_PATH%/assets/img/fields.jpg" alt="Autumn fields">
+	</figure>
+</div>
+</div></p>
 <p>The image toolbar is configured to contain the image text alternative button:</p>
 <pre><code class="js">ClassicEditor
     .create( {
@@ -67,7 +87,21 @@
 &lt;/figure&gt;
 </code></pre>
 <p>By default, if the image caption is empty, the <code>&lt;figcaption&gt;</code> element is not visible to the user. You can click the image to reveal the caption. See the demo below:</p>
-<p>{@snippetTODO image-caption}</p>
+<p><div class="live-snippet"><div id="snippet-image-caption">
+	<p>Image with caption:</p>
+
+	<figure class="image">
+		<img src="%BASE_PATH%/assets/img/fields.jpg" alt="Autumn fields">
+		<figcaption>Autumn fields by Aleksander Nowodzi&#x144;ski</figcaption>
+	</figure>
+
+	<p>Image without caption:</p>
+
+	<figure class="image">
+		<img src="%BASE_PATH%/assets/img/fields.jpg" alt="Autumn fields">
+	</figure>
+</div>
+</div></p>
 <h2 id="Image-styles"><a href="#Image-styles" class="headerlink" title="Image styles"></a>Image styles</h2><p>In simple integrations it is enough to let the user insert images, set their text alternative and the editor&#x2019;s job is done. An example of such a simple solution are e.g. <a href="https://github.com" target="_blank" rel="external">GitHub</a> comments. The styling of the images (e.g. their maximum width and margins) is controlled by GitHub through stylesheets.</p>
 <p>In more advanced scenarios, the user may need to be able to decide whether the image should take the whole width (e.g. if it is the article&#x2019;s main photo) or it should take e.g. 50% of the width and be pulled out of the content (so called &#x201C;pulled images&#x201D;). Various integration scenarios require different types of images to be used.</p>
 <p>This is what the <a href="../api/module_image_imagestyle-ImageStyle.html"><code>ImageStyle</code></a> feature is designed for.</p>
@@ -144,7 +178,7 @@ ClassicEditor
     .then( ... )
     .catch( ... );
 </code></pre>
-<p>If you are using an editor build, see how to {@linkTODO customize builds}.</p>
+<p>If you are using an editor build, see how to <a href="../builds/guides/development/custom-builds.html">customize builds</a>.</p>
 <h2 id="Common-API"><a href="#Common-API" class="headerlink" title="Common API"></a>Common API</h2><p>The <a href="../api/module_image_image-Image.html"><code>Image</code></a> plugin registers:</p>
 <ul>
 <li>The <code>&apos;imageTextAlternative&apos;</code> button.</li>
@@ -183,5 +217,9 @@ ClassicEditor
     <footer class="footer">
       <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
     </footer>
+    <script src="../snippets/features/image/snippet.js"></script>
+    <script src="../snippets/features/image-toolbar/snippet.js"></script>
+    <script src="../snippets/features/image-caption/snippet.js"></script>
+    <script src="../snippets/build-classic-source/snippet.js"></script>
   </body>
 </html>
