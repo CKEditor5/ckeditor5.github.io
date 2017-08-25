@@ -5,14 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Images - CKEditor 5</title>
     <link rel="canonical" href="/ckeditor5/latest/features/image.html">
-    <link rel="stylesheet" href="../../../assets/0.3.6/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../assets/0.3.8/css/styles.css" type="text/css" media="screen">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
-    <link rel="stylesheet" href="../snippets/features/image/snippet.css" type="text/css">
     <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
-    <link rel="stylesheet" href="../snippets/features/image-toolbar/snippet.css" type="text/css">
-    <link rel="stylesheet" href="../snippets/features/image-caption/snippet.css" type="text/css">
-    <link rel="stylesheet" href="../snippets/build-classic-source/snippet.css" type="text/css">
-    <script src="../../../assets/0.3.6/scripts/app.js"></script>
+    <link rel="stylesheet" href="../snippets/features/image-style-custom/snippet.css" type="text/css">
+    <script src="../../../assets/0.3.8/scripts/app.js"></script>
   </head>
   <body>
     <header class="top">
@@ -26,14 +23,14 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.6/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.8/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <h1><img src="../../../assets/0.3.6/img/book.svg" alt="guide">Images
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Base-image-support">Base image support</a></li><li><a href="#Image-contextual-toolbar">Image contextual toolbar</a></li><li><a href="#Image-captions">Image captions</a></li><li><a href="#Image-styles">Image styles</a><ol><li><a href="#Configuring-image-styles">Configuring image styles</a></li></ol></li><li><a href="#Image-upload">Image upload</a></li><li><a href="#Responsive-images">Responsive images</a></li><li><a href="#Installation">Installation</a></li><li><a href="#Common-API">Common API</a></li><li><a href="#Contribute">Contribute</a></li></ol></nav><p><div class="live-snippet"></div></p>
+          <h1><img src="../../../assets/0.3.8/img/book.svg" alt="guide">Images
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Base-image-support">Base image support</a></li><li><a href="#Image-contextual-toolbar">Image contextual toolbar</a></li><li><a href="#Image-captions">Image captions</a></li><li><a href="#Image-styles">Image styles</a><ol><li><a href="#Configuring-image-styles">Configuring image styles</a></li></ol></li><li><a href="#Image-upload">Image upload</a></li><li><a href="#Responsive-images">Responsive images</a></li><li><a href="#Installation">Installation</a></li><li><a href="#Common-API">Common API</a></li><li><a href="#Contribute">Contribute</a></li></ol></nav>
 <p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-image" target="_blank" rel="external"><code>@ckeditor/ckeditor5-image</code></a> package contains multiple plugins that implement various image-related features:</p>
 <ul>
 <li><a href="../api/module_image_image-Image.html"><code>Image</code></a> implements basic support for images,</li>
@@ -52,26 +49,26 @@
 <div class="info-box notice notice__hint"><p>This feature follows the markup proposed by the <a href="http://ckeditor.github.io/editor-recommendations/features/images.html" target="_blank" rel="external">Editor Recommendations</a> project.</p></div>
 
 <p>You can see the demo of an editor with the base image feature enabled below:</p>
-<p><div class="live-snippet"><div id="snippet-image">
+<div class="live-snippet"><div id="snippet-image">
 	<p>This is <a href="https://ckeditor5.github.io">CKEditor&#xA0;5</a>.</p>
 
 	<figure class="image">
-		<img src="%BASE_PATH%/assets/img/fields.jpg" alt="Autumn fields">
+		<img src="../assets/img/fields.jpg" alt="Autumn fields">
 	</figure>
 </div>
-</div></p>
+</div>
 <div class="info-box notice notice__hint"><p>The base image feature, unlike in CKEditor 4, does not support any user interface for inserting or managing images. Its sole purpose is to lay ground for other plugins (mentioned above) to build the target user experience. This pattern (composition of atomic features) is common for CKEditor 5 and allows the developers to build their own customized experience by implementing specific subfeatures differently.</p></div>
 
 <h2 id="Image-contextual-toolbar"><a href="#Image-contextual-toolbar" class="headerlink" title="Image contextual toolbar"></a>Image contextual toolbar</h2><p>The <a href="../api/module_image_imagetoolbar-ImageToobar.html"><code>ImageToobar</code></a> plugin introduces contextual toolbar for images. The toolbar appears when an image is selected and can be configured to contain any buttons you want. Usually, these will be image-related options such as the text alternative (which is introduced by the base image plugin) button and <a href="#image-styles">image styles buttons</a>.</p>
 <p>See a demo of an editor with the contextual toolbar enabled:</p>
-<p><div class="live-snippet"><div id="snippet-image-toolbar">
+<div class="live-snippet"><div id="snippet-image-toolbar">
 	<p>This is <a href="https://ckeditor5.github.io">CKEditor&#xA0;5</a>.</p>
 
 	<figure class="image">
-		<img src="%BASE_PATH%/assets/img/fields.jpg" alt="Autumn fields">
+		<img src="../assets/img/fields.jpg" alt="Autumn fields">
 	</figure>
 </div>
-</div></p>
+</div>
 <p>The image toolbar is configured to contain the image text alternative button:</p>
 <pre><code class="js">ClassicEditor
     .create( {
@@ -87,21 +84,21 @@
 &lt;/figure&gt;
 </code></pre>
 <p>By default, if the image caption is empty, the <code>&lt;figcaption&gt;</code> element is not visible to the user. You can click the image to reveal the caption. See the demo below:</p>
-<p><div class="live-snippet"><div id="snippet-image-caption">
+<div class="live-snippet"><div id="snippet-image-caption">
 	<p>Image with caption:</p>
 
 	<figure class="image">
-		<img src="%BASE_PATH%/assets/img/fields.jpg" alt="Autumn fields">
+		<img src="../assets/img/fields.jpg" alt="Autumn fields">
 		<figcaption>Autumn fields by Aleksander Nowodzi&#x144;ski</figcaption>
 	</figure>
 
 	<p>Image without caption:</p>
 
 	<figure class="image">
-		<img src="%BASE_PATH%/assets/img/fields.jpg" alt="Autumn fields">
+		<img src="../assets/img/fields.jpg" alt="Autumn fields">
 	</figure>
 </div>
-</div></p>
+</div>
 <h2 id="Image-styles"><a href="#Image-styles" class="headerlink" title="Image styles"></a>Image styles</h2><p>In simple integrations it is enough to let the user insert images, set their text alternative and the editor&#x2019;s job is done. An example of such a simple solution are e.g. <a href="https://github.com" target="_blank" rel="external">GitHub</a> comments. The styling of the images (e.g. their maximum width and margins) is controlled by GitHub through stylesheets.</p>
 <p>In more advanced scenarios, the user may need to be able to decide whether the image should take the whole width (e.g. if it is the article&#x2019;s main photo) or it should take e.g. 50% of the width and be pulled out of the content (so called &#x201C;pulled images&#x201D;). Various integration scenarios require different types of images to be used.</p>
 <p>This is what the <a href="../api/module_image_imagestyle-ImageStyle.html"><code>ImageStyle</code></a> feature is designed for.</p>
@@ -116,7 +113,22 @@
 <div class="info-box notice"><p>The actual styling of the images is the developer&#x2019;s job. The editor comes with some default styles, but they will only be applied to images inside the editor. The developer needs to style them on the target pages.</p><p>Here you can find the source of the default styles applied by the editor: <a href="https://github.com/ckeditor/ckeditor5-image/blob/master/theme/theme.scss" target="_blank" rel="external"><code>ckeditor5-image/theme/theme.scss</code></a>.</p></div>
 
 <p>Below you can see a demo of the editor with the image styles feature enabled. The default configuration is used. You can change the styles of images through the image&#x2019;s contextual toolbar.</p>
-<p>{@snippetTODO image-style}</p>
+<div class="live-snippet"><div id="snippet-image-style">
+	<p>This is full width image (default style):</p>
+
+	<figure class="image">
+		<img src="../assets/img/fields.jpg" alt="Autumn fields">
+	</figure>
+
+	<p>This is side image:</p>
+
+	<figure class="image image-style-side">
+		<img src="../assets/img/fields.jpg" alt="Autumn fields">
+	</figure>
+
+	<p>Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here.</p>
+</div>
+</div>
 <h3 id="Configuring-image-styles"><a href="#Configuring-image-styles" class="headerlink" title="Configuring image styles"></a>Configuring image styles</h3><p>The available image styles can be configured using the <a href="../api/module_image_image-ImageConfig.html#styles"><code>image.styles</code></a> option.</p>
 <p>The following editor supports the default style plus left- and right-aligned images:</p>
 <pre><code class="js">import fullSizeIcon from &apos;@ckeditor/ckeditor5-core/theme/icons/object-center.svg&apos;;
@@ -128,16 +140,33 @@ ClassicEditor
         image: {
             styles: [
                 // This option is equal to a situation where no style is applied.
-                { name: &apos;imageStyleFull&apos;, title: &apos;Full size image&apos;, icon: fullSizeIcon, value: null },
+                {
+                    name: &apos;imageStyleFull&apos;,
+                    title: &apos;Full size image&apos;,
+                    icon: fullSizeIcon,
+                    value: null
+                },
 
                 // This represents an image aligned to left.
-                { name: &apos;imageStyleLeft&apos;, title: &apos;Left aligned image&apos;, icon: alignLeftIcon, value: &apos;left&apos;, className: &apos;image-style-left&apos; },
+                {
+                    name: &apos;imageStyleLeft&apos;,
+                    title: &apos;Left aligned image&apos;,
+                    icon: alignLeftIcon,
+                    value: &apos;left&apos;,
+                    className: &apos;image-style-left&apos;
+                },
 
                 // This represents an image aligned to right.
-                { name: &apos;imageStyleRight&apos;, title: &apos;Right aligned image&apos;, icon: alignRightIcon, value: &apos;right&apos;, className: &apos;image-style-right&apos; }
+                {
+                    name: &apos;imageStyleRight&apos;,
+                    title: &apos;Right aligned image&apos;,
+                    icon: alignRightIcon,
+                    value: &apos;right&apos;,
+                    className: &apos;image-style-right&apos;
+                }
             ],
 
-            toolbar: [ &apos;imageTextAlternative&apos;, &apos;|&apos;, &apos;imageStyleFull&apos;, &apos;imageStyleLeft&apos;, &apos;imageStyleRight&apos; ]
+            toolbar: [ &apos;imageTextAlternative&apos;, &apos;|&apos;, &apos;imageStyleLeft&apos;, &apos;imageStyleFull&apos;, &apos;imageStyleRight&apos; ]
         }
     } )
     .then( ... )
@@ -146,14 +175,25 @@ ClassicEditor
 <pre><code class="css">.image-style-left {
     float: left;
     width: 50%;
+    margin: 1em 1em 1em 0;
 }
 
 .image-style-right {
     float: right;
     width: 50%;
+    margin: 1em 0 1em 1em;
 }
 </code></pre>
-<p>{@snippetTODO image-style-custom}</p>
+<div class="live-snippet"><div id="snippet-image-style-custom">
+	<p>An image to play with:</p>
+
+	<figure class="image">
+		<img src="../assets/img/fields.jpg" alt="Autumn fields">
+	</figure>
+
+	<p>Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here.</p>
+</div>
+</div>
 <div class="info-box notice notice__hint"><p>In the example above the options used represent simple &#x201C;align left&#x201D; and &#x201C;align right&#x201D; styles. Most text editors support left, center, right alignments, however, try not to think about CKEditor 5&#x2019;s image styles in this way. Try to understand what use cases the system needs to support and define semantical options accordingly. Defining useful and clear styles is one of the steps towards a good user experience and clear, portable output. For example, the &#x201C;side image&#x201D; style can be displayed as a floated image on wide screens and as a normal image on low resolution screens.</p></div>
 
 <h2 id="Image-upload"><a href="#Image-upload" class="headerlink" title="Image upload"></a>Image upload</h2><p>TODO&#x2026;</p>
@@ -204,6 +244,8 @@ ClassicEditor
                               <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Images</span></div></a></li>
                           <li><a href="keyboard-support.html">
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Keyboard support</span></div></a></li>
+                          <li><a href="markdown.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Markdown output</span></div></a></li>
                           <li><a href="read-only.html">
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Read-only support</span></div></a></li>
                           <li><a href="ui-language.html">
@@ -220,6 +262,7 @@ ClassicEditor
     <script src="../snippets/features/image/snippet.js"></script>
     <script src="../snippets/features/image-toolbar/snippet.js"></script>
     <script src="../snippets/features/image-caption/snippet.js"></script>
-    <script src="../snippets/build-classic-source/snippet.js"></script>
+    <script src="../snippets/features/image-style/snippet.js"></script>
+    <script src="../snippets/features/image-style-custom/snippet.js"></script>
   </body>
 </html>

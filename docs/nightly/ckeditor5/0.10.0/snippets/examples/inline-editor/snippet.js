@@ -11967,6 +11967,8 @@ function buildModelConverter() {
  *
  * @property {String|Array.<String>} class CSS class or array of classes that will be added to `span`
  * {@link module:engine/view/attributeelement~AttributeElement} wrapping each text node in the highlighted content.
+ * @property {String} [id] Descriptor identifier. If not provided, marker's name from which given highlight is created
+ * will be used.
  * @property {Number} [priority] {@link module:engine/view/attributeelement~AttributeElement#priority} of the `span`
  * wrapping each text node in the highlighted content. If not provided, default 10 priority will be used.
  * @property {Object} [attributes] Attributes that will be added to `span`
@@ -16176,6 +16178,7 @@ function highlightText( highlightDescriptor ) {
  * priority, priority 10 will be used as default, to be compliant with
  * {@link module:engine/conversion/model-to-view-converters~highlightText} method which uses default priority of
  * {@link module:engine/view/attributeelement~AttributeElement}.
+ * If highlight descriptor will not provide id property, name of the marker will be used.
  * When `addHighlight` and `removeHighlight` custom properties are not present, element is not converted
  * in any special way. This means that converters will proceed to convert element's child nodes.
  *
@@ -16200,6 +16203,10 @@ function highlightElement( highlightDescriptor ) {
 
 		if ( !descriptor.priority ) {
 			descriptor.priority = 10;
+		}
+
+		if ( !descriptor.id ) {
+			descriptor.id = data.markerName;
 		}
 
 		const viewElement = conversionApi.mapper.toViewElement( modelItem );
@@ -58539,34 +58546,18 @@ class HighlightStack {
 	 */
 	add( descriptor ) {
 		const stack = this._stack;
-		let i = 0;
 
-		// Find correct place to insert descriptor in the stack.
-		while ( stack[ i ] && shouldABeBeforeB( stack[ i ], descriptor ) ) {
-			i++;
-		}
+		// Save top descriptor and insert new one. If top is changed - fire event.
+		const oldTop = stack[ 0 ];
+		this._insertDescriptor( descriptor );
+		const newTop = stack[ 0 ];
 
-		stack.splice( i, 0, descriptor );
-
-		// New element at the stack top.
-		if ( i === 0 ) {
-			const data = {
-				newDescriptor: descriptor
-			};
-
-			// If old descriptor is present it was pushed down the stack.
-			if ( stack[ 1 ] ) {
-				const oldDescriptor = stack[ 1 ];
-
-				// New descriptor on the top is same as previous one - do not fire any event.
-				if ( compareDescriptors( descriptor, oldDescriptor ) ) {
-					return;
-				}
-
-				data.oldDescriptor = oldDescriptor;
-			}
-
-			this.fire( 'change:top', data );
+		// When new object is at the top and stores different information.
+		if ( oldTop !== newTop && !compareDescriptors( oldTop, newTop ) ) {
+			this.fire( 'change:top', {
+				oldDescriptor: oldTop,
+				newDescriptor: newTop
+			} );
 		}
 	}
 
@@ -58578,44 +58569,65 @@ class HighlightStack {
 	 */
 	remove( descriptor ) {
 		const stack = this._stack;
-		const length = stack.length;
 
-		if ( length === 0 ) {
+		const oldTop = stack[ 0 ];
+		this._removeDescriptor( descriptor );
+		const newTop = stack[ 0 ];
+
+		// When new object is at the top and stores different information.
+		if ( oldTop !== newTop && !compareDescriptors( oldTop, newTop ) ) {
+			this.fire( 'change:top', {
+				oldDescriptor: oldTop,
+				newDescriptor: newTop
+			} );
+		}
+	}
+
+	/**
+	 * Inserts given descriptor in correct place in the stack. It also takes care about updating information when
+	 * descriptor with same id is already present.
+	 *
+	 * @private
+	 * @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor} descriptor
+	 */
+	_insertDescriptor( descriptor ) {
+		const stack = this._stack;
+		const index = stack.findIndex( item => item.id === descriptor.id );
+
+		// Inserting exact same descriptor - do nothing.
+		if ( compareDescriptors( descriptor, stack[ index ] ) ) {
 			return;
 		}
 
-		let i = 0;
-
-		while ( stack[ i ] && !compareDescriptors( descriptor, stack[ i ] ) ) {
-			i++;
-
-			// Descriptor not found.
-			if ( i >= stack.length ) {
-				return;
-			}
+		// If descriptor with same id but with different information is on the stack - remove it.
+		if ( index > -1 ) {
+			stack.splice( index, 1 );
 		}
 
-		stack.splice( i, 1 );
+		// Find correct place to insert descriptor in the stack.
+		// It have different information (for example priority) so it must be re-inserted in correct place.
+		let i = 0;
 
-		// Element from stack top was removed - fire `change:top` event with new first element. It might be `undefined`
-		// which informs that no descriptor is currently at the top.
-		if ( i === 0 ) {
-			const data = {
-				oldDescriptor: descriptor
-			};
+		while ( stack[ i ] && shouldABeBeforeB( stack[ i ], descriptor ) ) {
+			i++;
+		}
 
-			if ( stack[ 0 ] ) {
-				const newDescriptor = stack[ 0 ];
+		stack.splice( i, 0, descriptor );
+	}
 
-				// New descriptor on the top is same as removed one - do not fire any event.
-				if ( compareDescriptors( descriptor, newDescriptor ) ) {
-					return;
-				}
+	/**
+	 * Removes descriptor with given id from the stack.
+	 *
+	 * @private
+	 * @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor} descriptor
+	 */
+	_removeDescriptor( descriptor ) {
+		const stack = this._stack;
+		const index = stack.findIndex( item => item.id === descriptor.id );
 
-				data.newDescriptor = newDescriptor;
-			}
-
-			this.fire( 'change:top', data );
+		// If descriptor with same id is on the list - remove it.
+		if ( index > -1 ) {
+			stack.splice( index, 1 );
 		}
 	}
 }
@@ -58624,15 +58636,13 @@ class HighlightStack {
 
 Object(__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( HighlightStack, __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
 
-// Compares two highlight descriptors by priority and CSS class names. Returns `true` when both descriptors are
-// considered equal.
+// Compares two descriptors by checking their priority and class list.
 //
-// @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor} descriptorA
-// @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor} descriptorB
-// @returns {Boolean}
-function compareDescriptors( descriptorA, descriptorB ) {
-	return descriptorA.priority == descriptorB.priority &&
-		classesToString( descriptorA.class ) == classesToString( descriptorB.class );
+// @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor} a
+// @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor} b
+// @returns {Boolean} Returns true if both descriptors are defined and have same priority and classes.
+function compareDescriptors( a, b ) {
+	return a && b && a.priority == b.priority && classesToString( a.class ) == classesToString( b.class );
 }
 
 // Checks whenever first descriptor should be placed in the stack before second one.
