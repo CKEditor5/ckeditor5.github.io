@@ -14113,6 +14113,10 @@ function keys(object) {
  * @extends module:engine/model/operation/operation~Operation
  */
 class NoOperation extends __WEBPACK_IMPORTED_MODULE_0__operation__["a" /* default */] {
+	get type() {
+		return 'noop';
+	}
+
 	/**
 	 * Creates and returns an operation that has the same parameters as this operation.
 	 *
@@ -14135,7 +14139,7 @@ class NoOperation extends __WEBPACK_IMPORTED_MODULE_0__operation__["a" /* defaul
 	 * @inheritDoc
 	 */
 	_execute() {
-		// Do nothing.
+		return {};
 	}
 
 	/**
@@ -17889,18 +17893,13 @@ class AttributeOperation extends __WEBPACK_IMPORTED_MODULE_0__operation__["a" /*
 					{ node: item, key: this.key }
 				);
 			}
-
-			// If value to set is same as old value, don't do anything.
-			// By returning `undefined`, this operation will be seen as `NoOperation` - that means
-			// that it won't generate any events, etc. `AttributeOperation` with such parameters may be
-			// a result of operational transformation.
-			if ( Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isEqual__["a" /* default */])( this.oldValue, this.newValue ) ) {
-				return;
-			}
 		}
 
-		// Execution.
-		__WEBPACK_IMPORTED_MODULE_3__writer__["a" /* default */].setAttribute( this.range, this.key, this.newValue );
+		// If value to set is same as old value, don't do anything.
+		if ( !Object(__WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isEqual__["a" /* default */])( this.oldValue, this.newValue ) ) {
+			// Execution.
+			__WEBPACK_IMPORTED_MODULE_3__writer__["a" /* default */].setAttribute( this.range, this.key, this.newValue );
+		}
 
 		return { range: this.range, key: this.key, oldValue: this.oldValue, newValue: this.newValue };
 	}
@@ -22623,14 +22622,10 @@ class RenameOperation extends __WEBPACK_IMPORTED_MODULE_0__operation__["a" /* de
 		}
 
 		// If value to set is same as old value, don't do anything.
-		// By not returning `undefined`, this operation will be seen as `NoOperation` - that means
-		// that it won't generate any events, etc. `RenameOperation` with such parameters may be
-		// a result of Operational Transformation.
-		if ( this.oldName == this.newName ) {
-			return;
+		if ( element.name != this.newName ) {
+			// Execution.
+			element.name = this.newName;
 		}
-
-		element.name = this.newName;
 
 		return { element, oldName: this.oldName };
 	}
@@ -28591,6 +28586,11 @@ class ModelConversionDispatcher {
 	 * @param {*} newValue New attribute value or `null` if attribute has been removed.
 	 */
 	convertAttribute( type, range, key, oldValue, newValue ) {
+		if ( oldValue == newValue ) {
+			// Do not convert if the attribute did not change.
+			return;
+		}
+
 		// Create a list with attributes to consume.
 		const consumable = this._createConsumableForRange( range, type + ':' + key );
 
@@ -28621,6 +28621,11 @@ class ModelConversionDispatcher {
 	 * @param {String} oldName Name of the renamed element before it was renamed.
 	 */
 	convertRename( element, oldName ) {
+		if ( element.name == oldName ) {
+			// Do not convert if the name did not change.
+			return;
+		}
+
 		// Create fake element that will be used to fire remove event. The fake element will have the old element name.
 		const fakeElement = element.clone( true );
 		fakeElement.name = oldName;
@@ -43220,10 +43225,7 @@ class Document {
 
 		this.history.addDelta( operation.delta );
 
-		if ( changes ) {
-			// `NoOperation` returns no changes, do not fire event for it.
-			this.fire( 'change', operation.type, changes, operation.delta.batch, operation.delta.type );
-		}
+		this.fire( 'change', operation.type, changes, operation.delta.batch, operation.delta.type );
 	}
 
 	/**
@@ -63455,17 +63457,23 @@ function modelChangePostFixer( document ) {
 		}
 
 		if ( type == 'remove' ) {
+			const howMany = changes.range.end.offset - changes.range.start.offset;
+			const sourcePos = changes.sourcePosition._getTransformedByInsertion( changes.range.start, howMany, true );
+
 			// Fix list items after the cut-out range.
 			// This fix is needed if items in model after cut-out range have now wrong indents compared to their previous siblings.
-			_fixItemsIndent( changes.sourcePosition, document, batch );
+			_fixItemsIndent( sourcePos, document, batch );
 			// This fix is needed if two different nested lists got merged, change types of list items "below".
-			_fixItemsType( changes.sourcePosition, false, document, batch );
+			_fixItemsType( sourcePos, false, document, batch );
 		} else if ( type == 'move' ) {
+			const howMany = changes.range.end.offset - changes.range.start.offset;
+			const sourcePos = changes.sourcePosition._getTransformedByInsertion( changes.range.start, howMany, true );
+
 			// Fix list items after the cut-out range.
 			// This fix is needed if items in model after cut-out range have now wrong indents compared to their previous siblings.
-			_fixItemsIndent( changes.sourcePosition, document, batch );
+			_fixItemsIndent( sourcePos, document, batch );
 			// This fix is needed if two different nested lists got merged, change types of list items "below".
-			_fixItemsType( changes.sourcePosition, false, document, batch );
+			_fixItemsType( sourcePos, false, document, batch );
 
 			// Fix items in moved range.
 			// This fix is needed if inserted items are too deeply intended.
