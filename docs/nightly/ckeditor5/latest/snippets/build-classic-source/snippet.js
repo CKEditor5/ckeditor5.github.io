@@ -53417,7 +53417,7 @@ class ClipboardObserver extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_
 	constructor( doc ) {
 		super( doc );
 
-		this.domEventType = [ 'paste', 'copy', 'cut', 'drop' ];
+		this.domEventType = [ 'paste', 'copy', 'cut', 'drop', 'dragover' ];
 
 		this.listenTo( doc, 'paste', handleInput, { priority: 'low' } );
 		this.listenTo( doc, 'drop', handleInput, { priority: 'low' } );
@@ -53493,6 +53493,20 @@ function getDropViewRange( doc, domEvent ) {
  * (usually – into which the content should be inserted).
  * If clipboard input was triggered by a paste operation, then these are the selection ranges. If by a drop operation,
  * then it's the drop position (which can be different than the selection at the moment of drop).
+ */
+
+/**
+ * Fired when user drags content over one of the editables.
+ *
+ * Introduced by {@link module:clipboard/clipboardobserver~ClipboardObserver}.
+ *
+ * Note that this event is not available by default. To make it available {@link module:clipboard/clipboardobserver~ClipboardObserver}
+ * needs to be added to {@link module:engine/view/document~Document} by the {@link module:engine/view/document~Document#addObserver} method.
+ * It's done by the {@link module:clipboard/clipboard~Clipboard} feature. If it's not loaded, it must be done manually.
+ *
+ * @see module:engine/view/document~Document#event:clipboardInput
+ * @event module:engine/view/document~Document#event:dragover
+ * @param {module:clipboard/clipboardobserver~ClipboardEventData} data Event data.
  */
 
 /**
@@ -58798,6 +58812,8 @@ function classesToString( classes ) {
 
 
 
+const selectAllKeystrokeCode = Object(__WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_keyboard__["d" /* parseKeystroke */])( 'Ctrl+A' );
+
 /**
  * The widget plugin.
  * Registers model to view selection converter for editing pipeline. It is hooked after default selection conversion.
@@ -58904,11 +58920,19 @@ class Widget extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_pl
 	_onKeydown( eventInfo, domEventData ) {
 		const keyCode = domEventData.keyCode;
 		const isForward = keyCode == __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_keyboard__["c" /* keyCodes */].delete || keyCode == __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_keyboard__["c" /* keyCodes */].arrowdown || keyCode == __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_keyboard__["c" /* keyCodes */].arrowright;
+		let wasHandled = false;
 
-		// Checks if delete/backspace or arrow keys were handled and then prevents default event behaviour and stops
-		// event propagation.
-		if ( ( isDeleteKeyCode( keyCode ) && this._handleDelete( isForward ) ) ||
-			( isArrowKeyCode( keyCode ) && this._handleArrowKeys( isForward ) ) ) {
+		// Checks if the keys were handled and then prevents the default event behaviour and stops
+		// the propagation.
+		if ( isDeleteKeyCode( keyCode ) ) {
+			wasHandled = this._handleDelete( isForward );
+		} else if ( isArrowKeyCode( keyCode ) ) {
+			wasHandled = this._handleArrowKeys( isForward );
+		} else if ( isSelectAllKeyCode( domEventData ) ) {
+			wasHandled = this._selectAllNestedEditableContent();
+		}
+
+		if ( wasHandled ) {
 			domEventData.preventDefault();
 			eventInfo.stop();
 		}
@@ -58993,6 +59017,31 @@ class Widget extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_pl
 	}
 
 	/**
+	 * Extends the {@link module:engine/model/selection~Selection document's selection} to span the entire
+	 * content of the nested editable if already anchored in one.
+	 *
+	 * See: {@link module:engine/model/schema~Schema#getLimitElement}.
+	 *
+	 * @private
+	 */
+	_selectAllNestedEditableContent() {
+		const modelDocument = this.editor.document;
+		const modelSelection = modelDocument.selection;
+		const schema = modelDocument.schema;
+		const limitElement = schema.getLimitElement( modelSelection );
+
+		if ( modelSelection.getFirstRange().root == limitElement ) {
+			return false;
+		}
+
+		modelDocument.enqueueChanges( () => {
+			modelSelection.setIn( limitElement );
+		} );
+
+		return true;
+	}
+
+	/**
 	 * Sets {@link module:engine/model/selection~Selection document's selection} over given element.
 	 *
 	 * @private
@@ -59050,6 +59099,14 @@ function isArrowKeyCode( keyCode ) {
 // @returns {Boolean}
 function isDeleteKeyCode( keyCode ) {
 	return keyCode == __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_keyboard__["c" /* keyCodes */].delete || keyCode == __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_keyboard__["c" /* keyCodes */].backspace;
+}
+
+// Returns 'true' if provided (DOM) key event data corresponds with the Ctrl+A keystroke.
+//
+// @param {module:engine/view/observer/keyobserver~KeyEventData} domEventData
+// @returns {Boolean}
+function isSelectAllKeyCode( domEventData ) {
+	return Object(__WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_keyboard__["a" /* getCode */])( domEventData ) == selectAllKeystrokeCode;
 }
 
 // Returns `true` when element is a nested editable or is placed inside one.
