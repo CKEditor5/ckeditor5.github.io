@@ -11585,7 +11585,7 @@ class KeystrokeHandler {
  *		buildModelConverter().for( dispatcher ).fromAttribute( 'bold' ).toElement( 'strong' );
  *
  * 4. Model marker to view highlight converter. This is a converter that converts model markers to view highlight
- * described by {@link module:engine/conversion/buildmodelconverter~HighlightDescriptor} object passed to
+ * described by {@link module:engine/conversion/model-to-view-converters~HighlightDescriptor} object passed to
  * {@link module:engine/conversion/buildmodelconverter~ModelConverterBuilder#toHighlight} method.
  *
  *		buildModelConverter().for( dispatcher ).fromMarker( 'search' ).toHighlight( {
@@ -11735,9 +11735,9 @@ class ModelConverterBuilder {
 	 * from element, {@link module:engine/view/attributeelement~AttributeElement ViewAttributeElement} if you convert
 	 * from attribute and {@link module:engine/view/uielement~UIElement ViewUIElement} if you convert from marker.
 	 *
-	 * NOTE: When converting from model's marker, separate elements will be created at the beginning and at the end of the
+	 * **Note:** When converting from model's marker, separate elements will be created at the beginning and at the end of the
 	 * marker's range. If range is collapsed then only one element will be created. See how markers
-	 * {module:engine/model/buildviewconverter~ViewConverterBuilder#toMarker view -> model serialization}
+	 * {module:engine/model/buildviewconverter~ViewConverterBuilder#toMarker serialization from view to model}
 	 * works to find out what view element format is the best for you.
 	 *
 	 *		buildModelConverter().for( dispatcher ).fromElement( 'paragraph' ).toElement( 'p' );
@@ -11812,10 +11812,11 @@ class ModelConverterBuilder {
 	 *		viewElement.setCustomProperty( 'addHighlight', ( element, descriptor ) => {} );
 	 *		viewElement.setCustomProperty( 'removeHighlight', ( element, descriptor ) => {} );
 	 *
-	 * {@link module:engine/conversion/buildmodelconverter~HighlightDescriptor} will be used to create
+	 * {@link module:engine/conversion/model-to-view-converters~HighlightDescriptor} will be used to create
 	 * spans over text nodes and also will be provided to `addHighlight` and `removeHighlight` methods
 	 * each time highlight should be set or removed from view elements.
-	 * NOTE: When `addHighlight` and `removeHighlight` custom properties are present, converter assumes
+	 *
+	 * **Note:** When `addHighlight` and `removeHighlight` custom properties are present, converter assumes
 	 * that element itself is taking care of presenting highlight on its child nodes, so it won't convert them.
 	 *
 	 * Highlight descriptor can be provided as plain object:
@@ -11833,7 +11834,7 @@ class ModelConverterBuilder {
 	 * Throws {@link module:utils/ckeditorerror~CKEditorError CKEditorError}
 	 * `build-model-converter-non-marker-to-highlight` when trying to convert not from marker.
 	 *
-	 * @param {function|module:engine/conversion/buildmodelconverter~HighlightDescriptor} highlightDescriptor
+	 * @param {function|module:engine/conversion/model-to-view-converters~HighlightDescriptor} highlightDescriptor
 	 */
 	toHighlight( highlightDescriptor ) {
 		const priority = this._from.priority === null ? 'normal' : this._from.priority;
@@ -11949,30 +11950,11 @@ function buildModelConverter() {
 }
 
 /**
- * @typedef MarkerViewElementCreatorData
- * @param {Object} data Additional information about the change.
- * @param {String} data.markerName Marker name.
- * @param {module:engine/model/range~Range} data.markerRange Marker range.
- * @param {Boolean} data.isOpening Defines if currently converted element is a beginning or end of the marker range.
- * @param {module:engine/conversion/modelconsumable~ModelConsumable} consumable Values to consume.
- * @param {Object} conversionApi Conversion interface to be used by callback, passed in `ModelConversionDispatcher` constructor.
- */
-
-/**
- * @typedef HighlightDescriptor
- * Object describing how content highlight should be created in the view. Each text node contained in highlight
- * will be wrapped with `span` element with CSS class, attributes and priority described by this object. Each element
- * can handle displaying highlight separately by providing `addHighlight` and `removeHighlight` custom
- * properties.
+ * @typedef {Object} module:engine/conversion/buildmodelconverter~MarkerViewElementCreatorData
  *
- * @property {String|Array.<String>} class CSS class or array of classes that will be added to `span`
- * {@link module:engine/view/attributeelement~AttributeElement} wrapping each text node in the highlighted content.
- * @property {String} [id] Descriptor identifier. If not provided, marker's name from which given highlight is created
- * will be used.
- * @property {Number} [priority] {@link module:engine/view/attributeelement~AttributeElement#priority} of the `span`
- * wrapping each text node in the highlighted content. If not provided, default 10 priority will be used.
- * @property {Object} [attributes] Attributes that will be added to `span`
- * {@link module:engine/view/attributeelement~AttributeElement} wrapping each text node it the highlighted content.
+ * @param {String} markerName Marker name.
+ * @param {module:engine/model/range~Range} markerRange Marker range.
+ * @param {Boolean} isOpening Defines if currently converted element is a beginning or end of the marker range.
  */
 
 
@@ -15724,7 +15706,7 @@ Object(__WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_mix__["a" /* de
 /* harmony export (immutable) */ __webpack_exports__["b"] = highlightElement;
 /* harmony export (immutable) */ __webpack_exports__["i"] = removeUIElement;
 /* unused harmony export eventNameToConsumableType */
-/* harmony export (immutable) */ __webpack_exports__["a"] = highlightDescriptorToAttributeElement;
+/* harmony export (immutable) */ __webpack_exports__["a"] = createViewElementFromHighlightDescriptor;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_element__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_attributeelement__ = __webpack_require__(87);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_text__ = __webpack_require__(33);
@@ -16144,7 +16126,7 @@ function remove() {
  * {@link module:engine/view/attributeelement~AttributeElement} created from provided descriptor.
  * See {link module:engine/conversion/model-to-view-converters~highlightDescriptorToAttributeElement}.
  *
- * @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor|Function} highlightDescriptor
+ * @param {module:engine/conversion/model-to-view-converters~HighlightDescriptor|Function} highlightDescriptor
  * @return {Function}
  */
 function highlightText( highlightDescriptor ) {
@@ -16163,7 +16145,11 @@ function highlightText( highlightDescriptor ) {
 			return;
 		}
 
-		const viewElement = highlightDescriptorToAttributeElement( descriptor );
+		if ( !descriptor.id ) {
+			descriptor.id = data.markerName;
+		}
+
+		const viewElement = createViewElementFromHighlightDescriptor( descriptor );
 		const viewRange = conversionApi.mapper.toViewRange( data.range );
 
 		if ( evt.name.split( ':' )[ 0 ] == 'addMarker' ) {
@@ -16177,16 +16163,17 @@ function highlightText( highlightDescriptor ) {
 /**
  * Function factory, creates converter that converts all elements inside marker's range. Converter checks if element has
  * functions stored under `addHighlight` and `removeHighlight` custom properties and calls them passing
- * {@link module:engine/conversion/buildmodelconverter~HighlightDescriptor}. In such case converter will consume
+ * {@link module:engine/conversion/model-to-view-converters~HighlightDescriptor}. In such case converter will consume
  * all element's children, assuming that they were handled by element itself. If highlight descriptor will not provide
- * priority, priority 10 will be used as default, to be compliant with
+ * priority, priority `10` will be used as default, to be compliant with
  * {@link module:engine/conversion/model-to-view-converters~highlightText} method which uses default priority of
  * {@link module:engine/view/attributeelement~AttributeElement}.
- * If highlight descriptor will not provide id property, name of the marker will be used.
+ *
+ * If highlight descriptor will not provide `id` property, name of the marker will be used.
  * When `addHighlight` and `removeHighlight` custom properties are not present, element is not converted
  * in any special way. This means that converters will proceed to convert element's child nodes.
  *
- * @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor|Function} highlightDescriptor
+ * @param {module:engine/conversion/model-to-view-converters~HighlightDescriptor|Function} highlightDescriptor
  * @return {Function}
  */
 function highlightElement( highlightDescriptor ) {
@@ -16297,29 +16284,6 @@ function eventNameToConsumableType( evtName ) {
 	return parts[ 0 ] + ':' + parts[ 1 ];
 }
 
-/**
- * Creates `span` {@link module:engine/view/attributeelement~AttributeElement view attribute element} from information
- * provided by {@link module:engine/conversion/buildmodelconverter~HighlightDescriptor} object. If priority
- * is not provided in descriptor - default priority will be used.
- *
- * @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor } descriptor
- * @return {module:engine/view/attributeelement~AttributeElement}
- */
-function highlightDescriptorToAttributeElement( descriptor ) {
-	const attributeElement = new __WEBPACK_IMPORTED_MODULE_1__view_attributeelement__["a" /* default */]( 'span', descriptor.attributes );
-
-	if ( descriptor.class ) {
-		const cssClasses = Array.isArray( descriptor.class ) ? descriptor.class : [ descriptor.class ];
-		attributeElement.addClass( ...cssClasses );
-	}
-
-	if ( descriptor.priority ) {
-		attributeElement.priority = descriptor.priority;
-	}
-
-	return attributeElement;
-}
-
 // Helper function that shifts given view `position` in a way that returned position is after `howMany` characters compared
 // to the original `position`.
 // Because in view there might be view ui elements splitting text nodes, we cannot simply use `ViewPosition#getShiftedBy()`.
@@ -16339,6 +16303,82 @@ function _shiftViewPositionByCharacters( position, howMany ) {
 		}
 	}
 }
+
+/**
+ * Creates `span` {@link module:engine/view/attributeelement~AttributeElement view attribute element} from information
+ * provided by {@link module:engine/conversion/model-to-view-converters~HighlightDescriptor} object. If priority
+ * is not provided in descriptor - default priority will be used.
+ *
+ * @param {module:engine/conversion/model-to-view-converters~HighlightDescriptor} descriptor
+ * @return {module:engine/conversion/model-to-view-converters~HighlightAttributeElement}
+ */
+function createViewElementFromHighlightDescriptor( descriptor ) {
+	const viewElement = new HighlightAttributeElement( 'span', descriptor.attributes );
+
+	if ( descriptor.class ) {
+		const cssClasses = Array.isArray( descriptor.class ) ? descriptor.class : [ descriptor.class ];
+		viewElement.addClass( ...cssClasses );
+	}
+
+	if ( descriptor.priority ) {
+		viewElement.priority = descriptor.priority;
+	}
+
+	viewElement.setCustomProperty( 'highlightDescriptorId', descriptor.id );
+
+	return viewElement;
+}
+
+/**
+ * Special kind of {@link module:engine/view/attributeelement~AttributeElement} that is created and used in
+ * marker-to-highlight conversion.
+ *
+ * The difference between `HighlightAttributeElement` and {@link module:engine/view/attributeelement~AttributeElement}
+ * is {@link module:engine/view/attributeelement~AttributeElement#isSimilar} method.
+ *
+ * For `HighlightAttributeElement` it checks just `highlightDescriptorId` custom property, that is set during marker-to-highlight
+ * conversion basing on {@link module:engine/conversion/model-to-view-converters~HighlightDescriptor} object.
+ * `HighlightAttributeElement`s with same `highlightDescriptorId` property are considered similar.
+ */
+class HighlightAttributeElement extends __WEBPACK_IMPORTED_MODULE_1__view_attributeelement__["a" /* default */] {
+	isSimilar( otherElement ) {
+		if ( otherElement.is( 'attributeElement' ) ) {
+			return this.getCustomProperty( 'highlightDescriptorId' ) === otherElement.getCustomProperty( 'highlightDescriptorId' );
+		}
+
+		return false;
+	}
+}
+
+/**
+ * Object describing how content highlight should be created in the view.
+ *
+ * Each text node contained in highlight will be wrapped with `span` element with CSS class(es), attributes and priority
+ * described by this object.
+ *
+ * Each element can handle displaying highlight separately by providing `addHighlight` and `removeHighlight` custom
+ * properties. Those properties are passed `HighlightDescriptor` object upon conversion and should use it to
+ * change the element.
+ *
+ * @typedef {Object} module:engine/conversion/model-to-view-converters~HighlightDescriptor
+ *
+ * @property {String|Array.<String>} class CSS class or array of classes to set. If descriptor is used to
+ * create {@link module:engine/view/attributeelement~AttributeElement} over text nodes, those classes will be set
+ * on that {@link module:engine/view/attributeelement~AttributeElement}. If descriptor is applied to an element,
+ * usually those class will be set on that element, however this depends on how the element converts the descriptor.
+ *
+ * @property {String} [id] Descriptor identifier. If not provided, defaults to converted marker's name.
+ *
+ * @property {Number} [priority] Descriptor priority. If not provided, defaults to `10`. If descriptor is used to create
+ * {@link module:engine/view/attributeelement~AttributeElement}, it will be that element's
+ * {@link module:engine/view/attributeelement~AttributeElement#priority}. If descriptor is applied to an element,
+ * the priority will be used to determine which descriptor is more important.
+ *
+ * @property {Object} [attributes] Attributes to set. If descriptor is used to create
+ * {@link module:engine/view/attributeelement~AttributeElement} over text nodes, those attributes will be set on that
+ * {@link module:engine/view/attributeelement~AttributeElement}. If descriptor is applied to an element, usually those
+ * attributes will be set on that element, however this depends on how the element converts the descriptor.
+ */
 
 
 /***/ }),
@@ -34532,7 +34572,7 @@ function convertSelectionAttribute( elementCreator ) {
  *		modelDispatcher.on( 'selectionMarker:searchResult', convertSelectionMarker( { class: 'search' } ) );
  *
  * @see module:engine/conversion/model-selection-to-view-converters~convertSelectionAttribute
- * @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor|Function} highlightDescriptor Highlight
+ * @param {module:engine/conversion/model-to-view-converters~HighlightDescriptor|Function} highlightDescriptor Highlight
  * descriptor object or function returning a descriptor object.
  * @returns {Function} Selection converter.
  */
@@ -34546,7 +34586,7 @@ function convertSelectionMarker( highlightDescriptor ) {
 			return;
 		}
 
-		const viewElement = Object(__WEBPACK_IMPORTED_MODULE_3__model_to_view_converters__["a" /* highlightDescriptorToAttributeElement */])( descriptor );
+		const viewElement = Object(__WEBPACK_IMPORTED_MODULE_3__model_to_view_converters__["a" /* createViewElementFromHighlightDescriptor */])( descriptor );
 		const consumableName = 'selectionMarker:' + data.markerName;
 
 		wrapCollapsedSelectionPosition( data.selection, conversionApi.viewSelection, viewElement, consumable, consumableName );
@@ -55759,40 +55799,8 @@ module.exports = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"
 
 
 /**
- * Includes a set of predefined autoformatting actions.
- *
- * ## Bulleted list
- *
- * You can create a bulleted list by starting a line with:
- *
- * * `* `
- * * `- `
- *
- * ## Numbered list
- *
- * You can create a numbered list by starting a line with:
- *
- * * `1. `
- * * `1) `
- *
- * ## Headings
- *
- * You can create a heading by starting a line with:
- *
- * * `# ` &ndash; will create Heading 1,
- * * `## ` &ndash; will create Heading 2,
- * * `### ` &ndash; will create Heading 3.
- *
- * ## Bold and italic
- *
- * You can apply bold or italic to a text by typing Markdown formatting:
- *
- * * `**foo bar**` or `__foo bar__` &ndash; will bold the text.
- * * `*foo bar*` or `_foo bar_` &ndash; will italicize the text.
- *
- * NOTE: Remember to add proper features to the editor configuration. Autoformatting will be enabled only for the
- * commands that are included in the actual configuration. For example: `bold` autoformatting will not work if there is no
- * `bold` command registered in the editor.
+ * Includes a set of predefined autoformatting actions. For a detailed overview, check
+ * the {@linkTODO features/autoformat Autoformatting feature documentation}.
  *
  * @extends module:core/plugin~Plugin
  */
@@ -58496,7 +58504,7 @@ function hoistImageThroughElement( evt, data ) {
  * elements. When different highlights are applied to same element correct order should be preserved:
  * * highlight with highest priority should be applied,
  * * if two highlights have same priority - sort by CSS class provided in
- * {@link module:engine/conversion/buildmodelconverter~HighlightDescriptor}.
+ * {@link module:engine/conversion/model-to-view-converters~HighlightDescriptor}.
  * This way, highlight will be applied with the same rules it is applied on texts.
  */
 class HighlightStack {
@@ -58511,7 +58519,7 @@ class HighlightStack {
 	 * Adds highlight descriptor to the stack.
 	 *
 	 * @fires change:top
-	 * @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor} descriptor
+	 * @param {module:engine/conversion/model-to-view-converters~HighlightDescriptor} descriptor
 	 */
 	add( descriptor ) {
 		const stack = this._stack;
@@ -58534,7 +58542,7 @@ class HighlightStack {
 	 * Removes highlight descriptor from the stack.
 	 *
 	 * @fires change:top
-	 * @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor} descriptor
+	 * @param {module:engine/conversion/model-to-view-converters~HighlightDescriptor} descriptor
 	 */
 	remove( descriptor ) {
 		const stack = this._stack;
@@ -58557,7 +58565,7 @@ class HighlightStack {
 	 * descriptor with same id is already present.
 	 *
 	 * @private
-	 * @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor} descriptor
+	 * @param {module:engine/conversion/model-to-view-converters~HighlightDescriptor} descriptor
 	 */
 	_insertDescriptor( descriptor ) {
 		const stack = this._stack;
@@ -58588,7 +58596,7 @@ class HighlightStack {
 	 * Removes descriptor with given id from the stack.
 	 *
 	 * @private
-	 * @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor} descriptor
+	 * @param {module:engine/conversion/model-to-view-converters~HighlightDescriptor} descriptor
 	 */
 	_removeDescriptor( descriptor ) {
 		const stack = this._stack;
@@ -58607,8 +58615,8 @@ Object(__WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__["a" /* de
 
 // Compares two descriptors by checking their priority and class list.
 //
-// @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor} a
-// @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor} b
+// @param {module:engine/conversion/model-to-view-converters~HighlightDescriptor} a
+// @param {module:engine/conversion/model-to-view-converters~HighlightDescriptor} b
 // @returns {Boolean} Returns true if both descriptors are defined and have same priority and classes.
 function compareDescriptors( a, b ) {
 	return a && b && a.priority == b.priority && classesToString( a.class ) == classesToString( b.class );
@@ -58616,8 +58624,8 @@ function compareDescriptors( a, b ) {
 
 // Checks whenever first descriptor should be placed in the stack before second one.
 //
-// @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor} a
-// @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor} b
+// @param {module:engine/conversion/model-to-view-converters~HighlightDescriptor} a
+// @param {module:engine/conversion/model-to-view-converters~HighlightDescriptor} b
 // @returns {Boolean}
 function shouldABeBeforeB( a, b ) {
 	if ( a.priority > b.priority ) {
@@ -58630,7 +58638,7 @@ function shouldABeBeforeB( a, b ) {
 	return classesToString( a.class ) > classesToString( b.class );
 }
 
-// Converts CSS classes passed with {@link module:engine/conversion/buildmodelconverter~HighlightDescriptor} to
+// Converts CSS classes passed with {@link module:engine/conversion/model-to-view-converters~HighlightDescriptor} to
 // sorted string.
 //
 // @param {String|Array<String>} descriptor
@@ -58644,9 +58652,9 @@ function classesToString( classes ) {
  *
  * @event change:top
  * @param {Object} data Additional information about the change.
- * @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor} [data.newDescriptor] New highlight
+ * @param {module:engine/conversion/model-to-view-converters~HighlightDescriptor} [data.newDescriptor] New highlight
  * descriptor. It will be `undefined` when last descriptor is removed from the stack.
- * @param {module:engine/conversion/buildmodelconverter~HighlightDescriptor} [data.oldDescriptor] Old highlight
+ * @param {module:engine/conversion/model-to-view-converters~HighlightDescriptor} [data.oldDescriptor] Old highlight
  * descriptor. It will be `undefined` when first descriptor is added to the stack.
  */
 

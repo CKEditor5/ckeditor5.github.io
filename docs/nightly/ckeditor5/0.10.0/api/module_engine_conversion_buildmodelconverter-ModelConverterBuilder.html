@@ -60,7 +60,7 @@ correspond to model nodes had converter attribute. It is suitable for attributes
 set on model text nodes is converter to <code>strong</code> view element.</p>
 <pre class="prettyprint source"><code> buildModelConverter().for( dispatcher ).fromAttribute( &apos;bold&apos; ).toElement( &apos;strong&apos; );</code></pre></li>
 <li><p>Model marker to view highlight converter. This is a converter that converts model markers to view highlight
-described by <a href="module_engine_conversion_buildmodelconverter-HighlightDescriptor.html"><code>HighlightDescriptor</code></a> object passed to
+described by <a href="module_engine_conversion_model-to-view-converters-HighlightDescriptor.html"><code>HighlightDescriptor</code></a> object passed to
 <a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html#toHighlight"><code>toHighlight</code></a> method.</p>
 <pre class="prettyprint source"><code> buildModelConverter().for( dispatcher ).fromMarker( &apos;search&apos; ).toHighlight( {
      class: &apos;search&apos;,
@@ -306,9 +306,9 @@ will be used. Keep in mind that when you view element instance or creator functi
 proper type of view element: <a href="module_engine_viewithcontainerelement-ContainerElement.html">ViewContainerElement</a> if you convert
 from element, <a href="module_engine_viewithattributeelement-AttributeElement.html">ViewAttributeElement</a> if you convert
 from attribute and <a href="module_engine_viewithuielement-UIElement.html">ViewUIElement</a> if you convert from marker.</p>
-<p>NOTE: When converting from model&apos;s marker, separate elements will be created at the beginning and at the end of the
+<p><strong>Note:</strong> When converting from model&apos;s marker, separate elements will be created at the beginning and at the end of the
 marker&apos;s range. If range is collapsed then only one element will be created. See how markers
-{module:engine/model/buildviewconverter~ViewConverterBuilder#toMarker view -&gt; model serialization}
+{module:engine/model/buildviewconverter~ViewConverterBuilder#toMarker serialization from view to model}
 works to find out what view element format is the best for you.</p>
 <pre class="prettyprint source"><code>buildModelConverter().for( dispatcher ).fromElement( &apos;paragraph&apos; ).toElement( &apos;p&apos; );
 
@@ -362,10 +362,10 @@ custom properties:</p>
 <pre class="prettyprint source"><code>  viewElement.setCustomProperty( &apos;addHighlight&apos;, ( element, descriptor ) =&gt; {} );
   viewElement.setCustomProperty( &apos;removeHighlight&apos;, ( element, descriptor ) =&gt; {} );</code></pre></li>
 </ul>
-<p><a href="module_engine_conversion_buildmodelconverter-HighlightDescriptor.html"><code>HighlightDescriptor</code></a> will be used to create
+<p><a href="module_engine_conversion_model-to-view-converters-HighlightDescriptor.html"><code>HighlightDescriptor</code></a> will be used to create
 spans over text nodes and also will be provided to <code>addHighlight</code> and <code>removeHighlight</code> methods
-each time highlight should be set or removed from view elements.
-NOTE: When <code>addHighlight</code> and <code>removeHighlight</code> custom properties are present, converter assumes
+each time highlight should be set or removed from view elements.</p>
+<p><strong>Note:</strong> When <code>addHighlight</code> and <code>removeHighlight</code> custom properties are present, converter assumes
 that element itself is taking care of presenting highlight on its child nodes, so it won&apos;t convert them.</p>
 <p>Highlight descriptor can be provided as plain object:</p>
 <pre class="prettyprint source"><code>buildModelConverter.for( dispatcher ).fromMarker( &apos;search&apos; ).toHighlight( { class: &apos;search-highlight&apos; } );</code></pre><p>Also, descriptor creator function can be provided:</p>
@@ -377,7 +377,7 @@ that element itself is taking care of presenting highlight on its child nodes, s
 <code>build-model-converter-non-marker-to-highlight</code> when trying to convert not from marker.</p>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> highlightDescriptor : <span>function</span> | <span><a class="collapsing-list__type" href="module_engine_conversion_buildmodelconverter-HighlightDescriptor.html">HighlightDescriptor</a></span></code></dt>
+                                        <dt><code> highlightDescriptor : <span>function</span> | <span><a class="collapsing-list__type" href="module_engine_conversion_model-to-view-converters-HighlightDescriptor.html">HighlightDescriptor</a></span></code></dt>
                                         <dd>
                                         </dd>
                                       </dl>
@@ -884,9 +884,6 @@ buildModelConverter().for( dispatcher ).fromAttribute( &apos;italic&apos; ).with
                                                   <li><a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html">
                                                       <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--class tree__item__text">ModelConverterBuilder</span></div></a>
                                                   </li>
-                                                  <li><a href="module_engine_conversion_buildmodelconverter-HighlightDescriptor.html">
-                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">HighlightDescriptor</span></div></a>
-                                                  </li>
                                                   <li><a href="module_engine_conversion_buildmodelconverter-MarkerViewElementCreatorData.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">MarkerViewElementCreatorData</span></div></a>
                                                   </li>
@@ -910,8 +907,17 @@ buildModelConverter().for( dispatcher ).fromAttribute( &apos;italic&apos; ).with
                                                   </li>
                                           </ul>
                                         </li>
-                                        <li><a href="module_engine_conversion_model-selection-to-view-converters.html">
-                                            <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">model</span></div></a>
+                                        <li class="toggler--collapsed">
+                                          <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_engine_conversion_model-selection-to-view-converters.html">model</a>
+                                          </div>
+                                          <ul>
+                                                  <li><a href="module_engine_conversion_model-to-view-converters-HighlightAttributeElement.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">HighlightAttributeElement</span></div></a>
+                                                  </li>
+                                                  <li><a href="module_engine_conversion_model-to-view-converters-HighlightDescriptor.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">HighlightDescriptor</span></div></a>
+                                                  </li>
+                                          </ul>
                                         </li>
                                         <li class="toggler--collapsed">
                                           <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_engine_conversion_modelconsumable.html">modelconsumable</a>

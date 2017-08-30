@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Typedef HighlightDescriptor (engine/conversion/buildmodelconverter~HighlightDescriptor) - CKEditor 5 API docs</title>
-    <link rel="canonical" href="/ckeditor5/latest/api/module_engine_conversion_buildmodelconverter-HighlightDescriptor.html">
+    <title>Typedef HighlightDescriptor (engine/conversion/model-to-view-converters~HighlightDescriptor) - CKEditor 5 API docs</title>
+    <link rel="canonical" href="/ckeditor5/latest/api/module_engine_conversion_model-to-view-converters-HighlightDescriptor.html">
     <link rel="stylesheet" href="../../../assets/0.3.11/css/styles.css" type="text/css" media="screen">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
     <script src="../../../assets/0.3.11/scripts/app.js"></script>
@@ -29,14 +29,20 @@
         <div class="main__content-inner">
           <div class="api-header"><img src="../../../assets/0.3.11/img/data.svg" alt="Typedef" title="Typedef"/>
             <div class="api-header__title">
-              <h1>HighlightDescriptor<span class="header__import--hidden"> (@ckeditor/ckeditor5-engine/src/conversion/buildmodelconverter)</span>
+              <h1>HighlightDescriptor<span class="header__import--hidden"> (@ckeditor/ckeditor5-engine/src/conversion/model)</span>
               </h1>
-              <p class="header__import">@ckeditor/ckeditor5-engine/src/conversion/buildmodelconverter
+              <p class="header__import">@ckeditor/ckeditor5-engine/src/conversion/model
               </p>
             </div>
           </div>
           <p><span class="badge">typedef</span>
           </p>
+          <div class="main-description"><p>Object describing how content highlight should be created in the view.</p>
+<p>Each text node contained in highlight will be wrapped with <code>span</code> element with CSS class(es), attributes and priority
+described by this object.</p>
+<p>Each element can handle displaying highlight separately by providing <code>addHighlight</code> and <code>removeHighlight</code> custom
+properties. Those properties are passed <code>HighlightDescriptor</code> object upon conversion and should use it to
+change the element.</p></div>
           <div class="notice notice__filter api-props-filter">
             <div class="api-props-filter__inner">
               <h4>Filtering</h4>
@@ -75,8 +81,10 @@
                           <h3><code><a class="member-name" href="#undefined">class</a> : <span>String</span> | <span>Array.&lt;String&gt;</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">CSS class or array of classes that will be added to <code>span</code>
-<a href="module_engine_viewithattributeelement-AttributeElement.html"><code>AttributeElement</code></a> wrapping each text node in the highlighted content.</p>
+                          <p class="collapsing-list__excerpt">CSS class or array of classes to set. If descriptor is used to
+create <a href="module_engine_viewithattributeelement-AttributeElement.html"><code>AttributeElement</code></a> over text nodes, those classes will be set
+on that <a href="module_engine_viewithattributeelement-AttributeElement.html"><code>AttributeElement</code></a>. If descriptor is applied to an element,
+usually those class will be set on that element, however this depends on how the element converts the descriptor.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -86,8 +94,7 @@
                           <h3><code><a class="member-name" href="#undefined">id</a> : <span>String</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Descriptor identifier. If not provided, marker&apos;s name from which given highlight is created
-will be used.</p>
+                          <p class="collapsing-list__excerpt">Descriptor identifier. If not provided, defaults to converted marker&apos;s name.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -97,8 +104,10 @@ will be used.</p>
                           <h3><code><a class="member-name" href="#undefined">priority</a> : <span>Number</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt"><a href="module_engine_viewithattributeelement-AttributeElement.html#priority"><code>priority</code></a> of the <code>span</code>
-wrapping each text node in the highlighted content. If not provided, default 10 priority will be used.</p>
+                          <p class="collapsing-list__excerpt">Descriptor priority. If not provided, defaults to <code>10</code>. If descriptor is used to create
+<a href="module_engine_viewithattributeelement-AttributeElement.html"><code>AttributeElement</code></a>, it will be that element&apos;s
+<a href="module_engine_viewithattributeelement-AttributeElement.html#priority"><code>priority</code></a>. If descriptor is applied to an element,
+the priority will be used to determine which descriptor is more important.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -108,8 +117,10 @@ wrapping each text node in the highlighted content. If not provided, default 10 
                           <h3><code><a class="member-name" href="#undefined">attributes</a> : <span>Object</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Attributes that will be added to <code>span</code>
-<a href="module_engine_viewithattributeelement-AttributeElement.html"><code>AttributeElement</code></a> wrapping each text node it the highlighted content.</p>
+                          <p class="collapsing-list__excerpt">Attributes to set. If descriptor is used to create
+<a href="module_engine_viewithattributeelement-AttributeElement.html"><code>AttributeElement</code></a> over text nodes, those attributes will be set on that
+<a href="module_engine_viewithattributeelement-AttributeElement.html"><code>AttributeElement</code></a>. If descriptor is applied to an element, usually those
+attributes will be set on that element, however this depends on how the element converts the descriptor.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -576,15 +587,12 @@ wrapping each text node in the highlighted content. If not provided, default 10 
                                 <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">conversion</span>
                                 </div>
                                 <ul>
-                                        <li class="toggler--expanded">
+                                        <li class="toggler--collapsed">
                                           <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_engine_conversion_buildmodelconverter.html">buildmodelconverter</a>
                                           </div>
                                           <ul>
                                                   <li><a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">ModelConverterBuilder</span></div></a>
-                                                  </li>
-                                                  <li><a href="module_engine_conversion_buildmodelconverter-HighlightDescriptor.html">
-                                                      <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--typedef tree__item__text">HighlightDescriptor</span></div></a>
                                                   </li>
                                                   <li><a href="module_engine_conversion_buildmodelconverter-MarkerViewElementCreatorData.html">
                                                       <div class="tree__item__wrapper"><span class="tree__item--typedef tree__item__text">MarkerViewElementCreatorData</span></div></a>
@@ -609,8 +617,17 @@ wrapping each text node in the highlighted content. If not provided, default 10 
                                                   </li>
                                           </ul>
                                         </li>
-                                        <li><a href="module_engine_conversion_model-selection-to-view-converters.html">
-                                            <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">model</span></div></a>
+                                        <li class="toggler--expanded">
+                                          <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_engine_conversion_model-selection-to-view-converters.html">model</a>
+                                          </div>
+                                          <ul>
+                                                  <li><a href="module_engine_conversion_model-to-view-converters-HighlightAttributeElement.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">HighlightAttributeElement</span></div></a>
+                                                  </li>
+                                                  <li><a href="module_engine_conversion_model-to-view-converters-HighlightDescriptor.html">
+                                                      <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--typedef tree__item__text">HighlightDescriptor</span></div></a>
+                                                  </li>
+                                          </ul>
                                         </li>
                                         <li class="toggler--collapsed">
                                           <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_engine_conversion_modelconsumable.html">modelconsumable</a>
