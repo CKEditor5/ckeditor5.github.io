@@ -1067,6 +1067,17 @@ class Range {
 	}
 
 	/**
+	 * Checks whether given {@link module:engine/model/item~Item} is inside this range.
+	 *
+	 * @param {module:engine/model/item~Item} item Model item to check.
+	 */
+	containsItem( item ) {
+		const pos = __WEBPACK_IMPORTED_MODULE_0__position__["a" /* default */].createBefore( item );
+
+		return this.containsPosition( pos ) || this.start.isEqual( pos );
+	}
+
+	/**
 	 * Two ranges are equal if their {@link #start} and {@link #end} positions are equal.
 	 *
 	 * @param {module:engine/model/range~Range} otherRange Range to compare with.
@@ -1443,7 +1454,7 @@ class Range {
 			// ^<p>xx</p><w>{<p>a[b</p>}</w><p>c]d</p>   -->   <p>a[b</p><p>xx</p><w></w><p>c]d</p>  // Note <p>xx</p> inclusion.
 			// <w>{<p>a[b</p>}</w>^<p>c]d</p>            -->   <w></w><p>a[b</p><p>c]d</p>
 			if (
-				sourceRange.containsPosition( this.start ) &&
+				( sourceRange.containsPosition( this.start ) || sourceRange.start.isEqual( this.start ) ) &&
 				this.containsPosition( sourceRange.end ) &&
 				this.end.isAfter( targetPosition )
 			) {
@@ -28550,15 +28561,11 @@ class ModelConversionDispatcher {
 
 		for ( const marker of this._modelDocument.markers ) {
 			const markerRange = marker.getRange();
+			const intersection = markerRange.getIntersection( range );
 
 			// Check if inserted content is inserted into a marker.
-			if ( markerRange.containsPosition( range.start ) ) {
-				this.convertMarker( 'addMarker', marker.name, markerRange.getIntersection( range ) );
-			}
-
-			// Check if inserted content contains a marker.
-			if ( range.containsRange( markerRange, true ) ) {
-				this.convertMarker( 'addMarker', marker.name, markerRange );
+			if ( intersection && shouldMarkerChangeBeConverted( range.start, marker, this.conversionApi.mapper ) ) {
+				this.convertMarker( 'addMarker', marker.name, intersection );
 			}
 		}
 	}
@@ -28700,10 +28707,16 @@ class ModelConversionDispatcher {
 		this.fire( 'selection', { selection }, consumable, this.conversionApi );
 
 		for ( const marker of markers ) {
+			const markerRange = marker.getRange();
+
+			if ( !shouldMarkerChangeBeConverted( selection.getFirstPosition(), marker, this.conversionApi.mapper ) ) {
+				continue;
+			}
+
 			const data = {
 				selection,
 				markerName: marker.name,
-				markerRange: marker.getRange()
+				markerRange
 			};
 
 			if ( consumable.test( selection, 'selectionMarker:' + marker.name ) ) {
@@ -29052,6 +29065,30 @@ class ModelConversionDispatcher {
 
 
 Object(__WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_mix__["a" /* default */])( ModelConversionDispatcher, __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_emittermixin__["c" /* default */] );
+
+// Helper function, checks whether change of `marker` at `modelPosition` should be converted. Marker changes are not
+// converted if they happen inside an element with custom conversion method.
+//
+// @param {module:engine/model/position~Position} modelPosition
+// @param {module:engine/model/markercollection~Marker} marker
+// @param {module:engine/conversion/mapper~Mapper} mapper
+// @returns {Boolean}
+function shouldMarkerChangeBeConverted( modelPosition, marker, mapper ) {
+	const range = marker.getRange();
+	const ancestors = Array.from( modelPosition.getAncestors() );
+	ancestors.shift(); // Remove root element. It cannot be passed to `model.Range#containsItem`.
+	ancestors.reverse();
+
+	const hasCustomHandling = ancestors.some( element => {
+		if ( range.containsItem( element ) ) {
+			const viewElement = mapper.toViewElement( element );
+
+			return !!viewElement.getCustomProperty( 'addHighlight' );
+		}
+	} );
+
+	return !hasCustomHandling;
+}
 
 
 /***/ }),
@@ -56968,7 +57005,7 @@ class Heading extends __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_core_src_p
         const editor = this.editor;
         const t = editor.t;
         const localizedTitles = {
-            Paragraph: t('Paragraph'),
+            Paragraph: t('Absatz'),
             'Heading 1': t('Überschrift 1'),
             'Heading 2': t('Überschrift 2'),
             'Heading 3': t('Überschrift 3')
