@@ -38,7 +38,7 @@
 <p>Most of the examples in the documentation use the <code>ClassicEditor</code> class, but things should work in a similar way with other creator classes.</p>
 <p>Because builds are distributed as <a href="https://github.com/umdjs/umd" target="_blank" rel="external">UMD modules</a>, these classes can be retrieved:</p>
 <ul>
-<li>by a <a href="http://wiki.commonjs.org/wiki/CommonJS" target="_blank" rel="external">CommonJS</a>-compatible loader (e.g. <a href="https://webpack.js.org" target="_blank" rel="external">Webpack</a> or <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>),</li>
+<li>by a <a href="http://wiki.commonjs.org/wiki/CommonJS" target="_blank" rel="external">CommonJS</a>-compatible loader (e.g. <a href="https://webpack.js.org" target="_blank" rel="external">webpack</a> or <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>),</li>
 <li>by <a href="http://requirejs.org/" target="_blank" rel="external">RequireJS</a> (or any other AMD library),</li>
 <li>from the global namespace if none of the above loaders is available.</li>
 </ul>
@@ -54,16 +54,20 @@ require( &apos;/(ckeditor path)/build/ckeditor.js&apos;, ClassicEditor =&gt; {
 
 // As a global.
 ClassicEditor.create; // [Function]
+
+// As an ES6 module (if using webpack or Rollup).
+import { ClassicEditor } from &apos;@ckeditor/ckeditor5-build-classic/build/ckeditor&apos;;
+ClassicEditor.create; // [Function]
 </code></pre>
 <p>Depending on which build you are using, creating an editor in the page is then a breeze:</p>
 <p>In the HTML code:</p>
-<pre><code class="html">&lt;textarea id=&quot;text-editor&quot;&gt;
+<pre><code class="html">&lt;textarea id=&quot;editor&quot;&gt;
     &lt;p&gt;Here goes the initial content of the editor.&lt;/p&gt;
 &lt;/textarea&gt;
 </code></pre>
 <p>In the script:</p>
 <pre><code class="js">ClassicEditor
-    .create( document.querySelector( &apos;#text-editor&apos; ) )
+    .create( document.querySelector( &apos;#editor&apos; ) )
     .then( editor =&gt; {
         console.log( editor );
     } )

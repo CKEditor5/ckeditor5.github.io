@@ -2005,6 +2005,337 @@ function mix( baseClass, ...mixins ) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nodelist__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__text__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(32);
+/**
+ * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md.
+ */
+
+/**
+ * @module engine/model/element
+ */
+
+
+
+
+
+
+/**
+ * Model element. Type of {@link module:engine/model/node~Node node} that has a {@link module:engine/model/element~Element#name name} and
+ * {@link module:engine/model/element~Element#getChildren child nodes}.
+ *
+ * **Important**: see {@link module:engine/model/node~Node} to read about restrictions using `Element` and `Node` API.
+ */
+class Element extends __WEBPACK_IMPORTED_MODULE_0__node__["a" /* default */] {
+	/**
+	 * Creates a model element.
+	 *
+	 * @param {String} name Element's name.
+	 * @param {Object} [attrs] Element's attributes. See {@link module:utils/tomap~toMap} for a list of accepted values.
+	 * @param {module:engine/model/node~Node|Iterable.<module:engine/model/node~Node>} [children]
+	 * One or more nodes to be inserted as children of created element.
+	 */
+	constructor( name, attrs, children ) {
+		super( attrs );
+
+		/**
+		 * Element name.
+		 *
+		 * @member {String} module:engine/model/element~Element#name
+		 */
+		this.name = name;
+
+		/**
+		 * List of children nodes.
+		 *
+		 * @private
+		 * @member {module:engine/model/nodelist~NodeList} module:engine/model/element~Element#_children
+		 */
+		this._children = new __WEBPACK_IMPORTED_MODULE_1__nodelist__["a" /* default */]();
+
+		if ( children ) {
+			this.insertChildren( 0, children );
+		}
+	}
+
+	/**
+	 * Number of this element's children.
+	 *
+	 * @readonly
+	 * @type {Number}
+	 */
+	get childCount() {
+		return this._children.length;
+	}
+
+	/**
+	 * Sum of {module:engine/model/node~Node#offsetSize offset sizes} of all of this element's children.
+	 *
+	 * @readonly
+	 * @type {Number}
+	 */
+	get maxOffset() {
+		return this._children.maxOffset;
+	}
+
+	/**
+	 * Is `true` if there are no nodes inside this element, `false` otherwise.
+	 *
+	 * @readonly
+	 * @type {Boolean}
+	 */
+	get isEmpty() {
+		return this.childCount === 0;
+	}
+
+	/**
+	 * Checks whether given model tree object is of given type.
+	 *
+	 *		obj.name; // 'listItem'
+	 *		obj instanceof Element; // true
+	 *
+	 *		obj.is( 'element' ); // true
+	 *		obj.is( 'listItem' ); // true
+	 *		obj.is( 'element', 'listItem' ); // true
+	 *		obj.is( 'text' ); // false
+	 *		obj.is( 'element', 'image' ); // false
+	 *
+	 * Read more in {@link module:engine/model/node~Node#is}.
+	 *
+	 * @param {String} type Type to check when `name` parameter is present.
+	 * Otherwise, it acts like the `name` parameter.
+	 * @param {String} [name] Element name.
+	 * @returns {Boolean}
+	 */
+	is( type, name = null ) {
+		if ( !name ) {
+			return type == 'element' || type == this.name;
+		} else {
+			return type == 'element' && name == this.name;
+		}
+	}
+
+	/**
+	 * Gets the child at the given index.
+	 *
+	 * @param {Number} index Index of child.
+	 * @returns {module:engine/model/node~Node} Child node.
+	 */
+	getChild( index ) {
+		return this._children.getNode( index );
+	}
+
+	/**
+	 * Returns an iterator that iterates over all of this element's children.
+	 *
+	 * @returns {Iterable.<module:engine/model/node~Node>}
+	 */
+	getChildren() {
+		return this._children[ Symbol.iterator ]();
+	}
+
+	/**
+	 * Returns an index of the given child node. Returns `null` if given node is not a child of this element.
+	 *
+	 * @param {module:engine/model/node~Node} node Child node to look for.
+	 * @returns {Number} Child node's index in this element.
+	 */
+	getChildIndex( node ) {
+		return this._children.getNodeIndex( node );
+	}
+
+	/**
+	 * Returns the starting offset of given child. Starting offset is equal to the sum of
+	 * {module:engine/model/node~Node#offsetSize offset sizes} of all node's siblings that are before it. Returns `null` if
+	 * given node is not a child of this element.
+	 *
+	 * @param {module:engine/model/node~Node} node Child node to look for.
+	 * @returns {Number} Child node's starting offset.
+	 */
+	getChildStartOffset( node ) {
+		return this._children.getNodeStartOffset( node );
+	}
+
+	/**
+	 * Creates a copy of this element and returns it. Created element has the same name and attributes as the original element.
+	 * If clone is deep, the original element's children are also cloned. If not, then empty element is removed.
+	 *
+	 * @param {Boolean} [deep=false] If set to `true` clones element and all its children recursively. When set to `false`,
+	 * element will be cloned without any child.
+	 */
+	clone( deep = false ) {
+		const children = deep ? Array.from( this._children ).map( node => node.clone( true ) ) : null;
+
+		return new Element( this.name, this.getAttributes(), children );
+	}
+
+	/**
+	 * Returns index of a node that occupies given offset. If given offset is too low, returns `0`. If given offset is
+	 * too high, returns {@link module:engine/model/element~Element#getChildIndex index after last child}.
+	 *
+	 *		const textNode = new Text( 'foo' );
+	 *		const pElement = new Element( 'p' );
+	 *		const divElement = new Element( [ textNode, pElement ] );
+	 *		divElement.offsetToIndex( -1 ); // Returns 0, because offset is too low.
+	 *		divElement.offsetToIndex( 0 ); // Returns 0, because offset 0 is taken by `textNode` which is at index 0.
+	 *		divElement.offsetToIndex( 1 ); // Returns 0, because `textNode` has `offsetSize` equal to 3, so it occupies offset 1 too.
+	 *		divElement.offsetToIndex( 2 ); // Returns 0.
+	 *		divElement.offsetToIndex( 3 ); // Returns 1.
+	 *		divElement.offsetToIndex( 4 ); // Returns 2. There are no nodes at offset 4, so last available index is returned.
+	 *
+	 * @param {Number} offset Offset to look for.
+	 * @returns {Number}
+	 */
+	offsetToIndex( offset ) {
+		return this._children.offsetToIndex( offset );
+	}
+
+	/**
+	 * {@link module:engine/model/element~Element#insertChildren Inserts} one or more nodes at the end of this element.
+	 *
+	 * @param {module:engine/model/node~Node|Iterable.<module:engine/model/node~Node>} nodes Nodes to be inserted.
+	 */
+	appendChildren( nodes ) {
+		this.insertChildren( this.childCount, nodes );
+	}
+
+	/**
+	 * Inserts one or more nodes at the given index and sets {@link module:engine/model/node~Node#parent parent} of these nodes
+	 * to this element.
+	 *
+	 * @param {Number} index Index at which nodes should be inserted.
+	 * @param {module:engine/model/node~Node|Iterable.<module:engine/model/node~Node>} nodes Nodes to be inserted.
+	 */
+	insertChildren( index, nodes ) {
+		nodes = normalize( nodes );
+
+		for ( const node of nodes ) {
+			node.parent = this;
+		}
+
+		this._children.insertNodes( index, nodes );
+	}
+
+	/**
+	 * Removes one or more nodes starting at the given index and sets
+	 * {@link module:engine/model/node~Node#parent parent} of these nodes to `null`.
+	 *
+	 * @param {Number} index Index of the first node to remove.
+	 * @param {Number} [howMany=1] Number of nodes to remove.
+	 * @returns {Array.<module:engine/model/node~Node>} Array containing removed nodes.
+	 */
+	removeChildren( index, howMany = 1 ) {
+		const nodes = this._children.removeNodes( index, howMany );
+
+		for ( const node of nodes ) {
+			node.parent = null;
+		}
+
+		return nodes;
+	}
+
+	/**
+	 * Returns a descendant node by its path relative to this element.
+	 *
+	 *		// <this>a<b>c</b></this>
+	 *		this.getNodeByPath( [ 0 ] );     // -> "a"
+	 *		this.getNodeByPath( [ 1 ] );     // -> <b>
+	 *		this.getNodeByPath( [ 1, 0 ] );  // -> "c"
+	 *
+	 * @param {Array.<Number>} relativePath Path of the node to find, relative to this element.
+	 * @returns {module:engine/model/node~Node}
+	 */
+	getNodeByPath( relativePath ) {
+		let node = this; // eslint-disable-line consistent-this
+
+		for ( const index of relativePath ) {
+			node = node.getChild( node.offsetToIndex( index ) );
+		}
+
+		return node;
+	}
+
+	/**
+	 * Converts `Element` instance to plain object and returns it. Takes care of converting all of this element's children.
+	 *
+	 * @returns {Object} `Element` instance converted to plain object.
+	 */
+	toJSON() {
+		const json = super.toJSON();
+
+		json.name = this.name;
+
+		if ( this._children.length > 0 ) {
+			json.children = [];
+
+			for ( const node of this._children ) {
+				json.children.push( node.toJSON() );
+			}
+		}
+
+		return json;
+	}
+
+	/**
+	 * Creates an `Element` instance from given plain object (i.e. parsed JSON string).
+	 * Converts `Element` children to proper nodes.
+	 *
+	 * @param {Object} json Plain object to be converted to `Element`.
+	 * @returns {module:engine/model/element~Element} `Element` instance created using given plain object.
+	 */
+	static fromJSON( json ) {
+		let children = null;
+
+		if ( json.children ) {
+			children = [];
+
+			for ( const child of json.children ) {
+				if ( child.name ) {
+					// If child has name property, it is an Element.
+					children.push( Element.fromJSON( child ) );
+				} else {
+					// Otherwise, it is a Text node.
+					children.push( __WEBPACK_IMPORTED_MODULE_2__text__["a" /* default */].fromJSON( child ) );
+				}
+			}
+		}
+
+		return new Element( json.name, json.attributes, children );
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Element;
+
+
+// Converts strings to Text and non-iterables to arrays.
+//
+// @param {String|module:engine/model/node~Node|Iterable.<String|module:engine/model/node~Node>}
+// @return {Iterable.<module:engine/model/node~Node>}
+function normalize( nodes ) {
+	// Separate condition because string is iterable.
+	if ( typeof nodes == 'string' ) {
+		return [ new __WEBPACK_IMPORTED_MODULE_2__text__["a" /* default */]( nodes ) ];
+	}
+
+	if ( !Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_isiterable__["a" /* default */])( nodes ) ) {
+		nodes = [ nodes ];
+	}
+
+	// Array.from to enable .map() on non-arrays.
+	return Array.from( nodes )
+		.map( node => {
+			return typeof node == 'string' ? new __WEBPACK_IMPORTED_MODULE_2__text__["a" /* default */]( node ) : node;
+		} );
+}
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_mix__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
@@ -3625,337 +3956,6 @@ function shouldExtend( attrName ) {
 
 
 /***/ }),
-/* 6 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__node__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__nodelist__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__text__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(32);
-/**
- * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md.
- */
-
-/**
- * @module engine/model/element
- */
-
-
-
-
-
-
-/**
- * Model element. Type of {@link module:engine/model/node~Node node} that has a {@link module:engine/model/element~Element#name name} and
- * {@link module:engine/model/element~Element#getChildren child nodes}.
- *
- * **Important**: see {@link module:engine/model/node~Node} to read about restrictions using `Element` and `Node` API.
- */
-class Element extends __WEBPACK_IMPORTED_MODULE_0__node__["a" /* default */] {
-	/**
-	 * Creates a model element.
-	 *
-	 * @param {String} name Element's name.
-	 * @param {Object} [attrs] Element's attributes. See {@link module:utils/tomap~toMap} for a list of accepted values.
-	 * @param {module:engine/model/node~Node|Iterable.<module:engine/model/node~Node>} [children]
-	 * One or more nodes to be inserted as children of created element.
-	 */
-	constructor( name, attrs, children ) {
-		super( attrs );
-
-		/**
-		 * Element name.
-		 *
-		 * @member {String} module:engine/model/element~Element#name
-		 */
-		this.name = name;
-
-		/**
-		 * List of children nodes.
-		 *
-		 * @private
-		 * @member {module:engine/model/nodelist~NodeList} module:engine/model/element~Element#_children
-		 */
-		this._children = new __WEBPACK_IMPORTED_MODULE_1__nodelist__["a" /* default */]();
-
-		if ( children ) {
-			this.insertChildren( 0, children );
-		}
-	}
-
-	/**
-	 * Number of this element's children.
-	 *
-	 * @readonly
-	 * @type {Number}
-	 */
-	get childCount() {
-		return this._children.length;
-	}
-
-	/**
-	 * Sum of {module:engine/model/node~Node#offsetSize offset sizes} of all of this element's children.
-	 *
-	 * @readonly
-	 * @type {Number}
-	 */
-	get maxOffset() {
-		return this._children.maxOffset;
-	}
-
-	/**
-	 * Is `true` if there are no nodes inside this element, `false` otherwise.
-	 *
-	 * @readonly
-	 * @type {Boolean}
-	 */
-	get isEmpty() {
-		return this.childCount === 0;
-	}
-
-	/**
-	 * Checks whether given model tree object is of given type.
-	 *
-	 *		obj.name; // 'listItem'
-	 *		obj instanceof Element; // true
-	 *
-	 *		obj.is( 'element' ); // true
-	 *		obj.is( 'listItem' ); // true
-	 *		obj.is( 'element', 'listItem' ); // true
-	 *		obj.is( 'text' ); // false
-	 *		obj.is( 'element', 'image' ); // false
-	 *
-	 * Read more in {@link module:engine/model/node~Node#is}.
-	 *
-	 * @param {String} type Type to check when `name` parameter is present.
-	 * Otherwise, it acts like the `name` parameter.
-	 * @param {String} [name] Element name.
-	 * @returns {Boolean}
-	 */
-	is( type, name = null ) {
-		if ( !name ) {
-			return type == 'element' || type == this.name;
-		} else {
-			return type == 'element' && name == this.name;
-		}
-	}
-
-	/**
-	 * Gets the child at the given index.
-	 *
-	 * @param {Number} index Index of child.
-	 * @returns {module:engine/model/node~Node} Child node.
-	 */
-	getChild( index ) {
-		return this._children.getNode( index );
-	}
-
-	/**
-	 * Returns an iterator that iterates over all of this element's children.
-	 *
-	 * @returns {Iterable.<module:engine/model/node~Node>}
-	 */
-	getChildren() {
-		return this._children[ Symbol.iterator ]();
-	}
-
-	/**
-	 * Returns an index of the given child node. Returns `null` if given node is not a child of this element.
-	 *
-	 * @param {module:engine/model/node~Node} node Child node to look for.
-	 * @returns {Number} Child node's index in this element.
-	 */
-	getChildIndex( node ) {
-		return this._children.getNodeIndex( node );
-	}
-
-	/**
-	 * Returns the starting offset of given child. Starting offset is equal to the sum of
-	 * {module:engine/model/node~Node#offsetSize offset sizes} of all node's siblings that are before it. Returns `null` if
-	 * given node is not a child of this element.
-	 *
-	 * @param {module:engine/model/node~Node} node Child node to look for.
-	 * @returns {Number} Child node's starting offset.
-	 */
-	getChildStartOffset( node ) {
-		return this._children.getNodeStartOffset( node );
-	}
-
-	/**
-	 * Creates a copy of this element and returns it. Created element has the same name and attributes as the original element.
-	 * If clone is deep, the original element's children are also cloned. If not, then empty element is removed.
-	 *
-	 * @param {Boolean} [deep=false] If set to `true` clones element and all its children recursively. When set to `false`,
-	 * element will be cloned without any child.
-	 */
-	clone( deep = false ) {
-		const children = deep ? Array.from( this._children ).map( node => node.clone( true ) ) : null;
-
-		return new Element( this.name, this.getAttributes(), children );
-	}
-
-	/**
-	 * Returns index of a node that occupies given offset. If given offset is too low, returns `0`. If given offset is
-	 * too high, returns {@link module:engine/model/element~Element#getChildIndex index after last child}.
-	 *
-	 *		const textNode = new Text( 'foo' );
-	 *		const pElement = new Element( 'p' );
-	 *		const divElement = new Element( [ textNode, pElement ] );
-	 *		divElement.offsetToIndex( -1 ); // Returns 0, because offset is too low.
-	 *		divElement.offsetToIndex( 0 ); // Returns 0, because offset 0 is taken by `textNode` which is at index 0.
-	 *		divElement.offsetToIndex( 1 ); // Returns 0, because `textNode` has `offsetSize` equal to 3, so it occupies offset 1 too.
-	 *		divElement.offsetToIndex( 2 ); // Returns 0.
-	 *		divElement.offsetToIndex( 3 ); // Returns 1.
-	 *		divElement.offsetToIndex( 4 ); // Returns 2. There are no nodes at offset 4, so last available index is returned.
-	 *
-	 * @param {Number} offset Offset to look for.
-	 * @returns {Number}
-	 */
-	offsetToIndex( offset ) {
-		return this._children.offsetToIndex( offset );
-	}
-
-	/**
-	 * {@link module:engine/model/element~Element#insertChildren Inserts} one or more nodes at the end of this element.
-	 *
-	 * @param {module:engine/model/node~Node|Iterable.<module:engine/model/node~Node>} nodes Nodes to be inserted.
-	 */
-	appendChildren( nodes ) {
-		this.insertChildren( this.childCount, nodes );
-	}
-
-	/**
-	 * Inserts one or more nodes at the given index and sets {@link module:engine/model/node~Node#parent parent} of these nodes
-	 * to this element.
-	 *
-	 * @param {Number} index Index at which nodes should be inserted.
-	 * @param {module:engine/model/node~Node|Iterable.<module:engine/model/node~Node>} nodes Nodes to be inserted.
-	 */
-	insertChildren( index, nodes ) {
-		nodes = normalize( nodes );
-
-		for ( const node of nodes ) {
-			node.parent = this;
-		}
-
-		this._children.insertNodes( index, nodes );
-	}
-
-	/**
-	 * Removes one or more nodes starting at the given index and sets
-	 * {@link module:engine/model/node~Node#parent parent} of these nodes to `null`.
-	 *
-	 * @param {Number} index Index of the first node to remove.
-	 * @param {Number} [howMany=1] Number of nodes to remove.
-	 * @returns {Array.<module:engine/model/node~Node>} Array containing removed nodes.
-	 */
-	removeChildren( index, howMany = 1 ) {
-		const nodes = this._children.removeNodes( index, howMany );
-
-		for ( const node of nodes ) {
-			node.parent = null;
-		}
-
-		return nodes;
-	}
-
-	/**
-	 * Returns a descendant node by its path relative to this element.
-	 *
-	 *		// <this>a<b>c</b></this>
-	 *		this.getNodeByPath( [ 0 ] );     // -> "a"
-	 *		this.getNodeByPath( [ 1 ] );     // -> <b>
-	 *		this.getNodeByPath( [ 1, 0 ] );  // -> "c"
-	 *
-	 * @param {Array.<Number>} relativePath Path of the node to find, relative to this element.
-	 * @returns {module:engine/model/node~Node}
-	 */
-	getNodeByPath( relativePath ) {
-		let node = this; // eslint-disable-line consistent-this
-
-		for ( const index of relativePath ) {
-			node = node.getChild( node.offsetToIndex( index ) );
-		}
-
-		return node;
-	}
-
-	/**
-	 * Converts `Element` instance to plain object and returns it. Takes care of converting all of this element's children.
-	 *
-	 * @returns {Object} `Element` instance converted to plain object.
-	 */
-	toJSON() {
-		const json = super.toJSON();
-
-		json.name = this.name;
-
-		if ( this._children.length > 0 ) {
-			json.children = [];
-
-			for ( const node of this._children ) {
-				json.children.push( node.toJSON() );
-			}
-		}
-
-		return json;
-	}
-
-	/**
-	 * Creates an `Element` instance from given plain object (i.e. parsed JSON string).
-	 * Converts `Element` children to proper nodes.
-	 *
-	 * @param {Object} json Plain object to be converted to `Element`.
-	 * @returns {module:engine/model/element~Element} `Element` instance created using given plain object.
-	 */
-	static fromJSON( json ) {
-		let children = null;
-
-		if ( json.children ) {
-			children = [];
-
-			for ( const child of json.children ) {
-				if ( child.name ) {
-					// If child has name property, it is an Element.
-					children.push( Element.fromJSON( child ) );
-				} else {
-					// Otherwise, it is a Text node.
-					children.push( __WEBPACK_IMPORTED_MODULE_2__text__["a" /* default */].fromJSON( child ) );
-				}
-			}
-		}
-
-		return new Element( json.name, json.attributes, children );
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Element;
-
-
-// Converts strings to Text and non-iterables to arrays.
-//
-// @param {String|module:engine/model/node~Node|Iterable.<String|module:engine/model/node~Node>}
-// @return {Iterable.<module:engine/model/node~Node>}
-function normalize( nodes ) {
-	// Separate condition because string is iterable.
-	if ( typeof nodes == 'string' ) {
-		return [ new __WEBPACK_IMPORTED_MODULE_2__text__["a" /* default */]( nodes ) ];
-	}
-
-	if ( !Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_isiterable__["a" /* default */])( nodes ) ) {
-		nodes = [ nodes ];
-	}
-
-	// Array.from to enable .map() on non-arrays.
-	return Array.from( nodes )
-		.map( node => {
-			return typeof node == 'string' ? new __WEBPACK_IMPORTED_MODULE_2__text__["a" /* default */]( node ) : node;
-		} );
-}
-
-
-/***/ }),
 /* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4035,7 +4035,7 @@ function rest(func, start) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__viewcollection__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__template__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__template__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_dom_emittermixin__ = __webpack_require__(105);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_observablemixin__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_collection__ = __webpack_require__(151);
@@ -7343,7 +7343,7 @@ function baseFlatten(array, depth, predicate, isStrict, result) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__icon_iconview__ = __webpack_require__(457);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__tooltip_tooltipview__ = __webpack_require__(458);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keyboard__ = __webpack_require__(27);
@@ -9825,7 +9825,7 @@ function enlargeTrimSkip( value ) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__nodelist__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__element__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__text__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_isiterable__ = __webpack_require__(32);
 /**
@@ -10375,7 +10375,7 @@ function baseSlice(array, start, end) {
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = buildViewConverter;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_matcher__ = __webpack_require__(172);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_element__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_writer__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
@@ -10930,7 +10930,7 @@ function buildViewConverter() {
 /* harmony export (immutable) */ __webpack_exports__["b"] = isImageWidget;
 /* harmony export (immutable) */ __webpack_exports__["a"] = isImage;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_widget_src_utils__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(5);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -11193,7 +11193,7 @@ function getFillerOffset() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__removeoperation__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__writer__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__text__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__element__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__element__ = __webpack_require__(5);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -12020,7 +12020,7 @@ function eq(value, other) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__text__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__textproxy__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__element__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /**
@@ -18355,7 +18355,7 @@ __WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( MoveDel
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__splitdelta__ = __webpack_require__(96);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__element__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__operation_removeoperation__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__operation_moveoperation__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
@@ -18503,7 +18503,7 @@ __WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( MergeDe
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__element__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__operation_insertoperation__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__operation_moveoperation__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
@@ -18789,7 +18789,7 @@ __WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( UnwrapD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__range__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__element__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__operation_insertoperation__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__operation_moveoperation__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
@@ -19154,7 +19154,7 @@ function arrayFilter(array, predicate) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__element__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__range__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_emittermixin__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
@@ -20923,7 +20923,7 @@ Object(__WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_mix__["a" /* de
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__paragraphcommand__ = __webpack_require__(473);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_model_position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_engine_src_conversion_buildmodelconverter__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__ = __webpack_require__(41);
@@ -22562,7 +22562,7 @@ class MarkerOperation extends __WEBPACK_IMPORTED_MODULE_0__operation__["a" /* de
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__operation__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__element__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__position__ = __webpack_require__(1);
 /**
@@ -23034,7 +23034,7 @@ __WEBPACK_IMPORTED_MODULE_2__deltafactory__["a" /* default */].register( InsertD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__deltafactory__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__batch__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__operation_renameoperation__ = __webpack_require__(125);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__element__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_utils_src_ckeditorerror__ = __webpack_require__(0);
 /**
@@ -34623,6 +34623,10 @@ function convertSelectionMarker( highlightDescriptor ) {
 			return;
 		}
 
+		if ( !descriptor.id ) {
+			descriptor.id = data.markerName;
+		}
+
 		const viewElement = Object(__WEBPACK_IMPORTED_MODULE_3__model_to_view_converters__["a" /* createViewElementFromHighlightDescriptor */])( descriptor );
 		const consumableName = 'selectionMarker:' + data.markerName;
 
@@ -34837,7 +34841,7 @@ class HtmlDataProcessor {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__focuscycler__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keystrokehandler__ = __webpack_require__(49);
@@ -35623,7 +35627,7 @@ class AttributeCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_c
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_conversion_buildviewconverter__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__converters__ = __webpack_require__(485);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_engine_src_view_containerelement__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ckeditor_ckeditor5_engine_src_view_emptyelement__ = __webpack_require__(174);
 /**
@@ -35791,7 +35795,7 @@ function clickOutsideHandler( { emitter, activator, callback, contextElements } 
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_uid__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__label_labelview__ = __webpack_require__(494);
 /**
@@ -35938,7 +35942,7 @@ class LabeledInputView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* defaul
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -36072,7 +36076,7 @@ function submitHandler( { view } ) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_dom_position__ = __webpack_require__(495);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_dom_isrange__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isElement__ = __webpack_require__(253);
@@ -38258,10 +38262,11 @@ function _clear() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__view_documentfragment__ = __webpack_require__(122);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__model_range__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__model_position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__insertcontent__ = __webpack_require__(347);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__deletecontent__ = __webpack_require__(348);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__modifyselection__ = __webpack_require__(349);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__getselectedcontent__ = __webpack_require__(350);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__model_element__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__insertcontent__ = __webpack_require__(347);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__deletecontent__ = __webpack_require__(348);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__modifyselection__ = __webpack_require__(349);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__getselectedcontent__ = __webpack_require__(350);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -38270,6 +38275,7 @@ function _clear() {
 /**
  * @module engine/controller/datacontroller
  */
+
 
 
 
@@ -38517,7 +38523,7 @@ class DataController {
 	 * changes will be added to a new batch.
 	 */
 	insertContent( content, selection, batch ) {
-		Object(__WEBPACK_IMPORTED_MODULE_10__insertcontent__["a" /* default */])( this, content, selection, batch );
+		Object(__WEBPACK_IMPORTED_MODULE_11__insertcontent__["a" /* default */])( this, content, selection, batch );
 	}
 
 	/**
@@ -38537,7 +38543,7 @@ class DataController {
 	 * @param {Object} options See {@link module:engine/controller/deletecontent~deleteContent}'s options.
 	 */
 	deleteContent( selection, batch, options ) {
-		Object(__WEBPACK_IMPORTED_MODULE_11__deletecontent__["a" /* default */])( selection, batch, options );
+		Object(__WEBPACK_IMPORTED_MODULE_12__deletecontent__["a" /* default */])( selection, batch, options );
 	}
 
 	/**
@@ -38548,7 +38554,7 @@ class DataController {
 	 * @param {Object} options See {@link module:engine/controller/modifyselection~modifySelection}'s options.
 	 */
 	modifySelection( selection, options ) {
-		Object(__WEBPACK_IMPORTED_MODULE_12__modifyselection__["a" /* default */])( this, selection, options );
+		Object(__WEBPACK_IMPORTED_MODULE_13__modifyselection__["a" /* default */])( this, selection, options );
 	}
 
 	/**
@@ -38559,7 +38565,35 @@ class DataController {
 	 * @returns {module:engine/model/documentfragment~DocumentFragment} Document fragment holding the clone of the selected content.
 	 */
 	getSelectedContent( selection ) {
-		return Object(__WEBPACK_IMPORTED_MODULE_13__getselectedcontent__["a" /* default */])( selection );
+		return Object(__WEBPACK_IMPORTED_MODULE_14__getselectedcontent__["a" /* default */])( selection );
+	}
+
+	/**
+	 * Checks whether given {@link module:engine/model/range~Range range} or {@link module:engine/model/element~Element element}
+	 * has any content.
+	 *
+	 * Content is any text node or element which is registered in {@link module:engine/model/schema~Schema schema}.
+	 *
+	 * @param {module:engine/model/range~Range|module:engine/model/element~Element} rangeOrElement Range or element to check.
+	 * @returns {Boolean}
+	 */
+	hasContent( rangeOrElement ) {
+		if ( rangeOrElement instanceof __WEBPACK_IMPORTED_MODULE_10__model_element__["a" /* default */] ) {
+			rangeOrElement = __WEBPACK_IMPORTED_MODULE_8__model_range__["a" /* default */].createIn( rangeOrElement );
+		}
+
+		if ( rangeOrElement.isCollapsed ) {
+			return false;
+		}
+
+		for ( const item of rangeOrElement.getItems() ) {
+			// Remember, `TreeWalker` returns always `textProxy` nodes.
+			if ( item.is( 'textProxy' ) || this.model.schema.objects.has( item.name ) ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = DataController;
@@ -42069,7 +42103,7 @@ function convertText() {
 /* harmony export (immutable) */ __webpack_exports__["a"] = insertContent;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_liveposition__ = __webpack_require__(175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_element__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_range__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_log__ = __webpack_require__(30);
 /**
@@ -42515,7 +42549,7 @@ class Insertion {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__model_liveposition__ = __webpack_require__(175);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model_position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_range__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_element__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__model_element__ = __webpack_require__(5);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -47187,7 +47221,7 @@ __WEBPACK_IMPORTED_MODULE_1__deltafactory__["a" /* default */].register( MarkerD
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__element__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__element__ = __webpack_require__(5);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -48248,7 +48282,7 @@ function mapsEqual( mapA, mapB ) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__element__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_lib_lodash_clone__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_lib_lodash_isArray__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_lib_lodash_isString__ = __webpack_require__(113);
@@ -52211,7 +52245,7 @@ function normalizeToolbarConfig( config ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_src_editorui_boxed_boxededitoruiview__ = __webpack_require__(426);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_editableui_inline_inlineeditableuiview__ = __webpack_require__(429);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_toolbar_sticky_stickytoolbarview__ = __webpack_require__(431);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_template__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_template__ = __webpack_require__(6);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -52285,7 +52319,7 @@ class ClassicEditorUIView extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__editorui_editoruiview__ = __webpack_require__(427);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_utils_src_uid__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__template__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__template__ = __webpack_require__(6);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -52394,7 +52428,7 @@ class BoxedEditorUIView extends __WEBPACK_IMPORTED_MODULE_0__editorui_editoruivi
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -52531,7 +52565,7 @@ function cloneDeepWith(value, customizer) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__editableui_editableuiview__ = __webpack_require__(430);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -52587,7 +52621,7 @@ class InlineEditableUIView extends __WEBPACK_IMPORTED_MODULE_0__editableui_edita
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -52700,7 +52734,7 @@ class EditableUIView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default 
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_utils_src_dom_global__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__toolbarview__ = __webpack_require__(257);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_dom_tounit__ = __webpack_require__(259);
 /**
@@ -52965,7 +52999,7 @@ class StickyToolbarView extends __WEBPACK_IMPORTED_MODULE_2__toolbarview__["a" /
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -54966,7 +55000,7 @@ class Delete extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_pl
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_command__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_selection__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_model_position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_engine_src_model_range__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__changebuffer__ = __webpack_require__(260);
@@ -55634,7 +55668,7 @@ class RedoCommand extends __WEBPACK_IMPORTED_MODULE_0__basecommand__["a" /* defa
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -55713,7 +55747,7 @@ class IconView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */] {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -55837,7 +55871,7 @@ module.exports = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"
 
 /**
  * Includes a set of predefined autoformatting actions. For a detailed overview, check
- * the {@linkTODO features/autoformat Autoformatting feature documentation}.
+ * the {@glink features/autoformat Autoformatting feature documentation}.
  *
  * @extends module:core/plugin~Plugin
  */
@@ -55982,7 +56016,7 @@ class Autoformat extends __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_core_sr
 
 /**
  * The block autoformatting engine. It allows to format various block patterns. For example,
- * it can be configured to turn a paragraph starting with "* " into a list item.
+ * it can be configured to turn a paragraph starting with `*` and followed by a space into a list item.
  *
  * The autoformatting operation is integrated with the undo manager,
  * so the autoformatting step can be undone if the user's intention was not to format the text.
@@ -56489,7 +56523,7 @@ class BlockQuoteEngine extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_c
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_command__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_model_range__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_first__ = __webpack_require__(58);
 /**
@@ -56899,7 +56933,7 @@ module.exports = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_model__ = __webpack_require__(476);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_ui_src_dropdown_list_createlistdropdown__ = __webpack_require__(477);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_utils_src_collection__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_ui_src_template__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_ui_src_template__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__theme_theme_scss__ = __webpack_require__(483);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__theme_theme_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__theme_theme_scss__);
 /**
@@ -56919,7 +56953,8 @@ module.exports = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"
 
 /**
  * The headings feature. It introduces the `headings` drop-down list and the `heading` command which allow
- * to convert paragraphs into headings.
+ * to convert paragraphs into headings. For a detailed overview, check the
+ * {@glink features/headings Headings feature documentation}.
  *
  * @extends module:core/plugin~Plugin
  */
@@ -57576,7 +57611,7 @@ function attachDocumentClickListener( dropdownView ) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__focuscycler__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_utils_src_keystrokehandler__ = __webpack_require__(49);
@@ -57707,7 +57742,7 @@ class ListView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */] {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_keystrokehandler__ = __webpack_require__(49);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
@@ -57885,7 +57920,7 @@ function createDropdown( model, locale ) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_utils_src_focustracker__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_utils_src_keystrokehandler__ = __webpack_require__(49);
 /**
@@ -58048,7 +58083,7 @@ class DropdownView extends __WEBPACK_IMPORTED_MODULE_0__view__["a" /* default */
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -58705,7 +58740,7 @@ function classesToString( classes ) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_observer_mouseobserver__ = __webpack_require__(488);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_range__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_model_selection__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_view_editableelement__ = __webpack_require__(85);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ckeditor_ckeditor5_engine_src_view_rooteditableelement__ = __webpack_require__(249);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__utils__ = __webpack_require__(153);
@@ -59416,7 +59451,7 @@ class ImageTextAlternativeCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_src_view__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_template__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_template__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_labeledinput_labeledinputview__ = __webpack_require__(265);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_ui_src_inputtext_inputtextview__ = __webpack_require__(266);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_ui_src_bindings_submithandler__ = __webpack_require__(267);
@@ -59537,7 +59572,7 @@ class TextAlternativeFormView extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_cked
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template__ = __webpack_require__(6);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -60024,7 +60059,7 @@ class ImageCaption extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_treewalker__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_view_containerelement__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_engine_src_view_element__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_view_writer__ = __webpack_require__(88);
@@ -60253,7 +60288,7 @@ function getParentCaption(node) {
 /* harmony export (immutable) */ __webpack_exports__["c"] = isCaption;
 /* harmony export (immutable) */ __webpack_exports__["b"] = getCaptionFromImage;
 /* harmony export (immutable) */ __webpack_exports__["d"] = matchImageCaption;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_view_editableelement__ = __webpack_require__(85);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_view_placeholder__ = __webpack_require__(503);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_widget_src_utils__ = __webpack_require__(153);
@@ -60998,7 +61033,7 @@ module.exports = "<svg viewBox=\"0 0 20 20\" xmlns=\"http://www.w3.org/2000/svg\
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_src_template__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_src_template__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_core_src_plugin__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_toolbar_toolbarview__ = __webpack_require__(257);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_panel_balloon_contextualballoon__ = __webpack_require__(154);
@@ -61982,7 +62017,7 @@ class UnlinkCommand extends __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_core
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ckeditor_ckeditor5_ui_src_view__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_template__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_ui_src_template__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_ui_src_viewcollection__ = __webpack_require__(150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_ui_src_button_buttonview__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_ui_src_labeledinput_labeledinputview__ = __webpack_require__(265);
@@ -62991,7 +63026,7 @@ function _seekListItem( item, seekForward ) {
 /* harmony export (immutable) */ __webpack_exports__["d"] = modelIndentPasteFixer;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__viewlistitemelement__ = __webpack_require__(529);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ckeditor_ckeditor5_engine_src_model_documentfragment__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_engine_src_model_element__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ckeditor_ckeditor5_engine_src_model_position__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ckeditor_ckeditor5_engine_src_model_writer__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ckeditor_ckeditor5_engine_src_view_containerelement__ = __webpack_require__(46);

@@ -35,26 +35,27 @@
 <li><a href="#npm">npm</a></li>
 </ul>
 <p>Each of the builds has independent release packages. Check the <a href="../overview.html#Builds">Overview</a> page for the list of available builds.</p>
-<h3 id="Zip-download"><a href="#Zip-download" class="headerlink" title="Zip download"></a>Zip download</h3><p>Go to <a href="https://ckeditor.com/ckeditor5-builds/download" target="_blank" rel="external">https://ckeditor.com/ckeditor5-builds/download</a> and download your preferred build. For example, you may download the <code>ckeditor5-build.classic-1.0.0.zip</code> file for the Classic editor build.</p>
+<h3 id="Zip-download"><a href="#Zip-download" class="headerlink" title="Zip download"></a>Zip download</h3><p>Go to <a href="https://ckeditor.com/ckeditor5-builds/download" target="_blank" rel="external">https://ckeditor.com/ckeditor5-builds/download</a> and download your preferred build. For example, you may download the <code>ckeditor5-build-classic-1.0.0.zip</code> file for the Classic editor build.</p>
 <p>Extract the above <code>.zip</code> file into a dedicated directory inside your website or application.</p>
 <p>The main entry point script will then be available at <code>&lt;your-path&gt;/ckeditor/build/ckeditor.js</code>.</p>
 <h3 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h3><p>Builds can be loaded inside pages directly from our CDN, which is optimized for worldwide super fast download.</p>
 <p>Check out the {@linkTODO CKEditor 5 Builds CDN website} for a list of URL entry points for the builds API.</p>
-<h3 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h3><p>All builds are released on npm. <a href="https://www.npmjs.com/search?q=%40ckeditor%2Fckeditor5-build" target="_blank" rel="external">Use this search link</a> to view all build packages available in npm.</p>
+<h3 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h3><p>All builds are released on npm. <a href="https://www.npmjs.com/search?q=keywords:ckeditor5-build&amp;page=1&amp;ranking=optimal" target="_blank" rel="external">Use this search link</a> to view all build packages available in npm.</p>
 <p>Installing a classic build with npm is as simple as calling the following inside your website or application:</p>
 <pre><code class="bash">npm install --save @ckeditor/ckeditor5-build-classic
 </code></pre>
 <p>The script entry point for the build class will then be found at <code>node_modules/ckeditor5-build-classic/build/ckeditor.js</code>.</p>
 <h2 id="Included-files"><a href="#Included-files" class="headerlink" title="Included files"></a>Included files</h2><p>The following are the main files available in all build distributions:</p>
 <ul>
-<li><code>build/ckeditor.js</code> &#x2013; The main UMD distribution script, containing the editor core and all plugins. Compatible with ECMAScript 6 enabled browsers. A smaller download.</li>
-<li><code>build/ckeditor.compat.js</code> &#x2013; The same as the above, for browsers not compatible with ES6.</li>
-<li><code>ckeditor.js</code> &#x2013; The source entry point of the build. It can be used for complex bundling and development.</li>
+<li><code>build/ckeditor.js</code> &#x2013; The main UMD distribution script, containing the editor and all plugins.</li>
+<li><code>ckeditor.js</code> &#x2013; The source entry point of the build. It can be used for complex bundling and development. Based on it the <code>build/ckeditor.js</code> is created (by webpack).</li>
+<li><code>build-config.js</code> &#x2013; The build configuration, based on which the <code>ckeditor.js</code> file is created.</li>
 </ul>
 <h2 id="Loading-the-API"><a href="#Loading-the-API" class="headerlink" title="Loading the API"></a>Loading the API</h2><p>Once downloaded and installed in your application, it is time to make the API available in your pages. For that purpose, it is enough to load the API entry point script:</p>
 <pre><code class="html">&lt;script src=&quot;/ckeditor/build/ckeditor.js&quot;&gt;&lt;/script&gt;
 </code></pre>
-<p>For a more advanced setup, you may wish to bundle the CKEditor script with other scripts used by your application. See {@linkTODO Bundling} for more information about it.</p>
+<div class="info-box notice"><p>The <code>build/ckeditor.js</code> file is generated in the <a href="https://github.com/umdjs/umd" target="_blank" rel="external">UMD format</a> so you can also import it to your application if you use CommonJS modules (like in Node.js) or AMD modules (like in Require.js). Read more in the <a href="basic-api.html">Basic API guide</a>.</p><p>Also, for a more advanced setup, you may wish to bundle the CKEditor script with other scripts used by your application. See {@linkTODO Bundling} for more information about it.</p></div>
+
 <p>Once the CKEditor script is loaded, you can <a href="basic-api.html">use the API</a> to create editors in your page.</p>
 
         </div>

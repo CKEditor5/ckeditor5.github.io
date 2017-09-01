@@ -35303,6 +35303,10 @@ function convertSelectionMarker( highlightDescriptor ) {
 			return;
 		}
 
+		if ( !descriptor.id ) {
+			descriptor.id = data.markerName;
+		}
+
 		const viewElement = Object(__WEBPACK_IMPORTED_MODULE_3__model_to_view_converters__["a" /* createViewElementFromHighlightDescriptor */])( descriptor );
 		const consumableName = 'selectionMarker:' + data.markerName;
 
@@ -38297,10 +38301,11 @@ function _clear() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__view_documentfragment__ = __webpack_require__(122);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__model_range__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__model_position__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__insertcontent__ = __webpack_require__(349);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__deletecontent__ = __webpack_require__(350);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__modifyselection__ = __webpack_require__(351);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__getselectedcontent__ = __webpack_require__(352);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__model_element__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__insertcontent__ = __webpack_require__(349);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__deletecontent__ = __webpack_require__(350);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__modifyselection__ = __webpack_require__(351);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__getselectedcontent__ = __webpack_require__(352);
 /**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md.
@@ -38309,6 +38314,7 @@ function _clear() {
 /**
  * @module engine/controller/datacontroller
  */
+
 
 
 
@@ -38556,7 +38562,7 @@ class DataController {
 	 * changes will be added to a new batch.
 	 */
 	insertContent( content, selection, batch ) {
-		Object(__WEBPACK_IMPORTED_MODULE_10__insertcontent__["a" /* default */])( this, content, selection, batch );
+		Object(__WEBPACK_IMPORTED_MODULE_11__insertcontent__["a" /* default */])( this, content, selection, batch );
 	}
 
 	/**
@@ -38576,7 +38582,7 @@ class DataController {
 	 * @param {Object} options See {@link module:engine/controller/deletecontent~deleteContent}'s options.
 	 */
 	deleteContent( selection, batch, options ) {
-		Object(__WEBPACK_IMPORTED_MODULE_11__deletecontent__["a" /* default */])( selection, batch, options );
+		Object(__WEBPACK_IMPORTED_MODULE_12__deletecontent__["a" /* default */])( selection, batch, options );
 	}
 
 	/**
@@ -38587,7 +38593,7 @@ class DataController {
 	 * @param {Object} options See {@link module:engine/controller/modifyselection~modifySelection}'s options.
 	 */
 	modifySelection( selection, options ) {
-		Object(__WEBPACK_IMPORTED_MODULE_12__modifyselection__["a" /* default */])( this, selection, options );
+		Object(__WEBPACK_IMPORTED_MODULE_13__modifyselection__["a" /* default */])( this, selection, options );
 	}
 
 	/**
@@ -38598,7 +38604,35 @@ class DataController {
 	 * @returns {module:engine/model/documentfragment~DocumentFragment} Document fragment holding the clone of the selected content.
 	 */
 	getSelectedContent( selection ) {
-		return Object(__WEBPACK_IMPORTED_MODULE_13__getselectedcontent__["a" /* default */])( selection );
+		return Object(__WEBPACK_IMPORTED_MODULE_14__getselectedcontent__["a" /* default */])( selection );
+	}
+
+	/**
+	 * Checks whether given {@link module:engine/model/range~Range range} or {@link module:engine/model/element~Element element}
+	 * has any content.
+	 *
+	 * Content is any text node or element which is registered in {@link module:engine/model/schema~Schema schema}.
+	 *
+	 * @param {module:engine/model/range~Range|module:engine/model/element~Element} rangeOrElement Range or element to check.
+	 * @returns {Boolean}
+	 */
+	hasContent( rangeOrElement ) {
+		if ( rangeOrElement instanceof __WEBPACK_IMPORTED_MODULE_10__model_element__["a" /* default */] ) {
+			rangeOrElement = __WEBPACK_IMPORTED_MODULE_8__model_range__["a" /* default */].createIn( rangeOrElement );
+		}
+
+		if ( rangeOrElement.isCollapsed ) {
+			return false;
+		}
+
+		for ( const item of rangeOrElement.getItems() ) {
+			// Remember, `TreeWalker` returns always `textProxy` nodes.
+			if ( item.is( 'textProxy' ) || this.model.schema.objects.has( item.name ) ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = DataController;
@@ -55947,7 +55981,7 @@ module.exports = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"
 
 /**
  * Includes a set of predefined autoformatting actions. For a detailed overview, check
- * the {@linkTODO features/autoformat Autoformatting feature documentation}.
+ * the {@glink features/autoformat Autoformatting feature documentation}.
  *
  * @extends module:core/plugin~Plugin
  */
@@ -56092,7 +56126,7 @@ class Autoformat extends __WEBPACK_IMPORTED_MODULE_2__ckeditor_ckeditor5_core_sr
 
 /**
  * The block autoformatting engine. It allows to format various block patterns. For example,
- * it can be configured to turn a paragraph starting with "* " into a list item.
+ * it can be configured to turn a paragraph starting with `*` and followed by a space into a list item.
  *
  * The autoformatting operation is integrated with the undo manager,
  * so the autoformatting step can be undone if the user's intention was not to format the text.
@@ -57029,7 +57063,8 @@ module.exports = "<svg width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" xmlns=\"
 
 /**
  * The headings feature. It introduces the `headings` drop-down list and the `heading` command which allow
- * to convert paragraphs into headings.
+ * to convert paragraphs into headings. For a detailed overview, check the
+ * {@glink features/headings Headings feature documentation}.
  *
  * @extends module:core/plugin~Plugin
  */

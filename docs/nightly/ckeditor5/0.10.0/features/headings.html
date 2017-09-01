@@ -32,17 +32,17 @@
           <h1><img src="../../../assets/0.3.11/img/book.svg" alt="guide">Headings
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Heading-levels">Heading levels</a><ol><li><a href="#Configuring-heading-levels">Configuring heading levels</a></li></ol></li><li><a href="#Installation">Installation</a></li><li><a href="#Common-API">Common API</a></li><li><a href="#Contribute">Contribute</a></li></ol></nav>
 <p>The <a href="../api/module_heading_heading-Heading.html"><code>Heading</code></a> feature enables support for headings.</p>
-<div class="info-box notice notice__info"><p>This feature is enabled by default in all builds. It is also included in the <a href="../api/module_presets_article-Article.html">Article preset</a>.</p></div>
+<div class="info-box notice notice__info"><p>This feature is enabled by default in all builds.</p></div>
 
 <h2 id="Heading-levels"><a href="#Heading-levels" class="headerlink" title="Heading levels"></a>Heading levels</h2><p>By default this feature is configured to support <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code> and <code>&lt;h4&gt;</code> elements which are named: &#x201C;Heading 1&#x201D;, &#x201C;Heading 2&#x201D; and &#x201C;Heading 3&#x201D;, respectively. The rationale behind starting from <code>&lt;h2&gt;</code> is that <code>&lt;h1&gt;</code> should be reserved for the page&#x2019;s main title and the page content will usually start from <code>&lt;h2&gt;</code>.</p>
 <div class="info-box notice notice__hint"><p>You can read more about why the editor should not create <code>&lt;h1&gt;</code> elements in the <a href="http://ckeditor.github.io/editor-recommendations/features/headings.html" target="_blank" rel="external">Headings section of Editor Recommendations</a>.</p></div>
 
 <h3 id="Configuring-heading-levels"><a href="#Configuring-heading-levels" class="headerlink" title="Configuring heading levels"></a>Configuring heading levels</h3><p>It is, of course, possible to configure which heading levels the editor should support and how they should be named in the Headings dropdown. Use the <a href="../api/module_heading_heading-HeadingConfig.html#options"><code>heading.options</code></a> configuration option to do so.</p>
-<p>The following editor will support only two levels of headings &#x2014; <code>&lt;h1&gt;</code> and <code>&lt;h2&gt;</code>:</p>
+<p>For example, the following editor will support only two levels of headings &#x2014; <code>&lt;h1&gt;</code> and <code>&lt;h2&gt;</code>:</p>
 <pre><code class="html">&lt;div id=&quot;editor&quot;&gt;
     &lt;h1&gt;Heading 1&lt;/h1&gt;
     &lt;h2&gt;Heading 2&lt;/h2&gt;
-    &lt;p&gt;This is &lt;a href=&quot;https://ckeditor5.github.io&quot;&gt;CKEditor&amp;nbsp;5&lt;/a&gt;.&lt;/p&gt;
+    &lt;p&gt;This is &lt;a href=&quot;https://ckeditor5.github.io&quot;&gt;CKEditor 5&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 </code></pre>
 <pre><code class="js">ClassicEditor
@@ -61,11 +61,12 @@
 <div class="live-snippet"><div id="snippet-custom-heading-levels">
 	<h1>Heading 1</h1>
 	<h2>Heading 2</h2>
-	<p>This is <a href="https://ckeditor5.github.io">CKEditor&#xA0;5</a>.</p>
+	<p>This is <a href="https://ckeditor5.github.io">CKEditor 5</a>.</p>
 </div>
 </div>
-<p>Read more about the <code>heading.options</code> format in <a href="../api/module_heading_heading-HeadingConfig.html#options">the API documentation</a>.</p>
-<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><p>To add this feature to your editor install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-heading" target="_blank" rel="external"><code>@ckeditor/ckeditor5-heading</code></a> package:</p>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><div class="info-box notice notice__info"><p>This feature is enabled by default in all builds. The installation instructions are for developers interested in building their own, custom editor.</p></div>
+
+<p>To add this feature to your editor install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-heading" target="_blank" rel="external"><code>@ckeditor/ckeditor5-heading</code></a> package:</p>
 <pre><code>npm install --save @ckeditor/ckeditor5-heading
 </code></pre><p>And add it to your plugin list and toolbar configuration:</p>
 <pre><code class="js">import Heading from &apos;@ckeditor/ckeditor5-heading/src/heading&apos;;
@@ -78,7 +79,6 @@ ClassicEditor
     .then( ... )
     .catch( ... );
 </code></pre>
-<p>If you are using an editor build, see how to {@linkTODO customize builds}.</p>
 <h2 id="Common-API"><a href="#Common-API" class="headerlink" title="Common API"></a>Common API</h2><p>The <a href="../api/module_heading_heading-Heading.html"><code>Heading</code></a> plugin registers:</p>
 <ul>
 <li>The <code>&apos;headings&apos;</code> dropdown.</li>
