@@ -8,7 +8,7 @@ const path = require( 'path' );
 const webpack = require( 'webpack' );
 const { bundler } = require( '@ckeditor/ckeditor5-dev-utils' );
 
-const BabiliPlugin = require( 'babili-webpack-plugin' );
+const BabelMinifyPlugin = require( 'babel-minify-webpack-plugin' );
 const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
 
 module.exports = {
@@ -56,7 +56,7 @@ module.exports = {
 
 	plugins: [
 		new ExtractTextPlugin( 'styles.css' ),
-		new BabiliPlugin( null, {
+		new BabelMinifyPlugin( null, {
 			comments: false
 		} ),
 		new webpack.BannerPlugin( {

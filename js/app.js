@@ -2,22 +2,19 @@
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  */
 
-import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classic';
-import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat';
+import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
 import ArticlePreset from '@ckeditor/ckeditor5-presets/src/article';
 
 try {
 	ClassicEditor.create( document.querySelector( '#editor' ), {
 		plugins: [
-			ArticlePreset,
-			Autoformat
+			ArticlePreset
 		],
 		toolbar: [
 			'headings',
 			'bold',
 			'italic',
 			'link',
-			'unlink',
 			'bulletedList',
 			'numberedList',
 			'blockQuote',
