@@ -30,7 +30,7 @@
           <h1><img src="../../../../../assets/0.3.13/img/book.svg" alt="guide">Basic API
             <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/integration/basic-api.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.13/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.13/img/exclamation-circle.svg" alt="Report an issue"></a>
             </div>
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Creating-an-editor">Creating an editor</a><ol><li><a href="#Example-Classic-editor">Example - Classic editor</a></li><li><a href="#Example-Inline-editor">Example - Inline editor</a></li></ol></li><li><a href="#Interacting-with-the-editor">Interacting with the editor</a><ol><li><a href="#Setting-the-editor-data">Setting the editor data</a></li><li><a href="#Getting-the-editor-data">Getting the editor data</a></li><li><a href="#Destroying-the-editor">Destroying the editor</a></li></ol></li><li><a href="#UMD-support">UMD support</a></li><li><a href="#What&#x2019;s-more">What&#x2019;s more?</a></li></ol></nav><p>Each CKEditor 5 build provides a different class that handles the creation of editor instances:</p>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Creating-an-editor">Creating an editor</a><ol><li><a href="#Example-&#x2013;-Classic-editor">Example &#x2013; Classic editor</a></li><li><a href="#Example-&#x2013;-Inline-editor">Example &#x2013; Inline editor</a></li></ol></li><li><a href="#Interacting-with-the-editor">Interacting with the editor</a><ol><li><a href="#Setting-the-editor-data">Setting the editor data</a></li><li><a href="#Getting-the-editor-data">Getting the editor data</a></li><li><a href="#Destroying-the-editor">Destroying the editor</a></li></ol></li><li><a href="#UMD-support">UMD support</a></li><li><a href="#What&#x2019;s-more">What&#x2019;s more?</a></li></ol></nav><p>Each CKEditor 5 build provides a different class that handles the creation of editor instances:</p>
 <ul>
 <li>Classic editor &#x2013; <a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html"><code>ClassicEditor</code></a></li>
 <li>Inline editor &#x2013; <a href="../../../api/module_editor-inline_inlineeditor-InlineEditor.html"><code>InlineEditor</code></a></li>
@@ -38,8 +38,8 @@
 </ul>
 <p>Most of the examples in the documentation use the <code>ClassicEditor</code> class, but things should work in a similar way with other builds.</p>
 <h2 id="Creating-an-editor"><a href="#Creating-an-editor" class="headerlink" title="Creating an editor"></a>Creating an editor</h2><p>Regardless of chosen build, creating an editor is done using a static <code>create()</code> method.</p>
-<h3 id="Example-Classic-editor"><a href="#Example-Classic-editor" class="headerlink" title="Example - Classic editor"></a>Example - Classic editor</h3><p>In your HTML page add an element that CKEditor should replace:</p>
-<pre><code class="html">&lt;textarea id=&quot;editor&quot;&gt;
+<h3 id="Example-&#x2013;-Classic-editor"><a href="#Example-&#x2013;-Classic-editor" class="headerlink" title="Example &#x2013; Classic editor"></a>Example &#x2013; Classic editor</h3><p>In your HTML page add an element that CKEditor should replace:</p>
+<pre><code class="html">&lt;textarea name=&quot;content&quot; id=&quot;editor&quot;&gt;
     &lt;p&gt;Here goes the initial content of the editor.&lt;/p&gt;
 &lt;/textarea&gt;
 </code></pre>
@@ -54,7 +54,7 @@
     } );
 </code></pre>
 <p>In the above case, the <code>&lt;textarea&gt;</code> element is hidden and replaced with an editor. The <code>&lt;textarea&gt;</code> data is used to initialize the editor content. A <code>&lt;div&gt;</code> element can be used in the same fashion.</p>
-<h3 id="Example-Inline-editor"><a href="#Example-Inline-editor" class="headerlink" title="Example - Inline editor"></a>Example - Inline editor</h3><p>Similarly to the previous example, add an element where CKEditor should initialize:</p>
+<h3 id="Example-&#x2013;-Inline-editor"><a href="#Example-&#x2013;-Inline-editor" class="headerlink" title="Example &#x2013; Inline editor"></a>Example &#x2013; Inline editor</h3><p>Similarly to the previous example, add an element where CKEditor should initialize:</p>
 <pre><code class="html">&lt;div id=&quot;editor&quot;&gt;
     &lt;p&gt;Here goes the initial content of the editor.&lt;/p&gt;
 &lt;/div&gt;
@@ -93,20 +93,20 @@
 </ul>
 <p>For example:</p>
 <pre><code class="js">// In CommonJS environment.
-const ClassicEditor = require( &apos;[ckeditor path]/build/ckeditor&apos; );
-ClassicEditor.create(...); // [Function]
+const ClassicEditor = require( &apos;@ckeditor/ckeditor5-build-classic/build/ckeditor&apos; );
+ClassicEditor.create( ... ); // [Function]
 
 // If AMD is present, you can do this.
-require( &apos;/[ckeditor path]/build/ckeditor&apos;, ClassicEditor =&gt; {
-    ClassicEditor.create(...); // [Function]
+require( [ &apos;path/to/ckeditor5-build-classic/build/ckeditor&apos; ], ClassicEditor =&gt; {
+    ClassicEditor.create( ... ); // [Function]
 } );
 
 // As a global variable.
-ClassicEditor.create(...); // [Function]
+ClassicEditor.create( ... ); // [Function]
 
 // As an ES6 module (if using webpack or Rollup).
-import { ClassicEditor } from &apos;@ckeditor/ckeditor5-build-classic/build/ckeditor&apos;;
-ClassicEditor.create(...); // [Function]
+import ClassicEditor from &apos;@ckeditor/ckeditor5-build-classic/build/ckeditor&apos;;
+ClassicEditor.create( ... ); // [Function]
 </code></pre>
 <h2 id="What&#x2019;s-more"><a href="#What&#x2019;s-more" class="headerlink" title="What&#x2019;s more?"></a>What&#x2019;s more?</h2><p>CKEditor offers a rich API to interact with editors. Check out the <a href="../../../api/index.html">API documentation</a> for more.</p>
 

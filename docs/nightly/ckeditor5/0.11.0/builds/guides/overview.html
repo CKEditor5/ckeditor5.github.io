@@ -30,7 +30,7 @@
           <h1><img src="../../../../assets/0.3.13/img/book.svg" alt="guide">Overview
             <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/overview.md" title="Contribute to this guide"><img src="../../../../assets/0.3.13/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../assets/0.3.13/img/exclamation-circle.svg" alt="Report an issue"></a>
             </div>
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Available-builds">Available builds</a><ol><li><a href="#Classic-editor">Classic editor</a></li><li><a href="#Inline-editor">Inline editor</a></li><li><a href="#Balloon-toolbar-editor">Balloon toolbar editor</a></li></ol></li><li><a href="#Builds-customization">Builds customization</a></li><li><a href="#Additional-information">Additional information</a><ol><li><a href="#How-builds-were-designed">How builds were designed</a></li><li><a href="#Use-cases">Use cases</a></li><li><a href="#When-NOT-to-use-builds">When NOT to use builds?</a></li></ol></li></ol></nav><p>CKEditor 5 Builds are a set of ready to use rich text editors. Every &#x201C;build&#x201D; provides a single type of editor with a set of features and a default configuration. They provide easy to use solutions that can be installed with no effort and that satisfy the most common editing use cases.</p>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Available-builds">Available builds</a><ol><li><a href="#Classic-editor">Classic editor</a></li><li><a href="#Inline-editor">Inline editor</a></li><li><a href="#Balloon-toolbar-editor">Balloon toolbar editor</a></li></ol></li><li><a href="#Build-customization">Build customization</a></li><li><a href="#Additional-information">Additional information</a><ol><li><a href="#How-builds-were-designed">How builds were designed</a></li><li><a href="#Use-cases">Use cases</a></li><li><a href="#When-NOT-to-use-builds">When NOT to use builds?</a></li></ol></li></ol></nav><p>CKEditor 5 Builds are a set of ready to use rich text editors. Every &#x201C;build&#x201D; provides a single type of editor with a set of features and a default configuration. They provide convenient solutions that can be installed with no effort and that satisfy the most common editing use cases.</p>
 <h2 id="Available-builds"><a href="#Available-builds" class="headerlink" title="Available builds"></a>Available builds</h2><p>The following CKEditor 5 Builds are currently available:</p>
 <ul>
 <li><a href="#Classic-editor">Classic editor</a></li>
@@ -38,58 +38,58 @@
 <li><a href="#Balloon-toolbar-editor">Balloon toolbar editor</a></li>
 </ul>
 <h3 id="Classic-editor"><a href="#Classic-editor" class="headerlink" title="Classic editor"></a>Classic editor</h3><p>Classic editor is what most users traditionally learnt to associate with a rich text editor &#x2014; a toolbar with an editing area placed in a specific position on the page, usually as a part of a form that you use to submit some content to the server.</p>
-<p>The editor during initialisation hides given element on a page and renders &#x201C;instead&#x201D; of it, that&#x2019;s why it&#x2019;s usually used to replace <code>&lt;textarea&gt;</code> elements.</p>
+<p>During its initialisation the editor hides the used editable element on the page and renders &#x201C;instead&#x201D; of it. This is why it is usually used to replace <code>&lt;textarea&gt;</code> elements.</p>
 <p>In CKEditor 5 the concept of the &#x201C;boxed&#x201D; editor was reinvented:</p>
 <ul>
-<li>The toolbar is now always visible when user scrolls the page down.</li>
-<li>The editor content is now placed inline in the page (without surrounding <code>&lt;iframe&gt;</code> element) &#x2014; it is now much easier to style it.</li>
-<li>The editor now grows automatically with the content by default.</li>
+<li>The toolbar is now always visible when the user scrolls the page down.</li>
+<li>The editor content is now placed inline in the page (without the surrounding <code>&lt;iframe&gt;</code> element) &#x2014; it is now much easier to style it.</li>
+<li>By default the editor now grows automatically with the content.</li>
 </ul>
 <p><img src="../../assets/img/editor-classic.png" alt="Screenshot of a classic editor." width="772"></p>
 <p>To try it out online, check the <a href="../../examples/builds/classic-editor.html">classic editor example</a>. Jump to <a href="quick-start.html#Classic-editor">quick start</a> to start using it.</p>
-<h3 id="Inline-editor"><a href="#Inline-editor" class="headerlink" title="Inline editor"></a>Inline editor</h3><p>Inline editor comes with a floating toolbar, which becomes visible when the editor is focused (e.g. by clicking on it). Unlike classic editor, inline editor does not render &#x201C;instead&#x201D; of a given element, it simply makes it editable. As a consequence the styles of the edited content will be exactly the same before and after the editor is created.</p>
-<p>A common scenario for using inline editor is offering users the possibility to edit content in its real location in a web page, instead of doing it in a separate administration section.  </p>
+<h3 id="Inline-editor"><a href="#Inline-editor" class="headerlink" title="Inline editor"></a>Inline editor</h3><p>Inline editor comes with a floating toolbar that becomes visible when the editor is focused (e.g. by clicking it). Unlike classic editor, inline editor does not render <em>instead</em> of the given element, it simply makes it editable. As a consequence the styles of the edited content will be exactly the same before and after the editor is created.</p>
+<p>A common scenario for using inline editor is offering users the possibility to edit content in its real location on a web page instead of doing it in a separate administration section.  </p>
 <p><img src="../../assets/img/editor-inline.png" alt="Screenshot of an inline editor." width="774"></p>
 <p>To try it out online, check the <a href="../../examples/builds/inline-editor.html">inline editor example</a>. Jump to <a href="quick-start.html#Inline-editor">quick start</a> to start using it.</p>
-<h3 id="Balloon-toolbar-editor"><a href="#Balloon-toolbar-editor" class="headerlink" title="Balloon toolbar editor"></a>Balloon toolbar editor</h3><p>Balloon toolbar editor is very similar to the inline editor. The difference between them is that the toolbar appears in a balloon next to the selection (when the selection is not empty):</p>
+<h3 id="Balloon-toolbar-editor"><a href="#Balloon-toolbar-editor" class="headerlink" title="Balloon toolbar editor"></a>Balloon toolbar editor</h3><p>Balloon toolbar editor is very similar to inline editor. The difference between them is that the toolbar appears in a balloon next to the selection (when the selection is not empty):</p>
 <p><img src="../../assets/img/editor-balloon-toolbar.png" alt="Screenshot of a baloon toolbar editor." width="779"></p>
 <p>To try it out online, check the <a href="../../examples/builds/balloon-toolbar-editor.html">balloon toolbar editor example</a>. Jump to <a href="quick-start.html#Balloon-toolbar-editor">quick start</a> to start using it.</p>
-<h2 id="Builds-customization"><a href="#Builds-customization" class="headerlink" title="Builds customization"></a>Builds customization</h2><p>Every build comes with a default set of features and a default configuration of them. Although the builds try to fit many cases, they may still need to be adjusted in some integrations. The following modifications are possible:</p>
+<h2 id="Build-customization"><a href="#Build-customization" class="headerlink" title="Build customization"></a>Build customization</h2><p>Every build comes with a default set of features and their default configuration. Although the builds try to fit many use cases, they may still need to be adjusted in some integrations. The following modifications are possible:</p>
 <ul>
 <li>You can override the default <strong>configuration of features</strong> (e.g. define different image styles or heading levels).</li>
 <li>You can change the default <strong>toolbar configuration</strong> (e.g. remove undo/redo buttons).</li>
 <li>You can also <strong>remove features</strong> (plugins).</li>
 </ul>
 <p>Read more in the <a href="integration/configuration.html">Configuration guide</a>.</p>
-<p>If a build doesn&#x2019;t provide all the necessary features or you want create a highly optimized build of editor which will contain only the necessary features, then you need to customize the build or create a brand new one. Check <a href="development/custom-builds.html">Custom builds</a> for details on how to change the default builds to match your preferences.</p>
+<p>If a build does not provide all the necessary features or you want to create a highly optimized build of the editor which will contain only the features that you require, you need to customize the build or create a brand new one. Check <a href="development/custom-builds.html">Custom builds</a> for details on how to change the default builds to match your preferences.</p>
 <h2 id="Additional-information"><a href="#Additional-information" class="headerlink" title="Additional information"></a>Additional information</h2><h3 id="How-builds-were-designed"><a href="#How-builds-were-designed" class="headerlink" title="How builds were designed"></a>How builds were designed</h3><p>Each build was designed to satisfy as many use cases as possible. They differ in their UI, UX and features, and are based on the following approach:</p>
 <ul>
 <li>Include the set of features proposed by the <a href="https://ckeditor.github.io/editor-recommendations/" target="_blank" rel="external">Editor Recommendations project</a>.</li>
 <li>Include features that contribute to creating quality content.</li>
 <li>Provide setups as generic as possible, based on research and community feedback.</li>
 </ul>
-<div class="info-box notice"><p>Features like fonts, colors and alignment will be introduced in the future, when the new types of builds will be introduced with the purpose of satisfying document editing scenarios.</p></div>
+<div class="info-box notice"><p>Features like fonts, colors and alignment will be introduced in the future, when new types of builds will be introduced with the purpose of satisfying document editing scenarios.</p></div>
 
 <h3 id="Use-cases"><a href="#Use-cases" class="headerlink" title="Use cases"></a>Use cases</h3><p>Each of the builds fits several different use cases. Just think about any possible use for writing rich-text in applications.</p>
 <p>The following are <strong>some</strong> common use cases:</p>
 <ul>
 <li>In content management systems:<ul>
 <li>Forms for writing articles or website content.</li>
-<li>Inline writing in a front-end-like editing page.</li>
-<li>In comments.</li>
+<li>Inline writing in a frontend-like editing page.</li>
+<li>Comments.</li>
 </ul>
 </li>
 <li>In marketing and sales automation applications:<ul>
-<li>Composing e-mail campaigns.</li>
+<li>Composing email campaigns.</li>
 <li>Creating templates.</li>
 </ul>
 </li>
 <li>In forum applications:<ul>
-<li>Creation of topics and their replies.</li>
+<li>Creating topics and their replies.</li>
 </ul>
 </li>
 <li>In team collaboration applications:<ul>
-<li>Creation of shared documents.</li>
+<li>Creating shared documents.</li>
 </ul>
 </li>
 <li>Other uses:<ul>
@@ -102,7 +102,7 @@
 </ul>
 <h3 id="When-NOT-to-use-builds"><a href="#When-NOT-to-use-builds" class="headerlink" title="When NOT to use builds?"></a>When NOT to use builds?</h3><p>The <a href="../../framework/index.html">CKEditor 5 Framework</a> should be used, instead of builds, in the following cases:</p>
 <ul>
-<li>When you want to create your own text editor and have full control over every aspect of it, from UI to features.</li>
+<li>When you want to create your own text editor and have full control over its every aspect, from UI to features.</li>
 <li>When the solution proposed by the builds does not fit your specific use case.</li>
 </ul>
 <p>In the following cases <a href="https://ckeditor.com/ckeditor-4/" target="_blank" rel="external">CKEditor 4</a> should be used instead:</p>

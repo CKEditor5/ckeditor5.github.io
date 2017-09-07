@@ -30,32 +30,36 @@
           <h1><img src="../../../../../assets/0.3.13/img/book.svg" alt="guide">Installation
             <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/integration/installation.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.13/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.13/img/exclamation-circle.svg" alt="Report an issue"></a>
             </div>
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Download-options">Download options</a><ol><li><a href="#CDN">CDN</a></li><li><a href="#npm">npm</a></li><li><a href="#Zip-download">Zip download</a></li></ol></li><li><a href="#Included-files">Included files</a></li><li><a href="#Loading-the-API">Loading the API</a></li></ol></nav><h2 id="Download-options"><a href="#Download-options" class="headerlink" title="Download options"></a>Download options</h2><p>There are several options to download CKEditor 5 builds:</p>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Download-options">Download options</a><ol><li><a href="#CDN">CDN</a></li><li><a href="#npm">npm</a><ol><li><a href="#Included-files">Included files</a></li></ol></li><li><a href="#Zip-download">Zip download</a></li></ol></li><li><a href="#Loading-the-API">Loading the API</a></li></ol></nav><h2 id="Download-options"><a href="#Download-options" class="headerlink" title="Download options"></a>Download options</h2><p>There are several options to download CKEditor 5 builds:</p>
 <ul>
 <li><a href="#CDN">CDN</a></li>
 <li><a href="#npm">npm</a></li>
 <li><a href="#Zip-download">Zip download</a></li>
 </ul>
-<p>For the list of available builds check the <a href="../overview.html#Available-builds">Overview</a> page. Once you download the editor jump to the <a href="basic-api.html">Basic API guide</a> to see how to create editors. </p>
+<p>For the list of available builds check the <a href="../overview.html#Available-builds">Overview</a> page. Once you download the editor jump to the <a href="basic-api.html">Basic API guide</a> to see how to create editors.</p>
 <h3 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h3><p>Builds can be loaded inside pages directly from <a href="https://cdn.ckeditor.com/#ckeditor5" target="_blank" rel="external">CKEditor CDN</a>, which is optimized for worldwide super fast content delivery. When using CDN no download is actually needed.</p>
 <h3 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h3><p>All builds are released on npm. <a href="https://www.npmjs.com/search?q=keywords:ckeditor5-build&amp;page=1&amp;ranking=optimal" target="_blank" rel="external">Use this search link</a> to view all build packages available in npm.</p>
-<p>Installing a classic build with npm is as simple as calling the following inside your website or application:</p>
+<p>Installing a build with npm is as simple as calling one of the following commands in your project:</p>
 <pre><code class="bash">npm install --save @ckeditor/ckeditor5-build-classic
+# Or:
+npm install --save @ckeditor/ckeditor5-build-inline
+# Or:
+npm install --save @ckeditor/ckeditor5-build-balloon
 </code></pre>
-<p>CKEditor will then be available at <code>node_modules/ckeditor5-build-classic/build/ckeditor.js</code>.</p>
+<p>CKEditor will then be available at <code>node_modules/ckeditor5-build-[name]/build/ckeditor.js</code>.</p>
+<h4 id="Included-files"><a href="#Included-files" class="headerlink" title="Included files"></a>Included files</h4><p>The following are the main files available in all build distributions:</p>
+<ul>
+<li><code>build/ckeditor.js</code> &#x2013; The editor bundle, containing the editor and all plugins.</li>
+<li><code>src/ckeditor.js</code> &#x2013; The source entry point of the build. It can be used for complex bundling and development. Based on it the <code>build/ckeditor.js</code> is created (by <a href="https://webpack.js.org" target="_blank" rel="external">webpack</a>).</li>
+<li><code>build-config.js</code> &#x2013; The build configuration, based on which the <code>ckeditor.js</code> file is created.</li>
+<li><code>webpack-config.js</code> &#x2013; Webpack configuration used to build the editor.</li>
+</ul>
 <h3 id="Zip-download"><a href="#Zip-download" class="headerlink" title="Zip download"></a>Zip download</h3><div class="info-box notice notice__warning"><p>This download method is not available yet.</p></div>
 
 <p>Go to <a href="https://ckeditor.com/ckeditor5-builds/download" target="_blank" rel="external">CKEditor 5 builds download page</a> and download your preferred build. For example, you may download the <code>ckeditor5-build-classic-1.0.0.zip</code> file for the Classic editor build.</p>
-<p>Extract the above <code>.zip</code> file into a dedicated directory inside your website or application.</p>
-<p>CKEditor will then be available at <code>&lt;your-path&gt;/ckeditor/build/ckeditor.js</code>.</p>
-<h2 id="Included-files"><a href="#Included-files" class="headerlink" title="Included files"></a>Included files</h2><p>The following are the main files available in all build distributions:</p>
-<ul>
-<li><code>build/ckeditor.js</code> &#x2013; The main UMD distribution script, containing the editor and all plugins.</li>
-<li><code>ckeditor.js</code> &#x2013; The source entry point of the build. It can be used for complex bundling and development. Based on it the <code>build/ckeditor.js</code> is created (by webpack).</li>
-<li><code>build-config.js</code> &#x2013; The build configuration, based on which the <code>ckeditor.js</code> file is created.</li>
-</ul>
+<p>Extract the above <code>.zip</code> file into a dedicated directory inside your project. It is recommended to include the editor version in the directory name to ensure proper cache invalidation once the new version of CKEditor is installed.</p>
 <h2 id="Loading-the-API"><a href="#Loading-the-API" class="headerlink" title="Loading the API"></a>Loading the API</h2><p>Once downloaded and installed in your application, it is time to make the API available in your pages. For that purpose, it is enough to load the API entry point script:</p>
-<pre><code class="html">&lt;script src=&quot;[ckeditor path]/build/ckeditor.js&quot;&gt;&lt;/script&gt;
+<pre><code class="html">&lt;script src=&quot;[ckeditor-build-path]/ckeditor.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>Once the CKEditor script is loaded, you can <a href="basic-api.html">use the API</a> to create editors in your page.</p>
 <div class="info-box notice"><p>The <code>build/ckeditor.js</code> file is generated in the <a href="https://github.com/umdjs/umd" target="_blank" rel="external">UMD format</a> so you can also import it to your application if you use CommonJS modules (like in Node.js) or AMD modules (like in Require.js). Read more in the <a href="basic-api.html#UMD-support">Basic API guide</a>.</p><p>Also, for a more advanced setup, you may wish to bundle the CKEditor script with other scripts used by your application. See {@linkTODO Bundling} for more information about it.</p></div>

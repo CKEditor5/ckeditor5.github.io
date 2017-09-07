@@ -30,81 +30,123 @@
           <h1><img src="../../../../assets/0.3.13/img/book.svg" alt="guide">Quick start
             <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/quick-start.md" title="Contribute to this guide"><img src="../../../../assets/0.3.13/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../assets/0.3.13/img/exclamation-circle.svg" alt="Report an issue"></a>
             </div>
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Classic-editor">Classic editor</a><ol><li><a href="#Example">Example</a></li></ol></li><li><a href="#Inline-editor">Inline editor</a><ol><li><a href="#Example-1">Example</a></li></ol></li><li><a href="#Balloon-toolbar-editor">Balloon toolbar editor</a><ol><li><a href="#Example-2">Example</a></li></ol></li><li><a href="#Next-steps">Next steps</a></li></ol></nav><p>Creating an editor using CKEditor 5 build is very simple and in short can be described in two steps:</p>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Classic-editor">Classic editor</a><ol><li><a href="#Example">Example</a></li></ol></li><li><a href="#Inline-editor">Inline editor</a><ol><li><a href="#Example-1">Example</a></li></ol></li><li><a href="#Balloon-toolbar-editor">Balloon toolbar editor</a><ol><li><a href="#Example-2">Example</a></li></ol></li><li><a href="#Next-steps">Next steps</a></li></ol></nav><p>Creating an editor using a CKEditor 5 build is very simple and can be described in two steps:</p>
 <ol>
-<li>Load the desired editor via <code>&lt;script&gt;</code> tag.</li>
-<li>Call the static <code>create</code> method to create the editor.</li>
+<li>Load the desired editor via the <code>&lt;script&gt;</code> tag.</li>
+<li>Call the static <code>create()</code> method to create the editor.</li>
 </ol>
 <h2 id="Classic-editor"><a href="#Classic-editor" class="headerlink" title="Classic editor"></a>Classic editor</h2><p>In your HTML page add an element that CKEditor should replace:</p>
-<pre><code>&lt;textarea name=&quot;editor1&quot; id=&quot;text-editor&quot;&gt;&lt;/textarea&gt;
-</code></pre><p>Load CKEditor 5, the classic editor build (here <a href="https://cdn.ckeditor.com/" target="_blank" rel="external">CDN</a> location is used):</p>
-<pre><code>&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5-build-classic/{@var ckeditor5-version}/build/ckeditor.js&quot;&gt;&lt;/script&gt;
-</code></pre><p>Call the <a href="../../api/module_editor-classic_classiceditor-ClassicEditor.html#create"><code>ClassicEditor.create()</code></a> method.</p>
-<pre><code>&lt;script&gt;
-    ClassicEditor.create( document.querySelector( &apos;#text-editor&apos; ) );
+<pre><code class="html">&lt;textarea name=&quot;content&quot; id=&quot;editor&quot;&gt;&lt;/textarea&gt;
+</code></pre>
+<p>Load CKEditor 5, the classic editor build (here <a href="https://cdn.ckeditor.com/" target="_blank" rel="external">CDN</a> location is used):</p>
+<pre><code class="html">&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5-build-classic/0.11.0/build/ckeditor.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>Call the <a href="../../api/module_editor-classic_classiceditor-ClassicEditor.html#create"><code>ClassicEditor.create()</code></a> method.</p>
+<pre><code class="js">&lt;script&gt;
+    ClassicEditor
+        .create( document.querySelector( &apos;#editor&apos; ) )
+        .catch( error =&gt; {
+            console.error( error );
+        } );
 &lt;/script&gt;
-</code></pre><h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><pre><code>&lt;!DOCTYPE html&gt;
+</code></pre>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><pre><code class="html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
     &lt;meta charset=&quot;utf-8&quot;&gt;
     &lt;title&gt;CKEditor 5 - Classic editor&lt;/title&gt;
-    &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5-build-classic/{@var ckeditor5-version}/build/ckeditor.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5-build-classic/0.11.0/build/ckeditor.js&quot;&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
-&lt;h1&gt;Classic editor&lt;/h1&gt;
-&lt;textarea name=&quot;editor1&quot; id=&quot;text-editor&quot;&gt;&lt;/textarea&gt;
-&lt;script&gt;
-    ClassicEditor.create( document.querySelector( &apos;#text-editor&apos; ) );
-&lt;/script&gt;
+    &lt;h1&gt;Classic editor&lt;/h1&gt;
+    &lt;textarea name=&quot;content&quot; id=&quot;editor&quot;&gt;
+        &lt;p&gt;This is some sample content.&lt;/p&gt;
+    &lt;/textarea&gt;
+    &lt;script&gt;
+        ClassicEditor
+            .create( document.querySelector( &apos;#editor&apos; ) )
+            .catch( error =&gt; {
+                console.error( error );
+            } );
+    &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-</code></pre><h2 id="Inline-editor"><a href="#Inline-editor" class="headerlink" title="Inline editor"></a>Inline editor</h2><p>In your HTML page add an element that CKEditor should make editable:</p>
-<pre><code>&lt;div id=&quot;text-editor&quot;&gt;&lt;/div&gt;
-</code></pre><p>Load CKEditor 5, the inline editor build (here <a href="https://cdn.ckeditor.com/" target="_blank" rel="external">CDN</a> location is used):</p>
-<pre><code>&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5-build-inline/{@var ckeditor5-version}/build/ckeditor.js&quot;&gt;&lt;/script&gt;
-</code></pre><p>Call the <a href="../../api/module_editor-inline_inlineeditor-InlineEditor.html#create"><code>InlineEditor.create()</code></a> method.</p>
-<pre><code>&lt;script&gt;
-    InlineEditor.create( document.querySelector( &apos;#text-editor&apos; ) );
+</code></pre>
+<h2 id="Inline-editor"><a href="#Inline-editor" class="headerlink" title="Inline editor"></a>Inline editor</h2><p>In your HTML page add an element that CKEditor should make editable:</p>
+<pre><code class="html">&lt;div id=&quot;editor&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p>Load CKEditor 5, the inline editor build (here <a href="https://cdn.ckeditor.com/" target="_blank" rel="external">CDN</a> location is used):</p>
+<pre><code class="html">&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5-build-inline/0.11.0/build/ckeditor.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>Call the <a href="../../api/module_editor-inline_inlineeditor-InlineEditor.html#create"><code>InlineEditor.create()</code></a> method.</p>
+<pre><code class="html">&lt;script&gt;
+    InlineEditor
+        .create( document.querySelector( &apos;#editor&apos; ) )
+        .catch( error =&gt; {
+            console.error( error );
+        } );
 &lt;/script&gt;
-</code></pre><h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h3><pre><code>&lt;!DOCTYPE html&gt;
+</code></pre>
+<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h3><pre><code class="html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
     &lt;meta charset=&quot;utf-8&quot;&gt;
     &lt;title&gt;CKEditor 5 - Inline editor&lt;/title&gt;
-    &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5-build-inline/{@var ckeditor5-version}/build/ckeditor.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5-build-inline/0.11.0/build/ckeditor.js&quot;&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
-&lt;h1&gt;Inline editor&lt;/h1&gt;
-&lt;div id=&quot;text-editor&quot;&gt;This is some sample content.&lt;/div&gt;
-&lt;script&gt;
-    InlineEditor.create( document.querySelector( &apos;#text-editor&apos; ) );
-&lt;/script&gt;
+    &lt;h1&gt;Inline editor&lt;/h1&gt;
+    &lt;div id=&quot;editor&quot;&gt;
+        &lt;p&gt;This is some sample content.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;script&gt;
+        InlineEditor
+            .create( document.querySelector( &apos;#editor&apos; ) )
+            .catch( error =&gt; {
+                console.error( error );
+            } );
+    &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-</code></pre><h2 id="Balloon-toolbar-editor"><a href="#Balloon-toolbar-editor" class="headerlink" title="Balloon toolbar editor"></a>Balloon toolbar editor</h2><p>In your HTML page add an element that CKEditor should make editable:</p>
-<pre><code>&lt;div id=&quot;text-editor&quot;&gt;&lt;/div&gt;
-</code></pre><p>Load CKEditor 5, the balloon toolbar editor build (here <a href="https://cdn.ckeditor.com/" target="_blank" rel="external">CDN</a> location is used):</p>
-<pre><code>&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5-build-balloon-toolbar/{@var ckeditor5-version}/build/ckeditor.js&quot;&gt;&lt;/script&gt;
-</code></pre><p>Call the <a href="../../api/module_editor-balloon-toolbar_balloontoolbareditor-BalloonToolbarEditor.html#create"><code>BalloonToolbarEditor.create()</code></a> method.</p>
-<pre><code>&lt;script&gt;
-    BalloonToolbarEditor.create( document.querySelector( &apos;#text-editor&apos; ) );
+</code></pre>
+<h2 id="Balloon-toolbar-editor"><a href="#Balloon-toolbar-editor" class="headerlink" title="Balloon toolbar editor"></a>Balloon toolbar editor</h2><p>In your HTML page add an element that CKEditor should make editable:</p>
+<pre><code class="html">&lt;div id=&quot;editor&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p>Load CKEditor 5, the balloon toolbar editor build (here <a href="https://cdn.ckeditor.com/" target="_blank" rel="external">CDN</a> location is used):</p>
+<pre><code class="html">&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5-build-balloon-toolbar/0.11.0/build/ckeditor.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>Call the <a href="../../api/module_editor-balloon-toolbar_balloontoolbareditor-BalloonToolbarEditor.html#create"><code>BalloonToolbarEditor.create()</code></a> method.</p>
+<pre><code class="html">&lt;script&gt;
+    BalloonToolbarEditor
+        .create( document.querySelector( &apos;#editor&apos; ) )
+        .catch( error =&gt; {
+            console.error( error );
+        } );
 &lt;/script&gt;
-</code></pre><h3 id="Example-2"><a href="#Example-2" class="headerlink" title="Example"></a>Example</h3><pre><code>&lt;!DOCTYPE html&gt;
+</code></pre>
+<h3 id="Example-2"><a href="#Example-2" class="headerlink" title="Example"></a>Example</h3><pre><code class="html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
     &lt;meta charset=&quot;utf-8&quot;&gt;
-    &lt;title&gt;CKEditor 5 - Balloon toolbar editor&lt;/title&gt;
-    &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5-build-balloon-toolbar/{@var ckeditor5-version}/build/ckeditor.js&quot;&gt;&lt;/script&gt;
+    &lt;title&gt;CKEditor 5 &#x2013; Balloon toolbar editor&lt;/title&gt;
+    &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5-build-balloon-toolbar/0.11.0/build/ckeditor.js&quot;&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
-&lt;h1&gt;Balloon toolbar editor&lt;/h1&gt;
-&lt;div id=&quot;text-editor&quot;&gt;This is some sample content.&lt;/div&gt;
-&lt;script&gt;
-    BalloonToolbarEditor.create( document.querySelector( &apos;#text-editor&apos; ) );
-&lt;/script&gt;
+    &lt;h1&gt;Balloon toolbar editor&lt;/h1&gt;
+    &lt;div id=&quot;editor&quot;&gt;
+        &lt;p&gt;This is some sample content.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;script&gt;
+        BalloonToolbarEditor
+            .create( document.querySelector( &apos;#editor&apos; ) )
+            .catch( error =&gt; {
+                console.error( error );
+            } );
+    &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-</code></pre><h2 id="Next-steps"><a href="#Next-steps" class="headerlink" title="Next steps"></a>Next steps</h2><p>Check the <a href="integration/configuration.html">Configuration guide</a> to learn how to configure the editor, e.g. change the default toolbar.</p>
+</code></pre>
+<h2 id="Next-steps"><a href="#Next-steps" class="headerlink" title="Next steps"></a>Next steps</h2><p>Check the <a href="integration/configuration.html">Configuration guide</a> to learn how to configure the editor &#x2013; e.g. change the default toolbar.</p>
 
         </div>
       </section>
