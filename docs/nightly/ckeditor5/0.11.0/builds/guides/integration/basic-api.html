@@ -30,44 +30,20 @@
           <h1><img src="../../../../../assets/0.3.13/img/book.svg" alt="guide">Basic API
             <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/integration/basic-api.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.13/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.13/img/exclamation-circle.svg" alt="Report an issue"></a>
             </div>
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Creators">Creators</a></li><li><a href="#Interacting-with-the-editor">Interacting with the editor</a><ol><li><a href="#Setting-the-editor-data">Setting the editor data</a></li><li><a href="#Getting-the-editor-data">Getting the editor data</a></li><li><a href="#Destroying-the-editor">Destroying the editor</a></li></ol></li><li><a href="#What&#x2019;s-more">What&#x2019;s more?</a></li></ol></nav><h2 id="Creators"><a href="#Creators" class="headerlink" title="Creators"></a>Creators</h2><p>Each CKEditor 5 build provides a class that handles the creation of editor instances ininfo a page. For this reason they are called &#x201C;creators&#x201D;. Every creator comes with a static <code>create()</code> method.</p>
-<p>The following are creator class names for each build:</p>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Creating-an-editor">Creating an editor</a><ol><li><a href="#Example-Classic-editor">Example - Classic editor</a></li><li><a href="#Example-Inline-editor">Example - Inline editor</a></li></ol></li><li><a href="#Interacting-with-the-editor">Interacting with the editor</a><ol><li><a href="#Setting-the-editor-data">Setting the editor data</a></li><li><a href="#Getting-the-editor-data">Getting the editor data</a></li><li><a href="#Destroying-the-editor">Destroying the editor</a></li></ol></li><li><a href="#UMD-support">UMD support</a></li><li><a href="#What&#x2019;s-more">What&#x2019;s more?</a></li></ol></nav><p>Each CKEditor 5 build provides a different class that handles the creation of editor instances:</p>
 <ul>
 <li>Classic editor &#x2013; <a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html"><code>ClassicEditor</code></a></li>
 <li>Inline editor &#x2013; <a href="../../../api/module_editor-inline_inlineeditor-InlineEditor.html"><code>InlineEditor</code></a></li>
-<li>Editor with balloon toolbar (Medium-like) &#x2013; <a href="../../../api/module_editor-balloon-toolbar_balloontoolbareditor-BalloonToolbarEditor.html"><code>BalloonToolbarEditor</code></a></li>
+<li>Balloon toolbar editor &#x2013; <a href="../../../api/module_editor-balloon-toolbar_balloontoolbareditor-BalloonToolbarEditor.html"><code>BalloonToolbarEditor</code></a></li>
 </ul>
-<p>Most of the examples in the documentation use the <code>ClassicEditor</code> class, but things should work in a similar way with other creator classes.</p>
-<p>Because builds are distributed as <a href="https://github.com/umdjs/umd" target="_blank" rel="external">UMD modules</a>, these classes can be retrieved:</p>
-<ul>
-<li>by a <a href="http://wiki.commonjs.org/wiki/CommonJS" target="_blank" rel="external">CommonJS</a>-compatible loader (e.g. <a href="https://webpack.js.org" target="_blank" rel="external">webpack</a> or <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>),</li>
-<li>by <a href="http://requirejs.org/" target="_blank" rel="external">RequireJS</a> (or any other AMD library),</li>
-<li>from the global namespace if none of the above loaders is available.</li>
-</ul>
-<p>For example:</p>
-<pre><code class="js">// In CommonJS environment.
-const ClassicEditor = require( &apos;@ckeditor/ckeditor5-build-classic/build/ckeditor.js&apos; );
-ClassicEditor.create; // [Function]
-
-// If AMD is present, you can do this.
-require( &apos;/(ckeditor path)/build/ckeditor.js&apos;, ClassicEditor =&gt; {
-    ClassicEditor.create; // [Function]
-} );
-
-// As a global.
-ClassicEditor.create; // [Function]
-
-// As an ES6 module (if using webpack or Rollup).
-import { ClassicEditor } from &apos;@ckeditor/ckeditor5-build-classic/build/ckeditor&apos;;
-ClassicEditor.create; // [Function]
-</code></pre>
-<p>Depending on which build you are using, creating an editor in the page is then a breeze:</p>
-<p>In the HTML code:</p>
+<p>Most of the examples in the documentation use the <code>ClassicEditor</code> class, but things should work in a similar way with other builds.</p>
+<h2 id="Creating-an-editor"><a href="#Creating-an-editor" class="headerlink" title="Creating an editor"></a>Creating an editor</h2><p>Regardless of chosen build, creating an editor is done using a static <code>create()</code> method.</p>
+<h3 id="Example-Classic-editor"><a href="#Example-Classic-editor" class="headerlink" title="Example - Classic editor"></a>Example - Classic editor</h3><p>In your HTML page add an element that CKEditor should replace:</p>
 <pre><code class="html">&lt;textarea id=&quot;editor&quot;&gt;
     &lt;p&gt;Here goes the initial content of the editor.&lt;/p&gt;
 &lt;/textarea&gt;
 </code></pre>
-<p>In the script:</p>
+<p>Then call <a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html#create"><code>ClassicEditor.create()</code></a> to replace <code>&lt;textarea&gt;</code> with a <a href="../overview.html#Classic-editor">Classic editor</a>:</p>
 <pre><code class="js">ClassicEditor
     .create( document.querySelector( &apos;#editor&apos; ) )
     .then( editor =&gt; {
@@ -78,7 +54,22 @@ ClassicEditor.create; // [Function]
     } );
 </code></pre>
 <p>In the above case, the <code>&lt;textarea&gt;</code> element is hidden and replaced with an editor. The <code>&lt;textarea&gt;</code> data is used to initialize the editor content. A <code>&lt;div&gt;</code> element can be used in the same fashion.</p>
-<div class="info-box notice notice__tip"><p>Every creator may accept different parameters and handle initialization differently. For instance, the classic editor will replace a given element with an editor, while the inline editor will use the given element to initialize the editor on it. See each editor&#x2019;s documentation to learn the details.</p><p>The interface of the editor class is not enforced either. Since different implementations of editors may vary heavily in terms of functionality, the editor class implementers have full freedom regarding the API. Therefore, the examples in this guide may not work with some editor classes.</p></div>
+<h3 id="Example-Inline-editor"><a href="#Example-Inline-editor" class="headerlink" title="Example - Inline editor"></a>Example - Inline editor</h3><p>Similarly to the previous example, add an element where CKEditor should initialize:</p>
+<pre><code class="html">&lt;div id=&quot;editor&quot;&gt;
+    &lt;p&gt;Here goes the initial content of the editor.&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<p>Then call <a href="../../../api/module_editor-inline_inlineeditor-InlineEditor.html#create"><code>InlineEditor.create()</code></a> to attach <a href="../overview.html#Inline-editor">Inline editor</a> to a <code>&lt;div&gt;</code> element:</p>
+<pre><code class="js">InlineEditor
+    .create( document.querySelector( &apos;#editor&apos; ) )
+    .then( editor =&gt; {
+        console.log( editor );
+    } )
+    .catch( error =&gt; {
+        console.error( error );
+    } );
+</code></pre>
+<div class="info-box notice notice__tip"><p>Every editor class may accept different parameters in the <code>create()</code> method and may handle initialization differently. For instance, the classic editor will replace a given element with an editor, while the inline editor will use the given element to initialize the editor on it. See each editor&#x2019;s documentation to learn the details.</p><p>The interface of the editor class is not enforced either. Since different implementations of editors may vary heavily in terms of functionality, the editor class implementers have full freedom regarding the API. Therefore, the examples in this guide may not work with some editor classes.</p></div>
 
 <h2 id="Interacting-with-the-editor"><a href="#Interacting-with-the-editor" class="headerlink" title="Interacting with the editor"></a>Interacting with the editor</h2><p>Once the editor is created, it is possible to interact with it through its API. The <code>editor</code> variable from the examples above should enable that.</p>
 <h3 id="Setting-the-editor-data"><a href="#Setting-the-editor-data" class="headerlink" title="Setting the editor data"></a>Setting the editor data</h3><p>To replace the editor content with new data, just use the <code>setData</code> method:</p>
@@ -94,6 +85,29 @@ ClassicEditor.create; // [Function]
     } );
 </code></pre>
 <p>Once destroyed, resources used by the editor instance are released and the original element used to create the editor is automatically displayed and updated to reflect the final editor data.</p>
+<h2 id="UMD-support"><a href="#UMD-support" class="headerlink" title="UMD support"></a>UMD support</h2><p>Because builds are distributed as <a href="https://github.com/umdjs/umd" target="_blank" rel="external">UMD modules</a>, it is worth noting that editor classes can be retrieved in various ways:</p>
+<ul>
+<li>by a <a href="http://wiki.commonjs.org/wiki/CommonJS" target="_blank" rel="external">CommonJS</a>-compatible loader (e.g. <a href="https://webpack.js.org" target="_blank" rel="external">webpack</a> or <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>),</li>
+<li>by <a href="http://requirejs.org/" target="_blank" rel="external">RequireJS</a> (or any other AMD library),</li>
+<li>from the global namespace if none of the above loaders is available.</li>
+</ul>
+<p>For example:</p>
+<pre><code class="js">// In CommonJS environment.
+const ClassicEditor = require( &apos;[ckeditor path]/build/ckeditor&apos; );
+ClassicEditor.create(...); // [Function]
+
+// If AMD is present, you can do this.
+require( &apos;/[ckeditor path]/build/ckeditor&apos;, ClassicEditor =&gt; {
+    ClassicEditor.create(...); // [Function]
+} );
+
+// As a global variable.
+ClassicEditor.create(...); // [Function]
+
+// As an ES6 module (if using webpack or Rollup).
+import { ClassicEditor } from &apos;@ckeditor/ckeditor5-build-classic/build/ckeditor&apos;;
+ClassicEditor.create(...); // [Function]
+</code></pre>
 <h2 id="What&#x2019;s-more"><a href="#What&#x2019;s-more" class="headerlink" title="What&#x2019;s more?"></a>What&#x2019;s more?</h2><p>CKEditor offers a rich API to interact with editors. Check out the <a href="../../../api/index.html">API documentation</a> for more.</p>
 
         </div>
@@ -120,8 +134,6 @@ ClassicEditor.create; // [Function]
                                                   <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Basic API</span></div></a></li>
                                               <li><a href="configuration.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Configuration</span></div></a></li>
-                                              <li><a href="plugins.html">
-                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugins</span></div></a></li>
                                       </ul>
                                     </li>
                                     <li>
@@ -129,6 +141,8 @@ ClassicEditor.create; // [Function]
                                       <ul>
                                               <li><a href="../development/custom-builds.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating custom builds</span></div></a></li>
+                                              <li><a href="../development/plugins.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugins</span></div></a></li>
                                       </ul>
                                     </li>
                                     <li><a href="../migrate.html">
