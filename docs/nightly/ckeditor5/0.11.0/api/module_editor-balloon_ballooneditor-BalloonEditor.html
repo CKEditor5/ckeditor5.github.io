@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Class BalloonToolbarEditorUI (editor-balloon-toolbar/balloontoolbareditorui~BalloonToolbarEditorUI) - CKEditor 5 API docs</title>
-    <link rel="canonical" href="/ckeditor5/latest/api/module_editor-balloon-toolbar_balloontoolbareditorui-BalloonToolbarEditorUI.html">
+    <title>Class BalloonEditor (editor-balloon/ballooneditor~BalloonEditor) - CKEditor 5 API docs</title>
+    <link rel="canonical" href="/ckeditor5/latest/api/module_editor-balloon_ballooneditor-BalloonEditor.html">
     <link rel="stylesheet" href="../../../assets/0.3.13/css/styles.css" type="text/css" media="screen">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
     <script src="../../../assets/0.3.13/scripts/app.js"></script>
@@ -29,10 +29,10 @@
         <div class="main__content-inner">
           <div class="api-header"><img src="../../../assets/0.3.13/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
-              <h1>BalloonToolbarEditorUI
-                <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.13/img/exclamation-circle.svg" alt="Report an issue"/></a></div><span class="header__import--hidden"> (@ckeditor/ckeditor5-editor-balloon-toolbar/src/balloontoolbareditorui)</span>
+              <h1>BalloonEditor
+                <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.13/img/exclamation-circle.svg" alt="Report an issue"/></a></div><span class="header__import--hidden"> (@ckeditor/ckeditor5-editor-balloon/src/ballooneditor)</span>
               </h1>
-              <p class="header__import">@ckeditor/ckeditor5-editor-balloon-toolbar/src/balloontoolbareditorui
+              <p class="header__import">@ckeditor/ckeditor5-editor-balloon/src/ballooneditor
               </p>
             </div>
           </div>
@@ -40,15 +40,21 @@
           </p>
           <nav class="secondary-navigation api-info-box">
             <dl>
-                        <dt>Implements</dt>
+                        <dt>Hierarchy</dt>
                         <dd>
-                          <ul>
-                                      <li title="@ckeditor/ckeditor5-core/src/editor/editorui~EditorUI"><code><span><a href="module_core_editor_editorui-EditorUI.html">EditorUI</a></span></code></li>
+                          <ul class="hierarchy-list">
+                                      <li title="@ckeditor/ckeditor5-core/src/editor/standardeditor~StandardEditor"><code><span><a href="module_core_editor_standardeditor-StandardEditor.html">StandardEditor</a></span></code>
+                                        <ul>
+                                                    <li title="@ckeditor/ckeditor5-editor-balloon/src/ballooneditor~BalloonEditor"><code><span><a href="module_editor-balloon_ballooneditor-BalloonEditor.html">BalloonEditor</a></span></code>
+                                                    </li>
+                                        </ul>
+                                      </li>
                           </ul>
                         </dd>
             </dl>
           </nav>
-          <div class="main-description"><p>The balloon toolbar editor UI class.</p></div>
+          <div class="main-description"><p>The balloon editor. Uses an inline editable and a toolbar based
+on the <a href="module_ui_toolbar_contextual_contextualtoolbar-ContextualToolbar.html"><code>ContextualToolbar</code></a>.</p></div>
           <div class="notice notice__filter api-props-filter">
             <div class="api-props-filter__inner">
               <h4>Filtering</h4>
@@ -82,57 +88,48 @@
           </div>
           <h2 id="Properties">Properties</h2>
           <ul class="collapsing-list collapsing-list--filtered">
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="componentFactory">
-                          <h3><code><a class="member-name" href="#componentFactory">componentFactory</a> : <span><a class="collapsing-list__type" href="module_ui_componentfactory-ComponentFactory.html">ComponentFactory</a></span></code></h3>
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="element">
+                          <h3><code><a class="member-name" href="#element">element</a> : <span>HTMLElement</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">readonly</span>
+<span class="badge badge--gray ">inherited</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Instance of the <a href="module_ui_componentfactory-ComponentFactory.html"><code>ComponentFactory</code></a>, a registry used by plugins
-to register factories of specific UI components.</p>
+                          <p class="collapsing-list__excerpt">The element on which the editor has been initialized.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="editor">
-                          <h3><code><a class="member-name" href="#editor">editor</a> : <span><a class="collapsing-list__type" href="module_core_editor_editor-Editor.html">Editor</a></span></code></h3>
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="keystrokes">
+                          <h3><code><a class="member-name" href="#keystrokes">keystrokes</a> : <span><a class="collapsing-list__type" href="module_core_editingkeystrokehandler-EditingKeystrokeHandler.html">EditingKeystrokeHandler</a></span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">readonly</span>
+<span class="badge badge--gray ">inherited</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Editor that the UI belongs to.</p>
+                          <p class="collapsing-list__excerpt">Instance of the <a href="module_core_editingkeystrokehandler-EditingKeystrokeHandler.html"><code>EditingKeystrokeHandler</code></a>.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="focusTracker">
-                          <h3><code><a class="member-name" href="#focusTracker">focusTracker</a> : <span><a class="collapsing-list__type" href="module_utils_focustracker-FocusTracker.html">FocusTracker</a></span></code></h3>
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="ui">
+                          <h3><code><a class="member-name" href="#ui">ui</a> : <span><a class="collapsing-list__type" href="module_core_editor_editorui-EditorUI.html">EditorUI</a></span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">readonly</span>
+<span class="badge badge--gray ">inherited</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Keeps information about editor UI focus and propagates it among various plugins and components,
-unifying them in a uniform focus group.</p>
+                          <p class="collapsing-list__excerpt">Editor UI instance.</p>
                           <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="view">
-                          <h3><code><a class="member-name" href="#view">view</a> : <span><a class="collapsing-list__type" href="module_ui_editorui_editoruiview-EditorUIView.html">EditorUIView</a></span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">The main (top&#x2013;most) view of the editor UI.</p>
-                          <div class="collapsing-list__content">
+<p>This property is set by more specialized editor constructors. However, it&apos;s required
+for plugins to work (their UI-related part will try to interact with editor UI),
+so every editor class which is meant to work with default plugins should set this property.</p>
                           </div>
                         </div>
                       </li>
@@ -141,19 +138,19 @@ unifying them in a uniform focus group.</p>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="constructor">
-                          <h3><code><a class="member-name" href="#constructor">constructor</a>( editor, view )</code></h3>
+                          <h3><code><a class="member-name" href="#constructor">constructor</a>( element, config )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Creates an instance of the balloon toolbar editor UI class.
+                          <p class="collapsing-list__excerpt">Creates an instance of the balloon editor.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> editor : <span><a class="collapsing-list__type" href="module_core_editor_editor-Editor.html">Editor</a></span></code></dt>
-                                        <dd><p>The editor instance.</p>
+                                        <dt><code> element : <span>HTMLElement</span></code></dt>
+                                        <dd><p>The DOM element that will be the source for the created editor.</p>
                                         </dd>
-                                        <dt><code> view : <span><a class="collapsing-list__type" href="module_ui_editorui_editoruiview-EditorUIView.html">EditorUIView</a></span></code></dt>
-                                        <dd><p>The view of the UI.</p>
+                                        <dt><code> config : <span>Object</span></code></dt>
+                                        <dd><p>The editor configuration.</p>
                                         </dd>
                                       </dl>
                           </div>
@@ -161,23 +158,126 @@ unifying them in a uniform focus group.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="destroy">
-                          <h3><code><a class="member-name" href="#destroy">destroy</a>()</code></h3>
+                          <h3><code><a class="member-name" href="#destroy">destroy</a>() &rarr;  <span>Promise</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Destroys the UI.
+                          <p class="collapsing-list__excerpt">Destroys the editor instance, releasing all resources used by it.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>Updates the original editor element with the data.</p>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Promise</span></code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="getData">
+                          <h3><code><a class="member-name" href="#getData">getData</a>()</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Gets the data from the editor&apos;s main root.
                           </p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="init">
-                          <h3><code><a class="member-name" href="#init">init</a>()</code></h3>
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="loadDataFromEditorElement">
+                          <h3><code><a class="member-name" href="#loadDataFromEditorElement">loadDataFromEditorElement</a>()</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                          </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Initializes the UI.
+                          <p class="collapsing-list__excerpt">Loads the data from the <a href="module_core_editor_standardeditor-StandardEditor.html#element">editor  element</a> to the main root.
                           </p>
                           <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="setData">
+                          <h3><code><a class="member-name" href="#setData">setData</a>( data )</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Sets the data in the editor&apos;s main root.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> data : <span>*</span></code></dt>
+                                        <dd><p>The data to load.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="updateEditorElement">
+                          <h3><code><a class="member-name" href="#updateEditorElement">updateEditorElement</a>()</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Updates the <a href="module_core_editor_standardeditor-StandardEditor.html#element">editor  element</a>&apos;s content with the data.
+                          </p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+          </ul>
+          <h4>Static methods</h4>
+          <ul class="collapsing-list collapsing-list--filtered">
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="create">
+                          <h3><code><a class="member-name" href="#create">create</a>( element, config ) &rarr;  <span>Promise</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">static</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Creates a balloon editor instance.
+                          </p>
+                          <div class="collapsing-list__content">
+<pre class="prettyprint source"><code>BalloonEditor.create( document.querySelector( &apos;#editor&apos; ), {
+    plugins: [ Delete, Enter, Typing, Paragraph, Undo, Bold, Italic ],
+    toolbar: [ &apos;bold&apos;, &apos;italic&apos; ]
+} )
+.then( editor =&gt; {
+    console.log( &apos;Editor was initialized&apos;, editor );
+} )
+.catch( err =&gt; {
+    console.error( err.stack );
+} );</code></pre>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> element : <span>HTMLElement</span></code></dt>
+                                        <dd><p>See <code>#constructor</code>&apos;s parameters.</p>
+                                        </dd>
+                                        <dt><code> config : <span>Object</span></code></dt>
+                                        <dd><p>See <code>#constructor</code>&apos;s parameters.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Promise</span></code></dt>
+                                        <dd><p>A promise resolved once the editor is ready.</p>
+                                        </dd>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_core_editor_standardeditor-StandardEditor.html">StandardEditor</a></span></code></dt>
+                                        <dd><p>return.editor The editor instance.</p>
+                                        </dd>
+                            </dl>
                           </div>
                         </div>
                       </li>
@@ -495,33 +595,33 @@ unifying them in a uniform focus group.</p>
                       </ul>
                     </li>
                     <li class="toggler--expanded">
-                      <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">editor-balloon-toolbar</span>
+                      <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">editor-balloon</span>
                       </div>
                       <ul>
-                              <li class="toggler--collapsed">
-                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_editor-balloon-toolbar_balloontoolbareditor.html">balloontoolbareditor</a>
-                                </div>
-                                <ul>
-                                        <li><a href="module_editor-balloon-toolbar_balloontoolbareditor-BalloonToolbarEditor.html">
-                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BalloonToolbarEditor</span></div></a>
-                                        </li>
-                                </ul>
-                              </li>
                               <li class="toggler--expanded">
-                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_editor-balloon-toolbar_balloontoolbareditorui.html">balloontoolbareditorui</a>
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_editor-balloon_ballooneditor.html">ballooneditor</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_editor-balloon-toolbar_balloontoolbareditorui-BalloonToolbarEditorUI.html">
-                                            <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--class tree__item__text">BalloonToolbarEditorUI</span></div></a>
+                                        <li><a href="module_editor-balloon_ballooneditor-BalloonEditor.html">
+                                            <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--class tree__item__text">BalloonEditor</span></div></a>
                                         </li>
                                 </ul>
                               </li>
                               <li class="toggler--collapsed">
-                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_editor-balloon-toolbar_balloontoolbareditoruiview.html">balloontoolbareditoruiview</a>
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_editor-balloon_ballooneditorui.html">ballooneditorui</a>
                                 </div>
                                 <ul>
-                                        <li><a href="module_editor-balloon-toolbar_balloontoolbareditoruiview-BalloonToolbarEditorUIView.html">
-                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BalloonToolbarEditorUIView</span></div></a>
+                                        <li><a href="module_editor-balloon_ballooneditorui-BalloonEditorUI.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BalloonEditorUI</span></div></a>
+                                        </li>
+                                </ul>
+                              </li>
+                              <li class="toggler--collapsed">
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_editor-balloon_ballooneditoruiview.html">ballooneditoruiview</a>
+                                </div>
+                                <ul>
+                                        <li><a href="module_editor-balloon_ballooneditoruiview-BalloonEditorUIView.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">BalloonEditorUIView</span></div></a>
                                         </li>
                                 </ul>
                               </li>
