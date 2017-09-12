@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Quick start - CKEditor 5</title>
     <link rel="canonical" href="/ckeditor5/latest/builds/guides/quick-start.html">
-    <link rel="stylesheet" href="../../../../assets/0.3.13/css/styles.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
-    <script src="../../../../assets/0.3.13/scripts/app.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../assets/0.3.15/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../assets/0.3.15/scripts/app.js"></script>
   </head>
   <body>
     <header class="top">
@@ -21,25 +21,27 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
-        <button class="top__search__button" type="submit"><img src="../../../../assets/0.3.13/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../../assets/0.3.15/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <h1><img src="../../../../assets/0.3.13/img/book.svg" alt="guide">Quick start
-            <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/quick-start.md" title="Contribute to this guide"><img src="../../../../assets/0.3.13/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../assets/0.3.13/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <h1><img src="../../../../assets/0.3.15/img/book.svg" alt="guide">Quick start
+            <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/quick-start.md" title="Contribute to this guide"><img src="../../../../assets/0.3.15/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../assets/0.3.15/img/exclamation-circle.svg" alt="Report an issue"></a>
             </div>
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Classic-editor">Classic editor</a><ol><li><a href="#Example">Example</a></li></ol></li><li><a href="#Inline-editor">Inline editor</a><ol><li><a href="#Example-1">Example</a></li></ol></li><li><a href="#Balloon-editor">Balloon editor</a><ol><li><a href="#Example-2">Example</a></li></ol></li><li><a href="#Next-steps">Next steps</a></li></ol></nav><p>Creating an editor using a CKEditor 5 build is very simple and can be described in two steps:</p>
 <ol>
 <li>Load the desired editor via the <code>&lt;script&gt;</code> tag.</li>
 <li>Call the static <code>create()</code> method to create the editor.</li>
 </ol>
+<div class="info-box notice"><p>There are other installation and integration methods available. For more information check <a href="integration/installation.html">Installation</a> and <a href="integration/basic-api.html">Basic API</a> guides.</p></div>
+
 <h2 id="Classic-editor"><a href="#Classic-editor" class="headerlink" title="Classic editor"></a>Classic editor</h2><p>In your HTML page add an element that CKEditor should replace:</p>
 <pre><code class="html">&lt;textarea name=&quot;content&quot; id=&quot;editor&quot;&gt;&lt;/textarea&gt;
 </code></pre>
 <p>Load CKEditor 5, the classic editor build (here <a href="https://cdn.ckeditor.com/" target="_blank" rel="external">CDN</a> location is used):</p>
-<pre><code class="html">&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5-build-classic/0.11.0/build/ckeditor.js&quot;&gt;&lt;/script&gt;
+<pre><code class="html">&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/0.11.0/classic/ckeditor.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>Call the <a href="../../api/module_editor-classic_classiceditor-ClassicEditor.html#create"><code>ClassicEditor.create()</code></a> method.</p>
 <pre><code class="js">&lt;script&gt;
@@ -55,7 +57,7 @@
 &lt;head&gt;
     &lt;meta charset=&quot;utf-8&quot;&gt;
     &lt;title&gt;CKEditor 5 - Classic editor&lt;/title&gt;
-    &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5-build-classic/0.11.0/build/ckeditor.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/0.11.0/classic/ckeditor.js&quot;&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
     &lt;h1&gt;Classic editor&lt;/h1&gt;
@@ -76,7 +78,7 @@
 <pre><code class="html">&lt;div id=&quot;editor&quot;&gt;&lt;/div&gt;
 </code></pre>
 <p>Load CKEditor 5, the inline editor build (here <a href="https://cdn.ckeditor.com/" target="_blank" rel="external">CDN</a> location is used):</p>
-<pre><code class="html">&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5-build-inline/0.11.0/build/ckeditor.js&quot;&gt;&lt;/script&gt;
+<pre><code class="html">&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/0.11.0/inline/ckeditor.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>Call the <a href="../../api/module_editor-inline_inlineeditor-InlineEditor.html#create"><code>InlineEditor.create()</code></a> method.</p>
 <pre><code class="html">&lt;script&gt;
@@ -92,7 +94,7 @@
 &lt;head&gt;
     &lt;meta charset=&quot;utf-8&quot;&gt;
     &lt;title&gt;CKEditor 5 - Inline editor&lt;/title&gt;
-    &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5-build-inline/0.11.0/build/ckeditor.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/0.11.0/inline/ckeditor.js&quot;&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
     &lt;h1&gt;Inline editor&lt;/h1&gt;
@@ -113,7 +115,7 @@
 <pre><code class="html">&lt;div id=&quot;editor&quot;&gt;&lt;/div&gt;
 </code></pre>
 <p>Load CKEditor 5, the balloon editor build (here <a href="https://cdn.ckeditor.com/" target="_blank" rel="external">CDN</a> location is used):</p>
-<pre><code class="html">&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5-build-balloon/0.11.0/build/ckeditor.js&quot;&gt;&lt;/script&gt;
+<pre><code class="html">&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/0.11.0/balloon/ckeditor.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>Call the <a href="../../api/module_editor-balloon_ballooneditor-BalloonEditor.html#create"><code>BalloonEditor.create()</code></a> method.</p>
 <pre><code class="html">&lt;script&gt;
@@ -129,7 +131,7 @@
 &lt;head&gt;
     &lt;meta charset=&quot;utf-8&quot;&gt;
     &lt;title&gt;CKEditor 5 &#x2013; Balloon editor&lt;/title&gt;
-    &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5-build-balloon/0.11.0/build/ckeditor.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/0.11.0/balloon/ckeditor.js&quot;&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
     &lt;h1&gt;Balloon editor&lt;/h1&gt;
@@ -198,7 +200,7 @@
         </div>
       </div>
     </main>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">docsearch({apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:10}});</script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script type="text/javascript">docsearch({apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:10},debug:false});</script>
     <footer class="footer">
       <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
     </footer>

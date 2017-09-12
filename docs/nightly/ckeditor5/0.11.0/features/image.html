@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Images - CKEditor 5</title>
     <link rel="canonical" href="/ckeditor5/latest/features/image.html">
-    <link rel="stylesheet" href="../../../assets/0.3.13/css/styles.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../assets/0.3.15/css/styles.css" type="text/css" media="screen">
     <link rel="stylesheet" href="../snippets/build-classic-source/snippet.css" type="text/css">
     <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
     <link rel="stylesheet" href="../snippets/features/image-style-custom/snippet.css" type="text/css">
-    <script src="../../../assets/0.3.13/scripts/app.js"></script>
+    <script src="../../../assets/0.3.15/scripts/app.js"></script>
   </head>
   <body>
     <header class="top">
@@ -24,14 +24,14 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.13/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.15/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <h1><img src="../../../assets/0.3.13/img/book.svg" alt="guide">Images
-            <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-image/blob/master/docs/features/image.md" title="Contribute to this guide"><img src="../../../assets/0.3.13/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5-image/issues/new" title="Report an issue"><img src="../../../assets/0.3.13/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <h1><img src="../../../assets/0.3.15/img/book.svg" alt="guide">Images
+            <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-image/blob/master/docs/features/image.md" title="Contribute to this guide"><img src="../../../assets/0.3.15/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5-image/issues/new" title="Report an issue"><img src="../../../assets/0.3.15/img/exclamation-circle.svg" alt="Report an issue"></a>
             </div>
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Base-image-support">Base image support</a></li><li><a href="#Image-contextual-toolbar">Image contextual toolbar</a></li><li><a href="#Image-captions">Image captions</a></li><li><a href="#Image-styles">Image styles</a><ol><li><a href="#Configuring-image-styles">Configuring image styles</a></li></ol></li><li><a href="#Image-upload">Image upload</a></li><li><a href="#Responsive-images">Responsive images</a></li><li><a href="#Installation">Installation</a></li><li><a href="#Common-API">Common API</a></li><li><a href="#Contribute">Contribute</a></li></ol></nav>
 <p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-image" target="_blank" rel="external"><code>@ckeditor/ckeditor5-image</code></a> package contains multiple plugins that implement various image-related features:</p>
@@ -42,7 +42,7 @@
 <li><a href="../api/module_image_imagestyle-ImageStyle.html"><code>ImageStyle</code></a> adds support for image styles,</li>
 <li><a href="../api/module_upload_imageupload-ImageUpload.html"><code>ImageUpload</code></a> adds support for uploading dropped or pasted images (note: it is currently located in the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-upload" target="_blank" rel="external"><code>@ckeditor/ckeditor5-upload</code></a> package but will be moved to the <code>@ckeditor/ckeditor5-image</code> package).</li>
 </ul>
-<div class="info-box notice notice__info"><p>The first four features listed above (so all except upload support) are enabled by default in all builds. They are also included in the <a href="../api/module_presets_article-Article.html">Article preset</a>.</p></div>
+<div class="info-box notice notice__info"><p>The first four features listed above (so all except the upload support) are enabled by default in all builds.</p></div>
 
 <h2 id="Base-image-support"><a href="#Base-image-support" class="headerlink" title="Base image support"></a>Base image support</h2><p>The <a href="../api/module_image_image-Image.html"><code>Image</code></a> feature adds support for plain images with just the <code>alt</code> attribute set. This translates to the following HTML:</p>
 <pre><code class="html">&lt;figure class=&quot;image&quot;&gt;
@@ -141,6 +141,9 @@ import alignRightIcon from &apos;@ckeditor/ckeditor5-core/theme/icons/object-rig
 ClassicEditor
     .create( document.querySelector( &apos;#editor&apos; ), {
         image: {
+            // You need to configure the image toolbar too, so it uses the new style buttons.
+            toolbar: [ &apos;imageTextAlternative&apos;, &apos;|&apos;, &apos;imageStyleLeft&apos;, &apos;imageStyleFull&apos;, &apos;imageStyleRight&apos; ],
+
             styles: [
                 // This option is equal to a situation where no style is applied.
                 {
@@ -167,9 +170,7 @@ ClassicEditor
                     value: &apos;right&apos;,
                     className: &apos;image-style-right&apos;
                 }
-            ],
-
-            toolbar: [ &apos;imageTextAlternative&apos;, &apos;|&apos;, &apos;imageStyleLeft&apos;, &apos;imageStyleFull&apos;, &apos;imageStyleRight&apos; ]
+            ]
         }
     } )
     .then( ... )
@@ -258,7 +259,7 @@ ClassicEditor
         </div>
       </div>
     </main>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">docsearch({apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:10}});</script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script type="text/javascript">docsearch({apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:10},debug:false});</script>
     <footer class="footer">
       <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
     </footer>

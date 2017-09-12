@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Configuration - CKEditor 5</title>
     <link rel="canonical" href="/ckeditor5/latest/builds/guides/integration/configuration.html">
-    <link rel="stylesheet" href="../../../../../assets/0.3.13/css/styles.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css">
-    <script src="../../../../../assets/0.3.13/scripts/app.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../../assets/0.3.15/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../../assets/0.3.15/scripts/app.js"></script>
   </head>
   <body>
     <header class="top">
@@ -21,62 +21,62 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
-        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.13/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.15/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <h1><img src="../../../../../assets/0.3.13/img/book.svg" alt="guide">Configuration
-            <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/integration/configuration.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.13/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.13/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <h1><img src="../../../../../assets/0.3.15/img/book.svg" alt="guide">Configuration
+            <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/integration/configuration.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.15/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.15/img/exclamation-circle.svg" alt="Report an issue"></a>
             </div>
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Enabling-features">Enabling features</a><ol><li><a href="#List-of-plugins">List of plugins</a></li></ol></li><li><a href="#Toolbar-setup">Toolbar setup</a></li><li><a href="#Other-configuration-options">Other configuration options</a></li></ol></nav><p>When creating an editor in your page, it is possible to set up configurations that change many of its aspects. For example:</p>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Removing-features">Removing features</a><ol><li><a href="#List-of-plugins">List of plugins</a></li></ol></li><li><a href="#Adding-features">Adding features</a></li><li><a href="#Toolbar-setup">Toolbar setup</a></li><li><a href="#Other-configuration-options">Other configuration options</a></li></ol></nav><p>When creating an editor in your page, it is possible to set up <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html">configurations</a> that change many of its aspects. For example:</p>
 <pre><code class="js">ClassicEditor
-    .create( document.querySelector( &apos;#text-editor&apos; ), {
-        toolbar: [ &apos;bold&apos;, &apos;link&apos; ],
-        removePlugins: [ &apos;ImageToolbar&apos;, &apos;ImageStyle&apos; ]
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        toolbar: [ &apos;headings&apos;, &apos;bold&apos;, &apos;italic&apos;, &apos;link&apos;, &apos;bulletedList&apos;, &apos;numberedList&apos;, &apos;blockQuote&apos; ],
+        heading: {
+            options: [
+                { modelElement: &apos;paragraph&apos;, title: &apos;Paragraph&apos;, class: &apos;ck-heading_paragraph&apos; },
+                { modelElement: &apos;heading1&apos;, viewElement: &apos;h1&apos;, title: &apos;Heading 1&apos;, class: &apos;ck-heading_heading1&apos; },
+                { modelElement: &apos;heading2&apos;, viewElement: &apos;h2&apos;, title: &apos;Heading 2&apos;, class: &apos;ck-heading_heading2&apos; }
+            ]
+        }
     } )
     .catch( error =&gt; {
         console.log( error );
     } );
 </code></pre>
-<p>As you can see, configurations are set by a simple JavaScript object passed to the editor creator class. It works in the same way when the <code>create()</code> method is used instead.</p>
-<h2 id="Enabling-features"><a href="#Enabling-features" class="headerlink" title="Enabling features"></a>Enabling features</h2><p>Builds come with all features included in the distribution package enabled by default. They are defined as plugins for CKEditor.</p>
-<p>In some cases, you may need to have different editor setups in your application, all based on the same build. For that purpose, you need to control the plugins available in an editor at runtime. The following are a few examples:</p>
+<p>As you can see, configurations are set by a simple JavaScript object passed to the <code>create()</code> method.</p>
+<h2 id="Removing-features"><a href="#Removing-features" class="headerlink" title="Removing features"></a>Removing features</h2><p>Builds come with all features included in the distribution package enabled by default. They are defined as plugins for CKEditor.</p>
+<p>In some cases, you may need to have different editor setups in your application, all based on the same build. For that purpose, you need to control the plugins available in an editor at runtime.</p>
+<p>In the example below <code>Heading</code> and <code>Link</code> plugins are removed:</p>
 <pre><code class="js">// Remove a few plugins from the default setup.
 ClassicEditor
-    .create( document.querySelector( &apos;#text-editor&apos; ), {
-        removePlugins: [ &apos;Heading&apos;, &apos;Link&apos; ]
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        removePlugins: [ &apos;Heading&apos;, &apos;Link&apos; ],
+        toolbar: [ &apos;bold&apos;, &apos;italic&apos;, &apos;bulletedList&apos;, &apos;numberedList&apos;, &apos;blockQuote&apos; ]
     } )
     .catch( error =&gt; {
         console.log( error );
     } );
 </code></pre>
-<pre><code class="js">// Define the full list of plugins to enable.
-ClassicEditor
-    .create( document.querySelector( &apos;#text-editor&apos; ), {
-        plugins: [ &apos;Paragraph&apos;, &apos;Heading&apos;, &apos;Bold&apos;, &apos;Link&apos; ]
-    } )
-    .catch( error =&gt; {
-        console.log( error );
-    } );
-</code></pre>
-<div class="info-box notice notice__hint"><p>If a build contains too many or too few features, the best approach is to create a custom build instead of simply using configurations.</p></div>
+<div class="info-box notice"><p>Be careful when removing plugins using <code>config.removePlugins</code> from CKEditor builds. If removed plugins were providing toolbar buttons then the default toolbar configuration included in a build will become invalid. In such case provide the updated toolbar configuration as in the example above.</p></div>
 
 <h3 id="List-of-plugins"><a href="#List-of-plugins" class="headerlink" title="List of plugins"></a>List of plugins</h3><p>Each build has a number of plugins available. You can easily list all plugins available in your build:</p>
 <pre><code class="js">ClassicEditor.build.plugins.map( plugin =&gt; plugin.pluginName );
 </code></pre>
+<h2 id="Adding-features"><a href="#Adding-features" class="headerlink" title="Adding features"></a>Adding features</h2><p>As CKEditor builds come with all features enabled, the only way to add more features to them is to <a href="../development/custom-builds.html">create a custom build</a>.</p>
 <h2 id="Toolbar-setup"><a href="#Toolbar-setup" class="headerlink" title="Toolbar setup"></a>Toolbar setup</h2><p>In builds that contain toolbars an optimal default configuration is defined for it. You may need a different toolbar arrangement, though, and this can be achieved through configuration.</p>
-<p>Each creator may have a different toolbar configuration scheme, so it is recommended to check the creator API documentation. In any case, the following example may give you a general idea:</p>
+<p>Each editor may have a different toolbar configuration scheme, so it is recommended to check its documentation. In any case, the following example may give you a general idea:</p>
 <pre><code class="js">ClassicEditor
-    .create( document.querySelector( &apos;#text-editor&apos; ), {
+    .create( document.querySelector( &apos;#editor&apos; ), {
         toolbar: [ &apos;bold&apos;, &apos;italic&apos;, &apos;link&apos; ]
     } )
     .catch( error =&gt; {
         console.log( error );
     } );
 </code></pre>
-<div class="info-box notice notice__hint"><p>The above is a strict UI-related configuration. Removing a toolbar item does not remove the feature from the editor internals. If your goal with the toolbar configuration is to remove features, the right solution is to remove their relative plugins. Check <a href="#Enabling-features">Enabling features</a> above for more information.</p></div>
+<div class="info-box notice notice__hint"><p>The above is a strict UI-related configuration. Removing a toolbar item does not remove the feature from the editor internals. If your goal with the toolbar configuration is to remove features, the right solution is to also remove their relative plugins. Check <a href="#Removing-features">Removing features</a> above for more information.</p></div>
 
 <h2 id="Other-configuration-options"><a href="#Other-configuration-options" class="headerlink" title="Other configuration options"></a>Other configuration options</h2><p>See <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html"><code>EditorConfig</code></a> to learn about all available configuration options.</p>
 <p>Some of the options may require loading plugins which are not available in the build you use. Read more about <a href="../development/custom-builds.html">customizing builds</a>.</p>
@@ -131,7 +131,7 @@ ClassicEditor
         </div>
       </div>
     </main>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">docsearch({apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:10}});</script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script type="text/javascript">docsearch({apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:10},debug:false});</script>
     <footer class="footer">
       <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
     </footer>
