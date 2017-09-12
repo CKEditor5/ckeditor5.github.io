@@ -30,7 +30,7 @@
           <h1><img src="../../../../../assets/0.3.15/img/book.svg" alt="guide">Basic API
             <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/integration/basic-api.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.15/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.15/img/exclamation-circle.svg" alt="Report an issue"></a>
             </div>
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Creating-an-editor">Creating an editor</a><ol><li><a href="#Example-&#x2013;-Classic-editor">Example &#x2013; Classic editor</a></li><li><a href="#Example-&#x2013;-Inline-editor">Example &#x2013; Inline editor</a></li></ol></li><li><a href="#Interacting-with-the-editor">Interacting with the editor</a><ol><li><a href="#Setting-the-editor-data">Setting the editor data</a></li><li><a href="#Getting-the-editor-data">Getting the editor data</a></li><li><a href="#Destroying-the-editor">Destroying the editor</a></li></ol></li><li><a href="#UMD-support">UMD support</a></li><li><a href="#What&#x2019;s-more">What&#x2019;s more?</a></li></ol></nav><p>Each CKEditor 5 build provides a different class that handles the creation of editor instances:</p>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Creating-an-editor">Creating an editor</a><ol><li><a href="#Example-&#x2013;-Classic-editor">Example &#x2013; Classic editor</a></li><li><a href="#Example-&#x2013;-Inline-editor">Example &#x2013; Inline editor</a></li><li><a href="#Example-&#x2013;-Balloon-editor">Example &#x2013; Balloon editor</a></li></ol></li><li><a href="#Interacting-with-the-editor">Interacting with the editor</a><ol><li><a href="#Setting-the-editor-data">Setting the editor data</a></li><li><a href="#Getting-the-editor-data">Getting the editor data</a></li><li><a href="#Destroying-the-editor">Destroying the editor</a></li></ol></li><li><a href="#UMD-support">UMD support</a></li><li><a href="#What&#x2019;s-more">What&#x2019;s more?</a></li></ol></nav><p>Each CKEditor 5 build provides a different class that handles the creation of editor instances:</p>
 <ul>
 <li>Classic editor &#x2013; <a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html"><code>ClassicEditor</code></a></li>
 <li>Inline editor &#x2013; <a href="../../../api/module_editor-inline_inlineeditor-InlineEditor.html"><code>InlineEditor</code></a></li>
@@ -43,7 +43,7 @@
     &lt;p&gt;Here goes the initial content of the editor.&lt;/p&gt;
 &lt;/textarea&gt;
 </code></pre>
-<p>Then call <a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html#create"><code>ClassicEditor.create()</code></a> to replace <code>&lt;textarea&gt;</code> with a <a href="../overview.html#Classic-editor">Classic editor</a>:</p>
+<p>Then call <a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html#create"><code>ClassicEditor.create()</code></a> to <strong>replace</strong> <code>&lt;textarea&gt;</code> with a <a href="../overview.html#Classic-editor">Classic editor</a>:</p>
 <pre><code class="js">ClassicEditor
     .create( document.querySelector( &apos;#editor&apos; ) )
     .then( editor =&gt; {
@@ -59,8 +59,24 @@
     &lt;p&gt;Here goes the initial content of the editor.&lt;/p&gt;
 &lt;/div&gt;
 </code></pre>
-<p>Then call <a href="../../../api/module_editor-inline_inlineeditor-InlineEditor.html#create"><code>InlineEditor.create()</code></a> to attach <a href="../overview.html#Inline-editor">Inline editor</a> to a <code>&lt;div&gt;</code> element:</p>
+<p>Then call <a href="../../../api/module_editor-inline_inlineeditor-InlineEditor.html#create"><code>InlineEditor.create()</code></a> to <strong>attach</strong> <a href="../overview.html#Inline-editor">Inline editor</a> to a <code>&lt;div&gt;</code> element:</p>
 <pre><code class="js">InlineEditor
+    .create( document.querySelector( &apos;#editor&apos; ) )
+    .then( editor =&gt; {
+        console.log( editor );
+    } )
+    .catch( error =&gt; {
+        console.error( error );
+    } );
+</code></pre>
+<h3 id="Example-&#x2013;-Balloon-editor"><a href="#Example-&#x2013;-Balloon-editor" class="headerlink" title="Example &#x2013; Balloon editor"></a>Example &#x2013; Balloon editor</h3><p>The procedure is the same as for Inline editor, the only difference is that we will use <a href="../../../api/module_editor-balloon_ballooneditor-BalloonEditor.html#create"><code>BalloonEditor.create()</code></a>.</p>
+<p>Add an element where CKEditor should initialize (as with ):</p>
+<pre><code class="html">&lt;div id=&quot;editor&quot;&gt;
+    &lt;p&gt;Here goes the initial content of the editor.&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<p>Then call <a href="../../../api/module_editor-balloon_ballooneditor-BalloonEditor.html#create"><code>BalloonEditor.create()</code></a> to <strong>attach</strong> <a href="../overview.html#Balloon-editor">Balloon editor</a> to a <code>&lt;div&gt;</code> element:</p>
+<pre><code class="js">BalloonEditor
     .create( document.querySelector( &apos;#editor&apos; ) )
     .then( editor =&gt; {
         console.log( editor );
