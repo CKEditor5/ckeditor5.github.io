@@ -1,41 +1,38 @@
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-
+/******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
-
+/******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
+/******/ 		if(installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
-
+/******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
 /******/ 			l: false,
 /******/ 			exports: {}
 /******/ 		};
-
+/******/
 /******/ 		// Execute the module function
 /******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-
+/******/
 /******/ 		// Flag the module as loaded
 /******/ 		module.l = true;
-
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-
-
+/******/
+/******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
-
+/******/
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
-
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
-
+/******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
@@ -46,7 +43,7 @@
 /******/ 			});
 /******/ 		}
 /******/ 	};
-
+/******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
 /******/ 	__webpack_require__.n = function(module) {
 /******/ 		var getter = module && module.__esModule ?
@@ -55,15 +52,15 @@
 /******/ 		__webpack_require__.d(getter, 'a', getter);
 /******/ 		return getter;
 /******/ 	};
-
+/******/
 /******/ 	// Object.prototype.hasOwnProperty.call
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-
+/******/
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
-
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 186);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -76,17 +73,17 @@
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 /*!
- * jQuery JavaScript Library v3.1.1
+ * jQuery JavaScript Library v3.2.1
  * https://jquery.com/
  *
  * Includes Sizzle.js
  * https://sizzlejs.com/
  *
- * Copyright jQuery Foundation and other contributors
+ * Copyright JS Foundation and other contributors
  * Released under the MIT license
  * https://jquery.org/license
  *
- * Date: 2016-09-22T22:30Z
+ * Date: 2017-03-20T18:59Z
  */
 (function (global, factory) {
 
@@ -159,7 +156,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 	// unguarded in another place, it seems safer to define global only for this module
 
 
-	var version = "3.1.1",
+	var version = "3.2.1",
 
 
 	// Define a local copy of jQuery
@@ -315,11 +312,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 					}
 
 					// Recurse if we're merging plain objects or arrays
-					if (deep && copy && (jQuery.isPlainObject(copy) || (copyIsArray = jQuery.isArray(copy)))) {
+					if (deep && copy && (jQuery.isPlainObject(copy) || (copyIsArray = Array.isArray(copy)))) {
 
 						if (copyIsArray) {
 							copyIsArray = false;
-							clone = src && jQuery.isArray(src) ? src : [];
+							clone = src && Array.isArray(src) ? src : [];
 						} else {
 							clone = src && jQuery.isPlainObject(src) ? src : {};
 						}
@@ -356,8 +353,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 		isFunction: function isFunction(obj) {
 			return jQuery.type(obj) === "function";
 		},
-
-		isArray: Array.isArray,
 
 		isWindow: function isWindow(obj) {
 			return obj != null && obj === obj.window;
@@ -429,10 +424,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 		// Microsoft forgot to hump their vendor prefix (#9572)
 		camelCase: function camelCase(string) {
 			return string.replace(rmsPrefix, "ms-").replace(rdashAlpha, fcamelCase);
-		},
-
-		nodeName: function nodeName(elem, name) {
-			return elem.nodeName && elem.nodeName.toLowerCase() === name.toLowerCase();
 		},
 
 		each: function each(obj, callback) {
@@ -2807,6 +2798,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 	var rneedsContext = jQuery.expr.match.needsContext;
 
+	function nodeName(elem, name) {
+
+		return elem.nodeName && elem.nodeName.toLowerCase() === name.toLowerCase();
+	};
 	var rsingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 	var risSimple = /^.[^:#\[\.,]*$/;
@@ -3134,7 +3129,18 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 			return _siblings(elem.firstChild);
 		},
 		contents: function contents(elem) {
-			return elem.contentDocument || jQuery.merge([], elem.childNodes);
+			if (nodeName(elem, "iframe")) {
+				return elem.contentDocument;
+			}
+
+			// Support: IE 9 - 11 only, iOS 7 only, Android Browser <=4.3 only
+			// Treat the template element as a regular one in browsers that
+			// don't support it.
+			if (nodeName(elem, "template")) {
+				elem = elem.content || elem;
+			}
+
+			return jQuery.merge([], elem.childNodes);
 		}
 	}, function (name, fn) {
 		jQuery.fn[name] = function (until, selector) {
@@ -3235,7 +3241,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 		fire = function fire() {
 
 			// Enforce single-firing
-			_locked = options.once;
+			_locked = _locked || options.once;
 
 			// Execute callbacks for all pending executions,
 			// respecting firingIndex overrides and runtime changes
@@ -3401,7 +3407,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 		throw ex;
 	}
 
-	function adoptValue(value, resolve, reject) {
+	function adoptValue(value, resolve, reject, noValue) {
 		var method;
 
 		try {
@@ -3417,9 +3423,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 				// Other non-thenables
 			} else {
 
-				// Support: Android 4.0 only
-				// Strict mode functions invoked without .call/.apply get global-object context
-				resolve.call(undefined, value);
+				// Control `resolve` arguments by letting Array#slice cast boolean `noValue` to integer:
+				// * false: [ value ].slice( 0 ) => resolve( value )
+				// * true: [ value ].slice( 1 ) => resolve()
+				resolve.apply(undefined, [value].slice(noValue));
 			}
 
 			// For Promises/A+, convert exceptions into rejections
@@ -3429,7 +3436,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 			// Support: Android 4.0 only
 			// Strict mode functions invoked without .call/.apply get global-object context
-			reject.call(undefined, value);
+			reject.apply(undefined, [value]);
 		}
 	}
 
@@ -3705,7 +3712,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 			// Single- and empty arguments are adopted like Promise.resolve
 			if (remaining <= 1) {
-				adoptValue(singleValue, master.done(updateFunc(i)).resolve, master.reject);
+				adoptValue(singleValue, master.done(updateFunc(i)).resolve, master.reject, !remaining);
 
 				// Use .then() to unwrap secondary thenables (cf. gh-3000)
 				if (master.state() === "pending" || jQuery.isFunction(resolveValues[i] && resolveValues[i].then)) {
@@ -3767,15 +3774,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 		// A counter to track how many items to wait for before
 		// the ready event fires. See #6781
 		readyWait: 1,
-
-		// Hold (or release) the ready event
-		holdReady: function holdReady(hold) {
-			if (hold) {
-				jQuery.readyWait++;
-			} else {
-				jQuery.ready(true);
-			}
-		},
 
 		// Handle when the DOM is ready
 		ready: function ready(wait) {
@@ -3998,7 +3996,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 			if (key !== undefined) {
 
 				// Support array or space separated string of keys
-				if (jQuery.isArray(key)) {
+				if (Array.isArray(key)) {
 
 					// If key is an array of keys...
 					// We always set camelCase keys, so remove that.
@@ -4221,7 +4219,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 				// Speed up dequeue by getting out quickly if this is just a lookup
 				if (data) {
-					if (!queue || jQuery.isArray(data)) {
+					if (!queue || Array.isArray(data)) {
 						queue = dataPriv.access(elem, type, jQuery.makeArray(data));
 					} else {
 						queue.push(data);
@@ -4579,7 +4577,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 			ret = [];
 		}
 
-		if (tag === undefined || tag && jQuery.nodeName(context, tag)) {
+		if (tag === undefined || tag && nodeName(context, tag)) {
 			return jQuery.merge([context], ret);
 		}
 
@@ -5189,7 +5187,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 				// For checkbox, fire native event so checked state will be right
 				trigger: function trigger() {
-					if (this.type === "checkbox" && this.click && jQuery.nodeName(this, "input")) {
+					if (this.type === "checkbox" && this.click && nodeName(this, "input")) {
 						this.click();
 						return false;
 					}
@@ -5197,7 +5195,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 				// For cross-browser consistency, don't fire native .click() on links
 				_default: function _default(event) {
-					return jQuery.nodeName(event.target, "a");
+					return nodeName(event.target, "a");
 				}
 			},
 
@@ -5464,10 +5462,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 	    rscriptTypeMasked = /^true\/(.*)/,
 	    rcleanScript = /^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g;
 
+	// Prefer a tbody over its parent table for containing new rows
 	function manipulationTarget(elem, content) {
-		if (jQuery.nodeName(elem, "table") && jQuery.nodeName(content.nodeType !== 11 ? content : content.firstChild, "tr")) {
+		if (nodeName(elem, "table") && nodeName(content.nodeType !== 11 ? content : content.firstChild, "tr")) {
 
-			return elem.getElementsByTagName("tbody")[0] || elem;
+			return jQuery(">tbody", elem)[0] || elem;
 		}
 
 		return elem;
@@ -5997,12 +5996,19 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 		    minWidth,
 		    maxWidth,
 		    ret,
-		    style = elem.style;
+
+
+		// Support: Firefox 51+
+		// Retrieving style before computed somehow
+		// fixes an issue with getting wrong values
+		// on detached elements
+		style = elem.style;
 
 		computed = computed || getStyles(elem);
 
-		// Support: IE <=9 only
-		// getPropertyValue is only needed for .css('filter') (#12537)
+		// getPropertyValue is needed for:
+		//   .css('filter') (IE 9 only, #12537)
+		//   .css('--customProperty) (#3144)
 		if (computed) {
 			ret = computed.getPropertyValue(name) || computed[name];
 
@@ -6065,6 +6071,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 	// except "table", "table-cell", or "table-caption"
 	// See here for display values: https://developer.mozilla.org/en-US/docs/CSS/display
 	rdisplayswap = /^(none|table(?!-c[ea]).+)/,
+	    rcustomProp = /^--/,
 	    cssShow = { position: "absolute", visibility: "hidden", display: "block" },
 	    cssNormalTransform = {
 		letterSpacing: "0",
@@ -6091,6 +6098,16 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 				return name;
 			}
 		}
+	}
+
+	// Return a property mapped along what jQuery.cssProps suggests or to
+	// a vendor prefixed property.
+	function finalPropName(name) {
+		var ret = jQuery.cssProps[name];
+		if (!ret) {
+			ret = jQuery.cssProps[name] = vendorPropName(name) || name;
+		}
+		return ret;
 	}
 
 	function setPositiveNumber(elem, value, subtract) {
@@ -6152,42 +6169,29 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 	function getWidthOrHeight(elem, name, extra) {
 
-		// Start with offset property, which is equivalent to the border-box value
-		var val,
-		    valueIsBorderBox = true,
+		// Start with computed style
+		var valueIsBorderBox,
 		    styles = getStyles(elem),
+		    val = curCSS(elem, name, styles),
 		    isBorderBox = jQuery.css(elem, "boxSizing", false, styles) === "border-box";
 
-		// Support: IE <=11 only
-		// Running getBoundingClientRect on a disconnected node
-		// in IE throws an error.
-		if (elem.getClientRects().length) {
-			val = elem.getBoundingClientRect()[name];
+		// Computed unit is not pixels. Stop here and return.
+		if (rnumnonpx.test(val)) {
+			return val;
 		}
 
-		// Some non-html elements return undefined for offsetWidth, so check for null/undefined
-		// svg - https://bugzilla.mozilla.org/show_bug.cgi?id=649285
-		// MathML - https://bugzilla.mozilla.org/show_bug.cgi?id=491668
-		if (val <= 0 || val == null) {
+		// Check for style in case a browser which returns unreliable values
+		// for getComputedStyle silently falls back to the reliable elem.style
+		valueIsBorderBox = isBorderBox && (support.boxSizingReliable() || val === elem.style[name]);
 
-			// Fall back to computed then uncomputed css if necessary
-			val = curCSS(elem, name, styles);
-			if (val < 0 || val == null) {
-				val = elem.style[name];
-			}
-
-			// Computed unit is not pixels. Stop here and return.
-			if (rnumnonpx.test(val)) {
-				return val;
-			}
-
-			// Check for style in case a browser which returns unreliable values
-			// for getComputedStyle silently falls back to the reliable elem.style
-			valueIsBorderBox = isBorderBox && (support.boxSizingReliable() || val === elem.style[name]);
-
-			// Normalize "", auto, and prepare for extra
-			val = parseFloat(val) || 0;
+		// Fall back to offsetWidth/Height when value is "auto"
+		// This happens for inline elements with no explicit setting (gh-3571)
+		if (val === "auto") {
+			val = elem["offset" + name[0].toUpperCase() + name.slice(1)];
 		}
+
+		// Normalize "", auto, and prepare for extra
+		val = parseFloat(val) || 0;
 
 		// Use the active box-sizing model to add/subtract irrelevant styles
 		return val + augmentWidthOrHeight(elem, name, extra || (isBorderBox ? "border" : "content"), valueIsBorderBox, styles) + "px";
@@ -6246,9 +6250,15 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 			    type,
 			    hooks,
 			    origName = jQuery.camelCase(name),
+			    isCustomProp = rcustomProp.test(name),
 			    style = elem.style;
 
-			name = jQuery.cssProps[origName] || (jQuery.cssProps[origName] = vendorPropName(origName) || origName);
+			// Make sure that we're working with the right name. We don't
+			// want to query the value if it is a CSS custom property
+			// since they are user-defined.
+			if (!isCustomProp) {
+				name = finalPropName(origName);
+			}
 
 			// Gets hook for the prefixed version, then unprefixed version
 			hooks = jQuery.cssHooks[name] || jQuery.cssHooks[origName];
@@ -6283,7 +6293,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 				// If a hook was provided, use that value, otherwise just set the specified value
 				if (!hooks || !("set" in hooks) || (value = hooks.set(elem, value, extra)) !== undefined) {
 
-					style[name] = value;
+					if (isCustomProp) {
+						style.setProperty(name, value);
+					} else {
+						style[name] = value;
+					}
 				}
 			} else {
 
@@ -6302,10 +6316,15 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 			var val,
 			    num,
 			    hooks,
-			    origName = jQuery.camelCase(name);
+			    origName = jQuery.camelCase(name),
+			    isCustomProp = rcustomProp.test(name);
 
-			// Make sure that we're working with the right name
-			name = jQuery.cssProps[origName] || (jQuery.cssProps[origName] = vendorPropName(origName) || origName);
+			// Make sure that we're working with the right name. We don't
+			// want to modify the value if it is a CSS custom property
+			// since they are user-defined.
+			if (!isCustomProp) {
+				name = finalPropName(origName);
+			}
 
 			// Try prefixed name followed by the unprefixed name
 			hooks = jQuery.cssHooks[name] || jQuery.cssHooks[origName];
@@ -6330,6 +6349,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 				num = parseFloat(val);
 				return extra === true || isFinite(num) ? num || 0 : val;
 			}
+
 			return val;
 		}
 	});
@@ -6416,7 +6436,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 				    map = {},
 				    i = 0;
 
-				if (jQuery.isArray(name)) {
+				if (Array.isArray(name)) {
 					styles = getStyles(elem);
 					len = name.length;
 
@@ -6541,13 +6561,18 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 	jQuery.fx.step = {};
 
 	var fxNow,
-	    timerId,
+	    inProgress,
 	    rfxtypes = /^(?:toggle|show|hide)$/,
 	    rrun = /queueHooks$/;
 
-	function raf() {
-		if (timerId) {
-			window.requestAnimationFrame(raf);
+	function schedule() {
+		if (inProgress) {
+			if (document.hidden === false && window.requestAnimationFrame) {
+				window.requestAnimationFrame(schedule);
+			} else {
+				window.setTimeout(schedule, jQuery.fx.interval);
+			}
+
 			jQuery.fx.tick();
 		}
 	}
@@ -6781,7 +6806,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 			name = jQuery.camelCase(index);
 			easing = specialEasing[name];
 			value = props[index];
-			if (jQuery.isArray(value)) {
+			if (Array.isArray(value)) {
 				easing = value[1];
 				value = props[index] = value[0];
 			}
@@ -6841,12 +6866,19 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 			deferred.notifyWith(elem, [animation, percent, remaining]);
 
+			// If there's more to do, yield
 			if (percent < 1 && length) {
 				return remaining;
-			} else {
-				deferred.resolveWith(elem, [animation]);
-				return false;
 			}
+
+			// If this was an empty animation, synthesize a final progress notification
+			if (!length) {
+				deferred.notifyWith(elem, [animation, 1, 0]);
+			}
+
+			// Resolve the animation and report its conclusion
+			deferred.resolveWith(elem, [animation]);
+			return false;
 		},
 		    animation = deferred.promise({
 			elem: elem,
@@ -6910,14 +6942,16 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 			animation.opts.start.call(elem, animation);
 		}
 
+		// Attach callbacks from options
+		animation.progress(animation.opts.progress).done(animation.opts.done, animation.opts.complete).fail(animation.opts.fail).always(animation.opts.always);
+
 		jQuery.fx.timer(jQuery.extend(tick, {
 			elem: elem,
 			anim: animation,
 			queue: animation.opts.queue
 		}));
 
-		// attach callbacks from options
-		return animation.progress(animation.opts.progress).done(animation.opts.done, animation.opts.complete).fail(animation.opts.fail).always(animation.opts.always);
+		return animation;
 	}
 
 	jQuery.Animation = jQuery.extend(Animation, {
@@ -6967,8 +7001,8 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 			easing: fn && easing || easing && !jQuery.isFunction(easing) && easing
 		};
 
-		// Go to the end state if fx are off or if document is hidden
-		if (jQuery.fx.off || document.hidden) {
+		// Go to the end state if fx are off
+		if (jQuery.fx.off) {
 			opt.duration = 0;
 		} else {
 			if (typeof opt.duration !== "number") {
@@ -7153,7 +7187,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 		for (; i < timers.length; i++) {
 			timer = timers[i];
 
-			// Checks the timer has not already been removed
+			// Run the timer and safely remove it when done (allowing for external removal)
 			if (!timer() && timers[i] === timer) {
 				timers.splice(i--, 1);
 			}
@@ -7167,28 +7201,21 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 	jQuery.fx.timer = function (timer) {
 		jQuery.timers.push(timer);
-		if (timer()) {
-			jQuery.fx.start();
-		} else {
-			jQuery.timers.pop();
-		}
+		jQuery.fx.start();
 	};
 
 	jQuery.fx.interval = 13;
 	jQuery.fx.start = function () {
-		if (!timerId) {
-			timerId = window.requestAnimationFrame ? window.requestAnimationFrame(raf) : window.setInterval(jQuery.fx.tick, jQuery.fx.interval);
+		if (inProgress) {
+			return;
 		}
+
+		inProgress = true;
+		schedule();
 	};
 
 	jQuery.fx.stop = function () {
-		if (window.cancelAnimationFrame) {
-			window.cancelAnimationFrame(timerId);
-		} else {
-			window.clearInterval(timerId);
-		}
-
-		timerId = null;
+		inProgress = null;
 	};
 
 	jQuery.fx.speeds = {
@@ -7300,7 +7327,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 		attrHooks: {
 			type: {
 				set: function set(elem, value) {
-					if (!support.radioValue && value === "radio" && jQuery.nodeName(elem, "input")) {
+					if (!support.radioValue && value === "radio" && nodeName(elem, "input")) {
 						var val = elem.value;
 						elem.setAttribute("type", value);
 						if (val) {
@@ -7707,7 +7734,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 					val = "";
 				} else if (typeof val === "number") {
 					val += "";
-				} else if (jQuery.isArray(val)) {
+				} else if (Array.isArray(val)) {
 					val = jQuery.map(val, function (value) {
 						return value == null ? "" : value + "";
 					});
@@ -7764,7 +7791,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 						if ((option.selected || i === index) &&
 
 						// Don't return options that are disabled or in a disabled optgroup
-						!option.disabled && (!option.parentNode.disabled || !jQuery.nodeName(option.parentNode, "optgroup"))) {
+						!option.disabled && (!option.parentNode.disabled || !nodeName(option.parentNode, "optgroup"))) {
 
 							// Get the specific value for the option
 							value = jQuery(option).val();
@@ -7815,7 +7842,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 	jQuery.each(["radio", "checkbox"], function () {
 		jQuery.valHooks[this] = {
 			set: function set(elem, value) {
-				if (jQuery.isArray(value)) {
+				if (Array.isArray(value)) {
 					return elem.checked = jQuery.inArray(jQuery(elem).val(), value) > -1;
 				}
 			}
@@ -8083,7 +8110,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 	function buildParams(prefix, obj, traditional, add) {
 		var name;
 
-		if (jQuery.isArray(obj)) {
+		if (Array.isArray(obj)) {
 
 			// Serialize array item.
 			jQuery.each(obj, function (i, v) {
@@ -8124,7 +8151,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 		};
 
 		// If an array was passed in, assume that it is an array of form elements.
-		if (jQuery.isArray(a) || a.jquery && !jQuery.isPlainObject(a)) {
+		if (Array.isArray(a) || a.jquery && !jQuery.isPlainObject(a)) {
 
 			// Serialize the form elements
 			jQuery.each(a, function () {
@@ -8165,7 +8192,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 					return null;
 				}
 
-				if (jQuery.isArray(val)) {
+				if (Array.isArray(val)) {
 					return jQuery.map(val, function (val) {
 						return { name: elem.name, value: val.replace(rCRLF, "\r\n") };
 					});
@@ -9547,13 +9574,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 		}).length;
 	};
 
-	/**
-  * Gets a window from an element
-  */
-	function getWindow(elem) {
-		return jQuery.isWindow(elem) ? elem : elem.nodeType === 9 && elem.defaultView;
-	}
-
 	jQuery.offset = {
 		setOffset: function setOffset(elem, options, i) {
 			var curPosition,
@@ -9619,16 +9639,17 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 				});
 			}
 
-			var docElem,
-			    win,
+			var doc,
+			    docElem,
 			    rect,
-			    doc,
+			    win,
 			    elem = this[0];
 
 			if (!elem) {
 				return;
 			}
 
+			// Return zeros for disconnected and hidden (display: none) elements (gh-2310)
 			// Support: IE <=11 only
 			// Running getBoundingClientRect on a
 			// disconnected node in IE throws an error
@@ -9638,20 +9659,14 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 			rect = elem.getBoundingClientRect();
 
-			// Make sure element is not hidden (display: none)
-			if (rect.width || rect.height) {
-				doc = elem.ownerDocument;
-				win = getWindow(doc);
-				docElem = doc.documentElement;
+			doc = elem.ownerDocument;
+			docElem = doc.documentElement;
+			win = doc.defaultView;
 
-				return {
-					top: rect.top + win.pageYOffset - docElem.clientTop,
-					left: rect.left + win.pageXOffset - docElem.clientLeft
-				};
-			}
-
-			// Return zeros for disconnected and hidden elements (gh-2310)
-			return rect;
+			return {
+				top: rect.top + win.pageYOffset - docElem.clientTop,
+				left: rect.left + win.pageXOffset - docElem.clientLeft
+			};
 		},
 
 		position: function position() {
@@ -9677,7 +9692,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 				// Get correct offsets
 				offset = this.offset();
-				if (!jQuery.nodeName(offsetParent[0], "html")) {
+				if (!nodeName(offsetParent[0], "html")) {
 					parentOffset = offsetParent.offset();
 				}
 
@@ -9724,7 +9739,14 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 		jQuery.fn[method] = function (val) {
 			return access(this, function (elem, method, val) {
-				var win = getWindow(elem);
+
+				// Coalesce documents and windows
+				var win;
+				if (jQuery.isWindow(elem)) {
+					win = elem;
+				} else if (elem.nodeType === 9) {
+					win = elem.defaultView;
+				}
 
 				if (val === undefined) {
 					return win ? win[prop] : elem[method];
@@ -9814,7 +9836,16 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 		}
 	});
 
+	jQuery.holdReady = function (hold) {
+		if (hold) {
+			jQuery.readyWait++;
+		} else {
+			jQuery.ready(true);
+		}
+	};
+	jQuery.isArray = Array.isArray;
 	jQuery.parseJSON = JSON.parse;
+	jQuery.nodeName = nodeName;
 
 	// Register as a named AMD module, since jQuery can be concatenated with other
 	// files that may use define, but not via a proper concatenation script that
@@ -9866,7 +9897,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 	return jQuery;
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(185)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)(module)))
 
 /***/ }),
 /* 1 */
@@ -9875,58 +9906,37 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.enableAnchors = enableAnchors;
-
 var _jquery = __webpack_require__(0);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
+var _highlight = __webpack_require__(3);
+
+var _collapsables = __webpack_require__(182);
+
+var _anchors = __webpack_require__(183);
+
+var _dropdowns = __webpack_require__(184);
+
+var _filtering = __webpack_require__(185);
+
+var _scrolling = __webpack_require__(186);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function enableAnchors() {
-	setTimeout(scrollToHashTarget, 100);
+(0, _jquery2.default)(document).ready(function () {
+	(0, _highlight.setupHighlight)();
+	(0, _filtering.enableFiltering)();
+	(0, _collapsables.enableCollapsables)();
+	(0, _anchors.enableAnchors)();
+	(0, _dropdowns.enableDropdowns)();
+	(0, _scrolling.customizeNavigationScroll)();
+}); /**
+     * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+     * For licensing, see LICENSE.md.
+     */
 
-	(0, _jquery2.default)(window).on('hashchange', function () {
-		setTimeout(scrollToHashTarget, 0);
-	});
-
-	(0, _jquery2.default)('a[href^="#"]').on('click', function (evt) {
-		var el = (0, _jquery2.default)(this);
-		var href = el.attr('href');
-		var hash = location.hash;
-
-		if (el.hasClass('member-name')) {
-			evt.preventDefault();
-		} else if (href == hash) {
-			scrollToHashTarget();
-			evt.preventDefault();
-		}
-	});
-
-	function scrollToHashTarget() {
-		var target = (0, _jquery2.default)(':target');
-		var offset = target.offset();
-
-		if (offset) {
-			var scrollTop = offset.top - (0, _jquery2.default)('.top').height();
-
-			if (target && target.is('[class*="toggler"]')) {
-				target.removeClass('toggler--collapsed');
-				target.addClass('toggler--expanded');
-			}
-
-			(0, _jquery2.default)('html, body').scrollTop(scrollTop);
-		}
-	}
-} /**
-   * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
-   * For licensing, see LICENSE.md.
-   */
-
-/* global window, setTimeout, location */
+/* global document */
 
 /***/ }),
 /* 2 */
@@ -9935,267 +9945,31 @@ function enableAnchors() {
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.enableCollapsables = enableCollapsables;
-
-var _jquery = __webpack_require__(0);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function enableCollapsables() {
-	var classExp = 'toggler--expanded';
-	var classCol = 'toggler--collapsed';
-
-	enableCollapsable({
-		selector: '.tree li[class*="toggler--"]',
-		nodeElement: 'li',
-		dontToggleClass: 'tree__item__text',
-
-		collapsedClass: classCol,
-		expandedClass: classExp
-	});
-
-	enableCollapsable({
-		selector: '.collapsing-list__term[class*="toggler--"]',
-		nodeElement: '.collapsing-list__term',
-		dontToggleClass: 'collapsing-list__type',
-
-		collapsedClass: classCol,
-		expandedClass: classExp
-	});
-} /**
-   * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
-   * For licensing, see LICENSE.md.
-   */
-
-function enableCollapsable(options) {
-	(0, _jquery2.default)(options.selector).on('click', function (evt) {
-		var clicked = (0, _jquery2.default)(this);
-		var target = (0, _jquery2.default)(evt.target);
-		var parentNode = target.closest(options.nodeElement);
-
-		if (parentNode.is(options.selector)) {
-			if (target.is('a') && target.hasClass(options.dontToggleClass)) {
-				return;
+module.exports = function (module) {
+	if (!module.webpackPolyfill) {
+		module.deprecate = function () {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if (!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function get() {
+				return module.l;
 			}
-
-			clicked.toggleClass(options.expandedClass + ' ' + options.collapsedClass);
-			evt.stopPropagation();
-		}
-	});
-}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function get() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.enableDropdowns = enableDropdowns;
-
-var _jquery = __webpack_require__(0);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function enableDropdowns() {
-	var activeClass = 'dropdown--active';
-	var doc = (0, _jquery2.default)(document);
-
-	(0, _jquery2.default)('.dropdown__button').each(function (index, button) {
-		var dropdown = (0, _jquery2.default)(button).parent();
-
-		(0, _jquery2.default)(button).on('click', toggleDropdown);
-
-		function startListening() {
-			doc.on('click', closeDropdownOnClick);
-			doc.on('keyup', closeDropdownOnEsc);
-		}
-
-		function stopListening() {
-			doc.off('click', closeDropdownOnClick);
-			doc.off('keyup', closeDropdownOnEsc);
-		}
-
-		function closeDropdownOnClick(evt) {
-			var target = evt.target;
-
-			if (!(dropdown.has(target).length || dropdown.is(target))) {
-				dropdown.removeClass(activeClass);
-
-				stopListening();
-			}
-		}
-
-		function closeDropdownOnEsc(evt) {
-			if (evt.keyCode === 27) {
-				dropdown.removeClass(activeClass);
-
-				stopListening();
-			}
-		}
-
-		function toggleDropdown() {
-			dropdown.toggleClass(activeClass);
-
-			if (dropdown.hasClass(activeClass)) {
-				startListening();
-			} else {
-				stopListening();
-			}
-		}
-	});
-} /**
-   * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
-   * For licensing, see LICENSE.md.
-   */
-
-/* global document */
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.enableFiltering = enableFiltering;
-
-var _jquery = __webpack_require__(0);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function enableFiltering() {
-	var storagePrefix = 'filtering:props:';
-	var filterStorageKeys = {
-		public: storagePrefix + 'public',
-		inherited: storagePrefix + 'inherited',
-		protected: storagePrefix + 'protected',
-		private: storagePrefix + 'private',
-		deprecated: storagePrefix + 'deprecated',
-		tree: 'filtering:tree'
-	};
-
-	enableProperiesFiltering();
-	enableTreeFiltering();
-
-	function enableProperiesFiltering() {
-		(0, _jquery2.default)('.api-props-filter input').on('change', applyFilterConfig).on('change', saveFilterSetting);
-
-		function getFilterConfig() {
-			return (0, _jquery2.default)('.api-props-filter input').map(function (index, domInput) {
-				if (domInput.checked) {
-					return (0, _jquery2.default)(domInput).val();
-				}
-			});
-		}
-
-		function applyFilterConfig() {
-			var cfg = getFilterConfig().toArray();
-			var visibleClass = 'collapsing-list__item--visible';
-			var emptyClass = 'collapsing-list--empty';
-			var firstItemClass = 'collapsing-list__item--first';
-
-			(0, _jquery2.default)('.collapsing-list__item.' + visibleClass).removeClass(visibleClass + ' ' + firstItemClass);
-			(0, _jquery2.default)('.collapsing-list').removeClass(emptyClass);
-
-			(0, _jquery2.default)('.collapsing-list__item').each(function () {
-				var data = (0, _jquery2.default)(this).data();
-
-				for (var key in data) {
-					if (data.hasOwnProperty(key) && data[key] === true && cfg.indexOf(key) === -1) {
-						return;
-					}
-				}
-
-				(0, _jquery2.default)(this).addClass(visibleClass);
-			});
-
-			(0, _jquery2.default)('.collapsing-list').filter(function () {
-				return (0, _jquery2.default)(this).children(':visible').length === 0;
-			}).each(function () {
-				(0, _jquery2.default)(this).addClass(emptyClass);
-			});
-
-			(0, _jquery2.default)('.collapsing-list').each(function () {
-				(0, _jquery2.default)(this).children(':visible').first().addClass(firstItemClass);
-			});
-		}
-
-		function saveFilterSetting() {
-			var type = (0, _jquery2.default)(this).val();
-			var checked = (0, _jquery2.default)(this).prop('checked');
-
-			window.localStorage.setItem(filterStorageKeys[type], checked);
-		}
-
-		function applySavedFilterSettings() {
-			(0, _jquery2.default)('.api-props-filter input').each(function () {
-				var type = (0, _jquery2.default)(this).val();
-				var stored = window.localStorage.getItem(filterStorageKeys[type]);
-
-				if (stored !== null) {
-					(0, _jquery2.default)(this).prop('checked', JSON.parse(stored));
-				}
-			});
-		}
-
-		applySavedFilterSettings();
-		applyFilterConfig();
-	}
-
-	function enableTreeFiltering() {
-		var input = (0, _jquery2.default)('.api-tree__filter input');
-		var showPrivateClass = 'api-tree--show-private';
-		var tree = (0, _jquery2.default)('.api-tree');
-		var stored = window.localStorage.getItem(filterStorageKeys.tree);
-
-		if (input && input.length === 0) {
-			return;
-		}
-
-		input.on('change', applyTreeFilter).on('change', function () {
-			var checked = (0, _jquery2.default)(this).prop('checked');
-			window.localStorage.setItem(filterStorageKeys.tree, checked);
-		});
-
-		function applyTreeFilter() {
-			if (input.get(0).checked) {
-				tree.addClass(showPrivateClass);
-			} else {
-				tree.removeClass(showPrivateClass);
-			}
-		}
-
-		if (stored !== null) {
-			input.prop('checked', JSON.parse(stored));
-		}
-
-		applyTreeFilter();
-	}
-} /**
-   * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
-   * For licensing, see LICENSE.md.
-   */
-
-/* global window */
-
-/***/ }),
-/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10210,7 +9984,7 @@ var _jquery = __webpack_require__(0);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var _highlight = __webpack_require__(8);
+var _highlight = __webpack_require__(4);
 
 var _highlight2 = _interopRequireDefault(_highlight);
 
@@ -10244,49 +10018,195 @@ function setupHighlight() {
 }
 
 /***/ }),
-/* 6 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.customizeNavigationScroll = customizeNavigationScroll;
+var hljs = __webpack_require__(5);
 
-var _jquery = __webpack_require__(0);
+hljs.registerLanguage('1c', __webpack_require__(6));
+hljs.registerLanguage('abnf', __webpack_require__(7));
+hljs.registerLanguage('accesslog', __webpack_require__(8));
+hljs.registerLanguage('actionscript', __webpack_require__(9));
+hljs.registerLanguage('ada', __webpack_require__(10));
+hljs.registerLanguage('apache', __webpack_require__(11));
+hljs.registerLanguage('applescript', __webpack_require__(12));
+hljs.registerLanguage('cpp', __webpack_require__(13));
+hljs.registerLanguage('arduino', __webpack_require__(14));
+hljs.registerLanguage('armasm', __webpack_require__(15));
+hljs.registerLanguage('xml', __webpack_require__(16));
+hljs.registerLanguage('asciidoc', __webpack_require__(17));
+hljs.registerLanguage('aspectj', __webpack_require__(18));
+hljs.registerLanguage('autohotkey', __webpack_require__(19));
+hljs.registerLanguage('autoit', __webpack_require__(20));
+hljs.registerLanguage('avrasm', __webpack_require__(21));
+hljs.registerLanguage('awk', __webpack_require__(22));
+hljs.registerLanguage('axapta', __webpack_require__(23));
+hljs.registerLanguage('bash', __webpack_require__(24));
+hljs.registerLanguage('basic', __webpack_require__(25));
+hljs.registerLanguage('bnf', __webpack_require__(26));
+hljs.registerLanguage('brainfuck', __webpack_require__(27));
+hljs.registerLanguage('cal', __webpack_require__(28));
+hljs.registerLanguage('capnproto', __webpack_require__(29));
+hljs.registerLanguage('ceylon', __webpack_require__(30));
+hljs.registerLanguage('clean', __webpack_require__(31));
+hljs.registerLanguage('clojure', __webpack_require__(32));
+hljs.registerLanguage('clojure-repl', __webpack_require__(33));
+hljs.registerLanguage('cmake', __webpack_require__(34));
+hljs.registerLanguage('coffeescript', __webpack_require__(35));
+hljs.registerLanguage('coq', __webpack_require__(36));
+hljs.registerLanguage('cos', __webpack_require__(37));
+hljs.registerLanguage('crmsh', __webpack_require__(38));
+hljs.registerLanguage('crystal', __webpack_require__(39));
+hljs.registerLanguage('cs', __webpack_require__(40));
+hljs.registerLanguage('csp', __webpack_require__(41));
+hljs.registerLanguage('css', __webpack_require__(42));
+hljs.registerLanguage('d', __webpack_require__(43));
+hljs.registerLanguage('markdown', __webpack_require__(44));
+hljs.registerLanguage('dart', __webpack_require__(45));
+hljs.registerLanguage('delphi', __webpack_require__(46));
+hljs.registerLanguage('diff', __webpack_require__(47));
+hljs.registerLanguage('django', __webpack_require__(48));
+hljs.registerLanguage('dns', __webpack_require__(49));
+hljs.registerLanguage('dockerfile', __webpack_require__(50));
+hljs.registerLanguage('dos', __webpack_require__(51));
+hljs.registerLanguage('dsconfig', __webpack_require__(52));
+hljs.registerLanguage('dts', __webpack_require__(53));
+hljs.registerLanguage('dust', __webpack_require__(54));
+hljs.registerLanguage('ebnf', __webpack_require__(55));
+hljs.registerLanguage('elixir', __webpack_require__(56));
+hljs.registerLanguage('elm', __webpack_require__(57));
+hljs.registerLanguage('ruby', __webpack_require__(58));
+hljs.registerLanguage('erb', __webpack_require__(59));
+hljs.registerLanguage('erlang-repl', __webpack_require__(60));
+hljs.registerLanguage('erlang', __webpack_require__(61));
+hljs.registerLanguage('excel', __webpack_require__(62));
+hljs.registerLanguage('fix', __webpack_require__(63));
+hljs.registerLanguage('flix', __webpack_require__(64));
+hljs.registerLanguage('fortran', __webpack_require__(65));
+hljs.registerLanguage('fsharp', __webpack_require__(66));
+hljs.registerLanguage('gams', __webpack_require__(67));
+hljs.registerLanguage('gauss', __webpack_require__(68));
+hljs.registerLanguage('gcode', __webpack_require__(69));
+hljs.registerLanguage('gherkin', __webpack_require__(70));
+hljs.registerLanguage('glsl', __webpack_require__(71));
+hljs.registerLanguage('go', __webpack_require__(72));
+hljs.registerLanguage('golo', __webpack_require__(73));
+hljs.registerLanguage('gradle', __webpack_require__(74));
+hljs.registerLanguage('groovy', __webpack_require__(75));
+hljs.registerLanguage('haml', __webpack_require__(76));
+hljs.registerLanguage('handlebars', __webpack_require__(77));
+hljs.registerLanguage('haskell', __webpack_require__(78));
+hljs.registerLanguage('haxe', __webpack_require__(79));
+hljs.registerLanguage('hsp', __webpack_require__(80));
+hljs.registerLanguage('htmlbars', __webpack_require__(81));
+hljs.registerLanguage('http', __webpack_require__(82));
+hljs.registerLanguage('hy', __webpack_require__(83));
+hljs.registerLanguage('inform7', __webpack_require__(84));
+hljs.registerLanguage('ini', __webpack_require__(85));
+hljs.registerLanguage('irpf90', __webpack_require__(86));
+hljs.registerLanguage('java', __webpack_require__(87));
+hljs.registerLanguage('javascript', __webpack_require__(88));
+hljs.registerLanguage('jboss-cli', __webpack_require__(89));
+hljs.registerLanguage('json', __webpack_require__(90));
+hljs.registerLanguage('julia', __webpack_require__(91));
+hljs.registerLanguage('julia-repl', __webpack_require__(92));
+hljs.registerLanguage('kotlin', __webpack_require__(93));
+hljs.registerLanguage('lasso', __webpack_require__(94));
+hljs.registerLanguage('ldif', __webpack_require__(95));
+hljs.registerLanguage('leaf', __webpack_require__(96));
+hljs.registerLanguage('less', __webpack_require__(97));
+hljs.registerLanguage('lisp', __webpack_require__(98));
+hljs.registerLanguage('livecodeserver', __webpack_require__(99));
+hljs.registerLanguage('livescript', __webpack_require__(100));
+hljs.registerLanguage('llvm', __webpack_require__(101));
+hljs.registerLanguage('lsl', __webpack_require__(102));
+hljs.registerLanguage('lua', __webpack_require__(103));
+hljs.registerLanguage('makefile', __webpack_require__(104));
+hljs.registerLanguage('mathematica', __webpack_require__(105));
+hljs.registerLanguage('matlab', __webpack_require__(106));
+hljs.registerLanguage('maxima', __webpack_require__(107));
+hljs.registerLanguage('mel', __webpack_require__(108));
+hljs.registerLanguage('mercury', __webpack_require__(109));
+hljs.registerLanguage('mipsasm', __webpack_require__(110));
+hljs.registerLanguage('mizar', __webpack_require__(111));
+hljs.registerLanguage('perl', __webpack_require__(112));
+hljs.registerLanguage('mojolicious', __webpack_require__(113));
+hljs.registerLanguage('monkey', __webpack_require__(114));
+hljs.registerLanguage('moonscript', __webpack_require__(115));
+hljs.registerLanguage('n1ql', __webpack_require__(116));
+hljs.registerLanguage('nginx', __webpack_require__(117));
+hljs.registerLanguage('nimrod', __webpack_require__(118));
+hljs.registerLanguage('nix', __webpack_require__(119));
+hljs.registerLanguage('nsis', __webpack_require__(120));
+hljs.registerLanguage('objectivec', __webpack_require__(121));
+hljs.registerLanguage('ocaml', __webpack_require__(122));
+hljs.registerLanguage('openscad', __webpack_require__(123));
+hljs.registerLanguage('oxygene', __webpack_require__(124));
+hljs.registerLanguage('parser3', __webpack_require__(125));
+hljs.registerLanguage('pf', __webpack_require__(126));
+hljs.registerLanguage('php', __webpack_require__(127));
+hljs.registerLanguage('pony', __webpack_require__(128));
+hljs.registerLanguage('powershell', __webpack_require__(129));
+hljs.registerLanguage('processing', __webpack_require__(130));
+hljs.registerLanguage('profile', __webpack_require__(131));
+hljs.registerLanguage('prolog', __webpack_require__(132));
+hljs.registerLanguage('protobuf', __webpack_require__(133));
+hljs.registerLanguage('puppet', __webpack_require__(134));
+hljs.registerLanguage('purebasic', __webpack_require__(135));
+hljs.registerLanguage('python', __webpack_require__(136));
+hljs.registerLanguage('q', __webpack_require__(137));
+hljs.registerLanguage('qml', __webpack_require__(138));
+hljs.registerLanguage('r', __webpack_require__(139));
+hljs.registerLanguage('rib', __webpack_require__(140));
+hljs.registerLanguage('roboconf', __webpack_require__(141));
+hljs.registerLanguage('routeros', __webpack_require__(142));
+hljs.registerLanguage('rsl', __webpack_require__(143));
+hljs.registerLanguage('ruleslanguage', __webpack_require__(144));
+hljs.registerLanguage('rust', __webpack_require__(145));
+hljs.registerLanguage('scala', __webpack_require__(146));
+hljs.registerLanguage('scheme', __webpack_require__(147));
+hljs.registerLanguage('scilab', __webpack_require__(148));
+hljs.registerLanguage('scss', __webpack_require__(149));
+hljs.registerLanguage('shell', __webpack_require__(150));
+hljs.registerLanguage('smali', __webpack_require__(151));
+hljs.registerLanguage('smalltalk', __webpack_require__(152));
+hljs.registerLanguage('sml', __webpack_require__(153));
+hljs.registerLanguage('sqf', __webpack_require__(154));
+hljs.registerLanguage('sql', __webpack_require__(155));
+hljs.registerLanguage('stan', __webpack_require__(156));
+hljs.registerLanguage('stata', __webpack_require__(157));
+hljs.registerLanguage('step21', __webpack_require__(158));
+hljs.registerLanguage('stylus', __webpack_require__(159));
+hljs.registerLanguage('subunit', __webpack_require__(160));
+hljs.registerLanguage('swift', __webpack_require__(161));
+hljs.registerLanguage('taggerscript', __webpack_require__(162));
+hljs.registerLanguage('yaml', __webpack_require__(163));
+hljs.registerLanguage('tap', __webpack_require__(164));
+hljs.registerLanguage('tcl', __webpack_require__(165));
+hljs.registerLanguage('tex', __webpack_require__(166));
+hljs.registerLanguage('thrift', __webpack_require__(167));
+hljs.registerLanguage('tp', __webpack_require__(168));
+hljs.registerLanguage('twig', __webpack_require__(169));
+hljs.registerLanguage('typescript', __webpack_require__(170));
+hljs.registerLanguage('vala', __webpack_require__(171));
+hljs.registerLanguage('vbnet', __webpack_require__(172));
+hljs.registerLanguage('vbscript', __webpack_require__(173));
+hljs.registerLanguage('vbscript-html', __webpack_require__(174));
+hljs.registerLanguage('verilog', __webpack_require__(175));
+hljs.registerLanguage('vhdl', __webpack_require__(176));
+hljs.registerLanguage('vim', __webpack_require__(177));
+hljs.registerLanguage('x86asm', __webpack_require__(178));
+hljs.registerLanguage('xl', __webpack_require__(179));
+hljs.registerLanguage('xquery', __webpack_require__(180));
+hljs.registerLanguage('zephir', __webpack_require__(181));
 
-var _jquery2 = _interopRequireDefault(_jquery);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function customizeNavigationScroll() {
-	var support = 'onwheel' in document.createElement('div') ? 'wheel' : document.onmousewheel !== undefined ? 'mousewheel' : 'DOMMouseScroll';
-
-	(0, _jquery2.default)('.side-navigation__inner').on(support, function (e) {
-		var scrollTo = null;
-
-		if (e.type == 'DOMMouseScroll') {
-			scrollTo = 20 * e.originalEvent.detail;
-		} else if (e.type === 'wheel' || e.type === 'mousewheel') {
-			scrollTo = e.originalEvent.wheelDelta ? e.originalEvent.wheelDelta * -1 : e.originalEvent.detail * 20;
-		}
-
-		if (scrollTo) {
-			e.preventDefault();
-			(0, _jquery2.default)(this).scrollTop(scrollTo + (0, _jquery2.default)(this).scrollTop());
-		}
-	});
-} /**
-   * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
-   * For licensing, see LICENSE.md.
-   */
-
-/* global document */
+module.exports = hljs;
 
 /***/ }),
-/* 7 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11077,195 +10997,7 @@ https://highlightjs.org/
 });
 
 /***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var hljs = __webpack_require__(7);
-
-hljs.registerLanguage('1c', __webpack_require__(9));
-hljs.registerLanguage('abnf', __webpack_require__(10));
-hljs.registerLanguage('accesslog', __webpack_require__(11));
-hljs.registerLanguage('actionscript', __webpack_require__(12));
-hljs.registerLanguage('ada', __webpack_require__(13));
-hljs.registerLanguage('apache', __webpack_require__(14));
-hljs.registerLanguage('applescript', __webpack_require__(15));
-hljs.registerLanguage('cpp', __webpack_require__(39));
-hljs.registerLanguage('arduino', __webpack_require__(16));
-hljs.registerLanguage('armasm', __webpack_require__(17));
-hljs.registerLanguage('xml', __webpack_require__(181));
-hljs.registerLanguage('asciidoc', __webpack_require__(18));
-hljs.registerLanguage('aspectj', __webpack_require__(19));
-hljs.registerLanguage('autohotkey', __webpack_require__(20));
-hljs.registerLanguage('autoit', __webpack_require__(21));
-hljs.registerLanguage('avrasm', __webpack_require__(22));
-hljs.registerLanguage('awk', __webpack_require__(23));
-hljs.registerLanguage('axapta', __webpack_require__(24));
-hljs.registerLanguage('bash', __webpack_require__(25));
-hljs.registerLanguage('basic', __webpack_require__(26));
-hljs.registerLanguage('bnf', __webpack_require__(27));
-hljs.registerLanguage('brainfuck', __webpack_require__(28));
-hljs.registerLanguage('cal', __webpack_require__(29));
-hljs.registerLanguage('capnproto', __webpack_require__(30));
-hljs.registerLanguage('ceylon', __webpack_require__(31));
-hljs.registerLanguage('clean', __webpack_require__(32));
-hljs.registerLanguage('clojure', __webpack_require__(34));
-hljs.registerLanguage('clojure-repl', __webpack_require__(33));
-hljs.registerLanguage('cmake', __webpack_require__(35));
-hljs.registerLanguage('coffeescript', __webpack_require__(36));
-hljs.registerLanguage('coq', __webpack_require__(37));
-hljs.registerLanguage('cos', __webpack_require__(38));
-hljs.registerLanguage('crmsh', __webpack_require__(40));
-hljs.registerLanguage('crystal', __webpack_require__(41));
-hljs.registerLanguage('cs', __webpack_require__(42));
-hljs.registerLanguage('csp', __webpack_require__(43));
-hljs.registerLanguage('css', __webpack_require__(44));
-hljs.registerLanguage('d', __webpack_require__(45));
-hljs.registerLanguage('markdown', __webpack_require__(105));
-hljs.registerLanguage('dart', __webpack_require__(46));
-hljs.registerLanguage('delphi', __webpack_require__(47));
-hljs.registerLanguage('diff', __webpack_require__(48));
-hljs.registerLanguage('django', __webpack_require__(49));
-hljs.registerLanguage('dns', __webpack_require__(50));
-hljs.registerLanguage('dockerfile', __webpack_require__(51));
-hljs.registerLanguage('dos', __webpack_require__(52));
-hljs.registerLanguage('dsconfig', __webpack_require__(53));
-hljs.registerLanguage('dts', __webpack_require__(54));
-hljs.registerLanguage('dust', __webpack_require__(55));
-hljs.registerLanguage('ebnf', __webpack_require__(56));
-hljs.registerLanguage('elixir', __webpack_require__(57));
-hljs.registerLanguage('elm', __webpack_require__(58));
-hljs.registerLanguage('ruby', __webpack_require__(145));
-hljs.registerLanguage('erb', __webpack_require__(59));
-hljs.registerLanguage('erlang-repl', __webpack_require__(60));
-hljs.registerLanguage('erlang', __webpack_require__(61));
-hljs.registerLanguage('excel', __webpack_require__(62));
-hljs.registerLanguage('fix', __webpack_require__(63));
-hljs.registerLanguage('flix', __webpack_require__(64));
-hljs.registerLanguage('fortran', __webpack_require__(65));
-hljs.registerLanguage('fsharp', __webpack_require__(66));
-hljs.registerLanguage('gams', __webpack_require__(67));
-hljs.registerLanguage('gauss', __webpack_require__(68));
-hljs.registerLanguage('gcode', __webpack_require__(69));
-hljs.registerLanguage('gherkin', __webpack_require__(70));
-hljs.registerLanguage('glsl', __webpack_require__(71));
-hljs.registerLanguage('go', __webpack_require__(72));
-hljs.registerLanguage('golo', __webpack_require__(73));
-hljs.registerLanguage('gradle', __webpack_require__(74));
-hljs.registerLanguage('groovy', __webpack_require__(75));
-hljs.registerLanguage('haml', __webpack_require__(76));
-hljs.registerLanguage('handlebars', __webpack_require__(77));
-hljs.registerLanguage('haskell', __webpack_require__(78));
-hljs.registerLanguage('haxe', __webpack_require__(79));
-hljs.registerLanguage('hsp', __webpack_require__(80));
-hljs.registerLanguage('htmlbars', __webpack_require__(81));
-hljs.registerLanguage('http', __webpack_require__(82));
-hljs.registerLanguage('hy', __webpack_require__(83));
-hljs.registerLanguage('inform7', __webpack_require__(84));
-hljs.registerLanguage('ini', __webpack_require__(85));
-hljs.registerLanguage('irpf90', __webpack_require__(86));
-hljs.registerLanguage('java', __webpack_require__(87));
-hljs.registerLanguage('javascript', __webpack_require__(88));
-hljs.registerLanguage('jboss-cli', __webpack_require__(89));
-hljs.registerLanguage('json', __webpack_require__(90));
-hljs.registerLanguage('julia', __webpack_require__(92));
-hljs.registerLanguage('julia-repl', __webpack_require__(91));
-hljs.registerLanguage('kotlin', __webpack_require__(93));
-hljs.registerLanguage('lasso', __webpack_require__(94));
-hljs.registerLanguage('ldif', __webpack_require__(95));
-hljs.registerLanguage('leaf', __webpack_require__(96));
-hljs.registerLanguage('less', __webpack_require__(97));
-hljs.registerLanguage('lisp', __webpack_require__(98));
-hljs.registerLanguage('livecodeserver', __webpack_require__(99));
-hljs.registerLanguage('livescript', __webpack_require__(100));
-hljs.registerLanguage('llvm', __webpack_require__(101));
-hljs.registerLanguage('lsl', __webpack_require__(102));
-hljs.registerLanguage('lua', __webpack_require__(103));
-hljs.registerLanguage('makefile', __webpack_require__(104));
-hljs.registerLanguage('mathematica', __webpack_require__(106));
-hljs.registerLanguage('matlab', __webpack_require__(107));
-hljs.registerLanguage('maxima', __webpack_require__(108));
-hljs.registerLanguage('mel', __webpack_require__(109));
-hljs.registerLanguage('mercury', __webpack_require__(110));
-hljs.registerLanguage('mipsasm', __webpack_require__(111));
-hljs.registerLanguage('mizar', __webpack_require__(112));
-hljs.registerLanguage('perl', __webpack_require__(126));
-hljs.registerLanguage('mojolicious', __webpack_require__(113));
-hljs.registerLanguage('monkey', __webpack_require__(114));
-hljs.registerLanguage('moonscript', __webpack_require__(115));
-hljs.registerLanguage('n1ql', __webpack_require__(116));
-hljs.registerLanguage('nginx', __webpack_require__(117));
-hljs.registerLanguage('nimrod', __webpack_require__(118));
-hljs.registerLanguage('nix', __webpack_require__(119));
-hljs.registerLanguage('nsis', __webpack_require__(120));
-hljs.registerLanguage('objectivec', __webpack_require__(121));
-hljs.registerLanguage('ocaml', __webpack_require__(122));
-hljs.registerLanguage('openscad', __webpack_require__(123));
-hljs.registerLanguage('oxygene', __webpack_require__(124));
-hljs.registerLanguage('parser3', __webpack_require__(125));
-hljs.registerLanguage('pf', __webpack_require__(127));
-hljs.registerLanguage('php', __webpack_require__(128));
-hljs.registerLanguage('pony', __webpack_require__(129));
-hljs.registerLanguage('powershell', __webpack_require__(130));
-hljs.registerLanguage('processing', __webpack_require__(131));
-hljs.registerLanguage('profile', __webpack_require__(132));
-hljs.registerLanguage('prolog', __webpack_require__(133));
-hljs.registerLanguage('protobuf', __webpack_require__(134));
-hljs.registerLanguage('puppet', __webpack_require__(135));
-hljs.registerLanguage('purebasic', __webpack_require__(136));
-hljs.registerLanguage('python', __webpack_require__(137));
-hljs.registerLanguage('q', __webpack_require__(138));
-hljs.registerLanguage('qml', __webpack_require__(139));
-hljs.registerLanguage('r', __webpack_require__(140));
-hljs.registerLanguage('rib', __webpack_require__(141));
-hljs.registerLanguage('roboconf', __webpack_require__(142));
-hljs.registerLanguage('routeros', __webpack_require__(143));
-hljs.registerLanguage('rsl', __webpack_require__(144));
-hljs.registerLanguage('ruleslanguage', __webpack_require__(146));
-hljs.registerLanguage('rust', __webpack_require__(147));
-hljs.registerLanguage('scala', __webpack_require__(148));
-hljs.registerLanguage('scheme', __webpack_require__(149));
-hljs.registerLanguage('scilab', __webpack_require__(150));
-hljs.registerLanguage('scss', __webpack_require__(151));
-hljs.registerLanguage('shell', __webpack_require__(152));
-hljs.registerLanguage('smali', __webpack_require__(153));
-hljs.registerLanguage('smalltalk', __webpack_require__(154));
-hljs.registerLanguage('sml', __webpack_require__(155));
-hljs.registerLanguage('sqf', __webpack_require__(156));
-hljs.registerLanguage('sql', __webpack_require__(157));
-hljs.registerLanguage('stan', __webpack_require__(158));
-hljs.registerLanguage('stata', __webpack_require__(159));
-hljs.registerLanguage('step21', __webpack_require__(160));
-hljs.registerLanguage('stylus', __webpack_require__(161));
-hljs.registerLanguage('subunit', __webpack_require__(162));
-hljs.registerLanguage('swift', __webpack_require__(163));
-hljs.registerLanguage('taggerscript', __webpack_require__(164));
-hljs.registerLanguage('yaml', __webpack_require__(183));
-hljs.registerLanguage('tap', __webpack_require__(165));
-hljs.registerLanguage('tcl', __webpack_require__(166));
-hljs.registerLanguage('tex', __webpack_require__(167));
-hljs.registerLanguage('thrift', __webpack_require__(168));
-hljs.registerLanguage('tp', __webpack_require__(169));
-hljs.registerLanguage('twig', __webpack_require__(170));
-hljs.registerLanguage('typescript', __webpack_require__(171));
-hljs.registerLanguage('vala', __webpack_require__(172));
-hljs.registerLanguage('vbnet', __webpack_require__(173));
-hljs.registerLanguage('vbscript', __webpack_require__(175));
-hljs.registerLanguage('vbscript-html', __webpack_require__(174));
-hljs.registerLanguage('verilog', __webpack_require__(176));
-hljs.registerLanguage('vhdl', __webpack_require__(177));
-hljs.registerLanguage('vim', __webpack_require__(178));
-hljs.registerLanguage('x86asm', __webpack_require__(179));
-hljs.registerLanguage('xl', __webpack_require__(180));
-hljs.registerLanguage('xquery', __webpack_require__(182));
-hljs.registerLanguage('zephir', __webpack_require__(184));
-
-module.exports = hljs;
-
-/***/ }),
-/* 9 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11464,7 +11196,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 10 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11516,7 +11248,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 11 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11560,7 +11292,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 12 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11613,7 +11345,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 13 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11763,7 +11495,7 @@ function (hljs) {
 };
 
 /***/ }),
-/* 14 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11804,7 +11536,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 15 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11849,7 +11581,122 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 16 */
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function (hljs) {
+  var CPP_PRIMITIVE_TYPES = {
+    className: 'keyword',
+    begin: '\\b[a-z\\d_]*_t\\b'
+  };
+
+  var STRINGS = {
+    className: 'string',
+    variants: [{
+      begin: '(u8?|U)?L?"', end: '"',
+      illegal: '\\n',
+      contains: [hljs.BACKSLASH_ESCAPE]
+    }, {
+      begin: '(u8?|U)?R"', end: '"',
+      contains: [hljs.BACKSLASH_ESCAPE]
+    }, {
+      begin: '\'\\\\?.', end: '\'',
+      illegal: '.'
+    }]
+  };
+
+  var NUMBERS = {
+    className: 'number',
+    variants: [{ begin: '\\b(0b[01\']+)' }, { begin: '(-?)\\b([\\d\']+(\\.[\\d\']*)?|\\.[\\d\']+)(u|U|l|L|ul|UL|f|F|b|B)' }, { begin: '(-?)(\\b0[xX][a-fA-F0-9\']+|(\\b[\\d\']+(\\.[\\d\']*)?|\\.[\\d\']+)([eE][-+]?[\\d\']+)?)' }],
+    relevance: 0
+  };
+
+  var PREPROCESSOR = {
+    className: 'meta',
+    begin: /#\s*[a-z]+\b/, end: /$/,
+    keywords: {
+      'meta-keyword': 'if else elif endif define undef warning error line ' + 'pragma ifdef ifndef include'
+    },
+    contains: [{
+      begin: /\\\n/, relevance: 0
+    }, hljs.inherit(STRINGS, { className: 'meta-string' }), {
+      className: 'meta-string',
+      begin: /<[^\n>]*>/, end: /$/,
+      illegal: '\\n'
+    }, hljs.C_LINE_COMMENT_MODE, hljs.C_BLOCK_COMMENT_MODE]
+  };
+
+  var FUNCTION_TITLE = hljs.IDENT_RE + '\\s*\\(';
+
+  var CPP_KEYWORDS = {
+    keyword: 'int float while private char catch import module export virtual operator sizeof ' + 'dynamic_cast|10 typedef const_cast|10 const for static_cast|10 union namespace ' + 'unsigned long volatile static protected bool template mutable if public friend ' + 'do goto auto void enum else break extern using asm case typeid ' + 'short reinterpret_cast|10 default double register explicit signed typename try this ' + 'switch continue inline delete alignof constexpr decltype ' + 'noexcept static_assert thread_local restrict _Bool complex _Complex _Imaginary ' + 'atomic_bool atomic_char atomic_schar ' + 'atomic_uchar atomic_short atomic_ushort atomic_int atomic_uint atomic_long atomic_ulong atomic_llong ' + 'atomic_ullong new throw return ' + 'and or not',
+    built_in: 'std string cin cout cerr clog stdin stdout stderr stringstream istringstream ostringstream ' + 'auto_ptr deque list queue stack vector map set bitset multiset multimap unordered_set ' + 'unordered_map unordered_multiset unordered_multimap array shared_ptr abort abs acos ' + 'asin atan2 atan calloc ceil cosh cos exit exp fabs floor fmod fprintf fputs free frexp ' + 'fscanf isalnum isalpha iscntrl isdigit isgraph islower isprint ispunct isspace isupper ' + 'isxdigit tolower toupper labs ldexp log10 log malloc realloc memchr memcmp memcpy memset modf pow ' + 'printf putchar puts scanf sinh sin snprintf sprintf sqrt sscanf strcat strchr strcmp ' + 'strcpy strcspn strlen strncat strncmp strncpy strpbrk strrchr strspn strstr tanh tan ' + 'vfprintf vprintf vsprintf endl initializer_list unique_ptr',
+    literal: 'true false nullptr NULL'
+  };
+
+  var EXPRESSION_CONTAINS = [CPP_PRIMITIVE_TYPES, hljs.C_LINE_COMMENT_MODE, hljs.C_BLOCK_COMMENT_MODE, NUMBERS, STRINGS];
+
+  return {
+    aliases: ['c', 'cc', 'h', 'c++', 'h++', 'hpp'],
+    keywords: CPP_KEYWORDS,
+    illegal: '</',
+    contains: EXPRESSION_CONTAINS.concat([PREPROCESSOR, {
+      begin: '\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<', end: '>',
+      keywords: CPP_KEYWORDS,
+      contains: ['self', CPP_PRIMITIVE_TYPES]
+    }, {
+      begin: hljs.IDENT_RE + '::',
+      keywords: CPP_KEYWORDS
+    }, {
+      // This mode covers expression context where we can't expect a function
+      // definition and shouldn't highlight anything that looks like one:
+      // `return some()`, `else if()`, `(x*sum(1, 2))`
+      variants: [{ begin: /=/, end: /;/ }, { begin: /\(/, end: /\)/ }, { beginKeywords: 'new throw return else', end: /;/ }],
+      keywords: CPP_KEYWORDS,
+      contains: EXPRESSION_CONTAINS.concat([{
+        begin: /\(/, end: /\)/,
+        keywords: CPP_KEYWORDS,
+        contains: EXPRESSION_CONTAINS.concat(['self']),
+        relevance: 0
+      }]),
+      relevance: 0
+    }, {
+      className: 'function',
+      begin: '(' + hljs.IDENT_RE + '[\\*&\\s]+)+' + FUNCTION_TITLE,
+      returnBegin: true, end: /[{;=]/,
+      excludeEnd: true,
+      keywords: CPP_KEYWORDS,
+      illegal: /[^\w\s\*&]/,
+      contains: [{
+        begin: FUNCTION_TITLE, returnBegin: true,
+        contains: [hljs.TITLE_MODE],
+        relevance: 0
+      }, {
+        className: 'params',
+        begin: /\(/, end: /\)/,
+        keywords: CPP_KEYWORDS,
+        relevance: 0,
+        contains: [hljs.C_LINE_COMMENT_MODE, hljs.C_BLOCK_COMMENT_MODE, STRINGS, NUMBERS, CPP_PRIMITIVE_TYPES]
+      }, hljs.C_LINE_COMMENT_MODE, hljs.C_BLOCK_COMMENT_MODE, PREPROCESSOR]
+    }, {
+      className: 'class',
+      beginKeywords: 'class struct', end: /[{;:]/,
+      contains: [{ begin: /</, end: />/, contains: ['self'] }, // skip generic stuff
+      hljs.TITLE_MODE]
+    }]),
+    exports: {
+      preprocessor: PREPROCESSOR,
+      strings: STRINGS,
+      keywords: CPP_KEYWORDS
+    }
+  };
+};
+
+/***/ }),
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11868,7 +11715,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 17 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11935,7 +11782,89 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 18 */
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function (hljs) {
+  var XML_IDENT_RE = '[A-Za-z0-9\\._:-]+';
+  var TAG_INTERNALS = {
+    endsWithParent: true,
+    illegal: /</,
+    relevance: 0,
+    contains: [{
+      className: 'attr',
+      begin: XML_IDENT_RE,
+      relevance: 0
+    }, {
+      begin: /=\s*/,
+      relevance: 0,
+      contains: [{
+        className: 'string',
+        endsParent: true,
+        variants: [{ begin: /"/, end: /"/ }, { begin: /'/, end: /'/ }, { begin: /[^\s"'=<>`]+/ }]
+      }]
+    }]
+  };
+  return {
+    aliases: ['html', 'xhtml', 'rss', 'atom', 'xjb', 'xsd', 'xsl', 'plist'],
+    case_insensitive: true,
+    contains: [{
+      className: 'meta',
+      begin: '<!DOCTYPE', end: '>',
+      relevance: 10,
+      contains: [{ begin: '\\[', end: '\\]' }]
+    }, hljs.COMMENT('<!--', '-->', {
+      relevance: 10
+    }), {
+      begin: '<\\!\\[CDATA\\[', end: '\\]\\]>',
+      relevance: 10
+    }, {
+      begin: /<\?(php)?/, end: /\?>/,
+      subLanguage: 'php',
+      contains: [{ begin: '/\\*', end: '\\*/', skip: true }]
+    }, {
+      className: 'tag',
+      /*
+      The lookahead pattern (?=...) ensures that 'begin' only matches
+      '<style' as a single word, followed by a whitespace or an
+      ending braket. The '$' is needed for the lexeme to be recognized
+      by hljs.subMode() that tests lexemes outside the stream.
+      */
+      begin: '<style(?=\\s|>|$)', end: '>',
+      keywords: { name: 'style' },
+      contains: [TAG_INTERNALS],
+      starts: {
+        end: '</style>', returnEnd: true,
+        subLanguage: ['css', 'xml']
+      }
+    }, {
+      className: 'tag',
+      // See the comment in the <style tag about the lookahead pattern
+      begin: '<script(?=\\s|>|$)', end: '>',
+      keywords: { name: 'script' },
+      contains: [TAG_INTERNALS],
+      starts: {
+        end: '\<\/script\>', returnEnd: true,
+        subLanguage: ['actionscript', 'javascript', 'handlebars', 'xml']
+      }
+    }, {
+      className: 'meta',
+      variants: [{ begin: /<\?xml/, end: /\?>/, relevance: 10 }, { begin: /<\?\w+/, end: /\?>/ }]
+    }, {
+      className: 'tag',
+      begin: '</?', end: '/?>',
+      contains: [{
+        className: 'name', begin: /[^\/><\s]+/, relevance: 0
+      }, TAG_INTERNALS]
+    }]
+  };
+};
+
+/***/ }),
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12106,7 +12035,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12207,7 +12136,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12259,7 +12188,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12365,7 +12294,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12405,7 +12334,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12447,7 +12376,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12469,7 +12398,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12527,7 +12456,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12565,7 +12494,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12595,7 +12524,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12629,7 +12558,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12690,7 +12619,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12730,7 +12659,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12788,7 +12717,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12807,27 +12736,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function (hljs) {
-  return {
-    contains: [{
-      className: 'meta',
-      begin: /^([\w.-]+|\s*#_)=>/,
-      starts: {
-        end: /$/,
-        subLanguage: 'clojure'
-      }
-    }]
-  };
-};
-
-/***/ }),
-/* 34 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12900,7 +12809,27 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 35 */
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function (hljs) {
+  return {
+    contains: [{
+      className: 'meta',
+      begin: /^([\w.-]+|\s*#_)=>/,
+      starts: {
+        end: /$/,
+        subLanguage: 'clojure'
+      }
+    }]
+  };
+};
+
+/***/ }),
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12921,7 +12850,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 36 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13042,7 +12971,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 37 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13065,7 +12994,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13174,122 +13103,7 @@ module.exports = function cos(hljs) {
 };
 
 /***/ }),
-/* 39 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function (hljs) {
-  var CPP_PRIMITIVE_TYPES = {
-    className: 'keyword',
-    begin: '\\b[a-z\\d_]*_t\\b'
-  };
-
-  var STRINGS = {
-    className: 'string',
-    variants: [{
-      begin: '(u8?|U)?L?"', end: '"',
-      illegal: '\\n',
-      contains: [hljs.BACKSLASH_ESCAPE]
-    }, {
-      begin: '(u8?|U)?R"', end: '"',
-      contains: [hljs.BACKSLASH_ESCAPE]
-    }, {
-      begin: '\'\\\\?.', end: '\'',
-      illegal: '.'
-    }]
-  };
-
-  var NUMBERS = {
-    className: 'number',
-    variants: [{ begin: '\\b(0b[01\']+)' }, { begin: '(-?)\\b([\\d\']+(\\.[\\d\']*)?|\\.[\\d\']+)(u|U|l|L|ul|UL|f|F|b|B)' }, { begin: '(-?)(\\b0[xX][a-fA-F0-9\']+|(\\b[\\d\']+(\\.[\\d\']*)?|\\.[\\d\']+)([eE][-+]?[\\d\']+)?)' }],
-    relevance: 0
-  };
-
-  var PREPROCESSOR = {
-    className: 'meta',
-    begin: /#\s*[a-z]+\b/, end: /$/,
-    keywords: {
-      'meta-keyword': 'if else elif endif define undef warning error line ' + 'pragma ifdef ifndef include'
-    },
-    contains: [{
-      begin: /\\\n/, relevance: 0
-    }, hljs.inherit(STRINGS, { className: 'meta-string' }), {
-      className: 'meta-string',
-      begin: /<[^\n>]*>/, end: /$/,
-      illegal: '\\n'
-    }, hljs.C_LINE_COMMENT_MODE, hljs.C_BLOCK_COMMENT_MODE]
-  };
-
-  var FUNCTION_TITLE = hljs.IDENT_RE + '\\s*\\(';
-
-  var CPP_KEYWORDS = {
-    keyword: 'int float while private char catch import module export virtual operator sizeof ' + 'dynamic_cast|10 typedef const_cast|10 const for static_cast|10 union namespace ' + 'unsigned long volatile static protected bool template mutable if public friend ' + 'do goto auto void enum else break extern using asm case typeid ' + 'short reinterpret_cast|10 default double register explicit signed typename try this ' + 'switch continue inline delete alignof constexpr decltype ' + 'noexcept static_assert thread_local restrict _Bool complex _Complex _Imaginary ' + 'atomic_bool atomic_char atomic_schar ' + 'atomic_uchar atomic_short atomic_ushort atomic_int atomic_uint atomic_long atomic_ulong atomic_llong ' + 'atomic_ullong new throw return ' + 'and or not',
-    built_in: 'std string cin cout cerr clog stdin stdout stderr stringstream istringstream ostringstream ' + 'auto_ptr deque list queue stack vector map set bitset multiset multimap unordered_set ' + 'unordered_map unordered_multiset unordered_multimap array shared_ptr abort abs acos ' + 'asin atan2 atan calloc ceil cosh cos exit exp fabs floor fmod fprintf fputs free frexp ' + 'fscanf isalnum isalpha iscntrl isdigit isgraph islower isprint ispunct isspace isupper ' + 'isxdigit tolower toupper labs ldexp log10 log malloc realloc memchr memcmp memcpy memset modf pow ' + 'printf putchar puts scanf sinh sin snprintf sprintf sqrt sscanf strcat strchr strcmp ' + 'strcpy strcspn strlen strncat strncmp strncpy strpbrk strrchr strspn strstr tanh tan ' + 'vfprintf vprintf vsprintf endl initializer_list unique_ptr',
-    literal: 'true false nullptr NULL'
-  };
-
-  var EXPRESSION_CONTAINS = [CPP_PRIMITIVE_TYPES, hljs.C_LINE_COMMENT_MODE, hljs.C_BLOCK_COMMENT_MODE, NUMBERS, STRINGS];
-
-  return {
-    aliases: ['c', 'cc', 'h', 'c++', 'h++', 'hpp'],
-    keywords: CPP_KEYWORDS,
-    illegal: '</',
-    contains: EXPRESSION_CONTAINS.concat([PREPROCESSOR, {
-      begin: '\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<', end: '>',
-      keywords: CPP_KEYWORDS,
-      contains: ['self', CPP_PRIMITIVE_TYPES]
-    }, {
-      begin: hljs.IDENT_RE + '::',
-      keywords: CPP_KEYWORDS
-    }, {
-      // This mode covers expression context where we can't expect a function
-      // definition and shouldn't highlight anything that looks like one:
-      // `return some()`, `else if()`, `(x*sum(1, 2))`
-      variants: [{ begin: /=/, end: /;/ }, { begin: /\(/, end: /\)/ }, { beginKeywords: 'new throw return else', end: /;/ }],
-      keywords: CPP_KEYWORDS,
-      contains: EXPRESSION_CONTAINS.concat([{
-        begin: /\(/, end: /\)/,
-        keywords: CPP_KEYWORDS,
-        contains: EXPRESSION_CONTAINS.concat(['self']),
-        relevance: 0
-      }]),
-      relevance: 0
-    }, {
-      className: 'function',
-      begin: '(' + hljs.IDENT_RE + '[\\*&\\s]+)+' + FUNCTION_TITLE,
-      returnBegin: true, end: /[{;=]/,
-      excludeEnd: true,
-      keywords: CPP_KEYWORDS,
-      illegal: /[^\w\s\*&]/,
-      contains: [{
-        begin: FUNCTION_TITLE, returnBegin: true,
-        contains: [hljs.TITLE_MODE],
-        relevance: 0
-      }, {
-        className: 'params',
-        begin: /\(/, end: /\)/,
-        keywords: CPP_KEYWORDS,
-        relevance: 0,
-        contains: [hljs.C_LINE_COMMENT_MODE, hljs.C_BLOCK_COMMENT_MODE, STRINGS, NUMBERS, CPP_PRIMITIVE_TYPES]
-      }, hljs.C_LINE_COMMENT_MODE, hljs.C_BLOCK_COMMENT_MODE, PREPROCESSOR]
-    }, {
-      className: 'class',
-      beginKeywords: 'class struct', end: /[{;:]/,
-      contains: [{ begin: /</, end: />/, contains: ['self'] }, // skip generic stuff
-      hljs.TITLE_MODE]
-    }]),
-    exports: {
-      preprocessor: PREPROCESSOR,
-      strings: STRINGS,
-      keywords: CPP_KEYWORDS
-    }
-  };
-};
-
-/***/ }),
-/* 40 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13374,7 +13188,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 41 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13489,7 +13303,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 42 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13603,7 +13417,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 43 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13627,7 +13441,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 44 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13704,7 +13518,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 45 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13917,7 +13731,103 @@ function (hljs) {
 };
 
 /***/ }),
-/* 46 */
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function (hljs) {
+  return {
+    aliases: ['md', 'mkdown', 'mkd'],
+    contains: [
+    // highlight headers
+    {
+      className: 'section',
+      variants: [{ begin: '^#{1,6}', end: '$' }, { begin: '^.+?\\n[=-]{2,}$' }]
+    },
+    // inline html
+    {
+      begin: '<', end: '>',
+      subLanguage: 'xml',
+      relevance: 0
+    },
+    // lists (indicators only)
+    {
+      className: 'bullet',
+      begin: '^([*+-]|(\\d+\\.))\\s+'
+    },
+    // strong segments
+    {
+      className: 'strong',
+      begin: '[*_]{2}.+?[*_]{2}'
+    },
+    // emphasis segments
+    {
+      className: 'emphasis',
+      variants: [{ begin: '\\*.+?\\*' }, { begin: '_.+?_',
+        relevance: 0
+      }]
+    },
+    // blockquotes
+    {
+      className: 'quote',
+      begin: '^>\\s+', end: '$'
+    },
+    // code snippets
+    {
+      className: 'code',
+      variants: [{
+        begin: '^```\w*\s*$', end: '^```\s*$'
+      }, {
+        begin: '`.+?`'
+      }, {
+        begin: '^( {4}|\t)', end: '$',
+        relevance: 0
+      }]
+    },
+    // horizontal rules
+    {
+      begin: '^[-\\*]{3,}', end: '$'
+    },
+    // using links - title and link
+    {
+      begin: '\\[.+?\\][\\(\\[].*?[\\)\\]]',
+      returnBegin: true,
+      contains: [{
+        className: 'string',
+        begin: '\\[', end: '\\]',
+        excludeBegin: true,
+        returnEnd: true,
+        relevance: 0
+      }, {
+        className: 'link',
+        begin: '\\]\\(', end: '\\)',
+        excludeBegin: true, excludeEnd: true
+      }, {
+        className: 'symbol',
+        begin: '\\]\\[', end: '\\]',
+        excludeBegin: true, excludeEnd: true
+      }],
+      relevance: 10
+    }, {
+      begin: /^\[[^\n]+\]:/,
+      returnBegin: true,
+      contains: [{
+        className: 'symbol',
+        begin: /\[/, end: /\]/,
+        excludeBegin: true, excludeEnd: true
+      }, {
+        className: 'link',
+        begin: /:\s*/, end: /$/,
+        excludeBegin: true
+      }]
+    }]
+  };
+};
+
+/***/ }),
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13990,7 +13900,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 47 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14036,7 +13946,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 48 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14066,7 +13976,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 49 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14110,7 +14020,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 50 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14140,7 +14050,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 51 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14163,7 +14073,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 52 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14202,7 +14112,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 53 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14247,7 +14157,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 54 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14336,7 +14246,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 55 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14368,7 +14278,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 56 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14401,7 +14311,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 57 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14480,7 +14390,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 58 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14545,6 +14455,130 @@ module.exports = function (hljs) {
     hljs.QUOTE_STRING_MODE, hljs.C_NUMBER_MODE, CONSTRUCTOR, hljs.inherit(hljs.TITLE_MODE, { begin: '^[_a-z][\\w\']*' }), COMMENT, { begin: '->|<-' // No markup, relevance booster
     }],
     illegal: /;/
+  };
+};
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function (hljs) {
+  var RUBY_METHOD_RE = '[a-zA-Z_]\\w*[!?=]?|[-+~]\\@|<<|>>|=~|===?|<=>|[<>]=?|\\*\\*|[-/+%^&*~`|]|\\[\\]=?';
+  var RUBY_KEYWORDS = {
+    keyword: 'and then defined module in return redo if BEGIN retry end for self when ' + 'next until do begin unless END rescue else break undef not super class case ' + 'require yield alias while ensure elsif or include attr_reader attr_writer attr_accessor',
+    literal: 'true false nil'
+  };
+  var YARDOCTAG = {
+    className: 'doctag',
+    begin: '@[A-Za-z]+'
+  };
+  var IRB_OBJECT = {
+    begin: '#<', end: '>'
+  };
+  var COMMENT_MODES = [hljs.COMMENT('#', '$', {
+    contains: [YARDOCTAG]
+  }), hljs.COMMENT('^\\=begin', '^\\=end', {
+    contains: [YARDOCTAG],
+    relevance: 10
+  }), hljs.COMMENT('^__END__', '\\n$')];
+  var SUBST = {
+    className: 'subst',
+    begin: '#\\{', end: '}',
+    keywords: RUBY_KEYWORDS
+  };
+  var STRING = {
+    className: 'string',
+    contains: [hljs.BACKSLASH_ESCAPE, SUBST],
+    variants: [{ begin: /'/, end: /'/ }, { begin: /"/, end: /"/ }, { begin: /`/, end: /`/ }, { begin: '%[qQwWx]?\\(', end: '\\)' }, { begin: '%[qQwWx]?\\[', end: '\\]' }, { begin: '%[qQwWx]?{', end: '}' }, { begin: '%[qQwWx]?<', end: '>' }, { begin: '%[qQwWx]?/', end: '/' }, { begin: '%[qQwWx]?%', end: '%' }, { begin: '%[qQwWx]?-', end: '-' }, { begin: '%[qQwWx]?\\|', end: '\\|' }, {
+      // \B in the beginning suppresses recognition of ?-sequences where ?
+      // is the last character of a preceding identifier, as in: `func?4`
+      begin: /\B\?(\\\d{1,3}|\\x[A-Fa-f0-9]{1,2}|\\u[A-Fa-f0-9]{4}|\\?\S)\b/
+    }, {
+      begin: /<<(-?)\w+$/, end: /^\s*\w+$/
+    }]
+  };
+  var PARAMS = {
+    className: 'params',
+    begin: '\\(', end: '\\)', endsParent: true,
+    keywords: RUBY_KEYWORDS
+  };
+
+  var RUBY_DEFAULT_CONTAINS = [STRING, IRB_OBJECT, {
+    className: 'class',
+    beginKeywords: 'class module', end: '$|;',
+    illegal: /=/,
+    contains: [hljs.inherit(hljs.TITLE_MODE, { begin: '[A-Za-z_]\\w*(::\\w+)*(\\?|\\!)?' }), {
+      begin: '<\\s*',
+      contains: [{
+        begin: '(' + hljs.IDENT_RE + '::)?' + hljs.IDENT_RE
+      }]
+    }].concat(COMMENT_MODES)
+  }, {
+    className: 'function',
+    beginKeywords: 'def', end: '$|;',
+    contains: [hljs.inherit(hljs.TITLE_MODE, { begin: RUBY_METHOD_RE }), PARAMS].concat(COMMENT_MODES)
+  }, {
+    // swallow namespace qualifiers before symbols
+    begin: hljs.IDENT_RE + '::'
+  }, {
+    className: 'symbol',
+    begin: hljs.UNDERSCORE_IDENT_RE + '(\\!|\\?)?:',
+    relevance: 0
+  }, {
+    className: 'symbol',
+    begin: ':(?!\\s)',
+    contains: [STRING, { begin: RUBY_METHOD_RE }],
+    relevance: 0
+  }, {
+    className: 'number',
+    begin: '(\\b0[0-7_]+)|(\\b0x[0-9a-fA-F_]+)|(\\b[1-9][0-9_]*(\\.[0-9_]+)?)|[0_]\\b',
+    relevance: 0
+  }, {
+    begin: '(\\$\\W)|((\\$|\\@\\@?)(\\w+))' // variables
+  }, {
+    className: 'params',
+    begin: /\|/, end: /\|/,
+    keywords: RUBY_KEYWORDS
+  }, { // regexp container
+    begin: '(' + hljs.RE_STARTERS_RE + '|unless)\\s*',
+    keywords: 'unless',
+    contains: [IRB_OBJECT, {
+      className: 'regexp',
+      contains: [hljs.BACKSLASH_ESCAPE, SUBST],
+      illegal: /\n/,
+      variants: [{ begin: '/', end: '/[a-z]*' }, { begin: '%r{', end: '}[a-z]*' }, { begin: '%r\\(', end: '\\)[a-z]*' }, { begin: '%r!', end: '![a-z]*' }, { begin: '%r\\[', end: '\\][a-z]*' }]
+    }].concat(COMMENT_MODES),
+    relevance: 0
+  }].concat(COMMENT_MODES);
+
+  SUBST.contains = RUBY_DEFAULT_CONTAINS;
+  PARAMS.contains = RUBY_DEFAULT_CONTAINS;
+
+  var SIMPLE_PROMPT = "[>?]>";
+  var DEFAULT_PROMPT = "[\\w#]+\\(\\w+\\):\\d+:\\d+>";
+  var RVM_PROMPT = "(\\w+-)?\\d+\\.\\d+\\.\\d(p\\d+)?[^>]+>";
+
+  var IRB_DEFAULT = [{
+    begin: /^\s*=>/,
+    starts: {
+      end: '$', contains: RUBY_DEFAULT_CONTAINS
+    }
+  }, {
+    className: 'meta',
+    begin: '^(' + SIMPLE_PROMPT + "|" + DEFAULT_PROMPT + '|' + RVM_PROMPT + ')',
+    starts: {
+      end: '$', contains: RUBY_DEFAULT_CONTAINS
+    }
+  }];
+
+  return {
+    aliases: ['rb', 'gemspec', 'podspec', 'thor', 'irb'],
+    keywords: RUBY_KEYWORDS,
+    illegal: /\/\*/,
+    contains: COMMENT_MODES.concat(IRB_DEFAULT).concat(RUBY_DEFAULT_CONTAINS)
   };
 };
 
@@ -16276,35 +16310,6 @@ module.exports = function (hljs) {
 
 
 module.exports = function (hljs) {
-  return {
-    contains: [{
-      className: 'meta',
-      begin: /^julia>/,
-      relevance: 10,
-      starts: {
-        // end the highlighting if we are on a new line and the line does not have at
-        // least six spaces in the beginning
-        end: /^(?![ ]{6})/,
-        subLanguage: 'julia'
-      },
-      // jldoctest Markdown blocks are used in the Julia manual and package docs indicate
-      // code snippets that should be verified when the documentation is built. They can be
-      // either REPL-like or script-like, but are usually REPL-like and therefore we apply
-      // julia-repl highlighting to them. More information can be found in Documenter's
-      // manual: https://juliadocs.github.io/Documenter.jl/latest/man/doctests.html
-      aliases: ['jldoctest']
-    }]
-  };
-};
-
-/***/ }),
-/* 92 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function (hljs) {
   // Since there are numerous special names in Julia, it is too much trouble
   // to maintain them by hand. Hence these names (i.e. keywords, literals and
   // built-ins) are automatically generated from Julia v0.6 itself through
@@ -16416,6 +16421,35 @@ module.exports = function (hljs) {
   INTERPOLATION.contains = DEFAULT.contains;
 
   return DEFAULT;
+};
+
+/***/ }),
+/* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function (hljs) {
+  return {
+    contains: [{
+      className: 'meta',
+      begin: /^julia>/,
+      relevance: 10,
+      starts: {
+        // end the highlighting if we are on a new line and the line does not have at
+        // least six spaces in the beginning
+        end: /^(?![ ]{6})/,
+        subLanguage: 'julia'
+      },
+      // jldoctest Markdown blocks are used in the Julia manual and package docs indicate
+      // code snippets that should be verified when the documentation is built. They can be
+      // either REPL-like or script-like, but are usually REPL-like and therefore we apply
+      // julia-repl highlighting to them. More information can be found in Documenter's
+      // manual: https://juliadocs.github.io/Documenter.jl/latest/man/doctests.html
+      aliases: ['jldoctest']
+    }]
+  };
 };
 
 /***/ }),
@@ -17313,102 +17347,6 @@ module.exports = function (hljs) {
 
 module.exports = function (hljs) {
   return {
-    aliases: ['md', 'mkdown', 'mkd'],
-    contains: [
-    // highlight headers
-    {
-      className: 'section',
-      variants: [{ begin: '^#{1,6}', end: '$' }, { begin: '^.+?\\n[=-]{2,}$' }]
-    },
-    // inline html
-    {
-      begin: '<', end: '>',
-      subLanguage: 'xml',
-      relevance: 0
-    },
-    // lists (indicators only)
-    {
-      className: 'bullet',
-      begin: '^([*+-]|(\\d+\\.))\\s+'
-    },
-    // strong segments
-    {
-      className: 'strong',
-      begin: '[*_]{2}.+?[*_]{2}'
-    },
-    // emphasis segments
-    {
-      className: 'emphasis',
-      variants: [{ begin: '\\*.+?\\*' }, { begin: '_.+?_',
-        relevance: 0
-      }]
-    },
-    // blockquotes
-    {
-      className: 'quote',
-      begin: '^>\\s+', end: '$'
-    },
-    // code snippets
-    {
-      className: 'code',
-      variants: [{
-        begin: '^```\w*\s*$', end: '^```\s*$'
-      }, {
-        begin: '`.+?`'
-      }, {
-        begin: '^( {4}|\t)', end: '$',
-        relevance: 0
-      }]
-    },
-    // horizontal rules
-    {
-      begin: '^[-\\*]{3,}', end: '$'
-    },
-    // using links - title and link
-    {
-      begin: '\\[.+?\\][\\(\\[].*?[\\)\\]]',
-      returnBegin: true,
-      contains: [{
-        className: 'string',
-        begin: '\\[', end: '\\]',
-        excludeBegin: true,
-        returnEnd: true,
-        relevance: 0
-      }, {
-        className: 'link',
-        begin: '\\]\\(', end: '\\)',
-        excludeBegin: true, excludeEnd: true
-      }, {
-        className: 'symbol',
-        begin: '\\]\\[', end: '\\]',
-        excludeBegin: true, excludeEnd: true
-      }],
-      relevance: 10
-    }, {
-      begin: /^\[[^\n]+\]:/,
-      returnBegin: true,
-      contains: [{
-        className: 'symbol',
-        begin: /\[/, end: /\]/,
-        excludeBegin: true, excludeEnd: true
-      }, {
-        className: 'link',
-        begin: /:\s*/, end: /$/,
-        excludeBegin: true
-      }]
-    }]
-  };
-};
-
-/***/ }),
-/* 106 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function (hljs) {
-  return {
     aliases: ['mma'],
     lexemes: '(\\$|\\b)' + hljs.IDENT_RE + '\\b',
     keywords: 'AbelianGroup Abort AbortKernels AbortProtect Above Abs Absolute AbsoluteCorrelation AbsoluteCorrelationFunction AbsoluteCurrentValue AbsoluteDashing AbsoluteFileName AbsoluteOptions AbsolutePointSize AbsoluteThickness AbsoluteTime AbsoluteTiming AccountingForm Accumulate Accuracy AccuracyGoal ActionDelay ActionMenu ActionMenuBox ActionMenuBoxOptions Active ActiveItem ActiveStyle AcyclicGraphQ AddOnHelpPath AddTo AdjacencyGraph AdjacencyList AdjacencyMatrix AdjustmentBox AdjustmentBoxOptions AdjustTimeSeriesForecast AffineTransform After AiryAi AiryAiPrime AiryAiZero AiryBi AiryBiPrime AiryBiZero AlgebraicIntegerQ AlgebraicNumber AlgebraicNumberDenominator AlgebraicNumberNorm AlgebraicNumberPolynomial AlgebraicNumberTrace AlgebraicRules AlgebraicRulesData Algebraics AlgebraicUnitQ Alignment AlignmentMarker AlignmentPoint All AllowedDimensions AllowGroupClose AllowInlineCells AllowKernelInitialization AllowReverseGroupClose AllowScriptLevelChange AlphaChannel AlternatingGroup AlternativeHypothesis Alternatives AmbientLight Analytic AnchoredSearch And AndersonDarlingTest AngerJ AngleBracket AngularGauge Animate AnimationCycleOffset AnimationCycleRepetitions AnimationDirection AnimationDisplayTime AnimationRate AnimationRepetitions AnimationRunning Animator AnimatorBox AnimatorBoxOptions AnimatorElements Annotation Annuity AnnuityDue Antialiasing Antisymmetric Apart ApartSquareFree Appearance AppearanceElements AppellF1 Append AppendTo Apply ArcCos ArcCosh ArcCot ArcCoth ArcCsc ArcCsch ArcSec ArcSech ArcSin ArcSinDistribution ArcSinh ArcTan ArcTanh Arg ArgMax ArgMin ArgumentCountQ ARIMAProcess ArithmeticGeometricMean ARMAProcess ARProcess Array ArrayComponents ArrayDepth ArrayFlatten ArrayPad ArrayPlot ArrayQ ArrayReshape ArrayRules Arrays Arrow Arrow3DBox ArrowBox Arrowheads AspectRatio AspectRatioFixed Assert Assuming Assumptions AstronomicalData Asynchronous AsynchronousTaskObject AsynchronousTasks AtomQ Attributes AugmentedSymmetricPolynomial AutoAction AutoDelete AutoEvaluateEvents AutoGeneratedPackage AutoIndent AutoIndentSpacings AutoItalicWords AutoloadPath AutoMatch Automatic AutomaticImageSize AutoMultiplicationSymbol AutoNumberFormatting AutoOpenNotebooks AutoOpenPalettes AutorunSequencing AutoScaling AutoScroll AutoSpacing AutoStyleOptions AutoStyleWords Axes AxesEdge AxesLabel AxesOrigin AxesStyle Axis ' + 'BabyMonsterGroupB Back Background BackgroundTasksSettings Backslash Backsubstitution Backward Band BandpassFilter BandstopFilter BarabasiAlbertGraphDistribution BarChart BarChart3D BarLegend BarlowProschanImportance BarnesG BarOrigin BarSpacing BartlettHannWindow BartlettWindow BaseForm Baseline BaselinePosition BaseStyle BatesDistribution BattleLemarieWavelet Because BeckmannDistribution Beep Before Begin BeginDialogPacket BeginFrontEndInteractionPacket BeginPackage BellB BellY Below BenfordDistribution BeniniDistribution BenktanderGibratDistribution BenktanderWeibullDistribution BernoulliB BernoulliDistribution BernoulliGraphDistribution BernoulliProcess BernsteinBasis BesselFilterModel BesselI BesselJ BesselJZero BesselK BesselY BesselYZero Beta BetaBinomialDistribution BetaDistribution BetaNegativeBinomialDistribution BetaPrimeDistribution BetaRegularized BetweennessCentrality BezierCurve BezierCurve3DBox BezierCurve3DBoxOptions BezierCurveBox BezierCurveBoxOptions BezierFunction BilateralFilter Binarize BinaryFormat BinaryImageQ BinaryRead BinaryReadList BinaryWrite BinCounts BinLists Binomial BinomialDistribution BinomialProcess BinormalDistribution BiorthogonalSplineWavelet BipartiteGraphQ BirnbaumImportance BirnbaumSaundersDistribution BitAnd BitClear BitGet BitLength BitNot BitOr BitSet BitShiftLeft BitShiftRight BitXor Black BlackmanHarrisWindow BlackmanNuttallWindow BlackmanWindow Blank BlankForm BlankNullSequence BlankSequence Blend Block BlockRandom BlomqvistBeta BlomqvistBetaTest Blue Blur BodePlot BohmanWindow Bold Bookmarks Boole BooleanConsecutiveFunction BooleanConvert BooleanCountingFunction BooleanFunction BooleanGraph BooleanMaxterms BooleanMinimize BooleanMinterms Booleans BooleanTable BooleanVariables BorderDimensions BorelTannerDistribution Bottom BottomHatTransform BoundaryStyle Bounds Box BoxBaselineShift BoxData BoxDimensions Boxed Boxes BoxForm BoxFormFormatTypes BoxFrame BoxID BoxMargins BoxMatrix BoxRatios BoxRotation BoxRotationPoint BoxStyle BoxWhiskerChart Bra BracketingBar BraKet BrayCurtisDistance BreadthFirstScan Break Brown BrownForsytheTest BrownianBridgeProcess BrowserCategory BSplineBasis BSplineCurve BSplineCurve3DBox BSplineCurveBox BSplineCurveBoxOptions BSplineFunction BSplineSurface BSplineSurface3DBox BubbleChart BubbleChart3D BubbleScale BubbleSizes BulletGauge BusinessDayQ ButterflyGraph ButterworthFilterModel Button ButtonBar ButtonBox ButtonBoxOptions ButtonCell ButtonContents ButtonData ButtonEvaluator ButtonExpandable ButtonFrame ButtonFunction ButtonMargins ButtonMinHeight ButtonNote ButtonNotebook ButtonSource ButtonStyle ButtonStyleMenuListing Byte ByteCount ByteOrdering ' + 'C CachedValue CacheGraphics CalendarData CalendarType CallPacket CanberraDistance Cancel CancelButton CandlestickChart Cap CapForm CapitalDifferentialD CardinalBSplineBasis CarmichaelLambda Cases Cashflow Casoratian Catalan CatalanNumber Catch CauchyDistribution CauchyWindow CayleyGraph CDF CDFDeploy CDFInformation CDFWavelet Ceiling Cell CellAutoOverwrite CellBaseline CellBoundingBox CellBracketOptions CellChangeTimes CellContents CellContext CellDingbat CellDynamicExpression CellEditDuplicate CellElementsBoundingBox CellElementSpacings CellEpilog CellEvaluationDuplicate CellEvaluationFunction CellEventActions CellFrame CellFrameColor CellFrameLabelMargins CellFrameLabels CellFrameMargins CellGroup CellGroupData CellGrouping CellGroupingRules CellHorizontalScrolling CellID CellLabel CellLabelAutoDelete CellLabelMargins CellLabelPositioning CellMargins CellObject CellOpen CellPrint CellProlog Cells CellSize CellStyle CellTags CellularAutomaton CensoredDistribution Censoring Center CenterDot CentralMoment CentralMomentGeneratingFunction CForm ChampernowneNumber ChanVeseBinarize Character CharacterEncoding CharacterEncodingsPath CharacteristicFunction CharacteristicPolynomial CharacterRange Characters ChartBaseStyle ChartElementData ChartElementDataFunction ChartElementFunction ChartElements ChartLabels ChartLayout ChartLegends ChartStyle Chebyshev1FilterModel Chebyshev2FilterModel ChebyshevDistance ChebyshevT ChebyshevU Check CheckAbort CheckAll Checkbox CheckboxBar CheckboxBox CheckboxBoxOptions ChemicalData ChessboardDistance ChiDistribution ChineseRemainder ChiSquareDistribution ChoiceButtons ChoiceDialog CholeskyDecomposition Chop Circle CircleBox CircleDot CircleMinus CirclePlus CircleTimes CirculantGraph CityData Clear ClearAll ClearAttributes ClearSystemCache ClebschGordan ClickPane Clip ClipboardNotebook ClipFill ClippingStyle ClipPlanes ClipRange Clock ClockGauge ClockwiseContourIntegral Close Closed CloseKernels ClosenessCentrality Closing ClosingAutoSave ClosingEvent ClusteringComponents CMYKColor Coarse Coefficient CoefficientArrays CoefficientDomain CoefficientList CoefficientRules CoifletWavelet Collect Colon ColonForm ColorCombine ColorConvert ColorData ColorDataFunction ColorFunction ColorFunctionScaling Colorize ColorNegate ColorOutput ColorProfileData ColorQuantize ColorReplace ColorRules ColorSelectorSettings ColorSeparate ColorSetter ColorSetterBox ColorSetterBoxOptions ColorSlider ColorSpace Column ColumnAlignments ColumnBackgrounds ColumnForm ColumnLines ColumnsEqual ColumnSpacings ColumnWidths CommonDefaultFormatTypes Commonest CommonestFilter CommonUnits CommunityBoundaryStyle CommunityGraphPlot CommunityLabels CommunityRegionStyle CompatibleUnitQ CompilationOptions CompilationTarget Compile Compiled CompiledFunction Complement CompleteGraph CompleteGraphQ CompleteKaryTree CompletionsListPacket Complex Complexes ComplexExpand ComplexInfinity ComplexityFunction ComponentMeasurements ' + 'ComponentwiseContextMenu Compose ComposeList ComposeSeries Composition CompoundExpression CompoundPoissonDistribution CompoundPoissonProcess CompoundRenewalProcess Compress CompressedData Condition ConditionalExpression Conditioned Cone ConeBox ConfidenceLevel ConfidenceRange ConfidenceTransform ConfigurationPath Congruent Conjugate ConjugateTranspose Conjunction Connect ConnectedComponents ConnectedGraphQ ConnesWindow ConoverTest ConsoleMessage ConsoleMessagePacket ConsolePrint Constant ConstantArray Constants ConstrainedMax ConstrainedMin ContentPadding ContentsBoundingBox ContentSelectable ContentSize Context ContextMenu Contexts ContextToFilename ContextToFileName Continuation Continue ContinuedFraction ContinuedFractionK ContinuousAction ContinuousMarkovProcess ContinuousTimeModelQ ContinuousWaveletData ContinuousWaveletTransform ContourDetect ContourGraphics ContourIntegral ContourLabels ContourLines ContourPlot ContourPlot3D Contours ContourShading ContourSmoothing ContourStyle ContraharmonicMean Control ControlActive ControlAlignment ControllabilityGramian ControllabilityMatrix ControllableDecomposition ControllableModelQ ControllerDuration ControllerInformation ControllerInformationData ControllerLinking ControllerManipulate ControllerMethod ControllerPath ControllerState ControlPlacement ControlsRendering ControlType Convergents ConversionOptions ConversionRules ConvertToBitmapPacket ConvertToPostScript ConvertToPostScriptPacket Convolve ConwayGroupCo1 ConwayGroupCo2 ConwayGroupCo3 CoordinateChartData CoordinatesToolOptions CoordinateTransform CoordinateTransformData CoprimeQ Coproduct CopulaDistribution Copyable CopyDirectory CopyFile CopyTag CopyToClipboard CornerFilter CornerNeighbors Correlation CorrelationDistance CorrelationFunction CorrelationTest Cos Cosh CoshIntegral CosineDistance CosineWindow CosIntegral Cot Coth Count CounterAssignments CounterBox CounterBoxOptions CounterClockwiseContourIntegral CounterEvaluator CounterFunction CounterIncrements CounterStyle CounterStyleMenuListing CountRoots CountryData Covariance CovarianceEstimatorFunction CovarianceFunction CoxianDistribution CoxIngersollRossProcess CoxModel CoxModelFit CramerVonMisesTest CreateArchive CreateDialog CreateDirectory CreateDocument CreateIntermediateDirectories CreatePalette CreatePalettePacket CreateScheduledTask CreateTemporary CreateWindow CriticalityFailureImportance CriticalitySuccessImportance CriticalSection Cross CrossingDetect CrossMatrix Csc Csch CubeRoot Cubics Cuboid CuboidBox Cumulant CumulantGeneratingFunction Cup CupCap Curl CurlyDoubleQuote CurlyQuote CurrentImage CurrentlySpeakingPacket CurrentValue CurvatureFlowFilter CurveClosed Cyan CycleGraph CycleIndexPolynomial Cycles CyclicGroup Cyclotomic Cylinder CylinderBox CylindricalDecomposition ' + 'D DagumDistribution DamerauLevenshteinDistance DampingFactor Darker Dashed Dashing DataCompression DataDistribution DataRange DataReversed Date DateDelimiters DateDifference DateFunction DateList DateListLogPlot DateListPlot DatePattern DatePlus DateRange DateString DateTicksFormat DaubechiesWavelet DavisDistribution DawsonF DayCount DayCountConvention DayMatchQ DayName DayPlus DayRange DayRound DeBruijnGraph Debug DebugTag Decimal DeclareKnownSymbols DeclarePackage Decompose Decrement DedekindEta Default DefaultAxesStyle DefaultBaseStyle DefaultBoxStyle DefaultButton DefaultColor DefaultControlPlacement DefaultDuplicateCellStyle DefaultDuration DefaultElement DefaultFaceGridsStyle DefaultFieldHintStyle DefaultFont DefaultFontProperties DefaultFormatType DefaultFormatTypeForStyle DefaultFrameStyle DefaultFrameTicksStyle DefaultGridLinesStyle DefaultInlineFormatType DefaultInputFormatType DefaultLabelStyle DefaultMenuStyle DefaultNaturalLanguage DefaultNewCellStyle DefaultNewInlineCellStyle DefaultNotebook DefaultOptions DefaultOutputFormatType DefaultStyle DefaultStyleDefinitions DefaultTextFormatType DefaultTextInlineFormatType DefaultTicksStyle DefaultTooltipStyle DefaultValues Defer DefineExternal DefineInputStreamMethod DefineOutputStreamMethod Definition Degree DegreeCentrality DegreeGraphDistribution DegreeLexicographic DegreeReverseLexicographic Deinitialization Del Deletable Delete DeleteBorderComponents DeleteCases DeleteContents DeleteDirectory DeleteDuplicates DeleteFile DeleteSmallComponents DeleteWithContents DeletionWarning Delimiter DelimiterFlashTime DelimiterMatching Delimiters Denominator DensityGraphics DensityHistogram DensityPlot DependentVariables Deploy Deployed Depth DepthFirstScan Derivative DerivativeFilter DescriptorStateSpace DesignMatrix Det DGaussianWavelet DiacriticalPositioning Diagonal DiagonalMatrix Dialog DialogIndent DialogInput DialogLevel DialogNotebook DialogProlog DialogReturn DialogSymbols Diamond DiamondMatrix DiceDissimilarity DictionaryLookup DifferenceDelta DifferenceOrder DifferenceRoot DifferenceRootReduce Differences DifferentialD DifferentialRoot DifferentialRootReduce DifferentiatorFilter DigitBlock DigitBlockMinimum DigitCharacter DigitCount DigitQ DihedralGroup Dilation Dimensions DiracComb DiracDelta DirectedEdge DirectedEdges DirectedGraph DirectedGraphQ DirectedInfinity Direction Directive Directory DirectoryName DirectoryQ DirectoryStack DirichletCharacter DirichletConvolve DirichletDistribution DirichletL DirichletTransform DirichletWindow DisableConsolePrintPacket DiscreteChirpZTransform DiscreteConvolve DiscreteDelta DiscreteHadamardTransform DiscreteIndicator DiscreteLQEstimatorGains DiscreteLQRegulatorGains DiscreteLyapunovSolve DiscreteMarkovProcess DiscretePlot DiscretePlot3D DiscreteRatio DiscreteRiccatiSolve DiscreteShift DiscreteTimeModelQ DiscreteUniformDistribution DiscreteVariables DiscreteWaveletData DiscreteWaveletPacketTransform ' + 'DiscreteWaveletTransform Discriminant Disjunction Disk DiskBox DiskMatrix Dispatch DispersionEstimatorFunction Display DisplayAllSteps DisplayEndPacket DisplayFlushImagePacket DisplayForm DisplayFunction DisplayPacket DisplayRules DisplaySetSizePacket DisplayString DisplayTemporary DisplayWith DisplayWithRef DisplayWithVariable DistanceFunction DistanceTransform Distribute Distributed DistributedContexts DistributeDefinitions DistributionChart DistributionDomain DistributionFitTest DistributionParameterAssumptions DistributionParameterQ Dithering Div Divergence Divide DivideBy Dividers Divisible Divisors DivisorSigma DivisorSum DMSList DMSString Do DockedCells DocumentNotebook DominantColors DOSTextFormat Dot DotDashed DotEqual Dotted DoubleBracketingBar DoubleContourIntegral DoubleDownArrow DoubleLeftArrow DoubleLeftRightArrow DoubleLeftTee DoubleLongLeftArrow DoubleLongLeftRightArrow DoubleLongRightArrow DoubleRightArrow DoubleRightTee DoubleUpArrow DoubleUpDownArrow DoubleVerticalBar DoublyInfinite Down DownArrow DownArrowBar DownArrowUpArrow DownLeftRightVector DownLeftTeeVector DownLeftVector DownLeftVectorBar DownRightTeeVector DownRightVector DownRightVectorBar Downsample DownTee DownTeeArrow DownValues DragAndDrop DrawEdges DrawFrontFaces DrawHighlighted Drop DSolve Dt DualLinearProgramming DualSystemsModel DumpGet DumpSave DuplicateFreeQ Dynamic DynamicBox DynamicBoxOptions DynamicEvaluationTimeout DynamicLocation DynamicModule DynamicModuleBox DynamicModuleBoxOptions DynamicModuleParent DynamicModuleValues DynamicName DynamicNamespace DynamicReference DynamicSetting DynamicUpdating DynamicWrapper DynamicWrapperBox DynamicWrapperBoxOptions ' + 'E EccentricityCentrality EdgeAdd EdgeBetweennessCentrality EdgeCapacity EdgeCapForm EdgeColor EdgeConnectivity EdgeCost EdgeCount EdgeCoverQ EdgeDashing EdgeDelete EdgeDetect EdgeForm EdgeIndex EdgeJoinForm EdgeLabeling EdgeLabels EdgeLabelStyle EdgeList EdgeOpacity EdgeQ EdgeRenderingFunction EdgeRules EdgeShapeFunction EdgeStyle EdgeThickness EdgeWeight Editable EditButtonSettings EditCellTagsSettings EditDistance EffectiveInterest Eigensystem Eigenvalues EigenvectorCentrality Eigenvectors Element ElementData Eliminate EliminationOrder EllipticE EllipticExp EllipticExpPrime EllipticF EllipticFilterModel EllipticK EllipticLog EllipticNomeQ EllipticPi EllipticReducedHalfPeriods EllipticTheta EllipticThetaPrime EmitSound EmphasizeSyntaxErrors EmpiricalDistribution Empty EmptyGraphQ EnableConsolePrintPacket Enabled Encode End EndAdd EndDialogPacket EndFrontEndInteractionPacket EndOfFile EndOfLine EndOfString EndPackage EngineeringForm Enter EnterExpressionPacket EnterTextPacket Entropy EntropyFilter Environment Epilog Equal EqualColumns EqualRows EqualTilde EquatedTo Equilibrium EquirippleFilterKernel Equivalent Erf Erfc Erfi ErlangB ErlangC ErlangDistribution Erosion ErrorBox ErrorBoxOptions ErrorNorm ErrorPacket ErrorsDialogSettings EstimatedDistribution EstimatedProcess EstimatorGains EstimatorRegulator EuclideanDistance EulerE EulerGamma EulerianGraphQ EulerPhi Evaluatable Evaluate Evaluated EvaluatePacket EvaluationCell EvaluationCompletionAction EvaluationElements EvaluationMode EvaluationMonitor EvaluationNotebook EvaluationObject EvaluationOrder Evaluator EvaluatorNames EvenQ EventData EventEvaluator EventHandler EventHandlerTag EventLabels ExactBlackmanWindow ExactNumberQ ExactRootIsolation ExampleData Except ExcludedForms ExcludePods Exclusions ExclusionsStyle Exists Exit ExitDialog Exp Expand ExpandAll ExpandDenominator ExpandFileName ExpandNumerator Expectation ExpectationE ExpectedValue ExpGammaDistribution ExpIntegralE ExpIntegralEi Exponent ExponentFunction ExponentialDistribution ExponentialFamily ExponentialGeneratingFunction ExponentialMovingAverage ExponentialPowerDistribution ExponentPosition ExponentStep Export ExportAutoReplacements ExportPacket ExportString Expression ExpressionCell ExpressionPacket ExpToTrig ExtendedGCD Extension ExtentElementFunction ExtentMarkers ExtentSize ExternalCall ExternalDataCharacterEncoding Extract ExtractArchive ExtremeValueDistribution ' + 'FaceForm FaceGrids FaceGridsStyle Factor FactorComplete Factorial Factorial2 FactorialMoment FactorialMomentGeneratingFunction FactorialPower FactorInteger FactorList FactorSquareFree FactorSquareFreeList FactorTerms FactorTermsList Fail FailureDistribution False FARIMAProcess FEDisableConsolePrintPacket FeedbackSector FeedbackSectorStyle FeedbackType FEEnableConsolePrintPacket Fibonacci FieldHint FieldHintStyle FieldMasked FieldSize File FileBaseName FileByteCount FileDate FileExistsQ FileExtension FileFormat FileHash FileInformation FileName FileNameDepth FileNameDialogSettings FileNameDrop FileNameJoin FileNames FileNameSetter FileNameSplit FileNameTake FilePrint FileType FilledCurve FilledCurveBox Filling FillingStyle FillingTransform FilterRules FinancialBond FinancialData FinancialDerivative FinancialIndicator Find FindArgMax FindArgMin FindClique FindClusters FindCurvePath FindDistributionParameters FindDivisions FindEdgeCover FindEdgeCut FindEulerianCycle FindFaces FindFile FindFit FindGeneratingFunction FindGeoLocation FindGeometricTransform FindGraphCommunities FindGraphIsomorphism FindGraphPartition FindHamiltonianCycle FindIndependentEdgeSet FindIndependentVertexSet FindInstance FindIntegerNullVector FindKClan FindKClique FindKClub FindKPlex FindLibrary FindLinearRecurrence FindList FindMaximum FindMaximumFlow FindMaxValue FindMinimum FindMinimumCostFlow FindMinimumCut FindMinValue FindPermutation FindPostmanTour FindProcessParameters FindRoot FindSequenceFunction FindSettings FindShortestPath FindShortestTour FindThreshold FindVertexCover FindVertexCut Fine FinishDynamic FiniteAbelianGroupCount FiniteGroupCount FiniteGroupData First FirstPassageTimeDistribution FischerGroupFi22 FischerGroupFi23 FischerGroupFi24Prime FisherHypergeometricDistribution FisherRatioTest FisherZDistribution Fit FitAll FittedModel FixedPoint FixedPointList FlashSelection Flat Flatten FlattenAt FlatTopWindow FlipView Floor FlushPrintOutputPacket Fold FoldList Font FontColor FontFamily FontForm FontName FontOpacity FontPostScriptName FontProperties FontReencoding FontSize FontSlant FontSubstitutions FontTracking FontVariations FontWeight For ForAll Format FormatRules FormatType FormatTypeAutoConvert FormatValues FormBox FormBoxOptions FortranForm Forward ForwardBackward Fourier FourierCoefficient FourierCosCoefficient FourierCosSeries FourierCosTransform FourierDCT FourierDCTFilter FourierDCTMatrix FourierDST FourierDSTMatrix FourierMatrix FourierParameters FourierSequenceTransform FourierSeries FourierSinCoefficient FourierSinSeries FourierSinTransform FourierTransform FourierTrigSeries FractionalBrownianMotionProcess FractionalPart FractionBox FractionBoxOptions FractionLine Frame FrameBox FrameBoxOptions Framed FrameInset FrameLabel Frameless FrameMargins FrameStyle FrameTicks FrameTicksStyle FRatioDistribution FrechetDistribution FreeQ FrequencySamplingFilterKernel FresnelC FresnelS Friday FrobeniusNumber FrobeniusSolve ' + 'FromCharacterCode FromCoefficientRules FromContinuedFraction FromDate FromDigits FromDMS Front FrontEndDynamicExpression FrontEndEventActions FrontEndExecute FrontEndObject FrontEndResource FrontEndResourceString FrontEndStackSize FrontEndToken FrontEndTokenExecute FrontEndValueCache FrontEndVersion FrontFaceColor FrontFaceOpacity Full FullAxes FullDefinition FullForm FullGraphics FullOptions FullSimplify Function FunctionExpand FunctionInterpolation FunctionSpace FussellVeselyImportance ' + 'GaborFilter GaborMatrix GaborWavelet GainMargins GainPhaseMargins Gamma GammaDistribution GammaRegularized GapPenalty Gather GatherBy GaugeFaceElementFunction GaugeFaceStyle GaugeFrameElementFunction GaugeFrameSize GaugeFrameStyle GaugeLabels GaugeMarkers GaugeStyle GaussianFilter GaussianIntegers GaussianMatrix GaussianWindow GCD GegenbauerC General GeneralizedLinearModelFit GenerateConditions GeneratedCell GeneratedParameters GeneratingFunction Generic GenericCylindricalDecomposition GenomeData GenomeLookup GeodesicClosing GeodesicDilation GeodesicErosion GeodesicOpening GeoDestination GeodesyData GeoDirection GeoDistance GeoGridPosition GeometricBrownianMotionProcess GeometricDistribution GeometricMean GeometricMeanFilter GeometricTransformation GeometricTransformation3DBox GeometricTransformation3DBoxOptions GeometricTransformationBox GeometricTransformationBoxOptions GeoPosition GeoPositionENU GeoPositionXYZ GeoProjectionData GestureHandler GestureHandlerTag Get GetBoundingBoxSizePacket GetContext GetEnvironment GetFileName GetFrontEndOptionsDataPacket GetLinebreakInformationPacket GetMenusPacket GetPageBreakInformationPacket Glaisher GlobalClusteringCoefficient GlobalPreferences GlobalSession Glow GoldenRatio GompertzMakehamDistribution GoodmanKruskalGamma GoodmanKruskalGammaTest Goto Grad Gradient GradientFilter GradientOrientationFilter Graph GraphAssortativity GraphCenter GraphComplement GraphData GraphDensity GraphDiameter GraphDifference GraphDisjointUnion ' + 'GraphDistance GraphDistanceMatrix GraphElementData GraphEmbedding GraphHighlight GraphHighlightStyle GraphHub Graphics Graphics3D Graphics3DBox Graphics3DBoxOptions GraphicsArray GraphicsBaseline GraphicsBox GraphicsBoxOptions GraphicsColor GraphicsColumn GraphicsComplex GraphicsComplex3DBox GraphicsComplex3DBoxOptions GraphicsComplexBox GraphicsComplexBoxOptions GraphicsContents GraphicsData GraphicsGrid GraphicsGridBox GraphicsGroup GraphicsGroup3DBox GraphicsGroup3DBoxOptions GraphicsGroupBox GraphicsGroupBoxOptions GraphicsGrouping GraphicsHighlightColor GraphicsRow GraphicsSpacing GraphicsStyle GraphIntersection GraphLayout GraphLinkEfficiency GraphPeriphery GraphPlot GraphPlot3D GraphPower GraphPropertyDistribution GraphQ GraphRadius GraphReciprocity GraphRoot GraphStyle GraphUnion Gray GrayLevel GreatCircleDistance Greater GreaterEqual GreaterEqualLess GreaterFullEqual GreaterGreater GreaterLess GreaterSlantEqual GreaterTilde Green Grid GridBaseline GridBox GridBoxAlignment GridBoxBackground GridBoxDividers GridBoxFrame GridBoxItemSize GridBoxItemStyle GridBoxOptions GridBoxSpacings GridCreationSettings GridDefaultElement GridElementStyleOptions GridFrame GridFrameMargins GridGraph GridLines GridLinesStyle GroebnerBasis GroupActionBase GroupCentralizer GroupElementFromWord GroupElementPosition GroupElementQ GroupElements GroupElementToWord GroupGenerators GroupMultiplicationTable GroupOrbits GroupOrder GroupPageBreakWithin GroupSetwiseStabilizer GroupStabilizer GroupStabilizerChain Gudermannian GumbelDistribution ' + 'HaarWavelet HadamardMatrix HalfNormalDistribution HamiltonianGraphQ HammingDistance HammingWindow HankelH1 HankelH2 HankelMatrix HannPoissonWindow HannWindow HaradaNortonGroupHN HararyGraph HarmonicMean HarmonicMeanFilter HarmonicNumber Hash HashTable Haversine HazardFunction Head HeadCompose Heads HeavisideLambda HeavisidePi HeavisideTheta HeldGroupHe HeldPart HelpBrowserLookup HelpBrowserNotebook HelpBrowserSettings HermiteDecomposition HermiteH HermitianMatrixQ HessenbergDecomposition Hessian HexadecimalCharacter Hexahedron HexahedronBox HexahedronBoxOptions HiddenSurface HighlightGraph HighlightImage HighpassFilter HigmanSimsGroupHS HilbertFilter HilbertMatrix Histogram Histogram3D HistogramDistribution HistogramList HistogramTransform HistogramTransformInterpolation HitMissTransform HITSCentrality HodgeDual HoeffdingD HoeffdingDTest Hold HoldAll HoldAllComplete HoldComplete HoldFirst HoldForm HoldPattern HoldRest HolidayCalendar HomeDirectory HomePage Horizontal HorizontalForm HorizontalGauge HorizontalScrollPosition HornerForm HotellingTSquareDistribution HoytDistribution HTMLSave Hue HumpDownHump HumpEqual HurwitzLerchPhi HurwitzZeta HyperbolicDistribution HypercubeGraph HyperexponentialDistribution Hyperfactorial Hypergeometric0F1 Hypergeometric0F1Regularized Hypergeometric1F1 Hypergeometric1F1Regularized Hypergeometric2F1 Hypergeometric2F1Regularized HypergeometricDistribution HypergeometricPFQ HypergeometricPFQRegularized HypergeometricU Hyperlink HyperlinkCreationSettings Hyphenation HyphenationOptions HypoexponentialDistribution HypothesisTestData ' + 'I Identity IdentityMatrix If IgnoreCase Im Image Image3D Image3DSlices ImageAccumulate ImageAdd ImageAdjust ImageAlign ImageApply ImageAspectRatio ImageAssemble ImageCache ImageCacheValid ImageCapture ImageChannels ImageClip ImageColorSpace ImageCompose ImageConvolve ImageCooccurrence ImageCorners ImageCorrelate ImageCorrespondingPoints ImageCrop ImageData ImageDataPacket ImageDeconvolve ImageDemosaic ImageDifference ImageDimensions ImageDistance ImageEffect ImageFeatureTrack ImageFileApply ImageFileFilter ImageFileScan ImageFilter ImageForestingComponents ImageForwardTransformation ImageHistogram ImageKeypoints ImageLevels ImageLines ImageMargins ImageMarkers ImageMeasurements ImageMultiply ImageOffset ImagePad ImagePadding ImagePartition ImagePeriodogram ImagePerspectiveTransformation ImageQ ImageRangeCache ImageReflect ImageRegion ImageResize ImageResolution ImageRotate ImageRotated ImageScaled ImageScan ImageSize ImageSizeAction ImageSizeCache ImageSizeMultipliers ImageSizeRaw ImageSubtract ImageTake ImageTransformation ImageTrim ImageType ImageValue ImageValuePositions Implies Import ImportAutoReplacements ImportString ImprovementImportance In IncidenceGraph IncidenceList IncidenceMatrix IncludeConstantBasis IncludeFileExtension IncludePods IncludeSingularTerm Increment Indent IndentingNewlineSpacings IndentMaxFraction IndependenceTest IndependentEdgeSetQ IndependentUnit IndependentVertexSetQ Indeterminate IndexCreationOptions Indexed IndexGraph IndexTag Inequality InexactNumberQ InexactNumbers Infinity Infix Information Inherited InheritScope Initialization InitializationCell InitializationCellEvaluation InitializationCellWarning InlineCounterAssignments InlineCounterIncrements InlineRules Inner Inpaint Input InputAliases InputAssumptions InputAutoReplacements InputField InputFieldBox InputFieldBoxOptions InputForm InputGrouping InputNamePacket InputNotebook InputPacket InputSettings InputStream InputString InputStringPacket InputToBoxFormPacket Insert InsertionPointObject InsertResults Inset Inset3DBox Inset3DBoxOptions InsetBox InsetBoxOptions Install InstallService InString Integer IntegerDigits IntegerExponent IntegerLength IntegerPart IntegerPartitions IntegerQ Integers IntegerString Integral Integrate Interactive InteractiveTradingChart Interlaced Interleaving InternallyBalancedDecomposition InterpolatingFunction InterpolatingPolynomial Interpolation InterpolationOrder InterpolationPoints InterpolationPrecision Interpretation InterpretationBox InterpretationBoxOptions InterpretationFunction ' + 'InterpretTemplate InterquartileRange Interrupt InterruptSettings Intersection Interval IntervalIntersection IntervalMemberQ IntervalUnion Inverse InverseBetaRegularized InverseCDF InverseChiSquareDistribution InverseContinuousWaveletTransform InverseDistanceTransform InverseEllipticNomeQ InverseErf InverseErfc InverseFourier InverseFourierCosTransform InverseFourierSequenceTransform InverseFourierSinTransform InverseFourierTransform InverseFunction InverseFunctions InverseGammaDistribution InverseGammaRegularized InverseGaussianDistribution InverseGudermannian InverseHaversine InverseJacobiCD InverseJacobiCN InverseJacobiCS InverseJacobiDC InverseJacobiDN InverseJacobiDS InverseJacobiNC InverseJacobiND InverseJacobiNS InverseJacobiSC InverseJacobiSD InverseJacobiSN InverseLaplaceTransform InversePermutation InverseRadon InverseSeries InverseSurvivalFunction InverseWaveletTransform InverseWeierstrassP InverseZTransform Invisible InvisibleApplication InvisibleTimes IrreduciblePolynomialQ IsolatingInterval IsomorphicGraphQ IsotopeData Italic Item ItemBox ItemBoxOptions ItemSize ItemStyle ItoProcess ' + 'JaccardDissimilarity JacobiAmplitude Jacobian JacobiCD JacobiCN JacobiCS JacobiDC JacobiDN JacobiDS JacobiNC JacobiND JacobiNS JacobiP JacobiSC JacobiSD JacobiSN JacobiSymbol JacobiZeta JankoGroupJ1 JankoGroupJ2 JankoGroupJ3 JankoGroupJ4 JarqueBeraALMTest JohnsonDistribution Join Joined JoinedCurve JoinedCurveBox JoinForm JordanDecomposition JordanModelDecomposition ' + 'K KagiChart KaiserBesselWindow KaiserWindow KalmanEstimator KalmanFilter KarhunenLoeveDecomposition KaryTree KatzCentrality KCoreComponents KDistribution KelvinBei KelvinBer KelvinKei KelvinKer KendallTau KendallTauTest KernelExecute KernelMixtureDistribution KernelObject Kernels Ket Khinchin KirchhoffGraph KirchhoffMatrix KleinInvariantJ KnightTourGraph KnotData KnownUnitQ KolmogorovSmirnovTest KroneckerDelta KroneckerModelDecomposition KroneckerProduct KroneckerSymbol KuiperTest KumaraswamyDistribution Kurtosis KuwaharaFilter ' + 'Label Labeled LabeledSlider LabelingFunction LabelStyle LaguerreL LambdaComponents LambertW LanczosWindow LandauDistribution Language LanguageCategory LaplaceDistribution LaplaceTransform Laplacian LaplacianFilter LaplacianGaussianFilter Large Larger Last Latitude LatitudeLongitude LatticeData LatticeReduce Launch LaunchKernels LayeredGraphPlot LayerSizeFunction LayoutInformation LCM LeafCount LeapYearQ LeastSquares LeastSquaresFilterKernel Left LeftArrow LeftArrowBar LeftArrowRightArrow LeftDownTeeVector LeftDownVector LeftDownVectorBar LeftRightArrow LeftRightVector LeftTee LeftTeeArrow LeftTeeVector LeftTriangle LeftTriangleBar LeftTriangleEqual LeftUpDownVector LeftUpTeeVector LeftUpVector LeftUpVectorBar LeftVector LeftVectorBar LegendAppearance Legended LegendFunction LegendLabel LegendLayout LegendMargins LegendMarkers LegendMarkerSize LegendreP LegendreQ LegendreType Length LengthWhile LerchPhi Less LessEqual LessEqualGreater LessFullEqual LessGreater LessLess LessSlantEqual LessTilde LetterCharacter LetterQ Level LeveneTest LeviCivitaTensor LevyDistribution Lexicographic LibraryFunction LibraryFunctionError LibraryFunctionInformation LibraryFunctionLoad LibraryFunctionUnload LibraryLoad LibraryUnload LicenseID LiftingFilterData LiftingWaveletTransform LightBlue LightBrown LightCyan Lighter LightGray LightGreen Lighting LightingAngle LightMagenta LightOrange LightPink LightPurple LightRed LightSources LightYellow Likelihood Limit LimitsPositioning LimitsPositioningTokens LindleyDistribution Line Line3DBox LinearFilter LinearFractionalTransform LinearModelFit LinearOffsetFunction LinearProgramming LinearRecurrence LinearSolve LinearSolveFunction LineBox LineBreak LinebreakAdjustments LineBreakChart LineBreakWithin LineColor LineForm LineGraph LineIndent LineIndentMaxFraction LineIntegralConvolutionPlot LineIntegralConvolutionScale LineLegend LineOpacity LineSpacing LineWrapParts LinkActivate LinkClose LinkConnect LinkConnectedQ LinkCreate LinkError LinkFlush LinkFunction LinkHost LinkInterrupt LinkLaunch LinkMode LinkObject LinkOpen LinkOptions LinkPatterns LinkProtocol LinkRead LinkReadHeld LinkReadyQ Links LinkWrite LinkWriteHeld LiouvilleLambda List Listable ListAnimate ListContourPlot ListContourPlot3D ListConvolve ListCorrelate ListCurvePathPlot ListDeconvolve ListDensityPlot Listen ListFourierSequenceTransform ListInterpolation ListLineIntegralConvolutionPlot ListLinePlot ListLogLinearPlot ListLogLogPlot ListLogPlot ListPicker ListPickerBox ListPickerBoxBackground ListPickerBoxOptions ListPlay ListPlot ListPlot3D ListPointPlot3D ListPolarPlot ListQ ListStreamDensityPlot ListStreamPlot ListSurfacePlot3D ListVectorDensityPlot ListVectorPlot ListVectorPlot3D ListZTransform Literal LiteralSearch LocalClusteringCoefficient LocalizeVariables LocationEquivalenceTest LocationTest Locator LocatorAutoCreate LocatorBox LocatorBoxOptions LocatorCentering LocatorPane LocatorPaneBox LocatorPaneBoxOptions ' + 'LocatorRegion Locked Log Log10 Log2 LogBarnesG LogGamma LogGammaDistribution LogicalExpand LogIntegral LogisticDistribution LogitModelFit LogLikelihood LogLinearPlot LogLogisticDistribution LogLogPlot LogMultinormalDistribution LogNormalDistribution LogPlot LogRankTest LogSeriesDistribution LongEqual Longest LongestAscendingSequence LongestCommonSequence LongestCommonSequencePositions LongestCommonSubsequence LongestCommonSubsequencePositions LongestMatch LongForm Longitude LongLeftArrow LongLeftRightArrow LongRightArrow Loopback LoopFreeGraphQ LowerCaseQ LowerLeftArrow LowerRightArrow LowerTriangularize LowpassFilter LQEstimatorGains LQGRegulator LQOutputRegulatorGains LQRegulatorGains LUBackSubstitution LucasL LuccioSamiComponents LUDecomposition LyapunovSolve LyonsGroupLy ' + 'MachineID MachineName MachineNumberQ MachinePrecision MacintoshSystemPageSetup Magenta Magnification Magnify MainSolve MaintainDynamicCaches Majority MakeBoxes MakeExpression MakeRules MangoldtLambda ManhattanDistance Manipulate Manipulator MannWhitneyTest MantissaExponent Manual Map MapAll MapAt MapIndexed MAProcess MapThread MarcumQ MardiaCombinedTest MardiaKurtosisTest MardiaSkewnessTest MarginalDistribution MarkovProcessProperties Masking MatchingDissimilarity MatchLocalNameQ MatchLocalNames MatchQ Material MathematicaNotation MathieuC MathieuCharacteristicA MathieuCharacteristicB MathieuCharacteristicExponent MathieuCPrime MathieuGroupM11 MathieuGroupM12 MathieuGroupM22 MathieuGroupM23 MathieuGroupM24 MathieuS MathieuSPrime MathMLForm MathMLText Matrices MatrixExp MatrixForm MatrixFunction MatrixLog MatrixPlot MatrixPower MatrixQ MatrixRank Max MaxBend MaxDetect MaxExtraBandwidths MaxExtraConditions MaxFeatures MaxFilter Maximize MaxIterations MaxMemoryUsed MaxMixtureKernels MaxPlotPoints MaxPoints MaxRecursion MaxStableDistribution MaxStepFraction MaxSteps MaxStepSize MaxValue MaxwellDistribution McLaughlinGroupMcL Mean MeanClusteringCoefficient MeanDegreeConnectivity MeanDeviation MeanFilter MeanGraphDistance MeanNeighborDegree MeanShift MeanShiftFilter Median MedianDeviation MedianFilter Medium MeijerG MeixnerDistribution MemberQ MemoryConstrained MemoryInUse Menu MenuAppearance MenuCommandKey MenuEvaluator MenuItem MenuPacket MenuSortingValue MenuStyle MenuView MergeDifferences Mesh MeshFunctions MeshRange MeshShading MeshStyle Message MessageDialog MessageList MessageName MessageOptions MessagePacket Messages MessagesNotebook MetaCharacters MetaInformation Method MethodOptions MexicanHatWavelet MeyerWavelet Min MinDetect MinFilter MinimalPolynomial MinimalStateSpaceModel Minimize Minors MinRecursion MinSize MinStableDistribution Minus MinusPlus MinValue Missing MissingDataMethod MittagLefflerE MixedRadix MixedRadixQuantity MixtureDistribution Mod Modal Mode Modular ModularLambda Module Modulus MoebiusMu Moment Momentary MomentConvert MomentEvaluate MomentGeneratingFunction Monday Monitor MonomialList MonomialOrder MonsterGroupM MorletWavelet MorphologicalBinarize MorphologicalBranchPoints MorphologicalComponents MorphologicalEulerNumber MorphologicalGraph MorphologicalPerimeter MorphologicalTransform Most MouseAnnotation MouseAppearance MouseAppearanceTag MouseButtons Mouseover MousePointerNote MousePosition MovingAverage MovingMedian MoyalDistribution MultiedgeStyle MultilaunchWarning MultiLetterItalics MultiLetterStyle MultilineFunction Multinomial MultinomialDistribution MultinormalDistribution MultiplicativeOrder Multiplicity Multiselection MultivariateHypergeometricDistribution MultivariatePoissonDistribution MultivariateTDistribution ' + 'N NakagamiDistribution NameQ Names NamespaceBox Nand NArgMax NArgMin NBernoulliB NCache NDSolve NDSolveValue Nearest NearestFunction NeedCurrentFrontEndPackagePacket NeedCurrentFrontEndSymbolsPacket NeedlemanWunschSimilarity Needs Negative NegativeBinomialDistribution NegativeMultinomialDistribution NeighborhoodGraph Nest NestedGreaterGreater NestedLessLess NestedScriptRules NestList NestWhile NestWhileList NevilleThetaC NevilleThetaD NevilleThetaN NevilleThetaS NewPrimitiveStyle NExpectation Next NextPrime NHoldAll NHoldFirst NHoldRest NicholsGridLines NicholsPlot NIntegrate NMaximize NMaxValue NMinimize NMinValue NominalVariables NonAssociative NoncentralBetaDistribution NoncentralChiSquareDistribution NoncentralFRatioDistribution NoncentralStudentTDistribution NonCommutativeMultiply NonConstants None NonlinearModelFit NonlocalMeansFilter NonNegative NonPositive Nor NorlundB Norm Normal NormalDistribution NormalGrouping Normalize NormalizedSquaredEuclideanDistance NormalsFunction NormFunction Not NotCongruent NotCupCap NotDoubleVerticalBar Notebook NotebookApply NotebookAutoSave NotebookClose NotebookConvertSettings NotebookCreate NotebookCreateReturnObject NotebookDefault NotebookDelete NotebookDirectory NotebookDynamicExpression NotebookEvaluate NotebookEventActions NotebookFileName NotebookFind NotebookFindReturnObject NotebookGet NotebookGetLayoutInformationPacket NotebookGetMisspellingsPacket NotebookInformation NotebookInterfaceObject NotebookLocate NotebookObject NotebookOpen NotebookOpenReturnObject NotebookPath NotebookPrint NotebookPut NotebookPutReturnObject NotebookRead NotebookResetGeneratedCells Notebooks NotebookSave NotebookSaveAs NotebookSelection NotebookSetupLayoutInformationPacket NotebooksMenu NotebookWrite NotElement NotEqualTilde NotExists NotGreater NotGreaterEqual NotGreaterFullEqual NotGreaterGreater NotGreaterLess NotGreaterSlantEqual NotGreaterTilde NotHumpDownHump NotHumpEqual NotLeftTriangle NotLeftTriangleBar NotLeftTriangleEqual NotLess NotLessEqual NotLessFullEqual NotLessGreater NotLessLess NotLessSlantEqual NotLessTilde NotNestedGreaterGreater NotNestedLessLess NotPrecedes NotPrecedesEqual NotPrecedesSlantEqual NotPrecedesTilde NotReverseElement NotRightTriangle NotRightTriangleBar NotRightTriangleEqual NotSquareSubset NotSquareSubsetEqual NotSquareSuperset NotSquareSupersetEqual NotSubset NotSubsetEqual NotSucceeds NotSucceedsEqual NotSucceedsSlantEqual NotSucceedsTilde NotSuperset NotSupersetEqual NotTilde NotTildeEqual NotTildeFullEqual NotTildeTilde NotVerticalBar NProbability NProduct NProductFactors NRoots NSolve NSum NSumTerms Null NullRecords NullSpace NullWords Number NumberFieldClassNumber NumberFieldDiscriminant NumberFieldFundamentalUnits NumberFieldIntegralBasis NumberFieldNormRepresentatives NumberFieldRegulator NumberFieldRootsOfUnity NumberFieldSignature NumberForm NumberFormat NumberMarks NumberMultiplier NumberPadding NumberPoint NumberQ NumberSeparator ' + 'NumberSigns NumberString Numerator NumericFunction NumericQ NuttallWindow NValues NyquistGridLines NyquistPlot ' + 'O ObservabilityGramian ObservabilityMatrix ObservableDecomposition ObservableModelQ OddQ Off Offset OLEData On ONanGroupON OneIdentity Opacity Open OpenAppend Opener OpenerBox OpenerBoxOptions OpenerView OpenFunctionInspectorPacket Opening OpenRead OpenSpecialOptions OpenTemporary OpenWrite Operate OperatingSystem OptimumFlowData Optional OptionInspectorSettings OptionQ Options OptionsPacket OptionsPattern OptionValue OptionValueBox OptionValueBoxOptions Or Orange Order OrderDistribution OrderedQ Ordering Orderless OrnsteinUhlenbeckProcess Orthogonalize Out Outer OutputAutoOverwrite OutputControllabilityMatrix OutputControllableModelQ OutputForm OutputFormData OutputGrouping OutputMathEditExpression OutputNamePacket OutputResponse OutputSizeLimit OutputStream Over OverBar OverDot Overflow OverHat Overlaps Overlay OverlayBox OverlayBoxOptions Overscript OverscriptBox OverscriptBoxOptions OverTilde OverVector OwenT OwnValues ' + 'PackingMethod PaddedForm Padding PadeApproximant PadLeft PadRight PageBreakAbove PageBreakBelow PageBreakWithin PageFooterLines PageFooters PageHeaderLines PageHeaders PageHeight PageRankCentrality PageWidth PairedBarChart PairedHistogram PairedSmoothHistogram PairedTTest PairedZTest PaletteNotebook PalettePath Pane PaneBox PaneBoxOptions Panel PanelBox PanelBoxOptions Paneled PaneSelector PaneSelectorBox PaneSelectorBoxOptions PaperWidth ParabolicCylinderD ParagraphIndent ParagraphSpacing ParallelArray ParallelCombine ParallelDo ParallelEvaluate Parallelization Parallelize ParallelMap ParallelNeeds ParallelProduct ParallelSubmit ParallelSum ParallelTable ParallelTry Parameter ParameterEstimator ParameterMixtureDistribution ParameterVariables ParametricFunction ParametricNDSolve ParametricNDSolveValue ParametricPlot ParametricPlot3D ParentConnect ParentDirectory ParentForm Parenthesize ParentList ParetoDistribution Part PartialCorrelationFunction PartialD ParticleData Partition PartitionsP PartitionsQ ParzenWindow PascalDistribution PassEventsDown PassEventsUp Paste PasteBoxFormInlineCells PasteButton Path PathGraph PathGraphQ Pattern PatternSequence PatternTest PauliMatrix PaulWavelet Pause PausedTime PDF PearsonChiSquareTest PearsonCorrelationTest PearsonDistribution PerformanceGoal PeriodicInterpolation Periodogram PeriodogramArray PermutationCycles PermutationCyclesQ PermutationGroup PermutationLength PermutationList PermutationListQ PermutationMax PermutationMin PermutationOrder PermutationPower PermutationProduct PermutationReplace Permutations PermutationSupport Permute PeronaMalikFilter Perpendicular PERTDistribution PetersenGraph PhaseMargins Pi Pick PIDData PIDDerivativeFilter PIDFeedforward PIDTune Piecewise PiecewiseExpand PieChart PieChart3D PillaiTrace PillaiTraceTest Pink Pivoting PixelConstrained PixelValue PixelValuePositions Placed Placeholder PlaceholderReplace Plain PlanarGraphQ Play PlayRange Plot Plot3D Plot3Matrix PlotDivision PlotJoined PlotLabel PlotLayout PlotLegends PlotMarkers PlotPoints PlotRange PlotRangeClipping PlotRangePadding PlotRegion PlotStyle Plus PlusMinus Pochhammer PodStates PodWidth Point Point3DBox PointBox PointFigureChart PointForm PointLegend PointSize PoissonConsulDistribution PoissonDistribution PoissonProcess PoissonWindow PolarAxes PolarAxesOrigin PolarGridLines PolarPlot PolarTicks PoleZeroMarkers PolyaAeppliDistribution PolyGamma Polygon Polygon3DBox Polygon3DBoxOptions PolygonBox PolygonBoxOptions PolygonHoleScale PolygonIntersections PolygonScale PolyhedronData PolyLog PolynomialExtendedGCD PolynomialForm PolynomialGCD PolynomialLCM PolynomialMod PolynomialQ PolynomialQuotient PolynomialQuotientRemainder PolynomialReduce PolynomialRemainder Polynomials PopupMenu PopupMenuBox PopupMenuBoxOptions PopupView PopupWindow Position Positive PositiveDefiniteMatrixQ PossibleZeroQ Postfix PostScript Power PowerDistribution PowerExpand PowerMod PowerModList ' + 'PowerSpectralDensity PowersRepresentations PowerSymmetricPolynomial Precedence PrecedenceForm Precedes PrecedesEqual PrecedesSlantEqual PrecedesTilde Precision PrecisionGoal PreDecrement PredictionRoot PreemptProtect PreferencesPath Prefix PreIncrement Prepend PrependTo PreserveImageOptions Previous PriceGraphDistribution PrimaryPlaceholder Prime PrimeNu PrimeOmega PrimePi PrimePowerQ PrimeQ Primes PrimeZetaP PrimitiveRoot PrincipalComponents PrincipalValue Print PrintAction PrintForm PrintingCopies PrintingOptions PrintingPageRange PrintingStartingPageNumber PrintingStyleEnvironment PrintPrecision PrintTemporary Prism PrismBox PrismBoxOptions PrivateCellOptions PrivateEvaluationOptions PrivateFontOptions PrivateFrontEndOptions PrivateNotebookOptions PrivatePaths Probability ProbabilityDistribution ProbabilityPlot ProbabilityPr ProbabilityScalePlot ProbitModelFit ProcessEstimator ProcessParameterAssumptions ProcessParameterQ ProcessStateDomain ProcessTimeDomain Product ProductDistribution ProductLog ProgressIndicator ProgressIndicatorBox ProgressIndicatorBoxOptions Projection Prolog PromptForm Properties Property PropertyList PropertyValue Proportion Proportional Protect Protected ProteinData Pruning PseudoInverse Purple Put PutAppend Pyramid PyramidBox PyramidBoxOptions ' + 'QBinomial QFactorial QGamma QHypergeometricPFQ QPochhammer QPolyGamma QRDecomposition QuadraticIrrationalQ Quantile QuantilePlot Quantity QuantityForm QuantityMagnitude QuantityQ QuantityUnit Quartics QuartileDeviation Quartiles QuartileSkewness QueueingNetworkProcess QueueingProcess QueueProperties Quiet Quit Quotient QuotientRemainder ' + 'RadialityCentrality RadicalBox RadicalBoxOptions RadioButton RadioButtonBar RadioButtonBox RadioButtonBoxOptions Radon RamanujanTau RamanujanTauL RamanujanTauTheta RamanujanTauZ Random RandomChoice RandomComplex RandomFunction RandomGraph RandomImage RandomInteger RandomPermutation RandomPrime RandomReal RandomSample RandomSeed RandomVariate RandomWalkProcess Range RangeFilter RangeSpecification RankedMax RankedMin Raster Raster3D Raster3DBox Raster3DBoxOptions RasterArray RasterBox RasterBoxOptions Rasterize RasterSize Rational RationalFunctions Rationalize Rationals Ratios Raw RawArray RawBoxes RawData RawMedium RayleighDistribution Re Read ReadList ReadProtected Real RealBlockDiagonalForm RealDigits RealExponent Reals Reap Record RecordLists RecordSeparators Rectangle RectangleBox RectangleBoxOptions RectangleChart RectangleChart3D RecurrenceFilter RecurrenceTable RecurringDigitsForm Red Reduce RefBox ReferenceLineStyle ReferenceMarkers ReferenceMarkerStyle Refine ReflectionMatrix ReflectionTransform Refresh RefreshRate RegionBinarize RegionFunction RegionPlot RegionPlot3D RegularExpression Regularization Reinstall Release ReleaseHold ReliabilityDistribution ReliefImage ReliefPlot Remove RemoveAlphaChannel RemoveAsynchronousTask Removed RemoveInputStreamMethod RemoveOutputStreamMethod RemoveProperty RemoveScheduledTask RenameDirectory RenameFile RenderAll RenderingOptions RenewalProcess RenkoChart Repeated RepeatedNull RepeatedString Replace ReplaceAll ReplaceHeldPart ReplaceImageValue ReplaceList ReplacePart ReplacePixelValue ReplaceRepeated Resampling Rescale RescalingTransform ResetDirectory ResetMenusPacket ResetScheduledTask Residue Resolve Rest Resultant ResumePacket Return ReturnExpressionPacket ReturnInputFormPacket ReturnPacket ReturnTextPacket Reverse ReverseBiorthogonalSplineWavelet ReverseElement ReverseEquilibrium ReverseGraph ReverseUpEquilibrium RevolutionAxis RevolutionPlot3D RGBColor RiccatiSolve RiceDistribution RidgeFilter RiemannR RiemannSiegelTheta RiemannSiegelZ Riffle Right RightArrow RightArrowBar RightArrowLeftArrow RightCosetRepresentative RightDownTeeVector RightDownVector RightDownVectorBar RightTee RightTeeArrow RightTeeVector RightTriangle RightTriangleBar RightTriangleEqual RightUpDownVector RightUpTeeVector RightUpVector RightUpVectorBar RightVector RightVectorBar RiskAchievementImportance RiskReductionImportance RogersTanimotoDissimilarity Root RootApproximant RootIntervals RootLocusPlot RootMeanSquare RootOfUnityQ RootReduce Roots RootSum Rotate RotateLabel RotateLeft RotateRight RotationAction RotationBox RotationBoxOptions RotationMatrix RotationTransform Round RoundImplies RoundingRadius Row RowAlignments RowBackgrounds RowBox RowHeights RowLines RowMinHeight RowReduce RowsEqual RowSpacings RSolve RudvalisGroupRu Rule RuleCondition RuleDelayed RuleForm RulerUnits Run RunScheduledTask RunThrough RuntimeAttributes RuntimeOptions RussellRaoDissimilarity ' + 'SameQ SameTest SampleDepth SampledSoundFunction SampledSoundList SampleRate SamplingPeriod SARIMAProcess SARMAProcess SatisfiabilityCount SatisfiabilityInstances SatisfiableQ Saturday Save Saveable SaveAutoDelete SaveDefinitions SawtoothWave Scale Scaled ScaleDivisions ScaledMousePosition ScaleOrigin ScalePadding ScaleRanges ScaleRangeStyle ScalingFunctions ScalingMatrix ScalingTransform Scan ScheduledTaskActiveQ ScheduledTaskData ScheduledTaskObject ScheduledTasks SchurDecomposition ScientificForm ScreenRectangle ScreenStyleEnvironment ScriptBaselineShifts ScriptLevel ScriptMinSize ScriptRules ScriptSizeMultipliers Scrollbars ScrollingOptions ScrollPosition Sec Sech SechDistribution SectionGrouping SectorChart SectorChart3D SectorOrigin SectorSpacing SeedRandom Select Selectable SelectComponents SelectedCells SelectedNotebook Selection SelectionAnimate SelectionCell SelectionCellCreateCell SelectionCellDefaultStyle SelectionCellParentStyle SelectionCreateCell SelectionDebuggerTag SelectionDuplicateCell SelectionEvaluate SelectionEvaluateCreateCell SelectionMove SelectionPlaceholder SelectionSetStyle SelectWithContents SelfLoops SelfLoopStyle SemialgebraicComponentInstances SendMail Sequence SequenceAlignment SequenceForm SequenceHold SequenceLimit Series SeriesCoefficient SeriesData SessionTime Set SetAccuracy SetAlphaChannel SetAttributes Setbacks SetBoxFormNamesPacket SetDelayed SetDirectory SetEnvironment SetEvaluationNotebook SetFileDate SetFileLoadingContext SetNotebookStatusLine SetOptions SetOptionsPacket SetPrecision SetProperty SetSelectedNotebook SetSharedFunction SetSharedVariable SetSpeechParametersPacket SetStreamPosition SetSystemOptions Setter SetterBar SetterBox SetterBoxOptions Setting SetValue Shading Shallow ShannonWavelet ShapiroWilkTest Share Sharpen ShearingMatrix ShearingTransform ShenCastanMatrix Short ShortDownArrow Shortest ShortestMatch ShortestPathFunction ShortLeftArrow ShortRightArrow ShortUpArrow Show ShowAutoStyles ShowCellBracket ShowCellLabel ShowCellTags ShowClosedCellArea ShowContents ShowControls ShowCursorTracker ShowGroupOpenCloseIcon ShowGroupOpener ShowInvisibleCharacters ShowPageBreaks ShowPredictiveInterface ShowSelection ShowShortBoxForm ShowSpecialCharacters ShowStringCharacters ShowSyntaxStyles ShrinkingDelay ShrinkWrapBoundingBox SiegelTheta SiegelTukeyTest Sign Signature SignedRankTest SignificanceLevel SignPadding SignTest SimilarityRules SimpleGraph SimpleGraphQ Simplify Sin Sinc SinghMaddalaDistribution SingleEvaluation SingleLetterItalics SingleLetterStyle SingularValueDecomposition SingularValueList SingularValuePlot SingularValues Sinh SinhIntegral SinIntegral SixJSymbol Skeleton SkeletonTransform SkellamDistribution Skewness SkewNormalDistribution Skip SliceDistribution Slider Slider2D Slider2DBox Slider2DBoxOptions SliderBox SliderBoxOptions SlideView Slot SlotSequence Small SmallCircle Smaller SmithDelayCompensator SmithWatermanSimilarity ' + 'SmoothDensityHistogram SmoothHistogram SmoothHistogram3D SmoothKernelDistribution SocialMediaData Socket SokalSneathDissimilarity Solve SolveAlways SolveDelayed Sort SortBy Sound SoundAndGraphics SoundNote SoundVolume Sow Space SpaceForm Spacer Spacings Span SpanAdjustments SpanCharacterRounding SpanFromAbove SpanFromBoth SpanFromLeft SpanLineThickness SpanMaxSize SpanMinSize SpanningCharacters SpanSymmetric SparseArray SpatialGraphDistribution Speak SpeakTextPacket SpearmanRankTest SpearmanRho Spectrogram SpectrogramArray Specularity SpellingCorrection SpellingDictionaries SpellingDictionariesPath SpellingOptions SpellingSuggestionsPacket Sphere SphereBox SphericalBesselJ SphericalBesselY SphericalHankelH1 SphericalHankelH2 SphericalHarmonicY SphericalPlot3D SphericalRegion SpheroidalEigenvalue SpheroidalJoiningFactor SpheroidalPS SpheroidalPSPrime SpheroidalQS SpheroidalQSPrime SpheroidalRadialFactor SpheroidalS1 SpheroidalS1Prime SpheroidalS2 SpheroidalS2Prime Splice SplicedDistribution SplineClosed SplineDegree SplineKnots SplineWeights Split SplitBy SpokenString Sqrt SqrtBox SqrtBoxOptions Square SquaredEuclideanDistance SquareFreeQ SquareIntersection SquaresR SquareSubset SquareSubsetEqual SquareSuperset SquareSupersetEqual SquareUnion SquareWave StabilityMargins StabilityMarginsStyle StableDistribution Stack StackBegin StackComplete StackInhibit StandardDeviation StandardDeviationFilter StandardForm Standardize StandbyDistribution Star StarGraph StartAsynchronousTask StartingStepSize StartOfLine StartOfString StartScheduledTask StartupSound StateDimensions StateFeedbackGains StateOutputEstimator StateResponse StateSpaceModel StateSpaceRealization StateSpaceTransform StationaryDistribution StationaryWaveletPacketTransform StationaryWaveletTransform StatusArea StatusCentrality StepMonitor StieltjesGamma StirlingS1 StirlingS2 StopAsynchronousTask StopScheduledTask StrataVariables StratonovichProcess StreamColorFunction StreamColorFunctionScaling StreamDensityPlot StreamPlot StreamPoints StreamPosition Streams StreamScale StreamStyle String StringBreak StringByteCount StringCases StringCount StringDrop StringExpression StringForm StringFormat StringFreeQ StringInsert StringJoin StringLength StringMatchQ StringPosition StringQ StringReplace StringReplaceList StringReplacePart StringReverse StringRotateLeft StringRotateRight StringSkeleton StringSplit StringTake StringToStream StringTrim StripBoxes StripOnInput StripWrapperBoxes StrokeForm StructuralImportance StructuredArray StructuredSelection StruveH StruveL Stub StudentTDistribution Style StyleBox StyleBoxAutoDelete StyleBoxOptions StyleData StyleDefinitions StyleForm StyleKeyMapping StyleMenuListing StyleNameDialogSettings StyleNames StylePrint StyleSheetPath Subfactorial Subgraph SubMinus SubPlus SubresultantPolynomialRemainders ' + 'SubresultantPolynomials Subresultants Subscript SubscriptBox SubscriptBoxOptions Subscripted Subset SubsetEqual Subsets SubStar Subsuperscript SubsuperscriptBox SubsuperscriptBoxOptions Subtract SubtractFrom SubValues Succeeds SucceedsEqual SucceedsSlantEqual SucceedsTilde SuchThat Sum SumConvergence Sunday SuperDagger SuperMinus SuperPlus Superscript SuperscriptBox SuperscriptBoxOptions Superset SupersetEqual SuperStar Surd SurdForm SurfaceColor SurfaceGraphics SurvivalDistribution SurvivalFunction SurvivalModel SurvivalModelFit SuspendPacket SuzukiDistribution SuzukiGroupSuz SwatchLegend Switch Symbol SymbolName SymletWavelet Symmetric SymmetricGroup SymmetricMatrixQ SymmetricPolynomial SymmetricReduction Symmetrize SymmetrizedArray SymmetrizedArrayRules SymmetrizedDependentComponents SymmetrizedIndependentComponents SymmetrizedReplacePart SynchronousInitialization SynchronousUpdating Syntax SyntaxForm SyntaxInformation SyntaxLength SyntaxPacket SyntaxQ SystemDialogInput SystemException SystemHelpPath SystemInformation SystemInformationData SystemOpen SystemOptions SystemsModelDelay SystemsModelDelayApproximate SystemsModelDelete SystemsModelDimensions SystemsModelExtract SystemsModelFeedbackConnect SystemsModelLabels SystemsModelOrder SystemsModelParallelConnect SystemsModelSeriesConnect SystemsModelStateFeedbackConnect SystemStub ' + 'Tab TabFilling Table TableAlignments TableDepth TableDirections TableForm TableHeadings TableSpacing TableView TableViewBox TabSpacings TabView TabViewBox TabViewBoxOptions TagBox TagBoxNote TagBoxOptions TaggingRules TagSet TagSetDelayed TagStyle TagUnset Take TakeWhile Tally Tan Tanh TargetFunctions TargetUnits TautologyQ TelegraphProcess TemplateBox TemplateBoxOptions TemplateSlotSequence TemporalData Temporary TemporaryVariable TensorContract TensorDimensions TensorExpand TensorProduct TensorQ TensorRank TensorReduce TensorSymmetry TensorTranspose TensorWedge Tetrahedron TetrahedronBox TetrahedronBoxOptions TeXForm TeXSave Text Text3DBox Text3DBoxOptions TextAlignment TextBand TextBoundingBox TextBox TextCell TextClipboardType TextData TextForm TextJustification TextLine TextPacket TextParagraph TextRecognize TextRendering TextStyle Texture TextureCoordinateFunction TextureCoordinateScaling Therefore ThermometerGauge Thick Thickness Thin Thinning ThisLink ThompsonGroupTh Thread ThreeJSymbol Threshold Through Throw Thumbnail Thursday Ticks TicksStyle Tilde TildeEqual TildeFullEqual TildeTilde TimeConstrained TimeConstraint Times TimesBy TimeSeriesForecast TimeSeriesInvertibility TimeUsed TimeValue TimeZone Timing Tiny TitleGrouping TitsGroupT ToBoxes ToCharacterCode ToColor ToContinuousTimeModel ToDate ToDiscreteTimeModel ToeplitzMatrix ToExpression ToFileName Together Toggle ToggleFalse Toggler TogglerBar TogglerBox TogglerBoxOptions ToHeldExpression ToInvertibleTimeSeries TokenWords Tolerance ToLowerCase ToNumberField TooBig Tooltip TooltipBox TooltipBoxOptions TooltipDelay TooltipStyle Top TopHatTransform TopologicalSort ToRadicals ToRules ToString Total TotalHeight TotalVariationFilter TotalWidth TouchscreenAutoZoom TouchscreenControlPlacement ToUpperCase Tr Trace TraceAbove TraceAction TraceBackward TraceDepth TraceDialog TraceForward TraceInternal TraceLevel TraceOff TraceOn TraceOriginal TracePrint TraceScan TrackedSymbols TradingChart TraditionalForm TraditionalFunctionNotation TraditionalNotation TraditionalOrder TransferFunctionCancel TransferFunctionExpand TransferFunctionFactor TransferFunctionModel TransferFunctionPoles TransferFunctionTransform TransferFunctionZeros TransformationFunction TransformationFunctions TransformationMatrix TransformedDistribution TransformedField Translate TranslationTransform TransparentColor Transpose TreeForm TreeGraph TreeGraphQ TreePlot TrendStyle TriangleWave TriangularDistribution Trig TrigExpand TrigFactor TrigFactorList Trigger TrigReduce TrigToExp TrimmedMean True TrueQ TruncatedDistribution TsallisQExponentialDistribution TsallisQGaussianDistribution TTest Tube TubeBezierCurveBox TubeBezierCurveBoxOptions TubeBox TubeBSplineCurveBox TubeBSplineCurveBoxOptions Tuesday TukeyLambdaDistribution TukeyWindow Tuples TuranGraph TuringMachine ' + 'Transparent ' + 'UnateQ Uncompress Undefined UnderBar Underflow Underlined Underoverscript UnderoverscriptBox UnderoverscriptBoxOptions Underscript UnderscriptBox UnderscriptBoxOptions UndirectedEdge UndirectedGraph UndirectedGraphQ UndocumentedTestFEParserPacket UndocumentedTestGetSelectionPacket Unequal Unevaluated UniformDistribution UniformGraphDistribution UniformSumDistribution Uninstall Union UnionPlus Unique UnitBox UnitConvert UnitDimensions Unitize UnitRootTest UnitSimplify UnitStep UnitTriangle UnitVector Unprotect UnsameQ UnsavedVariables Unset UnsetShared UntrackedVariables Up UpArrow UpArrowBar UpArrowDownArrow Update UpdateDynamicObjects UpdateDynamicObjectsSynchronous UpdateInterval UpDownArrow UpEquilibrium UpperCaseQ UpperLeftArrow UpperRightArrow UpperTriangularize Upsample UpSet UpSetDelayed UpTee UpTeeArrow UpValues URL URLFetch URLFetchAsynchronous URLSave URLSaveAsynchronous UseGraphicsRange Using UsingFrontEnd ' + 'V2Get ValidationLength Value ValueBox ValueBoxOptions ValueForm ValueQ ValuesData Variables Variance VarianceEquivalenceTest VarianceEstimatorFunction VarianceGammaDistribution VarianceTest VectorAngle VectorColorFunction VectorColorFunctionScaling VectorDensityPlot VectorGlyphData VectorPlot VectorPlot3D VectorPoints VectorQ Vectors VectorScale VectorStyle Vee Verbatim Verbose VerboseConvertToPostScriptPacket VerifyConvergence VerifySolutions VerifyTestAssumptions Version VersionNumber VertexAdd VertexCapacity VertexColors VertexComponent VertexConnectivity VertexCoordinateRules VertexCoordinates VertexCorrelationSimilarity VertexCosineSimilarity VertexCount VertexCoverQ VertexDataCoordinates VertexDegree VertexDelete VertexDiceSimilarity VertexEccentricity VertexInComponent VertexInDegree VertexIndex VertexJaccardSimilarity VertexLabeling VertexLabels VertexLabelStyle VertexList VertexNormals VertexOutComponent VertexOutDegree VertexQ VertexRenderingFunction VertexReplace VertexShape VertexShapeFunction VertexSize VertexStyle VertexTextureCoordinates VertexWeight Vertical VerticalBar VerticalForm VerticalGauge VerticalSeparator VerticalSlider VerticalTilde ViewAngle ViewCenter ViewMatrix ViewPoint ViewPointSelectorSettings ViewPort ViewRange ViewVector ViewVertical VirtualGroupData Visible VisibleCell VoigtDistribution VonMisesDistribution ' + 'WaitAll WaitAsynchronousTask WaitNext WaitUntil WakebyDistribution WalleniusHypergeometricDistribution WaringYuleDistribution WatershedComponents WatsonUSquareTest WattsStrogatzGraphDistribution WaveletBestBasis WaveletFilterCoefficients WaveletImagePlot WaveletListPlot WaveletMapIndexed WaveletMatrixPlot WaveletPhi WaveletPsi WaveletScale WaveletScalogram WaveletThreshold WeaklyConnectedComponents WeaklyConnectedGraphQ WeakStationarity WeatherData WeberE Wedge Wednesday WeibullDistribution WeierstrassHalfPeriods WeierstrassInvariants WeierstrassP WeierstrassPPrime WeierstrassSigma WeierstrassZeta WeightedAdjacencyGraph WeightedAdjacencyMatrix WeightedData WeightedGraphQ Weights WelchWindow WheelGraph WhenEvent Which While White Whitespace WhitespaceCharacter WhittakerM WhittakerW WienerFilter WienerProcess WignerD WignerSemicircleDistribution WilksW WilksWTest WindowClickSelect WindowElements WindowFloating WindowFrame WindowFrameElements WindowMargins WindowMovable WindowOpacity WindowSelected WindowSize WindowStatusArea WindowTitle WindowToolbars WindowWidth With WolframAlpha WolframAlphaDate WolframAlphaQuantity WolframAlphaResult Word WordBoundary WordCharacter WordData WordSearch WordSeparators WorkingPrecision Write WriteString Wronskian ' + 'XMLElement XMLObject Xnor Xor ' + 'Yellow YuleDissimilarity ' + 'ZernikeR ZeroSymmetric ZeroTest ZeroWidthTimes Zeta ZetaZero ZipfDistribution ZTest ZTransform ' + '$Aborted $ActivationGroupID $ActivationKey $ActivationUserRegistered $AddOnsDirectory $AssertFunction $Assumptions $AsynchronousTask $BaseDirectory $BatchInput $BatchOutput $BoxForms $ByteOrdering $Canceled $CharacterEncoding $CharacterEncodings $CommandLine $CompilationTarget $ConditionHold $ConfiguredKernels $Context $ContextPath $ControlActiveSetting $CreationDate $CurrentLink $DateStringFormat $DefaultFont $DefaultFrontEnd $DefaultImagingDevice $DefaultPath $Display $DisplayFunction $DistributedContexts $DynamicEvaluation $Echo $Epilog $ExportFormats $Failed $FinancialDataSource $FormatType $FrontEnd $FrontEndSession $GeoLocation $HistoryLength $HomeDirectory $HTTPCookies $IgnoreEOF $ImagingDevices $ImportFormats $InitialDirectory $Input $InputFileName $InputStreamMethods $Inspector $InstallationDate $InstallationDirectory $InterfaceEnvironment $IterationLimit $KernelCount $KernelID $Language $LaunchDirectory $LibraryPath $LicenseExpirationDate $LicenseID $LicenseProcesses $LicenseServer $LicenseSubprocesses $LicenseType $Line $Linked $LinkSupported $LoadedFiles $MachineAddresses $MachineDomain $MachineDomains $MachineEpsilon $MachineID $MachineName $MachinePrecision $MachineType $MaxExtraPrecision $MaxLicenseProcesses $MaxLicenseSubprocesses $MaxMachineNumber $MaxNumber $MaxPiecewiseCases $MaxPrecision $MaxRootDegree $MessageGroups $MessageList $MessagePrePrint $Messages $MinMachineNumber $MinNumber $MinorReleaseNumber $MinPrecision $ModuleNumber $NetworkLicense $NewMessage $NewSymbol $Notebooks $NumberMarks $Off $OperatingSystem $Output $OutputForms $OutputSizeLimit $OutputStreamMethods $Packages $ParentLink $ParentProcessID $PasswordFile $PatchLevelID $Path $PathnameSeparator $PerformanceGoal $PipeSupported $Post $Pre $PreferencesDirectory $PrePrint $PreRead $PrintForms $PrintLiteral $ProcessID $ProcessorCount $ProcessorType $ProductInformation $ProgramName $RandomState $RecursionLimit $ReleaseNumber $RootDirectory $ScheduledTask $ScriptCommandLine $SessionID $SetParentLink $SharedFunctions $SharedVariables $SoundDisplay $SoundDisplayFunction $SuppressInputFormHeads $SynchronousEvaluation $SyntaxHandler $System $SystemCharacterEncoding $SystemID $SystemWordLength $TemporaryDirectory $TemporaryPrefix $TextStyle $TimedOut $TimeUnit $TimeZone $TopDirectory $TraceOff $TraceOn $TracePattern $TracePostAction $TracePreAction $Urgent $UserAddOnsDirectory $UserBaseDirectory $UserDocumentsDirectory $UserName $Version $VersionNumber',
@@ -17423,7 +17361,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 107 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17480,7 +17418,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 108 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17531,7 +17469,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 109 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17552,7 +17490,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 110 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17604,7 +17542,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 111 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17671,7 +17609,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 112 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17681,6 +17619,115 @@ module.exports = function (hljs) {
   return {
     keywords: 'environ vocabularies notations constructors definitions ' + 'registrations theorems schemes requirements begin end definition ' + 'registration cluster existence pred func defpred deffunc theorem ' + 'proof let take assume then thus hence ex for st holds consider ' + 'reconsider such that and in provided of as from be being by means ' + 'equals implies iff redefine define now not or attr is mode ' + 'suppose per cases set thesis contradiction scheme reserve struct ' + 'correctness compatibility coherence symmetry assymetry ' + 'reflexivity irreflexivity connectedness uniqueness commutativity ' + 'idempotence involutiveness projectivity',
     contains: [hljs.COMMENT('::', '$')]
+  };
+};
+
+/***/ }),
+/* 112 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function (hljs) {
+  var PERL_KEYWORDS = 'getpwent getservent quotemeta msgrcv scalar kill dbmclose undef lc ' + 'ma syswrite tr send umask sysopen shmwrite vec qx utime local oct semctl localtime ' + 'readpipe do return format read sprintf dbmopen pop getpgrp not getpwnam rewinddir qq' + 'fileno qw endprotoent wait sethostent bless s|0 opendir continue each sleep endgrent ' + 'shutdown dump chomp connect getsockname die socketpair close flock exists index shmget' + 'sub for endpwent redo lstat msgctl setpgrp abs exit select print ref gethostbyaddr ' + 'unshift fcntl syscall goto getnetbyaddr join gmtime symlink semget splice x|0 ' + 'getpeername recv log setsockopt cos last reverse gethostbyname getgrnam study formline ' + 'endhostent times chop length gethostent getnetent pack getprotoent getservbyname rand ' + 'mkdir pos chmod y|0 substr endnetent printf next open msgsnd readdir use unlink ' + 'getsockopt getpriority rindex wantarray hex system getservbyport endservent int chr ' + 'untie rmdir prototype tell listen fork shmread ucfirst setprotoent else sysseek link ' + 'getgrgid shmctl waitpid unpack getnetbyname reset chdir grep split require caller ' + 'lcfirst until warn while values shift telldir getpwuid my getprotobynumber delete and ' + 'sort uc defined srand accept package seekdir getprotobyname semop our rename seek if q|0 ' + 'chroot sysread setpwent no crypt getc chown sqrt write setnetent setpriority foreach ' + 'tie sin msgget map stat getlogin unless elsif truncate exec keys glob tied closedir' + 'ioctl socket readlink eval xor readline binmode setservent eof ord bind alarm pipe ' + 'atan2 getgrent exp time push setgrent gt lt or ne m|0 break given say state when';
+  var SUBST = {
+    className: 'subst',
+    begin: '[$@]\\{', end: '\\}',
+    keywords: PERL_KEYWORDS
+  };
+  var METHOD = {
+    begin: '->{', end: '}'
+    // contains defined later
+  };
+  var VAR = {
+    variants: [{ begin: /\$\d/ }, { begin: /[\$%@](\^\w\b|#\w+(::\w+)*|{\w+}|\w+(::\w*)*)/ }, { begin: /[\$%@][^\s\w{]/, relevance: 0 }]
+  };
+  var STRING_CONTAINS = [hljs.BACKSLASH_ESCAPE, SUBST, VAR];
+  var PERL_DEFAULT_CONTAINS = [VAR, hljs.HASH_COMMENT_MODE, hljs.COMMENT('^\\=\\w', '\\=cut', {
+    endsWithParent: true
+  }), METHOD, {
+    className: 'string',
+    contains: STRING_CONTAINS,
+    variants: [{
+      begin: 'q[qwxr]?\\s*\\(', end: '\\)',
+      relevance: 5
+    }, {
+      begin: 'q[qwxr]?\\s*\\[', end: '\\]',
+      relevance: 5
+    }, {
+      begin: 'q[qwxr]?\\s*\\{', end: '\\}',
+      relevance: 5
+    }, {
+      begin: 'q[qwxr]?\\s*\\|', end: '\\|',
+      relevance: 5
+    }, {
+      begin: 'q[qwxr]?\\s*\\<', end: '\\>',
+      relevance: 5
+    }, {
+      begin: 'qw\\s+q', end: 'q',
+      relevance: 5
+    }, {
+      begin: '\'', end: '\'',
+      contains: [hljs.BACKSLASH_ESCAPE]
+    }, {
+      begin: '"', end: '"'
+    }, {
+      begin: '`', end: '`',
+      contains: [hljs.BACKSLASH_ESCAPE]
+    }, {
+      begin: '{\\w+}',
+      contains: [],
+      relevance: 0
+    }, {
+      begin: '\-?\\w+\\s*\\=\\>',
+      contains: [],
+      relevance: 0
+    }]
+  }, {
+    className: 'number',
+    begin: '(\\b0[0-7_]+)|(\\b0x[0-9a-fA-F_]+)|(\\b[1-9][0-9_]*(\\.[0-9_]+)?)|[0_]\\b',
+    relevance: 0
+  }, { // regexp container
+    begin: '(\\/\\/|' + hljs.RE_STARTERS_RE + '|\\b(split|return|print|reverse|grep)\\b)\\s*',
+    keywords: 'split return print reverse grep',
+    relevance: 0,
+    contains: [hljs.HASH_COMMENT_MODE, {
+      className: 'regexp',
+      begin: '(s|tr|y)/(\\\\.|[^/])*/(\\\\.|[^/])*/[a-z]*',
+      relevance: 10
+    }, {
+      className: 'regexp',
+      begin: '(m|qr)?/', end: '/[a-z]*',
+      contains: [hljs.BACKSLASH_ESCAPE],
+      relevance: 0 // allows empty "//" which is a common comment delimiter in other languages
+    }]
+  }, {
+    className: 'function',
+    beginKeywords: 'sub', end: '(\\s*\\(.*?\\))?[;{]', excludeEnd: true,
+    relevance: 5,
+    contains: [hljs.TITLE_MODE]
+  }, {
+    begin: '-\\w\\b',
+    relevance: 0
+  }, {
+    begin: "^__DATA__$",
+    end: "^__END__$",
+    subLanguage: 'mojolicious',
+    contains: [{
+      begin: "^@@.*",
+      end: "$",
+      className: "comment"
+    }]
+  }];
+  SUBST.contains = PERL_DEFAULT_CONTAINS;
+  METHOD.contains = PERL_DEFAULT_CONTAINS;
+
+  return {
+    aliases: ['pl', 'pm'],
+    lexemes: /[\w\.]+/,
+    keywords: PERL_KEYWORDS,
+    contains: PERL_DEFAULT_CONTAINS
   };
 };
 
@@ -18399,115 +18446,6 @@ module.exports = function (hljs) {
 
 
 module.exports = function (hljs) {
-  var PERL_KEYWORDS = 'getpwent getservent quotemeta msgrcv scalar kill dbmclose undef lc ' + 'ma syswrite tr send umask sysopen shmwrite vec qx utime local oct semctl localtime ' + 'readpipe do return format read sprintf dbmopen pop getpgrp not getpwnam rewinddir qq' + 'fileno qw endprotoent wait sethostent bless s|0 opendir continue each sleep endgrent ' + 'shutdown dump chomp connect getsockname die socketpair close flock exists index shmget' + 'sub for endpwent redo lstat msgctl setpgrp abs exit select print ref gethostbyaddr ' + 'unshift fcntl syscall goto getnetbyaddr join gmtime symlink semget splice x|0 ' + 'getpeername recv log setsockopt cos last reverse gethostbyname getgrnam study formline ' + 'endhostent times chop length gethostent getnetent pack getprotoent getservbyname rand ' + 'mkdir pos chmod y|0 substr endnetent printf next open msgsnd readdir use unlink ' + 'getsockopt getpriority rindex wantarray hex system getservbyport endservent int chr ' + 'untie rmdir prototype tell listen fork shmread ucfirst setprotoent else sysseek link ' + 'getgrgid shmctl waitpid unpack getnetbyname reset chdir grep split require caller ' + 'lcfirst until warn while values shift telldir getpwuid my getprotobynumber delete and ' + 'sort uc defined srand accept package seekdir getprotobyname semop our rename seek if q|0 ' + 'chroot sysread setpwent no crypt getc chown sqrt write setnetent setpriority foreach ' + 'tie sin msgget map stat getlogin unless elsif truncate exec keys glob tied closedir' + 'ioctl socket readlink eval xor readline binmode setservent eof ord bind alarm pipe ' + 'atan2 getgrent exp time push setgrent gt lt or ne m|0 break given say state when';
-  var SUBST = {
-    className: 'subst',
-    begin: '[$@]\\{', end: '\\}',
-    keywords: PERL_KEYWORDS
-  };
-  var METHOD = {
-    begin: '->{', end: '}'
-    // contains defined later
-  };
-  var VAR = {
-    variants: [{ begin: /\$\d/ }, { begin: /[\$%@](\^\w\b|#\w+(::\w+)*|{\w+}|\w+(::\w*)*)/ }, { begin: /[\$%@][^\s\w{]/, relevance: 0 }]
-  };
-  var STRING_CONTAINS = [hljs.BACKSLASH_ESCAPE, SUBST, VAR];
-  var PERL_DEFAULT_CONTAINS = [VAR, hljs.HASH_COMMENT_MODE, hljs.COMMENT('^\\=\\w', '\\=cut', {
-    endsWithParent: true
-  }), METHOD, {
-    className: 'string',
-    contains: STRING_CONTAINS,
-    variants: [{
-      begin: 'q[qwxr]?\\s*\\(', end: '\\)',
-      relevance: 5
-    }, {
-      begin: 'q[qwxr]?\\s*\\[', end: '\\]',
-      relevance: 5
-    }, {
-      begin: 'q[qwxr]?\\s*\\{', end: '\\}',
-      relevance: 5
-    }, {
-      begin: 'q[qwxr]?\\s*\\|', end: '\\|',
-      relevance: 5
-    }, {
-      begin: 'q[qwxr]?\\s*\\<', end: '\\>',
-      relevance: 5
-    }, {
-      begin: 'qw\\s+q', end: 'q',
-      relevance: 5
-    }, {
-      begin: '\'', end: '\'',
-      contains: [hljs.BACKSLASH_ESCAPE]
-    }, {
-      begin: '"', end: '"'
-    }, {
-      begin: '`', end: '`',
-      contains: [hljs.BACKSLASH_ESCAPE]
-    }, {
-      begin: '{\\w+}',
-      contains: [],
-      relevance: 0
-    }, {
-      begin: '\-?\\w+\\s*\\=\\>',
-      contains: [],
-      relevance: 0
-    }]
-  }, {
-    className: 'number',
-    begin: '(\\b0[0-7_]+)|(\\b0x[0-9a-fA-F_]+)|(\\b[1-9][0-9_]*(\\.[0-9_]+)?)|[0_]\\b',
-    relevance: 0
-  }, { // regexp container
-    begin: '(\\/\\/|' + hljs.RE_STARTERS_RE + '|\\b(split|return|print|reverse|grep)\\b)\\s*',
-    keywords: 'split return print reverse grep',
-    relevance: 0,
-    contains: [hljs.HASH_COMMENT_MODE, {
-      className: 'regexp',
-      begin: '(s|tr|y)/(\\\\.|[^/])*/(\\\\.|[^/])*/[a-z]*',
-      relevance: 10
-    }, {
-      className: 'regexp',
-      begin: '(m|qr)?/', end: '/[a-z]*',
-      contains: [hljs.BACKSLASH_ESCAPE],
-      relevance: 0 // allows empty "//" which is a common comment delimiter in other languages
-    }]
-  }, {
-    className: 'function',
-    beginKeywords: 'sub', end: '(\\s*\\(.*?\\))?[;{]', excludeEnd: true,
-    relevance: 5,
-    contains: [hljs.TITLE_MODE]
-  }, {
-    begin: '-\\w\\b',
-    relevance: 0
-  }, {
-    begin: "^__DATA__$",
-    end: "^__END__$",
-    subLanguage: 'mojolicious',
-    contains: [{
-      begin: "^@@.*",
-      end: "$",
-      className: "comment"
-    }]
-  }];
-  SUBST.contains = PERL_DEFAULT_CONTAINS;
-  METHOD.contains = PERL_DEFAULT_CONTAINS;
-
-  return {
-    aliases: ['pl', 'pm'],
-    lexemes: /[\w\.]+/,
-    keywords: PERL_KEYWORDS,
-    contains: PERL_DEFAULT_CONTAINS
-  };
-};
-
-/***/ }),
-/* 127 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function (hljs) {
   var MACRO = {
     className: 'variable',
     begin: /\$[\w\d#@][\w\d_]*/
@@ -18537,7 +18475,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 128 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18613,7 +18551,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 129 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18680,7 +18618,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 130 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18743,7 +18681,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 131 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18764,7 +18702,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 132 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18793,7 +18731,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 133 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18869,7 +18807,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 134 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18902,7 +18840,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 135 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18978,7 +18916,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 136 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19026,7 +18964,7 @@ function (hljs) {
 };
 
 /***/ }),
-/* 137 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19113,7 +19051,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 138 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19135,7 +19073,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 139 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19258,7 +19196,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 140 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19315,7 +19253,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 141 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19330,7 +19268,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 142 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19390,7 +19328,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 143 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19525,7 +19463,7 @@ function (hljs) {
 };
 
 /***/ }),
-/* 144 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19551,131 +19489,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 145 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function (hljs) {
-  var RUBY_METHOD_RE = '[a-zA-Z_]\\w*[!?=]?|[-+~]\\@|<<|>>|=~|===?|<=>|[<>]=?|\\*\\*|[-/+%^&*~`|]|\\[\\]=?';
-  var RUBY_KEYWORDS = {
-    keyword: 'and then defined module in return redo if BEGIN retry end for self when ' + 'next until do begin unless END rescue else break undef not super class case ' + 'require yield alias while ensure elsif or include attr_reader attr_writer attr_accessor',
-    literal: 'true false nil'
-  };
-  var YARDOCTAG = {
-    className: 'doctag',
-    begin: '@[A-Za-z]+'
-  };
-  var IRB_OBJECT = {
-    begin: '#<', end: '>'
-  };
-  var COMMENT_MODES = [hljs.COMMENT('#', '$', {
-    contains: [YARDOCTAG]
-  }), hljs.COMMENT('^\\=begin', '^\\=end', {
-    contains: [YARDOCTAG],
-    relevance: 10
-  }), hljs.COMMENT('^__END__', '\\n$')];
-  var SUBST = {
-    className: 'subst',
-    begin: '#\\{', end: '}',
-    keywords: RUBY_KEYWORDS
-  };
-  var STRING = {
-    className: 'string',
-    contains: [hljs.BACKSLASH_ESCAPE, SUBST],
-    variants: [{ begin: /'/, end: /'/ }, { begin: /"/, end: /"/ }, { begin: /`/, end: /`/ }, { begin: '%[qQwWx]?\\(', end: '\\)' }, { begin: '%[qQwWx]?\\[', end: '\\]' }, { begin: '%[qQwWx]?{', end: '}' }, { begin: '%[qQwWx]?<', end: '>' }, { begin: '%[qQwWx]?/', end: '/' }, { begin: '%[qQwWx]?%', end: '%' }, { begin: '%[qQwWx]?-', end: '-' }, { begin: '%[qQwWx]?\\|', end: '\\|' }, {
-      // \B in the beginning suppresses recognition of ?-sequences where ?
-      // is the last character of a preceding identifier, as in: `func?4`
-      begin: /\B\?(\\\d{1,3}|\\x[A-Fa-f0-9]{1,2}|\\u[A-Fa-f0-9]{4}|\\?\S)\b/
-    }, {
-      begin: /<<(-?)\w+$/, end: /^\s*\w+$/
-    }]
-  };
-  var PARAMS = {
-    className: 'params',
-    begin: '\\(', end: '\\)', endsParent: true,
-    keywords: RUBY_KEYWORDS
-  };
-
-  var RUBY_DEFAULT_CONTAINS = [STRING, IRB_OBJECT, {
-    className: 'class',
-    beginKeywords: 'class module', end: '$|;',
-    illegal: /=/,
-    contains: [hljs.inherit(hljs.TITLE_MODE, { begin: '[A-Za-z_]\\w*(::\\w+)*(\\?|\\!)?' }), {
-      begin: '<\\s*',
-      contains: [{
-        begin: '(' + hljs.IDENT_RE + '::)?' + hljs.IDENT_RE
-      }]
-    }].concat(COMMENT_MODES)
-  }, {
-    className: 'function',
-    beginKeywords: 'def', end: '$|;',
-    contains: [hljs.inherit(hljs.TITLE_MODE, { begin: RUBY_METHOD_RE }), PARAMS].concat(COMMENT_MODES)
-  }, {
-    // swallow namespace qualifiers before symbols
-    begin: hljs.IDENT_RE + '::'
-  }, {
-    className: 'symbol',
-    begin: hljs.UNDERSCORE_IDENT_RE + '(\\!|\\?)?:',
-    relevance: 0
-  }, {
-    className: 'symbol',
-    begin: ':(?!\\s)',
-    contains: [STRING, { begin: RUBY_METHOD_RE }],
-    relevance: 0
-  }, {
-    className: 'number',
-    begin: '(\\b0[0-7_]+)|(\\b0x[0-9a-fA-F_]+)|(\\b[1-9][0-9_]*(\\.[0-9_]+)?)|[0_]\\b',
-    relevance: 0
-  }, {
-    begin: '(\\$\\W)|((\\$|\\@\\@?)(\\w+))' // variables
-  }, {
-    className: 'params',
-    begin: /\|/, end: /\|/,
-    keywords: RUBY_KEYWORDS
-  }, { // regexp container
-    begin: '(' + hljs.RE_STARTERS_RE + '|unless)\\s*',
-    keywords: 'unless',
-    contains: [IRB_OBJECT, {
-      className: 'regexp',
-      contains: [hljs.BACKSLASH_ESCAPE, SUBST],
-      illegal: /\n/,
-      variants: [{ begin: '/', end: '/[a-z]*' }, { begin: '%r{', end: '}[a-z]*' }, { begin: '%r\\(', end: '\\)[a-z]*' }, { begin: '%r!', end: '![a-z]*' }, { begin: '%r\\[', end: '\\][a-z]*' }]
-    }].concat(COMMENT_MODES),
-    relevance: 0
-  }].concat(COMMENT_MODES);
-
-  SUBST.contains = RUBY_DEFAULT_CONTAINS;
-  PARAMS.contains = RUBY_DEFAULT_CONTAINS;
-
-  var SIMPLE_PROMPT = "[>?]>";
-  var DEFAULT_PROMPT = "[\\w#]+\\(\\w+\\):\\d+:\\d+>";
-  var RVM_PROMPT = "(\\w+-)?\\d+\\.\\d+\\.\\d(p\\d+)?[^>]+>";
-
-  var IRB_DEFAULT = [{
-    begin: /^\s*=>/,
-    starts: {
-      end: '$', contains: RUBY_DEFAULT_CONTAINS
-    }
-  }, {
-    className: 'meta',
-    begin: '^(' + SIMPLE_PROMPT + "|" + DEFAULT_PROMPT + '|' + RVM_PROMPT + ')',
-    starts: {
-      end: '$', contains: RUBY_DEFAULT_CONTAINS
-    }
-  }];
-
-  return {
-    aliases: ['rb', 'gemspec', 'podspec', 'thor', 'irb'],
-    keywords: RUBY_KEYWORDS,
-    illegal: /\/\*/,
-    contains: COMMENT_MODES.concat(IRB_DEFAULT).concat(RUBY_DEFAULT_CONTAINS)
-  };
-};
-
-/***/ }),
-/* 146 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19696,7 +19510,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 147 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19765,7 +19579,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 148 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19864,7 +19678,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 149 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19958,7 +19772,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 150 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20001,7 +19815,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 151 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20071,7 +19885,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 152 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20091,7 +19905,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 153 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20134,7 +19948,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 154 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20176,7 +19990,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 155 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20226,7 +20040,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 156 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20277,7 +20091,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 157 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20315,7 +20129,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 158 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20377,7 +20191,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 159 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20407,7 +20221,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 160 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20448,7 +20262,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 161 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20576,7 +20390,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 162 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20607,7 +20421,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 163 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20681,7 +20495,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 164 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20727,7 +20541,77 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 165 */
+/* 163 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function (hljs) {
+  var LITERALS = 'true false yes no null';
+
+  var keyPrefix = '^[ \\-]*';
+  var keyName = '[a-zA-Z_][\\w\\-]*';
+  var KEY = {
+    className: 'attr',
+    variants: [{ begin: keyPrefix + keyName + ":" }, { begin: keyPrefix + '"' + keyName + '"' + ":" }, { begin: keyPrefix + "'" + keyName + "'" + ":" }]
+  };
+
+  var TEMPLATE_VARIABLES = {
+    className: 'template-variable',
+    variants: [{ begin: '\{\{', end: '\}\}' }, // jinja templates Ansible
+    { begin: '%\{', end: '\}' // Ruby i18n
+    }]
+  };
+  var STRING = {
+    className: 'string',
+    relevance: 0,
+    variants: [{ begin: /'/, end: /'/ }, { begin: /"/, end: /"/ }, { begin: /\S+/ }],
+    contains: [hljs.BACKSLASH_ESCAPE, TEMPLATE_VARIABLES]
+  };
+
+  return {
+    case_insensitive: true,
+    aliases: ['yml', 'YAML', 'yaml'],
+    contains: [KEY, {
+      className: 'meta',
+      begin: '^---\s*$',
+      relevance: 10
+    }, { // multi line string
+      className: 'string',
+      begin: '[\\|>] *$',
+      returnEnd: true,
+      contains: STRING.contains,
+      // very simple termination: next hash key
+      end: KEY.variants[0].begin
+    }, { // Ruby/Rails erb
+      begin: '<%[%=-]?', end: '[%-]?%>',
+      subLanguage: 'ruby',
+      excludeBegin: true,
+      excludeEnd: true,
+      relevance: 0
+    }, { // data type
+      className: 'type',
+      begin: '!!' + hljs.UNDERSCORE_IDENT_RE
+    }, { // fragment id &ref
+      className: 'meta',
+      begin: '&' + hljs.UNDERSCORE_IDENT_RE + '$'
+    }, { // fragment reference *ref
+      className: 'meta',
+      begin: '\\*' + hljs.UNDERSCORE_IDENT_RE + '$'
+    }, { // array listing
+      className: 'bullet',
+      begin: '^ *-',
+      relevance: 0
+    }, hljs.HASH_COMMENT_MODE, {
+      beginKeywords: LITERALS,
+      keywords: { literal: LITERALS }
+    }, hljs.C_NUMBER_MODE, STRING]
+  };
+};
+
+/***/ }),
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20762,7 +20646,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 166 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20804,7 +20688,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 167 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20849,7 +20733,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 168 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20879,7 +20763,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 169 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20941,7 +20825,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 170 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21000,7 +20884,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 171 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21098,7 +20982,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 172 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21141,7 +21025,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 173 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21189,24 +21073,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 174 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function (hljs) {
-  return {
-    subLanguage: 'xml',
-    contains: [{
-      begin: '<%', end: '%>',
-      subLanguage: 'vbscript'
-    }]
-  };
-};
-
-/***/ }),
-/* 175 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21229,7 +21096,24 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 176 */
+/* 174 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function (hljs) {
+  return {
+    subLanguage: 'xml',
+    contains: [{
+      begin: '<%', end: '%>',
+      subLanguage: 'vbscript'
+    }]
+  };
+};
+
+/***/ }),
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21264,7 +21148,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 177 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21310,7 +21194,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 178 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21362,7 +21246,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 179 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21465,7 +21349,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 180 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21518,89 +21402,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 181 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function (hljs) {
-  var XML_IDENT_RE = '[A-Za-z0-9\\._:-]+';
-  var TAG_INTERNALS = {
-    endsWithParent: true,
-    illegal: /</,
-    relevance: 0,
-    contains: [{
-      className: 'attr',
-      begin: XML_IDENT_RE,
-      relevance: 0
-    }, {
-      begin: /=\s*/,
-      relevance: 0,
-      contains: [{
-        className: 'string',
-        endsParent: true,
-        variants: [{ begin: /"/, end: /"/ }, { begin: /'/, end: /'/ }, { begin: /[^\s"'=<>`]+/ }]
-      }]
-    }]
-  };
-  return {
-    aliases: ['html', 'xhtml', 'rss', 'atom', 'xjb', 'xsd', 'xsl', 'plist'],
-    case_insensitive: true,
-    contains: [{
-      className: 'meta',
-      begin: '<!DOCTYPE', end: '>',
-      relevance: 10,
-      contains: [{ begin: '\\[', end: '\\]' }]
-    }, hljs.COMMENT('<!--', '-->', {
-      relevance: 10
-    }), {
-      begin: '<\\!\\[CDATA\\[', end: '\\]\\]>',
-      relevance: 10
-    }, {
-      begin: /<\?(php)?/, end: /\?>/,
-      subLanguage: 'php',
-      contains: [{ begin: '/\\*', end: '\\*/', skip: true }]
-    }, {
-      className: 'tag',
-      /*
-      The lookahead pattern (?=...) ensures that 'begin' only matches
-      '<style' as a single word, followed by a whitespace or an
-      ending braket. The '$' is needed for the lexeme to be recognized
-      by hljs.subMode() that tests lexemes outside the stream.
-      */
-      begin: '<style(?=\\s|>|$)', end: '>',
-      keywords: { name: 'style' },
-      contains: [TAG_INTERNALS],
-      starts: {
-        end: '</style>', returnEnd: true,
-        subLanguage: ['css', 'xml']
-      }
-    }, {
-      className: 'tag',
-      // See the comment in the <style tag about the lookahead pattern
-      begin: '<script(?=\\s|>|$)', end: '>',
-      keywords: { name: 'script' },
-      contains: [TAG_INTERNALS],
-      starts: {
-        end: '\<\/script\>', returnEnd: true,
-        subLanguage: ['actionscript', 'javascript', 'handlebars', 'xml']
-      }
-    }, {
-      className: 'meta',
-      variants: [{ begin: /<\?xml/, end: /\?>/, relevance: 10 }, { begin: /<\?\w+/, end: /\?>/ }]
-    }, {
-      className: 'tag',
-      begin: '</?', end: '/?>',
-      contains: [{
-        className: 'name', begin: /[^\/><\s]+/, relevance: 0
-      }, TAG_INTERNALS]
-    }]
-  };
-};
-
-/***/ }),
-/* 182 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21659,77 +21461,7 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
-/* 183 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function (hljs) {
-  var LITERALS = 'true false yes no null';
-
-  var keyPrefix = '^[ \\-]*';
-  var keyName = '[a-zA-Z_][\\w\\-]*';
-  var KEY = {
-    className: 'attr',
-    variants: [{ begin: keyPrefix + keyName + ":" }, { begin: keyPrefix + '"' + keyName + '"' + ":" }, { begin: keyPrefix + "'" + keyName + "'" + ":" }]
-  };
-
-  var TEMPLATE_VARIABLES = {
-    className: 'template-variable',
-    variants: [{ begin: '\{\{', end: '\}\}' }, // jinja templates Ansible
-    { begin: '%\{', end: '\}' // Ruby i18n
-    }]
-  };
-  var STRING = {
-    className: 'string',
-    relevance: 0,
-    variants: [{ begin: /'/, end: /'/ }, { begin: /"/, end: /"/ }, { begin: /\S+/ }],
-    contains: [hljs.BACKSLASH_ESCAPE, TEMPLATE_VARIABLES]
-  };
-
-  return {
-    case_insensitive: true,
-    aliases: ['yml', 'YAML', 'yaml'],
-    contains: [KEY, {
-      className: 'meta',
-      begin: '^---\s*$',
-      relevance: 10
-    }, { // multi line string
-      className: 'string',
-      begin: '[\\|>] *$',
-      returnEnd: true,
-      contains: STRING.contains,
-      // very simple termination: next hash key
-      end: KEY.variants[0].begin
-    }, { // Ruby/Rails erb
-      begin: '<%[%=-]?', end: '[%-]?%>',
-      subLanguage: 'ruby',
-      excludeBegin: true,
-      excludeEnd: true,
-      relevance: 0
-    }, { // data type
-      className: 'type',
-      begin: '!!' + hljs.UNDERSCORE_IDENT_RE
-    }, { // fragment id &ref
-      className: 'meta',
-      begin: '&' + hljs.UNDERSCORE_IDENT_RE + '$'
-    }, { // fragment reference *ref
-      className: 'meta',
-      begin: '\\*' + hljs.UNDERSCORE_IDENT_RE + '$'
-    }, { // array listing
-      className: 'bullet',
-      begin: '^ *-',
-      relevance: 0
-    }, hljs.HASH_COMMENT_MODE, {
-      beginKeywords: LITERALS,
-      keywords: { literal: LITERALS }
-    }, hljs.C_NUMBER_MODE, STRING]
-  };
-};
-
-/***/ }),
-/* 184 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21794,34 +21526,330 @@ module.exports = function (hljs) {
 };
 
 /***/ }),
+/* 182 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.enableCollapsables = enableCollapsables;
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function enableCollapsables() {
+	var classExp = 'toggler--expanded';
+	var classCol = 'toggler--collapsed';
+
+	enableCollapsable({
+		selector: '.tree li[class*="toggler--"]',
+		nodeElement: 'li',
+		dontToggleClass: 'tree__item__text',
+
+		collapsedClass: classCol,
+		expandedClass: classExp
+	});
+
+	enableCollapsable({
+		selector: '.collapsing-list__term[class*="toggler--"]',
+		nodeElement: '.collapsing-list__term',
+		dontToggleClass: 'collapsing-list__type',
+
+		collapsedClass: classCol,
+		expandedClass: classExp
+	});
+} /**
+   * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+   * For licensing, see LICENSE.md.
+   */
+
+function enableCollapsable(options) {
+	(0, _jquery2.default)(options.selector).on('click', function (evt) {
+		var clicked = (0, _jquery2.default)(this);
+		var target = (0, _jquery2.default)(evt.target);
+		var parentNode = target.closest(options.nodeElement);
+
+		if (parentNode.is(options.selector)) {
+			if (target.is('a') && target.hasClass(options.dontToggleClass)) {
+				return;
+			}
+
+			clicked.toggleClass(options.expandedClass + ' ' + options.collapsedClass);
+			evt.stopPropagation();
+		}
+	});
+}
+
+/***/ }),
+/* 183 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.enableAnchors = enableAnchors;
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function enableAnchors() {
+	setTimeout(scrollToHashTarget, 100);
+
+	(0, _jquery2.default)(window).on('hashchange', function () {
+		setTimeout(scrollToHashTarget, 0);
+	});
+
+	(0, _jquery2.default)('a[href^="#"]').on('click', function (evt) {
+		var el = (0, _jquery2.default)(this);
+		var href = el.attr('href');
+		var hash = location.hash;
+
+		if (el.hasClass('member-name')) {
+			evt.preventDefault();
+		} else if (href == hash) {
+			scrollToHashTarget();
+			evt.preventDefault();
+		}
+	});
+
+	function scrollToHashTarget() {
+		var target = (0, _jquery2.default)(':target');
+		var offset = target.offset();
+
+		if (offset) {
+			var scrollTop = offset.top - (0, _jquery2.default)('.top').height();
+
+			if (target && target.is('[class*="toggler"]')) {
+				target.removeClass('toggler--collapsed');
+				target.addClass('toggler--expanded');
+			}
+
+			(0, _jquery2.default)('html, body').scrollTop(scrollTop);
+		}
+	}
+} /**
+   * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+   * For licensing, see LICENSE.md.
+   */
+
+/* global window, setTimeout, location */
+
+/***/ }),
+/* 184 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.enableDropdowns = enableDropdowns;
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function enableDropdowns() {
+	var activeClass = 'dropdown--active';
+	var doc = (0, _jquery2.default)(document);
+
+	(0, _jquery2.default)('.dropdown__button').each(function (index, button) {
+		var dropdown = (0, _jquery2.default)(button).parent();
+
+		(0, _jquery2.default)(button).on('click', toggleDropdown);
+
+		function startListening() {
+			doc.on('click', closeDropdownOnClick);
+			doc.on('keyup', closeDropdownOnEsc);
+		}
+
+		function stopListening() {
+			doc.off('click', closeDropdownOnClick);
+			doc.off('keyup', closeDropdownOnEsc);
+		}
+
+		function closeDropdownOnClick(evt) {
+			var target = evt.target;
+
+			if (!(dropdown.has(target).length || dropdown.is(target))) {
+				dropdown.removeClass(activeClass);
+
+				stopListening();
+			}
+		}
+
+		function closeDropdownOnEsc(evt) {
+			if (evt.keyCode === 27) {
+				dropdown.removeClass(activeClass);
+
+				stopListening();
+			}
+		}
+
+		function toggleDropdown() {
+			dropdown.toggleClass(activeClass);
+
+			if (dropdown.hasClass(activeClass)) {
+				startListening();
+			} else {
+				stopListening();
+			}
+		}
+	});
+} /**
+   * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+   * For licensing, see LICENSE.md.
+   */
+
+/* global document */
+
+/***/ }),
 /* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-module.exports = function (module) {
-	if (!module.webpackPolyfill) {
-		module.deprecate = function () {};
-		module.paths = [];
-		// module.parent = undefined by default
-		if (!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function get() {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function get() {
-				return module.i;
-			}
-		});
-		module.webpackPolyfill = 1;
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.enableFiltering = enableFiltering;
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function enableFiltering() {
+	var storagePrefix = 'filtering:props:';
+	var filterStorageKeys = {
+		public: storagePrefix + 'public',
+		inherited: storagePrefix + 'inherited',
+		protected: storagePrefix + 'protected',
+		private: storagePrefix + 'private',
+		deprecated: storagePrefix + 'deprecated',
+		tree: 'filtering:tree'
+	};
+
+	enableProperiesFiltering();
+	enableTreeFiltering();
+
+	function enableProperiesFiltering() {
+		(0, _jquery2.default)('.api-props-filter input').on('change', applyFilterConfig).on('change', saveFilterSetting);
+
+		function getFilterConfig() {
+			return (0, _jquery2.default)('.api-props-filter input').map(function (index, domInput) {
+				if (domInput.checked) {
+					return (0, _jquery2.default)(domInput).val();
+				}
+			});
+		}
+
+		function applyFilterConfig() {
+			var cfg = getFilterConfig().toArray();
+			var visibleClass = 'collapsing-list__item--visible';
+			var emptyClass = 'collapsing-list--empty';
+			var firstItemClass = 'collapsing-list__item--first';
+
+			(0, _jquery2.default)('.collapsing-list__item.' + visibleClass).removeClass(visibleClass + ' ' + firstItemClass);
+			(0, _jquery2.default)('.collapsing-list').removeClass(emptyClass);
+
+			(0, _jquery2.default)('.collapsing-list__item').each(function () {
+				var data = (0, _jquery2.default)(this).data();
+
+				for (var key in data) {
+					if (data.hasOwnProperty(key) && data[key] === true && cfg.indexOf(key) === -1) {
+						return;
+					}
+				}
+
+				(0, _jquery2.default)(this).addClass(visibleClass);
+			});
+
+			(0, _jquery2.default)('.collapsing-list').filter(function () {
+				return (0, _jquery2.default)(this).children(':visible').length === 0;
+			}).each(function () {
+				(0, _jquery2.default)(this).addClass(emptyClass);
+			});
+
+			(0, _jquery2.default)('.collapsing-list').each(function () {
+				(0, _jquery2.default)(this).children(':visible').first().addClass(firstItemClass);
+			});
+		}
+
+		function saveFilterSetting() {
+			var type = (0, _jquery2.default)(this).val();
+			var checked = (0, _jquery2.default)(this).prop('checked');
+
+			window.localStorage.setItem(filterStorageKeys[type], checked);
+		}
+
+		function applySavedFilterSettings() {
+			(0, _jquery2.default)('.api-props-filter input').each(function () {
+				var type = (0, _jquery2.default)(this).val();
+				var stored = window.localStorage.getItem(filterStorageKeys[type]);
+
+				if (stored !== null) {
+					(0, _jquery2.default)(this).prop('checked', JSON.parse(stored));
+				}
+			});
+		}
+
+		applySavedFilterSettings();
+		applyFilterConfig();
 	}
-	return module;
-};
+
+	function enableTreeFiltering() {
+		var input = (0, _jquery2.default)('.api-tree__filter input');
+		var showPrivateClass = 'api-tree--show-private';
+		var tree = (0, _jquery2.default)('.api-tree');
+		var stored = window.localStorage.getItem(filterStorageKeys.tree);
+
+		if (input && input.length === 0) {
+			return;
+		}
+
+		input.on('change', applyTreeFilter).on('change', function () {
+			var checked = (0, _jquery2.default)(this).prop('checked');
+			window.localStorage.setItem(filterStorageKeys.tree, checked);
+		});
+
+		function applyTreeFilter() {
+			if (input.get(0).checked) {
+				tree.addClass(showPrivateClass);
+			} else {
+				tree.removeClass(showPrivateClass);
+			}
+		}
+
+		if (stored !== null) {
+			input.prop('checked', JSON.parse(stored));
+		}
+
+		applyTreeFilter();
+	}
+} /**
+   * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+   * For licensing, see LICENSE.md.
+   */
+
+/* global window */
 
 /***/ }),
 /* 186 */
@@ -21830,35 +21858,38 @@ module.exports = function (module) {
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.customizeNavigationScroll = customizeNavigationScroll;
+
 var _jquery = __webpack_require__(0);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var _highlight = __webpack_require__(5);
-
-var _collapsables = __webpack_require__(2);
-
-var _anchors = __webpack_require__(1);
-
-var _dropdowns = __webpack_require__(3);
-
-var _filtering = __webpack_require__(4);
-
-var _scrolling = __webpack_require__(6);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _jquery2.default)(document).ready(function () {
-	(0, _highlight.setupHighlight)();
-	(0, _filtering.enableFiltering)();
-	(0, _collapsables.enableCollapsables)();
-	(0, _anchors.enableAnchors)();
-	(0, _dropdowns.enableDropdowns)();
-	(0, _scrolling.customizeNavigationScroll)();
-}); /**
-     * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
-     * For licensing, see LICENSE.md.
-     */
+function customizeNavigationScroll() {
+	var support = 'onwheel' in document.createElement('div') ? 'wheel' : document.onmousewheel !== undefined ? 'mousewheel' : 'DOMMouseScroll';
+
+	(0, _jquery2.default)('.side-navigation__inner').on(support, function (e) {
+		var scrollTo = null;
+
+		if (e.type == 'DOMMouseScroll') {
+			scrollTo = 20 * e.originalEvent.detail;
+		} else if (e.type === 'wheel' || e.type === 'mousewheel') {
+			scrollTo = e.originalEvent.wheelDelta ? e.originalEvent.wheelDelta * -1 : e.originalEvent.detail * 20;
+		}
+
+		if (scrollTo) {
+			e.preventDefault();
+			(0, _jquery2.default)(this).scrollTop(scrollTo + (0, _jquery2.default)(this).scrollTop());
+		}
+	});
+} /**
+   * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+   * For licensing, see LICENSE.md.
+   */
 
 /* global document */
 
