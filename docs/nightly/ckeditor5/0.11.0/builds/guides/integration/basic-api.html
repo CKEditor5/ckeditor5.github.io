@@ -37,13 +37,13 @@
 <li>Balloon editor &#x2013; <a href="../../../api/module_editor-balloon_ballooneditor-BalloonEditor.html"><code>BalloonEditor</code></a></li>
 </ul>
 <p>Most of the examples in the documentation use the <code>ClassicEditor</code> class, but things should work in a similar way with other builds.</p>
-<h2 id="Creating-an-editor"><a href="#Creating-an-editor" class="headerlink" title="Creating an editor"></a>Creating an editor</h2><p>Regardless of chosen build, creating an editor is done using a static <code>create()</code> method.</p>
-<h3 id="Example-&#x2013;-Classic-editor"><a href="#Example-&#x2013;-Classic-editor" class="headerlink" title="Example &#x2013; Classic editor"></a>Example &#x2013; Classic editor</h3><p>In your HTML page add an element that CKEditor should replace:</p>
+<h2 id="Creating-an-editor"><a href="#Creating-an-editor" class="headerlink" title="Creating an editor"></a>Creating an editor</h2><p>Regardless of the chosen build, creating an editor is done using the static <code>create()</code> method.</p>
+<h3 id="Example-&#x2013;-Classic-editor"><a href="#Example-&#x2013;-Classic-editor" class="headerlink" title="Example &#x2013; Classic editor"></a>Example &#x2013; Classic editor</h3><p>Add an element that CKEditor should replace to your HTML page:</p>
 <pre><code class="html">&lt;textarea name=&quot;content&quot; id=&quot;editor&quot;&gt;
     &lt;p&gt;Here goes the initial content of the editor.&lt;/p&gt;
 &lt;/textarea&gt;
 </code></pre>
-<p>Then call <a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html#create"><code>ClassicEditor.create()</code></a> to <strong>replace</strong> <code>&lt;textarea&gt;</code> with a <a href="../overview.html#Classic-editor">Classic editor</a>:</p>
+<p>Then call <a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html#create"><code>ClassicEditor.create()</code></a> to <strong>replace</strong> the <code>&lt;textarea&gt;</code> element with a <a href="../overview.html#Classic-editor">Classic editor</a>:</p>
 <pre><code class="js">ClassicEditor
     .create( document.querySelector( &apos;#editor&apos; ) )
     .then( editor =&gt; {
@@ -53,13 +53,13 @@
         console.error( error );
     } );
 </code></pre>
-<p>In the above case, the <code>&lt;textarea&gt;</code> element is hidden and replaced with an editor. The <code>&lt;textarea&gt;</code> data is used to initialize the editor content. A <code>&lt;div&gt;</code> element can be used in the same fashion.</p>
-<h3 id="Example-&#x2013;-Inline-editor"><a href="#Example-&#x2013;-Inline-editor" class="headerlink" title="Example &#x2013; Inline editor"></a>Example &#x2013; Inline editor</h3><p>Similarly to the previous example, add an element where CKEditor should initialize:</p>
+<p>In this case the <code>&lt;textarea&gt;</code> element is hidden and replaced with an editor. The <code>&lt;textarea&gt;</code> data is used to initialize the editor content. A <code>&lt;div&gt;</code> element can be used in the same way.</p>
+<h3 id="Example-&#x2013;-Inline-editor"><a href="#Example-&#x2013;-Inline-editor" class="headerlink" title="Example &#x2013; Inline editor"></a>Example &#x2013; Inline editor</h3><p>Similarly to the previous example, add an element where CKEditor should initialize to your page:</p>
 <pre><code class="html">&lt;div id=&quot;editor&quot;&gt;
     &lt;p&gt;Here goes the initial content of the editor.&lt;/p&gt;
 &lt;/div&gt;
 </code></pre>
-<p>Then call <a href="../../../api/module_editor-inline_inlineeditor-InlineEditor.html#create"><code>InlineEditor.create()</code></a> to <strong>attach</strong> <a href="../overview.html#Inline-editor">Inline editor</a> to a <code>&lt;div&gt;</code> element:</p>
+<p>Then call <a href="../../../api/module_editor-inline_inlineeditor-InlineEditor.html#create"><code>InlineEditor.create()</code></a> to <strong>attach</strong> <a href="../overview.html#Inline-editor">Inline editor</a> to the <code>&lt;div&gt;</code> element:</p>
 <pre><code class="js">InlineEditor
     .create( document.querySelector( &apos;#editor&apos; ) )
     .then( editor =&gt; {
@@ -69,13 +69,13 @@
         console.error( error );
     } );
 </code></pre>
-<h3 id="Example-&#x2013;-Balloon-editor"><a href="#Example-&#x2013;-Balloon-editor" class="headerlink" title="Example &#x2013; Balloon editor"></a>Example &#x2013; Balloon editor</h3><p>The procedure is the same as for Inline editor, the only difference is that we will use <a href="../../../api/module_editor-balloon_ballooneditor-BalloonEditor.html#create"><code>BalloonEditor.create()</code></a>.</p>
-<p>Add an element where CKEditor should initialize (as with ):</p>
+<h3 id="Example-&#x2013;-Balloon-editor"><a href="#Example-&#x2013;-Balloon-editor" class="headerlink" title="Example &#x2013; Balloon editor"></a>Example &#x2013; Balloon editor</h3><p>The procedure is the same as for Inline editor &#x2014; the only difference is that you need to use the <a href="../../../api/module_editor-balloon_ballooneditor-BalloonEditor.html#create"><code>BalloonEditor.create()</code></a> method.</p>
+<p>Add an element where CKEditor should initialize to your page:</p>
 <pre><code class="html">&lt;div id=&quot;editor&quot;&gt;
     &lt;p&gt;Here goes the initial content of the editor.&lt;/p&gt;
 &lt;/div&gt;
 </code></pre>
-<p>Then call <a href="../../../api/module_editor-balloon_ballooneditor-BalloonEditor.html#create"><code>BalloonEditor.create()</code></a> to <strong>attach</strong> <a href="../overview.html#Balloon-editor">Balloon editor</a> to a <code>&lt;div&gt;</code> element:</p>
+<p>Then call <a href="../../../api/module_editor-balloon_ballooneditor-BalloonEditor.html#create"><code>BalloonEditor.create()</code></a> to <strong>attach</strong> <a href="../overview.html#Balloon-editor">Balloon editor</a> to the <code>&lt;div&gt;</code> element:</p>
 <pre><code class="js">BalloonEditor
     .create( document.querySelector( &apos;#editor&apos; ) )
     .then( editor =&gt; {
@@ -85,23 +85,23 @@
         console.error( error );
     } );
 </code></pre>
-<div class="info-box notice notice__tip"><p>Every editor class may accept different parameters in the <code>create()</code> method and may handle initialization differently. For instance, the classic editor will replace a given element with an editor, while the inline editor will use the given element to initialize the editor on it. See each editor&#x2019;s documentation to learn the details.</p><p>The interface of the editor class is not enforced either. Since different implementations of editors may vary heavily in terms of functionality, the editor class implementers have full freedom regarding the API. Therefore, the examples in this guide may not work with some editor classes.</p></div>
+<div class="info-box notice notice__tip"><p>Every editor class may accept different parameters in the <code>create()</code> method and may handle the initialization differently. For instance, the classic editor will replace a given element with an editor, while the inline editor will use the given element to initialize the editor on it. See each editor&#x2019;s documentation to learn the details.</p><p>The interface of the editor class is not enforced either. Since different implementations of editors may vary heavily in terms of functionality, the editor class implementers have full freedom regarding the API. Therefore, the examples in this guide may not work with some editor classes.</p></div>
 
 <h2 id="Interacting-with-the-editor"><a href="#Interacting-with-the-editor" class="headerlink" title="Interacting with the editor"></a>Interacting with the editor</h2><p>Once the editor is created, it is possible to interact with it through its API. The <code>editor</code> variable from the examples above should enable that.</p>
-<h3 id="Setting-the-editor-data"><a href="#Setting-the-editor-data" class="headerlink" title="Setting the editor data"></a>Setting the editor data</h3><p>To replace the editor content with new data, just use the <code>setData</code> method:</p>
+<h3 id="Setting-the-editor-data"><a href="#Setting-the-editor-data" class="headerlink" title="Setting the editor data"></a>Setting the editor data</h3><p>To replace the editor content with new data, use the <code>setData()</code> method:</p>
 <pre><code class="js">editor.setData( &apos;&lt;p&gt;Some text.&lt;/p&gt;&apos; );
 </code></pre>
-<h3 id="Getting-the-editor-data"><a href="#Getting-the-editor-data" class="headerlink" title="Getting the editor data"></a>Getting the editor data</h3><p>If the editor content needs to be retrieved for any reason, like for sending it to the server through an Ajax call, simply use the <code>getData</code> method:</p>
+<h3 id="Getting-the-editor-data"><a href="#Getting-the-editor-data" class="headerlink" title="Getting the editor data"></a>Getting the editor data</h3><p>If the editor content needs to be retrieved for any reason, like for sending it to the server through an Ajax call, use the <code>getData()</code> method:</p>
 <pre><code class="js">const data = editor.getData();
 </code></pre>
-<h3 id="Destroying-the-editor"><a href="#Destroying-the-editor" class="headerlink" title="Destroying the editor"></a>Destroying the editor</h3><p>In modern applications, it is common to create and remove elements from the page interactively through JavaScript. CKEditor instances should be destroyed in such cases by using the <code>destroy()</code> method:</p>
+<h3 id="Destroying-the-editor"><a href="#Destroying-the-editor" class="headerlink" title="Destroying the editor"></a>Destroying the editor</h3><p>In modern applications, it is common to create and remove elements from the page interactively through JavaScript. In such cases CKEditor instances should be destroyed by using the <code>destroy()</code> method:</p>
 <pre><code class="js">editor.destroy()
     .catch( error =&gt; {
         console.log( error );
     } );
 </code></pre>
 <p>Once destroyed, resources used by the editor instance are released and the original element used to create the editor is automatically displayed and updated to reflect the final editor data.</p>
-<h2 id="UMD-support"><a href="#UMD-support" class="headerlink" title="UMD support"></a>UMD support</h2><p>Because builds are distributed as <a href="https://github.com/umdjs/umd" target="_blank" rel="external">UMD modules</a>, it is worth noting that editor classes can be retrieved in various ways:</p>
+<h2 id="UMD-support"><a href="#UMD-support" class="headerlink" title="UMD support"></a>UMD support</h2><p>Because builds are distributed as <a href="https://github.com/umdjs/umd" target="_blank" rel="external">UMD modules</a>, editor classes can be retrieved in various ways:</p>
 <ul>
 <li>by a <a href="http://wiki.commonjs.org/wiki/CommonJS" target="_blank" rel="external">CommonJS</a>-compatible loader (e.g. <a href="https://webpack.js.org" target="_blank" rel="external">webpack</a> or <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>),</li>
 <li>by <a href="http://requirejs.org/" target="_blank" rel="external">RequireJS</a> (or any other AMD library),</li>

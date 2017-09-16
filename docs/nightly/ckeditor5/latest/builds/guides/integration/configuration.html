@@ -48,7 +48,7 @@
 </code></pre>
 <p>As you can see, configurations are set by a simple JavaScript object passed to the <code>create()</code> method.</p>
 <h2 id="Removing-features"><a href="#Removing-features" class="headerlink" title="Removing features"></a>Removing features</h2><p>Builds come with all features included in the distribution package enabled by default. They are defined as plugins for CKEditor.</p>
-<p>In some cases, you may need to have different editor setups in your application, all based on the same build. For that purpose, you need to control the plugins available in an editor at runtime.</p>
+<p>In some cases, you may need to have different editor setups in your application, all based on the same build. For that purpose, you need to control the plugins available in the editor at runtime.</p>
 <p>In the example below <code>Heading</code> and <code>Link</code> plugins are removed:</p>
 <pre><code class="js">// Remove a few plugins from the default setup.
 ClassicEditor
@@ -60,7 +60,7 @@ ClassicEditor
         console.log( error );
     } );
 </code></pre>
-<div class="info-box notice"><p>Be careful when removing plugins using <code>config.removePlugins</code> from CKEditor builds. If removed plugins were providing toolbar buttons then the default toolbar configuration included in a build will become invalid. In such case provide the updated toolbar configuration as in the example above.</p></div>
+<div class="info-box notice"><p>Be careful when removing plugins using <code>config.removePlugins</code> from CKEditor builds. If removed plugins were providing toolbar buttons, the default toolbar configuration included in a build will become invalid. In such case you need to provide the updated toolbar configuration as in the example above.</p></div>
 
 <h3 id="List-of-plugins"><a href="#List-of-plugins" class="headerlink" title="List of plugins"></a>List of plugins</h3><p>Each build has a number of plugins available. You can easily list all plugins available in your build:</p>
 <pre><code class="js">ClassicEditor.build.plugins.map( plugin =&gt; plugin.pluginName );
