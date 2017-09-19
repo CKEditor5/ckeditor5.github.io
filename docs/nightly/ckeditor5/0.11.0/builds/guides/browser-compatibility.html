@@ -42,31 +42,31 @@
 <li>Good support:<ul>
 <li>Edge (latest stable release). Known issues:<ul>
 <li>Minor issues with selection: <a href="https://github.com/ckeditor/ckeditor5-engine/issues/974" target="_blank" rel="external">1</a>, <a href="https://github.com/ckeditor/ckeditor5-engine/issues/928" target="_blank" rel="external">2</a>.</li>
-<li>The editor becomes unstable when F12 tools are enabled.</li>
+<li>The editor becomes unstable when F12 developer tools are enabled.</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<p>Not yet supported:</p>
+<p>Not supported yet:</p>
 <ul>
-<li>Internet Explorer 11 is not yet supported. See the <a href="https://github.com/ckeditor/ckeditor5/issues/330" target="_blank" rel="external">Compatibility with IE11</a> ticket.</li>
+<li>Internet Explorer 11. See the <a href="https://github.com/ckeditor/ckeditor5/issues/330" target="_blank" rel="external">Compatibility with IE11</a> ticket.</li>
 </ul>
 <h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h3><p>Features known to not be fully supported yet:</p>
 <ul>
-<li>Text composition (IME) &#x2013; Input Method Engine is a mechanism which allows inputting text in languages such as Japanese and Chinese. It&#x2019;s so called &#x201C;text composition&#x201D;. This mechanism is not yet fully supported and we&#x2019;ll be polishing that feature after 1.0.0.</li>
-<li>Drag and drop inside editor doesn&#x2019;t work yet. It is possible to drop images from your system if the <a href="../../api/module_upload_imageupload-ImageUpload.html"><code>ImageUpload</code></a> feature is enabled.</li>
+<li>Text composition. Input Method Engine (IME) is a mechanism that allows the users to input text in languages such as Japanese and Chinese. This mechanism is not fully supported yet and we will be polishing that feature after 1.0.0.</li>
+<li>Drag and drop inside the editor does not work yet. It is possible to drop images from your system if the <a href="../../api/module_upload_imageupload-ImageUpload.html"><code>ImageUpload</code></a> feature is enabled.</li>
 </ul>
-<h2 id="Mobile-environment"><a href="#Mobile-environment" class="headerlink" title="Mobile environment"></a>Mobile environment</h2><p>Although CKEditor 5 works on Safari for iOS and Chrome for Android it has not been fully tested yet and there are known bugs and inconveniences. Full support for mobile browsers will be our goal after releasing 1.0.0.</p>
+<h2 id="Mobile-environment"><a href="#Mobile-environment" class="headerlink" title="Mobile environment"></a>Mobile environment</h2><p>Although CKEditor 5 works on Safari for iOS and Chrome for Android, it has not been fully tested yet and there are known bugs and inconveniences. Full support for mobile browsers will be our goal after releasing 1.0.0.</p>
 <p>When working on mobile support we need to consider two complex aspects:</p>
 <ul>
 <li><p><strong>Special UI, designed for mobile.</strong></p>
 <p>  During the design phase we understood that creating a responsive and touch-friendly UI will not guarantee a desired UX level by itself. Also, that the &#x201C;mobile first&#x201D; approach has no application in this case due to constraints of the mobile environment and specific editing method. Therefore, we plan to introduce a completely customized, mobile-oriented UI.</p>
-<p>  We begun research on how to display necessary UI controls on the screen and, sadly, it turned out that mobile Safari&#x2019;s viewport mechanics makes it extremely complicated to display the UI in a reliable way. You can read more in the <a href="https://github.com/ckeditor/ckeditor5-design/issues/149" target="_blank" rel="external">UX: Mobile editing</a> ticket.</p>
+<p>  We began research on how to display necessary UI controls on the screen and, sadly, it turned out that mobile Safari&#x2019;s viewport mechanics makes it extremely complicated to display the UI in a reliable way. You can read more in the <a href="https://github.com/ckeditor/ckeditor5-design/issues/149" target="_blank" rel="external">UX: Mobile editing</a> ticket.</p>
 </li>
 <li><p><strong>Handling mobile browsers&#x2019; quirks.</strong></p>
-<p>  Mobile browsers (especially mobile Safari) work differently than their desktop equivalents. <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=118639" target="_blank" rel="external">Chrome&#x2019;s incomplete <code>keydown</code> event</a> is just one of issues with which we need to deal with.</p>
-<p>  For several years we&#x2019;ve worked with W3C on <a href="https://medium.com/content-uneditable/fixing-contenteditable-1a9a5073c35d" target="_blank" rel="external">fixing contentEditable</a> &#x2013; a technology on which the entire browser-based editing is based. Recently, browser vendors started implementing the core part of <a href="http://w3c.github.io/editing/" target="_blank" rel="external">the new specifications</a> &#x2013; the <code>beforeinput</code> event which has a chance to improve the situation. CKEditor 5&#x2019;s architecture was designed with this event in mind, so we will start taking advantage of it as soon as it proves to be stable enough.</p>
+<p>  Mobile browsers (especially mobile Safari) work differently than their desktop equivalents. <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=118639" target="_blank" rel="external">Chrome&#x2019;s incomplete <code>keydown</code> event</a> is just one of the issues that we need to deal with.</p>
+<p>  For several years we have worked with W3C on <a href="https://medium.com/content-uneditable/fixing-contenteditable-1a9a5073c35d" target="_blank" rel="external">fixing <code>contentEditable</code></a> &#x2014; a technology on which the entire browser-based editing is based. Recently, browser vendors started implementing the core part of <a href="http://w3c.github.io/editing/" target="_blank" rel="external">the new specifications</a> &#x2014; the <code>beforeinput</code> event which has a chance to improve the situation. CKEditor 5&#x2019;s architecture was designed with this event in mind, so we will start taking advantage of it as soon as it proves to be stable enough.</p>
 </li>
 </ul>
 

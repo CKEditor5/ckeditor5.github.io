@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Introduction - CKEditor 5</title>
+    <link rel="canonical" href="/ckeditor5/latest/framework/guides/architecture/intro.html">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../../assets/0.3.17/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../../assets/0.3.17/scripts/app.js"></script>
+  </head>
+  <body>
+    <header class="top">
+      <div class="top__logo"><a class="top__logo__link" href="../../../index.html"><img src="../../../assets/img/project-logo.svg" alt="CKEditor 5"></a></div>
+      <ul class="top__menu">
+        <li><a href="../../../api/index.html">API</a></li>
+        <li><a class="top__menu__item--active" href="../../index.html">Framework</a></li>
+        <li><a href="../../../builds/index.html">Builds</a></li>
+        <li><a href="../../../features/index.html">Features</a></li>
+        <li><a href="../../../examples/index.html">Examples</a></li>
+      </ul>
+      <div class="top__search">
+        <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.17/img/loupe.svg" alt="Search"></button>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/architecture/intro.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.17/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.17/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <h1><img src="../../../../../assets/0.3.17/img/book.svg" alt="guide">Introduction
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Core-editor-architecture">Core editor architecture</a><ol><li><a href="#Editor-classes">Editor classes</a></li><li><a href="#Plugins">Plugins</a></li><li><a href="#Commands">Commands</a></li><li><a href="#Event-system-and-observables">Event system and observables</a></li></ol></li><li><a href="#Editing-engine">Editing engine</a></li><li><a href="#UI-library">UI library</a></li></ol></nav><p>In this guide we will try to introduce all the most important parts of CKEditor 5&#x2019;s architecture. We assume that you have read the <a href="../overview.html">Framework&#x2019;s overview</a> and saw some code in the <a href="../quick-start.html">Quick start</a> guide. This should help you going through this one.</p>
+<div class="info-box notice"><p>CKEditor 5 reached its first alpha version. This means that it is feature complete and that we consider it stable enough for first production integrations. However, this means that <strong>we are going to introduce many breaking changes</strong> before the final 1.0.0 release. Many code refactorings were scheduled for after 1.0.0 alpha so a lot of API, including critical pieces, will still change. The goal is, in most cases, to simplify the API, so please excuse us some more cumbersome pieces. We will also avoid going too deep into details and creating many code samples, maintaining which would be a nightmare during upcoming code changes.</p></div>
+
+<p>When implementing features you will usually work with these three CKEditor 5 packages:</p>
+<ul>
+<li><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-core" target="_blank" rel="external"><code>@ckeditor/ckeditor5-core</code></a> &#x2013; the core editor architecture &#x2013; a couple of core classes and interfaces which glue all the things together.</li>
+<li><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine" target="_blank" rel="external"><code>@ckeditor/ckeditor5-engine</code></a> &#x2013; the editing engine. The biggest and by far most complex package, implementing the custom data model, the view layer, conversion mechanisms, rendering engine responsible for <a href="https://medium.com/content-uneditable/contenteditable-the-good-the-bad-and-the-ugly-261a38555e9c" target="_blank" rel="external">taming <code>contentEditable</code></a> and a lot more.</li>
+<li><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-ui" target="_blank" rel="external"><code>@ckeditor/ckeditor5-ui</code></a> &#x2013; the standard UI library. Simple MVC implementation which main goal is to best fit CKEditor 5&#x2019;s needs.</li>
+</ul>
+<!-- TODO link to package pages once https://github.com/cksource/umberto/issues/303 is resolved -->
+<p>So, let&#x2019;s tackle one by one.</p>
+<h2 id="Core-editor-architecture"><a href="#Core-editor-architecture" class="headerlink" title="Core editor architecture"></a>Core editor architecture</h2><p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-core" target="_blank" rel="external"><code>@ckeditor/ckeditor5-core</code></a> package is relatively simple. It comes with just a handful of classes. We present here the ones you need to know.</p>
+<h3 id="Editor-classes"><a href="#Editor-classes" class="headerlink" title="Editor classes"></a>Editor classes</h3><p>The <a href="../../../api/module_core_editor_editor-Editor.html"><code>Editor</code></a> and <a href="../../../api/module_core_editor_standardeditor-StandardEditor.html"><code>StandardEditor</code></a> are, respectively, the base editor class and its more typical implementation.</p>
+<p>The editor is a root object, gluing all the other components. It holds a couple of properties that you need to know:</p>
+<ul>
+<li><a href="../../../api/module_core_editor_editor-Editor.html#config"><code>config</code></a> &#x2013; the config object,</li>
+<li><a href="../../../api/module_core_editor_editor-Editor.html#plugins"><code>plugins</code></a> and <a href="../../../api/module_core_editor_editor-Editor.html#commands"><code>commands</code></a> &#x2013; the collection of loaded plugins and commands,</li>
+<li><a href="../../../api/module_core_editor_editor-Editor.html#document"><code>document</code></a> &#x2013; the document &#x2013; the editing engine&#x2019;s entry point,</li>
+<li><a href="../../../api/module_core_editor_editor-Editor.html#data"><code>data</code></a> &#x2013; the data controller (there&#x2019;s also the <a href="../../../api/module_core_editor_editor-Editor.html#editing">editing controller</a> but <a href="https://github.com/ckeditor/ckeditor5-engine/issues/678" target="_blank" rel="external">we plan to merge it</a> into the data controller) &#x2013; a set of high-level utils to work on the document,</li>
+<li><a href="../../../api/module_core_editor_editor-Editor.html#keystrokes"><code>keystrokes</code></a> &#x2013; the keystroke handler &#x2013; allows binding keystrokes to actions.</li>
+</ul>
+<p>Besides that, the editor exposes a couple of methods:</p>
+<ul>
+<li><a href="../../../api/module_core_editor_editor-Editor.html#create"><code>create()</code></a> &#x2013; the static <code>create()</code> method. Editor constructors are protected and you should create editors using this static method. It allows the initialization process to be asynchronous.</li>
+<li><a href="../../../api/module_core_editor_editor-Editor.html#destroy"><code>destroy()</code></a> &#x2013; destroys the editor.</li>
+<li><a href="../../../api/module_core_editor_editor-Editor.html#setData"><code>setData()</code></a> and <a href="../../../api/module_core_editor_editor-Editor.html#getData"><code>getData()</code></a> &#x2013; a way to retrieve data from the editor and set data in the editor. The data format is controlled by the <a href="../../../api/module_engine_controller_datacontroller-DataController.html#processor">data controller&#x2019;s data processor</a> and it does not need to be a string (can be e.g. JSON if you would implement such a <a href="../../../api/module_engine_dataprocessor_dataprocessor-DataProcessor.html">data processor</a>). See e.g. how to <a href="../../../features/markdown.html">produce Markdown output</a>.</li>
+<li><a href="../../../api/module_core_editor_editor-Editor.html#execute"><code>execute()</code></a> &#x2013; executes the given command.</li>
+</ul>
+<p>The editor classes are a base to implement your own editors. CKEditor 5 Framework comes with a couple of editor types (e.g. <a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html">classic</a>, <a href="../../../api/module_editor-inline_inlineeditor-InlineEditor.html">inline</a> and <a href="../../../api/module_editor-balloon_ballooneditor-BalloonEditor.html">balloon</a>) but you can freely implement editors which work and look completely differently. The only requirement is that you implement the <a href="../../../api/module_core_editor_editor-Editor.html"><code>Editor</code></a> and <a href="../../../api/module_core_editor_standardeditor-StandardEditor.html"><code>StandardEditor</code></a> interfaces.</p>
+<div class="info-box notice"><p>You are right &#x2013; mentioned editors are classes, not interfaces. This is a part of API <a href="https://github.com/ckeditor/ckeditor5/issues/327" target="_blank" rel="external">needs to be improved</a>. Less inheritance, more interfaces and composition. It should also be clear which interfaces feature require to work (at the moment it is half of the <code>StandardEditor</code>).</p></div>
+
+<h3 id="Plugins"><a href="#Plugins" class="headerlink" title="Plugins"></a>Plugins</h3><p>Plugins are the way to introduce editor features. In CKEditor 5 even <a href="../../../api/module_typing_typing-Typing.html">typing</a> is a plugin. What&#x2019;s more &#x2013; the <a href="../../../api/module_typing_typing-Typing.html"><code>Typing</code></a> plugin requires <a href="../../../api/module_typing_input-Input.html"><code>Input</code></a> and <a href="../../../api/module_typing_delete-Delete.html"><code>Delete</code></a> plugins which are responsible for handling, respectively, methods of inserting text and deleting content. At the same time, a couple of other plugins need to customize <kbd>Backspace</kbd> behavior in certain cases, which is handled by themselves. This leaves the base plugins free of any non-generic knowledge.</p>
+<p>Another important aspect of how existing CKEditor 5 plugins are implemented is the split into engine and UI parts. E.g. the <a href="../../../api/module_basic-styles_boldengine-BoldEngine.html"><code>BoldEngine</code></a> plugin introduces schema definition, mechanisms rendering <code>&lt;strong&gt;</code> tags, commands to apply and remove bold from text, while the <a href="../../../api/module_basic-styles_bold-Bold.html"><code>Bold</code></a> plugin adds UI of the feature (i.e. a button). This feature split is meant to allow for greater reuse (one can take the engine part and implement their own UI for a feature) as well as for running CKEditor 5 on the server side. The feature split, though, <a href="https://github.com/ckeditor/ckeditor5/issues/488" target="_blank" rel="external">is not yet perfect and will be improved</a>.</p>
+<p>The tl;dr of this is that:</p>
+<ul>
+<li>every feature is implemented or at least enabled by a plugin,</li>
+<li>plugins are highly granular,</li>
+<li>plugins know everything about the editor,</li>
+<li>plugins should know as little about other plugins as possible.</li>
+</ul>
+<p>These are the rules based on which the official plugins were implemented. When implementing your own plugins, if you do not plan to publish them, you can reduce this list to the first point.</p>
+<p>After this lengthy introduction (which aimed at making it easier for you to digest the existing plugins), let&#x2019;s talk about the plugin API.</p>
+<p>All plugins needs to implement the <a href="../../../api/module_core_plugin-PluginInterface.html"><code>PluginInterface</code></a>. The easiest way to do so is by inheriting from the <a href="../../../api/module_core_plugin-Plugin.html"><code>Plugin</code></a> class. The plugin initialization code should be located in the <a href="../../../api/module_core_plugin-PluginInterface.html#init"><code>init()</code></a> method (which can return a promise). If some piece of code needs to be executed after other plugins are initialized, you can put it in the <a href="../../../api/module_core_plugin-PluginInterface.html#afterInit"><code>afterInit()</code></a> method. The dependencies between plugins are implemented using the static <a href="../../../api/module_core_plugin-PluginInterface.html#requires"><code>requires</code></a> property.</p>
+<pre><code class="js">import MyDependency from &apos;some/other/plugin&apos;;
+
+class MyPlugin extends Plugin {
+    static get requires() {
+        return [ MyDependency ];
+    }
+
+    init() {
+        // Initialize your plugin here.
+
+        this.editor; // The editor instance which loaded this plugin.
+    }
+}
+</code></pre>
+<p>You can see how to implement a simple plugin in the <a href="../quick-start.html">Quick start</a> guide.</p>
+<h3 id="Commands"><a href="#Commands" class="headerlink" title="Commands"></a>Commands</h3><p>A command is combination of an action (a callback) and a state (a set of properties). For instance, the <code>bold</code> command applies or removes bold attribute from the selected text. If the text in which the selection is placed has bold applied already, the value of the command is <code>true</code>, <code>false</code> otherwise. If the <code>bold</code> command can be executed on the current selection, it is enabled. If not (because e.g. bold is not allowed in this place), it is disabled.</p>
+<p>All commands need to inherit from the <a href="../../../api/module_core_command-Command.html"><code>Command</code></a> class. Commands need to be added to editor&#x2019;s <a href="../../../api/module_core_editor_editor-Editor.html#commands">command collection</a> so they can be executed by using the <a href="../../../api/module_core_editor_editor-Editor.html#execute"><code>Editor#execute()</code></a> method.</p>
+<p>Let&#x2019;s see an example:</p>
+<pre><code class="js">class MyCommand extends Command {
+    execute( message ) {
+        console.log( message );
+    }
+}
+
+class MyPlugin extends Plugin {
+    init() {
+        const editor = this.editor;
+
+        editor.commands.add( &apos;myCommand&apos;, new MyCommand( editor ) );
+    }
+}
+</code></pre>
+<p>Now, calling <code>editor.execute( &apos;myCommand&apos;, &apos;Foo!&apos; )</code> will log <code>Foo!</code> on the console.</p>
+<p>To see how a state management of a typical command like <code>bold</code> is implemented, let&#x2019;s see pieces of the <a href="../../../api/module_basic-styles_attributecommand-AttributeCommand.html"><code>AttributeCommand</code></a> class on which <code>bold</code> is based.</p>
+<p>First thing to notice is the <a href="../../../api/module_core_command-Command.html#refresh"><code>refresh()</code></a> method:</p>
+<pre><code class="js">refresh() {
+    const doc = this.editor.document;
+
+    this.value = doc.selection.hasAttribute( this.attributeKey );
+    this.isEnabled = doc.schema.checkAttributeInSelection(
+        doc.selection, this.attributeKey
+    );
+}
+</code></pre>
+<p>This method is automatically called (by the command itself) when <a href="../../../api/module_engine_model_document-Document.html#event:changesDone">any changes are applied to the model</a>. This means that command automatically refreshes its own state when anything changes in the editor.</p>
+<p>The important thing about commands is that every change in their state as well as calling the <code>execute()</code> method fires an event (e.g. <a href="../../../api/module_core_command-Command.html#event:change:{attribute"><code>event:change:{attribute</code></a> <code>change:value</code>} or <a href="../../../api/module_core_command-Command.html#event:execute"><code>execute</code></a>).</p>
+<p>Those events make it possible to control the command from outside. For instance, if you want to disable specific commands when some condition is true (let&#x2019;s say &#x2013; according to your application&#x2019;s logic, they should be temporarily disabled) and there is no other, cleaner mean to do that, you can block the command manually:</p>
+<pre><code class="js">const command = editor.commands.get( &apos;someCommand&apos; );
+
+command.on( &apos;change:isEnabled&apos;, forceDisable, { priority: &apos;lowest&apos; } );
+command.isEanabled = false;
+
+function forceDisabled() {
+    this.isEnabled = false;
+}
+</code></pre>
+<p>Now, the command will be disabled as long as you won&#x2019;t <a href="../../../api/module_utils_emittermixin-EmitterMixin.html#off">off</a> this listener, regardless of how many times <code>someCommand.refresh()</code> is called.</p>
+<h3 id="Event-system-and-observables"><a href="#Event-system-and-observables" class="headerlink" title="Event system and observables"></a>Event system and observables</h3><p>CKEditor 5 has an event-based architecture so you can find <a href="../../../api/module_utils_emittermixin-EmitterMixin.html"><code>EmitterMixin</code></a> and <a href="../../../api/module_utils_observablemixin-ObservableMixin.html"><code>ObservableMixin</code></a> mixed all over the place. Both mechanisms allow decoupling the code and make it extensible.</p>
+<p>Most of the classes which we already mentioned are either emitters or observables (observable is an emitter too). Emitter can emit (fire events) as well as listening to ones.</p>
+<pre><code class="js">class MyPlugin extends Plugin {
+    init() {
+        // Make MyPlugin listen to someCommand#execute.
+        this.listenTo( someCommand, &apos;execute&apos;, () =&gt; {
+            console.log( &apos;someCommand was executed&apos; );
+        } );
+
+        // Make MyPlugin listen to someOtherCommand#execute and block it.
+        // We listen with high priority to block the event before
+        // someOtherCommand&apos;s execute() method is called.
+        this.listenTo( someOtherCommand, &apos;execute&apos;, ( evt ) =&gt; {
+            evt.stop();
+        }, { priority: &apos;high&apos; } );
+    }
+
+    // Inherited from Plugin:
+    destroy() {
+        // Removes all listeners added with this.listenTo();
+        this.stopListening();
+    }
+}
+</code></pre>
+<p>The second listener to <code>&apos;execute&apos;</code> shows one of the very common practice in CKEditor 5&#x2019;s code. Basically, the default action of <code>execute</code> (which is calling the <code>execute()</code> method) is registered as a listener of that event with a default priority. Thanks to that, by listening to the event using <code>&apos;low&apos;</code> or <code>&apos;high&apos;</code> priorities we can execute some code before or after <code>execute()</code> is really called. If we stop the event, then the <code>execute()</code> method will not be called at all. In this particular case, the <a href="../../../api/module_core_command-Command.html#execute"><code>Command#execute()</code></a> method was decorated with the event using the <a href="../../../api/module_utils_observablemixin-ObservableMixin.html#decorate"><code>ObservableMixin#decorate()</code></a> function:</p>
+<pre><code class="js">import ObservableMixin from &apos;@ckeditor/ckeditor5-utils/src/observablemixin&apos;;
+import mix from &apos;@ckeditor/ckeditor5-utils/src/mix&apos;;
+
+class Command {
+    constructor() {
+        this.decorate( &apos;execute&apos; );
+    }
+
+    // Will now fire the #execute event automatically.
+    execute() {}
+}
+
+// Mix ObservableMixin into Command.
+mix( Command, ObservableMixin );
+</code></pre>
+<p>Besides decorating methods with events, the observables allow to observe their chosen properties. For instance, the <code>Command</code> class makes its <code>#value</code> and <code>#isEnabled</code> observable by calling <a href="../../../api/module_utils_observablemixin-ObservableMixin.html#set"><code>set()</code></a>:</p>
+<pre><code class="js">class Command {
+    constructor() {
+        this.set( &apos;value&apos;, undefined );
+        this.set( &apos;isEnabled&apos;, undefined );
+    }
+}
+
+mix( Command, ObservableMixin );
+
+const command = new Command();
+
+command.on( &apos;change:value&apos;, ( evt, propertyName, newValue, oldValue ) =&gt; {
+    console.log(
+        `${ propertyName } has changed from ${ oldValue } to ${ newValue }`
+    );
+} )
+
+command.value = true; // -&gt; &apos;value has changed from undefined to true&apos;
+</code></pre>
+<div class="info-box notice"><p>Observable properties are marked in API doc strings with <code>@observable</code> keyword but we do not mark them in <a href="../../../api/index.html">API docs</a> (<a href="https://github.com/ckeditor/ckeditor5-dev/issues/285" target="_blank" rel="external">yet</a>).</p></div>
+
+<p>Observables have one more feature which is widely used by the editor (especially in the UI library) &#x2013; this is the ability to bind value of one object&#x2019;s property to the value of some other property or properties (of one or more objects). This, of course, can also be processed by callbacks.</p>
+<p>Assuming that <code>target</code> and <code>source</code> are observables and that used properties are observable:</p>
+<pre><code class="js">target.bind( &apos;foo&apos; ).to( source );
+
+source.foo = 1;
+target.foo; // -&gt; 1
+
+// Or:
+target.bind( &apos;foo&apos; ).to( source, &apos;bar&apos; );
+
+source.bar = 1;
+target.foo; // -&gt; 1
+</code></pre>
+<p>You can find more about bindings in the <a href="#ui-library">UI library</a> section.</p>
+<h2 id="Editing-engine"><a href="#Editing-engine" class="headerlink" title="Editing engine"></a>Editing engine</h2><h2 id="UI-library"><a href="#UI-library" class="headerlink" title="UI library"></a>UI library</h2>
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li>
+                            <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Guides</span></div>
+                            <ul>
+                                    <li><a href="../overview.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="../quick-start.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span></div></a></li>
+                                    <li>
+                                      <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Architecture</span></div>
+                                      <ul>
+                                              <li><a href="">
+                                                  <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Introduction</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">User interface</span></div>
+                                      <ul>
+                                              <li><a href="../ui/theme-customization.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Theme customization</span></div></a></li>
+                                              <li><a href="../ui/external-ui.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Third–party UI</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Contributing</span></div>
+                                      <ul>
+                                              <li><a href="../contributing/development-environment.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development environment</span></div></a></li>
+                                              <li><a href="../contributing/testing-environment.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Testing environment</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li><a href="../support.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Support</span></div></a></li>
+                            </ul>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script type="text/javascript">docsearch({apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:10,optionalFacetFilters:'(tags:framework<score=2>, tags:builds<score=1>, tags:features<score=1>, tags:examples<score=1>)'},debug:false});</script>
+  </body>
+</html>
