@@ -36,8 +36,8 @@
 <li>Adding features which are not included in the existing builds, either from a third party or custom developed.</li>
 <li>Removing unnecessary features present in a build.</li>
 <li>Changing the <a href="../integration/basic-api.html#Creators">editor creator</a>.</li>
-<li>Changing the editor theme.</li>
-<li>Changing the localization language of the editor.</li>
+<li>Changing the <a href="../../../framework/guides/ui/theme-customization.html">editor theme</a>.</li>
+<li>Changing the <a href="../../../features/ui-language.html">localization language</a> of the editor.</li>
 <li>Enabling bug fixes which are still not a part of any public release.</li>
 </ul>
 <h2 id="Forking-an-existing-build"><a href="#Forking-an-existing-build" class="headerlink" title="Forking an existing build"></a>Forking an existing build</h2><p>Start with <a href="https://help.github.com/articles/fork-a-repo/" target="_blank" rel="external">forking</a> one of the official builds (it will serve as the starting point for your custom one) and then clone your fork:</p>
@@ -46,20 +46,20 @@
 <p>To make updating easier you may optionally add the original build repository to your Git remotes:</p>
 <pre><code class="bash">git remote add upstream https://github.com/ckeditor/ckeditor5-build-classic.git
 </code></pre>
-<div class="info-box notice notice__hint"><p>If you do not want to fork the official build, you can just clone it. However, you will not be able to commit and push your customizations back to <a href="https://github.com" target="_blank" rel="external">GitHub</a>.</p></div>
+<div class="info-box notice notice__hint"><p>If you do not want to fork the official build, you can just clone it. However, you will not be able to commit and push your customizations back to GitHub.</p></div>
 
 <h2 id="Build-anatomy"><a href="#Build-anatomy" class="headerlink" title="Build anatomy"></a>Build anatomy</h2><p>Every build contains the following files:</p>
 <ul>
 <li><code>build/ckeditor.js</code> &#x2013; The ready-to-use editor bundle, containing the editor and all plugins.</li>
-<li><code>src/ckeditor.js</code> &#x2013; The source entry point of the build. It can be used for complex bundling and development. Based on it the <code>build/ckeditor.js</code> is created (by <a href="https://webpack.js.org" target="_blank" rel="external">webpack</a>).</li>
+<li><code>src/ckeditor.js</code> &#x2013; The source entry point of the build. It can be used for complex bundling and development. Based on it the <code>build/ckeditor.js</code> file is created by <a href="https://webpack.js.org" target="_blank" rel="external">webpack</a>.</li>
 <li><code>build-config.js</code> &#x2013; The configuration of this particular CKEditor 5 build, based on which the <code>src/ckeditor.js</code> file is created.</li>
-<li><code>webpack-config.js</code> &#x2013; Webpack configuration used to build the editor.</li>
+<li><code>webpack-config.js</code> &#x2013; webpack configuration used to build the editor.</li>
 </ul>
 <h2 id="Customizing-a-build"><a href="#Customizing-a-build" class="headerlink" title="Customizing a build"></a>Customizing a build</h2><p>In order to customize a build you need to:</p>
 <ul>
 <li>Install missing dependencies.</li>
-<li>Update the <code>build-config.js</code>.</li>
-<li>Update the builds (which includes updating <code>src/ckeditor.js</code> and editor bundle in <code>build/</code>).</li>
+<li>Update the <code>build-config.js</code> file.</li>
+<li>Update the builds (which includes updating <code>src/ckeditor.js</code> and the editor bundle in <code>build/</code>).</li>
 </ul>
 <h3 id="Installing-dependencies"><a href="#Installing-dependencies" class="headerlink" title="Installing dependencies"></a>Installing dependencies</h3><p>The easiest way to install missing dependencies is by typing:</p>
 <pre><code class="bash">npm install --save &lt;package-name&gt;
@@ -97,18 +97,18 @@ module.exports = {
     // UI language. Language codes follow the https://en.wikipedia.org/wiki/ISO_639-1 format.
     language: &apos;en&apos;,
 
-    // Editor config.
+    // Editor configuration.
     config: {
         toolbar: [ &apos;headings&apos;, &apos;bold&apos;, &apos;italic&apos;, &apos;custombutton&apos; ]
     }
 };
 </code></pre>
 <h3 id="Rebuilding-the-bundle"><a href="#Rebuilding-the-bundle" class="headerlink" title="Rebuilding the bundle"></a>Rebuilding the bundle</h3><p>After you changed the build configuration or updated some dependencies, it is time to rebuild the bundle. This will run a bundler (webpack) with a proper configuration (see <code>webpack.config.js</code>).</p>
-<p>If you wish to create the bundle based on the build configuration (<code>build-config.js</code>) run:</p>
+<p>If you wish to create a bundle based on the build configuration (<code>build-config.js</code>), run:</p>
 <pre><code class="bash">npm run build
 </code></pre>
-<p>This command will update the entry file (<code>src/ckeditor.js</code>) and create the bundle &#x2013; <code>build/ckeditor.js</code>.</p>
-<p>If you want to skip updating the entry file (in case you modified it manually) run:</p>
+<p>This command will update the entry file (<code>src/ckeditor.js</code>) and create the bundle &#x2014; <code>build/ckeditor.js</code>.</p>
+<p>If you want to skip updating the entry file (in case you modified it manually), run:</p>
 <pre><code class="bash">npm run build-ckeditor
 </code></pre>
 <h2 id="Updating-the-build"><a href="#Updating-the-build" class="headerlink" title="Updating the build"></a>Updating the build</h2><p>You may decide to update your build at any time. Since it is a fork of the official build, you can simply merge the changes that happened meanwhile in that build, using Git commands:</p>

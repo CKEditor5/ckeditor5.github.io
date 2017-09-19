@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Overview - CKEditor 5</title>
+    <link rel="canonical" href="/ckeditor5/latest/framework/guides/overview.html">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../assets/0.3.17/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../assets/0.3.17/scripts/app.js"></script>
+  </head>
+  <body>
+    <header class="top">
+      <div class="top__logo"><a class="top__logo__link" href="../../index.html"><img src="../../assets/img/project-logo.svg" alt="CKEditor 5"></a></div>
+      <ul class="top__menu">
+        <li><a href="../../api/index.html">API</a></li>
+        <li><a class="top__menu__item--active" href="../index.html">Framework</a></li>
+        <li><a href="../../builds/index.html">Builds</a></li>
+        <li><a href="../../features/index.html">Features</a></li>
+        <li><a href="../../examples/index.html">Examples</a></li>
+      </ul>
+      <div class="top__search">
+        <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
+        <button class="top__search__button" type="submit"><img src="../../../../assets/0.3.17/img/loupe.svg" alt="Search"></button>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/overview.md" title="Contribute to this guide"><img src="../../../../assets/0.3.17/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../assets/0.3.17/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <h1><img src="../../../../assets/0.3.17/img/book.svg" alt="guide">Overview
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#When-to-use-the-framework">When to use the framework?</a></li><li><a href="#Design">Design</a></li><li><a href="#Framework-structure">Framework structure</a></li><li><a href="#What&#x2019;s-next">What&#x2019;s next?</a></li></ol></nav><p>CKEditor 5 is a project which allows you to quickly and easily initialize one of the many types of editors it offers in your application. At the same time, it is a framework for creating custom tailored rich-text editing solutions. The former requirement is met thanks to <a href="../../builds/guides/overview.html">CKEditor 5 Builds</a>. The latter, thanks to CKEditor 5 Framework.</p>
+<p>In this guide we will try to briefly explain how the framework is built and how to start using it.</p>
+<h2 id="When-to-use-the-framework"><a href="#When-to-use-the-framework" class="headerlink" title="When to use the framework?"></a>When to use the framework?</h2><p><a href="../../builds/guides/development/custom-builds.html">CKEditor 5 Builds can be customized</a> but certain types of customizations require using the framework.</p>
+<ul>
+<li><strong>Writing your own features.</strong> Features are implemented using the framework.</li>
+<li><strong>Customizing existing features.</strong> Changing behavior of look of existing features can be done using the framework capabilities.</li>
+<li><strong>Creating new types of editors.</strong> Using the framework you can create new types of editors.</li>
+</ul>
+<p>So, the answer is simple &#x2013; you need to start using the framework as soon as existing builds do not meet your requirements or can&#x2019;t be customized to the extent you want.</p>
+<h2 id="Design"><a href="#Design" class="headerlink" title="Design"></a>Design</h2><p>The framework was designed to be a highly flexible and unopinionated platform for creating custom rich-text editing solutions. At the same time it meets several goals making implementing features as easy task as possible.</p>
+<ul>
+<li><strong>Plugin-based architecture.</strong> Everything is a plugin &#x2013; even such crucial features as support for typing or <code>&lt;p&gt;</code> elements. You can remove them or replace with your own implementations to achieve fully customized results.</li>
+<li><strong>Unopinionated core.</strong> The core does minimal assumptions and can be controlled through the schema. This leaves maximum decisiveness to plugins and hence to you.</li>
+<li><strong>Collaboration ready editing engine.</strong> The editing engine implements <a href="https://en.wikipedia.org/wiki/Operational_transformation" target="_blank" rel="external">Operational Transformation</a> algorithms which, accompanied with additional mechanisms, allows implementing real-time collaboration.</li>
+<li><strong>Custom data model.</strong> The editing engine implements a custom data model, designed to best fit multiple requirements such as enabling real-time collaboration and complex editing features.</li>
+<li><strong>Virtual DOM.</strong> The editing engine features a custom, editing oriented virtual DOM implementation, targeting hiding browser quirks from your sight.</li>
+<li><strong>Granular, reusable features.</strong> Features are implemented in a granular way which allows reusing and recomposing them which, in turn, makes it possible to customize and extend the editor. For instance, the <a href="../../features/image.html">image feature</a> consists of over 10 plugins at the moment.</li>
+<li><strong>Extensibility.</strong> The entire editor architecture was designed for maximum flexibility. The code is event-based and highly decoupled allowing you to plug in or replace pieces that you want to change. Features know minimum about themselves and communicate in standardized ways.</li>
+<li><strong>Quality.</strong> All the official packages have extensive tests suites (100% code coverage is merely a stop to that). All the code have <a href="../../api/index.html">API docs</a>.</li>
+<li><strong>Minimal configuration.</strong> To avoid bloat, features have minimal configuration. Deeper changes in their behavior can be done by recomposing them with custom features.</li>
+</ul>
+<h2 id="Framework-structure"><a href="#Framework-structure" class="headerlink" title="Framework structure"></a>Framework structure</h2><p>The framework is made of several <a href="https://npmjs.com" target="_blank" rel="external">npm packages</a>. Every package is developed in its own repository, making CKEditor 5 a multi-repository project. The main repository, which glues all of them and contains CKEditor 5&#x2019;s development environment is <a href="https://github.com/ckeditor/ckeditor5" target="_blank" rel="external">https://github.com/ckeditor/ckeditor5</a>.</p>
+<p>The full list of official packages which make the framework is available in the <a href="https://github.com/ckeditor/ckeditor5#packages" target="_blank" rel="external">main repository&#x2019;s README</a>.</p>
+<p>There are a couple of groups of packages:</p>
+<ul>
+<li><a href="https://github.com/ckeditor/ckeditor5#core-libraries" target="_blank" rel="external">Core libraries</a> &#x2013; a set of packages which are the root of the framework.</li>
+<li><a href="https://github.com/ckeditor/ckeditor5#editors" target="_blank" rel="external">Editors</a> &#x2013; packages which implement various types of editors.</li>
+<li><a href="https://github.com/ckeditor/ckeditor5#features" target="_blank" rel="external">Features</a> &#x2013; packages which implement end features.</li>
+<li><a href="https://github.com/ckeditor/ckeditor5#themes" target="_blank" rel="external">Themes</a> &#x2013; packages which implement editor themes.</li>
+<li><a href="https://github.com/ckeditor/ckeditor5#builds" target="_blank" rel="external">Builds</a> &#x2013; packages containing the <a href="../../builds/guides/overview.html">CKEditor 5 Builds</a>.</li>
+</ul>
+<h2 id="What&#x2019;s-next"><a href="#What&#x2019;s-next" class="headerlink" title="What&#x2019;s next?"></a>What&#x2019;s next?</h2><p>To start using the framework read the:</p>
+<ul>
+<li><a href="quick-start.html">Quick start</a> guide.</li>
+<li>{@linkTODO framework/guides/creating-plugin Creating a plugin} guide.</li>
+<li>{@linkTODO framework/guides/architecture/index Architecture} guide.</li>
+</ul>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li>
+                            <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Guides</span></div>
+                            <ul>
+                                    <li><a href="">
+                                        <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="quick-start.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span></div></a></li>
+                                    <li>
+                                      <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Editing engine</span></div>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">User interface</span></div>
+                                      <ul>
+                                              <li><a href="ui/theme-customization.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Theme customization</span></div></a></li>
+                                              <li><a href="ui/external-ui.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Third–party UI</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Contributing</span></div>
+                                      <ul>
+                                              <li><a href="contributing/development-environment.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development environment</span></div></a></li>
+                                              <li><a href="contributing/testing-environment.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Testing environment</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li><a href="support.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Support</span></div></a></li>
+                            </ul>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script type="text/javascript">docsearch({apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:10,optionalFacetFilters:'(tags:framework<score=2>, tags:builds<score=1>, tags:features<score=1>, tags:examples<score=1>)'},debug:false});</script>
+  </body>
+</html>
