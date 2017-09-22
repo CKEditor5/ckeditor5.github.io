@@ -6,30 +6,30 @@
     <title>Typedef ImageStyleFormat (image/imagestyle/imagestyleengine~ImageStyleFormat) - CKEditor 5 API docs</title>
     <link rel="canonical" href="/ckeditor5/latest/api/module_image_imagestyle_imagestyleengine-ImageStyleFormat.html">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.21/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/0.3.21/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../assets/0.3.22/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.22/scripts/app.js"></script>
   </head>
   <body>
     <header class="top">
       <div class="top__logo"><a class="top__logo__link" href="../index.html"><img src="../assets/img/project-logo.svg" alt="CKEditor 5"></a></div>
       <ul class="top__menu">
-        <li><a class="top__menu__item--active" href="index.html">API</a></li>
-        <li><a href="../framework/index.html">Framework</a></li>
         <li><a href="../builds/index.html">Builds</a></li>
-        <li><a href="../features/index.html">Features</a></li>
+        <li><a href="../framework/index.html">Framework</a></li>
         <li><a href="../examples/index.html">Examples</a></li>
+        <li><a href="../features/index.html">Features</a></li>
+        <li><a class="top__menu__item--active" href="index.html">API</a></li>
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.21/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.22/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.21/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.22/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <div class="api-header"><img src="../../../assets/0.3.21/img/data.svg" alt="Typedef" title="Typedef"/>
+          <div class="api-header"><img src="../../../assets/0.3.22/img/data.svg" alt="Typedef" title="Typedef"/>
             <div class="api-header__title">
               <h1>ImageStyleFormat<span class="header__import--hidden"> (image/imagestyle)</span>
               </h1>
@@ -40,14 +40,13 @@
           <p><span class="badge">typedef</span>
           </p>
           <div class="main-description"><p>Image style format descriptor.</p>
-<pre class="prettyprint source"><code>import fullIcon from &apos;path/to/icon.svg`;
+<pre class="prettyprint source"><code>import fullWidthIcon from &apos;path/to/icon.svg`;
 
 const imageStyleFormat = {
     name: &apos;fullSizeImage&apos;,
-    value: &apos;full&apos;,
-    icon: fullIcon,
+    icon: fullWidthIcon,
     title: &apos;Full size image&apos;,
-    class: &apos;image-full-size&apos;
+    className: &apos;image-full-size&apos;
 }</code></pre></div>
           <div class="notice notice__filter api-props-filter">
             <div class="api-props-filter__inner">
@@ -87,22 +86,23 @@ const imageStyleFormat = {
                           <h3><code><a class="member-name" href="#undefined">name</a> : <span>String</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">The name of the style. It will be used to:</p>
+                          <p class="collapsing-list__excerpt">The unique name of the style. It will be used to:</p>
                           <div class="collapsing-list__content">
 <ul>
 <li>register the <a href="module_core_command-Command.html">command</a> which will apply this style,</li>
-<li>store the style&apos;s button in the editor <a href="module_ui_componentfactory-ComponentFactory.html"><code>ComponentFactory</code></a>.</li>
+<li>store the style&apos;s button in the editor <a href="module_ui_componentfactory-ComponentFactory.html"><code>ComponentFactory</code></a>,</li>
+<li>store the style in the <code>imageStyle</code> model attribute.</li>
 </ul>
                           </div>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed">
-                          <h3><code><a class="member-name" href="#undefined">value</a> : <span>String</span></code></h3>
+                          <h3><code><a class="member-name" href="#undefined">isDefault</a> : <span>Boolean</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">A value used to store this style in the model attribute.
-When the value is <code>null</code>, the style will be used as the default one. A default style does not apply any CSS class to the view element.</p>
+                          <p class="collapsing-list__excerpt">When set, the style will be used as the default one.
+A default style does not apply any CSS class to the view element.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -112,8 +112,12 @@ When the value is <code>null</code>, the style will be used as the default one. 
                           <h3><code><a class="member-name" href="#undefined">icon</a> : <span>String</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">An SVG icon source (as XML string) to use when creating the style&apos;s button.</p>
+                          <p class="collapsing-list__excerpt">One of the following to be used when creating the style&apos;s button:</p>
                           <div class="collapsing-list__content">
+<ul>
+<li>An SVG icon source (as an XML string),</li>
+<li>One of <a href="module_image_imagestyle_imagestyleengine-ImageStyleEngine.html#defaultIcons"><code>defaultIcons</code></a> to use a default icon provided by the plugin.</li>
+</ul>
                           </div>
                         </div>
                       </li>
@@ -2722,6 +2726,9 @@ When the value is <code>null</code>, the style will be used as the default one. 
                                         </li>
                                         <li><a href="module_utils_dom_isrange.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">isrange</span></div></a>
+                                        </li>
+                                        <li><a href="module_utils_dom_iswindow.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">iswindow</span></div></a>
                                         </li>
                                         <li class="toggler--collapsed">
                                           <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_utils_dom_position.html">position</a>
