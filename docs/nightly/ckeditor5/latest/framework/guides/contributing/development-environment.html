@@ -6,12 +6,12 @@
     <title>Development environment - CKEditor 5</title>
     <link rel="canonical" href="/ckeditor5/latest/framework/guides/contributing/development-environment.html">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/0.3.22/css/styles.css" type="text/css" media="screen">
-    <script src="../../../../../assets/0.3.22/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../../../assets/0.3.23/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../../assets/0.3.23/scripts/app.js"></script>
   </head>
   <body>
     <header class="top">
-      <div class="top__logo"><a class="top__logo__link" href="../../../index.html"><img src="../../../assets/img/project-logo.svg" alt="CKEditor 5"></a></div>
+      <div class="top__logo"><span class="top__logo__product-icon" style="background-image: url( ../../../assets/img/project-logo.svg );"></span><a class="top__logo__product-title" href="../../../index.html">CKEditor 5</a></div>
       <ul class="top__menu">
         <li><a href="../../../builds/index.html">Builds</a></li>
         <li><a class="top__menu__item--active" href="../../index.html">Framework</a></li>
@@ -20,17 +20,17 @@
         <li><a href="../../../api/index.html">API</a></li>
       </ul>
       <div class="top__search">
-        <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in the Project">
-        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.22/img/loupe.svg" alt="Search"></button>
+        <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.23/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/contributing/development-environment.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.22/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.22/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/contributing/development-environment.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.23/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.23/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <h1><img src="../../../../../assets/0.3.22/img/book.svg" alt="guide">Development environment
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Requirements">Requirements</a></li><li><a href="#Setting-up-CKEditor-development-environment">Setting up CKEditor development environment</a><ol><li><a href="#Switching-to-development-version-of-packages">Switching to development version of packages</a></li><li><a href="#Fetching-changes">Fetching changes</a></li><li><a href="#Using-mgit-for-custom-packages">Using mgit for custom packages</a></li><li><a href="#Troubleshooting-problems-with-Lerna">Troubleshooting problems with Lerna</a></li><li><a href="#Final-word-about-mgit-and-Lerna">Final word about mgit and Lerna</a></li></ol></li><li><a href="#Running-tests">Running tests</a></li><li><a href="#Generating-documentation">Generating documentation</a></li><li><a href="#Bisecting-through-a-multi-repo">Bisecting through a multi-repo</a></li><li><a href="#Additional-information-for-contributors">Additional information for contributors</a><ol><li><a href="#SVG-icons">SVG icons</a></li></ol></li></ol></nav><p>The CKEditor 5 codebase is divided into multiple <a href="http://npmjs.com/" target="_blank" rel="external">npm</a> packages, each developed in a separate Git repository. The main package is <a href="https://github.com/ckeditor/ckeditor5" target="_blank" rel="external">ckeditor5</a> which installs all project dependencies and various development-related resources such as:</p>
+          <h1><img src="../../../../../assets/0.3.23/img/book.svg" alt="guide">Development environment
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Requirements">Requirements</a></li><li><a href="#Setting-up-the-CKEditor-development-environment">Setting up the CKEditor development environment</a><ol><li><a href="#Switching-to-development-version-of-packages">Switching to development version of packages</a></li><li><a href="#Fetching-changes">Fetching changes</a></li><li><a href="#Using-mgit-for-custom-packages">Using mgit for custom packages</a></li><li><a href="#Troubleshooting-problems-with-Lerna">Troubleshooting problems with Lerna</a></li><li><a href="#Final-word-about-mgit-and-Lerna">Final word about mgit and Lerna</a></li></ol></li><li><a href="#Running-tests">Running tests</a></li><li><a href="#Generating-documentation">Generating documentation</a></li><li><a href="#Bisecting-through-a-multi-repository">Bisecting through a multi-repository</a></li><li><a href="#Additional-information-for-contributors">Additional information for contributors</a><ol><li><a href="#SVG-icons">SVG icons</a></li></ol></li></ol></nav><p>The CKEditor 5 codebase is divided into multiple <a href="http://npmjs.com/" target="_blank" rel="external">npm</a> packages, each developed in a separate Git repository. The main package is <a href="https://github.com/ckeditor/ckeditor5" target="_blank" rel="external">ckeditor5</a> which installs all project dependencies and various development-related resources such as:</p>
 <ul>
 <li>the testing environment setup,</li>
 <li>configuration for <a href="https://www.npmjs.com/package/mgit2" target="_blank" rel="external">mgit</a> (a multi-repo management tool) and <a href="https://github.com/lerna/lerna" target="_blank" rel="external">Lerna.js</a> (a multi-package management tool),</li>
@@ -42,10 +42,10 @@
 <h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><p>In order to start developing CKEditor 5 you will require:</p>
 <ul>
 <li><a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a> &gt;= 6.0.0</li>
-<li>npm 4.x (<strong>note:</strong> using npm 5 <a href="https://github.com/lerna/lerna/issues/938" target="_blank" rel="external">causes</a> <a href="https://github.com/npm/npm/issues/16991" target="_blank" rel="external">problems</a>)</li>
+<li>npm 4.x (<strong>note:</strong> using npm 5 <a href="https://github.com/lerna/lerna/issues/938" target="_blank" rel="external">causes</a> some <a href="https://github.com/npm/npm/issues/16991" target="_blank" rel="external">problems</a>)</li>
 <li><a href="https://git-scm.com/" target="_blank" rel="external">Git</a></li>
 </ul>
-<h2 id="Setting-up-CKEditor-development-environment"><a href="#Setting-up-CKEditor-development-environment" class="headerlink" title="Setting up CKEditor development environment"></a>Setting up CKEditor development environment</h2><p>First, you need to install a couple of tools which you will be using later:</p>
+<h2 id="Setting-up-the-CKEditor-development-environment"><a href="#Setting-up-the-CKEditor-development-environment" class="headerlink" title="Setting up the CKEditor development environment"></a>Setting up the CKEditor development environment</h2><p>First, you need to install a couple of tools which you will be using later:</p>
 <ul>
 <li><a href="http://gulpjs.com/" target="_blank" rel="external">gulp</a> (a JavaScript task runner),</li>
 <li><a href="https://www.npmjs.com/package/mgit2" target="_blank" rel="external">mgit</a> (a multi-repo management tool),</li>
@@ -62,7 +62,7 @@ npm install
 </code></pre>
 <p>This may take a <a href="https://github.com/npm/npm/issues/10380" target="_blank" rel="external">while</a>&#x2026;</p>
 <h3 id="Switching-to-development-version-of-packages"><a href="#Switching-to-development-version-of-packages" class="headerlink" title="Switching to development version of packages"></a>Switching to development version of packages</h3><p>The above steps should install all the packages from the <a href="http://npmjs.com/" target="_blank" rel="external">npm registry</a>, which means that you will have the latest releases of all of them. They are available in <code>node_modules/@ckeditor/</code> (we are using <a href="https://docs.npmjs.com/misc/scope" target="_blank" rel="external">scoped packages</a>, hence the unusual directory).</p>
-<p>In order to work with development versions of all the official packages, it is recommended to use mgit and Lerna. The former will clone all the package repositories and the latter will be able to symlink them, so they create a correct directory structure, understandable by Node.js-compliant tools (like webpack or Browserify).</p>
+<p>In order to work with development versions of all the official packages, it is recommended to use mgit and Lerna. The former will clone all package repositories and the latter will be able to symlink them, so they create a correct directory structure, understandable by Node.js-compliant tools (like webpack or Browserify).</p>
 <p>First, clone all the repositories:</p>
 <pre><code class="bash">mgit bootstrap
 </code></pre>
@@ -79,7 +79,7 @@ packages/
 <pre><code class="bash">lerna bootstrap
 </code></pre>
 <p>Running Lerna may take a while because it installs all package dependencies. It will be improved soon thanks to <a href="https://github.com/lerna/lerna/pull/507" target="_blank" rel="external">dependency hoisting</a>.</p>
-<p>Now, all the CKEditor packages (except the <a href="https://github.com/ckeditor/ckeditor5-dev" target="_blank" rel="external">dev tools</a>) should be cross-symlinked:</p>
+<p>Now, all CKEditor packages (except the <a href="https://github.com/ckeditor/ckeditor5-dev" target="_blank" rel="external">dev tools</a>) should be cross-symlinked:</p>
 <pre><code class="bash">(master 340feac) p@m /workspace/ckeditor5&gt; ls -la node_modules/\@ckeditor/ckeditor5-utils/node_modules/\@ckeditor/
 total 16
 drwxr-xr-x    5 p  staff   170 31 Jan 10:37 .
@@ -98,20 +98,20 @@ git pull
 # To update pull changes to all the packages:
 mgit update
 </code></pre>
-<p>From time to time, if a list of dependencies in any of the packages changed, you will need to call Lerna again to symlink them:</p>
+<p>From time to time, if the list of dependencies in any of the packages changed, you will need to call Lerna again to symlink them:</p>
 <pre><code class="bash">lerna bootstrap
 </code></pre>
 <p>You can also speed it up if you know which package has changed:</p>
 <pre><code class="bash">lerna bootstrap --scope=@ckeditor/ckeditor5-core
 </code></pre>
 <h3 id="Using-mgit-for-custom-packages"><a href="#Using-mgit-for-custom-packages" class="headerlink" title="Using mgit for custom packages"></a>Using mgit for custom packages</h3><p>If you are developing custom packages or forked any of the official packages and want mgit to work with it, change the dependencies configuration in <a href="https://github.com/ckeditor/ckeditor5/blob/master/mgit.json" target="_blank" rel="external"><code>mgit.json</code></a>. Note that mgit is able to clone the package from any Git URL. Refer to <a href="https://github.com/cksource/mgit2" target="_blank" rel="external">its documentation</a> for more details.</p>
-<h3 id="Troubleshooting-problems-with-Lerna"><a href="#Troubleshooting-problems-with-Lerna" class="headerlink" title="Troubleshooting problems with Lerna"></a>Troubleshooting problems with Lerna</h3><p>Lerna does pretty complicated things on already complicated npm ecosystem. If you happen to run into some issues when calling <code>lerna bootstrap</code> here are some tips:</p>
+<h3 id="Troubleshooting-problems-with-Lerna"><a href="#Troubleshooting-problems-with-Lerna" class="headerlink" title="Troubleshooting problems with Lerna"></a>Troubleshooting problems with Lerna</h3><p>Lerna does pretty complicated things on already complicated npm ecosystem. If you happen to run into some issues when calling <code>lerna bootstrap</code>, here are some tips:</p>
 <ul>
-<li>Look for <code>npm-debug.log</code> files in the main package and subpackages. They may point to some obvious issue like a typo in some <code>package.json</code>.</li>
+<li>Look for <code>npm-debug.log</code> files in the main package and subpackages. They may point to an obvious issue like a typo in some <code>package.json</code>.</li>
 <li>Sometimes repeating <code>lerna bootstrap</code> may help.</li>
 <li>If nothing else works, do <code>lerna clean &amp;&amp; npm i &amp;&amp; lerna bootstrap</code>. Mind that without running <code>npm i</code> first, <code>lerna bootstrap</code> may fail with some meaningless errors (at least it happened to us).</li>
 </ul>
-<h3 id="Final-word-about-mgit-and-Lerna"><a href="#Final-word-about-mgit-and-Lerna" class="headerlink" title="Final word about mgit and Lerna"></a>Final word about mgit and Lerna</h3><p>Besides the already mentioned features, mgit allows you to <a href="https://github.com/cksource/mgit2#exec" target="_blank" rel="external">execute shell commands</a> on all the packages (e.g. check their status). It has been developed by the <a href="https://cksource.com" target="_blank" rel="external">CKSource team</a> and we are relying on it heavily, hence you can expect more features and improvements to come. However, it is not a CKEditor-specific tool and should be suitable for any multi-repo project (though it best fits JavaScript projects).</p>
+<h3 id="Final-word-about-mgit-and-Lerna"><a href="#Final-word-about-mgit-and-Lerna" class="headerlink" title="Final word about mgit and Lerna"></a>Final word about mgit and Lerna</h3><p>Besides the already mentioned features, mgit allows you to <a href="https://github.com/cksource/mgit2#exec" target="_blank" rel="external">execute shell commands</a> on all packages (e.g. check their status). It has been developed by the <a href="https://cksource.com" target="_blank" rel="external">CKSource team</a> and we are relying on it heavily, hence you can expect more features and improvements to come. However, it is not a CKEditor-specific tool and should be suitable for any multi-repo project (though it best fits JavaScript projects).</p>
 <p>Lerna is a tool used by many well-known projects such as <a href="https://github.com/babel/babel" target="_blank" rel="external">Babel.js</a>. It has an amazing community and, relying on it ourselves, we hope that it will become a standard for managing multi-package projects.</p>
 <h2 id="Running-tests"><a href="#Running-tests" class="headerlink" title="Running tests"></a>Running tests</h2><p>In order to run tests you need to use the <code>test</code> and <code>test:manual</code> tasks.</p>
 <pre><code class="bash">gulp test --watch --coverage --source-map --files=engine
@@ -120,7 +120,7 @@ mgit update
 <pre><code class="bash">gulp test -wcs --files=engine
 </code></pre>
 <p>This command will run the <a href="https://github.com/ckeditor/ckeditor5-engine" target="_blank" rel="external"><code>ckeditor5-engine</code></a> package&#x2019;s tests.</p>
-<p><strong>Note:</strong> It is not possible to run tests of all packages with code coverage at once because the size of the project (the number of test files and source modules) exceeds Webpack&#x2019;s capabilities (it runs out of memory).</p>
+<p><strong>Note:</strong> It is not possible to run tests of all packages with code coverage at once because the size of the project (the number of test files and source modules) exceeds webpack&#x2019;s capabilities (it runs out of memory).</p>
 <p>To create a server for manual tests use the <code>test:manual</code> task:</p>
 <pre><code class="bash">gulp test:manual
 </code></pre>
@@ -135,11 +135,11 @@ mgit update
 <p>The documentation will be available in <code>build/docs/</code>.</p>
 <p>This task accepts two arguments which can speed up the process:</p>
 <ul>
-<li><code>--skip-api</code> &#x2013; skips building API docs (which takes the majority of the total time),</li>
-<li><code>--skip-snippets</code> &#x2013; skips building live snippets.</li>
+<li><code>--skip-api</code> &#x2013; Skips building API docs (which takes the majority of the total time).</li>
+<li><code>--skip-snippets</code> &#x2013; Skips building live snippets.</li>
 </ul>
-<h2 id="Bisecting-through-a-multi-repo"><a href="#Bisecting-through-a-multi-repo" class="headerlink" title="Bisecting through a multi-repo"></a>Bisecting through a multi-repo</h2><p>CKEditor 5 is a multi-repo project. It means that <a href="https://git-scm.com/docs/git-bisect" target="_blank" rel="external"><code>git bisect</code></a> (which is super handy when tracking which commit introduced a bug) will not work out of the box.</p>
-<p>Fortunately, every commit made to any of the <code>master</code> branches of all CKEditor 5 subpackages will update this subpackage&#x2019;s hash in <code>mgit.json</code> in the <a href="https://github.com/ckeditor/ckeditor5/commits/master-revisions" target="_blank" rel="external"><code>master-revisions</code></a> branch.</p>
+<h2 id="Bisecting-through-a-multi-repository"><a href="#Bisecting-through-a-multi-repository" class="headerlink" title="Bisecting through a multi-repository"></a>Bisecting through a multi-repository</h2><p>CKEditor 5 is a multi-repository project. It means that <a href="https://git-scm.com/docs/git-bisect" target="_blank" rel="external"><code>git bisect</code></a> (which is super handy when tracking which commit introduced a bug) will not work out of the box.</p>
+<p>Fortunately, every commit made to any of <code>master</code> branches of all CKEditor 5 subpackages will update this subpackage&#x2019;s hash in <code>mgit.json</code> in the <a href="https://github.com/ckeditor/ckeditor5/commits/master-revisions" target="_blank" rel="external"><code>master-revisions</code></a> branch.</p>
 <p>Thanks to that, <code>master-revisions</code> contains an ordered history of all changes which makes it possible to go back to any point in history:</p>
 <pre><code class="bash"># Make sure to update this branch.
 git co master-revisions
@@ -163,8 +163,8 @@ Date:   Tue Apr 11 16:45:47 2017 +0000
 :100644 100644 611526d5c4beae7046b0a08ec36843cbbe642175 35acdd8ba971d8127dd462a9c8c1162a54f00d58 M    mgit.json
 </code></pre>
 <p>Leads to <a href="https://github.com/ckeditor/ckeditor5-image/commit/02869eb" target="_blank" rel="external"><code>ckeditor/ckeditor5-image@02869eb</code></a> which leads to <a href="https://github.com/ckeditor/ckeditor5-image/pull/95" target="_blank" rel="external">ckeditor/ckeditor5-image#95</a>.</p>
-<h2 id="Additional-information-for-contributors"><a href="#Additional-information-for-contributors" class="headerlink" title="Additional information for contributors"></a>Additional information for contributors</h2><h3 id="SVG-icons"><a href="#SVG-icons" class="headerlink" title="SVG icons"></a>SVG icons</h3><p>By default, CKEditor 5 supports SVG icons found in the <code>ckeditor5-*/theme/icons</code> folders. Unfortunately, most of the SVG editing software produces the output with comments, obsolete tags, and complex paths, which bloat the DOM and make the builds heavy for no good reason.</p>
-<p>To remove the excess of data and prevent <a href="https://github.com/ckeditor/ckeditor5-ui/issues/245" target="_blank" rel="external">certain issues</a>, <strong>all the new icons should be optimized before joining the code base</strong>. The right utility to do this is Node&#x2013;based <a href="https://github.com/svg/svgo" target="_blank" rel="external">SVGO</a> and the usage is as simple as:</p>
+<h2 id="Additional-information-for-contributors"><a href="#Additional-information-for-contributors" class="headerlink" title="Additional information for contributors"></a>Additional information for contributors</h2><h3 id="SVG-icons"><a href="#SVG-icons" class="headerlink" title="SVG icons"></a>SVG icons</h3><p>By default, CKEditor 5 supports SVG icons found in the <code>ckeditor5-*/theme/icons</code> folders. Unfortunately, most of the SVG editing software produces the output with comments, obsolete tags, and complex paths, which bloats the DOM and makes the builds heavy for no good reason.</p>
+<p>To remove the excess data and prevent <a href="https://github.com/ckeditor/ckeditor5-ui/issues/245" target="_blank" rel="external">certain issues</a>, <strong>all new icons should be optimized before joining the code base</strong>. The right utility to do this is Node&#x2013;based <a href="https://github.com/svg/svgo" target="_blank" rel="external">SVGO</a> and the usage is as simple as:</p>
 <pre><code class="bash">npm install -g svgo
 cd ckeditor5-package-name/theme/icons
 svgo --enable removeTitle -i .
