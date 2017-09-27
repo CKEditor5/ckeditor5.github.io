@@ -46,7 +46,7 @@
 <p>To make updating easier you may optionally add the original build repository to your Git remotes:</p>
 <pre><code class="bash">git remote add upstream https://github.com/ckeditor/ckeditor5-build-classic.git
 </code></pre>
-<div class="info-box notice notice__hint"><p>If you do not want to fork the official build, you can just clone it. However, you will not be able to commit and push your customizations back to GitHub.</p></div>
+<div class="info-box notice notice__hint"><p>If you do not want to fork the official build, you can just clone it. However, you will not be able to commit and push your customizations back to GitHub.</p><p>Alternatively, instead of creating a custom build you can <a href="../integration/advanced-setup.html#Scenario-2-Building-from-source">integrate CKEditor 5 directly from source</a>. This option allows even greater flexibility and requires less overhead (you will not need to fork the official build).</p></div>
 
 <h2 id="Build-anatomy"><a href="#Build-anatomy" class="headerlink" title="Build anatomy"></a>Build anatomy</h2><p>Every build contains the following files:</p>
 <ul>
@@ -111,7 +111,7 @@ module.exports = {
 <p>If you want to skip updating the entry file (in case you modified it manually), run:</p>
 <pre><code class="bash">npm run build-ckeditor
 </code></pre>
-<p>You can validate whether your new build works by opening the <code>sample/index.html</code> file in a browser (via HTTPS, not as a local file). Make sure to <strong>clear the cache</strong>.</p>
+<p>You can validate whether your new build works by opening the <code>sample/index.html</code> file in a browser (via HTTP, not as a local file). Make sure to <strong>clear the cache</strong>.</p>
 <h2 id="Updating-the-build"><a href="#Updating-the-build" class="headerlink" title="Updating the build"></a>Updating the build</h2><p>You may decide to update your build at any time. Since it is a fork of the official build, you can simply merge the changes that happened meanwhile in that build, using Git commands:</p>
 <pre><code class="bash">git fetch upstream
 git merge upstream/master
@@ -119,7 +119,7 @@ git merge upstream/master
 <p>You should handle eventual conflicts and verify the merged changes. After that, just follow the previous instructions for creating your build and test it.</p>
 <div class="info-box notice notice__hint"><p>It is recommended to run <code>rm -rf node_modules &amp;&amp; npm install</code> after you fetched changes from the upstream or updated versions of dependencies in <code>package.json</code> manually. This will prevent npm from installing packages more than once (which may lead to broken builds).</p></div>
 
-<h2 id="Publishing-your-builds"><a href="#Publishing-your-builds" class="headerlink" title="Publishing your builds"></a>Publishing your builds</h2><p>If you think that your custom builds can be useful to others, it is a great idea to publish them on GitHub and npm. When doing so, just be sure to give them meaningful names that would fit the <code>ckeditor5-build-(the name)</code> pattern, making them easy to find. To avoid conflicts with other existing builds you can use <a href="https://docs.npmjs.com/misc/scope" target="_blank" rel="external">scoped packages</a>. We also recommend using the &#x201C;ckeditor5-build&#x201D; <a href="https://docs.npmjs.com/files/package.json#keywords" target="_blank" rel="external">keyword</a> to make your build <a href="https://www.npmjs.com/search?q=keywords:ckeditor5-build&amp;page=1&amp;ranking=optimal" target="_blank" rel="external">easier to find</a>.</p>
+<h2 id="Publishing-your-builds"><a href="#Publishing-your-builds" class="headerlink" title="Publishing your builds"></a>Publishing your builds</h2><p>If you think that your custom builds can be useful to others, it is a great idea to publish them on GitHub and npm. When doing so, just be sure to give them meaningful names that would fit the <code>ckeditor5-build-(the name)</code> pattern, making them easy to find. To avoid conflicts with other existing builds you can use <a href="https://docs.npmjs.com/misc/scope" target="_blank" rel="external">scoped packages</a>. We also recommend using the &#x201C;ckeditor5&#x201D; and &#x201C;ckeditor5-build&#x201D; <a href="https://docs.npmjs.com/files/package.json#keywords" target="_blank" rel="external">keywords</a> to make your build <a href="https://www.npmjs.com/search?q=keywords:ckeditor5-build&amp;page=1&amp;ranking=optimal" target="_blank" rel="external">easier to find</a>.</p>
 <p>After your build is out, <a href="https://twitter.com/ckeditor" target="_blank" rel="external">ping us on Twitter</a>!</p>
 
         </div>
