@@ -33,10 +33,10 @@
           </div>
           <h1><img src="../../../../../assets/0.3.24/img/book.svg" alt="guide">Theme customization
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Styles-processing-and-bundling">Styles processing and bundling</a></li><li><a href="#Customization-with-SASS-variables">Customization with SASS variables</a></li><li><a href="#Adding-extra-styles-to-the-build">Adding extra styles to the build</a></li></ol></nav><p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-theme-lark" target="_blank" rel="external"><code>@ckeditor/ckeditor5-theme-lark</code></a> is the default theme of CKEditor 5. Lark is modular, <a href="https://en.bem.info/methodology/css/" target="_blank" rel="external">BEM&#x2013;friendly</a> and built in <a href="http://sass-lang.com" target="_blank" rel="external">SASS</a>.</p>
-<p>Although it has been designed with versatility and the most common editor use&#x2013;cases in mind, some integrations may require adjustments to make it match the style guidelines of the ecosystem. This kind of customization can be done in two different ways, which can also be used together if needed:</p>
+<p>Although it was designed with versatility and the most common editor use cases in mind, some integrations may require adjustments to make it match the style guidelines of the ecosystem. This kind of customization can be done in two different ways, which can also be used together if needed:</p>
 <ul>
-<li>by building the editor with a set of custom SASS variables and overriding <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#Variable_Defaults___default" target="_blank" rel="external">defaults</a>, which does not change the size of the build,</li>
-<li>by importing an extra <code>.scss</code> file and overriding the CSS rules, which increases the size of the build.</li>
+<li>By building the editor with a set of custom SASS variables and overriding <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#Variable_Defaults___default" target="_blank" rel="external">defaults</a>, which does not change the size of the build.</li>
+<li>By importing an extra <code>.scss</code> file and overriding the CSS rules, which increases the size of the build.</li>
 </ul>
 <p>You can see the demo of an editor with the dark theme as a result of customizations described later in this guide:</p>
 <div class="live-snippet"><div id="snippet-classic-editor">
@@ -51,7 +51,7 @@
 </div>
 </div>
 <h2 id="Styles-processing-and-bundling"><a href="#Styles-processing-and-bundling" class="headerlink" title="Styles processing and bundling"></a>Styles processing and bundling</h2><p>CKEditor 5 is bundled using <a href="https://webpack.js.org/" target="_blank" rel="external">webpack</a> and it handles the importing and processing of the styles using the <a href="https://webpack.js.org/concepts/loaders/" target="_blank" rel="external">loaders</a>. Its configuration can be found in the <code>webpack.config.js</code> file.</p>
-<div class="info-box notice notice__info"><p>To learn more about building CKEditor, check out the <a href="../../../builds/guides/development/custom-builds.html">official guide</a>.</p></div>
+<div class="info-box notice notice__info"><p>To learn more about building CKEditor, check out the <a href="../../../builds/guides/development/custom-builds.html">Creating custom builds</a> guide.</p></div>
 
 <p>The entire process of building and managing the styles boils down to three steps:</p>
 <ol>
@@ -87,7 +87,7 @@
 </code></pre>
 </li>
 </ol>
-<h2 id="Customization-with-SASS-variables"><a href="#Customization-with-SASS-variables" class="headerlink" title="Customization with SASS variables"></a>Customization with SASS variables</h2><p>Having <a href="../../../builds/guides/development/custom-builds.html#Forking-an-existing-build">cloned</a> an existing build of CKEditor for a quick start, let&#x2019;s take a look on the specific definitions in the <code>webpack.config.js</code>.</p>
+<h2 id="Customization-with-SASS-variables"><a href="#Customization-with-SASS-variables" class="headerlink" title="Customization with SASS variables"></a>Customization with SASS variables</h2><p>Having <a href="../../../builds/guides/development/custom-builds.html#Forking-an-existing-build">cloned</a> an existing build of CKEditor for a quick start, take a look at the specific definitions in the <code>webpack.config.js</code> file.</p>
 <pre><code class="js">module: {
     rules: [
         ...
@@ -102,8 +102,8 @@
     ]
 }
 </code></pre>
-<p>Each single SASS file is compiled in a separate thread, so to override default variables (defined with <code>!default</code>) across the theme, new values must be imported/declared at the very beginning of <strong>each single</strong> SASS file&#x2019;s compilation process. SASS Loader offers the <a href="https://www.npmjs.com/package/sass-loader#environment-variables" target="_blank" rel="external"><code>data</code></a> option to do this.</p>
-<p>Let&#x2019;s <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#_import__import" target="_blank" rel="external"><code>@import</code></a> a <code>custom.scss</code> file located in the root of the repository containing all custom variables.</p>
+<p>Each SASS file is compiled in a separate thread, so to override default variables (defined with <code>!default</code>) across the theme, new values must be imported or declared at the very beginning of <strong>each single</strong> SASS file&#x2019;s compilation process. SASS Loader offers the <a href="https://www.npmjs.com/package/sass-loader#environment-variables" target="_blank" rel="external"><code>data</code></a> option to do this.</p>
+<p>Now <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#_import__import" target="_blank" rel="external"><code>@import</code></a> a <code>custom.scss</code> file located in the root of the repository containing all custom variables.</p>
 <pre><code class="js">use: [
     &apos;style-loader&apos;,
     &apos;css-loader&apos;,
@@ -115,11 +115,11 @@
     }
 ]
 </code></pre>
-<p>Using the full potential of the SASS variables, the customization will make the theme dark, with slightly bigger text and more rounded corners.</p>
+<p>Using the full potential of SASS variables, the customization will make the theme dark, with slightly bigger text and more rounded corners.</p>
 <div class="info-box notice notice__hint"><p>Check out the <a href="https://github.com/ckeditor/ckeditor5-theme-lark/blob/master/theme/helpers/_colors.scss" target="_blank" rel="external">colors helper</a> for the full list of customizable colors. You can also browse <a href="https://github.com/ckeditor/ckeditor5-theme-lark/tree/master/theme/helpers" target="_blank" rel="external">other helpers</a> to learn about other useful SASS variables.</p></div>
 
 <p>The contents of <code>custom.scss</code> could look as below:</p>
-<pre><code class="scss">// Overrides the border-radius setting in the theme.
+<pre><code class="scss">// Overrides the border radius setting in the theme.
 $ck-border-radius: 4px;
 
 // Overrides the default font size in the theme.
@@ -186,25 +186,25 @@ $ck-colors: (
     &apos;editor-toolbar-button-background&apos;: $custom-background,
     &apos;editor-dropdown-background&apos;: #535254,
 
-    // Overrides the default colors used by ckeditor5-image package.
+    // Overrides the default colors used by the ckeditor5-image package.
     &apos;image-caption-background&apos;: #f7f7f7,
     &apos;image-caption-text&apos;: #333,
 
-    // Overrides the default colors used by ckeditor5-widget package.
+    // Overrides the default colors used by the ckeditor5-widget package.
     &apos;widget-border-blurred&apos;: #ddd,
     &apos;widget-border-hover&apos;: #FFD25C,
     &apos;widget-editable-focused-background&apos;: $custom-white
 );
 </code></pre>
-<p>Now let&#x2019;s build the editor using <code>npm run build-ckeditor</code> and see the results. From now on, the editor&#x2019;s theme is using customized styles.</p>
+<p>It is time to build the editor using <code>npm run build-ckeditor</code> and see the results. From now on, the editor&#x2019;s theme is using customized styles.</p>
 <h2 id="Adding-extra-styles-to-the-build"><a href="#Adding-extra-styles-to-the-build" class="headerlink" title="Adding extra styles to the build"></a>Adding extra styles to the build</h2><p>Not every element of the theme can be customized using SASS variables and some visual tweaking may require more complex CSS rules.</p>
 <p>In the editor demo presented and the very beginning of this guide, the drop down button in the toolbar has a complex inner <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow?v=b" target="_blank" rel="external"><code>box-shadow</code></a> that makes it more appealing. By default, the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-theme-lark" target="_blank" rel="external">Lark</a> theme does not support such shadow and that is why it must be defined separately.</p>
 <pre><code class="css">.ck-editor-toolbar .ck-button.ck-dropdown__button {
     box-shadow: 0 0 0 1px #5c5b5d inset, 0 0 5px #5c5b5d inset;
 }
 </code></pre>
-<p>The above rule could be added directly to any styles sheet in the web page and most certainly would work as expected.</p>
-<p>But what if the color set customized in the <a href="#Customization-with-SASS-variables">previous part</a> of this guide has changed? Static CSS rules will not update along with the SASS variables and neither they can benefit from the mixins and functions provided by the theme. To add an extra styles and keep it within the ecosystem, a separate SASS file should be created (let&#x2019;s call it <code>extras.scss</code>):</p>
+<p>The rule above could be added directly to any stylesheet in the web page and most certainly would work as expected.</p>
+<p>But what if the color set customized in the <a href="#Customization-with-SASS-variables">previous part</a> of this guide has changed? Static CSS rules will neither update along with the SASS variables nor can they benefit from the mixins and functions provided by the theme. To add extra styles and keep them within the ecosystem, a separate SASS file should be created (in his example it will be called <code>extras.scss</code>):</p>
 <pre><code class="scss">// Allow using Lark&apos;s ck-box-shadow() mixin.
 @import &apos;~@ckeditor/ckeditor5-theme-lark/theme/helpers/_shadow.scss&apos;;
 
@@ -216,7 +216,7 @@ $shadow-color: ck-color( &apos;editor-toolbar-background&apos;, 10 );
 
 .ck-editor-toolbar {
     .ck-button.ck-dropdown__button {
-        // Apply a dedicated inner box-shadow to the dropdown button.
+        // Apply a dedicated inner box-shadow to the drop-down button.
         @include ck-box-shadow(
             0 0 0 1px $shadow-color inset,
             0 0 5px $shadow-color inset
@@ -224,7 +224,7 @@ $shadow-color: ck-color( &apos;editor-toolbar-background&apos;, 10 );
     }
 }
 </code></pre>
-<p>and then imported into a JavaScript file that is processed by webpack and the <a href="#Styles-processing-and-bundling">loaders</a>, like an e.g. an entry&#x2013;point of the application.</p>
+<p>This file then needs to be imported into a JavaScript file that is processed by webpack and the <a href="#Styles-processing-and-bundling">loaders</a>, like for example an entry point of the application.</p>
 <pre><code class="js">import ClassicEditor from &apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;;
 import &apos;extras.scss&apos;;
 
