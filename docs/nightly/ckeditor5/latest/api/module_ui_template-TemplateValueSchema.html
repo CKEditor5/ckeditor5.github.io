@@ -8,6 +8,30 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
     <link rel="stylesheet" href="../../../assets/0.3.24/css/styles.css" type="text/css" media="screen">
     <script src="../../../assets/0.3.24/scripts/app.js"></script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
   </head>
   <body>
     <header class="top">
@@ -39,44 +63,71 @@
           </div>
           <p><span class="badge">typedef</span>
           </p>
-          <div class="main-description"><p>Describes a value of HTMLElement attribute or <code>textContent</code>. See:</p>
+          <div class="main-description"><p>Describes a value of an HTML element attribute or <code>textContent</code>. It allows combining multiple
+data sources like static values and <a href="module_utils_observablemixin-Observable.html"><code>Observable</code></a> attributes.</p>
+<p>Also see:</p>
 <ul>
-<li><a href="module_ui_template-TemplateDefinition.html"><code>TemplateDefinition</code></a>,</li>
-<li><p><a href="module_ui_template-Template.html#bind"><code>bind</code></a>,</p>
-<pre class="prettyprint source"><code> const bind = Template.bind( observableInstance, emitterInstance );
+<li><a href="module_ui_template-TemplateDefinition.html"><code>TemplateDefinition</code></a> to learn where to use it,</li>
+<li><a href="module_ui_template-Template.html#bind"><code>bind</code></a> to learn how to configure
+<a href="module_utils_observablemixin-Observable.html"><code>Observable</code></a> attribute bindings,</li>
+<li><a href="module_ui_template-Template.html#render"><code>render</code></a> to learn how to render a template,</li>
+<li><a href="module_ui_template-BindChain.html#to"><code>to()</code></a> and <a href="module_ui_template-BindChain.html#if"><code>if()</code></a>
+methods to learn more about bindings.</li>
+</ul>
+<p>Attribute values can be described in many different ways:</p>
+<pre class="prettyprint source"><code>// Bind helper will create bindings to attributes of the observable.
+const bind = Template.bind( observable, emitter );
 
- new Template( {
-     tag: &apos;p&apos;,
-     attributes: {
-         // Plain String schema.
-         class: &apos;static-text&apos;
+new Template( {
+    tag: &apos;p&apos;,
+    attributes: {
+        // A plain string schema.
+        &apos;class&apos;: &apos;static-text&apos;,
 
-         // Object schema, an `ObservableMixin` binding.
-         class: bind.to( &apos;foo&apos; )
+        // An object schema, binds to the &quot;foo&quot; attribute of the
+        // observable and follows its value.
+        &apos;class&apos;: bind.to( &apos;foo&apos; ),
 
-         // Array schema, combines the above.
-         class: [
-             &apos;static-text&apos;,
-             bind.to( &apos;bar&apos;, () =&gt; { ... } )
-         ],
+        // An array schema, combines the above.
+        &apos;class&apos;: [
+            &apos;static-text&apos;,
+            bind.to( &apos;bar&apos;, () =&gt; { ... } ),
 
-         // Array schema, with custom namespace.
-         class: {
-             ns: &apos;http://ns.url&apos;,
-             value: [
-                 bind.if( &apos;baz&apos;, &apos;value-when-true&apos; )
-                 &apos;static-text&apos;
-             ]
-         },
+            // Bindings can also be conditional.
+            bind.if( &apos;baz&apos;, &apos;class-when-baz-is-true&apos; )
+        ],
 
-         // Object literal schema, specific for styles.
-         style: {
-             color: &apos;red&apos;,
-             backgroundColor: bind.to( &apos;qux&apos;, () =&gt; { ... } )
-         }
-     }
- } );</code></pre></li>
-</ul></div>
+        // An array schema, with a custom namespace, e.g. useful for creating SVGs.
+        &apos;class&apos;: {
+            ns: &apos;http://ns.url&apos;,
+            value: [
+                bind.if( &apos;baz&apos;, &apos;value-when-true&apos; ),
+                &apos;static-text&apos;
+            ]
+        },
+
+        // An object schema, specific for styles.
+        style: {
+            color: &apos;red&apos;,
+            backgroundColor: bind.to( &apos;qux&apos;, () =&gt; { ... } )
+        }
+    }
+} );</code></pre><p>Text nodes can also be have complex values:</p>
+<pre class="prettyprint source"><code>const bind = Template.bind( observable, emitter );
+
+// Will render a &quot;foo&quot; text node.
+new Template( {
+    text: &apos;foo&apos;
+} );
+
+// Will render a &quot;static text: {observable.foo}&quot; text node.
+// The text of the node will be updated as the &quot;foo&quot; attribute changes.
+new Template( {
+    text: [
+        &apos;static text: &apos;,
+        bind.to( &apos;foo&apos;, () =&gt; { ... } )
+    ]
+} );</code></pre></div>
           <div class="notice notice__filter api-props-filter">
             <div class="api-props-filter__inner">
               <h4>Filtering</h4>
@@ -435,6 +486,18 @@
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">PluginCollection</span></div></a>
                                         </li>
                                 </ul>
+                              </li>
+                      </ul>
+                    </li>
+                    <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">easy-image</span>
+                      </div>
+                      <ul>
+                              <li><a href="module_easy-image_cloudservicesuploadadapter.html">
+                                  <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">cloudservicesuploadadapter</span></div></a>
+                              </li>
+                              <li><a href="module_easy-image_easyimage.html">
+                                  <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">easyimage</span></div></a>
                               </li>
                       </ul>
                     </li>
@@ -2047,7 +2110,7 @@
                       </ul>
                     </li>
                     <li class="toggler--expanded">
-                      <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">ui</span>
+                      <div class="tree__item__wrapper"><a class="tree__item--package tree__item__text" href="ui.html">ui</a>
                       </div>
                       <ul>
                               <li class="toggler--collapsed">

@@ -9894,6 +9894,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 	(0, _highlight.setupHighlight)();
 	(0, _filtering.enableFiltering)();
 	(0, _collapsables.enableCollapsables)();
+	(0, _collapsables.hideTogglers)();
 	(0, _anchors.enableAnchors)();
 	(0, _dropdowns.enableDropdowns)();
 	(0, _scrolling.customizeNavigationScroll)();
@@ -21502,6 +21503,7 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 exports.enableCollapsables = enableCollapsables;
+exports.hideTogglers = hideTogglers;
 
 var _jquery = __webpack_require__(0);
 
@@ -21548,6 +21550,28 @@ function enableCollapsable(options) {
 
 			clicked.toggleClass(options.expandedClass + ' ' + options.collapsedClass);
 			evt.stopPropagation();
+		}
+	});
+}
+
+function hideTogglers() {
+	(0, _jquery2.default)('.collapsing-list__item').each(function () {
+		var excerpt = (0, _jquery2.default)(this).find('.collapsing-list__excerpt');
+		var term = (0, _jquery2.default)(this).children('.collapsing-list__term');
+
+		// If there is no excerpt it means that API item has no description at all so we can hide the toggler.
+		if (excerpt.length === 0) {
+			term.addClass('hidden');
+		} else {
+			var el = excerpt[0];
+			var excerptHasEllipsis = el.scrollWidth !== el.offsetWidth;
+			var descriptionContent = (0, _jquery2.default)(this).find('.collapsing-list__content');
+
+			// If excerpt has no ellipsis, which means it's short, and item detailed description is empty.
+			// Then we also can hide the toggler.
+			if (!excerptHasEllipsis && !descriptionContent.text().trim()) {
+				term.addClass('hidden');
+			}
 		}
 	});
 }

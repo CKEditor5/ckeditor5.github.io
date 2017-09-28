@@ -8,6 +8,30 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
     <link rel="stylesheet" href="../../../assets/0.3.24/css/styles.css" type="text/css" media="screen">
     <script src="../../../assets/0.3.24/scripts/app.js"></script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
   </head>
   <body>
     <header class="top">
@@ -39,7 +63,8 @@
           </div>
           <p><span class="badge">interface</span>
           </p>
-          <div class="main-description"><p>The type of <a href="module_ui_template-Template.html#bind"><code>bind</code></a>&apos;s return value.</p></div>
+          <div class="main-description"><p>The return value of <a href="module_ui_template-Template.html#bind"><code>Template.bind()</code></a>. It provides <code>to()</code> and <code>if()</code>
+methods to create <a href="module_utils_observablemixin-Observable.html">observable</a> attribute and event bindings.</p></div>
           <div class="notice notice__filter api-props-filter">
             <div class="api-props-filter__inner">
               <h4>Filtering</h4>
@@ -78,37 +103,37 @@
                           <h3><code><a class="member-name" href="#if">if</a>( attribute, [ valueIfTrue ], [ callback ] ) &rarr;  <span><a class="collapsing-list__type" href="module_ui_template-TemplateBinding.html">TemplateBinding</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Binds <a href="module_utils_observablemixin-ObservableMixin.html"><code>ObservableMixin</code></a> to HTMLElement attribute or Text Node <code>textContent</code>
-so remains in sync with the Model when it changes. Unlike <a href="module_ui_template-BindChain.html#to"><code>to</code></a>,
-it controls the presence of the attribute/<code>textContent</code> depending on the &quot;falseness&quot; of
-<a href="module_utils_observablemixin-ObservableMixin.html"><code>ObservableMixin</code></a> attribute.
+                          <p class="collapsing-list__excerpt">Binds an <a href="module_utils_observablemixin-Observable.html">observable</a> to an HTML element attribute or a text
+node <code>textContent</code> so remains in sync with the observable attribute as it changes.
                           </p>
                           <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>const bind = Template.bind( observableInstance, emitterInstance );
+<p>Unlike <a href="module_ui_template-BindChain.html#to"><code>to</code></a>, it controls the presence of the attribute/<code>textContent</code>
+depending on the &quot;falseness&quot; of an <a href="module_utils_observablemixin-Observable.html"><code>Observable</code></a> attribute.</p>
+<pre class="prettyprint source"><code>const bind = Template.bind( observable, emitter );
 
 new Template( {
     tag: &apos;input&apos;,
     attributes: {
-        // &lt;input checked&gt; when `observableInstance#a` is not undefined/null/false/&apos;&apos;
-        // &lt;input&gt; when `observableInstance#a` is undefined/null/false
+        // &lt;input checked&gt; when `observable#a` is not undefined/null/false/&apos;&apos;
+        // &lt;input&gt; when `observable#a` is undefined/null/false
         checked: bind.if( &apos;a&apos; )
     },
     children: [
         {
-            // &lt;input&gt;&quot;b-is-not-set&quot;&lt;/input&gt; when `observableInstance#b` is undefined/null/false/&apos;&apos;
-            // &lt;input&gt;&lt;/input&gt; when `observableInstance#b` is not &quot;falsy&quot;
+            // &lt;input&gt;&quot;b-is-not-set&quot;&lt;/input&gt; when `observable#b` is undefined/null/false/&apos;&apos;
+            // &lt;input&gt;&lt;/input&gt; when `observable#b` is not &quot;falsy&quot;
             text: bind.if( &apos;b&apos;, &apos;b-is-not-set&apos;, ( value, node ) =&gt; !value )
         }
     ]
-} ).render();</code></pre>
+} ).render();</code></pre><p>Learn more about using <code>if()</code> in the <a href="module_ui_template-TemplateValueSchema.html"><code>TemplateValueSchema</code></a>.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> attribute : <span>String</span></code></dt>
-                                        <dd><p>An attribute name of <a href="module_utils_observablemixin-ObservableMixin.html"><code>ObservableMixin</code></a> used in the binding.</p>
+                                        <dd><p>An attribute name of <a href="module_utils_observablemixin-Observable.html"><code>Observable</code></a> used in the binding.</p>
                                         </dd>
                                         <dt><code> [ valueIfTrue ] : <span>String</span></code></dt>
-                                        <dd><p>Value set when <a href="module_utils_observablemixin-ObservableMixin.html"><code>ObservableMixin</code></a> attribute is not
-undefined/null/false/&apos;&apos;.</p>
+                                        <dd><p>Value set when <a href="module_utils_observablemixin-Observable.html"><code>Observable</code></a> attribute is not
+undefined/null/false/&apos;&apos; (empty string).</p>
                                         </dd>
                                         <dt><code> [ callback ] : <span>function</span></code></dt>
                                         <dd><p>Allows processing of the value. Accepts <code>Node</code> and <code>value</code> as arguments.</p>
@@ -128,48 +153,47 @@ undefined/null/false/&apos;&apos;.</p>
                           <h3><code><a class="member-name" href="#to">to</a>( eventNameOrFunctionOrAttribute, [ callback ] ) &rarr;  <span><a class="collapsing-list__type" href="module_ui_template-TemplateBinding.html">TemplateBinding</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Binds <a href="module_utils_observablemixin-ObservableMixin.html"><code>ObservableMixin</code></a> instance to:
+                          <p class="collapsing-list__excerpt">Binds an <a href="module_utils_observablemixin-Observable.html">observable</a> to either:
                           </p>
                           <div class="collapsing-list__content">
 <ul>
-<li>HTMLElement attribute or Text Node <code>textContent</code> so remains in sync with the Observable when it changes:</li>
-<li><p>HTMLElement DOM event, so the DOM events are propagated through Observable.</p>
-<pre class="prettyprint source"><code>  const bind = Template.bind( observableInstance, emitterInstance );
-
-  new Template( {
-      tag: &apos;p&apos;,
-      attributes: {
-          // class=&quot;...&quot; attribute gets bound to `observableInstance#a`
-          &apos;class&apos;: bind.to( &apos;a&apos; )
-      },
-      children: [
-          // &lt;p&gt;...&lt;/p&gt; gets bound to `observableInstance#b`; always `toUpperCase()`.
-          { text: bind.to( &apos;b&apos;, ( value, node ) =&gt; value.toUpperCase() ) }
-      ],
-      on: {
-          click: [
-              // &quot;clicked&quot; event will be fired on `observableInstance` when &quot;click&quot; fires in DOM.
-              bind.to( &apos;clicked&apos; ),
-
-              // A custom callback function will be executed when &quot;click&quot; fires in DOM.
-              bind.to( () =&gt; {
-                  ...
-              } )
-          ]
-      }
-  } ).render();
-
-  const bind = Template.bind( observableInstance, emitterInstance );
-
-  new Template( {
-      tag: &apos;p&apos;,
-  } ).render();</code></pre></li>
+<li>an HTML element attribute or a text node <code>textContent</code> so remains in sync with the observable
+attribute as it changes,</li>
+<li>or an HTML element DOM event, so the DOM events are propagated through an observable.</li>
 </ul>
+<p>Some common use&#x2013;cases of <code>to()</code> bindings are presented below:</p>
+<pre class="prettyprint source"><code>const bind = Template.bind( observable, emitter );
+
+new Template( {
+    tag: &apos;p&apos;,
+    attributes: {
+        // class=&quot;...&quot; attribute gets bound to `observable#a`
+        class: bind.to( &apos;a&apos; )
+    },
+    children: [
+        // &lt;p&gt;...&lt;/p&gt; gets bound to observable#b; always `toUpperCase()`.
+        {
+            text: bind.to( &apos;b&apos;, ( value, node ) =&gt; value.toUpperCase() )
+        }
+    ],
+    on: {
+        click: [
+            // an observable will fire &quot;clicked&quot; upon &quot;click&quot; in DOM.
+            bind.to( &apos;clicked&apos; ),
+
+            // A custom callback will be executed upon &quot;click&quot; in DOM.
+            bind.to( () =&gt; {
+                ...
+            } )
+        ]
+    }
+} ).render();</code></pre><p>Learn more about using <code>to()</code> in the <a href="module_ui_template-TemplateValueSchema.html"><code>TemplateValueSchema</code></a> and
+<a href="module_ui_template-TemplateListenerSchema.html"><code>TemplateListenerSchema</code></a>.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> eventNameOrFunctionOrAttribute : <span>String</span> | <span>function</span></code></dt>
                                         <dd><p>An attribute name of
-<a href="module_utils_observablemixin-ObservableMixin.html"><code>ObservableMixin</code></a> or a DOM event name or an event callback.</p>
+<a href="module_utils_observablemixin-Observable.html"><code>Observable</code></a> or a DOM event name or an event callback.</p>
                                         </dd>
                                         <dt><code> [ callback ] : <span>function</span></code></dt>
                                         <dd><p>Allows processing of the value. Accepts <code>Node</code> and <code>value</code> as arguments.</p>
@@ -512,6 +536,18 @@ undefined/null/false/&apos;&apos;.</p>
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">PluginCollection</span></div></a>
                                         </li>
                                 </ul>
+                              </li>
+                      </ul>
+                    </li>
+                    <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">easy-image</span>
+                      </div>
+                      <ul>
+                              <li><a href="module_easy-image_cloudservicesuploadadapter.html">
+                                  <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">cloudservicesuploadadapter</span></div></a>
+                              </li>
+                              <li><a href="module_easy-image_easyimage.html">
+                                  <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">easyimage</span></div></a>
                               </li>
                       </ul>
                     </li>
@@ -2124,7 +2160,7 @@ undefined/null/false/&apos;&apos;.</p>
                       </ul>
                     </li>
                     <li class="toggler--expanded">
-                      <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">ui</span>
+                      <div class="tree__item__wrapper"><a class="tree__item--package tree__item__text" href="ui.html">ui</a>
                       </div>
                       <ul>
                               <li class="toggler--collapsed">

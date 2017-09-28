@@ -8,6 +8,30 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
     <link rel="stylesheet" href="../../../assets/0.3.24/css/styles.css" type="text/css" media="screen">
     <script src="../../../assets/0.3.24/scripts/app.js"></script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
   </head>
   <body>
     <header class="top">
@@ -79,7 +103,7 @@
                           <h3><code><a class="member-name" href="#attribute">attribute</a> : <span>String</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">The name of the attribute of <a href="module_ui_template-TemplateBinding.html#observable"><code>observable</code></a> which is observed.</p>
+                          <p class="collapsing-list__excerpt">The name of the <a href="module_ui_template-TemplateBinding.html#observable">observed attribute</a>.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -89,7 +113,7 @@
                           <h3><code><a class="member-name" href="#callback">callback</a> : <span>function</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">A custom function to process the value of <a href="module_ui_template-TemplateBinding.html#attribute"><code>attribute</code></a>.</p>
+                          <p class="collapsing-list__excerpt">A custom function to process the value of the <a href="module_ui_template-TemplateBinding.html#attribute"><code>attribute</code></a>.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -99,12 +123,11 @@
                           <h3><code><a class="member-name" href="#emitter">emitter</a> : <span><a class="collapsing-list__type" href="module_utils_emittermixin-EmitterMixin.html">EmitterMixin</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">An <a href="module_utils_emittermixin-EmitterMixin.html"><code>EmitterMixin</code></a> instance used by the binding
-to (either):</p>
+                          <p class="collapsing-list__excerpt">An <a href="module_utils_emittermixin-Emitter.html"><code>Emitter</code></a> used by the binding to:</p>
                           <div class="collapsing-list__content">
 <ul>
 <li>listen to the attribute change in the <a href="module_ui_template-TemplateBinding.html#observable"><code>observable</code></a>,</li>
-<li>listen to the event in the DOM.</li>
+<li>or listen to the event in the DOM.</li>
 </ul>
                           </div>
                         </div>
@@ -114,9 +137,12 @@ to (either):</p>
                           <h3><code><a class="member-name" href="#observable">observable</a> : <span><a class="collapsing-list__type" href="module_utils_observablemixin-ObservableMixin.html">ObservableMixin</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">An observable instance of the binding. It provides the attribute
-with the value or passes the event when a corresponding DOM event is fired.</p>
+                          <p class="collapsing-list__excerpt">An observable instance of the binding. It either:</p>
                           <div class="collapsing-list__content">
+<ul>
+<li>provides the attribute with the value</li>
+<li>or passes the event when a corresponding DOM event is fired.</li>
+</ul>
                           </div>
                         </div>
                       </li>
@@ -145,13 +171,11 @@ with the value or passes the event when a corresponding DOM event is fired.</p>
                           <h3><code><a class="member-name" href="#activateAttributeListener">activateAttributeListener</a>( schema, updater, data ) &rarr;  <span>function</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Activates the listener for the changes of <a href="module_ui_template-TemplateBinding.html#attribute"><code>attribute</code></a> in
-<a href="module_ui_template-TemplateBinding.html#observable"><code>observable</code></a>, which then updates the DOM with the aggregated
+                          <p class="collapsing-list__excerpt">Activates the listener which waits for changes of the <a href="module_ui_template-TemplateBinding.html#attribute"><code>attribute</code></a> in
+<a href="module_ui_template-TemplateBinding.html#observable"><code>observable</code></a>, then updates the DOM with the aggregated
 value of <a href="module_ui_template-TemplateValueSchema.html"><code>TemplateValueSchema</code></a>.
                           </p>
                           <div class="collapsing-list__content">
-<p>For instance, the <code>class</code> attribute of the <code>Template</code> element can be be bound to
-the observable <code>foo</code> attribute in <code>ObservableMixin</code> instance.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> schema : <span><a class="collapsing-list__type" href="module_ui_template-TemplateValueSchema.html">TemplateValueSchema</a></span></code></dt>
@@ -178,8 +202,9 @@ the observable <code>foo</code> attribute in <code>ObservableMixin</code> instan
                           <h3><code><a class="member-name" href="#getValue">getValue</a>( [ node ] ) &rarr;  <span>*</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Returns the value of the binding, which is the value of <a href="module_ui_template-TemplateBinding.html#attribute"><code>attribute</code></a> in
-<a href="module_ui_template-TemplateBinding.html#observable"><code>observable</code></a>.
+                          <p class="collapsing-list__excerpt">Returns the value of the binding. It is the value of the <a href="module_ui_template-TemplateBinding.html#attribute"><code>attribute</code></a> in
+<a href="module_ui_template-TemplateBinding.html#observable"><code>observable</code></a>. The value may be processed by the
+<a href="module_ui_template-TemplateBinding.html#callback"><code>callback</code></a>, if such has been passed to the binding.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -526,6 +551,18 @@ the observable <code>foo</code> attribute in <code>ObservableMixin</code> instan
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">PluginCollection</span></div></a>
                                         </li>
                                 </ul>
+                              </li>
+                      </ul>
+                    </li>
+                    <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">easy-image</span>
+                      </div>
+                      <ul>
+                              <li><a href="module_easy-image_cloudservicesuploadadapter.html">
+                                  <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">cloudservicesuploadadapter</span></div></a>
+                              </li>
+                              <li><a href="module_easy-image_easyimage.html">
+                                  <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">easyimage</span></div></a>
                               </li>
                       </ul>
                     </li>
@@ -2138,7 +2175,7 @@ the observable <code>foo</code> attribute in <code>ObservableMixin</code> instan
                       </ul>
                     </li>
                     <li class="toggler--expanded">
-                      <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">ui</span>
+                      <div class="tree__item__wrapper"><a class="tree__item--package tree__item__text" href="ui.html">ui</a>
                       </div>
                       <ul>
                               <li class="toggler--collapsed">

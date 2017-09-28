@@ -8,6 +8,30 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
     <link rel="stylesheet" href="../../../assets/0.3.24/css/styles.css" type="text/css" media="screen">
     <script src="../../../assets/0.3.24/scripts/app.js"></script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
   </head>
   <body>
     <header class="top">
@@ -80,11 +104,12 @@
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Handles a DOM <code>click</code> event outside of specified elements and fires an action.
+                          <p class="collapsing-list__excerpt">Handles clicking <strong>outside</strong> of a specified set of elements, then fires an action.
                           </p>
                           <div class="collapsing-list__content">
-<p>Note that it is not handled by a <code>click</code> event, this is to avoid situation when click on some trigger
-opens and closes element at the same time.</p>
+<p><strong>Note</strong>: Actually, the action is executed upon <code>mousedown</code>, not <code>click</code>. It prevents
+certain issues when the user keeps holding the mouse button and the UI cannot react
+properly.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> options : <span>Object</span></code></dt>
@@ -93,16 +118,18 @@ opens and closes element at the same time.</p>
                                                     </div>
                                                     <dl>
                                                       <dt><code> options.emitter : <span><a class="collapsing-list__type" href="module_utils_dom_emittermixin-Emitter.html">Emitter</a></span></code></dt>
-                                                      <dd><p>The emitter to which this behavior should be added.</p>
+                                                      <dd><p>The emitter to which this behavior
+should be added.</p>
                                                       </dd>
                                                       <dt><code> options.activator : <span>function</span></code></dt>
-                                                      <dd><p>Function returning a <code>Boolean</code>, to determine whether handler is active.</p>
+                                                      <dd><p>Function returning a <code>Boolean</code>, to determine whether the handler is active.</p>
                                                       </dd>
                                                       <dt><code> options.contextElements : <span>Array.&lt;HTMLElement&gt;</span></code></dt>
-                                                      <dd><p><code>HTMLElement</code>s that clicking inside of any of them will not fire the callback.</p>
+                                                      <dd><p>HTML elements that determine the scope of the
+handler. Clicking any of them or their descendants will <strong>not</strong> fire the callback.</p>
                                                       </dd>
                                                       <dt><code> options.callback : <span>function</span></code></dt>
-                                                      <dd><p>Function fired after clicking outside of specified elements.</p>
+                                                      <dd><p>An action executed by the handler.</p>
                                                       </dd>
                                                     </dl>
                                         </dd>
@@ -438,6 +465,18 @@ opens and closes element at the same time.</p>
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">PluginCollection</span></div></a>
                                         </li>
                                 </ul>
+                              </li>
+                      </ul>
+                    </li>
+                    <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">easy-image</span>
+                      </div>
+                      <ul>
+                              <li><a href="module_easy-image_cloudservicesuploadadapter.html">
+                                  <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">cloudservicesuploadadapter</span></div></a>
+                              </li>
+                              <li><a href="module_easy-image_easyimage.html">
+                                  <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">easyimage</span></div></a>
                               </li>
                       </ul>
                     </li>
@@ -2050,7 +2089,7 @@ opens and closes element at the same time.</p>
                       </ul>
                     </li>
                     <li class="toggler--expanded">
-                      <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">ui</span>
+                      <div class="tree__item__wrapper"><a class="tree__item--package tree__item__text" href="ui.html">ui</a>
                       </div>
                       <ul>
                               <li class="toggler--expanded">

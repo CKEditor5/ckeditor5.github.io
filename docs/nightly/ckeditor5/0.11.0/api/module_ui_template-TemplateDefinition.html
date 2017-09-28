@@ -8,6 +8,30 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
     <link rel="stylesheet" href="../../../assets/0.3.24/css/styles.css" type="text/css" media="screen">
     <script src="../../../assets/0.3.24/scripts/app.js"></script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
   </head>
   <body>
     <header class="top">
@@ -39,8 +63,15 @@
           </div>
           <p><span class="badge">typedef</span>
           </p>
-          <div class="main-description"><p>A definition of <a href="module_ui_template-Template.html"><code>Template</code></a>.
-See: <a href="module_ui_template-TemplateValueSchema.html"><code>TemplateValueSchema</code></a>.</p>
+          <div class="main-description"><p>A definition of the <a href="module_ui_template-Template.html"><code>Template</code></a>. It describes what kind of
+node a template will render (HTML element or text), attributes of an element, DOM event
+listeners and children.</p>
+<p>Also see:</p>
+<ul>
+<li><a href="module_ui_template-TemplateValueSchema.html"><code>TemplateValueSchema</code></a> to learn about HTML element attributes,</li>
+<li><a href="module_ui_template-TemplateListenerSchema.html"><code>TemplateListenerSchema</code></a> to learn about DOM event listeners.</li>
+</ul>
+<p>A sample definition on an HTML element can look like this:</p>
 <pre class="prettyprint source"><code>new Template( {
     tag: &apos;p&apos;,
     children: [
@@ -48,34 +79,51 @@ See: <a href="module_ui_template-TemplateValueSchema.html"><code>TemplateValueSc
             tag: &apos;span&apos;,
             attributes: { ... },
             children: [ ... ],
-            ...
         },
         {
             text: &apos;static&#x2013;text&apos;
         },
         &apos;also-static&#x2013;text&apos;,
-        &lt;<a href="module_ui_view-View.html"><code>View</code></a> instance&gt;
-        &lt;<a href="module_ui_template-Template.html"><code>Template</code></a> instance&gt;
-        ...
     ],
     attributes: {
         class: <a href="module_ui_template-TemplateValueSchema.html"><code>TemplateValueSchema</code></a>,
         id: <a href="module_ui_template-TemplateValueSchema.html"><code>TemplateValueSchema</code></a>,
         style: <a href="module_ui_template-TemplateValueSchema.html"><code>TemplateValueSchema</code></a>
-        ...
+
+        // ...
     },
     on: {
         &apos;click&apos;: <a href="module_ui_template-TemplateListenerSchema.html"><code>TemplateListenerSchema</code></a>
-        &apos;keyup@.some-class&apos;: <a href="module_ui_template-TemplateListenerSchema.html"><code>TemplateListenerSchema</code></a>,
-        ...
-    }
-} );
 
-// An entire view collection can be used as a child in the definition.
+        // Document.querySelector format is also accepted.
+        &apos;keyup@a.some-class&apos;: <a href="module_ui_template-TemplateListenerSchema.html"><code>TemplateListenerSchema</code></a>
+
+        // ...
+    }
+} );</code></pre><p>A <a href="module_ui_view-View.html"><code>View</code></a> or another <a href="module_ui_template-Template.html"><code>Template</code></a> can also become a child
+of a template. In case of a view <a href="module_ui_view-View.html#element"><code>element</code></a> is used:</p>
+<pre class="prettyprint source"><code>const view = new SomeView();
+const childTemplate = new Template( { ... } );
+
 new Template( {
     tag: &apos;p&apos;,
-    children: &lt;<a href="module_ui_viewcollection.html#ViewCollection%7D">instance&gt;
-</a> );</code></pre></div>
+
+    children: [
+        // view#element will be added as a child of this &lt;p&gt;.
+        view,
+
+        // The output of childTemplate.render() will be added here.
+        childTemplate
+    ]
+} );</code></pre><p>An entire <a href="module_ui_viewcollection-ViewCollection.html"><code>ViewCollection</code></a> can be used as a child in the definition:</p>
+<pre class="prettyprint source"><code>const collection = new ViewCollection();
+collection.add( someView );
+
+new Template( {
+    tag: &apos;p&apos;,
+
+    children: collection
+} );</code></pre></div>
           <div class="notice notice__filter api-props-filter">
             <div class="api-props-filter__inner">
               <h4>Filtering</h4>
@@ -114,6 +162,7 @@ new Template( {
                           <h3><code><a class="member-name" href="#undefined">tag</a> : <span>String</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">See template <a href="module_ui_template-Template.html#tag"><code>tag</code></a> property.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -123,6 +172,7 @@ new Template( {
                           <h3><code><a class="member-name" href="#undefined">children</a> : <span>Array.&lt;<a class="collapsing-list__type" href="module_ui_template-TemplateDefinition.html">TemplateDefinition</a>&gt;</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">See template <a href="module_ui_template-Template.html#children"><code>children</code></a> property.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -132,6 +182,7 @@ new Template( {
                           <h3><code><a class="member-name" href="#undefined">attributes</a> : <span>Object.&ltString, module:ui/template~TemplateValueSchema></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">See template <a href="module_ui_template-Template.html#attributes"><code>attributes</code></a> property.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -141,6 +192,7 @@ new Template( {
                           <h3><code><a class="member-name" href="#undefined">text</a> : <span>String</span> | <span><a class="collapsing-list__type" href="module_ui_template-TemplateValueSchema.html">TemplateValueSchema</a></span> | <span>Array.&lt;(String|module:ui/template~TemplateValueSchema)&gt;</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">See template <a href="module_ui_template-Template.html#text"><code>text</code></a> property.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -150,6 +202,7 @@ new Template( {
                           <h3><code><a class="member-name" href="#undefined">on</a> : <span>Object.&ltString, module:ui/template~TemplateListenerSchema></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">See template <a href="module_ui_template-Template.html#eventListeners"><code>eventListeners</code></a> property.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -482,6 +535,18 @@ new Template( {
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">PluginCollection</span></div></a>
                                         </li>
                                 </ul>
+                              </li>
+                      </ul>
+                    </li>
+                    <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">easy-image</span>
+                      </div>
+                      <ul>
+                              <li><a href="module_easy-image_cloudservicesuploadadapter.html">
+                                  <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">cloudservicesuploadadapter</span></div></a>
+                              </li>
+                              <li><a href="module_easy-image_easyimage.html">
+                                  <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">easyimage</span></div></a>
                               </li>
                       </ul>
                     </li>
@@ -2094,7 +2159,7 @@ new Template( {
                       </ul>
                     </li>
                     <li class="toggler--expanded">
-                      <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">ui</span>
+                      <div class="tree__item__wrapper"><a class="tree__item--package tree__item__text" href="ui.html">ui</a>
                       </div>
                       <ul>
                               <li class="toggler--collapsed">

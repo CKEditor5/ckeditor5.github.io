@@ -8,6 +8,30 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
     <link rel="stylesheet" href="../../../assets/0.3.24/css/styles.css" type="text/css" media="screen">
     <script src="../../../assets/0.3.24/scripts/app.js"></script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
   </head>
   <body>
     <header class="top">
@@ -74,7 +98,23 @@
                         </dd>
             </dl>
           </nav>
-          <div class="main-description"><p>The dropdown view class.</p></div>
+          <div class="main-description"><p>The dropdown view class.</p>
+<pre class="prettyprint source"><code>const button = new ButtonView( locale );
+const panel = new DropdownPanelView( locale );
+const dropdown = new DropdownView( locale, button, panel );
+
+panel.element.textContent = &apos;Content of the panel&apos;;
+button.set( {
+    label: &apos;A dropdown&apos;,
+    withText: true
+} );
+
+dropdown.init();
+
+// Will render a dropdown with a panel containing a &quot;Content of the panel&quot; text.
+document.body.appendChild( dropdown.element );</code></pre><p>Also see <a href="module_ui_dropdown_createdropdown.html#createDropdown"><code>createDropdown</code></a> and
+<a href="module_ui_dropdown_list_createlistdropdown.html#createListDropdown"><code>createListDropdown</code></a> to learn about different
+dropdown creation helpers.</p></div>
           <div class="notice notice__filter api-props-filter">
             <div class="api-props-filter__inner">
               <h4>Filtering</h4>
@@ -110,13 +150,13 @@
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="buttonView">
-                          <h3><code><a class="member-name" href="#buttonView">buttonView</a> : <span>ButtonView</span></code></h3>
+                          <h3><code><a class="member-name" href="#buttonView">buttonView</a> : <span><a class="collapsing-list__type" href="module_ui_button_buttonview-ButtonView.html">ButtonView</a></span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">readonly</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Button of this dropdown view.</p>
+                          <p class="collapsing-list__excerpt">Button of the dropdown view. Clicking the button opens the <a href="module_ui_dropdown_dropdownview-DropdownView.html#panelView"><code>panelView</code></a>.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -143,7 +183,7 @@ using <a href="module_ui_view-View.html#template"><code>template</code></a> defi
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Tracks information about DOM focus in the list.</p>
+                          <p class="collapsing-list__excerpt">Tracks information about DOM focus in the dropdown.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -153,8 +193,7 @@ using <a href="module_ui_view-View.html#template"><code>template</code></a> defi
                           <h3><code><a class="member-name" href="#isOpen">isOpen</a> : <span>Boolean</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Controls whether the dropdown view is open, which also means its
-<a href="module_ui_dropdown_dropdownview-DropdownView.html#panelView">panel</a> is visible.</p>
+                          <p class="collapsing-list__excerpt">Controls whether the dropdown view is open, i.e. shows or hides the <a href="module_ui_dropdown_dropdownview-DropdownView.html#panelView">panel</a>.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -167,8 +206,13 @@ using <a href="module_ui_view-View.html#template"><code>template</code></a> defi
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Instance of the <a href="module_utils_keystrokehandler-KeystrokeHandler.html"><code>KeystrokeHandler</code></a>.</p>
+                          <p class="collapsing-list__excerpt">Instance of the <a href="module_utils_keystrokehandler-KeystrokeHandler.html"><code>KeystrokeHandler</code></a>. It manages
+keystrokes of the dropdown:</p>
                           <div class="collapsing-list__content">
+<ul>
+<li><kbd>&#x25BC;</kbd> opens the dropdown,</li>
+<li><kbd>&#x25C0;</kbd> and <kbd>Esc</kbd> closes the dropdown.</li>
+</ul>
                           </div>
                         </div>
                       </li>
@@ -194,8 +238,12 @@ using <a href="module_ui_view-View.html#template"><code>template</code></a> defi
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Panel of this dropdown view.</p>
+                          <p class="collapsing-list__excerpt">Panel of the dropdown. It opens when the <a href="module_ui_dropdown_dropdownview-DropdownView.html#buttonView"><code>buttonView</code></a> is
+<a href="module_ui_button_buttonview-ButtonView.html#event:execute">executed</a> (i.e. clicked).</p>
                           <div class="collapsing-list__content">
+<p>Child views can be added to the panel&apos;s <code>children</code> collection:</p>
+<pre class="prettyprint source"><code>dropdown.panelView.children.add( childView );</code></pre><p>See <a href="module_ui_dropdown_dropdownpanelview-DropdownPanelView.html#children"><code>children</code></a> and
+<a href="module_ui_viewcollection-ViewCollection.html#add"><code>add</code></a>.</p>
                           </div>
                         </div>
                       </li>
@@ -1370,6 +1418,18 @@ observable.prop = 2; // -&gt; &apos;prop has changed from 1 to 2&apos;</code></p
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">PluginCollection</span></div></a>
                                         </li>
                                 </ul>
+                              </li>
+                      </ul>
+                    </li>
+                    <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">easy-image</span>
+                      </div>
+                      <ul>
+                              <li><a href="module_easy-image_cloudservicesuploadadapter.html">
+                                  <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">cloudservicesuploadadapter</span></div></a>
+                              </li>
+                              <li><a href="module_easy-image_easyimage.html">
+                                  <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">easyimage</span></div></a>
                               </li>
                       </ul>
                     </li>
@@ -2982,7 +3042,7 @@ observable.prop = 2; // -&gt; &apos;prop has changed from 1 to 2&apos;</code></p
                       </ul>
                     </li>
                     <li class="toggler--expanded">
-                      <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">ui</span>
+                      <div class="tree__item__wrapper"><a class="tree__item--package tree__item__text" href="ui.html">ui</a>
                       </div>
                       <ul>
                               <li class="toggler--collapsed">

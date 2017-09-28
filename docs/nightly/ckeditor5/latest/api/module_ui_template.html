@@ -8,6 +8,30 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
     <link rel="stylesheet" href="../../../assets/0.3.24/css/styles.css" type="text/css" media="screen">
     <script src="../../../assets/0.3.24/scripts/app.js"></script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
   </head>
   <body>
     <header class="top">
@@ -77,9 +101,9 @@
                           <h3><code><span><a href="module_ui_template-Template.html">Template</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt collapsing-list__excerpt--short">A basic Template class. It renders DOM HTMLElement or Text from <a href="module_ui_template-TemplateDefinition.html"><code>TemplateDefinition</code></a> and supports
-element attributes, children, bindings to <a href="module_utils_observablemixin-ObservableMixin.html"><code>ObservableMixin</code></a> instances and DOM events
-propagation. For example:</p>
+                          <p class="collapsing-list__excerpt collapsing-list__excerpt--short">A basic Template class. It renders a DOM HTML element or text from a
+<a href="module_ui_template-TemplateDefinition.html">definition</a> and supports element attributes, children,
+bindings to <a href="module_utils_observablemixin-Observable.html">observables</a> and DOM event propagation.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-protected="true">
@@ -124,7 +148,8 @@ method.</p>
                           <h3><code><span><a href="module_ui_template-BindChain.html">BindChain</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt collapsing-list__excerpt--short">The type of <a href="module_ui_template-Template.html#bind"><code>bind</code></a>&apos;s return value.</p>
+                          <p class="collapsing-list__excerpt collapsing-list__excerpt--short">The return value of <a href="module_ui_template-Template.html#bind"><code>Template.bind()</code></a>. It provides <code>to()</code> and <code>if()</code>
+methods to create <a href="module_utils_observablemixin-Observable.html">observable</a> attribute and event bindings.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-private="true">
@@ -146,8 +171,9 @@ method.</p>
                           <h3><code><span><a href="module_ui_template-TemplateDefinition.html">TemplateDefinition</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt collapsing-list__excerpt--short">A definition of <a href="module_ui_template-Template.html"><code>Template</code></a>.
-See: <a href="module_ui_template-TemplateValueSchema.html"><code>TemplateValueSchema</code></a>.</p>
+                          <p class="collapsing-list__excerpt collapsing-list__excerpt--short">A definition of the <a href="module_ui_template-Template.html"><code>Template</code></a>. It describes what kind of
+node a template will render (HTML element or text), attributes of an element, DOM event
+listeners and children.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
@@ -155,7 +181,9 @@ See: <a href="module_ui_template-TemplateValueSchema.html"><code>TemplateValueSc
                           <h3><code><span><a href="module_ui_template-TemplateListenerSchema.html">TemplateListenerSchema</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt collapsing-list__excerpt--short">Describes a listener attached to HTMLElement. See: <a href="module_ui_template-TemplateDefinition.html"><code>TemplateDefinition</code></a>.</p>
+                          <p class="collapsing-list__excerpt collapsing-list__excerpt--short">Describes an event listener attached to an HTML element. Such listener can propagate DOM events
+through an <a href="module_utils_observablemixin-Observable.html"><code>Observable</code></a> instance, execute custom callbacks
+or both, if necessary.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
@@ -163,7 +191,8 @@ See: <a href="module_ui_template-TemplateValueSchema.html"><code>TemplateValueSc
                           <h3><code><span><a href="module_ui_template-TemplateValueSchema.html">TemplateValueSchema</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt collapsing-list__excerpt--short">Describes a value of HTMLElement attribute or <code>textContent</code>. See:</p>
+                          <p class="collapsing-list__excerpt collapsing-list__excerpt--short">Describes a value of an HTML element attribute or <code>textContent</code>. It allows combining multiple
+data sources like static values and <a href="module_utils_observablemixin-Observable.html"><code>Observable</code></a> attributes.</p>
                         </div>
                       </li>
           </ul>
@@ -494,6 +523,18 @@ See: <a href="module_ui_template-TemplateValueSchema.html"><code>TemplateValueSc
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">PluginCollection</span></div></a>
                                         </li>
                                 </ul>
+                              </li>
+                      </ul>
+                    </li>
+                    <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">easy-image</span>
+                      </div>
+                      <ul>
+                              <li><a href="module_easy-image_cloudservicesuploadadapter.html">
+                                  <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">cloudservicesuploadadapter</span></div></a>
+                              </li>
+                              <li><a href="module_easy-image_easyimage.html">
+                                  <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">easyimage</span></div></a>
                               </li>
                       </ul>
                     </li>
@@ -2106,7 +2147,7 @@ See: <a href="module_ui_template-TemplateValueSchema.html"><code>TemplateValueSc
                       </ul>
                     </li>
                     <li class="toggler--expanded">
-                      <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">ui</span>
+                      <div class="tree__item__wrapper"><a class="tree__item--package tree__item__text" href="ui.html">ui</a>
                       </div>
                       <ul>
                               <li class="toggler--collapsed">
