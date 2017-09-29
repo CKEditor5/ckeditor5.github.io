@@ -6,8 +6,8 @@
     <title>Class FileRepository (upload/filerepository~FileRepository) - CKEditor 5 API docs</title>
     <link rel="canonical" href="/ckeditor5/latest/api/module_upload_filerepository-FileRepository.html">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.24/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/0.3.24/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../assets/0.3.26/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.26/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -45,15 +45,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.24/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.26/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.24/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.26/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <div class="api-header"><img src="../../../assets/0.3.24/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.26/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1>FileRepository<span class="header__import--hidden"> (upload)</span>
               </h1>
@@ -93,7 +93,15 @@
                         </dd>
             </dl>
           </nav>
-          <div class="main-description"><p>FileRepository plugin.</p></div>
+          <div class="main-description"><p>File repository plugin. A central point for managing file upload.</p>
+<p>To use it, first you need an upload adapter. Upload adapter&apos;s job is to handle communication with the server
+(sending the file and handling server&apos;s response). You can use one of the existing plugins introducing upload adapters
+(e.g. <a href="module_easy-image_cloudservicesuploadadapter-CloudServicesUploadAdapter.html"><code>CloudServicesUploadAdapter</code></a> or
+<a href="module_adapter-ckfinder_uploadadapter-CKFinderUploadAdapter.html"><code>CKFinderUploadAdapter</code></a>) or write your own one
+(which boils down to setting the <a href="#createAdapter"><code>createAdapter</code></a> factory function &#x2013; see
+<code><code>Adapter</code> interface (~Adapter)</code> documentation).</p>
+<p>Then, you can use <a href="#createLoader"><code>createLoader()</code></a> and the returned <code>~FileLoader</code> instance to
+load and upload files.</p></div>
           <div class="notice notice__filter api-props-filter">
             <div class="api-props-filter__inner">
               <h4>Filtering</h4>
@@ -127,6 +135,20 @@
           </div>
           <h2 id="Properties">Properties</h2>
           <ul class="collapsing-list collapsing-list--filtered">
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="createAdapter">
+                          <h3><code><a class="member-name" href="#createAdapter">createAdapter</a> : <span>function</span></code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">A factory function which should be defined before using <code>FileRepository</code>.</p>
+                          <div class="collapsing-list__content">
+<p>It should return a new instance of <a href="module_upload_filerepository-Adapter.html"><code>Adapter</code></a> that will be used to upload files.
+<a href="module_upload_filerepository-FileLoader.html"><code>FileLoader</code></a> instance associated with the adapter
+will be passed to that function.</p>
+<p>For more information and example see <a href="module_upload_filerepository-Adapter.html"><code>Adapter</code></a>.</p>
+                          </div>
+                        </div>
+                      </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="editor">
                           <h3><code><a class="member-name" href="#editor">editor</a> : <span><a class="collapsing-list__type" href="module_core_editor_editor-Editor.html">Editor</a></span></code></h3>
@@ -159,11 +181,11 @@
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Number of total bytes to upload.
-It might be different than the file size because of headers and additional data.
+                          <p class="collapsing-list__excerpt">Number of total bytes to upload.</p>
+                          <div class="collapsing-list__content">
+<p>It might be different than the file size because of headers and additional data.
 It contains <code>null</code> if value is not available yet, so it&apos;s better to use <a href="module_upload_filerepository-FileRepository.html#uploadedPercent"><code>uploadedPercent</code></a> to monitor
 the progress.</p>
-                          <div class="collapsing-list__content">
                           </div>
                         </div>
                       </li>
@@ -372,29 +394,14 @@ A.bind( &apos;a&apos; ).to( B, &apos;b&apos;, C, &apos;d&apos;, ( b, d ) =&gt; b
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="createAdapter">
-                          <h3><code><a class="member-name" href="#createAdapter">createAdapter</a>()</code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Function that should be defined before using FileRepository. It should return new instance of
-<a href="module_upload_filerepository-Adapter.html">Adapter</a> that will be used to upload files.
-<a href="module_upload_filerepository-FileLoader.html">FileLoader</a> instance associated with the adapter
-will be passed to that function.
-For more information and example see <a href="module_upload_filerepository-Adapter.html">Adapter</a>.
-                          </p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="createLoader">
                           <h3><code><a class="member-name" href="#createLoader">createLoader</a>( file ) &rarr;  <span><a class="collapsing-list__type" href="module_upload_filerepository-FileLoader.html">FileLoader</a></span> | <span>null</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Creates loader for specified file.
-Shows console warning and returns <code>null</code> if <a href="module_upload_filerepository-FileRepository.html#createAdapter"><code>createAdapter</code></a> method is not defined.
+                          <p class="collapsing-list__excerpt">Creates a loader instance for the given file.
                           </p>
                           <div class="collapsing-list__content">
+<p>Requires <a href="module_upload_filerepository-FileRepository.html#createAdapter"><code>createAdapter</code></a> factory to be defined.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> file : <span>File</span></code></dt>
@@ -526,7 +533,7 @@ emitterA.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( emitterC );</cod
                           <h3><code><a class="member-name" href="#destroyLoader">destroyLoader</a>( fileOrLoader )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Destroys loader.
+                          <p class="collapsing-list__excerpt">Destroys the given loader.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -578,13 +585,13 @@ is the first param of every callback).</p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Returns the loader associated with specified file.
-To get loader by id use <code>fileRepository.loaders.get( id )</code>.
                           </p>
                           <div class="collapsing-list__content">
+<p>To get loader by id use <code>fileRepository.loaders.get( id )</code>.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> file : <span>File</span></code></dt>
-                                        <dd><p>Native File object.</p>
+                                        <dd><p>Native file handle.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
@@ -957,6 +964,9 @@ observable.prop = 2; // -&gt; &apos;prop has changed from 1 to 2&apos;</code></p
                                         <li><a href="module_adapter-ckfinder_uploadadapter-CKFinderUploadAdapter.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">CKFinderUploadAdapter</span></div></a>
                                         </li>
+                                        <li><a href="module_adapter-ckfinder_uploadadapter-CKFinderAdapterConfig.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--interface tree__item__text">CKFinderAdapterConfig</span></div></a>
+                                        </li>
                                 </ul>
                               </li>
                               <li><a href="module_adapter-ckfinder_utils.html">
@@ -1271,11 +1281,29 @@ observable.prop = 2; // -&gt; &apos;prop has changed from 1 to 2&apos;</code></p
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">easy-image</span>
                       </div>
                       <ul>
-                              <li><a href="module_easy-image_cloudservicesuploadadapter.html">
-                                  <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">cloudservicesuploadadapter</span></div></a>
+                              <li class="toggler--collapsed">
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_easy-image_cloudservicesuploadadapter.html">cloudservicesuploadadapter</a>
+                                </div>
+                                <ul>
+                                        <li data-private="true"><a href="module_easy-image_cloudservicesuploadadapter-Adapter.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Adapter</span></div></a>
+                                        </li>
+                                        <li><a href="module_easy-image_cloudservicesuploadadapter-CloudServicesUploadAdapter.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">CloudServicesUploadAdapter</span></div></a>
+                                        </li>
+                                        <li><a href="module_easy-image_cloudservicesuploadadapter-CloudServicesAdapterConfig.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--interface tree__item__text">CloudServicesAdapterConfig</span></div></a>
+                                        </li>
+                                </ul>
                               </li>
-                              <li><a href="module_easy-image_easyimage.html">
-                                  <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">easyimage</span></div></a>
+                              <li class="toggler--collapsed">
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_easy-image_easyimage.html">easyimage</a>
+                                </div>
+                                <ul>
+                                        <li><a href="module_easy-image_easyimage-EasyImage.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">EasyImage</span></div></a>
+                                        </li>
+                                </ul>
                               </li>
                       </ul>
                     </li>
@@ -2897,9 +2925,6 @@ observable.prop = 2; // -&gt; &apos;prop has changed from 1 to 2&apos;</code></p
                                 <ul>
                                         <li><a href="module_ui_bindings_clickoutsidehandler.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">clickoutsidehandler</span></div></a>
-                                        </li>
-                                        <li><a href="module_ui_bindings_escpresshandler.html">
-                                            <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">escpresshandler</span></div></a>
                                         </li>
                                         <li><a href="module_ui_bindings_preventdefault.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">preventdefault</span></div></a>

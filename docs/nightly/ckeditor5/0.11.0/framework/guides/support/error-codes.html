@@ -6,8 +6,8 @@
     <title>Error codes - CKEditor 5</title>
     <link rel="canonical" href="/ckeditor5/latest/framework/guides/support/error-codes.html">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/0.3.24/css/styles.css" type="text/css" media="screen">
-    <script src="../../../../../assets/0.3.24/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../../../assets/0.3.26/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../../assets/0.3.26/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -45,15 +45,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.24/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.26/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/support/error-codes.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.24/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.24/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/support/error-codes.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.26/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.26/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <h1><img src="../../../../../assets/0.3.24/img/book.svg" alt="guide">Error codes
+          <h1><img src="../../../../../assets/0.3.26/img/book.svg" alt="guide">Error codes
           </h1><p>CKEditor 5 Framework logs errors and warnings to the console. The following list contains more detailed descriptions of those issues.</p>
 
 <ul class="collapsing-list">
@@ -238,17 +238,6 @@
     </div>
   </li>
   <li class="collapsing-list__item">
-    <div class="collapsing-list__term toggler--collapsed" id="ckfinder-upload-adapter-no-config">
-      <h3><code><a class="member-name" href="#ckfinder-upload-adapter-no-config">ckfinder-upload-adapter-no-config</a></code></h3>
-    </div>
-    <div class="collapsing-list__description">
-      <p class="collapsing-list__excerpt">Please provide <code>ckfinder.uploadUrl</code> config option.
-      </p>
-      <div class="collapsing-list__content">
-      </div>
-    </div>
-  </li>
-  <li class="collapsing-list__item">
     <div class="collapsing-list__term toggler--collapsed" id="collection-add-invalid-id">
       <h3><code><a class="member-name" href="#collection-add-invalid-id">collection-add-invalid-id</a></code></h3>
     </div>
@@ -353,7 +342,9 @@
       <h3><code><a class="member-name" href="#componentfactory-item-missing">componentfactory-item-missing</a></code></h3>
     </div>
     <div class="collapsing-list__description">
-      <p class="collapsing-list__excerpt">There is no such UI component in the factory.
+      <p class="collapsing-list__excerpt">The required component is not registered in the component factory. Please make sure
+the provided name is correct and the component has been correctly
+<a href="../../../api/module_ui_componentfactory-ComponentFactory.html#add">added</a> to the factory.
       </p>
       <div class="collapsing-list__content">
         <h4>Parameters</h4>
@@ -450,6 +441,40 @@ starts or ends at incorrect position.
 <p><code>DocumentSelection#createFromSelection()</code> is not available. There can be only one
 <code>DocumentSelection</code> per document instance, so creating new <code>DocumentSelection</code>s this way
 would be unsafe.</p>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="filerepository-no-adapter">
+      <h3><code><a class="member-name" href="#filerepository-no-adapter">filerepository-no-adapter</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">You need to enable an upload adapter in order to be able to upload files.
+      </p>
+      <div class="collapsing-list__content">
+<p>This warning shows up when <a href="../../../api/module_upload_filerepository-FileRepository.html"><code>FileRepository</code></a> is being used
+without <a href="../../../api/module_upload_filerepository-FileRepository.html#createAdapter">definining  an  upload  adapter</a>.</p>
+<p><strong>If you see this warning when using one of the <a href="../../../builds/index.html" data-glink="">CKEditor 5 Builds</a></strong>
+it means that you did not configure any of the upload adapters available by default in those builds.
+See:</p>
+<ul>
+<li><a href="../../../api/module_core_editor_editorconfig-EditorConfig.html#cloudServices"><code>config.cloudServices</code></a> for
+Easy Image with Cloud Services integration,</li>
+<li><a href="../../../api/module_core_editor_editorconfig-EditorConfig.html#ckfinder"><code>config.ckfinder</code></a> for CKFinder
+file upload integration.</li>
+</ul>
+<p><strong>If you see this warning when using a custom build</strong> there is a chance that you enabled
+a feature like <a href="../../../api/module_upload_imageupload-ImageUpload.html"><code>ImageUpload</code></a>,
+or <a href="../../../api/module_upload_imageuploadbutton-ImageUploadButton.html"><code>ImageUploadButton</code></a> but you did not enable any upload adapter.
+You can choose one of the existing upload adapters:</p>
+<ul>
+<li><a href="../../../api/module_easy-image_cloudservicesuploadadapter-CloudServicesUploadAdapter.html"><code>CloudServicesUploadAdapter</code></a>
+(remember to <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html#cloudServices">configure it</a>)</li>
+<li><a href="../../../api/module_adapter-ckfinder_uploadadapter-CKFinderUploadAdapter.html"><code>CKFinderUploadAdapter</code></a>
+(remember to <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html#ckfinder">configure it</a>)</li>
+</ul>
+<p>You can also implement your own upload adapter (in which case, please refer
+to the <a href="../../../api/module_upload_filerepository-FileRepository.html#Adapter"><code>Adapter</code> interface</a> documentation).</p>
       </div>
     </div>
   </li>

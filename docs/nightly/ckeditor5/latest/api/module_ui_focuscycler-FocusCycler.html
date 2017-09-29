@@ -6,8 +6,8 @@
     <title>Class FocusCycler (ui/focuscycler~FocusCycler) - CKEditor 5 API docs</title>
     <link rel="canonical" href="/ckeditor5/latest/api/module_ui_focuscycler-FocusCycler.html">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.24/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/0.3.24/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../assets/0.3.26/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.26/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -45,15 +45,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.24/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.26/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.24/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.26/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <div class="api-header"><img src="../../../assets/0.3.24/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.26/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1>FocusCycler<span class="header__import--hidden"> (ui)</span>
               </h1>
@@ -63,21 +63,28 @@
           </div>
           <p><span class="badge">class</span>
           </p>
-          <div class="main-description"><p>Helps cycling over focusable views in a <a href="module_ui_viewcollection-ViewCollection.html"><code>ViewCollection</code></a>
-when the focus is tracked by <a href="module_utils_focustracker-FocusTracker.html"><code>FocusTracker</code></a> instance.</p>
-<p>It requires a collection of focusable views and associated focus tracker:</p>
+          <div class="main-description"><p>An utility class that helps cycling over focusable <a href="module_ui_view-View.html">views</a> in a
+<a href="module_ui_viewcollection-ViewCollection.html"><code>ViewCollection</code></a> when the focus is tracked by
+<a href="module_utils_focustracker-FocusTracker.html"><code>FocusTracker</code></a> instance. It helps implementing keyboard
+navigation in HTML forms, toolbars, lists and the like.</p>
+<p>To work properly it requires:</p>
+<ul>
+<li>a collection of focusable (HTML <code>tabindex</code> attribute) views that implement the <code>focus()</code> method,</li>
+<li>an associated focus tracker to determine which view is focused.</li>
+</ul>
+<p>A simple cycler setup can look like this:</p>
 <pre class="prettyprint source"><code>const focusables = new ViewCollection();
 const focusTracker = new FocusTracker();
 
-// Add focusables to the focus tracker.
-focusTracker.add( ... );</code></pre><p>The cycler can be used manually:</p>
+// Add focusable views to the focus tracker.
+focusTracker.add( ... );</code></pre><p>Then, the cycler can be used manually:</p>
 <pre class="prettyprint source"><code>const cycler = new FocusCycler( { focusables, focusTracker } );
 
 // Will focus the first forusable view in #focusables.
 cycler.focusFirst();
 
 // Will log next focusable item in #focusables.
-console.log( cycler.next );</code></pre><p>or it can be used as an automated, keystroke&#x2013;detecting utility:</p>
+console.log( cycler.next );</code></pre><p>Alternatively, it can work side by side with the <a href="module_utils_keystrokehandler-KeystrokeHandler.html"><code>KeystrokeHandler</code></a>:</p>
 <pre class="prettyprint source"><code>const keystrokeHandler = new KeystrokeHandler();
 
 // Activate the keystroke handler.
@@ -87,7 +94,7 @@ const cycler = new FocusCycler( {
     focusables, focusTracker, keystrokeHandler,
     actions: {
         // When arrowup of arrowleft is detected by the #keystrokeHandler
-        // focusPrevious() will be called by the cycler.
+        // focusPrevious() will be called on the cycler.
         focusPrevious: [ &apos;arrowup&apos;, &apos;arrowleft&apos; ],
     }
 } );</code></pre></div>
@@ -134,8 +141,8 @@ const cycler = new FocusCycler( {
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Actions that the cycler can take when a keystroke is pressed. Requires
 <code>options.keystrokeHandler</code> to be passed and working. When an action is
-performed, the event the keystroke fired is will be <code>preventDefault</code> and
-<code>stopPropagation</code> in DOM.</p>
+performed, <code>preventDefault</code> and <code>stopPropagation</code> will be called on the event
+the keystroke fired in DOM.</p>
                           <div class="collapsing-list__content">
 <pre class="prettyprint source"><code>actions: {
     // Will call #focusPrevious() when arrowleft or arrowup is pressed.
@@ -156,7 +163,7 @@ performed, the event the keystroke fired is will be <code>preventDefault</code> 
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">An index of the view in the <a href="module_ui_focuscycler-FocusCycler.html#focusables"><code>focusables</code></a> which is focused according
-to <a href="module_ui_focuscycler-FocusCycler.html#focusTracker"><code>focusTracker</code></a>. <code>null</code> when there&apos;s no such view.</p>
+to <a href="module_ui_focuscycler-FocusCycler.html#focusTracker"><code>focusTracker</code></a>. <code>null</code> when there is no such view.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -170,7 +177,7 @@ to <a href="module_ui_focuscycler-FocusCycler.html#focusTracker"><code>focusTrac
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Returns the first focusable view in <a href="module_ui_focuscycler-FocusCycler.html#focusables"><code>focusables</code></a>.
-<code>null</code> if there&apos;s none.</p>
+Returns <code>null</code> if there is none.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -183,7 +190,7 @@ to <a href="module_ui_focuscycler-FocusCycler.html#focusTracker"><code>focusTrac
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">A focus tracker instance that cycler uses to determine focus
+                          <p class="collapsing-list__excerpt">A focus tracker instance that cycler uses to determine the current focus
 state in <a href="module_ui_focuscycler-FocusCycler.html#focusables"><code>focusables</code></a>.</p>
                           <div class="collapsing-list__content">
                           </div>
@@ -197,7 +204,7 @@ state in <a href="module_ui_focuscycler-FocusCycler.html#focusables"><code>focus
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">A view collection the cycler operates on.</p>
+                          <p class="collapsing-list__excerpt">A <a href="module_ui_view-View.html">view</a> collection the cycler operates on.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -210,7 +217,8 @@ state in <a href="module_ui_focuscycler-FocusCycler.html#focusables"><code>focus
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Instance of the <a href="module_utils_keystrokehandler-KeystrokeHandler.html"><code>KeystrokeHandler</code></a>.</p>
+                          <p class="collapsing-list__excerpt">An instance of the <a href="module_utils_keystrokehandler-KeystrokeHandler.html"><code>KeystrokeHandler</code></a>
+which can respond to certain keystrokes and cycle the focus.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -224,7 +232,7 @@ state in <a href="module_ui_focuscycler-FocusCycler.html#focusables"><code>focus
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Returns the last focusable view in <a href="module_ui_focuscycler-FocusCycler.html#focusables"><code>focusables</code></a>.
-<code>null</code> if there&apos;s none.</p>
+Returns <code>null</code> if there is none.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -238,7 +246,7 @@ state in <a href="module_ui_focuscycler-FocusCycler.html#focusables"><code>focus
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Returns the next focusable view in <a href="module_ui_focuscycler-FocusCycler.html#focusables"><code>focusables</code></a> based on <a href="module_ui_focuscycler-FocusCycler.html#current"><code>current</code></a>.
-<code>null</code> if there&apos;s none.</p>
+Returns <code>null</code> if there is none.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -252,7 +260,7 @@ state in <a href="module_ui_focuscycler-FocusCycler.html#focusables"><code>focus
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Returns the previous focusable view in <a href="module_ui_focuscycler-FocusCycler.html#focusables"><code>focusables</code></a> based on <a href="module_ui_focuscycler-FocusCycler.html#current"><code>current</code></a>.
-<code>null</code> if there&apos;s none.</p>
+Returns <code>null</code> if there is none.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -298,7 +306,7 @@ state in <a href="module_ui_focuscycler-FocusCycler.html#focusables"><code>focus
                           <h3><code><a class="member-name" href="#focusFirst">focusFirst</a>()</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Focuses the <a href="module_ui_focuscycler-FocusCycler.html#first"><code>first</code></a> item.
+                          <p class="collapsing-list__excerpt">Focuses the <a href="module_ui_focuscycler-FocusCycler.html#first"><code>first</code></a> item in <a href="module_ui_focuscycler-FocusCycler.html#focusables"><code>focusables</code></a>.
                           </p>
                           <div class="collapsing-list__content">
                           </div>
@@ -309,7 +317,7 @@ state in <a href="module_ui_focuscycler-FocusCycler.html#focusables"><code>focus
                           <h3><code><a class="member-name" href="#focusLast">focusLast</a>()</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Focuses the <a href="module_ui_focuscycler-FocusCycler.html#last"><code>last</code></a> item.
+                          <p class="collapsing-list__excerpt">Focuses the <a href="module_ui_focuscycler-FocusCycler.html#last"><code>last</code></a> item in <a href="module_ui_focuscycler-FocusCycler.html#focusables"><code>focusables</code></a>.
                           </p>
                           <div class="collapsing-list__content">
                           </div>
@@ -320,7 +328,7 @@ state in <a href="module_ui_focuscycler-FocusCycler.html#focusables"><code>focus
                           <h3><code><a class="member-name" href="#focusNext">focusNext</a>()</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Focuses the <a href="module_ui_focuscycler-FocusCycler.html#next"><code>next</code></a> item.
+                          <p class="collapsing-list__excerpt">Focuses the <a href="module_ui_focuscycler-FocusCycler.html#next"><code>next</code></a> item in <a href="module_ui_focuscycler-FocusCycler.html#focusables"><code>focusables</code></a>.
                           </p>
                           <div class="collapsing-list__content">
                           </div>
@@ -331,7 +339,7 @@ state in <a href="module_ui_focuscycler-FocusCycler.html#focusables"><code>focus
                           <h3><code><a class="member-name" href="#focusPrevious">focusPrevious</a>()</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Focuses the <a href="module_ui_focuscycler-FocusCycler.html#previous"><code>previous</code></a> item.
+                          <p class="collapsing-list__excerpt">Focuses the <a href="module_ui_focuscycler-FocusCycler.html#previous"><code>previous</code></a> item in <a href="module_ui_focuscycler-FocusCycler.html#focusables"><code>focusables</code></a>.
                           </p>
                           <div class="collapsing-list__content">
                           </div>
@@ -405,6 +413,9 @@ to <a href="module_ui_focuscycler-FocusCycler.html#current"><code>current</code>
                                         </li>
                                         <li><a href="module_adapter-ckfinder_uploadadapter-CKFinderUploadAdapter.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">CKFinderUploadAdapter</span></div></a>
+                                        </li>
+                                        <li><a href="module_adapter-ckfinder_uploadadapter-CKFinderAdapterConfig.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--interface tree__item__text">CKFinderAdapterConfig</span></div></a>
                                         </li>
                                 </ul>
                               </li>
@@ -720,11 +731,29 @@ to <a href="module_ui_focuscycler-FocusCycler.html#current"><code>current</code>
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">easy-image</span>
                       </div>
                       <ul>
-                              <li><a href="module_easy-image_cloudservicesuploadadapter.html">
-                                  <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">cloudservicesuploadadapter</span></div></a>
+                              <li class="toggler--collapsed">
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_easy-image_cloudservicesuploadadapter.html">cloudservicesuploadadapter</a>
+                                </div>
+                                <ul>
+                                        <li data-private="true"><a href="module_easy-image_cloudservicesuploadadapter-Adapter.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Adapter</span></div></a>
+                                        </li>
+                                        <li><a href="module_easy-image_cloudservicesuploadadapter-CloudServicesUploadAdapter.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">CloudServicesUploadAdapter</span></div></a>
+                                        </li>
+                                        <li><a href="module_easy-image_cloudservicesuploadadapter-CloudServicesAdapterConfig.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--interface tree__item__text">CloudServicesAdapterConfig</span></div></a>
+                                        </li>
+                                </ul>
                               </li>
-                              <li><a href="module_easy-image_easyimage.html">
-                                  <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">easyimage</span></div></a>
+                              <li class="toggler--collapsed">
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_easy-image_easyimage.html">easyimage</a>
+                                </div>
+                                <ul>
+                                        <li><a href="module_easy-image_easyimage-EasyImage.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">EasyImage</span></div></a>
+                                        </li>
+                                </ul>
                               </li>
                       </ul>
                     </li>
@@ -2346,9 +2375,6 @@ to <a href="module_ui_focuscycler-FocusCycler.html#current"><code>current</code>
                                 <ul>
                                         <li><a href="module_ui_bindings_clickoutsidehandler.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">clickoutsidehandler</span></div></a>
-                                        </li>
-                                        <li><a href="module_ui_bindings_escpresshandler.html">
-                                            <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">escpresshandler</span></div></a>
                                         </li>
                                         <li><a href="module_ui_bindings_preventdefault.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">preventdefault</span></div></a>

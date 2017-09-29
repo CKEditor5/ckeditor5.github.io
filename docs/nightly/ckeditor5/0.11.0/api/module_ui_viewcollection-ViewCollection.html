@@ -6,8 +6,8 @@
     <title>Class ViewCollection (ui/viewcollection~ViewCollection) - CKEditor 5 API docs</title>
     <link rel="canonical" href="/ckeditor5/latest/api/module_ui_viewcollection-ViewCollection.html">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.24/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/0.3.24/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../assets/0.3.26/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.26/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -45,15 +45,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.24/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.26/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.24/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.26/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <div class="api-header"><img src="../../../assets/0.3.24/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.26/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1>ViewCollection<span class="header__import--hidden"> (ui)</span>
               </h1>
@@ -92,7 +92,29 @@
                         </dd>
             </dl>
           </nav>
-          <div class="main-description"><p>Collects <a href="module_ui_view-View.html"><code>View</code></a> instances.</p></div>
+          <div class="main-description"><p>Collects <a href="module_ui_view-View.html"><code>View</code></a> instances.</p>
+<pre class="prettyprint source"><code>const parentView = new ParentView( locale );
+const collection = new ViewCollection( locale );
+
+collection.setParent( parentView.element );
+
+const viewA = new ChildView( locale );
+const viewB = new ChildView( locale );</code></pre><p>View collection manages view <a href="module_ui_view-View.html#element">elements</a>:</p>
+<pre class="prettyprint source"><code>// parentView.element.children == [ viewA.element, vievB.element ]
+collection.add( viewA );
+collection.add( viewB );</code></pre><p>It handles initialization of the children:</p>
+<pre class="prettyprint source"><code>// viewA.ready == viewB.ready == true;
+collection.init();</code></pre><p>It <a href="module_ui_viewcollection-ViewCollection.html#delegate">propagates</a> DOM events too:</p>
+<pre class="prettyprint source"><code>// Delegate #click and #keydown events from viewA and viewB to the parentView.
+collection.delegate( &apos;click&apos; ).to( parentView );
+
+parentView.on( &apos;click&apos;, ( evt ) =&gt; {
+    console.log( `${ evt.source } has been clicked.` );
+} );
+
+// This event will be delegated to the parentView.
+viewB.fire( &apos;click&apos; );</code></pre><p><strong>Note</strong>: A view collection can be used directly in the <a href="module_ui_template-TemplateDefinition.html">definition</a>
+of a <a href="module_ui_template-Template.html">template</a>.</p></div>
           <div class="notice notice__filter api-props-filter">
             <div class="api-props-filter__inner">
               <h4>Filtering</h4>
@@ -144,7 +166,8 @@
                           <h3><code><a class="member-name" href="#locale">locale</a> : <span><a class="collapsing-list__type" href="module_utils_locale-Locale.html">Locale</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">The <a href="module_core_editor_editor-Editor.html">editor&apos;s locale</a> instance.</p>
+                          <p class="collapsing-list__excerpt">The <a href="module_core_editor_editor-Editor.html#locale">editor&apos;s locale</a> instance.
+See the view <a href="module_ui_view-View.html#locale">locale</a> property.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -157,8 +180,8 @@
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Set to <code>true</code> once the parent&apos;s <a href="module_ui_view-View.html#ready"><code>ready</code></a> is true, which means
-that all the views in the collection are also ready (which can be asynchronous).</p>
+                          <p class="collapsing-list__excerpt">Set <code>true</code> when all views in the collection are <a href="module_ui_view-View.html#ready"><code>ready</code></a>.
+See the view <a href="module_ui_view-View.html#init">init</a> method.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -314,7 +337,7 @@ to avoid loops in two&#x2013;way bindings.</p>
                           <h3><code><a class="member-name" href="#constructor">constructor</a>( [ locale ] )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Creates a new <a href="module_ui_viewcollection-ViewCollection.html"><code>ViewCollection</code></a> instance.
+                          <p class="collapsing-list__excerpt">Creates a new instance of the <a href="module_ui_viewcollection-ViewCollection.html"><code>ViewCollection</code></a>.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -345,10 +368,24 @@ to avoid loops in two&#x2013;way bindings.</p>
                           <h3><code><a class="member-name" href="#add">add</a>( view, [ index ] )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Adds a child view to the collection. If <a href="module_ui_viewcollection-ViewCollection.html#ready"><code>ready</code></a>, the child view
-is also initialized when added.
+                          <p class="collapsing-list__excerpt">Adds a new child view to the collection. If the collection is
+<a href="module_ui_viewcollection-ViewCollection.html#ready"><code>ready</code></a>, the child view is also
+<a href="module_ui_view-View.html#init">initialized</a> when added.
                           </p>
                           <div class="collapsing-list__content">
+<p>Additionally, if the <a href="module_ui_viewcollection-ViewCollection.html#setParent">parent  element</a> of the collection has been set, the
+<a href="module_ui_view-View.html#element">element</a> of the view is also added in DOM,
+reflecting the order of the collection.</p>
+<pre class="prettyprint source"><code>const collection = new ViewCollection();
+const parentElement = document.querySelector( &apos;#container&apos; );
+collection.setParent( parentElement );
+
+const viewA = new View();
+const viewB = new View();
+
+// parentElement.children == [ viewA.element, vievB.element ]
+collection.add( viewA );
+collection.add( viewB );</code></pre><p>See the <a href="module_ui_viewcollection-ViewCollection.html#remove"><code>remove</code></a> method.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> view : <span><a class="collapsing-list__type" href="module_ui_view-View.html">View</a></span></code></dt>
@@ -566,13 +603,14 @@ foo.method( 1, 2 ); // -&gt; &apos;3, 2&apos;</code></pre>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="delegate">
-                          <h3><code><a class="member-name" href="#delegate">delegate</a>( events ) &rarr;  <span>to</span></code></h3>
+                          <h3><code><a class="member-name" href="#delegate">delegate</a>( events ) &rarr;  <span>Object</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Delegates selected events coming from within the collection to desired <a href="module_utils_emittermixin-EmitterMixin.html"><code>EmitterMixin</code></a>.
+                          <p class="collapsing-list__excerpt">Delegates selected events coming from within views in the collection to any
+<a href="module_utils_emittermixin-Emitter.html"><code>Emitter</code></a>.
                           </p>
                           <div class="collapsing-list__content">
-<p>For instance:</p>
+<p>For the following views and collection:</p>
 <pre class="prettyprint source"><code>const viewA = new View();
 const viewB = new View();
 const viewC = new View();
@@ -582,20 +620,24 @@ const views = parentView.createCollection();
 views.delegate( &apos;eventX&apos; ).to( viewB );
 views.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( viewC );
 
-views.add( viewA );</code></pre><p>then <code>eventX</code> is delegated (fired by) <code>viewB</code> and <code>viewC</code> along with <code>customData</code>:</p>
+views.add( viewA );</code></pre><p>the <code>eventX</code> is delegated (fired by) <code>viewB</code> and <code>viewC</code> along with <code>customData</code>:</p>
 <pre class="prettyprint source"><code>viewA.fire( &apos;eventX&apos;, customData );</code></pre><p>and <code>eventY</code> is delegated (fired by) <code>viewC</code> along with <code>customData</code>:</p>
 <pre class="prettyprint source"><code>viewA.fire( &apos;eventY&apos;, customData );</code></pre><p>See <a href="module_utils_emittermixin-EmitterMixin.html#delegate"><code>delegate</code></a>.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> events : <span>String</span></code></dt>
                                         <dd><p><a href="module_ui_view-View.html"><code>View</code></a> event names to be delegated to another
-<a href="module_utils_emittermixin-EmitterMixin.html"><code>EmitterMixin</code></a>.</p>
+<a href="module_utils_emittermixin-Emitter.html"><code>Emitter</code></a>.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code><span>to</span></code></dt>
+                                        <dt><code><span>Object</span></code></dt>
                                         <dd>
+                                        </dd>
+                                        <dt><code><span>function</span></code></dt>
+                                        <dd><p>return.to A function which accepts the destination of
+<a href="module_utils_emittermixin-EmitterMixin.html#delegate">delegated</a> events.</p>
                                         </dd>
                             </dl>
                           </div>
@@ -607,6 +649,7 @@ views.add( viewA );</code></pre><p>then <code>eventX</code> is delegated (fired 
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Destroys the view collection along with child views.
+See the view <a href="module_ui_view-View.html#destroy"><code>destroy</code></a> method.
                           </p>
                           <div class="collapsing-list__content">
                           </div>
@@ -767,10 +810,11 @@ When item is not defined in the collection then index will be equal -1.
                           <h3><code><a class="member-name" href="#init">init</a>()</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Initializes child views by injecting <a href="module_ui_view-View.html#element"><code>element</code></a> into DOM
-and calling <a href="module_ui_view-View.html#init"><code>init</code></a>.
+                          <p class="collapsing-list__excerpt">Initializes all child views in the collection by calling view <a href="module_ui_view-View.html#init"><code>init</code></a>
+method.
                           </p>
                           <div class="collapsing-list__content">
+<p>Once finished, sets <a href="module_ui_viewcollection-ViewCollection.html#ready"><code>ready</code></a> <code>true</code>.</p>
                           </div>
                         </div>
                       </li>
@@ -969,34 +1013,29 @@ order they were added.</p>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="remove">
                           <h3><code><a class="member-name" href="#remove">remove</a>( subject ) &rarr;  <span>Object</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Removes an item from the collection.
+                          <p class="collapsing-list__excerpt">Removes a child view from the collection. If the <a href="module_ui_viewcollection-ViewCollection.html#setParent">parent  element</a> of the
+collection has been set, the <a href="module_ui_view-View.html#element">element</a> of the view is also removed
+in DOM, reflecting the order of the collection.
                           </p>
                           <div class="collapsing-list__content">
+<p>See the <a href="module_ui_viewcollection-ViewCollection.html#add"><code>add</code></a> method.</p>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> subject : <span>Object</span> | <span>Number</span> | <span>String</span></code></dt>
-                                        <dd><p>The item to remove, its id or index in the collection.</p>
+                                        <dt><code> subject : <span><a class="collapsing-list__type" href="module_ui_view-View.html">View</a></span> | <span>Number</span> | <span>String</span></code></dt>
+                                        <dd><p>The view to remove, its id or index in the collection.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
                                         <dt><code><span>Object</span></code></dt>
-                                        <dd><p>The removed item.</p>
+                                        <dd><p>The removed view.</p>
                                         </dd>
                             </dl>
-                            <h4>Fires</h4>
-                            <ul>
-                                        <li><span><a href="module_utils_collection-Collection.html#event:remove">remove</a></span>
-                                        </li>
-                            </ul>
                           </div>
                         </div>
                       </li>
@@ -1033,13 +1072,15 @@ properties and methods, but means that <code>foo.set( &apos;bar&apos;, 1 )</code
                           <h3><code><a class="member-name" href="#setParent">setParent</a>( element )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Sets <a href="module_ui_viewcollection-ViewCollection.html#_parentElement"><code>_parentElement</code></a> of this collection.
+                          <p class="collapsing-list__excerpt">Sets the parent HTML element of this collection. When parent is set, <a href="module_ui_viewcollection-ViewCollection.html#add">adding</a> and
+<a href="module_ui_viewcollection-ViewCollection.html#remove">removing</a> views in the collection synchronizes their
+<a href="module_ui_view-View.html#element">elements</a> in the parent element.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> element : <span>HTMLElement</span></code></dt>
-                                        <dd><p>A new parent.</p>
+                                        <dd><p>A new parent element.</p>
                                         </dd>
                                       </dl>
                           </div>
@@ -1257,6 +1298,9 @@ observable.prop = 2; // -&gt; &apos;prop has changed from 1 to 2&apos;</code></p
                                         </li>
                                         <li><a href="module_adapter-ckfinder_uploadadapter-CKFinderUploadAdapter.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">CKFinderUploadAdapter</span></div></a>
+                                        </li>
+                                        <li><a href="module_adapter-ckfinder_uploadadapter-CKFinderAdapterConfig.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--interface tree__item__text">CKFinderAdapterConfig</span></div></a>
                                         </li>
                                 </ul>
                               </li>
@@ -1572,11 +1616,29 @@ observable.prop = 2; // -&gt; &apos;prop has changed from 1 to 2&apos;</code></p
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">easy-image</span>
                       </div>
                       <ul>
-                              <li><a href="module_easy-image_cloudservicesuploadadapter.html">
-                                  <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">cloudservicesuploadadapter</span></div></a>
+                              <li class="toggler--collapsed">
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_easy-image_cloudservicesuploadadapter.html">cloudservicesuploadadapter</a>
+                                </div>
+                                <ul>
+                                        <li data-private="true"><a href="module_easy-image_cloudservicesuploadadapter-Adapter.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Adapter</span></div></a>
+                                        </li>
+                                        <li><a href="module_easy-image_cloudservicesuploadadapter-CloudServicesUploadAdapter.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">CloudServicesUploadAdapter</span></div></a>
+                                        </li>
+                                        <li><a href="module_easy-image_cloudservicesuploadadapter-CloudServicesAdapterConfig.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--interface tree__item__text">CloudServicesAdapterConfig</span></div></a>
+                                        </li>
+                                </ul>
                               </li>
-                              <li><a href="module_easy-image_easyimage.html">
-                                  <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">easyimage</span></div></a>
+                              <li class="toggler--collapsed">
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_easy-image_easyimage.html">easyimage</a>
+                                </div>
+                                <ul>
+                                        <li><a href="module_easy-image_easyimage-EasyImage.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">EasyImage</span></div></a>
+                                        </li>
+                                </ul>
                               </li>
                       </ul>
                     </li>
@@ -3198,9 +3260,6 @@ observable.prop = 2; // -&gt; &apos;prop has changed from 1 to 2&apos;</code></p
                                 <ul>
                                         <li><a href="module_ui_bindings_clickoutsidehandler.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">clickoutsidehandler</span></div></a>
-                                        </li>
-                                        <li><a href="module_ui_bindings_escpresshandler.html">
-                                            <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">escpresshandler</span></div></a>
                                         </li>
                                         <li><a href="module_ui_bindings_preventdefault.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">preventdefault</span></div></a>

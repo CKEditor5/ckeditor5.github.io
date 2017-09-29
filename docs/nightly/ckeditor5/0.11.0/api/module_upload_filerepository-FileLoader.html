@@ -6,8 +6,8 @@
     <title>Class FileLoader (upload/filerepository~FileLoader) - CKEditor 5 API docs</title>
     <link rel="canonical" href="/ckeditor5/latest/api/module_upload_filerepository-FileLoader.html">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.24/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/0.3.24/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../assets/0.3.26/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.26/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -45,15 +45,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.24/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.26/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.24/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.26/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <div class="api-header"><img src="../../../assets/0.3.24/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.26/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1>FileLoader<span class="header__import--hidden"> (upload)</span>
               </h1>
@@ -106,7 +106,7 @@ It is used to control the process of file reading and uploading using specified 
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">File instance associated with FileLoader.</p>
+                          <p class="collapsing-list__excerpt">A <code>File</code> instance associated with this file loader.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -141,11 +141,11 @@ It is used to control the process of file reading and uploading using specified 
 <li>&apos;aborted&apos;,</li>
 <li>&apos;error&apos;.</li>
 </ul>
-<p>When reading status can change in a following way:
-<code>idle</code> -&gt; <code>reading</code> -&gt; <code>idle</code>
+<p>When reading status can change in a following way:</p>
+<p><code>idle</code> -&gt; <code>reading</code> -&gt; <code>idle</code>
 <code>idle</code> -&gt; <code>reading -&gt;</code>aborted<code>`idle</code> -&gt; <code>reading -&gt;</code>error`</p>
-<p>When uploading status can change in a following way:
-<code>idle</code> -&gt; <code>uploading</code> -&gt; <code>idle</code>
+<p>When uploading status can change in a following way:</p>
+<p><code>idle</code> -&gt; <code>uploading</code> -&gt; <code>idle</code>
 <code>idle</code> -&gt; <code>uploading</code> -&gt; <code>aborted</code>
 <code>idle</code> -&gt; <code>uploading</code> -&gt; <code>error</code></p>
                           </div>
@@ -224,7 +224,7 @@ It is used to control the process of file reading and uploading using specified 
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Adapter instance associated with FileLoader.</p>
+                          <p class="collapsing-list__excerpt">Adapter instance associated with this file loader.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -237,13 +237,13 @@ It is used to control the process of file reading and uploading using specified 
                           <h3><code><a class="member-name" href="#constructor">constructor</a>( file, adapter )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Creates instance of FileLoader.
+                          <p class="collapsing-list__excerpt">Creates a new instance of <code>FileLoader</code>.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> file : <span>File</span></code></dt>
-                                        <dd>
+                                        <dd><p>A native file instance.</p>
                                         </dd>
                                         <dt><code> adapter : <span><a class="collapsing-list__type" href="module_upload_filerepository-Adapter.html">Adapter</a></span></code></dt>
                                         <dd>
@@ -269,18 +269,18 @@ It is used to control the process of file reading and uploading using specified 
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Reads file using <a href="module_upload_filereader-FileReader.html"><code>FileReader</code></a>.
-Throws <a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a> <code>filerepository-read-wrong-status</code> when status
-is different than <code>idle</code>.
-Example usage:
                           </p>
                           <div class="collapsing-list__content">
+<p>Throws <a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a> <code>filerepository-read-wrong-status</code> when status
+is different than <code>idle</code>.</p>
+<p>Example usage:</p>
 <pre class="prettyprint source"><code>fileLoader.read()
     .then( data =&gt; { ... } )
-    .catch( e =&gt; {
-        if ( e === &apos;aborted&apos; ) {
+    .catch( err =&gt; {
+        if ( err === &apos;aborted&apos; ) {
             console.log( &apos;Reading aborted.&apos; );
         } else {
-            console.log( &apos;Reading error.&apos;, e );
+            console.log( &apos;Reading error.&apos;, err );
         }
     } );</code></pre>
                             <h4>Returns</h4>
@@ -298,12 +298,12 @@ occurs or if read process is aborted.</p>
                           <h3><code><a class="member-name" href="#upload">upload</a>() &rarr;  <span>Promise</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Reads file using provided <a href="module_upload_filerepository-Adapter.html"><code>Adapter</code></a>.
-Throws <a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a> <code>filerepository-upload-wrong-status</code> when status
-is different than <code>idle</code>.
-Example usage:
+                          <p class="collapsing-list__excerpt">Reads file using the provided <a href="module_upload_filerepository-Adapter.html"><code>Adapter</code></a>.
                           </p>
                           <div class="collapsing-list__content">
+<p>Throws <a href="module_utils_ckeditorerror-CKEditorError.html">CKEditorError</a> <code>filerepository-upload-wrong-status</code> when status
+is different than <code>idle</code>.
+Example usage:</p>
 <pre class="prettyprint source"><code>fileLoader.upload()
     .then( data =&gt; { ... } )
     .catch( e =&gt; {
@@ -357,6 +357,9 @@ occurs or if read process is aborted.</p>
                                         </li>
                                         <li><a href="module_adapter-ckfinder_uploadadapter-CKFinderUploadAdapter.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">CKFinderUploadAdapter</span></div></a>
+                                        </li>
+                                        <li><a href="module_adapter-ckfinder_uploadadapter-CKFinderAdapterConfig.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--interface tree__item__text">CKFinderAdapterConfig</span></div></a>
                                         </li>
                                 </ul>
                               </li>
@@ -672,11 +675,29 @@ occurs or if read process is aborted.</p>
                       <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">easy-image</span>
                       </div>
                       <ul>
-                              <li><a href="module_easy-image_cloudservicesuploadadapter.html">
-                                  <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">cloudservicesuploadadapter</span></div></a>
+                              <li class="toggler--collapsed">
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_easy-image_cloudservicesuploadadapter.html">cloudservicesuploadadapter</a>
+                                </div>
+                                <ul>
+                                        <li data-private="true"><a href="module_easy-image_cloudservicesuploadadapter-Adapter.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">Adapter</span></div></a>
+                                        </li>
+                                        <li><a href="module_easy-image_cloudservicesuploadadapter-CloudServicesUploadAdapter.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">CloudServicesUploadAdapter</span></div></a>
+                                        </li>
+                                        <li><a href="module_easy-image_cloudservicesuploadadapter-CloudServicesAdapterConfig.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--interface tree__item__text">CloudServicesAdapterConfig</span></div></a>
+                                        </li>
+                                </ul>
                               </li>
-                              <li><a href="module_easy-image_easyimage.html">
-                                  <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">easyimage</span></div></a>
+                              <li class="toggler--collapsed">
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_easy-image_easyimage.html">easyimage</a>
+                                </div>
+                                <ul>
+                                        <li><a href="module_easy-image_easyimage-EasyImage.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">EasyImage</span></div></a>
+                                        </li>
+                                </ul>
                               </li>
                       </ul>
                     </li>
@@ -2298,9 +2319,6 @@ occurs or if read process is aborted.</p>
                                 <ul>
                                         <li><a href="module_ui_bindings_clickoutsidehandler.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">clickoutsidehandler</span></div></a>
-                                        </li>
-                                        <li><a href="module_ui_bindings_escpresshandler.html">
-                                            <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">escpresshandler</span></div></a>
                                         </li>
                                         <li><a href="module_ui_bindings_preventdefault.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">preventdefault</span></div></a>
