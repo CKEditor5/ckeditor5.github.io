@@ -213,28 +213,28 @@ const config = {
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="toolbar">
-                          <h3><code><a class="member-name" href="#toolbar">toolbar</a> : <span>Object</span></code></h3>
+                          <h3><code><a class="member-name" href="#toolbar">toolbar</a> : <span>Array.&lt;String&gt;</span> | <span>Object</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Editor toolbar configuration.</p>
                           <div class="collapsing-list__content">
 <p>Simple format (specifies only toolbar items):</p>
 <pre class="prettyprint source"><code>const config = {
-    toolbar: [ &apos;bold&apos;, &apos;italic&apos;, &apos;undo&apos;, &apos;redo&apos; ]
-};</code></pre><p>Advanced format:</p>
+    toolbar: [ &apos;bold&apos;, &apos;italic&apos;, &apos;|&apos;, &apos;undo&apos;, &apos;redo&apos; ]
+};</code></pre><p>Extended format:</p>
 <pre class="prettyprint source"><code>const config = {
     toolbar: {
-        items: [ &apos;bold&apos;, &apos;italic&apos;, &apos;undo&apos;, &apos;redo&apos; ],
+        items: [ &apos;bold&apos;, &apos;italic&apos;, &apos;|&apos;, &apos;undo&apos;, &apos;redo&apos; ],
 
         viewportTopOffset: 30
     }
-};</code></pre><p>Options which can be set using the advanced format:</p>
+};</code></pre><p>Options which can be set using the extended format:</p>
 <ul>
-<li><p><code>items</code> &#x2013; Array of toolbar items names. The components (buttons, dropdowns, etc.) which can be used as toolbar items
-are defined in <code>editor.ui.componentFactory</code> and can be listed using the following snippet:</p>
+<li><p><strong><code>toolbar.items</code></strong> &#x2013; Array of toolbar items names. The components (buttons, dropdowns, etc.) which can be used
+as toolbar items are defined in <code>editor.ui.componentFactory</code> and can be listed using the following snippet:</p>
 <pre class="prettyprint source"><code>  Array.from( editor.ui.componentFactory.names );</code></pre><p>  You can also use <code>&apos;|&apos;</code> to create a separator between groups of items:</p>
 <pre class="prettyprint source"><code>  toolbar: [ &apos;bold&apos;, &apos;italic&apos;, &apos;|&apos;, &apos;undo&apos;, &apos;redo&apos; ]</code></pre></li>
-<li><p><code>viewportTopOffset</code> &#x2013; The offset (in pixels) from the top of the viewport used when positioning a sticky toolbar.
+<li><p><strong><code>toolbar.viewportTopOffset</code></strong> &#x2013; The offset (in pixels) from the top of the viewport used when positioning a sticky toolbar.
 Useful when a page with which the editor is being integrated has some other sticky or fixed elements
 (e.g. the top menu). Thanks to setting the toolbar offset the toolbar won&apos;t be positioned underneath or above the page&apos;s UI.</p>
 </li>
