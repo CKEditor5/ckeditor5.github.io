@@ -56,15 +56,9 @@ module.exports = {
 
 	plugins: [
 		new ExtractTextPlugin( 'styles.css' ),
-		new BabelMinifyPlugin(
-			{
-				// Temporary workaround for https://github.com/ckeditor/ckeditor5/issues/542.
-				mangle: false
-			},
-			{
+		new BabelMinifyPlugin( null, {
 				comments: false
-			}
-		),
+		} ),
 		new webpack.BannerPlugin( {
 			banner: bundler.getLicenseBanner(),
 			raw: true
