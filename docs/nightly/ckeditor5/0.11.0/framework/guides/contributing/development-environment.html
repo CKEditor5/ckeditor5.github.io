@@ -79,13 +79,16 @@
 <pre><code class="bash">npm install -g gulp lerna mgit2
 </code></pre>
 <p>Note: You may need to use <code>sudo</code> on Linux and macOS.</p>
-<p>Then clone the <a href="https://github.com/ckeditor/ckeditor5" target="_blank" rel="external">main repository</a> and install its dependencies:</p>
+<p>Then clone the <a href="https://github.com/ckeditor/ckeditor5" target="_blank" rel="external">main repository</a>:</p>
 <pre><code class="bash">git clone https://github.com/ckeditor/ckeditor5.git
 cd ckeditor5
-npm install
+</code></pre>
+<p>And install all CKEditor 5 packages from the <a href="http://npmjs.com/" target="_blank" rel="external">npm registry</a>.</p>
+<p><strong>Note:</strong> If you plan to use the developement version of CKEditor 5 packages (see the <a href="#Switching-to-development-version-of-packages">next section</a>), you can skip this step to save time.</p>
+<pre><code class="bash">npm install
 </code></pre>
 <p>This may take a <a href="https://github.com/npm/npm/issues/10380" target="_blank" rel="external">while</a>&#x2026;</p>
-<h3 id="Switching-to-development-version-of-packages"><a href="#Switching-to-development-version-of-packages" class="headerlink" title="Switching to development version of packages"></a>Switching to development version of packages</h3><p>The above steps should install all the packages from the <a href="http://npmjs.com/" target="_blank" rel="external">npm registry</a>, which means that you will have the latest releases of all of them. They are available in <code>node_modules/@ckeditor/</code> (we are using <a href="https://docs.npmjs.com/misc/scope" target="_blank" rel="external">scoped packages</a>, hence the unusual directory).</p>
+<h3 id="Switching-to-development-version-of-packages"><a href="#Switching-to-development-version-of-packages" class="headerlink" title="Switching to development version of packages"></a>Switching to development version of packages</h3><p>The above steps should install all the packages from npm, which means that you will have the latest releases of all of them. They are available in <code>node_modules/@ckeditor/</code> (we are using <a href="https://docs.npmjs.com/misc/scope" target="_blank" rel="external">scoped packages</a>, hence the unusual directory).</p>
 <p>In order to work with development versions of all the official packages, it is recommended to use mgit and Lerna. The former will clone all package repositories and the latter will be able to symlink them, so they create a correct directory structure, understandable by Node.js-compliant tools (like webpack or Browserify).</p>
 <p>First, clone all the repositories:</p>
 <pre><code class="bash">mgit bootstrap
@@ -102,7 +105,7 @@ packages/
 <p>Finally, link them:</p>
 <pre><code class="bash">lerna bootstrap
 </code></pre>
-<p>Running Lerna may take a while because it installs all package dependencies. It will be improved soon thanks to <a href="https://github.com/lerna/lerna/pull/507" target="_blank" rel="external">dependency hoisting</a>.</p>
+<p>Running Lerna may take a while because it installs all package dependencies.</p>
 <p>Now, all CKEditor packages (except the <a href="https://github.com/ckeditor/ckeditor5-dev" target="_blank" rel="external">dev tools</a>) should be cross-symlinked:</p>
 <pre><code class="bash">(master 340feac) p@m /workspace/ckeditor5&gt; ls -la node_modules/\@ckeditor/ckeditor5-utils/node_modules/\@ckeditor/
 total 16
