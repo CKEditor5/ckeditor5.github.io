@@ -57,7 +57,7 @@ module.exports = {
 	plugins: [
 		new ExtractTextPlugin( 'styles.css' ),
 		new BabelMinifyPlugin( null, {
-				comments: false
+			comments: false
 		} ),
 		new webpack.BannerPlugin( {
 			banner: bundler.getLicenseBanner(),
