@@ -6,8 +6,8 @@
     <title>Class FileDialogButtonView (upload/ui/filedialogbuttonview~FileDialogButtonView) - CKEditor 5 API docs</title>
     <link rel="canonical" href="/ckeditor5/latest/api/module_upload_ui_filedialogbuttonview-FileDialogButtonView.html">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.31/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/0.3.31/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../assets/0.3.32/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.32/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -45,15 +45,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.31/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.32/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.31/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.32/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <div class="api-header"><img src="../../../assets/0.3.31/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.32/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1>FileDialogButtonView<span class="header__import--hidden"> (upload/ui)</span>
               </h1>
@@ -70,11 +70,7 @@
                           <ul class="hierarchy-list">
                                       <li title="@ckeditor/ckeditor5-ui/src/view~View"><code><span><a href="module_ui_view-View.html">View</a></span></code>
                                         <ul>
-                                                    <li title="@ckeditor/ckeditor5-ui/src/button/buttonview~ButtonView"><code><span><a href="module_ui_button_buttonview-ButtonView.html">ButtonView</a></span></code>
-                                                      <ul>
-                                                                  <li title="@ckeditor/ckeditor5-upload/src/ui/filedialogbuttonview~FileDialogButtonView"><code><span><a href="module_upload_ui_filedialogbuttonview-FileDialogButtonView.html">FileDialogButtonView</a></span></code>
-                                                                  </li>
-                                                      </ul>
+                                                    <li title="@ckeditor/ckeditor5-upload/src/ui/filedialogbuttonview~FileDialogButtonView"><code><span><a href="module_upload_ui_filedialogbuttonview-FileDialogButtonView.html">FileDialogButtonView</a></span></code>
                                                     </li>
                                         </ul>
                                       </li>
@@ -96,7 +92,27 @@
                         </dd>
             </dl>
           </nav>
-          <div class="main-description"><p>File Dialog button view.</p></div>
+          <div class="main-description"><p>The file dialog button view.</p>
+<p>This component provides a button that opens the native file selection dialog.
+It can be used to implement the UI of a file upload feature.</p>
+<pre class="prettyprint source"><code>const view = new FileDialogButtonView( locale );
+
+view.set( {
+    acceptedType: &apos;image/*&apos;,
+    allowMultipleFiles: true
+} );
+
+view.buttonView.set( {
+    label: t( &apos;Insert image&apos; ),
+    icon: imageIcon,
+    tooltip: true
+} );
+
+view.on( &apos;done&apos;, ( evt, files ) =&gt; {
+    for ( const file of Array.from( files ) ) {
+        console.log( &apos;Selected file&apos;, file );
+    }
+} );</code></pre></div>
           <div class="notice notice__filter api-props-filter">
             <div class="api-props-filter__inner">
               <h4>Filtering</h4>
@@ -133,6 +149,9 @@
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="acceptedType">
                           <h3><code><a class="member-name" href="#acceptedType">acceptedType</a> : <span>String</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray "><a href="module_utils_observablemixin-ObservableMixin.html">observable</a></span>
+                          </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Accepted file types. Can be provided in form of file extensions, media type or one of:</p>
@@ -148,9 +167,22 @@
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="allowMultipleFiles">
                           <h3><code><a class="member-name" href="#allowMultipleFiles">allowMultipleFiles</a> : <span>Boolean</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray "><a href="module_utils_observablemixin-ObservableMixin.html">observable</a></span>
+                          </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Indicates if multiple files can be selected. Defaults to <code>true</code>.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="buttonView">
+                          <h3><code><a class="member-name" href="#buttonView">buttonView</a> : <span><a class="collapsing-list__type" href="module_ui_button_buttonview-ButtonView.html">ButtonView</a></span></code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">The button view of the component.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -189,105 +221,6 @@ document.body.appendChild( view.element );</code></pre><p>The element of the vie
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="icon">
-                          <h3><code><a class="member-name" href="#icon">icon</a> : <span>String</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">(Optional) An XML <a href="module_ui_icon_iconview-IconView.html#content">content</a> of the icon.
-When defined, an <a href="module_ui_button_buttonview-ButtonView.html#iconView"><code>iconView</code></a> will be added to the button.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="iconView">
-                          <h3><code><a class="member-name" href="#iconView">iconView</a> : <span><a class="collapsing-list__type" href="module_ui_icon_iconview-IconView.html">IconView</a></span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">(Optional) The icon view of the button. Only present when the <a href="module_ui_button_buttonview-ButtonView.html#icon">icon  attribute</a> is defined.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="isEnabled">
-                          <h3><code><a class="member-name" href="#isEnabled">isEnabled</a> : <span>Boolean</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Controls whether the button view is enabled, i.e. it can be clicked and execute an action.</p>
-                          <div class="collapsing-list__content">
-<p>To change the &quot;on&quot; state of the button, use <a href="module_ui_button_buttonview-ButtonView.html#isOn"><code>isOn</code></a> instead.</p>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="isOn">
-                          <h3><code><a class="member-name" href="#isOn">isOn</a> : <span>Boolean</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Controls whether the button view is &quot;on&quot;. It makes sense when a feature it represents
-is currently active, e.g. a bold button is &quot;on&quot; when the selection is in the bold text.</p>
-                          <div class="collapsing-list__content">
-<p>To disable the button, use <a href="module_ui_button_buttonview-ButtonView.html#isEnabled"><code>isEnabled</code></a> instead.</p>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="isVisible">
-                          <h3><code><a class="member-name" href="#isVisible">isVisible</a> : <span>Boolean</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Controls whether the button view is visible. Visible by default, buttons are hidden
-using a CSS class.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="keystroke">
-                          <h3><code><a class="member-name" href="#keystroke">keystroke</a> : <span>Boolean</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">(Optional) The keystroke associated with the button, i.e. <kbd>CTRL+B</kbd>,
-in the string format compatible with <a href="module_utils_keyboard.html"><code>keyboard</code></a>.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="label">
-                          <h3><code><a class="member-name" href="#label">label</a> : <span>String</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">The label of the button view visible to the user when <a href="module_ui_button_buttonview-ButtonView.html#withText"><code>withText</code></a> is <code>true</code>.
-It can also be used to create a <a href="module_ui_button_buttonview-ButtonView.html#tooltip"><code>tooltip</code></a>.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="locale">
                           <h3><code><a class="member-name" href="#locale">locale</a> : <span><a class="collapsing-list__type" href="module_utils_locale-Locale.html">Locale</a></span></code></h3>
                           <p class="badges">
@@ -303,27 +236,12 @@ It can also be used to create a <a href="module_ui_button_buttonview-ButtonView.
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="position">
-                          <h3><code><a class="member-name" href="#position">position</a> : <span>'s'</span> | <span>'n'</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">(Optional) The position of the tooltip. See <a href="module_ui_tooltip_tooltipview-TooltipView.html#position"><code>position</code></a>
-to learn more about the available position values.</p>
-                          <div class="collapsing-list__content">
-<p><strong>Note:</strong> It makes sense only when the <a href="module_ui_button_buttonview-ButtonView.html#tooltip"><code>tooltip</code>  attribute</a> is defined.</p>
-                            <p>Defaults to<code>'s'</code></p>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="ready">
                           <h3><code><a class="member-name" href="#ready">ready</a> : <span>Boolean</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">readonly</span>
 <span class="badge badge--gray ">inherited</span>
+<span class="badge badge--gray "><a href="module_utils_observablemixin-ObservableMixin.html">observable</a></span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
@@ -331,21 +249,6 @@ to learn more about the available position values.</p>
 asynchronous, this <a href="module_utils_observablemixin-Observable.html">observable</a> flag allows
 deferring certain actions until it is finished.</p>
                           <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="tabindex">
-                          <h3><code><a class="member-name" href="#tabindex">tabindex</a> : <span>String</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">(Optional) Controls the <code>tabindex</code> HTML attribute of the button. By default, the button is focusable
-but does not included in the <kbd>Tab</kbd> order.</p>
-                          <div class="collapsing-list__content">
-                            <p>Defaults to<code>-1</code></p>
                           </div>
                         </div>
                       </li>
@@ -363,64 +266,15 @@ the view in DOM.</p>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="tooltip">
-                          <h3><code><a class="member-name" href="#tooltip">tooltip</a> : <span>Boolean</span> | <span>String</span> | <span>function</span></code></h3>
+                      <li class="collapsing-list__item" data-protected="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_fileInputView">
+                          <h3><code><a class="member-name" href="#_fileInputView">_fileInputView</a> : <span><a class="collapsing-list__type" href="module_upload_ui_filedialogbuttonview-FileInputView.html">FileInputView</a></span></code></h3>
                           <p class="badges">
-<span class="badge badge--gray ">inherited</span>
+<span class="badge badge--orange ">protected</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">(Optional) Tooltip of the button, i.e. displayed when hovering the button with the mouse cursor.</p>
-                          <div class="collapsing-list__content">
-<ul>
-<li>If defined as a <code>Boolean</code> (e.g. <code>true</code>), then combination of <code>label</code> and <code>keystroke</code> will be set as a tooltip.</li>
-<li>If defined as a <code>String</code>, tooltip will equal the exact text of that <code>String</code>.</li>
-<li><p>If defined as a <code>Function</code>, <code>label</code> and <code>keystroke</code> will be passed to that function, which is to return
-a string with the tooltip text.</p>
-<pre class="prettyprint source"><code>  const view = new ButtonView( locale );
-  view.tooltip = ( label, keystroke ) =&gt; `A tooltip for ${ label } and ${ keystroke }.`</code></pre></li>
-</ul>
-                            <p>Defaults to<code>false</code></p>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="tooltipView">
-                          <h3><code><a class="member-name" href="#tooltipView">tooltipView</a> : <span><a class="collapsing-list__type" href="module_ui_tooltip_tooltipview-TooltipView.html">TooltipView</a></span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Tooltip of the button view. It is configurable using the <a href="module_ui_button_buttonview-ButtonView.html#tooltip">tooltip  attribute</a>.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="type">
-                          <h3><code><a class="member-name" href="#type">type</a> : <span>'button'</span> | <span>'submit'</span> | <span>'reset'</span> | <span>'menu'</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">The HTML type of the button. Default <code>button</code>.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="withText">
-                          <h3><code><a class="member-name" href="#withText">withText</a> : <span>Boolean</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">(Optional) Controls whether the label of the button is hidden (e.g. an icon&#x2013;only button).</p>
+                          <p class="collapsing-list__excerpt">A hidden <code>&lt;input&gt;</code> view used to execute file dialog.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -450,19 +304,6 @@ into the <a href="module_ui_template-Template.html#children"><code>children</cod
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Collections registered with <a href="module_ui_view-View.html#createCollection"><code>createCollection</code></a>.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-protected="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="fileInputView">
-                          <h3><code><a class="member-name" href="#fileInputView">fileInputView</a> : <span><a class="collapsing-list__type" href="module_upload_ui_filedialogbuttonview-FileInputView.html">FileInputView</a></span></code></h3>
-                          <p class="badges">
-<span class="badge badge--orange ">protected</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Hidden input view used to execute file dialog. It will be hidden and added to the end of <code>document.body</code>.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -531,20 +372,6 @@ into the <a href="module_ui_template-Template.html#children"><code>children</cod
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">An internal, cached element of this view. See <a href="module_ui_view-View.html#element"><code>element</code></a>.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-private="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_tooltipString">
-                          <h3><code><a class="member-name" href="#_tooltipString">_tooltipString</a> : <span>Boolean</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--red ">private</span>
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Tooltip of the button bound to the template.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -931,15 +758,12 @@ is the first param of every callback).</p>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="focus">
                           <h3><code><a class="member-name" href="#focus">focus</a>()</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Focuses the <a href="module_ui_button_buttonview-ButtonView.html#element"><code>element</code></a> of the button.
+                          <p class="collapsing-list__excerpt">Focuses the <a href="module_upload_ui_filedialogbuttonview-FileDialogButtonView.html#buttonView"><code>buttonView</code></a>.
                           </p>
                           <div class="collapsing-list__content">
                           </div>
@@ -1389,71 +1213,111 @@ instances and automatically registers them using <a href="module_ui_view-View.ht
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-private="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_createTooltipView">
-                          <h3><code><a class="member-name" href="#_createTooltipView">_createTooltipView</a>() &rarr;  <span><a class="collapsing-list__type" href="module_ui_tooltip_tooltipview-TooltipView.html">TooltipView</a></span></code></h3>
-                          <p class="badges">
-<span class="badge badge--red ">private</span>
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Creates a <a href="module_ui_tooltip_tooltipview-TooltipView.html"><code>TooltipView</code></a> instance and binds it with button
-attributes.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_ui_tooltip_tooltipview-TooltipView.html">TooltipView</a></span></code></dt>
-                                        <dd>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-private="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_getTooltipString">
-                          <h3><code><a class="member-name" href="#_getTooltipString">_getTooltipString</a>( tooltip, label, keystroke ) &rarr;  <span>String</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--red ">private</span>
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Gets the text for the <a href="module_ui_button_buttonview-ButtonView.html#tooltipView"><code>tooltipView</code></a> from the combination of
-<a href="module_ui_button_buttonview-ButtonView.html#tooltip"><code>tooltip</code></a>, <a href="module_ui_button_buttonview-ButtonView.html#label"><code>label</code></a> and <a href="module_ui_button_buttonview-ButtonView.html#keystroke"><code>keystroke</code></a> attributes.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> tooltip
-                                             :
- <span>Boolean</span> | <span>String</span> | <span>function</span></code></dt>
-                                        <dd><p>Button tooltip.</p>
-                                        </dd>
-                                        <dt><code> label
-                                             :
- <span>String</span></code></dt>
-                                        <dd><p>Button label.</p>
-                                        </dd>
-                                        <dt><code> keystroke
-                                             :
- <span>String</span></code></dt>
-                                        <dd><p>Button keystroke.</p>
-                                        </dd>
-                                      </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span>String</span></code></dt>
-                                        <dd>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
           </ul>
           <h2 id="Events">Events</h2>
           <ul class="collapsing-list collapsing-list--filtered">
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="event:change:acceptedType">
+                          <h3><code><a class="member-name" href="#event:change:acceptedType">change:acceptedType</a>( eventInfo, name, value, oldValue )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Fired when the <code>acceptedType</code> property changed value.
+                          </p>
+                          <div class="collapsing-list__content"><p></p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> eventInfo
+                                             :
+ <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
+                                        <dt><code> name
+                                             :
+ <span>String</span></code></dt>
+                                        <dd><p>Name of the changed property (<code>acceptedType</code>).</p>
+                                        </dd>
+                                        <dt><code> value
+                                             :
+ <span>String</span></code></dt>
+                                        <dd><p>New value of the <code>acceptedType</code> property with given key or <code>null</code>, if operation should remove property.</p>
+                                        </dd>
+                                        <dt><code> oldValue
+                                             :
+ <span>String</span></code></dt>
+                                        <dd><p>Old value of the <code>acceptedType</code> property with given key or <code>null</code>, if property was not set before.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="event:change:allowMultipleFiles">
+                          <h3><code><a class="member-name" href="#event:change:allowMultipleFiles">change:allowMultipleFiles</a>( eventInfo, name, value, oldValue )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Fired when the <code>allowMultipleFiles</code> property changed value.
+                          </p>
+                          <div class="collapsing-list__content"><p></p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> eventInfo
+                                             :
+ <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
+                                        <dt><code> name
+                                             :
+ <span>String</span></code></dt>
+                                        <dd><p>Name of the changed property (<code>allowMultipleFiles</code>).</p>
+                                        </dd>
+                                        <dt><code> value
+                                             :
+ <span>Boolean</span></code></dt>
+                                        <dd><p>New value of the <code>allowMultipleFiles</code> property with given key or <code>null</code>, if operation should remove property.</p>
+                                        </dd>
+                                        <dt><code> oldValue
+                                             :
+ <span>Boolean</span></code></dt>
+                                        <dd><p>Old value of the <code>allowMultipleFiles</code> property with given key or <code>null</code>, if property was not set before.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="event:change:ready">
+                          <h3><code><a class="member-name" href="#event:change:ready">change:ready</a>( eventInfo, name, value, oldValue )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Fired when the <code>ready</code> property changed value.
+                          </p>
+                          <div class="collapsing-list__content"><p></p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> eventInfo
+                                             :
+ <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
+                                        <dt><code> name
+                                             :
+ <span>String</span></code></dt>
+                                        <dd><p>Name of the changed property (<code>ready</code>).</p>
+                                        </dd>
+                                        <dt><code> value
+                                             :
+ <span>Boolean</span></code></dt>
+                                        <dd><p>New value of the <code>ready</code> property with given key or <code>null</code>, if operation should remove property.</p>
+                                        </dd>
+                                        <dt><code> oldValue
+                                             :
+ <span>Boolean</span></code></dt>
+                                        <dd><p>Old value of the <code>ready</code> property with given key or <code>null</code>, if property was not set before.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:change:{attribute}">
                           <h3><code><a class="member-name" href="#event:change:{attribute}">change:{attribute}</a>( eventInfo, name, value, oldValue )</code></h3>
@@ -1506,9 +1370,9 @@ observable.prop = 2; // -&gt; &apos;prop has changed from 1 to 2&apos;</code></p
                           <p class="collapsing-list__excerpt">Fired when file dialog is closed with file selected.
                           </p>
                           <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>fileDialogButtonView.on( &apos;done&apos;, ( evt, files ) =&gt; {
+<pre class="prettyprint source"><code>view.on( &apos;done&apos;, ( evt, files ) =&gt; {
     for ( const file of files ) {
-        processFile( file );
+        console.log( &apos;Selected file&apos;, file );
     }
 }</code></pre>
                             <h4>Parameters</h4>
@@ -1522,29 +1386,6 @@ observable.prop = 2; // -&gt; &apos;prop has changed from 1 to 2&apos;</code></p
                                              :
  <span>Array.&lt;File&gt;</span></code></dt>
                                         <dd><p>Array of selected files.</p>
-                                        </dd>
-                                      </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:execute">
-                          <h3><code><a class="member-name" href="#event:execute">execute</a>( eventInfo )</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Fired when the button view is clicked. It won&apos;t be fired when the button <a href="module_ui_button_buttonview-ButtonView.html#isEnabled"><code>isEnabled</code></a>
-is <code>false</code>.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> eventInfo
-                                             :
- <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                        <dd><p>An object containing information about the fired event.</p>
                                         </dd>
                                       </dl>
                           </div>
@@ -4457,6 +4298,6 @@ is <code>false</code>.
     <footer class="footer">
       <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
     </footer>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script type="text/javascript">docsearch({apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:10,optionalFacetFilters:'(tags:api<score=2>)'},debug:false});</script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script type="text/javascript">docsearch({apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:10,optionalFacetFilters:'(tags:api<score=2>)',facetFilters:['tags: ckeditor5']},debug:false});</script>
   </body>
 </html>

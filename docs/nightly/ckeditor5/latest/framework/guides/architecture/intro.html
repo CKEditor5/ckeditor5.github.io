@@ -6,8 +6,8 @@
     <title>Introduction - CKEditor 5</title>
     <link rel="canonical" href="/ckeditor5/latest/framework/guides/architecture/intro.html">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/0.3.31/css/styles.css" type="text/css" media="screen">
-    <script src="../../../../../assets/0.3.31/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../../../assets/0.3.32/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../../assets/0.3.32/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -45,16 +45,16 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.31/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.32/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/architecture/intro.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.31/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.31/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/architecture/intro.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.32/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.32/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <h1><img src="../../../../../assets/0.3.31/img/book.svg" alt="guide">Introduction
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Core-editor-architecture">Core editor architecture</a><ol><li><a href="#Editor-classes">Editor classes</a></li><li><a href="#Plugins">Plugins</a></li><li><a href="#Commands">Commands</a></li><li><a href="#Event-system-and-observables">Event system and observables</a></li></ol></li><li><a href="#Editing-engine">Editing engine</a><ol><li><a href="#Overview">Overview</a></li><li><a href="#Model">Model</a><ol><li><a href="#Text-attributes">Text attributes</a></li><li><a href="#Selection-attributes">Selection attributes</a></li><li><a href="#Positions">Positions</a></li></ol></li><li><a href="#View">View</a></li><li><a href="#Controller">Controller</a></li></ol></li><li><a href="#UI-library">UI library</a><ol><li><a href="#Views">Views</a><ol><li><a href="#Definition">Definition</a></li><li><a href="#Interaction">Interaction</a></li><li><a href="#Best-practices">Best practices</a></li></ol></li><li><a href="#Templates">Templates</a></li><li><a href="#View-collections-and-the-UI-tree">View collections and the UI tree</a></li><li><a href="#Using-the-existing-components">Using the existing components</a></li><li><a href="#Keystrokes-and-focus-management">Keystrokes and focus management</a></li></ol></li></ol></nav><p>This guide introduces the most important parts of the CKEditor 5 architecture. It is assumed that you have read the <a href="../overview.html">Framework&#x2019;s overview</a> and saw some code in the <a href="../quick-start.html">Quick start</a> guide. This should help you going through this one.</p>
+          <h1><img src="../../../../../assets/0.3.32/img/book.svg" alt="guide">Introduction
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Core-editor-architecture">Core editor architecture</a><ol><li><a href="#Editor-classes">Editor classes</a></li><li><a href="#Plugins">Plugins</a></li><li><a href="#Commands">Commands</a></li><li><a href="#Event-system-and-observables">Event system and observables</a></li></ol></li><li><a href="#Editing-engine">Editing engine</a><ol><li><a href="#Overview">Overview</a></li><li><a href="#Model">Model</a><ol><li><a href="#Text-attributes">Text attributes</a></li><li><a href="#Selection-attributes">Selection attributes</a></li><li><a href="#Positions">Positions</a></li></ol></li><li><a href="#View">View</a></li><li><a href="#Controller">Controller</a></li></ol></li><li><a href="#UI-library">UI library</a><ol><li><a href="#Views">Views</a><ol><li><a href="#Definition">Definition</a></li><li><a href="#Interaction">Interaction</a></li><li><a href="#Best-practices">Best practices</a></li></ol></li><li><a href="#Templates">Templates</a></li><li><a href="#View-collections-and-the-UI-tree">View collections and the UI tree</a></li><li><a href="#Using-the-existing-components">Using the existing components</a></li><li><a href="#Keystrokes-and-focus-management">Keystrokes and focus management</a><ol><li><a href="#Focus-tracker">Focus tracker</a></li><li><a href="#Keystroke-handler">Keystroke handler</a></li></ol></li></ol></li></ol></nav><p>This guide introduces the most important parts of the CKEditor 5 architecture. It is assumed that you have read the <a href="../overview.html">Framework&#x2019;s overview</a> and saw some code in the <a href="../quick-start.html">Quick start</a> guide. This should help you going through this one.</p>
 <div class="info-box notice"><p>CKEditor 5 reached its first alpha version. This means that it is feature complete and that we consider it stable enough for first production integrations. However, this means that <strong>we are going to introduce many breaking changes</strong> before the final 1.0.0 release. Many code refactorings were scheduled for after 1.0.0 alpha so a lot of API, including critical pieces, will still change. The goal is, in most cases, to simplify the API, so please excuse us some more cumbersome pieces. We will thus avoid going too deep into details and creating many code samples, as maintaining them would be a nightmare during the upcoming code changes.</p></div>
 
 <p>When implementing features you will usually work with these three CKEditor 5 packages:</p>
@@ -487,7 +487,105 @@ view.element.placeholder = &apos;A new placeholder&apos;;
          &#x2502;    &#x2514;&#x2500;&#x2500; &quot;content&quot; collection
          &#x2502;        &#x2514;&#x2500;&#x2500; ...
          &#x2514;&#x2500;&#x2500; ...
-</code></pre><h3 id="Using-the-existing-components"><a href="#Using-the-existing-components" class="headerlink" title="Using the existing components"></a>Using the existing components</h3><h3 id="Keystrokes-and-focus-management"><a href="#Keystrokes-and-focus-management" class="headerlink" title="Keystrokes and focus management"></a>Keystrokes and focus management</h3>
+</code></pre><h3 id="Using-the-existing-components"><a href="#Using-the-existing-components" class="headerlink" title="Using the existing components"></a>Using the existing components</h3><p>The framework provides a number of common <a href="../../../api/ui.html">components</a> like <a href="../../../api/module_ui_button_buttonview-ButtonView.html"><code>ButtonView</code></a> or <a href="../../../api/module_ui_toolbar_toolbarview-ToolbarView.html"><code>ToolbarView</code></a> that can be helpful when developing a new user interface.</p>
+<p>For example, to create a toolbar with a few buttons inside, <code>ToolbarView</code> and <code>ButtonView</code> classes need to be imported first:</p>
+<pre><code class="js">import ToolbarView from &apos;@ckeditor/ckeditor5-ui/src/toolbar/toolbarview&apos;;
+import ButtonView from &apos;@ckeditor/ckeditor5-ui/src/button/buttonview&apos;;
+</code></pre>
+<p>Create the toolbar and a couple of buttons with labels first. Then append the buttons to the toolbar:</p>
+<pre><code class="js">const toolbar = new ToolbarView();
+const buttonFoo = new ButtonView();
+const buttonBar = new ButtonView();
+
+buttonFoo.set( {
+    label: &apos;Foo&apos;,
+    withText: true
+} );
+
+buttonBar.set( {
+    label: &apos;Bar&apos;,
+    withText: true
+} );
+
+toolbar.items.add( buttonFoo );
+toolbar.items.add( buttonBar );
+</code></pre>
+<p>The toolbar can now join the <a href="##View-collections-and-the-UI-tree">UI tree</a> or it can be injected straight into DOM. To keep the example simple, proceed with the latter scenario:</p>
+<pre><code class="js">toolbar.init();
+
+document.body.appendChild( toolbar.element );
+</code></pre>
+<p>The result should look like this:</p>
+<p><img src="../../../assets/img/framework-architecture-toolbar.png" alt="A simple toolbar created using existing components." width="442"></p>
+<p>The toolbar renders correctly but it does not do much. To execute an action when the button is clicked, a listener must be defined. To shorten the code and instead of two listeners define just one, the buttons can <a href="../../../api/module_utils_emittermixin-EmitterMixin.html#delegate">delegate</a> the <a href="../../../api/module_ui_button_buttonview-ButtonView.html#execute"><code>execute</code></a> event to their parent:</p>
+<pre><code class="js">buttonFoo.delegate( &apos;execute&apos; ).to( toolbar );
+buttonBar.delegate( &apos;execute&apos; ).to( toolbar );
+
+toolbar.on( &apos;execute&apos;, evt =&gt; {
+    console.log( `The &quot;${ evt.source.label }&quot; button was clicked!` );
+} );
+</code></pre>
+<h3 id="Keystrokes-and-focus-management"><a href="#Keystrokes-and-focus-management" class="headerlink" title="Keystrokes and focus management"></a>Keystrokes and focus management</h3><p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
+<h1 id="Coming-soon&#x2026;"><a href="#Coming-soon&#x2026;" class="headerlink" title="Coming soon&#x2026;"></a><em>Coming soon&#x2026;</em></h1><p>The framework offers built&#x2013;in classes that help manage keystrokes and focus in the UI. They are particularly useful when it comes to bringing accessibility features to the application.</p>
+<h4 id="Focus-tracker"><a href="#Focus-tracker" class="headerlink" title="Focus tracker"></a>Focus tracker</h4><p>The <a href="../../../api/module_utils_focustracker-FocusTracker.html"><code>FocusTracker</code></a> class can observe a number of HTML elements and determine if one of them is focused: either by the user (clicking, typing) or using the <code>HTMLElement.focus()</code> DOM method.</p>
+<pre><code class="js">import FocusTracker from &apos;@ckeditor/ckeditor5-utils/src/focustracker&apos;;
+
+// ...
+
+const focusTracker = new FocusTracker();
+</code></pre>
+<p>To register elements in the tracker, use the <a href="../../../api/module_utils_focustracker-FocusTracker.html#add"><code>add()</code></a> method:</p>
+<pre><code class="js">focusTracker.add( document.querySelector( &apos;.some-element&apos; ) );
+focusTracker.add( viewInstance.element );
+</code></pre>
+<p>Observing focus tracker&#x2019;s <a href="../../../api/module_utils_focustracker-FocusTracker.html#isFocused"><code>isFocused</code></a> attribute allows to determine whether one of the registered elements is currently focused:</p>
+<pre><code class="js">focusTracker.on( &apos;change:isFocused&apos;, ( evt, name, isFocused ) =&gt; {
+    if ( isFocused ) {
+        console.log( &apos;The&apos;, focusTracker.focusedElement, &apos;is focused now.&apos; );
+    } else {
+        console.log( &apos;The elements are blurred.&apos; );
+    }
+} );
+</code></pre>
+<p>This information is useful when implementing a certain type of UI which behavior depends on the focus, e.g. contextual panels and floating balloons containing forms should hide when the user decides to abandon them.</p>
+<h4 id="Keystroke-handler"><a href="#Keystroke-handler" class="headerlink" title="Keystroke handler"></a>Keystroke handler</h4><p>The <a href="../../../api/module_utils_keystrokehandler-KeystrokeHandler.html"><code>KeystrokeHandler</code></a> listens to the keystroke events fired by an HTML element or any of its descendants and executes pre&#x2013;defined actions when the keystroke is pressed. Usually, each <a href="#Views">view</a> creates own keystroke handler instance which takes care of the keystrokes fired by the elements the view has rendered.</p>
+<pre><code class="js">import KeystrokeHandler from &apos;@ckeditor/ckeditor5-utils/src/keystrokehandler&apos;;
+
+// ...
+
+const keystrokeHandler = new KeystrokeHandler();
+</code></pre>
+<p>To define the scope of the keystroke handler in DOM, use the <a href="../../../api/module_utils_keystrokehandler-KeystrokeHandler.html#listenTo"><code>listenTo()</code></a> method:</p>
+<pre><code class="js">keystrokeHandler.listenTo( document.querySelector( &apos;.some-element&apos; ) );
+keystrokeHandler.listenTo( viewInstance.element );
+</code></pre>
+<div class="info-box notice"><p>Check out the list of <a href="../../../api/module_utils_keyboard.html#keyCodes">known key names</a> supported by the keystroke handler.</p></div>
+
+<p>Keystroke action callbacks are functions. To prevent the default action of the keystroke and stop further propagation, use the <code>cancel()</code> function provided in the callback.</p>
+<pre><code class="js">keystrokeHandler.set( &apos;Tab&apos;, ( keyEvtData, cancel ) =&gt; {
+    console.log( &apos;Tab was pressed!&apos; );
+
+    // This keystroke has been handled and can be canceled.
+    cancel();
+} );
+</code></pre>
+<div class="info-box notice"><p>There is also an <a href="../../../api/module_core_editingkeystrokehandler-EditingKeystrokeHandler.html"><code>EditingKeystrokeHandler</code></a> class which has the same API as <code>KeystrokeHandler</code> but it offers direct keystroke bindings to editor commands.</p><p>Usually, the editor provides such keystroke handler under the <a href="../../../api/module_core_editor_standardeditor-StandardEditor.html#keystrokes"><code>editor.keystrokes</code></a> property so any plugin can register keystrokes associated with editor commands, e.g. the <a href="../../../api/module_undo_undo-Undo.html"><code>Undo</code></a> plugin registers <code>editor.keystrokes.set( &apos;Ctrl+Z&apos;, &apos;undo&apos; );</code> to execute its &#x201C;undo&#x201D; command.</p></div>
+
+<p>When multiple callbacks are assigned to the same keystroke, priorities can be used to decide which one should be handled first and whether other callbacks should be executed at all:</p>
+<pre><code class="js">keystrokeHandler.set( &apos;Ctrl+A&apos;, ( keyEvtData ) =&gt; {
+    console.log( &apos;A normal priority listener.&apos; );
+} );
+
+keystrokeHandler.set( &apos;Ctrl+A&apos;, ( keyEvtData ) =&gt; {
+    console.log( &apos;A high priority listener.&apos; );
+
+    // The normal priority listener will not be executed.
+    cancel();
+}, { priority: &apos;high&apos; } );
+</code></pre>
+<p>Pressing <kbd>Ctrl</kbd>+<kbd>A</kbd> will only log:</p>
+<pre><code>&quot;A high priority listener.&quot;
+</code></pre>
         </div>
       </section>
       <div class="side-navigation">
@@ -551,6 +649,6 @@ view.element.placeholder = &apos;A new placeholder&apos;;
     <footer class="footer">
       <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
     </footer>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script type="text/javascript">docsearch({apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:10,optionalFacetFilters:'(tags:builds<score=1>, tags:framework<score=2>, tags:examples<score=1>, tags:features<score=1>)'},debug:false});</script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script type="text/javascript">docsearch({apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:10,optionalFacetFilters:'(tags:builds<score=1>, tags:framework<score=2>, tags:examples<score=1>, tags:features<score=1>)',facetFilters:['tags: ckeditor5']},debug:false});</script>
   </body>
 </html>
