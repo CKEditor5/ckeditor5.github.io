@@ -525,9 +525,9 @@ toolbar.on( &apos;execute&apos;, evt =&gt; {
     console.log( `The &quot;${ evt.source.label }&quot; button was clicked!` );
 } );
 </code></pre>
-<h3 id="Keystrokes-and-focus-management"><a href="#Keystrokes-and-focus-management" class="headerlink" title="Keystrokes and focus management"></a>Keystrokes and focus management</h3><p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
-<h1 id="Coming-soon&#x2026;"><a href="#Coming-soon&#x2026;" class="headerlink" title="Coming soon&#x2026;"></a><em>Coming soon&#x2026;</em></h1><p>The framework offers built&#x2013;in classes that help manage keystrokes and focus in the UI. They are particularly useful when it comes to bringing accessibility features to the application.</p>
-<h4 id="Focus-tracker"><a href="#Focus-tracker" class="headerlink" title="Focus tracker"></a>Focus tracker</h4><p>The <a href="../../../api/module_utils_focustracker-FocusTracker.html"><code>FocusTracker</code></a> class can observe a number of HTML elements and determine if one of them is focused: either by the user (clicking, typing) or using the <code>HTMLElement.focus()</code> DOM method.</p>
+<h3 id="Keystrokes-and-focus-management"><a href="#Keystrokes-and-focus-management" class="headerlink" title="Keystrokes and focus management"></a>Keystrokes and focus management</h3><p><em>Coming soon&#x2026;</em></p>
+<p>The framework offers built&#x2013;in classes that help manage keystrokes and focus in the UI. They are particularly useful when it comes to bringing accessibility features to the application.</p>
+<h4 id="Focus-tracker"><a href="#Focus-tracker" class="headerlink" title="Focus tracker"></a>Focus tracker</h4><p>The <a href="../../../api/module_utils_focustracker-FocusTracker.html"><code>FocusTracker</code></a> class can observe a number of HTML elements and determine if one of them is focused either by the user (clicking, typing) or using the <code>HTMLElement.focus()</code> DOM method.</p>
 <pre><code class="js">import FocusTracker from &apos;@ckeditor/ckeditor5-utils/src/focustracker&apos;;
 
 // ...
@@ -547,8 +547,8 @@ focusTracker.add( viewInstance.element );
     }
 } );
 </code></pre>
-<p>This information is useful when implementing a certain type of UI which behavior depends on the focus, e.g. contextual panels and floating balloons containing forms should hide when the user decides to abandon them.</p>
-<h4 id="Keystroke-handler"><a href="#Keystroke-handler" class="headerlink" title="Keystroke handler"></a>Keystroke handler</h4><p>The <a href="../../../api/module_utils_keystrokehandler-KeystrokeHandler.html"><code>KeystrokeHandler</code></a> listens to the keystroke events fired by an HTML element or any of its descendants and executes pre&#x2013;defined actions when the keystroke is pressed. Usually, each <a href="#Views">view</a> creates own keystroke handler instance which takes care of the keystrokes fired by the elements the view has rendered.</p>
+<p>This information is useful when implementing a certain type of UI whose behavior depends on the focus, for example, contextual panels and floating balloons containing forms should hide when the user decides to abandon them.</p>
+<h4 id="Keystroke-handler"><a href="#Keystroke-handler" class="headerlink" title="Keystroke handler"></a>Keystroke handler</h4><p>The <a href="../../../api/module_utils_keystrokehandler-KeystrokeHandler.html"><code>KeystrokeHandler</code></a> listens to the keystroke events fired by an HTML element or any of its descendants and executes pre&#x2013;defined actions when the keystroke is pressed. Usually, each <a href="#Views">view</a> creates its own keystroke handler instance which takes care of the keystrokes fired by the elements the view has rendered.</p>
 <pre><code class="js">import KeystrokeHandler from &apos;@ckeditor/ckeditor5-utils/src/keystrokehandler&apos;;
 
 // ...
@@ -569,7 +569,7 @@ keystrokeHandler.listenTo( viewInstance.element );
     cancel();
 } );
 </code></pre>
-<div class="info-box notice"><p>There is also an <a href="../../../api/module_core_editingkeystrokehandler-EditingKeystrokeHandler.html"><code>EditingKeystrokeHandler</code></a> class which has the same API as <code>KeystrokeHandler</code> but it offers direct keystroke bindings to editor commands.</p><p>Usually, the editor provides such keystroke handler under the <a href="../../../api/module_core_editor_standardeditor-StandardEditor.html#keystrokes"><code>editor.keystrokes</code></a> property so any plugin can register keystrokes associated with editor commands, e.g. the <a href="../../../api/module_undo_undo-Undo.html"><code>Undo</code></a> plugin registers <code>editor.keystrokes.set( &apos;Ctrl+Z&apos;, &apos;undo&apos; );</code> to execute its &#x201C;undo&#x201D; command.</p></div>
+<div class="info-box notice"><p>There is also an <a href="../../../api/module_core_editingkeystrokehandler-EditingKeystrokeHandler.html"><code>EditingKeystrokeHandler</code></a> class which has the same API as <code>KeystrokeHandler</code> but it offers direct keystroke bindings to editor commands.</p><p>Usually, the editor provides such keystroke handler under the <a href="../../../api/module_core_editor_standardeditor-StandardEditor.html#keystrokes"><code>editor.keystrokes</code></a> property so any plugin can register keystrokes associated with editor commands. For example, the <a href="../../../api/module_undo_undo-Undo.html"><code>Undo</code></a> plugin registers <code>editor.keystrokes.set( &apos;Ctrl+Z&apos;, &apos;undo&apos; );</code> to execute its &#x201C;undo&#x201D; command.</p></div>
 
 <p>When multiple callbacks are assigned to the same keystroke, priorities can be used to decide which one should be handled first and whether other callbacks should be executed at all:</p>
 <pre><code class="js">keystrokeHandler.set( &apos;Ctrl+A&apos;, ( keyEvtData ) =&gt; {
