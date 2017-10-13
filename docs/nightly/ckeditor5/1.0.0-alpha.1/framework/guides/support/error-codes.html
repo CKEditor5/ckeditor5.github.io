@@ -1051,6 +1051,17 @@ observable.set( &apos;attr&apos;, 2 );            // ok, because this is an exis
       <p class="collapsing-list__excerpt">It was not possible to load the plugin.
       </p>
       <div class="collapsing-list__content">
+<p>This is a generic error logged to the console when a JavaSript error is thrown during one of
+the plugins initialization.</p>
+<p>If you correctly handled a promise returned by the editor&apos;s <code>create()</code> method (like shown below)
+you will find the original error logged on the console too:</p>
+<pre class="prettyprint source"><code>ClassicEditor.create( document.getElementById( &apos;editor&apos; ) )
+    .then( editor =&gt; {
+        // ...
+    } )
+    .catch( error =&gt; {
+        console.error( error );
+    } );</code></pre>
         <h4>Parameters</h4>
         <dl>
           <dt><code> plugin
@@ -1104,6 +1115,15 @@ params were passed to <a href="../../../api/module_core_editor_editor-Editor.htm
 <p>Plugin classes (constructors) need to be provided to the editor before they can be loaded by name.
 This is usually done by the builder by setting the <a href="../../../api/module_core_editor_editor-Editor.html#build"><code>build</code></a>
 property.</p>
+<p><strong>If you see this warning when using one of the <a href="../../../builds/index.html" data-glink="">CKEditor 5 Builds</a></strong> it means
+that you try to enable a plugin which was not included into that build. This may a be due to a typo
+in the plugin name or simply because that plugin is not part of this build. In the latter scenario,
+read more about <a href="../../../builds/guides/development/custom-builds.html" data-glink="">custom builds</a>.</p>
+<p><strong>If you see this warning when using one of the editor creators directly</strong> (not a build), then it means
+that you tried loading plugins by name. However, unlike CKEditor 4, CKEditor 5 does not implement a &quot;plugin loader&quot;.
+This means that CKEditor 5 does not know where to load the plugin modules from. Therefore, you need to
+provide each plugin through reference (as a constructor function). Check out the examples in
+<a href="../../../builds/guides/integration/advanced-setup.html#Scenario-2-Building-from-source" data-glink="">&quot;Building from source&quot;</a>.</p>
         <h4>Parameters</h4>
         <dl>
           <dt><code> plugins
@@ -1320,6 +1340,8 @@ name does not exist so it was omitted when rendering the toolbar.
 to provide a toolbar item has not been loaded or there is a typo in the configuration.</p>
 <p>Make sure the plugin responsible for this toolbar item is loaded and the toolbar configuration
 is correct, e.g. <a href="../../../api/module_basic-styles_bold-Bold.html"><code>Bold</code></a> is loaded for the <code>&apos;bold&apos;</code> toolbar item.</p>
+<p>You can use the following snippet to retrieve all available toolbar items:</p>
+<pre class="prettyprint source"><code>Array.from( editor.ui.componentFactory.names );</code></pre>
         <h4>Parameters</h4>
         <dl>
           <dt><code> name
@@ -1765,6 +1787,8 @@ parent container for these positions cannot be found.
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development environment</span></div></a></li>
                                               <li><a href="../contributing/testing-environment.html">
                                                   <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Testing environment</span></div></a></li>
+                                              <li><a href="../contributing/git-commit-message-convention.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Git commit message convention</span></div></a></li>
                                       </ul>
                                     </li>
                                     <li>

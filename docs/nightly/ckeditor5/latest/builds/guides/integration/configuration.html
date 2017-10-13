@@ -54,7 +54,7 @@
           <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/integration/configuration.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.33/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.33/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
           <h1><img src="../../../../../assets/0.3.33/img/book.svg" alt="guide">Configuration
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Removing-features">Removing features</a><ol><li><a href="#List-of-plugins">List of plugins</a></li></ol></li><li><a href="#Adding-features">Adding features</a></li><li><a href="#Toolbar-setup">Toolbar setup</a></li><li><a href="#Other-configuration-options">Other configuration options</a></li></ol></nav><p>When creating an editor in your page, it is possible to set up <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html">configurations</a> that change many of its aspects. For example:</p>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Removing-features">Removing features</a><ol><li><a href="#List-of-plugins">List of plugins</a></li></ol></li><li><a href="#Adding-features">Adding features</a></li><li><a href="#Toolbar-setup">Toolbar setup</a><ol><li><a href="#Listing-available-items">Listing available items</a></li></ol></li><li><a href="#Other-configuration-options">Other configuration options</a></li></ol></nav><p>When creating an editor in your page, it is possible to set up <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html">configurations</a> that change many of its aspects. For example:</p>
 <pre><code class="js">ClassicEditor
     .create( document.querySelector( &apos;#editor&apos; ), {
         toolbar: [ &apos;headings&apos;, &apos;bold&apos;, &apos;italic&apos;, &apos;link&apos;, &apos;bulletedList&apos;, &apos;numberedList&apos;, &apos;blockQuote&apos; ],
@@ -102,6 +102,9 @@ ClassicEditor
 </code></pre>
 <div class="info-box notice notice__hint"><p>The above is a strict UI-related configuration. Removing a toolbar item does not remove the feature from the editor internals. If your goal with the toolbar configuration is to remove features, the right solution is to also remove their relative plugins. Check <a href="#Removing-features">Removing features</a> above for more information.</p></div>
 
+<h3 id="Listing-available-items"><a href="#Listing-available-items" class="headerlink" title="Listing available items"></a>Listing available items</h3><p>You can use the following snippet to retrieve all toolbar items available in your editor:</p>
+<pre><code class="js">Array.from( editor.ui.componentFactory.names );
+</code></pre>
 <h2 id="Other-configuration-options"><a href="#Other-configuration-options" class="headerlink" title="Other configuration options"></a>Other configuration options</h2><p>See <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html"><code>EditorConfig</code></a> to learn about all available configuration options.</p>
 <p>Some of the options may require loading plugins which are not available in the build you use. Read more about <a href="../development/custom-builds.html">customizing builds</a>.</p>
 
