@@ -115,7 +115,7 @@ marker-to-highlight conversion.</p>
                           <h3><code><span><a href="module_engine_conversion_model-to-view-converters-HighlightDescriptor.html">HighlightDescriptor</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt collapsing-list__excerpt--short">Object describing how content highlight should be created in the view.</p>
+                          <p class="collapsing-list__excerpt collapsing-list__excerpt--short">Object describing how the content highlight should be created in the view.</p>
                         </div>
                       </li>
           </ul>
@@ -187,16 +187,16 @@ is not provided in descriptor - default priority will be used.
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Function factory, creates converter that converts all elements inside marker&apos;s range. Converter checks if element has
-functions stored under <code>addHighlight</code> and <code>removeHighlight</code> custom properties and calls them passing
-<a href="module_engine_conversion_model-to-view-converters-HighlightDescriptor.html"><code>HighlightDescriptor</code></a>. In such case converter will consume
-all element&apos;s children, assuming that they were handled by element itself. If highlight descriptor will not provide
-priority, priority <code>10</code> will be used as default, to be compliant with
+                          <p class="collapsing-list__excerpt">Converter function factory. Creates a function which applies the marker&apos;s highlight to all elements inside a marker&apos;s range.
+The converter checks if an element has the addHighlight and removeHighlight functions stored as
+<a href="module_engine_viewithelement-Element.html#setCustomProperty">custom properties</a> and if so use them to apply the highlight.
+In such case converter will consume all element&apos;s children, assuming that they were handled by element itself.
+If the highlight descriptor will not provide priority, priority <code>10</code> will be used as default, to be compliant with
 <a href="module_engine_conversion_model-to-view-converters.html#highlightText"><code>highlightText</code></a> method which uses default priority of
 <a href="module_engine_viewithattributeelement-AttributeElement.html"><code>AttributeElement</code></a>.
                           </p>
                           <div class="collapsing-list__content">
-<p>If highlight descriptor will not provide <code>id</code> property, name of the marker will be used.
+<p>If the highlight descriptor will not provide <code>id</code> property, name of the marker will be used.
 When <code>addHighlight</code> and <code>removeHighlight</code> custom properties are not present, element is not converted
 in any special way. This means that converters will proceed to convert element&apos;s child nodes.</p>
                             <h4>Parameters</h4>

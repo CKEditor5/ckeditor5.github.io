@@ -65,7 +65,8 @@
           </p>
           <div class="main-description"><p>A helper class implementing the UI component (<a href="module_ui_view-View.html">view</a>) factory.</p>
 <p>It allows functions producing specific UI components to be registered under their unique names
-in the factory. A registered component can be then instantiated by providing its name.</p>
+in the factory. A registered component can be then instantiated by providing its name.
+Note that names are case-insensitive.</p>
 <pre class="prettyprint source"><code>// Editor provides localization tools for the factory.
 const factory = new ComponentFactory( editor );
 
@@ -73,7 +74,10 @@ factory.add( &apos;foo&apos;, locale =&gt; new FooView( locale ) );
 factory.add( &apos;bar&apos;, locale =&gt; new BarView( locale ) );
 
 // An instance of FooView.
-const fooInstance = factory.create( &apos;foo&apos; );</code></pre><p>The <a href="module_core_editor_editor-Editor.html#locale">editor locale</a> is passed to the factory
+const fooInstance = factory.create( &apos;foo&apos; );
+
+// Names are case-insensitive os this is also allowed:
+const barInstance = factory.create( &apos;Bar&apos; );</code></pre><p>The <a href="module_core_editor_editor-Editor.html#locale">editor locale</a> is passed to the factory
 function when <a href="module_ui_componentfactory-ComponentFactory.html#create"><code>create</code></a> is called.</p></div>
           <div class="notice notice__filter api-props-filter">
             <div class="api-props-filter__inner">
@@ -241,7 +245,7 @@ the previously <a href="module_ui_componentfactory-ComponentFactory.html#add">ad
                           <h3><code><a class="member-name" href="#names">names</a>() &rarr;  <span>Iterator.&lt;String&gt;</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Returns an iterator of registered component names.
+                          <p class="collapsing-list__excerpt">Returns an iterator of registered component names. Names are returned in lower case.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Returns</h4>

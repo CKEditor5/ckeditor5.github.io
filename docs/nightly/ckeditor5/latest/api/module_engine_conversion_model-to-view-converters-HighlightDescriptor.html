@@ -63,12 +63,17 @@
           </div>
           <p><span class="badge">typedef</span>
           </p>
-          <div class="main-description"><p>Object describing how content highlight should be created in the view.</p>
-<p>Each text node contained in highlight will be wrapped with <code>span</code> element with CSS class(es), attributes and priority
+          <div class="main-description"><p>Object describing how the content highlight should be created in the view.</p>
+<p>Each text node contained in the highlight will be wrapped with <code>span</code> element with CSS class(es), attributes and priority
 described by this object.</p>
-<p>Each element can handle displaying highlight separately by providing <code>addHighlight</code> and <code>removeHighlight</code> custom
-properties. Those properties are passed <code>HighlightDescriptor</code> object upon conversion and should use it to
-change the element.</p></div>
+<p>Each element can handle displaying the highlight separately by providing <code>addHighlight</code> and <code>removeHighlight</code> custom
+properties:</p>
+<ul>
+<li><code>HighlightDescriptor</code> is passed to the <code>addHighlight</code> function upon conversion and should be used to apply the highlight to
+the element,</li>
+<li>descriptor id is passed to the <code>removeHighlight</code> function upon conversion and should be used to remove the highlight of given
+id from the element.</li>
+</ul></div>
           <div class="notice notice__filter api-props-filter">
             <div class="api-props-filter__inner">
               <h4>Filtering</h4>
