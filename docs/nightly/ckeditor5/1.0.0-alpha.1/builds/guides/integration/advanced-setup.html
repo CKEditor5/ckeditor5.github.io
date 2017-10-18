@@ -2,12 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Advanced setup - CKEditor 5</title>
     <link rel="canonical" href="/ckeditor5/latest/builds/guides/integration/advanced-setup.html">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/0.3.33/css/styles.css" type="text/css" media="screen">
-    <script src="../../../../../assets/0.3.33/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../../../assets/0.3.34/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../../assets/0.3.34/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -35,7 +34,7 @@
   </head>
   <body>
     <header class="top">
-      <div class="top__logo"><span class="top__logo__product-icon" style="background-image: url( ../../../assets/img/project-logo.svg );"></span><a class="top__logo__product-title" href="../../../index.html">CKEditor 5</a></div>
+      <div class="top__logo top__left"><span class="top__logo__product-icon" style="background-image: url( ../../../assets/img/project-logo.svg );"></span><a class="top__logo__product-title" href="../../../index.html">CKEditor 5</a></div>
       <ul class="top__menu">
         <li><a class="top__menu__item--active" href="../../index.html">Builds</a></li>
         <li><a href="../../../framework/index.html">Framework</a></li>
@@ -45,20 +44,20 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.33/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.34/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/integration/advanced-setup.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.33/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.33/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/integration/advanced-setup.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.34/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.34/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <h1><img src="../../../../../assets/0.3.33/img/book.svg" alt="guide">Advanced setup
+          <h1><img src="../../../../../assets/0.3.34/img/book.svg" alt="guide">Advanced setup
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Bundler">Bundler</a></li><li><a href="#Scenario-1-Integrating-existing-builds">Scenario 1: Integrating existing builds</a></li><li><a href="#Scenario-2-Building-from-source">Scenario 2: Building from source</a><ol><li><a href="#Webpack-configuration">Webpack configuration</a></li><li><a href="#Running-the-editor-&#x2013;-method-1">Running the editor &#x2013; method 1</a></li><li><a href="#Running-the-editor-&#x2013;-method-2">Running the editor &#x2013; method 2</a></li><li><a href="#Building">Building</a></li><li><a href="#Option-Extracting-CSS">Option: Extracting CSS</a></li><li><a href="#Option-Building-to-ES5-target">Option: Building to ES5 target</a></li></ol></li></ol></nav><p>The <a href="installation.html">Installation</a> guide describes the easiest ways to run CKEditor builds in your project and the <a href="../development/custom-builds.html">Custom builds</a> guide explains how to add or remove features from the build or change webpack configuration.</p>
 <p>In this guide, we would like to show you ways to closer integrate CKEditor with your application. Thanks to that, you will be able to optimize the bundling process of your project and customize the builds in a more convenient way.</p>
 <h2 id="Bundler"><a href="#Bundler" class="headerlink" title="Bundler"></a>Bundler</h2><p>CKEditor 5 is currently built using <a href="https://webpack.js.org" target="_blank" rel="external">webpack</a> (&gt;=2.x.x). All builds, examples and demos are generated using this bundler. It should also be possible to build CKEditor using other bundlers (if they are configured properly), such as <a href="https://github.com/rollup/rollup" target="_blank" rel="external">Rollup</a> or <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a> but these setups are not officially supported yet. Also, the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-dev-webpack-plugin" target="_blank" rel="external"><code>@ckeditor/ckeditor5-dev-webpack-plugin</code></a> that allows to localize the editor is only available for webpack. More work on this subject will be done after v1.0.0.</p>
 <p>Therefore, <strong>a prerequisite to this guide is that you are using webpack as your build tool</strong>.</p>
-<h2 id="Scenario-1-Integrating-existing-builds"><a href="#Scenario-1-Integrating-existing-builds" class="headerlink" title="Scenario 1: Integrating existing builds"></a>Scenario 1: Integrating existing builds</h2><p>This is the simplest scenario. It assumes that you want to use <a href="../overview.html#Available-builds">one of the existing builds</a> &#x201C;as-is&#x201D; (you can, of course, still <a href="configuration.html">configure the editor</a>). It also gives the fastest build times.</p>
+<h2 id="Scenario-1-Integrating-existing-builds"><a href="#Scenario-1-Integrating-existing-builds" class="headerlink" title="Scenario 1: Integrating existing builds"></a>Scenario 1: Integrating existing builds</h2><p>This is the simplest scenario. It assumes that you want to use <a href="../overview.html#Available-builds">one of the existing builds</a> &quot;as-is&quot; (you can, of course, still <a href="configuration.html">configure the editor</a>). It also gives the fastest build times.</p>
 <div class="info-box notice"><p>At the current stage, builds are only available in English. <a href="../../../features/ui-language.html">Setting editor UI language</a> requires rebuilding the editor which means that this scenario is quite limited.</p></div>
 
 <p>First, install the build of your choice <a href="installation.html#npm">from npm</a>:</p>
@@ -81,11 +80,11 @@ const ClassicEditor = require( &apos;@ckeditor/ckeditor5-build-classic&apos; );
         console.error( error );
     } );
 </code></pre>
-<p>Since you are using an already built editor (so a result of passing CKEditor 5&#x2019;s source through webpack), you do not need any additional webpack configuration. In this case CKEditor works as a ready-to-use library.</p>
+<p>Since you are using an already built editor (so a result of passing CKEditor 5&apos;s source through webpack), you do not need any additional webpack configuration. In this case CKEditor works as a ready-to-use library.</p>
 <h2 id="Scenario-2-Building-from-source"><a href="#Scenario-2-Building-from-source" class="headerlink" title="Scenario 2: Building from source"></a>Scenario 2: Building from source</h2><p>This scenario allows you to fully control the building process of CKEditor. This means that you will not actually use the builds anymore, but instead build CKEditor from source directly into your project. This integration method gives you full control over which features will be included and how webpack will be configured.</p>
 <div class="info-box notice"><p>Similar results to what this method allows can be achieved by <a href="../development/custom-builds.html">customizing an existing build</a> and integrating your custom build like in scenario 1. This will give faster build times (since CKEditor will be built once and committed), however, it requires maintaining a separate repository and installing the code from that repository into your project (e.g. by publishing a new npm package or using tools like <a href="https://github.com/lerna/lerna" target="_blank" rel="external">Lerna</a>). This makes it less convenient than the method described in this scenario.</p></div>
 
-<p>First of all, you need to install source packages that you will use. If you base your integration on one of the existing builds, you can take them from that build&#x2019;s <code>package.json</code> file (see e.g. <a href="https://github.com/ckeditor/ckeditor5-build-classic/tree/master/package.json" target="_blank" rel="external">classic build&#x2019;s <code>package.json</code></a>). At this moment you can choose the editor creator and features you want.</p>
+<p>First of all, you need to install source packages that you will use. If you base your integration on one of the existing builds, you can take them from that build&apos;s <code>package.json</code> file (see e.g. <a href="https://github.com/ckeditor/ckeditor5-build-classic/tree/master/package.json" target="_blank" rel="external">classic build&apos;s <code>package.json</code></a>). At this moment you can choose the editor creator and features you want.</p>
 <p>Copy these dependencies to your <code>package.json</code> and call <code>npm install</code> to install them. The <code>dependencies</code> (or <code>devDependencies</code>) section of <code>package.json</code> should look more or less like this:</p>
 <pre><code class="js">&quot;dependencies&quot;: {
     // ...
@@ -117,7 +116,7 @@ const ClassicEditor = require( &apos;@ckeditor/ckeditor5-build-classic&apos; );
 <p>You may also want to install <a href="https://github.com/webpack-contrib/babel-minify-webpack-plugin" target="_blank" rel="external"><code>babel-minify-webpack-plugin</code></a> if you plan to minify ES6+ code.</p>
 <h3 id="Webpack-configuration"><a href="#Webpack-configuration" class="headerlink" title="Webpack configuration"></a>Webpack configuration</h3><p>Now, you can configure webpack. There are a couple of things which you need to take care of when building CKEditor:</p>
 <ul>
-<li>Handling SASS files of CKEditor&#x2019;s theme. They are included in the CKEditor source using <code>import &apos;path/to/theme.sass&apos;</code> statements, so you need <a href="https://webpack.js.org/loaders/" target="_blank" rel="external">proper loaders</a>.</li>
+<li>Handling SASS files of CKEditor&apos;s theme. They are included in the CKEditor source using <code>import &apos;path/to/theme.sass&apos;</code> statements, so you need <a href="https://webpack.js.org/loaders/" target="_blank" rel="external">proper loaders</a>.</li>
 <li>Similarly, you need to handle bundling SVG icons, which are also imported directly into the source. For that you need the <a href="https://webpack.js.org/loaders/raw-loader/" target="_blank" rel="external"><code>raw-loader</code></a>.</li>
 <li>Finally, to localize the editor you need to use the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-dev-webpack-plugin" target="_blank" rel="external"><code>@ckeditor/ckeditor5-dev-webpack-plugin</code></a> webpack plugin.</li>
 </ul>
@@ -285,7 +284,7 @@ ClassicEditor
     } );
 </code></pre>
 <h3 id="Building"><a href="#Building" class="headerlink" title="Building"></a>Building</h3><p>Finally, you can build your application. Run webpack on your project and the editor will be a part of it.</p>
-<h3 id="Option-Extracting-CSS"><a href="#Option-Extracting-CSS" class="headerlink" title="Option: Extracting CSS"></a>Option: Extracting CSS</h3><p>One of the most common requirements is to extract CKEditor&#x2019;s CSS to a separate file (by default it is included in the output JavaScript file). To do that, you can use the <a href="https://www.npmjs.com/package/extract-text-webpack-plugin" target="_blank" rel="external"><code>extract-text-webpack-plugin</code></a> plugin:</p>
+<h3 id="Option-Extracting-CSS"><a href="#Option-Extracting-CSS" class="headerlink" title="Option: Extracting CSS"></a>Option: Extracting CSS</h3><p>One of the most common requirements is to extract CKEditor&apos;s CSS to a separate file (by default it is included in the output JavaScript file). To do that, you can use the <a href="https://www.npmjs.com/package/extract-text-webpack-plugin" target="_blank" rel="external"><code>extract-text-webpack-plugin</code></a> plugin:</p>
 <pre><code class="bash">npm install --save extract-text-webpack-plugin
 </code></pre>
 <p>And add it to your webpack configuration:</p>
@@ -331,7 +330,7 @@ module.exports = {
 <p>In order to create an ES5 build of CKEditor 5 you can use <a href="https://babeljs.io/" target="_blank" rel="external">Babel</a>:</p>
 <pre><code class="bash">npm install --save babel-loader babel-core babel-preset-env regenerator-runtime
 </code></pre>
-<p>Then, add this item to webpack&#x2019;s <a href="https://webpack.js.org/configuration/module/#module-rules" target="_blank" rel="external"><code>module.rules</code></a> section:</p>
+<p>Then, add this item to webpack&apos;s <a href="https://webpack.js.org/configuration/module/#module-rules" target="_blank" rel="external"><code>module.rules</code></a> section:</p>
 <pre><code class="js">module: {
     rules: [
         {
@@ -358,7 +357,7 @@ module.exports = {
 </code></pre>
 <div class="info-box notice"><p>This setup ensures that the source code is transpiled to ES5. However, it does not ensure that all ES6 polyfills are loaded. Therefore, if you would like to, for example, give <a href="https://github.com/ckeditor/ckeditor5/issues/330" target="_blank" rel="external">bringing IE11 compatibility</a> a try make sure to also load <a href="https://babeljs.io/docs/usage/polyfill/" target="_blank" rel="external"><code>babel-polyfill</code></a>.</p></div>
 
-<div class="info-box notice"><p>The <a href="https://github.com/babel/babel-preset-env" target="_blank" rel="external"><code>babel-preset-env</code></a> package lets you choose the environment which you want to support and transpiles ES6+ features to match that environment&#x2019;s capabilities. Without configuration it will produce ES5 builds.</p></div>
+<div class="info-box notice"><p>The <a href="https://github.com/babel/babel-preset-env" target="_blank" rel="external"><code>babel-preset-env</code></a> package lets you choose the environment which you want to support and transpiles ES6+ features to match that environment&apos;s capabilities. Without configuration it will produce ES5 builds.</p></div>
 
         </div>
       </section>

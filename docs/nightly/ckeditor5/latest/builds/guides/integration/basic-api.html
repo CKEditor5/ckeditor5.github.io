@@ -2,12 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Basic API - CKEditor 5</title>
     <link rel="canonical" href="/ckeditor5/latest/builds/guides/integration/basic-api.html">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/0.3.33/css/styles.css" type="text/css" media="screen">
-    <script src="../../../../../assets/0.3.33/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../../../assets/0.3.34/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../../assets/0.3.34/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -35,7 +34,7 @@
   </head>
   <body>
     <header class="top">
-      <div class="top__logo"><span class="top__logo__product-icon" style="background-image: url( ../../../assets/img/project-logo.svg );"></span><a class="top__logo__product-title" href="../../../index.html">CKEditor 5</a></div>
+      <div class="top__logo top__left"><span class="top__logo__product-icon" style="background-image: url( ../../../assets/img/project-logo.svg );"></span><a class="top__logo__product-title" href="../../../index.html">CKEditor 5</a></div>
       <ul class="top__menu">
         <li><a class="top__menu__item--active" href="../../index.html">Builds</a></li>
         <li><a href="../../../framework/index.html">Framework</a></li>
@@ -45,16 +44,16 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.33/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.34/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/integration/basic-api.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.33/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.33/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/integration/basic-api.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.34/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.34/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <h1><img src="../../../../../assets/0.3.33/img/book.svg" alt="guide">Basic API
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Creating-an-editor">Creating an editor</a><ol><li><a href="#Example-&#x2013;-Classic-editor">Example &#x2013; Classic editor</a></li><li><a href="#Example-&#x2013;-Inline-editor">Example &#x2013; Inline editor</a></li><li><a href="#Example-&#x2013;-Balloon-editor">Example &#x2013; Balloon editor</a></li></ol></li><li><a href="#Interacting-with-the-editor">Interacting with the editor</a><ol><li><a href="#Setting-the-editor-data">Setting the editor data</a></li><li><a href="#Getting-the-editor-data">Getting the editor data</a></li><li><a href="#Destroying-the-editor">Destroying the editor</a></li></ol></li><li><a href="#UMD-support">UMD support</a></li><li><a href="#What&#x2019;s-more">What&#x2019;s more?</a></li></ol></nav><p>Each CKEditor 5 build provides a different class that handles the creation of editor instances:</p>
+          <h1><img src="../../../../../assets/0.3.34/img/book.svg" alt="guide">Basic API
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Creating-an-editor">Creating an editor</a><ol><li><a href="#Example-&#x2013;-Classic-editor">Example &#x2013; Classic editor</a></li><li><a href="#Example-&#x2013;-Inline-editor">Example &#x2013; Inline editor</a></li><li><a href="#Example-&#x2013;-Balloon-editor">Example &#x2013; Balloon editor</a></li></ol></li><li><a href="#Interacting-with-the-editor">Interacting with the editor</a><ol><li><a href="#Setting-the-editor-data">Setting the editor data</a></li><li><a href="#Getting-the-editor-data">Getting the editor data</a></li><li><a href="#Destroying-the-editor">Destroying the editor</a></li></ol></li><li><a href="#UMD-support">UMD support</a></li><li><a href="#What-39-s-more">What&apos;s more?</a></li></ol></nav><p>Each CKEditor 5 build provides a different class that handles the creation of editor instances:</p>
 <ul>
 <li>Classic editor &#x2013; <a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html"><code>ClassicEditor</code></a></li>
 <li>Inline editor &#x2013; <a href="../../../api/module_editor-inline_inlineeditor-InlineEditor.html"><code>InlineEditor</code></a></li>
@@ -109,7 +108,7 @@
         console.error( error );
     } );
 </code></pre>
-<div class="info-box notice notice__tip"><p>Every editor class may accept different parameters in the <code>create()</code> method and may handle the initialization differently. For instance, the classic editor will replace a given element with an editor, while the inline editor will use the given element to initialize the editor on it. See each editor&#x2019;s documentation to learn the details.</p><p>The interface of the editor class is not enforced either. Since different implementations of editors may vary heavily in terms of functionality, the editor class implementers have full freedom regarding the API. Therefore, the examples in this guide may not work with some editor classes.</p></div>
+<div class="info-box notice notice__tip"><p>Every editor class may accept different parameters in the <code>create()</code> method and may handle the initialization differently. For instance, the classic editor will replace a given element with an editor, while the inline editor will use the given element to initialize the editor on it. See each editor&apos;s documentation to learn the details.</p><p>The interface of the editor class is not enforced either. Since different implementations of editors may vary heavily in terms of functionality, the editor class implementers have full freedom regarding the API. Therefore, the examples in this guide may not work with some editor classes.</p></div>
 
 <h2 id="Interacting-with-the-editor"><a href="#Interacting-with-the-editor" class="headerlink" title="Interacting with the editor"></a>Interacting with the editor</h2><p>Once the editor is created, it is possible to interact with it through its API. The <code>editor</code> variable from the examples above should enable that.</p>
 <h3 id="Setting-the-editor-data"><a href="#Setting-the-editor-data" class="headerlink" title="Setting the editor data"></a>Setting the editor data</h3><p>To replace the editor content with new data, use the <code>setData()</code> method:</p>
@@ -148,7 +147,7 @@ ClassicEditor.create( ... ); // [Function]
 import ClassicEditor from &apos;@ckeditor/ckeditor5-build-classic&apos;;
 ClassicEditor.create( ... ); // [Function]
 </code></pre>
-<h2 id="What&#x2019;s-more"><a href="#What&#x2019;s-more" class="headerlink" title="What&#x2019;s more?"></a>What&#x2019;s more?</h2><p>CKEditor offers a rich API to interact with editors. Check out the <a href="../../../api/index.html">API documentation</a> for more.</p>
+<h2 id="What-39-s-more"><a href="#What-39-s-more" class="headerlink" title="What&apos;s more?"></a>What&apos;s more?</h2><p>CKEditor offers a rich API to interact with editors. Check out the <a href="../../../api/index.html">API documentation</a> for more.</p>
 
         </div>
       </section>

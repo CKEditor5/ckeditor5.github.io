@@ -2,12 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Migration from CKEditor 4 - CKEditor 5</title>
     <link rel="canonical" href="/ckeditor5/latest/builds/guides/migrate.html">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../assets/0.3.33/css/styles.css" type="text/css" media="screen">
-    <script src="../../../../assets/0.3.33/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../../assets/0.3.34/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../assets/0.3.34/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -35,7 +34,7 @@
   </head>
   <body>
     <header class="top">
-      <div class="top__logo"><span class="top__logo__product-icon" style="background-image: url( ../../assets/img/project-logo.svg );"></span><a class="top__logo__product-title" href="../../index.html">CKEditor 5</a></div>
+      <div class="top__logo top__left"><span class="top__logo__product-icon" style="background-image: url( ../../assets/img/project-logo.svg );"></span><a class="top__logo__product-title" href="../../index.html">CKEditor 5</a></div>
       <ul class="top__menu">
         <li><a class="top__menu__item--active" href="../index.html">Builds</a></li>
         <li><a href="../../framework/index.html">Framework</a></li>
@@ -45,17 +44,17 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../../assets/0.3.33/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../../assets/0.3.34/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/migrate.md" title="Contribute to this guide"><img src="../../../../assets/0.3.33/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../assets/0.3.33/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/migrate.md" title="Contribute to this guide"><img src="../../../../assets/0.3.34/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../assets/0.3.34/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <h1><img src="../../../../assets/0.3.33/img/book.svg" alt="guide">Migration from CKEditor 4
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Installation-and-integration">Installation and integration</a></li><li><a href="#Features">Features</a></li><li><a href="#Image-upload">Image upload</a></li><li><a href="#Plugins">Plugins</a></li><li><a href="#Themes-skins">Themes (skins)</a></li><li><a href="#Existing-data">Existing data</a></li></ol></nav><p>When compared to its predecessor, CKEditor 5 should be considered <strong>a totally new editor</strong>. Every single aspect of it was redesigned &#x2014; from installation, to integration, to features, to its data model, and finally to its API. Therefore, moving applications using a previous CKEditor version to version 5 cannot be simply called an &#x201C;upgrade&#x201D;. It is something bigger, so the &#x201C;migration&#x201D; term fits better.</p>
-<p>There is no &#x201C;drop in&#x201D; solution for migrating. In this guide we hope to summarize the most important aspects to be taken into consideration before you proceed with installing CKEditor 5.</p>
+          <h1><img src="../../../../assets/0.3.34/img/book.svg" alt="guide">Migration from CKEditor 4
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Installation-and-integration">Installation and integration</a></li><li><a href="#Features">Features</a></li><li><a href="#Image-upload">Image upload</a></li><li><a href="#Plugins">Plugins</a></li><li><a href="#Themes-skins">Themes (skins)</a></li><li><a href="#Existing-data">Existing data</a></li></ol></nav><p>When compared to its predecessor, CKEditor 5 should be considered <strong>a totally new editor</strong>. Every single aspect of it was redesigned &#x2014; from installation, to integration, to features, to its data model, and finally to its API. Therefore, moving applications using a previous CKEditor version to version 5 cannot be simply called an &quot;upgrade&quot;. It is something bigger, so the &quot;migration&quot; term fits better.</p>
+<p>There is no &quot;drop in&quot; solution for migrating. In this guide we hope to summarize the most important aspects to be taken into consideration before you proceed with installing CKEditor 5.</p>
 <p>Before starting, be sure that migrating is your best choice. Refer to <a href="overview.html#When-NOT-to-use-builds">When NOT to use CKEditor 5 Builds?</a> for more information.</p>
 <h2 id="Installation-and-integration"><a href="#Installation-and-integration" class="headerlink" title="Installation and integration"></a>Installation and integration</h2><p>The very first aspect that changed with CKEditor 5 is its installation procedure. It became much more modern with the introduction of modular patterns, UMD, npm, etc. Check <a href="integration/installation.html">Installation</a> for more details.</p>
 <p>The API for integrating CKEditor with your pages also changed. It is worth checking <a href="integration/basic-api.html">Basic API</a> for an introduction.</p>
@@ -73,7 +72,7 @@
 <h2 id="Plugins"><a href="#Plugins" class="headerlink" title="Plugins"></a>Plugins</h2><p>The trickiest migration challenge to be faced may be related to custom plugins you have developed for CKEditor 4. Although their concept may stay the same, their implementation is certainly different and will require rewriting them from scratch.</p>
 <p>The same may apply for third-party plugins which may not have been ported to CKEditor 5 yet.</p>
 <p>Check the <a href="development/plugins.html#Creating-plugins">Creating plugins guide</a> for more information on the development of plugins.</p>
-<h2 id="Themes-skins"><a href="#Themes-skins" class="headerlink" title="Themes (skins)"></a>Themes (skins)</h2><p>In CKEditor 5, the previous concept of &#x201C;skins&#x201D; was reviewed and is now called &#x201C;themes&#x201D;.</p>
+<h2 id="Themes-skins"><a href="#Themes-skins" class="headerlink" title="Themes (skins)"></a>Themes (skins)</h2><p>In CKEditor 5, the previous concept of &quot;skins&quot; was reviewed and is now called &quot;themes&quot;.</p>
 <p>If you have custom skins for CKEditor 4, these skins need to be recreated for CKEditor 5. Fortunately <a href="../../framework/guides/ui/theme-customization.html">custom theming</a> in CKEditor 5 is much more powerful and simpler than before.</p>
 <!--
 For more information, check how to {@linkTODO create new themes in the CKEditor 5 Framework documentation}.

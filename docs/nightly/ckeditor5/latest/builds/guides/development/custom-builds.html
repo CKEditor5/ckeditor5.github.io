@@ -2,12 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Creating custom builds - CKEditor 5</title>
     <link rel="canonical" href="/ckeditor5/latest/builds/guides/development/custom-builds.html">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/0.3.33/css/styles.css" type="text/css" media="screen">
-    <script src="../../../../../assets/0.3.33/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../../../assets/0.3.34/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../../assets/0.3.34/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -35,7 +34,7 @@
   </head>
   <body>
     <header class="top">
-      <div class="top__logo"><span class="top__logo__product-icon" style="background-image: url( ../../../assets/img/project-logo.svg );"></span><a class="top__logo__product-title" href="../../../index.html">CKEditor 5</a></div>
+      <div class="top__logo top__left"><span class="top__logo__product-icon" style="background-image: url( ../../../assets/img/project-logo.svg );"></span><a class="top__logo__product-title" href="../../../index.html">CKEditor 5</a></div>
       <ul class="top__menu">
         <li><a class="top__menu__item--active" href="../../index.html">Builds</a></li>
         <li><a href="../../../framework/index.html">Framework</a></li>
@@ -45,15 +44,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.33/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.34/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/development/custom-builds.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.33/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.33/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/development/custom-builds.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.34/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.34/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <h1><img src="../../../../../assets/0.3.33/img/book.svg" alt="guide">Creating custom builds
+          <h1><img src="../../../../../assets/0.3.34/img/book.svg" alt="guide">Creating custom builds
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Forking-an-existing-build">Forking an existing build</a></li><li><a href="#Build-anatomy">Build anatomy</a></li><li><a href="#Customizing-a-build">Customizing a build</a><ol><li><a href="#Installing-dependencies">Installing dependencies</a></li><li><a href="#Updating-build-configuration">Updating build configuration</a></li><li><a href="#Rebuilding-the-bundle">Rebuilding the bundle</a></li></ol></li><li><a href="#Updating-the-build">Updating the build</a></li><li><a href="#Publishing-your-builds">Publishing your builds</a></li></ol></nav><p>A build is a simple <a href="https://www.npmjs.com" target="_blank" rel="external">npm</a> package (usually developed in a Git repository) with a predefined set of dependencies. Out of this repository, distribution files can be generated through the build process.</p>
 <p>Some of the reasons for creating custom builds are:</p>
 <ul>
@@ -143,7 +142,7 @@ git merge upstream/master
 <p>You should handle eventual conflicts and verify the merged changes. After that, just follow the previous instructions for creating your build and test it.</p>
 <div class="info-box notice notice__hint"><p>It is recommended to run <code>rm -rf node_modules &amp;&amp; npm install</code> after you fetched changes from the upstream or updated versions of dependencies in <code>package.json</code> manually. This will prevent npm from installing packages more than once (which may lead to broken builds).</p></div>
 
-<h2 id="Publishing-your-builds"><a href="#Publishing-your-builds" class="headerlink" title="Publishing your builds"></a>Publishing your builds</h2><p>If you think that your custom builds can be useful to others, it is a great idea to publish them on GitHub and npm. When doing so, just be sure to give them meaningful names that would fit the <code>ckeditor5-build-(the name)</code> pattern, making them easy to find. To avoid conflicts with other existing builds you can use <a href="https://docs.npmjs.com/misc/scope" target="_blank" rel="external">scoped packages</a>. We also recommend using the &#x201C;ckeditor5&#x201D; and &#x201C;ckeditor5-build&#x201D; <a href="https://docs.npmjs.com/files/package.json#keywords" target="_blank" rel="external">keywords</a> to make your build <a href="https://www.npmjs.com/search?q=keywords:ckeditor5-build&amp;page=1&amp;ranking=optimal" target="_blank" rel="external">easier to find</a>.</p>
+<h2 id="Publishing-your-builds"><a href="#Publishing-your-builds" class="headerlink" title="Publishing your builds"></a>Publishing your builds</h2><p>If you think that your custom builds can be useful to others, it is a great idea to publish them on GitHub and npm. When doing so, just be sure to give them meaningful names that would fit the <code>ckeditor5-build-(the name)</code> pattern, making them easy to find. To avoid conflicts with other existing builds you can use <a href="https://docs.npmjs.com/misc/scope" target="_blank" rel="external">scoped packages</a>. We also recommend using the &quot;ckeditor5&quot; and &quot;ckeditor5-build&quot; <a href="https://docs.npmjs.com/files/package.json#keywords" target="_blank" rel="external">keywords</a> to make your build <a href="https://www.npmjs.com/search?q=keywords:ckeditor5-build&amp;page=1&amp;ranking=optimal" target="_blank" rel="external">easier to find</a>.</p>
 <p>After your build is out, <a href="https://twitter.com/ckeditor" target="_blank" rel="external">ping us on Twitter</a>!</p>
 
         </div>
