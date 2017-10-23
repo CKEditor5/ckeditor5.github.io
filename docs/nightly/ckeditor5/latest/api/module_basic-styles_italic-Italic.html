@@ -501,7 +501,7 @@ so in the same order as constructors of these plugins.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
                         <div class="collapsing-list__term toggler--collapsed" id="listenTo">
-                          <h3><code><a class="member-name" href="#listenTo">listenTo</a>( emitter, event, callback, [ options ] = { [options.priority], [options.context] } )</code></h3>
+                          <h3><code><a class="member-name" href="#listenTo">listenTo</a>( emitter, event, callback, [ options ] = { [options.priority] } )</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
@@ -542,11 +542,6 @@ the priority value the sooner the callback will be fired. Events having the same
 order they were added.</p>
                                                         <p>Defaults to <code>'normal'</code></p>
                                                       </dd>
-                                                      <dt><code> [ options.context ]
-                                                           :
- <span>Object</span></code></dt>
-                                                      <dd><p>The object that represents <code>this</code> in the callback. Defaults to the object firing the event.</p>
-                                                      </dd>
                                                     </dl>
                                           <p>Defaults to <code>{}</code></p>
                                         </dd>
@@ -556,7 +551,7 @@ order they were added.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
                         <div class="collapsing-list__term toggler--collapsed" id="off">
-                          <h3><code><a class="member-name" href="#off">off</a>( event, callback, [ context ] )</code></h3>
+                          <h3><code><a class="member-name" href="#off">off</a>( event, callback )</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
@@ -577,19 +572,13 @@ order they were added.</p>
  <span>function</span></code></dt>
                                         <dd><p>The function to stop being called.</p>
                                         </dd>
-                                        <dt><code> [ context ]
-                                             :
- <span>Object</span></code></dt>
-                                        <dd><p>The context object to be removed, pared with the given callback. To handle cases where
-the same callback is used several times with different contexts.</p>
-                                        </dd>
                                       </dl>
                           </div>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
                         <div class="collapsing-list__term toggler--collapsed" id="on">
-                          <h3><code><a class="member-name" href="#on">on</a>( event, callback, [ options ] = { [options.priority], [options.context] } )</code></h3>
+                          <h3><code><a class="member-name" href="#on">on</a>( event, callback, [ options ] = { [options.priority] } )</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
@@ -599,7 +588,7 @@ the same callback is used several times with different contexts.</p>
                           </p>
                           <div class="collapsing-list__content">
 <p>Events can be grouped in namespaces using <code>:</code>.
-When namespaced event is fired, it additionaly fires all callbacks for that namespace.</p>
+When namespaced event is fired, it additionally fires all callbacks for that namespace.</p>
 <pre class="prettyprint source"><code>myEmitter.on( &apos;myGroup&apos;, genericCallback );
 myEmitter.on( &apos;myGroup:myEvent&apos;, specificCallback );
 
@@ -637,11 +626,6 @@ the priority value the sooner the callback will be fired. Events having the same
 order they were added.</p>
                                                         <p>Defaults to <code>'normal'</code></p>
                                                       </dd>
-                                                      <dt><code> [ options.context ]
-                                                           :
- <span>Object</span></code></dt>
-                                                      <dd><p>The object that represents <code>this</code> in the callback. Defaults to the object firing the event.</p>
-                                                      </dd>
                                                     </dl>
                                           <p>Defaults to <code>{}</code></p>
                                         </dd>
@@ -651,7 +635,7 @@ order they were added.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
                         <div class="collapsing-list__term toggler--collapsed" id="once">
-                          <h3><code><a class="member-name" href="#once">once</a>( event, callback, [ options ] = { [options.priority], [options.context] } )</code></h3>
+                          <h3><code><a class="member-name" href="#once">once</a>( event, callback, [ options ] = { [options.priority] } )</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
@@ -687,11 +671,6 @@ calling <a href="module_utils_emittermixin-EmitterMixin.html#on"><code>on</code>
 the priority value the sooner the callback will be fired. Events having the same priority are called in the
 order they were added.</p>
                                                         <p>Defaults to <code>'normal'</code></p>
-                                                      </dd>
-                                                      <dt><code> [ options.context ]
-                                                           :
- <span>Object</span></code></dt>
-                                                      <dd><p>The object that represents <code>this</code> in the callback. Defaults to the object firing the event.</p>
                                                       </dd>
                                                     </dl>
                                           <p>Defaults to <code>{}</code></p>
