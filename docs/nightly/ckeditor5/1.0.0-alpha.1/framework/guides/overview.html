@@ -5,8 +5,8 @@
     <title>Overview - CKEditor 5</title>
     <link rel="canonical" href="/ckeditor5/latest/framework/guides/overview.html">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../assets/0.3.34/css/styles.css" type="text/css" media="screen">
-    <script src="../../../../assets/0.3.34/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../../assets/0.3.35/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../assets/0.3.35/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -44,15 +44,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../../assets/0.3.34/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../../assets/0.3.35/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/overview.md" title="Contribute to this guide"><img src="../../../../assets/0.3.34/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../assets/0.3.34/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/overview.md" title="Contribute to this guide"><img src="../../../../assets/0.3.35/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../assets/0.3.35/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <h1><img src="../../../../assets/0.3.34/img/book.svg" alt="guide">Overview
+          <h1><img src="../../../../assets/0.3.35/img/book.svg" alt="guide">Overview
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#When-to-use-the-framework">When to use the framework?</a></li><li><a href="#Design">Design</a></li><li><a href="#Framework-structure">Framework structure</a></li><li><a href="#What-39-s-next">What&apos;s next?</a></li></ol></nav><p>CKEditor 5 is a project that allows you to quickly and easily initialize one of the many types of editors it offers in your application. At the same time, it is a framework for creating custom tailored rich text editing solutions. The former requirement is met thanks to <a href="../../builds/guides/overview.html">CKEditor 5 Builds</a>. The latter &#x2014; thanks to CKEditor 5 Framework.</p>
 <p>This guide explains how the framework is built and how to start using it.</p>
 <h2 id="When-to-use-the-framework"><a href="#When-to-use-the-framework" class="headerlink" title="When to use the framework?"></a>When to use the framework?</h2><p><a href="../../builds/guides/development/custom-builds.html">CKEditor 5 Builds can be customized</a>, but certain types of customizations require using the framework.</p>
@@ -156,6 +156,11 @@
     <footer class="footer">
       <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
     </footer>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script type="text/javascript">docsearch({apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:10,optionalFacetFilters:'(tags:builds<score=1>, tags:framework<score=2>, tags:examples<score=1>, tags:features<score=1>)',facetFilters:['tags: ckeditor5']},debug:false});</script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',importants:['module:editor-balloon/ballooneditor~BalloonEditor.create','module:editor-classic/classiceditor~ClassicEditor.create','module:editor-inline/inlineeditor~InlineEditor.create'],customRanking:[],inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},debug:false,
+transformData: function(hits) {var sortingFn = ( a, b ) => {return a.weight.page_rank > b.weight.page_rank ? -1 :a.weight.page_rank < b.weight.page_rank ? 1 : 0;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];result = result.concat(hits.filter( h => h.tags.includes( 'framework' ) ).slice( 0, 7 ).sort( sortingFn ));tags.forEach( function( tag ) {if ( tag !== 'framework' ) {result = result.concat(hits.filter( h => h.tags.includes( tag ) ).slice( 0, 10 ).sort( sortingFn ).slice( 0, 3 ));}} );return result;}
+});
+</script>
   </body>
 </html>
