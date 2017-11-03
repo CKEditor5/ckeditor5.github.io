@@ -5,8 +5,8 @@
     <title>Class Template (ui/template~Template) - CKEditor 5 API docs</title>
     <link rel="canonical" href="/ckeditor5/latest/api/module_ui_template-Template.html">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.36/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/0.3.36/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../assets/0.3.37/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.37/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -41,18 +41,19 @@
         <li><a href="../examples/index.html">Examples</a></li>
         <li><a href="../features/index.html">Features</a></li>
         <li><a class="top__menu__item--active" href="index.html">API</a></li>
+        <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."></a></li>
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.36/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.37/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.36/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.37/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <div class="api-header"><img src="../../../assets/0.3.36/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.37/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1>Template<span class="header__import--hidden"> (ui)</span>
               </h1>
@@ -149,12 +150,15 @@ attributes of an HTML element.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="children">
-                          <h3><code><a class="member-name" href="#children">children</a> : <span>Collection.&lt;<a class="collapsing-list__type" href="module_ui_template-Template.html">Template</a>&gt;</span></code></h3>
+                          <h3><code><a class="member-name" href="#children">children</a> : <span>Array.&lt;(module:ui/template~Template|Node)&gt;</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Children of the template, sub&#x2013;templates. Each one is an independent
-instance of <a href="module_ui_template-Template.html"><code>Template</code></a>.</p>
+                          <p class="collapsing-list__excerpt">Children of the template. They can be either:</p>
                           <div class="collapsing-list__content">
+<ul>
+<li>an independent instances of <a href="module_ui_template-Template.html"><code>Template</code></a> (sub&#x2013;templates),</li>
+<li>native DOM Nodes.</li>
+</ul>
 <p><strong>Note</strong>: This property only makes sense when <a href="module_ui_template-Template.html#tag"><code>tag</code></a> is defined.</p>
                           </div>
                         </div>
@@ -349,6 +353,45 @@ followed by the optional <code>args</code> provided in the <code>fire()</code> m
                                         <dd><p>By default the method returns <code>undefined</code>. However, the return value can be changed by listeners
 through modification of the <a href="module_utils_eventinfo-EventInfo.html#return"><code>return</code></a>&apos;s value (the event info
 is the first param of every callback).</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="getViews">
+                          <h3><code><a class="member-name" href="#getViews">getViews</a>() &rarr;  <span>Iterator.&lt;<a class="collapsing-list__type" href="module_ui_view-View.html">View</a>&gt;</span></code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Returns an iterator which traverses the template in search of <a href="module_ui_view-View.html"><code>View</code></a>
+instances and returns them one by one.
+                          </p>
+                          <div class="collapsing-list__content">
+<pre class="prettyprint source"><code>const viewFoo = new View();
+const viewBar = new View();
+const viewBaz = new View();
+const template = new Template( {
+    tag: &apos;div&apos;,
+    children: [
+        viewFoo,
+        {
+            tag: &apos;div&apos;,
+            children: [
+                viewBar
+            ]
+        },
+        viewBaz
+    ]
+} );
+
+// Logs: viewFoo, viewBar, viewBaz
+for ( const view of template.getViews() ) {
+    console.log( view );
+}</code></pre>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Iterator.&lt;<a class="collapsing-list__type" href="module_ui_view-View.html">View</a>&gt;</span></code></dt>
+                                        <dd>
                                         </dd>
                             </dl>
                           </div>
@@ -1003,7 +1046,7 @@ Template.extend( template, {
 } );
 
 // Child extension.
-Template.extend( template.children.get( 0 ), {
+Template.extend( template.children[ 0 ], {
     attributes: {
         class: &apos;d&apos;
     }
@@ -1266,6 +1309,24 @@ Template.extend( template.children.get( 0 ), {
                       </ul>
                     </li>
                     <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">cloudservices</span>
+                      </div>
+                      <ul>
+                              <li class="toggler--collapsed">
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_cloudservices_cloudservices.html">cloudservices</a>
+                                </div>
+                                <ul>
+                                        <li><a href="module_cloudservices_cloudservices-CloudServices.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">CloudServices</span></div></a>
+                                        </li>
+                                        <li><a href="module_cloudservices_cloudservices-CloudServicesConfig.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--interface tree__item__text">CloudServicesConfig</span></div></a>
+                                        </li>
+                                </ul>
+                              </li>
+                      </ul>
+                    </li>
+                    <li class="toggler--collapsed">
                       <div class="tree__item__wrapper"><a class="tree__item--package tree__item__text" href="core.html">core</a>
                       </div>
                       <ul>
@@ -1374,9 +1435,6 @@ Template.extend( template.children.get( 0 ), {
                                         </li>
                                         <li><a href="module_easy-image_cloudservicesuploadadapter-CloudServicesUploadAdapter.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">CloudServicesUploadAdapter</span></div></a>
-                                        </li>
-                                        <li><a href="module_easy-image_cloudservicesuploadadapter-CloudServicesAdapterConfig.html">
-                                            <div class="tree__item__wrapper"><span class="tree__item--interface tree__item__text">CloudServicesAdapterConfig</span></div></a>
                                         </li>
                                 </ul>
                               </li>
@@ -3655,6 +3713,9 @@ Template.extend( template.children.get( 0 ), {
                                         <li><a href="module_utils_dom_insertat.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">insertat</span></div></a>
                                         </li>
+                                        <li><a href="module_utils_dom_isdomnode.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">isdomnode</span></div></a>
+                                        </li>
                                         <li><a href="module_utils_dom_isrange.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">isrange</span></div></a>
                                         </li>
@@ -3937,7 +3998,7 @@ Template.extend( template.children.get( 0 ), {
     <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
 docsearch({
 apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},debug:false,
-transformData: function(hits) {var sortingFn = ( a, b ) => {return a.weight.page_rank > b.weight.page_rank ? -1 :a.weight.page_rank < b.weight.page_rank ? 1 : 0;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];result = result.concat(hits.filter( h => h.tags.includes( 'api' ) ).slice( 0, 7 ).sort( sortingFn ));tags.forEach( function( tag ) {if ( tag !== 'api' ) {result = result.concat(hits.filter( h => h.tags.includes( tag ) ).slice( 0, 10 ).sort( sortingFn ).slice( 0, 3 ));}} );return result;}
+transformData: function(hits) {var sortingFn = ( a, b ) => {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;return a.custom_ranking > b.custom_ranking ? -1 :a.custom_ranking < b.custom_ranking ? 1 : 0;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];result = result.concat(hits.filter( h => h.tags.includes( 'api' ) ).slice( 0, 7 ).sort( sortingFn ));tags.forEach( function( tag ) {if ( tag !== 'api' ) {result = result.concat(hits.filter( h => h.tags.includes( tag ) ).slice( 0, 10 ).sort( sortingFn ).slice( 0, 3 ));}} );return result;}
 });
 </script>
   </body>

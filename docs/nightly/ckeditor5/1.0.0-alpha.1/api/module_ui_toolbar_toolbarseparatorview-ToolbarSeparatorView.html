@@ -5,8 +5,8 @@
     <title>Class ToolbarSeparatorView (ui/toolbar/toolbarseparatorview~ToolbarSeparatorView) - CKEditor 5 API docs</title>
     <link rel="canonical" href="/ckeditor5/latest/api/module_ui_toolbar_toolbarseparatorview-ToolbarSeparatorView.html">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.36/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/0.3.36/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../assets/0.3.37/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.37/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -41,18 +41,19 @@
         <li><a href="../examples/index.html">Examples</a></li>
         <li><a href="../features/index.html">Features</a></li>
         <li><a class="top__menu__item--active" href="index.html">API</a></li>
+        <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."></a></li>
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.36/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.37/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.36/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.37/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <div class="api-header"><img src="../../../assets/0.3.36/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.37/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1>ToolbarSeparatorView<span class="header__import--hidden"> (ui/toolbar)</span>
               </h1>
@@ -133,15 +134,15 @@
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">An HTML element of this view. The element is rendered on first reference
-by the <a href="module_ui_view-View.html#template"><code>template</code></a>:</p>
+                          <p class="collapsing-list__excerpt">An HTML element of the view. <code>null</code> until <a href="module_ui_view-View.html#render">rendered</a>
+from the <a href="module_ui_view-View.html#template"><code>template</code></a>.</p>
                           <div class="collapsing-list__content">
 <pre class="prettyprint source"><code>class SampleView extends View {
     constructor() {
         super();
 
         // A template instance the #element will be created from.
-        this.template = new Template( {
+        this.setTemplate( {
             tag: &apos;p&apos;
 
             // ...
@@ -150,11 +151,27 @@ by the <a href="module_ui_view-View.html#template"><code>template</code></a>:</p
 }
 
 const view = new SampleView();
-view.init();
 
-// Renders the #template and appends the output to &lt;body&gt;.
-document.body.appendChild( view.element );</code></pre><p>The element of the view can also be assigned directly:</p>
+// Renders the #template
+view.render();
+
+// Append the HTML element of the view to &lt;body&gt;.
+document.body.appendChild( view.element );</code></pre><p><strong>Note</strong>: The element of the view can also be assigned directly:</p>
 <pre class="prettyprint source"><code>view.element = document.querySelector( &apos;#my-container&apos; );</code></pre>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="isRendered">
+                          <h3><code><a class="member-name" href="#isRendered">isRendered</a> : <span>Boolean</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+<span class="badge badge--gray ">inherited</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Set <code>true</code> when the view has already been <a href="module_ui_view-View.html#render">rendered</a>.</p>
+                          <div class="collapsing-list__content">
                           </div>
                         </div>
                       </li>
@@ -174,23 +191,6 @@ document.body.appendChild( view.element );</code></pre><p>The element of the vie
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="ready">
-                          <h3><code><a class="member-name" href="#ready">ready</a> : <span>Boolean</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-<span class="badge badge--gray ">inherited</span>
-<span class="badge badge--gray "><a href="module_utils_observablemixin-ObservableMixin.html">observable</a></span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">A flag set <code>true</code> after <a href="module_ui_view-View.html#init">initialization</a>. Because the process can be
-asynchronous, this <a href="module_utils_observablemixin-Observable.html">observable</a> flag allows
-deferring certain actions until it is finished.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="template">
                           <h3><code><a class="member-name" href="#template">template</a> : <span><a class="collapsing-list__type" href="module_ui_template-Template.html">Template</a></span></code></h3>
                           <p class="badges">
@@ -199,7 +199,7 @@ deferring certain actions until it is finished.</p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Template of this view. It provides the <a href="module_ui_view-View.html#element"><code>element</code></a> representing
-the view in DOM.</p>
+the view in DOM, which is <a href="module_ui_view-View.html#render">rendered</a>.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -287,20 +287,6 @@ into the <a href="module_ui_template-Template.html#children"><code>children</cod
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-private="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_element">
-                          <h3><code><a class="member-name" href="#_element">_element</a> : <span>HTMLElement</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--red ">private</span>
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">An internal, cached element of this view. See <a href="module_ui_view-View.html#element"><code>element</code></a>.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
           </ul>
           <h2 id="Methods">Methods</h2>
           <ul class="collapsing-list collapsing-list--filtered">
@@ -315,84 +301,13 @@ into the <a href="module_ui_template-Template.html#children"><code>children</cod
                           <p class="collapsing-list__excerpt">Creates an instance of the <a href="module_ui_view-View.html"><code>View</code></a> class.
                           </p>
                           <div class="collapsing-list__content">
-<p>Also see <a href="module_ui_view-View.html#init"><code>init</code></a>.</p>
+<p>Also see <a href="module_ui_view-View.html#render"><code>render</code></a>.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> [ locale ]
                                              :
  <span><a class="collapsing-list__type" href="module_utils_locale-Locale.html">Locale</a></span></code></dt>
                                         <dd><p>The localization services instance.</p>
-                                        </dd>
-                                      </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="addChildren">
-                          <h3><code><a class="member-name" href="#addChildren">addChildren</a>( children )</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Registers a new child view under the view instance. Once registered, a child
-view is managed by its parent, including <a href="module_ui_view-View.html#init">initization</a>
-and <a href="module_ui_view-View.html#destroy">destruction</a>.
-                          </p>
-                          <div class="collapsing-list__content">
-<p>To revert this, use <a href="module_ui_view-View.html#removeChildren"><code>removeChildren</code></a>.</p>
-<pre class="prettyprint source"><code>class SampleView extends View {
-    constructor( locale ) {
-        super( locale );
-
-        this.childA = new SomeChildView( locale );
-        this.childB = new SomeChildView( locale );
-
-        this.template = new Template( { tag: &apos;p&apos; } );
-
-        // Register the children.
-        this.addChildren( [ this.childA, this.childB ] );
-    }
-
-    init() {
-        this.element.appendChild( this.childA.element );
-        this.element.appendChild( this.childB.element );
-
-        return super.init();
-    }
-}
-
-const view = new SampleView( locale );
-
-view.init();
-
-// Will append &lt;p&gt;&lt;childA#element&gt;&lt;b&gt;&lt;/b&gt;&lt;childB#element&gt;&lt;/p&gt;.
-document.body.appendChild( view.element );</code></pre><p><strong>Note</strong>: There&apos;s no need to add child views if they&apos;re already referenced in the
-<a href="module_ui_view-View.html#template"><code>template</code></a>:</p>
-<pre class="prettyprint source"><code>class SampleView extends View {
-    constructor( locale ) {
-        super( locale );
-
-        this.childA = new SomeChildView( locale );
-        this.childB = new SomeChildView( locale );
-
-        this.template = new Template( {
-            tag: &apos;p&apos;,
-
-            // These children will be added automatically. There&apos;s no
-            // need to call <a href="module_ui_view-View.html#addChildren%7D">for any of them.
-            children: [ this.childA, this.childB ]
-        </a> );
-    }
-
-    // ...
-}</code></pre>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> children
-                                             :
- <span><a class="collapsing-list__type" href="module_ui_view-View.html">View</a></span> | <span>Iterable.&lt;<a class="collapsing-list__type" href="module_ui_view-View.html">View</a>&gt;</span></code></dt>
-                                        <dd><p>Children views to be registered.</p>
                                         </dd>
                                       </dl>
                           </div>
@@ -463,7 +378,7 @@ observable attributes and attach DOM listeners.</p>
              isEnabled: true
          } );
 
-        this.template = new Template( {
+        this.setTemplate( {
             tag: &apos;p&apos;,
 
             attributes: {
@@ -503,7 +418,7 @@ observable attributes and attach DOM listeners.</p>
 
         this.items = this.createCollection();
 
-        this.template = new Template( {
+        this.setTemplate( {
             tag: &apos;p&apos;,
 
             // `items` collection will render here.
@@ -515,7 +430,7 @@ observable attributes and attach DOM listeners.</p>
 const view = new SampleView( locale );
 const child = new ChildView( locale );
 
-view.init();
+view.render();
 
 // It will append &lt;p&gt;&lt;/p&gt; to the &lt;body&gt;.
 document.body.appendChild( view.element );
@@ -627,6 +542,30 @@ emitterA.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( emitterC );</cod
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="deregisterChildren">
+                          <h3><code><a class="member-name" href="#deregisterChildren">deregisterChildren</a>( children )</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">The opposite of <a href="module_ui_view-View.html#registerChildren"><code>registerChildren</code></a>. Removes a child view from this view instance.
+Once removed, the child is no longer managed by its parent, e.g. it can safely
+become a child of another parent view.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> children
+                                             :
+ <span><a class="collapsing-list__type" href="module_ui_view-View.html">View</a></span> | <span>Iterable.&lt;<a class="collapsing-list__type" href="module_ui_view-View.html">View</a>&gt;</span></code></dt>
+                                        <dd><p>Child views to be removed.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="destroy">
                           <h3><code><a class="member-name" href="#destroy">destroy</a>()</code></h3>
                           <p class="badges">
@@ -634,7 +573,7 @@ emitterA.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( emitterC );</cod
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Recursively destroys the view instance and child views added by <a href="module_ui_view-View.html#addChildren"><code>addChildren</code></a> and
+                          <p class="collapsing-list__excerpt">Recursively destroys the view instance and child views added by <a href="module_ui_view-View.html#registerChildren"><code>registerChildren</code></a> and
 residing in collections created by the <a href="module_ui_view-View.html#createCollection"><code>createCollection</code></a>.
                           </p>
                           <div class="collapsing-list__content">
@@ -643,6 +582,32 @@ residing in collections created by the <a href="module_ui_view-View.html#createC
 <li>created on the view, e.g. <code>view.on( &apos;event&apos;, () =&gt; {} )</code>,</li>
 <li>defined in the <a href="module_ui_view-View.html#template"><code>template</code></a> for DOM events.</li>
 </ul>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="extendTemplate">
+                          <h3><code><a class="member-name" href="#extendTemplate">extendTemplate</a>( definition )</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt"><a href="module_ui_template-Template.html#extend">Extends</a> the <a href="module_ui_view-View.html#template"><code>template</code></a> of the view with
+with given definition.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>A shorthand for:</p>
+<pre class="prettyprint source"><code>Template.extend( view.template, definition );</code></pre><p><strong>Note</strong>: Is requires the <a href="module_ui_view-View.html#template"><code>template</code></a> to be already set. See <a href="module_ui_view-View.html#setTemplate"><code>setTemplate</code></a>.</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> definition
+                                             :
+ <span><a class="collapsing-list__type" href="module_ui_template-TemplateDefinition.html">TemplateDefinition</a></span></code></dt>
+                                        <dd><p>Definition which
+extends the <code>#template</code>.</p>
+                                        </dd>
+                                      </dl>
                           </div>
                         </div>
                       </li>
@@ -680,63 +645,6 @@ through modification of the <a href="module_utils_eventinfo-EventInfo.html#retur
 is the first param of every callback).</p>
                                         </dd>
                             </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="init">
-                          <h3><code><a class="member-name" href="#init">init</a>()</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Initializes the view and its children added by <a href="module_ui_view-View.html#addChildren"><code>addChildren</code></a> and residing in collections
-created by the <a href="module_ui_view-View.html#createCollection"><code>createCollection</code></a> method.
-                          </p>
-                          <div class="collapsing-list__content">
-<p>In general, <code>init()</code> is the right place to keep the code which refers to the <a href="module_ui_view-View.html#element"><code>element</code></a>
-and should be executed at the very beginning of the view&apos;s life cycle. It is possible to
-<a href="module_ui_template-Template.html#extend"><code>extend</code></a> the <a href="module_ui_view-View.html#template"><code>template</code></a> before the first reference of
-the <a href="module_ui_view-View.html#element"><code>element</code></a>. To allow an early customization of the view (e.g. by its parent),
-such references should be done in <code>init()</code>.</p>
-<pre class="prettyprint source"><code>class SampleView extends View {
-    constructor() {
-        this.template = new Template( {
-            // ...
-        } );
-    },
-
-    init() {
-        super.init();
-
-        function scroll() {
-            // A reference to #element would render the #template and make it non-extendable.
-            if ( window.scrollY &gt; 0 ) {
-                this.element.scrollLeft = 100;
-            } else {
-                this.element.scrollLeft = 0;
-            }
-        }
-
-        this.listenTo( window, &apos;scroll&apos;, () =&gt; {
-            scroll();
-        } );
-    }
-}
-
-const view = new SampleView();
-
-Template.extend( view.template, {
-    attributes: {
-        class: [
-            &apos;additional-class&apos;
-        ]
-    }
-} );
-
-// Late initialization allows customization of the view.
-view.init();</code></pre><p>Once initialized, the view becomes <a href="module_ui_view-View.html#ready"><code>ready</code></a>.</p>
                           </div>
                         </div>
                       </li>
@@ -921,26 +829,140 @@ order they were added.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="removeChildren">
-                          <h3><code><a class="member-name" href="#removeChildren">removeChildren</a>( children )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="registerChildren">
+                          <h3><code><a class="member-name" href="#registerChildren">registerChildren</a>( children )</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">inherited</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">The opposite of <a href="module_ui_view-View.html#addChildren"><code>addChildren</code></a>. Removes a child view from this view instance.
-Once removed, the child is no longer managed by its parent, e.g. it can safely
-become a child of another parent view.
+                          <p class="collapsing-list__excerpt">Registers a new child view under the view instance. Once registered, a child
+view is managed by its parent, including <a href="module_ui_view-View.html#render">rendering</a>
+and <a href="module_ui_view-View.html#destroy">destruction</a>.
                           </p>
                           <div class="collapsing-list__content">
+<p>To revert this, use <a href="module_ui_view-View.html#deregisterChildren"><code>deregisterChildren</code></a>.</p>
+<pre class="prettyprint source"><code>class SampleView extends View {
+    constructor( locale ) {
+        super( locale );
+
+        this.childA = new SomeChildView( locale );
+        this.childB = new SomeChildView( locale );
+
+        this.setTemplate( { tag: &apos;p&apos; } );
+
+        // Register the children.
+        this.registerChildren( [ this.childA, this.childB ] );
+    }
+
+    render() {
+        super.render();
+
+        this.element.appendChild( this.childA.element );
+        this.element.appendChild( this.childB.element );
+    }
+}
+
+const view = new SampleView( locale );
+
+view.render();
+
+// Will append &lt;p&gt;&lt;childA#element&gt;&lt;b&gt;&lt;/b&gt;&lt;childB#element&gt;&lt;/p&gt;.
+document.body.appendChild( view.element );</code></pre><p><strong>Note</strong>: There&apos;s no need to add child views if they&apos;re already referenced in the
+<a href="module_ui_view-View.html#template"><code>template</code></a>:</p>
+<pre class="prettyprint source"><code>class SampleView extends View {
+    constructor( locale ) {
+        super( locale );
+
+        this.childA = new SomeChildView( locale );
+        this.childB = new SomeChildView( locale );
+
+        this.setTemplate( {
+            tag: &apos;p&apos;,
+
+            // These children will be added automatically. There&apos;s no
+            // need to call <a href="module_ui_view-View.html#registerChildren%7D">for any of them.
+            children: [ this.childA, this.childB ]
+        </a> );
+    }
+
+    // ...
+}</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> children
                                              :
  <span><a class="collapsing-list__type" href="module_ui_view-View.html">View</a></span> | <span>Iterable.&lt;<a class="collapsing-list__type" href="module_ui_view-View.html">View</a>&gt;</span></code></dt>
-                                        <dd><p>Child views to be removed.</p>
+                                        <dd><p>Children views to be registered.</p>
                                         </dd>
                                       </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="render">
+                          <h3><code><a class="member-name" href="#render">render</a>()</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Recursively renders the view.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>Once the view is rendered:</p>
+<ul>
+<li>the <a href="module_ui_view-View.html#element"><code>element</code></a> becomes an HTML element out of <a href="module_ui_view-View.html#template"><code>template</code></a>,</li>
+<li>the <a href="module_ui_view-View.html#isRendered"><code>isRendered</code></a> flag is set <code>true</code>.</li>
+</ul>
+<p><strong>Note</strong>: The children of the view:</p>
+<ul>
+<li>defined directly in the <a href="module_ui_view-View.html#template"><code>template</code></a></li>
+<li>residing in collections created by the <a href="module_ui_view-View.html#createCollection"><code>createCollection</code></a> method,</li>
+<li>and added by <a href="module_ui_view-View.html#registerChildren"><code>registerChildren</code></a>
+are also rendered in the process.</li>
+</ul>
+<p>In general, <code>render()</code> method is the right place to keep the code which refers to the
+<a href="module_ui_view-View.html#element"><code>element</code></a> and should be executed at the very beginning of the view&apos;s life cycle.</p>
+<p>It is possible to <a href="module_ui_template-Template.html#extend"><code>extend</code></a> the <a href="module_ui_view-View.html#template"><code>template</code></a> before
+the view is rendered. To allow an early customization of the view (e.g. by its parent),
+such references should be done in <code>render()</code>.</p>
+<pre class="prettyprint source"><code>class SampleView extends View {
+    constructor() {
+        this.setTemplate( {
+            // ...
+        } );
+    },
+
+    render() {
+        // View#element becomes available.
+        super.render();
+
+        // The &quot;scroll&quot; listener depends on #element.
+        this.listenTo( window, &apos;scroll&apos;, () =&gt; {
+            // A reference to #element would render the #template and make it non-extendable.
+            if ( window.scrollY &gt; 0 ) {
+                this.element.scrollLeft = 100;
+            } else {
+                this.element.scrollLeft = 0;
+            }
+        } );
+    }
+}
+
+const view = new SampleView();
+
+// Let&apos;s customize the view before it gets rendered.
+view.extendTemplate( {
+    attributes: {
+        class: [
+            &apos;additional-class&apos;
+        ]
+    }
+} );
+
+// Late rendering allows customization of the view.
+view.render();</code></pre>
                           </div>
                         </div>
                       </li>
@@ -971,6 +993,30 @@ properties and methods, but means that <code>foo.set( &apos;bar&apos;, 1 )</code
                                              :
  <span>*</span></code></dt>
                                         <dd><p>The attributes value.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="setTemplate">
+                          <h3><code><a class="member-name" href="#setTemplate">setTemplate</a>( definition )</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Sets the <a href="module_ui_view-View.html#template"><code>template</code></a> of the view with with given definition.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>A shorthand for:</p>
+<pre class="prettyprint source"><code>view.setTemplate( definition );</code></pre>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> definition
+                                             :
+ <span><a class="collapsing-list__type" href="module_ui_template-TemplateDefinition.html">TemplateDefinition</a></span></code></dt>
+                                        <dd><p>Definition of view&apos;s template.</p>
                                         </dd>
                                       </dl>
                           </div>
@@ -1090,59 +1136,9 @@ be released if no attributes provided.</p>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-protected="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_addTemplateChildren">
-                          <h3><code><a class="member-name" href="#_addTemplateChildren">_addTemplateChildren</a>()</code></h3>
-                          <p class="badges">
-<span class="badge badge--orange ">protected</span>
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Recursively traverses <a href="module_ui_view-View.html#template"><code>template</code></a> in search of <a href="module_ui_view-View.html"><code>View</code></a>
-instances and automatically registers them using <a href="module_ui_view-View.html#addChildren"><code>addChildren</code></a> method.
-                          </p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
           </ul>
           <h2 id="Events">Events</h2>
           <ul class="collapsing-list collapsing-list--filtered">
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:change:ready">
-                          <h3><code><a class="member-name" href="#event:change:ready">change:ready</a>( eventInfo, name, value, oldValue )</code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Fired when the <code>ready</code> property changed value.
-                          </p>
-                          <div class="collapsing-list__content"><p></p>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> eventInfo
-                                             :
- <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                        <dd><p>An object containing information about the fired event.</p>
-                                        </dd>
-                                        <dt><code> name
-                                             :
- <span>String</span></code></dt>
-                                        <dd><p>Name of the changed property (<code>ready</code>).</p>
-                                        </dd>
-                                        <dt><code> value
-                                             :
- <span>Boolean</span></code></dt>
-                                        <dd><p>New value of the <code>ready</code> property with given key or <code>null</code>, if operation should remove property.</p>
-                                        </dd>
-                                        <dt><code> oldValue
-                                             :
- <span>Boolean</span></code></dt>
-                                        <dd><p>Old value of the <code>ready</code> property with given key or <code>null</code>, if property was not set before.</p>
-                                        </dd>
-                                      </dl>
-                          </div>
-                        </div>
-                      </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:change:{attribute}">
                           <h3><code><a class="member-name" href="#event:change:{attribute}">change:{attribute}</a>( eventInfo, name, value, oldValue )</code></h3>
@@ -1426,6 +1422,24 @@ observable.prop = 2; // -&gt; &apos;prop has changed from 1 to 2&apos;</code></p
                       </ul>
                     </li>
                     <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper"><span class="tree__item--package tree__item__text">cloudservices</span>
+                      </div>
+                      <ul>
+                              <li class="toggler--collapsed">
+                                <div class="tree__item__wrapper"><a class="tree__item--module tree__item__text" href="module_cloudservices_cloudservices.html">cloudservices</a>
+                                </div>
+                                <ul>
+                                        <li><a href="module_cloudservices_cloudservices-CloudServices.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">CloudServices</span></div></a>
+                                        </li>
+                                        <li><a href="module_cloudservices_cloudservices-CloudServicesConfig.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--interface tree__item__text">CloudServicesConfig</span></div></a>
+                                        </li>
+                                </ul>
+                              </li>
+                      </ul>
+                    </li>
+                    <li class="toggler--collapsed">
                       <div class="tree__item__wrapper"><a class="tree__item--package tree__item__text" href="core.html">core</a>
                       </div>
                       <ul>
@@ -1534,9 +1548,6 @@ observable.prop = 2; // -&gt; &apos;prop has changed from 1 to 2&apos;</code></p
                                         </li>
                                         <li><a href="module_easy-image_cloudservicesuploadadapter-CloudServicesUploadAdapter.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--class tree__item__text">CloudServicesUploadAdapter</span></div></a>
-                                        </li>
-                                        <li><a href="module_easy-image_cloudservicesuploadadapter-CloudServicesAdapterConfig.html">
-                                            <div class="tree__item__wrapper"><span class="tree__item--interface tree__item__text">CloudServicesAdapterConfig</span></div></a>
                                         </li>
                                 </ul>
                               </li>
@@ -3815,6 +3826,9 @@ observable.prop = 2; // -&gt; &apos;prop has changed from 1 to 2&apos;</code></p
                                         <li><a href="module_utils_dom_insertat.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">insertat</span></div></a>
                                         </li>
+                                        <li><a href="module_utils_dom_isdomnode.html">
+                                            <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">isdomnode</span></div></a>
+                                        </li>
                                         <li><a href="module_utils_dom_isrange.html">
                                             <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">isrange</span></div></a>
                                         </li>
@@ -4097,7 +4111,7 @@ observable.prop = 2; // -&gt; &apos;prop has changed from 1 to 2&apos;</code></p
     <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
 docsearch({
 apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},debug:false,
-transformData: function(hits) {var sortingFn = ( a, b ) => {return a.weight.page_rank > b.weight.page_rank ? -1 :a.weight.page_rank < b.weight.page_rank ? 1 : 0;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];result = result.concat(hits.filter( h => h.tags.includes( 'api' ) ).slice( 0, 7 ).sort( sortingFn ));tags.forEach( function( tag ) {if ( tag !== 'api' ) {result = result.concat(hits.filter( h => h.tags.includes( tag ) ).slice( 0, 10 ).sort( sortingFn ).slice( 0, 3 ));}} );return result;}
+transformData: function(hits) {var sortingFn = ( a, b ) => {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;return a.custom_ranking > b.custom_ranking ? -1 :a.custom_ranking < b.custom_ranking ? 1 : 0;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];result = result.concat(hits.filter( h => h.tags.includes( 'api' ) ).slice( 0, 7 ).sort( sortingFn ));tags.forEach( function( tag ) {if ( tag !== 'api' ) {result = result.concat(hits.filter( h => h.tags.includes( tag ) ).slice( 0, 10 ).sort( sortingFn ).slice( 0, 3 ));}} );return result;}
 });
 </script>
   </body>

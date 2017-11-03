@@ -5,8 +5,8 @@
     <title>Error codes - CKEditor 5</title>
     <link rel="canonical" href="/ckeditor5/latest/framework/guides/support/error-codes.html">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/0.3.36/css/styles.css" type="text/css" media="screen">
-    <script src="../../../../../assets/0.3.36/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../../../assets/0.3.37/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../../assets/0.3.37/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -41,18 +41,19 @@
         <li><a href="../../../examples/index.html">Examples</a></li>
         <li><a href="../../../features/index.html">Features</a></li>
         <li><a href="../../../api/index.html">API</a></li>
+        <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."></a></li>
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.36/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.37/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/support/error-codes.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.36/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.36/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/support/error-codes.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.37/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.37/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <h1><img src="../../../../../assets/0.3.36/img/book.svg" alt="guide">Error codes
+          <h1><img src="../../../../../assets/0.3.37/img/book.svg" alt="guide">Error codes
           </h1><p>CKEditor 5 Framework logs errors and warnings to the console. The following list contains more detailed descriptions of those issues.</p>
 
 <ul class="collapsing-list">
@@ -1387,11 +1388,11 @@ Node definition must have either &quot;tag&quot; or &quot;text&quot; when render
     </div>
   </li>
   <li class="collapsing-list__item">
-    <div class="collapsing-list__term toggler--collapsed" id="ui-view-init-reinit">
-      <h3><code><a class="member-name" href="#ui-view-init-reinit">ui-view-init-reinit</a></code></h3>
+    <div class="collapsing-list__term toggler--collapsed" id="ui-view-render-rendered">
+      <h3><code><a class="member-name" href="#ui-view-render-rendered">ui-view-render-rendered</a></code></h3>
     </div>
     <div class="collapsing-list__description">
-      <p class="collapsing-list__excerpt">This View has already been initialized.
+      <p class="collapsing-list__excerpt">This View has already been rendered.
       </p>
       <div class="collapsing-list__content">
       </div>
@@ -1403,17 +1404,6 @@ Node definition must have either &quot;tag&quot; or &quot;text&quot; when render
     </div>
     <div class="collapsing-list__description">
       <p class="collapsing-list__excerpt">All event names must be strings.
-      </p>
-      <div class="collapsing-list__content">
-      </div>
-    </div>
-  </li>
-  <li class="collapsing-list__item">
-    <div class="collapsing-list__term toggler--collapsed" id="ui-viewcollection-init-reinit">
-      <h3><code><a class="member-name" href="#ui-viewcollection-init-reinit">ui-viewcollection-init-reinit</a></code></h3>
-    </div>
-    <div class="collapsing-list__description">
-      <p class="collapsing-list__excerpt">This ViewCollection has already been initialized.
       </p>
       <div class="collapsing-list__content">
       </div>
@@ -1818,7 +1808,7 @@ parent container for these positions cannot be found.
     <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
 docsearch({
 apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},debug:false,
-transformData: function(hits) {var sortingFn = ( a, b ) => {return a.weight.page_rank > b.weight.page_rank ? -1 :a.weight.page_rank < b.weight.page_rank ? 1 : 0;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];result = result.concat(hits.filter( h => h.tags.includes( 'framework' ) ).slice( 0, 7 ).sort( sortingFn ));tags.forEach( function( tag ) {if ( tag !== 'framework' ) {result = result.concat(hits.filter( h => h.tags.includes( tag ) ).slice( 0, 10 ).sort( sortingFn ).slice( 0, 3 ));}} );return result;}
+transformData: function(hits) {var sortingFn = ( a, b ) => {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;return a.custom_ranking > b.custom_ranking ? -1 :a.custom_ranking < b.custom_ranking ? 1 : 0;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];result = result.concat(hits.filter( h => h.tags.includes( 'framework' ) ).slice( 0, 7 ).sort( sortingFn ));tags.forEach( function( tag ) {if ( tag !== 'framework' ) {result = result.concat(hits.filter( h => h.tags.includes( tag ) ).slice( 0, 10 ).sort( sortingFn ).slice( 0, 3 ));}} );return result;}
 });
 </script>
   </body>
