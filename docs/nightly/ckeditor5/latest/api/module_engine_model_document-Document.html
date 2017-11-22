@@ -4,9 +4,13 @@
     <meta charset="utf-8">
     <title>Class Document (engine/model/document~Document) - CKEditor 5 API docs</title>
     <link rel="canonical" href="/ckeditor5/latest/api/module_engine_model_document-Document.html">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.38/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/0.3.38/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../assets/0.3.39/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.39/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -45,15 +49,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.38/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.39/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.38/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.39/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <div class="api-header"><img src="../../../assets/0.3.38/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.39/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1>Document<span class="header__import--hidden"> (engine/model)</span>
               </h1>
@@ -303,7 +307,7 @@ the <a href="module_engine_model_document-Document.html#graveyard">graveyard  ro
                                         <dt><code> [ elementName ]
                                              :
  <span>String</span></code></dt>
-                                        <dd><p>Element name. Defaults to <code>&apos;$root&apos;</code> which also have
+                                        <dd><p>Element name. Defaults to <code>'$root'</code> which also have
 some basic schema defined (<code>$block</code>s are allowed inside the <code>$root</code>). Make sure to define a proper
 schema if you use a different name.</p>
                                           <p>Defaults to <code>'$root'</code></p>
@@ -425,7 +429,7 @@ followed by the optional <code>args</code> provided in the <code>fire()</code> m
                             <dl>
                                         <dt><code><span>*</span></code></dt>
                                         <dd><p>By default the method returns <code>undefined</code>. However, the return value can be changed by listeners
-through modification of the <a href="module_utils_eventinfo-EventInfo.html#return"><code>return</code></a>&apos;s value (the event info
+through modification of the <a href="module_utils_eventinfo-EventInfo.html#return"><code>return</code></a>'s value (the event info
 is the first param of every callback).</p>
                                         </dd>
                             </dl>
@@ -967,7 +971,7 @@ at the beginning of this selection&apos;s document&apos;s <a href="module_engine
                                         <dt><code> type
                                              :
  <span>String</span></code></dt>
-                                        <dd><p>Change type, possible option: &apos;insert&apos;, &apos;remove&apos;, &apos;reinsert&apos;, &apos;move&apos;, &apos;attribute&apos;.</p>
+                                        <dd><p>Change type, possible option: 'insert', 'remove', 'reinsert', 'move', 'attribute'.</p>
                                         </dd>
                                         <dt><code> data
                                              :
@@ -980,15 +984,15 @@ at the beginning of this selection&apos;s document&apos;s <a href="module_engine
                                                            :
  <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
                                                       <dd><p>Range in model containing changed nodes. Note that the range state is
-after changes has been done, i.e. for &apos;remove&apos; the range will be in the <code>graveyard root (#graveyard)</code>.
+after changes has been done, i.e. for 'remove' the range will be in the <code>graveyard root (#graveyard)</code>.
 The range is not defined for root, rename and marker types.</p>
                                                       </dd>
                                                       <dt><code> [ data.sourcePosition ]
                                                            :
  <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
                                                       <dd><p>Change source position.
-Exists for &apos;remove&apos;, &apos;reinsert&apos; and &apos;move&apos;.
-Note that this position state is before changes has been done, i.e. for &apos;reinsert&apos; the source position will be in the
+Exists for 'remove', 'reinsert' and 'move'.
+Note that this position state is before changes has been done, i.e. for 'reinsert' the source position will be in the
 <code>graveyard root (#graveyard)</code>.</p>
                                                       </dd>
                                                       <dt><code> [ data.key ]
@@ -999,14 +1003,14 @@ Note that this position state is before changes has been done, i.e. for &apos;re
                                                       <dt><code> [ data.oldValue ]
                                                            :
  <span>*</span></code></dt>
-                                                      <dd><p>Only for &apos;removeAttribute&apos;, &apos;removeRootAttribute&apos;, &apos;changeAttribute&apos; or
-&apos;changeRootAttribute&apos; type.</p>
+                                                      <dd><p>Only for 'removeAttribute', 'removeRootAttribute', 'changeAttribute' or
+'changeRootAttribute' type.</p>
                                                       </dd>
                                                       <dt><code> [ data.newValue ]
                                                            :
  <span>*</span></code></dt>
-                                                      <dd><p>Only for &apos;addAttribute&apos;, &apos;addRootAttribute&apos;, &apos;changeAttribute&apos; or
-&apos;changeRootAttribute&apos; type.</p>
+                                                      <dd><p>Only for 'addAttribute', 'addRootAttribute', 'changeAttribute' or
+'changeRootAttribute' type.</p>
                                                       </dd>
                                                       <dt><code> [ data.root ]
                                                            :
