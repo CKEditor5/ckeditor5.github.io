@@ -416,7 +416,7 @@ changes will be added to a new batch.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="parse">
-                          <h3><code><a class="member-name" href="#parse">parse</a>( data, [ context ] ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span></code></h3>
+                          <h3><code><a class="member-name" href="#parse">parse</a>( data, batch, [ context ] ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Returns data parsed by the <a href="module_engine_controller_datacontroller-DataController.html#processor">data  processor</a> and then
@@ -429,6 +429,11 @@ converted by the <a href="module_engine_controller_datacontroller-DataController
                                              :
  <span>String</span></code></dt>
                                         <dd><p>Data to parse.</p>
+                                        </dd>
+                                        <dt><code> batch
+                                             :
+ <span><a class="collapsing-list__type" href="module_engine_model_batch-Batch.html">Batch</a></span></code></dt>
+                                        <dd><p>Batch to which the deltas will be added.</p>
                                         </dd>
                                         <dt><code> [ context ]
                                              :
@@ -505,7 +510,7 @@ the <a href="module_engine_controller_datacontroller-DataController.html#parse">
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="toModel">
-                          <h3><code><a class="member-name" href="#toModel">toModel</a>( viewElementOrFragment, [ context ] ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span></code></h3>
+                          <h3><code><a class="member-name" href="#toModel">toModel</a>( viewElementOrFragment, batch, [ context ] ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Returns wrapped by {module:engine/model/documentfragment~DocumentFragment} result of the given
@@ -522,6 +527,11 @@ the <a href="module_engine_controller_datacontroller-DataController.html#parse">
                                              :
  <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></span></code></dt>
                                         <dd><p>Element or document fragment which content will be converted.</p>
+                                        </dd>
+                                        <dt><code> batch
+                                             :
+ <span><a class="collapsing-list__type" href="module_engine_model_batch-Batch.html">Batch</a></span></code></dt>
+                                        <dd><p>Batch to which the deltas will be added.</p>
                                         </dd>
                                         <dt><code> [ context ]
                                              :
@@ -1403,9 +1413,6 @@ listener to this event so it can be fully customized by the features.</p>
                         <li><a href="module_engine_model_delta_attributedelta-AttributeDelta.html">
                             <div class="tree__item__wrapper" data-ln="module:engine/model/delta/attributedelta~AttributeDelta"><span class="tree__item--class tree__item__text">AttributeDelta</span></div></a>
                         </li>
-                        <li><a href="module_engine_model_delta_attributedelta-RootAttributeDelta.html">
-                            <div class="tree__item__wrapper" data-ln="module:engine/model/delta/attributedelta~RootAttributeDelta"><span class="tree__item--class tree__item__text">RootAttributeDelta</span></div></a>
-                        </li>
                       </ul>
                     </li>
                     <li><a href="module_engine_model_delta_basic-deltas.html">
@@ -1487,6 +1494,15 @@ listener to this event so it can be fully customized by the features.</p>
                       </ul>
                     </li>
                     <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper" data-ln="module:engine/model/delta/rootattributedelta"><a class="tree__item--module tree__item__text" href="module_engine_model_delta_rootattributedelta.html">rootattributedelta</a>
+                      </div>
+                      <ul>
+                        <li><a href="module_engine_model_delta_rootattributedelta-RootAttributeDelta.html">
+                            <div class="tree__item__wrapper" data-ln="module:engine/model/delta/rootattributedelta~RootAttributeDelta"><span class="tree__item--class tree__item__text">RootAttributeDelta</span></div></a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="toggler--collapsed">
                       <div class="tree__item__wrapper" data-ln="module:engine/model/delta/splitdelta"><a class="tree__item--module tree__item__text" href="module_engine_model_delta_splitdelta.html">splitdelta</a>
                       </div>
                       <ul>
@@ -1546,6 +1562,15 @@ listener to this event so it can be fully customized by the features.</p>
                       <ul>
                         <li><a href="module_engine_model_operation_attributeoperation-AttributeOperation.html">
                             <div class="tree__item__wrapper" data-ln="module:engine/model/operation/attributeoperation~AttributeOperation"><span class="tree__item--class tree__item__text">AttributeOperation</span></div></a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper" data-ln="module:engine/model/operation/detachoperation"><a class="tree__item--module tree__item__text" href="module_engine_model_operation_detachoperation.html">detachoperation</a>
+                      </div>
+                      <ul>
+                        <li><a href="module_engine_model_operation_detachoperation-DetachOperation.html">
+                            <div class="tree__item__wrapper" data-ln="module:engine/model/operation/detachoperation~DetachOperation"><span class="tree__item--class tree__item__text">DetachOperation</span></div></a>
                         </li>
                       </ul>
                     </li>

@@ -393,7 +393,7 @@ it will be passed converted view element as first and only parameter.</p>
 <pre class="prettyprint source"><code>buildViewConverter().for( dispatcher ).fromElement( &apos;p&apos; ).toElement( &apos;paragraph&apos; );
 buildViewConverter().for( dispatcher )
     .fromElement( &apos;img&apos; )
-    .toElement( ( viewElement ) =&gt; new ModelElement( &apos;image&apos;, { src: viewElement.getAttribute( &apos;src&apos; ) } );</code></pre>
+    .toElement( ( viewElement, batch ) =&gt; batch.createElement( &apos;image&apos;, { src: viewElement.getAttribute( &apos;src&apos; ) } ) );</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> element
@@ -1233,9 +1233,6 @@ not be applied or other errors may occur.</p>
                         <li><a href="module_engine_model_delta_attributedelta-AttributeDelta.html">
                             <div class="tree__item__wrapper" data-ln="module:engine/model/delta/attributedelta~AttributeDelta"><span class="tree__item--class tree__item__text">AttributeDelta</span></div></a>
                         </li>
-                        <li><a href="module_engine_model_delta_attributedelta-RootAttributeDelta.html">
-                            <div class="tree__item__wrapper" data-ln="module:engine/model/delta/attributedelta~RootAttributeDelta"><span class="tree__item--class tree__item__text">RootAttributeDelta</span></div></a>
-                        </li>
                       </ul>
                     </li>
                     <li><a href="module_engine_model_delta_basic-deltas.html">
@@ -1317,6 +1314,15 @@ not be applied or other errors may occur.</p>
                       </ul>
                     </li>
                     <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper" data-ln="module:engine/model/delta/rootattributedelta"><a class="tree__item--module tree__item__text" href="module_engine_model_delta_rootattributedelta.html">rootattributedelta</a>
+                      </div>
+                      <ul>
+                        <li><a href="module_engine_model_delta_rootattributedelta-RootAttributeDelta.html">
+                            <div class="tree__item__wrapper" data-ln="module:engine/model/delta/rootattributedelta~RootAttributeDelta"><span class="tree__item--class tree__item__text">RootAttributeDelta</span></div></a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="toggler--collapsed">
                       <div class="tree__item__wrapper" data-ln="module:engine/model/delta/splitdelta"><a class="tree__item--module tree__item__text" href="module_engine_model_delta_splitdelta.html">splitdelta</a>
                       </div>
                       <ul>
@@ -1376,6 +1382,15 @@ not be applied or other errors may occur.</p>
                       <ul>
                         <li><a href="module_engine_model_operation_attributeoperation-AttributeOperation.html">
                             <div class="tree__item__wrapper" data-ln="module:engine/model/operation/attributeoperation~AttributeOperation"><span class="tree__item--class tree__item__text">AttributeOperation</span></div></a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper" data-ln="module:engine/model/operation/detachoperation"><a class="tree__item--module tree__item__text" href="module_engine_model_operation_detachoperation.html">detachoperation</a>
+                      </div>
+                      <ul>
+                        <li><a href="module_engine_model_operation_detachoperation-DetachOperation.html">
+                            <div class="tree__item__wrapper" data-ln="module:engine/model/operation/detachoperation~DetachOperation"><span class="tree__item--class tree__item__text">DetachOperation</span></div></a>
                         </li>
                       </ul>
                     </li>

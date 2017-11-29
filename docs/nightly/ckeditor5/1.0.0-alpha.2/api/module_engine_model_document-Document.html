@@ -86,7 +86,9 @@
 each area will be represented by the separate root.</p>
 <p>All changes in the document are done by <a href="module_engine_model_operation_operation-Operation.html">operations</a>. To create operations in
 a simple way, use the <a href="module_engine_model_batch-Batch.html"><code>Batch</code></a> API, for example:</p>
-<pre class="prettyprint source"><code>doc.batch().insert( position, nodes ).split( otherPosition );</code></pre></div>
+<pre class="prettyprint source"><code>const batch = doc.batch();
+batch.insert( node, position );
+batch.split( otherPosition );</code></pre></div>
 <div class="notice notice__filter api-props-filter">
   <div class="api-props-filter__inner">
     <h4>Filtering</h4>
@@ -944,7 +946,7 @@ at the beginning of this selection&apos;s document&apos;s <a href="module_engine
                           <p class="collapsing-list__excerpt">Fired when document changes by applying an operation.
                           </p>
                           <div class="collapsing-list__content">
-<p>There are 5 types of change:</p>
+<p>There are a few types of change:</p>
 <ul>
 <li>&apos;insert&apos; when nodes are inserted,</li>
 <li>&apos;remove&apos; when nodes are removed,</li>
@@ -1775,9 +1777,6 @@ of changes which this change is a part of.</p>
                         <li><a href="module_engine_model_delta_attributedelta-AttributeDelta.html">
                             <div class="tree__item__wrapper" data-ln="module:engine/model/delta/attributedelta~AttributeDelta"><span class="tree__item--class tree__item__text">AttributeDelta</span></div></a>
                         </li>
-                        <li><a href="module_engine_model_delta_attributedelta-RootAttributeDelta.html">
-                            <div class="tree__item__wrapper" data-ln="module:engine/model/delta/attributedelta~RootAttributeDelta"><span class="tree__item--class tree__item__text">RootAttributeDelta</span></div></a>
-                        </li>
                       </ul>
                     </li>
                     <li><a href="module_engine_model_delta_basic-deltas.html">
@@ -1859,6 +1858,15 @@ of changes which this change is a part of.</p>
                       </ul>
                     </li>
                     <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper" data-ln="module:engine/model/delta/rootattributedelta"><a class="tree__item--module tree__item__text" href="module_engine_model_delta_rootattributedelta.html">rootattributedelta</a>
+                      </div>
+                      <ul>
+                        <li><a href="module_engine_model_delta_rootattributedelta-RootAttributeDelta.html">
+                            <div class="tree__item__wrapper" data-ln="module:engine/model/delta/rootattributedelta~RootAttributeDelta"><span class="tree__item--class tree__item__text">RootAttributeDelta</span></div></a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="toggler--collapsed">
                       <div class="tree__item__wrapper" data-ln="module:engine/model/delta/splitdelta"><a class="tree__item--module tree__item__text" href="module_engine_model_delta_splitdelta.html">splitdelta</a>
                       </div>
                       <ul>
@@ -1918,6 +1926,15 @@ of changes which this change is a part of.</p>
                       <ul>
                         <li><a href="module_engine_model_operation_attributeoperation-AttributeOperation.html">
                             <div class="tree__item__wrapper" data-ln="module:engine/model/operation/attributeoperation~AttributeOperation"><span class="tree__item--class tree__item__text">AttributeOperation</span></div></a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper" data-ln="module:engine/model/operation/detachoperation"><a class="tree__item--module tree__item__text" href="module_engine_model_operation_detachoperation.html">detachoperation</a>
+                      </div>
+                      <ul>
+                        <li><a href="module_engine_model_operation_detachoperation-DetachOperation.html">
+                            <div class="tree__item__wrapper" data-ln="module:engine/model/operation/detachoperation~DetachOperation"><span class="tree__item--class tree__item__text">DetachOperation</span></div></a>
                         </li>
                       </ul>
                     </li>

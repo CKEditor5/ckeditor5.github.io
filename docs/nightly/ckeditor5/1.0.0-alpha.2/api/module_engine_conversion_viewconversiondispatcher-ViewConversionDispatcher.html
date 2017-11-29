@@ -147,7 +147,7 @@ viewDispatcher.on( &apos;element:a&apos;, ( evt, data, consumable, conversionApi
 // Fire conversion.
 // Always take care where the converted model structure will be appended to. If this `viewDocumentFragment`
 // is going to be appended directly to a &apos;$root&apos; element, use that in `context`.
-viewDispatcher.convert( viewDocumentFragment, { context: [ &apos;$root&apos; ] } );</code></pre><p>Before each conversion process, <code>ViewConversionDispatcher</code> fires <a href="#event:viewCleanup"><code>viewCleanup</code></a>
+viewDispatcher.convert( viewDocumentFragment, batch, { context: [ &apos;$root&apos; ] } );</code></pre><p>Before each conversion process, <code>ViewConversionDispatcher</code> fires <a href="#event:viewCleanup"><code>viewCleanup</code></a>
 event which can be used to prepare tree view for conversion.</p></div>
 <div class="notice notice__filter api-props-filter">
   <div class="api-props-filter__inner">
@@ -217,7 +217,7 @@ by <code>ViewConversionDispatcher</code>.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="convert">
-                          <h3><code><a class="member-name" href="#convert">convert</a>( viewItem, [ additionalData ] ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span></code></h3>
+                          <h3><code><a class="member-name" href="#convert">convert</a>( viewItem, batch, additionalData ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Starts the conversion process. The entry point for the conversion.
@@ -230,7 +230,12 @@ by <code>ViewConversionDispatcher</code>.</p>
  <span><a class="collapsing-list__type" href="module_engine_viewithdocumentfragment-DocumentFragment.html">DocumentFragment</a></span> | <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span></code></dt>
                                         <dd><p>Part of the view to be converted.</p>
                                         </dd>
-                                        <dt><code> [ additionalData ]
+                                        <dt><code> batch
+                                             :
+ <span><a class="collapsing-list__type" href="module_engine_model_batch-Batch.html">Batch</a></span></code></dt>
+                                        <dd><p>Batch to which the deltas will be added.</p>
+                                        </dd>
+                                        <dt><code> additionalData
                                              :
  <span>Object</span></code></dt>
                                         <dd><p>Additional data to be passed in <code>data</code> argument when firing <code>ViewConversionDispatcher</code>
@@ -1465,9 +1470,6 @@ the whole view-tree they were exposed in <code>conversionApi</code> for callback
                         <li><a href="module_engine_model_delta_attributedelta-AttributeDelta.html">
                             <div class="tree__item__wrapper" data-ln="module:engine/model/delta/attributedelta~AttributeDelta"><span class="tree__item--class tree__item__text">AttributeDelta</span></div></a>
                         </li>
-                        <li><a href="module_engine_model_delta_attributedelta-RootAttributeDelta.html">
-                            <div class="tree__item__wrapper" data-ln="module:engine/model/delta/attributedelta~RootAttributeDelta"><span class="tree__item--class tree__item__text">RootAttributeDelta</span></div></a>
-                        </li>
                       </ul>
                     </li>
                     <li><a href="module_engine_model_delta_basic-deltas.html">
@@ -1549,6 +1551,15 @@ the whole view-tree they were exposed in <code>conversionApi</code> for callback
                       </ul>
                     </li>
                     <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper" data-ln="module:engine/model/delta/rootattributedelta"><a class="tree__item--module tree__item__text" href="module_engine_model_delta_rootattributedelta.html">rootattributedelta</a>
+                      </div>
+                      <ul>
+                        <li><a href="module_engine_model_delta_rootattributedelta-RootAttributeDelta.html">
+                            <div class="tree__item__wrapper" data-ln="module:engine/model/delta/rootattributedelta~RootAttributeDelta"><span class="tree__item--class tree__item__text">RootAttributeDelta</span></div></a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="toggler--collapsed">
                       <div class="tree__item__wrapper" data-ln="module:engine/model/delta/splitdelta"><a class="tree__item--module tree__item__text" href="module_engine_model_delta_splitdelta.html">splitdelta</a>
                       </div>
                       <ul>
@@ -1608,6 +1619,15 @@ the whole view-tree they were exposed in <code>conversionApi</code> for callback
                       <ul>
                         <li><a href="module_engine_model_operation_attributeoperation-AttributeOperation.html">
                             <div class="tree__item__wrapper" data-ln="module:engine/model/operation/attributeoperation~AttributeOperation"><span class="tree__item--class tree__item__text">AttributeOperation</span></div></a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper" data-ln="module:engine/model/operation/detachoperation"><a class="tree__item--module tree__item__text" href="module_engine_model_operation_detachoperation.html">detachoperation</a>
+                      </div>
+                      <ul>
+                        <li><a href="module_engine_model_operation_detachoperation-DetachOperation.html">
+                            <div class="tree__item__wrapper" data-ln="module:engine/model/operation/detachoperation~DetachOperation"><span class="tree__item--class tree__item__text">DetachOperation</span></div></a>
                         </li>
                       </ul>
                     </li>

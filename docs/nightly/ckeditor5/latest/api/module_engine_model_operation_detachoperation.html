@@ -2,8 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Class RootAttributeDelta (engine/model/delta/attributedelta~RootAttributeDelta) - CKEditor 5 API docs</title>
-    <link rel="canonical" href="/ckeditor5/latest/api/module_engine_model_delta_attributedelta-RootAttributeDelta.html">
+    <title>Module engine/model/operation/detachoperation - CKEditor 5 API docs</title>
+    <link rel="canonical" href="/ckeditor5/latest/api/module_engine_model_operation_detachoperation.html">
     <link rel="icon" type="image/png" href="../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../assets/img/favicons/32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
@@ -55,35 +55,16 @@
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="api-header"><img src="../../../assets/0.3.40/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.40/img/box-red.svg" alt="Module" title="Module"/>
             <div class="api-header__title">
-              <h1 data-ln="module:engine/model/delta/attributedelta~RootAttributeDelta">RootAttributeDelta<span class="header__import--hidden"> (engine/model/delta)</span>
+              <h1 data-ln="module:engine/model/operation/detachoperation">engine/model/operation/detachoperation
               </h1>
-              <p class="header__import">@ckeditor/ckeditor5-engine/src/model/delta/attributedelta
+              <p class="header__import">@ckeditor/ckeditor5-engine/src/model/operation/detachoperation
               </p>
             </div>
           </div>
-          <p><span class="badge">class</span>
+          <p><span class="badge">module</span>
           </p>
-          <nav class="secondary-navigation api-info-box">
-            <dl>
-                        <dt>Hierarchy</dt>
-                        <dd>
-                          <ul class="hierarchy-list">
-                                      <li title="@ckeditor/ckeditor5-engine/src/model/delta/delta~Delta"><code><span><a href="module_engine_model_delta_delta-Delta.html">Delta</a></span></code>
-                                        <ul>
-                                                    <li title="@ckeditor/ckeditor5-engine/src/model/delta/attributedelta~RootAttributeDelta"><code><span><a href="module_engine_model_delta_attributedelta-RootAttributeDelta.html">RootAttributeDelta</a></span></code>
-                                                    </li>
-                                        </ul>
-                                      </li>
-                          </ul>
-                        </dd>
-            </dl>
-          </nav>
-          <div class="main-description"><p>To provide specific OT behavior and better collisions solving, methods to change attributes
-(<a href="module_engine_model_batch-Batch.html#setAttribute"><code>setAttribute</code></a> and <a href="module_engine_model_batch-Batch.html#removeAttribute"><code>removeAttribute</code></a>)
-use <code>RootAttributeDelta</code> class which inherits from the <code>Delta</code> class and may
-overwrite some methods.</p></div>
 <div class="notice notice__filter api-props-filter">
   <div class="api-props-filter__inner">
     <h4>Filtering</h4>
@@ -115,200 +96,15 @@ overwrite some methods.</p></div>
     </ul>
   </div>
 </div>
-          <h2 id="Properties">Properties</h2>
+          <h2 id="Classes">Classes</h2>
           <ul class="collapsing-list collapsing-list--filtered">
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="baseVersion">
-                          <h3><code><a class="member-name" href="#baseVersion">baseVersion</a> : <span>Number</span> | <span>null</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term" id="DetachOperation">
+                          <h3><code><span><a href="module_engine_model_operation_detachoperation-DetachOperation.html">DetachOperation</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Returns delta base version which is equal to the base version of the first operation in delta. If there
-are no operations in delta, returns <code>null</code>.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="batch">
-                          <h3><code><a class="member-name" href="#batch">batch</a> : <span><a class="collapsing-list__type" href="module_engine_model_batch-Batch.html">Batch</a></span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt"><a href="module_engine_model_batch-Batch.html"><code>Batch</code></a> which delta is a part of. This property is null by default and set by the
-<a href="module_engine_model_batch-Batch.html#addDelta"><code>addDelta</code></a> method.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="operations">
-                          <h3><code><a class="member-name" href="#operations">operations</a> : <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_operation_operation-Operation.html">Operation</a>&gt;</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Array of operations which compose delta.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="type">
-                          <h3><code><a class="member-name" href="#type">type</a> : <span>String</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Delta type.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-private="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_reverseDeltaClass">
-                          <h3><code><a class="member-name" href="#_reverseDeltaClass">_reverseDeltaClass</a> : <span>function</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--red ">private</span>
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">A class that will be used when creating reversed delta.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-          </ul>
-          <h4>Static properties</h4>
-          <ul class="collapsing-list collapsing-list--filtered">
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="className">
-                          <h3><code><a class="member-name" href="#className">className</a> : <span>String</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-<span class="badge badge--gray ">inherited</span>
-<span class="badge badge--gray ">static</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Delta class name. Used by <a href="module_engine_model_delta_delta-Delta.html#toJSON"><code>toJSON</code></a> method for serialization and
-<a href="module_engine_model_delta_deltafactory-DeltaFactory.html#fromJSON"><code>fromJSON</code></a> during deserialization.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-          </ul>
-          <h2 id="Methods">Methods</h2>
-          <ul class="collapsing-list collapsing-list--filtered">
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="constructor">
-                          <h3><code><a class="member-name" href="#constructor">constructor</a>()</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Creates a delta instance.
-                          </p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="addOperation">
-                          <h3><code><a class="member-name" href="#addOperation">addOperation</a>( operation )</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Add operation to the delta.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> operation
-                                             :
- <span><a class="collapsing-list__type" href="module_engine_model_operation_operation-Operation.html">Operation</a></span></code></dt>
-                                        <dd><p>Operation instance.</p>
-                                        </dd>
-                                      </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="clone">
-                          <h3><code><a class="member-name" href="#clone">clone</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_delta_delta-Delta.html">Delta</a></span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Creates and returns a delta that has the same parameters as this delta.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_delta_delta-Delta.html">Delta</a></span></code></dt>
-                                        <dd><p>Clone of this delta.</p>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="getReversed">
-                          <h3><code><a class="member-name" href="#getReversed">getReversed</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_delta_delta-Delta.html">Delta</a></span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Creates and returns a reverse delta. Reverse delta when executed right after the original delta will bring back
-tree model state to the point before the original delta execution. In other words, it reverses changes done
-by the original delta.
-                          </p>
-                          <div class="collapsing-list__content">
-<p>Keep in mind that tree model state may change since executing the original delta, so reverse delta may be &quot;outdated&quot;.
-In that case you will need to <a href="module_engine_model_delta_transform-transform.html"><code>transform</code></a> it by all deltas that were executed after
-the original delta.</p>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_delta_delta-Delta.html">Delta</a></span></code></dt>
-                                        <dd><p>Reversed delta.</p>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="toJSON">
-                          <h3><code><a class="member-name" href="#toJSON">toJSON</a>() &rarr;  <span>Object</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Custom toJSON method to make deltas serializable.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span>Object</span></code></dt>
-                                        <dd><p>Clone of this delta with added class name.</p>
-                                        </dd>
-                            </dl>
-                          </div>
+                          <p class="collapsing-list__excerpt collapsing-list__excerpt--short">Operation to permanently remove node from detached root.
+Note this operation is only a local operation and won&apos;t be send to the other clients.</p>
                         </div>
                       </li>
           </ul>
@@ -1039,9 +835,6 @@ the original delta.</p>
                         <li><a href="module_engine_model_delta_attributedelta-AttributeDelta.html">
                             <div class="tree__item__wrapper" data-ln="module:engine/model/delta/attributedelta~AttributeDelta"><span class="tree__item--class tree__item__text">AttributeDelta</span></div></a>
                         </li>
-                        <li><a href="module_engine_model_delta_attributedelta-RootAttributeDelta.html">
-                            <div class="tree__item__wrapper" data-ln="module:engine/model/delta/attributedelta~RootAttributeDelta"><span class="tree__item--class tree__item__text">RootAttributeDelta</span></div></a>
-                        </li>
                       </ul>
                     </li>
                     <li><a href="module_engine_model_delta_basic-deltas.html">
@@ -1123,6 +916,15 @@ the original delta.</p>
                       </ul>
                     </li>
                     <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper" data-ln="module:engine/model/delta/rootattributedelta"><a class="tree__item--module tree__item__text" href="module_engine_model_delta_rootattributedelta.html">rootattributedelta</a>
+                      </div>
+                      <ul>
+                        <li><a href="module_engine_model_delta_rootattributedelta-RootAttributeDelta.html">
+                            <div class="tree__item__wrapper" data-ln="module:engine/model/delta/rootattributedelta~RootAttributeDelta"><span class="tree__item--class tree__item__text">RootAttributeDelta</span></div></a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="toggler--collapsed">
                       <div class="tree__item__wrapper" data-ln="module:engine/model/delta/splitdelta"><a class="tree__item--module tree__item__text" href="module_engine_model_delta_splitdelta.html">splitdelta</a>
                       </div>
                       <ul>
@@ -1182,6 +984,15 @@ the original delta.</p>
                       <ul>
                         <li><a href="module_engine_model_operation_attributeoperation-AttributeOperation.html">
                             <div class="tree__item__wrapper" data-ln="module:engine/model/operation/attributeoperation~AttributeOperation"><span class="tree__item--class tree__item__text">AttributeOperation</span></div></a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper" data-ln="module:engine/model/operation/detachoperation"><a class="tree__item--module tree__item__text" href="module_engine_model_operation_detachoperation.html">detachoperation</a>
+                      </div>
+                      <ul>
+                        <li><a href="module_engine_model_operation_detachoperation-DetachOperation.html">
+                            <div class="tree__item__wrapper" data-ln="module:engine/model/operation/detachoperation~DetachOperation"><span class="tree__item--class tree__item__text">DetachOperation</span></div></a>
                         </li>
                       </ul>
                     </li>
@@ -3236,6 +3047,7 @@ the original delta.</p>
     <footer class="footer">
       <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
     </footer>
+    <meta content="-1" name="docsearch:custom_ranking">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
 docsearch({
 apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},debug:false,
