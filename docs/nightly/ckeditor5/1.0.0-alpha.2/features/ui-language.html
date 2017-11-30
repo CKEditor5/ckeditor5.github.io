@@ -67,7 +67,38 @@
 	<p>This is <a href="https://ckeditor5.github.io">CKEditor&#xA0;5</a>.</p>
 </div>
 </div>
-<h2 id="Building-the-editor-using-a-specific-language"><a href="#Building-the-editor-using-a-specific-language" class="headerlink" title="Building the editor using a specific language"></a>Building the editor using a specific language</h2><p>Currently, it is only possible to change the UI language at the build stage. A single build of the editor supports only the language which was defined in the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-dev-webpack-plugin" target="_blank" rel="noopener">CKEditor 5 webpack plugin</a>&apos;s configuration.</p>
+<h2 id="Loading-additional-languages-from-CDN-npm-and-zip-file"><a href="#Loading-additional-languages-from-CDN-npm-and-zip-file" class="headerlink" title="Loading additional languages from CDN, npm and zip file"></a>Loading additional languages from CDN, npm and zip file</h2><p>You can load additional languages using:</p>
+<ul>
+<li><a href="#CDN">CDN</a>,</li>
+<li><a href="#npm">npm</a>,</li>
+<li><a href="#Zip">Zip download</a>.</li>
+</ul>
+<p>Next, configure the editor to use chosen language:</p>
+<pre><code class="js">ClassicEditor
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        language: &apos;de&apos;
+    } )
+    .then( editor =&gt; {
+        console.log( editor );
+    } )
+    .catch( error =&gt; {
+        console.error( error );
+    } );
+</code></pre>
+<h3 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h3><p>To use different language than default one (English), you need to load the editor together with the preferred language:</p>
+<pre><code class="html">&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/[version.number]/[distribution]/ckeditor.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/[version.number]/[distribution]/lang/de.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>See <a href="../builds/guides/integration/installation.html#CDN">CDN installation guides</a> for more information.</p>
+<h3 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h3><p>After installing the build from npm, languages will be available at <code>node_modules/@ckeditor/ckeditor5-build-[name]/build/lang/[lang].js</code>.
+Single language can be loaded directly to your code by importing <code>&apos;@ckeditor/ckeditor5-build-[name]/build/lang/de.js&apos;</code>.</p>
+<p>See <a href="../builds/guides/integration/installation.html#npm">npm installation guides</a> for more information.</p>
+<h3 id="Zip"><a href="#Zip" class="headerlink" title="Zip"></a>Zip</h3><p>All additional languages are included in <code>.zip</code> file. You need to include <code>ckeditor.js</code> file together with language file:</p>
+<pre><code class="js">&lt;script src=&quot;[ckeditor-path]/ckeditor.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;[ckeditor-path]/lang/de.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>See <a href="../builds/guides/integration/installation.html#Zip-download">zip installation guides</a> for more information.</p>
+<h2 id="Building-the-editor-using-a-specific-language"><a href="#Building-the-editor-using-a-specific-language" class="headerlink" title="Building the editor using a specific language"></a>Building the editor using a specific language</h2><p>Currently, it is possible to change the UI language at the build stage and after the build. A single build of the editor supports the language which was defined in the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-dev-webpack-plugin" target="_blank" rel="noopener">CKEditor 5 webpack plugin</a>&apos;s configuration. See the whole translation process to see how you can change the language later.</p>
 <p>If you use one of the <a href="../builds/index.html">predefined editor builds</a>, refer to <a href="../builds/guides/development/custom-builds.html">Creating custom builds</a> to learn how to change the language of your build.</p>
 <p>If you build CKEditor from scratch or integrate it directly into your application, then all you need to do is to:</p>
 <ol>
@@ -82,8 +113,19 @@
  // Define webpack plugins ...
      plugins: [
          new CKEditorWebpackPlugin( {
-             // Note: The plugin is currently able to build just one language at a time.
-             languages: [ &apos;pl&apos; ]
+             // Main language that will be built in to the main bundle.
+             language: &apos;en&apos;,
+
+             // Additional languages that will be emitted to the `outputDirectory`.
+             // This option can be set to array of language codes or `&apos;all&apos;` to build all found languages.
+             // The bundle is optimized for one language when this option is omitted.
+             additionalLanguages: &apos;all&apos;,
+
+             // outputDirectory - optional directory for emitted translations, `&apos;lang&apos;` by default, relative to the webpack&apos;s output.
+
+             // strict - will cause the building process to fail if an error is found during the building process.
+
+             // verbose - will cause logging all warnings into the console
          } ),
 
          // Other webpack plugins...
@@ -91,10 +133,27 @@
  // ...
 </code></pre>
 </li>
-<li><p>Run webpack. The CKEditor plugin for webpack will replace the <a href="../api/module_utils_locale-Locale.html#t"><code>t()</code></a> function calls used in the source code with localized language strings.</p>
+<li><p>Run webpack. If the <code>additionalLanguages</code> option is not set, the CKEditor plugin for webpack will replace the <a href="../api/module_utils_locale-Locale.html#t"><code>t()</code></a> function call parameters used in the source code with localized language strings. Otherwise the CKEditor plugin for webpack will replace the <a href="../api/module_utils_locale-Locale.html#t"><code>t()</code></a> function call parameters with short ids and emit the translation files that should land in the <code>&apos;lang&apos;</code> directory (or different, if the <code>outputDirectory</code> option is specified).</p>
+</li>
+<li><p>If you want to change the language after the build ends, you will need to edit the <code>index.html</code> file, add the translation file and set the UI language to the target one.</p>
+<pre><code class="html"> &lt;script src=&quot;../build/ckeditor.js&quot;&gt;&lt;/script&gt;
+ &lt;script src=&quot;../build/lang/pl.js&quot;&gt;&lt;/script&gt;
+ &lt;script&gt;
+     ClassicEditor
+         .create( document.querySelector( &apos;#editor&apos; ), {
+             language: &apos;pl&apos;
+         } )
+         .then( editor =&gt; {
+             window.editor = editor;
+         } )
+         .catch( err =&gt; {
+             console.error( err.stack );
+         } );
+ &lt;/script&gt;
+</code></pre>
 </li>
 </ol>
-<div class="info-box notice"><p>We are aware that the current localization method is not sufficient for all needs. It neither supports different bundlers (e.g. Rollup or Browserify) nor building multiple languages (to make it possible to pick one at runtime). We will be extending the localization possiblities in the near future.</p><p>You can read more about the used techniques and future plans in the <a href="https://github.com/ckeditor/ckeditor5/issues/387" target="_blank" rel="noopener">&quot;Implement translation services&quot; issue</a>.</p></div>
+<div class="info-box notice"><p>We are aware that the current localization method is not sufficient for all needs. It doesn&apos;t support different bundlers (e.g. Rollup or Browserify). We will be extending the localization possibilities in the future.</p><p>You can read more about the used techniques in the <a href="https://github.com/ckeditor/ckeditor5/issues/387" target="_blank" rel="noopener">&quot;Implement translation services&quot; issue</a> and <a href="https://github.com/ckeditor/ckeditor5/issues/624" target="_blank" rel="noopener">&quot;Implement translation services v2&quot; issue</a>.</p></div>
 
         </div>
       </section>
