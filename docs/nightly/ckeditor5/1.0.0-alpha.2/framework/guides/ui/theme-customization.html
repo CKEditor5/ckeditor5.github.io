@@ -60,12 +60,8 @@
           <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-theme-lark/blob/master/docs/framework/guides/theme-customization.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.40/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5-theme-lark/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.40/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
           <h1><img src="../../../../../assets/0.3.40/img/book.svg" alt="guide">Theme customization
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Styles-processing-and-bundling">Styles processing and bundling</a></li><li><a href="#Customization-with-SASS-variables">Customization with SASS variables</a></li><li><a href="#Adding-extra-styles-to-the-build">Adding extra styles to the build</a></li></ol></nav><p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-theme-lark" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-theme-lark</code></a> is the default theme of CKEditor 5. Lark is modular, <a href="https://en.bem.info/methodology/css/" target="_blank" rel="noopener">BEM&#x2013;friendly</a> and built in <a href="http://sass-lang.com" target="_blank" rel="noopener">SASS</a>.</p>
-<p>Although it was designed with versatility and the most common editor use cases in mind, some integrations may require adjustments to make it match the style guidelines of the ecosystem. This kind of customization can be done in two different ways, which can also be used together if needed:</p>
-<ul>
-<li>By building the editor with a set of custom SASS variables and overriding <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#Variable_Defaults___default" target="_blank" rel="noopener">defaults</a>, which does not change the size of the build.</li>
-<li>By importing an extra <code>.scss</code> file and overriding the CSS rules, which increases the size of the build.</li>
-</ul>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Styles-processing-and-bundling">Styles processing and bundling</a></li><li><a href="#Customization-with-CSS-variables">Customization with CSS variables</a></li><li><a href="#Further-customization">Further customization</a></li></ol></nav><p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-theme-lark" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-theme-lark</code></a> is the default theme of CKEditor 5. Lark is modular, <a href="https://en.bem.info/methodology/css/" target="_blank" rel="noopener">BEM&#x2013;friendly</a> and built in <a href="http://postcss.org/" target="_blank" rel="noopener">PostCSS</a>.</p>
+<p>Although it was designed with versatility and the most common editor use cases in mind, some integrations may require adjustments to make it match the style guidelines of the ecosystem. This kind of customization can be done by importing an extra <code>.css</code> file and overriding the <a href="https://www.w3.org/TR/css-variables/" target="_blank" rel="noopener">native CSS variables</a>.</p>
 <p>You can see the demo of an editor with the dark theme as a result of customizations described later in this guide:</p>
 <div class="live-snippet"><div id="snippet-classic-editor">
 	<p>
@@ -83,178 +79,168 @@
 
 <p>The entire process of building and managing the styles boils down to three steps:</p>
 <ol>
-<li><p><strong>Collecting</strong>: Each JavaScript file in the project can import multiple <code>.scss</code> files using the ES6 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import" target="_blank" rel="noopener"><code>import</code></a> directive. Imported files are handled by the <a href="https://www.npmjs.com/package/css-loader" target="_blank" rel="noopener">CSS Loader</a>.</p>
-<pre><code class="js"> import &apos;../theme/theme.scss&apos;;
+<li><p><strong>Collecting</strong>: Each JavaScript file in the project can import multiple <code>.css</code> files using the ES6 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import" target="_blank" rel="noopener"><code>import</code></a> directive. Imported files are handled by the <a href="https://www.npmjs.com/package/postcss-loader" target="_blank" rel="noopener">PostCSS Loader</a>.</p>
+<pre><code class="js"> import &apos;../theme/theme.css&apos;;
 
  class AnyEditorClass {
      ...
  }
 </code></pre>
-<pre><code class="scss"> // Contents of theme.scss.
- $color: red;
+<pre><code class="css"> /* Contents of theme.css. */
+ :root {
+     --color: red;
+ }
 
  .ck-editor {
-     color: $color;
+     color: var(--color);
  }
 </code></pre>
 </li>
-<li><p><strong>Compiling</strong>: The <a href="https://www.npmjs.com/package/sass-loader" target="_blank" rel="noopener">SASS Loader</a> compiles <code>.scss</code> files from SASS to CSS. Each file is compiled asynchronously, in a separate SASS thread.</p>
-<pre><code class="scss"> .ck-editor {
-     color: $color; // -&gt; color: red;
- }
-</code></pre>
+<li><p><strong>Processing</strong>: The PostCSS Loader processes <code>.css</code> files to the output CSS. Each file is compiled asynchronously, in a separate processor thread using pre&#x2013;defined plugins.</p>
 </li>
 <li><p><strong>Loading</strong>: Finally the <a href="https://www.npmjs.com/package/style-loader" target="_blank" rel="noopener">Style loader</a> loads the output CSS along with the <code>ckeditor.js</code> file into a <code>&lt;style&gt;</code> element in the <code>&lt;head&gt;</code> section of the web page.</p>
 <pre><code class="html"> &lt;head&gt;
      &lt;style type=&quot;text/css&quot;&gt;
          .ck-editor {
-             color: red;
+             color: var(--color);
          }
      &lt;/style&gt;
  &lt;/head&gt;
 </code></pre>
 </li>
 </ol>
-<h2 id="Customization-with-SASS-variables"><a href="#Customization-with-SASS-variables" class="headerlink" title="Customization with SASS variables"></a>Customization with SASS variables</h2><p>Having <a href="../../../builds/guides/development/custom-builds.html#Forking-an-existing-build">cloned</a> an existing build of CKEditor for a quick start, take a look at the specific definitions in the <code>webpack.config.js</code> file.</p>
-<pre><code class="js">module: {
-    rules: [
-        ...
-        {
-            test: /\.scss$/,
-            use: [
-                &apos;style-loader&apos;,
-                &apos;css-loader&apos;,
-                &apos;sass-loader&apos;
-            ]
-        }
-    ]
+<h2 id="Customization-with-CSS-variables"><a href="#Customization-with-CSS-variables" class="headerlink" title="Customization with CSS variables"></a>Customization with CSS variables</h2><p>Having <a href="../../../builds/guides/development/custom-builds.html#Forking-an-existing-build">cloned</a> an existing build of CKEditor for a quick start, let&apos;s use the full potential of CSS variables. The customization in this guide will make the theme dark, with slightly bigger text and more rounded corners.</p>
+<div class="info-box notice notice__hint"><p>Check out the <a href="https://github.com/ckeditor/ckeditor5-theme-lark/blob/master/theme/ckeditor5-ui/globals/_colors.css" target="_blank" rel="noopener">colors helper</a> for the full list of customizable colors. You can also browse <a href="https://github.com/ckeditor/ckeditor5-theme-lark/tree/master/theme/mixins" target="_blank" rel="noopener">other helpers</a> to learn about other useful tools.</p></div>
+
+<p>The file containing custom variables will be named <code>custom.css</code> and it will look as below:</p>
+<pre><code class="css">
+:root {
+    /* Overrides the border-radius setting in the theme. */
+    --ck-border-radius: 4px;
+
+    /* Overrides the default font size in the theme. */
+    --ck-font-size-base: 14px;
+
+    /* Helper variables to avoid duplication in the colors. */
+    --ck-custom-background: #4A494B;
+    --ck-custom-foreground: #3a393d;
+    --ck-custom-border: #383738;
+    --ck-custom-white: #fff;
+
+    /* -- Overrides generic colors -------------------------------------------------------------- */
+
+    --ck-color-focus-border: #48a3f5;
+    --ck-color-text: #fafafa;
+    --ck-color-shadow-drop: rgba( 0, 0, 0, .2 );
+    --ck-color-shadow-inner: rgba( 0, 0, 0, .1 );
+
+    /* -- Overrides the default .ck-button class colors ----------------------------------------- */
+
+    --ck-color-button-default-background: var(--ck-custom-background);
+    --ck-color-button-default-border: var(--ck-custom-border);
+    --ck-color-button-default-focus-background: #434244;
+    --ck-color-button-default-focus-border: #323232;
+    --ck-color-button-default-active-background: #3f3e40;
+    --ck-color-button-default-active-border: #302f30;
+    --ck-color-button-default-active-shadow: #3b3a3c;
+    --ck-color-button-default-disabled-background: var(--ck-custom-background);
+    --ck-color-button-default-disabled-border: var(--ck-custom-border);
+
+    --ck-color-button-on-background: var(--ck-custom-foreground);
+    --ck-color-button-on-border: var(--ck-custom-border);
+    --ck-color-button-on-focus-background: #343337;
+    --ck-color-button-on-focus-border: #323232;
+    --ck-color-button-on-active-background: #313034;
+    --ck-color-button-on-active-border: #302f30;
+    --ck-color-button-on-active-shadow: #2e2e31;
+    --ck-color-button-on-disabled-background: var(--ck-custom-foreground);
+    --ck-color-button-on-disabled-border: var(--ck-custom-border);
+
+    --ck-color-button-action-background: #1ABC9C;
+    --ck-color-button-action-border: #49d2b7;
+    --ck-color-button-action-focus-background: #17a98c;
+    --ck-color-button-action-focus-border: #42bda5;
+    --ck-color-button-action-active-background: #16a085;
+    --ck-color-button-action-active-border: #3eb39c;
+    --ck-color-button-action-active-shadow: #15967d;
+    --ck-color-button-action-disabled-background: #1ABC9C;
+    --ck-color-button-action-disabled-border: #49d2b7;
+    --ck-color-button-action-text: var(--ck-custom-white);
+
+    /* -- Overrides the default .ck-dropdown class colors --------------------------------------- */
+
+    --ck-color-dropdown-panel-background: var(--ck-custom-background);
+    --ck-color-dropdown-panel-border: var(--ck-custom-foreground);
+    --ck-color-dropdown-symbol: #f1f1f1;
+
+    /* -- Overrides the default .ck-input class colors ------------------------------------------ */
+
+    --ck-color-input-background: var(--ck-custom-foreground);
+    --ck-color-input-border: #6b6970;
+    --ck-color-input-text: #fafafa;
+    --ck-color-input-disabled-background: #343337;
+    --ck-color-input-disabled-border: #605f65;
+    --ck-color-input-disabled-text: #757575;
+
+    /* -- Overrides the default .ck-list class colors ------------------------------------------- */
+
+    --ck-color-list-background: var(--ck-custom-background);
+    --ck-color-list-item-background-hover: var(--ck-custom-foreground);
+    --ck-color-list-item-background-active: #1A8BF1;
+    --ck-color-list-item-text-active: var(--ck-custom-white);
+
+    /* -- Overrides the default .ck-balloon-panel class colors ---------------------------------- */
+
+    --ck-color-panel-background: var(--ck-custom-background);
+    --ck-color-panel-border: var(--ck-custom-border);
+
+    /* -- Overrides the default .ck-toolbar class colors ---------------------------------------- */
+
+    --ck-color-toolbar-background: var(--ck-custom-foreground);
+    --ck-color-toolbar-border: var(--ck-custom-border);
+
+    /* -- Overrides the default .ck-tooltip class colors ---------------------------------------- */
+
+    --ck-color-tooltip-background: #212025;
+    --ck-color-tooltip-text: #eee;
+
+    /* -- Overrides the default colors used by the editor --------------------------------------- */
+
+    --ck-color-editor-border: var(--ck-custom-background);
+    --ck-color-editor-toolbar-background: var(--ck-custom-background);
+
+    --ck-color-editor-toolbar-button-on-background: #3c3c3c;
+    --ck-color-editor-toolbar-button-on-border: transparent;
+    --ck-color-editor-toolbar-button-on-focus-background: #353535;
+    --ck-color-editor-toolbar-button-on-focus-border: transparent;
+    --ck-color-editor-toolbar-button-on-active-background: #272727;
+    --ck-color-editor-toolbar-button-on-active-border: transparent;
+    --ck-color-editor-toolbar-button-on-active-shadow: #2d2d2d;
+    --ck-color-editor-toolbar-button-on-disabled-background: transparent;
+    --ck-color-editor-toolbar-button-on-disabled-border: transparent;
+
+    --ck-color-editor-dropdown-background: #535254;
+
+    /* -- Overrides the default colors used by ckeditor5-image package -------------------------- */
+
+    --ck-color-image-caption-background: #f7f7f7;
+    --ck-color-image-caption-text: #333;
+
+    /* -- Overrides the default colors used by ckeditor5-widget package ------------------------- */
+
+    --ck-color-widget-border-blurred: #ddd;
+    --ck-color-widget-border-hover: #FFD25C;
+    --ck-color-widget-editable-focused-background: var(--ck-custom-white);
 }
 </code></pre>
-<p>Each SASS file is compiled in a separate thread, so to override default variables (defined with <code>!default</code>) across the theme, new values must be imported or declared at the very beginning of <strong>each single</strong> SASS file&apos;s compilation process. SASS Loader offers the <a href="https://www.npmjs.com/package/sass-loader#environment-variables" target="_blank" rel="noopener"><code>data</code></a> option to do this.</p>
-<p>Now <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#_import__import" target="_blank" rel="noopener"><code>@import</code></a> a <code>custom.scss</code> file located in the root of the repository containing all custom variables.</p>
-<pre><code class="js">use: [
-    &apos;style-loader&apos;,
-    &apos;css-loader&apos;,
-    {
-        loader: &apos;sass-loader&apos;,
-        options: {
-            data: `@import &apos;custom.scss&apos;;`
-        }
-    }
-]
+<p>This file can be referenced directly in HTML <strong>after the <code>&lt;link&gt;</code> tag injected by the editor</strong> and its content will simply override the default CSS variables. CSS variables are natively <a href="https://caniuse.com/#feat=css-variables" target="_blank" rel="noopener">supported</a> in all major web browsers and just like like any other CSS rule, they are prioritized in the order of precedence.</p>
+<pre><code class="html">&lt;link rel=&quot;stylesheet&quot; href=&quot;custom.css&quot; type=&quot;text/css&quot;&gt;
 </code></pre>
-<p>Using the full potential of SASS variables, the customization will make the theme dark, with slightly bigger text and more rounded corners.</p>
-<div class="info-box notice notice__hint"><p>Check out the <a href="https://github.com/ckeditor/ckeditor5-theme-lark/blob/master/theme/helpers/_colors.scss" target="_blank" rel="noopener">colors helper</a> for the full list of customizable colors. You can also browse <a href="https://github.com/ckeditor/ckeditor5-theme-lark/tree/master/theme/helpers" target="_blank" rel="noopener">other helpers</a> to learn about other useful SASS variables.</p></div>
-
-<p>The contents of <code>custom.scss</code> could look as below:</p>
-<pre><code class="scss">// Overrides the border radius setting in the theme.
-$ck-border-radius: 4px;
-
-// Overrides the default font size in the theme.
-$ck-font-size-base: 14px;
-
-// Helper variables to avoid duplication in $ck-colors.
-$custom-background: #4A494B;
-$custom-foreground: #3a393d;
-$custom-border: #383738;
-$custom-white: #fff;
-
-// Colors used by the ck-color() mixin across the theme.
-$ck-colors: (
-    // Overrides the default focus color used by the ck-focus-ring() mixin.
-    &apos;border-focus&apos;: #48a3f5,
-
-    // Overrides the default text color in the theme.
-    &apos;text&apos;: #fafafa,
-
-    // Overrides the default shadow colors in the theme.
-    &apos;shadow-drop&apos;: rgba( 0, 0, 0, .2 ),
-    &apos;shadow-inner&apos;: rgba( 0, 0, 0, .1 ),
-
-    // Overrides the default .ck-button class colors.
-    &apos;button-default-background&apos;: $custom-background,
-    &apos;button-default-border&apos;: $custom-border,
-    &apos;button-on-background&apos;: $custom-foreground,
-    &apos;button-on-border&apos;: $custom-border,
-    &apos;button-action-background&apos;: #1ABC9C,
-    &apos;button-action-border&apos;: #49d2b7,
-    &apos;button-action-text&apos;: $custom-white,
-
-    // Overrides the default .ck-dropdown class colors.
-    &apos;dropdown-panel-background&apos;: $custom-background,
-    &apos;dropdown-panel-border&apos;: $custom-foreground,
-    &apos;dropdown-symbol&apos;: #f1f1f1,
-
-    // Overrides the default .ck-input class colors.
-    &apos;input-background&apos;: $custom-foreground,
-    &apos;input-border&apos;: #6b6970,
-    &apos;input-text&apos;: #fafafa,
-
-    // Overrides the default .ck-list class colors.
-    &apos;list-background&apos;: $custom-background,
-    &apos;list-item-background-hover&apos;: $custom-foreground,
-    &apos;list-item-background-active&apos;: #1A8BF1,
-    &apos;list-item-text-active&apos;: $custom-white,
-
-    // Overrides the default .ck-balloon-panel class colors.
-    &apos;panel-background&apos;: $custom-background,
-    &apos;panel-border&apos;: $custom-border,
-
-    // Overrides the default .ck-toolbar class colors.
-    &apos;toolbar-background&apos;: $custom-foreground,
-    &apos;toolbar-border&apos;: $custom-border,
-
-    // Overrides the default .ck-tooltip class colors.
-    &apos;tooltip-background&apos;: #212025,
-    &apos;tooltip-text&apos;: #eee,
-
-    // Overrides the default colors used by the editor.
-    &apos;editor-border&apos;: $custom-background,
-    &apos;editor-toolbar-background&apos;: $custom-background,
-    &apos;editor-toolbar-button-background&apos;: $custom-background,
-    &apos;editor-dropdown-background&apos;: #535254,
-
-    // Overrides the default colors used by the ckeditor5-image package.
-    &apos;image-caption-background&apos;: #f7f7f7,
-    &apos;image-caption-text&apos;: #333,
-
-    // Overrides the default colors used by the ckeditor5-widget package.
-    &apos;widget-border-blurred&apos;: #ddd,
-    &apos;widget-border-hover&apos;: #FFD25C,
-    &apos;widget-editable-focused-background&apos;: $custom-white
-);
-</code></pre>
-<p>It is time to build the editor using <code>npm run build-ckeditor</code> and see the results. From now on, the editor&apos;s theme is using customized styles.</p>
-<h2 id="Adding-extra-styles-to-the-build"><a href="#Adding-extra-styles-to-the-build" class="headerlink" title="Adding extra styles to the build"></a>Adding extra styles to the build</h2><p>Not every element of the theme can be customized using SASS variables and some visual tweaking may require more complex CSS rules.</p>
-<p>In the editor demo presented and the very beginning of this guide, the drop down button in the toolbar has a complex inner <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow?v=b" target="_blank" rel="noopener"><code>box-shadow</code></a> that makes it more appealing. By default, the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-theme-lark" target="_blank" rel="noopener">Lark</a> theme does not support such shadow and that is why it must be defined separately.</p>
-<pre><code class="css">.ck-editor-toolbar .ck-button.ck-dropdown__button {
-    box-shadow: 0 0 0 1px #5c5b5d inset, 0 0 5px #5c5b5d inset;
-}
-</code></pre>
-<p>The rule above could be added directly to any stylesheet in the web page and most certainly would work as expected.</p>
-<p>But what if the color set customized in the <a href="#Customization-with-SASS-variables">previous part</a> of this guide has changed? Static CSS rules will neither update along with the SASS variables nor can they benefit from the mixins and functions provided by the theme. To add extra styles and keep them within the ecosystem, a separate SASS file should be created (in his example it will be called <code>extras.scss</code>):</p>
-<pre><code class="scss">// Allow using Lark&apos;s ck-box-shadow() mixin.
-@import &apos;~@ckeditor/ckeditor5-theme-lark/theme/helpers/_shadow.scss&apos;;
-
-// Allow using colors defined in Lark and the ck-color() mixin.
-@import &apos;~@ckeditor/ckeditor5-theme-lark/theme/helpers/_colors.scss&apos;;
-
-// The shadow should be 10% brighter than the toolbar background.
-$shadow-color: ck-color( &apos;editor-toolbar-background&apos;, 10 );
-
-.ck-editor-toolbar {
-    .ck-button.ck-dropdown__button {
-        // Apply a dedicated inner box-shadow to the drop-down button.
-        @include ck-box-shadow(
-            0 0 0 1px $shadow-color inset,
-            0 0 5px $shadow-color inset
-        );
-    }
-}
-</code></pre>
-<p>This file then needs to be imported into a JavaScript file that is processed by webpack and the <a href="#Styles-processing-and-bundling">loaders</a>, like for example an entry point of the application.</p>
+<p>Alternatively, the style sheet can also be imported into a JavaScript file that is processed by webpack and the <a href="#Styles-processing-and-bundling">loaders</a> becoming part of the build, e.g. an entry point of the application.</p>
 <pre><code class="js">import ClassicEditor from &apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;;
-import &apos;extras.scss&apos;;
+
+// To override the default styles, this file must be imported after ClassicEditor.
+import &apos;custom.css&apos;;
 
 ClassicEditor
     .create( ... )
@@ -265,7 +251,41 @@ ClassicEditor
         console.error( err.stack );
     } );
 </code></pre>
-<p>This way, the additional styles will stay up&#x2013;to&#x2013;date as the application develops and changes over the time.</p>
+<h2 id="Further-customization"><a href="#Further-customization" class="headerlink" title="Further customization"></a>Further customization</h2><p>In the editor demo presented and the very beginning of this guide, the drop down button in the toolbar has a complex inner <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow?v=b" target="_blank" rel="noopener"><code>box-shadow</code></a> that makes it more appealing. By default, the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-theme-lark" target="_blank" rel="noopener">Lark</a> theme does not support such shadow and that is why it must be defined separately.</p>
+<pre><code class="css">:root {
+    --ck-shadow-color: #646265;
+}
+
+.ck-editor-toolbar .ck-button.ck-dropdown__button {
+    box-shadow: 0 0 0 1px var(--ck-shadow-color) inset, 0 0 5px var(--ck-shadow-color) inset;
+}
+</code></pre>
+<p>Again, the rule above could be added directly to any stylesheet in the web page and it would work as expected. But to use a pre&#x2013;defined helper mixin (<code>@mixin ck-box-shadow</code>), clean up the code with some nesting just like below, and finally make it the part of the editor build, the code must be processed by webpack and PostCSS too.</p>
+<pre><code class="css">/* Allow using Lark&apos;s ck-box-shadow() mixin. */
+@import &apos;@ckeditor/ckeditor5-theme-lark/theme/mixins/_shadow.css&apos;;
+
+/* The shadow should be 10% brighter than the toolbar background. */
+:root {
+    --ck-shadow-color: #646265;
+}
+
+.ck-editor-toolbar {
+    &amp; .ck-button.ck-dropdown__button {
+        /* Apply a dedicated inner box-shadow to the dropdown button. */
+        @mixin ck-box-shadow
+            0 0 0 1px var(--ck-shadow-color) inset,
+            0 0 5px var(--ck-shadow-color) inset;
+    }
+}
+</code></pre>
+<p>Let&apos;s put the content of the file in the <code>extras.css</code> and import it just like the custom variables sheet:</p>
+<pre><code class="js">import ClassicEditor from &apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;;
+
+// To override default styles, these files must be imported after ClassicEditor.
+import &apos;custom.css&apos;;
+import &apos;extras.css&apos;;
+</code></pre>
+<p>It is time to build the editor using <code>npm run build-ckeditor</code> and see the results. From now on, the editor&apos;s theme is using customized styles, which are part of the build.</p>
 
         </div>
       </section>
