@@ -9,8 +9,8 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/0.3.40/css/styles.css" type="text/css" media="screen">
-    <script src="../../../../../assets/0.3.40/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../../../assets/0.3.42/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../../assets/0.3.42/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -49,16 +49,16 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.40/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.42/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/contributing/testing-environment.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.40/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.40/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/contributing/testing-environment.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.42/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.42/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <h1><img src="../../../../../assets/0.3.40/img/book.svg" alt="guide">Testing environment
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Introduction">Introduction</a></li><li><a href="#Running-automated-tests">Running automated tests</a><ol><li><a href="#Examples">Examples</a></li></ol></li><li><a href="#Running-manual-tests">Running manual tests</a><ol><li><a href="#Creating-a-manual-test">Creating a manual test</a></li></ol></li></ol></nav><p>Before reading this article we recommend getting familiar with the CKEditor 5 <a href="development-environment.html">development environment</a>.</p>
+          <h1><img src="../../../../../assets/0.3.42/img/book.svg" alt="guide">Testing environment
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Introduction">Introduction</a></li><li><a href="#Running-automated-tests">Running automated tests</a><ol><li><a href="#Examples">Examples</a></li></ol></li><li><a href="#Running-manual-tests">Running manual tests</a><ol><li><a href="#Creating-a-manual-test">Creating a manual test</a></li></ol></li><li><a href="#Test-suite-and-CI">Test suite and CI</a></li></ol></nav><p>Before reading this article we recommend getting familiar with the CKEditor 5 <a href="development-environment.html">development environment</a>.</p>
 <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>The CKEditor 5 testing environment uses a popular setup with <a href="https://karma-runner.github.io" target="_blank" rel="noopener">Karma</a>, <a href="https://webpack.github.io/" target="_blank" rel="noopener">webpack</a>, <a href="https://github.com/babel/babel-loader" target="_blank" rel="noopener">babel-loader</a> and <a href="https://github.com/gotwarlost/istanbul" target="_blank" rel="noopener">Istanbul</a>. We created some <a href="https://docs.npmjs.com/cli/run-script" target="_blank" rel="noopener">npm scripts</a> which glue all these pieces and special requirements for CKEditor together.</p>
 <p>Each CKEditor package has its own tests suite (see for example the <a href="https://github.com/ckeditor/ckeditor5-engine/tree/master/tests" target="_blank" rel="noopener">engine&apos;s tests</a>), however, the test runner is available in the <a href="https://github.com/ckeditor/ckeditor5" target="_blank" rel="noopener"><code>ckeditor5</code></a> package which is the central development environment. The actual code of the test runner is implemented in the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-dev-tests" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-dev-tests</code></a> package and can be easily reused outside of <code>ckeditor5</code>.</p>
 <h2 id="Running-automated-tests"><a href="#Running-automated-tests" class="headerlink" title="Running automated tests"></a>Running automated tests</h2><p>In order to run the automated tests use the <code>npm test [-- &lt;args&gt;...]</code> command.</p>
@@ -128,6 +128,11 @@ ClassicEditor
     } );
 </code></pre>
 <div class="info-box notice"><p>Do not forget to add all dependencies of your manual test as <code>devDependencies</code> (in <code>package.json</code>).</p></div>
+
+<h2 id="Test-suite-and-CI"><a href="#Test-suite-and-CI" class="headerlink" title="Test suite and CI"></a>Test suite and CI</h2><p>To ensure the highest quality, we maintain a complete test suite with a stable 100% of code coverage for each of the packages. As of December 2017, this means over 7000 tests and the number is growing. Since every package is tested separately, we implement lower-level tests for libraries and higher-level tests for end-user features.</p>
+<p>Such an extensive test suite requires a proper continuous integration service. We use <a href="https://travis-ci.com/" target="_blank" rel="noopener">Travis CI</a> as a build platform and <a href="https://www.browserstack.com/" target="_blank" rel="noopener">BrowserStack</a> to be able to run tests on all browsers. These services ensure seamless and fast developer experience and allow us to focus on the job.</p>
+<p>Besides automated tests, we also maintain a smaller set of manual tests. They help us to verify whether something unexpected happens that might have been missed by the automated tests.</p>
+<p>When proposing a pull request make sure to add test(s) which verifies it. Every code change should be accompanied by a test which proves that it is needed. Such a strict approach to testing ensures that not only we have 100% of code coverage (which is quite easy to achieve and gives only an illusory safety) but also a high level of coverage for cases which we failed to notice initially (and might do that again in the future).</p>
 
         </div>
       </section>

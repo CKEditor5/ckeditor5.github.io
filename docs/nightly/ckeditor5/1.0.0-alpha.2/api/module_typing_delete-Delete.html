@@ -9,8 +9,8 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.40/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/0.3.40/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../assets/0.3.42/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.42/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -49,13 +49,13 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.40/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.42/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="api-header"><img src="../../../assets/0.3.40/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.42/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1 data-ln="module:typing/delete~Delete">Delete<span class="header__import--hidden"> (typing)</span>
               </h1>
@@ -470,7 +470,7 @@ followed by the optional <code>args</code> provided in the <code>fire()</code> m
                             <dl>
                                         <dt><code><span>*</span></code></dt>
                                         <dd><p>By default the method returns <code>undefined</code>. However, the return value can be changed by listeners
-through modification of the <a href="module_utils_eventinfo-EventInfo.html#return"><code>return</code></a>'s value (the event info
+through modification of the <a href="module_utils_eventinfo-EventInfo.html#return"><code>evt.return</code></a>'s property (the event info
 is the first param of every callback).</p>
                                         </dd>
                             </dl>
@@ -488,6 +488,19 @@ is the first param of every callback).</p>
                           <p class="collapsing-list__excerpt">Registers a callback function to be executed when an event is fired in a specific (emitter) object.
                           </p>
                           <div class="collapsing-list__content">
+<p>Events can be grouped in namespaces using <code>:</code>.
+When namespaced event is fired, it additionally fires all callbacks for that namespace.</p>
+<pre class="prettyprint source"><code>// myEmitter.on( ... ) is a shorthand for myEmitter.listenTo( myEmitter, ... ).
+myEmitter.on( &apos;myGroup&apos;, genericCallback );
+myEmitter.on( &apos;myGroup:myEvent&apos;, specificCallback );
+
+// genericCallback is fired.
+myEmitter.fire( &apos;myGroup&apos; );
+// both genericCallback and specificCallback are fired.
+myEmitter.fire( &apos;myGroup:myEvent&apos; );
+// genericCallback is fired even though there are no callbacks for &quot;foo&quot;.
+myEmitter.fire( &apos;myGroup:foo&apos; );</code></pre><p>An event callback can <a href="module_utils_eventinfo-EventInfo.html#stop">stop the event</a> and
+set the <a href="module_utils_eventinfo-EventInfo.html#return">return value</a> of the <a href="module_utils_emittermixin-EmitterMixin.html#fire"><code>fire</code></a> method.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> emitter
@@ -536,6 +549,7 @@ order they were added.</p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Stops executing the callback on the given event.
+Shorthand for <a href="module_utils_emittermixin-EmitterMixin.html#stopListening"><code>this.stopListening(  this,  event,  callback  )</code></a>.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -565,18 +579,8 @@ order they were added.</p>
                           <p class="collapsing-list__excerpt">Registers a callback function to be executed when an event is fired.
                           </p>
                           <div class="collapsing-list__content">
-<p>Events can be grouped in namespaces using <code>:</code>.
-When namespaced event is fired, it additionally fires all callbacks for that namespace.</p>
-<pre class="prettyprint source"><code>myEmitter.on( &apos;myGroup&apos;, genericCallback );
-myEmitter.on( &apos;myGroup:myEvent&apos;, specificCallback );
-
-// genericCallback is fired.
-myEmitter.fire( &apos;myGroup&apos; );
-// both genericCallback and specificCallback are fired.
-myEmitter.fire( &apos;myGroup:myEvent&apos; );
-// genericCallback is fired even though there are no callbacks for &quot;foo&quot;.
-myEmitter.fire( &apos;myGroup:foo&apos; );</code></pre><p>An event callback can <a href="module_utils_eventinfo-EventInfo.html#stop">stop the event</a> and
-set the <a href="module_utils_eventinfo-EventInfo.html#return">return value</a> of the <a href="module_utils_emittermixin-EmitterMixin.html#fire"><code>fire</code></a> method.</p>
+<p>Shorthand for <a href="module_utils_emittermixin-EmitterMixin.html#listenTo"><code>this.listenTo(  this,  event,  callback,  options  )</code></a> (it makes the emitter
+listen on itself).</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> event
@@ -737,7 +741,7 @@ If omitted, stops delegation of <code>event</code> to all emitters.</p>
 <li>To stop listening to a specific callback.</li>
 <li>To stop listening to a specific event.</li>
 <li>To stop listening to all events fired by a specific object.</li>
-<li>To stop listening to all events fired by all object.</li>
+<li>To stop listening to all events fired by all objects.</li>
 </ul>
                             <h4>Parameters</h4>
                                       <dl>
@@ -866,6 +870,51 @@ observable.prop = 2; // -&gt; &apos;prop has changed from 1 to 2&apos;</code></p
           </ul>
         </li>
         <li class="toggler--collapsed">
+          <div class="tree__item__wrapper" data-ln="alignment"><span class="tree__item--package tree__item__text">alignment</span>
+          </div>
+          <ul>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:alignment/alignment"><a class="tree__item--module tree__item__text" href="module_alignment_alignment.html">alignment</a>
+              </div>
+              <ul>
+                <li><a href="module_alignment_alignment-Alignment.html">
+                    <div class="tree__item__wrapper" data-ln="module:alignment/alignment~Alignment"><span class="tree__item--class tree__item__text">Alignment</span></div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:alignment/alignmentcommand"><a class="tree__item--module tree__item__text" href="module_alignment_alignmentcommand.html">alignmentcommand</a>
+              </div>
+              <ul>
+                <li><a href="module_alignment_alignmentcommand-AlignmentCommand.html">
+                    <div class="tree__item__wrapper" data-ln="module:alignment/alignmentcommand~AlignmentCommand"><span class="tree__item--class tree__item__text">AlignmentCommand</span></div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:alignment/alignmentediting"><a class="tree__item--module tree__item__text" href="module_alignment_alignmentediting.html">alignmentediting</a>
+              </div>
+              <ul>
+                <li><a href="module_alignment_alignmentediting-AlignmentEditing.html">
+                    <div class="tree__item__wrapper" data-ln="module:alignment/alignmentediting~AlignmentEditing"><span class="tree__item--class tree__item__text">AlignmentEditing</span></div></a>
+                </li>
+                <li><a href="module_alignment_alignmentediting-AlignmentEditingConfig.html">
+                    <div class="tree__item__wrapper" data-ln="module:alignment/alignmentediting~AlignmentEditingConfig"><span class="tree__item--interface tree__item__text">AlignmentEditingConfig</span></div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:alignment/alignmentui"><a class="tree__item--module tree__item__text" href="module_alignment_alignmentui.html">alignmentui</a>
+              </div>
+              <ul>
+                <li><a href="module_alignment_alignmentui-AlignmentUI.html">
+                    <div class="tree__item__wrapper" data-ln="module:alignment/alignmentui~AlignmentUI"><span class="tree__item--class tree__item__text">AlignmentUI</span></div></a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="toggler--collapsed">
           <div class="tree__item__wrapper" data-ln="autoformat"><a class="tree__item--package tree__item__text" href="autoformat.html">autoformat</a>
           </div>
           <ul>
@@ -966,20 +1015,20 @@ observable.prop = 2; // -&gt; &apos;prop has changed from 1 to 2&apos;</code></p
               </ul>
             </li>
             <li class="toggler--collapsed">
-              <div class="tree__item__wrapper" data-ln="module:basic-styles/strikeengine"><a class="tree__item--module tree__item__text" href="module_basic-styles_strikeengine.html">strikeengine</a>
-              </div>
-              <ul>
-                <li><a href="module_basic-styles_strikeengine-StrikethroughEngine.html">
-                    <div class="tree__item__wrapper" data-ln="module:basic-styles/strikeengine~StrikethroughEngine"><span class="tree__item--class tree__item__text">StrikethroughEngine</span></div></a>
-                </li>
-              </ul>
-            </li>
-            <li class="toggler--collapsed">
               <div class="tree__item__wrapper" data-ln="module:basic-styles/strikethrough"><a class="tree__item--module tree__item__text" href="module_basic-styles_strikethrough.html">strikethrough</a>
               </div>
               <ul>
                 <li><a href="module_basic-styles_strikethrough-Strikethrough.html">
                     <div class="tree__item__wrapper" data-ln="module:basic-styles/strikethrough~Strikethrough"><span class="tree__item--class tree__item__text">Strikethrough</span></div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:basic-styles/strikethroughengine"><a class="tree__item--module tree__item__text" href="module_basic-styles_strikethroughengine.html">strikethroughengine</a>
+              </div>
+              <ul>
+                <li><a href="module_basic-styles_strikethroughengine-StrikethroughEngine.html">
+                    <div class="tree__item__wrapper" data-ln="module:basic-styles/strikethroughengine~StrikethroughEngine"><span class="tree__item--class tree__item__text">StrikethroughEngine</span></div></a>
                 </li>
               </ul>
             </li>
@@ -1938,8 +1987,14 @@ observable.prop = 2; // -&gt; &apos;prop has changed from 1 to 2&apos;</code></p
                     </li>
                   </ul>
                 </li>
-                <li><a href="module_engine_model_model.html">
-                    <div class="tree__item__wrapper" data-ln="module:engine/model/model"><span class="tree__item--module tree__item__text">model</span></div></a>
+                <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper" data-ln="module:engine/model/model"><a class="tree__item--module tree__item__text" href="module_engine_model_model.html">model</a>
+                  </div>
+                  <ul>
+                    <li><a href="module_engine_model_model-Model.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/model/model~Model"><span class="tree__item--class tree__item__text">Model</span></div></a>
+                    </li>
+                  </ul>
                 </li>
                 <li class="toggler--collapsed">
                   <div class="tree__item__wrapper" data-ln="module:engine/model/node"><a class="tree__item--module tree__item__text" href="module_engine_model_node.html">node</a>
@@ -2052,6 +2107,15 @@ observable.prop = 2; // -&gt; &apos;prop has changed from 1 to 2&apos;</code></p
                     </li>
                     <li><a href="module_engine_model_treewalker-TreeWalkerValueType.html">
                         <div class="tree__item__wrapper" data-ln="module:engine/model/treewalker~TreeWalkerValueType"><span class="tree__item--typedef tree__item__text">TreeWalkerValueType</span></div></a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper" data-ln="module:engine/model/writer"><a class="tree__item--module tree__item__text" href="module_engine_model_writer.html">writer</a>
+                  </div>
+                  <ul>
+                    <li><a href="module_engine_model_writer-Writer.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/model/writer~Writer"><span class="tree__item--class tree__item__text">Writer</span></div></a>
                     </li>
                   </ul>
                 </li>
@@ -2896,6 +2960,33 @@ observable.prop = 2; // -&gt; &apos;prop has changed from 1 to 2&apos;</code></p
               </div>
               <ul>
                 <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">button</span>
+                  </div>
+                  <ul>
+                    <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper" data-ln="module:ui/dropdown/button/buttondropdownmodel"><a class="tree__item--module tree__item__text" href="module_ui_dropdown_button_buttondropdownmodel.html">buttondropdownmodel</a>
+                      </div>
+                      <ul>
+                        <li><a href="module_ui_dropdown_button_buttondropdownmodel-ButtonDropdownModel.html">
+                            <div class="tree__item__wrapper" data-ln="module:ui/dropdown/button/buttondropdownmodel~ButtonDropdownModel"><span class="tree__item--interface tree__item__text">ButtonDropdownModel</span></div></a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper"><span class="tree__item--module tree__item__text">buttondropdownview</span>
+                      </div>
+                      <ul>
+                        <li><a href="module_ui_dropdown_button_buttondropdownview-ButtonDropdownView.html">
+                            <div class="tree__item__wrapper" data-ln="module:ui/dropdown/button/buttondropdownview~ButtonDropdownView"><span class="tree__item--class tree__item__text">ButtonDropdownView</span></div></a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li><a href="module_ui_dropdown_button_createbuttondropdown.html">
+                        <div class="tree__item__wrapper" data-ln="module:ui/dropdown/button/createbuttondropdown"><span class="tree__item--module tree__item__text">createbuttondropdown</span></div></a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="toggler--collapsed">
                   <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">list</span>
                   </div>
                   <ul>
@@ -2935,6 +3026,15 @@ observable.prop = 2; // -&gt; &apos;prop has changed from 1 to 2&apos;</code></p
                   </ul>
                 </li>
                 <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper" data-ln="module:ui/dropdown/dropdownpanelfocusable"><a class="tree__item--module tree__item__text" href="module_ui_dropdown_dropdownpanelfocusable.html">dropdownpanelfocusable</a>
+                  </div>
+                  <ul>
+                    <li><a href="module_ui_dropdown_dropdownpanelfocusable-DropdownPanelFocusable.html">
+                        <div class="tree__item__wrapper" data-ln="module:ui/dropdown/dropdownpanelfocusable~DropdownPanelFocusable"><span class="tree__item--interface tree__item__text">DropdownPanelFocusable</span></div></a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="toggler--collapsed">
                   <div class="tree__item__wrapper" data-ln="module:ui/dropdown/dropdownpanelview"><a class="tree__item--module tree__item__text" href="module_ui_dropdown_dropdownpanelview.html">dropdownpanelview</a>
                   </div>
                   <ul>
@@ -2951,6 +3051,9 @@ observable.prop = 2; // -&gt; &apos;prop has changed from 1 to 2&apos;</code></p
                         <div class="tree__item__wrapper" data-ln="module:ui/dropdown/dropdownview~DropdownView"><span class="tree__item--class tree__item__text">DropdownView</span></div></a>
                     </li>
                   </ul>
+                </li>
+                <li><a href="module_ui_dropdown_utils.html">
+                    <div class="tree__item__wrapper" data-ln="module:ui/dropdown/utils"><span class="tree__item--module tree__item__text">utils</span></div></a>
                 </li>
               </ul>
             </li>

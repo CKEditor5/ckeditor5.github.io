@@ -9,8 +9,8 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/0.3.40/css/styles.css" type="text/css" media="screen">
-    <script src="../../../../../assets/0.3.40/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../../../assets/0.3.42/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../../assets/0.3.42/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -49,15 +49,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.40/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.42/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/development/custom-builds.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.40/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.40/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/development/custom-builds.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.42/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.42/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <h1><img src="../../../../../assets/0.3.40/img/book.svg" alt="guide">Creating custom builds
+          <h1><img src="../../../../../assets/0.3.42/img/book.svg" alt="guide">Creating custom builds
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Forking-an-existing-build">Forking an existing build</a></li><li><a href="#Build-anatomy">Build anatomy</a></li><li><a href="#Customizing-a-build">Customizing a build</a><ol><li><a href="#Installing-dependencies">Installing dependencies</a></li><li><a href="#Updating-build-configuration">Updating build configuration</a></li><li><a href="#Rebuilding-the-bundle">Rebuilding the bundle</a></li></ol></li><li><a href="#Updating-the-build">Updating the build</a></li><li><a href="#Publishing-your-builds">Publishing your builds</a></li></ol></nav><p>A build is a simple <a href="https://www.npmjs.com" target="_blank" rel="noopener">npm</a> package (usually developed in a Git repository) with a predefined set of dependencies. Out of this repository, distribution files can be generated through the build process.</p>
 <p>Some of the reasons for creating custom builds are:</p>
 <ul>
@@ -69,12 +69,14 @@
 <li>Enabling bug fixes which are still not a part of any public release.</li>
 </ul>
 <h2 id="Forking-an-existing-build"><a href="#Forking-an-existing-build" class="headerlink" title="Forking an existing build"></a>Forking an existing build</h2><p>Start with <a href="https://help.github.com/articles/fork-a-repo/" target="_blank" rel="noopener">forking</a> one of the official builds (it will serve as the starting point for your custom one) and then clone your fork:</p>
-<pre><code class="bash">git clone https://github.com/&lt;your-username&gt;/ckeditor5-build-classic.git
+<pre><code class="bash">git clone -b stable https://github.com/&lt;your-username&gt;/ckeditor5-build-classic.git
 </code></pre>
 <p>To make updating easier you may optionally add the original build repository to your Git remotes:</p>
 <pre><code class="bash">git remote add upstream https://github.com/ckeditor/ckeditor5-build-classic.git
 </code></pre>
 <div class="info-box notice notice__hint"><p>If you do not want to fork the official build, you can just clone it. However, you will not be able to commit and push your customizations back to GitHub.</p><p>Alternatively, instead of creating a custom build you can <a href="../integration/advanced-setup.html#Scenario-2-Building-from-source">integrate CKEditor 5 directly from source</a>. This option allows even greater flexibility and requires less overhead (you will not need to fork the official build).</p></div>
+
+<div class="info-box notice notice__warning"><p>It is important that you use the <code>stable</code> branch of a build, not the <code>master</code> branch. The <code>master</code> branch might contain changes which are not yet compatible with the versions of CKEditor 5 source packages which were published on npm.</p></div>
 
 <h2 id="Build-anatomy"><a href="#Build-anatomy" class="headerlink" title="Build anatomy"></a>Build anatomy</h2><p>Every build contains the following files:</p>
 <ul>
@@ -142,7 +144,7 @@ module.exports = {
 <p>You can validate whether your new build works by opening the <code>sample/index.html</code> file in a browser (via HTTP, not as a local file). Make sure to <strong>clear the cache</strong>.</p>
 <h2 id="Updating-the-build"><a href="#Updating-the-build" class="headerlink" title="Updating the build"></a>Updating the build</h2><p>You may decide to update your build at any time. Since it is a fork of the official build, you can simply merge the changes that happened meanwhile in that build, using Git commands:</p>
 <pre><code class="bash">git fetch upstream
-git merge upstream/master
+git merge upstream/stable
 </code></pre>
 <p>You should handle eventual conflicts and verify the merged changes. After that, just follow the previous instructions for creating your build and test it.</p>
 <div class="info-box notice notice__hint"><p>It is recommended to run <code>rm -rf node_modules &amp;&amp; npm install</code> after you fetched changes from the upstream or updated versions of dependencies in <code>package.json</code> manually. This will prevent npm from installing packages more than once (which may lead to broken builds).</p></div>
