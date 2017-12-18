@@ -394,7 +394,7 @@ mapper.registerViewToModelLength( &apos;li&apos;, getViewListItemLength );</code
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="toViewPosition">
-                          <h3><code><a class="member-name" href="#toViewPosition">toViewPosition</a>( modelPosition ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></h3>
+                          <h3><code><a class="member-name" href="#toViewPosition">toViewPosition</a>( modelPosition, [ options ] = { [options.isPhantom] } ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_viewithposition-Position.html">Position</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Gets the corresponding view position.
@@ -406,6 +406,22 @@ mapper.registerViewToModelLength( &apos;li&apos;, getViewListItemLength );</code
                                              :
  <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
                                         <dd><p>Model position.</p>
+                                        </dd>
+                                        <dt><code> [ options ]
+                                             :
+ <span>Object</span></code></dt>
+                                        <dd><p>Additional options for position mapping process.</p>
+                                                    <div class="dlheading5">Properties
+                                                    </div>
+                                                    <dl>
+                                                      <dt><code> [ options.isPhantom ]
+                                                           :
+ <span>Boolean</span></code></dt>
+                                                      <dd><p>Should be set to <code>true</code> if the model position to map is pointing to a place
+in model tree which no longer exists. For example, it could be an end of a removed model range.</p>
+                                                        <p>Defaults to <code>false</code></p>
+                                                      </dd>
+                                                    </dl>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
@@ -455,6 +471,10 @@ mapper.registerViewToModelLength( &apos;li&apos;, getViewListItemLength );</code
                           <p class="collapsing-list__excerpt">Unbinds given <a href="module_engine_model_element-Element.html">model element</a> from the map.
                           </p>
                           <div class="collapsing-list__content">
+<p><strong>Note:</strong> model-to-view binding will be removed, if it existed. However, corresponding view-to-model binding
+will be removed only if view element is still bound to passed <code>modelElement</code>.</p>
+<p>This behavior lets for re-binding view element to another model element without fear of losing the new binding
+when the previously bound model element is unbound.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> modelElement
@@ -474,6 +494,10 @@ mapper.registerViewToModelLength( &apos;li&apos;, getViewListItemLength );</code
                           <p class="collapsing-list__excerpt">Unbinds given <a href="module_engine_viewithelement-Element.html">view element</a> from the map.
                           </p>
                           <div class="collapsing-list__content">
+<p><strong>Note:</strong> view-to-model binding will be removed, if it existed. However, corresponding model-to-view binding
+will be removed only if model element is still bound to passed <code>viewElement</code>.</p>
+<p>This behavior lets for re-binding model element to another view element without fear of losing the new binding
+when the previously bound view element is unbound.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> viewElement
@@ -607,33 +631,6 @@ if it was next to it.
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_unbindElements">
-                          <h3><code><a class="member-name" href="#_unbindElements">_unbindElements</a>( modelElement, viewElement )</code></h3>
-                          <p class="badges">
-<span class="badge badge--red ">private</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Removes binding between given elements.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> modelElement
-                                             :
- <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
-                                        <dd><p>Model element to unbind.</p>
-                                        </dd>
-                                        <dt><code> viewElement
-                                             :
- <span><a class="collapsing-list__type" href="module_engine_viewithelement-Element.html">Element</a></span></code></dt>
-                                        <dd><p>View element to unbind.</p>
-                                        </dd>
-                                      </dl>
-                          </div>
-                        </div>
-                      </li>
           </ul>
           <h2 id="Events">Events</h2>
           <ul class="collapsing-list collapsing-list--filtered">
@@ -663,18 +660,32 @@ mapper.on( &apos;modelToViewPosition&apos;, ( evt, data ) =&gt; {
         // Stop the event if other callbacks should not modify calculated value.
         evt.stop();
     }
-} );</code></pre><p><strong>Note:</strong> keep in mind that custom callback provided for this event should use provided <code>data.modelPosition</code> only to check
-what is before the position (or position&apos;s parent). This is important when model-to-view position mapping is used in
-remove change conversion. Model after the removed position (that is being mapped) does not correspond to view, so it cannot be used:</p>
-<pre class="prettyprint source"><code>// Incorrect:
-const modelElement = data.modelPosition.nodeAfter;
-const viewElement = data.mapper.toViewElement( modelElement );
-// ... Do something with `viewElement` and set `data.viewPosition`.
+} );</code></pre><p><strong>Note:</strong> keep in mind that sometimes a &quot;phantom&quot; model position is being converted. &quot;Phantom&quot; model position is
+a position that points to a non-existing place in model. Such position might still be valid for conversion, though
+(it would point to a correct place in view when converted). One example of such situation is when a range is
+removed from model, there may be a need to map the range&apos;s end (which is no longer valid model position). To
+handle such situation, check <code>data.isPhantom</code> flag:</p>
+<pre class="prettyprint source"><code>// Assume that there is &quot;customElement&quot; model element and whenever position is before it, we want to move it
+// to the inside of the view element bound to &quot;customElement&quot;.
+mapper.on( &apos;modelToViewPosition&apos;, ( evt, data ) =&gt; {
+    if ( data.isPhantom ) {
+        return;
+    }
 
-// Correct:
-const prevModelElement = data.modelPosition.nodeBefore;
-const prevViewElement = data.mapper.toViewElement( prevModelElement );
-// ... Use `prevViewElement` to find correct `data.viewPosition`.</code></pre><p><strong>Note:</strong> default mapping callback is provided with <code>low</code> priority setting and does not cancel the event, so it is possible to
+    // Below line might crash for phantom position that does not exist in model.
+    const sibling = data.modelPosition.nodeBefore;
+
+    // Check if this is the element we are interested in.
+    if ( !sibling.is( &apos;customElement&apos; ) ) {
+        return;
+    }
+
+    const viewElement = data.mapper.toViewElement( sibling );
+
+    data.viewPosition = new ViewPosition( sibling, 0 );
+
+    evt.stop();
+} );</code></pre><p><strong>Note:</strong> default mapping callback is provided with <code>low</code> priority setting and does not cancel the event, so it is possible to
 attach a custom callback after default callback and also use <code>data.viewPosition</code> calculated by default callback
 (for example to fix it).</p>
 <p><strong>Note:</strong> default mapping callback will not fire if <code>data.viewPosition</code> is already set.</p>
@@ -1822,6 +1833,15 @@ the condition that checks if special case scenario happened should be as simple 
                   <ul>
                     <li><a href="module_engine_model_batch-Batch.html">
                         <div class="tree__item__wrapper" data-ln="module:engine/model/batch~Batch"><span class="tree__item--class tree__item__text">Batch</span></div></a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper" data-ln="module:engine/model/differ"><a class="tree__item--module tree__item__text" href="module_engine_model_differ.html">differ</a>
+                  </div>
+                  <ul>
+                    <li><a href="module_engine_model_differ-Differ.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/model/differ~Differ"><span class="tree__item--class tree__item__text">Differ</span></div></a>
                     </li>
                   </ul>
                 </li>
