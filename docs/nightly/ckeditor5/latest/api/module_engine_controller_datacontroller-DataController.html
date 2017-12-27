@@ -215,42 +215,6 @@ To attach view to model converter to the data pipeline you need to add lister to
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="deleteContent">
-                          <h3><code><a class="member-name" href="#deleteContent">deleteContent</a>( selection, options )</code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">See <a href="module_engine_controller_deletecontent.html#deleteContent"><code>deleteContent</code></a>.
-                          </p>
-                          <div class="collapsing-list__content">
-<p>Note: For the sake of predictability, the resulting selection should always be collapsed.
-In cases where a feature wants to modify deleting behavior so selection isn&apos;t collapsed
-(e.g. a table feature may want to keep row selection after pressing <kbd>Backspace</kbd>),
-then that behavior should be implemented in the view&apos;s listener. At the same time, the table feature
-will need to modify this method&apos;s behavior too, e.g. to &quot;delete contents and then collapse
-the selection inside the last selected cell&quot; or &quot;delete the row and collapse selection somewhere near&quot;.
-That needs to be done in order to ensure that other features which use <code>deleteContent()</code> will work well with tables.</p>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> selection
-                                             :
- <span><a class="collapsing-list__type" href="module_engine_model_selection-Selection.html">Selection</a></span></code></dt>
-                                        <dd><p>Selection of which the content should be deleted.</p>
-                                        </dd>
-                                        <dt><code> options
-                                             :
- <span>Object</span></code></dt>
-                                        <dd><p>See <a href="module_engine_controller_deletecontent.html#deleteContent"><code>deleteContent</code></a>'s options.</p>
-                                        </dd>
-                                      </dl>
-                            <h4>Fires</h4>
-                            <ul>
-                                        <li><span><a href="module_engine_controller_datacontroller-DataController.html#event:deleteContent">deleteContent</a></span>
-                                        </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="destroy">
                           <h3><code><a class="member-name" href="#destroy">destroy</a>()</code></h3>
                         </div>
@@ -285,121 +249,6 @@ formatted by the <a href="module_engine_controller_datacontroller-DataController
                                         <dd><p>Output data.</p>
                                         </dd>
                             </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="getSelectedContent">
-                          <h3><code><a class="member-name" href="#getSelectedContent">getSelectedContent</a>( selection ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span></code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">See <a href="module_engine_controller_getselectedcontent.html#getSelectedContent"><code>getSelectedContent</code></a>.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> selection
-                                             :
- <span><a class="collapsing-list__type" href="module_engine_model_selection-Selection.html">Selection</a></span></code></dt>
-                                        <dd><p>The selection of which content will be retrieved.</p>
-                                        </dd>
-                                      </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span></code></dt>
-                                        <dd><p>Document fragment holding the clone of the selected content.</p>
-                                        </dd>
-                            </dl>
-                            <h4>Fires</h4>
-                            <ul>
-                                        <li><span><a href="module_engine_controller_datacontroller-DataController.html#event:getSelectedContent">getSelectedContent</a></span>
-                                        </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="hasContent">
-                          <h3><code><a class="member-name" href="#hasContent">hasContent</a>( rangeOrElement ) &rarr;  <span>Boolean</span></code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Checks whether given <a href="module_engine_model_range-Range.html">range</a> or <a href="module_engine_model_element-Element.html">element</a>
-has any content.
-                          </p>
-                          <div class="collapsing-list__content">
-<p>Content is any text node or element which is registered in <a href="module_engine_model_schema-Schema.html">schema</a>.</p>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> rangeOrElement
-                                             :
- <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
-                                        <dd><p>Range or element to check.</p>
-                                        </dd>
-                                      </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span>Boolean</span></code></dt>
-                                        <dd>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="insertContent">
-                          <h3><code><a class="member-name" href="#insertContent">insertContent</a>( content, selection )</code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">See <a href="module_engine_controller_insertcontent.html#insertContent"><code>insertContent</code></a>.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> content
-                                             :
- <span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span></code></dt>
-                                        <dd><p>The content to insert.</p>
-                                        </dd>
-                                        <dt><code> selection
-                                             :
- <span><a class="collapsing-list__type" href="module_engine_model_selection-Selection.html">Selection</a></span></code></dt>
-                                        <dd><p>Selection into which the content should be inserted.</p>
-                                        </dd>
-                                      </dl>
-                            <h4>Fires</h4>
-                            <ul>
-                                        <li><span><a href="module_engine_controller_datacontroller-DataController.html#event:insertContent">insertContent</a></span>
-                                        </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="modifySelection">
-                          <h3><code><a class="member-name" href="#modifySelection">modifySelection</a>( selection, options )</code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">See <a href="module_engine_controller_modifyselection.html#modifySelection"><code>modifySelection</code></a>.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> selection
-                                             :
- <span><a class="collapsing-list__type" href="module_engine_model_selection-Selection.html">Selection</a></span></code></dt>
-                                        <dd><p>The selection to modify.</p>
-                                        </dd>
-                                        <dt><code> options
-                                             :
- <span>Object</span></code></dt>
-                                        <dd><p>See <a href="module_engine_controller_modifyselection.html#modifySelection"><code>modifySelection</code></a>'s options.</p>
-                                        </dd>
-                                      </dl>
-                            <h4>Fires</h4>
-                            <ul>
-                                        <li><span><a href="module_engine_controller_datacontroller-DataController.html#event:modifySelection">modifySelection</a></span>
-                                        </li>
-                            </ul>
                           </div>
                         </div>
                       </li>
@@ -554,113 +403,6 @@ the <a href="module_engine_controller_datacontroller-DataController.html#parse">
                                         <dd><p>Output view DocumentFragment.</p>
                                         </dd>
                             </dl>
-                          </div>
-                        </div>
-                      </li>
-          </ul>
-          <h2 id="Events">Events</h2>
-          <ul class="collapsing-list collapsing-list--filtered">
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:deleteContent">
-                          <h3><code><a class="member-name" href="#event:deleteContent">deleteContent</a>( eventInfo, args )</code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Event fired when <a href="module_engine_controller_datacontroller-DataController.html#deleteContent"><code>deleteContent</code></a> method is called.
-                          </p>
-                          <div class="collapsing-list__content">
-<p>The <a href="module_engine_controller_datacontroller-DataController.html#deleteContent">default  action  of  that  method</a> is implemented as a
-listener to this event so it can be fully customized by the features.</p>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> eventInfo
-                                             :
- <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                        <dd><p>An object containing information about the fired event.</p>
-                                        </dd>
-                                        <dt><code> args
-                                             :
- <span>Array</span></code></dt>
-                                        <dd><p>The arguments passed to the original method.</p>
-                                        </dd>
-                                      </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:getSelectedContent">
-                          <h3><code><a class="member-name" href="#event:getSelectedContent">getSelectedContent</a>( eventInfo, args )</code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Event fired when <a href="module_engine_controller_datacontroller-DataController.html#getSelectedContent"><code>getSelectedContent</code></a> method is called.
-                          </p>
-                          <div class="collapsing-list__content">
-<p>The <a href="module_engine_controller_datacontroller-DataController.html#getSelectedContent">default  action  of  that  method</a> is implemented as a
-listener to this event so it can be fully customized by the features.</p>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> eventInfo
-                                             :
- <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                        <dd><p>An object containing information about the fired event.</p>
-                                        </dd>
-                                        <dt><code> args
-                                             :
- <span>Array</span></code></dt>
-                                        <dd><p>The arguments passed to the original method.</p>
-                                        </dd>
-                                      </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:insertContent">
-                          <h3><code><a class="member-name" href="#event:insertContent">insertContent</a>( eventInfo, args )</code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Event fired when <a href="module_engine_controller_datacontroller-DataController.html#insertContent"><code>insertContent</code></a> method is called.
-                          </p>
-                          <div class="collapsing-list__content">
-<p>The <a href="module_engine_controller_datacontroller-DataController.html#insertContent">default  action  of  that  method</a> is implemented as a
-listener to this event so it can be fully customized by the features.</p>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> eventInfo
-                                             :
- <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                        <dd><p>An object containing information about the fired event.</p>
-                                        </dd>
-                                        <dt><code> args
-                                             :
- <span>Array</span></code></dt>
-                                        <dd><p>The arguments passed to the original method.</p>
-                                        </dd>
-                                      </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:modifySelection">
-                          <h3><code><a class="member-name" href="#event:modifySelection">modifySelection</a>( eventInfo, args )</code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Event fired when <a href="module_engine_controller_datacontroller-DataController.html#modifySelection"><code>modifySelection</code></a> method is called.
-                          </p>
-                          <div class="collapsing-list__content">
-<p>The <a href="module_engine_controller_datacontroller-DataController.html#modifySelection">default  action  of  that  method</a> is implemented as a
-listener to this event so it can be fully customized by the features.</p>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> eventInfo
-                                             :
- <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                        <dd><p>An object containing information about the fired event.</p>
-                                        </dd>
-                                        <dt><code> args
-                                             :
- <span>Array</span></code></dt>
-                                        <dd><p>The arguments passed to the original method.</p>
-                                        </dd>
-                                      </dl>
                           </div>
                         </div>
                       </li>
@@ -1222,9 +964,6 @@ listener to this event so it can be fully customized by the features.</p>
                     </li>
                   </ul>
                 </li>
-                <li><a href="module_engine_controller_deletecontent.html">
-                    <div class="tree__item__wrapper" data-ln="module:engine/controller/deletecontent"><span class="tree__item--module tree__item__text">deletecontent</span></div></a>
-                </li>
                 <li class="toggler--collapsed">
                   <div class="tree__item__wrapper" data-ln="module:engine/controller/editingcontroller"><a class="tree__item--module tree__item__text" href="module_engine_controller_editingcontroller.html">editingcontroller</a>
                   </div>
@@ -1233,21 +972,6 @@ listener to this event so it can be fully customized by the features.</p>
                         <div class="tree__item__wrapper" data-ln="module:engine/controller/editingcontroller~EditingController"><span class="tree__item--class tree__item__text">EditingController</span></div></a>
                     </li>
                   </ul>
-                </li>
-                <li><a href="module_engine_controller_getselectedcontent.html">
-                    <div class="tree__item__wrapper" data-ln="module:engine/controller/getselectedcontent"><span class="tree__item--module tree__item__text">getselectedcontent</span></div></a>
-                </li>
-                <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:engine/controller/insertcontent"><a class="tree__item--module tree__item__text" href="module_engine_controller_insertcontent.html">insertcontent</a>
-                  </div>
-                  <ul>
-                    <li data-private="true"><a href="module_engine_controller_insertcontent-Insertion.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/controller/insertcontent~Insertion"><span class="tree__item--class tree__item__text">Insertion</span></div></a>
-                    </li>
-                  </ul>
-                </li>
-                <li><a href="module_engine_controller_modifyselection.html">
-                    <div class="tree__item__wrapper" data-ln="module:engine/controller/modifyselection"><span class="tree__item--module tree__item__text">modifyselection</span></div></a>
                 </li>
               </ul>
             </li>
@@ -1726,6 +1450,30 @@ listener to this event so it can be fully customized by the features.</p>
                             <div class="tree__item__wrapper" data-ln="module:engine/model/operation/utils~utils"><span class="tree__item--namespace tree__item__text">utils</span></div></a>
                         </li>
                       </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">utils</span>
+                  </div>
+                  <ul>
+                    <li><a href="module_engine_model_utils_deletecontent.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/model/utils/deletecontent"><span class="tree__item--module tree__item__text">deletecontent</span></div></a>
+                    </li>
+                    <li><a href="module_engine_model_utils_getselectedcontent.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/model/utils/getselectedcontent"><span class="tree__item--module tree__item__text">getselectedcontent</span></div></a>
+                    </li>
+                    <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper" data-ln="module:engine/model/utils/insertcontent"><a class="tree__item--module tree__item__text" href="module_engine_model_utils_insertcontent.html">insertcontent</a>
+                      </div>
+                      <ul>
+                        <li data-private="true"><a href="module_engine_model_utils_insertcontent-Insertion.html">
+                            <div class="tree__item__wrapper" data-ln="module:engine/model/utils/insertcontent~Insertion"><span class="tree__item--class tree__item__text">Insertion</span></div></a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li><a href="module_engine_model_utils_modifyselection.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/model/utils/modifyselection"><span class="tree__item--module tree__item__text">modifyselection</span></div></a>
                     </li>
                   </ul>
                 </li>
