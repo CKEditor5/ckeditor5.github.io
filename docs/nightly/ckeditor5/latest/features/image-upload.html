@@ -2,15 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Image upload - CKEditor 5</title>
+    <title>Image upload - CKEditor 5 Documentation</title>
     <link rel="canonical" href="/ckeditor5/latest/features/image-upload.html">
     <link rel="icon" type="image/png" href="../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../assets/img/favicons/32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.42/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/0.3.42/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../assets/0.3.43/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.43/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -49,16 +49,17 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.42/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.43/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/features/image-upload.md" title="Contribute to this guide"><img src="../../../assets/0.3.42/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.42/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/features/image-upload.md" title="Contribute to this guide"><img src="../../../assets/0.3.43/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.43/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <h1><img src="../../../assets/0.3.42/img/book.svg" alt="guide">Image upload
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Responsive-images">Responsive images</a></li><li><a href="#Easy-Image">Easy Image</a></li><li><a href="#What-39-s-next">What&apos;s next?</a></li></ol></nav><p>Inserting images into content created with CKEditor is a very common task. CKEditor 5 introduced a totally new way of handling images, with strong focus on the end user experience. The goal is to make this an effortless and intuitive task.</p>
+          <h1><img src="../../../assets/0.3.43/img/book.svg" alt="guide">Image upload
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#responsive-images">Responsive images</a></li><li><a href="#easy-image">Easy Image</a></li><li><a href="#whats-next">What&#x2019;s next?</a></li></ol></nav>
+<p>Inserting images into content created with CKEditor is a very common task. CKEditor 5 introduced a totally new way of handling images, with strong focus on the end user experience. The goal is to make this an effortless and intuitive task.</p>
 <p>In a properly configured editor, there are several ways for the end user to insert images:</p>
 <ul>
 <li>Pasting it from the clipboard.</li>
@@ -77,29 +78,38 @@
 </ol>
 <!-- TODO [ Drawing: workflow ( User Inserts Image ) -> ( Temporary Image Inserted ) -> ( Image Uploaded ) -> ( URL Returned ) -> ( Temporary Image Replaced with Definitive ) ] -->
 <p>To make the above process possible, an image upload plugin must be available. Such plugin will handle both the upload and URL returning steps in the above workflow.</p>
-<h2 id="Responsive-images"><a href="#Responsive-images" class="headerlink" title="Responsive images"></a>Responsive images</h2><p>Another great feature introduced with CKEditor 5 is the ability to have responsive images in the content. With a single image upload, several optimized versions of that image are created after upload, for different size of displays. All this is totally transparent to the end user who uploaded the image.</p>
+<h2 id="responsive-images"><a class="headerlink" href="#responsive-images">#</a> Responsive images</h2>
+<p>Another great feature introduced with CKEditor 5 is the ability to have responsive images in the content. With a single image upload, several optimized versions of that image are created after upload, for different size of displays. All this is totally transparent to the end user who uploaded the image.</p>
 <p>Be sure to use image upload plugins with support for responsive images to enjoy this important additional benefit. <a href="#Easy-Image">Easy Image</a> has support for responsive images out of the box, too.</p>
-<h2 id="Easy-Image"><a href="#Easy-Image" class="headerlink" title="Easy Image"></a>Easy Image</h2><p>To make enabling image upload in CKEditor 5 a breeze, by default all builds include the <a href="../api/module_easy-image_easyimage-EasyImage.html"><code>EasyImage</code> plugin</a>, which integrates with the Easy Image service provided by <a href="https://ckeditor.com/ckeditor-cloud-services/" target="_blank" rel="noopener">CKEditor Cloud Services</a>. Enabling it is straightforward and the results are immediate:</p>
+<h2 id="easy-image"><a class="headerlink" href="#easy-image">#</a> Easy Image</h2>
+<p>To make enabling image upload in CKEditor 5 a breeze, by default all builds include the <a href="../api/module_easy-image_easyimage-EasyImage.html"><code>EasyImage</code> plugin</a>, which integrates with the Easy Image service provided by <a href="https://ckeditor.com/ckeditor-cloud-services/" target="_blank" rel="noopener">CKEditor Cloud Services</a>. Enabling it is straightforward and the results are immediate:</p>
 <div class="info-box notice notice__warning"><p>CKEditor Cloud Services are in private beta. <a href="https://ckeditor.com/contact/" target="_blank" rel="noopener">Contact us</a> to learn more.</p></div>
-
 <ol>
-<li>Create an account in CKEditor Cloud Services (CS).</li>
-<li>Create an API key in your CS account.</li>
-<li>Create a security token entry point in your application.</li>
-<li><p>Configure CKEditor to use the security token entry point:</p>
-<pre><code class="js"> ClassicCreator
-     .create( document.querySelector( &apos;#editor&apos; ), {
-         cloudServices: {
-             tokenUrl: &apos;http://url-to-retrieve-token.example.com/&apos;
-         }
-     } )
-     .then( ... )
-     .catch( ... );
+<li>
+<p>Create an account in CKEditor Cloud Services (CS).</p>
+</li>
+<li>
+<p>Create an API key in your CS account.</p>
+</li>
+<li>
+<p>Create a security token entry point in your application.</p>
+</li>
+<li>
+<p>Configure CKEditor to use the security token entry point:</p>
+<pre class="highlight"><code class="js">ClassicCreator
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">cloudServices</span>: {
+            <span class="hljs-attr">tokenUrl</span>: <span class="hljs-string">&apos;http://url-to-retrieve-token.example.com/&apos;</span>
+        }
+    } )
+    .then( ... )
+    .catch( ... );
 </code></pre>
 </li>
 </ol>
 <p>This is all. At this point, image upload will be automatically enabled in your application.</p>
-<h2 id="What-39-s-next"><a href="#What-39-s-next" class="headerlink" title="What&apos;s next?"></a>What&apos;s next?</h2><p>See the <a href="image.html">Image feature</a> guide to learn more about handling images in CKEditor 5.</p>
+<h2 id="whats-next"><a class="headerlink" href="#whats-next">#</a> What&#x2019;s next?</h2>
+<p>See the <a href="image.html">Image feature</a> guide to learn more about handling images in CKEditor 5.</p>
 
         </div>
       </section>
@@ -128,7 +138,7 @@
         </div>
       </div>
     </main>
-    <footer class="footer">
+    <footer class="footer footer--bordered">
       <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
     </footer>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">

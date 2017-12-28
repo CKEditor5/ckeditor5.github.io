@@ -2,15 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Introduction - CKEditor 5</title>
+    <title>Introduction - CKEditor 5 Documentation</title>
     <link rel="canonical" href="/ckeditor5/latest/framework/guides/architecture/intro.html">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/0.3.42/css/styles.css" type="text/css" media="screen">
-    <script src="../../../../../assets/0.3.42/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../../../assets/0.3.43/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../../assets/0.3.43/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -49,18 +49,18 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.42/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.43/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/architecture/intro.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.42/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.42/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/architecture/intro.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.43/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.43/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <h1><img src="../../../../../assets/0.3.42/img/book.svg" alt="guide">Introduction
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Core-editor-architecture">Core editor architecture</a><ol><li><a href="#Editor-classes">Editor classes</a></li><li><a href="#Plugins">Plugins</a></li><li><a href="#Commands">Commands</a></li><li><a href="#Event-system-and-observables">Event system and observables</a></li></ol></li><li><a href="#Editing-engine">Editing engine</a><ol><li><a href="#Overview">Overview</a></li><li><a href="#Model">Model</a><ol><li><a href="#Text-attributes">Text attributes</a></li><li><a href="#Selection-attributes">Selection attributes</a></li><li><a href="#Positions">Positions</a></li></ol></li><li><a href="#View">View</a></li><li><a href="#Controller">Controller</a></li></ol></li><li><a href="#UI-library">UI library</a><ol><li><a href="#Views">Views</a><ol><li><a href="#Definition">Definition</a></li><li><a href="#Interaction">Interaction</a></li><li><a href="#Best-practices">Best practices</a></li></ol></li><li><a href="#Templates">Templates</a></li><li><a href="#View-collections-and-the-UI-tree">View collections and the UI tree</a></li><li><a href="#Using-the-existing-components">Using the existing components</a></li><li><a href="#Keystrokes-and-focus-management">Keystrokes and focus management</a><ol><li><a href="#Focus-tracker">Focus tracker</a></li><li><a href="#Keystroke-handler">Keystroke handler</a></li></ol></li></ol></li></ol></nav><p>This guide introduces the most important parts of the CKEditor 5 architecture. It is assumed that you have read the <a href="../overview.html">Framework&apos;s overview</a> and saw some code in the <a href="../quick-start.html">Quick start</a> guide. This should help you going through this one.</p>
+          <h1><img src="../../../../../assets/0.3.43/img/book.svg" alt="guide">Introduction
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#core-editor-architecture">Core editor architecture</a><ol><li><a href="#editor-classes">Editor classes</a></li><li><a href="#plugins">Plugins</a></li><li><a href="#commands">Commands</a></li><li><a href="#event-system-and-observables">Event system and observables</a></li></ol></li><li><a href="#editing-engine">Editing engine</a><ol><li><a href="#overview">Overview</a></li><li><a href="#model">Model</a><ol><li><a href="#text-attributes">Text attributes</a></li><li><a href="#selection-attributes">Selection attributes</a></li><li><a href="#positions">Positions</a></li></ol></li><li><a href="#view">View</a></li><li><a href="#controller">Controller</a></li></ol></li><li><a href="#ui-library">UI library</a><ol><li><a href="#views">Views</a><ol><li><a href="#definition">Definition</a></li><li><a href="#interaction">Interaction</a></li><li><a href="#best-practices">Best practices</a></li></ol></li><li><a href="#templates">Templates</a></li><li><a href="#view-collections-and-the-ui-tree">View collections and the UI tree</a></li><li><a href="#using-the-existing-components">Using the existing components</a></li><li><a href="#keystrokes-and-focus-management">Keystrokes and focus management</a><ol><li><a href="#focus-tracker">Focus tracker</a></li><li><a href="#keystroke-handler">Keystroke handler</a></li></ol></li></ol></li></ol></nav>
+<p>This guide introduces the most important parts of the CKEditor 5 architecture. It is assumed that you have read the <a href="../overview.html">Framework&#x2019;s overview</a> and saw some code in the <a href="../quick-start.html">Quick start</a> guide. This should help you going through this one.</p>
 <div class="info-box notice"><p>CKEditor 5 reached its first alpha version. This means that it is feature complete and that we consider it stable enough for first production integrations. However, this means that <strong>we are going to introduce many breaking changes</strong> before the final 1.0.0 release. Many code refactorings were scheduled for after 1.0.0 alpha so a lot of API, including critical pieces, will still change. The goal is, in most cases, to simplify the API, so please excuse us some more cumbersome pieces. We will thus avoid going too deep into details and creating many code samples, as maintaining them would be a nightmare during the upcoming code changes.</p></div>
-
 <p>When implementing features you will usually work with these three CKEditor 5 packages:</p>
 <ul>
 <li><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-core" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-core</code></a> &#x2013; The core editor architecture. A couple of core classes and interfaces that glue everything together.</li>
@@ -69,13 +69,15 @@
 </ul>
 <!-- TODO link to package pages once https://github.com/cksource/umberto/issues/303 is resolved -->
 <p>These packages will be explained one by one.</p>
-<h2 id="Core-editor-architecture"><a href="#Core-editor-architecture" class="headerlink" title="Core editor architecture"></a>Core editor architecture</h2><p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-core" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-core</code></a> package is relatively simple. It comes with just a handful of classes. The ones you need to know are presented below.</p>
-<h3 id="Editor-classes"><a href="#Editor-classes" class="headerlink" title="Editor classes"></a>Editor classes</h3><p><a href="../../../api/module_core_editor_editor-Editor.html"><code>Editor</code></a> and <a href="../../../api/module_core_editor_standardeditor-StandardEditor.html"><code>StandardEditor</code></a> are, respectively, the base editor class and its more typical implementation.</p>
+<h2 id="core-editor-architecture"><a class="headerlink" href="#core-editor-architecture">#</a> Core editor architecture</h2>
+<p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-core" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-core</code></a> package is relatively simple. It comes with just a handful of classes. The ones you need to know are presented below.</p>
+<h3 id="editor-classes"><a class="headerlink" href="#editor-classes">#</a> Editor classes</h3>
+<p><a href="../../../api/module_core_editor_editor-Editor.html"><code>Editor</code></a> and <a href="../../../api/module_core_editor_standardeditor-StandardEditor.html"><code>StandardEditor</code></a> are, respectively, the base editor class and its more typical implementation.</p>
 <p>The editor is a root object, gluing all other components. It holds a couple of properties that you need to know:</p>
 <ul>
 <li><a href="../../../api/module_core_editor_editor-Editor.html#config"><code>config</code></a> &#x2013; The configuration object.</li>
 <li><a href="../../../api/module_core_editor_editor-Editor.html#plugins"><code>plugins</code></a> and <a href="../../../api/module_core_editor_editor-Editor.html#commands"><code>commands</code></a> &#x2013; The collection of loaded plugins and commands.</li>
-<li><a href="../../../api/module_core_editor_editor-Editor.html#document"><code>document</code></a> &#x2013; The document. It is the editing engine&apos;s entry point.</li>
+<li><a href="../../../api/module_core_editor_editor-Editor.html#document"><code>document</code></a> &#x2013; The document. It is the editing engine&#x2019;s entry point.</li>
 <li><a href="../../../api/module_core_editor_editor-Editor.html#data"><code>data</code></a> &#x2013; The data controller (there is also the <a href="../../../api/module_core_editor_editor-Editor.html#editing">editing controller</a> but <a href="https://github.com/ckeditor/ckeditor5-engine/issues/678" target="_blank" rel="noopener">we plan to merge it</a> into the data controller). It is a set of high-level utilities to work on the document,</li>
 <li><a href="../../../api/module_core_editor_standardeditor-StandardEditor.html#keystrokes"><code>keystrokes</code></a> &#x2013; The keystroke handler. It allows to bind keystrokes to actions.</li>
 </ul>
@@ -83,13 +85,13 @@
 <ul>
 <li><a href="../../../api/module_core_editor_editor-Editor.html#create"><code>create()</code></a> &#x2013; The static <code>create()</code> method. Editor constructors are protected and you should create editors using this static method. It allows the initialization process to be asynchronous.</li>
 <li><a href="../../../api/module_core_editor_editor-Editor.html#destroy"><code>destroy()</code></a> &#x2013; Destroys the editor.</li>
-<li><a href="../../../api/module_core_editor_editor-Editor.html#setData"><code>setData()</code></a> and <a href="../../../api/module_core_editor_editor-Editor.html#getData"><code>getData()</code></a> &#x2013; A way to retrieve data from the editor and set data in the editor. The data format is controlled by the <a href="../../../api/module_engine_controller_datacontroller-DataController.html#processor">data controller&apos;s data processor</a> and it does not need to be a string (it can be e.g. JSON if you implement such a <a href="../../../api/module_engine_dataprocessor_dataprocessor-DataProcessor.html">data processor</a>). See, for example, how to <a href="../../../features/markdown.html">produce Markdown output</a>.</li>
+<li><a href="../../../api/module_core_editor_editor-Editor.html#setData"><code>setData()</code></a> and <a href="../../../api/module_core_editor_editor-Editor.html#getData"><code>getData()</code></a> &#x2013; A way to retrieve data from the editor and set data in the editor. The data format is controlled by the <a href="../../../api/module_engine_controller_datacontroller-DataController.html#processor">data controller&#x2019;s data processor</a> and it does not need to be a string (it can be e.g. JSON if you implement such a <a href="../../../api/module_engine_dataprocessor_dataprocessor-DataProcessor.html">data processor</a>). See, for example, how to <a href="../../../features/markdown.html">produce Markdown output</a>.</li>
 <li><a href="../../../api/module_core_editor_editor-Editor.html#execute"><code>execute()</code></a> &#x2013; Executes the given command.</li>
 </ul>
 <p>The editor classes are a base to implement your own editors. CKEditor 5 Framework comes with a few editor types (for example, <a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html">classic</a>, <a href="../../../api/module_editor-inline_inlineeditor-InlineEditor.html">inline</a> and <a href="../../../api/module_editor-balloon_ballooneditor-BalloonEditor.html">balloon</a>) but you can freely implement editors which work and look completely different. The only requirement is that you implement the <a href="../../../api/module_core_editor_editor-Editor.html"><code>Editor</code></a> and <a href="../../../api/module_core_editor_standardeditor-StandardEditor.html"><code>StandardEditor</code></a> interfaces.</p>
 <div class="info-box notice"><p>You are right &#x2014; the editors mentioned above are classes, not interfaces. This is a part of API that <a href="https://github.com/ckeditor/ckeditor5/issues/327" target="_blank" rel="noopener">needs to be improved</a>. Less inheritance, more interfaces and composition. It should also be clear which interfaces a feature requires to work (at the moment it is half of the <code>StandardEditor</code>).</p></div>
-
-<h3 id="Plugins"><a href="#Plugins" class="headerlink" title="Plugins"></a>Plugins</h3><p>Plugins are a way to introduce editor features. In CKEditor 5 even <a href="../../../api/module_typing_typing-Typing.html">typing</a> is a plugin. What is more, the <a href="../../../api/module_typing_typing-Typing.html"><code>Typing</code></a> plugin requires <a href="../../../api/module_typing_input-Input.html"><code>Input</code></a> and <a href="../../../api/module_typing_delete-Delete.html"><code>Delete</code></a> plugins which are responsible for handling, methods of inserting text and deleting content, respectively. At the same time, a couple of other plugins need to customize <kbd>Backspace</kbd> behavior in certain cases, which is handled by themselves. This leaves the base plugins free of any non-generic knowledge.</p>
+<h3 id="plugins"><a class="headerlink" href="#plugins">#</a> Plugins</h3>
+<p>Plugins are a way to introduce editor features. In CKEditor 5 even <a href="../../../api/module_typing_typing-Typing.html">typing</a> is a plugin. What is more, the <a href="../../../api/module_typing_typing-Typing.html"><code>Typing</code></a> plugin requires <a href="../../../api/module_typing_input-Input.html"><code>Input</code></a> and <a href="../../../api/module_typing_delete-Delete.html"><code>Delete</code></a> plugins which are responsible for handling, methods of inserting text and deleting content, respectively. At the same time, a couple of other plugins need to customize <kbd>Backspace</kbd> behavior in certain cases, which is handled by themselves. This leaves the base plugins free of any non-generic knowledge.</p>
 <p>Another important aspect of how existing CKEditor 5 plugins are implemented is the split into engine and UI parts. For example, the <a href="../../../api/module_basic-styles_boldengine-BoldEngine.html"><code>BoldEngine</code></a> plugin introduces schema definition, mechanisms rendering <code>&lt;strong&gt;</code> tags, commands to apply and remove bold from text, while the <a href="../../../api/module_basic-styles_bold-Bold.html"><code>Bold</code></a> plugin adds the UI of the feature (i.e. a button). This feature split is meant to allow for greater reuse (one can take the engine part and implement their own UI for a feature) as well as for running CKEditor 5 on the server side. At the same time, the feature split <a href="https://github.com/ckeditor/ckeditor5/issues/488" target="_blank" rel="noopener">is not perfect yet and will be improved</a>.</p>
 <p>The tl;dr of this is that:</p>
 <ul>
@@ -101,183 +103,189 @@
 <p>These are the rules based on which the official plugins were implemented. When implementing your own plugins, if you do not plan to publish them, you can reduce this list to the first point.</p>
 <p>After this lengthy introduction (which is aimed at making it easier for you to digest the existing plugins), the plugin API can be explained.</p>
 <p>All plugins need to implement the <a href="../../../api/module_core_plugin-PluginInterface.html"><code>PluginInterface</code></a>. The easiest way to do so is by inheriting from the <a href="../../../api/module_core_plugin-Plugin.html"><code>Plugin</code></a> class. The plugin initialization code should be located in the <a href="../../../api/module_core_plugin-PluginInterface.html#init"><code>init()</code></a> method (which can return a promise). If some piece of code needs to be executed after other plugins are initialized, you can put it in the <a href="../../../api/module_core_plugin-PluginInterface.html#afterInit"><code>afterInit()</code></a> method. The dependencies between plugins are implemented using the static <a href="../../../api/module_core_plugin-PluginInterface.html#requires"><code>requires</code></a> property.</p>
-<pre><code class="js">import MyDependency from &apos;some/other/plugin&apos;;
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> MyDependency <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;some/other/plugin&apos;</span>;
 
-class MyPlugin extends Plugin {
-    static get requires() {
-        return [ MyDependency ];
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyPlugin</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
+    <span class="hljs-keyword">static</span> get requires() {
+        <span class="hljs-keyword">return</span> [ MyDependency ];
     }
 
     init() {
-        // Initialize your plugin here.
+        <span class="hljs-comment">// Initialize your plugin here.</span>
 
-        this.editor; // The editor instance which loaded this plugin.
+        <span class="hljs-keyword">this</span>.editor; <span class="hljs-comment">// The editor instance which loaded this plugin.</span>
     }
 }
 </code></pre>
 <p>You can see how to implement a simple plugin in the <a href="../quick-start.html">Quick start</a> guide.</p>
-<h3 id="Commands"><a href="#Commands" class="headerlink" title="Commands"></a>Commands</h3><p>A command is a combination of an action (a callback) and a state (a set of properties). For instance, the <code>bold</code> command applies or removes bold attribute from the selected text. If the text in which the selection is placed has bold applied already, the value of the command is <code>true</code>, <code>false</code> otherwise. If the <code>bold</code> command can be executed on the current selection, it is enabled. If not (because, for example, bold is not allowed in this place), it is disabled.</p>
-<p>All commands need to inherit from the <a href="../../../api/module_core_command-Command.html"><code>Command</code></a> class. Commands need to be added to the editor&apos;s <a href="../../../api/module_core_editor_editor-Editor.html#commands">command collection</a> so they can be executed by using the <a href="../../../api/module_core_editor_editor-Editor.html#execute"><code>Editor#execute()</code></a> method.</p>
+<h3 id="commands"><a class="headerlink" href="#commands">#</a> Commands</h3>
+<p>A command is a combination of an action (a callback) and a state (a set of properties). For instance, the <code>bold</code> command applies or removes bold attribute from the selected text. If the text in which the selection is placed has bold applied already, the value of the command is <code>true</code>, <code>false</code> otherwise. If the <code>bold</code> command can be executed on the current selection, it is enabled. If not (because, for example, bold is not allowed in this place), it is disabled.</p>
+<p>All commands need to inherit from the <a href="../../../api/module_core_command-Command.html"><code>Command</code></a> class. Commands need to be added to the editor&#x2019;s <a href="../../../api/module_core_editor_editor-Editor.html#commands">command collection</a> so they can be executed by using the <a href="../../../api/module_core_editor_editor-Editor.html#execute"><code>Editor#execute()</code></a> method.</p>
 <p>Take this example:</p>
-<pre><code class="js">class MyCommand extends Command {
+<pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyCommand</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Command</span> </span>{
     execute( message ) {
-        console.log( message );
+        <span class="hljs-built_in">console</span>.log( message );
     }
 }
 
-class MyPlugin extends Plugin {
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyPlugin</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
     init() {
-        const editor = this.editor;
+        <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">this</span>.editor;
 
-        editor.commands.add( &apos;myCommand&apos;, new MyCommand( editor ) );
+        editor.commands.add( <span class="hljs-string">&apos;myCommand&apos;</span>, <span class="hljs-keyword">new</span> MyCommand( editor ) );
     }
 }
 </code></pre>
 <p>Calling <code>editor.execute( &apos;myCommand&apos;, &apos;Foo!&apos; )</code> will log <code>Foo!</code> to the console.</p>
 <p>To see how state management of a typical command like <code>bold</code> is implemented, have a look at some pieces of the <a href="../../../api/module_basic-styles_attributecommand-AttributeCommand.html"><code>AttributeCommand</code></a> class on which <code>bold</code> is based.</p>
 <p>First thing to notice is the <a href="../../../api/module_core_command-Command.html#refresh"><code>refresh()</code></a> method:</p>
-<pre><code class="js">refresh() {
-    const doc = this.editor.document;
+<pre class="highlight"><code class="js">refresh() {
+    <span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">this</span>.editor.document;
 
-    this.value = doc.selection.hasAttribute( this.attributeKey );
-    this.isEnabled = doc.schema.checkAttributeInSelection(
-        doc.selection, this.attributeKey
+    <span class="hljs-keyword">this</span>.value = doc.selection.hasAttribute( <span class="hljs-keyword">this</span>.attributeKey );
+    <span class="hljs-keyword">this</span>.isEnabled = doc.schema.checkAttributeInSelection(
+        doc.selection, <span class="hljs-keyword">this</span>.attributeKey
     );
 }
 </code></pre>
 <p>This method is automatically called (by the command itself) when <a href="../../../api/module_engine_model_document-Document.html#event:changesDone">any changes are applied to the model</a>. This means that the command automatically refreshes its own state when anything changes in the editor.</p>
 <p>The important thing about commands is that every change in their state as well as calling the <code>execute()</code> method fires an event (e.g. <a href="../../../api/module_core_command-Command.html#event:change:{attribute}"><code>change:value</code></a> or <a href="../../../api/module_core_command-Command.html#event:execute"><code>execute</code></a>).</p>
-<p>These events make it possible to control the command from the outside. For instance, if you want to disable specific commands when some condition is true (for example, according to your application&apos;s logic, they should be temporarily disabled) and there is no other, cleaner way to do that, you can block the command manually:</p>
-<pre><code class="js">const command = editor.commands.get( &apos;someCommand&apos; );
+<p>These events make it possible to control the command from the outside. For instance, if you want to disable specific commands when some condition is true (for example, according to your application&#x2019;s logic, they should be temporarily disabled) and there is no other, cleaner way to do that, you can block the command manually:</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> command = editor.commands.get( <span class="hljs-string">&apos;someCommand&apos;</span> );
 
-command.on( &apos;change:isEnabled&apos;, forceDisable, { priority: &apos;lowest&apos; } );
-command.isEnabled = false;
+command.on( <span class="hljs-string">&apos;change:isEnabled&apos;</span>, forceDisable, { <span class="hljs-attr">priority</span>: <span class="hljs-string">&apos;lowest&apos;</span> } );
+command.isEnabled = <span class="hljs-literal">false</span>;
 
-function forceDisabled() {
-    this.isEnabled = false;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">forceDisabled</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">this</span>.isEnabled = <span class="hljs-literal">false</span>;
 }
 </code></pre>
 <p>The command will now be disabled as long as you will not <a href="../../../api/module_utils_emittermixin-EmitterMixin.html#off">off</a> this listener, regardless of how many times <code>someCommand.refresh()</code> is called.</p>
-<h3 id="Event-system-and-observables"><a href="#Event-system-and-observables" class="headerlink" title="Event system and observables"></a>Event system and observables</h3><p>CKEditor 5 has an event-based architecture so you can find <a href="../../../api/module_utils_emittermixin-EmitterMixin.html"><code>EmitterMixin</code></a> and <a href="../../../api/module_utils_observablemixin-ObservableMixin.html"><code>ObservableMixin</code></a> mixed all over the place. Both mechanisms allow for decoupling the code and make it extensible.</p>
+<h3 id="event-system-and-observables"><a class="headerlink" href="#event-system-and-observables">#</a> Event system and observables</h3>
+<p>CKEditor 5 has an event-based architecture so you can find <a href="../../../api/module_utils_emittermixin-EmitterMixin.html"><code>EmitterMixin</code></a> and <a href="../../../api/module_utils_observablemixin-ObservableMixin.html"><code>ObservableMixin</code></a> mixed all over the place. Both mechanisms allow for decoupling the code and make it extensible.</p>
 <p>Most of the classes which were already mentioned are either emitters or observables (observable is an emitter too). Emitter can emit (fire events) as well as listen to them.</p>
-<pre><code class="js">class MyPlugin extends Plugin {
+<pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyPlugin</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
     init() {
-        // Make MyPlugin listen to someCommand#execute.
-        this.listenTo( someCommand, &apos;execute&apos;, () =&gt; {
-            console.log( &apos;someCommand was executed&apos; );
+        <span class="hljs-comment">// Make MyPlugin listen to someCommand#execute.</span>
+        <span class="hljs-keyword">this</span>.listenTo( someCommand, <span class="hljs-string">&apos;execute&apos;</span>, () =&gt; {
+            <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;someCommand was executed&apos;</span> );
         } );
 
-        // Make MyPlugin listen to someOtherCommand#execute and block it.
-        // You listen with high priority to block the event before
-        // someOtherCommand&apos;s execute() method is called.
-        this.listenTo( someOtherCommand, &apos;execute&apos;, ( evt ) =&gt; {
+        <span class="hljs-comment">// Make MyPlugin listen to someOtherCommand#execute and block it.</span>
+        <span class="hljs-comment">// You listen with high priority to block the event before</span>
+        <span class="hljs-comment">// someOtherCommand&apos;s execute() method is called.</span>
+        <span class="hljs-keyword">this</span>.listenTo( someOtherCommand, <span class="hljs-string">&apos;execute&apos;</span>, ( evt ) =&gt; {
             evt.stop();
-        }, { priority: &apos;high&apos; } );
+        }, { <span class="hljs-attr">priority</span>: <span class="hljs-string">&apos;high&apos;</span> } );
     }
 
-    // Inherited from Plugin:
+    <span class="hljs-comment">// Inherited from Plugin:</span>
     destroy() {
-        // Removes all listeners added with this.listenTo();
-        this.stopListening();
+        <span class="hljs-comment">// Removes all listeners added with this.listenTo();</span>
+        <span class="hljs-keyword">this</span>.stopListening();
     }
 }
 </code></pre>
 <p>The second listener to <code>&apos;execute&apos;</code> shows one of the very common practices in CKEditor 5 code. Basically, the default action of <code>&apos;execute&apos;</code> (which is calling the <code>execute()</code> method) is registered as a listener to that event with a default priority. Thanks to that, by listening to the event using <code>&apos;low&apos;</code> or <code>&apos;high&apos;</code> priorities you can execute some code before or after <code>execute()</code> is really called. If you stop the event, then the <code>execute()</code> method will not be called at all. In this particular case, the <a href="../../../api/module_core_command-Command.html#execute"><code>Command#execute()</code></a> method was decorated with the event using the <a href="../../../api/module_utils_observablemixin-ObservableMixin.html#decorate"><code>ObservableMixin#decorate()</code></a> function:</p>
-<pre><code class="js">import ObservableMixin from &apos;@ckeditor/ckeditor5-utils/src/observablemixin&apos;;
-import mix from &apos;@ckeditor/ckeditor5-utils/src/mix&apos;;
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ObservableMixin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-utils/src/observablemixin&apos;</span>;
+<span class="hljs-keyword">import</span> mix <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-utils/src/mix&apos;</span>;
 
-class Command {
-    constructor() {
-        this.decorate( &apos;execute&apos; );
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Command</span> </span>{
+    <span class="hljs-keyword">constructor</span>() {
+        <span class="hljs-keyword">this</span>.decorate( <span class="hljs-string">&apos;execute&apos;</span> );
     }
 
-    // Will now fire the #execute event automatically.
+    <span class="hljs-comment">// Will now fire the #execute event automatically.</span>
     execute() {}
 }
 
-// Mix ObservableMixin into Command.
+<span class="hljs-comment">// Mix ObservableMixin into Command.</span>
 mix( Command, ObservableMixin );
 </code></pre>
 <p>Besides decorating methods with events, observables allow to observe their chosen properties. For instance, the <code>Command</code> class makes its <code>#value</code> and <code>#isEnabled</code> observable by calling <a href="../../../api/module_utils_observablemixin-ObservableMixin.html#set"><code>set()</code></a>:</p>
-<pre><code class="js">class Command {
-    constructor() {
-        this.set( &apos;value&apos;, undefined );
-        this.set( &apos;isEnabled&apos;, undefined );
+<pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Command</span> </span>{
+    <span class="hljs-keyword">constructor</span>() {
+        <span class="hljs-keyword">this</span>.set( <span class="hljs-string">&apos;value&apos;</span>, <span class="hljs-literal">undefined</span> );
+        <span class="hljs-keyword">this</span>.set( <span class="hljs-string">&apos;isEnabled&apos;</span>, <span class="hljs-literal">undefined</span> );
     }
 }
 
 mix( Command, ObservableMixin );
 
-const command = new Command();
+<span class="hljs-keyword">const</span> command = <span class="hljs-keyword">new</span> Command();
 
-command.on( &apos;change:value&apos;, ( evt, propertyName, newValue, oldValue ) =&gt; {
-    console.log(
-        `${ propertyName } has changed from ${ oldValue } to ${ newValue }`
+command.on( <span class="hljs-string">&apos;change:value&apos;</span>, ( evt, propertyName, newValue, oldValue ) =&gt; {
+    <span class="hljs-built_in">console</span>.log(
+        <span class="hljs-string">`<span class="hljs-subst">${ propertyName }</span> has changed from <span class="hljs-subst">${ oldValue }</span> to <span class="hljs-subst">${ newValue }</span>`</span>
     );
 } )
 
-command.value = true; // -&gt; &apos;value has changed from undefined to true&apos;
+command.value = <span class="hljs-literal">true</span>; <span class="hljs-comment">// -&gt; &apos;value has changed from undefined to true&apos;</span>
 </code></pre>
 <div class="info-box notice"><p>Observable properties are marked in API documentation strings with the <code>@observable</code> keyword but we do not mark them in <a href="../../../api/index.html">API documentation</a> (<a href="https://github.com/ckeditor/ckeditor5-dev/issues/285" target="_blank" rel="noopener">yet</a>).</p></div>
-
-<p>Observables have one more feature which is widely used by the editor (especially in the UI library) &#x2014; the ability to bind the value of one object&apos;s property to the value of some other property or properties (of one or more objects). This, of course, can also be processed by callbacks.</p>
+<p>Observables have one more feature which is widely used by the editor (especially in the UI library) &#x2014; the ability to bind the value of one object&#x2019;s property to the value of some other property or properties (of one or more objects). This, of course, can also be processed by callbacks.</p>
 <p>Assuming that <code>target</code> and <code>source</code> are observables and that used properties are observable:</p>
-<pre><code class="js">target.bind( &apos;foo&apos; ).to( source );
+<pre class="highlight"><code class="js">target.bind( <span class="hljs-string">&apos;foo&apos;</span> ).to( source );
 
-source.foo = 1;
-target.foo; // -&gt; 1
+source.foo = <span class="hljs-number">1</span>;
+target.foo; <span class="hljs-comment">// -&gt; 1</span>
 
-// Or:
-target.bind( &apos;foo&apos; ).to( source, &apos;bar&apos; );
+<span class="hljs-comment">// Or:</span>
+target.bind( <span class="hljs-string">&apos;foo&apos;</span> ).to( source, <span class="hljs-string">&apos;bar&apos;</span> );
 
-source.bar = 1;
-target.foo; // -&gt; 1
+source.bar = <span class="hljs-number">1</span>;
+target.foo; <span class="hljs-comment">// -&gt; 1</span>
 </code></pre>
 <p>You can find more about bindings in the <a href="#ui-library">UI library</a> section.</p>
-<h2 id="Editing-engine"><a href="#Editing-engine" class="headerlink" title="Editing engine"></a>Editing engine</h2><p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-engine</code></a> package is by far the biggest package of all. Therefore, this guide will only scratch the surface here by introducing the main architecture layers and concepts. More detailed guides will follow.</p>
-<h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><p>The editing engine implements an MVC architecture. The shape of it is not enforced by the engine itself but in most implementations it can be described by this diagram:</p>
-<p><a href="../../../assets/img/framework-architecture-engine-diagram.png"><img src="../../../assets/img/framework-architecture-engine-diagram.png" alt="Diagram of the engine&apos;s MVC architecture."></a></p>
+<h2 id="editing-engine"><a class="headerlink" href="#editing-engine">#</a> Editing engine</h2>
+<p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-engine</code></a> package is by far the biggest package of all. Therefore, this guide will only scratch the surface here by introducing the main architecture layers and concepts. More detailed guides will follow.</p>
+<h3 id="overview"><a class="headerlink" href="#overview">#</a> Overview</h3>
+<p>The editing engine implements an MVC architecture. The shape of it is not enforced by the engine itself but in most implementations it can be described by this diagram:</p>
+<p><a href="../../../assets/img/framework-architecture-engine-diagram.png"><img src="../../../assets/img/framework-architecture-engine-diagram.png" alt="Diagram of the engine&#x2019;s MVC architecture."></a></p>
 <p>What you can see are three layers: <strong>model</strong>, <strong>controller</strong> and <strong>view</strong>. There is one <strong>model document</strong> which is <strong>converted</strong> to two views &#x2014; the <strong>editing view</strong> and the <strong>data view</strong>. These two views represent, respectively, the content that the user is editing (the DOM structure that you see in the browser) and the editor input and output data (in a format which the plugged data processor understands). Both views feature virtual DOM structures (custom, DOM-like structures) on which converters and features work and which are then <strong>rendered</strong> to the DOM.</p>
-<p>The green blocks are the code introduced by editor features (plugins). So features control what changes are done to the model, how they are converted to the view and how the model needs to be changed based on fired events (view&apos;s and model&apos;s ones).</p>
-<p>Let&apos;s now talk about each layer separately.</p>
-<h3 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h3><p>The model is implemented by a DOM-like tree structure of <a href="../../../api/module_engine_model_element-Element.html">elements</a> and <a href="../../../api/module_engine_model_text-Text.html">text nodes</a>. Like in the DOM, its central point is a <a href="../../../api/module_engine_model_document-Document.html">document</a> which contains <a href="../../../api/module_engine_model_document-Document.html#roots">root elements</a> (the model, as well as the view, may have multiple roots). The document also holds its <a href="../../../api/module_engine_model_documentselection-DocumentSelection.html">selection</a>, <a href="../../../api/module_engine_model_history-History.html">history of changes</a> and <a href="../../../api/module_engine_model_schema-Schema.html">schema</a>.</p>
-<p>All changes made to the document structure are done by applying <a href="../../../api/module_engine_model_operation_operation-Operation.html">operations</a>. The concept of operations comes from <a href="https://en.wikipedia.org/wiki/Operational_transformation" target="_blank" rel="noopener">Operational Transformation</a> (in short: OT), a technology enabling collaboration functionality. Since OT requires that a system is able to transform every operation by every other one (to figure out the result of concurrently applied operations), the set of operations needs to be small. CKEditor 5 features a non-linear model (normally, OT implementations use flat, array-like models while CKEditor 5 uses a tree structure), hence the set of potential semantic changes is more complex. To handle that, the editing engine implements a small set of operations (six to be precise) and a bigger set of <a href="../../../api/module_engine_model_delta_delta-Delta.html">&quot;deltas&quot;</a> &#x2014; groups of operations with additional semantics attached (there are eleven deltas and the number will grow). Finally, deltas are grouped in <a href="../../../api/module_engine_model_batch-Batch.html">batches</a>. A batch can be understood as a single undo step.</p>
+<p>The green blocks are the code introduced by editor features (plugins). So features control what changes are done to the model, how they are converted to the view and how the model needs to be changed based on fired events (view&#x2019;s and model&#x2019;s ones).</p>
+<p>Let&#x2019;s now talk about each layer separately.</p>
+<h3 id="model"><a class="headerlink" href="#model">#</a> Model</h3>
+<p>The model is implemented by a DOM-like tree structure of <a href="../../../api/module_engine_model_element-Element.html">elements</a> and <a href="../../../api/module_engine_model_text-Text.html">text nodes</a>. Like in the DOM, its central point is a <a href="../../../api/module_engine_model_document-Document.html">document</a> which contains <a href="../../../api/module_engine_model_document-Document.html#roots">root elements</a> (the model, as well as the view, may have multiple roots). The document also holds its <a href="../../../api/module_engine_model_documentselection-DocumentSelection.html">selection</a>, <a href="../../../api/module_engine_model_history-History.html">history of changes</a> and <a href="../../../api/module_engine_model_schema-Schema.html">schema</a>.</p>
+<p>All changes made to the document structure are done by applying <a href="../../../api/module_engine_model_operation_operation-Operation.html">operations</a>. The concept of operations comes from <a href="https://en.wikipedia.org/wiki/Operational_transformation" target="_blank" rel="noopener">Operational Transformation</a> (in short: OT), a technology enabling collaboration functionality. Since OT requires that a system is able to transform every operation by every other one (to figure out the result of concurrently applied operations), the set of operations needs to be small. CKEditor 5 features a non-linear model (normally, OT implementations use flat, array-like models while CKEditor 5 uses a tree structure), hence the set of potential semantic changes is more complex. To handle that, the editing engine implements a small set of operations (six to be precise) and a bigger set of <a href="../../../api/module_engine_model_delta_delta-Delta.html">&#x201C;deltas&#x201D;</a> &#x2014; groups of operations with additional semantics attached (there are eleven deltas and the number will grow). Finally, deltas are grouped in <a href="../../../api/module_engine_model_batch-Batch.html">batches</a>. A batch can be understood as a single undo step.</p>
 <div class="info-box notice"><!-- TODO review this with Szymon --><p>The technology implemented by CKEditor 5 is experimental. The subject of applying Operational Transformation to tree structures is not yet well researched and, in early 2015 when we started designing and implementing our own system, we were aware of just one existing and proven implementation (of which there was little information).</p><p>During the last 3 years we changed our approach and reworked the implementation multiple times. In fact, we are still learning about new types of issues and constantly align and improve the engine. One of the most important things that we learned was that implementing OT is just a part of the job on your way to real-time collaborative editing. We needed to create additional mechanisms and change the whole architecture to enable concurrent editing by multiple users with features like undo and ability to display selections of other users.</p><p>As a result of all this, the API and some important concepts are constantly changing. We have the implementation well tested already, but the engine still requires <a href="https://github.com/ckeditor/ckeditor5-engine/issues/1008" target="_blank" rel="noopener">a lot of cleaning and some implementation tweaks</a>.</p><p>This means that information from this guide may be a bit confusing when confronted with the existing APIs. For instance, you may find that <a href="https://github.com/ckeditor/ckeditor5-engine/issues/858" target="_blank" rel="noopener">model elements and text nodes can be modified directly</a> (without applying operations). Please keep that in mind, and when in doubt, <a href="https://github.com/ckeditor/ckeditor5-engine/issues/new" target="_blank" rel="noopener">report issues</a>.</p></div>
-
 <p>As mentioned earlier, going into details would make an awfully long article, so only a few more notable facts will be explained here.</p>
-<h4 id="Text-attributes"><a href="#Text-attributes" class="headerlink" title="Text attributes"></a>Text attributes</h4><p>Text styles such as &quot;bold&quot; and &quot;italic&quot; are not kept in the model as elements but as text attributes (think &#x2014; like element attributes). The following DOM structure:</p>
-<pre><code class="html">&lt;p&gt;
+<h4 id="text-attributes"><a class="headerlink" href="#text-attributes">#</a> Text attributes</h4>
+<p>Text styles such as &#x201C;bold&#x201D; and &#x201C;italic&#x201D; are not kept in the model as elements but as text attributes (think &#x2014; like element attributes). The following DOM structure:</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
     &quot;Foo &quot;
-    &lt;strong&gt;
+    <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>
         &quot;bar&quot;
-    &lt;/strong&gt;
-&lt;/p&gt;
+    <span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 </code></pre>
 <p>would translate to the following model structure:</p>
-<pre><code class="html">&lt;paragraph&gt;
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span>&gt;</span>
     &quot;Foo &quot;  // text node
     &quot;bar&quot;   // text node with bold=true attribute
-&lt;/paragraph&gt;
+<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
 </code></pre>
 <p>Such representation of inline text styling allows to significantly reduce the complexity of algorithms operating on the model. For instance, if you have the following DOM structure:</p>
-<pre><code class="html">&lt;p&gt;
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
     &quot;Foo &quot;
-    &lt;strong&gt;
+    <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>
         &quot;bar&quot;
-    &lt;/strong&gt;
-&lt;/p&gt;
+    <span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 </code></pre>
 <p>and you have a selection before the letter <code>&quot;b&quot;</code> (<code>&quot;Foo ^bar&quot;</code>), is this position inside or outside <code>&lt;strong&gt;</code>? If you use <a href="https://developer.mozilla.org/en-US/docs/Web/API/Selection" target="_blank" rel="noopener">native DOM Selection</a>, you may get both positions &#x2014; one anchored in <code>&lt;p&gt;</code> and the other anchored in <code>&lt;strong&gt;</code>. In CKEditor 5 this position translates exactly to <code>&quot;Foo ^bar&quot;</code>.</p>
-<h4 id="Selection-attributes"><a href="#Selection-attributes" class="headerlink" title="Selection attributes"></a>Selection attributes</h4><p>OK, but how to let CKEditor 5 know that I want the selection to &quot;be bold&quot; in the case described above? This is important information because it affects whether or not the typed text will be bold, too.</p>
+<h4 id="selection-attributes"><a class="headerlink" href="#selection-attributes">#</a> Selection attributes</h4>
+<p>OK, but how to let CKEditor 5 know that I want the selection to &#x201C;be bold&#x201D; in the case described above? This is important information because it affects whether or not the typed text will be bold, too.</p>
 <p>To handle that, selection also <a href="../../../api/module_engine_model_selection-Selection.html#setAttribute">has attributes</a>. If the selection is placed in <code>&quot;Foo ^bar&quot;</code> and it has the attribute <code>bold=true</code>, you know that the user will type bold text.</p>
-<h4 id="Positions"><a href="#Positions" class="headerlink" title="Positions"></a>Positions</h4><p>However, it has just been said that inside <code>&lt;paragraph&gt;</code> there are two text nodes: <code>&quot;Foo &quot;</code> and <code>&quot;bar&quot;</code>. If you know how <a href="https://developer.mozilla.org/en-US/docs/Web/API/Range" target="_blank" rel="noopener">native DOM Ranges</a> work you might thus ask: &quot;But if the selection is at the boundary of two text nodes, is it anchored in the left one, the right one, or in the containing element?&quot;</p>
+<h4 id="positions"><a class="headerlink" href="#positions">#</a> Positions</h4>
+<p>However, it has just been said that inside <code>&lt;paragraph&gt;</code> there are two text nodes: <code>&quot;Foo &quot;</code> and <code>&quot;bar&quot;</code>. If you know how <a href="https://developer.mozilla.org/en-US/docs/Web/API/Range" target="_blank" rel="noopener">native DOM Ranges</a> work you might thus ask: &#x201C;But if the selection is at the boundary of two text nodes, is it anchored in the left one, the right one, or in the containing element?&#x201D;</p>
 <p>This is, indeed, another problem with DOM APIs. Not only can positions outside and inside some element be identical visually but also they can be anchored inside or outside a text node (if the position is at a text node boundary). This all creates extreme complications when implementing editing algorithms.</p>
 <p>To avoid such troubles, and to make collaborative editing possible for real, CKEditor 5 uses the concepts of <strong>indexes</strong> and <strong>offsets</strong>. Indexes relate to nodes (elements and text nodes) while offsets relate to positions. For example, in the following structure:</p>
-<pre><code class="html">&lt;paragraph&gt;
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span>&gt;</span>
     &quot;Foo &quot;
-    &lt;image&gt;&lt;/image&gt;
+    <span class="hljs-tag">&lt;<span class="hljs-name">image</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">image</span>&gt;</span>
     &quot;bar&quot;
-&lt;/paragraph&gt;
+<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
 </code></pre>
 <p>The <code>&quot;Foo &quot;</code> text node is at index <code>0</code> in its parent, <code>&lt;image&gt;&lt;/image&gt;</code> is at index <code>1</code> and <code>&quot;bar&quot;</code> is at index <code>2</code>.</p>
 <p>On the other hand, offset <code>x</code> in <code>&lt;paragraph&gt;</code> translates to:</p>
@@ -314,65 +322,70 @@ target.foo; // -&gt; 1
 </table>
 <p>The engine also defines three main classes which operate on offsets:</p>
 <ul>
-<li>A <a href="../../../api/module_engine_model_position-Position.html"><code>Position</code></a> instance contains an <a href="../../../api/module_engine_model_position-Position.html#path">array of offsets</a> (which is called a &quot;path&quot;). See the examples in <a href="../../../api/module_engine_model_position-Position.html#path"><code>Position#path</code> API documentation</a> to better understand how paths work.</li>
+<li>A <a href="../../../api/module_engine_model_position-Position.html"><code>Position</code></a> instance contains an <a href="../../../api/module_engine_model_position-Position.html#path">array of offsets</a> (which is called a &#x201C;path&#x201D;). See the examples in <a href="../../../api/module_engine_model_position-Position.html#path"><code>Position#path</code> API documentation</a> to better understand how paths work.</li>
 <li><a href="../../../api/module_engine_model_range-Range.html"><code>Range</code></a> contains two positions: <a href="../../../api/module_engine_model_range-Range.html#start">start</a> and <a href="../../../api/module_engine_model_range-Range.html#end">end</a> ones.</li>
 <li>Finally, there is <a href="../../../api/module_engine_model_selection-Selection.html"><code>Selection</code></a> which contains one or more ranges and attributes.</li>
 </ul>
-<h3 id="View"><a href="#View" class="headerlink" title="View"></a>View</h3><h3 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h3><h2 id="UI-library"><a href="#UI-library" class="headerlink" title="UI library"></a>UI library</h2><p>The standard UI library of CKEditor 5 is <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-ui" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-ui</code></a>. It provides base classes and helpers that allow building a modular UI that seamlessly integrates with other components of the ecosystem.</p>
-<h3 id="Views"><a href="#Views" class="headerlink" title="Views"></a>Views</h3><p>Views use <a href="#Templates">templates</a> to build the UI. They also provide observable interfaces that other features (e.g. <a href="#Plugins">plugins</a>, <a href="#Commands">commands</a>, etc.) can use to change the DOM without any actual interaction with the native API.</p>
-<h4 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h4><p>A simple input view class can be defined as follows:</p>
-<pre><code class="js">class SampleInputView extends View {
-    constructor( locale ) {
-        super( locale );
+<h3 id="view"><a class="headerlink" href="#view">#</a> View</h3>
+<h3 id="controller"><a class="headerlink" href="#controller">#</a> Controller</h3>
+<h2 id="ui-library"><a class="headerlink" href="#ui-library">#</a> UI library</h2>
+<p>The standard UI library of CKEditor 5 is <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-ui" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-ui</code></a>. It provides base classes and helpers that allow building a modular UI that seamlessly integrates with other components of the ecosystem.</p>
+<h3 id="views"><a class="headerlink" href="#views">#</a> Views</h3>
+<p>Views use <a href="#Templates">templates</a> to build the UI. They also provide observable interfaces that other features (e.g. <a href="#Plugins">plugins</a>, <a href="#Commands">commands</a>, etc.) can use to change the DOM without any actual interaction with the native API.</p>
+<h4 id="definition"><a class="headerlink" href="#definition">#</a> Definition</h4>
+<p>A simple input view class can be defined as follows:</p>
+<pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SampleInputView</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">View</span> </span>{
+    <span class="hljs-keyword">constructor</span>( locale ) {
+        <span class="hljs-keyword">super</span>( locale );
 
-        // An entry point to binding observables with DOM attributes,
-        // events and text nodes.
-        const bind = this.bindTemplate;
+        <span class="hljs-comment">// An entry point to binding observables with DOM attributes,</span>
+        <span class="hljs-comment">// events and text nodes.</span>
+        <span class="hljs-keyword">const</span> bind = <span class="hljs-keyword">this</span>.bindTemplate;
 
-        // Views define their interface (state) using observable attributes.
-        this.set( {
-            isEnabled: false,
-            placeholder: &apos;&apos;
+        <span class="hljs-comment">// Views define their interface (state) using observable attributes.</span>
+        <span class="hljs-keyword">this</span>.set( {
+            <span class="hljs-attr">isEnabled</span>: <span class="hljs-literal">false</span>,
+            <span class="hljs-attr">placeholder</span>: <span class="hljs-string">&apos;&apos;</span>
         } );
 
-        this.setTemplate( {
-            tag: &apos;input&apos;,
-            attributes: {
-                class: [
-                    &apos;foo&apos;,
-                    // The value of view#isEnabled will control the presence
-                    // of the class.
-                    bind.if( &apos;isEnabled&apos;, &apos;ck-enabled&apos; ),
+        <span class="hljs-keyword">this</span>.setTemplate( {
+            <span class="hljs-attr">tag</span>: <span class="hljs-string">&apos;input&apos;</span>,
+            <span class="hljs-attr">attributes</span>: {
+                <span class="hljs-attr">class</span>: [
+                    <span class="hljs-string">&apos;foo&apos;</span>,
+                    <span class="hljs-comment">// The value of view#isEnabled will control the presence</span>
+                    <span class="hljs-comment">// of the class.</span>
+                    bind.if( <span class="hljs-string">&apos;isEnabled&apos;</span>, <span class="hljs-string">&apos;ck-enabled&apos;</span> ),
                 ],
 
-                // The HTML &quot;placeholder&quot; attribute is also controlled by the observable.
-                placeholder: bind.to( &apos;placeholder&apos; ),
-                type: &apos;text&apos;
+                <span class="hljs-comment">// The HTML &quot;placeholder&quot; attribute is also controlled by the observable.</span>
+                placeholder: bind.to( <span class="hljs-string">&apos;placeholder&apos;</span> ),
+                <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;text&apos;</span>
             },
-            on: {
-                // DOM keydown events will fire the view#input event.
-                keydown: bind.to( &apos;input&apos; )
+            <span class="hljs-attr">on</span>: {
+                <span class="hljs-comment">// DOM keydown events will fire the view#input event.</span>
+                keydown: bind.to( <span class="hljs-string">&apos;input&apos;</span> )
             }
         } );
     }
 
     setValue( newValue ) {
-        this.element.value = newValue;
+        <span class="hljs-keyword">this</span>.element.value = newValue;
     }
 }
 </code></pre>
 <p>Note that views encapsulate the DOM they render. Because the UI is organized according to the <em>view-per-tree</em> rule, it is clear which view is responsible for which part of the UI so it is unlikely that a collision occurs between two features writing to the same DOM node.</p>
 <p>More often than not, views become children of other views (collections), nodes in the <a href="#View-collections-and-the-UI-tree">UI view tree</a>:</p>
-<pre><code class="js">class ParentView extends View {
-    constructor( locale ) {
-        super( locale );
+<pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ParentView</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">View</span> </span>{
+    <span class="hljs-keyword">constructor</span>( locale ) {
+        <span class="hljs-keyword">super</span>( locale );
 
-        const childA = new SampleInputView( locale );
-        const childB = new SampleInputView( locale );
+        <span class="hljs-keyword">const</span> childA = <span class="hljs-keyword">new</span> SampleInputView( locale );
+        <span class="hljs-keyword">const</span> childB = <span class="hljs-keyword">new</span> SampleInputView( locale );
 
-        this.setTemplate( {
-            tag: &apos;div&apos;,
-            children: [
+        <span class="hljs-keyword">this</span>.setTemplate( {
+            <span class="hljs-attr">tag</span>: <span class="hljs-string">&apos;div&apos;</span>,
+            <span class="hljs-attr">children</span>: [
                 childA
                 childB
             ]
@@ -380,79 +393,82 @@ target.foo; // -&gt; 1
     }
 }
 
-const parent = new ParentView( locale );
+<span class="hljs-keyword">const</span> parent = <span class="hljs-keyword">new</span> ParentView( locale );
 
 parent.render();
 
-// Will insert &lt;div&gt;&lt;input .. /&gt;&lt;input .. /&gt;&lt;/div&gt;.
-document.body.appendChild( parent.element );
+<span class="hljs-comment">// Will insert &lt;div&gt;&lt;input .. /&gt;&lt;input .. /&gt;&lt;/div&gt;.</span>
+<span class="hljs-built_in">document</span>.body.appendChild( parent.element );
 </code></pre>
 <p>It is also possible to create standalone views that do not belong to any collection. They must be <a href="../../../api/module_ui_view-View.html#render">rendered</a> before  injection into DOM:</p>
-<pre><code class="js">const view = new SampleInputView( locale );
+<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> view = <span class="hljs-keyword">new</span> SampleInputView( locale );
 
 view.render();
 
-// Will insert &lt;input class=&quot;foo&quot; type=&quot;text&quot; placeholder=&quot;&quot; /&gt;
-document.body.appendChild( view.element );
+<span class="hljs-comment">// Will insert &lt;input class=&quot;foo&quot; type=&quot;text&quot; placeholder=&quot;&quot; /&gt;</span>
+<span class="hljs-built_in">document</span>.body.appendChild( view.element );
 </code></pre>
-<h4 id="Interaction"><a href="#Interaction" class="headerlink" title="Interaction"></a>Interaction</h4><p>Features can interact with the state of the DOM via the attributes of the view, so the following:</p>
-<pre><code class="js">view.isEnabled = true;
-view.placeholder = &apos;Type some text&apos;;
+<h4 id="interaction"><a class="headerlink" href="#interaction">#</a> Interaction</h4>
+<p>Features can interact with the state of the DOM via the attributes of the view, so the following:</p>
+<pre class="highlight"><code class="js">view.isEnabled = <span class="hljs-literal">true</span>;
+view.placeholder = <span class="hljs-string">&apos;Type some text&apos;</span>;
 </code></pre>
 <p>will result in:</p>
-<pre><code class="html">&lt;input class=&quot;foo ck-enabled&quot; type=&quot;text&quot; placeholder=&quot;Type some text&quot; /&gt;
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo ck-enabled&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;Type some text&quot;</span> /&gt;</span>
 </code></pre>
 <p>Alternatively, they can <a href="#Event-system-and-observables">bind</a> them directly to their own observable attributes:</p>
-<pre><code class="js">view.bind( &apos;placeholder&apos;, &apos;isEnabled&apos; ).to( observable, &apos;placeholderText&apos;, &apos;isEnabled&apos; );
+<pre class="highlight"><code class="js">view.bind( <span class="hljs-string">&apos;placeholder&apos;</span>, <span class="hljs-string">&apos;isEnabled&apos;</span> ).to( observable, <span class="hljs-string">&apos;placeholderText&apos;</span>, <span class="hljs-string">&apos;isEnabled&apos;</span> );
 
-// The following will be automatically reflected in the view#placeholder and
-// view.element#placeholder HTML attribute in DOM.
-observable.placeholderText = &apos;Some placeholder&apos;;
+<span class="hljs-comment">// The following will be automatically reflected in the view#placeholder and</span>
+<span class="hljs-comment">// view.element#placeholder HTML attribute in DOM.</span>
+observable.placeholderText = <span class="hljs-string">&apos;Some placeholder&apos;</span>;
 </code></pre>
 <p>Also, since views propagate the DOM events, features can now react to the user actions:</p>
-<pre><code class="js">// Each &quot;keydown&quot; event in the input will execute a command.
-view.on( &apos;input&apos;, () =&gt; {
-    editor.execute( &apos;myCommand&apos; );
+<pre class="highlight"><code class="js"><span class="hljs-comment">// Each &quot;keydown&quot; event in the input will execute a command.</span>
+view.on( <span class="hljs-string">&apos;input&apos;</span>, () =&gt; {
+    editor.execute( <span class="hljs-string">&apos;myCommand&apos;</span> );
 } );
 </code></pre>
-<h4 id="Best-practices"><a href="#Best-practices" class="headerlink" title="Best practices"></a>Best practices</h4><p>A complete view should provide an interface for the features, encapsulating DOM nodes and attributes. Features should not touch the DOM of the view using the native API. Any kind of interaction must be handled by the view that owns an <a href="../../../api/module_ui_view-View.html#element"><code>element</code></a> to avoid collisions:</p>
-<pre><code class="js">// Will change the value of the input.
-view.setValue( &apos;A new value of the input.&apos; );
+<h4 id="best-practices"><a class="headerlink" href="#best-practices">#</a> Best practices</h4>
+<p>A complete view should provide an interface for the features, encapsulating DOM nodes and attributes. Features should not touch the DOM of the view using the native API. Any kind of interaction must be handled by the view that owns an <a href="../../../api/module_ui_view-View.html#element"><code>element</code></a> to avoid collisions:</p>
+<pre class="highlight"><code class="js"><span class="hljs-comment">// Will change the value of the input.</span>
+view.setValue( <span class="hljs-string">&apos;A new value of the input.&apos;</span> );
 
-// WRONG! This is **NOT** the right way to interact with DOM because it collides
-// with an observable binding to the #placeholderText. The value will be
-// permanently overridden when the state of the observable changes.
-view.element.placeholder = &apos;A new placeholder&apos;;
+<span class="hljs-comment">// WRONG! This is **NOT** the right way to interact with DOM because it collides</span>
+<span class="hljs-comment">// with an observable binding to the #placeholderText. The value will be</span>
+<span class="hljs-comment">// permanently overridden when the state of the observable changes.</span>
+view.element.placeholder = <span class="hljs-string">&apos;A new placeholder&apos;</span>;
 </code></pre>
-<h3 id="Templates"><a href="#Templates" class="headerlink" title="Templates"></a>Templates</h3><p><a href="../../../api/module_ui_template-Template.html">Templates</a> render DOM elements and text nodes in the UI library. Used primarily by <a href="#Views">views</a>, they are the lowest layer of the UI connecting the application to the web page.</p>
+<h3 id="templates"><a class="headerlink" href="#templates">#</a> Templates</h3>
+<p><a href="../../../api/module_ui_template-Template.html">Templates</a> render DOM elements and text nodes in the UI library. Used primarily by <a href="#Views">views</a>, they are the lowest layer of the UI connecting the application to the web page.</p>
 <div class="info-box notice"><p>Check out the <a href="../../../api/module_ui_template-TemplateDefinition.html"><code>TemplateDefinition</code></a> to learn more about the template syntax and other advanced concepts.</p></div>
-
 <p>Templates support <a href="#Event-system-and-observables">observable attribute</a> bindings and handle native DOM events. A very simple template can look like this:</p>
-<pre><code class="js">new Template( {
-    tag: &apos;p&apos;,
-    attributes: {
-        class: [
-            &apos;foo&apos;,
-            bind.to( &apos;className&apos; )
+<pre class="highlight"><code class="js"><span class="hljs-keyword">new</span> Template( {
+    <span class="hljs-attr">tag</span>: <span class="hljs-string">&apos;p&apos;</span>,
+    <span class="hljs-attr">attributes</span>: {
+        <span class="hljs-attr">class</span>: [
+            <span class="hljs-string">&apos;foo&apos;</span>,
+            bind.to( <span class="hljs-string">&apos;className&apos;</span> )
         ],
-        style: {
-            backgroundColor: &apos;yellow&apos;
+        <span class="hljs-attr">style</span>: {
+            <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">&apos;yellow&apos;</span>
         }
     },
-    on: {
-        click: bind.to( &apos;clicked&apos; )
+    <span class="hljs-attr">on</span>: {
+        <span class="hljs-attr">click</span>: bind.to( <span class="hljs-string">&apos;clicked&apos;</span> )
     }
     children: [
-        &apos;A paragraph.&apos;
+        <span class="hljs-string">&apos;A paragraph.&apos;</span>
     ]
 } ).render();
 </code></pre>
 <p>and renders to an HTML element:</p>
-<pre><code class="html">&lt;p class=&quot;foo bar&quot; style=&quot;background-color: yellow;&quot;&gt;A paragraph.&lt;/p&gt;
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo bar&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;background-color: yellow;&quot;</span>&gt;</span>A paragraph.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 </code></pre>
 <p>where <code>observable#className</code> is <code>&quot;bar&quot;</code>. The <code>observable</code> in the example above can be a <a href="#Views">view</a> or any object which is <a href="../../../api/module_utils_observablemixin-Observable.html">observable</a>. When the value of the <code>className</code> attribute changes, the template updates the <code>class</code> attribute in DOM. From now on the element is permanently bound to the state of an application.</p>
 <p>Similarly, when rendered, the template also takes care of DOM events. A binding to the <code>click</code> event in the definition makes the <code>observable</code> always fire the <code>clicked</code> event upon an action in DOM. This way the <code>observable</code> provides an event interface of the DOM element and all the communication should pass through it.</p>
-<h3 id="View-collections-and-the-UI-tree"><a href="#View-collections-and-the-UI-tree" class="headerlink" title="View collections and the UI tree"></a>View collections and the UI tree</h3><p>Views are organized into <a href="../../../api/module_ui_viewcollection-ViewCollection.html">collections</a> which manage their elements and propagate DOM events even further. Adding or removing a view in a collection moves the <a href="../../../api/module_ui_view-View.html#element">view&apos;s element</a> in DOM to reflect the position.</p>
+<h3 id="view-collections-and-the-ui-tree"><a class="headerlink" href="#view-collections-and-the-ui-tree">#</a> View collections and the UI tree</h3>
+<p>Views are organized into <a href="../../../api/module_ui_viewcollection-ViewCollection.html">collections</a> which manage their elements and propagate DOM events even further. Adding or removing a view in a collection moves the <a href="../../../api/module_ui_view-View.html#element">view&#x2019;s element</a> in DOM to reflect the position.</p>
 <p>Each editor UI has a <a href="../../../api/module_core_editor_editorui-EditorUI.html#view">root view</a>, which can be found under <code>editor.ui.view</code>. Such view usually defines the container element of the editor and undermost view collections that other features can populate.</p>
 <p>For instance, the <code>BoxedEditorUiView</code> class defines two collections:</p>
 <ul>
@@ -461,135 +477,139 @@ view.element.placeholder = &apos;A new placeholder&apos;;
 </ul>
 <p>It also inherits the <a href="../../../api/module_ui_editorui_editoruiview-EditorUIView.html#body"><code>body</code></a> collection which resides directly in the <code>&lt;body&gt;</code> of the web page and stores floating elements like <a href="../../../api/module_ui_panel_balloon_balloonpanelview-BalloonPanelView.html">balloon panels</a>.</p>
 <p>Plugins can populate the root view collections with their children. Such child views become a part of the UI tree and will be managed by the editor, e.g. they will be initialized and destroyed along with the editor.</p>
-<pre><code class="js">class MyPlugin extends Plugin {
+<pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyPlugin</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
     init() {
-        const editor = this.editor;
-        const view = new MyPluginView();
+        <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">this</span>.editor;
+        <span class="hljs-keyword">const</span> view = <span class="hljs-keyword">new</span> MyPluginView();
 
         editor.ui.top.add( view );
     }
 }
 </code></pre>
 <p><code>MyPluginView</code> can <a href="../../../api/module_ui_view-View.html#createCollection">create own view collections</a> and populate them during the life cycle of the editor. There is no limit to the depth of the UI tree, which usually looks like this:</p>
-<pre><code>EditorUIView
+<pre class="highlight"><code class="">EditorUIView
     &#x251C;&#x2500;&#x2500; &quot;top&quot; collection
-    &#x2502;    &#x2514;&#x2500;&#x2500; ToolbarView
-    &#x2502;        &#x2514;&#x2500;&#x2500; &quot;items&quot; collection
-    &#x2502;            &#x251C;&#x2500;&#x2500; DropdownView
-    &#x2502;            &#x2502;    &#x251C;&#x2500;&#x2500; ButtonView
-    &#x2502;            &#x2502;    &#x2514;&#x2500;&#x2500; PanelView
-    &#x2502;            &#x251C;&#x2500;&#x2500; ButtonViewA
-    &#x2502;            &#x251C;&#x2500;&#x2500; ButtonViewB
-    &#x2502;            &#x2514;&#x2500;&#x2500; ...
+    &#x2502;	&#x2514;&#x2500;&#x2500; ToolbarView
+    &#x2502;		&#x2514;&#x2500;&#x2500; &quot;items&quot; collection
+    &#x2502;			&#x251C;&#x2500;&#x2500; DropdownView
+    &#x2502;			&#x2502;	&#x251C;&#x2500;&#x2500; ButtonView
+    &#x2502;			&#x2502;	&#x2514;&#x2500;&#x2500; PanelView
+    &#x2502;			&#x251C;&#x2500;&#x2500; ButtonViewA
+    &#x2502;			&#x251C;&#x2500;&#x2500; ButtonViewB
+    &#x2502;			&#x2514;&#x2500;&#x2500; ...
     &#x251C;&#x2500;&#x2500; &quot;main&quot; collection
-    &#x2502;    &#x2514;&#x2500;&#x2500; InlineEditableUIView
+    &#x2502;	&#x2514;&#x2500;&#x2500; InlineEditableUIView
     &#x2514;&#x2500;&#x2500; &quot;body&quot; collection
          &#x251C;&#x2500;&#x2500; BalloonPanelView
-         &#x2502;    &#x2514;&#x2500;&#x2500; &quot;content&quot; collection
-         &#x2502;        &#x2514;&#x2500;&#x2500; ToolbarView
+         &#x2502;	&#x2514;&#x2500;&#x2500; &quot;content&quot; collection
+         &#x2502;		&#x2514;&#x2500;&#x2500; ToolbarView
          &#x251C;&#x2500;&#x2500; BalloonPanelView
-         &#x2502;    &#x2514;&#x2500;&#x2500; &quot;content&quot; collection
-         &#x2502;        &#x2514;&#x2500;&#x2500; ...
+         &#x2502;	&#x2514;&#x2500;&#x2500; &quot;content&quot; collection
+         &#x2502;		&#x2514;&#x2500;&#x2500; ...
          &#x2514;&#x2500;&#x2500; ...
-</code></pre><h3 id="Using-the-existing-components"><a href="#Using-the-existing-components" class="headerlink" title="Using the existing components"></a>Using the existing components</h3><p>The framework provides a number of common <a href="../../../api/ui.html">components</a> like <a href="../../../api/module_ui_button_buttonview-ButtonView.html"><code>ButtonView</code></a> or <a href="../../../api/module_ui_toolbar_toolbarview-ToolbarView.html"><code>ToolbarView</code></a> that can be helpful when developing a new user interface.</p>
+</code></pre>
+<h3 id="using-the-existing-components"><a class="headerlink" href="#using-the-existing-components">#</a> Using the existing components</h3>
+<p>The framework provides a number of common <a href="../../../api/ui.html">components</a> like <a href="../../../api/module_ui_button_buttonview-ButtonView.html"><code>ButtonView</code></a> or <a href="../../../api/module_ui_toolbar_toolbarview-ToolbarView.html"><code>ToolbarView</code></a> that can be helpful when developing a new user interface.</p>
 <p>For example, to create a toolbar with a few buttons inside, <code>ToolbarView</code> and <code>ButtonView</code> classes need to be imported first:</p>
-<pre><code class="js">import ToolbarView from &apos;@ckeditor/ckeditor5-ui/src/toolbar/toolbarview&apos;;
-import ButtonView from &apos;@ckeditor/ckeditor5-ui/src/button/buttonview&apos;;
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ToolbarView <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/toolbar/toolbarview&apos;</span>;
+<span class="hljs-keyword">import</span> ButtonView <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/button/buttonview&apos;</span>;
 </code></pre>
 <p>Create the toolbar and a couple of buttons with labels first. Then append the buttons to the toolbar:</p>
-<pre><code class="js">const toolbar = new ToolbarView();
-const buttonFoo = new ButtonView();
-const buttonBar = new ButtonView();
+<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> toolbar = <span class="hljs-keyword">new</span> ToolbarView();
+<span class="hljs-keyword">const</span> buttonFoo = <span class="hljs-keyword">new</span> ButtonView();
+<span class="hljs-keyword">const</span> buttonBar = <span class="hljs-keyword">new</span> ButtonView();
 
 buttonFoo.set( {
-    label: &apos;Foo&apos;,
-    withText: true
+    <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Foo&apos;</span>,
+    <span class="hljs-attr">withText</span>: <span class="hljs-literal">true</span>
 } );
 
 buttonBar.set( {
-    label: &apos;Bar&apos;,
-    withText: true
+    <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Bar&apos;</span>,
+    <span class="hljs-attr">withText</span>: <span class="hljs-literal">true</span>
 } );
 
 toolbar.items.add( buttonFoo );
 toolbar.items.add( buttonBar );
 </code></pre>
 <p>The toolbar can now join the <a href="##View-collections-and-the-UI-tree">UI tree</a> or it can be injected straight into DOM. To keep the example simple, proceed with the latter scenario:</p>
-<pre><code class="js">toolbar.render();
+<pre class="highlight"><code class="js">toolbar.render();
 
-document.body.appendChild( toolbar.element );
+<span class="hljs-built_in">document</span>.body.appendChild( toolbar.element );
 </code></pre>
 <p>The result should look like this:</p>
 <p><img src="../../../assets/img/framework-architecture-toolbar.png" alt="A simple toolbar created using existing components." width="442"></p>
 <p>The toolbar renders correctly but it does not do much. To execute an action when the button is clicked, a listener must be defined. To shorten the code and instead of two listeners define just one, the buttons can <a href="../../../api/module_utils_emittermixin-EmitterMixin.html#delegate">delegate</a> the <a href="../../../api/module_ui_button_buttonview-ButtonView.html#execute"><code>execute</code></a> event to their parent:</p>
-<pre><code class="js">buttonFoo.delegate( &apos;execute&apos; ).to( toolbar );
-buttonBar.delegate( &apos;execute&apos; ).to( toolbar );
+<pre class="highlight"><code class="js">buttonFoo.delegate( <span class="hljs-string">&apos;execute&apos;</span> ).to( toolbar );
+buttonBar.delegate( <span class="hljs-string">&apos;execute&apos;</span> ).to( toolbar );
 
-toolbar.on( &apos;execute&apos;, evt =&gt; {
-    console.log( `The &quot;${ evt.source.label }&quot; button was clicked!` );
+toolbar.on( <span class="hljs-string">&apos;execute&apos;</span>, evt =&gt; {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">`The &quot;<span class="hljs-subst">${ evt.source.label }</span>&quot; button was clicked!`</span> );
 } );
 </code></pre>
-<h3 id="Keystrokes-and-focus-management"><a href="#Keystrokes-and-focus-management" class="headerlink" title="Keystrokes and focus management"></a>Keystrokes and focus management</h3><p><em>Coming soon...</em></p>
+<h3 id="keystrokes-and-focus-management"><a class="headerlink" href="#keystrokes-and-focus-management">#</a> Keystrokes and focus management</h3>
+<p><em>Coming soon&#x2026;</em></p>
 <p>The framework offers built&#x2013;in classes that help manage keystrokes and focus in the UI. They are particularly useful when it comes to bringing accessibility features to the application.</p>
-<h4 id="Focus-tracker"><a href="#Focus-tracker" class="headerlink" title="Focus tracker"></a>Focus tracker</h4><p>The <a href="../../../api/module_utils_focustracker-FocusTracker.html"><code>FocusTracker</code></a> class can observe a number of HTML elements and determine if one of them is focused either by the user (clicking, typing) or using the <code>HTMLElement.focus()</code> DOM method.</p>
-<pre><code class="js">import FocusTracker from &apos;@ckeditor/ckeditor5-utils/src/focustracker&apos;;
+<h4 id="focus-tracker"><a class="headerlink" href="#focus-tracker">#</a> Focus tracker</h4>
+<p>The <a href="../../../api/module_utils_focustracker-FocusTracker.html"><code>FocusTracker</code></a> class can observe a number of HTML elements and determine if one of them is focused either by the user (clicking, typing) or using the <code>HTMLElement.focus()</code> DOM method.</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> FocusTracker <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-utils/src/focustracker&apos;</span>;
 
-// ...
+<span class="hljs-comment">// ...</span>
 
-const focusTracker = new FocusTracker();
+<span class="hljs-keyword">const</span> focusTracker = <span class="hljs-keyword">new</span> FocusTracker();
 </code></pre>
 <p>To register elements in the tracker, use the <a href="../../../api/module_utils_focustracker-FocusTracker.html#add"><code>add()</code></a> method:</p>
-<pre><code class="js">focusTracker.add( document.querySelector( &apos;.some-element&apos; ) );
+<pre class="highlight"><code class="js">focusTracker.add( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;.some-element&apos;</span> ) );
 focusTracker.add( viewInstance.element );
 </code></pre>
-<p>Observing focus tracker&apos;s <a href="../../../api/module_utils_focustracker-FocusTracker.html#isFocused"><code>isFocused</code></a> attribute allows to determine whether one of the registered elements is currently focused:</p>
-<pre><code class="js">focusTracker.on( &apos;change:isFocused&apos;, ( evt, name, isFocused ) =&gt; {
-    if ( isFocused ) {
-        console.log( &apos;The&apos;, focusTracker.focusedElement, &apos;is focused now.&apos; );
-    } else {
-        console.log( &apos;The elements are blurred.&apos; );
+<p>Observing focus tracker&#x2019;s <a href="../../../api/module_utils_focustracker-FocusTracker.html#isFocused"><code>isFocused</code></a> attribute allows to determine whether one of the registered elements is currently focused:</p>
+<pre class="highlight"><code class="js">focusTracker.on( <span class="hljs-string">&apos;change:isFocused&apos;</span>, ( evt, name, isFocused ) =&gt; {
+    <span class="hljs-keyword">if</span> ( isFocused ) {
+        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;The&apos;</span>, focusTracker.focusedElement, <span class="hljs-string">&apos;is focused now.&apos;</span> );
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;The elements are blurred.&apos;</span> );
     }
 } );
 </code></pre>
 <p>This information is useful when implementing a certain type of UI whose behavior depends on the focus, for example, contextual panels and floating balloons containing forms should hide when the user decides to abandon them.</p>
-<h4 id="Keystroke-handler"><a href="#Keystroke-handler" class="headerlink" title="Keystroke handler"></a>Keystroke handler</h4><p>The <a href="../../../api/module_utils_keystrokehandler-KeystrokeHandler.html"><code>KeystrokeHandler</code></a> listens to the keystroke events fired by an HTML element or any of its descendants and executes pre&#x2013;defined actions when the keystroke is pressed. Usually, each <a href="#Views">view</a> creates its own keystroke handler instance which takes care of the keystrokes fired by the elements the view has rendered.</p>
-<pre><code class="js">import KeystrokeHandler from &apos;@ckeditor/ckeditor5-utils/src/keystrokehandler&apos;;
+<h4 id="keystroke-handler"><a class="headerlink" href="#keystroke-handler">#</a> Keystroke handler</h4>
+<p>The <a href="../../../api/module_utils_keystrokehandler-KeystrokeHandler.html"><code>KeystrokeHandler</code></a> listens to the keystroke events fired by an HTML element or any of its descendants and executes pre&#x2013;defined actions when the keystroke is pressed. Usually, each <a href="#Views">view</a> creates its own keystroke handler instance which takes care of the keystrokes fired by the elements the view has rendered.</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> KeystrokeHandler <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-utils/src/keystrokehandler&apos;</span>;
 
-// ...
+<span class="hljs-comment">// ...</span>
 
-const keystrokeHandler = new KeystrokeHandler();
+<span class="hljs-keyword">const</span> keystrokeHandler = <span class="hljs-keyword">new</span> KeystrokeHandler();
 </code></pre>
 <p>To define the scope of the keystroke handler in DOM, use the <a href="../../../api/module_utils_keystrokehandler-KeystrokeHandler.html#listenTo"><code>listenTo()</code></a> method:</p>
-<pre><code class="js">keystrokeHandler.listenTo( document.querySelector( &apos;.some-element&apos; ) );
+<pre class="highlight"><code class="js">keystrokeHandler.listenTo( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;.some-element&apos;</span> ) );
 keystrokeHandler.listenTo( viewInstance.element );
 </code></pre>
 <div class="info-box notice"><p>Check out the list of <a href="../../../api/module_utils_keyboard.html#keyCodes">known key names</a> supported by the keystroke handler.</p></div>
-
 <p>Keystroke action callbacks are functions. To prevent the default action of the keystroke and stop further propagation, use the <code>cancel()</code> function provided in the callback.</p>
-<pre><code class="js">keystrokeHandler.set( &apos;Tab&apos;, ( keyEvtData, cancel ) =&gt; {
-    console.log( &apos;Tab was pressed!&apos; );
+<pre class="highlight"><code class="js">keystrokeHandler.set( <span class="hljs-string">&apos;Tab&apos;</span>, ( keyEvtData, cancel ) =&gt; {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;Tab was pressed!&apos;</span> );
 
-    // This keystroke has been handled and can be canceled.
+    <span class="hljs-comment">// This keystroke has been handled and can be canceled.</span>
     cancel();
 } );
 </code></pre>
-<div class="info-box notice"><p>There is also an <a href="../../../api/module_core_editingkeystrokehandler-EditingKeystrokeHandler.html"><code>EditingKeystrokeHandler</code></a> class which has the same API as <code>KeystrokeHandler</code> but it offers direct keystroke bindings to editor commands.</p><p>Usually, the editor provides such keystroke handler under the <a href="../../../api/module_core_editor_standardeditor-StandardEditor.html#keystrokes"><code>editor.keystrokes</code></a> property so any plugin can register keystrokes associated with editor commands. For example, the <a href="../../../api/module_undo_undo-Undo.html"><code>Undo</code></a> plugin registers <code>editor.keystrokes.set( &apos;Ctrl+Z&apos;, &apos;undo&apos; );</code> to execute its &quot;undo&quot; command.</p></div>
-
+<div class="info-box notice"><p>There is also an <a href="../../../api/module_core_editingkeystrokehandler-EditingKeystrokeHandler.html"><code>EditingKeystrokeHandler</code></a> class which has the same API as <code>KeystrokeHandler</code> but it offers direct keystroke bindings to editor commands.</p><p>Usually, the editor provides such keystroke handler under the <a href="../../../api/module_core_editor_standardeditor-StandardEditor.html#keystrokes"><code>editor.keystrokes</code></a> property so any plugin can register keystrokes associated with editor commands. For example, the <a href="../../../api/module_undo_undo-Undo.html"><code>Undo</code></a> plugin registers <code>editor.keystrokes.set( &apos;Ctrl+Z&apos;, &apos;undo&apos; );</code> to execute its &#x201C;undo&#x201D; command.</p></div>
 <p>When multiple callbacks are assigned to the same keystroke, priorities can be used to decide which one should be handled first and whether other callbacks should be executed at all:</p>
-<pre><code class="js">keystrokeHandler.set( &apos;Ctrl+A&apos;, ( keyEvtData ) =&gt; {
-    console.log( &apos;A normal priority listener.&apos; );
+<pre class="highlight"><code class="js">keystrokeHandler.set( <span class="hljs-string">&apos;Ctrl+A&apos;</span>, ( keyEvtData ) =&gt; {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;A normal priority listener.&apos;</span> );
 } );
 
-keystrokeHandler.set( &apos;Ctrl+A&apos;, ( keyEvtData ) =&gt; {
-    console.log( &apos;A high priority listener.&apos; );
+keystrokeHandler.set( <span class="hljs-string">&apos;Ctrl+A&apos;</span>, ( keyEvtData ) =&gt; {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;A high priority listener.&apos;</span> );
 
-    // The normal priority listener will not be executed.
+    <span class="hljs-comment">// The normal priority listener will not be executed.</span>
     cancel();
-}, { priority: &apos;high&apos; } );
+}, { <span class="hljs-attr">priority</span>: <span class="hljs-string">&apos;high&apos;</span> } );
 </code></pre>
 <p>Pressing <kbd>Ctrl</kbd>+<kbd>A</kbd> will only log:</p>
-<pre><code>&quot;A high priority listener.&quot;
+<pre class="highlight"><code class="">&quot;A high priority listener.&quot;
 </code></pre>
+
         </div>
       </section>
       <div class="side-navigation">
@@ -652,7 +672,7 @@ keystrokeHandler.set( &apos;Ctrl+A&apos;, ( keyEvtData ) =&gt; {
         </div>
       </div>
     </main>
-    <footer class="footer">
+    <footer class="footer footer--bordered">
       <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
     </footer>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">

@@ -2,15 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Testing environment - CKEditor 5</title>
+    <title>Testing environment - CKEditor 5 Documentation</title>
     <link rel="canonical" href="/ckeditor5/latest/framework/guides/contributing/testing-environment.html">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/0.3.42/css/styles.css" type="text/css" media="screen">
-    <script src="../../../../../assets/0.3.42/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../../../assets/0.3.43/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../../assets/0.3.43/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -49,19 +49,22 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.42/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.43/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/contributing/testing-environment.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.42/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.42/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/contributing/testing-environment.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.43/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.43/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <h1><img src="../../../../../assets/0.3.42/img/book.svg" alt="guide">Testing environment
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Introduction">Introduction</a></li><li><a href="#Running-automated-tests">Running automated tests</a><ol><li><a href="#Examples">Examples</a></li></ol></li><li><a href="#Running-manual-tests">Running manual tests</a><ol><li><a href="#Creating-a-manual-test">Creating a manual test</a></li></ol></li><li><a href="#Test-suite-and-CI">Test suite and CI</a></li></ol></nav><p>Before reading this article we recommend getting familiar with the CKEditor 5 <a href="development-environment.html">development environment</a>.</p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>The CKEditor 5 testing environment uses a popular setup with <a href="https://karma-runner.github.io" target="_blank" rel="noopener">Karma</a>, <a href="https://webpack.github.io/" target="_blank" rel="noopener">webpack</a>, <a href="https://github.com/babel/babel-loader" target="_blank" rel="noopener">babel-loader</a> and <a href="https://github.com/gotwarlost/istanbul" target="_blank" rel="noopener">Istanbul</a>. We created some <a href="https://docs.npmjs.com/cli/run-script" target="_blank" rel="noopener">npm scripts</a> which glue all these pieces and special requirements for CKEditor together.</p>
-<p>Each CKEditor package has its own tests suite (see for example the <a href="https://github.com/ckeditor/ckeditor5-engine/tree/master/tests" target="_blank" rel="noopener">engine&apos;s tests</a>), however, the test runner is available in the <a href="https://github.com/ckeditor/ckeditor5" target="_blank" rel="noopener"><code>ckeditor5</code></a> package which is the central development environment. The actual code of the test runner is implemented in the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-dev-tests" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-dev-tests</code></a> package and can be easily reused outside of <code>ckeditor5</code>.</p>
-<h2 id="Running-automated-tests"><a href="#Running-automated-tests" class="headerlink" title="Running automated tests"></a>Running automated tests</h2><p>In order to run the automated tests use the <code>npm test [-- &lt;args&gt;...]</code> command.</p>
+          <h1><img src="../../../../../assets/0.3.43/img/book.svg" alt="guide">Testing environment
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#introduction">Introduction</a></li><li><a href="#running-automated-tests">Running automated tests</a><ol><li><a href="#examples">Examples</a></li></ol></li><li><a href="#running-manual-tests">Running manual tests</a><ol><li><a href="#creating-a-manual-test">Creating a manual test</a></li></ol></li><li><a href="#test-suite-and-ci">Test suite and CI</a></li></ol></nav>
+<p>Before reading this article we recommend getting familiar with the CKEditor 5 <a href="development-environment.html">development environment</a>.</p>
+<h2 id="introduction"><a class="headerlink" href="#introduction">#</a> Introduction</h2>
+<p>The CKEditor 5 testing environment uses a popular setup with <a href="https://karma-runner.github.io" target="_blank" rel="noopener">Karma</a>, <a href="https://webpack.github.io/" target="_blank" rel="noopener">webpack</a>, <a href="https://github.com/babel/babel-loader" target="_blank" rel="noopener">babel-loader</a> and <a href="https://github.com/gotwarlost/istanbul" target="_blank" rel="noopener">Istanbul</a>. We created some <a href="https://docs.npmjs.com/cli/run-script" target="_blank" rel="noopener">npm scripts</a> which glue all these pieces and special requirements for CKEditor together.</p>
+<p>Each CKEditor package has its own tests suite (see for example the <a href="https://github.com/ckeditor/ckeditor5-engine/tree/master/tests" target="_blank" rel="noopener">engine&#x2019;s tests</a>), however, the test runner is available in the <a href="https://github.com/ckeditor/ckeditor5" target="_blank" rel="noopener"><code>ckeditor5</code></a> package which is the central development environment. The actual code of the test runner is implemented in the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-dev-tests" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-dev-tests</code></a> package and can be easily reused outside of <code>ckeditor5</code>.</p>
+<h2 id="running-automated-tests"><a class="headerlink" href="#running-automated-tests">#</a> Running automated tests</h2>
+<p>In order to run the automated tests use the <code>npm test [-- &lt;args&gt;...]</code> command.</p>
 <p>It accepts the following arguments (must be passed after the <code>--</code> option):</p>
 <ul>
 <li><code>--watch</code> (alias <code>-w</code>) &#x2013; Whether to watch the files and execute tests whenever any file changes.</li>
@@ -71,16 +74,22 @@
 <li><code>--files</code> &#x2013; Specifies tests files to run. Accepts a package name or a glob. Read more about the <a href="https://github.com/ckeditor/ckeditor5-dev/tree/master/packages/ckeditor5-dev-tests#rules-for-converting---files-option-to-glob-pattern" target="_blank" rel="noopener">rules for converting the <code>--files</code> option to a glob pattern</a>.</li>
 <li><code>--browsers</code> &#x2013; Browsers which will be used to run the tests. Defaults to <code>Chrome</code>.</li>
 </ul>
-<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><p>Run all tests with the code coverage check of the <a href="https://github.com/ckeditor/ckeditor5-core" target="_blank" rel="noopener"><code>ckeditor5-core</code></a> package:</p>
-<pre><code>npm test -- -c --files=core
-</code></pre><p>Run and watch the <a href="https://github.com/ckeditor/ckeditor5-engine/tree/master/tests/view" target="_blank" rel="noopener">engine&apos;s <code>view</code> namespace tests</a> and all the tests in <a href="https://github.com/ckeditor/ckeditor5-typing" target="_blank" rel="noopener"><code>ckeditor5-typing</code></a>:</p>
-<pre><code>npm test -- -cw --files=engine/view,typing
-</code></pre><p>Run the <code>bold*.js</code> tests in the <a href="https://github.com/ckeditor/ckeditor5-basic-styles" target="_blank" rel="noopener"><code>ckeditor5-basic-styles</code></a> package:</p>
-<pre><code>npm test -- -cw --files=basic-styles/bold*.js
-</code></pre><h2 id="Running-manual-tests"><a href="#Running-manual-tests" class="headerlink" title="Running manual tests"></a>Running manual tests</h2><p>In order to start the manual tests server use the <code>npm run test:manual</code> task.</p>
+<h3 id="examples"><a class="headerlink" href="#examples">#</a> Examples</h3>
+<p>Run all tests with the code coverage check of the <a href="https://github.com/ckeditor/ckeditor5-core" target="_blank" rel="noopener"><code>ckeditor5-core</code></a> package:</p>
+<pre class="highlight"><code class="">npm test -- -c --files=core
+</code></pre>
+<p>Run and watch the <a href="https://github.com/ckeditor/ckeditor5-engine/tree/master/tests/view" target="_blank" rel="noopener">engine&#x2019;s <code>view</code> namespace tests</a> and all the tests in <a href="https://github.com/ckeditor/ckeditor5-typing" target="_blank" rel="noopener"><code>ckeditor5-typing</code></a>:</p>
+<pre class="highlight"><code class="">npm test -- -cw --files=engine/view,typing
+</code></pre>
+<p>Run the <code>bold*.js</code> tests in the <a href="https://github.com/ckeditor/ckeditor5-basic-styles" target="_blank" rel="noopener"><code>ckeditor5-basic-styles</code></a> package:</p>
+<pre class="highlight"><code class="">npm test -- -cw --files=basic-styles/bold*.js
+</code></pre>
+<h2 id="running-manual-tests"><a class="headerlink" href="#running-manual-tests">#</a> Running manual tests</h2>
+<p>In order to start the manual tests server use the <code>npm run test:manual</code> task.</p>
 <p>The task accepts the <code>--source-map</code> (alias <code>-s</code>) option.</p>
 <p>It starts a server available at <a href="http://localhost:8125">http://localhost:8125</a>.</p>
-<h3 id="Creating-a-manual-test"><a href="#Creating-a-manual-test" class="headerlink" title="Creating a manual test"></a>Creating a manual test</h3><p>A manual test consists of 3 files:</p>
+<h3 id="creating-a-manual-test"><a class="headerlink" href="#creating-a-manual-test">#</a> Creating a manual test</h3>
+<p>A manual test consists of 3 files:</p>
 <ul>
 <li>A <code>&lt;name&gt;.md</code> file with the test description.</li>
 <li>A <code>&lt;name&gt;.js</code> file with the JavaScript part of the test (e.g. the code initializing an editor).</li>
@@ -88,48 +97,48 @@
 </ul>
 <p>All 3 files are combined together and create a single manual test.</p>
 <p>Example Markdown file:</p>
-<pre><code class="md">## Create a new link
+<pre class="highlight"><code class="md"><span class="hljs-section">## Create a new link</span>
 
-1. Select a fragment of regular text.
-2. Click the toolbar &quot;Link&quot; button.
-3. Check if the balloon panel attached to the selection appeared.
-4. Fill in the &quot;Link URL&quot; input in the panel.
-5. Click the &quot;Save&quot; button.
-6. Check if the selected text is converted into a link.
+<span class="hljs-bullet">1. </span>Select a fragment of regular text.
+<span class="hljs-bullet">2. </span>Click the toolbar &quot;Link&quot; button.
+<span class="hljs-bullet">3. </span>Check if the balloon panel attached to the selection appeared.
+<span class="hljs-bullet">4. </span>Fill in the &quot;Link URL&quot; input in the panel.
+<span class="hljs-bullet">5. </span>Click the &quot;Save&quot; button.
+<span class="hljs-bullet">6. </span>Check if the selected text is converted into a link.
 </code></pre>
 <p>Example HTML file:</p>
-<pre><code class="html">&lt;head&gt;
-    &lt;style&gt;
-        /*
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+        <span class="hljs-comment">/*
           Some additional styles which this test needs.
           And yes &#x2013; the test builder will merge this tag with head defined in a template.
-        */
-    &lt;/style&gt;
-&lt;/head&gt;
+        */</span>
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
 
-&lt;div id=&quot;editor&quot;&gt;...&lt;/div&gt;
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;editor&quot;</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 </code></pre>
 <p>Example JS file:</p>
-<pre><code class="js">/* globals console, window, document */
+<pre class="highlight"><code class="js"><span class="hljs-comment">/* globals console, window, document */</span>
 
-import ClassicEditor from &apos;@ckeditor/ckeditor5-editor-classic/src/classic.js&apos;;
-import Essentials from &apos;@ckeditor/ckeditor5-essentials/src/essentials.js&apos;;
-import Paragraph from &apos;@ckeditor/ckeditor5-paragraph/src/paragraph.js&apos;;
+<span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classic.js&apos;</span>;
+<span class="hljs-keyword">import</span> Essentials <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-essentials/src/essentials.js&apos;</span>;
+<span class="hljs-keyword">import</span> Paragraph <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-paragraph/src/paragraph.js&apos;</span>;
 
 ClassicEditor
-    .create( document.querySelector( &apos;#editor&apos; ), {
-        plugins: [ Essentials, Paragraph ]
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">plugins</span>: [ Essentials, Paragraph ]
     } )
-    .then( editor =&gt; {
-        window.editor = editor;
+    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+        <span class="hljs-built_in">window</span>.editor = editor;
     } )
-    .catch( err =&gt; {
-        console.error( err.stack );
+    .catch( <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.error( err.stack );
     } );
 </code></pre>
 <div class="info-box notice"><p>Do not forget to add all dependencies of your manual test as <code>devDependencies</code> (in <code>package.json</code>).</p></div>
-
-<h2 id="Test-suite-and-CI"><a href="#Test-suite-and-CI" class="headerlink" title="Test suite and CI"></a>Test suite and CI</h2><p>To ensure the highest quality, we maintain a complete test suite with a stable 100% of code coverage for each of the packages. As of December 2017, this means over 7000 tests and the number is growing. Since every package is tested separately, we implement lower-level tests for libraries and higher-level tests for end-user features.</p>
+<h2 id="test-suite-and-ci"><a class="headerlink" href="#test-suite-and-ci">#</a> Test suite and CI</h2>
+<p>To ensure the highest quality, we maintain a complete test suite with a stable 100% of code coverage for each of the packages. As of December 2017, this means over 7000 tests and the number is growing. Since every package is tested separately, we implement lower-level tests for libraries and higher-level tests for end-user features.</p>
 <p>Such an extensive test suite requires a proper continuous integration service. We use <a href="https://travis-ci.com/" target="_blank" rel="noopener">Travis CI</a> as a build platform and <a href="https://www.browserstack.com/" target="_blank" rel="noopener">BrowserStack</a> to be able to run tests on all browsers. These services ensure seamless and fast developer experience and allow us to focus on the job.</p>
 <p>Besides automated tests, we also maintain a smaller set of manual tests. They help us to verify whether something unexpected happens that might have been missed by the automated tests.</p>
 <p>When proposing a pull request make sure to add test(s) which verifies it. Every code change should be accompanied by a test which proves that it is needed. Such a strict approach to testing ensures that not only we have 100% of code coverage (which is quite easy to achieve and gives only an illusory safety) but also a high level of coverage for cases which we failed to notice initially (and might do that again in the future).</p>
@@ -196,7 +205,7 @@ ClassicEditor
         </div>
       </div>
     </main>
-    <footer class="footer">
+    <footer class="footer footer--bordered">
       <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
     </footer>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">

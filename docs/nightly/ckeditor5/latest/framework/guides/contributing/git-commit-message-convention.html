@@ -2,15 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Git commit message convention - CKEditor 5</title>
+    <title>Git commit message convention - CKEditor 5 Documentation</title>
     <link rel="canonical" href="/ckeditor5/latest/framework/guides/contributing/git-commit-message-convention.html">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/0.3.42/css/styles.css" type="text/css" media="screen">
-    <script src="../../../../../assets/0.3.42/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../../../assets/0.3.43/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../../assets/0.3.43/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -49,20 +49,21 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.42/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.43/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/contributing/git-commit-message-convention.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.42/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.42/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/contributing/git-commit-message-convention.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.43/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.43/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <h1><img src="../../../../../assets/0.3.42/img/book.svg" alt="guide">Git commit message convention
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Convention">Convention</a><ol><li><a href="#Commit-types">Commit types</a></li><li><a href="#Example-commits">Example commits</a></li></ol></li><li><a href="#Handling-pull-requests">Handling pull requests</a><ol><li><a href="#Giving-credit">Giving credit</a></li></ol></li></ol></nav><p>Every commit made <em>directly</em> to the <code>master</code> branch must follow the below convention. Based on commits in the <code>master</code> branch CKEditor 5&apos;s release tools will generate changelog entries for the current release.</p>
+          <h1><img src="../../../../../assets/0.3.43/img/book.svg" alt="guide">Git commit message convention
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#convention">Convention</a><ol><li><a href="#commit-types">Commit types</a></li><li><a href="#example-commits">Example commits</a></li></ol></li><li><a href="#handling-pull-requests">Handling pull requests</a><ol><li><a href="#giving-credit">Giving credit</a></li></ol></li></ol></nav>
+<p>Every commit made <em>directly</em> to the <code>master</code> branch must follow the below convention. Based on commits in the <code>master</code> branch CKEditor 5&#x2019;s release tools will generate changelog entries for the current release.</p>
 <div class="info-box notice"><p>Commits in the ticket branches are not analyzed for the changelog and do not have to follow any specific convention (other than finishing sentences with periods). In case of ticket branches, <strong>only merge commits are analyzed</strong>.</p><p>Therefore, this guide is mainly targeted at core team members. However, it may help you understand how to write a suggested commit message when creating a pull request for CKEditor 5.</p></div>
-
-<h2 id="Convention"><a href="#Convention" class="headerlink" title="Convention"></a>Convention</h2><p>Commit message template:</p>
-<pre><code>Type: A short sentence about the commit. Closes #XXX.
+<h2 id="convention"><a class="headerlink" href="#convention">#</a> Convention</h2>
+<p>Commit message template:</p>
+<pre class="highlight"><code class="">Type: A short sentence about the commit. Closes #XXX.
 
 Optional description.
 
@@ -70,7 +71,9 @@ NOTE: Special note to be marked in the changelog.
 
 BREAKING CHANGE: If any breaking changes were done, they need to be listed here.
 BREAKING CHANGE: Another breaking change if needed. Closes #YYY.
-</code></pre><h3 id="Commit-types"><a href="#Commit-types" class="headerlink" title="Commit types"></a>Commit types</h3><table>
+</code></pre>
+<h3 id="commit-types"><a class="headerlink" href="#commit-types">#</a> Commit types</h3>
+<table>
 <thead>
 <tr>
 <th>Type</th>
@@ -95,7 +98,7 @@ BREAKING CHANGE: Another breaking change if needed. Closes #YYY.
 <tr>
 <td>Other</td>
 <td><code>patch</code></td>
-<td>An enhancement &#x2014; when it is neither a bug fix nor a feature. Example: public API refactoring. Use it also if you do not want to admit that it was a bug ;).</td>
+<td>An enhancement &#x2014; when it is neither a bug fix nor a feature. Example: public API refactoring. Use it also if you do not want to admit that it was a bug &#x1F609;.</td>
 <td>Visible</td>
 </tr>
 <tr>
@@ -156,52 +159,59 @@ BREAKING CHANGE: Another breaking change if needed. Closes #YYY.
 </tbody>
 </table>
 <p>If any visible change contains the <code>BREAKING CHANGE</code> note, the next release will be marked as <code>major</code> automatically.</p>
-<h3 id="Example-commits"><a href="#Example-commits" class="headerlink" title="Example commits"></a>Example commits</h3><p>A new feature without any breaking changes.</p>
-<pre><code>Feature: Added support for RTL languages. Closes #1.
+<h3 id="example-commits"><a class="headerlink" href="#example-commits">#</a> Example commits</h3>
+<p>A new feature without any breaking changes.</p>
+<pre class="highlight"><code class="">Feature: Added support for RTL languages. Closes #1.
 
 RTL content will now be rendered correctly.
 
 NOTE: Make sure to set `config.contentDirection` correctly.
-</code></pre><p>A bug fix for an existing feature (closes two tickets):</p>
-<pre><code>Fix: The editor will be great again. Closes #3. Closes #4.
-</code></pre><p>Commit with updated documentation:</p>
-<pre><code>Docs: Updated the README.
-</code></pre><p>Commit which provides or changes the tests:</p>
-<pre><code>Tests: Introduced missing tests. Closes #5.
-</code></pre><p>An enhancement which is not backward compatible. Public API was changed:</p>
-<pre><code>Other: Extracted `utils.moo()` to a separate package. Closes #9.
+</code></pre>
+<p>A bug fix for an existing feature (closes two tickets):</p>
+<pre class="highlight"><code class="">Fix: The editor will be great again. Closes #3. Closes #4.
+</code></pre>
+<p>Commit with updated documentation:</p>
+<pre class="highlight"><code class="">Docs: Updated the README.
+</code></pre>
+<p>Commit which provides or changes the tests:</p>
+<pre class="highlight"><code class="">Tests: Introduced missing tests. Closes #5.
+</code></pre>
+<p>An enhancement which is not backward compatible. Public API was changed:</p>
+<pre class="highlight"><code class="">Other: Extracted `utils.moo()` to a separate package. Closes #9.
 
 BREAKING CHANGE: The `util.moo()` method is now available in the `moo` package. See #9.
-</code></pre><p>For the commits shown above the changelog will look like this:</p>
-<pre><code class="md">Changelog
-=========
+</code></pre>
+<p>For the commits shown above the changelog will look like this:</p>
+<pre class="highlight"><code class="md"><span class="hljs-section">Changelog
+=========</span>
 
-## [1.0.0](https://github.com/ckeditor/ckeditor5-dev/compare/v1.0.0...v0.0.1) (2017-01-04)
+<span class="hljs-section">## [1.0.0](https://github.com/ckeditor/ckeditor5-dev/compare/v1.0.0...v0.0.1) (2017-01-04)</span>
 
-### Bug fixes
+<span class="hljs-section">### Bug fixes</span>
 
-* The editor will be great again. Closes [#3](https://github.com/ckeditor/ckeditor5-dev/issue/3). Closes [#4](https://github.com/ckeditor/ckeditor5-dev/issue/4). ([a0b4ce8](https://github.com/ckeditor/ckeditor5-dev/commit/a0b4ce8))
+<span class="hljs-bullet">* </span>The editor will be great again. Closes [<span class="hljs-string">#3</span>](<span class="hljs-link">https://github.com/ckeditor/ckeditor5-dev/issue/3</span>). Closes [<span class="hljs-string">#4</span>](<span class="hljs-link">https://github.com/ckeditor/ckeditor5-dev/issue/4</span>). ([<span class="hljs-string">a0b4ce8</span>](<span class="hljs-link">https://github.com/ckeditor/ckeditor5-dev/commit/a0b4ce8</span>))
 
-### Other changes
+<span class="hljs-section">### Other changes</span>
 
-* Extracted `utils.moo()` to a separate package. Thanks to [@CKEditor](https://github.com/CKEditor). ([e8cc04f](https://github.com/ckeditor/ckeditor5-dev/commit/e8cc04f))
+<span class="hljs-bullet">* </span>Extracted <span class="hljs-code">`utils.moo()`</span> to a separate package. Thanks to [<span class="hljs-string">@CKEditor</span>](<span class="hljs-link">https://github.com/CKEditor</span>). ([<span class="hljs-string">e8cc04f</span>](<span class="hljs-link">https://github.com/ckeditor/ckeditor5-dev/commit/e8cc04f</span>))
 
-### Features
+<span class="hljs-section">### Features</span>
 
-* Added support for RTL languages. Closes [#1](https://github.com/ckeditor/ckeditor5-dev/issue/1). ([adc59ed](https://github.com/ckeditor/ckeditor5-dev/commit/adc59ed))
+<span class="hljs-bullet">* </span>Added support for RTL languages. Closes [<span class="hljs-string">#1</span>](<span class="hljs-link">https://github.com/ckeditor/ckeditor5-dev/issue/1</span>). ([<span class="hljs-string">adc59ed</span>](<span class="hljs-link">https://github.com/ckeditor/ckeditor5-dev/commit/adc59ed</span>))
 
    RTL content will now be rendered correctly.
 
-### BREAKING CHANGES
+<span class="hljs-section">### BREAKING CHANGES</span>
 
-* The `util.moo()` method is now available in the `moo` package. See [#9](https://github.com/ckeditor/ckeditor5-dev/issue/9).
+<span class="hljs-bullet">* </span>The <span class="hljs-code">`util.moo()`</span> method is now available in the <span class="hljs-code">`moo`</span> package. See [<span class="hljs-string">#9</span>](<span class="hljs-link">https://github.com/ckeditor/ckeditor5-dev/issue/9</span>).
 
-### NOTE
+<span class="hljs-section">### NOTE</span>
 
-* Make sure to set `config.contentDirection` correctly.
+<span class="hljs-bullet">* </span>Make sure to set <span class="hljs-code">`config.contentDirection`</span> correctly.
 </code></pre>
-<h2 id="Handling-pull-requests"><a href="#Handling-pull-requests" class="headerlink" title="Handling pull requests"></a>Handling pull requests</h2><p>When making a pull request its author may (it is recommended in the pull request template) propose a merge commit message.</p>
-<p>The reviewer&apos;s duty is to validate the proposed message and apply necessary changes (the PR&apos;s description can be edited).</p>
+<h2 id="handling-pull-requests"><a class="headerlink" href="#handling-pull-requests">#</a> Handling pull requests</h2>
+<p>When making a pull request its author may (it is recommended in the pull request template) propose a merge commit message.</p>
+<p>The reviewer&#x2019;s duty is to validate the proposed message and apply necessary changes (the PR&#x2019;s description can be edited).</p>
 <p>Things like:</p>
 <ul>
 <li>language and grammar of the message,</li>
@@ -214,11 +224,13 @@ BREAKING CHANGE: The `util.moo()` method is now available in the `moo` package. 
 <p>As a reviewer, remember that the message will end up in the changelog and must be understandable in a broad context of the entire editor. It is not for you &#x2014; it is for other developers.</p>
 <p>When closing a PR remember to copy the source of the message to the textarea with the merge commit message:</p>
 <p><img src="../../../assets/img/closing-a-pr.png" alt="Screencast how to copy a source version of the suggested commit message when closing a PR."></p>
-<h3 id="Giving-credit"><a href="#Giving-credit" class="headerlink" title="Giving credit"></a>Giving credit</h3><p>When closing a non-core contributor&apos;s PR make sure to add information about the contributor to the commit message. For example:</p>
-<pre><code>Feature: Added support for RTL languages. Closes #1.
+<h3 id="giving-credit"><a class="headerlink" href="#giving-credit">#</a> Giving credit</h3>
+<p>When closing a non-core contributor&#x2019;s PR make sure to add information about the contributor to the commit message. For example:</p>
+<pre class="highlight"><code class="">Feature: Added support for RTL languages. Closes #1.
 
 Thanks to @someone!
 </code></pre>
+
         </div>
       </section>
       <div class="side-navigation">
@@ -281,7 +293,7 @@ Thanks to @someone!
         </div>
       </div>
     </main>
-    <footer class="footer">
+    <footer class="footer footer--bordered">
       <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
     </footer>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">

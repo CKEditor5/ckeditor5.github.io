@@ -2,15 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Basic API - CKEditor 5</title>
+    <title>Basic API - CKEditor 5 Documentation</title>
     <link rel="canonical" href="/ckeditor5/latest/builds/guides/integration/basic-api.html">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/0.3.42/css/styles.css" type="text/css" media="screen">
-    <script src="../../../../../assets/0.3.42/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../../../assets/0.3.43/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../../assets/0.3.43/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -49,110 +49,120 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.42/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.43/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/integration/basic-api.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.42/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.42/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/integration/basic-api.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.43/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.43/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <h1><img src="../../../../../assets/0.3.42/img/book.svg" alt="guide">Basic API
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Creating-an-editor">Creating an editor</a><ol><li><a href="#Example-&#x2013;-Classic-editor">Example &#x2013; Classic editor</a></li><li><a href="#Example-&#x2013;-Inline-editor">Example &#x2013; Inline editor</a></li><li><a href="#Example-&#x2013;-Balloon-editor">Example &#x2013; Balloon editor</a></li></ol></li><li><a href="#Interacting-with-the-editor">Interacting with the editor</a><ol><li><a href="#Setting-the-editor-data">Setting the editor data</a></li><li><a href="#Getting-the-editor-data">Getting the editor data</a></li><li><a href="#Destroying-the-editor">Destroying the editor</a></li></ol></li><li><a href="#UMD-support">UMD support</a></li><li><a href="#What-39-s-more">What&apos;s more?</a></li></ol></nav><p>Each CKEditor 5 build provides a different class that handles the creation of editor instances:</p>
+          <h1><img src="../../../../../assets/0.3.43/img/book.svg" alt="guide">Basic API
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#creating-an-editor">Creating an editor</a><ol><li><a href="#example-classic-editor">Example &#x2013; Classic editor</a></li><li><a href="#example-inline-editor">Example &#x2013; Inline editor</a></li><li><a href="#example-balloon-editor">Example &#x2013; Balloon editor</a></li></ol></li><li><a href="#interacting-with-the-editor">Interacting with the editor</a><ol><li><a href="#setting-the-editor-data">Setting the editor data</a></li><li><a href="#getting-the-editor-data">Getting the editor data</a></li><li><a href="#destroying-the-editor">Destroying the editor</a></li></ol></li><li><a href="#umd-support">UMD support</a></li><li><a href="#whats-more">What&#x2019;s more?</a></li></ol></nav>
+<p>Each CKEditor 5 build provides a different class that handles the creation of editor instances:</p>
 <ul>
 <li>Classic editor &#x2013; <a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html"><code>ClassicEditor</code></a></li>
 <li>Inline editor &#x2013; <a href="../../../api/module_editor-inline_inlineeditor-InlineEditor.html"><code>InlineEditor</code></a></li>
 <li>Balloon editor &#x2013; <a href="../../../api/module_editor-balloon_ballooneditor-BalloonEditor.html"><code>BalloonEditor</code></a></li>
 </ul>
 <p>Most of the examples in the documentation use the <code>ClassicEditor</code> class, but things should work in a similar way with other builds.</p>
-<h2 id="Creating-an-editor"><a href="#Creating-an-editor" class="headerlink" title="Creating an editor"></a>Creating an editor</h2><p>Regardless of the chosen build, creating an editor is done using the static <code>create()</code> method.</p>
-<h3 id="Example-&#x2013;-Classic-editor"><a href="#Example-&#x2013;-Classic-editor" class="headerlink" title="Example &#x2013; Classic editor"></a>Example &#x2013; Classic editor</h3><p>Add an element that CKEditor should replace to your HTML page:</p>
-<pre><code class="html">&lt;textarea name=&quot;content&quot; id=&quot;editor&quot;&gt;
+<h2 id="creating-an-editor"><a class="headerlink" href="#creating-an-editor">#</a> Creating an editor</h2>
+<p>Regardless of the chosen build, creating an editor is done using the static <code>create()</code> method.</p>
+<h3 id="example-classic-editor"><a class="headerlink" href="#example-classic-editor">#</a> Example &#x2013; Classic editor</h3>
+<p>Add an element that CKEditor should replace to your HTML page:</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;content&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;editor&quot;</span>&gt;</span>
     &lt;p&gt;Here goes the initial content of the editor.&lt;/p&gt;
-&lt;/textarea&gt;
+<span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>
 </code></pre>
 <p>Then call <a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html#create"><code>ClassicEditor.create()</code></a> to <strong>replace</strong> the <code>&lt;textarea&gt;</code> element with a <a href="../overview.html#Classic-editor">Classic editor</a>:</p>
-<pre><code class="js">ClassicEditor
-    .create( document.querySelector( &apos;#editor&apos; ) )
-    .then( editor =&gt; {
-        console.log( editor );
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ) )
+    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log( editor );
     } )
-    .catch( error =&gt; {
-        console.error( error );
+    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.error( error );
     } );
 </code></pre>
 <p>In this case the <code>&lt;textarea&gt;</code> element is hidden and replaced with an editor. The <code>&lt;textarea&gt;</code> data is used to initialize the editor content. A <code>&lt;div&gt;</code> element can be used in the same way.</p>
-<h3 id="Example-&#x2013;-Inline-editor"><a href="#Example-&#x2013;-Inline-editor" class="headerlink" title="Example &#x2013; Inline editor"></a>Example &#x2013; Inline editor</h3><p>Similarly to the previous example, add an element where CKEditor should initialize to your page:</p>
-<pre><code class="html">&lt;div id=&quot;editor&quot;&gt;
+<h3 id="example-inline-editor"><a class="headerlink" href="#example-inline-editor">#</a> Example &#x2013; Inline editor</h3>
+<p>Similarly to the previous example, add an element where CKEditor should initialize to your page:</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;editor&quot;</span>&gt;</span>
     &lt;p&gt;Here goes the initial content of the editor.&lt;/p&gt;
-&lt;/div&gt;
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 </code></pre>
 <p>Then call <a href="../../../api/module_editor-inline_inlineeditor-InlineEditor.html#create"><code>InlineEditor.create()</code></a> to <strong>attach</strong> <a href="../overview.html#Inline-editor">Inline editor</a> to the <code>&lt;div&gt;</code> element:</p>
-<pre><code class="js">InlineEditor
-    .create( document.querySelector( &apos;#editor&apos; ) )
-    .then( editor =&gt; {
-        console.log( editor );
+<pre class="highlight"><code class="js">InlineEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ) )
+    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log( editor );
     } )
-    .catch( error =&gt; {
-        console.error( error );
+    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.error( error );
     } );
 </code></pre>
-<h3 id="Example-&#x2013;-Balloon-editor"><a href="#Example-&#x2013;-Balloon-editor" class="headerlink" title="Example &#x2013; Balloon editor"></a>Example &#x2013; Balloon editor</h3><p>The procedure is the same as for Inline editor &#x2014; the only difference is that you need to use the <a href="../../../api/module_editor-balloon_ballooneditor-BalloonEditor.html#create"><code>BalloonEditor.create()</code></a> method.</p>
+<h3 id="example-balloon-editor"><a class="headerlink" href="#example-balloon-editor">#</a> Example &#x2013; Balloon editor</h3>
+<p>The procedure is the same as for Inline editor &#x2014; the only difference is that you need to use the <a href="../../../api/module_editor-balloon_ballooneditor-BalloonEditor.html#create"><code>BalloonEditor.create()</code></a> method.</p>
 <p>Add an element where CKEditor should initialize to your page:</p>
-<pre><code class="html">&lt;div id=&quot;editor&quot;&gt;
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;editor&quot;</span>&gt;</span>
     &lt;p&gt;Here goes the initial content of the editor.&lt;/p&gt;
-&lt;/div&gt;
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 </code></pre>
 <p>Then call <a href="../../../api/module_editor-balloon_ballooneditor-BalloonEditor.html#create"><code>BalloonEditor.create()</code></a> to <strong>attach</strong> <a href="../overview.html#Balloon-editor">Balloon editor</a> to the <code>&lt;div&gt;</code> element:</p>
-<pre><code class="js">BalloonEditor
-    .create( document.querySelector( &apos;#editor&apos; ) )
-    .then( editor =&gt; {
-        console.log( editor );
+<pre class="highlight"><code class="js">BalloonEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ) )
+    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log( editor );
     } )
-    .catch( error =&gt; {
-        console.error( error );
+    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.error( error );
     } );
 </code></pre>
-<div class="info-box notice notice__tip"><p>Every editor class may accept different parameters in the <code>create()</code> method and may handle the initialization differently. For instance, the classic editor will replace a given element with an editor, while the inline editor will use the given element to initialize the editor on it. See each editor&apos;s documentation to learn the details.</p><p>The interface of the editor class is not enforced either. Since different implementations of editors may vary heavily in terms of functionality, the editor class implementers have full freedom regarding the API. Therefore, the examples in this guide may not work with some editor classes.</p></div>
-
-<h2 id="Interacting-with-the-editor"><a href="#Interacting-with-the-editor" class="headerlink" title="Interacting with the editor"></a>Interacting with the editor</h2><p>Once the editor is created, it is possible to interact with it through its API. The <code>editor</code> variable from the examples above should enable that.</p>
-<h3 id="Setting-the-editor-data"><a href="#Setting-the-editor-data" class="headerlink" title="Setting the editor data"></a>Setting the editor data</h3><p>To replace the editor content with new data, use the <code>setData()</code> method:</p>
-<pre><code class="js">editor.setData( &apos;&lt;p&gt;Some text.&lt;/p&gt;&apos; );
+<div class="info-box notice notice__tip"><p>Every editor class may accept different parameters in the <code>create()</code> method and may handle the initialization differently. For instance, the classic editor will replace a given element with an editor, while the inline editor will use the given element to initialize the editor on it. See each editor&#x2019;s documentation to learn the details.</p><p>The interface of the editor class is not enforced either. Since different implementations of editors may vary heavily in terms of functionality, the editor class implementers have full freedom regarding the API. Therefore, the examples in this guide may not work with some editor classes.</p></div>
+<h2 id="interacting-with-the-editor"><a class="headerlink" href="#interacting-with-the-editor">#</a> Interacting with the editor</h2>
+<p>Once the editor is created, it is possible to interact with it through its API. The <code>editor</code> variable from the examples above should enable that.</p>
+<h3 id="setting-the-editor-data"><a class="headerlink" href="#setting-the-editor-data">#</a> Setting the editor data</h3>
+<p>To replace the editor content with new data, use the <code>setData()</code> method:</p>
+<pre class="highlight"><code class="js">editor.setData( <span class="hljs-string">&apos;&lt;p&gt;Some text.&lt;/p&gt;&apos;</span> );
 </code></pre>
-<h3 id="Getting-the-editor-data"><a href="#Getting-the-editor-data" class="headerlink" title="Getting the editor data"></a>Getting the editor data</h3><p>If the editor content needs to be retrieved for any reason, like for sending it to the server through an Ajax call, use the <code>getData()</code> method:</p>
-<pre><code class="js">const data = editor.getData();
+<h3 id="getting-the-editor-data"><a class="headerlink" href="#getting-the-editor-data">#</a> Getting the editor data</h3>
+<p>If the editor content needs to be retrieved for any reason, like for sending it to the server through an Ajax call, use the <code>getData()</code> method:</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> data = editor.getData();
 </code></pre>
-<h3 id="Destroying-the-editor"><a href="#Destroying-the-editor" class="headerlink" title="Destroying the editor"></a>Destroying the editor</h3><p>In modern applications, it is common to create and remove elements from the page interactively through JavaScript. In such cases CKEditor instances should be destroyed by using the <code>destroy()</code> method:</p>
-<pre><code class="js">editor.destroy()
-    .catch( error =&gt; {
-        console.log( error );
+<h3 id="destroying-the-editor"><a class="headerlink" href="#destroying-the-editor">#</a> Destroying the editor</h3>
+<p>In modern applications, it is common to create and remove elements from the page interactively through JavaScript. In such cases CKEditor instances should be destroyed by using the <code>destroy()</code> method:</p>
+<pre class="highlight"><code class="js">editor.destroy()
+    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log( error );
     } );
 </code></pre>
 <p>Once destroyed, resources used by the editor instance are released and the original element used to create the editor is automatically displayed and updated to reflect the final editor data.</p>
-<h2 id="UMD-support"><a href="#UMD-support" class="headerlink" title="UMD support"></a>UMD support</h2><p>Because builds are distributed as <a href="https://github.com/umdjs/umd" target="_blank" rel="noopener">UMD modules</a>, editor classes can be retrieved in various ways:</p>
+<h2 id="umd-support"><a class="headerlink" href="#umd-support">#</a> UMD support</h2>
+<p>Because builds are distributed as <a href="https://github.com/umdjs/umd" target="_blank" rel="noopener">UMD modules</a>, editor classes can be retrieved in various ways:</p>
 <ul>
 <li>by a <a href="http://wiki.commonjs.org/wiki/CommonJS" target="_blank" rel="noopener">CommonJS</a>-compatible loader (e.g. <a href="https://webpack.js.org" target="_blank" rel="noopener">webpack</a> or <a href="http://browserify.org/" target="_blank" rel="noopener">Browserify</a>),</li>
 <li>by <a href="http://requirejs.org/" target="_blank" rel="noopener">RequireJS</a> (or any other AMD library),</li>
 <li>from the global namespace if none of the above loaders is available.</li>
 </ul>
 <p>For example:</p>
-<pre><code class="js">// In CommonJS environment.
-const ClassicEditor = require( &apos;@ckeditor/ckeditor5-build-classic&apos; );
-ClassicEditor.create( ... ); // [Function]
+<pre class="highlight"><code class="js"><span class="hljs-comment">// In CommonJS environment.</span>
+<span class="hljs-keyword">const</span> ClassicEditor = <span class="hljs-built_in">require</span>( <span class="hljs-string">&apos;@ckeditor/ckeditor5-build-classic&apos;</span> );
+ClassicEditor.create( ... ); <span class="hljs-comment">// [Function]</span>
 
-// If AMD is present, you can do this.
-require( [ &apos;path/to/ckeditor5-build-classic/build/ckeditor&apos; ], ClassicEditor =&gt; {
-    ClassicEditor.create( ... ); // [Function]
+<span class="hljs-comment">// If AMD is present, you can do this.</span>
+<span class="hljs-built_in">require</span>( [ <span class="hljs-string">&apos;path/to/ckeditor5-build-classic/build/ckeditor&apos;</span> ], ClassicEditor =&gt; {
+    ClassicEditor.create( ... ); <span class="hljs-comment">// [Function]</span>
 } );
 
-// As a global variable.
-ClassicEditor.create( ... ); // [Function]
+<span class="hljs-comment">// As a global variable.</span>
+ClassicEditor.create( ... ); <span class="hljs-comment">// [Function]</span>
 
-// As an ES6 module (if using webpack or Rollup).
-import ClassicEditor from &apos;@ckeditor/ckeditor5-build-classic&apos;;
-ClassicEditor.create( ... ); // [Function]
+<span class="hljs-comment">// As an ES6 module (if using webpack or Rollup).</span>
+<span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-build-classic&apos;</span>;
+ClassicEditor.create( ... ); <span class="hljs-comment">// [Function]</span>
 </code></pre>
-<h2 id="What-39-s-more"><a href="#What-39-s-more" class="headerlink" title="What&apos;s more?"></a>What&apos;s more?</h2><p>CKEditor offers a rich API to interact with editors. Check out the <a href="../../../api/index.html">API documentation</a> for more.</p>
+<h2 id="whats-more"><a class="headerlink" href="#whats-more">#</a> What&#x2019;s more?</h2>
+<p>CKEditor offers a rich API to interact with editors. Check out the <a href="../../../api/index.html">API documentation</a> for more.</p>
 
         </div>
       </section>
@@ -213,7 +223,7 @@ ClassicEditor.create( ... ); // [Function]
         </div>
       </div>
     </main>
-    <footer class="footer">
+    <footer class="footer footer--bordered">
       <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
     </footer>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
