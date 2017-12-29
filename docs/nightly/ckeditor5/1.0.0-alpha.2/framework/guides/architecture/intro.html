@@ -9,8 +9,8 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/0.3.43/css/styles.css" type="text/css" media="screen">
-    <script src="../../../../../assets/0.3.43/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../../../assets/0.3.44/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../../assets/0.3.44/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -49,15 +49,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.43/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.44/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/architecture/intro.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.43/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.43/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/architecture/intro.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.44/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.44/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <h1><img src="../../../../../assets/0.3.43/img/book.svg" alt="guide">Introduction
+          <h1><img src="../../../../../assets/0.3.44/img/book.svg" alt="guide">Introduction
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#core-editor-architecture">Core editor architecture</a><ol><li><a href="#editor-classes">Editor classes</a></li><li><a href="#plugins">Plugins</a></li><li><a href="#commands">Commands</a></li><li><a href="#event-system-and-observables">Event system and observables</a></li></ol></li><li><a href="#editing-engine">Editing engine</a><ol><li><a href="#overview">Overview</a></li><li><a href="#model">Model</a><ol><li><a href="#text-attributes">Text attributes</a></li><li><a href="#selection-attributes">Selection attributes</a></li><li><a href="#positions">Positions</a></li></ol></li><li><a href="#view">View</a></li><li><a href="#controller">Controller</a></li></ol></li><li><a href="#ui-library">UI library</a><ol><li><a href="#views">Views</a><ol><li><a href="#definition">Definition</a></li><li><a href="#interaction">Interaction</a></li><li><a href="#best-practices">Best practices</a></li></ol></li><li><a href="#templates">Templates</a></li><li><a href="#view-collections-and-the-ui-tree">View collections and the UI tree</a></li><li><a href="#using-the-existing-components">Using the existing components</a></li><li><a href="#keystrokes-and-focus-management">Keystrokes and focus management</a><ol><li><a href="#focus-tracker">Focus tracker</a></li><li><a href="#keystroke-handler">Keystroke handler</a></li></ol></li></ol></li></ol></nav>
 <p>This guide introduces the most important parts of the CKEditor 5 architecture. It is assumed that you have read the <a href="../overview.html">Framework&#x2019;s overview</a> and saw some code in the <a href="../quick-start.html">Quick start</a> guide. This should help you going through this one.</p>
 <div class="info-box notice"><p>CKEditor 5 reached its first alpha version. This means that it is feature complete and that we consider it stable enough for first production integrations. However, this means that <strong>we are going to introduce many breaking changes</strong> before the final 1.0.0 release. Many code refactorings were scheduled for after 1.0.0 alpha so a lot of API, including critical pieces, will still change. The goal is, in most cases, to simplify the API, so please excuse us some more cumbersome pieces. We will thus avoid going too deep into details and creating many code samples, as maintaining them would be a nightmare during the upcoming code changes.</p></div>
