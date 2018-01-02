@@ -65,20 +65,133 @@
           </div>
           <p><span class="badge">class</span>
           </p>
-          <div class="main-description"><p>Schema is a definition of the structure of the document. It allows to define which tree model items (element, text, etc.)
-can be nested within which ones and which attributes can be applied to them. It&apos;s created during the run-time of the application,
-typically by features. Also, the features can query the schema to learn what structure is allowed and act accordingly.</p>
-<p>For instance, if a feature wants to define that an attribute bold is allowed on the text it needs to register this rule like this:</p>
-<pre class="prettyprint source"><code>editor.model.schema.allow( &apos;$text&apos;, &apos;bold&apos; );</code></pre><p>Note: items prefixed with <code>$</code> are special group of items. By default, <code>Schema</code> defines three special items:</p>
+          <nav class="secondary-navigation api-info-box">
+            <dl>
+                        <dt>Implements</dt>
+                        <dd>
+                          <ul>
+                                      <li title="@ckeditor/ckeditor5-utils/src/emittermixin~Emitter"><code><span><a href="module_utils_emittermixin-Emitter.html">Emitter</a></span></code></li>
+                                      <li title="@ckeditor/ckeditor5-utils/src/observablemixin~Observable"><code><span><a href="module_utils_observablemixin-Observable.html">Observable</a></span></code></li>
+                          </ul>
+                        </dd>
+                        <dt>Mixes</dt>
+                        <dd>
+                          <ul>
+                                      <li title="@ckeditor/ckeditor5-utils/src/emittermixin~EmitterMixin"><code><span><a href="module_utils_emittermixin-EmitterMixin.html">EmitterMixin</a></span></code></li>
+                                      <li title="@ckeditor/ckeditor5-utils/src/observablemixin~ObservableMixin"><code><span><a href="module_utils_observablemixin-ObservableMixin.html">ObservableMixin</a></span></code></li>
+                          </ul>
+                        </dd>
+            </dl>
+          </nav>
+          <div class="main-description"><p>The model&apos;s schema. It defines allowed and disallowed structures of nodes as well as nodes&apos; attributes.
+The schema is usually defined by features and based on them the editing framework and features
+make decisions how to change and process the model.</p>
+<p>The instance of schema is available in <a href="module_engine_model_model-Model.html#schema"><code>editor.model.schema</code></a>.</p>
+<h4>Schema definitions</h4><p>Schema defines allowed model structures and allowed attributes separately. They are also checked separately
+by using the <a href="#checkChild"><code>checkChild</code></a> and <a href="#checkAttribute"><code>checkAttribute</code></a> methods.</p>
+<h5>Defining allowed structures</h5><p>When a feature introduces a model element it should registered it in the schema. Besides</p>
+<p>defining that such an element may exist in the model, the feature also needs to define where
+this element may occur:</p>
+<pre class="prettyprint source"><code>schema.register( &apos;myElement&apos;, {
+    allowIn: &apos;$root&apos;
+} );</code></pre><p>This lets the schema know that <code>&lt;myElement&gt;</code> may be a child of the <code>&lt;$root&gt;</code> element. <code>$root</code> is one of generic
+node types defined by the editing framework. By default, the editor names the main root element a <code>&lt;$root&gt;</code>,
+so the above definition allows <code>&lt;myElement&gt;</code> in the main editor element.</p>
+<p>In other words, this would be correct:</p>
+<pre class="prettyprint source"><code>&lt;$root&gt;&lt;myElement&gt;&lt;/myElement&gt;&lt;/$root&gt;</code></pre><p>While this would not be correct:</p>
+<pre class="prettyprint source"><code>&lt;$root&gt;&lt;foo&gt;&lt;myElement&gt;&lt;/myElement&gt;&lt;/foo&gt;&lt;/$root&gt;</code></pre><h5>Generic node types</h5><p>There are three basic generic node types: <code>$root</code>, <code>$block</code> and <code>$text</code>.
+They are defined as follows:</p>
+<pre class="prettyprint source"><code>this.schema.register( &apos;$root&apos;, {
+    isLimit: true
+} );
+this.schema.register( &apos;$block&apos;, {
+    allowIn: &apos;$root&apos;,
+    isBlock: true
+} );
+this.schema.register( &apos;$text&apos;, {
+    allowIn: &apos;$block&apos;
+} );</code></pre><p>These definitions can then be reused by features to create their own definitions in a more extensible way.
+For example, the <a href="module_paragraph_paragraph-Paragraph.html"><code>Paragraph</code></a> feature will define its item as:</p>
+<pre class="prettyprint source"><code>schema.register( &apos;paragraph&apos;, {
+    inheritAllFrom: &apos;$block&apos;
+} );</code></pre><p>Which translates to:</p>
+<pre class="prettyprint source"><code>schema.register( &apos;paragraph&apos;, {
+    allowWhere: &apos;$block&apos;,
+    allowContentOf: &apos;$block&apos;,
+    allowAttributesOf: &apos;$block&apos;,
+    inheritTypesFrom: &apos;$block&apos;
+} );</code></pre><p>Which can be read as:</p>
 <ul>
-<li><code>$inline</code> represents all inline elements,</li>
-<li><code>$text</code> is a sub-group of <code>$inline</code> and represents text nodes,</li>
-<li><code>$block</code> represents block elements,</li>
-<li><code>$root</code> represents default editing roots (those that allow only <code>$block</code>s inside them).</li>
+<li>The <code>&lt;paragraph&gt;</code> element will be allowed in elements in which <code>&lt;$block&gt;</code> is allowed (e.g. in <code>&lt;$root&gt;</code>).</li>
+<li>The <code>&lt;paragraph&gt;</code> element will allow all nodes which are allowed in <code>&lt;$block&gt;</code> (e.g. <code>$text</code>).</li>
+<li>The <code>&lt;paragraph&gt;</code> element will allow all attributes allowed on <code>&lt;$block&gt;</code>.</li>
+<li>The <code>&lt;paragraph&gt;</code> element will inherit all <code>is*</code> properties of <code>&lt;$block&gt;</code> (e.g. <code>isBlock</code>).</li>
 </ul>
-<p>When registering an item it&apos;s possible to tell that this item should inherit from some other existing item.
-E.g. <code>p</code> can inherit from <code>$block</code>, so whenever given attribute is allowed on the <code>$block</code> it will automatically be
-also allowed on the <code>p</code> element. By default, <code>$text</code> item already inherits from <code>$inline</code>.</p></div>
+<p>Thanks to the fact that <code>&lt;paragraph&gt;</code>&apos;s definition is inherited from <code>&lt;$block&gt;</code> other features can use the <code>&lt;$block&gt;</code>
+type to indirectly extend <code>&lt;paragraph&gt;</code>&apos;s definition. For example, the <a href="module_block-quote_blockquote-BlockQuote.html"><code>BlockQuote</code></a>
+feature does this:</p>
+<pre class="prettyprint source"><code>schema.register( &apos;blockQuote&apos;, {
+    allowWhere: &apos;$block&apos;,
+    allowContentOf: &apos;$root&apos;
+} );</code></pre><p>Thanks to that, despite the fact that block quote and paragraph features know nothing about themselves, paragraphs
+will be allowed in block quotes and block quotes will be allowed in all places where blocks are. So if anyone will
+register a <code>&lt;section&gt;</code> element (with <code>allowContentOf: &apos;$root&apos;</code> rule), that <code>&lt;section&gt;</code> elements will allow
+block quotes too.</p>
+<p>The side effect of such a definition inheritance is that now <code>&lt;blockQuote&gt;</code> is allowed in <code>&lt;blockQuote&gt;</code> which needs to be
+resolved by a callback which will disallow this specific structure.</p>
+<h5>Defining advanced rules in <code>checkChild()</code>&apos;s callbacks</h5><p>The <a href="#checkChild"><code>checkChild</code></a> method which is the base method used to check whether some element is allowed in a given structure
+is <a href="module_utils_observablemixin-ObservableMixin.html#decorate">decorated</a> with the <a href="#event:checkChild"><code>checkChild</code></a> event.
+It means that you can add listeners to implement your specific rules which are not limited by the declarative
+<a href="module_engine_model_schema-SchemaItemDefinition.html"><code>SchemaItemDefinition</code></a> API.</p>
+<p>The block quote feature defines such a listener to disallow nested <code>&lt;blockQuote&gt;</code> structures:</p>
+<pre class="prettyprint source"><code>schema.on( &apos;checkChild&apos;, ( evt, args ) =&gt; {
+    // The checkChild()&apos;s params.
+    // Note that context is automatically normalized to SchemaContext instance by a highest-priority listener.
+    const context = args[ 0 ];
+    const child = args[ 1 ];
+
+    // Pass the child through getDefinition() to normalize it (child can be passed in multiple formats).
+    const childRule = schema.getDefinition( child );
+
+    // If checkChild() is called with a context that ends with blockQuote and blockQuote as a child
+    // to check, make the method return false and stop the event so no other listener will override your decision.
+    if ( childRule &amp;&amp; childRule.name == &apos;blockQuote&apos; &amp;&amp; context.endsWith( &apos;blockQuote&apos; ) ) {
+        evt.stop();
+        evt.return = false;
+    }
+}, { priority: &apos;high&apos; } );</code></pre><h5>Defining attributes</h5><p>TODO</p>
+<h5>Implementing additional constraints</h5><p>Schema&apos;s capabilities were limited to simple (and atomic) <a href="#checkChild"><code>checkChild</code></a> and
+<a href="#checkAttribute"><code>checkAttribute</code></a> on purpose.
+One may imagine that schema should support defining more complex rules such as
+&quot;element <code>&lt;x&gt;</code> must be always followed by <code>&lt;y&gt;</code>&quot;.
+While it is feasible to create an API which would enable feeding the schema with such definitions,
+it is unrealistic to then expect that every editing feature will consider them when processing the model.
+It is also unrealistic to expect that it will be done automatically by the schema and the editing engine themselves.</p>
+<p>For instance, let&apos;s get back to the &quot;element <code>&lt;x&gt;</code> must be always followed by <code>&lt;y&gt;</code>&quot; rule and this initial content:</p>
+<pre class="prettyprint source"><code>&lt;$root&gt;
+    &lt;x&gt;foo&lt;/x&gt;
+    &lt;y&gt;bar[bom&lt;/y&gt;
+    &lt;z&gt;bom]bar&lt;/z&gt;
+&lt;/$root&gt;</code></pre><p>Now, imagine the user presses the &quot;block quote&quot; button. Usually it would wrap the two selected blocks (<code>&lt;y&gt;</code> and <code>&lt;z&gt;</code>)
+with a <code>&lt;blockQuote&gt;</code> element:</p>
+<pre class="prettyprint source"><code>&lt;$root&gt;
+    &lt;x&gt;foo&lt;/x&gt;
+    &lt;blockQuote&gt;
+        &lt;y&gt;bar[bom&lt;/y&gt;
+        &lt;z&gt;bom]bar&lt;/z&gt;
+    &lt;/blockQuote&gt;
+&lt;/$root&gt;</code></pre><p>But it turns out that this creates an incorrect structure &#x2013; <code>&lt;x&gt;</code> is not followed by <code>&lt;y&gt;</code> anymore.</p>
+<p>What should happen instead? There are at least 4 possible solutions: the block quote feature should not be
+applicable in such a context, someone should create a new <code>&lt;y&gt;</code> right after <code>&lt;x&gt;</code>, <code>&lt;x&gt;</code> should be moved
+inside <code>&lt;blockQuote&gt;</code> together with <code>&lt;y&gt;</code> or vice versa.</p>
+<p>While this is a relatively simple scenario (unlike most real-time collaboration scenarios),
+it turns out that it&apos;s already hard to say what should happen and who should react to fix this content.</p>
+<p>Therefore, if your editor needs to implement such rules, it should do that through model&apos;s post-fixers
+fixing incorrect content or actively prevent such situations (e.g. by disabling certain features).
+It means that those constraints will be defined specifically for your scenario by your code which
+makes their implementation much easier.</p>
+<p>So the answer for who and how should implement additional constraints is your features or your editor
+through CKEditor 5&apos;s rich and open API.</p></div>
 <div class="notice notice__filter api-props-filter">
   <div class="api-props-filter__inner">
     <h4>Filtering</h4>
@@ -112,52 +225,41 @@ also allowed on the <code>p</code> element. By default, <code>$text</code> item 
 </div>
           <h2 id="Properties">Properties</h2>
           <ul class="collapsing-list collapsing-list--filtered">
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="limits">
-                          <h3><code><a class="member-name" href="#limits">limits</a> : <span>Set.&lt;String&gt;</span></code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Names of elements to which editing operations should be limited.
-For example, the <kbd>Enter</kbd> should not split such elements and
-<kbd>Backspace</kbd> should not be able to leave or modify such elements.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="objects">
-                          <h3><code><a class="member-name" href="#objects">objects</a> : <span>Set.&lt;String&gt;</span></code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Names of elements which have &quot;object&quot; nature. This means that these
-elements should be treated as whole, never merged, can be selected from outside, etc.
-Just like images, placeholder widgets, etc.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_extensionChains">
-                          <h3><code><a class="member-name" href="#_extensionChains">_extensionChains</a> : <span>Map</span></code></h3>
+                      <li class="collapsing-list__item" data-private="true" data-mixed="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_bindTo">
+                          <h3><code><a class="member-name" href="#_bindTo">_bindTo</a></code></h3>
                           <p class="badges">
 <span class="badge badge--red ">private</span>
+<span class="badge badge--gray ">mixed</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Description of what entities are a base for given entity.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_items">
-                          <h3><code><a class="member-name" href="#_items">_items</a> : <span>Map</span></code></h3>
+                      <li class="collapsing-list__item" data-private="true" data-mixed="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_boundAttributes">
+                          <h3><code><a class="member-name" href="#_boundAttributes">_boundAttributes</a></code></h3>
                           <p class="badges">
 <span class="badge badge--red ">private</span>
+<span class="badge badge--gray ">mixed</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Schema items registered in the schema.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true" data-mixed="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_boundObservables">
+                          <h3><code><a class="member-name" href="#_boundObservables">_boundObservables</a></code></h3>
+                          <p class="badges">
+<span class="badge badge--red ">private</span>
+<span class="badge badge--gray ">mixed</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -170,88 +272,82 @@ Just like images, placeholder widgets, etc.</p>
                           <h3><code><a class="member-name" href="#constructor">constructor</a>()</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Creates Schema instance.
+                          <p class="collapsing-list__excerpt">Creates schema instance.
                           </p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="allow">
-                          <h3><code><a class="member-name" href="#allow">allow</a>( query )</code></h3>
+                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="bind">
+                          <h3><code><a class="member-name" href="#bind">bind</a>( bindAttrs ) &rarr;  <span><a class="collapsing-list__type" href="module_utils_observablemixin-BindChain.html">BindChain</a></span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">mixed</span>
+                          </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Allows given query in the schema.
+                          <p class="collapsing-list__excerpt">Binds observable attributes to another objects implementing <a href="module_utils_observablemixin-ObservableMixin.html"><code>ObservableMixin</code></a>
+interface (like <a href="module_ui_model-Model.html"><code>Model</code></a>).
                           </p>
                           <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>// Allow text with bold attribute in all P elements.
-schema.registerItem( &apos;p&apos;, &apos;$block&apos; );
-schema.allow( { name: &apos;$text&apos;, attributes: &apos;bold&apos;, inside: &apos;p&apos; } );
-
-// Allow header in Ps that are in DIVs
-schema.registerItem( &apos;header&apos;, &apos;$block&apos; );
-schema.registerItem( &apos;div&apos;, &apos;$block&apos; );
-schema.allow( { name: &apos;header&apos;, inside: &apos;div p&apos; } ); // inside: [ &apos;div&apos;, &apos;p&apos; ] would also work.</code></pre>
+<p>Once bound, the observable will immediately share the current state of attributes
+of the observable it is bound to and react to the changes to these attributes
+in the future.</p>
+<p><strong>Note</strong>: To release the binding use <a href="module_utils_observablemixin-ObservableMixin.html#unbind"><code>unbind</code></a>.</p>
+<pre class="prettyprint source"><code>A.bind( &apos;a&apos; ).to( B );
+A.bind( &apos;a&apos; ).to( B, &apos;b&apos; );
+A.bind( &apos;a&apos;, &apos;b&apos; ).to( B, &apos;c&apos;, &apos;d&apos; );
+A.bind( &apos;a&apos; ).to( B, &apos;b&apos;, C, &apos;d&apos;, ( b, d ) =&gt; b + d );</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> query
+                                        <dt><code> bindAttrs
                                              :
- <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaQuery.html">SchemaQuery</a></span></code></dt>
-                                        <dd><p>Allowed query.</p>
-                                        </dd>
-                                      </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="check">
-                          <h3><code><a class="member-name" href="#check">check</a>( query ) &rarr;  <span>Boolean</span></code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Checks whether given query is allowed in schema.
-                          </p>
-                          <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>// Check whether bold text is allowed in header element.
-let query = {
-    name: &apos;$text&apos;,
-    attributes: &apos;bold&apos;,
-    inside: &apos;header&apos;
-};
-if ( schema.check( query ) ) { ... }
-
-// Check whether bold and italic text can be placed at caret position.
-let caretPos = editor.model.document.selection.getFirstPosition();
-let query = {
-    name: &apos;$text&apos;,
-    attributes: [ &apos;bold&apos;, &apos;italic&apos; ],
-    inside: caretPos
-};
-if ( schema.check( query ) ) { ... }
-
-// Check whether image with alt, src and title is allowed in given elements path.
-let quoteElement = new Element( &apos;quote&apos; );
-let query = {
-    name: &apos;img&apos;,
-    attributes: [ &apos;alt&apos;, &apos;src&apos;, &apos;title&apos; ],
-    // It is possible to mix strings with elements.
-    // Query will check whether &quot;img&quot; can be inside &quot;quoteElement&quot; that is inside a block element.
-    inside: [ &apos;$block&apos;, quoteElement ]
-};
-if ( schema.check( query ) ) { ... }</code></pre>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> query
-                                             :
- <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaQuery.html">SchemaQuery</a></span></code></dt>
-                                        <dd><p>Query to check.</p>
+ <span>String</span></code></dt>
+                                        <dd><p>Observable attributes that will be bound to another observable(s).</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code><span>Boolean</span></code></dt>
-                                        <dd><p><code>true</code> if given query is allowed in schema, <code>false</code> otherwise.</p>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_utils_observablemixin-BindChain.html">BindChain</a></span></code></dt>
+                                        <dd>
                                         </dd>
                             </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="checkAttribute">
+                          <h3><code><a class="member-name" href="#checkAttribute">checkAttribute</a>( context, attributeName )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Checks whether the given attribute can be applied in the given context (on the last
+item of the context).
+                          </p>
+                          <div class="collapsing-list__content">
+<pre class="prettyprint source"><code>schema.checkAttribute( textNode, &apos;bold&apos; ); // -&gt; false
+
+schema.extend( &apos;$text&apos;, {
+    allowAttributes: &apos;bold&apos;
+} );
+schema.checkAttribute( textNode, &apos;bold&apos; ); // -&gt; true</code></pre>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> context
+                                             :
+ <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaContextDefinition.html">SchemaContextDefinition</a></span></code></dt>
+                                        <dd>
+                                        </dd>
+                                        <dt><code> attributeName
+                                             :
+ <span>String</span></code></dt>
+                                        <dd>
+                                        </dd>
+                                      </dl>
+                            <h4>Fires</h4>
+                            <ul>
+                                        <li><span><a href="module_engine_model_schema-Schema.html#event:checkAttribute">checkAttribute</a></span>
+                                        </li>
+                            </ul>
                           </div>
                         </div>
                       </li>
@@ -291,21 +387,250 @@ specified attribute allowed.</li>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="disallow">
-                          <h3><code><a class="member-name" href="#disallow">disallow</a>( query )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="checkChild">
+                          <h3><code><a class="member-name" href="#checkChild">checkChild</a>( context, child )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Disallows given query in the schema.
+                          <p class="collapsing-list__excerpt">Checks whether the given node (<code>child</code>) can be a child of the given context.
+                          </p>
+                          <div class="collapsing-list__content">
+<pre class="prettyprint source"><code>schema.checkChild( model.document.getRoot(), paragraph ); // -&gt; false
+
+schema.register( &apos;paragraph&apos;, {
+    allowIn: &apos;$root&apos;
+} );
+schema.checkChild( model.document.getRoot(), paragraph ); // -&gt; true</code></pre>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> context
+                                             :
+ <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaContextDefinition.html">SchemaContextDefinition</a></span></code></dt>
+                                        <dd><p>Context in which the child will be checked.</p>
+                                        </dd>
+                                        <dt><code> child
+                                             :
+ <span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span> | <span>String</span></code></dt>
+                                        <dd><p>The child to check.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Fires</h4>
+                            <ul>
+                                        <li><span><a href="module_engine_model_schema-Schema.html#event:checkChild">checkChild</a></span>
+                                        </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="decorate">
+                          <h3><code><a class="member-name" href="#decorate">decorate</a>( methodName )</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">mixed</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Turns the given methods of this object into event-based ones. This means that the new method will fire an event
+(named after the method) and the original action will be plugged as a listener to that event.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>This is a very simplified method decoration. Itself it doesn&apos;t change the behavior of a method (expect adding the event),
+but it allows to modify it later on by listening to the method&apos;s event.</p>
+<p>For example, in order to cancel the method execution one can stop the event:</p>
+<pre class="prettyprint source"><code>class Foo {
+    constructor() {
+        this.decorate( &apos;method&apos; );
+    }
+
+    method() {
+        console.log( &apos;called!&apos; );
+    }
+}
+
+const foo = new Foo();
+foo.on( &apos;method&apos;, ( evt ) =&gt; {
+    evt.stop();
+}, { priority: &apos;high&apos; } );
+
+foo.method(); // Nothing is logged.</code></pre><p>Note: we used a high priority listener here to execute this callback before the one which
+calls the orignal method (which used the default priority).</p>
+<p>It&apos;s also possible to change the return value:</p>
+<pre class="prettyprint source"><code>foo.on( &apos;method&apos;, ( evt ) =&gt; {
+    evt.return = &apos;Foo!&apos;;
+} );
+
+foo.method(); // -&gt; &apos;Foo&apos;</code></pre><p>Finally, it&apos;s possible to access and modify the parameters:</p>
+<pre class="prettyprint source"><code>method( a, b ) {
+    console.log( `${ a }, ${ b }`  );
+}
+
+// ...
+
+foo.on( &apos;method&apos;, ( evt, args ) =&gt; {
+    args[ 0 ] = 3;
+
+    console.log( args[ 1 ] ); // -&gt; 2
+}, { priority: &apos;high&apos; } );
+
+foo.method( 1, 2 ); // -&gt; &apos;3, 2&apos;</code></pre>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> methodName
+                                             :
+ <span>String</span></code></dt>
+                                        <dd><p>Name of the method to decorate.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="delegate">
+                          <h3><code><a class="member-name" href="#delegate">delegate</a>( events ) &rarr;  <span><a class="collapsing-list__type" href="module_utils_emittermixin-EmitterMixinDelegateChain.html">EmitterMixinDelegateChain</a></span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">mixed</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Delegates selected events to another <a href="module_utils_emittermixin-Emitter.html"><code>Emitter</code></a>. For instance:
+                          </p>
+                          <div class="collapsing-list__content">
+<pre class="prettyprint source"><code>emitterA.delegate( &apos;eventX&apos; ).to( emitterB );
+emitterA.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( emitterC );</code></pre><p>then <code>eventX</code> is delegated (fired by) <code>emitterB</code> and <code>emitterC</code> along with <code>data</code>:</p>
+<pre class="prettyprint source"><code>emitterA.fire( &apos;eventX&apos;, data );</code></pre><p>and <code>eventY</code> is delegated (fired by) <code>emitterC</code> along with <code>data</code>:</p>
+<pre class="prettyprint source"><code>emitterA.fire( &apos;eventY&apos;, data );</code></pre>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> events
+                                             :
+ <span>String</span></code></dt>
+                                        <dd><p>Event names that will be delegated to another emitter.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_utils_emittermixin-EmitterMixinDelegateChain.html">EmitterMixinDelegateChain</a></span></code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="extend">
+                          <h3><code><a class="member-name" href="#extend">extend</a>( itemName, definition )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Extends a <a href="module_engine_model_schema-Schema.html#register">registered</a> item&apos;s definition.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>Extending properties such as <code>allowIn</code> will add more items to the existing properties,
+while redefining properties such as <code>isBlock</code> will override the previously defined ones.</p>
+<pre class="prettyprint source"><code>schema.register( &apos;foo&apos;, {
+    allowIn: &apos;$root&apos;,
+    isBlock: true;
+} );
+schema.extend( &apos;foo&apos;, {
+    allowIn: &apos;blockQuote&apos;,
+    isBlock: false
+} );
+
+schema.getDefinition( &apos;foo&apos; );
+//    {
+//        allowIn: [ &apos;$root&apos;, &apos;blockQuote&apos; ],
+//         isBlock: false
+//    }</code></pre>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> itemName
+                                             :
+ <span>String</span></code></dt>
+                                        <dd>
+                                        </dd>
+                                        <dt><code> definition
+                                             :
+ <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaItemDefinition.html">SchemaItemDefinition</a></span></code></dt>
+                                        <dd>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="fire">
+                          <h3><code><a class="member-name" href="#fire">fire</a>( eventOrInfo, [ args ] ) &rarr;  <span>*</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">mixed</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Fires an event, executing all callbacks registered for it.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>The first parameter passed to callbacks is an <a href="module_utils_eventinfo-EventInfo.html"><code>EventInfo</code></a> object,
+followed by the optional <code>args</code> provided in the <code>fire()</code> method call.</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> eventOrInfo
+                                             :
+ <span>String</span> | <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>The name of the event or <code>EventInfo</code> object if event is delegated.</p>
+                                        </dd>
+                                        <dt><code> [ args ]
+                                             :
+ <span>*</span></code></dt>
+                                        <dd><p>Additional arguments to be passed to the callbacks.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>*</span></code></dt>
+                                        <dd><p>By default the method returns <code>undefined</code>. However, the return value can be changed by listeners
+through modification of the <a href="module_utils_eventinfo-EventInfo.html#return"><code>evt.return</code></a>'s property (the event info
+is the first param of every callback).</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="getDefinition">
+                          <h3><code><a class="member-name" href="#getDefinition">getDefinition</a>( item ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaCompiledItemDefinition.html">SchemaCompiledItemDefinition</a></span></code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Returns a definition of the given item or <code>undefined</code> if item is not registered.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> query
+                                        <dt><code> item
                                              :
- <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaQuery.html">SchemaQuery</a></span></code></dt>
-                                        <dd><p>Disallowed query.</p>
+ <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaContextItem.html">SchemaContextItem</a></span> | <span>String</span></code></dt>
+                                        <dd>
                                         </dd>
                                       </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaCompiledItemDefinition.html">SchemaCompiledItemDefinition</a></span></code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="getDefinitions">
+                          <h3><code><a class="member-name" href="#getDefinitions">getDefinitions</a>() &rarr;  <span>Object.&ltString, module:engine/model/schema~SchemaCompiledItemDefinition></span></code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Returns all registered items.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Object.&ltString, module:engine/model/schema~SchemaCompiledItemDefinition></span></code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
                           </div>
                         </div>
                       </li>
@@ -314,7 +639,7 @@ specified attribute allowed.</li>
                           <h3><code><a class="member-name" href="#getLimitElement">getLimitElement</a>( selection ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Returns the lowest <a href="module_engine_model_schema-Schema.html#limits">limit element</a> containing the entire
+                          <p class="collapsing-list__excerpt">Returns the lowest <a href="module_engine_model_schema-Schema.html#isLimit">limit element</a> containing the entire
 selection or the root otherwise.
                           </p>
                           <div class="collapsing-list__content">
@@ -340,7 +665,7 @@ selection or the root otherwise.
                           <h3><code><a class="member-name" href="#getValidRanges">getValidRanges</a>( ranges, attribute ) &rarr;  <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Transforms the given set ranges into a set of ranges where the given attribute is allowed (and can be applied).
+                          <p class="collapsing-list__excerpt">Transforms the given set of ranges into a set of ranges where the given attribute is allowed (and can be applied).
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -366,81 +691,284 @@ selection or the root otherwise.
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="hasItem">
-                          <h3><code><a class="member-name" href="#hasItem">hasItem</a>( itemName ) &rarr;  <span>Boolean</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="isBlock">
+                          <h3><code><a class="member-name" href="#isBlock">isBlock</a>( item )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Checks whether there is an item registered under given name in schema.
+                          <p class="collapsing-list__excerpt">
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> item
+                                             :
+ <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaContextItem.html">SchemaContextItem</a></span> | <span>String</span></code></dt>
+                                        <dd>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="isLimit">
+                          <h3><code><a class="member-name" href="#isLimit">isLimit</a>( item )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> item
+                                             :
+ <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaContextItem.html">SchemaContextItem</a></span> | <span>String</span></code></dt>
+                                        <dd>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="isObject">
+                          <h3><code><a class="member-name" href="#isObject">isObject</a>( item )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> item
+                                             :
+ <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaContextItem.html">SchemaContextItem</a></span> | <span>String</span></code></dt>
+                                        <dd>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="isRegistered">
+                          <h3><code><a class="member-name" href="#isRegistered">isRegistered</a>( item )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> item
+                                             :
+ <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaContextItem.html">SchemaContextItem</a></span> | <span>String</span></code></dt>
+                                        <dd>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="listenTo">
+                          <h3><code><a class="member-name" href="#listenTo">listenTo</a>( emitter, event, callback, [ options ] = { [options.priority] } )</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">mixed</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Registers a callback function to be executed when an event is fired in a specific (emitter) object.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>Events can be grouped in namespaces using <code>:</code>.
+When namespaced event is fired, it additionally fires all callbacks for that namespace.</p>
+<pre class="prettyprint source"><code>// myEmitter.on( ... ) is a shorthand for myEmitter.listenTo( myEmitter, ... ).
+myEmitter.on( &apos;myGroup&apos;, genericCallback );
+myEmitter.on( &apos;myGroup:myEvent&apos;, specificCallback );
+
+// genericCallback is fired.
+myEmitter.fire( &apos;myGroup&apos; );
+// both genericCallback and specificCallback are fired.
+myEmitter.fire( &apos;myGroup:myEvent&apos; );
+// genericCallback is fired even though there are no callbacks for &quot;foo&quot;.
+myEmitter.fire( &apos;myGroup:foo&apos; );</code></pre><p>An event callback can <a href="module_utils_eventinfo-EventInfo.html#stop">stop the event</a> and
+set the <a href="module_utils_eventinfo-EventInfo.html#return">return value</a> of the <a href="module_utils_emittermixin-EmitterMixin.html#fire"><code>fire</code></a> method.</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> emitter
+                                             :
+ <span><a class="collapsing-list__type" href="module_utils_emittermixin-Emitter.html">Emitter</a></span></code></dt>
+                                        <dd><p>The object that fires the event.</p>
+                                        </dd>
+                                        <dt><code> event
+                                             :
+ <span>String</span></code></dt>
+                                        <dd><p>The name of the event.</p>
+                                        </dd>
+                                        <dt><code> callback
+                                             :
+ <span>function</span></code></dt>
+                                        <dd><p>The function to be called on event.</p>
+                                        </dd>
+                                        <dt><code> [ options ]
+                                             :
+ <span>Object</span></code></dt>
+                                        <dd><p>Additional options.</p>
+                                                    <div class="dlheading5">Properties
+                                                    </div>
+                                                    <dl>
+                                                      <dt><code> [ options.priority ]
+                                                           :
+ <span><a class="collapsing-list__type" href="module_utils_priorities-PriorityString.html">PriorityString</a></span> | <span>Number</span></code></dt>
+                                                      <dd><p>The priority of this event callback. The higher
+the priority value the sooner the callback will be fired. Events having the same priority are called in the
+order they were added.</p>
+                                                        <p>Defaults to <code>'normal'</code></p>
+                                                      </dd>
+                                                    </dl>
+                                          <p>Defaults to <code>{}</code></p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="off">
+                          <h3><code><a class="member-name" href="#off">off</a>( event, callback )</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">mixed</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Stops executing the callback on the given event.
+Shorthand for <a href="module_utils_emittermixin-EmitterMixin.html#stopListening"><code>this.stopListening(  this,  event,  callback  )</code></a>.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> event
+                                             :
+ <span>String</span></code></dt>
+                                        <dd><p>The name of the event.</p>
+                                        </dd>
+                                        <dt><code> callback
+                                             :
+ <span>function</span></code></dt>
+                                        <dd><p>The function to stop being called.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="on">
+                          <h3><code><a class="member-name" href="#on">on</a>( event, callback, [ options ] = { [options.priority] } )</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">mixed</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Registers a callback function to be executed when an event is fired.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>Shorthand for <a href="module_utils_emittermixin-EmitterMixin.html#listenTo"><code>this.listenTo(  this,  event,  callback,  options  )</code></a> (it makes the emitter
+listen on itself).</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> event
+                                             :
+ <span>String</span></code></dt>
+                                        <dd><p>The name of the event.</p>
+                                        </dd>
+                                        <dt><code> callback
+                                             :
+ <span>function</span></code></dt>
+                                        <dd><p>The function to be called on event.</p>
+                                        </dd>
+                                        <dt><code> [ options ]
+                                             :
+ <span>Object</span></code></dt>
+                                        <dd><p>Additional options.</p>
+                                                    <div class="dlheading5">Properties
+                                                    </div>
+                                                    <dl>
+                                                      <dt><code> [ options.priority ]
+                                                           :
+ <span><a class="collapsing-list__type" href="module_utils_priorities-PriorityString.html">PriorityString</a></span> | <span>Number</span></code></dt>
+                                                      <dd><p>The priority of this event callback. The higher
+the priority value the sooner the callback will be fired. Events having the same priority are called in the
+order they were added.</p>
+                                                        <p>Defaults to <code>'normal'</code></p>
+                                                      </dd>
+                                                    </dl>
+                                          <p>Defaults to <code>{}</code></p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="once">
+                          <h3><code><a class="member-name" href="#once">once</a>( event, callback, [ options ] = { [options.priority] } )</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">mixed</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Registers a callback function to be executed on the next time the event is fired only. This is similar to
+calling <a href="module_utils_emittermixin-EmitterMixin.html#on"><code>on</code></a> followed by <a href="module_utils_emittermixin-EmitterMixin.html#off"><code>off</code></a> in the callback.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> event
+                                             :
+ <span>String</span></code></dt>
+                                        <dd><p>The name of the event.</p>
+                                        </dd>
+                                        <dt><code> callback
+                                             :
+ <span>function</span></code></dt>
+                                        <dd><p>The function to be called on event.</p>
+                                        </dd>
+                                        <dt><code> [ options ]
+                                             :
+ <span>Object</span></code></dt>
+                                        <dd><p>Additional options.</p>
+                                                    <div class="dlheading5">Properties
+                                                    </div>
+                                                    <dl>
+                                                      <dt><code> [ options.priority ]
+                                                           :
+ <span><a class="collapsing-list__type" href="module_utils_priorities-PriorityString.html">PriorityString</a></span> | <span>Number</span></code></dt>
+                                                      <dd><p>The priority of this event callback. The higher
+the priority value the sooner the callback will be fired. Events having the same priority are called in the
+order they were added.</p>
+                                                        <p>Defaults to <code>'normal'</code></p>
+                                                      </dd>
+                                                    </dl>
+                                          <p>Defaults to <code>{}</code></p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="register">
+                          <h3><code><a class="member-name" href="#register">register</a>( itemName, definition )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Registers schema item. Can only be called once for every item name.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> itemName
                                              :
- </code></dt>
+ <span>String</span></code></dt>
                                         <dd>
                                         </dd>
-                                      </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span>Boolean</span></code></dt>
+                                        <dt><code> definition
+                                             :
+ <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaItemDefinition.html">SchemaItemDefinition</a></span></code></dt>
                                         <dd>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="itemExtends">
-                          <h3><code><a class="member-name" href="#itemExtends">itemExtends</a>( childItemName, parentItemName ) &rarr;  <span>Boolean</span></code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Checks whether item of given name is extending item of another given name.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> childItemName
-                                             :
- <span>String</span></code></dt>
-                                        <dd><p>Name of the child item.</p>
-                                        </dd>
-                                        <dt><code> parentItemName
-                                             :
- <span>String</span></code></dt>
-                                        <dd><p>Name of the parent item.</p>
-                                        </dd>
-                                      </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span>Boolean</span></code></dt>
-                                        <dd><p><code>true</code> if child item extends parent item, <code>false</code> otherwise.</p>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="registerItem">
-                          <h3><code><a class="member-name" href="#registerItem">registerItem</a>( itemName, [ isExtending ] )</code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Registers given item name in schema.
-                          </p>
-                          <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>// Register P element that should be treated like all block elements.
-schema.registerItem( &apos;p&apos;, &apos;$block&apos; );</code></pre>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> itemName
-                                             :
- <span>String</span></code></dt>
-                                        <dd><p>Name to register.</p>
-                                        </dd>
-                                        <dt><code> [ isExtending ]
-                                             :
- </code></dt>
-                                        <dd><p>If set, new item will extend item with given name.</p>
                                         </dd>
                                       </dl>
                           </div>
@@ -448,10 +976,10 @@ schema.registerItem( &apos;p&apos;, &apos;$block&apos; );</code></pre>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="removeDisallowedAttributes">
-                          <h3><code><a class="member-name" href="#removeDisallowedAttributes">removeDisallowedAttributes</a>( nodes, inside, writer )</code></h3>
+                          <h3><code><a class="member-name" href="#removeDisallowedAttributes">removeDisallowedAttributes</a>( nodes, writer )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Removes disallowed by <a href="module_engine_model_schema-Schema.html">schema</a> attributes from given nodes..
+                          <p class="collapsing-list__excerpt">Removes attributes disallowed by the schema.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -460,11 +988,6 @@ schema.registerItem( &apos;p&apos;, &apos;$block&apos; );</code></pre>
                                              :
  <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a>&gt;</span></code></dt>
                                         <dd><p>Nodes that will be filtered.</p>
-                                        </dd>
-                                        <dt><code> inside
-                                             :
- <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaPath.html">SchemaPath</a></span></code></dt>
-                                        <dd><p>Path inside which schema will be checked.</p>
                                         </dd>
                                         <dt><code> writer
                                              :
@@ -475,95 +998,278 @@ schema.registerItem( &apos;p&apos;, &apos;$block&apos; );</code></pre>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="requireAttributes">
-                          <h3><code><a class="member-name" href="#requireAttributes">requireAttributes</a>( name, attributes )</code></h3>
+                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="set">
+                          <h3><code><a class="member-name" href="#set">set</a>( name, value )</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">mixed</span>
+                          </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Makes a requirement in schema that entity represented by given item has to have given set of attributes. Some
-elements in the model might require some attributes to be set. If multiple sets of attributes are required it
-is enough that the entity fulfills only one set.
+                          <p class="collapsing-list__excerpt">Creates and sets the value of an observable attribute of this object. Such an attribute becomes a part
+of the state and is be observable.
                           </p>
                           <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>// &quot;a&quot; element must either have &quot;href&quot; attribute or &quot;name&quot; attribute
-schema.requireAttributes( &apos;a&apos;, [ &apos;href&apos; ] );
-schema.requireAttributes( &apos;a&apos;, [ &apos;name&apos; ] );
-// &quot;img&quot; element must have both &quot;src&quot; and &quot;alt&quot; attributes
-schema.requireAttributes( &apos;img&apos;, [ &apos;src&apos;, &apos;alt&apos; ] );</code></pre>
+<p>It accepts also a single object literal containing key/value pairs with attributes to be set.</p>
+<p>This method throws the observable-set-cannot-override error if the observable instance already
+have a property with a given attribute name. This prevents from mistakenly overriding existing
+properties and methods, but means that <code>foo.set( &apos;bar&apos;, 1 )</code> may be slightly slower than <code>foo.bar = 1</code>.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> name
                                              :
  <span>String</span></code></dt>
-                                        <dd><p>Entity name.</p>
+                                        <dd><p>The attributes name.</p>
                                         </dd>
-                                        <dt><code> attributes
+                                        <dt><code> value
                                              :
- <span>Array.&lt;String&gt;</span></code></dt>
-                                        <dd><p>Attributes that has to be set on the entity to make it valid.</p>
+ <span>*</span></code></dt>
+                                        <dd><p>The attributes value.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="stopDelegating">
+                          <h3><code><a class="member-name" href="#stopDelegating">stopDelegating</a>( [ event ], [ emitter ] )</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">mixed</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Stops delegating events. It can be used at different levels:
+                          </p>
+                          <div class="collapsing-list__content">
+<ul>
+<li>To stop delegating all events.</li>
+<li>To stop delegating a specific event to all emitters.</li>
+<li>To stop delegating a specific event to a specific emitter.</li>
+</ul>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> [ event ]
+                                             :
+ <span>String</span></code></dt>
+                                        <dd><p>The name of the event to stop delegating. If omitted, stops it all delegations.</p>
+                                        </dd>
+                                        <dt><code> [ emitter ]
+                                             :
+ <span><a class="collapsing-list__type" href="module_utils_emittermixin-Emitter.html">Emitter</a></span></code></dt>
+                                        <dd><p>(requires <code>event</code>) The object to stop delegating a particular event to.
+If omitted, stops delegation of <code>event</code> to all emitters.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="stopListening">
+                          <h3><code><a class="member-name" href="#stopListening">stopListening</a>( [ emitter ], [ event ], [ callback ] )</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">mixed</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Stops listening for events. It can be used at different levels:
+                          </p>
+                          <div class="collapsing-list__content">
+<ul>
+<li>To stop listening to a specific callback.</li>
+<li>To stop listening to a specific event.</li>
+<li>To stop listening to all events fired by a specific object.</li>
+<li>To stop listening to all events fired by all objects.</li>
+</ul>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> [ emitter ]
+                                             :
+ <span><a class="collapsing-list__type" href="module_utils_emittermixin-Emitter.html">Emitter</a></span></code></dt>
+                                        <dd><p>The object to stop listening to. If omitted, stops it for all objects.</p>
+                                        </dd>
+                                        <dt><code> [ event ]
+                                             :
+ <span>String</span></code></dt>
+                                        <dd><p>(Requires the <code>emitter</code>) The name of the event to stop listening to. If omitted, stops it
+for all events from <code>emitter</code>.</p>
+                                        </dd>
+                                        <dt><code> [ callback ]
+                                             :
+ <span>function</span></code></dt>
+                                        <dd><p>(Requires the <code>event</code>) The function to be removed from the call list for the given
+<code>event</code>.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="unbind">
+                          <h3><code><a class="member-name" href="#unbind">unbind</a>( [ unbindAttrs ] )</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">mixed</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Removes the binding created with <a href="module_utils_observablemixin-ObservableMixin.html#bind"><code>bind</code></a>.
+                          </p>
+                          <div class="collapsing-list__content">
+<pre class="prettyprint source"><code>A.unbind( &apos;a&apos; );
+A.unbind();</code></pre>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> [ unbindAttrs ]
+                                             :
+ <span>String</span></code></dt>
+                                        <dd><p>Observable attributes to be unbound. All the bindings will
+be released if no attributes provided.</p>
                                         </dd>
                                       </dl>
                           </div>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_getItem">
-                          <h3><code><a class="member-name" href="#_getItem">_getItem</a>( itemName ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaItem.html">SchemaItem</a></span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="_checkContextMatch">
+                          <h3><code><a class="member-name" href="#_checkContextMatch">_checkContextMatch</a>( def, context, contextItemIndex )</code></h3>
                           <p class="badges">
 <span class="badge badge--red ">private</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Returns <a href="module_engine_model_schema-SchemaItem.html">schema item</a> that was registered in the schema under given name.
-If item has not been found, throws error.
+                          <p class="collapsing-list__excerpt">
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> itemName
+                                        <dt><code> def
                                              :
- <span>String</span></code></dt>
-                                        <dd><p>Name to look for in schema.</p>
+ <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaCompiledItemDefinition.html">SchemaCompiledItemDefinition</a></span></code></dt>
+                                        <dd>
+                                        </dd>
+                                        <dt><code> context
+                                             :
+ <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaContext.html">SchemaContext</a></span></code></dt>
+                                        <dd>
+                                        </dd>
+                                        <dt><code> contextItemIndex
+                                             :
+ <span>Number</span></code></dt>
+                                        <dd>
                                         </dd>
                                       </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaItem.html">SchemaItem</a></span></code></dt>
-                                        <dd><p>Schema item registered under given name.</p>
-                                        </dd>
-                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_clearCache">
+                          <h3><code><a class="member-name" href="#_clearCache">_clearCache</a>()</code></h3>
+                          <p class="badges">
+<span class="badge badge--red ">private</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">
+                          </p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_compile">
+                          <h3><code><a class="member-name" href="#_compile">_compile</a>()</code></h3>
+                          <p class="badges">
+<span class="badge badge--red ">private</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">
+                          </p>
+                          <div class="collapsing-list__content">
                           </div>
                         </div>
                       </li>
           </ul>
-          <h4>Static methods</h4>
+          <h2 id="Events">Events</h2>
           <ul class="collapsing-list collapsing-list--filtered">
-                      <li class="collapsing-list__item" data-protected="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_normalizeQueryPath">
-                          <h3><code><a class="member-name" href="#_normalizeQueryPath">_normalizeQueryPath</a>( path ) &rarr;  <span>Array.&lt;String&gt;</span></code></h3>
+                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="event:change:{attribute}">
+                          <h3><code><a class="member-name" href="#event:change:{attribute}">change:{attribute}</a>( eventInfo, name, value, oldValue )</code></h3>
                           <p class="badges">
-<span class="badge badge--orange ">protected</span>
-<span class="badge badge--gray ">static</span>
+<span class="badge badge--gray ">mixed</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Normalizes a path to an entity by converting it from <a href="module_engine_model_schema-SchemaPath.html"><code>SchemaPath</code></a> to an array of strings.
+                          <p class="collapsing-list__excerpt">Fired when an attribute changed value.
+                          </p>
+                          <div class="collapsing-list__content">
+<pre class="prettyprint source"><code>observable.set( &apos;prop&apos;, 1 );
+
+observable.on( &apos;change:prop&apos;, ( evt, propertyName, newValue, oldValue ) =&gt; {
+    console.log( `${ propertyName } has changed from ${ oldValue } to ${ newValue }` );
+} )
+
+observable.prop = 2; // -&gt; &apos;prop has changed from 1 to 2&apos;</code></pre>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> eventInfo
+                                             :
+ <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
+                                        <dt><code> name
+                                             :
+ <span>String</span></code></dt>
+                                        <dd><p>The attribute name.</p>
+                                        </dd>
+                                        <dt><code> value
+                                             :
+ <span>*</span></code></dt>
+                                        <dd><p>The new attribute value.</p>
+                                        </dd>
+                                        <dt><code> oldValue
+                                             :
+ <span>*</span></code></dt>
+                                        <dd><p>The previous attribute value.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="event:checkAttribute">
+                          <h3><code><a class="member-name" href="#event:checkAttribute">checkAttribute</a>( eventInfo )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">TODO
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code> path
+                                        <dt><code> eventInfo
                                              :
- <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaPath.html">SchemaPath</a></span></code></dt>
-                                        <dd><p>Path to normalize.</p>
+ <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
                                         </dd>
                                       </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span>Array.&lt;String&gt;</span></code></dt>
-                                        <dd><p>Normalized path.</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="event:checkChild">
+                          <h3><code><a class="member-name" href="#event:checkChild">checkChild</a>( eventInfo )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">TODO
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> eventInfo
+                                             :
+ <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
                                         </dd>
-                            </dl>
+                                      </dl>
                           </div>
                         </div>
                       </li>
@@ -1810,14 +2516,20 @@ If item has not been found, throws error.
                     <li><a href="module_engine_model_schema-Schema.html">
                         <div class="tree__item__wrapper" data-ln="module:engine/model/schema~Schema"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                     </li>
-                    <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/model/schema~SchemaItem"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
+                    <li><a href="module_engine_model_schema-SchemaContext.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/model/schema~SchemaContext"><span class="tree__item--class tree__item__text">SchemaContext</span></div></a>
                     </li>
-                    <li><a href="module_engine_model_schema-SchemaPath.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/model/schema~SchemaPath"><span class="tree__item--typedef tree__item__text">SchemaPath</span></div></a>
+                    <li><a href="module_engine_model_schema-SchemaCompiledItemDefinition.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/model/schema~SchemaCompiledItemDefinition"><span class="tree__item--typedef tree__item__text">SchemaCompiledItemDefinition</span></div></a>
                     </li>
-                    <li><a href="module_engine_model_schema-SchemaQuery.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/model/schema~SchemaQuery"><span class="tree__item--typedef tree__item__text">SchemaQuery</span></div></a>
+                    <li><a href="module_engine_model_schema-SchemaContextDefinition.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/model/schema~SchemaContextDefinition"><span class="tree__item--typedef tree__item__text">SchemaContextDefinition</span></div></a>
+                    </li>
+                    <li><a href="module_engine_model_schema-SchemaContextItem.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/model/schema~SchemaContextItem"><span class="tree__item--typedef tree__item__text">SchemaContextItem</span></div></a>
+                    </li>
+                    <li><a href="module_engine_model_schema-SchemaItemDefinition.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/model/schema~SchemaItemDefinition"><span class="tree__item--typedef tree__item__text">SchemaItemDefinition</span></div></a>
                     </li>
                   </ul>
                 </li>

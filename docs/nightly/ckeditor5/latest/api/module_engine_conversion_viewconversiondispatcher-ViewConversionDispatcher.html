@@ -106,12 +106,8 @@ which provides additional tools for converters.</p>
 <pre class="prettyprint source"><code>// Converter for paragraphs (&lt;p&gt;).
 viewDispatcher.on( &apos;element:p&apos;, ( evt, data, consumable, conversionApi ) =&gt; {
     const paragraph = new ModelElement( &apos;paragraph&apos; );
-    const schemaQuery = {
-        name: &apos;paragraph&apos;,
-        inside: data.context
-    };
 
-    if ( conversionApi.schema.check( schemaQuery ) ) {
+    if ( conversionApi.schema.checkChild( data.context, paragraph ) ) {
         if ( !consumable.consume( data.input, { name: true } ) ) {
             // Before converting this paragraph&apos;s children we have to update their context by this paragraph.
             data.context.push( paragraph );
@@ -137,7 +133,7 @@ viewDispatcher.on( &apos;element:a&apos;, ( evt, data, consumable, conversionApi
                 inside: data.context
             };
 
-            if ( conversionApi.schema.check( schemaQuery ) ) {
+            if ( conversionApi.schema.checkAttribute( [ ...data.context, &apos;$text&apos; ], &apos;link&apos; ) ) {
                 item.setAttribute( &apos;link&apos;, data.input.getAttribute( &apos;href&apos; ) );
             }
         }
@@ -693,7 +689,7 @@ be reflected by setting or modifying this property.</p>
                                                       </dd>
                                                       <dt><code> data.context
                                                            :
- <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaPath.html">SchemaPath</a></span></code></dt>
+ <span>SchemaPath</span></code></dt>
                                                       <dd><p>The conversion context.</p>
                                                       </dd>
                                                     </dl>
@@ -2002,14 +1998,20 @@ the whole view-tree they were exposed in <code>conversionApi</code> for callback
                     <li><a href="module_engine_model_schema-Schema.html">
                         <div class="tree__item__wrapper" data-ln="module:engine/model/schema~Schema"><span class="tree__item--class tree__item__text">Schema</span></div></a>
                     </li>
-                    <li data-protected="true"><a href="module_engine_model_schema-SchemaItem.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/model/schema~SchemaItem"><span class="tree__item--class tree__item__text">SchemaItem</span></div></a>
+                    <li><a href="module_engine_model_schema-SchemaContext.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/model/schema~SchemaContext"><span class="tree__item--class tree__item__text">SchemaContext</span></div></a>
                     </li>
-                    <li><a href="module_engine_model_schema-SchemaPath.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/model/schema~SchemaPath"><span class="tree__item--typedef tree__item__text">SchemaPath</span></div></a>
+                    <li><a href="module_engine_model_schema-SchemaCompiledItemDefinition.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/model/schema~SchemaCompiledItemDefinition"><span class="tree__item--typedef tree__item__text">SchemaCompiledItemDefinition</span></div></a>
                     </li>
-                    <li><a href="module_engine_model_schema-SchemaQuery.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/model/schema~SchemaQuery"><span class="tree__item--typedef tree__item__text">SchemaQuery</span></div></a>
+                    <li><a href="module_engine_model_schema-SchemaContextDefinition.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/model/schema~SchemaContextDefinition"><span class="tree__item--typedef tree__item__text">SchemaContextDefinition</span></div></a>
+                    </li>
+                    <li><a href="module_engine_model_schema-SchemaContextItem.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/model/schema~SchemaContextItem"><span class="tree__item--typedef tree__item__text">SchemaContextItem</span></div></a>
+                    </li>
+                    <li><a href="module_engine_model_schema-SchemaItemDefinition.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/model/schema~SchemaItemDefinition"><span class="tree__item--typedef tree__item__text">SchemaItemDefinition</span></div></a>
                     </li>
                   </ul>
                 </li>
