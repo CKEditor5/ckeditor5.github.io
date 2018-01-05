@@ -9,8 +9,8 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.45/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/0.3.45/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../assets/0.3.46/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.46/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -49,13 +49,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.45/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.46/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="api-header"><img src="../../../assets/0.3.45/img/data.svg" alt="Typedef" title="Typedef"/>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.46/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <div class="api-header"><img src="../../../assets/0.3.46/img/data.svg" alt="Typedef" title="Typedef"/>
             <div class="api-header__title">
               <h1 data-ln="module:engine/model/schema~SchemaItemDefinition">SchemaItemDefinition<span class="header__import--hidden"> (engine/model)</span>
               </h1>
@@ -67,7 +69,82 @@
           </p>
           <div class="types"><span>Object</span>
           </div>
-          <div class="main-description"><p>TODO</p></div>
+          <div class="main-description"><p>A definition of a <a href="module_engine_model_schema-Schema.html">schema</a> item.</p>
+<p>You can define the following rules:</p>
+<ul>
+<li><code>allowIn</code> &#x2013; a string or an array of strings. Defines in which other items this item will be allowed.</li>
+<li><code>allowAttributes</code> &#x2013; a string or an array of strings. Defines allowed attributes of the given item.</li>
+<li><code>allowContentOf</code> &#x2013; a string or an array of strings. Inherit &quot;allowed children&quot; from other items.</li>
+<li><code>allowWhere</code> &#x2013; a string or an array of strings. Inherit &quot;allowed in&quot; from other items.</li>
+<li><code>allowAttributesOf</code> &#x2013; a string or an array of strings. Inherit attributes from other items.</li>
+<li><code>inheritTypesFrom</code> &#x2013; a string or an array of strings. Inherit <code>is*</code> properties of other items.</li>
+<li><code>inheritAllFrom</code> &#x2013; a string. A shorthand for <code>allowContentOf</code>, <code>allowWhere</code>, <code>allowAttributesOf</code>, <code>inheritTypesFrom</code>.</li>
+<li>additionall, you can define the following <code>is*</code> properties: <code>isBlock</code>, <code>isLimit</code>, <code>isObject</code>. Read about them below.</li>
+</ul>
+<h4>The is* properties</h4><p>There are 3 commonly used <code>is*</code> properties. Their role is to assign additional semantics to schema items.
+You can define more properties but you will also need to implement support for them in the existing editor features.</p>
+<ul>
+<li><code>isBlock</code> &#x2013; whether this item is paragraph-like. Generally speaking, a content is usually made out of blocks
+like paragraphs, list items, images, headings, etc. All these elements are marked as blocks. A block
+should not allow another block inside. Note: there&apos;s also the <code>$block</code> generic item which has <code>isBlock</code> set to true.
+Most block type items will inherit from <code>$block</code> (through <code>inheritAllFrom</code>).</li>
+<li><code>isLimit</code> &#x2013; can be understood as whether this element should not be split by <kbd>Enter</kbd>.
+Examples of limit elements &#x2013; <code>$root</code>, table cell, image caption, etc. In other words, all actions which happen inside
+a limit element are limitted to its content.</li>
+<li><code>isObject</code> &#x2013; whether item is &quot;self-contained&quot; and should be treated as a whole. Examples of object elements &#x2013;
+<code>image</code>, <code>table</code>, <code>video</code>, etc.</li>
+</ul>
+<h4>Generic items</h4><p>There are three basic generic items: <code>$root</code>, <code>$block</code> and <code>$text</code>.
+They are defined as follows:</p>
+<pre class="prettyprint source"><code>this.schema.register( &apos;$root&apos;, {
+    isLimit: true
+} );
+this.schema.register( &apos;$block&apos;, {
+    allowIn: &apos;$root&apos;,
+    isBlock: true
+} );
+this.schema.register( &apos;$text&apos;, {
+    allowIn: &apos;$block&apos;
+} );</code></pre><p>They reflect a typical editor content which is contained within one root, consists of several blocks
+(paragraphs, lists items, headings, images) which, in turn, may contain text inside.</p>
+<p>By inheriting from the generic items you can define new items which will get extended by other editor features.
+Read more about generic types in the {@linkTODO Defining schema} guide.</p>
+<h4>Example definitions</h4><p>Allow <code>paragraph</code> in roots and block quotes:</p>
+<pre class="prettyprint source"><code>schema.register( &apos;paragraph&apos;, {
+    allowIn: [ &apos;$root&apos;, &apos;blockQuote&apos; ]
+} );</code></pre><p>Allow <code>paragraph</code> everywhere where <code>$block</code> is allowed (i.e. in <code>$root</code>):</p>
+<pre class="prettyprint source"><code>schema.register( &apos;paragraph&apos;, {
+    allowWhere: &apos;$block&apos;
+} );</code></pre><p>Make <code>image</code> a block object, which is allowed everywhere where <code>$block</code> is.
+Also, allow <code>src</code> and <code>alt</code> attributes on it:</p>
+<pre class="prettyprint source"><code>schema.register( &apos;paragraph&apos;, {
+    allowWhere: &apos;$block&apos;,
+    allowAttributes: [ &apos;src&apos;, &apos;alt&apos; ],
+    isBlock: true,
+    isObject: true
+} );</code></pre><p>Make <code>caption</code> allowed in <code>image</code> and make it allow all the content of <code>$block</code>s (usually, <code>$text</code>).
+Also, mark it as a limit element so it can&apos;t be split:</p>
+<pre class="prettyprint source"><code>schema.register( &apos;caption&apos;, {
+    allowIn: &apos;image&apos;,
+    allowContentOf: &apos;$block&apos;,
+    isLimit: true
+} );</code></pre><p>Make <code>listItem</code> inherit all from <code>$block</code> but also allow additional attributes:</p>
+<pre class="prettyprint source"><code>schema.register( &apos;listItem&apos;, {
+    inheritAllFrom: &apos;$block&apos;,
+    allowAttributes: [ &apos;type&apos;, &apos;indent&apos; ]
+} );</code></pre><p>Which translates to:</p>
+<pre class="prettyprint source"><code>schema.register( &apos;listItem&apos;, {
+    allowWhere: &apos;$block&apos;,
+    allowContentOf: &apos;$block&apos;,
+    allowAttributesOf: &apos;$block&apos;,
+    inheritTypesFrom: &apos;$block&apos;,
+    allowAttributes: [ &apos;type&apos;, &apos;indent&apos; ]
+} );</code></pre><h4>Tips</h4><ul>
+<li>Check schema definitions of existing features to see how they are defined.</li>
+<li>If you want to publish your feature so other developers can use it, try to use
+generic items as much as possible.</li>
+<li>Keep your model clean &#x2013; limit it to the actual data and store information in an normalized way.</li>
+</ul></div>
 <div class="notice notice__filter api-props-filter">
   <div class="api-props-filter__inner">
     <h4>Filtering</h4>

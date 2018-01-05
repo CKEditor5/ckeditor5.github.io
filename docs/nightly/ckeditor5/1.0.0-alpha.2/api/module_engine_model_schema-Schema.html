@@ -9,8 +9,8 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.45/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/0.3.45/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../assets/0.3.46/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.46/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -49,13 +49,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.45/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.46/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="api-header"><img src="../../../assets/0.3.45/img/cog.svg" alt="Class" title="Class"/>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.46/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <div class="api-header"><img src="../../../assets/0.3.46/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1 data-ln="module:engine/model/schema~Schema">Schema<span class="header__import--hidden"> (engine/model)</span>
               </h1>
@@ -97,11 +99,11 @@ this element may occur:</p>
 <pre class="prettyprint source"><code>schema.register( &apos;myElement&apos;, {
     allowIn: &apos;$root&apos;
 } );</code></pre><p>This lets the schema know that <code>&lt;myElement&gt;</code> may be a child of the <code>&lt;$root&gt;</code> element. <code>$root</code> is one of generic
-node types defined by the editing framework. By default, the editor names the main root element a <code>&lt;$root&gt;</code>,
+nodes defined by the editing framework. By default, the editor names the main root element a <code>&lt;$root&gt;</code>,
 so the above definition allows <code>&lt;myElement&gt;</code> in the main editor element.</p>
 <p>In other words, this would be correct:</p>
 <pre class="prettyprint source"><code>&lt;$root&gt;&lt;myElement&gt;&lt;/myElement&gt;&lt;/$root&gt;</code></pre><p>While this would not be correct:</p>
-<pre class="prettyprint source"><code>&lt;$root&gt;&lt;foo&gt;&lt;myElement&gt;&lt;/myElement&gt;&lt;/foo&gt;&lt;/$root&gt;</code></pre><h5>Generic node types</h5><p>There are three basic generic node types: <code>$root</code>, <code>$block</code> and <code>$text</code>.
+<pre class="prettyprint source"><code>&lt;$root&gt;&lt;foo&gt;&lt;myElement&gt;&lt;/myElement&gt;&lt;/foo&gt;&lt;/$root&gt;</code></pre><h5>Generic items</h5><p>There are three basic generic items: <code>$root</code>, <code>$block</code> and <code>$text</code>.
 They are defined as follows:</p>
 <pre class="prettyprint source"><code>this.schema.register( &apos;$root&apos;, {
     isLimit: true
@@ -141,6 +143,7 @@ register a <code>&lt;section&gt;</code> element (with <code>allowContentOf: &apo
 block quotes too.</p>
 <p>The side effect of such a definition inheritance is that now <code>&lt;blockQuote&gt;</code> is allowed in <code>&lt;blockQuote&gt;</code> which needs to be
 resolved by a callback which will disallow this specific structure.</p>
+<p>You can read more about the format of an item definition in <a href="module_engine_model_schema-SchemaItemDefinition.html"><code>SchemaItemDefinition</code></a>.</p>
 <h5>Defining advanced rules in <code>checkChild()</code>&apos;s callbacks</h5><p>The <a href="#checkChild"><code>checkChild</code></a> method which is the base method used to check whether some element is allowed in a given structure
 is <a href="module_utils_observablemixin-ObservableMixin.html#decorate">decorated</a> with the <a href="#event:checkChild"><code>checkChild</code></a> event.
 It means that you can add listeners to implement your specific rules which are not limited by the declarative
@@ -163,19 +166,19 @@ It means that you can add listeners to implement your specific rules which are n
     }
 }, { priority: &apos;high&apos; } );</code></pre><h5>Defining attributes</h5><p>TODO</p>
 <h5>Implementing additional constraints</h5><p>Schema&apos;s capabilities were limited to simple (and atomic) <a href="#checkChild"><code>checkChild</code></a> and
-<a href="#checkAttribute"><code>checkAttribute</code></a> on purpose.
+<a href="#checkAttribute"><code>checkAttribute</code></a> checks on purpose.
 One may imagine that schema should support defining more complex rules such as
 &quot;element <code>&lt;x&gt;</code> must be always followed by <code>&lt;y&gt;</code>&quot;.
 While it is feasible to create an API which would enable feeding the schema with such definitions,
-it is unrealistic to then expect that every editing feature will consider them when processing the model.
+it is unfortunately unrealistic to then expect that every editing feature will consider those rules when processing the model.
 It is also unrealistic to expect that it will be done automatically by the schema and the editing engine themselves.</p>
 <p>For instance, let&apos;s get back to the &quot;element <code>&lt;x&gt;</code> must be always followed by <code>&lt;y&gt;</code>&quot; rule and this initial content:</p>
 <pre class="prettyprint source"><code>&lt;$root&gt;
     &lt;x&gt;foo&lt;/x&gt;
     &lt;y&gt;bar[bom&lt;/y&gt;
     &lt;z&gt;bom]bar&lt;/z&gt;
-&lt;/$root&gt;</code></pre><p>Now, imagine the user presses the &quot;block quote&quot; button. Usually it would wrap the two selected blocks (<code>&lt;y&gt;</code> and <code>&lt;z&gt;</code>)
-with a <code>&lt;blockQuote&gt;</code> element:</p>
+&lt;/$root&gt;</code></pre><p>Now, imagine that the user presses the &quot;block quote&quot; button. Usually it would wrap the two selected blocks
+(<code>&lt;y&gt;</code> and <code>&lt;z&gt;</code>) with a <code>&lt;blockQuote&gt;</code> element:</p>
 <pre class="prettyprint source"><code>&lt;$root&gt;
     &lt;x&gt;foo&lt;/x&gt;
     &lt;blockQuote&gt;
@@ -188,7 +191,7 @@ applicable in such a context, someone should create a new <code>&lt;y&gt;</code>
 inside <code>&lt;blockQuote&gt;</code> together with <code>&lt;y&gt;</code> or vice versa.</p>
 <p>While this is a relatively simple scenario (unlike most real-time collaboration scenarios),
 it turns out that it&apos;s already hard to say what should happen and who should react to fix this content.</p>
-<p>Therefore, if your editor needs to implement such rules, it should do that through model&apos;s post-fixers
+<p>Therefore, if your editor needs to implement such rules, you should do that through model&apos;s post-fixers
 fixing incorrect content or actively prevent such situations (e.g. by disabling certain features).
 It means that those constraints will be defined specifically for your scenario by your code which
 makes their implementation much easier.</p>
@@ -697,9 +700,15 @@ selection or the root otherwise.
                           <h3><code><a class="member-name" href="#isBlock">isBlock</a>( item )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">
+                          <p class="collapsing-list__excerpt">Returns <code>true</code> if the given item is defined to be
+a block by <a href="module_engine_model_schema-SchemaItemDefinition.html"><code>SchemaItemDefinition</code></a>&apos;s <code>isBlock</code> property.
                           </p>
                           <div class="collapsing-list__content">
+<pre class="prettyprint source"><code>schema.isBlock( &apos;paragraph&apos; ); // -&gt; true
+schema.isBlock( &apos;$root&apos; ); // -&gt; false
+
+const paragraphElement = writer.createElement( &apos;paragraph&apos; );
+schema.isBlock( paragraphElement ); // -&gt; true</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> item
@@ -716,9 +725,13 @@ selection or the root otherwise.
                           <h3><code><a class="member-name" href="#isLimit">isLimit</a>( item )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">
+                          <p class="collapsing-list__excerpt">Returns <code>true</code> if the given item is defined to be
+a limit element by <a href="module_engine_model_schema-SchemaItemDefinition.html"><code>SchemaItemDefinition</code></a>&apos;s <code>isLimit</code> property.
                           </p>
                           <div class="collapsing-list__content">
+<pre class="prettyprint source"><code>schema.isLimit( &apos;paragraph&apos; ); // -&gt; false
+schema.isLimit( &apos;$root&apos; ); // -&gt; true
+schema.isLimit( editor.model.document.getRoot() ); // -&gt; true</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> item
@@ -735,9 +748,15 @@ selection or the root otherwise.
                           <h3><code><a class="member-name" href="#isObject">isObject</a>( item )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">
+                          <p class="collapsing-list__excerpt">Returns <code>true</code> if the given item is defined to be
+a object element by <a href="module_engine_model_schema-SchemaItemDefinition.html"><code>SchemaItemDefinition</code></a>&apos;s <code>isObject</code> property.
                           </p>
                           <div class="collapsing-list__content">
+<pre class="prettyprint source"><code>schema.isObject( &apos;paragraph&apos; ); // -&gt; false
+schema.isObject( &apos;image&apos; ); // -&gt; true
+
+const imageElement = writer.createElement( &apos;image&apos; );
+schema.isObject( imageElement ); // -&gt; true</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> item
@@ -754,9 +773,12 @@ selection or the root otherwise.
                           <h3><code><a class="member-name" href="#isRegistered">isRegistered</a>( item )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">
+                          <p class="collapsing-list__excerpt">Returns <code>true</code> if the given item is registered in the schema.
                           </p>
                           <div class="collapsing-list__content">
+<pre class="prettyprint source"><code>schema.isRegistered( &apos;paragraph&apos; ); // -&gt; true
+schema.isRegistered( editor.model.document.getRoot() ); // -&gt; true
+schema.isRegistered( &apos;foo&apos; ); // -&gt; false</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> item
@@ -960,6 +982,9 @@ order they were added.</p>
                           <p class="collapsing-list__excerpt">Registers schema item. Can only be called once for every item name.
                           </p>
                           <div class="collapsing-list__content">
+<pre class="prettyprint source"><code>schema.register( &apos;paragraph&apos;, {
+    inheritAllFrom: &apos;$block&apos;
+} );</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> itemName
@@ -1239,12 +1264,50 @@ observable.prop = 2; // -&gt; &apos;prop has changed from 1 to 2&apos;</code></p
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:checkAttribute">
-                          <h3><code><a class="member-name" href="#event:checkAttribute">checkAttribute</a>( eventInfo )</code></h3>
+                          <h3><code><a class="member-name" href="#event:checkAttribute">checkAttribute</a>( eventInfo, args )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">TODO
+                          <p class="collapsing-list__excerpt">Event fired when the <a href="module_engine_model_schema-Schema.html#checkAttribute"><code>checkAttribute</code></a> method is called. It allows plugging in
+additional behavior &#x2013; e.g. implementing rules which cannot be defined using the declarative
+<a href="module_engine_model_schema-SchemaItemDefinition.html"><code>SchemaItemDefinition</code></a> interface.
                           </p>
                           <div class="collapsing-list__content">
+<p>The <a href="module_engine_model_schema-Schema.html#checkAttribute"><code>checkAttribute</code></a> method fires an event because it&apos;s
+<a href="module_utils_observablemixin-ObservableMixin.html#decorate">decorated</a> with it. Thanks to that you can
+use this event in a various way, but the most important use case is overriding standard behaviour of the
+<code>checkAttribute()</code> method. Let&apos;s see a typical listener template:</p>
+<pre class="prettyprint source"><code>schema.on( &apos;checkAttribute&apos;, ( evt, args ) =&gt; {
+    const context = args[ 0 ];
+    const attributeName = args[ 1 ];
+}, { priority: &apos;high&apos; } );</code></pre><p>The listener is added with a <code>high</code> priority to be executed before the default method is really called. The <code>args</code> callback
+parameter contains arguments passed to <code>checkAttribute( context, attributeName )</code>. However, the <code>context</code> parameter is already
+normalized to a <a href="module_engine_model_schema-SchemaContext.html"><code>SchemaContext</code></a> instance, so you don&apos;t have to worry about
+the various ways how <code>context</code> may be passed to <code>checkAttribute()</code>.</p>
+<p>So, in order to implement a rule &quot;disallow <code>bold</code> in a text which is in a <code>heading1</code> you can add such a listener:</p>
+<pre class="prettyprint source"><code>schema.on( &apos;checkAttribute&apos;, ( evt, args ) =&gt; {
+    const context = args[ 0 ];
+    const atributeName = args[ 1 ];
+
+    if ( context.endsWith( &apos;heading1 $text&apos; ) &amp;&amp; attributeName == &apos;bold&apos; ) {
+        // Prevent next listeners from being called.
+        evt.stop();
+        // Set the checkAttribute()&apos;s return value.
+        evt.return = false;
+    }
+}, { priority: &apos;high&apos; } );</code></pre><p>Allowing attributes in specific contexts will be a far less common use case, because it&apos;s normally handled by
+<code>allowAttributes</code> rule from <a href="module_engine_model_schema-SchemaItemDefinition.html"><code>SchemaItemDefinition</code></a> but if you have a complex scenario
+where <code>bold</code> should be allowed only in element <code>foo</code> which must be in element <code>bar</code>, then this would be the way:</p>
+<pre class="prettyprint source"><code>schema.on( &apos;checkAttribute&apos;, ( evt, args ) =&gt; {
+    const context = args[ 0 ];
+    const atributeName = args[ 1 ];
+
+    if ( context.endsWith( &apos;bar foo $text&apos; ) &amp;&amp; attributeName == &apos;bold&apos; ) {
+        // Prevent next listeners from being called.
+        evt.stop();
+        // Set the checkAttribute()&apos;s return value.
+        evt.return = true;
+    }
+}, { priority: &apos;high&apos; } );</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> eventInfo
@@ -1252,24 +1315,78 @@ observable.prop = 2; // -&gt; &apos;prop has changed from 1 to 2&apos;</code></p
  <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
                                         <dd><p>An object containing information about the fired event.</p>
                                         </dd>
+                                        <dt><code> args
+                                             :
+ <span>Array</span></code></dt>
+                                        <dd><p>The <code>checkAttribute()</code>'s arguments.</p>
+                                        </dd>
                                       </dl>
                           </div>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:checkChild">
-                          <h3><code><a class="member-name" href="#event:checkChild">checkChild</a>( eventInfo )</code></h3>
+                          <h3><code><a class="member-name" href="#event:checkChild">checkChild</a>( eventInfo, args )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">TODO
+                          <p class="collapsing-list__excerpt">Event fired when the <a href="module_engine_model_schema-Schema.html#checkChild"><code>checkChild</code></a> method is called. It allows plugging in
+additional behavior &#x2013; e.g. implementing rules which cannot be defined using the declarative
+<a href="module_engine_model_schema-SchemaItemDefinition.html"><code>SchemaItemDefinition</code></a> interface.
                           </p>
                           <div class="collapsing-list__content">
+<p>The <a href="module_engine_model_schema-Schema.html#checkChild"><code>checkChild</code></a> method fires an event because it&apos;s
+<a href="module_utils_observablemixin-ObservableMixin.html#decorate">decorated</a> with it. Thanks to that you can
+use this event in a various way, but the most important use case is overriding standard behaviour of the
+<code>checkChild()</code> method. Let&apos;s see a typical listener template:</p>
+<pre class="prettyprint source"><code>schema.on( &apos;checkChild&apos;, ( evt, args ) =&gt; {
+    const context = args[ 0 ];
+    const child = args[ 1 ];
+}, { priority: &apos;high&apos; } );</code></pre><p>The listener is added with a <code>high</code> priority to be executed before the default method is really called. The <code>args</code> callback
+parameter contains arguments passed to <code>checkChild( context, child )</code>. However, the <code>context</code> parameter is already
+normalized to a <a href="module_engine_model_schema-SchemaContext.html"><code>SchemaContext</code></a> instance, so you don&apos;t have to worry about
+the various ways how <code>context</code> may be passed to <code>checkChild()</code>.</p>
+<p>So, in order to implement a rule &quot;disallow <code>heading1</code> in <code>blockQuote</code>&quot; you can add such a listener:</p>
+<pre class="prettyprint source"><code>schema.on( &apos;checkChild&apos;, ( evt, args ) =&gt; {
+    const context = args[ 0 ];
+    const child = args[ 1 ];
+
+    // Normalize child too (it can be a string or a node).
+    const childDefinition = schema.getDefinition( child );
+
+    if ( context.endsWith( &apos;blockQuote&apos; ) &amp;&amp; childDefinition.name == &apos;heading1&apos; ) {
+        // Prevent next listeners from being called.
+        evt.stop();
+        // Set the checkChild()&apos;s return value.
+        evt.return = false;
+    }
+}, { priority: &apos;high&apos; } );</code></pre><p>Allowing elements in specific contexts will be a far less common use case, because it&apos;s normally handled by
+<code>allowIn</code> rule from <a href="module_engine_model_schema-SchemaItemDefinition.html"><code>SchemaItemDefinition</code></a> but if you have a complex scenario
+where <code>listItem</code> should be allowed only in element <code>foo</code> which must be in element <code>bar</code>, then this would be the way:</p>
+<pre class="prettyprint source"><code>schema.on( &apos;checkChild&apos;, ( evt, args ) =&gt; {
+    const context = args[ 0 ];
+    const child = args[ 1 ];
+
+    // Normalize child too (it can be a string or a node).
+    const childDefinition = schema.getDefinition( child );
+
+    if ( context.endsWith( &apos;bar foo&apos; ) &amp;&amp; childDefinition.name == &apos;listItem&apos; ) {
+        // Prevent next listeners from being called.
+        evt.stop();
+        // Set the checkChild()&apos;s return value.
+        evt.return = true;
+    }
+}, { priority: &apos;high&apos; } );</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> eventInfo
                                              :
  <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
                                         <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
+                                        <dt><code> args
+                                             :
+ <span>Array</span></code></dt>
+                                        <dd><p>The <code>checkChild()</code>'s arguments.</p>
                                         </dd>
                                       </dl>
                           </div>

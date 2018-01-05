@@ -9,8 +9,8 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.45/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/0.3.45/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../assets/0.3.46/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.46/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -49,13 +49,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.45/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.46/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="api-header"><img src="../../../assets/0.3.45/img/cog.svg" alt="Class" title="Class"/>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.46/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <div class="api-header"><img src="../../../assets/0.3.46/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1 data-ln="module:engine/model/schema~SchemaContext">SchemaContext<span class="header__import--hidden"> (engine/model)</span>
               </h1>
@@ -67,7 +69,21 @@
           </p>
           <div class="types">
           </div>
-          <div class="main-description"><p>TODO</p></div>
+          <div class="main-description"><p>A schema context &#x2013; a list of ancestors of a given position in the document.</p>
+<p>Considering such a position:</p>
+<pre class="prettyprint source"><code>&lt;$root&gt;
+    &lt;blockQuote&gt;
+        &lt;paragraph&gt;
+            ^
+        &lt;/paragraph&gt;
+    &lt;/blockQuote&gt;
+&lt;/$root&gt;</code></pre><p>The context of this position is its <a href="module_engine_model_position-Position.html#getAncestors">lists of ancestors</a>:</p>
+<pre class="prettyprint source"><code>[ rootElement, blockQuoteElement, paragraphElement ]</code></pre><p>Contexts are used in the <a href="module_engine_model_schema-Schema.html#event:checkChild"><code>Schema#checkChild</code></a> and
+<a href="module_engine_model_schema-Schema.html#event:checkAttribute"><code>Schema#checkAttribute</code></a> events as a definition
+of a place in the document where the check occurs. The context instances are created based on the first arguments
+of the <a href="module_engine_model_schema-Schema.html#checkChild"><code>Schema#checkChild()</code></a> and
+<a href="module_engine_model_schema-Schema.html#checkAttribute"><code>Schema#checkAttribute()</code></a> methods so when
+using these methods you need to use <a href="module_engine_model_schema-SchemaContextDefinition.html"><code>SchemaContextDefinition</code></a>s.</p></div>
 <div class="notice notice__filter api-props-filter">
   <div class="api-props-filter__inner">
     <h4>Filtering</h4>
@@ -99,6 +115,29 @@
     </ul>
   </div>
 </div>
+          <h2 id="Properties">Properties</h2>
+          <ul class="collapsing-list collapsing-list--filtered">
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="last">
+                          <h3><code><a class="member-name" href="#last">last</a> : <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaContextItem.html">SchemaContextItem</a></span></code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">The last item (the lowest node).</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="length">
+                          <h3><code><a class="member-name" href="#length">length</a> : <span>Number</span></code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Number of items.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+          </ul>
           <h2 id="Methods">Methods</h2>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
@@ -106,7 +145,7 @@
                           <h3><code><a class="member-name" href="#constructor">constructor</a>( context )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">TODO
+                          <p class="collapsing-list__excerpt">Creates an instance of the context.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -131,6 +170,71 @@
                             <h4>Returns</h4>
                             <dl>
                                         <dt><code><span>Iterator.&lt;<a class="collapsing-list__type" href="module_engine_model_schema-SchemaContextItem.html">SchemaContextItem</a>&gt;</span></code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="endsWith">
+                          <h3><code><a class="member-name" href="#endsWith">endsWith</a>( query ) &rarr;  <span>Boolean</span></code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Checks whether the context ends with the given nodes.
+                          </p>
+                          <div class="collapsing-list__content">
+<pre class="prettyprint source"><code>const ctx = new SchemaContext( [ rootElement, paragraphElement, textNode ] );
+
+ctx.endsWith( &apos;$text&apos; ); // -&gt; true
+ctx.endsWith( &apos;paragraph $text&apos; ); // -&gt; true
+ctx.endsWith( &apos;$root&apos; ); // -&gt; false
+ctx.endsWith( &apos;paragraph&apos; ); // -&gt; false</code></pre>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> query
+                                             :
+ <span>String</span></code></dt>
+                                        <dd>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Boolean</span></code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="getItem">
+                          <h3><code><a class="member-name" href="#getItem">getItem</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaContextItem.html">SchemaContextItem</a></span></code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Gets an item on the given index.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaContextItem.html">SchemaContextItem</a></span></code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="getNames">
+                          <h3><code><a class="member-name" href="#getNames">getNames</a>() &rarr;  <span>Iterator.&lt;String&gt;</span></code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Returns the names of items.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Iterator.&lt;String&gt;</span></code></dt>
                                         <dd>
                                         </dd>
                             </dl>
