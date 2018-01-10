@@ -9,8 +9,8 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/0.3.46/css/styles.css" type="text/css" media="screen">
-    <script src="../../../../../assets/0.3.46/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../../../assets/0.3.47/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../../assets/0.3.47/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -49,15 +49,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.46/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.47/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/contributing/development-environment.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.46/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.46/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/contributing/development-environment.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.47/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.47/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <h1><img src="../../../../../assets/0.3.46/img/book.svg" alt="guide">Development environment
+          <h1><img src="../../../../../assets/0.3.47/img/book.svg" alt="guide">Development environment
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#requirements">Requirements</a></li><li><a href="#setting-up-the-ckeditor-development-environment">Setting up the CKEditor development environment</a><ol><li><a href="#switching-to-development-version-of-packages">Switching to development version of packages</a></li><li><a href="#fetching-changes">Fetching changes</a></li><li><a href="#using-mgit-for-custom-packages">Using mgit for custom packages</a></li><li><a href="#troubleshooting-problems-with-lerna">Troubleshooting problems with Lerna</a></li><li><a href="#final-word-about-mgit-and-lerna">Final word about mgit and Lerna</a></li></ol></li><li><a href="#running-tests">Running tests</a></li><li><a href="#generating-documentation">Generating documentation</a></li><li><a href="#bisecting-through-a-multi-repository">Bisecting through a multi-repository</a></li><li><a href="#additional-information-for-contributors">Additional information for contributors</a><ol><li><a href="#svg-icons">SVG icons</a></li></ol></li></ol></nav>
 <p>The CKEditor 5 codebase is divided into multiple <a href="http://npmjs.com/" target="_blank" rel="noopener">npm</a> packages, each developed in a separate Git repository. The main package is <a href="https://github.com/ckeditor/ckeditor5" target="_blank" rel="noopener">ckeditor5</a> which installs all project dependencies and various development-related resources such as:</p>
 <ul>
@@ -86,7 +86,7 @@
 </code></pre>
 <p>Note: You may need to use <code>sudo</code> on Linux and macOS.</p>
 <p>Then clone the <a href="https://github.com/ckeditor/ckeditor5" target="_blank" rel="noopener">main repository</a>:</p>
-<pre class="highlight"><code class="bash">git <span class="hljs-built_in">clone</span> https://github.com/ckeditor/ckeditor5.git
+<pre class="highlight"><code class="bash html">git <span class="hljs-built_in">clone</span> https://github.com/ckeditor/ckeditor5.git
 <span class="hljs-built_in">cd</span> ckeditor5
 </code></pre>
 <p>And install all CKEditor 5 packages from the <a href="http://npmjs.com/" target="_blank" rel="noopener">npm registry</a>.</p>
@@ -127,7 +127,7 @@ lrwxr-xr-x    1 p  staff    25 31 Jan 10:37 ckeditor5-engine -&gt; ../../../cked
 </code></pre>
 <h3 id="fetching-changes"><a class="headerlink" href="#fetching-changes">#</a> Fetching changes</h3>
 <p>Whenever you want to update all packages to their latest versions call:</p>
-<pre class="highlight"><code class="bash"><span class="hljs-comment"># To update the ckeditor5 repository itself:</span>
+<pre class="highlight"><code class="bash html"><span class="hljs-comment"># To update the ckeditor5 repository itself:</span>
 git pull
 
 <span class="hljs-comment"># To update pull changes to all the packages:</span>
@@ -153,7 +153,7 @@ mgit update
 <p>Lerna is a tool used by many well-known projects such as <a href="https://github.com/babel/babel" target="_blank" rel="noopener">Babel.js</a>. It has an amazing community and, relying on it ourselves, we hope that it will become a standard for managing multi-package projects.</p>
 <h2 id="running-tests"><a class="headerlink" href="#running-tests">#</a> Running tests</h2>
 <p>In order to run tests you need to use the <code>test</code> and <code>test:manual</code> tasks.</p>
-<pre class="highlight"><code class="bash">npm <span class="hljs-built_in">test</span> -- --watch --coverage --<span class="hljs-built_in">source</span>-map --files=engine
+<pre class="highlight"><code class="bash html">npm <span class="hljs-built_in">test</span> -- --watch --coverage --<span class="hljs-built_in">source</span>-map --files=engine
 </code></pre>
 <p>or, shorter:</p>
 <pre class="highlight"><code class="bash">npm <span class="hljs-built_in">test</span> -- -wcs --files=engine
@@ -183,7 +183,7 @@ mgit update
 <p>CKEditor 5 is a multi-repository project. It means that <a href="https://git-scm.com/docs/git-bisect" target="_blank" rel="noopener"><code>git bisect</code></a> (which is super handy when tracking which commit introduced a bug) will not work out of the box.</p>
 <p>Fortunately, every commit made to any of <code>master</code> branches of all CKEditor 5 subpackages will update this subpackage&#x2019;s hash in <code>mgit.json</code> in the <a href="https://github.com/ckeditor/ckeditor5/commits/master-revisions" target="_blank" rel="noopener"><code>master-revisions</code></a> branch.</p>
 <p>Thanks to that, <code>master-revisions</code> contains an ordered history of all changes which makes it possible to go back to any point in history:</p>
-<pre class="highlight"><code class="bash"><span class="hljs-comment"># Make sure to update this branch.</span>
+<pre class="highlight"><code class="bash html"><span class="hljs-comment"># Make sure to update this branch.</span>
 git co master-revisions
 git pull
 
@@ -209,7 +209,7 @@ Date:   Tue Apr 11 16:45:47 2017 +0000
 <h3 id="svg-icons"><a class="headerlink" href="#svg-icons">#</a> SVG icons</h3>
 <p>By default, CKEditor 5 supports SVG icons found in the <code>ckeditor5-*/theme/icons</code> folders. Unfortunately, most of the SVG editing software produces the output with comments, obsolete tags, and complex paths, which bloats the DOM and makes the builds heavy for no good reason.</p>
 <p>To remove the excess data and prevent <a href="https://github.com/ckeditor/ckeditor5-ui/issues/245" target="_blank" rel="noopener">certain issues</a>, <strong>all new icons should be optimized before joining the code base</strong>. The right utility to do this is Node&#x2013;based <a href="https://github.com/svg/svgo" target="_blank" rel="noopener">SVGO</a> and the usage is as simple as:</p>
-<pre class="highlight"><code class="bash">npm install -g svgo
+<pre class="highlight"><code class="bash html">npm install -g svgo
 <span class="hljs-built_in">cd</span> ckeditor5-package-name/theme/icons
 svgo --<span class="hljs-built_in">enable</span> removeTitle -i .
 </code></pre>
