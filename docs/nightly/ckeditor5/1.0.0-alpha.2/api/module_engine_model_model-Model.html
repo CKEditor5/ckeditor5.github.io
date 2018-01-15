@@ -9,8 +9,8 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.47/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/0.3.47/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../assets/0.3.48/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.48/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -49,15 +49,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.47/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.48/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.47/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.48/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <div class="api-header"><img src="../../../assets/0.3.47/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.48/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1 data-ln="module:engine/model/model~Model">Model<span class="header__import--hidden"> (engine/model)</span>
               </h1>
@@ -87,10 +87,11 @@
           </nav>
           <div class="types">
           </div>
-          <div class="main-description"><p>Editors data model class. Model defines all data: either nodes users see in editable roots, grouped as the
-<a href="module_engine_model_model-Model.html#document"><code>document</code></a>, and all detached nodes, used to data manipulation. All of them are
-created and modified by the <a href="module_engine_model_writer-Writer.html"><code>Writer</code></a>, which can be get using
-<a href="module_engine_model_model-Model.html#change"><code>change</code></a> or <a href="module_engine_model_model-Model.html#enqueueChange"><code>enqueueChange</code></a> methods.</p></div>
+          <div class="main-description"><p>Editor's data model class. Model defines all the data: both nodes that are attached to the roots of the
+<a href="module_engine_model_model-Model.html#document">model document</a>, and also all detached nodes which has not been yet
+added to the document.</p>
+<p>All those nodes are created and modified by the <a href="module_engine_model_writer-Writer.html">model writer</a>, which can be
+accessed by using <a href="module_engine_model_model-Model.html#change"><code>change</code></a> or <a href="module_engine_model_model-Model.html#enqueueChange"><code>enqueueChange</code></a> methods.</p></div>
 <div class="notice notice__filter api-props-filter">
   <div class="api-props-filter__inner">
     <h4>Filtering</h4>
@@ -157,41 +158,15 @@ created and modified by the <a href="module_engine_model_writer-Writer.html"><co
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-private="true" data-mixed="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_bindTo">
-                          <h3><code><a class="member-name" href="#_bindTo">_bindTo</a></code></h3>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_currentWriter">
+                          <h3><code><a class="member-name" href="#_currentWriter">_currentWriter</a> : <span><a class="collapsing-list__type" href="module_engine_model_writer-Writer.html">Writer</a></span></code></h3>
                           <p class="badges">
 <span class="badge badge--red ">private</span>
-<span class="badge badge--gray ">mixed</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-private="true" data-mixed="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_boundAttributes">
-                          <h3><code><a class="member-name" href="#_boundAttributes">_boundAttributes</a></code></h3>
-                          <p class="badges">
-<span class="badge badge--red ">private</span>
-<span class="badge badge--gray ">mixed</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-private="true" data-mixed="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_boundObservables">
-                          <h3><code><a class="member-name" href="#_boundObservables">_boundObservables</a></code></h3>
-                          <p class="badges">
-<span class="badge badge--red ">private</span>
-<span class="badge badge--gray ">mixed</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">The last created and currently used writer instance.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -215,7 +190,7 @@ created and modified by the <a href="module_engine_model_writer-Writer.html"><co
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="applyOperation">
-                          <h3><code><a class="member-name" href="#applyOperation">applyOperation</a>( operation ) &rarr;  <span>Object</span></code></h3>
+                          <h3><code><a class="member-name" href="#applyOperation">applyOperation</a>( operation )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt"><a href="module_utils_observablemixin-ObservableMixin.html#decorate">Decorated</a> function to apply
@@ -230,32 +205,22 @@ created and modified by the <a href="module_engine_model_writer-Writer.html"><co
                                         <dd><p>Operation to apply</p>
                                         </dd>
                                       </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span>Object</span></code></dt>
-                                        <dd><p>Object with additional information about the applied changes. It properties depends on the
-operation type.</p>
-                                        </dd>
-                            </dl>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="bind">
-                          <h3><code><a class="member-name" href="#bind">bind</a>( bindAttrs ) &rarr;  <span><a class="collapsing-list__type" href="module_utils_observablemixin-BindChain.html">BindChain</a></span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">mixed</span>
-                          </p>
+                          <h3><code><a class="member-name" href="#bind">bind</a>( bindAttrs ) &rarr;  <span>Object</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Binds observable attributes to another objects implementing <a href="module_utils_observablemixin-ObservableMixin.html"><code>ObservableMixin</code></a>
+                          <p class="collapsing-list__excerpt">Binds observable properties to another objects implementing <a href="module_utils_observablemixin-Observable.html"><code>Observable</code></a>
 interface (like <a href="module_ui_model-Model.html"><code>Model</code></a>).
                           </p>
                           <div class="collapsing-list__content">
-<p>Once bound, the observable will immediately share the current state of attributes
-of the observable it is bound to and react to the changes to these attributes
+<p>Once bound, the observable will immediately share the current state of properties
+of the observable it is bound to and react to the changes to these properties
 in the future.</p>
-<p><strong>Note</strong>: To release the binding use <a href="module_utils_observablemixin-ObservableMixin.html#unbind"><code>unbind</code></a>.</p>
+<p><strong>Note</strong>: To release the binding use <a href="module_utils_observablemixin-Observable.html#unbind"><code>unbind</code></a>.</p>
 <pre class="prettyprint source"><code>A.bind( &apos;a&apos; ).to( B );
 A.bind( &apos;a&apos; ).to( B, &apos;b&apos; );
 A.bind( &apos;a&apos;, &apos;b&apos; ).to( B, &apos;c&apos;, &apos;d&apos; );
@@ -265,13 +230,13 @@ A.bind( &apos;a&apos; ).to( B, &apos;b&apos;, C, &apos;d&apos;, ( b, d ) =&gt; b
                                         <dt><code> bindAttrs
                                              :
  <span>String</span></code></dt>
-                                        <dd><p>Observable attributes that will be bound to another observable(s).</p>
+                                        <dd><p>Observable properties that will be bound to another observable(s).</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_utils_observablemixin-BindChain.html">BindChain</a></span></code></dt>
-                                        <dd>
+                                        <dt><code><span>Object</span></code></dt>
+                                        <dd><p>The bind chain with the <code>to()</code> method.</p>
                                         </dd>
                             </dl>
                           </div>
@@ -283,26 +248,26 @@ A.bind( &apos;a&apos; ).to( B, &apos;b&apos;, C, &apos;d&apos;, ( b, d ) =&gt; b
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Change method is the primary way of changing the model. You should use it to modify any node, including detached
-nodes, not added to the <a href="module_engine_model_model-Model.html#document"><code>document</code></a>.
+nodes (not added to the <a href="module_engine_model_model-Model.html#document">model document</a>).
                           </p>
                           <div class="collapsing-list__content">
 <pre class="prettyprint source"><code>model.change( writer =&gt; {
     writer.insertText( &apos;foo&apos;, paragraph, &apos;end&apos; );
-} );</code></pre><p>All changes inside the change block use the same <a href="module_engine_model_batch-Batch.html"><code>Batch</code></a> so share the same
+} );</code></pre><p>All changes inside the change block use the same <a href="module_engine_model_batch-Batch.html"><code>Batch</code></a> so they share the same
 undo step.</p>
 <pre class="prettyprint source"><code>model.change( writer =&gt; {
-    writer.insertText( &apos;foo&apos;, paragraph, &apos;end&apos; ); // foo
+    writer.insertText( &apos;foo&apos;, paragraph, &apos;end&apos; ); // foo.
 
     model.change( writer =&gt; {
-        writer.insertText( &apos;bar&apos;, paragraph, &apos;end&apos; ); // foobar
+        writer.insertText( &apos;bar&apos;, paragraph, &apos;end&apos; ); // foobar.
     } );
 
-    writer.insertText( &apos;bom&apos;, paragraph, &apos;end&apos; ); // foobarbom
-} );</code></pre><p>Change block is executed imminently.</p>
+    writer.insertText( &apos;bom&apos;, paragraph, &apos;end&apos; ); // foobarbom.
+} );</code></pre><p>Change block is executed immediately.</p>
 <p>You can also return a value from the change block.</p>
 <pre class="prettyprint source"><code>const img = model.change( writer =&gt; {
     return writer.createElement( &apos;img&apos; );
-} );</code></pre><p>When the outermost block is done the <a href="module_engine_model_model-Model.html#event:change"><code>change</code></a> event is fired.</p>
+} );</code></pre><p>When the outermost block is done the <a href="module_engine_model_model-Model.html#event:_change"><code>_change</code></a> event is fired.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> callback
@@ -314,25 +279,15 @@ undo step.</p>
                             <h4>Returns</h4>
                             <dl>
                                         <dt><code><span>*</span></code></dt>
-                                        <dd><p>Value returned by the callback</p>
+                                        <dd><p>Value returned by the callback.</p>
                                         </dd>
                             </dl>
-                            <h4>Fires</h4>
-                            <ul>
-                                        <li><span><a href="module_engine_model_model-Model.html#event:change">change</a></span>
-                                        </li>
-                                        <li><span><a href="module_engine_model_model-Model.html#event:changesDone">changesDone</a></span>
-                                        </li>
-                            </ul>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="decorate">
                           <h3><code><a class="member-name" href="#decorate">decorate</a>( methodName )</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">mixed</span>
-                          </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Turns the given methods of this object into event-based ones. This means that the new method will fire an event
@@ -389,12 +344,9 @@ foo.method( 1, 2 ); // -&gt; &apos;3, 2&apos;</code></pre>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="delegate">
                           <h3><code><a class="member-name" href="#delegate">delegate</a>( events ) &rarr;  <span><a class="collapsing-list__type" href="module_utils_emittermixin-EmitterMixinDelegateChain.html">EmitterMixinDelegateChain</a></span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">mixed</span>
-                          </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Delegates selected events to another <a href="module_utils_emittermixin-Emitter.html"><code>Emitter</code></a>. For instance:
@@ -462,7 +414,7 @@ That needs to be done in order to ensure that other features which use <code>del
                           <h3><code><a class="member-name" href="#destroy">destroy</a>()</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Removes all events listeners set by model instance and destroy Document.
+                          <p class="collapsing-list__excerpt">Removes all events listeners set by model instance and destroys <a href="module_engine_model_document-Document.html"><code>Document</code></a>.
                           </p>
                           <div class="collapsing-list__content">
                           </div>
@@ -473,34 +425,34 @@ That needs to be done in order to ensure that other features which use <code>del
                           <h3><code><a class="member-name" href="#enqueueChange">enqueueChange</a>( batchOrType, callback )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt"><code>enqueueChange</code> method is very similar to the <a href="module_engine_model_model-Model.html#change">change  method</a>, with two major differences.
+                          <p class="collapsing-list__excerpt"><code>enqueueChange</code> method performs similar task as the <a href="module_engine_model_model-Model.html#change">change  method</a>, with two major differences.
                           </p>
                           <div class="collapsing-list__content">
 <p>First, the callback of the <code>enqueueChange</code> is executed when all other changes are done. It might be executed
-imminently if it is not nested in any other change block, but if it is nested in another change it will be delayed
-and executed after the outermost block. If will be also executed after all previous <code>enqueueChange</code> blocks.</p>
+immediately if it is not nested in any other change block, but if it is nested in another (enqueue)change block,
+it will be delayed and executed after the outermost block.</p>
 <pre class="prettyprint source"><code>model.change( writer =&gt; {
     console.log( 1 );
 
     model.enqueueChange( writer =&gt; {
-        console.log( 3 );
+        console.log( 2 );
     } );
 
-    console.log( 2 );
-} );</code></pre><p>Second, it let you define the <a href="module_engine_model_batch-Batch.html"><code>Batch</code></a> to which you want to add your changes.
-By default it creates a new batch, note that in the sample above <code>change</code> and <code>enqueueChange</code> blocks use a different
+    console.log( 3 );
+} ); // Will log: 1, 3, 2.</code></pre><p>Second, it lets you define the <a href="module_engine_model_batch-Batch.html"><code>Batch</code></a> into which you want to add your changes.
+By default, a new batch is created. In the sample above, <code>change</code> and <code>enqueueChange</code> blocks use a different
 batch (and different <a href="module_engine_model_writer-Writer.html"><code>Writer</code></a> since each of them operates on the separate batch).</p>
 <p>Using <code>enqueueChange</code> block you can also add some changes to the batch you used before.</p>
 <pre class="prettyprint source"><code>model.enqueueChange( batch, writer =&gt; {
     writer.insertText( &apos;foo&apos;, paragraph, &apos;end&apos; );
-} );</code></pre>
+} );</code></pre><p><code>Batch</code> instance can be obtained from <a href="module_engine_model_writer-Writer.html#batch">the writer</a>.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> batchOrType
                                              :
  <span><a class="collapsing-list__type" href="module_engine_model_batch-Batch.html">Batch</a></span> | <span>String</span></code></dt>
                                         <dd><p>Batch or batch type should be used in the callback.
-If not defined new batch will be created.</p>
+If not defined, a new batch will be created.</p>
                                         </dd>
                                         <dt><code> callback
                                              :
@@ -508,22 +460,12 @@ If not defined new batch will be created.</p>
                                         <dd><p>Callback function which may modify the model.</p>
                                         </dd>
                                       </dl>
-                            <h4>Fires</h4>
-                            <ul>
-                                        <li><span><a href="module_engine_model_model-Model.html#event:change">change</a></span>
-                                        </li>
-                                        <li><span><a href="module_engine_model_model-Model.html#event:changesDone">changesDone</a></span>
-                                        </li>
-                            </ul>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="fire">
                           <h3><code><a class="member-name" href="#fire">fire</a>( eventOrInfo, [ args ] ) &rarr;  <span>*</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">mixed</span>
-                          </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fires an event, executing all callbacks registered for it.
@@ -641,12 +583,9 @@ has any content.
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="listenTo">
                           <h3><code><a class="member-name" href="#listenTo">listenTo</a>( emitter, event, callback, [ options ] = { [options.priority] } )</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">mixed</span>
-                          </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Registers a callback function to be executed when an event is fired in a specific (emitter) object.
@@ -664,7 +603,7 @@ myEmitter.fire( &apos;myGroup&apos; );
 myEmitter.fire( &apos;myGroup:myEvent&apos; );
 // genericCallback is fired even though there are no callbacks for &quot;foo&quot;.
 myEmitter.fire( &apos;myGroup:foo&apos; );</code></pre><p>An event callback can <a href="module_utils_eventinfo-EventInfo.html#stop">stop the event</a> and
-set the <a href="module_utils_eventinfo-EventInfo.html#return">return value</a> of the <a href="module_utils_emittermixin-EmitterMixin.html#fire"><code>fire</code></a> method.</p>
+set the <a href="module_utils_eventinfo-EventInfo.html#return">return value</a> of the <a href="module_utils_emittermixin-Emitter.html#fire"><code>fire</code></a> method.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> emitter
@@ -733,16 +672,13 @@ order they were added.</p>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="off">
                           <h3><code><a class="member-name" href="#off">off</a>( event, callback )</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">mixed</span>
-                          </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Stops executing the callback on the given event.
-Shorthand for <a href="module_utils_emittermixin-EmitterMixin.html#stopListening"><code>this.stopListening(  this,  event,  callback  )</code></a>.
+Shorthand for <a href="module_utils_emittermixin-Emitter.html#stopListening"><code>this.stopListening(  this,  event,  callback  )</code></a>.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -761,18 +697,15 @@ Shorthand for <a href="module_utils_emittermixin-EmitterMixin.html#stopListening
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="on">
                           <h3><code><a class="member-name" href="#on">on</a>( event, callback, [ options ] = { [options.priority] } )</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">mixed</span>
-                          </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Registers a callback function to be executed when an event is fired.
                           </p>
                           <div class="collapsing-list__content">
-<p>Shorthand for <a href="module_utils_emittermixin-EmitterMixin.html#listenTo"><code>this.listenTo(  this,  event,  callback,  options  )</code></a> (it makes the emitter
+<p>Shorthand for <a href="module_utils_emittermixin-Emitter.html#listenTo"><code>this.listenTo(  this,  event,  callback,  options  )</code></a> (it makes the emitter
 listen on itself).</p>
                             <h4>Parameters</h4>
                                       <dl>
@@ -808,16 +741,13 @@ order they were added.</p>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="once">
                           <h3><code><a class="member-name" href="#once">once</a>( event, callback, [ options ] = { [options.priority] } )</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">mixed</span>
-                          </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Registers a callback function to be executed on the next time the event is fired only. This is similar to
-calling <a href="module_utils_emittermixin-EmitterMixin.html#on"><code>on</code></a> followed by <a href="module_utils_emittermixin-EmitterMixin.html#off"><code>off</code></a> in the callback.
+calling <a href="module_utils_emittermixin-Emitter.html#on"><code>on</code></a> followed by <a href="module_utils_emittermixin-Emitter.html#off"><code>off</code></a> in the callback.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -854,21 +784,18 @@ order they were added.</p>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="set">
                           <h3><code><a class="member-name" href="#set">set</a>( name, value )</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">mixed</span>
-                          </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Creates and sets the value of an observable attribute of this object. Such an attribute becomes a part
+                          <p class="collapsing-list__excerpt">Creates and sets the value of an observable property of this object. Such an property becomes a part
 of the state and is be observable.
                           </p>
                           <div class="collapsing-list__content">
-<p>It accepts also a single object literal containing key/value pairs with attributes to be set.</p>
-<p>This method throws the observable-set-cannot-override error if the observable instance already
-have a property with a given attribute name. This prevents from mistakenly overriding existing
+<p>It accepts also a single object literal containing key/value pairs with propertys to be set.</p>
+<p>This method throws the <code>observable-set-cannot-override</code> error if the observable instance already
+have a property with the given property name. This prevents from mistakenly overriding existing
 properties and methods, but means that <code>foo.set( &apos;bar&apos;, 1 )</code> may be slightly slower than <code>foo.bar = 1</code>.</p>
                             <h4>Parameters</h4>
                                       <dl>
@@ -886,12 +813,9 @@ properties and methods, but means that <code>foo.set( &apos;bar&apos;, 1 )</code
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="stopDelegating">
                           <h3><code><a class="member-name" href="#stopDelegating">stopDelegating</a>( [ event ], [ emitter ] )</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">mixed</span>
-                          </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Stops delegating events. It can be used at different levels:
@@ -919,12 +843,9 @@ If omitted, stops delegation of <code>event</code> to all emitters.</p>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="stopListening">
                           <h3><code><a class="member-name" href="#stopListening">stopListening</a>( [ emitter ], [ event ], [ callback ] )</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">mixed</span>
-                          </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Stops listening for events. It can be used at different levels:
@@ -1007,15 +928,12 @@ by the first set of deltas.</p>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="unbind">
                           <h3><code><a class="member-name" href="#unbind">unbind</a>( [ unbindAttrs ] )</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">mixed</span>
-                          </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Removes the binding created with <a href="module_utils_observablemixin-ObservableMixin.html#bind"><code>bind</code></a>.
+                          <p class="collapsing-list__excerpt">Removes the binding created with <a href="module_utils_observablemixin-Observable.html#bind"><code>bind</code></a>.
                           </p>
                           <div class="collapsing-list__content">
 <pre class="prettyprint source"><code>A.unbind( &apos;a&apos; );
@@ -1025,8 +943,8 @@ A.unbind();</code></pre>
                                         <dt><code> [ unbindAttrs ]
                                              :
  <span>String</span></code></dt>
-                                        <dd><p>Observable attributes to be unbound. All the bindings will
-be released if no attributes provided.</p>
+                                        <dd><p>Observable properties to be unbound. All the bindings will
+be released if no properties provided.</p>
                                         </dd>
                                       </dl>
                           </div>
@@ -1056,6 +974,35 @@ which calls callbacks and returns array of values returned by these callbacks.
           </ul>
           <h2 id="Events">Events</h2>
           <ul class="collapsing-list collapsing-list--filtered">
+                      <li class="collapsing-list__item" data-protected="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="event:_change">
+                          <h3><code><a class="member-name" href="#event:_change">_change</a>( eventInfo, writer )</code></h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Fired after leaving each <a href="module_engine_model_model-Model.html#enqueueChange"><code>enqueueChange</code></a> block or outermost
+<a href="module_engine_model_model-Model.html#change"><code>change</code></a> block.
+                          </p>
+                          <div class="collapsing-list__content">
+<p><strong>Note:</strong> This is an internal event! Use <a href="module_engine_model_document-Document.html#event:change"><code>change</code></a> instead.</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> eventInfo
+                                             :
+ <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
+                                        <dt><code> writer
+                                             :
+ <span><a class="collapsing-list__type" href="module_engine_model_writer-Writer.html">Writer</a></span></code></dt>
+                                        <dd><p><code>Writer</code> instance that has been used in the change block.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:applyOperation">
                           <h3><code><a class="member-name" href="#event:applyOperation">applyOperation</a>( eventInfo, args )</code></h3>
@@ -1065,14 +1012,17 @@ which calls callbacks and returns array of values returned by these callbacks.
 using <a href="module_engine_model_model-Model.html#applyOperation"><code>applyOperation</code></a>.
                           </p>
                           <div class="collapsing-list__content">
-<p>Note that this is an internal event for the specific use-cases. You can use it if you need to know about each operation
-applied on the document, but in most cases <a href="module_engine_model_model-Model.html#change"><code>change</code></a> event which is fired when all changes in a
-<a href="module_engine_model_batch-Batch.html"><code>Batch</code></a> are applied, is a better choice.</p>
-<p>With the high priority operation is validated.</p>
-<p>With the normal priority operation is executed. After that priority you will be able to get additional
-information about the applied changes returned by <a href="module_engine_model_operation_operation-Operation.html#_execute"><code>_execute</code></a>
-as <code>evt.return</code>.</p>
-<p>With the low priority the <a href="module_engine_model_document-Document.html"><code>Document</code></a> listen on this event and updates its version.</p>
+<p>Note that this event is suitable only for very specific use-cases. Use it if you need to listen to every single operation
+applied on the document. However, in most cases <a href="module_engine_model_document-Document.html#event:change"><code>change</code></a> should
+be used.</p>
+<p>A few callbacks are already added to this event by engine internal classes:</p>
+<ul>
+<li>with <code>highest</code> priority operation is validated,</li>
+<li>with <code>normal</code> priority operation is executed,</li>
+<li>with <code>low</code> priority the <a href="module_engine_model_document-Document.html"><code>Document</code></a> updates its version,</li>
+<li>with <code>low</code> priority <a href="module_engine_model_liveposition-LivePosition.html"><code>LivePosition</code></a> and <a href="module_engine_model_liverange-LiveRange.html"><code>LiveRange</code></a>
+update themselves.</li>
+</ul>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> eventInfo
@@ -1083,7 +1033,7 @@ as <code>evt.return</code>.</p>
                                         <dt><code> args
                                              :
  <span>Array</span></code></dt>
-                                        <dd><p>Arguments of the <code>applyOperation</code> which are an array with a single element:
+                                        <dd><p>Arguments of the <code>applyOperation</code> which is an array with a single element - applied
 <a href="module_engine_model_operation_operation-Operation.html">operation</a>.</p>
                                         </dd>
                                       </dl>
@@ -1091,35 +1041,11 @@ as <code>evt.return</code>.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:change">
-                          <h3><code><a class="member-name" href="#event:change">change</a>( eventInfo )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="change:{property}">
+                          <h3><code><a class="member-name" href="#change:{property}">change:{property}</a>( eventInfo, name, value, oldValue )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Fired after leaving each <a href="module_engine_model_model-Model.html#enqueueChange"><code>enqueueChange</code></a> block or outermost
-<a href="module_engine_model_model-Model.html#change"><code>change</code></a> block.
-Have the same parameters as <a href="module_engine_model_model-Model.html#change"><code>change</code></a>.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> eventInfo
-                                             :
- <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                        <dd><p>An object containing information about the fired event.</p>
-                                        </dd>
-                                      </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:change:{attribute}">
-                          <h3><code><a class="member-name" href="#event:change:{attribute}">change:{attribute}</a>( eventInfo, name, value, oldValue )</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">mixed</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Fired when an attribute changed value.
+                          <p class="collapsing-list__excerpt">Fired when a property changed value.
                           </p>
                           <div class="collapsing-list__content">
 <pre class="prettyprint source"><code>observable.set( &apos;prop&apos;, 1 );
@@ -1139,36 +1065,17 @@ observable.prop = 2; // -&gt; &apos;prop has changed from 1 to 2&apos;</code></p
                                         <dt><code> name
                                              :
  <span>String</span></code></dt>
-                                        <dd><p>The attribute name.</p>
+                                        <dd><p>The property name.</p>
                                         </dd>
                                         <dt><code> value
                                              :
  <span>*</span></code></dt>
-                                        <dd><p>The new attribute value.</p>
+                                        <dd><p>The new property value.</p>
                                         </dd>
                                         <dt><code> oldValue
                                              :
  <span>*</span></code></dt>
-                                        <dd><p>The previous attribute value.</p>
-                                        </dd>
-                                      </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:changesDone">
-                          <h3><code><a class="member-name" href="#event:changesDone">changesDone</a>( eventInfo )</code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Fired when all queued model changes are done.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> eventInfo
-                                             :
- <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                        <dd><p>An object containing information about the fired event.</p>
+                                        <dd><p>The previous property value.</p>
                                         </dd>
                                       </dl>
                           </div>
@@ -1606,6 +1513,39 @@ listener to this event so it can be fully customized by the features.</p>
               </div>
               <ul>
                 <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">utils</span>
+                  </div>
+                  <ul>
+                    <li><a href="module_core_editor_utils_attachtoform.html">
+                        <div class="tree__item__wrapper" data-ln="module:core/editor/utils/attachtoform"><span class="tree__item--module tree__item__text">attachtoform</span></div></a>
+                    </li>
+                    <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper" data-ln="module:core/editor/utils/dataapimixin"><a class="tree__item--module tree__item__text" href="module_core_editor_utils_dataapimixin.html">dataapimixin</a>
+                      </div>
+                      <ul>
+                        <li><a href="module_core_editor_utils_dataapimixin-DataApiMixin.html">
+                            <div class="tree__item__wrapper" data-ln="module:core/editor/utils/dataapimixin~DataApiMixin"><span class="tree__item--class tree__item__text">DataApiMixin</span></div></a>
+                        </li>
+                        <li><a href="module_core_editor_utils_dataapimixin-DataApi.html">
+                            <div class="tree__item__wrapper" data-ln="module:core/editor/utils/dataapimixin~DataApi"><span class="tree__item--interface tree__item__text">DataApi</span></div></a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper" data-ln="module:core/editor/utils/elementapimixin"><a class="tree__item--module tree__item__text" href="module_core_editor_utils_elementapimixin.html">elementapimixin</a>
+                      </div>
+                      <ul>
+                        <li><a href="module_core_editor_utils_elementapimixin-ElementApiMixin.html">
+                            <div class="tree__item__wrapper" data-ln="module:core/editor/utils/elementapimixin~ElementApiMixin"><span class="tree__item--class tree__item__text">ElementApiMixin</span></div></a>
+                        </li>
+                        <li><a href="module_core_editor_utils_elementapimixin-ElementApi.html">
+                            <div class="tree__item__wrapper" data-ln="module:core/editor/utils/elementapimixin~ElementApi"><span class="tree__item--interface tree__item__text">ElementApi</span></div></a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li class="toggler--collapsed">
                   <div class="tree__item__wrapper" data-ln="module:core/editor/editor"><a class="tree__item--module tree__item__text" href="module_core_editor_editor.html">editor</a>
                   </div>
                   <ul>
@@ -1633,11 +1573,11 @@ listener to this event so it can be fully customized by the features.</p>
                   </ul>
                 </li>
                 <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:core/editor/standardeditor"><a class="tree__item--module tree__item__text" href="module_core_editor_standardeditor.html">standardeditor</a>
+                  <div class="tree__item__wrapper" data-ln="module:core/editor/editorwithui"><a class="tree__item--module tree__item__text" href="module_core_editor_editorwithui.html">editorwithui</a>
                   </div>
                   <ul>
-                    <li><a href="module_core_editor_standardeditor-StandardEditor.html">
-                        <div class="tree__item__wrapper" data-ln="module:core/editor/standardeditor~StandardEditor"><span class="tree__item--class tree__item__text">StandardEditor</span></div></a>
+                    <li><a href="module_core_editor_editorwithui-EditorWithUI.html">
+                        <div class="tree__item__wrapper" data-ln="module:core/editor/editorwithui~EditorWithUI"><span class="tree__item--interface tree__item__text">EditorWithUI</span></div></a>
                     </li>
                   </ul>
                 </li>
@@ -4295,12 +4235,6 @@ listener to this event so it can be fully customized by the features.</p>
                 </li>
                 <li><a href="module_utils_observablemixin-Observable.html">
                     <div class="tree__item__wrapper" data-ln="module:utils/observablemixin~Observable"><span class="tree__item--interface tree__item__text">Observable</span></div></a>
-                </li>
-                <li><a href="module_utils_observablemixin-BindChain.html">
-                    <div class="tree__item__wrapper" data-ln="module:utils/observablemixin~BindChain"><span class="tree__item--typedef tree__item__text">BindChain</span></div></a>
-                </li>
-                <li><a href="module_utils_observablemixin-Binding.html">
-                    <div class="tree__item__wrapper" data-ln="module:utils/observablemixin~Binding"><span class="tree__item--typedef tree__item__text">Binding</span></div></a>
                 </li>
               </ul>
             </li>

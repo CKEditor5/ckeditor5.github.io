@@ -9,9 +9,9 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/0.3.47/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../../../assets/0.3.48/css/styles.css" type="text/css" media="screen">
     <link rel="stylesheet" href="../../../assets/snippet-styles.css" type="text/css">
-    <script src="../../../../../assets/0.3.47/scripts/app.js"></script>
+    <script src="../../../../../assets/0.3.48/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -50,15 +50,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.47/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.48/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-ui/blob/master/docs/framework/guides/external-ui.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.47/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5-ui/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.47/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-ui/blob/master/docs/framework/guides/external-ui.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.48/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5-ui/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.48/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <h1><img src="../../../../../assets/0.3.47/img/book.svg" alt="guide">Third–party UI
+          <h1><img src="../../../../../assets/0.3.48/img/book.svg" alt="guide">Third–party UI
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#readying-the-editor-side">Readying the editor side</a></li><li><a href="#creating-the-bootstrap-ui">Creating the Bootstrap UI</a></li><li><a href="#binding-the-ui-with-the-editor">Binding the UI with the editor</a></li><li><a href="#running-the-editor">Running the editor</a></li></ol></nav>
 <p>CKEditor 5 is a modular editing framework that allows for various flexible configurations. That includes the usage of a third&#x2013;party user interface on top of the basic editor classes.</p>
 <p>In this guide, a <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-build-classic" target="_blank" rel="noopener">classic&#x2013;like</a> editor will be bound to a completely separate UI created in <a href="http://getbootstrap.com/" target="_blank" rel="noopener">Bootstrap</a>, providing the basic structure and toolbar items necessary to start editing.</p>
@@ -75,10 +75,20 @@
 <h2 id="readying-the-editor-side"><a class="headerlink" href="#readying-the-editor-side">#</a> Readying the editor side</h2>
 <p>The ready&#x2013;to&#x2013;use builds of CKEditor like <a href="../../../examples/builds/classic-editor.html">Classic</a> or <a href="../../../examples/builds/inline-editor.html">Inline</a> come with a dedicated default user interface and theme. However, to create an editor instance bound to a Bootstrap UI, only a limited subset of features is required. You need to import them first:</p>
 <pre class="highlight"><code class="js"><span class="hljs-comment">// Basic classes to create an editor.</span>
-<span class="hljs-keyword">import</span> StandardEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/editor/standardeditor&apos;</span>;
+<span class="hljs-keyword">import</span> Editor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/editor/editor&apos;</span>;
 <span class="hljs-keyword">import</span> InlineEditableUIView <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/editableui/inline/inlineeditableuiview&apos;</span>;
 <span class="hljs-keyword">import</span> HtmlDataProcessor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-engine/src/dataprocessor/htmldataprocessor&apos;</span>;
 <span class="hljs-keyword">import</span> ElementReplacer <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-utils/src/elementreplacer&apos;</span>;
+
+<span class="hljs-comment">// Interfaces to extend basic Editor API.</span>
+<span class="hljs-keyword">import</span> DataApiMixin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/editor/utils/dataapimixin&apos;</span>;
+<span class="hljs-keyword">import</span> ElementApiMixin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/editor/utils/elementapimixin&apos;</span>;
+
+<span class="hljs-comment">// Helper function for adding interfaces to the Editor class.</span>
+<span class="hljs-keyword">import</span> mix <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-utils/src/mix&apos;</span>;
+
+<span class="hljs-comment">// Helper function that binds editor with HTMLForm element.</span>
+<span class="hljs-keyword">import</span> attachToForm <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/editor/utils/attachtoform&apos;</span>;
 
 <span class="hljs-comment">// Basic features that every editor should enable.</span>
 <span class="hljs-keyword">import</span> Clipboard <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-clipboard/src/clipboard&apos;</span>;
@@ -94,14 +104,14 @@
 <span class="hljs-keyword">import</span> HeadingEngine <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-heading/src/headingengine&apos;</span>;
 </code></pre>
 <div class="info-box notice notice__info"><p>Note that instead of <a href="../../../api/module_basic-styles_bold-Bold.html"><code>Bold</code></a>, which is required for any editor with the default UI to work, just the <a href="../../../api/module_basic-styles_boldengine-BoldEngine.html"><code>BoldEngine</code></a> is imported. It provides the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine" target="_blank" rel="noopener">engine</a> features associated with editing any bold text but does not come with the actual UI.</p><p>Respectively, <code>ItalicEngine</code>, <code>UnderlineEngine</code>, <code>HeadingEngine</code> and <code>UndoEngine</code> are also imported.</p><p>This split between the engine and the UI part of features is not perfect yet. At the current stage, the UI part introduces some vital functionality, such as keystroke definitions (e.g. <kbd>Ctrl</kbd>+<kbd>B</kbd> to &#x201C;bold&#x201D;). This means that by dropping the UI part of features you also lose keystrokes. We <a href="https://github.com/ckeditor/ckeditor5/issues/488" target="_blank" rel="noopener">plan to improve</a> this situation.</p></div>
-<p>Having imported the very basic editor components, you can define the custom <code>BootstrapEditor</code> class that extends the <a href="../../../api/module_core_editor_standardeditor-StandardEditor.html"><code>StandardEditor</code></a>:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// Extending the StandardEditor that brings lots of essential API.</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BootstrapEditor</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StandardEditor</span> </span>{
+<p>Having imported the very basic editor components, you can define the custom <code>BootstrapEditor</code> class that extends the <a href="../../../api/module_core_editor_editor-Editor.html"><code>Editor</code></a>:</p>
+<pre class="highlight"><code class="js"><span class="hljs-comment">// Extending the Editor, which brings base editor API.</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BootstrapEditor</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Editor</span> </span>{
     <span class="hljs-keyword">constructor</span>( element, config ) {
         <span class="hljs-keyword">super</span>( element, config );
 
         <span class="hljs-comment">// Create the (&quot;main&quot;) root element of the model tree.</span>
-        <span class="hljs-keyword">this</span>.document.createRoot();
+        <span class="hljs-keyword">this</span>.model.document.createRoot();
 
         <span class="hljs-comment">// Use the HTML data processor in this editor.</span>
         <span class="hljs-keyword">this</span>.data.processor = <span class="hljs-keyword">new</span> HtmlDataProcessor();
@@ -111,11 +121,15 @@
 
         <span class="hljs-comment">// A helper to easily replace the editor#element with editor.editable#element.</span>
         <span class="hljs-keyword">this</span>._elementReplacer = <span class="hljs-keyword">new</span> ElementReplacer();
+
+        <span class="hljs-comment">// When editor#element is a textarea inside a form element</span>
+        <span class="hljs-comment">// then content of this textarea will be updated on form submit.</span>
+        attachToForm( <span class="hljs-keyword">this</span> );
     }
 
     destroy() {
         <span class="hljs-comment">// When destroyed, editor sets the output of editor#getData() into editor#element...</span>
-        <span class="hljs-keyword">this</span>.updateEditorElement();
+        <span class="hljs-keyword">this</span>.updateElement();
 
         <span class="hljs-comment">// ...and restores editor#element.</span>
         <span class="hljs-keyword">this</span>._elementReplacer.restore();
@@ -154,7 +168,7 @@
                     } )
                     <span class="hljs-comment">// Bind the editor editing layer to the editable in DOM.</span>
                     .then( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> editor.editing.view.attachDomRoot( editable.element ) )
-                    .then( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> editor.loadDataFromEditorElement() )
+                    .then( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> editor.loadDataFromElement() )
                     <span class="hljs-comment">// Fire the events that announce that the editor is complete and ready to use.</span>
                     .then( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
                         editor.fire( <span class="hljs-string">&apos;dataReady&apos;</span> );
@@ -165,6 +179,10 @@
         } );
     }
 }
+
+<span class="hljs-comment">// Mixing interfaces, which extends basic editor API.</span>
+mix( BootstrapEditor, DataApiMixin );
+mix( BootstrapEditor, ElementApiMixin );
 </code></pre>
 <h2 id="creating-the-bootstrap-ui"><a class="headerlink" href="#creating-the-bootstrap-ui">#</a> Creating the Bootstrap UI</h2>
 <p>Although the editor is ready to use, it is just a bare editable area &#x2014; which is not much use to the users. You need to give it an actual interface with the toolbar and buttons.</p>

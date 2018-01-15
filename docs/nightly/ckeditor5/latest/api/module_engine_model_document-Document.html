@@ -9,8 +9,8 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.47/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/0.3.47/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../assets/0.3.48/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.48/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -49,15 +49,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.47/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.48/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.47/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.48/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <div class="api-header"><img src="../../../assets/0.3.47/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.48/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1 data-ln="module:engine/model/document~Document">Document<span class="header__import--hidden"> (engine/model)</span>
               </h1>
@@ -122,6 +122,19 @@ each area will be represented by the separate root.</p></div>
           <h2 id="Properties">Properties</h2>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="differ">
+                          <h3><code><a class="member-name" href="#differ">differ</a> : <span><a class="collapsing-list__type" href="module_engine_model_differ-Differ.html">Differ</a></span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Model differ object. Its role is to buffer changes done on model document and then calculate a diff of those changes.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="graveyard">
                           <h3><code><a class="member-name" href="#graveyard">graveyard</a> : <span><a class="collapsing-list__type" href="module_engine_model_rootelement-RootElement.html">RootElement</a></span></code></h3>
                           <p class="badges">
@@ -163,7 +176,7 @@ each area will be represented by the separate root.</p></div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="roots">
-                          <h3><code><a class="member-name" href="#roots">roots</a> : <span>Map</span></code></h3>
+                          <h3><code><a class="member-name" href="#roots">roots</a> : <span><a class="collapsing-list__type" href="module_utils_collection-Collection.html">Collection</a></span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">readonly</span>
                           </p>
@@ -200,6 +213,19 @@ each area will be represented by the separate root.</p></div>
 operations are applied on the proper document version.
 If the <a href="module_engine_model_operation_operation-Operation.html#baseVersion"><code>baseVersion</code></a> will not match document version the
 <a href="module_utils_ckeditorerror-CKEditorError.html">model-document-applyOperation-wrong-version</a> error is thrown.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_postFixers">
+                          <h3><code><a class="member-name" href="#_postFixers">_postFixers</a> : <span>Set</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--red ">private</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Post-fixer callbacks registered to the model document.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -253,12 +279,9 @@ schema if you use a different name.</p>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="delegate">
                           <h3><code><a class="member-name" href="#delegate">delegate</a>( events ) &rarr;  <span><a class="collapsing-list__type" href="module_utils_emittermixin-EmitterMixinDelegateChain.html">EmitterMixinDelegateChain</a></span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">mixed</span>
-                          </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Delegates selected events to another <a href="module_utils_emittermixin-Emitter.html"><code>Emitter</code></a>. For instance:
@@ -296,12 +319,9 @@ emitterA.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( emitterC );</cod
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="fire">
                           <h3><code><a class="member-name" href="#fire">fire</a>( eventOrInfo, [ args ] ) &rarr;  <span>*</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">mixed</span>
-                          </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fires an event, executing all callbacks registered for it.
@@ -377,7 +397,7 @@ Non-collapsed range is returned when selection can be placed around element mark
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="getRoot">
-                          <h3><code><a class="member-name" href="#getRoot">getRoot</a>( [ name ] ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_rootelement-RootElement.html">RootElement</a></span></code></h3>
+                          <h3><code><a class="member-name" href="#getRoot">getRoot</a>( [ name ] ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_rootelement-RootElement.html">RootElement</a></span> | <span>null</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Returns top-level root by its name.
@@ -394,8 +414,9 @@ Non-collapsed range is returned when selection can be placed around element mark
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_rootelement-RootElement.html">RootElement</a></span></code></dt>
-                                        <dd><p>Root registered under given name.</p>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_rootelement-RootElement.html">RootElement</a></span> | <span>null</span></code></dt>
+                                        <dd><p>Root registered under given name or null when
+there is no root of given name.</p>
                                         </dd>
                             </dl>
                           </div>
@@ -419,36 +440,8 @@ Non-collapsed range is returned when selection can be placed around element mark
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="hasRoot">
-                          <h3><code><a class="member-name" href="#hasRoot">hasRoot</a>( name ) &rarr;  <span>Boolean</span></code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Checks if root with given name is defined.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> name
-                                             :
- <span>String</span></code></dt>
-                                        <dd><p>Name of root to check.</p>
-                                        </dd>
-                                      </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span>Boolean</span></code></dt>
-                                        <dd>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
                         <div class="collapsing-list__term toggler--collapsed" id="listenTo">
                           <h3><code><a class="member-name" href="#listenTo">listenTo</a>( emitter, event, callback, [ options ] = { [options.priority] } )</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">mixed</span>
-                          </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Registers a callback function to be executed when an event is fired in a specific (emitter) object.
@@ -466,7 +459,7 @@ myEmitter.fire( &apos;myGroup&apos; );
 myEmitter.fire( &apos;myGroup:myEvent&apos; );
 // genericCallback is fired even though there are no callbacks for &quot;foo&quot;.
 myEmitter.fire( &apos;myGroup:foo&apos; );</code></pre><p>An event callback can <a href="module_utils_eventinfo-EventInfo.html#stop">stop the event</a> and
-set the <a href="module_utils_eventinfo-EventInfo.html#return">return value</a> of the <a href="module_utils_emittermixin-EmitterMixin.html#fire"><code>fire</code></a> method.</p>
+set the <a href="module_utils_eventinfo-EventInfo.html#return">return value</a> of the <a href="module_utils_emittermixin-Emitter.html#fire"><code>fire</code></a> method.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> emitter
@@ -506,16 +499,13 @@ order they were added.</p>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="off">
                           <h3><code><a class="member-name" href="#off">off</a>( event, callback )</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">mixed</span>
-                          </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Stops executing the callback on the given event.
-Shorthand for <a href="module_utils_emittermixin-EmitterMixin.html#stopListening"><code>this.stopListening(  this,  event,  callback  )</code></a>.
+Shorthand for <a href="module_utils_emittermixin-Emitter.html#stopListening"><code>this.stopListening(  this,  event,  callback  )</code></a>.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -534,18 +524,15 @@ Shorthand for <a href="module_utils_emittermixin-EmitterMixin.html#stopListening
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="on">
                           <h3><code><a class="member-name" href="#on">on</a>( event, callback, [ options ] = { [options.priority] } )</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">mixed</span>
-                          </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Registers a callback function to be executed when an event is fired.
                           </p>
                           <div class="collapsing-list__content">
-<p>Shorthand for <a href="module_utils_emittermixin-EmitterMixin.html#listenTo"><code>this.listenTo(  this,  event,  callback,  options  )</code></a> (it makes the emitter
+<p>Shorthand for <a href="module_utils_emittermixin-Emitter.html#listenTo"><code>this.listenTo(  this,  event,  callback,  options  )</code></a> (it makes the emitter
 listen on itself).</p>
                             <h4>Parameters</h4>
                                       <dl>
@@ -581,16 +568,13 @@ order they were added.</p>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="once">
                           <h3><code><a class="member-name" href="#once">once</a>( event, callback, [ options ] = { [options.priority] } )</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">mixed</span>
-                          </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Registers a callback function to be executed on the next time the event is fired only. This is similar to
-calling <a href="module_utils_emittermixin-EmitterMixin.html#on"><code>on</code></a> followed by <a href="module_utils_emittermixin-EmitterMixin.html#off"><code>off</code></a> in the callback.
+calling <a href="module_utils_emittermixin-Emitter.html#on"><code>on</code></a> followed by <a href="module_utils_emittermixin-Emitter.html#off"><code>off</code></a> in the callback.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -627,12 +611,53 @@ order they were added.</p>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="registerPostFixer">
+                          <h3><code><a class="member-name" href="#registerPostFixer">registerPostFixer</a>( postFixer )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Used to register a post-fixer callback. Post-fixers mechanism guarantees that the features that listen to
+<a href="module_engine_model_model-Model.html#event:_change">model&apos;s change event</a> will operate on a correct model state.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>Execution of a feature may lead to an incorrect document tree state. The callbacks are used to fix document tree after
+it has changed. Post-fixers are fired just after all changes from the outermost change block were applied but
+before <a href="module_engine_model_document-Document.html#event:change"><code>change</code></a> is fired. If a post-fixer callback made a change,
+it should return <code>true</code>. When this happens, all post-fixers are fired again to check if something else should
+not be fixed in the new document tree state.</p>
+<p>As a parameter, a post-fixer callback receives <a href="module_engine_model_writer-Writer.html"><code>Writer</code></a> instance connected with the executed
+changes block. Thanks to that, all changes done by the callback will be added to the same <a href="module_engine_model_batch-Batch.html"><code>Batch</code></a>
+(and undo step) as the original changes. This makes post-fixer changes transparent for the user.</p>
+<p>An example of a post-fixer is a callback that checks if all the data was removed from the editor. If so, the
+callback should add an empty paragraph, so that the editor is never empty:</p>
+<pre class="prettyprint source"><code>document.registerPostFixer( writer =&gt; {
+    const changes = document.differ.getChanges();
+
+    // Check if the changes lead to an empty root in an editor.
+    for ( const entry of changes ) {
+        if ( entry.type == &apos;remove&apos; &amp;&amp; entry.position.root.isEmpty ) {
+            writer.insertElement( &apos;paragraph&apos;, entry.position.root, 0 );
+
+            // It is fine to return early, even if multiple roots would need to be fixed.
+            // All post-fixers will be fired again, so if there more empty roots, those will be fixed too.
+            return true;
+        }
+    }
+} );</code></pre>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code> postFixer
+                                             :
+ <span>function</span></code></dt>
+                                        <dd>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="stopDelegating">
                           <h3><code><a class="member-name" href="#stopDelegating">stopDelegating</a>( [ event ], [ emitter ] )</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">mixed</span>
-                          </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Stops delegating events. It can be used at different levels:
@@ -660,12 +685,9 @@ If omitted, stops delegation of <code>event</code> to all emitters.</p>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="stopListening">
                           <h3><code><a class="member-name" href="#stopListening">stopListening</a>( [ emitter ], [ event ], [ callback ] )</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">mixed</span>
-                          </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Stops listening for events. It can be used at different levels:
@@ -760,6 +782,20 @@ at the beginning of this selection&apos;s document&apos;s <a href="module_engine
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_callPostFixers">
+                          <h3><code><a class="member-name" href="#_callPostFixers">_callPostFixers</a>()</code></h3>
+                          <p class="badges">
+<span class="badge badge--red ">private</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Performs post-fixer loops. Executes post-fixer callbacks as long as neither of them has done any changes to model.
+                          </p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
                         <div class="collapsing-list__term toggler--collapsed" id="_validateSelectionRange">
                           <h3><code><a class="member-name" href="#_validateSelectionRange">_validateSelectionRange</a>( range ) &rarr;  <span>Boolean</span></code></h3>
                           <p class="badges">
@@ -793,102 +829,12 @@ at the beginning of this selection&apos;s document&apos;s <a href="module_engine
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:change">
-                          <h3><code><a class="member-name" href="#event:change">change</a>( eventInfo, type, data = { [data.range], [data.sourcePosition], [data.key], [data.oldValue], [data.newValue], [data.root] }, batch )</code></h3>
+                          <h3><code><a class="member-name" href="#event:change">change</a>( eventInfo, {@link )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Fired when document changes by applying an operation.
-                          </p>
-                          <div class="collapsing-list__content">
-<p>There are several types of change:</p>
-<ul>
-<li>&apos;insert&apos; when nodes are inserted,</li>
-<li>&apos;remove&apos; when nodes are removed,</li>
-<li>&apos;reinsert&apos; when remove is undone,</li>
-<li>&apos;move&apos; when nodes are moved,</li>
-<li>&apos;rename&apos; when element is renamed,</li>
-<li>&apos;marker&apos; when a marker changes (added, removed or its range is changed),</li>
-<li>&apos;addAttribute&apos; when attributes are added,</li>
-<li>&apos;removeAttribute&apos; when attributes are removed,</li>
-<li>&apos;changeAttribute&apos; when attributes change,</li>
-<li>&apos;addRootAttribute&apos; when attribute for root is added,</li>
-<li>&apos;removeRootAttribute&apos; when attribute for root is removed,</li>
-<li>&apos;changeRootAttribute&apos; when attribute for root changes.</li>
-</ul>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> eventInfo
-                                             :
- <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                        <dd><p>An object containing information about the fired event.</p>
-                                        </dd>
-                                        <dt><code> type
-                                             :
- <span>String</span></code></dt>
-                                        <dd><p>Change type.</p>
-                                        </dd>
-                                        <dt><code> data
-                                             :
- <span>Object</span></code></dt>
-                                        <dd><p>Additional information about the change.</p>
-                                                    <div class="dlheading5">Properties
-                                                    </div>
-                                                    <dl>
-                                                      <dt><code> [ data.range ]
-                                                           :
- <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
-                                                      <dd><p>Range in model containing changed nodes. Note that the range state is
-after changes has been done, i.e. for 'remove' the range will be in the <code>graveyard root (#graveyard)</code>.
-The range is not defined for root, rename and marker types.</p>
-                                                      </dd>
-                                                      <dt><code> [ data.sourcePosition ]
-                                                           :
- <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
-                                                      <dd><p>Change source position.
-Exists for 'remove', 'reinsert' and 'move'.
-Note that this position state is before changes has been done, i.e. for 'reinsert' the source position will be in the
-<code>graveyard root (#graveyard)</code>.</p>
-                                                      </dd>
-                                                      <dt><code> [ data.key ]
-                                                           :
- <span>String</span></code></dt>
-                                                      <dd><p>Only for attribute types. Key of changed / inserted / removed attribute.</p>
-                                                      </dd>
-                                                      <dt><code> [ data.oldValue ]
-                                                           :
- <span>*</span></code></dt>
-                                                      <dd><p>Only for 'removeAttribute', 'removeRootAttribute', 'changeAttribute' or
-'changeRootAttribute' type.</p>
-                                                      </dd>
-                                                      <dt><code> [ data.newValue ]
-                                                           :
- <span>*</span></code></dt>
-                                                      <dd><p>Only for 'addAttribute', 'addRootAttribute', 'changeAttribute' or
-'changeRootAttribute' type.</p>
-                                                      </dd>
-                                                      <dt><code> [ data.root ]
-                                                           :
- <span><a class="collapsing-list__type" href="module_engine_model_rootelement-RootElement.html">RootElement</a></span></code></dt>
-                                                      <dd><p>Root element which attributes got changed. This is defined
-only for root types.</p>
-                                                      </dd>
-                                                    </dl>
-                                        </dd>
-                                        <dt><code> batch
-                                             :
- <span><a class="collapsing-list__type" href="module_engine_model_batch-Batch.html">Batch</a></span></code></dt>
-                                        <dd><p>A <a href="module_engine_model_batch-Batch.html">batch</a>
-of changes which this change is a part of.</p>
-                                        </dd>
-                                      </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:changesDone">
-                          <h3><code><a class="member-name" href="#event:changesDone">changesDone</a>( eventInfo )</code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Fired when all queued document changes are done. See <a href="module_engine_model_model-Model.html#change"><code>change</code></a>.
+                          <p class="collapsing-list__excerpt">Fired after an <a href="module_engine_model_model-Model.html#enqueueChange">enqueueChange block</a> or the outermost
+<a href="module_engine_model_model-Model.html#change">change block</a> has been executed and the document model tree was changed
+during that block execution.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -897,6 +843,11 @@ of changes which this change is a part of.</p>
                                              :
  <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
                                         <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
+                                        <dt><code> {@link
+                                             :
+ </code></dt>
+                                        <dd><p>module:engine/model/batch~Batch} batch Batch which was used in the executed changes block.</p>
                                         </dd>
                                       </dl>
                           </div>
@@ -1230,6 +1181,39 @@ of changes which this change is a part of.</p>
               </div>
               <ul>
                 <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">utils</span>
+                  </div>
+                  <ul>
+                    <li><a href="module_core_editor_utils_attachtoform.html">
+                        <div class="tree__item__wrapper" data-ln="module:core/editor/utils/attachtoform"><span class="tree__item--module tree__item__text">attachtoform</span></div></a>
+                    </li>
+                    <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper" data-ln="module:core/editor/utils/dataapimixin"><a class="tree__item--module tree__item__text" href="module_core_editor_utils_dataapimixin.html">dataapimixin</a>
+                      </div>
+                      <ul>
+                        <li><a href="module_core_editor_utils_dataapimixin-DataApiMixin.html">
+                            <div class="tree__item__wrapper" data-ln="module:core/editor/utils/dataapimixin~DataApiMixin"><span class="tree__item--class tree__item__text">DataApiMixin</span></div></a>
+                        </li>
+                        <li><a href="module_core_editor_utils_dataapimixin-DataApi.html">
+                            <div class="tree__item__wrapper" data-ln="module:core/editor/utils/dataapimixin~DataApi"><span class="tree__item--interface tree__item__text">DataApi</span></div></a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper" data-ln="module:core/editor/utils/elementapimixin"><a class="tree__item--module tree__item__text" href="module_core_editor_utils_elementapimixin.html">elementapimixin</a>
+                      </div>
+                      <ul>
+                        <li><a href="module_core_editor_utils_elementapimixin-ElementApiMixin.html">
+                            <div class="tree__item__wrapper" data-ln="module:core/editor/utils/elementapimixin~ElementApiMixin"><span class="tree__item--class tree__item__text">ElementApiMixin</span></div></a>
+                        </li>
+                        <li><a href="module_core_editor_utils_elementapimixin-ElementApi.html">
+                            <div class="tree__item__wrapper" data-ln="module:core/editor/utils/elementapimixin~ElementApi"><span class="tree__item--interface tree__item__text">ElementApi</span></div></a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li class="toggler--collapsed">
                   <div class="tree__item__wrapper" data-ln="module:core/editor/editor"><a class="tree__item--module tree__item__text" href="module_core_editor_editor.html">editor</a>
                   </div>
                   <ul>
@@ -1257,11 +1241,11 @@ of changes which this change is a part of.</p>
                   </ul>
                 </li>
                 <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:core/editor/standardeditor"><a class="tree__item--module tree__item__text" href="module_core_editor_standardeditor.html">standardeditor</a>
+                  <div class="tree__item__wrapper" data-ln="module:core/editor/editorwithui"><a class="tree__item--module tree__item__text" href="module_core_editor_editorwithui.html">editorwithui</a>
                   </div>
                   <ul>
-                    <li><a href="module_core_editor_standardeditor-StandardEditor.html">
-                        <div class="tree__item__wrapper" data-ln="module:core/editor/standardeditor~StandardEditor"><span class="tree__item--class tree__item__text">StandardEditor</span></div></a>
+                    <li><a href="module_core_editor_editorwithui-EditorWithUI.html">
+                        <div class="tree__item__wrapper" data-ln="module:core/editor/editorwithui~EditorWithUI"><span class="tree__item--interface tree__item__text">EditorWithUI</span></div></a>
                     </li>
                   </ul>
                 </li>
@@ -3919,12 +3903,6 @@ of changes which this change is a part of.</p>
                 </li>
                 <li><a href="module_utils_observablemixin-Observable.html">
                     <div class="tree__item__wrapper" data-ln="module:utils/observablemixin~Observable"><span class="tree__item--interface tree__item__text">Observable</span></div></a>
-                </li>
-                <li><a href="module_utils_observablemixin-BindChain.html">
-                    <div class="tree__item__wrapper" data-ln="module:utils/observablemixin~BindChain"><span class="tree__item--typedef tree__item__text">BindChain</span></div></a>
-                </li>
-                <li><a href="module_utils_observablemixin-Binding.html">
-                    <div class="tree__item__wrapper" data-ln="module:utils/observablemixin~Binding"><span class="tree__item--typedef tree__item__text">Binding</span></div></a>
                 </li>
               </ul>
             </li>

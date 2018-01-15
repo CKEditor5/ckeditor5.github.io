@@ -9,8 +9,8 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/0.3.47/css/styles.css" type="text/css" media="screen">
-    <script src="../../../../../assets/0.3.47/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../../../assets/0.3.48/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../../assets/0.3.48/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -49,15 +49,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.47/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.48/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/contributing/development-environment.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.47/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.47/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/contributing/development-environment.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.48/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.48/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <h1><img src="../../../../../assets/0.3.47/img/book.svg" alt="guide">Development environment
+          <h1><img src="../../../../../assets/0.3.48/img/book.svg" alt="guide">Development environment
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#requirements">Requirements</a></li><li><a href="#setting-up-the-ckeditor-development-environment">Setting up the CKEditor development environment</a><ol><li><a href="#switching-to-development-version-of-packages">Switching to development version of packages</a></li><li><a href="#fetching-changes">Fetching changes</a></li><li><a href="#using-mgit-for-custom-packages">Using mgit for custom packages</a></li><li><a href="#troubleshooting-problems-with-lerna">Troubleshooting problems with Lerna</a></li><li><a href="#final-word-about-mgit-and-lerna">Final word about mgit and Lerna</a></li></ol></li><li><a href="#running-tests">Running tests</a></li><li><a href="#generating-documentation">Generating documentation</a></li><li><a href="#bisecting-through-a-multi-repository">Bisecting through a multi-repository</a></li><li><a href="#additional-information-for-contributors">Additional information for contributors</a><ol><li><a href="#svg-icons">SVG icons</a></li></ol></li></ol></nav>
 <p>The CKEditor 5 codebase is divided into multiple <a href="http://npmjs.com/" target="_blank" rel="noopener">npm</a> packages, each developed in a separate Git repository. The main package is <a href="https://github.com/ckeditor/ckeditor5" target="_blank" rel="noopener">ckeditor5</a> which installs all project dependencies and various development-related resources such as:</p>
 <ul>
@@ -112,7 +112,7 @@ packages/
 <p>Finally, link them:</p>
 <pre class="highlight"><code class="bash">lerna bootstrap
 </code></pre>
-<p>Running Lerna may take a while because it installs all package dependencies.</p>
+<p>Running Lerna may take a while because it installs all package dependencies. It will also warn you about circular dependencies between packages which you can ignore.</p>
 <p>Now, all CKEditor packages (except the <a href="https://github.com/ckeditor/ckeditor5-dev" target="_blank" rel="noopener">dev tools</a>) should be cross-symlinked:</p>
 <pre class="highlight"><code class="bash">(master 340feac) p@m /workspace/ckeditor5&gt; ls -la node_modules/\@ckeditor/ckeditor5-utils/node_modules/\@ckeditor/
 total 16
@@ -146,7 +146,7 @@ mgit update
 <ul>
 <li>Look for <code>npm-debug.log</code> files in the main package and subpackages. They may point to an obvious issue like a typo in some <code>package.json</code>.</li>
 <li>Sometimes repeating <code>lerna bootstrap</code> may help.</li>
-<li>If nothing else works, do <code>lerna clean &amp;&amp; npm i &amp;&amp; lerna bootstrap</code>. Mind that without running <code>npm i</code> first, <code>lerna bootstrap</code> may fail with some meaningless errors (at least it happened to us).</li>
+<li>If nothing else works, do <code>lerna clean &amp;&amp; lerna bootstrap</code>.</li>
 </ul>
 <h3 id="final-word-about-mgit-and-lerna"><a class="headerlink" href="#final-word-about-mgit-and-lerna">#</a> Final word about mgit and Lerna</h3>
 <p>Besides the already mentioned features, mgit allows you to <a href="https://github.com/cksource/mgit2#exec" target="_blank" rel="noopener">execute shell commands</a> on all packages (e.g. check their status). It has been developed by the <a href="https://cksource.com" target="_blank" rel="noopener">CKSource team</a> and we are relying on it heavily, hence you can expect more features and improvements to come. However, it is not a CKEditor-specific tool and should be suitable for any multi-repo project (though it best fits JavaScript projects).</p>
@@ -166,10 +166,7 @@ mgit update
 <p>It accepts the <code>--source-map</code> (<code>-s</code>) option. Note that it watches for changes only in the JavaScript files (see the <a href="https://github.com/ckeditor/ckeditor5-dev/issues/52" target="_blank" rel="noopener">bug</a>).</p>
 <p>You can read more about the <a href="testing-environment.html">Testing environment</a>.</p>
 <h2 id="generating-documentation"><a class="headerlink" href="#generating-documentation">#</a> Generating documentation</h2>
-<p>In order to generate the documentation, you first need to install optional dependencies, such as our documentation generator <a href="https://www.npmjs.com/package/umberto" target="_blank" rel="noopener">Umberto</a>. In order to do that run:</p>
-<pre class="highlight"><code class="bash">npm run install-optional-dependencies
-</code></pre>
-<p>Then you can run the <code>docs</code> task:</p>
+<p>To build the documentation you need to run the <code>docs</code> task:</p>
 <pre class="highlight"><code class="bash">npm run docs
 </code></pre>
 <p>The documentation will be available in <code>build/docs/</code>.</p>
@@ -177,6 +174,7 @@ mgit update
 <ul>
 <li><code>--skip-api</code> &#x2013; Skips building API docs (which takes the majority of the total time).</li>
 <li><code>--skip-snippets</code> &#x2013; Skips building live snippets.</li>
+<li><code>--skip-validation</code> &#x2013; Skips the final links validation.</li>
 </ul>
 <p>Note: These arguments must be passed after additional <code>--</code>: <code>npm run docs -- --skip-api</code>.</p>
 <h2 id="bisecting-through-a-multi-repository"><a class="headerlink" href="#bisecting-through-a-multi-repository">#</a> Bisecting through a multi-repository</h2>

@@ -9,8 +9,8 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.47/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/0.3.47/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../assets/0.3.48/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.48/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -49,15 +49,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.47/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.48/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.47/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.48/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <div class="api-header"><img src="../../../assets/0.3.47/img/cog.svg" alt="Mixin" title="Mixin"/>
+          <div class="api-header"><img src="../../../assets/0.3.48/img/cog.svg" alt="Mixin" title="Mixin"/>
             <div class="api-header__title">
               <h1 data-ln="module:utils/emittermixin~EmitterMixin">EmitterMixin<span class="header__import--hidden"> (utils)</span>
               </h1>
@@ -182,7 +182,6 @@
                                       <li title="@ckeditor/ckeditor5-undo/src/redocommand~RedoCommand"><code><span><a href="module_undo_redocommand-RedoCommand.html">RedoCommand</a></span></code></li>
                                       <li title="@ckeditor/ckeditor5-engine/src/view/rooteditableelement~RootEditableElement"><code><span><a href="module_engine_viewithrooteditableelement-RootEditableElement.html">RootEditableElement</a></span></code></li>
                                       <li title="@ckeditor/ckeditor5-engine/src/model/schema~Schema"><code><span><a href="module_engine_model_schema-Schema.html">Schema</a></span></code></li>
-                                      <li title="@ckeditor/ckeditor5-core/src/editor/standardeditor~StandardEditor"><code><span><a href="module_core_editor_standardeditor-StandardEditor.html">StandardEditor</a></span></code></li>
                                       <li title="@ckeditor/ckeditor5-basic-styles/src/strikethrough~Strikethrough"><code><span><a href="module_basic-styles_strikethrough-Strikethrough.html">Strikethrough</a></span></code></li>
                                       <li title="@ckeditor/ckeditor5-basic-styles/src/strikethroughengine~StrikethroughEngine"><code><span><a href="module_basic-styles_strikethroughengine-StrikethroughEngine.html">StrikethroughEngine</a></span></code></li>
                                       <li title="@ckeditor/ckeditor5-ui/src/template~Template"><code><span><a href="module_ui_template-Template.html">Template</a></span></code></li>
@@ -206,7 +205,7 @@
           </nav>
           <div class="types">
           </div>
-          <div class="main-description"><p>Mixin that injects the events API into its host.</p></div>
+          <div class="main-description"><p>Mixin that injects the <a href="module_utils_emittermixin-Emitter.html">events API</a> into its host.</p></div>
 <div class="notice notice__filter api-props-filter">
   <div class="api-props-filter__inner">
     <h4>Filtering</h4>
@@ -323,7 +322,7 @@ myEmitter.fire( &apos;myGroup&apos; );
 myEmitter.fire( &apos;myGroup:myEvent&apos; );
 // genericCallback is fired even though there are no callbacks for &quot;foo&quot;.
 myEmitter.fire( &apos;myGroup:foo&apos; );</code></pre><p>An event callback can <a href="module_utils_eventinfo-EventInfo.html#stop">stop the event</a> and
-set the <a href="module_utils_eventinfo-EventInfo.html#return">return value</a> of the <a href="module_utils_emittermixin-EmitterMixin.html#fire"><code>fire</code></a> method.</p>
+set the <a href="module_utils_eventinfo-EventInfo.html#return">return value</a> of the <a href="module_utils_emittermixin-Emitter.html#fire"><code>fire</code></a> method.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code> emitter
@@ -369,7 +368,7 @@ order they were added.</p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Stops executing the callback on the given event.
-Shorthand for <a href="module_utils_emittermixin-EmitterMixin.html#stopListening"><code>this.stopListening(  this,  event,  callback  )</code></a>.
+Shorthand for <a href="module_utils_emittermixin-Emitter.html#stopListening"><code>this.stopListening(  this,  event,  callback  )</code></a>.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -396,7 +395,7 @@ Shorthand for <a href="module_utils_emittermixin-EmitterMixin.html#stopListening
                           <p class="collapsing-list__excerpt">Registers a callback function to be executed when an event is fired.
                           </p>
                           <div class="collapsing-list__content">
-<p>Shorthand for <a href="module_utils_emittermixin-EmitterMixin.html#listenTo"><code>this.listenTo(  this,  event,  callback,  options  )</code></a> (it makes the emitter
+<p>Shorthand for <a href="module_utils_emittermixin-Emitter.html#listenTo"><code>this.listenTo(  this,  event,  callback,  options  )</code></a> (it makes the emitter
 listen on itself).</p>
                             <h4>Parameters</h4>
                                       <dl>
@@ -438,7 +437,7 @@ order they were added.</p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Registers a callback function to be executed on the next time the event is fired only. This is similar to
-calling <a href="module_utils_emittermixin-EmitterMixin.html#on"><code>on</code></a> followed by <a href="module_utils_emittermixin-EmitterMixin.html#off"><code>off</code></a> in the callback.
+calling <a href="module_utils_emittermixin-Emitter.html#on"><code>on</code></a> followed by <a href="module_utils_emittermixin-Emitter.html#off"><code>off</code></a> in the callback.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -870,6 +869,39 @@ for all events from <code>emitter</code>.</p>
               </div>
               <ul>
                 <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">utils</span>
+                  </div>
+                  <ul>
+                    <li><a href="module_core_editor_utils_attachtoform.html">
+                        <div class="tree__item__wrapper" data-ln="module:core/editor/utils/attachtoform"><span class="tree__item--module tree__item__text">attachtoform</span></div></a>
+                    </li>
+                    <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper" data-ln="module:core/editor/utils/dataapimixin"><a class="tree__item--module tree__item__text" href="module_core_editor_utils_dataapimixin.html">dataapimixin</a>
+                      </div>
+                      <ul>
+                        <li><a href="module_core_editor_utils_dataapimixin-DataApiMixin.html">
+                            <div class="tree__item__wrapper" data-ln="module:core/editor/utils/dataapimixin~DataApiMixin"><span class="tree__item--class tree__item__text">DataApiMixin</span></div></a>
+                        </li>
+                        <li><a href="module_core_editor_utils_dataapimixin-DataApi.html">
+                            <div class="tree__item__wrapper" data-ln="module:core/editor/utils/dataapimixin~DataApi"><span class="tree__item--interface tree__item__text">DataApi</span></div></a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper" data-ln="module:core/editor/utils/elementapimixin"><a class="tree__item--module tree__item__text" href="module_core_editor_utils_elementapimixin.html">elementapimixin</a>
+                      </div>
+                      <ul>
+                        <li><a href="module_core_editor_utils_elementapimixin-ElementApiMixin.html">
+                            <div class="tree__item__wrapper" data-ln="module:core/editor/utils/elementapimixin~ElementApiMixin"><span class="tree__item--class tree__item__text">ElementApiMixin</span></div></a>
+                        </li>
+                        <li><a href="module_core_editor_utils_elementapimixin-ElementApi.html">
+                            <div class="tree__item__wrapper" data-ln="module:core/editor/utils/elementapimixin~ElementApi"><span class="tree__item--interface tree__item__text">ElementApi</span></div></a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li class="toggler--collapsed">
                   <div class="tree__item__wrapper" data-ln="module:core/editor/editor"><a class="tree__item--module tree__item__text" href="module_core_editor_editor.html">editor</a>
                   </div>
                   <ul>
@@ -897,11 +929,11 @@ for all events from <code>emitter</code>.</p>
                   </ul>
                 </li>
                 <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:core/editor/standardeditor"><a class="tree__item--module tree__item__text" href="module_core_editor_standardeditor.html">standardeditor</a>
+                  <div class="tree__item__wrapper" data-ln="module:core/editor/editorwithui"><a class="tree__item--module tree__item__text" href="module_core_editor_editorwithui.html">editorwithui</a>
                   </div>
                   <ul>
-                    <li><a href="module_core_editor_standardeditor-StandardEditor.html">
-                        <div class="tree__item__wrapper" data-ln="module:core/editor/standardeditor~StandardEditor"><span class="tree__item--class tree__item__text">StandardEditor</span></div></a>
+                    <li><a href="module_core_editor_editorwithui-EditorWithUI.html">
+                        <div class="tree__item__wrapper" data-ln="module:core/editor/editorwithui~EditorWithUI"><span class="tree__item--interface tree__item__text">EditorWithUI</span></div></a>
                     </li>
                   </ul>
                 </li>
@@ -3559,12 +3591,6 @@ for all events from <code>emitter</code>.</p>
                 </li>
                 <li><a href="module_utils_observablemixin-Observable.html">
                     <div class="tree__item__wrapper" data-ln="module:utils/observablemixin~Observable"><span class="tree__item--interface tree__item__text">Observable</span></div></a>
-                </li>
-                <li><a href="module_utils_observablemixin-BindChain.html">
-                    <div class="tree__item__wrapper" data-ln="module:utils/observablemixin~BindChain"><span class="tree__item--typedef tree__item__text">BindChain</span></div></a>
-                </li>
-                <li><a href="module_utils_observablemixin-Binding.html">
-                    <div class="tree__item__wrapper" data-ln="module:utils/observablemixin~Binding"><span class="tree__item--typedef tree__item__text">Binding</span></div></a>
                 </li>
               </ul>
             </li>

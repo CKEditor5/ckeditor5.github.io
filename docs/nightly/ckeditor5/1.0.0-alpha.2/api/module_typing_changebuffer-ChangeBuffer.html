@@ -9,8 +9,8 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.47/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/0.3.47/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../assets/0.3.48/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.48/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -49,15 +49,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.47/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.48/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.47/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.48/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <div class="api-header"><img src="../../../assets/0.3.47/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.48/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1 data-ln="module:typing/changebuffer~ChangeBuffer">ChangeBuffer<span class="header__import--hidden"> (typing)</span>
               </h1>
@@ -75,7 +75,7 @@
 <p>The buffer has a configurable limit of atomic changes that it can accommodate. After the limit was
 exceeded (see <a href="#input"><code>input</code></a>), a new batch is created in <a href="#batch"><code>batch</code></a>.</p>
 <p>To use the change buffer you need to let it know about the number of changes that were added to the batch:</p>
-<pre class="prettyprint source"><code>const buffer = new ChangeBuffer( document, LIMIT );
+<pre class="prettyprint source"><code>const buffer = new ChangeBuffer( model, LIMIT );
 
 // Later on in your feature:
 buffer.batch.insert( pos, insertedCharacters );
@@ -125,19 +125,6 @@ is reached or exceeds the <a href="module_typing_changebuffer-ChangeBuffer.html#
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="document">
-                          <h3><code><a class="member-name" href="#document">document</a> : <span><a class="collapsing-list__type" href="module_engine_model_document-Document.html">Document</a></span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">The document instance.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="isLocked">
                           <h3><code><a class="member-name" href="#isLocked">isLocked</a> : <span>Boolean</span></code></h3>
                           <p class="badges">
@@ -159,6 +146,19 @@ is reached or exceeds the <a href="module_typing_changebuffer-ChangeBuffer.html#
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">The maximum number of atomic changes which can be contained in one batch.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="model">
+                          <h3><code><a class="member-name" href="#model">model</a> : <span><a class="collapsing-list__type" href="module_engine_model_model-Model.html">Model</a></span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">The model instance.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -294,32 +294,6 @@ reached or exceeds the <a href="module_typing_changebuffer-ChangeBuffer.html#lim
                           <p class="collapsing-list__excerpt">Unlocks the buffer.
                           </p>
                           <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_onBatch">
-                          <h3><code><a class="member-name" href="#_onBatch">_onBatch</a>( batch )</code></h3>
-                          <p class="badges">
-<span class="badge badge--red ">private</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">The method to be called in order to notify the buffer about batches which appeared in the document.
-The method will check whether it is a new batch and in that case the buffer will be flushed.
-                          </p>
-                          <div class="collapsing-list__content">
-<p>The reason why the buffer needs to be flushed whenever a new batch appears is that the changes added afterwards
-should be added to a new batch. For instance, when the  user types, then inserts an image, and then types again,
-the characters typed after inserting the image should be added to a different batch than the characters typed before.</p>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code> batch
-                                             :
- <span><a class="collapsing-list__type" href="module_engine_model_batch-Batch.html">Batch</a></span></code></dt>
-                                        <dd><p>The batch which appears in the document.</p>
-                                        </dd>
-                                      </dl>
                           </div>
                         </div>
                       </li>
@@ -673,6 +647,39 @@ the characters typed after inserting the image should be added to a different ba
               </div>
               <ul>
                 <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">utils</span>
+                  </div>
+                  <ul>
+                    <li><a href="module_core_editor_utils_attachtoform.html">
+                        <div class="tree__item__wrapper" data-ln="module:core/editor/utils/attachtoform"><span class="tree__item--module tree__item__text">attachtoform</span></div></a>
+                    </li>
+                    <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper" data-ln="module:core/editor/utils/dataapimixin"><a class="tree__item--module tree__item__text" href="module_core_editor_utils_dataapimixin.html">dataapimixin</a>
+                      </div>
+                      <ul>
+                        <li><a href="module_core_editor_utils_dataapimixin-DataApiMixin.html">
+                            <div class="tree__item__wrapper" data-ln="module:core/editor/utils/dataapimixin~DataApiMixin"><span class="tree__item--class tree__item__text">DataApiMixin</span></div></a>
+                        </li>
+                        <li><a href="module_core_editor_utils_dataapimixin-DataApi.html">
+                            <div class="tree__item__wrapper" data-ln="module:core/editor/utils/dataapimixin~DataApi"><span class="tree__item--interface tree__item__text">DataApi</span></div></a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper" data-ln="module:core/editor/utils/elementapimixin"><a class="tree__item--module tree__item__text" href="module_core_editor_utils_elementapimixin.html">elementapimixin</a>
+                      </div>
+                      <ul>
+                        <li><a href="module_core_editor_utils_elementapimixin-ElementApiMixin.html">
+                            <div class="tree__item__wrapper" data-ln="module:core/editor/utils/elementapimixin~ElementApiMixin"><span class="tree__item--class tree__item__text">ElementApiMixin</span></div></a>
+                        </li>
+                        <li><a href="module_core_editor_utils_elementapimixin-ElementApi.html">
+                            <div class="tree__item__wrapper" data-ln="module:core/editor/utils/elementapimixin~ElementApi"><span class="tree__item--interface tree__item__text">ElementApi</span></div></a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li class="toggler--collapsed">
                   <div class="tree__item__wrapper" data-ln="module:core/editor/editor"><a class="tree__item--module tree__item__text" href="module_core_editor_editor.html">editor</a>
                   </div>
                   <ul>
@@ -700,11 +707,11 @@ the characters typed after inserting the image should be added to a different ba
                   </ul>
                 </li>
                 <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:core/editor/standardeditor"><a class="tree__item--module tree__item__text" href="module_core_editor_standardeditor.html">standardeditor</a>
+                  <div class="tree__item__wrapper" data-ln="module:core/editor/editorwithui"><a class="tree__item--module tree__item__text" href="module_core_editor_editorwithui.html">editorwithui</a>
                   </div>
                   <ul>
-                    <li><a href="module_core_editor_standardeditor-StandardEditor.html">
-                        <div class="tree__item__wrapper" data-ln="module:core/editor/standardeditor~StandardEditor"><span class="tree__item--class tree__item__text">StandardEditor</span></div></a>
+                    <li><a href="module_core_editor_editorwithui-EditorWithUI.html">
+                        <div class="tree__item__wrapper" data-ln="module:core/editor/editorwithui~EditorWithUI"><span class="tree__item--interface tree__item__text">EditorWithUI</span></div></a>
                     </li>
                   </ul>
                 </li>
@@ -3362,12 +3369,6 @@ the characters typed after inserting the image should be added to a different ba
                 </li>
                 <li><a href="module_utils_observablemixin-Observable.html">
                     <div class="tree__item__wrapper" data-ln="module:utils/observablemixin~Observable"><span class="tree__item--interface tree__item__text">Observable</span></div></a>
-                </li>
-                <li><a href="module_utils_observablemixin-BindChain.html">
-                    <div class="tree__item__wrapper" data-ln="module:utils/observablemixin~BindChain"><span class="tree__item--typedef tree__item__text">BindChain</span></div></a>
-                </li>
-                <li><a href="module_utils_observablemixin-Binding.html">
-                    <div class="tree__item__wrapper" data-ln="module:utils/observablemixin~Binding"><span class="tree__item--typedef tree__item__text">Binding</span></div></a>
                 </li>
               </ul>
             </li>
