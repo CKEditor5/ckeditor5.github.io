@@ -9,10 +9,10 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/0.3.49/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../../../assets/0.3.54/css/styles.css" type="text/css" media="screen">
     <link rel="stylesheet" href="../../../snippets/examples/theme-lark/snippet.css" type="text/css">
     <link rel="stylesheet" href="../../../assets/snippet-styles.css" type="text/css">
-    <script src="../../../../../assets/0.3.49/scripts/app.js"></script>
+    <script src="../../../../../assets/0.3.54/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -51,15 +51,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.49/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.54/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-theme-lark/blob/master/docs/framework/guides/theme-customization.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.49/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5-theme-lark/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.49/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-theme-lark/blob/master/docs/framework/guides/theme-customization.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.54/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5-theme-lark/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.54/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <h1><img src="../../../../../assets/0.3.49/img/book.svg" alt="guide">Theme customization
+          <h1><img src="../../../../../assets/0.3.54/img/book.svg" alt="guide">Theme customization
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#styles-processing-and-bundling">Styles processing and bundling</a></li><li><a href="#customization-with-css-variables">Customization with CSS variables</a></li><li><a href="#further-customization">Further customization</a></li></ol></nav>
 <p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-theme-lark" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-theme-lark</code></a> is the default theme of CKEditor 5. Lark is modular, <a href="https://en.bem.info/methodology/css/" target="_blank" rel="noopener">BEM&#x2013;friendly</a> and built in <a href="http://postcss.org/" target="_blank" rel="noopener">PostCSS</a>.</p>
 <p>Although it was designed with versatility and the most common editor use cases in mind, some integrations may require adjustments to make it match the style guidelines of the ecosystem. This kind of customization can be done by importing an extra <code>.css</code> file and overriding the <a href="https://www.w3.org/TR/css-variables/" target="_blank" rel="noopener">native CSS variables</a>.</p>
@@ -88,7 +88,7 @@
     ...
 }
 </code></pre>
-<pre class="highlight"><code class="css html"><span class="hljs-comment">/* Contents of theme.css. */</span>
+<pre class="highlight"><code class="css"><span class="hljs-comment">/* Contents of theme.css. */</span>
 <span class="hljs-selector-pseudo">:root</span> {
     <span class="hljs-attribute">--color</span>: red;
 }
@@ -117,7 +117,7 @@
 <p>Having <a href="../../../builds/guides/development/custom-builds.html#Forking-an-existing-build">cloned</a> an existing build of CKEditor for a quick start, let&#x2019;s use the full potential of CSS variables. The customization in this guide will make the theme dark, with slightly bigger text and more rounded corners.</p>
 <div class="info-box notice notice__hint"><p>Check out the <a href="https://github.com/ckeditor/ckeditor5-theme-lark/blob/master/theme/ckeditor5-ui/globals/_colors.css" target="_blank" rel="noopener">colors helper</a> for the full list of customizable colors. You can also browse <a href="https://github.com/ckeditor/ckeditor5-theme-lark/tree/master/theme/mixins" target="_blank" rel="noopener">other helpers</a> to learn about other useful tools.</p></div>
 <p>The file containing custom variables will be named <code>custom.css</code> and it will look as below:</p>
-<pre class="highlight"><code class="css html">
+<pre class="highlight"><code class="css">
 <span class="hljs-selector-pseudo">:root</span> {
     <span class="hljs-comment">/* Overrides the border-radius setting in the theme. */</span>
     <span class="hljs-attribute">--ck-border-radius</span>: <span class="hljs-number">4px</span>;
@@ -258,7 +258,7 @@ ClassicEditor
 </code></pre>
 <h2 id="further-customization"><a class="headerlink" href="#further-customization">#</a> Further customization</h2>
 <p>In the editor demo presented and the very beginning of this guide, the drop down button in the toolbar has a complex inner <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow?v=b" target="_blank" rel="noopener"><code>box-shadow</code></a> that makes it more appealing. By default, the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-theme-lark" target="_blank" rel="noopener">Lark</a> theme does not support such shadow and that is why it must be defined separately.</p>
-<pre class="highlight"><code class="css html"><span class="hljs-selector-pseudo">:root</span> {
+<pre class="highlight"><code class="css"><span class="hljs-selector-pseudo">:root</span> {
     <span class="hljs-attribute">--ck-shadow-color</span>: <span class="hljs-number">#646265</span>;
 }
 
@@ -267,7 +267,7 @@ ClassicEditor
 }
 </code></pre>
 <p>Again, the rule above could be added directly to any stylesheet in the web page and it would work as expected. But to use a pre&#x2013;defined helper mixin (<code>@mixin ck-box-shadow</code>), clean up the code with some nesting just like below, and finally make it the part of the editor build, the code must be processed by webpack and PostCSS too.</p>
-<pre class="highlight"><code class="css html"><span class="hljs-comment">/* Allow using Lark&apos;s ck-box-shadow() mixin. */</span>
+<pre class="highlight"><code class="css"><span class="hljs-comment">/* Allow using Lark&apos;s ck-box-shadow() mixin. */</span>
 @<span class="hljs-keyword">import</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-theme-lark/theme/mixins/_shadow.css&apos;</span>;
 
 <span class="hljs-comment">/* The shadow should be 10% brighter than the toolbar background. */</span>
