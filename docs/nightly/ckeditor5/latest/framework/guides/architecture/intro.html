@@ -71,7 +71,7 @@
 <h2 id="core-editor-architecture"><a class="headerlink" href="#core-editor-architecture">#</a> Core editor architecture</h2>
 <p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-core" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-core</code></a> package is relatively simple. It comes with just a handful of classes. The ones you need to know are presented below.</p>
 <h3 id="editor-classes"><a class="headerlink" href="#editor-classes">#</a> Editor classes</h3>
-<p><a href="../../../api/module_core_editor_editor-Editor.html"><code>Editor</code></a> class representing the base of the editor.</p>
+<p>The <a href="../../../api/module_core_editor_editor-Editor.html"><code>Editor</code></a> class representing the base of the editor.</p>
 <p>The editor is a root object, gluing all other components. It holds a couple of properties that you need to know:</p>
 <ul>
 <li><a href="../../../api/module_core_editor_editor-Editor.html#config"><code>config</code></a> &#x2013; The configuration object.</li>
@@ -89,7 +89,7 @@
 </ul>
 <p>You can also extend the editor interface using API interfaces:</p>
 <ul>
-<li><a href="../../../api/module_core_editor_utils_elementapimixin-ElementApi.html"><code>ElementApi</code></a> &#x2013; A way to retrieve and set data from/to element on which editor has been initialized.</li>
+<li><a href="../../../api/module_core_editor_utils_elementapimixin-ElementApi.html"><code>ElementApi</code></a> &#x2013; A way to retrieve and set data from/to element on which the editor has been initialized.</li>
 <li><a href="../../../api/module_core_editor_utils_dataapimixin-DataApi.html"><code>DataApi</code></a> &#x2013; A way to retrieve data from the editor and set data in the editor. The data format is controlled by the <a href="../../../api/module_engine_controller_datacontroller-DataController.html#processor">data controller&#x2019;s data processor</a> and it does not need to be a string (it can be e.g. JSON if you implement such a <a href="../../../api/module_engine_dataprocessor_dataprocessor-DataProcessor.html">data processor</a>). See, for example, how to <a href="../../../features/markdown.html">produce Markdown output</a>.</li>
 </ul>
 <p>The editor class is a base to implement your own editors. CKEditor 5 Framework comes with a few editor types (for example, <a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html">classic</a>, <a href="../../../api/module_editor-inline_inlineeditor-InlineEditor.html">inline</a> and <a href="../../../api/module_editor-balloon_ballooneditor-BalloonEditor.html">balloon</a>) but you can freely implement editors which work and look completely different. The only requirement is that you implement the <a href="../../../api/module_core_editor_editor-Editor.html"><code>Editor</code></a> interface.</p>
@@ -596,7 +596,7 @@ keystrokeHandler.listenTo( viewInstance.element );
     cancel();
 } );
 </code></pre>
-<div class="info-box notice"><p>There is also an <a href="../../../api/module_core_editingkeystrokehandler-EditingKeystrokeHandler.html"><code>EditingKeystrokeHandler</code></a> class which has the same API as <code>KeystrokeHandler</code> but it offers direct keystroke bindings to editor commands.</p><p>The editor provides such keystroke handler under the <a href="../../../api/module_core_editor_editor-Editor.html#keystrokes"><code>editor.keystrokes</code></a> property so any plugin can register keystrokes associated with editor commands. For example, the <a href="../../../api/module_undo_undo-Undo.html"><code>Undo</code></a> plugin registers <code>editor.keystrokes.set( &apos;Ctrl+Z&apos;, &apos;undo&apos; );</code> to execute its &#x201C;undo&#x201D; command.</p></div>
+<div class="info-box notice"><p>There is also an <a href="../../../api/module_core_editingkeystrokehandler-EditingKeystrokeHandler.html"><code>EditingKeystrokeHandler</code></a> class which has the same API as <code>KeystrokeHandler</code> but it offers direct keystroke bindings to editor commands.</p><p>The editor provides such keystroke handler under the <a href="../../../api/module_core_editor_editor-Editor.html#keystrokes"><code>editor.keystrokes</code></a> property so any plugin can register keystrokes associated with editor commands. For example, the <a href="../../../api/module_undo_undo-Undo.html">Undo</a> plugin registers <code>editor.keystrokes.set( &apos;Ctrl+Z&apos;, &apos;undo&apos; );</code> to execute its <code>undo</code> command.</p></div>
 <p>When multiple callbacks are assigned to the same keystroke, priorities can be used to decide which one should be handled first and whether other callbacks should be executed at all:</p>
 <pre class="highlight"><code class="js">keystrokeHandler.set( <span class="hljs-string">&apos;Ctrl+A&apos;</span>, ( keyEvtData ) =&gt; {
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;A normal priority listener.&apos;</span> );

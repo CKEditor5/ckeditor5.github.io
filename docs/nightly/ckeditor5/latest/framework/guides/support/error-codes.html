@@ -1637,14 +1637,16 @@ parent container for these positions cannot be found.
     </div>
   </li>
   <li class="collapsing-list__item">
-    <div class="collapsing-list__term toggler--collapsed" id="writer-detached-writer-tries-to-modify-model">
-      <h3><code><a class="member-name" href="#writer-detached-writer-tries-to-modify-model">writer-detached-writer-tries-to-modify-model</a></code></h3>
+    <div class="collapsing-list__term toggler--collapsed" id="writer-incorrect-use">
+      <h3><code><a class="member-name" href="#writer-incorrect-use">writer-incorrect-use</a></code></h3>
     </div>
     <div class="collapsing-list__description">
-      <p class="collapsing-list__excerpt">Detached writer tries to modify the model. Be sure, that your Writer is used
-within the <code>model.change()</code> or <code>model.enqueueChange()</code> block.
+      <p class="collapsing-list__excerpt">Trying to use a writer outside a <a href="../../../api/module_engine_model_model-Model.html#change"><code>change()</code> or
+{@link module:engine/model/model~Model#enqueueChange <code>enqueueChange()</code></a> blocks.
       </p>
       <div class="collapsing-list__content">
+<p>The writer can only be used inside these blocks which ensures that the model
+can only be changed during such &quot;sessions&quot;.</p>
       </div>
     </div>
   </li>
