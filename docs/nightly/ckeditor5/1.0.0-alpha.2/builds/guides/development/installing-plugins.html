@@ -59,14 +59,20 @@
           </div>
           <h1><img src="../../../../../assets/0.3.54/img/book.svg" alt="guide">Installing plugins
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#adding-a-plugin-to-a-build">Adding a plugin to a build</a></li><li><a href="#adding-a-plugin-to-an-editor">Adding a plugin to an editor</a></li><li><a href="#difference-between-both-methods">Difference between both methods</a></li></ol></nav>
-<p>CKEditor 5 plugins are distributed through <a href="https://www.npmjs.com" target="_blank" rel="noopener">npm</a> packages and are implemented in a modular way (which means that a single plugin may consists of multiple JavaScript files).</p>
+<p>CKEditor 5 plugins are distributed through <a href="https://www.npmjs.com" target="_blank" rel="noopener">npm</a> packages and are implemented in a modular way, which means that a single plugin may consist of multiple JavaScript files.</p>
 <p>In this guide you can learn how to add plugins to your editor in the two most common scenarios:</p>
 <ul>
-<li>when you use an <a href="../overview.html">editor build</a>,</li>
-<li>when you <a href="../../../framework/guides/quick-start.html">build your editor from source</a>.</li>
+<li>When you use an <a href="../overview.html">editor build</a>,</li>
+<li>When you <a href="../../../framework/guides/quick-start.html">build your editor from source</a>.</li>
 </ul>
 <h2 id="adding-a-plugin-to-a-build"><a class="headerlink" href="#adding-a-plugin-to-a-build">#</a> Adding a plugin to a build</h2>
-<p>Adding plugins to existing builds is done through their customization. Editor builds are maintained in their respective git repositories. Therefore, assuming that you want to customize the <a href="https://npmjs.com/package/@ckeditor/ckeditor5-build-classic" target="_blank" rel="noopener">classic editor build</a> you need to: clone the build repository, install the plugin package, add it to the build configuration and bundle the build.</p>
+<p>Adding plugins to existing builds is done through their customization. Editor builds are maintained in their respective GitHub repositories. Therefore, assuming that you want to customize the <a href="https://npmjs.com/package/@ckeditor/ckeditor5-build-classic" target="_blank" rel="noopener">classic editor build</a> you need to:</p>
+<ol>
+<li>Clone the build repository.</li>
+<li>Install the plugin package.</li>
+<li>Add it to the build configuration.</li>
+<li>Bundle the build.</li>
+</ol>
 <pre class="highlight"><code class="">git clone -b stable https://github.com/ckeditor/ckeditor5-build-classic.git
 cd ckeditor5-build-classic
 npm install
@@ -135,7 +141,7 @@ npm install
 <pre class="highlight"><code class="">npm run build
 </code></pre>
 <p>If everything worked, the editor build (which is available in the <code>build/</code> directory) should be updated.</p>
-<p>You can open the <code>sample/index.html</code> file in your browser to see whether the plugin was correctly installed.</p>
+<p>You can open the <code>sample/index.html</code> file in your browser to see whether the plugin was installed correctly.</p>
 <p>This was a quick version of how a build can be customized. Read more about <a href="custom-builds.html">customizing existing editor builds</a> in a separate guide.</p>
 <h2 id="adding-a-plugin-to-an-editor"><a class="headerlink" href="#adding-a-plugin-to-an-editor">#</a> Adding a plugin to an editor</h2>
 <p>If you <a href="../../../framework/guides/quick-start.html">build the editor from source</a>, then the process of installing a new plugin boils down to these three steps:</p>
@@ -169,9 +175,9 @@ ClassicEditor
     } );
 </code></pre>
 <p>After rebuilding your project, the new feature will be available in the editor.</p>
-<div class="info-box notice notice__warning"><p>One of a possible mistakes is trying to add (this way) a plugin to an existing (bundled) editor build. Installing an existing build and then trying to add a plugin to it may not work if that plugin needs to import any of the source editor modules.</p><p>The reason why this method will not work is that dependencies of the added plugin may duplicate the code already bundled in the used editor build. In the best scenario, this is going to raise the overall code size. In the worst scenario, an application build this way may be unstable.</p></div>
+<div class="info-box notice notice__warning"><p>One of the possible mistakes is trying to add a plugin in this way to an existing (bundled) editor build. Installing an existing build and then trying to add a plugin to it may not work if that plugin needs to import any of the source editor modules.</p><p>The reason why this method will not work is that dependencies of the added plugin may duplicate the code already bundled in the used editor build. In the best scenario, this is going to raise the overall code size. In the worst scenario, an application built this way may be unstable.</p></div>
 <h2 id="difference-between-both-methods"><a class="headerlink" href="#difference-between-both-methods">#</a> Difference between both methods</h2>
-<p>What is the difference between adding a plugin to an editor build and adding a plugin by passingthe <code>config.plugins</code> option to the static <code>create()</code> method?</p>
+<p>What is the difference between adding a plugin to an editor build and adding a plugin by passing the <code>config.plugins</code> option to the static <code>create()</code> method?</p>
 <p>The first method builds the plugin into the editor class. This means that you can then initialize the editor without passing <code>config.plugins</code> at all and the editor will automatically enable all built-in plugins:</p>
 <pre class="highlight"><code class="js"><span class="hljs-comment">// Assuming you use e.g. webpack which can load UMD modules by using ES6 syntax.</span>
 <span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-build-classic&apos;</span>;
@@ -187,7 +193,7 @@ ClassicEditor
         <span class="hljs-built_in">console</span>.error( error.stack );
     } );
 </code></pre>
-<p>All this works because a typical <code>src/ckeditor.js</code> module which you can find in every editor build repository (see e.g. <a href="https://github.com/ckeditor/ckeditor5-build-classic/blob/stable/src/ckeditor.js" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-build-classic</code></a>), which is created based on the <code>build-config.js</code> file and based on which a build is created, looks like this:</p>
+<p>All this works because a typical <code>src/ckeditor.js</code> module that you can find in every editor build repository (see e.g. <a href="https://github.com/ckeditor/ckeditor5-build-classic/blob/stable/src/ckeditor.js" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-build-classic</code></a>), which is created based on the <code>build-config.js</code> file and based on which a build is created, looks like this:</p>
 <pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ClassicEditorBase <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
 <span class="hljs-keyword">import</span> EssentialsPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;</span>;
 <span class="hljs-keyword">import</span> UploadadapterPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-adapter-ckfinder/src/uploadadapter&apos;</span>;
@@ -221,10 +227,10 @@ ClassicEditor.build = {
     }
 };
 </code></pre>
-<p>This code imports a source of the classic editor and extends it with a static property <code>build</code> in which it defines a set of plugins and configuration to be used by this editor class.</p>
+<p>This code imports the source of the classic editor and extends it with a static property <code>build</code> in which it defines a set of plugins and configuration to be used by this editor class.</p>
 <p>In this approach, all editor instances created by using this editor build will by default load all these built-in plugins and configuration.</p>
 <div class="info-box notice"><p>You can still use the <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html#removePlugins"><code>config.removePlugins</code></a> and <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html#plugins"><code>config.plugins</code></a> options to override the default configuration.</p></div>
-<p>When building the editor from source and not using a build as a base, you can also use the static <code>build</code> property of editor classes. However, in such situation it is usually more convenient to simply pass all the plugins directly to the static <code>create()</code> method:</p>
+<p>When building the editor from source and not using a build as a base, you can also use the static <code>build</code> property of editor classes. However, in this situation it is usually more convenient to simply pass all the plugins directly to the static <code>create()</code> method:</p>
 <pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
 <span class="hljs-keyword">import</span> Essentials <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;</span>;
 <span class="hljs-keyword">import</span> Paragraph <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;</span>;
@@ -243,7 +249,7 @@ ClassicEditor
         <span class="hljs-built_in">console</span>.error( error.stack );
     } );
 </code></pre>
-<p>So, in short, both methods use very similar mechanisms. However, adding a plugin through a static <code>build</code> property (which happens in editor builds) lets you automatically enable it in all editor instances created using this editor class, while passing a plugin to <code>create()</code> will naturally affect only one instance.</p>
+<p>So, in short, both methods use very similar mechanisms. However, adding a plugin through the static <code>build</code> property (which happens in editor builds) lets you automatically enable it in all editor instances created using this editor class, while passing a plugin to <code>create()</code> will naturally affect only one instance.</p>
 
         </div>
       </section>

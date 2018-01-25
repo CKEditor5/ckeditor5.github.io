@@ -148,23 +148,19 @@ resolved by a callback which will disallow this specific structure.</p>
 is <a href="module_utils_observablemixin-ObservableMixin.html#decorate">a decorated method</a>.
 It means that you can add listeners to implement your specific rules which are not limited by the declarative
 <a href="module_engine_model_schema-SchemaItemDefinition.html">API</a>.</p>
-<p>The block quote feature defines such a listener to disallow nested <code>&lt;blockQuote&gt;</code> structures:</p>
-<pre class="prettyprint source"><code>schema.on( &apos;checkChild&apos;, ( evt, args ) =&gt; {
-    // The checkChild()&apos;s params.
-    // Note that context is automatically normalized to SchemaContext instance by a highest-priority listener.
-    const context = args[ 0 ];
-    const child = args[ 1 ];
-
-    // Pass the child through getDefinition() to normalize it (child can be passed in multiple formats).
-    const childRule = schema.getDefinition( child );
+<p>Those listeners can be added either by listening directly to the <a href="#event:checkChild"><code>checkChild</code></a> event or
+by using the handy <a href="#addChildCheck"><code>addChildCheck</code></a> method.</p>
+<p>For instance, the block quote feature defines such a listener to disallow nested <code>&lt;blockQuote&gt;</code> structures:</p>
+<pre class="prettyprint source"><code>schema.addChildCheck( context, childDefinition ) =&gt; {
+    // Note that context is automatically normalized to SchemaContext instance and
+    // child to its definition (SchemaCompiledItemDefinition).
 
     // If checkChild() is called with a context that ends with blockQuote and blockQuote as a child
-    // to check, make the method return false and stop the event so no other listener will override your decision.
-    if ( childRule &amp;&amp; childRule.name == &apos;blockQuote&apos; &amp;&amp; context.endsWith( &apos;blockQuote&apos; ) ) {
-        evt.stop();
-        evt.return = false;
+    // to check, make the checkChild() method return false.
+    if ( context.endsWith( &apos;blockQuote&apos; ) &amp;&amp; childDefinition.name == &apos;blockQuote&apos; ) {
+        return false;
     }
-}, { priority: &apos;high&apos; } );</code></pre><h5>Defining attributes</h5><p>TODO</p>
+} );</code></pre><h5>Defining attributes</h5><p>TODO</p>
 <h5>Implementing additional constraints</h5><p>Schema&apos;s capabilities were limited to simple (and atomic) <a href="#checkChild"><code>checkChild</code></a> and
 <a href="#checkAttribute"><code>checkAttribute</code></a> checks on purpose.
 One may imagine that schema should support defining more complex rules such as
@@ -238,6 +234,98 @@ through CKEditor 5&apos;s rich and open API.</p></div>
                           <p class="collapsing-list__excerpt">Creates schema instance.
                           </p>
                           <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="addAttributeCheck">
+                          <h3><code><a class="member-name" href="#addAttributeCheck">addAttributeCheck</a>( callback )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Allows registering a callback to the <a href="module_engine_model_schema-Schema.html#checkAttribute"><code>checkAttribute</code></a> method calls.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>Callbacks allow you to implement rules which are not otherwise possible to achieve
+by using the declarative API of <a href="module_engine_model_schema-SchemaItemDefinition.html"><code>SchemaItemDefinition</code></a>.
+For example, by using this method you can disallow attribute if node to which it is applied
+is contained within some other element (e.g. you want to disallow <code>bold</code> on <code>$text</code> within <code>heading1</code>).</p>
+<p>This method is a shorthand for using the <a href="module_engine_model_schema-Schema.html#event:checkAttribute"><code>checkAttribute</code></a> event. For even better control,
+you can use that event instead.</p>
+<p>Example:</p>
+<pre class="prettyprint source"><code>// Disallow bold on $text inside heading1.
+schema.addChildCheck( ( context, attributeName ) =&gt; {
+    if ( context.endsWith( &apos;heading1 $text&apos; ) &amp;&amp; attributeName == &apos;bold&apos; ) {
+        return false;
+    }
+} );</code></pre><p>Which translates to:</p>
+<pre class="prettyprint source"><code>schema.on( &apos;checkAttribute&apos;, ( evt, args ) =&gt; {
+    const context = args[ 0 ];
+    const attributeName = args[ 1 ];
+
+    if ( context.endsWith( &apos;heading1 $text&apos; ) &amp;&amp; attributeName == &apos;bold&apos; ) {
+        // Prevent next listeners from being called.
+        evt.stop();
+        // Set the checkAttribute()&apos;s return value.
+        evt.return = false;
+    }
+}, { priority: &apos;high&apos; } );</code></pre>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>callback
+                                            :
+ <span>function</span></code></dt>
+                                        <dd><p>The callback to be called. It is called with two parameters:
+<a href="module_engine_model_schema-SchemaContext.html"><code>SchemaContext</code></a> (context) instance and attribute name.
+The callback may return <code>true/false</code> to override <code>checkAttribute()</code>'s return value. If it does not return
+a boolean value, the default algorithm (or other callbacks) will define <code>checkAttribute()</code>'s return value.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="addChildCheck">
+                          <h3><code><a class="member-name" href="#addChildCheck">addChildCheck</a>( callback )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Allows registering a callback to the <a href="module_engine_model_schema-Schema.html#checkChild"><code>checkChild</code></a> method calls.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>Callbacks allow you to implement rules which are not otherwise possible to achieve
+by using the declarative API of <a href="module_engine_model_schema-SchemaItemDefinition.html"><code>SchemaItemDefinition</code></a>.
+For example, by using this method you can disallow elements in specific contexts.</p>
+<p>This method is a shorthand for using the <a href="module_engine_model_schema-Schema.html#event:checkChild"><code>checkChild</code></a> event. For even better control,
+you can use that event instead.</p>
+<p>Example:</p>
+<pre class="prettyprint source"><code>// Disallow heading1 directly inside a blockQuote.
+schema.addChildCheck( ( context, childDefinition ) =&gt; {
+    if ( context.endsWith( &apos;blockQuote&apos; ) &amp;&amp; childDefinition.name == &apos;heading1&apos; ) {
+        return false;
+    }
+} );</code></pre><p>Which translates to:</p>
+<pre class="prettyprint source"><code>schema.on( &apos;checkChild&apos;, ( evt, args ) =&gt; {
+    const context = args[ 0 ];
+    const childDefinition = args[ 1 ];
+
+    if ( context.endsWith( &apos;blockQuote&apos; ) &amp;&amp; childDefinition &amp;&amp; childDefinition.name == &apos;heading1&apos; ) {
+        // Prevent next listeners from being called.
+        evt.stop();
+        // Set the checkChild()&apos;s return value.
+        evt.return = false;
+    }
+}, { priority: &apos;high&apos; } );</code></pre>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>callback
+                                            :
+ <span>function</span></code></dt>
+                                        <dd><p>The callback to be called. It is called with two parameters:
+<a href="module_engine_model_schema-SchemaContext.html"><code>SchemaContext</code></a> (context) instance and
+<a href="module_engine_model_schema-SchemaCompiledItemDefinition.html"><code>SchemaCompiledItemDefinition</code></a> (child-to-check definition).
+The callback may return <code>true/false</code> to override <code>checkChild()</code>'s return value. If it does not return
+a boolean value, the default algorithm (or other callbacks) will define <code>checkChild()</code>'s return value.</p>
+                                        </dd>
+                                      </dl>
                           </div>
                         </div>
                       </li>
@@ -1230,6 +1318,9 @@ additional behavior &#x2013; e.g. implementing rules which cannot be defined usi
 <a href="module_engine_model_schema-SchemaItemDefinition.html"><code>SchemaItemDefinition</code></a> interface.
                           </p>
                           <div class="collapsing-list__content">
+<p><strong>Note:</strong> The <a href="module_engine_model_schema-Schema.html#addAttributeCheck"><code>addAttributeCheck</code></a> method is a more handy way to register callbacks. Internally,
+it registers a listener to this event but comes with a simpler API and it is the recommended choice
+in most of the cases.</p>
 <p>The <a href="module_engine_model_schema-Schema.html#checkAttribute"><code>checkAttribute</code></a> method fires an event because it&apos;s
 <a href="module_utils_observablemixin-ObservableMixin.html#decorate">decorated</a> with it. Thanks to that you can
 use this event in a various way, but the most important use case is overriding standard behaviour of the
@@ -1292,26 +1383,28 @@ additional behavior &#x2013; e.g. implementing rules which cannot be defined usi
 <a href="module_engine_model_schema-SchemaItemDefinition.html"><code>SchemaItemDefinition</code></a> interface.
                           </p>
                           <div class="collapsing-list__content">
-<p>The <a href="module_engine_model_schema-Schema.html#checkChild"><code>checkChild</code></a> method fires an event because it&apos;s
+<p><strong>Note:</strong> The <a href="module_engine_model_schema-Schema.html#addChildCheck"><code>addChildCheck</code></a> method is a more handy way to register callbacks. Internally,
+it registers a listener to this event but comes with a simpler API and it is the recommended choice
+in most of the cases.</p>
+<p>The <a href="module_engine_model_schema-Schema.html#checkChild"><code>checkChild</code></a> method fires an event because it is
 <a href="module_utils_observablemixin-ObservableMixin.html#decorate">decorated</a> with it. Thanks to that you can
 use this event in a various way, but the most important use case is overriding standard behaviour of the
 <code>checkChild()</code> method. Let&apos;s see a typical listener template:</p>
 <pre class="prettyprint source"><code>schema.on( &apos;checkChild&apos;, ( evt, args ) =&gt; {
     const context = args[ 0 ];
-    const child = args[ 1 ];
+    const childDefinition = args[ 1 ];
 }, { priority: &apos;high&apos; } );</code></pre><p>The listener is added with a <code>high</code> priority to be executed before the default method is really called. The <code>args</code> callback
 parameter contains arguments passed to <code>checkChild( context, child )</code>. However, the <code>context</code> parameter is already
-normalized to a <a href="module_engine_model_schema-SchemaContext.html"><code>SchemaContext</code></a> instance, so you don&apos;t have to worry about
-the various ways how <code>context</code> may be passed to <code>checkChild()</code>.</p>
+normalized to a <a href="module_engine_model_schema-SchemaContext.html"><code>SchemaContext</code></a> instance and <code>child</code> to a
+<a href="module_engine_model_schema-SchemaCompiledItemDefinition.html"><code>SchemaCompiledItemDefinition</code></a> instance, so you don&apos;t have to worry about
+the various ways how <code>context</code> and <code>child</code> may be passed to <code>checkChild()</code>.</p>
+<p><strong>Note:</strong> <code>childDefinition</code> may be <code>undefined</code> if <code>checkChild()</code> was called with a non-registered element.</p>
 <p>So, in order to implement a rule &quot;disallow <code>heading1</code> in <code>blockQuote</code>&quot; you can add such a listener:</p>
 <pre class="prettyprint source"><code>schema.on( &apos;checkChild&apos;, ( evt, args ) =&gt; {
     const context = args[ 0 ];
-    const child = args[ 1 ];
+    const childDefinition = args[ 1 ];
 
-    // Normalize child too (it can be a string or a node).
-    const childDefinition = schema.getDefinition( child );
-
-    if ( context.endsWith( &apos;blockQuote&apos; ) &amp;&amp; childDefinition.name == &apos;heading1&apos; ) {
+    if ( context.endsWith( &apos;blockQuote&apos; ) &amp;&amp; childDefinition &amp;&amp; childDefinition.name == &apos;heading1&apos; ) {
         // Prevent next listeners from being called.
         evt.stop();
         // Set the checkChild()&apos;s return value.
@@ -1322,10 +1415,7 @@ the various ways how <code>context</code> may be passed to <code>checkChild()</c
 where <code>listItem</code> should be allowed only in element <code>foo</code> which must be in element <code>bar</code>, then this would be the way:</p>
 <pre class="prettyprint source"><code>schema.on( &apos;checkChild&apos;, ( evt, args ) =&gt; {
     const context = args[ 0 ];
-    const child = args[ 1 ];
-
-    // Normalize child too (it can be a string or a node).
-    const childDefinition = schema.getDefinition( child );
+    const childDefinition = args[ 1 ];
 
     if ( context.endsWith( &apos;bar foo&apos; ) &amp;&amp; childDefinition.name == &apos;listItem&apos; ) {
         // Prevent next listeners from being called.
@@ -3306,15 +3396,6 @@ where <code>listItem</code> should be allowed only in element <code>foo</code> w
               </ul>
             </li>
             <li class="toggler--collapsed">
-              <div class="tree__item__wrapper" data-ln="module:link/linkelement"><a class="tree__item--module tree__item__text" href="module_link_linkelement.html">linkelement</a>
-              </div>
-              <ul>
-                <li><a href="module_link_linkelement-LinkElement.html">
-                    <div class="tree__item__wrapper" data-ln="module:link/linkelement~LinkElement"><span class="tree__item--class tree__item__text">LinkElement</span></div></a>
-                </li>
-              </ul>
-            </li>
-            <li class="toggler--collapsed">
               <div class="tree__item__wrapper" data-ln="module:link/linkengine"><a class="tree__item--module tree__item__text" href="module_link_linkengine.html">linkengine</a>
               </div>
               <ul>
@@ -3331,6 +3412,9 @@ where <code>listItem</code> should be allowed only in element <code>foo</code> w
                     <div class="tree__item__wrapper" data-ln="module:link/unlinkcommand~UnlinkCommand"><span class="tree__item--class tree__item__text">UnlinkCommand</span></div></a>
                 </li>
               </ul>
+            </li>
+            <li><a href="module_link_utils.html">
+                <div class="tree__item__wrapper" data-ln="module:link/utils"><span class="tree__item--module tree__item__text">utils</span></div></a>
             </li>
           </ul>
         </li>
@@ -3377,14 +3461,8 @@ where <code>listItem</code> should be allowed only in element <code>foo</code> w
                 </li>
               </ul>
             </li>
-            <li class="toggler--collapsed">
-              <div class="tree__item__wrapper" data-ln="module:list/viewlistitemelement"><a class="tree__item--module tree__item__text" href="module_list_viewlistitemelement.html">viewlistitemelement</a>
-              </div>
-              <ul>
-                <li><a href="module_list_viewlistitemelement-ViewListItemElement.html">
-                    <div class="tree__item__wrapper" data-ln="module:list/viewlistitemelement~ViewListItemElement"><span class="tree__item--class tree__item__text">ViewListItemElement</span></div></a>
-                </li>
-              </ul>
+            <li><a href="module_list_utils.html">
+                <div class="tree__item__wrapper" data-ln="module:list/utils"><span class="tree__item--module tree__item__text">utils</span></div></a>
             </li>
           </ul>
         </li>
