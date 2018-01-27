@@ -472,6 +472,42 @@ schema.checkChild( model.document.getRoot(), paragraph ); // -&gt; true</code></
                           </div>
                         </div>
                       </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="checkMerge">
+                          <h3><code><a class="member-name" href="#checkMerge">checkMerge</a>( positionOrBaseElement, elementToMerge ) &rarr;  <span>Boolean</span></code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Checks whether the given element (<code>elementToMerge</code>) can be merged with the specified base element (<code>positionOrBaseElement</code>).
+                          </p>
+                          <div class="collapsing-list__content">
+<p>In other words &#x2013; whether <code>elementToMerge</code>&apos;s children <a href="module_engine_model_schema-Schema.html#checkChild">are  allowed</a> in the <code>positionOrBaseElement</code>.</p>
+<p>This check ensures that elements merged with <a href="module_engine_model_writer-Writer.html#merge"><code>Writer#merge()</code></a>
+will be valid.</p>
+<p>Instead of elements, you can pass the instance of <a href="module_engine_model_position-Position.html"><code>Position</code></a> class as the <code>positionOrBaseElement</code>.
+It means that the elements before and after the position will be checked whether they can be merged.</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>positionOrBaseElement
+                                            :
+ <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
+                                        <dd><p>The position or base
+element to which the <code>elementToMerge</code> will be merged.</p>
+                                        </dd>
+                                        <dt><code>elementToMerge
+                                            :
+ <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
+                                        <dd><p>The element to merge. Required if <code>positionOrBaseElement</code> is a element.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Boolean</span></code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
                         <div class="collapsing-list__term toggler--collapsed" id="decorate">
                           <h3><code><a class="member-name" href="#decorate">decorate</a>( methodName )</code></h3>
