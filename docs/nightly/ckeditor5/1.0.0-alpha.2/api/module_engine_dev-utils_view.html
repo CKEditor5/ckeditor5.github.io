@@ -357,24 +357,25 @@ If range position is placed inside element node, it will be represented with <co
 <pre class="prettyprint source"><code>const text = new Text( &apos;foobar&apos; );
 const b = new Element( &apos;b&apos;, null, text );
 const p = new Element( &apos;p&apos;, null, b );
-const selection = new Selection();
-selection.addRange( Range.createFromParentsAndOffsets( p, 0, p, 1 ) );
+const selection = new Selection(
+    Range.createFromParentsAndOffsets( p, 0, p, 1 )
+);
 
 stringify( p, selection ); // &apos;&lt;p&gt;[&lt;b&gt;foobar&lt;/b&gt;]&lt;/p&gt;&apos;</code></pre><p>If range is placed inside text node, it will be represented with <code>{</code> and <code>}</code>:</p>
 <pre class="prettyprint source"><code>const text = new Text( &apos;foobar&apos; );
 const b = new Element( &apos;b&apos;, null, text );
 const p = new Element( &apos;p&apos;, null, b );
-const selection = new Selection();
-selection.addRange( Range.createFromParentsAndOffsets( text, 1, text, 5 ) );
+const selection = new Selection( Range.createFromParentsAndOffsets( text, 1, text, 5 ) );
 
 stringify( p, selection ); // &apos;&lt;p&gt;&lt;b&gt;f{ooba}r&lt;/b&gt;&lt;/p&gt;&apos;</code></pre><p><strong> Note: </strong>
 It is possible to unify selection markers to <code>[</code> and <code>]</code> for both (inside and outside text)
 by setting <code>sameSelectionCharacters=true</code> option. It is mainly used when view stringify option is used by model utils.</p>
 <p>Multiple ranges are supported:</p>
 <pre class="prettyprint source"><code>const text = new Text( &apos;foobar&apos; );
-const selection = new Selection();
-selection.addRange( Range.createFromParentsAndOffsets( text, 0, text, 1 ) );
-selection.addRange( Range.createFromParentsAndOffsets( text, 3, text, 5 ) );
+const selection = new Selection( [
+    Range.createFromParentsAndOffsets( text, 0, text, 1 ) ),
+    Range.createFromParentsAndOffsets( text, 3, text, 5 ) )
+] );
 
 stringify( text, selection ); // &apos;{f}oo{ba}r&apos;</code></pre><p>Instead of <a href="module_engine_view_selection-Selection.html">Selection</a> instance <a href="module_engine_view_range-Range.html">Range</a> or
 <a href="module_engine_view_position-Position.html">Position</a> instance can be provided. If Range instance is provided - it will be

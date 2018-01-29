@@ -607,6 +607,28 @@ or from a <a href="module_engine_model_range-Range.html">range</a>.
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="removeSelectionAttribute">
+                          <h3><code><a class="member-name" href="#removeSelectionAttribute">removeSelectionAttribute</a>( keyOrIterableOfKeys )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Removes attribute(s) with given key(s) from the selection.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>Using key</p>
+<pre class="prettyprint source"><code>writer.removeSelectionAttribute( &apos;italic&apos; );</code></pre><p>Using iterable of keys</p>
+<pre class="prettyprint source"><code>writer.removeSelectionAttribute( [ &apos;italic&apos;, &apos;bold&apos; ] );</code></pre>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>keyOrIterableOfKeys
+                                            :
+ <span>String</span> | <span>Iterable.&lt;String&gt;</span></code></dt>
+                                        <dd><p>Key of the attribute to remove or an iterable of attribute keys to remove.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="rename">
                           <h3><code><a class="member-name" href="#rename">rename</a>( element, newName )</code></h3>
                         </div>
@@ -722,6 +744,116 @@ is waiting for additional data, etc.). In this case, the marker may be first cre
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="setSelection">
+                          <h3><code><a class="member-name" href="#setSelection">setSelection</a>( selectable, [ backwardSelectionOrOffset ] )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Sets this selection&apos;s ranges and direction to the specified location based on the given
+<a href="module_engine_model_selection-Selection.html">selection</a>, <a href="module_engine_model_position-Position.html">position</a>,
+<a href="module_engine_model_element-Element.html">element</a>, <a href="module_engine_model_position-Position.html">position</a>,
+<a href="module_engine_model_range-Range.html">range</a>, an iterable of <a href="module_engine_model_range-Range.html">ranges</a> or null.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>Uses internally <a href="module_engine_model_documentselection-DocumentSelection.html#_setTo"><code>_setTo</code></a>.</p>
+<pre class="prettyprint source"><code>// Sets ranges from the given range.
+const range = new Range( start, end );
+writer.setSelection( range, isBackwardSelection );
+
+// Sets ranges from the iterable of ranges.
+const ranges = [ new Range( start1, end2 ), new Range( star2, end2 ) ];
+writer.setSelection( range, isBackwardSelection );
+
+// Sets ranges from the other selection.
+const otherSelection = new Selection();
+writer.setSelection( otherSelection );
+
+// Sets ranges from the given document selection&apos;s ranges.
+const documentSelection = new DocumentSelection( doc );
+writer.setSelection( documentSelection );
+
+// Sets range at the given position.
+const position = new Position( root, path );
+writer.setSelection( position );
+
+// Sets range at the given element.
+const paragraph = writer.createElement( &apos;paragraph&apos; );
+writer.setSelection( paragraph, offset );
+
+// Removes all ranges.
+writer.setSelection( null );</code></pre><p>Throws <code>writer-incorrect-use</code> error when the writer is used outside the <code>change()</code> block.</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>selectable
+                                            :
+ <span><a class="collapsing-list__type" href="module_engine_model_selection-Selection.html">Selection</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_documentselection-DocumentSelection.html">DocumentSelection</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span> | <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | <span>null</span></code></dt>
+                                        <dd>
+                                        </dd>
+                                        <dt><code>[ backwardSelectionOrOffset ]
+                                            :
+ <span>Boolean</span> | <span>Number</span> | <span>'before'</span> | <span>'end'</span> | <span>'after'</span></code></dt>
+                                        <dd>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="setSelectionAttribute">
+                          <h3><code><a class="member-name" href="#setSelectionAttribute">setSelectionAttribute</a>( keyOrObjectOrIterable, [ value ] )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Sets attribute(s) on the selection. If attribute with the same key already is set, it&apos;s value is overwritten.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>Using key and value pair:</p>
+<pre class="prettyprint source"><code>writer.setSelectionAttribute( &apos;italic&apos;, true );</code></pre><p>Using key-value object:</p>
+<pre class="prettyprint source"><code>writer.setSelectionAttribute( { italic: true, bold: false } );</code></pre><p>Using iterable object:</p>
+<pre class="prettyprint source"><code>writer.setSelectionAttribute( new Map( [ [ &apos;italic&apos;, true ] ] ) );</code></pre>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>keyOrObjectOrIterable
+                                            :
+ <span>String</span> | <span>Object</span> | <span>Iterable.&lt;*&gt;</span></code></dt>
+                                        <dd><p>Key of the attribute to set
+or object / iterable of key - value attribute pairs.</p>
+                                        </dd>
+                                        <dt><code>[ value ]
+                                            :
+ <span>*</span></code></dt>
+                                        <dd><p>Attribute value.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="setSelectionFocus">
+                          <h3><code><a class="member-name" href="#setSelectionFocus">setSelectionFocus</a>( itemOrPosition, [ offset ] )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Moves <a href="module_engine_model_documentselection-DocumentSelection.html#focus"><code>focus</code></a> to the specified location.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>The location can be specified in the same form as <a href="module_engine_model_position-Position.html#createAt"><code>createAt</code></a> parameters.</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>itemOrPosition
+                                            :
+ <span><a class="collapsing-list__type" href="module_engine_model_item-Item.html">Item</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
+                                        <dd>
+                                        </dd>
+                                        <dt><code>[ offset ]
+                                            :
+ <span>Number</span> | <span>'end'</span> | <span>'before'</span> | <span>'after'</span></code></dt>
+                                        <dd><p>Offset or one of the flags. Used only when
+first parameter is a <a href="module_engine_model_item-Item.html">model item</a>.</p>
+                                          <p>Defaults to <code>0</code></p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="split">
                           <h3><code><a class="member-name" href="#split">split</a>( position )</code></h3>
                         </div>
@@ -795,9 +927,58 @@ Throws error if you try to unwrap an element which does not have a parent.
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Throws <code>writer-incorrect-use</code> error when the writer is used outside the <code>change()</code> block.
+                          <p class="collapsing-list__excerpt">Throws <code>writer-detached-writer-tries-to-modify-model</code> error when the writer is used outside of the <code>change()</code> block.
                           </p>
                           <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_removeSelectionAttribute">
+                          <h3><code><a class="member-name" href="#_removeSelectionAttribute">_removeSelectionAttribute</a>( key )</code></h3>
+                          <p class="badges">
+<span class="badge badge--red ">private</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>key
+                                            :
+ <span>String</span></code></dt>
+                                        <dd><p>Key of the attribute to remove.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_setSelectionAttribute">
+                          <h3><code><a class="member-name" href="#_setSelectionAttribute">_setSelectionAttribute</a>( key, value )</code></h3>
+                          <p class="badges">
+<span class="badge badge--red ">private</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>key
+                                            :
+ <span>String</span></code></dt>
+                                        <dd><p>Key of the attribute to remove.</p>
+                                        </dd>
+                                        <dt><code>value
+                                            :
+ <span>*</span></code></dt>
+                                        <dd><p>Attribute value.</p>
+                                        </dd>
+                                      </dl>
                           </div>
                         </div>
                       </li>
