@@ -69,6 +69,17 @@
           </p>
           <nav class="secondary-navigation api-info-box">
             <dl>
+                        <dt>Hierarchy</dt>
+                        <dd>
+                          <ul class="hierarchy-list">
+                                      <li title="@ckeditor/ckeditor5-utils/src/emittermixin~Emitter"><code><span><a href="module_utils_emittermixin-Emitter.html">Emitter</a></span></code>
+                                        <ul>
+                                                    <li title="@ckeditor/ckeditor5-engine/src/controller/datacontroller~DataController"><code><span><a href="module_engine_controller_datacontroller-DataController.html">DataController</a></span></code>
+                                                    </li>
+                                        </ul>
+                                      </li>
+                          </ul>
+                        </dd>
                         <dt>Implements</dt>
                         <dd>
                           <ul>
@@ -90,7 +101,7 @@
           <div class="main-description"><p>Controller for the data pipeline. The data pipeline controls how data is retrieved from the document
 and set inside it. Hence, the controller features two methods which allow to <a href="#get">get</a>
 and <a href="#set">set</a> data of the <a href="#model">model</a>
-using given:</p>
+using the given:</p>
 <ul>
 <li><a href="module_engine_dataprocessor_dataprocessor-DataProcessor.html">data processor</a>,</li>
 <li><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html">model to view</a> and</li>
@@ -135,7 +146,7 @@ using given:</p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Mapper used for the conversion. It has no permanent bindings, because they are created when getting data and
-cleared directly after data are converted. However, the mapper is defined as class property, because
+cleared directly after the data are converted. However, the mapper is defined as a class property, because
 it needs to be passed to the <code>ModelConversionDispatcher</code> as a conversion API.</p>
                           <div class="collapsing-list__content">
                           </div>
@@ -162,8 +173,8 @@ it needs to be passed to the <code>ModelConversionDispatcher</code> as a convers
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Model to view conversion dispatcher used by the <a href="module_engine_controller_datacontroller-DataController.html#get">get  method</a>.
-To attach model to view converter to the data pipeline you need to add lister to this property:</p>
+                          <p class="collapsing-list__excerpt">Model-to-view conversion dispatcher used by the <a href="module_engine_controller_datacontroller-DataController.html#get">get  method</a>.
+To attach the model-to-view converter to the data pipeline you need to add a listener to this property:</p>
                           <div class="collapsing-list__content">
 <pre class="prettyprint source"><code>data.modelToView( &apos;insert:$element&apos;, customInsertConverter );</code></pre><p>Or use <a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html"><code>ModelConverterBuilder</code></a>:</p>
 <pre class="prettyprint source"><code>buildModelConverter().for( data.modelToView ).fromAttribute( &apos;bold&apos; ).toElement( &apos;b&apos; );</code></pre>
@@ -191,8 +202,8 @@ To attach model to view converter to the data pipeline you need to add lister to
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">View to model conversion dispatcher used by the <a href="module_engine_controller_datacontroller-DataController.html#set">set  method</a>.
-To attach view to model converter to the data pipeline you need to add lister to this property:</p>
+                          <p class="collapsing-list__excerpt">View-to-model conversion dispatcher used by the <a href="module_engine_controller_datacontroller-DataController.html#set">set  method</a>.
+To attach the view-to-model converter to the data pipeline you need to add a listener to this property:</p>
                           <div class="collapsing-list__content">
 <pre class="prettyprint source"><code>data.viewToModel( &apos;element&apos;, customElementConverter );</code></pre><p>Or use <a href="module_engine_conversion_buildviewconverter-ViewConverterBuilder.html"><code>ViewConverterBuilder</code></a>:</p>
 <pre class="prettyprint source"><code>buildViewConverter().for( data.viewToModel ).fromElement( &apos;b&apos; ).toAttribute( &apos;bold&apos;, &apos;true&apos; );</code></pre>
@@ -207,7 +218,7 @@ To attach view to model converter to the data pipeline you need to add lister to
                           <h3><code><a class="member-name" href="#constructor">constructor</a>( model, [ dataProcessor ] )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Creates data controller instance.
+                          <p class="collapsing-list__excerpt">Creates a data controller instance.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -220,7 +231,8 @@ To attach view to model converter to the data pipeline you need to add lister to
                                         <dt><code>[ dataProcessor ]
                                             :
  <span><a class="collapsing-list__type" href="module_engine_dataprocessor_dataprocessor-DataProcessor.html">DataProcessor</a></span></code></dt>
-                                        <dd><p>Data processor which should used by the controller.</p>
+                                        <dd><p>Data processor that should be used
+by the controller.</p>
                                         </dd>
                                       </dl>
                           </div>
@@ -228,7 +240,7 @@ To attach view to model converter to the data pipeline you need to add lister to
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
                         <div class="collapsing-list__term toggler--collapsed" id="bind">
-                          <h3><code><a class="member-name" href="#bind">bind</a>( bindAttrs ) &rarr;  <span>Object</span></code></h3>
+                          <h3><code><a class="member-name" href="#bind">bind</a>( bindProperties ) &rarr;  <span>Object</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
@@ -248,7 +260,7 @@ A.bind( &apos;a&apos;, &apos;b&apos; ).to( B, &apos;c&apos;, &apos;d&apos; );
 A.bind( &apos;a&apos; ).to( B, &apos;b&apos;, C, &apos;d&apos;, ( b, d ) =&gt; b + d );</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code>bindAttrs
+                                        <dt><code>bindProperties
                                             :
  <span>String</span></code></dt>
                                         <dd><p>Observable properties that will be bound to another observable(s).</p>
@@ -357,6 +369,38 @@ emitterA.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( emitterC );</cod
                           </div>
                         </div>
                       </li>
+                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="delegate">
+                          <h3><code><a class="member-name" href="#delegate">delegate</a>( events ) &rarr;  <span><a class="collapsing-list__type" href="module_utils_emittermixin-EmitterMixinDelegateChain.html">EmitterMixinDelegateChain</a></span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">mixed</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Delegates selected events to another <a href="module_utils_emittermixin-Emitter.html"><code>Emitter</code></a>. For instance:
+                          </p>
+                          <div class="collapsing-list__content">
+<pre class="prettyprint source"><code>emitterA.delegate( &apos;eventX&apos; ).to( emitterB );
+emitterA.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( emitterC );</code></pre><p>then <code>eventX</code> is delegated (fired by) <code>emitterB</code> and <code>emitterC</code> along with <code>data</code>:</p>
+<pre class="prettyprint source"><code>emitterA.fire( &apos;eventX&apos;, data );</code></pre><p>and <code>eventY</code> is delegated (fired by) <code>emitterC</code> along with <code>data</code>:</p>
+<pre class="prettyprint source"><code>emitterA.fire( &apos;eventY&apos;, data );</code></pre>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>events
+                                            :
+ <span>String</span></code></dt>
+                                        <dd><p>Event names that will be delegated to another emitter.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_utils_emittermixin-EmitterMixinDelegateChain.html">EmitterMixinDelegateChain</a></span></code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="destroy">
                           <h3><code><a class="member-name" href="#destroy">destroy</a>()</code></h3>
@@ -405,12 +449,49 @@ is the first param of every callback).</p>
                           </div>
                         </div>
                       </li>
+                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="fire">
+                          <h3><code><a class="member-name" href="#fire">fire</a>( eventOrInfo, [ args ] ) &rarr;  <span>*</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">mixed</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Fires an event, executing all callbacks registered for it.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>The first parameter passed to callbacks is an <a href="module_utils_eventinfo-EventInfo.html"><code>EventInfo</code></a> object,
+followed by the optional <code>args</code> provided in the <code>fire()</code> method call.</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>eventOrInfo
+                                            :
+ <span>String</span> | <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>The name of the event or <code>EventInfo</code> object if event is delegated.</p>
+                                        </dd>
+                                        <dt><code>[ args ]
+                                            :
+ <span>*</span></code></dt>
+                                        <dd><p>Additional arguments to be passed to the callbacks.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>*</span></code></dt>
+                                        <dd><p>By default the method returns <code>undefined</code>. However, the return value can be changed by listeners
+through modification of the <a href="module_utils_eventinfo-EventInfo.html#return"><code>evt.return</code></a>'s property (the event info
+is the first param of every callback).</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="get">
                           <h3><code><a class="member-name" href="#get">get</a>( [ rootName ] ) &rarr;  <span>String</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Returns model&apos;s data converted by the <a href="module_engine_controller_datacontroller-DataController.html#modelToView">model  to  view  converters</a> and
+                          <p class="collapsing-list__excerpt">Returns the model&apos;s data converted by the <a href="module_engine_controller_datacontroller-DataController.html#modelToView">model-to-view  converters</a> and
 formatted by the <a href="module_engine_controller_datacontroller-DataController.html#processor">data  processor</a>.
                           </p>
                           <div class="collapsing-list__content">
@@ -429,6 +510,69 @@ formatted by the <a href="module_engine_controller_datacontroller-DataController
                                         <dd><p>Output data.</p>
                                         </dd>
                             </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="listenTo">
+                          <h3><code><a class="member-name" href="#listenTo">listenTo</a>( emitter, event, callback, [ options ] = { [options.priority] } )</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">mixed</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Registers a callback function to be executed when an event is fired in a specific (emitter) object.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>Events can be grouped in namespaces using <code>:</code>.
+When namespaced event is fired, it additionally fires all callbacks for that namespace.</p>
+<pre class="prettyprint source"><code>// myEmitter.on( ... ) is a shorthand for myEmitter.listenTo( myEmitter, ... ).
+myEmitter.on( &apos;myGroup&apos;, genericCallback );
+myEmitter.on( &apos;myGroup:myEvent&apos;, specificCallback );
+
+// genericCallback is fired.
+myEmitter.fire( &apos;myGroup&apos; );
+// both genericCallback and specificCallback are fired.
+myEmitter.fire( &apos;myGroup:myEvent&apos; );
+// genericCallback is fired even though there are no callbacks for &quot;foo&quot;.
+myEmitter.fire( &apos;myGroup:foo&apos; );</code></pre><p>An event callback can <a href="module_utils_eventinfo-EventInfo.html#stop">stop the event</a> and
+set the <a href="module_utils_eventinfo-EventInfo.html#return">return value</a> of the <a href="module_utils_emittermixin-Emitter.html#fire"><code>fire</code></a> method.</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>emitter
+                                            :
+ <span><a class="collapsing-list__type" href="module_utils_emittermixin-Emitter.html">Emitter</a></span></code></dt>
+                                        <dd><p>The object that fires the event.</p>
+                                        </dd>
+                                        <dt><code>event
+                                            :
+ <span>String</span></code></dt>
+                                        <dd><p>The name of the event.</p>
+                                        </dd>
+                                        <dt><code>callback
+                                            :
+ <span>function</span></code></dt>
+                                        <dd><p>The function to be called on event.</p>
+                                        </dd>
+                                        <dt><code>[ options ]
+                                            :
+ <span>Object</span></code></dt>
+                                        <dd><p>Additional options.</p>
+                                                    <div class="dlheading5">Properties
+                                                    </div>
+                                                    <dl>
+                                                      <dt><code>[ options.priority ]
+                                                          :
+ <span><a class="collapsing-list__type" href="module_utils_priorities-PriorityString.html">PriorityString</a></span> | <span>Number</span></code></dt>
+                                                      <dd><p>The priority of this event callback. The higher
+the priority value the sooner the callback will be fired. Events having the same priority are called in the
+order they were added.</p>
+                                                        <p>Defaults to <code>'normal'</code></p>
+                                                      </dd>
+                                                    </dl>
+                                          <p>Defaults to <code>{}</code></p>
+                                        </dd>
+                                      </dl>
                           </div>
                         </div>
                       </li>
@@ -518,6 +662,81 @@ Shorthand for <a href="module_utils_emittermixin-Emitter.html#stopListening"><co
                                             :
  <span>function</span></code></dt>
                                         <dd><p>The function to stop being called.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="off">
+                          <h3><code><a class="member-name" href="#off">off</a>( event, callback )</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">mixed</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Stops executing the callback on the given event.
+Shorthand for <a href="module_utils_emittermixin-Emitter.html#stopListening"><code>this.stopListening(  this,  event,  callback  )</code></a>.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>event
+                                            :
+ <span>String</span></code></dt>
+                                        <dd><p>The name of the event.</p>
+                                        </dd>
+                                        <dt><code>callback
+                                            :
+ <span>function</span></code></dt>
+                                        <dd><p>The function to stop being called.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="on">
+                          <h3><code><a class="member-name" href="#on">on</a>( event, callback, [ options ] = { [options.priority] } )</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">mixed</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Registers a callback function to be executed when an event is fired.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>Shorthand for <a href="module_utils_emittermixin-Emitter.html#listenTo"><code>this.listenTo(  this,  event,  callback,  options  )</code></a> (it makes the emitter
+listen on itself).</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>event
+                                            :
+ <span>String</span></code></dt>
+                                        <dd><p>The name of the event.</p>
+                                        </dd>
+                                        <dt><code>callback
+                                            :
+ <span>function</span></code></dt>
+                                        <dd><p>The function to be called on event.</p>
+                                        </dd>
+                                        <dt><code>[ options ]
+                                            :
+ <span>Object</span></code></dt>
+                                        <dd><p>Additional options.</p>
+                                                    <div class="dlheading5">Properties
+                                                    </div>
+                                                    <dl>
+                                                      <dt><code>[ options.priority ]
+                                                          :
+ <span><a class="collapsing-list__type" href="module_utils_priorities-PriorityString.html">PriorityString</a></span> | <span>Number</span></code></dt>
+                                                      <dd><p>The priority of this event callback. The higher
+the priority value the sooner the callback will be fired. Events having the same priority are called in the
+order they were added.</p>
+                                                        <p>Defaults to <code>'normal'</code></p>
+                                                      </dd>
+                                                    </dl>
+                                          <p>Defaults to <code>{}</code></p>
                                         </dd>
                                       </dl>
                           </div>
@@ -616,13 +835,59 @@ order they were added.</p>
                           </div>
                         </div>
                       </li>
+                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="once">
+                          <h3><code><a class="member-name" href="#once">once</a>( event, callback, [ options ] = { [options.priority] } )</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">mixed</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Registers a callback function to be executed on the next time the event is fired only. This is similar to
+calling <a href="module_utils_emittermixin-Emitter.html#on"><code>on</code></a> followed by <a href="module_utils_emittermixin-Emitter.html#off"><code>off</code></a> in the callback.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>event
+                                            :
+ <span>String</span></code></dt>
+                                        <dd><p>The name of the event.</p>
+                                        </dd>
+                                        <dt><code>callback
+                                            :
+ <span>function</span></code></dt>
+                                        <dd><p>The function to be called on event.</p>
+                                        </dd>
+                                        <dt><code>[ options ]
+                                            :
+ <span>Object</span></code></dt>
+                                        <dd><p>Additional options.</p>
+                                                    <div class="dlheading5">Properties
+                                                    </div>
+                                                    <dl>
+                                                      <dt><code>[ options.priority ]
+                                                          :
+ <span><a class="collapsing-list__type" href="module_utils_priorities-PriorityString.html">PriorityString</a></span> | <span>Number</span></code></dt>
+                                                      <dd><p>The priority of this event callback. The higher
+the priority value the sooner the callback will be fired. Events having the same priority are called in the
+order they were added.</p>
+                                                        <p>Defaults to <code>'normal'</code></p>
+                                                      </dd>
+                                                    </dl>
+                                          <p>Defaults to <code>{}</code></p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="parse">
                           <h3><code><a class="member-name" href="#parse">parse</a>( data, [ context ] ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Returns data parsed by the <a href="module_engine_controller_datacontroller-DataController.html#processor">data  processor</a> and then
-converted by the <a href="module_engine_controller_datacontroller-DataController.html#viewToModel">view  to  model  converters</a>.
+converted by the <a href="module_engine_controller_datacontroller-DataController.html#viewToModel">view-to-model  converters</a>.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -661,7 +926,7 @@ converted by the <a href="module_engine_controller_datacontroller-DataController
 of the state and is be observable.
                           </p>
                           <div class="collapsing-list__content">
-<p>It accepts also a single object literal containing key/value pairs with propertys to be set.</p>
+<p>It accepts also a single object literal containing key/value pairs with properties to be set.</p>
 <p>This method throws the <code>observable-set-cannot-override</code> error if the observable instance already
 have a property with the given property name. This prevents from mistakenly overriding existing
 properties and methods, but means that <code>foo.set( &apos;bar&apos;, 1 )</code> may be slightly slower than <code>foo.bar = 1</code>.</p>
@@ -670,12 +935,45 @@ properties and methods, but means that <code>foo.set( &apos;bar&apos;, 1 )</code
                                         <dt><code>name
                                             :
  <span>String</span> | <span>Object</span></code></dt>
-                                        <dd><p>The attribute's name or object with <code>name=&gt;value</code> pairs.</p>
+                                        <dd><p>The property's name or object with <code>name=&gt;value</code> pairs.</p>
                                         </dd>
                                         <dt><code>[ value ]
                                             :
  <span>*</span></code></dt>
-                                        <dd><p>The attribute's value (if <code>name</code> was passed in the first parameter).</p>
+                                        <dd><p>The property's value (if <code>name</code> was passed in the first parameter).</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="stopDelegating">
+                          <h3><code><a class="member-name" href="#stopDelegating">stopDelegating</a>( [ event ], [ emitter ] )</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">mixed</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Stops delegating events. It can be used at different levels:
+                          </p>
+                          <div class="collapsing-list__content">
+<ul>
+<li>To stop delegating all events.</li>
+<li>To stop delegating a specific event to all emitters.</li>
+<li>To stop delegating a specific event to a specific emitter.</li>
+</ul>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>[ event ]
+                                            :
+ <span>String</span></code></dt>
+                                        <dd><p>The name of the event to stop delegating. If omitted, stops it all delegations.</p>
+                                        </dd>
+                                        <dt><code>[ emitter ]
+                                            :
+ <span><a class="collapsing-list__type" href="module_utils_emittermixin-Emitter.html">Emitter</a></span></code></dt>
+                                        <dd><p>(requires <code>event</code>) The object to stop delegating a particular event to.
+If omitted, stops delegation of <code>event</code> to all emitters.</p>
                                         </dd>
                                       </dl>
                           </div>
@@ -754,6 +1052,46 @@ for all events from <code>emitter</code>.</p>
                           </div>
                         </div>
                       </li>
+                      <li class="collapsing-list__item" data-public="true" data-mixed="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="stopListening">
+                          <h3><code><a class="member-name" href="#stopListening">stopListening</a>( [ emitter ], [ event ], [ callback ] )</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">mixed</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Stops listening for events. It can be used at different levels:
+                          </p>
+                          <div class="collapsing-list__content">
+<ul>
+<li>To stop listening to a specific callback.</li>
+<li>To stop listening to a specific event.</li>
+<li>To stop listening to all events fired by a specific object.</li>
+<li>To stop listening to all events fired by all objects.</li>
+</ul>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>[ emitter ]
+                                            :
+ <span><a class="collapsing-list__type" href="module_utils_emittermixin-Emitter.html">Emitter</a></span></code></dt>
+                                        <dd><p>The object to stop listening to. If omitted, stops it for all objects.</p>
+                                        </dd>
+                                        <dt><code>[ event ]
+                                            :
+ <span>String</span></code></dt>
+                                        <dd><p>(Requires the <code>emitter</code>) The name of the event to stop listening to. If omitted, stops it
+for all events from <code>emitter</code>.</p>
+                                        </dd>
+                                        <dt><code>[ callback ]
+                                            :
+ <span>function</span></code></dt>
+                                        <dd><p>(Requires the <code>event</code>) The function to be removed from the call list for the given
+<code>event</code>.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="stringify">
                           <h3><code><a class="member-name" href="#stringify">stringify</a>( modelElementOrFragment ) &rarr;  <span>String</span></code></h3>
@@ -761,7 +1099,7 @@ for all events from <code>emitter</code>.</p>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Returns the content of the given <a href="module_engine_model_element-Element.html">model&apos;s element</a> or
 <a href="module_engine_model_documentfragment-DocumentFragment.html">model document fragment</a> converted by the
-<a href="module_engine_controller_datacontroller-DataController.html#modelToView">model  to  view  converters</a> and formatted by the
+<a href="module_engine_controller_datacontroller-DataController.html#modelToView">model-to-view  converters</a> and formatted by the
 <a href="module_engine_controller_datacontroller-DataController.html#processor">data  processor</a>.
                           </p>
                           <div class="collapsing-list__content">
@@ -770,7 +1108,7 @@ for all events from <code>emitter</code>.</p>
                                         <dt><code>modelElementOrFragment
                                             :
  <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span></code></dt>
-                                        <dd><p>Element which content will be stringified.</p>
+                                        <dd><p>Element whose content will be stringified.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
@@ -787,20 +1125,19 @@ for all events from <code>emitter</code>.</p>
                           <h3><code><a class="member-name" href="#toModel">toModel</a>( viewElementOrFragment, [ context ] ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Returns wrapped by {module:engine/model/documentfragment~DocumentFragment} result of the given
-<a href="module_engine_view_element-Element.html">view element</a> or
+                          <p class="collapsing-list__excerpt">Returns the result of the given <a href="module_engine_view_element-Element.html">view element</a> or
 <a href="module_engine_view_documentfragment-DocumentFragment.html">view document fragment</a> converted by the
-<a href="module_engine_controller_datacontroller-DataController.html#viewToModel">view  to  model  converters</a>.
+<a href="module_engine_controller_datacontroller-DataController.html#viewToModel">view-to-model  converters</a>, wrapped by {module:engine/model/documentfragment~DocumentFragment}.
                           </p>
                           <div class="collapsing-list__content">
-<p>When marker elements were converted during conversion process then will be set as DocumentFragment&apos;s
+<p>When marker elements were converted during the conversion process, it will be set as a DocumentFragment&apos;s
 <a href="module_engine_model_documentfragment-DocumentFragment.html#markers">static markers map</a>.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>viewElementOrFragment
                                             :
  <span><a class="collapsing-list__type" href="module_engine_view_element-Element.html">Element</a></span> | <span><a class="collapsing-list__type" href="module_engine_view_documentfragment-DocumentFragment.html">DocumentFragment</a></span></code></dt>
-                                        <dd><p>Element or document fragment which content will be converted.</p>
+                                        <dd><p>Element or document fragment whose content will be converted.</p>
                                         </dd>
                                         <dt><code>[ context ]
                                             :
@@ -826,7 +1163,7 @@ for all events from <code>emitter</code>.</p>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Returns the content of the given <a href="module_engine_model_element-Element.html">model element</a> or
 <a href="module_engine_model_documentfragment-DocumentFragment.html">model document fragment</a> converted by the
-<a href="module_engine_controller_datacontroller-DataController.html#modelToView">model  to  view  converters</a> to a
+<a href="module_engine_controller_datacontroller-DataController.html#modelToView">model-to-view  converters</a> to a
 <a href="module_engine_view_documentfragment-DocumentFragment.html">view document fragment</a>.
                           </p>
                           <div class="collapsing-list__content">
@@ -835,7 +1172,7 @@ for all events from <code>emitter</code>.</p>
                                         <dt><code>modelElementOrFragment
                                             :
  <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span></code></dt>
-                                        <dd><p>Element or document fragment which content will be converted.</p>
+                                        <dd><p>Element or document fragment whose content will be converted.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
@@ -849,7 +1186,7 @@ for all events from <code>emitter</code>.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
                         <div class="collapsing-list__term toggler--collapsed" id="unbind">
-                          <h3><code><a class="member-name" href="#unbind">unbind</a>( [ unbindAttrs ] )</code></h3>
+                          <h3><code><a class="member-name" href="#unbind">unbind</a>( [ unbindProperties ] )</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
@@ -862,7 +1199,7 @@ for all events from <code>emitter</code>.</p>
 A.unbind();</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code>[ unbindAttrs ]
+                                        <dt><code>[ unbindProperties ]
                                             :
  <span>String</span></code></dt>
                                         <dd><p>Observable properties to be unbound. All the bindings will
