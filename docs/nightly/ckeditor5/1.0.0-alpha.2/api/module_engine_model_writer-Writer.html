@@ -855,10 +855,11 @@ first parameter is a <a href="module_engine_model_item-Item.html">model item</a>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="split">
-                          <h3><code><a class="member-name" href="#split">split</a>( position )</code></h3>
+                          <h3><code><a class="member-name" href="#split">split</a>( position, [ limitElement ] ) &rarr;  <span>Object</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Splits an element at the given position.
+                          <p class="collapsing-list__excerpt">Splits elements start from the given position and goes to the top of the model tree as long as given
+<code>limitElement</code> won&apos;t be reached. When limitElement is not defined then only a parent of given position will be split.
                           </p>
                           <div class="collapsing-list__content">
 <p>The element needs to have a parent. It cannot be a root element nor document fragment.
@@ -870,7 +871,25 @@ The <code>writer-split-element-no-parent</code> error will be thrown if you try 
  <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
                                         <dd><p>Position of split.</p>
                                         </dd>
+                                        <dt><code>[ limitElement ]
+                                            :
+ <span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span></code></dt>
+                                        <dd><p>Stop splitting when this element will be reached.</p>
+                                        </dd>
                                       </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Object</span></code></dt>
+                                        <dd><p>result Split result.</p>
+                                        </dd>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
+                                        <dd><p>result.position between split elements.</p>
+                                        </dd>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
+                                        <dd><p>result.range Range that stars from the end of the first split element and ands
+at the beginning of the first copy element.</p>
+                                        </dd>
+                            </dl>
                           </div>
                         </div>
                       </li>

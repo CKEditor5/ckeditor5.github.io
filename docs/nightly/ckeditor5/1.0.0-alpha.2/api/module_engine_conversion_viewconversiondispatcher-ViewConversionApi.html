@@ -71,9 +71,7 @@
           </div>
           <div class="main-description"><p>Conversion interface that is registered for given <a href="module_engine_conversion_viewconversiondispatcher-ViewConversionDispatcher.html"><code>ViewConversionDispatcher</code></a>
 and is passed as one of parameters when <a href="module_engine_conversion_viewconversiondispatcher-ViewConversionDispatcher.html">dispatcher</a>
-fires it's events.</p>
-<p><code>ViewConversionApi</code> object is built by <a href="module_engine_conversion_viewconversiondispatcher-ViewConversionDispatcher.html"><code>ViewConversionDispatcher</code></a> constructor.
-The exact list of properties of this object is determined by the object passed to the constructor.</p></div>
+fires it's events.</p></div>
 <div class="notice notice__filter api-props-filter">
   <div class="api-props-filter__inner">
     <h4>Filtering</h4>
@@ -109,7 +107,7 @@ The exact list of properties of this object is determined by the object passed t
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="convertChildren">
-                          <h3><code><a class="member-name" href="#convertChildren">convertChildren</a>( input, consumable, [ additionalData ] ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span></code></h3>
+                          <h3><code><a class="member-name" href="#convertChildren">convertChildren</a>( viewItem, cursorPosition ) &rarr;  <span>Object</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Starts conversion of all children of given item by firing appropriate events for all those children.
@@ -117,28 +115,28 @@ The exact list of properties of this object is determined by the object passed t
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code>input
+                                        <dt><code>viewItem
                                             :
- <span><a class="collapsing-list__type" href="module_engine_view_documentfragment-DocumentFragment.html">DocumentFragment</a></span> | <span><a class="collapsing-list__type" href="module_engine_view_element-Element.html">Element</a></span></code></dt>
-                                        <dd><p>Item which children will be converted.</p>
+ <span><a class="collapsing-list__type" href="module_engine_view_item-Item.html">Item</a></span></code></dt>
+                                        <dd><p>Item to convert.</p>
                                         </dd>
-                                        <dt><code>consumable
+                                        <dt><code>cursorPosition
                                             :
- <span><a class="collapsing-list__type" href="module_engine_conversion_viewconsumable-ViewConsumable.html">ViewConsumable</a></span></code></dt>
-                                        <dd><p>Values to consume.</p>
-                                        </dd>
-                                        <dt><code>[ additionalData ]
-                                            :
- <span>Object</span></code></dt>
-                                        <dd><p>Additional data to be passed in <code>data</code> argument when firing <code>ViewConversionDispatcher</code>
-events. See also <a href="module_engine_conversion_viewconversiondispatcher-ViewConversionDispatcher.html#event:element">element event</a>.</p>
+ <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
+                                        <dd><p>Position of conversion.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span></code></dt>
-                                        <dd><p>Model document fragment containing results of conversion
-of all children of given item.</p>
+                                        <dt><code><span>Object</span></code></dt>
+                                        <dd><p>result Conversion result.</p>
+                                        </dd>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
+                                        <dd><p>result.modelRange Model range containing results of conversion of all children of given item.
+When no children was converted then range is collapsed.</p>
+                                        </dd>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
+                                        <dd><p>result.cursorPosition Position where conversion should be continued.</p>
                                         </dd>
                             </dl>
                             <h4>Fires</h4>
@@ -155,40 +153,39 @@ of all children of given item.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="convertItem">
-                          <h3><code><a class="member-name" href="#convertItem">convertItem</a>( input, consumable, [ additionalData ] ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span> | <span>null</span></code></h3>
+                          <h3><code><a class="member-name" href="#convertItem">convertItem</a>( viewItem, cursorPosition ) &rarr;  <span>Object</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Starts conversion of given item by firing an appropriate event.
                           </p>
                           <div class="collapsing-list__content">
-<p>Every fired event is passed (as first parameter) an object with <code>output</code> property. Every event may set and/or
-modify that property. When all callbacks are done, the final value of <code>output</code> property is returned by this method.
-The <code>output</code> must be either <a href="module_engine_model_node-Node.html">model node</a> or
-<a href="module_engine_model_documentfragment-DocumentFragment.html">model document fragment</a> or <code>null</code> (as set by default).</p>
+<p>Every fired event is passed (as first parameter) an object with <code>modelRange</code> property. Every event may set and/or
+modify that property. When all callbacks are done, the final value of <code>modelRange</code> property is returned by this method.
+The <code>modelRange</code> must be <a href="module_engine_model_range-Range.html">model range</a> or <code>null</code> (as set by default).</p>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code>input
+                                        <dt><code>viewItem
                                             :
- <span><a class="collapsing-list__type" href="module_engine_view_documentfragment-DocumentFragment.html">DocumentFragment</a></span> | <span><a class="collapsing-list__type" href="module_engine_view_element-Element.html">Element</a></span> | <span><a class="collapsing-list__type" href="module_engine_view_text-Text.html">Text</a></span></code></dt>
+ <span><a class="collapsing-list__type" href="module_engine_view_item-Item.html">Item</a></span></code></dt>
                                         <dd><p>Item to convert.</p>
                                         </dd>
-                                        <dt><code>consumable
+                                        <dt><code>cursorPosition
                                             :
- <span><a class="collapsing-list__type" href="module_engine_conversion_viewconsumable-ViewConsumable.html">ViewConsumable</a></span></code></dt>
-                                        <dd><p>Values to consume.</p>
-                                        </dd>
-                                        <dt><code>[ additionalData ]
-                                            :
- <span>Object</span></code></dt>
-                                        <dd><p>Additional data to be passed in <code>data</code> argument when firing <code>ViewConversionDispatcher</code>
-events. See also <a href="module_engine_conversion_viewconversiondispatcher-ViewConversionDispatcher.html#event:element">element event</a>.</p>
+ <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
+                                        <dd><p>Position of conversion.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span> | <span>null</span></code></dt>
-                                        <dd><p>The result of item conversion,
+                                        <dt><code><span>Object</span></code></dt>
+                                        <dd><p>result Conversion result.</p>
+                                        </dd>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | <span>null</span></code></dt>
+                                        <dd><p>result.modelRange Model range containing result of item conversion,
 created and modified by callbacks attached to fired event, or <code>null</code> if the conversion result was incorrect.</p>
+                                        </dd>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
+                                        <dd><p>result.cursorPosition Position where conversion should be continued.</p>
                                         </dd>
                             </dl>
                             <h4>Fires</h4>
@@ -200,6 +197,44 @@ created and modified by callbacks attached to fired event, or <code>null</code> 
                                         <li><span><a href="module_engine_conversion_viewconversiondispatcher-ViewConversionDispatcher.html#event:documentFragment">documentFragment</a></span>
                                         </li>
                             </ul>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="splitToAllowedParent">
+                          <h3><code><a class="member-name" href="#splitToAllowedParent">splitToAllowedParent</a>( position, node ) &rarr;  <span>Object</span></code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Find allowed parent for element that we are going to insert starting from given position.
+If current parent does not allow to insert element but one of the ancestors does then split nodes to allowed parent.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>position
+                                            :
+ <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
+                                        <dd><p>Position on which element is going to be inserted.</p>
+                                        </dd>
+                                        <dt><code>node
+                                            :
+ <span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span></code></dt>
+                                        <dd><p>Node to insert.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Object</span></code></dt>
+                                        <dd><p>Split result.</p>
+                                        </dd>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
+                                        <dd><p>position between split elements.</p>
+                                        </dd>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
+                                        <dd><p>[cursorParent] Element inside which cursor should be placed to
+continue conversion. When element is not defined it means that there was no split.</p>
+                                        </dd>
+                            </dl>
                           </div>
                         </div>
                       </li>

@@ -396,8 +396,8 @@ schema.checkAttribute( textNode, &apos;bold&apos; ); // -&gt; true</code></pre>
                                       <dl>
                                         <dt><code>context
                                             :
- <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaContextDefinition.html">SchemaContextDefinition</a></span></code></dt>
-                                        <dd>
+ <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaContextDefinition.html">SchemaContextDefinition</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaContext.html">SchemaContext</a></span></code></dt>
+                                        <dd><p>Context in which the attribute will be checked.</p>
                                         </dd>
                                         <dt><code>attributeName
                                             :
@@ -450,7 +450,7 @@ specified attribute allowed.</li>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="checkChild">
-                          <h3><code><a class="member-name" href="#checkChild">checkChild</a>( context, child )</code></h3>
+                          <h3><code><a class="member-name" href="#checkChild">checkChild</a>( context, def )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Checks whether the given node (<code>child</code>) can be a child of the given context.
@@ -466,10 +466,10 @@ schema.checkChild( model.document.getRoot(), paragraph ); // -&gt; true</code></
                                       <dl>
                                         <dt><code>context
                                             :
- <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaContextDefinition.html">SchemaContextDefinition</a></span></code></dt>
+ <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaContextDefinition.html">SchemaContextDefinition</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaContext.html">SchemaContext</a></span></code></dt>
                                         <dd><p>Context in which the child will be checked.</p>
                                         </dd>
-                                        <dt><code>child
+                                        <dt><code>def
                                             :
  <span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span> | <span>String</span></code></dt>
                                         <dd><p>The child to check.</p>
@@ -682,6 +682,25 @@ schema.getDefinition( &apos;foo&apos; );
                                         <dd>
                                         </dd>
                                       </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="findAllowedParent">
+                          <h3><code><a class="member-name" href="#findAllowedParent">findAllowedParent</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | <span>null</span></code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Tries to find position ancestors that allows to insert given node.
+It starts searching from the given position and goes node by node to the top of the model tree
+as long as <a href="module_engine_model_schema-Schema.html#isLimit">limit element</a> or top-most ancestor won&apos;t be reached.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | <span>null</span></code></dt>
+                                        <dd><p>element Allowed parent or null if nothing was found.</p>
+                                        </dd>
+                            </dl>
                           </div>
                         </div>
                       </li>

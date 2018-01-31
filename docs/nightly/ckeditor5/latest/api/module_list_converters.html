@@ -179,9 +179,12 @@ incorrect data can be cleared if the view was incorrect.
                           <p class="collapsing-list__excerpt">Post-fixer that reacts to changes on document and fixes incorrect model states.
                           </p>
                           <div class="collapsing-list__content">
-<p>Example:</p>
+<p>In an example below, there is a correct list structure.
+Then the middle element will be removed so the list structure will become incorrect:</p>
 <pre class="prettyprint source"><code>&lt;listItem type=&quot;bulleted&quot; indent=0&gt;Item 1&lt;/listItem&gt;
 &lt;listItem type=&quot;bulleted&quot; indent=1&gt;Item 2&lt;/listItem&gt;   &lt;--- this is removed.
+&lt;listItem type=&quot;bulleted&quot; indent=2&gt;Item 3&lt;/listItem&gt;</code></pre><p>List structure after the middle element removed:</p>
+<pre class="prettyprint source"><code>&lt;listItem type=&quot;bulleted&quot; indent=0&gt;Item 1&lt;/listItem&gt;
 &lt;listItem type=&quot;bulleted&quot; indent=2&gt;Item 3&lt;/listItem&gt;</code></pre><p>Should become:</p>
 <pre class="prettyprint source"><code>&lt;listItem type=&quot;bulleted&quot; indent=0&gt;Item 1&lt;/listItem&gt;
 &lt;listItem type=&quot;bulleted&quot; indent=1&gt;Item 3&lt;/listItem&gt;   &lt;--- note that indent got post-fixed.</code></pre>
@@ -540,7 +543,7 @@ list so the model element is inserted to the view parent element corresponding t
 <p>To set correct values of the <code>type</code> and <code>indent</code> attributes the converter:</p>
 <ul>
 <li>checks <code>&lt;li&gt;</code>&apos;s parent,</li>
-<li>passes the <code>data.indent</code> value when <code>&lt;li&gt;</code>&apos;s sub-items are converted.</li>
+<li>stores and increases the <code>conversionApi.store.indent</code> value when <code>&lt;li&gt;</code>&apos;s sub-items are converted.</li>
 </ul>
                             <h4>Parameters</h4>
                                       <dl>

@@ -79,10 +79,10 @@
           </nav>
           <div class="types">
           </div>
-          <div class="main-description"><p>XmlDataProcessor class.
-This data processor implementation uses XML as input/output data.
+          <div class="main-description"><p>The XML data processor class.
+This data processor implementation uses XML as input and output data.
 This class is needed because unlike HTML, XML allows to use any tag with any value.
-E.g. <code>&lt;link&gt;Text&lt;/link&gt;</code> is a valid XML but invalid HTML.</p></div>
+For example, <code>&lt;link&gt;Text&lt;/link&gt;</code> is a valid XML but invalid HTML.</p></div>
 <div class="notice notice__filter api-props-filter">
   <div class="api-props-filter__inner">
     <h4>Filtering</h4>
@@ -121,10 +121,10 @@ E.g. <code>&lt;link&gt;Text&lt;/link&gt;</code> is a valid XML but invalid HTML.
                           <h3><code><a class="member-name" href="#namespaces">namespaces</a> : <span>DOMParser</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">List of namespaces allowed to use in XML input.</p>
+                          <p class="collapsing-list__excerpt">A list of namespaces allowed to use in the XML input.</p>
                           <div class="collapsing-list__content">
-<p>E.g. Registering namespaces [ &apos;attribute&apos;, &apos;container&apos; ] allows to use <code>&lt;attirbute:tagName&gt;&lt;/attribute:tagName&gt;</code> and
-<code>&lt;container:tagName&gt;&lt;/container:tagName&gt;</code> input. It is mainly for debugging.</p>
+<p>For example, registering namespaces [ &apos;attribute&apos;, &apos;container&apos; ] allows to use <code>&lt;attirbute:tagName&gt;&lt;/attribute:tagName&gt;</code>
+and <code>&lt;container:tagName&gt;&lt;/container:tagName&gt;</code> input. It is mainly for debugging.</p>
                           </div>
                         </div>
                       </li>
@@ -149,7 +149,7 @@ E.g. <code>&lt;link&gt;Text&lt;/link&gt;</code> is a valid XML but invalid HTML.
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">DOMParser instance used to parse XML string to XMLDocument.</p>
+                          <p class="collapsing-list__excerpt">DOM parser instance used to parse an XML string to an XML document.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -162,8 +162,8 @@ E.g. <code>&lt;link&gt;Text&lt;/link&gt;</code> is a valid XML but invalid HTML.
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">BasicHtmlWriter instance used to convert DOM elements to XML string.
-There is no need to use dedicated for XML writer because BasicHtmlWriter works well in this case.</p>
+                          <p class="collapsing-list__excerpt">A basic HTML writer instance used to convert DOM elements to an XML string.
+There is no need to use a dedicated XML writer because the basic HTML writer works well in this case.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -176,7 +176,7 @@ There is no need to use dedicated for XML writer because BasicHtmlWriter works w
                           <h3><code><a class="member-name" href="#constructor">constructor</a>( options = { [options.namespaces] } )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Creates a new instance of the XmlDataProcessor class.
+                          <p class="collapsing-list__excerpt">Creates a new instance of the XML data processor class.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -191,7 +191,7 @@ There is no need to use dedicated for XML writer because BasicHtmlWriter works w
                                                       <dt><code>[ options.namespaces ]
                                                           :
  <span>Array.&lt;String&gt;</span></code></dt>
-                                                      <dd><p>List of namespaces allowed to use in XML input.</p>
+                                                      <dd><p>A list of namespaces allowed to use in the XML input.</p>
                                                         <p>Defaults to <code>[]</code></p>
                                                       </dd>
                                                     </dl>
@@ -205,8 +205,8 @@ There is no need to use dedicated for XML writer because BasicHtmlWriter works w
                           <h3><code><a class="member-name" href="#toData">toData</a>( viewFragment ) &rarr;  <span>String</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Converts provided <a href="module_engine_view_documentfragment-DocumentFragment.html">DocumentFragment</a>
-to data format- in this case XML string.
+                          <p class="collapsing-list__excerpt">Converts the provided <a href="module_engine_view_documentfragment-DocumentFragment.html">document fragment</a>
+to data format &#x2014; in this case an XML string.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -220,7 +220,7 @@ to data format- in this case XML string.
                             <h4>Returns</h4>
                             <dl>
                                         <dt><code><span>String</span></code></dt>
-                                        <dd><p>XML string.</p>
+                                        <dd><p>An XML string.</p>
                                         </dd>
                             </dl>
                           </div>
@@ -231,7 +231,7 @@ to data format- in this case XML string.
                           <h3><code><a class="member-name" href="#toView">toView</a>( data ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_view_node-Node.html">Node</a></span> | <span><a class="collapsing-list__type" href="module_engine_view_documentfragment-DocumentFragment.html">DocumentFragment</a></span> | <span>null</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Converts provided XML string to view tree.
+                          <p class="collapsing-list__excerpt">Converts the provided XML string to a view tree.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -239,13 +239,13 @@ to data format- in this case XML string.
                                         <dt><code>data
                                             :
  <span>String</span></code></dt>
-                                        <dd><p>XML string.</p>
+                                        <dd><p>An XML string.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
                                         <dt><code><span><a class="collapsing-list__type" href="module_engine_view_node-Node.html">Node</a></span> | <span><a class="collapsing-list__type" href="module_engine_view_documentfragment-DocumentFragment.html">DocumentFragment</a></span> | <span>null</span></code></dt>
-                                        <dd><p>Converted view element.</p>
+                                        <dd><p>A converted view element.</p>
                                         </dd>
                             </dl>
                           </div>
@@ -259,8 +259,8 @@ to data format- in this case XML string.
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Converts XML String to its DOM representation. Returns DocumentFragment, containing nodes parsed from
-provided data.
+                          <p class="collapsing-list__excerpt">Converts an XML string to its DOM representation. Returns a document fragment containing nodes parsed from
+the provided data.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
