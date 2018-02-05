@@ -3,14 +3,16 @@
   <head>
     <meta charset="utf-8">
     <title>Class ViewConversionDispatcher (engine/conversion/viewconversiondispatcher~ViewConversionDispatcher) - CKEditor 5 API docs</title>
+    <meta property="og:title" content="Class ViewConversionDispatcher (engine/conversion/viewconversiondispatcher~ViewConversionDispatcher) - CKEditor 5 API docs">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
     <link rel="canonical" href="/ckeditor5/latest/api/module_engine_conversion_viewconversiondispatcher-ViewConversionDispatcher.html">
     <link rel="icon" type="image/png" href="../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../assets/img/favicons/32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.55/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/0.3.55/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../assets/0.3.60/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.60/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -49,15 +51,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.55/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.60/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.55/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.60/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <div class="api-header"><img src="../../../assets/0.3.55/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.60/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1 data-ln="module:engine/conversion/viewconversiondispatcher~ViewConversionDispatcher">ViewConversionDispatcher<span class="header__import--hidden"> (engine/conversion)</span>
               </h1>
@@ -92,12 +94,12 @@ In default application, <a href="module_engine_view_view.html">view</a> is conve
 <p>During conversion process, for all <a href="module_engine_view_node-Node.html">view nodes</a> from the converted view document fragment,
 <code>ViewConversionDispatcher</code> fires corresponding events. Special callbacks called &quot;converters&quot; should listen to
 <code>ViewConversionDispatcher</code> for those events.</p>
-<p>Each callback, as a first argument, is passed a special object <code>data</code> that has <code>viewItem</code>, <code>cursorPosition</code> and
+<p>Each callback, as a first argument, is passed a special object <code>data</code> that has <code>viewItem</code>, <code>modelCursor</code> and
 <code>modelRange</code> properties. <code>viewItem</code> property contains <a href="module_engine_view_node-Node.html">view node</a> or
 <a href="module_engine_view_documentfragment-DocumentFragment.html">view document fragment</a>
 that is converted at the moment and might be handled by the callback. <code>modelRange</code> property should be used to save the result
 of conversion and is always a <a href="module_engine_model_range-Range.html"><code>Range</code></a> when conversion result is correct.
-<code>cursorPosition</code> property is a <a href="module_engine_model_position-Position.html">position</a> on which conversion result will be inserted
+<code>modelCursor</code> property is a <a href="module_engine_model_position-Position.html">position</a> on which conversion result will be inserted
 and is a context according to <a href="module_engine_model_schema-Schema.html">schema</a> will be checked before the conversion.
 See also <a href="#convert"><code>convert</code></a>. It is also shared by reference by all callbacks listening to given event.</p>
 <p>The third parameter passed to a callback is an instance of <code>~ViewConversionDispatcher</code>
@@ -109,11 +111,11 @@ viewDispatcher.on( &apos;element:p&apos;, ( evt, data, conversionApi ) =&gt; {
     const paragraph = conversionApi.createElement( &apos;paragraph&apos; );
 
     // Check if paragraph is allowed on current cursor position.
-    if ( conversionApi.schema.checkChild( data.cursorPosition, paragraph ) ) {
+    if ( conversionApi.schema.checkChild( data.modelCursor, paragraph ) ) {
         // Try to consume value from consumable list.
         if ( !conversionApi.consumable.consume( data.viewItem, { name: true } ) ) {
             // Insert paragraph on cursor position.
-            conversionApi.writer.insert( paragraph, data.cursorPosition );
+            conversionApi.writer.insert( paragraph, data.modelCursor );
 
             // Convert paragraph children to paragraph element.
             conversionApi.convertChildren( data.viewItem, ModelPosition.createAt( paragraph ) );
@@ -122,7 +124,7 @@ viewDispatcher.on( &apos;element:p&apos;, ( evt, data, conversionApi ) =&gt; {
             data.modelRange = ModelRange.createOn( paragraph );
 
             // Continue conversion just after paragraph.
-            data.cursorPosition = data.modelRange.end;
+            data.modelCursor = data.modelRange.end;
         }
     }
 } );
@@ -132,7 +134,7 @@ viewDispatcher.on( &apos;element:a&apos;, ( evt, data, conversionApi ) =&gt; {
     if ( conversionApi.consumable.consume( data.viewItem, { name: true, attributes: [ &apos;href&apos; ] } ) ) {
         // &lt;a&gt; element is inline and is represented by an attribute in the model.
         // This is why we need to convert only children.
-        const { modelRange } = conversionApi.convertChildren( data.viewItem, data.cursorPosition );
+        const { modelRange } = conversionApi.convertChildren( data.viewItem, data.modelCursor );
 
         for ( let item of modelRange.getItems() ) {
             if ( conversionApi.schema.checkAttribute( item, &apos;linkHref&apos; ) ) {
@@ -716,7 +718,7 @@ We need to continue iterating over split elements as long as any element will be
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:element">
-                          <h3><code><a class="member-name" href="#event:element">element</a>( eventInfo, data = { data.viewItem, data.cursorPosition, data.modelRange }, conversionApi )</code></h3>
+                          <h3><code><a class="member-name" href="#event:element">element</a>( eventInfo, data = { data.viewItem, data.modelCursor, data.modelRange }, conversionApi )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when <a href="module_engine_view_element-Element.html"><code>Element</code></a> is converted.
@@ -735,7 +737,7 @@ all elements conversion or to conversion of specific elements.</p>
                                         <dt><code>data
                                             :
  <span>Object</span></code></dt>
-                                        <dd><p>Object containing viewItem to convert, cursorPosition as a conversion position and placeholder
+                                        <dd><p>Object containing viewItem to convert, modelCursor as a conversion position and placeholder
 for modelRange that is a conversion result. Keep in mind that this object is shared by reference between all
 callbacks that will be called. This means that callbacks can override values if needed, and those values will
 be available in other callbacks.</p>
@@ -747,7 +749,7 @@ be available in other callbacks.</p>
  <span><a class="collapsing-list__type" href="module_engine_view_item-Item.html">Item</a></span></code></dt>
                                                       <dd><p>Converted item.</p>
                                                       </dd>
-                                                      <dt><code>data.cursorPosition
+                                                      <dt><code>data.modelCursor
                                                           :
  <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></dt>
                                                       <dd><p>Target position for current item.</p>
@@ -828,11 +830,11 @@ converted element should be reflected by setting or modifying this property.</p>
               <div class="tree__item__wrapper" data-ln="module:adapter-ckfinder/uploadadapter"><a class="tree__item--module tree__item__text" href="module_adapter-ckfinder_uploadadapter.html">uploadadapter</a>
               </div>
               <ul>
-                <li data-private="true"><a href="module_adapter-ckfinder_uploadadapter-Adapter.html">
-                    <div class="tree__item__wrapper" data-ln="module:adapter-ckfinder/uploadadapter~Adapter"><span class="tree__item--class tree__item__text">Adapter</span></div></a>
-                </li>
                 <li><a href="module_adapter-ckfinder_uploadadapter-CKFinderUploadAdapter.html">
                     <div class="tree__item__wrapper" data-ln="module:adapter-ckfinder/uploadadapter~CKFinderUploadAdapter"><span class="tree__item--class tree__item__text">CKFinderUploadAdapter</span></div></a>
+                </li>
+                <li data-private="true"><a href="module_adapter-ckfinder_uploadadapter-UploadAdapter.html">
+                    <div class="tree__item__wrapper" data-ln="module:adapter-ckfinder/uploadadapter~UploadAdapter"><span class="tree__item--class tree__item__text">UploadAdapter</span></div></a>
                 </li>
                 <li><a href="module_adapter-ckfinder_uploadadapter-CKFinderAdapterConfig.html">
                     <div class="tree__item__wrapper" data-ln="module:adapter-ckfinder/uploadadapter~CKFinderAdapterConfig"><span class="tree__item--interface tree__item__text">CKFinderAdapterConfig</span></div></a>
@@ -2543,6 +2545,120 @@ converted element should be reflected by setting or modifying this property.</p>
           </ul>
         </li>
         <li class="toggler--collapsed">
+          <div class="tree__item__wrapper" data-ln="font"><span class="tree__item--package tree__item__text">font</span>
+          </div>
+          <ul>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:font/font"><a class="tree__item--module tree__item__text" href="module_font_font.html">font</a>
+              </div>
+              <ul>
+                <li><a href="module_font_font-Font.html">
+                    <div class="tree__item__wrapper" data-ln="module:font/font~Font"><span class="tree__item--class tree__item__text">Font</span></div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:font/fontcommand"><a class="tree__item--module tree__item__text" href="module_font_fontcommand.html">fontcommand</a>
+              </div>
+              <ul>
+                <li><a href="module_font_fontcommand-FontCommand.html">
+                    <div class="tree__item__wrapper" data-ln="module:font/fontcommand~FontCommand"><span class="tree__item--class tree__item__text">FontCommand</span></div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:font/fontfamily"><a class="tree__item--module tree__item__text" href="module_font_fontfamily.html">fontfamily</a>
+              </div>
+              <ul>
+                <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper" data-ln="module:font/fontfamily/fontfamilycommand"><a class="tree__item--module tree__item__text" href="module_font_fontfamily_fontfamilycommand.html">fontfamilycommand</a>
+                  </div>
+                  <ul>
+                    <li><a href="module_font_fontfamily_fontfamilycommand-FontFamilyCommand.html">
+                        <div class="tree__item__wrapper" data-ln="module:font/fontfamily/fontfamilycommand~FontFamilyCommand"><span class="tree__item--class tree__item__text">FontFamilyCommand</span></div></a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper" data-ln="module:font/fontfamily/fontfamilyediting"><a class="tree__item--module tree__item__text" href="module_font_fontfamily_fontfamilyediting.html">fontfamilyediting</a>
+                  </div>
+                  <ul>
+                    <li><a href="module_font_fontfamily_fontfamilyediting-FontFamilyEditing.html">
+                        <div class="tree__item__wrapper" data-ln="module:font/fontfamily/fontfamilyediting~FontFamilyEditing"><span class="tree__item--class tree__item__text">FontFamilyEditing</span></div></a>
+                    </li>
+                    <li><a href="module_font_fontfamily_fontfamilyediting-FontFamilyConfig.html">
+                        <div class="tree__item__wrapper" data-ln="module:font/fontfamily/fontfamilyediting~FontFamilyConfig"><span class="tree__item--interface tree__item__text">FontFamilyConfig</span></div></a>
+                    </li>
+                    <li><a href="module_font_fontfamily_fontfamilyediting-FontFamilyOption.html">
+                        <div class="tree__item__wrapper" data-ln="module:font/fontfamily/fontfamilyediting~FontFamilyOption"><span class="tree__item--typedef tree__item__text">FontFamilyOption</span></div></a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper" data-ln="module:font/fontfamily/fontfamilyui"><a class="tree__item--module tree__item__text" href="module_font_fontfamily_fontfamilyui.html">fontfamilyui</a>
+                  </div>
+                  <ul>
+                    <li><a href="module_font_fontfamily_fontfamilyui-FontFamilyUI.html">
+                        <div class="tree__item__wrapper" data-ln="module:font/fontfamily/fontfamilyui~FontFamilyUI"><span class="tree__item--class tree__item__text">FontFamilyUI</span></div></a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a href="module_font_fontfamily_utils.html">
+                    <div class="tree__item__wrapper" data-ln="module:font/fontfamily/utils"><span class="tree__item--module tree__item__text">utils</span></div></a>
+                </li>
+                <li><a href="module_font_fontfamily-FontFamily.html">
+                    <div class="tree__item__wrapper" data-ln="module:font/fontfamily~FontFamily"><span class="tree__item--class tree__item__text">FontFamily</span></div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:font/fontsize"><a class="tree__item--module tree__item__text" href="module_font_fontsize.html">fontsize</a>
+              </div>
+              <ul>
+                <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper" data-ln="module:font/fontsize/fontsizecommand"><a class="tree__item--module tree__item__text" href="module_font_fontsize_fontsizecommand.html">fontsizecommand</a>
+                  </div>
+                  <ul>
+                    <li><a href="module_font_fontsize_fontsizecommand-FontSizeCommand.html">
+                        <div class="tree__item__wrapper" data-ln="module:font/fontsize/fontsizecommand~FontSizeCommand"><span class="tree__item--class tree__item__text">FontSizeCommand</span></div></a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper" data-ln="module:font/fontsize/fontsizeediting"><a class="tree__item--module tree__item__text" href="module_font_fontsize_fontsizeediting.html">fontsizeediting</a>
+                  </div>
+                  <ul>
+                    <li><a href="module_font_fontsize_fontsizeediting-FontSizeEditing.html">
+                        <div class="tree__item__wrapper" data-ln="module:font/fontsize/fontsizeediting~FontSizeEditing"><span class="tree__item--class tree__item__text">FontSizeEditing</span></div></a>
+                    </li>
+                    <li><a href="module_font_fontsize_fontsizeediting-FontSizeConfig.html">
+                        <div class="tree__item__wrapper" data-ln="module:font/fontsize/fontsizeediting~FontSizeConfig"><span class="tree__item--interface tree__item__text">FontSizeConfig</span></div></a>
+                    </li>
+                    <li><a href="module_font_fontsize_fontsizeediting-FontSizeOption.html">
+                        <div class="tree__item__wrapper" data-ln="module:font/fontsize/fontsizeediting~FontSizeOption"><span class="tree__item--typedef tree__item__text">FontSizeOption</span></div></a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper" data-ln="module:font/fontsize/fontsizeui"><a class="tree__item--module tree__item__text" href="module_font_fontsize_fontsizeui.html">fontsizeui</a>
+                  </div>
+                  <ul>
+                    <li><a href="module_font_fontsize_fontsizeui-FontSizeUI.html">
+                        <div class="tree__item__wrapper" data-ln="module:font/fontsize/fontsizeui~FontSizeUI"><span class="tree__item--class tree__item__text">FontSizeUI</span></div></a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a href="module_font_fontsize_utils.html">
+                    <div class="tree__item__wrapper" data-ln="module:font/fontsize/utils"><span class="tree__item--module tree__item__text">utils</span></div></a>
+                </li>
+                <li><a href="module_font_fontsize-FontSize.html">
+                    <div class="tree__item__wrapper" data-ln="module:font/fontsize~FontSize"><span class="tree__item--class tree__item__text">FontSize</span></div></a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="toggler--collapsed">
           <div class="tree__item__wrapper" data-ln="heading"><a class="tree__item--package tree__item__text" href="heading.html">heading</a>
           </div>
           <ul>
@@ -2726,6 +2842,51 @@ converted element should be reflected by setting or modifying this property.</p>
                 </li>
               </ul>
             </li>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:image/imageupload"><a class="tree__item--module tree__item__text" href="module_image_imageupload.html">imageupload</a>
+              </div>
+              <ul>
+                <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper" data-ln="module:image/imageupload/imageuploadcommand"><a class="tree__item--module tree__item__text" href="module_image_imageupload_imageuploadcommand.html">imageuploadcommand</a>
+                  </div>
+                  <ul>
+                    <li><a href="module_image_imageupload_imageuploadcommand-ImageUploadCommand.html">
+                        <div class="tree__item__wrapper" data-ln="module:image/imageupload/imageuploadcommand~ImageUploadCommand"><span class="tree__item--class tree__item__text">ImageUploadCommand</span></div></a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper" data-ln="module:image/imageupload/imageuploadediting"><a class="tree__item--module tree__item__text" href="module_image_imageupload_imageuploadediting.html">imageuploadediting</a>
+                  </div>
+                  <ul>
+                    <li><a href="module_image_imageupload_imageuploadediting-ImageUploadEditing.html">
+                        <div class="tree__item__wrapper" data-ln="module:image/imageupload/imageuploadediting~ImageUploadEditing"><span class="tree__item--class tree__item__text">ImageUploadEditing</span></div></a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper" data-ln="module:image/imageupload/imageuploadprogress"><a class="tree__item--module tree__item__text" href="module_image_imageupload_imageuploadprogress.html">imageuploadprogress</a>
+                  </div>
+                  <ul>
+                    <li><a href="module_image_imageupload_imageuploadprogress-ImageUploadProgress.html">
+                        <div class="tree__item__wrapper" data-ln="module:image/imageupload/imageuploadprogress~ImageUploadProgress"><span class="tree__item--class tree__item__text">ImageUploadProgress</span></div></a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper" data-ln="module:image/imageupload/imageuploadui"><a class="tree__item--module tree__item__text" href="module_image_imageupload_imageuploadui.html">imageuploadui</a>
+                  </div>
+                  <ul>
+                    <li><a href="module_image_imageupload_imageuploadui-ImageUploadUI.html">
+                        <div class="tree__item__wrapper" data-ln="module:image/imageupload/imageuploadui~ImageUploadUI"><span class="tree__item--class tree__item__text">ImageUploadUI</span></div></a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a href="module_image_imageupload-ImageUpload.html">
+                    <div class="tree__item__wrapper" data-ln="module:image/imageupload~ImageUpload"><span class="tree__item--class tree__item__text">ImageUpload</span></div></a>
+                </li>
+              </ul>
+            </li>
           </ul>
         </li>
         <li class="toggler--collapsed">
@@ -2736,6 +2897,15 @@ converted element should be reflected by setting or modifying this property.</p>
               <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">ui</span>
               </div>
               <ul>
+                <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper" data-ln="module:link/ui/linkactionsview"><a class="tree__item--module tree__item__text" href="module_link_ui_linkactionsview.html">linkactionsview</a>
+                  </div>
+                  <ul>
+                    <li><a href="module_link_ui_linkactionsview-LinkActionsView.html">
+                        <div class="tree__item__wrapper" data-ln="module:link/ui/linkactionsview~LinkActionsView"><span class="tree__item--class tree__item__text">LinkActionsView</span></div></a>
+                    </li>
+                  </ul>
+                </li>
                 <li class="toggler--collapsed">
                   <div class="tree__item__wrapper" data-ln="module:link/ui/linkformview"><a class="tree__item--module tree__item__text" href="module_link_ui_linkformview.html">linkformview</a>
                   </div>
@@ -3543,53 +3713,8 @@ converted element should be reflected by setting or modifying this property.</p>
                 <li><a href="module_upload_filerepository-FileRepository.html">
                     <div class="tree__item__wrapper" data-ln="module:upload/filerepository~FileRepository"><span class="tree__item--class tree__item__text">FileRepository</span></div></a>
                 </li>
-                <li><a href="module_upload_filerepository-Adapter.html">
-                    <div class="tree__item__wrapper" data-ln="module:upload/filerepository~Adapter"><span class="tree__item--interface tree__item__text">Adapter</span></div></a>
-                </li>
-              </ul>
-            </li>
-            <li class="toggler--collapsed">
-              <div class="tree__item__wrapper" data-ln="module:upload/imageupload"><a class="tree__item--module tree__item__text" href="module_upload_imageupload.html">imageupload</a>
-              </div>
-              <ul>
-                <li><a href="module_upload_imageupload-ImageUpload.html">
-                    <div class="tree__item__wrapper" data-ln="module:upload/imageupload~ImageUpload"><span class="tree__item--class tree__item__text">ImageUpload</span></div></a>
-                </li>
-              </ul>
-            </li>
-            <li class="toggler--collapsed">
-              <div class="tree__item__wrapper" data-ln="module:upload/imageuploadbutton"><a class="tree__item--module tree__item__text" href="module_upload_imageuploadbutton.html">imageuploadbutton</a>
-              </div>
-              <ul>
-                <li><a href="module_upload_imageuploadbutton-ImageUploadButton.html">
-                    <div class="tree__item__wrapper" data-ln="module:upload/imageuploadbutton~ImageUploadButton"><span class="tree__item--class tree__item__text">ImageUploadButton</span></div></a>
-                </li>
-              </ul>
-            </li>
-            <li class="toggler--collapsed">
-              <div class="tree__item__wrapper" data-ln="module:upload/imageuploadcommand"><a class="tree__item--module tree__item__text" href="module_upload_imageuploadcommand.html">imageuploadcommand</a>
-              </div>
-              <ul>
-                <li><a href="module_upload_imageuploadcommand-ImageUploadCommand.html">
-                    <div class="tree__item__wrapper" data-ln="module:upload/imageuploadcommand~ImageUploadCommand"><span class="tree__item--class tree__item__text">ImageUploadCommand</span></div></a>
-                </li>
-              </ul>
-            </li>
-            <li class="toggler--collapsed">
-              <div class="tree__item__wrapper" data-ln="module:upload/imageuploadengine"><a class="tree__item--module tree__item__text" href="module_upload_imageuploadengine.html">imageuploadengine</a>
-              </div>
-              <ul>
-                <li><a href="module_upload_imageuploadengine-ImageUploadEngine.html">
-                    <div class="tree__item__wrapper" data-ln="module:upload/imageuploadengine~ImageUploadEngine"><span class="tree__item--class tree__item__text">ImageUploadEngine</span></div></a>
-                </li>
-              </ul>
-            </li>
-            <li class="toggler--collapsed">
-              <div class="tree__item__wrapper" data-ln="module:upload/imageuploadprogress"><a class="tree__item--module tree__item__text" href="module_upload_imageuploadprogress.html">imageuploadprogress</a>
-              </div>
-              <ul>
-                <li><a href="module_upload_imageuploadprogress-ImageUploadProgress.html">
-                    <div class="tree__item__wrapper" data-ln="module:upload/imageuploadprogress~ImageUploadProgress"><span class="tree__item--class tree__item__text">ImageUploadProgress</span></div></a>
+                <li><a href="module_upload_filerepository-UploadAdapter.html">
+                    <div class="tree__item__wrapper" data-ln="module:upload/filerepository~UploadAdapter"><span class="tree__item--interface tree__item__text">UploadAdapter</span></div></a>
                 </li>
               </ul>
             </li>
@@ -3648,11 +3773,14 @@ converted element should be reflected by setting or modifying this property.</p>
                 <li><a href="module_utils_dom_insertat.html">
                     <div class="tree__item__wrapper" data-ln="module:utils/dom/insertat"><span class="tree__item--module tree__item__text">insertat</span></div></a>
                 </li>
-                <li><a href="module_utils_dom_isdomnode.html">
-                    <div class="tree__item__wrapper" data-ln="module:utils/dom/isdomnode"><span class="tree__item--module tree__item__text">isdomnode</span></div></a>
+                <li><a href="module_utils_dom_isnode.html">
+                    <div class="tree__item__wrapper" data-ln="module:utils/dom/isnode"><span class="tree__item--module tree__item__text">isnode</span></div></a>
                 </li>
                 <li><a href="module_utils_dom_isrange.html">
                     <div class="tree__item__wrapper" data-ln="module:utils/dom/isrange"><span class="tree__item--module tree__item__text">isrange</span></div></a>
+                </li>
+                <li><a href="module_utils_dom_istext.html">
+                    <div class="tree__item__wrapper" data-ln="module:utils/dom/istext"><span class="tree__item--module tree__item__text">istext</span></div></a>
                 </li>
                 <li><a href="module_utils_dom_iswindow.html">
                     <div class="tree__item__wrapper" data-ln="module:utils/dom/iswindow"><span class="tree__item--module tree__item__text">iswindow</span></div></a>
