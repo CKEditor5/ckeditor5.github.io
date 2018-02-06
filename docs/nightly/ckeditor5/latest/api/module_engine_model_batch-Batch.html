@@ -71,8 +71,8 @@
           </p>
           <div class="types">
           </div>
-          <div class="main-description"><p><code>Batch</code> instance groups model changes (<a href="module_engine_model_delta_delta-Delta.html">deltas</a>). All deltas grouped in a single <code>Batch</code>
-can be reverted together, so you can think about <code>Batch</code> as of a single undo step. If you want to extend given undo step you
+          <div class="main-description"><p>A batch instance groups model changes (<a href="module_engine_model_delta_delta-Delta.html">deltas</a>). All deltas grouped in a single batch
+can be reverted together, so you can think about a batch as of a single undo step. If you want to extend a given undo step, you
 can add more changes to the batch using <a href="module_engine_model_model-Model.html#enqueueChange"><code>enqueueChange</code></a>:</p>
 <pre class="prettyprint source"><code>model.enqueueChange( batch, writer =&gt; {
     writer.insertText( &apos;foo&apos;, paragraph, &apos;end&apos; );
@@ -118,8 +118,8 @@ can add more changes to the batch using <a href="module_engine_model_model-Model
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Returns this batch base version, which is equal to the base version of first delta (which has base version set)
-in the batch. If there are no deltas in the batch or neither delta has base version set, it returns <code>null</code>.</p>
+                          <p class="collapsing-list__excerpt">Returns the base version of this batch, which is equal to the base version of the first delta (which has the base version set)
+in the batch. If there are no deltas in the batch or neither delta has the base version set, it returns <code>null</code>.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -132,7 +132,7 @@ in the batch. If there are no deltas in the batch or neither delta has base vers
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Array of deltas which compose this batch.</p>
+                          <p class="collapsing-list__excerpt">An array of deltas that compose this batch.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -145,12 +145,13 @@ in the batch. If there are no deltas in the batch or neither delta has base vers
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Type of the batch.</p>
+                          <p class="collapsing-list__excerpt">The type of the batch.</p>
                           <div class="collapsing-list__content">
-<p>Can be one of the following values:</p>
+<p>It can be one of the following values:</p>
 <ul>
-<li><code>&apos;default&apos;</code> - all &quot;normal&quot; batches, most commonly used type.</li>
-<li><code>&apos;transparent&apos;</code> - batch that should be ignored by other features, i.e. initial batch or collaborative editing changes.</li>
+<li><code>&apos;default&apos;</code> &#x2013; All &quot;normal&quot; batches. This is the most commonly used type.</li>
+<li><code>&apos;transparent&apos;</code> &#x2013; A batch that should be ignored by other features, i.e. an initial batch or collaborative editing
+changes.</li>
 </ul>
                           </div>
                         </div>
@@ -163,7 +164,7 @@ in the batch. If there are no deltas in the batch or neither delta has base vers
                           <h3><code><a class="member-name" href="#constructor">constructor</a>( [ type ] )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Creates <code>Batch</code> instance.
+                          <p class="collapsing-list__excerpt">Creates a batch instance.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -171,7 +172,7 @@ in the batch. If there are no deltas in the batch or neither delta has base vers
                                         <dt><code>[ type ]
                                             :
  <span>'transparent'</span> | <span>'default'</span></code></dt>
-                                        <dd><p>Type of the batch.</p>
+                                        <dd><p>The type of the batch.</p>
                                           <p>Defaults to <code>'default'</code></p>
                                         </dd>
                                       </dl>
@@ -183,7 +184,7 @@ in the batch. If there are no deltas in the batch or neither delta has base vers
                           <h3><code><a class="member-name" href="#addDelta">addDelta</a>( delta ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_delta_delta-Delta.html">Delta</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Adds delta to the batch instance. All modification methods (insert, remove, split, etc.) use this method
+                          <p class="collapsing-list__excerpt">Adds a delta to the batch instance. All modification methods (insert, remove, split, etc.) use this method
 to add created deltas.
                           </p>
                           <div class="collapsing-list__content">
@@ -192,13 +193,13 @@ to add created deltas.
                                         <dt><code>delta
                                             :
  <span><a class="collapsing-list__type" href="module_engine_model_delta_delta-Delta.html">Delta</a></span></code></dt>
-                                        <dd><p>Delta to add.</p>
+                                        <dd><p>A delta to add.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
                                         <dt><code><span><a class="collapsing-list__type" href="module_engine_model_delta_delta-Delta.html">Delta</a></span></code></dt>
-                                        <dd><p>Added delta.</p>
+                                        <dd><p>An added delta.</p>
                                         </dd>
                             </dl>
                           </div>
@@ -1945,120 +1946,6 @@ to add created deltas.
               <ul>
                 <li><a href="module_essentials_essentials-Essentials.html">
                     <div class="tree__item__wrapper" data-ln="module:essentials/essentials~Essentials"><span class="tree__item--class tree__item__text">Essentials</span></div></a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li class="toggler--collapsed">
-          <div class="tree__item__wrapper" data-ln="font"><span class="tree__item--package tree__item__text">font</span>
-          </div>
-          <ul>
-            <li class="toggler--collapsed">
-              <div class="tree__item__wrapper" data-ln="module:font/font"><a class="tree__item--module tree__item__text" href="module_font_font.html">font</a>
-              </div>
-              <ul>
-                <li><a href="module_font_font-Font.html">
-                    <div class="tree__item__wrapper" data-ln="module:font/font~Font"><span class="tree__item--class tree__item__text">Font</span></div></a>
-                </li>
-              </ul>
-            </li>
-            <li class="toggler--collapsed">
-              <div class="tree__item__wrapper" data-ln="module:font/fontcommand"><a class="tree__item--module tree__item__text" href="module_font_fontcommand.html">fontcommand</a>
-              </div>
-              <ul>
-                <li><a href="module_font_fontcommand-FontCommand.html">
-                    <div class="tree__item__wrapper" data-ln="module:font/fontcommand~FontCommand"><span class="tree__item--class tree__item__text">FontCommand</span></div></a>
-                </li>
-              </ul>
-            </li>
-            <li class="toggler--collapsed">
-              <div class="tree__item__wrapper" data-ln="module:font/fontfamily"><a class="tree__item--module tree__item__text" href="module_font_fontfamily.html">fontfamily</a>
-              </div>
-              <ul>
-                <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:font/fontfamily/fontfamilycommand"><a class="tree__item--module tree__item__text" href="module_font_fontfamily_fontfamilycommand.html">fontfamilycommand</a>
-                  </div>
-                  <ul>
-                    <li><a href="module_font_fontfamily_fontfamilycommand-FontFamilyCommand.html">
-                        <div class="tree__item__wrapper" data-ln="module:font/fontfamily/fontfamilycommand~FontFamilyCommand"><span class="tree__item--class tree__item__text">FontFamilyCommand</span></div></a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:font/fontfamily/fontfamilyediting"><a class="tree__item--module tree__item__text" href="module_font_fontfamily_fontfamilyediting.html">fontfamilyediting</a>
-                  </div>
-                  <ul>
-                    <li><a href="module_font_fontfamily_fontfamilyediting-FontFamilyEditing.html">
-                        <div class="tree__item__wrapper" data-ln="module:font/fontfamily/fontfamilyediting~FontFamilyEditing"><span class="tree__item--class tree__item__text">FontFamilyEditing</span></div></a>
-                    </li>
-                    <li><a href="module_font_fontfamily_fontfamilyediting-FontFamilyConfig.html">
-                        <div class="tree__item__wrapper" data-ln="module:font/fontfamily/fontfamilyediting~FontFamilyConfig"><span class="tree__item--interface tree__item__text">FontFamilyConfig</span></div></a>
-                    </li>
-                    <li><a href="module_font_fontfamily_fontfamilyediting-FontFamilyOption.html">
-                        <div class="tree__item__wrapper" data-ln="module:font/fontfamily/fontfamilyediting~FontFamilyOption"><span class="tree__item--typedef tree__item__text">FontFamilyOption</span></div></a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:font/fontfamily/fontfamilyui"><a class="tree__item--module tree__item__text" href="module_font_fontfamily_fontfamilyui.html">fontfamilyui</a>
-                  </div>
-                  <ul>
-                    <li><a href="module_font_fontfamily_fontfamilyui-FontFamilyUI.html">
-                        <div class="tree__item__wrapper" data-ln="module:font/fontfamily/fontfamilyui~FontFamilyUI"><span class="tree__item--class tree__item__text">FontFamilyUI</span></div></a>
-                    </li>
-                  </ul>
-                </li>
-                <li><a href="module_font_fontfamily_utils.html">
-                    <div class="tree__item__wrapper" data-ln="module:font/fontfamily/utils"><span class="tree__item--module tree__item__text">utils</span></div></a>
-                </li>
-                <li><a href="module_font_fontfamily-FontFamily.html">
-                    <div class="tree__item__wrapper" data-ln="module:font/fontfamily~FontFamily"><span class="tree__item--class tree__item__text">FontFamily</span></div></a>
-                </li>
-              </ul>
-            </li>
-            <li class="toggler--collapsed">
-              <div class="tree__item__wrapper" data-ln="module:font/fontsize"><a class="tree__item--module tree__item__text" href="module_font_fontsize.html">fontsize</a>
-              </div>
-              <ul>
-                <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:font/fontsize/fontsizecommand"><a class="tree__item--module tree__item__text" href="module_font_fontsize_fontsizecommand.html">fontsizecommand</a>
-                  </div>
-                  <ul>
-                    <li><a href="module_font_fontsize_fontsizecommand-FontSizeCommand.html">
-                        <div class="tree__item__wrapper" data-ln="module:font/fontsize/fontsizecommand~FontSizeCommand"><span class="tree__item--class tree__item__text">FontSizeCommand</span></div></a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:font/fontsize/fontsizeediting"><a class="tree__item--module tree__item__text" href="module_font_fontsize_fontsizeediting.html">fontsizeediting</a>
-                  </div>
-                  <ul>
-                    <li><a href="module_font_fontsize_fontsizeediting-FontSizeEditing.html">
-                        <div class="tree__item__wrapper" data-ln="module:font/fontsize/fontsizeediting~FontSizeEditing"><span class="tree__item--class tree__item__text">FontSizeEditing</span></div></a>
-                    </li>
-                    <li><a href="module_font_fontsize_fontsizeediting-FontSizeConfig.html">
-                        <div class="tree__item__wrapper" data-ln="module:font/fontsize/fontsizeediting~FontSizeConfig"><span class="tree__item--interface tree__item__text">FontSizeConfig</span></div></a>
-                    </li>
-                    <li><a href="module_font_fontsize_fontsizeediting-FontSizeOption.html">
-                        <div class="tree__item__wrapper" data-ln="module:font/fontsize/fontsizeediting~FontSizeOption"><span class="tree__item--typedef tree__item__text">FontSizeOption</span></div></a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:font/fontsize/fontsizeui"><a class="tree__item--module tree__item__text" href="module_font_fontsize_fontsizeui.html">fontsizeui</a>
-                  </div>
-                  <ul>
-                    <li><a href="module_font_fontsize_fontsizeui-FontSizeUI.html">
-                        <div class="tree__item__wrapper" data-ln="module:font/fontsize/fontsizeui~FontSizeUI"><span class="tree__item--class tree__item__text">FontSizeUI</span></div></a>
-                    </li>
-                  </ul>
-                </li>
-                <li><a href="module_font_fontsize_utils.html">
-                    <div class="tree__item__wrapper" data-ln="module:font/fontsize/utils"><span class="tree__item--module tree__item__text">utils</span></div></a>
-                </li>
-                <li><a href="module_font_fontsize-FontSize.html">
-                    <div class="tree__item__wrapper" data-ln="module:font/fontsize~FontSize"><span class="tree__item--class tree__item__text">FontSize</span></div></a>
                 </li>
               </ul>
             </li>

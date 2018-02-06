@@ -71,11 +71,11 @@
           </p>
           <div class="types">
           </div>
-          <div class="main-description"><p>Calculates difference between two model states.</p>
+          <div class="main-description"><p>Calculates the difference between two model states.</p>
 <p>Receives operations that are to be applied on the model document. Marks parts of the model document tree which
-are changed and saves those elements state before the change. Then, it compares saved elements with the
+are changed and saves the state of these elements before the change. Then, it compares saved elements with the
 changed elements, after all changes are applied on the model document. Calculates the diff between saved
-elements and new ones and returns a changes set.</p></div>
+elements and new ones and returns a change set.</p></div>
 <div class="notice notice__filter api-props-filter">
   <div class="api-props-filter__inner">
     <h4>Filtering</h4>
@@ -146,11 +146,11 @@ return the cached value instead of calculating it again.</p>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">For efficiency purposes, <code>Differ</code> stores the change set returned by the differ after <a href="module_engine_model_differ-Differ.html#getChanges"><code>getChanges</code></a> call.
-Cache is reset each time a new operation is buffered. If the cache has not been reset, <a href="module_engine_model_differ-Differ.html#getChanges"><code>getChanges</code></a> will
+                          <p class="collapsing-list__excerpt">For efficiency purposes, <code>Differ</code> stores the change set returned by the differ after the <a href="module_engine_model_differ-Differ.html#getChanges"><code>getChanges</code></a> call.
+The cache is reset each time a new operation is buffered. If the cache has not been reset, <a href="module_engine_model_differ-Differ.html#getChanges"><code>getChanges</code></a> will
 return the cached value instead of calculating it again.</p>
                           <div class="collapsing-list__content">
-<p>This property stores all changes evaluated by <code>Differ</code>, also those that took place in graveyard.</p>
+<p>This property stores all changes evaluated by <code>Differ</code>, including those that took place in the graveyard.</p>
                           </div>
                         </div>
                       </li>
@@ -162,7 +162,7 @@ return the cached value instead of calculating it again.</p>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Stores how many changes has been processed. Used to order changes chronologically. It is important
+                          <p class="collapsing-list__excerpt">Stores the number of changes that were processed. Used to order the changes chronologically. It is important
 when changes are sorted.</p>
                           <div class="collapsing-list__content">
                           </div>
@@ -179,7 +179,7 @@ when changes are sorted.</p>
                           <p class="collapsing-list__excerpt">A map that stores all changed markers.</p>
                           <div class="collapsing-list__content">
 <p>The keys of the map are marker names.
-The values of the map are objects with properties <code>oldRange</code> and <code>newRange</code>. Those holds the marker range
+The values of the map are objects with the <code>oldRange</code> and <code>newRange</code> properties. They store the marker range
 state before and after the change.</p>
                           </div>
                         </div>
@@ -192,7 +192,7 @@ state before and after the change.</p>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">A map that stores changes that happened in given element.</p>
+                          <p class="collapsing-list__excerpt">A map that stores changes that happened in a given element.</p>
                           <div class="collapsing-list__content">
 <p>The keys of the map are references to the model elements.
 The values of the map are arrays with changes that were done on this element.</p>
@@ -207,9 +207,9 @@ The values of the map are arrays with changes that were done on this element.</p
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">A map that stores &quot;element&apos;s children snapshots&quot;. A snapshot is representing children of given element before
+                          <p class="collapsing-list__excerpt">A map that stores &quot;element&apos;s children snapshots&quot;. A snapshot is representing children of a given element before
 the first change was applied on that element. Snapshot items are objects with two properties: <code>name</code>,
-containing element name (or <code>&apos;$text&apos;</code> for text node) and <code>attributes</code> which is a map of a node&apos;s attributes.</p>
+containing the element name (or <code>&apos;$text&apos;</code> for a text node) and <code>attributes</code> which is a map of the node&apos;s attributes.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -230,17 +230,18 @@ containing element name (or <code>&apos;$text&apos;</code> for text node) and <c
                                         <dt><code>markerName
                                             :
  <span>String</span></code></dt>
-                                        <dd><p>Name of marker which changed.</p>
+                                        <dd><p>The name of the marker that changed.</p>
                                         </dd>
                                         <dt><code>oldRange
                                             :
  <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | <span>null</span></code></dt>
-                                        <dd><p>Marker range before the change or <code>null</code> if marker was just created.</p>
+                                        <dd><p>Marker range before the change or <code>null</code> if the marker has just
+been created.</p>
                                         </dd>
                                         <dt><code>newRange
                                             :
  <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | <span>null</span></code></dt>
-                                        <dd><p>Marker range after the change or <code>null</code> if marker was removed.</p>
+                                        <dd><p>Marker range after the change or <code>null</code> if the marker was removed.</p>
                                         </dd>
                                       </dl>
                           </div>
@@ -251,17 +252,17 @@ containing element name (or <code>&apos;$text&apos;</code> for text node) and <c
                           <h3><code><a class="member-name" href="#bufferOperation">bufferOperation</a>( operation )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Buffers given operation. Operation has to be buffered before it is executed.
+                          <p class="collapsing-list__excerpt">Buffers a given operation. An operation has to be buffered before it is executed.
                           </p>
                           <div class="collapsing-list__content">
-<p>Operation type is checked and it is checked which nodes it will affect. Then those nodes are stored in <code>Differ</code>
+<p>Operation type is checked and it is checked which nodes it will affect. These nodes are then stored in <code>Differ</code>
 in the state before the operation is executed.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>operation
                                             :
  <span><a class="collapsing-list__type" href="module_engine_model_operation_operation-Operation.html">Operation</a></span></code></dt>
-                                        <dd><p>Operation to buffer.</p>
+                                        <dd><p>An operation to buffer.</p>
                                         </dd>
                                       </dl>
                           </div>
@@ -272,15 +273,15 @@ in the state before the operation is executed.</p>
                           <h3><code><a class="member-name" href="#getChanges">getChanges</a>( options = { [options.includeChangesInGraveyard] } ) &rarr;  <span>Array.&lt;Object&gt;</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Calculates diff between old model tree state (state before the first buffered operations since the last <a href="module_engine_model_differ-Differ.html#reset"><code>reset</code></a> call)
-and the new model tree state (actual one). Should be called after all buffered operations are executed.
+                          <p class="collapsing-list__excerpt">Calculates the diff between the old model tree state (the state before the first buffered operations since the last <a href="module_engine_model_differ-Differ.html#reset"><code>reset</code></a>
+call) and the new model tree state (actual one). It should be called after all buffered operations are executed.
                           </p>
                           <div class="collapsing-list__content">
-<p>The diff set is returned as an array of diff items, each describing a change done on model. The items are sorted by
+<p>The diff set is returned as an array of diff items, each describing a change done on the model. The items are sorted by
 the position on which the change happened. If a position <a href="module_engine_model_position-Position.html#isBefore">is before</a>
 another one, it will be on an earlier index in the diff set.</p>
-<p>Because calculating diff is a costly operation, the result is cached. If no new operation was buffered since the
-previous <a href="module_engine_model_differ-Differ.html#getChanges"><code>getChanges</code></a> call, the next call with return the cached value.</p>
+<p>Because calculating the diff is a costly operation, the result is cached. If no new operation was buffered since the
+previous <a href="module_engine_model_differ-Differ.html#getChanges"><code>getChanges</code></a> call, the next call will return the cached value.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>options
@@ -294,7 +295,7 @@ previous <a href="module_engine_model_differ-Differ.html#getChanges"><code>getCh
                                                           :
  <span>Boolean</span></code></dt>
                                                       <dd><p>If set to <code>true</code>, also changes that happened
-in graveyard root will be returned. By default, changes in graveyard root are not returned.</p>
+in the graveyard root will be returned. By default, changes in the graveyard root are not returned.</p>
                                                         <p>Defaults to <code>false</code></p>
                                                       </dd>
                                                     </dl>
@@ -303,7 +304,7 @@ in graveyard root will be returned. By default, changes in graveyard root are no
                             <h4>Returns</h4>
                             <dl>
                                         <dt><code><span>Array.&lt;Object&gt;</span></code></dt>
-                                        <dd><p>Diff between old and new model tree state.</p>
+                                        <dd><p>Diff between the old and the new model tree state.</p>
                                         </dd>
                             </dl>
                           </div>
@@ -320,7 +321,7 @@ in graveyard root will be returned. By default, changes in graveyard root are no
                             <h4>Returns</h4>
                             <dl>
                                         <dt><code><span>Array.&lt;Object&gt;</span></code></dt>
-                                        <dd><p>Markers to add. Each array item is an object containing <code>name</code> and <code>range</code> property.</p>
+                                        <dd><p>Markers to add. Each array item is an object containing the <code>name</code> and <code>range</code> properties.</p>
                                         </dd>
                             </dl>
                           </div>
@@ -331,13 +332,13 @@ in graveyard root will be returned. By default, changes in graveyard root are no
                           <h3><code><a class="member-name" href="#getMarkersToRemove">getMarkersToRemove</a>() &rarr;  <span>Array.&lt;Object&gt;</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Returns all markers which should be removed as a result of buffered changes.
+                          <p class="collapsing-list__excerpt">Returns all markers that should be removed as a result of buffered changes.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Returns</h4>
                             <dl>
                                         <dt><code><span>Array.&lt;Object&gt;</span></code></dt>
-                                        <dd><p>Markers to remove. Each array item is an object containing <code>name</code> and <code>range</code> property.</p>
+                                        <dd><p>Markers to remove. Each array item is an object containing the <code>name</code> and <code>range</code> properties.</p>
                                         </dd>
                             </dl>
                           </div>
@@ -362,7 +363,7 @@ in graveyard root will be returned. By default, changes in graveyard root are no
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Returns an array of objects that each is a single attribute change description.
+                          <p class="collapsing-list__excerpt">Returns an array of objects where each one is a single attribute change description.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -370,23 +371,23 @@ in graveyard root will be returned. By default, changes in graveyard root are no
                                         <dt><code>range
                                             :
  <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
-                                        <dd><p>Range on which change happened.</p>
+                                        <dd><p>The range where the change happened.</p>
                                         </dd>
                                         <dt><code>oldAttributes
                                             :
  <span>Map</span></code></dt>
-                                        <dd><p>Map, map iterator or compatible object that contains attributes before change.</p>
+                                        <dd><p>A map, map iterator or compatible object that contains attributes before the change.</p>
                                         </dd>
                                         <dt><code>newAttributes
                                             :
  <span>Map</span></code></dt>
-                                        <dd><p>Map, map iterator or compatible object that contains attributes after change.</p>
+                                        <dd><p>A map, map iterator or compatible object that contains attributes after the change.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
                                         <dt><code><span>Array.&lt;Object&gt;</span></code></dt>
-                                        <dd><p>Array containing one or more diff items.</p>
+                                        <dd><p>An array containing one or more diff items.</p>
                                         </dd>
                             </dl>
                           </div>
@@ -400,7 +401,7 @@ in graveyard root will be returned. By default, changes in graveyard root are no
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Gets an array of changes that were already saved for given element.
+                          <p class="collapsing-list__excerpt">Gets an array of changes that have already been saved for a given element.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -436,23 +437,23 @@ in graveyard root will be returned. By default, changes in graveyard root are no
                                         <dt><code>parent
                                             :
  <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
-                                        <dd><p>Element in which change happened.</p>
+                                        <dd><p>The element in which the change happened.</p>
                                         </dd>
                                         <dt><code>offset
                                             :
  <span>Number</span></code></dt>
-                                        <dd><p>Offset at which change happened.</p>
+                                        <dd><p>The offset at which change happened.</p>
                                         </dd>
                                         <dt><code>name
                                             :
  <span>String</span></code></dt>
-                                        <dd><p>Removed element name or <code>'$text'</code> for character.</p>
+                                        <dd><p>The name of the removed element or <code>'$text'</code> for a character.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
                                         <dt><code><span>Object</span></code></dt>
-                                        <dd><p>Diff item.</p>
+                                        <dd><p>The diff item.</p>
                                         </dd>
                             </dl>
                           </div>
@@ -474,23 +475,23 @@ in graveyard root will be returned. By default, changes in graveyard root are no
                                         <dt><code>parent
                                             :
  <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
-                                        <dd><p>Element in which change happened.</p>
+                                        <dd><p>The element in which change happened.</p>
                                         </dd>
                                         <dt><code>offset
                                             :
  <span>Number</span></code></dt>
-                                        <dd><p>Offset at which change happened.</p>
+                                        <dd><p>The offset at which change happened.</p>
                                         </dd>
                                         <dt><code>name
                                             :
  <span>String</span></code></dt>
-                                        <dd><p>Removed element name or <code>'$text'</code> for character.</p>
+                                        <dd><p>The name of the removed element or <code>'$text'</code> for a character.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
                             <dl>
                                         <dt><code><span>Object</span></code></dt>
-                                        <dd><p>Diff item.</p>
+                                        <dd><p>The diff item.</p>
                                         </dd>
                             </dl>
                           </div>
@@ -504,7 +505,7 @@ in graveyard root will be returned. By default, changes in graveyard root are no
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">For given newly saved change, compares it with a change already done on the element and modifies the incoming
+                          <p class="collapsing-list__excerpt">For a given newly saved change, compares it with a change already done on the element and modifies the incoming
 change and/or the old change.
                           </p>
                           <div class="collapsing-list__content">
@@ -518,7 +519,7 @@ change and/or the old change.
                                         <dt><code>changes
                                             :
  <span>Array.&lt;Object&gt;</span></code></dt>
-                                        <dd><p>Array containing all the changes done on that element.</p>
+                                        <dd><p>An array containing all the changes done on that element.</p>
                                         </dd>
                                       </dl>
                           </div>
@@ -532,8 +533,8 @@ change and/or the old change.
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Checks whether given element is inserted or removed or one of its ancestor is inserted or removed. Used to
-filter out sub-changes in elements that are changed itself.
+                          <p class="collapsing-list__excerpt">Checks whether a given element is inserted or removed or one of its ancestors is inserted or removed. Used to
+filter out sub-changes in elements that are changed.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -541,7 +542,7 @@ filter out sub-changes in elements that are changed itself.
                                         <dt><code>element
                                             :
  <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
-                                        <dd><p>Element to check.</p>
+                                        <dd><p>An element to check.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
@@ -561,7 +562,7 @@ filter out sub-changes in elements that are changed itself.
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Saves a children snapshot for given element.
+                          <p class="collapsing-list__excerpt">Saves a children snapshot for a given element.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -583,7 +584,7 @@ filter out sub-changes in elements that are changed itself.
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Saves and handles attribute change.
+                          <p class="collapsing-list__excerpt">Saves and handles an attribute change.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -632,7 +633,7 @@ filter out sub-changes in elements that are changed itself.
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Saves and handles insert change.
+                          <p class="collapsing-list__excerpt">Saves and handles an insert change.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -664,7 +665,7 @@ filter out sub-changes in elements that are changed itself.
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Saves and handles remove change.
+                          <p class="collapsing-list__excerpt">Saves and handles a remove change.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -2412,120 +2413,6 @@ filter out sub-changes in elements that are changed itself.
               <ul>
                 <li><a href="module_essentials_essentials-Essentials.html">
                     <div class="tree__item__wrapper" data-ln="module:essentials/essentials~Essentials"><span class="tree__item--class tree__item__text">Essentials</span></div></a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li class="toggler--collapsed">
-          <div class="tree__item__wrapper" data-ln="font"><span class="tree__item--package tree__item__text">font</span>
-          </div>
-          <ul>
-            <li class="toggler--collapsed">
-              <div class="tree__item__wrapper" data-ln="module:font/font"><a class="tree__item--module tree__item__text" href="module_font_font.html">font</a>
-              </div>
-              <ul>
-                <li><a href="module_font_font-Font.html">
-                    <div class="tree__item__wrapper" data-ln="module:font/font~Font"><span class="tree__item--class tree__item__text">Font</span></div></a>
-                </li>
-              </ul>
-            </li>
-            <li class="toggler--collapsed">
-              <div class="tree__item__wrapper" data-ln="module:font/fontcommand"><a class="tree__item--module tree__item__text" href="module_font_fontcommand.html">fontcommand</a>
-              </div>
-              <ul>
-                <li><a href="module_font_fontcommand-FontCommand.html">
-                    <div class="tree__item__wrapper" data-ln="module:font/fontcommand~FontCommand"><span class="tree__item--class tree__item__text">FontCommand</span></div></a>
-                </li>
-              </ul>
-            </li>
-            <li class="toggler--collapsed">
-              <div class="tree__item__wrapper" data-ln="module:font/fontfamily"><a class="tree__item--module tree__item__text" href="module_font_fontfamily.html">fontfamily</a>
-              </div>
-              <ul>
-                <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:font/fontfamily/fontfamilycommand"><a class="tree__item--module tree__item__text" href="module_font_fontfamily_fontfamilycommand.html">fontfamilycommand</a>
-                  </div>
-                  <ul>
-                    <li><a href="module_font_fontfamily_fontfamilycommand-FontFamilyCommand.html">
-                        <div class="tree__item__wrapper" data-ln="module:font/fontfamily/fontfamilycommand~FontFamilyCommand"><span class="tree__item--class tree__item__text">FontFamilyCommand</span></div></a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:font/fontfamily/fontfamilyediting"><a class="tree__item--module tree__item__text" href="module_font_fontfamily_fontfamilyediting.html">fontfamilyediting</a>
-                  </div>
-                  <ul>
-                    <li><a href="module_font_fontfamily_fontfamilyediting-FontFamilyEditing.html">
-                        <div class="tree__item__wrapper" data-ln="module:font/fontfamily/fontfamilyediting~FontFamilyEditing"><span class="tree__item--class tree__item__text">FontFamilyEditing</span></div></a>
-                    </li>
-                    <li><a href="module_font_fontfamily_fontfamilyediting-FontFamilyConfig.html">
-                        <div class="tree__item__wrapper" data-ln="module:font/fontfamily/fontfamilyediting~FontFamilyConfig"><span class="tree__item--interface tree__item__text">FontFamilyConfig</span></div></a>
-                    </li>
-                    <li><a href="module_font_fontfamily_fontfamilyediting-FontFamilyOption.html">
-                        <div class="tree__item__wrapper" data-ln="module:font/fontfamily/fontfamilyediting~FontFamilyOption"><span class="tree__item--typedef tree__item__text">FontFamilyOption</span></div></a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:font/fontfamily/fontfamilyui"><a class="tree__item--module tree__item__text" href="module_font_fontfamily_fontfamilyui.html">fontfamilyui</a>
-                  </div>
-                  <ul>
-                    <li><a href="module_font_fontfamily_fontfamilyui-FontFamilyUI.html">
-                        <div class="tree__item__wrapper" data-ln="module:font/fontfamily/fontfamilyui~FontFamilyUI"><span class="tree__item--class tree__item__text">FontFamilyUI</span></div></a>
-                    </li>
-                  </ul>
-                </li>
-                <li><a href="module_font_fontfamily_utils.html">
-                    <div class="tree__item__wrapper" data-ln="module:font/fontfamily/utils"><span class="tree__item--module tree__item__text">utils</span></div></a>
-                </li>
-                <li><a href="module_font_fontfamily-FontFamily.html">
-                    <div class="tree__item__wrapper" data-ln="module:font/fontfamily~FontFamily"><span class="tree__item--class tree__item__text">FontFamily</span></div></a>
-                </li>
-              </ul>
-            </li>
-            <li class="toggler--collapsed">
-              <div class="tree__item__wrapper" data-ln="module:font/fontsize"><a class="tree__item--module tree__item__text" href="module_font_fontsize.html">fontsize</a>
-              </div>
-              <ul>
-                <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:font/fontsize/fontsizecommand"><a class="tree__item--module tree__item__text" href="module_font_fontsize_fontsizecommand.html">fontsizecommand</a>
-                  </div>
-                  <ul>
-                    <li><a href="module_font_fontsize_fontsizecommand-FontSizeCommand.html">
-                        <div class="tree__item__wrapper" data-ln="module:font/fontsize/fontsizecommand~FontSizeCommand"><span class="tree__item--class tree__item__text">FontSizeCommand</span></div></a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:font/fontsize/fontsizeediting"><a class="tree__item--module tree__item__text" href="module_font_fontsize_fontsizeediting.html">fontsizeediting</a>
-                  </div>
-                  <ul>
-                    <li><a href="module_font_fontsize_fontsizeediting-FontSizeEditing.html">
-                        <div class="tree__item__wrapper" data-ln="module:font/fontsize/fontsizeediting~FontSizeEditing"><span class="tree__item--class tree__item__text">FontSizeEditing</span></div></a>
-                    </li>
-                    <li><a href="module_font_fontsize_fontsizeediting-FontSizeConfig.html">
-                        <div class="tree__item__wrapper" data-ln="module:font/fontsize/fontsizeediting~FontSizeConfig"><span class="tree__item--interface tree__item__text">FontSizeConfig</span></div></a>
-                    </li>
-                    <li><a href="module_font_fontsize_fontsizeediting-FontSizeOption.html">
-                        <div class="tree__item__wrapper" data-ln="module:font/fontsize/fontsizeediting~FontSizeOption"><span class="tree__item--typedef tree__item__text">FontSizeOption</span></div></a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:font/fontsize/fontsizeui"><a class="tree__item--module tree__item__text" href="module_font_fontsize_fontsizeui.html">fontsizeui</a>
-                  </div>
-                  <ul>
-                    <li><a href="module_font_fontsize_fontsizeui-FontSizeUI.html">
-                        <div class="tree__item__wrapper" data-ln="module:font/fontsize/fontsizeui~FontSizeUI"><span class="tree__item--class tree__item__text">FontSizeUI</span></div></a>
-                    </li>
-                  </ul>
-                </li>
-                <li><a href="module_font_fontsize_utils.html">
-                    <div class="tree__item__wrapper" data-ln="module:font/fontsize/utils"><span class="tree__item--module tree__item__text">utils</span></div></a>
-                </li>
-                <li><a href="module_font_fontsize-FontSize.html">
-                    <div class="tree__item__wrapper" data-ln="module:font/fontsize~FontSize"><span class="tree__item--class tree__item__text">FontSize</span></div></a>
                 </li>
               </ul>
             </li>
