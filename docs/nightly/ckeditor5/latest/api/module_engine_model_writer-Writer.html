@@ -595,6 +595,8 @@ or from a <a href="module_engine_model_range-Range.html">range</a>.
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Removes given <a href="module_engine_model_markercollection-Marker.html">marker</a> or marker with given name.
+The marker is removed accordingly to how it has been created, so if the marker was created using operation,
+it will be destroyed using operation.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -715,33 +717,63 @@ or on a <a href="module_engine_model_range-Range.html">range</a>.
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="setMarker">
-                          <h3><code><a class="member-name" href="#setMarker">setMarker</a>( markerOrName, [ newRange ] )</code></h3>
+                          <h3><code><a class="member-name" href="#setMarker">setMarker</a>( [ markerOrName ], [ range ], [ options ] = { [options.usingOperation] } ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_markercollection-Marker.html">Marker</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Adds or updates <a href="module_engine_model_markercollection-Marker.html">marker</a> with given name to given <code>range</code>.
+                          <p class="collapsing-list__excerpt">Adds or updates <a href="module_engine_model_markercollection-Marker.html">marker</a>.
                           </p>
                           <div class="collapsing-list__content">
-<p>If passed name is a name of already existing marker (or <a href="module_engine_model_markercollection-Marker.html">Marker</a> instance
-is passed), <code>range</code> parameter may be omitted. In this case marker will not be updated in
-<a href="module_engine_model_model-Model.html#markers">document marker collection</a>. However the marker will be added to
-the document history. This may be important for other features, like undo. From document history point of view, it will
-look like the marker was created and added to the document at the moment when it is set using this method.</p>
-<p>This is useful if the marker is created before it can be added to document history (e.g. a feature creating the marker
-is waiting for additional data, etc.). In this case, the marker may be first created directly through
-<a href="module_engine_model_markercollection-MarkerCollection.html">MarkerCollection API</a> and only later added using <code>Batch</code> API.</p>
+<p>As the first parameter you can set marker name or instance. If none of them is provided, new marker, with a unique
+name is created and returned.</p>
+<p>Using this method you can change markers range or define if the marker is managed by operation or not.</p>
+<p>Marker tracks changes is the document and updates the range automatically, so you need to update the range only
+when it changes directly. You do not need to update it after each document change.</p>
+<p>The option parameter let you decide if the marker should be managed by operations or not. See
+<a href="module_engine_model_markercollection-Marker.html">marker class description</a> to learn about the difference between
+markers managed by operation and managed directly. You can change this option for existing marker. This is
+useful if a marker have been created earlier and need to be added to the document history later.</p>
+<p>Update marker using operation:</p>
+<pre class="prettyprint source"><code>setMarker( marker, range, { usingOperation: true } );</code></pre><p>Create/update marker directly base on marker&apos;s name:</p>
+<pre class="prettyprint source"><code>setMarker( markerName, range );</code></pre><p>Create marker with a unique id using operation:</p>
+<pre class="prettyprint source"><code>setMarker( range, { usingOperation: true } );</code></pre><p>Create marker directly with a unique name:</p>
+<pre class="prettyprint source"><code>setMarker( range )</code></pre><p>Change marker&apos;s option (start using operations to manage it):</p>
+<pre class="prettyprint source"><code>setMarker( marker, { usingOperation: true } );</code></pre><p>Note: For efficiency reasons, it&apos;s best to create and keep as little markers as possible.</p>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code>markerOrName
+                                        <dt><code>[ markerOrName ]
                                             :
  <span><a class="collapsing-list__type" href="module_engine_model_markercollection-Marker.html">Marker</a></span> | <span>String</span></code></dt>
-                                        <dd><p>Marker or marker name to add or update.</p>
+                                        <dd><p>Name of marker to add, Marker instance to update or range for the marker with a unique name.</p>
+                                          <p>Defaults to <code>uid()</code></p>
                                         </dd>
-                                        <dt><code>[ newRange ]
+                                        <dt><code>[ range ]
                                             :
- <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
-                                        <dd><p>Marker range.</p>
+ <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | <span>Object</span></code></dt>
+                                        <dd><p>Marker range or options.</p>
+                                        </dd>
+                                        <dt><code>[ options ]
+                                            :
+ <span>Object</span></code></dt>
+                                        <dd>
+                                                    <div class="dlheading5">Properties
+                                                    </div>
+                                                    <dl>
+                                                      <dt><code>[ options.usingOperation ]
+                                                          :
+ <span>Boolean</span></code></dt>
+                                                      <dd><p>Flag indicated whether the marker should be added by MarkerOperation.
+See <a href="module_engine_model_markercollection-Marker.html#managedUsingOperations"><code>managedUsingOperations</code></a>.</p>
+                                                        <p>Defaults to <code>false</code></p>
+                                                      </dd>
+                                                    </dl>
                                         </dd>
                                       </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_markercollection-Marker.html">Marker</a></span></code></dt>
+                                        <dd><p>Marker that was set.</p>
+                                        </dd>
+                            </dl>
                           </div>
                         </div>
                       </li>
@@ -756,7 +788,6 @@ is waiting for additional data, etc.). In this case, the marker may be first cre
 <a href="module_engine_model_range-Range.html">range</a>, an iterable of <a href="module_engine_model_range-Range.html">ranges</a> or null.
                           </p>
                           <div class="collapsing-list__content">
-<p>Uses internally <a href="module_engine_model_documentselection-DocumentSelection.html#_setTo"><code>_setTo</code></a>.</p>
 <pre class="prettyprint source"><code>// Sets ranges from the given range.
 const range = new Range( start, end );
 writer.setSelection( range, isBackwardSelection );
@@ -773,11 +804,11 @@ writer.setSelection( otherSelection );
 const documentSelection = new DocumentSelection( doc );
 writer.setSelection( documentSelection );
 
-// Sets range at the given position.
+// Sets collapsed range at the given position.
 const position = new Position( root, path );
 writer.setSelection( position );
 
-// Sets range at the given element.
+// Sets collapsed range at the given offset in element.
 const paragraph = writer.createElement( &apos;paragraph&apos; );
 writer.setSelection( paragraph, offset );
 

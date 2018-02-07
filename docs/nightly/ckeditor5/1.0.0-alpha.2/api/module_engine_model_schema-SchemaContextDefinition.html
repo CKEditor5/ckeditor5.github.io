@@ -69,7 +69,7 @@
           </div>
           <p><span class="badge">typedef</span>
           </p>
-          <div class="types"><span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaContext.html">SchemaContext</a></span> | <span>Array.&lt;(String | <a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a>)&gt;</span>
+          <div class="types"><span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_schema-SchemaContext.html">SchemaContext</a></span> | <span>String</span> | <span>Array.&lt;(String | <a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a>)&gt;</span>
           </div>
           <div class="main-description"><p>The definition of a <a href="module_engine_model_schema-SchemaContext.html">schema context</a>.</p>
 <p>Contexts can be created in multiple ways:</p>
@@ -77,11 +77,11 @@
 <li>By defining a <strong>node</strong> &#x2013; in this cases this node and all its ancestors will be used.</li>
 <li>By defining a <strong>position</strong> in the document &#x2013; in this case all its ancestors will be used.</li>
 <li>By defining an <strong>array of nodes</strong> &#x2013; in this case this array defines the entire context.</li>
-<li>By defining an <strong>array of node names</strong> (potentially, mixed with real nodes) &#x2013; in this case
-nodes definied by strings will be &quot;mocked&quot;. Using strings is not recommended as it
-means that the context will be unrealistic (e.g. attributes of these nodes are not specified).
-However, at times this may be the only way to define the context (e.g. when checking some
-hypothetical situation).</li>
+<li>By defining a <strong>name of node</strong> - in this case node will be &quot;mocked&quot;. It is not recommended because context
+will be unrealistic (e.g. attributes of these nodes are not specified). However, at times this may be the only
+way to define the context (e.g. when checking some hypothetical situation).</li>
+<li>By defining an <strong>array of node names</strong> (potentially, mixed with real nodes) &#x2013; The same as <strong>name of node</strong>
+but it is possible to create a path.</li>
 <li>By defining a <a href="module_engine_model_schema-SchemaContext.html"><code>SchemaContext</code></a> instance - in this case the same instance as provided
 will be return.</li>
 </ul>
@@ -99,6 +99,9 @@ schema.checkChild( Position.createAt( paragraphElement ), &apos;foo&apos; );
 
 // Check in [ rootElement, paragraphElement ].
 schema.checkChild( [ rootElement, paragraphElement ], &apos;foo&apos; );
+
+// Check only fakeParagraphElement.
+schema.checkChild( &apos;paragraph&apos;, &apos;foo&apos; );
 
 // Check in [ fakeRootElement, fakeBarElement, paragraphElement ].
 schema.checkChild( [ &apos;$root&apos;, &apos;bar&apos;, paragraphElement ], &apos;foo&apos; );</code></pre><p>All these <code>checkChild()</code> calls will fire <a href="module_engine_model_schema-Schema.html#event:checkChild"><code>Schema#checkChild</code></a>

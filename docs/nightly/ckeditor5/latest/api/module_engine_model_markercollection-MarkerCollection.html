@@ -71,12 +71,15 @@
           </p>
           <div class="types">
           </div>
-          <div class="main-description"><p>Creates, stores and manages <code>markers (~Marker)</code>.</p>
-<p>Markers are created by <a href="#set">setting</a> a name for a <a href="module_engine_model_liverange-LiveRange.html">live range</a>
-in <code>MarkerCollection</code>. Name is used to group and identify markers. Names have to be unique, but markers can be grouped by
-using common prefixes, separated with <code>:</code>, for example: <code>user:john</code> or <code>search:3</code>.</p>
-<p>Since markers are based on <a href="module_engine_model_liverange-LiveRange.html">live ranges</a>, for efficiency reasons, it's
-best to create and keep at least markers as possible.</p></div>
+          <div class="main-description"><p>The collection of all <a href="module_engine_model_markercollection-Marker.html">markers</a> attached to the document.
+It lets you <a href="module_engine_model_markercollection-MarkerCollection.html#get">get</a> markers or track them using
+<a href="module_engine_model_markercollection-MarkerCollection.html#event:set"><code>set</code></a> and
+<a href="module_engine_model_markercollection-MarkerCollection.html#event:remove"><code>remove</code></a> events.</p>
+<p>To create, change or remove makers use <a href="module_engine_model_writer-Writer.html">model writers'</a> methods:
+<a href="module_engine_model_writer-Writer.html#setMarker"><code>setMarker</code></a> or <a href="module_engine_model_writer-Writer.html#removeMarker"><code>removeMarker</code></a>. Since
+the writer is the only proper way to change the data model it is not possible to change markers directly using this
+collection. All markers created by the writer will be automatically added to this collection.</p>
+<p>By default there is one marker collection available as <a href="module_engine_model_model-Model.html#markers">model property</a>.</p></div>
 <div class="notice notice__filter api-props-filter">
   <div class="api-props-filter__inner">
     <h4>Filtering</h4>
@@ -271,9 +274,12 @@ Array.from( markersCollection.getMarkersGroup( &apos;a&apos; ) ); // []</code></
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="remove">
-                          <h3><code><a class="member-name" href="#remove">remove</a>( markerOrName ) &rarr;  <span>Boolean</span></code></h3>
+                      <li class="collapsing-list__item" data-protected="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_remove">
+                          <h3><code><a class="member-name" href="#_remove">_remove</a>( markerOrName ) &rarr;  <span>Boolean</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+                          </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Removes given <a href="module_engine_model_markercollection-MarkerCollection.html">marker</a> or a marker with given name from the <code>MarkerCollection</code>.
@@ -296,9 +302,12 @@ Array.from( markersCollection.getMarkersGroup( &apos;a&apos; ) ); // []</code></
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="set">
-                          <h3><code><a class="member-name" href="#set">set</a>( markerOrName, range ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_markercollection-Marker.html">Marker</a></span></code></h3>
+                      <li class="collapsing-list__item" data-protected="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="_set">
+                          <h3><code><a class="member-name" href="#_set">_set</a>( markerOrName, range, managedUsingOperations ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_markercollection-Marker.html">Marker</a></span></code></h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+                          </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Creates and adds a <a href="module_engine_model_markercollection-MarkerCollection.html">marker</a> to the <code>MarkerCollection</code> with given name on given
@@ -313,12 +322,17 @@ happens and <code>false</code> is returned.</p>
                                         <dt><code>markerOrName
                                             :
  <span>String</span> | <span><a class="collapsing-list__type" href="module_engine_model_markercollection-Marker.html">Marker</a></span></code></dt>
-                                        <dd><p>Name of marker to add or Marker instance to update.</p>
+                                        <dd><p>Name of marker to set or marker instance to update.</p>
                                         </dd>
                                         <dt><code>range
                                             :
  <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
                                         <dd><p>Marker range.</p>
+                                        </dd>
+                                        <dt><code>managedUsingOperations
+                                            :
+ <span>Boolean</span></code></dt>
+                                        <dd><p>Specifies whether the marker is managed using operations.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
@@ -329,7 +343,7 @@ happens and <code>false</code> is returned.</p>
                             </dl>
                             <h4>Fires</h4>
                             <ul>
-                                        <li><span><a href="module_engine_model_markercollection-MarkerCollection.html#event:add">add</a></span>
+                                        <li><span><a href="module_engine_model_markercollection-MarkerCollection.html#event:set">set</a></span>
                                         </li>
                                         <li><span><a href="module_engine_model_markercollection-MarkerCollection.html#event:remove">remove</a></span>
                                         </li>
@@ -363,30 +377,6 @@ happens and <code>false</code> is returned.</p>
           <h2 id="Events">Events</h2>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:add">
-                          <h3><code><a class="member-name" href="#event:add">add</a>( eventInfo, The )</code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Fired whenever marker is added to <code>MarkerCollection</code>.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code>eventInfo
-                                            :
- <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                        <dd><p>An object containing information about the fired event.</p>
-                                        </dd>
-                                        <dt><code>The
-                                            :
- <span><a class="collapsing-list__type" href="module_engine_model_markercollection-Marker.html">Marker</a></span></code></dt>
-                                        <dd><p>added marker.</p>
-                                        </dd>
-                                      </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:remove">
                           <h3><code><a class="member-name" href="#event:remove">remove</a>( eventInfo, marker )</code></h3>
                         </div>
@@ -405,6 +395,30 @@ happens and <code>false</code> is returned.</p>
                                             :
  <span><a class="collapsing-list__type" href="module_engine_model_markercollection-Marker.html">Marker</a></span></code></dt>
                                         <dd><p>The removed marker.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="event:set">
+                          <h3><code><a class="member-name" href="#event:set">set</a>( eventInfo, The )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Fired whenever marker is added or updated in <code>MarkerCollection</code>.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>eventInfo
+                                            :
+ <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
+                                        <dt><code>The
+                                            :
+ <span><a class="collapsing-list__type" href="module_engine_model_markercollection-Marker.html">Marker</a></span></code></dt>
+                                        <dd><p>set marker.</p>
                                         </dd>
                                       </dl>
                           </div>
