@@ -11,8 +11,8 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.60/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/0.3.60/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../assets/0.3.61/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.61/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -39,7 +39,7 @@
     </script>
   </head>
   <body>
-    <header class="top">
+    <header class="top" data-project="ckeditor5">
       <div class="top__logo top__left"><span class="top__logo__product-icon" style="background-image: url( ../assets/img/project-logo.svg );"></span><a class="top__logo__product-title" href="../index.html">CKEditor 5</a></div>
       <ul class="top__menu">
         <li><a href="../builds/index.html">Builds</a></li>
@@ -51,15 +51,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.60/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.61/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.60/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.61/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <div class="api-header"><img src="../../../assets/0.3.60/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.61/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1 data-ln="module:ui/dropdown/dropdownview~DropdownView">DropdownView<span class="header__import--hidden"> (ui/dropdown)</span>
               </h1>
@@ -100,23 +100,34 @@
                                       <li title="@ckeditor/ckeditor5-utils/src/observablemixin~ObservableMixin"><code><span><a href="module_utils_observablemixin-ObservableMixin.html">ObservableMixin</a></span></code></li>
                           </ul>
                         </dd>
-                        <dt>Subclasses</dt>
-                        <dd>
-                          <ul>
-                                      <li title="@ckeditor/ckeditor5-ui/src/dropdown/button/buttondropdownview~ButtonDropdownView"><code><span><a href="module_ui_dropdown_button_buttondropdownview-ButtonDropdownView.html">ButtonDropdownView</a></span></code></li>
-                                      <li title="@ckeditor/ckeditor5-ui/src/dropdown/list/listdropdownview~ListDropdownView"><code><span><a href="module_ui_dropdown_list_listdropdownview-ListDropdownView.html">ListDropdownView</a></span></code></li>
-                          </ul>
-                        </dd>
             </dl>
           </nav>
           <div class="types">
           </div>
-          <div class="main-description"><p>The dropdown view class.</p>
-<pre class="prettyprint source"><code>const button = new ButtonView( locale );
+          <div class="main-description"><p>The dropdown view class. It manages the dropdown button and dropdown panel.</p>
+<p>In most cases, the easiest way to create a dropdown is by using the <a href="module_ui_dropdown_utils.html#createDropdown"><code>createDropdown</code></a>
+util:</p>
+<pre class="prettyprint source"><code>const dropdown = createDropdown( locale );
+
+// Configure dropdown&apos;s button properties:
+dropdown.buttonView.set( {
+    label: &apos;A dropdown&apos;,
+    withText: true
+} );
+
+dropdown.render();
+
+dropdown.panelView.element.textContent = &apos;Content of the panel&apos;;
+
+// Will render a dropdown with a panel containing a &quot;Content of the panel&quot; text.
+document.body.appendChild( dropdown.element );</code></pre><p>If you want to add a richer content to the dropdown panel, you can use the <a href="module_ui_dropdown_utils.html#addListToDropdown"><code>addListToDropdown</code></a>
+and <a href="module_ui_dropdown_utils.html#addToolbarToDropdown"><code>addToolbarToDropdown</code></a> helpers. See more examples in
+<a href="module_ui_dropdown_utils.html#createDropdown"><code>createDropdown</code></a> documentation.</p>
+<p>If you want to create a completely custom dropdown, then you can compose it manually:</p>
+<pre class="prettyprint source"><code>const button = new DropdownButtonView( locale );
 const panel = new DropdownPanelView( locale );
 const dropdown = new DropdownView( locale, button, panel );
 
-panel.element.textContent = &apos;Content of the panel&apos;;
 button.set( {
     label: &apos;A dropdown&apos;,
     withText: true
@@ -124,10 +135,13 @@ button.set( {
 
 dropdown.render();
 
+panel.element.textContent = &apos;Content of the panel&apos;;
+
 // Will render a dropdown with a panel containing a &quot;Content of the panel&quot; text.
-document.body.appendChild( dropdown.element );</code></pre><p>Also see <a href="module_ui_dropdown_createdropdown.html#createDropdown"><code>createDropdown</code></a> and
-<a href="module_ui_dropdown_list_createlistdropdown.html#createListDropdown"><code>createListDropdown</code></a> to learn about different
-dropdown creation helpers.</p></div>
+document.body.appendChild( dropdown.element );</code></pre><p>However, dropdown created this way will contain little behavior. You will need to implement handlers for actions
+such as <a href="module_ui_bindings_clickoutsidehandler.html#clickOutsideHandler">clicking outside an open dropdown</a>
+(which should close it) and support for arrow keys inside the panel. Therefore, unless you really know what
+you do and you really need to do it, it is recommended to use the <a href="module_ui_dropdown_utils.html#createDropdown"><code>createDropdown</code></a> helper.</p></div>
 <div class="notice notice__filter api-props-filter">
   <div class="api-props-filter__inner">
     <h4>Filtering</h4>
@@ -161,19 +175,6 @@ dropdown creation helpers.</p></div>
 </div>
           <h2 id="Properties">Properties</h2>
           <ul class="collapsing-list collapsing-list--filtered">
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="arrowView">
-                          <h3><code><a class="member-name" href="#arrowView">arrowView</a> : <span><a class="collapsing-list__type" href="module_ui_icon_iconview-IconView.html">IconView</a></span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">The arrow icon of the dropdown.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="buttonView">
                           <h3><code><a class="member-name" href="#buttonView">buttonView</a> : <span><a class="collapsing-list__type" href="module_ui_button_buttonview-ButtonView.html">ButtonView</a></span></code></h3>
@@ -213,7 +214,7 @@ from the <a href="module_ui_view-View.html#template"><code>template</code></a>.<
 
 const view = new SampleView();
 
-// Renders the #template
+// Renders the #template.
 view.render();
 
 // Append the HTML element of the view to &lt;body&gt;.
@@ -294,6 +295,21 @@ keystrokes of the dropdown:</p>
                           </div>
                         </div>
                       </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="listView">
+                          <h3><code><a class="member-name" href="#listView">listView</a> : <span><a class="collapsing-list__type" href="module_ui_list_listview-ListView.html">ListView</a></span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">A child <a href="module_ui_list_listview-ListView.html">list view</a> of the dropdown located
+in its <a href="module_ui_dropdown_dropdownview-DropdownView.html#panelView">panel</a>.</p>
+                          <div class="collapsing-list__content">
+<p><strong>Note</strong>: Only supported when dropdown has list view added using <a href="module_ui_dropdown_utils.html#addListToDropdown"><code>addListToDropdown</code></a>.</p>
+                          </div>
+                        </div>
+                      </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="locale">
                           <h3><code><a class="member-name" href="#locale">locale</a> : <span><a class="collapsing-list__type" href="module_utils_locale-Locale.html">Locale</a></span></code></h3>
@@ -337,6 +353,21 @@ keystrokes of the dropdown:</p>
                           <p class="collapsing-list__excerpt">Template of this view. It provides the <a href="module_ui_view-View.html#element"><code>element</code></a> representing
 the view in DOM, which is <a href="module_ui_view-View.html#render">rendered</a>.</p>
                           <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="toolbarView">
+                          <h3><code><a class="member-name" href="#toolbarView">toolbarView</a> : <span><a class="collapsing-list__type" href="module_ui_toolbar_toolbarview-ToolbarView.html">ToolbarView</a></span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">A child toolbar of the dropdown located in the
+<a href="module_ui_dropdown_dropdownview-DropdownView.html#panelView">panel</a>.</p>
+                          <div class="collapsing-list__content">
+<p><strong>Note</strong>: Only supported when dropdown has list view added using <a href="module_ui_dropdown_utils.html#addToolbarToDropdown"><code>addToolbarToDropdown</code></a>.</p>
                           </div>
                         </div>
                       </li>
@@ -387,24 +418,31 @@ into the <a href="module_ui_template-Template.html#children"><code>children</cod
           </ul>
           <h2 id="Methods">Methods</h2>
           <ul class="collapsing-list collapsing-list--filtered">
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="constructor">
-                          <h3><code><a class="member-name" href="#constructor">constructor</a>( [ locale ] )</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
+                          <h3><code><a class="member-name" href="#constructor">constructor</a>( [ locale ], buttonView, panelView )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Creates an instance of the <a href="module_ui_view-View.html"><code>View</code></a> class.
+                          <p class="collapsing-list__excerpt">Creates an instance of the dropdown.
                           </p>
                           <div class="collapsing-list__content">
-<p>Also see <a href="module_ui_view-View.html#render"><code>render</code></a>.</p>
+<p>Also see <a href="module_ui_dropdown_dropdownview-DropdownView.html#render"><code>render</code></a>.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>[ locale ]
                                             :
  <span><a class="collapsing-list__type" href="module_utils_locale-Locale.html">Locale</a></span></code></dt>
                                         <dd><p>The localization services instance.</p>
+                                        </dd>
+                                        <dt><code>buttonView
+                                            :
+ <span><a class="collapsing-list__type" href="module_ui_dropdown_button_dropdownbutton-DropdownButton.html">DropdownButton</a></span></code></dt>
+                                        <dd>
+                                        </dd>
+                                        <dt><code>panelView
+                                            :
+ <span><a class="collapsing-list__type" href="module_ui_dropdown_dropdownpanelview-DropdownPanelView.html">DropdownPanelView</a></span></code></dt>
+                                        <dd>
                                         </dd>
                                       </dl>
                             <div class="collapsing-list__bottom">
@@ -430,10 +468,13 @@ interface (like <a href="module_ui_model-Model.html"><code>Model</code></a>).
 of the observable it is bound to and react to the changes to these properties
 in the future.</p>
 <p><strong>Note</strong>: To release the binding use <a href="module_utils_observablemixin-Observable.html#unbind"><code>unbind</code></a>.</p>
+<p>Using <code>bind().to()</code> chain:</p>
 <pre class="prettyprint source"><code>A.bind( &apos;a&apos; ).to( B );
 A.bind( &apos;a&apos; ).to( B, &apos;b&apos; );
 A.bind( &apos;a&apos;, &apos;b&apos; ).to( B, &apos;c&apos;, &apos;d&apos; );
-A.bind( &apos;a&apos; ).to( B, &apos;b&apos;, C, &apos;d&apos;, ( b, d ) =&gt; b + d );</code></pre>
+A.bind( &apos;a&apos; ).to( B, &apos;b&apos;, C, &apos;d&apos;, ( b, d ) =&gt; b + d );</code></pre><p>It is also possible to bind to the same property in a observables collection using <code>bind().toMany()</code> chain:</p>
+<pre class="prettyprint source"><code>A.bind( &apos;a&apos; ).toMany( [ B, C, D ], &apos;x&apos;, ( a, b, c ) =&gt; a + b + c );
+A.bind( &apos;a&apos; ).toMany( [ B, C, D ], &apos;x&apos;, ( ...x ) =&gt; x.every( x =&gt; x ) );</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>bindProperties
@@ -445,7 +486,7 @@ A.bind( &apos;a&apos; ).to( B, &apos;b&apos;, C, &apos;d&apos;, ( b, d ) =&gt; b
                             <h4>Returns</h4>
                             <dl>
                                         <dt><code><span>Object</span></code></dt>
-                                        <dd><p>The bind chain with the <code>to()</code> method.</p>
+                                        <dd><p>The bind chain with the <code>to()</code> and <code>toMany()</code> methods.</p>
                                         </dd>
                             </dl>
                           </div>
@@ -579,7 +620,7 @@ foo.on( &apos;method&apos;, ( evt ) =&gt; {
 }, { priority: &apos;high&apos; } );
 
 foo.method(); // Nothing is logged.</code></pre><p>Note: we used a high priority listener here to execute this callback before the one which
-calls the orignal method (which used the default priority).</p>
+calls the original method (which used the default priority).</p>
 <p>It&apos;s also possible to change the return value:</p>
 <pre class="prettyprint source"><code>foo.on( &apos;method&apos;, ( evt ) =&gt; {
     evt.return = &apos;Foo!&apos;;
@@ -1697,6 +1738,31 @@ observable.prop = 2; // -&gt; &apos;prop has changed from 1 to 2&apos;</code></p
                           </div>
                         </div>
                       </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="execute">
+                          <h3><code><a class="member-name" href="#execute">execute</a>( eventInfo )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Fired when the toolbar button or list item is executed.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>For <a href="module_ui_dropdown_dropdownview-DropdownView.html#listView"><code>listView</code></a> It fires when one of the list items has been
+<a href="module_ui_list_listitemview-ListItemView.html#event:execute">executed</a>.</p>
+<p>For <a href="module_ui_dropdown_dropdownview-DropdownView.html#toolbarView"><code>toolbarView</code></a> It fires when one of the buttons has been
+<a href="module_ui_button_buttonview-ButtonView.html#event:execute">executed</a>.</p>
+<p><strong>Note</strong>: Only supported when dropdown has list view added using <a href="module_ui_dropdown_utils.html#addListToDropdown"><code>addListToDropdown</code></a>
+or <a href="module_ui_dropdown_utils.html#addToolbarToDropdown"><code>addToolbarToDropdown</code></a>.</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>eventInfo
+                                            :
+ <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event:render">
                           <h3><code><a class="member-name" href="#event:render">render</a>( eventInfo )</code></h3>
@@ -2328,32 +2394,35 @@ this event with the default priority.
               </div>
               <ul>
                 <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:engine/conversion/buildmodelconverter"><a class="tree__item--module tree__item__text" href="module_engine_conversion_buildmodelconverter.html">buildmodelconverter</a>
+                  <div class="tree__item__wrapper" data-ln="module:engine/conversion/conversion"><a class="tree__item--module tree__item__text" href="module_engine_conversion_conversion.html">conversion</a>
                   </div>
                   <ul>
-                    <li><a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/buildmodelconverter~ModelConverterBuilder"><span class="tree__item--class tree__item__text">ModelConverterBuilder</span></div></a>
-                    </li>
-                    <li><a href="module_engine_conversion_buildmodelconverter-MarkerViewElementCreatorData.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/buildmodelconverter~MarkerViewElementCreatorData"><span class="tree__item--typedef tree__item__text">MarkerViewElementCreatorData</span></div></a>
+                    <li><a href="module_engine_conversion_conversion-Conversion.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/conversion~Conversion"><span class="tree__item--class tree__item__text">Conversion</span></div></a>
                     </li>
                   </ul>
                 </li>
                 <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:engine/conversion/buildviewconverter"><a class="tree__item--module tree__item__text" href="module_engine_conversion_buildviewconverter.html">buildviewconverter</a>
+                  <div class="tree__item__wrapper" data-ln="module:engine/conversion/downcast-converters"><a class="tree__item--module tree__item__text" href="module_engine_conversion_downcast-converters.html">downcast-converters</a>
                   </div>
                   <ul>
-                    <li><a href="module_engine_conversion_buildviewconverter-ViewConverterBuilder.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/buildviewconverter~ViewConverterBuilder"><span class="tree__item--class tree__item__text">ViewConverterBuilder</span></div></a>
+                    <li><a href="module_engine_conversion_downcast-converters-HighlightAttributeElement.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/downcast-converters~HighlightAttributeElement"><span class="tree__item--class tree__item__text">HighlightAttributeElement</span></div></a>
+                    </li>
+                    <li><a href="module_engine_conversion_downcast-converters-HighlightDescriptor.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/downcast-converters~HighlightDescriptor"><span class="tree__item--typedef tree__item__text">HighlightDescriptor</span></div></a>
                     </li>
                   </ul>
                 </li>
+                <li><a href="module_engine_conversion_downcast-selection-converters.html">
+                    <div class="tree__item__wrapper" data-ln="module:engine/conversion/downcast-selection-converters"><span class="tree__item--module tree__item__text">downcast-selection-converters</span></div></a>
+                </li>
                 <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:engine/conversion/definition-based-converters"><a class="tree__item--module tree__item__text" href="module_engine_conversion_definition-based-converters.html">definition-based-converters</a>
+                  <div class="tree__item__wrapper" data-ln="module:engine/conversion/downcastdispatcher"><a class="tree__item--module tree__item__text" href="module_engine_conversion_downcastdispatcher.html">downcastdispatcher</a>
                   </div>
                   <ul>
-                    <li><a href="module_engine_conversion_definition-based-converters-ConverterDefinition.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/definition-based-converters~ConverterDefinition"><span class="tree__item--typedef tree__item__text">ConverterDefinition</span></div></a>
+                    <li><a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/downcastdispatcher~DowncastDispatcher"><span class="tree__item--class tree__item__text">DowncastDispatcher</span></div></a>
                     </li>
                   </ul>
                 </li>
@@ -2366,21 +2435,6 @@ this event with the default priority.
                     </li>
                   </ul>
                 </li>
-                <li><a href="module_engine_conversion_model-selection-to-view-converters.html">
-                    <div class="tree__item__wrapper" data-ln="module:engine/conversion/model-selection-to-view-converters"><span class="tree__item--module tree__item__text">model-selection-to-view-converters</span></div></a>
-                </li>
-                <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:engine/conversion/model-to-view-converters"><a class="tree__item--module tree__item__text" href="module_engine_conversion_model-to-view-converters.html">model-to-view-converters</a>
-                  </div>
-                  <ul>
-                    <li><a href="module_engine_conversion_model-to-view-converters-HighlightAttributeElement.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/model-to-view-converters~HighlightAttributeElement"><span class="tree__item--class tree__item__text">HighlightAttributeElement</span></div></a>
-                    </li>
-                    <li><a href="module_engine_conversion_model-to-view-converters-HighlightDescriptor.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/model-to-view-converters~HighlightDescriptor"><span class="tree__item--typedef tree__item__text">HighlightDescriptor</span></div></a>
-                    </li>
-                  </ul>
-                </li>
                 <li class="toggler--collapsed">
                   <div class="tree__item__wrapper" data-ln="module:engine/conversion/modelconsumable"><a class="tree__item--module tree__item__text" href="module_engine_conversion_modelconsumable.html">modelconsumable</a>
                   </div>
@@ -2390,20 +2444,26 @@ this event with the default priority.
                     </li>
                   </ul>
                 </li>
+                <li><a href="module_engine_conversion_two-way-converters.html">
+                    <div class="tree__item__wrapper" data-ln="module:engine/conversion/two-way-converters"><span class="tree__item--module tree__item__text">two-way-converters</span></div></a>
+                </li>
+                <li><a href="module_engine_conversion_upcast-converters.html">
+                    <div class="tree__item__wrapper" data-ln="module:engine/conversion/upcast-converters"><span class="tree__item--module tree__item__text">upcast-converters</span></div></a>
+                </li>
+                <li><a href="module_engine_conversion_upcast-selection-converters.html">
+                    <div class="tree__item__wrapper" data-ln="module:engine/conversion/upcast-selection-converters"><span class="tree__item--module tree__item__text">upcast-selection-converters</span></div></a>
+                </li>
                 <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:engine/conversion/modelconversiondispatcher"><a class="tree__item--module tree__item__text" href="module_engine_conversion_modelconversiondispatcher.html">modelconversiondispatcher</a>
+                  <div class="tree__item__wrapper" data-ln="module:engine/conversion/upcastdispatcher"><a class="tree__item--module tree__item__text" href="module_engine_conversion_upcastdispatcher.html">upcastdispatcher</a>
                   </div>
                   <ul>
-                    <li><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher"><span class="tree__item--class tree__item__text">ModelConversionDispatcher</span></div></a>
+                    <li><a href="module_engine_conversion_upcastdispatcher-UpcastDispatcher.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/upcastdispatcher~UpcastDispatcher"><span class="tree__item--class tree__item__text">UpcastDispatcher</span></div></a>
+                    </li>
+                    <li><a href="module_engine_conversion_upcastdispatcher-ViewConversionApi.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/upcastdispatcher~ViewConversionApi"><span class="tree__item--interface tree__item__text">ViewConversionApi</span></div></a>
                     </li>
                   </ul>
-                </li>
-                <li><a href="module_engine_conversion_view-selection-to-model-converters.html">
-                    <div class="tree__item__wrapper" data-ln="module:engine/conversion/view-selection-to-model-converters"><span class="tree__item--module tree__item__text">view-selection-to-model-converters</span></div></a>
-                </li>
-                <li><a href="module_engine_conversion_view-to-model-converters.html">
-                    <div class="tree__item__wrapper" data-ln="module:engine/conversion/view-to-model-converters"><span class="tree__item--module tree__item__text">view-to-model-converters</span></div></a>
                 </li>
                 <li class="toggler--collapsed">
                   <div class="tree__item__wrapper" data-ln="module:engine/conversion/viewconsumable"><a class="tree__item--module tree__item__text" href="module_engine_conversion_viewconsumable.html">viewconsumable</a>
@@ -2414,18 +2474,6 @@ this event with the default priority.
                     </li>
                     <li data-private="true"><a href="module_engine_conversion_viewconsumable-ViewElementConsumables.html">
                         <div class="tree__item__wrapper" data-ln="module:engine/conversion/viewconsumable~ViewElementConsumables"><span class="tree__item--class tree__item__text">ViewElementConsumables</span></div></a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:engine/conversion/viewconversiondispatcher"><a class="tree__item--module tree__item__text" href="module_engine_conversion_viewconversiondispatcher.html">viewconversiondispatcher</a>
-                  </div>
-                  <ul>
-                    <li><a href="module_engine_conversion_viewconversiondispatcher-ViewConversionDispatcher.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/viewconversiondispatcher~ViewConversionDispatcher"><span class="tree__item--class tree__item__text">ViewConversionDispatcher</span></div></a>
-                    </li>
-                    <li><a href="module_engine_conversion_viewconversiondispatcher-ViewConversionApi.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/viewconversiondispatcher~ViewConversionApi"><span class="tree__item--interface tree__item__text">ViewConversionApi</span></div></a>
                     </li>
                   </ul>
                 </li>
@@ -3243,6 +3291,15 @@ this event with the default priority.
                   </ul>
                 </li>
                 <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper" data-ln="module:engine/view/elementdefinition"><a class="tree__item--module tree__item__text" href="module_engine_view_elementdefinition.html">elementdefinition</a>
+                  </div>
+                  <ul>
+                    <li><a href="module_engine_view_elementdefinition-ElementDefinition.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/view/elementdefinition~ElementDefinition"><span class="tree__item--typedef tree__item__text">ElementDefinition</span></div></a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="toggler--collapsed">
                   <div class="tree__item__wrapper" data-ln="module:engine/view/emptyelement"><a class="tree__item--module tree__item__text" href="module_engine_view_emptyelement.html">emptyelement</a>
                   </div>
                   <ul>
@@ -3269,6 +3326,9 @@ this event with the default priority.
                   <ul>
                     <li><a href="module_engine_view_matcher-Matcher.html">
                         <div class="tree__item__wrapper" data-ln="module:engine/view/matcher~Matcher"><span class="tree__item--class tree__item__text">Matcher</span></div></a>
+                    </li>
+                    <li><a href="module_engine_view_matcher-MatcherPattern.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/view/matcher~MatcherPattern"><span class="tree__item--typedef tree__item__text">MatcherPattern</span></div></a>
                     </li>
                   </ul>
                 </li>
@@ -3379,15 +3439,6 @@ this event with the default priority.
                 </li>
                 <li><a href="module_engine_view_view.html">
                     <div class="tree__item__wrapper" data-ln="module:engine/view/view"><span class="tree__item--module tree__item__text">view</span></div></a>
-                </li>
-                <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:engine/view/viewelementdefinition"><a class="tree__item--module tree__item__text" href="module_engine_view_viewelementdefinition.html">viewelementdefinition</a>
-                  </div>
-                  <ul>
-                    <li><a href="module_engine_view_viewelementdefinition-ViewElementDefinition.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/view/viewelementdefinition~ViewElementDefinition"><span class="tree__item--typedef tree__item__text">ViewElementDefinition</span></div></a>
-                    </li>
-                  </ul>
                 </li>
                 <li class="toggler--collapsed">
                   <div class="tree__item__wrapper" data-ln="module:engine/view/writer"><a class="tree__item--module tree__item__text" href="module_engine_view_writer.html">writer</a>
@@ -3942,6 +3993,15 @@ this event with the default priority.
               </div>
               <ul>
                 <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper" data-ln="module:ui/button/button"><a class="tree__item--module tree__item__text" href="module_ui_button_button.html">button</a>
+                  </div>
+                  <ul>
+                    <li><a href="module_ui_button_button-Button.html">
+                        <div class="tree__item__wrapper" data-ln="module:ui/button/button~Button"><span class="tree__item--interface tree__item__text">Button</span></div></a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="toggler--collapsed">
                   <div class="tree__item__wrapper" data-ln="module:ui/button/buttonview"><a class="tree__item--module tree__item__text" href="module_ui_button_buttonview.html">buttonview</a>
                   </div>
                   <ul>
@@ -3961,64 +4021,31 @@ this event with the default priority.
                   </div>
                   <ul>
                     <li class="toggler--collapsed">
-                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">buttondropdownview</span>
+                      <div class="tree__item__wrapper" data-ln="module:ui/dropdown/button/dropdownbutton"><a class="tree__item--module tree__item__text" href="module_ui_dropdown_button_dropdownbutton.html">dropdownbutton</a>
                       </div>
                       <ul>
-                        <li><a href="module_ui_dropdown_button_buttondropdownview-ButtonDropdownView.html">
-                            <div class="tree__item__wrapper" data-ln="module:ui/dropdown/button/buttondropdownview~ButtonDropdownView"><span class="tree__item--class tree__item__text">ButtonDropdownView</span></div></a>
+                        <li><a href="module_ui_dropdown_button_dropdownbutton-DropdownButton.html">
+                            <div class="tree__item__wrapper" data-ln="module:ui/dropdown/button/dropdownbutton~DropdownButton"><span class="tree__item--interface tree__item__text">DropdownButton</span></div></a>
                         </li>
                       </ul>
                     </li>
                     <li class="toggler--collapsed">
-                      <div class="tree__item__wrapper" data-ln="module:ui/dropdown/button/buttondropdownmodel"><a class="tree__item--module tree__item__text" href="module_ui_dropdown_button_buttondropdownmodel.html">buttondropdownmodel</a>
+                      <div class="tree__item__wrapper" data-ln="module:ui/dropdown/button/dropdownbuttonview"><a class="tree__item--module tree__item__text" href="module_ui_dropdown_button_dropdownbuttonview.html">dropdownbuttonview</a>
                       </div>
                       <ul>
-                        <li><a href="module_ui_dropdown_button_buttondropdownmodel-ButtonDropdownModel.html">
-                            <div class="tree__item__wrapper" data-ln="module:ui/dropdown/button/buttondropdownmodel~ButtonDropdownModel"><span class="tree__item--interface tree__item__text">ButtonDropdownModel</span></div></a>
+                        <li><a href="module_ui_dropdown_button_dropdownbuttonview-DropdownButtonView.html">
+                            <div class="tree__item__wrapper" data-ln="module:ui/dropdown/button/dropdownbuttonview~DropdownButtonView"><span class="tree__item--class tree__item__text">DropdownButtonView</span></div></a>
                         </li>
                       </ul>
-                    </li>
-                    <li><a href="module_ui_dropdown_button_createbuttondropdown.html">
-                        <div class="tree__item__wrapper" data-ln="module:ui/dropdown/button/createbuttondropdown"><span class="tree__item--module tree__item__text">createbuttondropdown</span></div></a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">list</span>
-                  </div>
-                  <ul>
-                    <li class="toggler--collapsed">
-                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">listdropdownview</span>
-                      </div>
-                      <ul>
-                        <li><a href="module_ui_dropdown_list_listdropdownview-ListDropdownView.html">
-                            <div class="tree__item__wrapper" data-ln="module:ui/dropdown/list/listdropdownview~ListDropdownView"><span class="tree__item--class tree__item__text">ListDropdownView</span></div></a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li><a href="module_ui_dropdown_list_createlistdropdown.html">
-                        <div class="tree__item__wrapper" data-ln="module:ui/dropdown/list/createlistdropdown"><span class="tree__item--module tree__item__text">createlistdropdown</span></div></a>
                     </li>
                     <li class="toggler--collapsed">
-                      <div class="tree__item__wrapper" data-ln="module:ui/dropdown/list/listdropdownmodel"><a class="tree__item--module tree__item__text" href="module_ui_dropdown_list_listdropdownmodel.html">listdropdownmodel</a>
+                      <div class="tree__item__wrapper" data-ln="module:ui/dropdown/button/splitbuttonview"><a class="tree__item--module tree__item__text" href="module_ui_dropdown_button_splitbuttonview.html">splitbuttonview</a>
                       </div>
                       <ul>
-                        <li><a href="module_ui_dropdown_list_listdropdownmodel-ListDropdownModel.html">
-                            <div class="tree__item__wrapper" data-ln="module:ui/dropdown/list/listdropdownmodel~ListDropdownModel"><span class="tree__item--interface tree__item__text">ListDropdownModel</span></div></a>
+                        <li><a href="module_ui_dropdown_button_splitbuttonview-SplitButtonView.html">
+                            <div class="tree__item__wrapper" data-ln="module:ui/dropdown/button/splitbuttonview~SplitButtonView"><span class="tree__item--class tree__item__text">SplitButtonView</span></div></a>
                         </li>
                       </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li><a href="module_ui_dropdown_createdropdown.html">
-                    <div class="tree__item__wrapper" data-ln="module:ui/dropdown/createdropdown"><span class="tree__item--module tree__item__text">createdropdown</span></div></a>
-                </li>
-                <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:ui/dropdown/dropdownmodel"><a class="tree__item--module tree__item__text" href="module_ui_dropdown_dropdownmodel.html">dropdownmodel</a>
-                  </div>
-                  <ul>
-                    <li><a href="module_ui_dropdown_dropdownmodel-DropdownModel.html">
-                        <div class="tree__item__wrapper" data-ln="module:ui/dropdown/dropdownmodel~DropdownModel"><span class="tree__item--interface tree__item__text">DropdownModel</span></div></a>
                     </li>
                   </ul>
                 </li>

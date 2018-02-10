@@ -11,8 +11,8 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.60/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/0.3.60/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../assets/0.3.61/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.61/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -39,7 +39,7 @@
     </script>
   </head>
   <body>
-    <header class="top">
+    <header class="top" data-project="ckeditor5">
       <div class="top__logo top__left"><span class="top__logo__product-icon" style="background-image: url( ../assets/img/project-logo.svg );"></span><a class="top__logo__product-title" href="../index.html">CKEditor 5</a></div>
       <ul class="top__menu">
         <li><a href="../builds/index.html">Builds</a></li>
@@ -51,15 +51,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.60/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.61/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.60/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.61/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <div class="api-header"><img src="../../../assets/0.3.60/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.61/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1 data-ln="module:engine/conversion/modelconsumable~ModelConsumable">ModelConsumable<span class="header__import--hidden"> (engine/conversion)</span>
               </h1>
@@ -74,15 +74,71 @@
           <div class="main-description"><p>Manages a list of consumable values for <a href="module_engine_model_item-Item.html">model items</a>.</p>
 <p>Consumables are various aspects of the model. A model item can be broken down into singular properties that might be
 taken into consideration when converting that item.</p>
-<p><code>ModelConsumable</code> is used by <a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html"><code>ModelConversionDispatcher</code></a> while analyzing changed
+<p><code>ModelConsumable</code> is used by <a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html"><code>DowncastDispatcher</code></a> while analyzing changed
 parts of <a href="module_engine_model_document-Document.html">the document</a>. The added / changed / removed model items are broken down
-into singular properties (the item itself and it's attributes). All those parts are saved in <code>ModelConsumable</code>. Then,
+into singular properties (the item itself and it&apos;s attributes). All those parts are saved in <code>ModelConsumable</code>. Then,
 during conversion, when given part of model item is converted (i.e. the view element has been inserted into the view,
 but without attributes), consumable value is removed from <code>ModelConsumable</code>.</p>
 <p>For model items, <code>ModelConsumable</code> stores consumable values of one of following types: <code>insert</code>, <code>addAttribute:&lt;attributeKey&gt;</code>,
 <code>changeAttribute:&lt;attributeKey&gt;</code>, <code>removeAttribute:&lt;attributeKey&gt;</code>.</p>
-<p>In most cases, it is enough to let <a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html"><code>ModelConversionDispatcher</code></a>
-gather consumable values, so there is no need to use</p></div>
+<p>In most cases, it is enough to let <a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html"><code>DowncastDispatcher</code></a>
+gather consumable values, so there is no need to use
+<a href="module_engine_conversion_modelconsumable-ModelConsumable.html#add">add method</a> directly.
+However, it is important to understand how consumable values can be
+<a href="module_engine_conversion_modelconsumable-ModelConsumable.html#consume">consumed</a>.
+See <a href="module_engine_conversion_downcast-selection-converters.html">default downcast converters</a> for more information.</p>
+<p>Keep in mind, that one conversion event may have multiple callbacks (converters) attached to it. Each of those is
+able to convert one or more parts of the model. However, when one of those callbacks actually converts
+something, other should not, because they would duplicate the results. Using <code>ModelConsumable</code> helps avoiding
+this situation, because callbacks should only convert those values, which were not yet consumed from <code>ModelConsumable</code>.</p>
+<p>Consuming multiple values in a single callback:</p>
+<pre class="prettyprint source"><code>// Converter for custom `image` element that might have a `caption` element inside which changes
+// how the image is displayed in the view:
+//
+// Model:
+//
+// [image]
+//   &#x2514;&#x2500; [caption]
+//       &#x2514;&#x2500; foo
+//
+// View:
+//
+// &lt;figure&gt;
+//   &#x251C;&#x2500; &lt;img /&gt;
+//   &#x2514;&#x2500; &lt;caption&gt;
+//       &#x2514;&#x2500; foo
+modelConversionDispatcher.on( &apos;insert:image&apos;, ( evt, data, consumable, conversionApi ) =&gt; {
+    // First, consume the `image` element.
+    consumable.consume( data.item, &apos;insert&apos; );
+
+    // Just create normal image element for the view.
+    // Maybe it will be &quot;decorated&quot; later.
+    const viewImage = new ViewElement( &apos;img&apos; );
+    const insertPosition = conversionApi.mapper.toViewPosition( data.range.start );
+
+    // Check if the `image` element has children.
+    if ( data.item.childCount &gt; 0 ) {
+        const modelCaption = data.item.getChild( 0 );
+
+        // `modelCaption` insertion change is consumed from consumable values.
+        // It will not be converted by other converters, but it&apos;s children (probably some text) will be.
+        // Through mapping, converters for text will know where to insert contents of `modelCaption`.
+        if ( consumable.consume( modelCaption, &apos;insert&apos; ) ) {
+            const viewCaption = new ViewElement( &apos;figcaption&apos; );
+
+            const viewImageHolder = new ViewElement( &apos;figure&apos;, null, [ viewImage, viewCaption ] );
+
+            conversionApi.mapper.bindElements( modelCaption, viewCaption );
+            conversionApi.mapper.bindElements( data.item, viewImageHolder );
+            viewWriter.insert( insertPosition, viewImageHolder );
+        }
+    } else {
+        conversionApi.mapper.bindElements( data.item, viewImage );
+        viewWriter.insert( insertPosition, viewImage );
+    }
+
+    evt.stop();
+} );</code></pre></div>
 <div class="notice notice__filter api-props-filter">
   <div class="api-props-filter__inner">
     <h4>Filtering</h4>
@@ -976,32 +1032,35 @@ have same parent, same start index and same end index will get the same symbol.
               </div>
               <ul>
                 <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:engine/conversion/buildmodelconverter"><a class="tree__item--module tree__item__text" href="module_engine_conversion_buildmodelconverter.html">buildmodelconverter</a>
+                  <div class="tree__item__wrapper" data-ln="module:engine/conversion/conversion"><a class="tree__item--module tree__item__text" href="module_engine_conversion_conversion.html">conversion</a>
                   </div>
                   <ul>
-                    <li><a href="module_engine_conversion_buildmodelconverter-ModelConverterBuilder.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/buildmodelconverter~ModelConverterBuilder"><span class="tree__item--class tree__item__text">ModelConverterBuilder</span></div></a>
-                    </li>
-                    <li><a href="module_engine_conversion_buildmodelconverter-MarkerViewElementCreatorData.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/buildmodelconverter~MarkerViewElementCreatorData"><span class="tree__item--typedef tree__item__text">MarkerViewElementCreatorData</span></div></a>
+                    <li><a href="module_engine_conversion_conversion-Conversion.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/conversion~Conversion"><span class="tree__item--class tree__item__text">Conversion</span></div></a>
                     </li>
                   </ul>
                 </li>
                 <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:engine/conversion/buildviewconverter"><a class="tree__item--module tree__item__text" href="module_engine_conversion_buildviewconverter.html">buildviewconverter</a>
+                  <div class="tree__item__wrapper" data-ln="module:engine/conversion/downcast-converters"><a class="tree__item--module tree__item__text" href="module_engine_conversion_downcast-converters.html">downcast-converters</a>
                   </div>
                   <ul>
-                    <li><a href="module_engine_conversion_buildviewconverter-ViewConverterBuilder.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/buildviewconverter~ViewConverterBuilder"><span class="tree__item--class tree__item__text">ViewConverterBuilder</span></div></a>
+                    <li><a href="module_engine_conversion_downcast-converters-HighlightAttributeElement.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/downcast-converters~HighlightAttributeElement"><span class="tree__item--class tree__item__text">HighlightAttributeElement</span></div></a>
+                    </li>
+                    <li><a href="module_engine_conversion_downcast-converters-HighlightDescriptor.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/downcast-converters~HighlightDescriptor"><span class="tree__item--typedef tree__item__text">HighlightDescriptor</span></div></a>
                     </li>
                   </ul>
                 </li>
+                <li><a href="module_engine_conversion_downcast-selection-converters.html">
+                    <div class="tree__item__wrapper" data-ln="module:engine/conversion/downcast-selection-converters"><span class="tree__item--module tree__item__text">downcast-selection-converters</span></div></a>
+                </li>
                 <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:engine/conversion/definition-based-converters"><a class="tree__item--module tree__item__text" href="module_engine_conversion_definition-based-converters.html">definition-based-converters</a>
+                  <div class="tree__item__wrapper" data-ln="module:engine/conversion/downcastdispatcher"><a class="tree__item--module tree__item__text" href="module_engine_conversion_downcastdispatcher.html">downcastdispatcher</a>
                   </div>
                   <ul>
-                    <li><a href="module_engine_conversion_definition-based-converters-ConverterDefinition.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/definition-based-converters~ConverterDefinition"><span class="tree__item--typedef tree__item__text">ConverterDefinition</span></div></a>
+                    <li><a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/downcastdispatcher~DowncastDispatcher"><span class="tree__item--class tree__item__text">DowncastDispatcher</span></div></a>
                     </li>
                   </ul>
                 </li>
@@ -1014,21 +1073,6 @@ have same parent, same start index and same end index will get the same symbol.
                     </li>
                   </ul>
                 </li>
-                <li><a href="module_engine_conversion_model-selection-to-view-converters.html">
-                    <div class="tree__item__wrapper" data-ln="module:engine/conversion/model-selection-to-view-converters"><span class="tree__item--module tree__item__text">model-selection-to-view-converters</span></div></a>
-                </li>
-                <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:engine/conversion/model-to-view-converters"><a class="tree__item--module tree__item__text" href="module_engine_conversion_model-to-view-converters.html">model-to-view-converters</a>
-                  </div>
-                  <ul>
-                    <li><a href="module_engine_conversion_model-to-view-converters-HighlightAttributeElement.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/model-to-view-converters~HighlightAttributeElement"><span class="tree__item--class tree__item__text">HighlightAttributeElement</span></div></a>
-                    </li>
-                    <li><a href="module_engine_conversion_model-to-view-converters-HighlightDescriptor.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/model-to-view-converters~HighlightDescriptor"><span class="tree__item--typedef tree__item__text">HighlightDescriptor</span></div></a>
-                    </li>
-                  </ul>
-                </li>
                 <li class="toggler--collapsed">
                   <div class="tree__item__wrapper" data-ln="module:engine/conversion/modelconsumable"><a class="tree__item--module tree__item__text" href="module_engine_conversion_modelconsumable.html">modelconsumable</a>
                   </div>
@@ -1038,20 +1082,26 @@ have same parent, same start index and same end index will get the same symbol.
                     </li>
                   </ul>
                 </li>
+                <li><a href="module_engine_conversion_two-way-converters.html">
+                    <div class="tree__item__wrapper" data-ln="module:engine/conversion/two-way-converters"><span class="tree__item--module tree__item__text">two-way-converters</span></div></a>
+                </li>
+                <li><a href="module_engine_conversion_upcast-converters.html">
+                    <div class="tree__item__wrapper" data-ln="module:engine/conversion/upcast-converters"><span class="tree__item--module tree__item__text">upcast-converters</span></div></a>
+                </li>
+                <li><a href="module_engine_conversion_upcast-selection-converters.html">
+                    <div class="tree__item__wrapper" data-ln="module:engine/conversion/upcast-selection-converters"><span class="tree__item--module tree__item__text">upcast-selection-converters</span></div></a>
+                </li>
                 <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:engine/conversion/modelconversiondispatcher"><a class="tree__item--module tree__item__text" href="module_engine_conversion_modelconversiondispatcher.html">modelconversiondispatcher</a>
+                  <div class="tree__item__wrapper" data-ln="module:engine/conversion/upcastdispatcher"><a class="tree__item--module tree__item__text" href="module_engine_conversion_upcastdispatcher.html">upcastdispatcher</a>
                   </div>
                   <ul>
-                    <li><a href="module_engine_conversion_modelconversiondispatcher-ModelConversionDispatcher.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/modelconversiondispatcher~ModelConversionDispatcher"><span class="tree__item--class tree__item__text">ModelConversionDispatcher</span></div></a>
+                    <li><a href="module_engine_conversion_upcastdispatcher-UpcastDispatcher.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/upcastdispatcher~UpcastDispatcher"><span class="tree__item--class tree__item__text">UpcastDispatcher</span></div></a>
+                    </li>
+                    <li><a href="module_engine_conversion_upcastdispatcher-ViewConversionApi.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/upcastdispatcher~ViewConversionApi"><span class="tree__item--interface tree__item__text">ViewConversionApi</span></div></a>
                     </li>
                   </ul>
-                </li>
-                <li><a href="module_engine_conversion_view-selection-to-model-converters.html">
-                    <div class="tree__item__wrapper" data-ln="module:engine/conversion/view-selection-to-model-converters"><span class="tree__item--module tree__item__text">view-selection-to-model-converters</span></div></a>
-                </li>
-                <li><a href="module_engine_conversion_view-to-model-converters.html">
-                    <div class="tree__item__wrapper" data-ln="module:engine/conversion/view-to-model-converters"><span class="tree__item--module tree__item__text">view-to-model-converters</span></div></a>
                 </li>
                 <li class="toggler--collapsed">
                   <div class="tree__item__wrapper" data-ln="module:engine/conversion/viewconsumable"><a class="tree__item--module tree__item__text" href="module_engine_conversion_viewconsumable.html">viewconsumable</a>
@@ -1062,18 +1112,6 @@ have same parent, same start index and same end index will get the same symbol.
                     </li>
                     <li data-private="true"><a href="module_engine_conversion_viewconsumable-ViewElementConsumables.html">
                         <div class="tree__item__wrapper" data-ln="module:engine/conversion/viewconsumable~ViewElementConsumables"><span class="tree__item--class tree__item__text">ViewElementConsumables</span></div></a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:engine/conversion/viewconversiondispatcher"><a class="tree__item--module tree__item__text" href="module_engine_conversion_viewconversiondispatcher.html">viewconversiondispatcher</a>
-                  </div>
-                  <ul>
-                    <li><a href="module_engine_conversion_viewconversiondispatcher-ViewConversionDispatcher.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/viewconversiondispatcher~ViewConversionDispatcher"><span class="tree__item--class tree__item__text">ViewConversionDispatcher</span></div></a>
-                    </li>
-                    <li><a href="module_engine_conversion_viewconversiondispatcher-ViewConversionApi.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/viewconversiondispatcher~ViewConversionApi"><span class="tree__item--interface tree__item__text">ViewConversionApi</span></div></a>
                     </li>
                   </ul>
                 </li>
@@ -1891,6 +1929,15 @@ have same parent, same start index and same end index will get the same symbol.
                   </ul>
                 </li>
                 <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper" data-ln="module:engine/view/elementdefinition"><a class="tree__item--module tree__item__text" href="module_engine_view_elementdefinition.html">elementdefinition</a>
+                  </div>
+                  <ul>
+                    <li><a href="module_engine_view_elementdefinition-ElementDefinition.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/view/elementdefinition~ElementDefinition"><span class="tree__item--typedef tree__item__text">ElementDefinition</span></div></a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="toggler--collapsed">
                   <div class="tree__item__wrapper" data-ln="module:engine/view/emptyelement"><a class="tree__item--module tree__item__text" href="module_engine_view_emptyelement.html">emptyelement</a>
                   </div>
                   <ul>
@@ -1917,6 +1964,9 @@ have same parent, same start index and same end index will get the same symbol.
                   <ul>
                     <li><a href="module_engine_view_matcher-Matcher.html">
                         <div class="tree__item__wrapper" data-ln="module:engine/view/matcher~Matcher"><span class="tree__item--class tree__item__text">Matcher</span></div></a>
+                    </li>
+                    <li><a href="module_engine_view_matcher-MatcherPattern.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/view/matcher~MatcherPattern"><span class="tree__item--typedef tree__item__text">MatcherPattern</span></div></a>
                     </li>
                   </ul>
                 </li>
@@ -2027,15 +2077,6 @@ have same parent, same start index and same end index will get the same symbol.
                 </li>
                 <li><a href="module_engine_view_view.html">
                     <div class="tree__item__wrapper" data-ln="module:engine/view/view"><span class="tree__item--module tree__item__text">view</span></div></a>
-                </li>
-                <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:engine/view/viewelementdefinition"><a class="tree__item--module tree__item__text" href="module_engine_view_viewelementdefinition.html">viewelementdefinition</a>
-                  </div>
-                  <ul>
-                    <li><a href="module_engine_view_viewelementdefinition-ViewElementDefinition.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/view/viewelementdefinition~ViewElementDefinition"><span class="tree__item--typedef tree__item__text">ViewElementDefinition</span></div></a>
-                    </li>
-                  </ul>
                 </li>
                 <li class="toggler--collapsed">
                   <div class="tree__item__wrapper" data-ln="module:engine/view/writer"><a class="tree__item--module tree__item__text" href="module_engine_view_writer.html">writer</a>
@@ -2590,6 +2631,15 @@ have same parent, same start index and same end index will get the same symbol.
               </div>
               <ul>
                 <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper" data-ln="module:ui/button/button"><a class="tree__item--module tree__item__text" href="module_ui_button_button.html">button</a>
+                  </div>
+                  <ul>
+                    <li><a href="module_ui_button_button-Button.html">
+                        <div class="tree__item__wrapper" data-ln="module:ui/button/button~Button"><span class="tree__item--interface tree__item__text">Button</span></div></a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="toggler--collapsed">
                   <div class="tree__item__wrapper" data-ln="module:ui/button/buttonview"><a class="tree__item--module tree__item__text" href="module_ui_button_buttonview.html">buttonview</a>
                   </div>
                   <ul>
@@ -2609,64 +2659,31 @@ have same parent, same start index and same end index will get the same symbol.
                   </div>
                   <ul>
                     <li class="toggler--collapsed">
-                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">buttondropdownview</span>
+                      <div class="tree__item__wrapper" data-ln="module:ui/dropdown/button/dropdownbutton"><a class="tree__item--module tree__item__text" href="module_ui_dropdown_button_dropdownbutton.html">dropdownbutton</a>
                       </div>
                       <ul>
-                        <li><a href="module_ui_dropdown_button_buttondropdownview-ButtonDropdownView.html">
-                            <div class="tree__item__wrapper" data-ln="module:ui/dropdown/button/buttondropdownview~ButtonDropdownView"><span class="tree__item--class tree__item__text">ButtonDropdownView</span></div></a>
+                        <li><a href="module_ui_dropdown_button_dropdownbutton-DropdownButton.html">
+                            <div class="tree__item__wrapper" data-ln="module:ui/dropdown/button/dropdownbutton~DropdownButton"><span class="tree__item--interface tree__item__text">DropdownButton</span></div></a>
                         </li>
                       </ul>
                     </li>
                     <li class="toggler--collapsed">
-                      <div class="tree__item__wrapper" data-ln="module:ui/dropdown/button/buttondropdownmodel"><a class="tree__item--module tree__item__text" href="module_ui_dropdown_button_buttondropdownmodel.html">buttondropdownmodel</a>
+                      <div class="tree__item__wrapper" data-ln="module:ui/dropdown/button/dropdownbuttonview"><a class="tree__item--module tree__item__text" href="module_ui_dropdown_button_dropdownbuttonview.html">dropdownbuttonview</a>
                       </div>
                       <ul>
-                        <li><a href="module_ui_dropdown_button_buttondropdownmodel-ButtonDropdownModel.html">
-                            <div class="tree__item__wrapper" data-ln="module:ui/dropdown/button/buttondropdownmodel~ButtonDropdownModel"><span class="tree__item--interface tree__item__text">ButtonDropdownModel</span></div></a>
+                        <li><a href="module_ui_dropdown_button_dropdownbuttonview-DropdownButtonView.html">
+                            <div class="tree__item__wrapper" data-ln="module:ui/dropdown/button/dropdownbuttonview~DropdownButtonView"><span class="tree__item--class tree__item__text">DropdownButtonView</span></div></a>
                         </li>
                       </ul>
-                    </li>
-                    <li><a href="module_ui_dropdown_button_createbuttondropdown.html">
-                        <div class="tree__item__wrapper" data-ln="module:ui/dropdown/button/createbuttondropdown"><span class="tree__item--module tree__item__text">createbuttondropdown</span></div></a>
-                    </li>
-                  </ul>
-                </li>
-                <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">list</span>
-                  </div>
-                  <ul>
-                    <li class="toggler--collapsed">
-                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">listdropdownview</span>
-                      </div>
-                      <ul>
-                        <li><a href="module_ui_dropdown_list_listdropdownview-ListDropdownView.html">
-                            <div class="tree__item__wrapper" data-ln="module:ui/dropdown/list/listdropdownview~ListDropdownView"><span class="tree__item--class tree__item__text">ListDropdownView</span></div></a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li><a href="module_ui_dropdown_list_createlistdropdown.html">
-                        <div class="tree__item__wrapper" data-ln="module:ui/dropdown/list/createlistdropdown"><span class="tree__item--module tree__item__text">createlistdropdown</span></div></a>
                     </li>
                     <li class="toggler--collapsed">
-                      <div class="tree__item__wrapper" data-ln="module:ui/dropdown/list/listdropdownmodel"><a class="tree__item--module tree__item__text" href="module_ui_dropdown_list_listdropdownmodel.html">listdropdownmodel</a>
+                      <div class="tree__item__wrapper" data-ln="module:ui/dropdown/button/splitbuttonview"><a class="tree__item--module tree__item__text" href="module_ui_dropdown_button_splitbuttonview.html">splitbuttonview</a>
                       </div>
                       <ul>
-                        <li><a href="module_ui_dropdown_list_listdropdownmodel-ListDropdownModel.html">
-                            <div class="tree__item__wrapper" data-ln="module:ui/dropdown/list/listdropdownmodel~ListDropdownModel"><span class="tree__item--interface tree__item__text">ListDropdownModel</span></div></a>
+                        <li><a href="module_ui_dropdown_button_splitbuttonview-SplitButtonView.html">
+                            <div class="tree__item__wrapper" data-ln="module:ui/dropdown/button/splitbuttonview~SplitButtonView"><span class="tree__item--class tree__item__text">SplitButtonView</span></div></a>
                         </li>
                       </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li><a href="module_ui_dropdown_createdropdown.html">
-                    <div class="tree__item__wrapper" data-ln="module:ui/dropdown/createdropdown"><span class="tree__item--module tree__item__text">createdropdown</span></div></a>
-                </li>
-                <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper" data-ln="module:ui/dropdown/dropdownmodel"><a class="tree__item--module tree__item__text" href="module_ui_dropdown_dropdownmodel.html">dropdownmodel</a>
-                  </div>
-                  <ul>
-                    <li><a href="module_ui_dropdown_dropdownmodel-DropdownModel.html">
-                        <div class="tree__item__wrapper" data-ln="module:ui/dropdown/dropdownmodel~DropdownModel"><span class="tree__item--interface tree__item__text">DropdownModel</span></div></a>
                     </li>
                   </ul>
                 </li>

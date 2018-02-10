@@ -11,8 +11,8 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/0.3.60/css/styles.css" type="text/css" media="screen">
-    <script src="../../../../../assets/0.3.60/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../../../assets/0.3.61/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../../assets/0.3.61/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -39,7 +39,7 @@
     </script>
   </head>
   <body>
-    <header class="top">
+    <header class="top" data-project="ckeditor5">
       <div class="top__logo top__left"><span class="top__logo__product-icon" style="background-image: url( ../../../assets/img/project-logo.svg );"></span><a class="top__logo__product-title" href="../../../index.html">CKEditor 5</a></div>
       <ul class="top__menu">
         <li><a href="../../../builds/index.html">Builds</a></li>
@@ -51,15 +51,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.60/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.61/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/support/error-codes.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.60/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.60/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/support/error-codes.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.61/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.61/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <h1><img src="../../../../../assets/0.3.60/img/book.svg" alt="guide">Error codes
+          <h1><img src="../../../../../assets/0.3.61/img/book.svg" alt="guide">Error codes
           </h1>
 <p>CKEditor 5 Framework logs errors and warnings to the console. The following list contains more detailed descriptions of those issues.</p>
 
@@ -125,28 +125,6 @@
           <dd>
           </dd>
         </dl>
-      </div>
-    </div>
-  </li>
-  <li class="collapsing-list__item">
-    <div class="collapsing-list__term toggler--collapsed" id="build-model-converter-element-to-attribute">
-      <h3><code><a class="member-name" href="#build-model-converter-element-to-attribute">build-model-converter-element-to-attribute</a></code></h3>
-    </div>
-    <div class="collapsing-list__description">
-      <p class="collapsing-list__excerpt">To-attribute conversion is supported only for model attributes.
-      </p>
-      <div class="collapsing-list__content">
-      </div>
-    </div>
-  </li>
-  <li class="collapsing-list__item">
-    <div class="collapsing-list__term toggler--collapsed" id="build-model-converter-non-marker-to-highlight">
-      <h3><code><a class="member-name" href="#build-model-converter-non-marker-to-highlight">build-model-converter-non-marker-to-highlight</a></code></h3>
-    </div>
-    <div class="collapsing-list__description">
-      <p class="collapsing-list__excerpt">Conversion to a highlight is supported only from model markers.
-      </p>
-      <div class="collapsing-list__content">
       </div>
     </div>
   </li>
@@ -292,6 +270,28 @@ the provided name is correct and the component has been correctly
     </div>
     <div class="collapsing-list__description">
       <p class="collapsing-list__excerpt">Trying to remove configuration of the view not defined in the stack.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="conversion-for-unknown-group">
+      <h3><code><a class="member-name" href="#conversion-for-unknown-group">conversion-for-unknown-group</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Trying to add a converter to an unknown dispatchers group.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="conversion-register-group-exists">
+      <h3><code><a class="member-name" href="#conversion-register-group-exists">conversion-register-group-exists</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Trying to register a group name that was already registered.
       </p>
       <div class="collapsing-list__content">
       </div>
@@ -450,7 +450,7 @@ to the <a href="../../../api/module_upload_filerepository-FileRepository.html#Up
       <h3><code><a class="member-name" href="#model-document-createRoot-name-exists">model-document-createRoot-name-exists</a></code></h3>
     </div>
     <div class="collapsing-list__description">
-      <p class="collapsing-list__excerpt">Root with specified name already exists.
+      <p class="collapsing-list__excerpt">A root with the specified name already exists.
       </p>
       <div class="collapsing-list__content">
         <h4>Parameters</h4>
@@ -773,6 +773,17 @@ to the <a href="../../../api/module_upload_filerepository-FileRepository.html#Up
     </div>
     <div class="collapsing-list__description">
       <p class="collapsing-list__excerpt">Cannot bind multiple properties and use a callback in one binding.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="observable-bind-to-many-not-one-binding">
+      <h3><code><a class="member-name" href="#observable-bind-to-many-not-one-binding">observable-bind-to-many-not-one-binding</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Binding one attribute to many observables only possible with one attribute.
       </p>
       <div class="collapsing-list__content">
       </div>
