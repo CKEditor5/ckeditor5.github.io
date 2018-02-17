@@ -11,8 +11,8 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.62/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/0.3.62/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../assets/0.3.65/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.65/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -51,15 +51,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.62/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.65/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.62/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.65/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <div class="api-header"><img src="../../../assets/0.3.62/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.65/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1 data-ln="module:engine/model/node~Node">Node<span class="header__import--hidden"> (engine/model)</span>
               </h1>
@@ -88,8 +88,8 @@
 <p><strong>Note:</strong> If a node is detached from the model tree, you can manipulate it using it's API.
 However, it is <strong>very important</strong> that nodes already attached to model tree should be only changed through
 <a href="module_engine_model_writer-Writer.html">Writer API</a>.</p>
-<p>Changes done by <code>Node</code> methods, like <a href="module_engine_model_element-Element.html#insertChildren">insertChildren</a> or
-<a href="module_engine_model_node-Node.html#setAttribute">setAttribute</a>
+<p>Changes done by <code>Node</code> methods, like <a href="module_engine_model_element-Element.html#function-insertChildren">insertChildren</a> or
+<a href="module_engine_model_node-Node.html#function-setAttribute">setAttribute</a>
 do not generate <a href="module_engine_model_operation_operation-Operation.html">operations</a>
 which are essential for correct editor work if you modify nodes in <a href="module_engine_model_document-Document.html">document</a> root.</p>
 <p>The flow of working on <code>Node</code> (and classes that inherits from it) is as such:</p>
@@ -99,8 +99,8 @@ which are essential for correct editor work if you modify nodes in <a href="modu
 <li>Change <code>Node</code> that was already added to the model using <code>Batch</code> API.</li>
 </ol>
 <p>Similarly, you cannot use <code>Batch</code> API on a node that has not been added to the model tree, with the exception
-of <a href="module_engine_model_writer-Writer.html#insert">inserting</a> that node to the model tree.</p>
-<p>Be aware that using <a href="module_engine_model_writer-Writer.html#remove">remove from Batch API</a> does not allow to use <code>Node</code> API because
+of <a href="module_engine_model_writer-Writer.html#function-insert">inserting</a> that node to the model tree.</p>
+<p>Be aware that using <a href="module_engine_model_writer-Writer.html#function-remove">remove from Batch API</a> does not allow to use <code>Node</code> API because
 the information about <code>Node</code> is still kept in model document.</p>
 <p>In case of <a href="module_engine_model_element-Element.html">element node</a>, adding and removing children also counts as changing a node and
 follows same rules.</p></div>
@@ -138,8 +138,8 @@ follows same rules.</p></div>
           <h2 id="Properties">Properties</h2>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="document">
-                          <h3><code><a class="member-name" href="#document">document</a> : <span><a class="collapsing-list__type" href="module_engine_model_document-Document.html">Document</a></span> | <span>null</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="member-document">
+                          <h3><code><a class="member-name" href="#member-document">document</a> : <span><a class="collapsing-list__type" href="module_engine_model_document-Document.html">Document</a></span> | <span>null</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">readonly</span>
                           </p>
@@ -152,23 +152,23 @@ a <a href="module_engine_model_documentfragment-DocumentFragment.html">DocumentF
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="endOffset">
-                          <h3><code><a class="member-name" href="#endOffset">endOffset</a> : <span>Number</span> | <span>null</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="member-endOffset">
+                          <h3><code><a class="member-name" href="#member-endOffset">endOffset</a> : <span>Number</span> | <span>null</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">readonly</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Offset at which this node ends in it&apos;s parent. It is equal to the sum of this node&apos;s
-<a href="module_engine_model_node-Node.html#startOffset">start offset</a> and <a href="module_engine_model_node-Node.html#offsetSize">offset  size</a>.
+<a href="module_engine_model_node-Node.html#member-startOffset">start offset</a> and <a href="module_engine_model_node-Node.html#member-offsetSize">offset  size</a>.
 Equals to <code>null</code> if the node has no parent.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="index">
-                          <h3><code><a class="member-name" href="#index">index</a> : <span>Number</span> | <span>null</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="member-index">
+                          <h3><code><a class="member-name" href="#member-index">index</a> : <span>Number</span> | <span>null</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">readonly</span>
                           </p>
@@ -182,8 +182,8 @@ This means that model tree got broken.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="nextSibling">
-                          <h3><code><a class="member-name" href="#nextSibling">nextSibling</a> : <span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span> | <span>null</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="member-nextSibling">
+                          <h3><code><a class="member-name" href="#member-nextSibling">nextSibling</a> : <span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span> | <span>null</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">readonly</span>
                           </p>
@@ -195,8 +195,8 @@ This means that model tree got broken.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="offsetSize">
-                          <h3><code><a class="member-name" href="#offsetSize">offsetSize</a> : <span>Number</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="member-offsetSize">
+                          <h3><code><a class="member-name" href="#member-offsetSize">offsetSize</a> : <span>Number</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">readonly</span>
                           </p>
@@ -211,8 +211,8 @@ than one entity, i.e. <a href="module_engine_model_text-Text.html">text node</a>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="parent">
-                          <h3><code><a class="member-name" href="#parent">parent</a> : <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span> | <span>null</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="member-parent">
+                          <h3><code><a class="member-name" href="#member-parent">parent</a> : <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span> | <span>null</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">readonly</span>
                           </p>
@@ -226,8 +226,8 @@ Equals to <code>null</code> if the node has no parent.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="previousSibling">
-                          <h3><code><a class="member-name" href="#previousSibling">previousSibling</a> : <span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span> | <span>null</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="member-previousSibling">
+                          <h3><code><a class="member-name" href="#member-previousSibling">previousSibling</a> : <span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span> | <span>null</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">readonly</span>
                           </p>
@@ -239,8 +239,8 @@ Equals to <code>null</code> if the node has no parent.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="root">
-                          <h3><code><a class="member-name" href="#root">root</a> : <span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="member-root">
+                          <h3><code><a class="member-name" href="#member-root">root</a> : <span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">readonly</span>
                           </p>
@@ -253,14 +253,14 @@ of <a href="module_engine_model_documentfragment-DocumentFragment.html"><code>Do
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="startOffset">
-                          <h3><code><a class="member-name" href="#startOffset">startOffset</a> : <span>Number</span> | <span>Null</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="member-startOffset">
+                          <h3><code><a class="member-name" href="#member-startOffset">startOffset</a> : <span>Number</span> | <span>Null</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">readonly</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Offset at which this node starts in it&apos;s parent. It is equal to the sum of <a href="module_engine_model_node-Node.html#offsetSize">offsetSize</a>
+                          <p class="collapsing-list__excerpt">Offset at which this node starts in it&apos;s parent. It is equal to the sum of <a href="module_engine_model_node-Node.html#member-offsetSize">offsetSize</a>
 of all it&apos;s previous siblings. Equals to <code>null</code> if node has no parent.</p>
                           <div class="collapsing-list__content">
 <p>Accessing this property throws an error if this node&apos;s parent element does not contain it.
@@ -269,8 +269,8 @@ This means that model tree got broken.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_attrs">
-                          <h3><code><a class="member-name" href="#_attrs">_attrs</a> : <span>Map</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="member-_attrs">
+                          <h3><code><a class="member-name" href="#member-_attrs">_attrs</a> : <span>Map</span></code></h3>
                           <p class="badges">
 <span class="badge badge--red ">private</span>
                           </p>
@@ -285,8 +285,8 @@ This means that model tree got broken.</p>
           <h2 id="Methods">Methods</h2>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="constructor">
-                          <h3><code><a class="member-name" href="#constructor">constructor</a>( [ attrs ] )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-constructor">
+                          <h3><code><a class="member-name" href="#function-constructor">constructor</a>( [ attrs ] )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Creates a model node.
@@ -298,15 +298,15 @@ This means that model tree got broken.</p>
                                         <dt><code>[ attrs ]
                                             :
  <span>Object</span></code></dt>
-                                        <dd><p>Node's attributes. See <a href="module_utils_tomap.html#toMap"><code>toMap</code></a> for a list of accepted values.</p>
+                                        <dd><p>Node's attributes. See <a href="module_utils_tomap.html#static-function-toMap"><code>toMap</code></a> for a list of accepted values.</p>
                                         </dd>
                                       </dl>
                           </div>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="clearAttributes">
-                          <h3><code><a class="member-name" href="#clearAttributes">clearAttributes</a>()</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-clearAttributes">
+                          <h3><code><a class="member-name" href="#function-clearAttributes">clearAttributes</a>()</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Removes all attributes from the node.
@@ -316,8 +316,8 @@ This means that model tree got broken.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="clone">
-                          <h3><code><a class="member-name" href="#clone">clone</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-clone">
+                          <h3><code><a class="member-name" href="#function-clone">clone</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Creates a copy of this node, that is a node with exactly same attributes, and returns it.
@@ -333,8 +333,8 @@ This means that model tree got broken.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="getAncestors">
-                          <h3><code><a class="member-name" href="#getAncestors">getAncestors</a>( options = { [options.includeSelf], [options.parentFirst] } ) &rarr;  <span>Array</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-getAncestors">
+                          <h3><code><a class="member-name" href="#function-getAncestors">getAncestors</a>( options = { [options.includeSelf], [options.parentFirst] } ) &rarr;  <span>Array</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Returns ancestors array of this node.
@@ -375,8 +375,8 @@ otherwise root element will be the first item in the array.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="getAttribute">
-                          <h3><code><a class="member-name" href="#getAttribute">getAttribute</a>( key ) &rarr;  <span>*</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-getAttribute">
+                          <h3><code><a class="member-name" href="#function-getAttribute">getAttribute</a>( key ) &rarr;  <span>*</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Gets an attribute value for given key or <code>undefined</code> if that attribute is not set on node.
@@ -400,8 +400,8 @@ otherwise root element will be the first item in the array.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="getAttributeKeys">
-                          <h3><code><a class="member-name" href="#getAttributeKeys">getAttributeKeys</a>() &rarr;  <span>Iterable.&lt;String&gt;</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-getAttributeKeys">
+                          <h3><code><a class="member-name" href="#function-getAttributeKeys">getAttributeKeys</a>() &rarr;  <span>Iterable.&lt;String&gt;</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Returns iterator that iterates over this node&apos;s attribute keys.
@@ -417,8 +417,8 @@ otherwise root element will be the first item in the array.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="getAttributes">
-                          <h3><code><a class="member-name" href="#getAttributes">getAttributes</a>() &rarr;  <span>Iterable.&lt;*&gt;</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-getAttributes">
+                          <h3><code><a class="member-name" href="#function-getAttributes">getAttributes</a>() &rarr;  <span>Iterable.&lt;*&gt;</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Returns iterator that iterates over this node&apos;s attributes.
@@ -436,8 +436,8 @@ This format is accepted by native <code>Map</code> object and also can be passed
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="getCommonAncestor">
-                          <h3><code><a class="member-name" href="#getCommonAncestor">getCommonAncestor</a>( node, options = { [options.includeSelf] } ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span> | <span>null</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-getCommonAncestor">
+                          <h3><code><a class="member-name" href="#function-getCommonAncestor">getCommonAncestor</a>( node, options = { [options.includeSelf] } ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_documentfragment-DocumentFragment.html">DocumentFragment</a></span> | <span>null</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Returns a <a href="module_engine_model_element-Element.html"><code>Element</code></a> or <a href="module_engine_model_documentfragment-DocumentFragment.html"><code>DocumentFragment</code></a>
@@ -478,12 +478,12 @@ Which means that if e.g. node A is inside B, then their common ancestor will be 
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="getPath">
-                          <h3><code><a class="member-name" href="#getPath">getPath</a>() &rarr;  <span>Array.&lt;Number&gt;</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-getPath">
+                          <h3><code><a class="member-name" href="#function-getPath">getPath</a>() &rarr;  <span>Array.&lt;Number&gt;</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Gets path to the node. The path is an array containing starting offsets of consecutive ancestors of this node,
-beginning from <a href="module_engine_model_node-Node.html#root">root</a>, down to this node&apos;s starting offset. The path can be used to
+beginning from <a href="module_engine_model_node-Node.html#member-root">root</a>, down to this node&apos;s starting offset. The path can be used to
 create <a href="module_engine_model_position-Position.html">Position</a> instance.
                           </p>
                           <div class="collapsing-list__content">
@@ -505,8 +505,8 @@ div.getPath(); // Returns [].</code></pre>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="hasAttribute">
-                          <h3><code><a class="member-name" href="#hasAttribute">hasAttribute</a>( key ) &rarr;  <span>Boolean</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-hasAttribute">
+                          <h3><code><a class="member-name" href="#function-hasAttribute">hasAttribute</a>( key ) &rarr;  <span>Boolean</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Checks if the node has an attribute with given key.
@@ -530,8 +530,8 @@ div.getPath(); // Returns [].</code></pre>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="is">
-                          <h3><code><a class="member-name" href="#is">is</a>( type ) &rarr;  <span>Boolean</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-is">
+                          <h3><code><a class="member-name" href="#function-is">is</a>( type ) &rarr;  <span>Boolean</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Checks whether given model tree object is of given type.
@@ -565,8 +565,8 @@ obj.is( &apos;textProxy&apos; ); // true for text proxy object</code></pre>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="remove">
-                          <h3><code><a class="member-name" href="#remove">remove</a>()</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-remove">
+                          <h3><code><a class="member-name" href="#function-remove">remove</a>()</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Removes this node from it&apos;s parent.
@@ -576,8 +576,8 @@ obj.is( &apos;textProxy&apos; ); // true for text proxy object</code></pre>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="removeAttribute">
-                          <h3><code><a class="member-name" href="#removeAttribute">removeAttribute</a>( key ) &rarr;  <span>Boolean</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-removeAttribute">
+                          <h3><code><a class="member-name" href="#function-removeAttribute">removeAttribute</a>( key ) &rarr;  <span>Boolean</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Removes an attribute with given key from the node.
@@ -601,8 +601,8 @@ obj.is( &apos;textProxy&apos; ); // true for text proxy object</code></pre>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="setAttribute">
-                          <h3><code><a class="member-name" href="#setAttribute">setAttribute</a>( key, value )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-setAttribute">
+                          <h3><code><a class="member-name" href="#function-setAttribute">setAttribute</a>( key, value )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Sets attribute on the node. If attribute with the same key already is set, it&apos;s value is overwritten.
@@ -625,8 +625,8 @@ obj.is( &apos;textProxy&apos; ); // true for text proxy object</code></pre>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="setAttributesTo">
-                          <h3><code><a class="member-name" href="#setAttributesTo">setAttributesTo</a>( [ attrs ] )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-setAttributesTo">
+                          <h3><code><a class="member-name" href="#function-setAttributesTo">setAttributesTo</a>( [ attrs ] )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Removes all attributes from the node and sets given attributes.
@@ -637,15 +637,15 @@ obj.is( &apos;textProxy&apos; ); // true for text proxy object</code></pre>
                                         <dt><code>[ attrs ]
                                             :
  <span>Object</span></code></dt>
-                                        <dd><p>Attributes to set. See <a href="module_utils_tomap.html#toMap"><code>toMap</code></a> for a list of accepted values.</p>
+                                        <dd><p>Attributes to set. See <a href="module_utils_tomap.html#static-function-toMap"><code>toMap</code></a> for a list of accepted values.</p>
                                         </dd>
                                       </dl>
                           </div>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="toJSON">
-                          <h3><code><a class="member-name" href="#toJSON">toJSON</a>() &rarr;  <span>Object</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-toJSON">
+                          <h3><code><a class="member-name" href="#function-toJSON">toJSON</a>() &rarr;  <span>Object</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Converts <code>Node</code> to plain object and returns it.
@@ -2310,15 +2310,21 @@ obj.is( &apos;textProxy&apos; ); // true for text proxy object</code></pre>
                     </li>
                   </ul>
                 </li>
-                <li><a href="module_engine_view_view.html">
-                    <div class="tree__item__wrapper" data-ln="module:engine/view/view"><span class="tree__item--module tree__item__text">view</span></div></a>
+                <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper" data-ln="module:engine/view/view"><a class="tree__item--module tree__item__text" href="module_engine_view_view.html">view</a>
+                  </div>
+                  <ul>
+                    <li><a href="module_engine_view_view-View.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/view/view~View"><span class="tree__item--class tree__item__text">View</span></div></a>
+                    </li>
+                  </ul>
                 </li>
                 <li class="toggler--collapsed">
                   <div class="tree__item__wrapper" data-ln="module:engine/view/writer"><a class="tree__item--module tree__item__text" href="module_engine_view_writer.html">writer</a>
                   </div>
                   <ul>
-                    <li><a href="module_engine_view_writer-writer.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/view/writer~writer"><span class="tree__item--namespace tree__item__text">writer</span></div></a>
+                    <li><a href="module_engine_view_writer-Writer.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/view/writer~Writer"><span class="tree__item--class tree__item__text">Writer</span></div></a>
                     </li>
                   </ul>
                 </li>

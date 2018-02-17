@@ -11,8 +11,8 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.62/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/0.3.62/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../assets/0.3.65/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.65/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -51,15 +51,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.62/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.65/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.62/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.65/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <div class="api-header"><img src="../../../assets/0.3.62/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.65/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1 data-ln="module:engine/conversion/downcastdispatcher~DowncastDispatcher">DowncastDispatcher<span class="header__import--hidden"> (engine/conversion)</span>
               </h1>
@@ -85,42 +85,44 @@ and then passes to <code>DowncastDispatcher</code> as a diff between old model s
 To map positions and elements during downcast (model to view conversion) use <a href="module_engine_conversion_mapper-Mapper.html"><code>Mapper</code></a>.</p>
 <p><code>DowncastDispatcher</code> fires following events for model tree changes:</p>
 <ul>
-<li><a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event:insert">insert</a>
+<li><a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event-insert">insert</a>
 if a range of nodes has been inserted to the model tree,</li>
-<li><a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event:remove">remove</a>
+<li><a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event-remove">remove</a>
 if a range of nodes has been removed from the model tree,</li>
-<li><a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event:attribute">attribute</a>
+<li><a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event-attribute">attribute</a>
 if attribute has been added, changed or removed from a model node.</li>
 </ul>
-<p>For <a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event:insert">insert</a>
-and <a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event:attribute">attribute</a>,
+<p>For <a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event-insert">insert</a>
+and <a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event-attribute">attribute</a>,
 <code>DowncastDispatcher</code> generates <a href="module_engine_conversion_modelconsumable-ModelConsumable.html">consumables</a>.
 These are used to have a control over which changes has been already consumed. It is useful when some converters
 overwrite other or converts multiple changes (for example converts insertion of an element and also converts that
 element&apos;s attributes during insertion).</p>
 <p>Additionally, <code>DowncastDispatcher</code> fires events for <a href="module_engine_model_markercollection-Marker.html">marker</a> changes:</p>
 <ul>
-<li><a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event:addMarker"><code>addMarker</code></a> if a marker has been added,</li>
-<li><a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event:removeMarker"><code>removeMarker</code></a> if a marker has been removed.</li>
+<li><a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event-addMarker"><code>event-addMarker</code></a> if a marker has been added,</li>
+<li><a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event-removeMarker"><code>event-removeMarker</code></a> if a marker has been removed.</li>
 </ul>
 <p>Note, that changing a marker is done through removing the marker from the old range, and adding on the new range,
 so both those events are fired.</p>
 <p>Finally, <code>DowncastDispatcher</code> also handles firing events for <a href="module_engine_model_selection.html">model selection</a>
 conversion:</p>
 <ul>
-<li><a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event:selection"><code>selection</code></a>
+<li><a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event-selection"><code>event-selection</code></a>
 which converts selection from model to view,</li>
-<li><a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event:attribute"><code>attribute</code></a>
+<li><a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event-attribute"><code>event-attribute</code></a>
 which is fired for every selection attribute,</li>
-<li><a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event:addMarker"><code>addMarker</code></a>
+<li><a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event-addMarker"><code>event-addMarker</code></a>
 which is fired for every marker which contains selection.</li>
 </ul>
 <p>Unlike model tree and markers, events for selection are not fired for changes but for selection state.</p>
 <p>When providing custom listeners for <code>DowncastDispatcher</code> remember to check whether given change has not been
-<a href="module_engine_conversion_modelconsumable-ModelConsumable.html#consume">consumed</a> yet.</p>
+<a href="module_engine_conversion_modelconsumable-ModelConsumable.html#function-consume">consumed</a> yet.</p>
 <p>When providing custom listeners for <code>DowncastDispatcher</code> keep in mind that any callback that had
-<a href="module_engine_conversion_modelconsumable-ModelConsumable.html#consume">consumed</a> a value from a consumable and
+<a href="module_engine_conversion_modelconsumable-ModelConsumable.html#function-consume">consumed</a> a value from a consumable and
 converted the change should also stop the event (for efficiency purposes).</p>
+<p>When providing custom listeners for <code>DowncastDispatcher</code> remember to use provided
+<a href="module_engine_view_writer-Writer.html">view writer</a> to apply changes to the view document.</p>
 <p>Example of a custom converter for <code>DowncastDispatcher</code>:</p>
 <pre class="prettyprint source"><code>// We will convert inserting &quot;paragraph&quot; model element into the model.
 downcastDispatcher.on( &apos;insert:paragraph&apos;, ( evt, data, consumable, conversionApi ) =&gt; {
@@ -133,13 +135,13 @@ downcastDispatcher.on( &apos;insert:paragraph&apos;, ( evt, data, consumable, co
     const viewPosition = conversionApi.mapper.toViewPosition( data.range.start );
 
     // Create &lt;p&gt; element that will be inserted in view at `viewPosition`.
-    const viewElement = new ViewElement( &apos;p&apos; );
+    const viewElement = conversionApi.writer.createContainerElement( &apos;p&apos; );
 
     // Bind the newly created view element to model element so positions will map accordingly in future.
     conversionApi.mapper.bindElements( data.item, viewElement );
 
     // Add the newly created view element to the view.
-    viewWriter.insert( viewPosition, viewElement );
+    conversionApi.writer.insert( viewPosition, viewElement );
 
     // Remember to stop the event propagation.
     evt.stop();
@@ -178,24 +180,11 @@ downcastDispatcher.on( &apos;insert:paragraph&apos;, ( evt, data, consumable, co
           <h2 id="Properties">Properties</h2>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="conversionApi">
-                          <h3><code><a class="member-name" href="#conversionApi">conversionApi</a> : <span>Object</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="member-conversionApi">
+                          <h3><code><a class="member-name" href="#member-conversionApi">conversionApi</a> : <span>Object</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Interface passed by dispatcher to the events callbacks.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_model">
-                          <h3><code><a class="member-name" href="#_model">_model</a> : <span><a class="collapsing-list__type" href="module_engine_model_model-Model.html">Model</a></span></code></h3>
-                          <p class="badges">
-<span class="badge badge--red ">private</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Data model instance bound with this dispatcher.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -204,8 +193,8 @@ downcastDispatcher.on( &apos;insert:paragraph&apos;, ( evt, data, consumable, co
           <h2 id="Methods">Methods</h2>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="constructor">
-                          <h3><code><a class="member-name" href="#constructor">constructor</a>( model, [ conversionApi ] )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-constructor">
+                          <h3><code><a class="member-name" href="#function-constructor">constructor</a>( [ conversionApi ] )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Creates a <code>DowncastDispatcher</code> instance.
@@ -213,11 +202,6 @@ downcastDispatcher.on( &apos;insert:paragraph&apos;, ( evt, data, consumable, co
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code>model
-                                            :
- <span><a class="collapsing-list__type" href="module_engine_model_model-Model.html">Model</a></span></code></dt>
-                                        <dd><p>Data model.</p>
-                                        </dd>
                                         <dt><code>[ conversionApi ]
                                             :
  <span>Object</span></code></dt>
@@ -228,14 +212,14 @@ downcastDispatcher.on( &apos;insert:paragraph&apos;, ( evt, data, consumable, co
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="convertAttribute">
-                          <h3><code><a class="member-name" href="#convertAttribute">convertAttribute</a>( range, key, oldValue, newValue )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-convertAttribute">
+                          <h3><code><a class="member-name" href="#function-convertAttribute">convertAttribute</a>( range, key, oldValue, newValue, writer )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Starts conversion of attribute change on given <code>range</code>.
                           </p>
                           <div class="collapsing-list__content">
-<p>For each node in the given <code>range</code>, <a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event:attribute">attribute  event</a> is fired with the passed data.</p>
+<p>For each node in the given <code>range</code>, <a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event-attribute">attribute  event</a> is fired with the passed data.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>range
@@ -258,6 +242,11 @@ downcastDispatcher.on( &apos;insert:paragraph&apos;, ( evt, data, consumable, co
  <span>*</span></code></dt>
                                         <dd><p>New attribute value or <code>null</code> if the attribute has been removed.</p>
                                         </dd>
+                                        <dt><code>writer
+                                            :
+ <span><a class="collapsing-list__type" href="module_engine_view_writer-Writer.html">Writer</a></span></code></dt>
+                                        <dd><p>View writer that should be used to modify view document.</p>
+                                        </dd>
                                       </dl>
                             <h4>Fires</h4>
                             <ul>
@@ -268,8 +257,8 @@ downcastDispatcher.on( &apos;insert:paragraph&apos;, ( evt, data, consumable, co
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="convertChanges">
-                          <h3><code><a class="member-name" href="#convertChanges">convertChanges</a>( differ )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-convertChanges">
+                          <h3><code><a class="member-name" href="#function-convertChanges">convertChanges</a>( differ, writer )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Takes <a href="module_engine_model_differ-Differ.html">model differ</a> object with buffered changes and fires conversion basing on it.
@@ -282,26 +271,36 @@ downcastDispatcher.on( &apos;insert:paragraph&apos;, ( evt, data, consumable, co
  <span><a class="collapsing-list__type" href="module_engine_model_differ-Differ.html">Differ</a></span></code></dt>
                                         <dd><p>Differ object with buffered changes.</p>
                                         </dd>
+                                        <dt><code>writer
+                                            :
+ <span><a class="collapsing-list__type" href="module_engine_view_writer-Writer.html">Writer</a></span></code></dt>
+                                        <dd><p>View writer that should be used to modify view document.</p>
+                                        </dd>
                                       </dl>
                           </div>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="convertInsert">
-                          <h3><code><a class="member-name" href="#convertInsert">convertInsert</a>( range )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-convertInsert">
+                          <h3><code><a class="member-name" href="#function-convertInsert">convertInsert</a>( range, writer )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Starts conversion of a range insertion.
                           </p>
                           <div class="collapsing-list__content">
-<p>For each node in the range, <a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event:insert">insert  event  is  fired</a>. For each attribute on each node,
-<a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event:attribute">attribute  event  is  fired</a>.</p>
+<p>For each node in the range, <a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event-insert">insert  event  is  fired</a>. For each attribute on each node,
+<a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event-attribute">attribute  event  is  fired</a>.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>range
                                             :
  <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
                                         <dd><p>Inserted range.</p>
+                                        </dd>
+                                        <dt><code>writer
+                                            :
+ <span><a class="collapsing-list__type" href="module_engine_view_writer-Writer.html">Writer</a></span></code></dt>
+                                        <dd><p>View writer that should be used to modify view document.</p>
                                         </dd>
                                       </dl>
                             <h4>Fires</h4>
@@ -315,11 +314,11 @@ downcastDispatcher.on( &apos;insert:paragraph&apos;, ( evt, data, consumable, co
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="convertMarkerAdd">
-                          <h3><code><a class="member-name" href="#convertMarkerAdd">convertMarkerAdd</a>( markerName, markerRange )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-convertMarkerAdd">
+                          <h3><code><a class="member-name" href="#function-convertMarkerAdd">convertMarkerAdd</a>( markerName, markerRange, writer )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Converts added marker. Fires <a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event:addMarker">addMarker</a> event for each item
+                          <p class="collapsing-list__excerpt">Converts added marker. Fires <a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event-addMarker">addMarker</a> event for each item
 in marker&apos;s range. If range is collapsed single event is dispatched. See event description for more details.
                           </p>
                           <div class="collapsing-list__content">
@@ -335,6 +334,11 @@ in marker&apos;s range. If range is collapsed single event is dispatched. See ev
  <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
                                         <dd><p>Marker range.</p>
                                         </dd>
+                                        <dt><code>writer
+                                            :
+ <span><a class="collapsing-list__type" href="module_engine_view_writer-Writer.html">Writer</a></span></code></dt>
+                                        <dd><p>View writer that should be used to modify view document.</p>
+                                        </dd>
                                       </dl>
                             <h4>Fires</h4>
                             <ul>
@@ -345,11 +349,11 @@ in marker&apos;s range. If range is collapsed single event is dispatched. See ev
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="convertMarkerRemove">
-                          <h3><code><a class="member-name" href="#convertMarkerRemove">convertMarkerRemove</a>( markerName, markerRange )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-convertMarkerRemove">
+                          <h3><code><a class="member-name" href="#function-convertMarkerRemove">convertMarkerRemove</a>( markerName, markerRange, writer )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Fires conversion of marker removal. Fires <a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event:removeMarker">removeMarker</a> event with provided data.
+                          <p class="collapsing-list__excerpt">Fires conversion of marker removal. Fires <a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event-removeMarker">removeMarker</a> event with provided data.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -364,6 +368,11 @@ in marker&apos;s range. If range is collapsed single event is dispatched. See ev
  <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
                                         <dd><p>Marker range.</p>
                                         </dd>
+                                        <dt><code>writer
+                                            :
+ <span><a class="collapsing-list__type" href="module_engine_view_writer-Writer.html">Writer</a></span></code></dt>
+                                        <dd><p>View writer that should be used to modify view document.</p>
+                                        </dd>
                                       </dl>
                             <h4>Fires</h4>
                             <ul>
@@ -374,11 +383,11 @@ in marker&apos;s range. If range is collapsed single event is dispatched. See ev
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="convertRemove">
-                          <h3><code><a class="member-name" href="#convertRemove">convertRemove</a>( position, length, name )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-convertRemove">
+                          <h3><code><a class="member-name" href="#function-convertRemove">convertRemove</a>( position, length, name, writer )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Fires conversion of a single node removal. Fires <a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event:remove">remove  event</a> with provided data.
+                          <p class="collapsing-list__excerpt">Fires conversion of a single node removal. Fires <a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event-remove">remove  event</a> with provided data.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -398,13 +407,18 @@ in marker&apos;s range. If range is collapsed single event is dispatched. See ev
  <span>String</span></code></dt>
                                         <dd><p>Name of removed node.</p>
                                         </dd>
+                                        <dt><code>writer
+                                            :
+ <span><a class="collapsing-list__type" href="module_engine_view_writer-Writer.html">Writer</a></span></code></dt>
+                                        <dd><p>View writer that should be used to modify view document.</p>
+                                        </dd>
                                       </dl>
                           </div>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="convertSelection">
-                          <h3><code><a class="member-name" href="#convertSelection">convertSelection</a>( selection )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-convertSelection">
+                          <h3><code><a class="member-name" href="#function-convertSelection">convertSelection</a>( selection, Array&lt;module:engine/model/markercollection~Marker&gt;, writer )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Starts model selection conversion.
@@ -417,6 +431,17 @@ in marker&apos;s range. If range is collapsed single event is dispatched. See ev
                                             :
  <span><a class="collapsing-list__type" href="module_engine_model_selection-Selection.html">Selection</a></span></code></dt>
                                         <dd><p>Selection to convert.</p>
+                                        </dd>
+                                        <dt><code>Array&lt;module:engine/model/markercollection~Marker&gt;
+                                            :
+ <span><a class="collapsing-list__type" href="module_engine_model_selection-Selection.html">Selection</a></span></code></dt>
+                                        <dd><p>markers
+Array of markers containing model markers.</p>
+                                        </dd>
+                                        <dt><code>writer
+                                            :
+ <span><a class="collapsing-list__type" href="module_engine_view_writer-Writer.html">Writer</a></span></code></dt>
+                                        <dd><p>View writer that should be used to modify view document.</p>
                                         </dd>
                                       </dl>
                             <h4>Fires</h4>
@@ -432,8 +457,8 @@ in marker&apos;s range. If range is collapsed single event is dispatched. See ev
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_createConsumableForRange">
-                          <h3><code><a class="member-name" href="#_createConsumableForRange">_createConsumableForRange</a>( range, type ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_conversion_modelconsumable-ModelConsumable.html">ModelConsumable</a></span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-_createConsumableForRange">
+                          <h3><code><a class="member-name" href="#function-_createConsumableForRange">_createConsumableForRange</a>( range, type ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_conversion_modelconsumable-ModelConsumable.html">ModelConsumable</a></span></code></h3>
                           <p class="badges">
 <span class="badge badge--red ">private</span>
                           </p>
@@ -465,8 +490,8 @@ in marker&apos;s range. If range is collapsed single event is dispatched. See ev
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_createInsertConsumable">
-                          <h3><code><a class="member-name" href="#_createInsertConsumable">_createInsertConsumable</a>( range ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_conversion_modelconsumable-ModelConsumable.html">ModelConsumable</a></span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-_createInsertConsumable">
+                          <h3><code><a class="member-name" href="#function-_createInsertConsumable">_createInsertConsumable</a>( range ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_conversion_modelconsumable-ModelConsumable.html">ModelConsumable</a></span></code></h3>
                           <p class="badges">
 <span class="badge badge--red ">private</span>
                           </p>
@@ -494,8 +519,8 @@ assuming that the range has just been inserted to the model.
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_createSelectionConsumable">
-                          <h3><code><a class="member-name" href="#_createSelectionConsumable">_createSelectionConsumable</a>( selection, markers ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_conversion_modelconsumable-ModelConsumable.html">ModelConsumable</a></span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-_createSelectionConsumable">
+                          <h3><code><a class="member-name" href="#function-_createSelectionConsumable">_createSelectionConsumable</a>( selection, markers ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_conversion_modelconsumable-ModelConsumable.html">ModelConsumable</a></span></code></h3>
                           <p class="badges">
 <span class="badge badge--red ">private</span>
                           </p>
@@ -527,8 +552,8 @@ assuming that the range has just been inserted to the model.
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_testAndFire">
-                          <h3><code><a class="member-name" href="#_testAndFire">_testAndFire</a>( type, data, consumable )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-_testAndFire">
+                          <h3><code><a class="member-name" href="#function-_testAndFire">_testAndFire</a>( type, data, consumable )</code></h3>
                           <p class="badges">
 <span class="badge badge--red ">private</span>
                           </p>
@@ -569,8 +594,8 @@ assuming that the range has just been inserted to the model.
           <h2 id="Events">Events</h2>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:addMarker">
-                          <h3><code><a class="member-name" href="#event:addMarker">addMarker</a>( eventInfo, data = { data.item, [data.range], data.markerRange, data.markerName }, consumable, conversionApi )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-addMarker">
+                          <h3><code><a class="member-name" href="#event-addMarker">addMarker</a>( eventInfo, data = { data.item, [data.range], data.markerRange, data.markerName }, consumable, conversionApi )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when a new marker is added to the model. Also fired when collapsed model selection that is inside marker is converted.
@@ -648,8 +673,8 @@ the marker range was not collapsed.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:attribute">
-                          <h3><code><a class="member-name" href="#event:attribute">attribute</a>( eventInfo, data = { data.item, data.range, data.attributeKey, data.attributeOldValue, data.attributeNewValue }, consumable, conversionApi )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-attribute">
+                          <h3><code><a class="member-name" href="#event-attribute">attribute</a>( eventInfo, data = { data.item, data.range, data.attributeKey, data.attributeOldValue, data.attributeNewValue }, consumable, conversionApi )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when attribute has been added/changed/removed from a node. Also fired when collapsed model selection attribute is converted.
@@ -658,7 +683,7 @@ the marker range was not collapsed.</p>
 <p><code>attribute</code> is a namespace for a class of events. Names of actually called events follow this pattern:
 <code>attribute:attributeKey:name</code>. <code>attributeKey</code> is the key of added/changed/removed attribute.
 <code>name</code> is either <code>&apos;$text&apos;</code> if change was on <a href="module_engine_model_text-Text.html">a text node</a>,
-or the <a href="module_engine_model_element-Element.html#name">name</a> of element which attribute has changed.</p>
+or the <a href="module_engine_model_element-Element.html#member-name">name</a> of element which attribute has changed.</p>
 <p>This way listeners can either listen to a general <code>attribute:bold</code> event or specific event (for example <code>attribute:src:image</code>).</p>
                             <h4>Parameters</h4>
                                       <dl>
@@ -717,8 +742,8 @@ or converted selection.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:insert">
-                          <h3><code><a class="member-name" href="#event:insert">insert</a>( eventInfo, data = { data.item, data.range }, consumable, conversionApi )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-insert">
+                          <h3><code><a class="member-name" href="#event-insert">insert</a>( eventInfo, data = { data.item, data.range }, consumable, conversionApi )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired for inserted nodes.
@@ -726,7 +751,7 @@ or converted selection.</p>
                           <div class="collapsing-list__content">
 <p><code>insert</code> is a namespace for a class of events. Names of actually called events follow this pattern:
 <code>insert:name</code>. <code>name</code> is either <code>&apos;$text&apos;</code>, when <a href="module_engine_model_text-Text.html">a text node</a> has been inserted,
-or <a href="module_engine_model_element-Element.html#name">name</a> of inserted element.</p>
+or <a href="module_engine_model_element-Element.html#member-name">name</a> of inserted element.</p>
 <p>This way listeners can either listen to a general <code>insert</code> event or specific event (for example <code>insert:paragraph</code>).</p>
                             <h4>Parameters</h4>
                                       <dl>
@@ -769,8 +794,8 @@ or <a href="module_engine_model_element-Element.html#name">name</a> of inserted 
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:remove">
-                          <h3><code><a class="member-name" href="#event:remove">remove</a>( eventInfo, data = { data.sourcePosition, data.range }, conversionApi )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-remove">
+                          <h3><code><a class="member-name" href="#event-remove">remove</a>( eventInfo, data = { data.sourcePosition, data.range }, conversionApi )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired for removed nodes.
@@ -778,7 +803,7 @@ or <a href="module_engine_model_element-Element.html#name">name</a> of inserted 
                           <div class="collapsing-list__content">
 <p><code>remove</code> is a namespace for a class of events. Names of actually called events follow this pattern:
 <code>remove:name</code>. <code>name</code> is either <code>&apos;$text&apos;</code>, when <a href="module_engine_model_text-Text.html">a text node</a> has been removed,
-or the <a href="module_engine_model_element-Element.html#name">name</a> of removed element.</p>
+or the <a href="module_engine_model_element-Element.html#member-name">name</a> of removed element.</p>
 <p>This way listeners can either listen to a general <code>remove</code> event or specific event (for example <code>remove:paragraph</code>).</p>
                             <h4>Parameters</h4>
                                       <dl>
@@ -802,7 +827,7 @@ or the <a href="module_engine_model_element-Element.html#name">name</a> of remov
                                                       <dt><code>data.range
                                                           :
  <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
-                                                      <dd><p>Removed range (in <a href="module_engine_model_document-Document.html#graveyard">graveyard root</a>).</p>
+                                                      <dd><p>Removed range (in <a href="module_engine_model_document-Document.html#member-graveyard">graveyard root</a>).</p>
                                                       </dd>
                                                     </dl>
                                         </dd>
@@ -816,8 +841,8 @@ or the <a href="module_engine_model_element-Element.html#name">name</a> of remov
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:removeMarker">
-                          <h3><code><a class="member-name" href="#event:removeMarker">removeMarker</a>( eventInfo, data = { data.markerRange, data.markerName }, conversionApi )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-removeMarker">
+                          <h3><code><a class="member-name" href="#event-removeMarker">removeMarker</a>( eventInfo, data = { data.markerRange, data.markerName }, conversionApi )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when marker is removed from the model.
@@ -863,8 +888,8 @@ if markers are named <code>foo:abc</code>, <code>foo:bar</code>, then it is poss
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:selection">
-                          <h3><code><a class="member-name" href="#event:selection">selection</a>( eventInfo, selection, consumable, conversionApi )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-selection">
+                          <h3><code><a class="member-name" href="#event-selection">selection</a>( eventInfo, selection, consumable, conversionApi )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired for <a href="module_engine_model_selection-Selection.html">selection</a> changes.
@@ -2546,15 +2571,21 @@ if markers are named <code>foo:abc</code>, <code>foo:bar</code>, then it is poss
                     </li>
                   </ul>
                 </li>
-                <li><a href="module_engine_view_view.html">
-                    <div class="tree__item__wrapper" data-ln="module:engine/view/view"><span class="tree__item--module tree__item__text">view</span></div></a>
+                <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper" data-ln="module:engine/view/view"><a class="tree__item--module tree__item__text" href="module_engine_view_view.html">view</a>
+                  </div>
+                  <ul>
+                    <li><a href="module_engine_view_view-View.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/view/view~View"><span class="tree__item--class tree__item__text">View</span></div></a>
+                    </li>
+                  </ul>
                 </li>
                 <li class="toggler--collapsed">
                   <div class="tree__item__wrapper" data-ln="module:engine/view/writer"><a class="tree__item--module tree__item__text" href="module_engine_view_writer.html">writer</a>
                   </div>
                   <ul>
-                    <li><a href="module_engine_view_writer-writer.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/view/writer~writer"><span class="tree__item--namespace tree__item__text">writer</span></div></a>
+                    <li><a href="module_engine_view_writer-Writer.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/view/writer~Writer"><span class="tree__item--class tree__item__text">Writer</span></div></a>
                     </li>
                   </ul>
                 </li>

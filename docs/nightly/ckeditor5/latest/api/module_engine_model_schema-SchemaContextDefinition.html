@@ -11,8 +11,8 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.62/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/0.3.62/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../assets/0.3.65/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.65/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -51,15 +51,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.62/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.65/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.62/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.65/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <div class="api-header"><img src="../../../assets/0.3.62/img/data.svg" alt="Typedef" title="Typedef"/>
+          <div class="api-header"><img src="../../../assets/0.3.65/img/data.svg" alt="Typedef" title="Typedef"/>
             <div class="api-header__title">
               <h1 data-ln="module:engine/model/schema~SchemaContextDefinition">SchemaContextDefinition<span class="header__import--hidden"> (engine/model)</span>
               </h1>
@@ -85,7 +85,7 @@ but it is possible to create a path.</li>
 <li>By defining a <a href="module_engine_model_schema-SchemaContext.html"><code>SchemaContext</code></a> instance - in this case the same instance as provided
 will be return.</li>
 </ul>
-<p>Examples of context definitions passed to the <a href="module_engine_model_schema-Schema.html#checkChild"><code>Schema#checkChild()</code></a>
+<p>Examples of context definitions passed to the <a href="module_engine_model_schema-Schema.html#function-checkChild"><code>Schema#checkChild()</code></a>
 method:</p>
 <pre class="prettyprint source"><code>// Assuming that we have a $root &gt; blockQuote &gt; paragraph structure, the following code
 // will check node &apos;foo&apos; in the following context:
@@ -104,7 +104,7 @@ schema.checkChild( [ rootElement, paragraphElement ], &apos;foo&apos; );
 schema.checkChild( &apos;paragraph&apos;, &apos;foo&apos; );
 
 // Check in [ fakeRootElement, fakeBarElement, paragraphElement ].
-schema.checkChild( [ &apos;$root&apos;, &apos;bar&apos;, paragraphElement ], &apos;foo&apos; );</code></pre><p>All these <code>checkChild()</code> calls will fire <a href="module_engine_model_schema-Schema.html#event:checkChild"><code>Schema#checkChild</code></a>
+schema.checkChild( [ &apos;$root&apos;, &apos;bar&apos;, paragraphElement ], &apos;foo&apos; );</code></pre><p>All these <code>checkChild()</code> calls will fire <a href="module_engine_model_schema-Schema.html#event-checkChild"><code>Schema#checkChild</code></a>
 events in which <code>args[ 0 ]</code> is an instance of the context. Therefore, you can write a listener like this:</p>
 <pre class="prettyprint source"><code>schema.on( &apos;checkChild&apos;, ( evt, args ) =&gt; {
     const ctx = args[ 0 ];
@@ -113,7 +113,7 @@ events in which <code>args[ 0 ]</code> is an instance of the context. Therefore,
 } );</code></pre><p>Which will log the following:</p>
 <pre class="prettyprint source"><code>[ &apos;$root&apos;, &apos;blockQuote&apos;, &apos;paragraph&apos; ]
 [ &apos;$root&apos;, &apos;paragraph&apos; ]
-[ &apos;$root&apos;, &apos;bar&apos;, &apos;paragraph&apos; ]</code></pre><p>Note: When using the <a href="module_engine_model_schema-Schema.html#checkAttribute"><code>Schema#checkAttribute()</code></a> method
+[ &apos;$root&apos;, &apos;bar&apos;, &apos;paragraph&apos; ]</code></pre><p>Note: When using the <a href="module_engine_model_schema-Schema.html#function-checkAttribute"><code>Schema#checkAttribute()</code></a> method
 you may want to check whether a text node may have an attribute. A <a href="module_engine_model_text-Text.html"><code>Text</code></a> is a
 correct way to define a context so you can do this:</p>
 <pre class="prettyprint source"><code>schema.checkAttribute( textNode, &apos;bold&apos; );</code></pre><p>But sometimes you want to check whether a text at a given position might&apos;ve had some attribute,
@@ -1800,15 +1800,21 @@ schema.checkChild( [ ...positionInParagraph.getAncestors(), &apos;$text&apos; ],
                     </li>
                   </ul>
                 </li>
-                <li><a href="module_engine_view_view.html">
-                    <div class="tree__item__wrapper" data-ln="module:engine/view/view"><span class="tree__item--module tree__item__text">view</span></div></a>
+                <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper" data-ln="module:engine/view/view"><a class="tree__item--module tree__item__text" href="module_engine_view_view.html">view</a>
+                  </div>
+                  <ul>
+                    <li><a href="module_engine_view_view-View.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/view/view~View"><span class="tree__item--class tree__item__text">View</span></div></a>
+                    </li>
+                  </ul>
                 </li>
                 <li class="toggler--collapsed">
                   <div class="tree__item__wrapper" data-ln="module:engine/view/writer"><a class="tree__item--module tree__item__text" href="module_engine_view_writer.html">writer</a>
                   </div>
                   <ul>
-                    <li><a href="module_engine_view_writer-writer.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/view/writer~writer"><span class="tree__item--namespace tree__item__text">writer</span></div></a>
+                    <li><a href="module_engine_view_writer-Writer.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/view/writer~Writer"><span class="tree__item--class tree__item__text">Writer</span></div></a>
                     </li>
                   </ul>
                 </li>

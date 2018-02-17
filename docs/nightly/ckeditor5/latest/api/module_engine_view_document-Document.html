@@ -11,8 +11,8 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.62/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/0.3.62/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../assets/0.3.65/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.65/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -51,15 +51,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.62/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.65/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.62/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.65/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <div class="api-header"><img src="../../../assets/0.3.62/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.65/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1 data-ln="module:engine/view/document~Document">Document<span class="header__import--hidden"> (engine/view)</span>
               </h1>
@@ -89,20 +89,8 @@
           </nav>
           <div class="types">
           </div>
-          <div class="main-description"><p>Document class creates an abstract layer over the content editable area.
-It combines the actual tree of view elements, tree of DOM elements,
-<a href="module_engine_view_domconverter-DomConverter.html">DOM Converter</a>, <a href="module_engine_view_renderer-Renderer.html">renderer</a> and all
-<a href="module_engine_view_observer_observer-Observer.html">observers</a>.</p>
-<p>If you want to only transform the tree of view elements to the DOM elements you can use the
-<a href="module_engine_view_domconverter-DomConverter.html">DomConverter</a>.</p>
-<p>Note that the following observers are added by the class constructor and are always available:</p>
-<ul>
-<li><a href="module_engine_view_observer_mutationobserver-MutationObserver.html"><code>MutationObserver</code></a>,</li>
-<li><a href="module_engine_view_observer_selectionobserver-SelectionObserver.html"><code>SelectionObserver</code></a>,</li>
-<li><a href="module_engine_view_observer_focusobserver-FocusObserver.html"><code>FocusObserver</code></a>,</li>
-<li><a href="module_engine_view_observer_keyobserver-KeyObserver.html"><code>KeyObserver</code></a>,</li>
-<li><a href="module_engine_view_observer_fakeselectionobserver-FakeSelectionObserver.html"><code>FakeSelectionObserver</code></a>.</li>
-</ul></div>
+          <div class="main-description"><p>Document class creates an abstract layer over the content editable area, contains a tree of view elements and
+<a href="module_engine_view_selection-Selection.html">view selection</a> associated with this document.</p></div>
 <div class="notice notice__filter api-props-filter">
   <div class="api-props-filter__inner">
     <h4>Filtering</h4>
@@ -137,36 +125,8 @@ It combines the actual tree of view elements, tree of DOM elements,
           <h2 id="Properties">Properties</h2>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="domConverter">
-                          <h3><code><a class="member-name" href="#domConverter">domConverter</a> : <span><a class="collapsing-list__type" href="module_engine_view_domconverter-DomConverter.html">DomConverter</a></span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Instance of the <a href="module_engine_view_domconverter-DomConverter.html">domConverter</a> use by
-<a href="module_engine_view_document-Document.html#renderer">renderer</a>
-and <a href="module_engine_view_observer_observer-Observer.html">observers</a>.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="domRoots">
-                          <h3><code><a class="member-name" href="#domRoots">domRoots</a> : <span>Map</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Roots of the DOM tree. Map on the <code>HTMLElement</code>s with roots names as keys.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="isFocused">
-                          <h3><code><a class="member-name" href="#isFocused">isFocused</a> : <span>Boolean</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="member-isFocused">
+                          <h3><code><a class="member-name" href="#member-isFocused">isFocused</a> : <span>Boolean</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">readonly</span>
 <span class="badge badge--gray "><a href="module_utils_observablemixin-ObservableMixin.html">observable</a></span>
@@ -181,8 +141,8 @@ If the <a href="module_engine_view_observer_focusobserver-FocusObserver.html"><c
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="isReadOnly">
-                          <h3><code><a class="member-name" href="#isReadOnly">isReadOnly</a> : <span>Boolean</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="member-isReadOnly">
+                          <h3><code><a class="member-name" href="#member-isReadOnly">isReadOnly</a> : <span>Boolean</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray "><a href="module_utils_observablemixin-ObservableMixin.html">observable</a></span>
                           </p>
@@ -195,21 +155,8 @@ If the <a href="module_engine_view_observer_focusobserver-FocusObserver.html"><c
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="renderer">
-                          <h3><code><a class="member-name" href="#renderer">renderer</a> : <span><a class="collapsing-list__type" href="module_engine_view_renderer-Renderer.html">Renderer</a></span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Instance of the <a href="module_engine_view_document-Document.html#renderer">renderer</a>.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="roots">
-                          <h3><code><a class="member-name" href="#roots">roots</a> : <span>Collection</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="member-roots">
+                          <h3><code><a class="member-name" href="#member-roots">roots</a> : <span>Collection</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">readonly</span>
                           </p>
@@ -217,16 +164,16 @@ If the <a href="module_engine_view_observer_focusobserver-FocusObserver.html"><c
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Roots of the view tree. Collection of the {module:engine/view/element~Element view elements}.</p>
                           <div class="collapsing-list__content">
-<p>View roots are created as a result of binding between <a href="module_engine_view_document-Document.html#roots"><code>roots</code></a> and
-<a href="module_engine_model_document-Document.html#roots"><code>roots</code></a> and this is handled by
+<p>View roots are created as a result of binding between <a href="module_engine_view_document-Document.html#member-roots"><code>roots</code></a> and
+<a href="module_engine_model_document-Document.html#member-roots"><code>roots</code></a> and this is handled by
 <a href="module_engine_controller_editingcontroller-EditingController.html"><code>EditingController</code></a>, so to create view root we need to create
-model root using <a href="module_engine_model_document-Document.html#createRoot"><code>createRoot</code></a>.</p>
+model root using <a href="module_engine_model_document-Document.html#function-createRoot"><code>createRoot</code></a>.</p>
                           </div>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="selection">
-                          <h3><code><a class="member-name" href="#selection">selection</a> : <span><a class="collapsing-list__type" href="module_engine_view_selection-Selection.html">Selection</a></span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="member-selection">
+                          <h3><code><a class="member-name" href="#member-selection">selection</a> : <span><a class="collapsing-list__type" href="module_engine_view_selection-Selection.html">Selection</a></span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">readonly</span>
                           </p>
@@ -237,25 +184,12 @@ model root using <a href="module_engine_model_document-Document.html#createRoot"
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_observers">
-                          <h3><code><a class="member-name" href="#_observers">_observers</a> : <span>Map.&lt;Function, <a class="collapsing-list__type" href="module_engine_view_observer_observer-Observer.html">Observer</a>&gt;</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--red ">private</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Map of registered <a href="module_engine_view_observer_observer-Observer.html">observers</a>.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
           </ul>
           <h2 id="Methods">Methods</h2>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="constructor">
-                          <h3><code><a class="member-name" href="#constructor">constructor</a>()</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-constructor">
+                          <h3><code><a class="member-name" href="#function-constructor">constructor</a>()</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Creates a Document instance.
@@ -264,69 +198,9 @@ model root using <a href="module_engine_model_document-Document.html#createRoot"
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="addObserver">
-                          <h3><code><a class="member-name" href="#addObserver">addObserver</a>( Observer ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_view_observer_observer-Observer.html">Observer</a></span></code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Creates observer of the given type if not yet created, <a href="module_engine_view_observer_observer-Observer.html#enable">enables</a> it
-and <a href="module_engine_view_observer_observer-Observer.html#observe">attaches</a> to all existing and future
-<a href="module_engine_view_document-Document.html#domRoots">DOM roots</a>.
-                          </p>
-                          <div class="collapsing-list__content">
-<p>Note: Observers are recognized by their constructor (classes). A single observer will be instantiated and used only
-when registered for the first time. This means that features and other components can register a single observer
-multiple times without caring whether it has been already added or not.</p>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code>Observer
-                                            :
- <span>function</span></code></dt>
-                                        <dd><p>The constructor of an observer to add.
-Should create an instance inheriting from <a href="module_engine_view_observer_observer-Observer.html"><code>Observer</code></a>.</p>
-                                        </dd>
-                                      </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_view_observer_observer-Observer.html">Observer</a></span></code></dt>
-                                        <dd><p>Added observer instance.</p>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="attachDomRoot">
-                          <h3><code><a class="member-name" href="#attachDomRoot">attachDomRoot</a>( domRoot, [ name ] )</code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Attaches DOM root element to the view element and enable all observers on that element.
-Also <a href="module_engine_view_renderer-Renderer.html#markToSync">mark element</a> to be synchronized with the view
-what means that all child nodes will be removed and replaced with content of the view root.
-                          </p>
-                          <div class="collapsing-list__content">
-<p>This method also will change view element name as the same as tag name of given dom root.
-Name is always transformed to lower case.</p>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code>domRoot
-                                            :
- <span>Element</span></code></dt>
-                                        <dd><p>DOM root element.</p>
-                                        </dd>
-                                        <dt><code>[ name ]
-                                            :
- <span>String</span></code></dt>
-                                        <dd><p>Name of the root.</p>
-                                          <p>Defaults to <code>'main'</code></p>
-                                        </dd>
-                                      </dl>
-                          </div>
-                        </div>
-                      </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="bind">
-                          <h3><code><a class="member-name" href="#bind">bind</a>( bindProperties ) &rarr;  <span>Object</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-bind">
+                          <h3><code><a class="member-name" href="#function-bind">bind</a>( bindProperties ) &rarr;  <span>Object</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
@@ -339,7 +213,7 @@ interface (like <a href="module_ui_model-Model.html"><code>Model</code></a>).
 <p>Once bound, the observable will immediately share the current state of properties
 of the observable it is bound to and react to the changes to these properties
 in the future.</p>
-<p><strong>Note</strong>: To release the binding use <a href="module_utils_observablemixin-Observable.html#unbind"><code>unbind</code></a>.</p>
+<p><strong>Note</strong>: To release the binding use <a href="module_utils_observablemixin-Observable.html#function-unbind"><code>unbind</code></a>.</p>
 <p>Using <code>bind().to()</code> chain:</p>
 <pre class="prettyprint source"><code>A.bind( &apos;a&apos; ).to( B );
 A.bind( &apos;a&apos; ).to( B, &apos;b&apos; );
@@ -365,8 +239,8 @@ A.bind( &apos;a&apos; ).toMany( [ B, C, D ], &apos;x&apos;, ( ...x ) =&gt; x.eve
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="decorate">
-                          <h3><code><a class="member-name" href="#decorate">decorate</a>( methodName )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-decorate">
+                          <h3><code><a class="member-name" href="#function-decorate">decorate</a>( methodName )</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
@@ -427,8 +301,8 @@ foo.method( 1, 2 ); // -&gt; &apos;3, 2&apos;</code></pre>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="delegate">
-                          <h3><code><a class="member-name" href="#delegate">delegate</a>( events ) &rarr;  <span><a class="collapsing-list__type" href="module_utils_emittermixin-EmitterMixinDelegateChain.html">EmitterMixinDelegateChain</a></span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-delegate">
+                          <h3><code><a class="member-name" href="#function-delegate">delegate</a>( events ) &rarr;  <span><a class="collapsing-list__type" href="module_utils_emittermixin-EmitterMixinDelegateChain.html">EmitterMixinDelegateChain</a></span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
@@ -459,8 +333,8 @@ emitterA.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( emitterC );</cod
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="delegate">
-                          <h3><code><a class="member-name" href="#delegate">delegate</a>( events ) &rarr;  <span><a class="collapsing-list__type" href="module_utils_emittermixin-EmitterMixinDelegateChain.html">EmitterMixinDelegateChain</a></span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-delegate">
+                          <h3><code><a class="member-name" href="#function-delegate">delegate</a>( events ) &rarr;  <span><a class="collapsing-list__type" href="module_utils_emittermixin-EmitterMixinDelegateChain.html">EmitterMixinDelegateChain</a></span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
@@ -490,42 +364,9 @@ emitterA.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( emitterC );</cod
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="destroy">
-                          <h3><code><a class="member-name" href="#destroy">destroy</a>()</code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Destroys all observers created by view <code>Document</code>.
-                          </p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="disableObservers">
-                          <h3><code><a class="member-name" href="#disableObservers">disableObservers</a>()</code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Disables all added observers.
-                          </p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="enableObservers">
-                          <h3><code><a class="member-name" href="#enableObservers">enableObservers</a>()</code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Enables all added observers.
-                          </p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="fire">
-                          <h3><code><a class="member-name" href="#fire">fire</a>( eventOrInfo, [ args ] ) &rarr;  <span>*</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-fire">
+                          <h3><code><a class="member-name" href="#function-fire">fire</a>( eventOrInfo, [ args ] ) &rarr;  <span>*</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
@@ -553,7 +394,7 @@ followed by the optional <code>args</code> provided in the <code>fire()</code> m
                             <dl>
                                         <dt><code><span>*</span></code></dt>
                                         <dd><p>By default the method returns <code>undefined</code>. However, the return value can be changed by listeners
-through modification of the <a href="module_utils_eventinfo-EventInfo.html#return"><code>evt.return</code></a>'s property (the event info
+through modification of the <a href="module_utils_eventinfo-EventInfo.html#member-return"><code>evt.return</code></a>'s property (the event info
 is the first param of every callback).</p>
                                         </dd>
                             </dl>
@@ -561,8 +402,8 @@ is the first param of every callback).</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="fire">
-                          <h3><code><a class="member-name" href="#fire">fire</a>( eventOrInfo, [ args ] ) &rarr;  <span>*</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-fire">
+                          <h3><code><a class="member-name" href="#function-fire">fire</a>( eventOrInfo, [ args ] ) &rarr;  <span>*</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
@@ -590,7 +431,7 @@ followed by the optional <code>args</code> provided in the <code>fire()</code> m
                             <dl>
                                         <dt><code><span>*</span></code></dt>
                                         <dd><p>By default the method returns <code>undefined</code>. However, the return value can be changed by listeners
-through modification of the <a href="module_utils_eventinfo-EventInfo.html#return"><code>evt.return</code></a>'s property (the event info
+through modification of the <a href="module_utils_eventinfo-EventInfo.html#member-return"><code>evt.return</code></a>'s property (the event info
 is the first param of every callback).</p>
                                         </dd>
                             </dl>
@@ -598,74 +439,11 @@ is the first param of every callback).</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="focus">
-                          <h3><code><a class="member-name" href="#focus">focus</a>()</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-getRoot">
+                          <h3><code><a class="member-name" href="#function-getRoot">getRoot</a>( [ name ] ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_view_rooteditableelement-RootEditableElement.html">RootEditableElement</a></span> | <span>null</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Focuses document. It will focus <a href="module_engine_view_editableelement-EditableElement.html">EditableElement</a> that is currently having
-selection inside.
-                          </p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="getDomRoot">
-                          <h3><code><a class="member-name" href="#getDomRoot">getDomRoot</a>( [ name ] ) &rarr;  <span>Element</span></code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Gets DOM root element.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code>[ name ]
-                                            :
- <span>String</span></code></dt>
-                                        <dd><p>Name of the root.</p>
-                                          <p>Defaults to <code>'main'</code></p>
-                                        </dd>
-                                      </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span>Element</span></code></dt>
-                                        <dd><p>DOM root element instance.</p>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="getObserver">
-                          <h3><code><a class="member-name" href="#getObserver">getObserver</a>( Observer ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_view_observer_observer-Observer.html">Observer</a></span> | <span>undefined</span></code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Returns observer of the given type or <code>undefined</code> if such observer has not been added yet.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code>Observer
-                                            :
- <span>function</span></code></dt>
-                                        <dd><p>The constructor of an observer to get.</p>
-                                        </dd>
-                                      </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_view_observer_observer-Observer.html">Observer</a></span> | <span>undefined</span></code></dt>
-                                        <dd><p>Observer instance or undefined.</p>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="getRoot">
-                          <h3><code><a class="member-name" href="#getRoot">getRoot</a>( [ name ] ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_view_rooteditableelement-RootEditableElement.html">RootEditableElement</a></span> | <span>null</span></code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Gets a <a href="module_engine_view_document-Document.html#roots">view root element</a> with the specified name. If the name is not
+                          <p class="collapsing-list__excerpt">Gets a <a href="module_engine_view_document-Document.html#member-roots">view root element</a> with the specified name. If the name is not
 specific &quot;main&quot; root is returned.
                           </p>
                           <div class="collapsing-list__content">
@@ -689,8 +467,8 @@ or null when there is no root of given name.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="listenTo">
-                          <h3><code><a class="member-name" href="#listenTo">listenTo</a>( emitter, event, callback, [ options ] = { [options.priority] } )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-listenTo">
+                          <h3><code><a class="member-name" href="#function-listenTo">listenTo</a>( emitter, event, callback, [ options ] = { [options.priority] } )</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
@@ -710,8 +488,8 @@ myEmitter.fire( &apos;myGroup&apos; );
 // both genericCallback and specificCallback are fired.
 myEmitter.fire( &apos;myGroup:myEvent&apos; );
 // genericCallback is fired even though there are no callbacks for &quot;foo&quot;.
-myEmitter.fire( &apos;myGroup:foo&apos; );</code></pre><p>An event callback can <a href="module_utils_eventinfo-EventInfo.html#stop">stop the event</a> and
-set the <a href="module_utils_eventinfo-EventInfo.html#return">return value</a> of the <a href="module_utils_emittermixin-Emitter.html#fire"><code>fire</code></a> method.</p>
+myEmitter.fire( &apos;myGroup:foo&apos; );</code></pre><p>An event callback can <a href="module_utils_eventinfo-EventInfo.html#function-stop">stop the event</a> and
+set the <a href="module_utils_eventinfo-EventInfo.html#member-return">return value</a> of the <a href="module_utils_emittermixin-Emitter.html#function-fire"><code>fire</code></a> method.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>emitter
@@ -752,8 +530,8 @@ order they were added.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="listenTo">
-                          <h3><code><a class="member-name" href="#listenTo">listenTo</a>( emitter, event, callback, [ options ] = { [options.priority] } )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-listenTo">
+                          <h3><code><a class="member-name" href="#function-listenTo">listenTo</a>( emitter, event, callback, [ options ] = { [options.priority] } )</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
@@ -773,8 +551,8 @@ myEmitter.fire( &apos;myGroup&apos; );
 // both genericCallback and specificCallback are fired.
 myEmitter.fire( &apos;myGroup:myEvent&apos; );
 // genericCallback is fired even though there are no callbacks for &quot;foo&quot;.
-myEmitter.fire( &apos;myGroup:foo&apos; );</code></pre><p>An event callback can <a href="module_utils_eventinfo-EventInfo.html#stop">stop the event</a> and
-set the <a href="module_utils_eventinfo-EventInfo.html#return">return value</a> of the <a href="module_utils_emittermixin-Emitter.html#fire"><code>fire</code></a> method.</p>
+myEmitter.fire( &apos;myGroup:foo&apos; );</code></pre><p>An event callback can <a href="module_utils_eventinfo-EventInfo.html#function-stop">stop the event</a> and
+set the <a href="module_utils_eventinfo-EventInfo.html#member-return">return value</a> of the <a href="module_utils_emittermixin-Emitter.html#function-fire"><code>fire</code></a> method.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>emitter
@@ -815,15 +593,15 @@ order they were added.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="off">
-                          <h3><code><a class="member-name" href="#off">off</a>( event, callback )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-off">
+                          <h3><code><a class="member-name" href="#function-off">off</a>( event, callback )</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Stops executing the callback on the given event.
-Shorthand for <a href="module_utils_emittermixin-Emitter.html#stopListening"><code>this.stopListening(  this,  event,  callback  )</code></a>.
+Shorthand for <a href="module_utils_emittermixin-Emitter.html#function-stopListening"><code>this.stopListening(  this,  event,  callback  )</code></a>.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -843,15 +621,15 @@ Shorthand for <a href="module_utils_emittermixin-Emitter.html#stopListening"><co
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="off">
-                          <h3><code><a class="member-name" href="#off">off</a>( event, callback )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-off">
+                          <h3><code><a class="member-name" href="#function-off">off</a>( event, callback )</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Stops executing the callback on the given event.
-Shorthand for <a href="module_utils_emittermixin-Emitter.html#stopListening"><code>this.stopListening(  this,  event,  callback  )</code></a>.
+Shorthand for <a href="module_utils_emittermixin-Emitter.html#function-stopListening"><code>this.stopListening(  this,  event,  callback  )</code></a>.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -871,8 +649,8 @@ Shorthand for <a href="module_utils_emittermixin-Emitter.html#stopListening"><co
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="on">
-                          <h3><code><a class="member-name" href="#on">on</a>( event, callback, [ options ] = { [options.priority] } )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-on">
+                          <h3><code><a class="member-name" href="#function-on">on</a>( event, callback, [ options ] = { [options.priority] } )</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
@@ -881,7 +659,7 @@ Shorthand for <a href="module_utils_emittermixin-Emitter.html#stopListening"><co
                           <p class="collapsing-list__excerpt">Registers a callback function to be executed when an event is fired.
                           </p>
                           <div class="collapsing-list__content">
-<p>Shorthand for <a href="module_utils_emittermixin-Emitter.html#listenTo"><code>this.listenTo(  this,  event,  callback,  options  )</code></a> (it makes the emitter
+<p>Shorthand for <a href="module_utils_emittermixin-Emitter.html#function-listenTo"><code>this.listenTo(  this,  event,  callback,  options  )</code></a> (it makes the emitter
 listen on itself).</p>
                             <h4>Parameters</h4>
                                       <dl>
@@ -918,8 +696,8 @@ order they were added.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="on">
-                          <h3><code><a class="member-name" href="#on">on</a>( event, callback, [ options ] = { [options.priority] } )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-on">
+                          <h3><code><a class="member-name" href="#function-on">on</a>( event, callback, [ options ] = { [options.priority] } )</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
@@ -928,7 +706,7 @@ order they were added.</p>
                           <p class="collapsing-list__excerpt">Registers a callback function to be executed when an event is fired.
                           </p>
                           <div class="collapsing-list__content">
-<p>Shorthand for <a href="module_utils_emittermixin-Emitter.html#listenTo"><code>this.listenTo(  this,  event,  callback,  options  )</code></a> (it makes the emitter
+<p>Shorthand for <a href="module_utils_emittermixin-Emitter.html#function-listenTo"><code>this.listenTo(  this,  event,  callback,  options  )</code></a> (it makes the emitter
 listen on itself).</p>
                             <h4>Parameters</h4>
                                       <dl>
@@ -965,15 +743,15 @@ order they were added.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="once">
-                          <h3><code><a class="member-name" href="#once">once</a>( event, callback, [ options ] = { [options.priority] } )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-once">
+                          <h3><code><a class="member-name" href="#function-once">once</a>( event, callback, [ options ] = { [options.priority] } )</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Registers a callback function to be executed on the next time the event is fired only. This is similar to
-calling <a href="module_utils_emittermixin-Emitter.html#on"><code>on</code></a> followed by <a href="module_utils_emittermixin-Emitter.html#off"><code>off</code></a> in the callback.
+calling <a href="module_utils_emittermixin-Emitter.html#function-on"><code>on</code></a> followed by <a href="module_utils_emittermixin-Emitter.html#function-off"><code>off</code></a> in the callback.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -1011,15 +789,15 @@ order they were added.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="once">
-                          <h3><code><a class="member-name" href="#once">once</a>( event, callback, [ options ] = { [options.priority] } )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-once">
+                          <h3><code><a class="member-name" href="#function-once">once</a>( event, callback, [ options ] = { [options.priority] } )</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Registers a callback function to be executed on the next time the event is fired only. This is similar to
-calling <a href="module_utils_emittermixin-Emitter.html#on"><code>on</code></a> followed by <a href="module_utils_emittermixin-Emitter.html#off"><code>off</code></a> in the callback.
+calling <a href="module_utils_emittermixin-Emitter.html#function-on"><code>on</code></a> followed by <a href="module_utils_emittermixin-Emitter.html#function-off"><code>off</code></a> in the callback.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -1056,38 +834,9 @@ order they were added.</p>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="render">
-                          <h3><code><a class="member-name" href="#render">render</a>()</code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Renders all changes. In order to avoid triggering the observers (e.g. mutations) all observers are disabled
-before rendering and re-enabled after that.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Fires</h4>
-                            <ul>
-                                        <li><span><a href="module_engine_view_document-Document.html#event:render">render</a></span>
-                                        </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="scrollToTheSelection">
-                          <h3><code><a class="member-name" href="#scrollToTheSelection">scrollToTheSelection</a>()</code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Scrolls the page viewport and <a href="module_engine_view_document-Document.html#domRoots"><code>domRoots</code></a> with their ancestors to reveal the
-caret, if not already visible to the user.
-                          </p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="set">
-                          <h3><code><a class="member-name" href="#set">set</a>( name, [ value ] )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-set">
+                          <h3><code><a class="member-name" href="#function-set">set</a>( name, [ value ] )</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
@@ -1118,8 +867,8 @@ properties and methods, but means that <code>foo.set( &apos;bar&apos;, 1 )</code
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="stopDelegating">
-                          <h3><code><a class="member-name" href="#stopDelegating">stopDelegating</a>( [ event ], [ emitter ] )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-stopDelegating">
+                          <h3><code><a class="member-name" href="#function-stopDelegating">stopDelegating</a>( [ event ], [ emitter ] )</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
@@ -1151,8 +900,8 @@ If omitted, stops delegation of <code>event</code> to all emitters.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="stopDelegating">
-                          <h3><code><a class="member-name" href="#stopDelegating">stopDelegating</a>( [ event ], [ emitter ] )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-stopDelegating">
+                          <h3><code><a class="member-name" href="#function-stopDelegating">stopDelegating</a>( [ event ], [ emitter ] )</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
@@ -1184,8 +933,8 @@ If omitted, stops delegation of <code>event</code> to all emitters.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="stopListening">
-                          <h3><code><a class="member-name" href="#stopListening">stopListening</a>( [ emitter ], [ event ], [ callback ] )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-stopListening">
+                          <h3><code><a class="member-name" href="#function-stopListening">stopListening</a>( [ emitter ], [ event ], [ callback ] )</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
@@ -1224,8 +973,8 @@ for all events from <code>emitter</code>.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="stopListening">
-                          <h3><code><a class="member-name" href="#stopListening">stopListening</a>( [ emitter ], [ event ], [ callback ] )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-stopListening">
+                          <h3><code><a class="member-name" href="#function-stopListening">stopListening</a>( [ emitter ], [ event ], [ callback ] )</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
@@ -1264,14 +1013,14 @@ for all events from <code>emitter</code>.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="unbind">
-                          <h3><code><a class="member-name" href="#unbind">unbind</a>( [ unbindProperties ] )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-unbind">
+                          <h3><code><a class="member-name" href="#function-unbind">unbind</a>( [ unbindProperties ] )</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Removes the binding created with <a href="module_utils_observablemixin-Observable.html#bind"><code>bind</code></a>.
+                          <p class="collapsing-list__excerpt">Removes the binding created with <a href="module_utils_observablemixin-Observable.html#function-bind"><code>bind</code></a>.
                           </p>
                           <div class="collapsing-list__content">
 <pre class="prettyprint source"><code>A.unbind( &apos;a&apos; );
@@ -1292,8 +1041,8 @@ be released if no properties provided.</p>
           <h2 id="Events">Events</h2>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:change:isFocused">
-                          <h3><code><a class="member-name" href="#event:change:isFocused">change:isFocused</a>( eventInfo, name, value, oldValue )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-change:isFocused">
+                          <h3><code><a class="member-name" href="#event-change:isFocused">change:isFocused</a>( eventInfo, name, value, oldValue )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when the <code>isFocused</code> property changed value.
@@ -1326,8 +1075,8 @@ be released if no properties provided.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:change:isReadOnly">
-                          <h3><code><a class="member-name" href="#event:change:isReadOnly">change:isReadOnly</a>( eventInfo, name, value, oldValue )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-change:isReadOnly">
+                          <h3><code><a class="member-name" href="#event-change:isReadOnly">change:isReadOnly</a>( eventInfo, name, value, oldValue )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when the <code>isReadOnly</code> property changed value.
@@ -1360,8 +1109,8 @@ be released if no properties provided.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-mixed="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="change:{property}">
-                          <h3><code><a class="member-name" href="#change:{property}">change:{property}</a>( eventInfo, name, value, oldValue )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-change:{property}">
+                          <h3><code><a class="member-name" href="#event-change:{property}">change:{property}</a>( eventInfo, name, value, oldValue )</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">mixed</span>
                           </p>
@@ -1404,8 +1153,8 @@ observable.prop = 2; // -&gt; &apos;prop has changed from 1 to 2&apos;</code></p
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:blur">
-                          <h3><code><a class="member-name" href="#event:blur">blur</a>( eventInfo, data )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-event:blur">
+                          <h3><code><a class="member-name" href="#event-event:blur">blur</a>( eventInfo, data )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when one of the editables loses focus.
@@ -1413,8 +1162,7 @@ observable.prop = 2; // -&gt; &apos;prop has changed from 1 to 2&apos;</code></p
                           <div class="collapsing-list__content">
 <p>Introduced by <a href="module_engine_view_observer_focusobserver-FocusObserver.html"><code>FocusObserver</code></a>.</p>
 <p>Note that because <a href="module_engine_view_observer_focusobserver-FocusObserver.html"><code>FocusObserver</code></a> is attached by the
-<a href="module_engine_view_document-Document.html"><code>Document</code></a>
-this event is available by default.</p>
+<a href="module_engine_view_view-View.html"><code>View</code></a> this event is available by default.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>eventInfo
@@ -1432,8 +1180,8 @@ this event is available by default.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:click">
-                          <h3><code><a class="member-name" href="#event:click">click</a>( eventInfo, data )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-event:click">
+                          <h3><code><a class="member-name" href="#event-event:click">click</a>( eventInfo, data )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when one of the editables has been clicked.
@@ -1442,7 +1190,7 @@ this event is available by default.</p>
 <p>Introduced by <a href="module_engine_view_observer_clickobserver-ClickObserver.html"><code>ClickObserver</code></a>.</p>
 <p>Note that this event is not available by default. To make it available
 <a href="module_engine_view_observer_clickobserver-ClickObserver.html"><code>ClickObserver</code></a> needs to be added
-to <a href="module_engine_view_document-Document.html"><code>Document</code></a> by a <a href="module_engine_view_document-Document.html#addObserver"><code>addObserver</code></a> method.</p>
+to <a href="module_engine_view_view-View.html"><code>View</code></a> by a <a href="module_engine_view_view-View.html#function-addObserver"><code>addObserver</code></a> method.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>eventInfo
@@ -1460,18 +1208,18 @@ to <a href="module_engine_view_document-Document.html"><code>Document</code></a>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:clipboardInput">
-                          <h3><code><a class="member-name" href="#event:clipboardInput">clipboardInput</a>( eventInfo, data = { data.dataTransfer, data.targetRanges } )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-event:clipboardInput">
+                          <h3><code><a class="member-name" href="#event-event:clipboardInput">clipboardInput</a>( eventInfo, data = { data.dataTransfer, data.targetRanges } )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Fired as a continuation of <a href="module_engine_view_document-Document.html#event:paste"><code>paste</code></a> and <a href="module_engine_view_document-Document.html#event:drop"><code>drop</code></a> events.
+                          <p class="collapsing-list__excerpt">Fired as a continuation of <a href="module_engine_view_document-Document.html#event-event:paste"><code>event-paste</code></a> and <a href="module_engine_view_document-Document.html#event-event:drop"><code>event-drop</code></a> events.
 It&apos;s part of the <a href="module_clipboard_clipboard-Clipboard.html">&quot;clipboard pipeline&quot;</a>.
                           </p>
                           <div class="collapsing-list__content">
 <p>Fired with a <code>dataTransfer</code> which comes from the clipboard and which content should be processed
 and inserted into the editor.</p>
 <p>Note that this event is not available by default. To make it available <a href="module_clipboard_clipboardobserver-ClipboardObserver.html"><code>ClipboardObserver</code></a>
-needs to be added to <a href="module_engine_view_document-Document.html"><code>Document</code></a> by the <a href="module_engine_view_document-Document.html#addObserver"><code>addObserver</code></a> method.
+needs to be added to <a href="module_engine_view_document-Document.html"><code>Document</code></a> by the <a href="module_engine_view_view-View.html#function-addObserver"><code>addObserver</code></a> method.
 It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>Clipboard</code></a> feature. If it&apos;s not loaded, it must be done manually.</p>
                             <h4>Parameters</h4>
                                       <dl>
@@ -1507,11 +1255,11 @@ then it's the drop position (which can be different than the selection at the mo
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:clipboardOutput">
-                          <h3><code><a class="member-name" href="#event:clipboardOutput">clipboardOutput</a>( eventInfo, data )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-event:clipboardOutput">
+                          <h3><code><a class="member-name" href="#event-event:clipboardOutput">clipboardOutput</a>( eventInfo, data )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Fired on <a href="module_engine_view_document-Document.html#event:copy"><code>copy</code></a> and <a href="module_engine_view_document-Document.html#event:cut"><code>cut</code></a>
+                          <p class="collapsing-list__excerpt">Fired on <a href="module_engine_view_document-Document.html#event-event:copy"><code>event-copy</code></a> and <a href="module_engine_view_document-Document.html#event-event:cut"><code>event-cut</code></a>
 with a copy of selected content. The content can be processed before it ends up in the clipboard.
 It&apos;s part of the <a href="module_clipboard_clipboard-Clipboard.html">&quot;clipboard pipeline&quot;</a>.
                           </p>
@@ -1533,8 +1281,8 @@ It&apos;s part of the <a href="module_clipboard_clipboard-Clipboard.html">&quot;
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:copy">
-                          <h3><code><a class="member-name" href="#event:copy">copy</a>( eventInfo, data )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-event:copy">
+                          <h3><code><a class="member-name" href="#event-event:copy">copy</a>( eventInfo, data )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when user copied content from one of the editables.
@@ -1542,7 +1290,7 @@ It&apos;s part of the <a href="module_clipboard_clipboard-Clipboard.html">&quot;
                           <div class="collapsing-list__content">
 <p>Introduced by <a href="module_clipboard_clipboardobserver-ClipboardObserver.html"><code>ClipboardObserver</code></a>.</p>
 <p>Note that this event is not available by default. To make it available <a href="module_clipboard_clipboardobserver-ClipboardObserver.html"><code>ClipboardObserver</code></a>
-needs to be added to <a href="module_engine_view_document-Document.html"><code>Document</code></a> by the <a href="module_engine_view_document-Document.html#addObserver"><code>addObserver</code></a> method.
+needs to be added to <a href="module_engine_view_document-Document.html"><code>Document</code></a> by the <a href="module_engine_view_view-View.html#function-addObserver"><code>addObserver</code></a> method.
 It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>Clipboard</code></a> feature. If it&apos;s not loaded, it must be done manually.</p>
                             <h4>Parameters</h4>
                                       <dl>
@@ -1561,8 +1309,8 @@ It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:cut">
-                          <h3><code><a class="member-name" href="#event:cut">cut</a>( eventInfo, data )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-event:cut">
+                          <h3><code><a class="member-name" href="#event-event:cut">cut</a>( eventInfo, data )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when user cut content from one of the editables.
@@ -1570,7 +1318,7 @@ It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>
                           <div class="collapsing-list__content">
 <p>Introduced by <a href="module_clipboard_clipboardobserver-ClipboardObserver.html"><code>ClipboardObserver</code></a>.</p>
 <p>Note that this event is not available by default. To make it available <a href="module_clipboard_clipboardobserver-ClipboardObserver.html"><code>ClipboardObserver</code></a>
-needs to be added to <a href="module_engine_view_document-Document.html"><code>Document</code></a> by the <a href="module_engine_view_document-Document.html#addObserver"><code>addObserver</code></a> method.
+needs to be added to <a href="module_engine_view_document-Document.html"><code>Document</code></a> by the <a href="module_engine_view_view-View.html#function-addObserver"><code>addObserver</code></a> method.
 It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>Clipboard</code></a> feature. If it&apos;s not loaded, it must be done manually.</p>
                             <h4>Parameters</h4>
                                       <dl>
@@ -1589,8 +1337,8 @@ It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:delete">
-                          <h3><code><a class="member-name" href="#event:delete">delete</a>( eventInfo, data, data.direction, data.unit, data.sequence )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-event:delete">
+                          <h3><code><a class="member-name" href="#event-event:delete">delete</a>( eventInfo, data, data.direction, data.unit, data.sequence )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Event fired when the user tries to delete content (e.g. presses <kbd>Delete</kbd> or <kbd>Backspace</kbd>).
@@ -1631,8 +1379,8 @@ If it's 2 or more it means that the key was pressed and hold.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:dragover">
-                          <h3><code><a class="member-name" href="#event:dragover">dragover</a>( eventInfo, data )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-event:dragover">
+                          <h3><code><a class="member-name" href="#event-event:dragover">dragover</a>( eventInfo, data )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when user drags content over one of the editables.
@@ -1640,7 +1388,7 @@ If it's 2 or more it means that the key was pressed and hold.</p>
                           <div class="collapsing-list__content">
 <p>Introduced by <a href="module_clipboard_clipboardobserver-ClipboardObserver.html"><code>ClipboardObserver</code></a>.</p>
 <p>Note that this event is not available by default. To make it available <a href="module_clipboard_clipboardobserver-ClipboardObserver.html"><code>ClipboardObserver</code></a>
-needs to be added to <a href="module_engine_view_document-Document.html"><code>Document</code></a> by the <a href="module_engine_view_document-Document.html#addObserver"><code>addObserver</code></a> method.
+needs to be added to <a href="module_engine_view_document-Document.html"><code>Document</code></a> by the <a href="module_engine_view_view-View.html#function-addObserver"><code>addObserver</code></a> method.
 It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>Clipboard</code></a> feature. If it&apos;s not loaded, it must be done manually.</p>
                             <h4>Parameters</h4>
                                       <dl>
@@ -1659,8 +1407,8 @@ It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:drop">
-                          <h3><code><a class="member-name" href="#event:drop">drop</a>( eventInfo, data, dropRange )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-event:drop">
+                          <h3><code><a class="member-name" href="#event-event:drop">drop</a>( eventInfo, data, dropRange )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when user dropped content into one of the editables.
@@ -1668,7 +1416,7 @@ It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>
                           <div class="collapsing-list__content">
 <p>Introduced by <a href="module_clipboard_clipboardobserver-ClipboardObserver.html"><code>ClipboardObserver</code></a>.</p>
 <p>Note that this event is not available by default. To make it available <a href="module_clipboard_clipboardobserver-ClipboardObserver.html"><code>ClipboardObserver</code></a>
-needs to be added to <a href="module_engine_view_document-Document.html"><code>Document</code></a> by the <a href="module_engine_view_document-Document.html#addObserver"><code>addObserver</code></a> method.
+needs to be added to <a href="module_engine_view_document-Document.html"><code>Document</code></a> by the <a href="module_engine_view_view-View.html#function-addObserver"><code>addObserver</code></a> method.
 It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>Clipboard</code></a> feature. If it&apos;s not loaded, it must be done manually.</p>
                             <h4>Parameters</h4>
                                       <dl>
@@ -1692,8 +1440,8 @@ It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:enter">
-                          <h3><code><a class="member-name" href="#event:enter">enter</a>( eventInfo, data )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-event:enter">
+                          <h3><code><a class="member-name" href="#event-event:enter">enter</a>( eventInfo, data )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Event fired when the user presses the <kbd>Enter</kbd> key.
@@ -1718,8 +1466,8 @@ It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:focus">
-                          <h3><code><a class="member-name" href="#event:focus">focus</a>( eventInfo, data )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-event:focus">
+                          <h3><code><a class="member-name" href="#event-event:focus">focus</a>( eventInfo, data )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when one of the editables gets focus.
@@ -1727,8 +1475,7 @@ It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>
                           <div class="collapsing-list__content">
 <p>Introduced by <a href="module_engine_view_observer_focusobserver-FocusObserver.html"><code>FocusObserver</code></a>.</p>
 <p>Note that because <a href="module_engine_view_observer_focusobserver-FocusObserver.html"><code>FocusObserver</code></a> is attached by the
-<a href="module_engine_view_document-Document.html"><code>Document</code></a>
-this event is available by default.</p>
+<a href="module_engine_view_view-View.html"><code>View</code></a> this event is available by default.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>eventInfo
@@ -1746,8 +1493,8 @@ this event is available by default.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:keydown">
-                          <h3><code><a class="member-name" href="#event:keydown">keydown</a>( eventInfo, keyEventData )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-event:keydown">
+                          <h3><code><a class="member-name" href="#event-event:keydown">keydown</a>( eventInfo, keyEventData )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when a key has been pressed.
@@ -1755,8 +1502,7 @@ this event is available by default.</p>
                           <div class="collapsing-list__content">
 <p>Introduced by <a href="module_engine_view_observer_keyobserver-KeyObserver.html"><code>KeyObserver</code></a>.</p>
 <p>Note that because <a href="module_engine_view_observer_keyobserver-KeyObserver.html"><code>KeyObserver</code></a> is attached by the
-<a href="module_engine_view_document-Document.html"><code>Document</code></a>
-this event is available by default.</p>
+<a href="module_engine_view_view-View.html"><code>View</code></a> this event is available by default.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>eventInfo
@@ -1774,8 +1520,8 @@ this event is available by default.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:keyup">
-                          <h3><code><a class="member-name" href="#event:keyup">keyup</a>( eventInfo, keyEventData )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-event:keyup">
+                          <h3><code><a class="member-name" href="#event-event:keyup">keyup</a>( eventInfo, keyEventData )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when a key has been released.
@@ -1783,8 +1529,7 @@ this event is available by default.</p>
                           <div class="collapsing-list__content">
 <p>Introduced by <a href="module_engine_view_observer_keyobserver-KeyObserver.html"><code>KeyObserver</code></a>.</p>
 <p>Note that because <a href="module_engine_view_observer_keyobserver-KeyObserver.html"><code>KeyObserver</code></a> is attached by the
-<a href="module_engine_view_document-Document.html"><code>Document</code></a>
-this event is available by default.</p>
+<a href="module_engine_view_view-View.html"><code>View</code></a> this event is available by default.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>eventInfo
@@ -1802,8 +1547,8 @@ this event is available by default.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:mousedown">
-                          <h3><code><a class="member-name" href="#event:mousedown">mousedown</a>( eventInfo, data )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-event:mousedown">
+                          <h3><code><a class="member-name" href="#event-event:mousedown">mousedown</a>( eventInfo, data )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when mouse button is pressed down on one of the editables.
@@ -1811,7 +1556,7 @@ this event is available by default.</p>
                           <div class="collapsing-list__content">
 <p>Introduced by <a href="module_engine_view_observer_mouseobserver-MouseObserver.html"><code>MouseObserver</code></a>.</p>
 <p>Note that this event is not available by default. To make it available <a href="module_engine_view_observer_mouseobserver-MouseObserver.html"><code>MouseObserver</code></a>
-needs to be added to <a href="module_engine_view_document-Document.html"><code>Document</code></a> by a <a href="module_engine_view_document-Document.html#addObserver"><code>addObserver</code></a> method.</p>
+needs to be added to <a href="module_engine_view_view-View.html"><code>View</code></a> by a <a href="module_engine_view_view-View.html#function-addObserver"><code>addObserver</code></a> method.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>eventInfo
@@ -1829,18 +1574,17 @@ needs to be added to <a href="module_engine_view_document-Document.html"><code>D
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:mutations">
-                          <h3><code><a class="member-name" href="#event:mutations">mutations</a>( eventInfo, viewMutations, viewSelection )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-event:mutations">
+                          <h3><code><a class="member-name" href="#event-event:mutations">mutations</a>( eventInfo, viewMutations, viewSelection )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Fired when mutation occurred. If tree view is not changed on this event, DOM will be reverter to the state before
+                          <p class="collapsing-list__excerpt">Fired when mutation occurred. If tree view is not changed on this event, DOM will be reverted to the state before
 mutation, so all changes which should be applied, should be handled on this event.
                           </p>
                           <div class="collapsing-list__content">
 <p>Introduced by <a href="module_engine_view_observer_mutationobserver-MutationObserver.html"><code>MutationObserver</code></a>.</p>
 <p>Note that because <a href="module_engine_view_observer_mutationobserver-MutationObserver.html"><code>MutationObserver</code></a> is attached by the
-<a href="module_engine_view_document-Document.html"><code>Document</code></a>
-this event is available by default.</p>
+<a href="module_engine_view_view-View.html"><code>View</code></a> this event is available by default.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>eventInfo
@@ -1867,8 +1611,8 @@ mind that the DOM selection is already &quot;updated&quot;, meaning that it alre
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:paste">
-                          <h3><code><a class="member-name" href="#event:paste">paste</a>( eventInfo, data )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-event:paste">
+                          <h3><code><a class="member-name" href="#event-event:paste">paste</a>( eventInfo, data )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when user pasted content into one of the editables.
@@ -1876,7 +1620,7 @@ mind that the DOM selection is already &quot;updated&quot;, meaning that it alre
                           <div class="collapsing-list__content">
 <p>Introduced by <a href="module_clipboard_clipboardobserver-ClipboardObserver.html"><code>ClipboardObserver</code></a>.</p>
 <p>Note that this event is not available by default. To make it available <a href="module_clipboard_clipboardobserver-ClipboardObserver.html"><code>ClipboardObserver</code></a>
-needs to be added to <a href="module_engine_view_document-Document.html"><code>Document</code></a> by the <a href="module_engine_view_document-Document.html#addObserver"><code>addObserver</code></a> method.
+needs to be added to <a href="module_engine_view_document-Document.html"><code>Document</code></a> by the <a href="module_engine_view_view-View.html#function-addObserver"><code>addObserver</code></a> method.
 It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>Clipboard</code></a> feature. If it&apos;s not loaded, it must be done manually.</p>
                             <h4>Parameters</h4>
                                       <dl>
@@ -1895,8 +1639,8 @@ It&apos;s done by the <a href="module_clipboard_clipboard-Clipboard.html"><code>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:selectionChange">
-                          <h3><code><a class="member-name" href="#event:selectionChange">selectionChange</a>( eventInfo, data = { data.oldSelection, data.newSelection, data.domSelection } )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-event:selectionChange">
+                          <h3><code><a class="member-name" href="#event-event:selectionChange">selectionChange</a>( eventInfo, data = { data.oldSelection, data.newSelection, data.domSelection } )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when selection has changed. This event is fired only when the selection change was the only change that happened
@@ -1905,8 +1649,7 @@ in the document, and old selection is different then the new selection.
                           <div class="collapsing-list__content">
 <p>Introduced by <a href="module_engine_view_observer_selectionobserver-SelectionObserver.html"><code>SelectionObserver</code></a>.</p>
 <p>Note that because <a href="module_engine_view_observer_selectionobserver-SelectionObserver.html"><code>SelectionObserver</code></a> is attached by the
-<a href="module_engine_view_document-Document.html"><code>Document</code></a>
-this event is available by default.</p>
+<a href="module_engine_view_view-View.html"><code>View</code></a> this event is available by default.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>eventInfo
@@ -1925,7 +1668,7 @@ this event is available by default.</p>
                                                           :
  <span><a class="collapsing-list__type" href="module_engine_view_selection-Selection.html">Selection</a></span></code></dt>
                                                       <dd><p>Old View selection which is
-<a href="module_engine_view_document-Document.html#selection"><code>selection</code></a>.</p>
+<a href="module_engine_view_document-Document.html#member-selection"><code>selection</code></a>.</p>
                                                       </dd>
                                                       <dt><code>data.newSelection
                                                           :
@@ -1944,8 +1687,8 @@ this event is available by default.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:selectionChangeDone">
-                          <h3><code><a class="member-name" href="#event:selectionChangeDone">selectionChangeDone</a>( eventInfo, data = { data.oldSelection, data.newSelection, data.domSelection } )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-event:selectionChangeDone">
+                          <h3><code><a class="member-name" href="#event-event:selectionChangeDone">selectionChangeDone</a>( eventInfo, data = { data.oldSelection, data.newSelection, data.domSelection } )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when selection stops changing.
@@ -1953,8 +1696,7 @@ this event is available by default.</p>
                           <div class="collapsing-list__content">
 <p>Introduced by <a href="module_engine_view_observer_selectionobserver-SelectionObserver.html"><code>SelectionObserver</code></a>.</p>
 <p>Note that because <a href="module_engine_view_observer_selectionobserver-SelectionObserver.html"><code>SelectionObserver</code></a> is attached by the
-<a href="module_engine_view_document-Document.html"><code>Document</code></a>
-this event is available by default.</p>
+<a href="module_engine_view_view-View.html"><code>View</code></a> this event is available by default.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>eventInfo
@@ -1973,7 +1715,7 @@ this event is available by default.</p>
                                                           :
  <span><a class="collapsing-list__type" href="module_engine_view_selection-Selection.html">Selection</a></span></code></dt>
                                                       <dd><p>Old View selection which is
-<a href="module_engine_view_document-Document.html#selection"><code>selection</code></a>.</p>
+<a href="module_engine_view_document-Document.html#member-selection"><code>selection</code></a>.</p>
                                                       </dd>
                                                       <dt><code>data.newSelection
                                                           :
@@ -1986,26 +1728,6 @@ this event is available by default.</p>
                                                       <dd><p>Native DOM selection.</p>
                                                       </dd>
                                                     </dl>
-                                        </dd>
-                                      </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:render">
-                          <h3><code><a class="member-name" href="#event:render">render</a>( eventInfo )</code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Fired when <a href="module_engine_view_document-Document.html#render">render</a> method is called. Actual rendering is executed as a listener to
-this event with default priority. This way other listeners can be used to run code before or after rendering.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code>eventInfo
-                                            :
- <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
-                                        <dd><p>An object containing information about the fired event.</p>
                                         </dd>
                                       </dl>
                           </div>
@@ -3661,15 +3383,21 @@ this event with default priority. This way other listeners can be used to run co
                     </li>
                   </ul>
                 </li>
-                <li><a href="module_engine_view_view.html">
-                    <div class="tree__item__wrapper" data-ln="module:engine/view/view"><span class="tree__item--module tree__item__text">view</span></div></a>
+                <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper" data-ln="module:engine/view/view"><a class="tree__item--module tree__item__text" href="module_engine_view_view.html">view</a>
+                  </div>
+                  <ul>
+                    <li><a href="module_engine_view_view-View.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/view/view~View"><span class="tree__item--class tree__item__text">View</span></div></a>
+                    </li>
+                  </ul>
                 </li>
                 <li class="toggler--collapsed">
                   <div class="tree__item__wrapper" data-ln="module:engine/view/writer"><a class="tree__item--module tree__item__text" href="module_engine_view_writer.html">writer</a>
                   </div>
                   <ul>
-                    <li><a href="module_engine_view_writer-writer.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/view/writer~writer"><span class="tree__item--namespace tree__item__text">writer</span></div></a>
+                    <li><a href="module_engine_view_writer-Writer.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/view/writer~Writer"><span class="tree__item--class tree__item__text">Writer</span></div></a>
                     </li>
                   </ul>
                 </li>

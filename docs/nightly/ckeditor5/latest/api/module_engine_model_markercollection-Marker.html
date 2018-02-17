@@ -11,8 +11,8 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.62/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/0.3.62/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../assets/0.3.65/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.65/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -51,15 +51,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.62/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.65/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.62/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.65/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <div class="api-header"><img src="../../../assets/0.3.62/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.65/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1 data-ln="module:engine/model/markercollection~Marker">Marker<span class="header__import--hidden"> (engine/model)</span>
               </h1>
@@ -74,7 +74,7 @@
           <div class="main-description"><p><code>Marker</code> is a continuous parts of model (like a range), is named and represent some kind of information about marked
 part of model document. In contrary to <a href="module_engine_model_node-Node.html">nodes</a>, which are building blocks of
 model document tree, markers are not stored directly in document tree but in
-<a href="module_engine_model_model-Model.html#markers">model markers&apos; collection</a>. Still, they are document data, by giving
+<a href="module_engine_model_model-Model.html#member-markers">model markers&apos; collection</a>. Still, they are document data, by giving
 additional meaning to the part of a model document between marker start and marker end.</p>
 <p>In this sense, markers are similar to adding and converting attributes on nodes. The difference is that attribute is
 connected with a given node (e.g. a character is bold no matter if it gets moved or content around it changes).
@@ -91,7 +91,7 @@ to the range which it is marking at the moment.</p>
 <p>Name is used to group and identify markers. Names have to be unique, but markers can be grouped by
 using common prefixes, separated with <code>:</code>, for example: <code>user:john</code> or <code>search:3</code>. That&apos;s useful in term of creating
 namespaces for custom elements (e.g. comments, highlights). You can use this prefixes in
-<a href="module_engine_model_markercollection-MarkerCollection.html#event:set"><code>set</code></a> listeners to listen on changes in a group of markers.
+<a href="module_engine_model_markercollection-MarkerCollection.html#event-set"><code>event-set</code></a> listeners to listen on changes in a group of markers.
 For instance: <code>model.markers.on( &apos;set:user&apos;, callback );</code> will be called whenever any <code>user:*</code> markers changes.</p>
 <p>There are two types of markers.</p>
 <ol>
@@ -105,8 +105,8 @@ Therefore, they are handled in the undo stack and synchronized between clients i
 This type of markers is useful for solutions like spell checking or comments.</p>
 </li>
 </ol>
-<p>Both type of them should be added / updated by <a href="module_engine_model_writer-Writer.html#setMarker"><code>setMarker</code></a>
-and removed by <a href="module_engine_model_writer-Writer.html#removeMarker"><code>removeMarker</code></a> methods.</p>
+<p>Both type of them should be added / updated by <a href="module_engine_model_writer-Writer.html#function-setMarker"><code>setMarker</code></a>
+and removed by <a href="module_engine_model_writer-Writer.html#function-removeMarker"><code>removeMarker</code></a> methods.</p>
 <pre class="prettyprint source"><code>model.change( ( writer ) =&gt; {
     const marker = writer.setMarker( name, range, { usingOperation: true } );
 
@@ -117,16 +117,16 @@ and removed by <a href="module_engine_model_writer-Writer.html#removeMarker"><co
 <p>Since markers need to track change in the document, for efficiency reasons, it is best to create and keep as little
 markers as possible and remove them as soon as they are not needed anymore.</p>
 <p>Markers can be downcasted and upcasted.</p>
-<p>Markers downcast happens on <a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event:addMarker"><code>addMarker</code></a> and
-<a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event:removeMarker"><code>removeMarker</code></a> events.
+<p>Markers downcast happens on <a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event-addMarker"><code>event-addMarker</code></a> and
+<a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event-removeMarker"><code>event-removeMarker</code></a> events.
 Use <a href="module_engine_conversion_downcast-converters.html">downcast converters</a> or attach a custom converter to mentioned events.
 For <a href="module_engine_controller_datacontroller-DataController.html">data pipeline</a>, marker should be downcasted to an element.
 Then, it can be upcasted back to a marker. Again, use <a href="module_engine_conversion_upcast-converters.html">upcast converters</a> or
-attach a custom converter to <a href="module_engine_conversion_upcastdispatcher-UpcastDispatcher.html#event:element"><code>element</code></a>.</p>
+attach a custom converter to <a href="module_engine_conversion_upcastdispatcher-UpcastDispatcher.html#event-element"><code>event-element</code></a>.</p>
 <p>Another upside of markers is that finding marked part of document is fast and easy. Using attributes to mark some nodes
 and then trying to find that part of document would require traversing whole document tree. Marker gives instant access
 to the range which it is marking at the moment.</p>
-<p><code>Marker</code> instances are created and destroyed only by <code>MarkerCollection (~MarkerCollection)</code>.</p></div>
+<p><code>Marker</code> instances are created and destroyed only by <a href="#">MarkerCollection</a>.</p></div>
 <div class="notice notice__filter api-props-filter">
   <div class="api-props-filter__inner">
     <h4>Filtering</h4>
@@ -161,22 +161,22 @@ to the range which it is marking at the moment.</p>
           <h2 id="Properties">Properties</h2>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="managedUsingOperations">
-                          <h3><code><a class="member-name" href="#managedUsingOperations">managedUsingOperations</a> : <span>Boolean</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="member-managedUsingOperations">
+                          <h3><code><a class="member-name" href="#member-managedUsingOperations">managedUsingOperations</a> : <span>Boolean</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">readonly</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Flag indicates if the marker is managed using operations or not. See <a href="module_engine_model_markercollection-Marker.html">marker  class  description</a>
-to learn more about marker types. See <a href="module_engine_model_writer-Writer.html#setMarker"><code>setMarker</code></a>.</p>
+to learn more about marker types. See <a href="module_engine_model_writer-Writer.html#function-setMarker"><code>setMarker</code></a>.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="name">
-                          <h3><code><a class="member-name" href="#name">name</a> : <span>String</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="member-name">
+                          <h3><code><a class="member-name" href="#member-name">name</a> : <span>String</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">readonly</span>
                           </p>
@@ -188,8 +188,8 @@ to learn more about marker types. See <a href="module_engine_model_writer-Writer
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-protected="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="_liveRange">
-                          <h3><code><a class="member-name" href="#_liveRange">_liveRange</a> : <span><a class="collapsing-list__type" href="module_engine_model_liverange-LiveRange.html">LiveRange</a></span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="member-_liveRange">
+                          <h3><code><a class="member-name" href="#member-_liveRange">_liveRange</a> : <span><a class="collapsing-list__type" href="module_engine_model_liverange-LiveRange.html">LiveRange</a></span></code></h3>
                           <p class="badges">
 <span class="badge badge--orange ">protected</span>
                           </p>
@@ -204,8 +204,8 @@ to learn more about marker types. See <a href="module_engine_model_writer-Writer
           <h2 id="Methods">Methods</h2>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="constructor">
-                          <h3><code><a class="member-name" href="#constructor">constructor</a>( name, liveRange )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-constructor">
+                          <h3><code><a class="member-name" href="#function-constructor">constructor</a>( name, liveRange )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Creates a marker instance.
@@ -228,8 +228,8 @@ to learn more about marker types. See <a href="module_engine_model_writer-Writer
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="getEnd">
-                          <h3><code><a class="member-name" href="#getEnd">getEnd</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-getEnd">
+                          <h3><code><a class="member-name" href="#function-getEnd">getEnd</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Returns current marker end position.
@@ -245,8 +245,8 @@ to learn more about marker types. See <a href="module_engine_model_writer-Writer
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="getRange">
-                          <h3><code><a class="member-name" href="#getRange">getRange</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-getRange">
+                          <h3><code><a class="member-name" href="#function-getRange">getRange</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Returns a range that represents current state of marker.
@@ -254,7 +254,7 @@ to learn more about marker types. See <a href="module_engine_model_writer-Writer
                           <div class="collapsing-list__content">
 <p>Keep in mind that returned value is a <a href="module_engine_model_range-Range.html">Range</a>, not a
 <a href="module_engine_model_liverange-LiveRange.html">LiveRange</a>. This means that it is up-to-date and relevant only
-until next model document change. Do not store values returned by this method. Instead, store <a href="module_engine_model_markercollection-Marker.html#name"><code>name</code></a>
+until next model document change. Do not store values returned by this method. Instead, store <a href="module_engine_model_markercollection-Marker.html#member-name"><code>name</code></a>
 and get <code>Marker</code> instance from <a href="module_engine_model_markercollection-MarkerCollection.html">MarkerCollection</a> every
 time there is a need to read marker properties. This will guarantee that the marker has not been removed and
 that it&apos;s data is up-to-date.</p>
@@ -268,8 +268,8 @@ that it&apos;s data is up-to-date.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="getStart">
-                          <h3><code><a class="member-name" href="#getStart">getStart</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-getStart">
+                          <h3><code><a class="member-name" href="#function-getStart">getStart</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Returns current marker start position.
@@ -288,17 +288,17 @@ that it&apos;s data is up-to-date.</p>
           <h2 id="Events">Events</h2>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:change:content">
-                          <h3><code><a class="member-name" href="#event:change:content">change:content</a>( eventInfo, oldRange, data )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-change:content">
+                          <h3><code><a class="member-name" href="#event-change:content">change:content</a>( eventInfo, oldRange, data )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Fired whenever change on <a href="module_engine_model_document-Document.html"><code>Document</code></a> is done inside <a href="module_engine_model_markercollection-Marker.html#_liveRange">marker  range</a>.
-This is a delegated <a href="module_engine_model_liverange-LiveRange.html#event:change:content">LiveRange change:content event</a>.
+                          <p class="collapsing-list__excerpt">Fired whenever change on <a href="module_engine_model_document-Document.html"><code>Document</code></a> is done inside <a href="module_engine_model_markercollection-Marker.html#member-_liveRange">marker  range</a>.
+This is a delegated <a href="module_engine_model_liverange-LiveRange.html#event-change:content">LiveRange change:content event</a>.
                           </p>
                           <div class="collapsing-list__content">
 <p>When marker is removed from <a href="module_engine_model_markercollection-MarkerCollection.html">MarkerCollection</a>,
 all event listeners listening to it should be removed. It is best to do it on
-<a href="module_engine_model_markercollection-MarkerCollection.html#event:remove">MarkerCollection remove event</a>.</p>
+<a href="module_engine_model_markercollection-MarkerCollection.html#event-remove">MarkerCollection remove event</a>.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>eventInfo
@@ -321,17 +321,17 @@ all event listeners listening to it should be removed. It is best to do it on
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="event:change:range">
-                          <h3><code><a class="member-name" href="#event:change:range">change:range</a>( eventInfo, oldRange, data )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="event-change:range">
+                          <h3><code><a class="member-name" href="#event-change:range">change:range</a>( eventInfo, oldRange, data )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Fired whenever <a href="module_engine_model_markercollection-Marker.html#_liveRange">marker  range</a> is changed due to changes on <a href="module_engine_model_document-Document.html"><code>Document</code></a>.
-This is a delegated <a href="module_engine_model_liverange-LiveRange.html#event:change:range">LiveRange change:range event</a>.
+                          <p class="collapsing-list__excerpt">Fired whenever <a href="module_engine_model_markercollection-Marker.html#member-_liveRange">marker  range</a> is changed due to changes on <a href="module_engine_model_document-Document.html"><code>Document</code></a>.
+This is a delegated <a href="module_engine_model_liverange-LiveRange.html#event-change:range">LiveRange change:range event</a>.
                           </p>
                           <div class="collapsing-list__content">
 <p>When marker is removed from <a href="module_engine_model_markercollection-MarkerCollection.html">MarkerCollection</a>,
 all event listeners listening to it should be removed. It is best to do it on
-<a href="module_engine_model_markercollection-MarkerCollection.html#event:remove">MarkerCollection remove event</a>.</p>
+<a href="module_engine_model_markercollection-MarkerCollection.html#event-remove">MarkerCollection remove event</a>.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>eventInfo
@@ -2003,15 +2003,21 @@ all event listeners listening to it should be removed. It is best to do it on
                     </li>
                   </ul>
                 </li>
-                <li><a href="module_engine_view_view.html">
-                    <div class="tree__item__wrapper" data-ln="module:engine/view/view"><span class="tree__item--module tree__item__text">view</span></div></a>
+                <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper" data-ln="module:engine/view/view"><a class="tree__item--module tree__item__text" href="module_engine_view_view.html">view</a>
+                  </div>
+                  <ul>
+                    <li><a href="module_engine_view_view-View.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/view/view~View"><span class="tree__item--class tree__item__text">View</span></div></a>
+                    </li>
+                  </ul>
                 </li>
                 <li class="toggler--collapsed">
                   <div class="tree__item__wrapper" data-ln="module:engine/view/writer"><a class="tree__item--module tree__item__text" href="module_engine_view_writer.html">writer</a>
                   </div>
                   <ul>
-                    <li><a href="module_engine_view_writer-writer.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/view/writer~writer"><span class="tree__item--namespace tree__item__text">writer</span></div></a>
+                    <li><a href="module_engine_view_writer-Writer.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/view/writer~Writer"><span class="tree__item--class tree__item__text">Writer</span></div></a>
                     </li>
                   </ul>
                 </li>

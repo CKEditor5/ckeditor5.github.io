@@ -11,8 +11,8 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.62/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/0.3.62/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../assets/0.3.65/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.65/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -51,15 +51,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.62/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.65/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.62/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.65/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <div class="api-header"><img src="../../../assets/0.3.62/img/arrows.svg" alt="Interface" title="Interface"/>
+          <div class="api-header"><img src="../../../assets/0.3.65/img/arrows.svg" alt="Interface" title="Interface"/>
             <div class="api-header__title">
               <h1 data-ln="module:image/image~ImageConfig">ImageConfig<span class="header__import--hidden"> (image)</span>
               </h1>
@@ -112,8 +112,8 @@
           <h2 id="Properties">Properties</h2>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="styles">
-                          <h3><code><a class="member-name" href="#styles">styles</a> : <span>Array.&lt;<a class="collapsing-list__type" href="module_image_imagestyle_imagestyleengine-ImageStyleFormat.html">ImageStyleFormat</a>&gt;</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="member-styles">
+                          <h3><code><a class="member-name" href="#member-styles">styles</a> : <span>Array.&lt;<a class="collapsing-list__type" href="module_image_imagestyle_imagestyleengine-ImageStyleFormat.html">ImageStyleFormat</a>&gt;</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Available image styles.
@@ -127,11 +127,11 @@ The option is used by the <a href="module_image_imagestyle_imagestyleengine-Imag
 <li>the &quot;full&quot; style which doesn&apos;t apply any class, e.g. for images styled to span 100% width of the content,</li>
 <li>the &quot;side&quot; style with the <code>.image-style-side</code> CSS class.</li>
 </ul>
-<p>See <a href="module_image_imagestyle_imagestyleengine-ImageStyleEngine.html#defaultStyles"><code>defaultStyles</code></a> to learn more about default
+<p>See <a href="module_image_imagestyle_imagestyleengine-ImageStyleEngine.html#static-member-defaultStyles"><code>defaultStyles</code></a> to learn more about default
 styles provided by the image feature.</p>
-<p>The <a href="module_image_imagestyle_imagestyleengine-ImageStyleEngine.html#defaultStyles">default styles</a> can be customized,
+<p>The <a href="module_image_imagestyle_imagestyleengine-ImageStyleEngine.html#static-member-defaultStyles">default styles</a> can be customized,
 e.g. to change the icon, title or CSS class of the style. The feature also provides several
-<a href="module_image_imagestyle_imagestyleengine-ImageStyleEngine.html#defaultIcons">default icons</a> to chose from.</p>
+<a href="module_image_imagestyle_imagestyleengine-ImageStyleEngine.html#static-member-defaultIcons">default icons</a> to chose from.</p>
 <pre class="prettyprint source"><code>import customIcon from &apos;custom-icon.svg&apos;;
 
 // ...
@@ -158,13 +158,13 @@ const imageConfig = {
 
         { name: &apos;side&apos;, title: &apos;To the side&apos;, icon: sideIcon, className: &apos;side-image&apos; }
     ]
-};</code></pre><p>Note: Setting <code>title</code> to one of <a href="module_image_imagestyle_imagestyleengine-ImageStyleEngine.html#localizedDefaultStylesTitles"><code>localizedDefaultStylesTitles</code></a>
+};</code></pre><p>Note: Setting <code>title</code> to one of <a href="module_image_imagestyle_imagestyleengine-ImageStyleEngine.html#member-localizedDefaultStylesTitles"><code>localizedDefaultStylesTitles</code></a>
 will automatically translate it to the language of the editor.</p>
 <p>Read more about styling images in the <a href="../features/image.html#Image-styles" data-glink="">Image styles guide</a>.</p>
 <p>The feature creates commands based on defined styles, so you can change the style of a selected image by executing
 the following command:</p>
 <pre class="prettyprint source"><code>editor.execute( &apos;imageStyleSide&apos; );</code></pre><p>The features creates also buttons which execute the commands, so assuming that you use the
-default image styles setting you can <a href="module_image_image-ImageConfig.html#toolbar">configure the image toolbar</a>
+default image styles setting you can <a href="module_image_image-ImageConfig.html#member-toolbar">configure the image toolbar</a>
 to contain these options:</p>
 <pre class="prettyprint source"><code>const imageConfig = {
     toolbar: [ &apos;imageStyleFull&apos;, &apos;imageStyleSide&apos; ]
@@ -173,8 +173,8 @@ to contain these options:</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="toolbar">
-                          <h3><code><a class="member-name" href="#toolbar">toolbar</a> : <span>Array.&lt;String&gt;</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="member-toolbar">
+                          <h3><code><a class="member-name" href="#member-toolbar">toolbar</a> : <span>Array.&lt;String&gt;</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Items to be placed in the image toolbar.
@@ -190,8 +190,8 @@ The option is used by the <a href="module_image_imagetoolbar-ImageToolbar.html">
 <pre class="prettyprint source"><code>const imageConfig = {
     toolbar: [ &apos;imageStyleFull&apos;, &apos;imageStyleSide&apos;, &apos;|&apos;, &apos;imageTextAlternative&apos; ]
 };</code></pre><p>Of course, the same buttons can also be used in the
-<a href="module_core_editor_editorconfig-EditorConfig.html#toolbar">main editor toolbar</a>.</p>
-<p>Read more about configuring toolbar in <a href="module_core_editor_editorconfig-EditorConfig.html#toolbar"><code>toolbar</code></a>.</p>
+<a href="module_core_editor_editorconfig-EditorConfig.html#member-toolbar">main editor toolbar</a>.</p>
+<p>Read more about configuring toolbar in <a href="module_core_editor_editorconfig-EditorConfig.html#member-toolbar"><code>toolbar</code></a>.</p>
                           </div>
                         </div>
                       </li>
@@ -1845,15 +1845,21 @@ The option is used by the <a href="module_image_imagetoolbar-ImageToolbar.html">
                     </li>
                   </ul>
                 </li>
-                <li><a href="module_engine_view_view.html">
-                    <div class="tree__item__wrapper" data-ln="module:engine/view/view"><span class="tree__item--module tree__item__text">view</span></div></a>
+                <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper" data-ln="module:engine/view/view"><a class="tree__item--module tree__item__text" href="module_engine_view_view.html">view</a>
+                  </div>
+                  <ul>
+                    <li><a href="module_engine_view_view-View.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/view/view~View"><span class="tree__item--class tree__item__text">View</span></div></a>
+                    </li>
+                  </ul>
                 </li>
                 <li class="toggler--collapsed">
                   <div class="tree__item__wrapper" data-ln="module:engine/view/writer"><a class="tree__item--module tree__item__text" href="module_engine_view_writer.html">writer</a>
                   </div>
                   <ul>
-                    <li><a href="module_engine_view_writer-writer.html">
-                        <div class="tree__item__wrapper" data-ln="module:engine/view/writer~writer"><span class="tree__item--namespace tree__item__text">writer</span></div></a>
+                    <li><a href="module_engine_view_writer-Writer.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/view/writer~Writer"><span class="tree__item--class tree__item__text">Writer</span></div></a>
                     </li>
                   </ul>
                 </li>

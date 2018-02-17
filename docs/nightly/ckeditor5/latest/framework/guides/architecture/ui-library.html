@@ -11,8 +11,8 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/0.3.62/css/styles.css" type="text/css" media="screen">
-    <script src="../../../../../assets/0.3.62/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../../../assets/0.3.65/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../../assets/0.3.65/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -51,15 +51,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.62/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.65/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/architecture/ui-library.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.62/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.62/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/architecture/ui-library.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.65/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.65/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <h1><img src="../../../../../assets/0.3.62/img/book.svg" alt="guide">UI library
+          <h1><img src="../../../../../assets/0.3.65/img/book.svg" alt="guide">UI library
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#views">Views</a><ol><li><a href="#definition">Definition</a></li><li><a href="#interaction">Interaction</a></li><li><a href="#best-practices">Best practices</a></li></ol></li><li><a href="#templates">Templates</a></li><li><a href="#view-collections-and-the-ui-tree">View collections and the UI tree</a></li><li><a href="#using-the-existing-components">Using the existing components</a></li><li><a href="#keystrokes-and-focus-management">Keystrokes and focus management</a><ol><li><a href="#focus-tracker">Focus tracker</a></li><li><a href="#keystroke-handler">Keystroke handler</a></li></ol></li></ol></nav>
 <p>The standard UI library of CKEditor 5 is <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-ui" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-ui</code></a>. It provides base classes and helpers that allow building a modular UI that seamlessly integrates with other components of the ecosystem.</p>
 <h2 id="views"><a class="headerlink" href="#views">#</a> Views</h2>
@@ -132,7 +132,7 @@ parent.render();
 <span class="hljs-comment">// Will insert &lt;div&gt;&lt;input .. /&gt;&lt;input .. /&gt;&lt;/div&gt;.</span>
 <span class="hljs-built_in">document</span>.body.appendChild( parent.element );
 </code></pre>
-<p>It is also possible to create standalone views that do not belong to any collection. They must be <a href="../../../api/module_ui_view-View.html#render">rendered</a> before injection into the DOM:</p>
+<p>It is also possible to create standalone views that do not belong to any collection. They must be <a href="../../../api/module_ui_view-View.html#function-render">rendered</a> before injection into the DOM:</p>
 <pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> view = <span class="hljs-keyword">new</span> SampleInputView( locale );
 
 view.render();
@@ -162,7 +162,7 @@ view.on( <span class="hljs-string">&apos;input&apos;</span>, () =&gt; {
 } );
 </code></pre>
 <h3 id="best-practices"><a class="headerlink" href="#best-practices">#</a> Best practices</h3>
-<p>A complete view should provide an interface for the features, encapsulating DOM nodes and attributes. Features should not touch the DOM of the view using the native API. Any kind of interaction must be handled by the view that owns an <a href="../../../api/module_ui_view-View.html#element"><code>element</code></a> to avoid collisions:</p>
+<p>A complete view should provide an interface for the features, encapsulating DOM nodes and attributes. Features should not touch the DOM of the view using the native API. Any kind of interaction must be handled by the view that owns an <a href="../../../api/module_ui_view-View.html#member-element"><code>element</code></a> to avoid collisions:</p>
 <pre class="highlight"><code class="js"><span class="hljs-comment">// Will change the value of the input.</span>
 view.setValue( <span class="hljs-string">&apos;A new value of the input.&apos;</span> );
 
@@ -200,14 +200,14 @@ view.element.placeholder = <span class="hljs-string">&apos;A new placeholder&apo
 <p>where <code>observable#className</code> is <code>&quot;bar&quot;</code>. The <code>observable</code> in the example above can be a <a href="#Views">view</a> or any object which is <a href="../../../api/module_utils_observablemixin-Observable.html">observable</a>. When the value of the <code>className</code> attribute changes, the template updates the <code>class</code> attribute in the DOM. From now on the element is permanently bound to the state of an application.</p>
 <p>Similarly, when rendered, the template also takes care of DOM events. A binding to the <code>click</code> event in the definition makes the <code>observable</code> always fire the <code>clicked</code> event upon an action in DOM. This way the <code>observable</code> provides an event interface of the DOM element and all the communication should pass through it.</p>
 <h2 id="view-collections-and-the-ui-tree"><a class="headerlink" href="#view-collections-and-the-ui-tree">#</a> View collections and the UI tree</h2>
-<p>Views are organized into <a href="../../../api/module_ui_viewcollection-ViewCollection.html">collections</a> which manage their elements and propagate DOM events even further. Adding or removing a view in a collection moves the <a href="../../../api/module_ui_view-View.html#element">view&#x2019;s element</a> in the DOM to reflect the position.</p>
-<p>Each editor UI has a <a href="../../../api/module_core_editor_editorui-EditorUI.html#view">root view</a>, which can be found under <code>editor.ui.view</code>. Such view usually defines the container element of the editor and undermost view collections that other features can populate.</p>
+<p>Views are organized into <a href="../../../api/module_ui_viewcollection-ViewCollection.html">collections</a> which manage their elements and propagate DOM events even further. Adding or removing a view in a collection moves the <a href="../../../api/module_ui_view-View.html#member-element">view&#x2019;s element</a> in the DOM to reflect the position.</p>
+<p>Each editor UI has a <a href="../../../api/module_core_editor_editorui-EditorUI.html#member-view">root view</a>, which can be found under <code>editor.ui.view</code>. Such view usually defines the container element of the editor and undermost view collections that other features can populate.</p>
 <p>For instance, the <code>BoxedEditorUiView</code> class defines two collections:</p>
 <ul>
-<li><a href="../../../api/module_ui_editorui_boxed_boxededitoruiview-BoxedEditorUIView.html#top"><code>top</code></a> &#x2013; A collection that hosts the toolbar.</li>
-<li><a href="../../../api/module_ui_editorui_boxed_boxededitoruiview-BoxedEditorUIView.html#main"><code>main</code></a> &#x2013; A collection that contains the editable area of the editor.</li>
+<li><a href="../../../api/module_ui_editorui_boxed_boxededitoruiview-BoxedEditorUIView.html#member-top"><code>top</code></a> &#x2013; A collection that hosts the toolbar.</li>
+<li><a href="../../../api/module_ui_editorui_boxed_boxededitoruiview-BoxedEditorUIView.html#member-main"><code>main</code></a> &#x2013; A collection that contains the editable area of the editor.</li>
 </ul>
-<p>It also inherits the <a href="../../../api/module_ui_editorui_editoruiview-EditorUIView.html#body"><code>body</code></a> collection which resides directly in the <code>&lt;body&gt;</code> of the web page and stores floating elements like <a href="../../../api/module_ui_panel_balloon_balloonpanelview-BalloonPanelView.html">balloon panels</a>.</p>
+<p>It also inherits the <a href="../../../api/module_ui_editorui_editoruiview-EditorUIView.html#member-body"><code>body</code></a> collection which resides directly in the <code>&lt;body&gt;</code> of the web page and stores floating elements like <a href="../../../api/module_ui_panel_balloon_balloonpanelview-BalloonPanelView.html">balloon panels</a>.</p>
 <p>Plugins can populate the root view collections with their children. Such child views become a part of the UI tree and will be managed by the editor, e.g. they will be initialized and destroyed along with the editor.</p>
 <pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyPlugin</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
     init() {
@@ -218,7 +218,7 @@ view.element.placeholder = <span class="hljs-string">&apos;A new placeholder&apo
     }
 }
 </code></pre>
-<p><code>MyPluginView</code> can <a href="../../../api/module_ui_view-View.html#createCollection">create own view collections</a> and populate them during the life cycle of the editor. There is no limit to the depth of the UI tree, which usually looks like this:</p>
+<p><code>MyPluginView</code> can <a href="../../../api/module_ui_view-View.html#function-createCollection">create own view collections</a> and populate them during the life cycle of the editor. There is no limit to the depth of the UI tree, which usually looks like this:</p>
 <pre class="highlight"><code class="">EditorUIView
     &#x251C;&#x2500;&#x2500; &quot;top&quot; collection
     &#x2502;    &#x2514;&#x2500;&#x2500; ToolbarView
@@ -271,7 +271,7 @@ toolbar.items.add( buttonBar );
 </code></pre>
 <p>The result should look like this:</p>
 <p><img src="../../../assets/img/framework-architecture-toolbar.png" alt="A simple toolbar created using existing components." width="442"></p>
-<p>The toolbar renders correctly but it does not do much. To execute an action when the button is clicked, a listener must be defined. To shorten the code and instead of two listeners define just one, the buttons can <a href="../../../api/module_utils_emittermixin-EmitterMixin.html#delegate">delegate</a> the <a href="../../../api/module_ui_button_buttonview-ButtonView.html#execute"><code>execute</code></a> event to their parent:</p>
+<p>The toolbar renders correctly but it does not do much. To execute an action when the button is clicked, a listener must be defined. To shorten the code and instead of two listeners define just one, the buttons can <a href="../../../api/module_utils_emittermixin-EmitterMixin.html#function-delegate">delegate</a> the <a href="../../../api/module_ui_button_buttonview-ButtonView.html#event-execute"><code>execute</code></a> event to their parent:</p>
 <pre class="highlight"><code class="js">buttonFoo.delegate( <span class="hljs-string">&apos;execute&apos;</span> ).to( toolbar );
 buttonBar.delegate( <span class="hljs-string">&apos;execute&apos;</span> ).to( toolbar );
 
@@ -290,11 +290,11 @@ toolbar.on( <span class="hljs-string">&apos;execute&apos;</span>, evt =&gt; {
 
 <span class="hljs-keyword">const</span> focusTracker = <span class="hljs-keyword">new</span> FocusTracker();
 </code></pre>
-<p>To register elements in the tracker, use the <a href="../../../api/module_utils_focustracker-FocusTracker.html#add"><code>add()</code></a> method:</p>
+<p>To register elements in the tracker, use the <a href="../../../api/module_utils_focustracker-FocusTracker.html#function-add"><code>add()</code></a> method:</p>
 <pre class="highlight"><code class="js">focusTracker.add( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;.some-element&apos;</span> ) );
 focusTracker.add( viewInstance.element );
 </code></pre>
-<p>Observing focus tracker&#x2019;s <a href="../../../api/module_utils_focustracker-FocusTracker.html#isFocused"><code>isFocused</code></a> observable property allows to determine whether one of the registered elements is currently focused:</p>
+<p>Observing focus tracker&#x2019;s <a href="../../../api/module_utils_focustracker-FocusTracker.html#member-isFocused"><code>isFocused</code></a> observable property allows to determine whether one of the registered elements is currently focused:</p>
 <pre class="highlight"><code class="js">focusTracker.on( <span class="hljs-string">&apos;change:isFocused&apos;</span>, ( evt, name, isFocused ) =&gt; {
     <span class="hljs-keyword">if</span> ( isFocused ) {
         <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;The&apos;</span>, focusTracker.focusedElement, <span class="hljs-string">&apos;is focused now.&apos;</span> );
@@ -312,11 +312,11 @@ focusTracker.add( viewInstance.element );
 
 <span class="hljs-keyword">const</span> keystrokeHandler = <span class="hljs-keyword">new</span> KeystrokeHandler();
 </code></pre>
-<p>To define the scope of the keystroke handler in the DOM, use the <a href="../../../api/module_utils_keystrokehandler-KeystrokeHandler.html#listenTo"><code>listenTo()</code></a> method:</p>
+<p>To define the scope of the keystroke handler in the DOM, use the <a href="../../../api/module_utils_keystrokehandler-KeystrokeHandler.html#function-listenTo"><code>listenTo()</code></a> method:</p>
 <pre class="highlight"><code class="js">keystrokeHandler.listenTo( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;.some-element&apos;</span> ) );
 keystrokeHandler.listenTo( viewInstance.element );
 </code></pre>
-<div class="info-box notice"><p>Check out the list of <a href="../../../api/module_utils_keyboard.html#keyCodes">known key names</a> supported by the keystroke handler.</p></div>
+<div class="info-box notice"><p>Check out the list of <a href="../../../api/module_utils_keyboard.html#static-constant-keyCodes">known key names</a> supported by the keystroke handler.</p></div>
 <p>Keystroke action callbacks are functions. To prevent the default action of the keystroke and stop further propagation, use the <code>cancel()</code> function provided in the callback.</p>
 <pre class="highlight"><code class="js">keystrokeHandler.set( <span class="hljs-string">&apos;Tab&apos;</span>, ( keyEvtData, cancel ) =&gt; {
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;Tab was pressed!&apos;</span> );
@@ -325,7 +325,7 @@ keystrokeHandler.listenTo( viewInstance.element );
     cancel();
 } );
 </code></pre>
-<div class="info-box notice"><p>There is also an <a href="../../../api/module_core_editingkeystrokehandler-EditingKeystrokeHandler.html"><code>EditingKeystrokeHandler</code></a> class which has the same API as <code>KeystrokeHandler</code> but it offers direct keystroke bindings to editor commands.</p><p>The editor provides such keystroke handler under the <a href="../../../api/module_core_editor_editor-Editor.html#keystrokes"><code>editor.keystrokes</code></a> property so any plugin can register keystrokes associated with editor commands. For example, the <a href="../../../api/module_undo_undo-Undo.html">Undo</a> plugin registers <code>editor.keystrokes.set( &apos;Ctrl+Z&apos;, &apos;undo&apos; );</code> to execute its <code>undo</code> command.</p></div>
+<div class="info-box notice"><p>There is also an <a href="../../../api/module_core_editingkeystrokehandler-EditingKeystrokeHandler.html"><code>EditingKeystrokeHandler</code></a> class which has the same API as <code>KeystrokeHandler</code> but it offers direct keystroke bindings to editor commands.</p><p>The editor provides such keystroke handler under the <a href="../../../api/module_core_editor_editor-Editor.html#member-keystrokes"><code>editor.keystrokes</code></a> property so any plugin can register keystrokes associated with editor commands. For example, the <a href="../../../api/module_undo_undo-Undo.html">Undo</a> plugin registers <code>editor.keystrokes.set( &apos;Ctrl+Z&apos;, &apos;undo&apos; );</code> to execute its <code>undo</code> command.</p></div>
 <p>When multiple callbacks are assigned to the same keystroke, priorities can be used to decide which one should be handled first and whether other callbacks should be executed at all:</p>
 <pre class="highlight"><code class="js">keystrokeHandler.set( <span class="hljs-string">&apos;Ctrl+A&apos;</span>, ( keyEvtData ) =&gt; {
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;A normal priority listener.&apos;</span> );

@@ -11,8 +11,8 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/0.3.62/css/styles.css" type="text/css" media="screen">
-    <script src="../../../../../assets/0.3.62/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../../../assets/0.3.65/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../../assets/0.3.65/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -51,15 +51,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.62/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.65/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/integration/basic-api.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.62/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.62/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/integration/basic-api.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.65/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.65/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <h1><img src="../../../../../assets/0.3.62/img/book.svg" alt="guide">Basic API
+          <h1><img src="../../../../../assets/0.3.65/img/book.svg" alt="guide">Basic API
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#creating-an-editor">Creating an editor</a><ol><li><a href="#example-classic-editor">Example &#x2013; Classic editor</a></li><li><a href="#example-inline-editor">Example &#x2013; Inline editor</a></li><li><a href="#example-balloon-editor">Example &#x2013; Balloon editor</a></li></ol></li><li><a href="#interacting-with-the-editor">Interacting with the editor</a><ol><li><a href="#setting-the-editor-data">Setting the editor data</a></li><li><a href="#getting-the-editor-data">Getting the editor data</a></li><li><a href="#destroying-the-editor">Destroying the editor</a></li></ol></li><li><a href="#umd-support">UMD support</a></li><li><a href="#whats-more">What&#x2019;s more?</a></li></ol></nav>
 <p>Each CKEditor 5 build provides a different class that handles the creation of editor instances:</p>
 <ul>
@@ -76,7 +76,7 @@
     &lt;p&gt;Here goes the initial content of the editor.&lt;/p&gt;
 <span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>
 </code></pre>
-<p>Then call <a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html#create"><code>ClassicEditor.create()</code></a> to <strong>replace</strong> the <code>&lt;textarea&gt;</code> element with a <a href="../overview.html#Classic-editor">Classic editor</a>:</p>
+<p>Then call <a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html#static-function-create"><code>ClassicEditor.create()</code></a> to <strong>replace</strong> the <code>&lt;textarea&gt;</code> element with a <a href="../overview.html#Classic-editor">Classic editor</a>:</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ) )
     .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
@@ -93,7 +93,7 @@
     &lt;p&gt;Here goes the initial content of the editor.&lt;/p&gt;
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 </code></pre>
-<p>Then call <a href="../../../api/module_editor-inline_inlineeditor-InlineEditor.html#create"><code>InlineEditor.create()</code></a> to <strong>attach</strong> <a href="../overview.html#Inline-editor">Inline editor</a> to the <code>&lt;div&gt;</code> element:</p>
+<p>Then call <a href="../../../api/module_editor-inline_inlineeditor-InlineEditor.html#static-function-create"><code>InlineEditor.create()</code></a> to <strong>attach</strong> <a href="../overview.html#Inline-editor">Inline editor</a> to the <code>&lt;div&gt;</code> element:</p>
 <pre class="highlight"><code class="js">InlineEditor
     .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ) )
     .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
@@ -104,13 +104,13 @@
     } );
 </code></pre>
 <h3 id="example-balloon-editor"><a class="headerlink" href="#example-balloon-editor">#</a> Example &#x2013; Balloon editor</h3>
-<p>The procedure is the same as for Inline editor &#x2014; the only difference is that you need to use the <a href="../../../api/module_editor-balloon_ballooneditor-BalloonEditor.html#create"><code>BalloonEditor.create()</code></a> method.</p>
+<p>The procedure is the same as for Inline editor &#x2014; the only difference is that you need to use the <a href="../../../api/module_editor-balloon_ballooneditor-BalloonEditor.html#static-function-create"><code>BalloonEditor.create()</code></a> method.</p>
 <p>Add an element where CKEditor should initialize to your page:</p>
 <pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;editor&quot;</span>&gt;</span>
     &lt;p&gt;Here goes the initial content of the editor.&lt;/p&gt;
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 </code></pre>
-<p>Then call <a href="../../../api/module_editor-balloon_ballooneditor-BalloonEditor.html#create"><code>BalloonEditor.create()</code></a> to <strong>attach</strong> <a href="../overview.html#Balloon-editor">Balloon editor</a> to the <code>&lt;div&gt;</code> element:</p>
+<p>Then call <a href="../../../api/module_editor-balloon_ballooneditor-BalloonEditor.html#static-function-create"><code>BalloonEditor.create()</code></a> to <strong>attach</strong> <a href="../overview.html#Balloon-editor">Balloon editor</a> to the <code>&lt;div&gt;</code> element:</p>
 <pre class="highlight"><code class="js">BalloonEditor
     .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ) )
     .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {

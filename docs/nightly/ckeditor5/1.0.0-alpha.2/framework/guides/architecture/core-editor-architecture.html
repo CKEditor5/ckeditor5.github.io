@@ -11,8 +11,8 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/0.3.62/css/styles.css" type="text/css" media="screen">
-    <script src="../../../../../assets/0.3.62/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../../../assets/0.3.65/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../../assets/0.3.65/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -51,38 +51,38 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.62/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.65/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/architecture/core-editor-architecture.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.62/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.62/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/architecture/core-editor-architecture.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.65/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.65/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <h1><img src="../../../../../assets/0.3.62/img/book.svg" alt="guide">Core editor architecture
+          <h1><img src="../../../../../assets/0.3.65/img/book.svg" alt="guide">Core editor architecture
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#editor-classes">Editor classes</a></li><li><a href="#plugins">Plugins</a></li><li><a href="#commands">Commands</a></li><li><a href="#event-system-and-observables">Event system and observables</a></li><li><a href="#read-next">Read next</a></li></ol></nav>
 <p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-core" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-core</code></a> package is relatively simple. It comes with just a handful of classes. The ones you need to know are presented below.</p>
 <h2 id="editor-classes"><a class="headerlink" href="#editor-classes">#</a> Editor classes</h2>
 <p>The <a href="../../../api/module_core_editor_editor-Editor.html"><code>Editor</code></a> class representing the base of the editor.</p>
 <p>The editor is a root object, gluing all other components. It holds a couple of properties that you need to know:</p>
 <ul>
-<li><a href="../../../api/module_core_editor_editor-Editor.html#config"><code>config</code></a> &#x2013; The configuration object.</li>
-<li><a href="../../../api/module_core_editor_editor-Editor.html#plugins"><code>plugins</code></a> and <a href="../../../api/module_core_editor_editor-Editor.html#commands"><code>commands</code></a> &#x2013; The collection of loaded plugins and commands.</li>
+<li><a href="../../../api/module_core_editor_editor-Editor.html#member-config"><code>config</code></a> &#x2013; The configuration object.</li>
+<li><a href="../../../api/module_core_editor_editor-Editor.html#member-plugins"><code>plugins</code></a> and <a href="../../../api/module_core_editor_editor-Editor.html#member-commands"><code>commands</code></a> &#x2013; The collection of loaded plugins and commands.</li>
 <li><a href="../../../api/module_core_editor_editor-Editor.html#document"><code>document</code></a> &#x2013; The document. It is the editing engine&#x2019;s entry point.</li>
-<li><a href="../../../api/module_core_editor_editor-Editor.html#data"><code>data</code></a> &#x2013; The data controller. It controls how data is retrieved from the document and set inside it.</li>
-<li><a href="../../../api/module_core_editor_editor-Editor.html#editing"><code>editing</code></a> &#x2013; The editing controller. It controls <a href="../../../api/module_engine_controller_editingcontroller-EditingController.html#document">document</a> rendering, including selection handling.</li>
-<li><a href="../../../api/module_core_editor_editor-Editor.html#keystrokes"><code>keystrokes</code></a> &#x2013; The keystroke handler. It allows to bind keystrokes to actions.</li>
+<li><a href="../../../api/module_core_editor_editor-Editor.html#member-data"><code>data</code></a> &#x2013; The data controller. It controls how data is retrieved from the document and set inside it.</li>
+<li><a href="../../../api/module_core_editor_editor-Editor.html#member-editing"><code>editing</code></a> &#x2013; The editing controller. It controls <a href="../../../api/module_engine_controller_editingcontroller-EditingController.html#document">document</a> rendering, including selection handling.</li>
+<li><a href="../../../api/module_core_editor_editor-Editor.html#member-keystrokes"><code>keystrokes</code></a> &#x2013; The keystroke handler. It allows to bind keystrokes to actions.</li>
 </ul>
 <p>Besides that, the editor exposes a few of methods:</p>
 <ul>
-<li><a href="../../../api/module_core_editor_editor-Editor.html#create"><code>create()</code></a> &#x2013; The static <code>create()</code> method. Editor constructors are protected and you should create editors using this static method. It allows the initialization process to be asynchronous.</li>
-<li><a href="../../../api/module_core_editor_editor-Editor.html#destroy"><code>destroy()</code></a> &#x2013; Destroys the editor.</li>
-<li><a href="../../../api/module_core_editor_editor-Editor.html#execute"><code>execute()</code></a> &#x2013; Executes the given command.</li>
+<li><a href="../../../api/module_core_editor_editor-Editor.html#static-function-create"><code>create()</code></a> &#x2013; The static <code>create()</code> method. Editor constructors are protected and you should create editors using this static method. It allows the initialization process to be asynchronous.</li>
+<li><a href="../../../api/module_core_editor_editor-Editor.html#function-destroy"><code>destroy()</code></a> &#x2013; Destroys the editor.</li>
+<li><a href="../../../api/module_core_editor_editor-Editor.html#function-execute"><code>execute()</code></a> &#x2013; Executes the given command.</li>
 </ul>
 <p>You can also extend the editor interface using API interfaces:</p>
 <ul>
 <li><a href="../../../api/module_core_editor_utils_elementapimixin-ElementApi.html"><code>ElementApi</code></a> &#x2013; A way to retrieve and set data from/to element on which the editor has been initialized.</li>
-<li><a href="../../../api/module_core_editor_utils_dataapimixin-DataApi.html"><code>DataApi</code></a> &#x2013; A way to retrieve data from the editor and set data in the editor. The data format is controlled by the <a href="../../../api/module_engine_controller_datacontroller-DataController.html#processor">data controller&#x2019;s data processor</a> and it does not need to be a string (it can be e.g. JSON if you implement such a <a href="../../../api/module_engine_dataprocessor_dataprocessor-DataProcessor.html">data processor</a>). See, for example, how to <a href="../../../features/markdown.html">produce Markdown output</a>.</li>
+<li><a href="../../../api/module_core_editor_utils_dataapimixin-DataApi.html"><code>DataApi</code></a> &#x2013; A way to retrieve data from the editor and set data in the editor. The data format is controlled by the <a href="../../../api/module_engine_controller_datacontroller-DataController.html#member-processor">data controller&#x2019;s data processor</a> and it does not need to be a string (it can be e.g. JSON if you implement such a <a href="../../../api/module_engine_dataprocessor_dataprocessor-DataProcessor.html">data processor</a>). See, for example, how to <a href="../../../features/markdown.html">produce Markdown output</a>.</li>
 </ul>
 <p>The editor class is a base to implement your own editors. CKEditor 5 Framework comes with a few editor types (for example, <a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html">classic</a>, <a href="../../../api/module_editor-inline_inlineeditor-InlineEditor.html">inline</a> and <a href="../../../api/module_editor-balloon_ballooneditor-BalloonEditor.html">balloon</a>) but you can freely implement editors which work and look completely different. The only requirement is that you implement the <a href="../../../api/module_core_editor_editor-Editor.html"><code>Editor</code></a> interface.</p>
 <h2 id="plugins"><a class="headerlink" href="#plugins">#</a> Plugins</h2>
@@ -97,7 +97,7 @@
 </ul>
 <p>These are the rules based on which the official plugins were implemented. When implementing your own plugins, if you do not plan to publish them, you can reduce this list to the first point.</p>
 <p>After this lengthy introduction (which is aimed at making it easier for you to digest the existing plugins), the plugin API can be explained.</p>
-<p>All plugins need to implement the <a href="../../../api/module_core_plugin-PluginInterface.html"><code>PluginInterface</code></a>. The easiest way to do so is by inheriting from the <a href="../../../api/module_core_plugin-Plugin.html"><code>Plugin</code></a> class. The plugin initialization code should be located in the <a href="../../../api/module_core_plugin-PluginInterface.html#init"><code>init()</code></a> method (which can return a promise). If some piece of code needs to be executed after other plugins are initialized, you can put it in the <a href="../../../api/module_core_plugin-PluginInterface.html#afterInit"><code>afterInit()</code></a> method. The dependencies between plugins are implemented using the static <a href="../../../api/module_core_plugin-PluginInterface.html#requires"><code>requires</code></a> property.</p>
+<p>All plugins need to implement the <a href="../../../api/module_core_plugin-PluginInterface.html"><code>PluginInterface</code></a>. The easiest way to do so is by inheriting from the <a href="../../../api/module_core_plugin-Plugin.html"><code>Plugin</code></a> class. The plugin initialization code should be located in the <a href="../../../api/module_core_plugin-PluginInterface.html#function-init"><code>init()</code></a> method (which can return a promise). If some piece of code needs to be executed after other plugins are initialized, you can put it in the <a href="../../../api/module_core_plugin-PluginInterface.html#function-afterInit"><code>afterInit()</code></a> method. The dependencies between plugins are implemented using the static <a href="../../../api/module_core_plugin-PluginInterface.html#static-member-requires"><code>requires</code></a> property.</p>
 <pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> MyDependency <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;some/other/plugin&apos;</span>;
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyPlugin</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
@@ -115,7 +115,7 @@
 <p>You can see how to implement a simple plugin in the <a href="../quick-start.html">Quick start</a> guide.</p>
 <h2 id="commands"><a class="headerlink" href="#commands">#</a> Commands</h2>
 <p>A command is a combination of an action (a callback) and a state (a set of properties). For instance, the <code>bold</code> command applies or removes bold attribute from the selected text. If the text in which the selection is placed has bold applied already, the value of the command is <code>true</code>, <code>false</code> otherwise. If the <code>bold</code> command can be executed on the current selection, it is enabled. If not (because, for example, bold is not allowed in this place), it is disabled.</p>
-<p>All commands need to inherit from the <a href="../../../api/module_core_command-Command.html"><code>Command</code></a> class. Commands need to be added to the editor&#x2019;s <a href="../../../api/module_core_editor_editor-Editor.html#commands">command collection</a> so they can be executed by using the <a href="../../../api/module_core_editor_editor-Editor.html#execute"><code>Editor#execute()</code></a> method.</p>
+<p>All commands need to inherit from the <a href="../../../api/module_core_command-Command.html"><code>Command</code></a> class. Commands need to be added to the editor&#x2019;s <a href="../../../api/module_core_editor_editor-Editor.html#member-commands">command collection</a> so they can be executed by using the <a href="../../../api/module_core_editor_editor-Editor.html#function-execute"><code>Editor#execute()</code></a> method.</p>
 <p>Take this example:</p>
 <pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyCommand</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Command</span> </span>{
     execute( message ) {
@@ -133,7 +133,7 @@
 </code></pre>
 <p>Calling <code>editor.execute( &apos;myCommand&apos;, &apos;Foo!&apos; )</code> will log <code>Foo!</code> to the console.</p>
 <p>To see how state management of a typical command like <code>bold</code> is implemented, have a look at some pieces of the <a href="../../../api/module_basic-styles_attributecommand-AttributeCommand.html"><code>AttributeCommand</code></a> class on which <code>bold</code> is based.</p>
-<p>First thing to notice is the <a href="../../../api/module_core_command-Command.html#refresh"><code>refresh()</code></a> method:</p>
+<p>First thing to notice is the <a href="../../../api/module_core_command-Command.html#function-refresh"><code>refresh()</code></a> method:</p>
 <pre class="highlight"><code class="js">refresh() {
     <span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">this</span>.editor.document;
 
@@ -144,7 +144,7 @@
 }
 </code></pre>
 <p>This method is automatically called (by the command itself) when <a href="../../../api/module_engine_model_document-Document.html#event:changesDone">any changes are applied to the model</a>. This means that the command automatically refreshes its own state when anything changes in the editor.</p>
-<p>The important thing about commands is that every change in their state as well as calling the <code>execute()</code> method fires an event (e.g. <a href="../../../api/module_core_command-Command.html#event:change:{attribute}"><code>change:value</code></a> or <a href="../../../api/module_core_command-Command.html#event:execute"><code>execute</code></a>).</p>
+<p>The important thing about commands is that every change in their state as well as calling the <code>execute()</code> method fires an event (e.g. <a href="../../../api/module_core_command-Command.html#event:change:{attribute}"><code>change:value</code></a> or <a href="../../../api/module_core_command-Command.html#event-execute"><code>execute</code></a>).</p>
 <p>These events make it possible to control the command from the outside. For instance, if you want to disable specific commands when some condition is true (for example, according to your application&#x2019;s logic, they should be temporarily disabled) and there is no other, cleaner way to do that, you can block the command manually:</p>
 <pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> command = editor.commands.get( <span class="hljs-string">&apos;someCommand&apos;</span> );
 
@@ -155,7 +155,7 @@ command.isEnabled = <span class="hljs-literal">false</span>;
     <span class="hljs-keyword">this</span>.isEnabled = <span class="hljs-literal">false</span>;
 }
 </code></pre>
-<p>The command will now be disabled as long as you will not <a href="../../../api/module_utils_emittermixin-EmitterMixin.html#off">off</a> this listener, regardless of how many times <code>someCommand.refresh()</code> is called.</p>
+<p>The command will now be disabled as long as you will not <a href="../../../api/module_utils_emittermixin-EmitterMixin.html#function-off">off</a> this listener, regardless of how many times <code>someCommand.refresh()</code> is called.</p>
 <h2 id="event-system-and-observables"><a class="headerlink" href="#event-system-and-observables">#</a> Event system and observables</h2>
 <p>CKEditor 5 has an event-based architecture so you can find <a href="../../../api/module_utils_emittermixin-EmitterMixin.html"><code>EmitterMixin</code></a> and <a href="../../../api/module_utils_observablemixin-ObservableMixin.html"><code>ObservableMixin</code></a> mixed all over the place. Both mechanisms allow for decoupling the code and make it extensible.</p>
 <p>Most of the classes which were already mentioned are either emitters or observables (observable is an emitter too). Emitter can emit (fire events) as well as listen to them.</p>
@@ -181,7 +181,7 @@ command.isEnabled = <span class="hljs-literal">false</span>;
     }
 }
 </code></pre>
-<p>The second listener to <code>&apos;execute&apos;</code> shows one of the very common practices in CKEditor 5 code. Basically, the default action of <code>&apos;execute&apos;</code> (which is calling the <code>execute()</code> method) is registered as a listener to that event with a default priority. Thanks to that, by listening to the event using <code>&apos;low&apos;</code> or <code>&apos;high&apos;</code> priorities you can execute some code before or after <code>execute()</code> is really called. If you stop the event, then the <code>execute()</code> method will not be called at all. In this particular case, the <a href="../../../api/module_core_command-Command.html#execute"><code>Command#execute()</code></a> method was decorated with the event using the <a href="../../../api/module_utils_observablemixin-ObservableMixin.html#decorate"><code>ObservableMixin#decorate()</code></a> function:</p>
+<p>The second listener to <code>&apos;execute&apos;</code> shows one of the very common practices in CKEditor 5 code. Basically, the default action of <code>&apos;execute&apos;</code> (which is calling the <code>execute()</code> method) is registered as a listener to that event with a default priority. Thanks to that, by listening to the event using <code>&apos;low&apos;</code> or <code>&apos;high&apos;</code> priorities you can execute some code before or after <code>execute()</code> is really called. If you stop the event, then the <code>execute()</code> method will not be called at all. In this particular case, the <a href="../../../api/module_core_command-Command.html#function-execute"><code>Command#execute()</code></a> method was decorated with the event using the <a href="../../../api/module_utils_observablemixin-ObservableMixin.html#function-decorate"><code>ObservableMixin#decorate()</code></a> function:</p>
 <pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ObservableMixin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-utils/src/observablemixin&apos;</span>;
 <span class="hljs-keyword">import</span> mix <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-utils/src/mix&apos;</span>;
 
@@ -197,7 +197,7 @@ command.isEnabled = <span class="hljs-literal">false</span>;
 <span class="hljs-comment">// Mix ObservableMixin into Command.</span>
 mix( Command, ObservableMixin );
 </code></pre>
-<p>Besides decorating methods with events, observables allow to observe their chosen properties. For instance, the <code>Command</code> class makes its <code>#value</code> and <code>#isEnabled</code> observable by calling <a href="../../../api/module_utils_observablemixin-ObservableMixin.html#set"><code>set()</code></a>:</p>
+<p>Besides decorating methods with events, observables allow to observe their chosen properties. For instance, the <code>Command</code> class makes its <code>#value</code> and <code>#isEnabled</code> observable by calling <a href="../../../api/module_utils_observablemixin-ObservableMixin.html#function-set"><code>set()</code></a>:</p>
 <pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Command</span> </span>{
     <span class="hljs-keyword">constructor</span>() {
         <span class="hljs-keyword">this</span>.set( <span class="hljs-string">&apos;value&apos;</span>, <span class="hljs-literal">undefined</span> );

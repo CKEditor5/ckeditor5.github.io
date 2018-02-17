@@ -11,10 +11,10 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.62/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../assets/0.3.65/css/styles.css" type="text/css" media="screen">
     <link rel="stylesheet" href="../snippets/build-classic-source/snippet.css" type="text/css">
     <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
-    <script src="../../../assets/0.3.62/scripts/app.js"></script>
+    <script src="../../../assets/0.3.65/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -53,15 +53,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.62/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.65/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-image/blob/master/docs/features/image.md" title="Contribute to this guide"><img src="../../../assets/0.3.62/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5-image/issues/new" title="Report an issue"><img src="../../../assets/0.3.62/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-image/blob/master/docs/features/image.md" title="Contribute to this guide"><img src="../../../assets/0.3.65/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5-image/issues/new" title="Report an issue"><img src="../../../assets/0.3.65/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <h1><img src="../../../assets/0.3.62/img/book.svg" alt="guide">Images
+          <h1><img src="../../../assets/0.3.65/img/book.svg" alt="guide">Images
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#base-image-support">Base image support</a></li><li><a href="#image-contextual-toolbar">Image contextual toolbar</a></li><li><a href="#image-captions">Image captions</a></li><li><a href="#image-styles">Image styles</a><ol><li><a href="#configuring-image-styles">Configuring image styles</a></li><li><a href="#defining-custom-styles">Defining custom styles</a></li></ol></li><li><a href="#image-upload">Image upload</a></li><li><a href="#responsive-images">Responsive images</a></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 <p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-image" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-image</code></a> package contains multiple plugins that implement various image-related features:</p>
 <ul>
@@ -162,7 +162,7 @@
 </div>
 </div>
 <h3 id="configuring-image-styles"><a class="headerlink" href="#configuring-image-styles">#</a> Configuring image styles</h3>
-<p>The available image styles can be configured using the <a href="../api/module_image_image-ImageConfig.html#styles"><code>image.styles</code></a> option.</p>
+<p>The available image styles can be configured using the <a href="../api/module_image_image-ImageConfig.html#member-styles"><code>image.styles</code></a> option.</p>
 <p>The following editor supports the default full style plus left- and right-aligned images:</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
@@ -199,7 +199,7 @@
 </div>
 <div class="info-box notice notice__hint"><p>In the example above the options used represent simple &#x201C;align left&#x201D; and &#x201C;align right&#x201D; styles. Most text editors support left, center, right alignments, however, try not to think about CKEditor 5&#x2019;s image styles in this way. Try to understand what use cases the system needs to support and define semantical options accordingly. Defining useful and clear styles is one of the steps towards a good user experience and clear, portable output. For example, the &#x201C;side image&#x201D; style can be displayed as a floated image on wide screens and as a normal image on low resolution screens.</p></div>
 <h3 id="defining-custom-styles"><a class="headerlink" href="#defining-custom-styles">#</a> Defining custom styles</h3>
-<p>Besides using the <a href="../api/module_image_imagestyle_imagestyleengine-ImageStyleEngine.html#defaultStyles">5 predefined styles</a>:</p>
+<p>Besides using the <a href="../api/module_image_imagestyle_imagestyleengine-ImageStyleEngine.html#static-member-defaultStyles">5 predefined styles</a>:</p>
 <ul>
 <li><code>&apos;imageStyleFull&apos;</code>,</li>
 <li><code>&apos;imageStyleSide&apos;</code>,</li>
@@ -243,7 +243,7 @@ ClassicEditor
 </ul>
 <p>The <a href="../api/module_image_imagestyle-ImageStyle.html"><code>ImageStyle</code></a> plugin registers:</p>
 <ul>
-<li>A command for each defined style (based on the <a href="../api/module_image_image-ImageConfig.html#styles"><code>image.styles</code></a> configuration option) &#x2014; e.g. <code>&apos;imageStyleFull&apos;</code> and <code>&apos;imageStyleSide&apos;</code>,</li>
+<li>A command for each defined style (based on the <a href="../api/module_image_image-ImageConfig.html#member-styles"><code>image.styles</code></a> configuration option) &#x2014; e.g. <code>&apos;imageStyleFull&apos;</code> and <code>&apos;imageStyleSide&apos;</code>,</li>
 <li>A button for each defined style &#x2014; e.g. <code>&apos;imageStyleFull&apos;</code> and <code>&apos;imageStyleSide&apos;</code>.</li>
 </ul>
 <h2 id="contribute"><a class="headerlink" href="#contribute">#</a> Contribute</h2>
