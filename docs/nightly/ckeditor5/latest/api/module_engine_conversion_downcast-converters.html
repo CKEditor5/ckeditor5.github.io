@@ -165,8 +165,7 @@ attributes on 1-to-1 basis.</p>
  <span>function</span></code></dt>
                                         <dd><p>Function returning an object with two properties: <code>key</code> and <code>value</code>, which
 represents attribute key and attribute value to be set on a <a href="module_engine_view_element-Element.html">view element</a>.
-The function is passed all the parameters of the
-<a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event-attribute"><code>event-attribute</code></a> event.</p>
+The function is passed model attribute value as first parameter and additional data about the change as a second parameter.</p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
@@ -210,7 +209,7 @@ is not provided in descriptor - default priority will be used.
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="static-function-downcastAttributeToAttribute">
-                          <h3><code><a class="member-name" href="#static-function-downcastAttributeToAttribute">downcastAttributeToAttribute</a>( modelAttributeKey, [ config ] = { [config.model], [config.view] }, [ priority ] ) &rarr;  <span>function</span></code></h3>
+                          <h3><code><a class="member-name" href="#static-function-downcastAttributeToAttribute">downcastAttributeToAttribute</a>( config = { config.model, config.view, [config.priority] } ) &rarr;  <span>function</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">static</span>
                           </p>
@@ -221,86 +220,70 @@ is not provided in descriptor - default priority will be used.
                           <div class="collapsing-list__content">
 <p>This conversion results in adding an attribute on a view node, basing on an attribute from a model node. For example,
 <code>&lt;image src=&apos;foo.jpg&apos;&gt;&lt;/image&gt;</code> is converted to <code>&lt;img src=&apos;foo.jpg&apos;&gt;&lt;/img&gt;</code>.</p>
-<pre class="prettyprint source"><code>downcastAttributeToAttribute( &apos;src&apos; );
+<pre class="prettyprint source"><code>downcastAttributeToAttribute( { model: &apos;source&apos;, view: &apos;src&apos; } );
 
-downcastAttributeToAttribute( &apos;source&apos;, { view: &apos;src&apos; } );
+downcastAttributeToAttribute( { model: &apos;source&apos;, view: &apos;href&apos;, priority: &apos;high&apos; } );
 
-downcastAttributeToAttribute( &apos;source&apos;, { view: &apos;src&apos; }, &apos;high&apos; );
-
-downcastAttributeToAttribute( &apos;stylish&apos;, {
-    view: {
-        key: &apos;class&apos;,
-        value: &apos;styled&apos;
-    }
-} );
-
-downcastAttributeToAttribute( &apos;styled&apos;, {
-    model: &apos;dark&apos;,
-    view: {
-        key: &apos;class&apos;,
-        value: &apos;styled styled-dark&apos;
-    }
-} );
-
-downcastAttributeToAttribute( &apos;style&apos;, [
-    {
-        model: &apos;dark&apos;,
-        view: {
-            key: &apos;class&apos;,
-            value: &apos;styled-dark&apos;
-        }
+downcastAttributeToAttribute( {
+    model: {
+        name: &apos;image&apos;,
+        key: &apos;source&apos;
     },
-    {
-        model: &apos;light&apos;,
-        view: {
+    view: &apos;src&apos;
+} );
+
+downcastAttributeToAttribute( {
+    model: {
+        name: &apos;styled&apos;,
+        values: [ &apos;dark&apos;, &apos;light&apos; ]
+    },
+    view: {
+        dark: {
             key: &apos;class&apos;,
-            value: &apos;styled-light&apos;
+            value: [ &apos;styled&apos;, &apos;styled-dark&apos; ]
+        },
+        light: {
+            key: &apos;class&apos;,
+            value: [ &apos;styled&apos;, &apos;styled-light&apos; ]
         }
     }
-] );
+} );
 
-downcastAttributeToAttribute( &apos;style&apos;, {
-    view: attributeValue =&gt; ( { key: &apos;class&apos;, value: &apos;style-&apos; + attributeValue } )
+downcastAttributeToAttribute( {
+    model: &apos;styled&apos;,
+    view: modelAttributeValue =&gt; ( { key: &apos;class&apos;, value: &apos;styled-&apos; + modelAttributeValue } )
 } );</code></pre><p>See <a href="module_engine_conversion_conversion-Conversion.html#function-for"><code>for</code></a> to learn how to add converter to conversion process.</p>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code>modelAttributeKey
+                                        <dt><code>config
                                             :
- <span>String</span></code></dt>
-                                        <dd><p>The key of the attribute to convert.</p>
-                                        </dd>
-                                        <dt><code>[ config ]
-                                            :
- <span>Object</span> | <span>Array.&lt;Object&gt;</span></code></dt>
-                                        <dd><p>Conversion configuration. It is possible to provide multiple configurations in an array.
-If not set, the conversion helper will assume 1-to-1 conversion, that is the view attribute key and view attribute value
-will be same as model attribute key and model attribute value.</p>
+ <span>Object</span></code></dt>
+                                        <dd><p>Conversion configuration.</p>
                                                     <div class="dlheading5">Properties
                                                     </div>
                                                     <dl>
-                                                      <dt><code>[ config.model ]
+                                                      <dt><code>config.model
                                                           :
- <span>*</span></code></dt>
-                                                      <dd><p>The value of the converted model attribute for which the <code>view</code> property is defined.
-If <code>true</code> is provided, the configuration item will be used as a &quot;default&quot; configuration when no other item matches
-the attribute value.</p>
+ <span>String</span> | <span>Object</span></code></dt>
+                                                      <dd><p>Key of the attribute to convert from or a <code>{ key, values, [ name ] }</code> object describing
+the attribute key, possible values and, optionally, an element name to convert from.</p>
                                                       </dd>
-                                                      <dt><code>[ config.view ]
+                                                      <dt><code>config.view
                                                           :
  <span>String</span> | <span>Object</span> | <span>function</span></code></dt>
-                                                      <dd><p>View attribute key, or an object with <code>key</code> and <code>value</code> properties (both <code>String</code>),
-or a function that takes model attribute value and returns an object with <code>key</code> and <code>value</code> properties (both <code>String</code>).
-If nothing is passed, the view attribute key and value will be equal to the model attribute key and value.
-If a <code>String</code> is passed, it will be used as view attribute key and view attribute value will be equal to model attribute value.
-If an object or a function returning an object is passed, its properties will be used to set view attribute key and value.</p>
+                                                      <dd><p>View attribute key, or a <code>{ key, value }</code> object or a function that takes
+model attribute value and returns a <code>{ key, value }</code> object. If <code>key</code> is <code>'class'</code>, <code>value</code> can be a <code>String</code> or an
+array of <code>String</code>s. If <code>key</code> is <code>'style'</code>, <code>value</code> is an object with key-value pairs. In other cases, <code>value</code> is a <code>String</code>.
+If <code>config.model.values</code> is set, <code>config.view</code> should be an object assigning values from <code>config.model.values</code> to
+<code>{ key, value }</code> objects or a functions.</p>
+                                                      </dd>
+                                                      <dt><code>[ config.priority ]
+                                                          :
+ <span><a class="collapsing-list__type" href="module_utils_priorities-PriorityString.html">PriorityString</a></span></code></dt>
+                                                      <dd><p>Converter priority.</p>
+                                                        <p>Defaults to <code>'normal'</code></p>
                                                       </dd>
                                                     </dl>
-                                        </dd>
-                                        <dt><code>[ priority ]
-                                            :
- <span><a class="collapsing-list__type" href="module_utils_priorities-PriorityString.html">PriorityString</a></span></code></dt>
-                                        <dd><p>Converter priority.</p>
-                                          <p>Defaults to <code>'normal'</code></p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
@@ -314,7 +297,7 @@ If an object or a function returning an object is passed, its properties will be
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="static-function-downcastAttributeToElement">
-                          <h3><code><a class="member-name" href="#static-function-downcastAttributeToElement">downcastAttributeToElement</a>( modelAttributeKey, config = { [config.model], config.view }, [ priority ] ) &rarr;  <span>function</span></code></h3>
+                          <h3><code><a class="member-name" href="#static-function-downcastAttributeToElement">downcastAttributeToElement</a>( config = { config.model, config.view, [config.priority] } ) &rarr;  <span>function</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">static</span>
                           </p>
@@ -325,87 +308,74 @@ If an object or a function returning an object is passed, its properties will be
                           <div class="collapsing-list__content">
 <p>This conversion results in wrapping view nodes in a view attribute element. For example, model text node with data
 <code>&quot;Foo&quot;</code> and <code>bold</code> attribute becomes <code>&lt;strong&gt;Foo&lt;/strong&gt;</code> in the view.</p>
-<pre class="prettyprint source"><code>downcastAttributeToElement( &apos;bold&apos;, { view: &apos;strong&apos; } );
+<pre class="prettyprint source"><code>downcastAttributeToElement( { model: &apos;bold&apos;, view: &apos;strong&apos; } );
 
-downcastAttributeToElement( &apos;bold&apos;, { view: &apos;strong&apos; }, &apos;high&apos; );
+downcastAttributeToElement( { model: &apos;bold&apos;, view: &apos;b&apos;, priority: &apos;high&apos; } );
 
-downcastAttributeToElement( &apos;bold&apos;, {
+downcastAttributeToElement( {
+    model: &apos;invert&apos;,
     view: {
         name: &apos;span&apos;,
-        class: &apos;bold&apos;
+        class: [ &apos;font-light&apos;, &apos;bg-dark&apos; ]
     }
 } );
 
-downcastAttributeToElement( &apos;styled&apos;, {
-    model: &apos;dark&apos;,
+downcastAttributeToElement( {
+    model: {
+        key: &apos;fontSize&apos;,
+        values: [ &apos;big&apos;, &apos;small&apos; ]
+    },
     view: {
-        name: &apos;span&apos;,
-        class: [ &apos;styled&apos;, &apos;styled-dark&apos; ]
-    }
-} );
-
-downcastAttributeToElement( &apos;fontSize&apos;, [
-    {
-        model: &apos;big&apos;,
-        view: {
+        big: {
             name: &apos;span&apos;,
             style: {
                 &apos;font-size&apos;: &apos;1.2em&apos;
             }
-        }
-    },
-    {
-        model: &apos;small&apos;,
-        view: {
+        },
+        small: {
             name: &apos;span&apos;,
             style: {
                 &apos;font-size&apos;: &apos;0.8em&apos;
             }
         }
     }
-] );
+} );
 
-downcastAttributeToElement( &apos;bold&apos;, {
-    view: ( modelAttributeValue, data, consumable, conversionApi ) =&gt; {
-        const viewWriter = conversionApi.writer;
-
-        return viewWriter( &apos;span&apos;, { style: &apos;font-weight:&apos; + modelAttributeValue } );
+downcastAttributeToElement( {
+    model: &apos;bold&apos;,
+    view: ( modelAttributeValue, viewWriter ) =&gt; {
+        return viewWriter.createAttributeElement( &apos;span&apos;, { style: &apos;font-weight:&apos; + modelAttributeValue } );
     }
 } );</code></pre><p>See <a href="module_engine_conversion_conversion-Conversion.html#function-for"><code>for</code></a> to learn how to add converter to conversion process.</p>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code>modelAttributeKey
-                                            :
- <span>String</span></code></dt>
-                                        <dd><p>The key of the attribute to convert.</p>
-                                        </dd>
                                         <dt><code>config
                                             :
- <span>Object</span> | <span>Array.&lt;Object&gt;</span></code></dt>
-                                        <dd><p>Conversion configuration. It is possible to provide multiple configurations in an array.</p>
+ <span>Object</span></code></dt>
+                                        <dd><p>Conversion configuration.</p>
                                                     <div class="dlheading5">Properties
                                                     </div>
                                                     <dl>
-                                                      <dt><code>[ config.model ]
+                                                      <dt><code>config.model
                                                           :
- <span>*</span></code></dt>
-                                                      <dd><p>The value of the converted model attribute for which the <code>view</code> property is defined.
-If omitted, the configuration item will be used as a &quot;default&quot; configuration when no other item matches the attribute value.</p>
+ <span>String</span> | <span>Object</span></code></dt>
+                                                      <dd><p>Key of the attribute to convert from or a <code>{ key, values }</code> object. <code>values</code> is an array
+of <code>String</code>s with possible values if the model attribute is enumerable.</p>
                                                       </dd>
                                                       <dt><code>config.view
                                                           :
- <span>String</span> | <span><a class="collapsing-list__type" href="module_engine_view_elementdefinition-ElementDefinition.html">ElementDefinition</a></span> | <span>function</span></code></dt>
-                                                      <dd><p>View element name,
-or a view element definition, or a function that takes model element as a parameter and returns a view attribute element.
-The view element will be used then in conversion.</p>
+ <span><a class="collapsing-list__type" href="module_engine_view_elementdefinition-ElementDefinition.html">ElementDefinition</a></span> | <span>function</span> | <span>Object</span></code></dt>
+                                                      <dd><p>View element definition or a function
+that takes model attribute value and view writer as parameters and returns a view attribute element. If <code>config.model.values</code> is
+given, <code>config.view</code> should be an object assigning values from <code>config.model.values</code> to view element definitions or functions.</p>
+                                                      </dd>
+                                                      <dt><code>[ config.priority ]
+                                                          :
+ <span><a class="collapsing-list__type" href="module_utils_priorities-PriorityString.html">PriorityString</a></span></code></dt>
+                                                      <dd><p>Converter priority.</p>
+                                                        <p>Defaults to <code>'normal'</code></p>
                                                       </dd>
                                                     </dl>
-                                        </dd>
-                                        <dt><code>[ priority ]
-                                            :
- <span><a class="collapsing-list__type" href="module_utils_priorities-PriorityString.html">PriorityString</a></span></code></dt>
-                                        <dd><p>Converter priority.</p>
-                                          <p>Defaults to <code>'normal'</code></p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
@@ -419,7 +389,7 @@ The view element will be used then in conversion.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="static-function-downcastElementToElement">
-                          <h3><code><a class="member-name" href="#static-function-downcastElementToElement">downcastElementToElement</a>( config = { config.model, config.view }, [ priority ] ) &rarr;  <span>function</span></code></h3>
+                          <h3><code><a class="member-name" href="#static-function-downcastElementToElement">downcastElementToElement</a>( config = { config.model, config.view } ) &rarr;  <span>function</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">static</span>
                           </p>
@@ -431,7 +401,7 @@ The view element will be used then in conversion.</p>
 <p>This conversion results in creating a view element. For example, model <code>&lt;paragraph&gt;Foo&lt;/paragraph&gt;</code> becomes <code>&lt;p&gt;Foo&lt;/p&gt;</code> in the view.</p>
 <pre class="prettyprint source"><code>downcastElementToElement( { model: &apos;paragraph&apos;, view: &apos;p&apos; } );
 
-downcastElementToElement( { model: &apos;paragraph&apos;, view: &apos;p&apos; }, &apos;high&apos; );
+downcastElementToElement( { model: &apos;paragraph&apos;, view: &apos;div&apos;, priority: &apos;high&apos; } );
 
 downcastElementToElement( {
     model: &apos;fancyParagraph&apos;,
@@ -443,11 +413,7 @@ downcastElementToElement( {
 
 downcastElementToElement( {
     model: &apos;heading&apos;,
-    view: ( modelItem, consumable, conversionApi ) =&gt; {
-        const viewWriter = conversionApi.writer;
-
-        return viewWriter.createContainerElement( &apos;h&apos; + modelItem.getAttribute( &apos;level&apos; ) );
-    }
+    view: ( modelElement, viewWriter ) =&gt; viewWriter.createContainerElement( &apos;h&apos; + modelElement.getAttribute( &apos;level&apos; ) )
 } );</code></pre><p>See <a href="module_engine_conversion_conversion-Conversion.html#function-for"><code>for</code></a> to learn how to add converter to conversion process.</p>
                             <h4>Parameters</h4>
                                       <dl>
@@ -465,20 +431,11 @@ downcastElementToElement( {
                                                       </dd>
                                                       <dt><code>config.view
                                                           :
- <span>String</span> | <span><a class="collapsing-list__type" href="module_engine_view_elementdefinition-ElementDefinition.html">ElementDefinition</a></span> | <span>function</span></code></dt>
-                                                      <dd><p>View element name, or a
-view element definition, or a function that  will be provided with all the parameters of the dispatcher's
-<a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event-insert">insert event</a>.
-It's expected that the function returns a <a href="module_engine_view_containerelement-ContainerElement.html"><code>ContainerElement</code></a>.
-The view element will be used then in conversion.</p>
+ <span><a class="collapsing-list__type" href="module_engine_view_elementdefinition-ElementDefinition.html">ElementDefinition</a></span> | <span>function</span></code></dt>
+                                                      <dd><p>View element definition or a function
+that takes model element and view writer as a parameters and returns a view container element.</p>
                                                       </dd>
                                                     </dl>
-                                        </dd>
-                                        <dt><code>[ priority ]
-                                            :
- <span><a class="collapsing-list__type" href="module_utils_priorities-PriorityString.html">PriorityString</a></span></code></dt>
-                                        <dd><p>Converter priority.</p>
-                                          <p>Defaults to <code>'normal'</code></p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
@@ -492,7 +449,7 @@ The view element will be used then in conversion.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="static-function-downcastMarkerToElement">
-                          <h3><code><a class="member-name" href="#static-function-downcastMarkerToElement">downcastMarkerToElement</a>( config = { config.model, config.view }, [ priority ] ) &rarr;  <span>function</span></code></h3>
+                          <h3><code><a class="member-name" href="#static-function-downcastMarkerToElement">downcastMarkerToElement</a>( config = { config.model, config.view, [config.priority] } ) &rarr;  <span>function</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">static</span>
                           </p>
@@ -506,9 +463,7 @@ is collapsed, only one element is created. For example, model marker set like th
 becomes <code>&lt;p&gt;F&lt;span data-marker=&quot;search&quot;&gt;&lt;/span&gt;oo b&lt;span data-marker=&quot;search&quot;&gt;&lt;/span&gt;ar&lt;/p&gt;</code> in the view.</p>
 <pre class="prettyprint source"><code>downcastMarkerToElement( { model: &apos;search&apos;, view: &apos;marker-search&apos; } );
 
-downcastMarkerToElement( { model: &apos;search&apos;, view: &apos;marker-search&apos; }, &apos;high&apos; );
-
-downcastMarkerToElement( { model: &apos;search&apos;, view: new ViewUIElement( &apos;span&apos;, { data-marker: &apos;search&apos; } ) } );
+downcastMarkerToElement( { model: &apos;search&apos;, view: &apos;search-result&apos;, priority: &apos;high&apos; } );
 
 downcastMarkerToElement( {
     model: &apos;search&apos;,
@@ -522,8 +477,8 @@ downcastMarkerToElement( {
 
 downcastMarkerToElement( {
     model: &apos;search&apos;,
-    view: ( data, conversionApi ) =&gt; {
-         return conversionApi.writer.createUIElement( &apos;span&apos;, { &apos;data-marker&apos;: &apos;search&apos;, &apos;data-start&apos;: data.isOpening } );
+    view: ( markerData, viewWriter ) =&gt; {
+         return viewWriter.createUIElement( &apos;span&apos;, { &apos;data-marker&apos;: &apos;search&apos;, &apos;data-start&apos;: markerData.isOpening } );
     }
 } );</code></pre><p>If function is passed as <code>config.view</code> parameter, it will be used to generate both boundary elements. The function
 receives <code>data</code> object as parameter and should return an instance of <a href="module_engine_view_uielement-UIElement.html">view.UIElement</a>.
@@ -550,17 +505,16 @@ marker end boundary element.</p>
                                                       <dt><code>config.view
                                                           :
  <span><a class="collapsing-list__type" href="module_engine_view_elementdefinition-ElementDefinition.html">ElementDefinition</a></span> | <span>function</span></code></dt>
-                                                      <dd><p>View element definition
-which will be used to build a view element for conversion or a function that takes model marker data as a parameter and
-returns view element to use in conversion.</p>
+                                                      <dd><p>View element definition or a function
+that takes model marker data as a parameter and returns view ui element.</p>
+                                                      </dd>
+                                                      <dt><code>[ config.priority ]
+                                                          :
+ <span><a class="collapsing-list__type" href="module_utils_priorities-PriorityString.html">PriorityString</a></span></code></dt>
+                                                      <dd><p>Converter priority.</p>
+                                                        <p>Defaults to <code>'normal'</code></p>
                                                       </dd>
                                                     </dl>
-                                        </dd>
-                                        <dt><code>[ priority ]
-                                            :
- <span><a class="collapsing-list__type" href="module_utils_priorities-PriorityString.html">PriorityString</a></span></code></dt>
-                                        <dd><p>Converter priority.</p>
-                                          <p>Defaults to <code>'normal'</code></p>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
@@ -574,7 +528,7 @@ returns view element to use in conversion.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="static-function-downcastMarkerToHighlight">
-                          <h3><code><a class="member-name" href="#static-function-downcastMarkerToHighlight">downcastMarkerToHighlight</a>( config = { config.model, config.view }, [ priority ] ) &rarr;  <span>function</span></code></h3>
+                          <h3><code><a class="member-name" href="#static-function-downcastMarkerToHighlight">downcastMarkerToHighlight</a>( config = { config.model, config.view, [config.priority] } ) &rarr;  <span>function</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">static</span>
                           </p>
@@ -597,7 +551,7 @@ to a container element, it is the container element instance itself which applie
 So, in a sense, converter takes care of stating what should be applied on what, while element decides how to apply that.</p>
 <pre class="prettyprint source"><code>downcastMarkerToHighlight( { model: &apos;comment&apos;, view: { class: &apos;comment&apos; } } );
 
-downcastMarkerToHighlight( { model: &apos;comment&apos;, view: { class: &apos;new-comment&apos; } }, &apos;high&apos; );
+downcastMarkerToHighlight( { model: &apos;comment&apos;, view: { class: &apos;new-comment&apos; }, priority: &apos;high&apos; } );
 
 downcastMarkerToHighlight( {
     model: &apos;comment&apos;,
@@ -610,9 +564,8 @@ downcastMarkerToHighlight( {
          };
     }
 } );</code></pre><p>If function is passed as <code>config.view</code> parameter, it will be used to generate highlight descriptor. The function
-receives <code>data</code> and <code>conversionApi</code> objects as parameters and should return
-<a href="module_engine_conversion_downcast-converters-HighlightDescriptor.html"><code>HighlightDescriptor</code></a>. The <code>data</code> and <code>conversionApi</code> objects are passed from
-<a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event-addMarker"><code>event-addMarker</code></a>.</p>
+receives <code>data</code> object as parameter and should return a <a href="module_engine_conversion_downcast-converters-HighlightDescriptor.html"><code>HighlightDescriptor</code></a>.
+The <code>data</code> object properties are passed from <a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event-addMarker"><code>event-addMarker</code></a>.</p>
 <p>See <a href="module_engine_conversion_conversion-Conversion.html#function-for"><code>for</code></a> to learn how to add converter to conversion process.</p>
                             <h4>Parameters</h4>
                                       <dl>
@@ -634,13 +587,13 @@ receives <code>data</code> and <code>conversionApi</code> objects as parameters 
                                                       <dd><p>Highlight descriptor
 which will be used for highlighting or a function that takes model marker data as a parameter and returns a highlight descriptor.</p>
                                                       </dd>
-                                                    </dl>
-                                        </dd>
-                                        <dt><code>[ priority ]
-                                            :
+                                                      <dt><code>[ config.priority ]
+                                                          :
  <span><a class="collapsing-list__type" href="module_utils_priorities-PriorityString.html">PriorityString</a></span></code></dt>
-                                        <dd><p>Converter priority.</p>
-                                          <p>Defaults to <code>'normal'</code></p>
+                                                      <dd><p>Converter priority.</p>
+                                                        <p>Defaults to <code>'normal'</code></p>
+                                                      </dd>
+                                                    </dl>
                                         </dd>
                                       </dl>
                             <h4>Returns</h4>
@@ -1572,6 +1525,9 @@ When provided <code>Function</code> does not return element, then will be no con
                     <li><a href="module_engine_conversion_conversion-Conversion.html">
                         <div class="tree__item__wrapper" data-ln="module:engine/conversion/conversion~Conversion"><span class="tree__item--class tree__item__text">Conversion</span></div></a>
                     </li>
+                    <li><a href="module_engine_conversion_conversion-ConverterDefinition.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/conversion~ConverterDefinition"><span class="tree__item--typedef tree__item__text">ConverterDefinition</span></div></a>
+                    </li>
                   </ul>
                 </li>
                 <li class="toggler--collapsed">
@@ -1615,9 +1571,6 @@ When provided <code>Function</code> does not return element, then will be no con
                         <div class="tree__item__wrapper" data-ln="module:engine/conversion/modelconsumable~ModelConsumable"><span class="tree__item--class tree__item__text">ModelConsumable</span></div></a>
                     </li>
                   </ul>
-                </li>
-                <li><a href="module_engine_conversion_two-way-converters.html">
-                    <div class="tree__item__wrapper" data-ln="module:engine/conversion/two-way-converters"><span class="tree__item--module tree__item__text">two-way-converters</span></div></a>
                 </li>
                 <li><a href="module_engine_conversion_upcast-converters.html">
                     <div class="tree__item__wrapper" data-ln="module:engine/conversion/upcast-converters"><span class="tree__item--module tree__item__text">upcast-converters</span></div></a>
@@ -2791,6 +2744,9 @@ When provided <code>Function</code> does not return element, then will be no con
                 </li>
               </ul>
             </li>
+            <li><a href="module_font_utils.html">
+                <div class="tree__item__wrapper" data-ln="module:font/utils"><span class="tree__item--module tree__item__text">utils</span></div></a>
+            </li>
           </ul>
         </li>
         <li class="toggler--collapsed">
@@ -2827,6 +2783,54 @@ When provided <code>Function</code> does not return element, then will be no con
               <ul>
                 <li><a href="module_heading_headingengine-HeadingEngine.html">
                     <div class="tree__item__wrapper" data-ln="module:heading/headingengine~HeadingEngine"><span class="tree__item--class tree__item__text">HeadingEngine</span></div></a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="toggler--collapsed">
+          <div class="tree__item__wrapper" data-ln="highlight"><a class="tree__item--package tree__item__text" href="highlight.html">highlight</a>
+          </div>
+          <ul>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:highlight/highlight"><a class="tree__item--module tree__item__text" href="module_highlight_highlight.html">highlight</a>
+              </div>
+              <ul>
+                <li><a href="module_highlight_highlight-Highlight.html">
+                    <div class="tree__item__wrapper" data-ln="module:highlight/highlight~Highlight"><span class="tree__item--class tree__item__text">Highlight</span></div></a>
+                </li>
+                <li><a href="module_highlight_highlight-HighlightConfig.html">
+                    <div class="tree__item__wrapper" data-ln="module:highlight/highlight~HighlightConfig"><span class="tree__item--interface tree__item__text">HighlightConfig</span></div></a>
+                </li>
+                <li><a href="module_highlight_highlight-HighlightOption.html">
+                    <div class="tree__item__wrapper" data-ln="module:highlight/highlight~HighlightOption"><span class="tree__item--typedef tree__item__text">HighlightOption</span></div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:highlight/highlightcommand"><a class="tree__item--module tree__item__text" href="module_highlight_highlightcommand.html">highlightcommand</a>
+              </div>
+              <ul>
+                <li><a href="module_highlight_highlightcommand-HighlightCommand.html">
+                    <div class="tree__item__wrapper" data-ln="module:highlight/highlightcommand~HighlightCommand"><span class="tree__item--class tree__item__text">HighlightCommand</span></div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:highlight/highlightediting"><a class="tree__item--module tree__item__text" href="module_highlight_highlightediting.html">highlightediting</a>
+              </div>
+              <ul>
+                <li><a href="module_highlight_highlightediting-HighlightEditing.html">
+                    <div class="tree__item__wrapper" data-ln="module:highlight/highlightediting~HighlightEditing"><span class="tree__item--class tree__item__text">HighlightEditing</span></div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:highlight/highlightui"><a class="tree__item--module tree__item__text" href="module_highlight_highlightui.html">highlightui</a>
+              </div>
+              <ul>
+                <li><a href="module_highlight_highlightui-HighlightUI.html">
+                    <div class="tree__item__wrapper" data-ln="module:highlight/highlightui~HighlightUI"><span class="tree__item--class tree__item__text">HighlightUI</span></div></a>
                 </li>
               </ul>
             </li>

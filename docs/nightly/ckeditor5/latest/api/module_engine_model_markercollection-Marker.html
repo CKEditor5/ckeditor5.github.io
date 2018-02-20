@@ -91,7 +91,7 @@ to the range which it is marking at the moment.</p>
 <p>Name is used to group and identify markers. Names have to be unique, but markers can be grouped by
 using common prefixes, separated with <code>:</code>, for example: <code>user:john</code> or <code>search:3</code>. That&apos;s useful in term of creating
 namespaces for custom elements (e.g. comments, highlights). You can use this prefixes in
-<a href="module_engine_model_markercollection-MarkerCollection.html#event-set"><code>event-set</code></a> listeners to listen on changes in a group of markers.
+<a href="module_engine_model_markercollection-MarkerCollection.html#event-update"><code>event-update</code></a> listeners to listen on changes in a group of markers.
 For instance: <code>model.markers.on( &apos;set:user&apos;, callback );</code> will be called whenever any <code>user:*</code> markers changes.</p>
 <p>There are two types of markers.</p>
 <ol>
@@ -162,14 +162,12 @@ to the range which it is marking at the moment.</p>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="member-managedUsingOperations">
-                          <h3><code><a class="member-name" href="#member-managedUsingOperations">managedUsingOperations</a> : <span>Boolean</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-                          </p>
+                          <h3><code><a class="member-name" href="#member-managedUsingOperations">managedUsingOperations</a></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Flag indicates if the marker is managed using operations or not. See <a href="module_engine_model_markercollection-Marker.html">marker  class  description</a>
-to learn more about marker types. See <a href="module_engine_model_writer-Writer.html#function-setMarker"><code>setMarker</code></a>.</p>
+                          <p class="collapsing-list__excerpt">Returns value of flag indicates if the marker is managed using operations or not.
+See <a href="module_engine_model_markercollection-Marker.html">marker  class  description</a> to learn more about marker types.
+See <a href="module_engine_model_writer-Writer.html#function-setMarker"><code>setMarker</code></a>.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -188,10 +186,23 @@ to learn more about marker types. See <a href="module_engine_model_writer-Writer
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-protected="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="member-_managedUsingOperations">
+                          <h3><code><a class="member-name" href="#member-_managedUsingOperations">_managedUsingOperations</a> : <span>Boolean</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Flag indicates if the marker is managed using operations or not.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
                         <div class="collapsing-list__term toggler--collapsed" id="member-_liveRange">
                           <h3><code><a class="member-name" href="#member-_liveRange">_liveRange</a> : <span><a class="collapsing-list__type" href="module_engine_model_liverange-LiveRange.html">LiveRange</a></span></code></h3>
                           <p class="badges">
-<span class="badge badge--orange ">protected</span>
+<span class="badge badge--red ">private</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
@@ -205,7 +216,7 @@ to learn more about marker types. See <a href="module_engine_model_writer-Writer
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-constructor">
-                          <h3><code><a class="member-name" href="#function-constructor">constructor</a>( name, liveRange )</code></h3>
+                          <h3><code><a class="member-name" href="#function-constructor">constructor</a>( name, liveRange, managedUsingOperations )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Creates a marker instance.
@@ -222,6 +233,11 @@ to learn more about marker types. See <a href="module_engine_model_writer-Writer
                                             :
  <span><a class="collapsing-list__type" href="module_engine_model_liverange-LiveRange.html">LiveRange</a></span></code></dt>
                                         <dd><p>Range marked by the marker.</p>
+                                        </dd>
+                                        <dt><code>managedUsingOperations
+                                            :
+ <span>Boolean</span></code></dt>
+                                        <dd><p>Specifies whether the marker is managed using operations.</p>
                                         </dd>
                                       </dl>
                           </div>
@@ -284,6 +300,48 @@ that it&apos;s data is up-to-date.</p>
                           </div>
                         </div>
                       </li>
+                      <li class="collapsing-list__item" data-protected="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-_attachLiveRange">
+                          <h3><code><a class="member-name" href="#function-_attachLiveRange">_attachLiveRange</a>( liveRange ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_liverange-LiveRange.html">LiveRange</a></span></code></h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Binds new live range to marker and detach the old one if is attached.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>liveRange
+                                            :
+ <span><a class="collapsing-list__type" href="module_engine_model_liverange-LiveRange.html">LiveRange</a></span></code></dt>
+                                        <dd><p>Live range to attach</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_liverange-LiveRange.html">LiveRange</a></span></code></dt>
+                                        <dd><p>Attached live range.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-protected="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-_detachLiveRange">
+                          <h3><code><a class="member-name" href="#function-_detachLiveRange">_detachLiveRange</a>()</code></h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Unbinds and destroys currently attached live range.
+                          </p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
           </ul>
           <h2 id="Events">Events</h2>
           <ul class="collapsing-list collapsing-list--filtered">
@@ -298,7 +356,7 @@ This is a delegated <a href="module_engine_model_liverange-LiveRange.html#event-
                           <div class="collapsing-list__content">
 <p>When marker is removed from <a href="module_engine_model_markercollection-MarkerCollection.html">MarkerCollection</a>,
 all event listeners listening to it should be removed. It is best to do it on
-<a href="module_engine_model_markercollection-MarkerCollection.html#event-remove">MarkerCollection remove event</a>.</p>
+<a href="module_engine_model_markercollection-MarkerCollection.html#event-update">MarkerCollection update event</a>.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>eventInfo
@@ -331,7 +389,7 @@ This is a delegated <a href="module_engine_model_liverange-LiveRange.html#event-
                           <div class="collapsing-list__content">
 <p>When marker is removed from <a href="module_engine_model_markercollection-MarkerCollection.html">MarkerCollection</a>,
 all event listeners listening to it should be removed. It is best to do it on
-<a href="module_engine_model_markercollection-MarkerCollection.html#event-remove">MarkerCollection remove event</a>.</p>
+<a href="module_engine_model_markercollection-MarkerCollection.html#event-update">MarkerCollection update event</a>.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>eventInfo
@@ -966,6 +1024,9 @@ all event listeners listening to it should be removed. It is best to do it on
                     <li><a href="module_engine_conversion_conversion-Conversion.html">
                         <div class="tree__item__wrapper" data-ln="module:engine/conversion/conversion~Conversion"><span class="tree__item--class tree__item__text">Conversion</span></div></a>
                     </li>
+                    <li><a href="module_engine_conversion_conversion-ConverterDefinition.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/conversion~ConverterDefinition"><span class="tree__item--typedef tree__item__text">ConverterDefinition</span></div></a>
+                    </li>
                   </ul>
                 </li>
                 <li class="toggler--collapsed">
@@ -1009,9 +1070,6 @@ all event listeners listening to it should be removed. It is best to do it on
                         <div class="tree__item__wrapper" data-ln="module:engine/conversion/modelconsumable~ModelConsumable"><span class="tree__item--class tree__item__text">ModelConsumable</span></div></a>
                     </li>
                   </ul>
-                </li>
-                <li><a href="module_engine_conversion_two-way-converters.html">
-                    <div class="tree__item__wrapper" data-ln="module:engine/conversion/two-way-converters"><span class="tree__item--module tree__item__text">two-way-converters</span></div></a>
                 </li>
                 <li><a href="module_engine_conversion_upcast-converters.html">
                     <div class="tree__item__wrapper" data-ln="module:engine/conversion/upcast-converters"><span class="tree__item--module tree__item__text">upcast-converters</span></div></a>
@@ -2185,6 +2243,9 @@ all event listeners listening to it should be removed. It is best to do it on
                 </li>
               </ul>
             </li>
+            <li><a href="module_font_utils.html">
+                <div class="tree__item__wrapper" data-ln="module:font/utils"><span class="tree__item--module tree__item__text">utils</span></div></a>
+            </li>
           </ul>
         </li>
         <li class="toggler--collapsed">
@@ -2221,6 +2282,54 @@ all event listeners listening to it should be removed. It is best to do it on
               <ul>
                 <li><a href="module_heading_headingengine-HeadingEngine.html">
                     <div class="tree__item__wrapper" data-ln="module:heading/headingengine~HeadingEngine"><span class="tree__item--class tree__item__text">HeadingEngine</span></div></a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="toggler--collapsed">
+          <div class="tree__item__wrapper" data-ln="highlight"><a class="tree__item--package tree__item__text" href="highlight.html">highlight</a>
+          </div>
+          <ul>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:highlight/highlight"><a class="tree__item--module tree__item__text" href="module_highlight_highlight.html">highlight</a>
+              </div>
+              <ul>
+                <li><a href="module_highlight_highlight-Highlight.html">
+                    <div class="tree__item__wrapper" data-ln="module:highlight/highlight~Highlight"><span class="tree__item--class tree__item__text">Highlight</span></div></a>
+                </li>
+                <li><a href="module_highlight_highlight-HighlightConfig.html">
+                    <div class="tree__item__wrapper" data-ln="module:highlight/highlight~HighlightConfig"><span class="tree__item--interface tree__item__text">HighlightConfig</span></div></a>
+                </li>
+                <li><a href="module_highlight_highlight-HighlightOption.html">
+                    <div class="tree__item__wrapper" data-ln="module:highlight/highlight~HighlightOption"><span class="tree__item--typedef tree__item__text">HighlightOption</span></div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:highlight/highlightcommand"><a class="tree__item--module tree__item__text" href="module_highlight_highlightcommand.html">highlightcommand</a>
+              </div>
+              <ul>
+                <li><a href="module_highlight_highlightcommand-HighlightCommand.html">
+                    <div class="tree__item__wrapper" data-ln="module:highlight/highlightcommand~HighlightCommand"><span class="tree__item--class tree__item__text">HighlightCommand</span></div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:highlight/highlightediting"><a class="tree__item--module tree__item__text" href="module_highlight_highlightediting.html">highlightediting</a>
+              </div>
+              <ul>
+                <li><a href="module_highlight_highlightediting-HighlightEditing.html">
+                    <div class="tree__item__wrapper" data-ln="module:highlight/highlightediting~HighlightEditing"><span class="tree__item--class tree__item__text">HighlightEditing</span></div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:highlight/highlightui"><a class="tree__item--module tree__item__text" href="module_highlight_highlightui.html">highlightui</a>
+              </div>
+              <ul>
+                <li><a href="module_highlight_highlightui-HighlightUI.html">
+                    <div class="tree__item__wrapper" data-ln="module:highlight/highlightui~HighlightUI"><span class="tree__item--class tree__item__text">HighlightUI</span></div></a>
                 </li>
               </ul>
             </li>

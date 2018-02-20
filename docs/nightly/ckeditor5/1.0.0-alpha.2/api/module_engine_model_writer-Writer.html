@@ -720,22 +720,22 @@ or on a <a href="module_engine_model_range-Range.html">range</a>.
                           <h3><code><a class="member-name" href="#function-setMarker">setMarker</a>( [ markerOrName ], [ range ], [ options ] = { [options.usingOperation] } ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_markercollection-Marker.html">Marker</a></span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Adds or updates <a href="module_engine_model_markercollection-Marker.html">marker</a>.
+                          <p class="collapsing-list__excerpt">Adds or updates a <a href="module_engine_model_markercollection-Marker.html">marker</a>. Marker is a named range, which tracks
+changes in the document and updates its range automatically, when model tree changes. Still, it is possible to change the
+marker&apos;s range directly using this method.
                           </p>
                           <div class="collapsing-list__content">
 <p>As the first parameter you can set marker name or instance. If none of them is provided, new marker, with a unique
 name is created and returned.</p>
-<p>Using this method you can change markers range or define if the marker is managed by operation or not.</p>
-<p>Marker tracks changes is the document and updates the range automatically, so you need to update the range only
-when it changes directly. You do not need to update it after each document change.</p>
-<p>The option parameter let you decide if the marker should be managed by operations or not. See
+<p>The <code>options.usingOperation</code> parameter lets you decide if the marker should be managed by operations or not. See
 <a href="module_engine_model_markercollection-Marker.html">marker class description</a> to learn about the difference between
-markers managed by operation and managed directly. You can change this option for existing marker. This is
-useful if a marker have been created earlier and need to be added to the document history later.</p>
-<p>Update marker using operation:</p>
-<pre class="prettyprint source"><code>setMarker( marker, range, { usingOperation: true } );</code></pre><p>Create/update marker directly base on marker&apos;s name:</p>
-<pre class="prettyprint source"><code>setMarker( markerName, range );</code></pre><p>Create marker with a unique id using operation:</p>
-<pre class="prettyprint source"><code>setMarker( range, { usingOperation: true } );</code></pre><p>Create marker directly with a unique name:</p>
+markers managed by operations and not-managed by operations. It is possible to change this option for an existing marker.
+This is useful when a marker have been created earlier and then later, it needs to be added to the document history.</p>
+<p>Create/update marker directly base on marker&apos;s name:</p>
+<pre class="prettyprint source"><code>setMarker( markerName, range );</code></pre><p>Update marker using operation:</p>
+<pre class="prettyprint source"><code>setMarker( marker, range, { usingOperation: true } );
+setMarker( markerName, range, { usingOperation: true } );</code></pre><p>Create marker with a unique id using operation:</p>
+<pre class="prettyprint source"><code>setMarker( range, { usingOperation: true } );</code></pre><p>Create marker directly without using operations:</p>
 <pre class="prettyprint source"><code>setMarker( range )</code></pre><p>Change marker&apos;s option (start using operations to manage it):</p>
 <pre class="prettyprint source"><code>setMarker( marker, { usingOperation: true } );</code></pre><p>Note: For efficiency reasons, it&apos;s best to create and keep as little markers as possible.</p>
                             <h4>Parameters</h4>
@@ -743,13 +743,12 @@ useful if a marker have been created earlier and need to be added to the documen
                                         <dt><code>[ markerOrName ]
                                             :
  <span><a class="collapsing-list__type" href="module_engine_model_markercollection-Marker.html">Marker</a></span> | <span>String</span></code></dt>
-                                        <dd><p>Name of marker to add, Marker instance to update or range for the marker with a unique name.</p>
-                                          <p>Defaults to <code>uid()</code></p>
+                                        <dd><p>Name of a marker to create or update, or <code>Marker</code> instance to update, or range for the marker with a unique name.</p>
                                         </dd>
                                         <dt><code>[ range ]
                                             :
- <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | <span>Object</span></code></dt>
-                                        <dd><p>Marker range or options.</p>
+ <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
+                                        <dd><p>Marker range.</p>
                                         </dd>
                                         <dt><code>[ options ]
                                             :
@@ -1647,6 +1646,9 @@ Throws error if you try to unwrap an element which does not have a parent.
                     <li><a href="module_engine_conversion_conversion-Conversion.html">
                         <div class="tree__item__wrapper" data-ln="module:engine/conversion/conversion~Conversion"><span class="tree__item--class tree__item__text">Conversion</span></div></a>
                     </li>
+                    <li><a href="module_engine_conversion_conversion-ConverterDefinition.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/conversion~ConverterDefinition"><span class="tree__item--typedef tree__item__text">ConverterDefinition</span></div></a>
+                    </li>
                   </ul>
                 </li>
                 <li class="toggler--collapsed">
@@ -1690,9 +1692,6 @@ Throws error if you try to unwrap an element which does not have a parent.
                         <div class="tree__item__wrapper" data-ln="module:engine/conversion/modelconsumable~ModelConsumable"><span class="tree__item--class tree__item__text">ModelConsumable</span></div></a>
                     </li>
                   </ul>
-                </li>
-                <li><a href="module_engine_conversion_two-way-converters.html">
-                    <div class="tree__item__wrapper" data-ln="module:engine/conversion/two-way-converters"><span class="tree__item--module tree__item__text">two-way-converters</span></div></a>
                 </li>
                 <li><a href="module_engine_conversion_upcast-converters.html">
                     <div class="tree__item__wrapper" data-ln="module:engine/conversion/upcast-converters"><span class="tree__item--module tree__item__text">upcast-converters</span></div></a>
@@ -2866,6 +2865,9 @@ Throws error if you try to unwrap an element which does not have a parent.
                 </li>
               </ul>
             </li>
+            <li><a href="module_font_utils.html">
+                <div class="tree__item__wrapper" data-ln="module:font/utils"><span class="tree__item--module tree__item__text">utils</span></div></a>
+            </li>
           </ul>
         </li>
         <li class="toggler--collapsed">
@@ -2902,6 +2904,54 @@ Throws error if you try to unwrap an element which does not have a parent.
               <ul>
                 <li><a href="module_heading_headingengine-HeadingEngine.html">
                     <div class="tree__item__wrapper" data-ln="module:heading/headingengine~HeadingEngine"><span class="tree__item--class tree__item__text">HeadingEngine</span></div></a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="toggler--collapsed">
+          <div class="tree__item__wrapper" data-ln="highlight"><a class="tree__item--package tree__item__text" href="highlight.html">highlight</a>
+          </div>
+          <ul>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:highlight/highlight"><a class="tree__item--module tree__item__text" href="module_highlight_highlight.html">highlight</a>
+              </div>
+              <ul>
+                <li><a href="module_highlight_highlight-Highlight.html">
+                    <div class="tree__item__wrapper" data-ln="module:highlight/highlight~Highlight"><span class="tree__item--class tree__item__text">Highlight</span></div></a>
+                </li>
+                <li><a href="module_highlight_highlight-HighlightConfig.html">
+                    <div class="tree__item__wrapper" data-ln="module:highlight/highlight~HighlightConfig"><span class="tree__item--interface tree__item__text">HighlightConfig</span></div></a>
+                </li>
+                <li><a href="module_highlight_highlight-HighlightOption.html">
+                    <div class="tree__item__wrapper" data-ln="module:highlight/highlight~HighlightOption"><span class="tree__item--typedef tree__item__text">HighlightOption</span></div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:highlight/highlightcommand"><a class="tree__item--module tree__item__text" href="module_highlight_highlightcommand.html">highlightcommand</a>
+              </div>
+              <ul>
+                <li><a href="module_highlight_highlightcommand-HighlightCommand.html">
+                    <div class="tree__item__wrapper" data-ln="module:highlight/highlightcommand~HighlightCommand"><span class="tree__item--class tree__item__text">HighlightCommand</span></div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:highlight/highlightediting"><a class="tree__item--module tree__item__text" href="module_highlight_highlightediting.html">highlightediting</a>
+              </div>
+              <ul>
+                <li><a href="module_highlight_highlightediting-HighlightEditing.html">
+                    <div class="tree__item__wrapper" data-ln="module:highlight/highlightediting~HighlightEditing"><span class="tree__item--class tree__item__text">HighlightEditing</span></div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:highlight/highlightui"><a class="tree__item--module tree__item__text" href="module_highlight_highlightui.html">highlightui</a>
+              </div>
+              <ul>
+                <li><a href="module_highlight_highlightui-HighlightUI.html">
+                    <div class="tree__item__wrapper" data-ln="module:highlight/highlightui~HighlightUI"><span class="tree__item--class tree__item__text">HighlightUI</span></div></a>
                 </li>
               </ul>
             </li>

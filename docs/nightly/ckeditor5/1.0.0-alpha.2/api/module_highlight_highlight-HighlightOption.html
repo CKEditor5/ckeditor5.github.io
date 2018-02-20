@@ -2,10 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Module engine/conversion/two-way-converters - CKEditor 5 API docs</title>
-    <meta property="og:title" content="Module engine/conversion/two-way-converters - CKEditor 5 API docs">
+    <title>Typedef HighlightOption (highlight/highlight~HighlightOption) - CKEditor 5 API docs</title>
+    <meta property="og:title" content="Typedef HighlightOption (highlight/highlight~HighlightOption) - CKEditor 5 API docs">
     <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
-    <link rel="canonical" href="/ckeditor5/latest/api/module_engine_conversion_two-way-converters.html">
+    <link rel="canonical" href="/ckeditor5/latest/api/module_highlight_highlight-HighlightOption.html">
     <link rel="icon" type="image/png" href="../assets/img/favicons/16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="../assets/img/favicons/32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
@@ -59,18 +59,26 @@
         <div class="main__content-inner">
           <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.65/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <div class="api-header"><img src="../../../assets/0.3.65/img/box-red.svg" alt="Module" title="Module"/>
+          <div class="api-header"><img src="../../../assets/0.3.65/img/data.svg" alt="Typedef" title="Typedef"/>
             <div class="api-header__title">
-              <h1 data-ln="module:engine/conversion/two-way-converters">engine/conversion/two-way-converters
+              <h1 data-ln="module:highlight/highlight~HighlightOption">HighlightOption<span class="header__import--hidden"> (highlight)</span>
               </h1>
-              <p class="header__import">@ckeditor/ckeditor5-engine/src/conversion/two-way-converters
+              <p class="header__import">@ckeditor/ckeditor5-highlight/src/highlight
               </p>
             </div>
           </div>
-          <p><span class="badge">module</span>
+          <p><span class="badge">typedef</span>
           </p>
-          <div class="types">
+          <div class="types"><span>Object</span>
           </div>
+          <div class="main-description"><p>The highlight option descriptor. See the <a href="module_highlight_highlight-HighlightConfig.html"><code>HighlightConfig</code></a> to learn more.</p>
+<pre class="prettyprint source"><code>{
+    model: &apos;pinkMarker&apos;,
+    class: &apos;marker-pink&apos;,
+    title: &apos;Pink Marker&apos;,
+    color: &apos;#fc7999&apos;,
+    type: &apos;marker&apos;
+}</code></pre></div>
 <div class="notice notice__filter api-props-filter">
   <div class="api-props-filter__inner">
     <h4>Filtering</h4>
@@ -102,402 +110,60 @@
     </ul>
   </div>
 </div>
-          <h2 id="Functions">Functions</h2>
+          <h2 id="Properties">Properties</h2>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="static-function-attributeToAttribute">
-                          <h3><code><a class="member-name" href="#static-function-attributeToAttribute">attributeToAttribute</a>( conversion, modelAttributeKey, [ definition ] = { [definition.model], definition.view, [definition.upcastAlso] } )</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">static</span>
-                          </p>
+                        <div class="collapsing-list__term toggler--collapsed" id="">
+                          <h3><code><a class="member-name" href="#">class</a> : <span>String</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Defines a conversion between the model and the view where a model attribute is represented as a view attribute (and vice versa).
-For example, <code>&lt;image src=&apos;foo.jpg&apos;&gt;&lt;/image&gt;</code> is converted to <code>&lt;img src=&apos;foo.jpg&apos;&gt;&lt;/img&gt;</code> (same attribute name and value).
-                          </p>
+                          <p class="collapsing-list__excerpt">The CSS class used on the <code>&lt;mark&gt;</code> element in the view. It should match the <code>color</code> setting.</p>
                           <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>attributeToAttribute( conversion, &apos;src&apos; );
-
-attributeToAttribute( conversion, &apos;source&apos;, { view: &apos;src&apos; } );
-
-attributeToAttribute( conversion, &apos;aside&apos;, {
-    model: true,
-    view: {
-        name: &apos;img&apos;,
-        key: &apos;class&apos;,
-        value: &apos;aside half-size&apos;
-    }
-} );
-
-attributeToAttribute( conversion, &apos;styled&apos;, [
-    {
-        model: &apos;dark&apos;,
-        view: {
-            key: &apos;class&apos;,
-            value: &apos;styled styled-dark&apos;
-        }
-    },
-    {
-        model: &apos;light&apos;,
-        view: {
-            key: &apos;class&apos;,
-            value: &apos;styled styled-light&apos;
-        }
-    }
-] );
-
-attributeToAttribute( conversion, &apos;align&apos;, [
-    {
-        model: &apos;right&apos;,
-        view: {
-            key: &apos;class&apos;,
-            value: &apos;align-right&apos;
-        },
-        upcastAlso: viewElement =&gt; {
-            if ( viewElement.getStyle( &apos;text-align&apos; ) == &apos;right&apos; ) {
-                return {
-                    style: [ &apos;text-align&apos; ]
-                };
-            }
-
-            return null;
-        }
-    },
-    {
-        model: &apos;center&apos;,
-        view: {
-            key: &apos;class&apos;,
-            value: &apos;align-center&apos;
-        },
-        upcastAlso: {
-            style: {
-                &apos;text-align&apos;: &apos;center&apos;
-            }
-        }
-    }
-] );</code></pre>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code>conversion
-                                            :
- <span><a class="collapsing-list__type" href="module_engine_conversion_conversion-Conversion.html">Conversion</a></span></code></dt>
-                                        <dd><p>Conversion class instance with registered conversion dispatchers.</p>
-                                        </dd>
-                                        <dt><code>modelAttributeKey
-                                            :
- <span>String</span></code></dt>
-                                        <dd><p>The key of the model attribute to convert.</p>
-                                        </dd>
-                                        <dt><code>[ definition ]
-                                            :
- <span>Object</span> | <span>Array.&lt;Object&gt;</span></code></dt>
-                                        <dd><p>Conversion definition. It is possible to provide multiple definitions in an array.
-If not set, the conversion helper will assume 1-to-1 conversion, that is the model attribute key and value will be same
-as the view attribute key and value.</p>
-                                                    <div class="dlheading5">Properties
-                                                    </div>
-                                                    <dl>
-                                                      <dt><code>[ definition.model ]
-                                                          :
- <span>*</span></code></dt>
-                                                      <dd><p>The value of the converted model attribute. If omitted, when downcasting,
-the item will be treated as a default item, that will be used when no other item matches. When upcasting conversion,
-the model attribute value will be set to the same value as in the view.</p>
-                                                      </dd>
-                                                      <dt><code>definition.view
-                                                          :
- <span>Object</span></code></dt>
-                                                      <dd><p>View attribute conversion details. Given object has required <code>key</code> property,
-specifying view attribute key, optional <code>value</code> property, specifying view attribute value and optional <code>name</code>
-property specifying a view element name from/on which the attribute should be converted. If <code>value</code> is not given,
-the view attribute value will be equal to model attribute value.</p>
-                                                      </dd>
-                                                      <dt><code>[ definition.upcastAlso ]
-                                                          :
- <span><a class="collapsing-list__type" href="module_engine_view_matcher-MatcherPattern.html">MatcherPattern</a></span> | <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_view_matcher-MatcherPattern.html">MatcherPattern</a>&gt;</span></code></dt>
-                                                      <dd><p>Any view element matching <code>upcastAlso</code> will also be converted to the given model element.</p>
-                                                      </dd>
-                                                    </dl>
-                                        </dd>
-                                      </dl>
                           </div>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="static-function-attributeToElement">
-                          <h3><code><a class="member-name" href="#static-function-attributeToElement">attributeToElement</a>( conversion, modelAttributeKey, definition = { [definition.model], definition.view, [definition.upcastAlso] } )</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">static</span>
-                          </p>
+                        <div class="collapsing-list__term toggler--collapsed" id="">
+                          <h3><code><a class="member-name" href="#">color</a> : <span>String</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Defines a conversion between the model and the view where a model attribute is represented as a view element (and vice versa).
-For example, model text node with data <code>&quot;Foo&quot;</code> and <code>bold</code> attribute is <code>&lt;strong&gt;Foo&lt;/strong&gt;</code> in the view.
-                          </p>
+                          <p class="collapsing-list__excerpt">The color used for the highlighter. It should match the <code>class</code> CSS definition.
+The color is used in the user interface to represent the highlighter.</p>
                           <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>attributeToElement( conversion, &apos;bold&apos;, { view: &apos;strong&apos; } );
-
-attributeToElement( conversion, &apos;bold&apos;, {
-    view: {
-        name: &apos;span&apos;,
-        class: &apos;bold&apos;
-    }
-} );
-
-attributeToElement( conversion, &apos;bold&apos;, {
-    view: &apos;strong&apos;,
-    upcastAlso: [
-        &apos;b&apos;,
-        {
-            name: &apos;span&apos;,
-            class: &apos;bold&apos;
-        },
-        {
-            name: &apos;span&apos;,
-            style: {
-                &apos;font-weight&apos;: &apos;bold&apos;
-            }
-        },
-        viewElement =&gt; {
-            const fontWeight = viewElement.getStyle( &apos;font-weight&apos; );
-
-            if ( viewElement.is( &apos;span&apos; ) &amp;&amp; fontWeight &amp;&amp; /\d+/.test() &amp;&amp; Number( fontWeight ) &gt; 500 ) {
-                return {
-                    name: true,
-                    style: [ &apos;font-weight&apos; ]
-                };
-            }
-        }
-    ]
-} );
-
-attributeToElement( conversion, &apos;styled&apos;, {
-    model: &apos;dark&apos;,
-    view: {
-        name: &apos;span&apos;,
-        class: [ &apos;styled&apos;, &apos;styled-dark&apos; ]
-    }
-} );
-
-attributeToElement( conversion, &apos;fontSize&apos;, [
-    {
-        model: &apos;big&apos;,
-        view: {
-            name: &apos;span&apos;,
-            style: {
-                &apos;font-size&apos;: &apos;1.2em&apos;
-            }
-        }
-    },
-    {
-        model: &apos;small&apos;,
-        view: {
-            name: &apos;span&apos;,
-            style: {
-                &apos;font-size&apos;: &apos;0.8em&apos;
-            }
-        }
-    }
-] );
-
-attributeToElement( conversion, &apos;fontSize&apos;, [
-    {
-        model: &apos;big&apos;,
-        view: {
-            name: &apos;span&apos;,
-            style: {
-                &apos;font-size&apos;: &apos;1.2em&apos;
-            }
-        },
-        upcastAlso: viewElement =&gt; {
-            const fontSize = viewElement.getStyle( &apos;font-size&apos; );
-
-            if ( !fontSize ) {
-                return null;
-            }
-
-            const match = fontSize.match( /(\d+)\s*px/ );
-
-            if ( !match ) {
-                return null;
-            }
-
-            const size = Number( match[ 1 ] );
-
-            if ( viewElement.is( &apos;span&apos; ) &amp;&amp; size &gt; 10 ) {
-                return { name: true, style: [ &apos;font-size&apos; ] };
-            }
-
-            return null;
-        }
-    },
-    {
-        model: &apos;small&apos;,
-        view: {
-            name: &apos;span&apos;,
-            style: {
-                &apos;font-size&apos;: &apos;0.8em&apos;
-            }
-        },
-        upcastAlso: viewElement =&gt; {
-            const fontSize = viewElement.getStyle( &apos;font-size&apos; );
-
-            if ( !fontSize ) {
-                return null;
-            }
-
-            const match = fontSize.match( /(\d+)\s*px/ );
-
-            if ( !match ) {
-                return null;
-            }
-
-            const size = Number( match[ 1 ] );
-
-            if ( viewElement.is( &apos;span&apos; ) &amp;&amp; size &lt; 10 ) {
-                return { name: true, style: [ &apos;font-size&apos; ] };
-            }
-
-            return null;
-        }
-    }
-] );</code></pre>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code>conversion
-                                            :
- <span><a class="collapsing-list__type" href="module_engine_conversion_conversion-Conversion.html">Conversion</a></span></code></dt>
-                                        <dd><p>Conversion class instance with registered conversion dispatchers.</p>
-                                        </dd>
-                                        <dt><code>modelAttributeKey
-                                            :
- <span>String</span></code></dt>
-                                        <dd><p>The key of the model attribute to convert.</p>
-                                        </dd>
-                                        <dt><code>definition
-                                            :
- <span>Object</span> | <span>Array.&lt;Object&gt;</span></code></dt>
-                                        <dd><p>Conversion definition. It is possible to provide multiple definitions in an array.</p>
-                                                    <div class="dlheading5">Properties
-                                                    </div>
-                                                    <dl>
-                                                      <dt><code>[ definition.model ]
-                                                          :
- <span>*</span></code></dt>
-                                                      <dd><p>The value of the converted model attribute. If omitted, when downcasted, the item will be treated
-as a default item, that will be used when no other item matches. When upcasted, the model attribute value will be set to <code>true</code>.</p>
-                                                      </dd>
-                                                      <dt><code>definition.view
-                                                          :
- <span><a class="collapsing-list__type" href="module_engine_view_elementdefinition-ElementDefinition.html">ElementDefinition</a></span></code></dt>
-                                                      <dd><p>Definition of a view element to convert from/to.</p>
-                                                      </dd>
-                                                      <dt><code>[ definition.upcastAlso ]
-                                                          :
- <span><a class="collapsing-list__type" href="module_engine_view_matcher-MatcherPattern.html">MatcherPattern</a></span> | <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_view_matcher-MatcherPattern.html">MatcherPattern</a>&gt;</span></code></dt>
-                                                      <dd><p>Any view element matching <code>upcastAlso</code> will also be converted to the given model element.</p>
-                                                      </dd>
-                                                    </dl>
-                                        </dd>
-                                      </dl>
                           </div>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="static-function-elementToElement">
-                          <h3><code><a class="member-name" href="#static-function-elementToElement">elementToElement</a>( conversion, definition = { definition.model, definition.view, [definition.upcastAlso] } )</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">static</span>
-                          </p>
+                        <div class="collapsing-list__term toggler--collapsed" id="">
+                          <h3><code><a class="member-name" href="#">model</a> : <span>String</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Defines a conversion between the model and the view where a model element is represented as a view element (and vice versa).
-For example, model <code>&lt;paragraph&gt;Foo&lt;/paragraph&gt;</code> is <code>&lt;p&gt;Foo&lt;/p&gt;</code> in the view.
-                          </p>
+                          <p class="collapsing-list__excerpt">The unique attribute value in the model.</p>
                           <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>elementToElement( conversion, { model: &apos;paragraph&apos;, view: &apos;p&apos; } );
-
-elementToElement( conversion, {
-    model: &apos;fancyParagraph&apos;,
-    view: {
-        name: &apos;p&apos;,
-        class: &apos;fancy&apos;
-    }
-} );
-
-elementToElement( conversion, {
-    model: &apos;paragraph&apos;,
-    view: &apos;p&apos;,
-    upcastAlso: [
-        &apos;div&apos;,
-        {
-            // Match any name.
-            name: /./,
-            style: {
-                display: &apos;block&apos;
-            }
-        }
-    ]
-} );
-
-elementToElement( conversion, {
-    model: &apos;heading&apos;,
-    view: &apos;h2&apos;,
-    // Convert &quot;headling-like&quot; paragraphs to headings.
-    upcastAlso: viewElement =&gt; {
-        const fontSize = viewElement.getStyle( &apos;font-size&apos; );
-
-        if ( !fontSize ) {
-            return null;
-        }
-
-        const match = fontSize.match( /(\d+)\s*px/ );
-
-        if ( !match ) {
-            return null;
-        }
-
-        const size = Number( match[ 1 ] );
-
-        if ( size &gt; 26 ) {
-            return { name: true, style: [ &apos;font-size&apos; ] };
-        }
-
-        return null;
-    }
-} );</code></pre>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code>conversion
-                                            :
- <span><a class="collapsing-list__type" href="module_engine_conversion_conversion-Conversion.html">Conversion</a></span></code></dt>
-                                        <dd><p>Conversion class instance with registered conversion dispatchers.</p>
-                                        </dd>
-                                        <dt><code>definition
-                                            :
- <span>Object</span></code></dt>
-                                        <dd><p>Conversion definition.</p>
-                                                    <div class="dlheading5">Properties
-                                                    </div>
-                                                    <dl>
-                                                      <dt><code>definition.model
-                                                          :
- <span>String</span></code></dt>
-                                                      <dd><p>Name of the model element to convert.</p>
-                                                      </dd>
-                                                      <dt><code>definition.view
-                                                          :
- <span><a class="collapsing-list__type" href="module_engine_view_elementdefinition-ElementDefinition.html">ElementDefinition</a></span></code></dt>
-                                                      <dd><p>Definition of a view element to convert from/to.</p>
-                                                      </dd>
-                                                      <dt><code>[ definition.upcastAlso ]
-                                                          :
- <span><a class="collapsing-list__type" href="module_engine_view_matcher-MatcherPattern.html">MatcherPattern</a></span> | <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_view_matcher-MatcherPattern.html">MatcherPattern</a>&gt;</span></code></dt>
-                                                      <dd><p>Any view element matching <code>upcastAlso</code> will also be converted to the given model element.</p>
-                                                      </dd>
-                                                    </dl>
-                                        </dd>
-                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="">
+                          <h3><code><a class="member-name" href="#">title</a> : <span>String</span></code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">The user-readable title of the option.</p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="">
+                          <h3><code><a class="member-name" href="#">type</a> : <span>'marker'</span> | <span>'pen'</span></code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">The type of highlighter:</p>
+                          <div class="collapsing-list__content">
+<ul>
+<li><code>&apos;marker&apos;</code> &#x2013; uses the <code>color</code> as a <code>background-color</code> style,</li>
+<li><code>&apos;pen&apos;</code> &#x2013; uses the <code>color</code> as a font <code>color</code> style.</li>
+</ul>
                           </div>
                         </div>
                       </li>
@@ -1114,6 +780,9 @@ elementToElement( conversion, {
                     <li><a href="module_engine_conversion_conversion-Conversion.html">
                         <div class="tree__item__wrapper" data-ln="module:engine/conversion/conversion~Conversion"><span class="tree__item--class tree__item__text">Conversion</span></div></a>
                     </li>
+                    <li><a href="module_engine_conversion_conversion-ConverterDefinition.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/conversion/conversion~ConverterDefinition"><span class="tree__item--typedef tree__item__text">ConverterDefinition</span></div></a>
+                    </li>
                   </ul>
                 </li>
                 <li class="toggler--collapsed">
@@ -1157,9 +826,6 @@ elementToElement( conversion, {
                         <div class="tree__item__wrapper" data-ln="module:engine/conversion/modelconsumable~ModelConsumable"><span class="tree__item--class tree__item__text">ModelConsumable</span></div></a>
                     </li>
                   </ul>
-                </li>
-                <li><a href="module_engine_conversion_two-way-converters.html">
-                    <div class="tree__item__wrapper" data-ln="module:engine/conversion/two-way-converters"><span class="tree__item--module tree__item__text">two-way-converters</span></div></a>
                 </li>
                 <li><a href="module_engine_conversion_upcast-converters.html">
                     <div class="tree__item__wrapper" data-ln="module:engine/conversion/upcast-converters"><span class="tree__item--module tree__item__text">upcast-converters</span></div></a>
@@ -2333,6 +1999,9 @@ elementToElement( conversion, {
                 </li>
               </ul>
             </li>
+            <li><a href="module_font_utils.html">
+                <div class="tree__item__wrapper" data-ln="module:font/utils"><span class="tree__item--module tree__item__text">utils</span></div></a>
+            </li>
           </ul>
         </li>
         <li class="toggler--collapsed">
@@ -2369,6 +2038,54 @@ elementToElement( conversion, {
               <ul>
                 <li><a href="module_heading_headingengine-HeadingEngine.html">
                     <div class="tree__item__wrapper" data-ln="module:heading/headingengine~HeadingEngine"><span class="tree__item--class tree__item__text">HeadingEngine</span></div></a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="toggler--collapsed">
+          <div class="tree__item__wrapper" data-ln="highlight"><a class="tree__item--package tree__item__text" href="highlight.html">highlight</a>
+          </div>
+          <ul>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:highlight/highlight"><a class="tree__item--module tree__item__text" href="module_highlight_highlight.html">highlight</a>
+              </div>
+              <ul>
+                <li><a href="module_highlight_highlight-Highlight.html">
+                    <div class="tree__item__wrapper" data-ln="module:highlight/highlight~Highlight"><span class="tree__item--class tree__item__text">Highlight</span></div></a>
+                </li>
+                <li><a href="module_highlight_highlight-HighlightConfig.html">
+                    <div class="tree__item__wrapper" data-ln="module:highlight/highlight~HighlightConfig"><span class="tree__item--interface tree__item__text">HighlightConfig</span></div></a>
+                </li>
+                <li><a href="module_highlight_highlight-HighlightOption.html">
+                    <div class="tree__item__wrapper" data-ln="module:highlight/highlight~HighlightOption"><span class="tree__item--typedef tree__item__text">HighlightOption</span></div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:highlight/highlightcommand"><a class="tree__item--module tree__item__text" href="module_highlight_highlightcommand.html">highlightcommand</a>
+              </div>
+              <ul>
+                <li><a href="module_highlight_highlightcommand-HighlightCommand.html">
+                    <div class="tree__item__wrapper" data-ln="module:highlight/highlightcommand~HighlightCommand"><span class="tree__item--class tree__item__text">HighlightCommand</span></div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:highlight/highlightediting"><a class="tree__item--module tree__item__text" href="module_highlight_highlightediting.html">highlightediting</a>
+              </div>
+              <ul>
+                <li><a href="module_highlight_highlightediting-HighlightEditing.html">
+                    <div class="tree__item__wrapper" data-ln="module:highlight/highlightediting~HighlightEditing"><span class="tree__item--class tree__item__text">HighlightEditing</span></div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:highlight/highlightui"><a class="tree__item--module tree__item__text" href="module_highlight_highlightui.html">highlightui</a>
+              </div>
+              <ul>
+                <li><a href="module_highlight_highlightui-HighlightUI.html">
+                    <div class="tree__item__wrapper" data-ln="module:highlight/highlightui~HighlightUI"><span class="tree__item--class tree__item__text">HighlightUI</span></div></a>
                 </li>
               </ul>
             </li>
