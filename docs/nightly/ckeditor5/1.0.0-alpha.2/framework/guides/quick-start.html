@@ -74,10 +74,8 @@
 <p>This guide assumes that you are familiar with npm and your project uses npm already. If not, see the <a href="https://docs.npmjs.com/getting-started/what-is-npm" target="_blank" rel="noopener">npm documentation</a> or call <code>npm init</code> in an empty directory and keep your fingers crossed.</p>
 <p>First, install packages needed to build CKEditor 5.</p>
 <pre class="highlight"><code class="bash">npm install --save \
-    css-loader  \
-    node-sass \
+    postcss-loader \
     raw-loader \
-    sass-loader \
     style-loader \
     webpack
 </code></pre>
@@ -87,6 +85,7 @@
 &apos;use strict&apos;</span>;
 
 <span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>( <span class="hljs-string">&apos;path&apos;</span> );
+<span class="hljs-keyword">const</span> { getPostCssConfig } = <span class="hljs-built_in">require</span>( <span class="hljs-string">&apos;@ckeditor/ckeditor5-dev-utils&apos;</span> ).styles;
 
 <span class="hljs-built_in">module</span>.exports = {
     <span class="hljs-comment">// https://webpack.js.org/configuration/entry-context/</span>
@@ -108,14 +107,25 @@
                 <span class="hljs-attr">use</span>: [ <span class="hljs-string">&apos;raw-loader&apos;</span> ]
             },
             {
-                <span class="hljs-comment">// Or /ckeditor5-[^/]+\/theme\/[^/]+\.scss$/ if you want to limit this loader</span>
+                <span class="hljs-comment">// Or /ckeditor5-[^/]+\/theme\/[^/]+\.css$/ if you want to limit this loader</span>
                 <span class="hljs-comment">// to CKEditor 5&apos;s theme only.</span>
-                test: <span class="hljs-regexp">/\.scss$/</span>,
-
+                test: <span class="hljs-regexp">/\.css$/</span>,
                 <span class="hljs-attr">use</span>: [
-                    <span class="hljs-string">&apos;style-loader&apos;</span>,
-                    <span class="hljs-string">&apos;css-loader&apos;</span>,
-                    <span class="hljs-string">&apos;sass-loader&apos;</span>
+                    {
+                        <span class="hljs-attr">loader</span>: <span class="hljs-string">&apos;style-loader&apos;</span>,
+                        <span class="hljs-attr">options</span>: {
+                            <span class="hljs-attr">singleton</span>: <span class="hljs-literal">true</span>
+                        }
+                    },
+                    {
+                        <span class="hljs-attr">loader</span>: <span class="hljs-string">&apos;postcss-loader&apos;</span>,
+                        <span class="hljs-attr">options</span>: getPostCssConfig( {
+                            <span class="hljs-attr">themeImporter</span>: {
+                                <span class="hljs-attr">themePath</span>: <span class="hljs-built_in">require</span>.resolve( <span class="hljs-string">&apos;@ckeditor/ckeditor5-theme-lark&apos;</span> )
+                            },
+                            <span class="hljs-attr">minify</span>: <span class="hljs-literal">true</span>
+                        } )
+                    },
                 ]
             }
         ]
@@ -127,10 +137,12 @@
 </code></pre>
 <p>Now, you can install some of the CKEditor 5 Framework packages which will allow you initialize a simple editor. You can start with the <a href="../../examples/builds/classic-editor.html">classic editor</a> with a small set of features.</p>
 <pre class="highlight"><code class="bash">npm install --save \
+    @ckeditor/ckeditor5-dev-utils \
     @ckeditor/ckeditor5-editor-classic \
     @ckeditor/ckeditor5-essentials \
     @ckeditor/ckeditor5-paragraph \
-    @ckeditor/ckeditor5-basic-styles
+    @ckeditor/ckeditor5-basic-styles \
+    @ckeditor/ckeditor5-theme-lark
 </code></pre>
 <p>Based on these packages you can create a simple application.</p>
 <div class="info-box notice"><p>This guide is using the ES6 modules syntax. If you are not familiar with it, check out this <a href="http://exploringjs.com/es6/ch_modules.html" target="_blank" rel="noopener">article</a>.</p></div>

@@ -693,10 +693,9 @@ The result of the function will be inserted to the view.
 <a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html"><code>DowncastDispatcher</code></a>) and bind model and view elements.</p>
 <pre class="prettyprint source"><code>downcastDispatcher.on(
     &apos;insert:myElem&apos;,
-    insertElement( ( modelItem, consumable, conversionApi ) =&gt; {
-        const writer = conversionApi.writer;
-        const text = writer.createText( &apos;myText&apos; );
-        const myElem = writer.createElement( &apos;myElem&apos;, { myAttr: &apos;my-&apos; + modelItem.getAttribute( &apos;myAttr&apos; ) }, text );
+    insertElement( ( modelItem, viewWriter ) =&gt; {
+        const text = viewWriter.createText( &apos;myText&apos; );
+        const myElem = viewWriter.createElement( &apos;myElem&apos;, { myAttr: &apos;my-&apos; + modelItem.getAttribute( &apos;myAttr&apos; ) }, text );
 
         // Do something fancy with myElem using `modelItem` or other parameters.
 
@@ -892,8 +891,8 @@ The result of the function will be the wrapping element.
 When provided <code>Function</code> does not return element, then will be no conversion.</p>
 <p>The converter automatically consumes corresponding value from consumables list, stops the event (see
 <a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html"><code>DowncastDispatcher</code></a>).</p>
-<pre class="prettyprint source"><code>modelDispatcher.on( &apos;attribute:bold&apos;, wrapItem( ( attributeValue, data, consumable, conversionApi ) =&gt; {
-    return conversionApi.writer.createAttributeElement( &apos;strong&apos; );
+<pre class="prettyprint source"><code>modelDispatcher.on( &apos;attribute:bold&apos;, wrapItem( ( modelAttributeValue, viewWriter ) =&gt; {
+    return viewWriter.createAttributeElement( &apos;strong&apos; );
 } );</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
@@ -3601,15 +3600,15 @@ When provided <code>Function</code> does not return element, then will be no con
               </div>
               <ul>
                 <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">contextual</span>
+                  <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">balloon</span>
                   </div>
                   <ul>
                     <li class="toggler--collapsed">
-                      <div class="tree__item__wrapper" data-ln="module:ui/toolbar/contextual/contextualtoolbar"><a class="tree__item--module tree__item__text" href="module_ui_toolbar_contextual_contextualtoolbar.html">contextualtoolbar</a>
+                      <div class="tree__item__wrapper" data-ln="module:ui/toolbar/balloon/balloontoolbar"><a class="tree__item--module tree__item__text" href="module_ui_toolbar_balloon_balloontoolbar.html">balloontoolbar</a>
                       </div>
                       <ul>
-                        <li><a href="module_ui_toolbar_contextual_contextualtoolbar-ContextualToolbar.html">
-                            <div class="tree__item__wrapper" data-ln="module:ui/toolbar/contextual/contextualtoolbar~ContextualToolbar"><span class="tree__item--class tree__item__text">ContextualToolbar</span></div></a>
+                        <li><a href="module_ui_toolbar_balloon_balloontoolbar-BalloonToolbar.html">
+                            <div class="tree__item__wrapper" data-ln="module:ui/toolbar/balloon/balloontoolbar~BalloonToolbar"><span class="tree__item--class tree__item__text">BalloonToolbar</span></div></a>
                         </li>
                       </ul>
                     </li>

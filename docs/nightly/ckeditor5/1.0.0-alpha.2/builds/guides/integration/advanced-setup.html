@@ -106,7 +106,9 @@
     <span class="hljs-string">&quot;@ckeditor/ckeditor5-image&quot;</span>: <span class="hljs-string">&quot;^0.7.0&quot;</span>,
     <span class="hljs-string">&quot;@ckeditor/ckeditor5-link&quot;</span>: <span class="hljs-string">&quot;^0.8.0&quot;</span>,
     <span class="hljs-string">&quot;@ckeditor/ckeditor5-list&quot;</span>: <span class="hljs-string">&quot;^0.7.0&quot;</span>,
-    <span class="hljs-string">&quot;@ckeditor/ckeditor5-paragraph&quot;</span>: <span class="hljs-string">&quot;^0.9.0&quot;</span>
+    <span class="hljs-string">&quot;@ckeditor/ckeditor5-paragraph&quot;</span>: <span class="hljs-string">&quot;^0.9.0&quot;</span>,
+    <span class="hljs-string">&quot;@ckeditor/ckeditor5-theme-lark&quot;</span>: <span class="hljs-string">&quot;^1.0.0-alpha.2&quot;</span>,
+    <span class="hljs-string">&quot;@ckeditor/ckeditor5-dev-utils&quot;</span>: <span class="hljs-string">&quot;^7.0.0&quot;</span>
 
     <span class="hljs-comment">// ...</span>
 }
@@ -114,10 +116,8 @@
 <p>The second step is to install dependencies needed to build the editor. The list may differ if you want to customize the webpack configuration, but this is a typical setup:</p>
 <pre class="highlight"><code class="bash">npm install --save \
     @ckeditor/ckeditor5-dev-webpack-plugin \
-    css-loader  \
-    node-sass \
+    postcss-loader \
     raw-loader \
-    sass-loader \
     style-loader \
     webpack
 </code></pre>
@@ -125,12 +125,13 @@
 <h3 id="webpack-configuration"><a class="headerlink" href="#webpack-configuration">#</a> Webpack configuration</h3>
 <p>Now, you can configure webpack. There are a couple of things which you need to take care of when building CKEditor:</p>
 <ul>
-<li>Handling SASS files of CKEditor&#x2019;s theme. They are included in the CKEditor source using <code>import &apos;path/to/theme.sass&apos;</code> statements, so you need <a href="https://webpack.js.org/loaders/" target="_blank" rel="noopener">proper loaders</a>.</li>
+<li>Handling CSS files of CKEditor&#x2019;s theme. They are included in the CKEditor sources using <code>import &apos;path/to/styles.css&apos;</code> statements, so you need <a href="https://webpack.js.org/loaders/" target="_blank" rel="noopener">proper loaders</a>.</li>
 <li>Similarly, you need to handle bundling SVG icons, which are also imported directly into the source. For that you need the <a href="https://webpack.js.org/loaders/raw-loader/" target="_blank" rel="noopener"><code>raw-loader</code></a>.</li>
 <li>Finally, to localize the editor you need to use the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-dev-webpack-plugin" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-dev-webpack-plugin</code></a> webpack plugin.</li>
 </ul>
 <p>The minimal configuration, assuming that you use the same methods of handling assets as CKEditor builds, will look like this:</p>
 <pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> CKEditorWebpackPlugin = <span class="hljs-built_in">require</span>( <span class="hljs-string">&apos;@ckeditor/ckeditor5-dev-webpack-plugin&apos;</span> );
+<span class="hljs-keyword">const</span> { getPostCssConfig } = <span class="hljs-built_in">require</span>( <span class="hljs-string">&apos;@ckeditor/ckeditor5-dev-utils&apos;</span> ).styles;
 
 <span class="hljs-built_in">module</span>.exports = {
     <span class="hljs-attr">plugins</span>: [
@@ -152,19 +153,25 @@
                 <span class="hljs-attr">use</span>: [ <span class="hljs-string">&apos;raw-loader&apos;</span> ]
             },
             {
-                <span class="hljs-comment">// Or /ckeditor5-[^/]+\/theme\/[^/]+\.scss$/ if you want to limit this loader</span>
+                <span class="hljs-comment">// Or /ckeditor5-[^/]+\/theme\/[^/]+\.css$/ if you want to limit this loader</span>
                 <span class="hljs-comment">// to CKEditor 5&apos;s theme only.</span>
-                test: <span class="hljs-regexp">/\.scss$/</span>,
-
+                test: <span class="hljs-regexp">/\.css$/</span>,
                 <span class="hljs-attr">use</span>: [
-                    <span class="hljs-string">&apos;style-loader&apos;</span>,
                     {
-                        <span class="hljs-attr">loader</span>: <span class="hljs-string">&apos;css-loader&apos;</span>,
+                        <span class="hljs-attr">loader</span>: <span class="hljs-string">&apos;style-loader&apos;</span>,
                         <span class="hljs-attr">options</span>: {
-                            <span class="hljs-attr">minimize</span>: <span class="hljs-literal">true</span>
+                            <span class="hljs-attr">singleton</span>: <span class="hljs-literal">true</span>
                         }
                     },
-                    <span class="hljs-string">&apos;sass-loader&apos;</span>
+                    {
+                        <span class="hljs-attr">loader</span>: <span class="hljs-string">&apos;postcss-loader&apos;</span>,
+                        <span class="hljs-attr">options</span>: getPostCssConfig( {
+                            <span class="hljs-attr">themeImporter</span>: {
+                                <span class="hljs-attr">themePath</span>: <span class="hljs-built_in">require</span>.resolve( <span class="hljs-string">&apos;@ckeditor/ckeditor5-theme-lark&apos;</span> )
+                            },
+                            <span class="hljs-attr">minify</span>: <span class="hljs-literal">true</span>
+                        } )
+                    },
                 ]
             }
         ]
@@ -230,6 +237,18 @@ ClassicEditor.build = {
 };
 </code></pre>
 <p>This module will export an editor creator class which has all the plugins and configuration that you need already built-in. To use such editor, simply import that class and call the static <code>.create()</code> method like in all <a href="basic-api.html#Creating-an-editor">examples</a>.</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./ckeditor&apos;</span>;
+
+ClassicEditor
+    <span class="hljs-comment">// Note that you don&apos;t have to specify the plugin and toolbar configuraiton &#x2014; using defaults from the build.</span>
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ) )
+    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;Editor was initialized&apos;</span>, editor );
+    } )
+    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.error( error.stack );
+    } );
+</code></pre>
 <h3 id="running-the-editor-method-2"><a class="headerlink" href="#running-the-editor-method-2">#</a> Running the editor &#x2013; method 2</h3>
 <p>The second variant how to run the editor is to use the creator class directly, without creating an intermediary subclass. The above code would translate to:</p>
 <pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
@@ -319,17 +338,19 @@ ClassicEditor
                 <span class="hljs-attr">use</span>: [ <span class="hljs-string">&apos;raw-loader&apos;</span> ]
             },
             {
-                <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.scss$/</span>,
+                <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.css$/</span>,
                 <span class="hljs-attr">use</span>: ExtractTextPlugin.extract( {
                     <span class="hljs-attr">fallback</span>: <span class="hljs-string">&apos;style-loader&apos;</span>,
                     <span class="hljs-attr">use</span>: [
                         {
-                            <span class="hljs-attr">loader</span>: <span class="hljs-string">&apos;css-loader&apos;</span>,
-                            <span class="hljs-attr">options</span>: {
-                                <span class="hljs-attr">minimize</span>: <span class="hljs-literal">true</span>
-                            }
-                        },
-                        <span class="hljs-string">&apos;sass-loader&apos;</span>
+                            <span class="hljs-attr">loader</span>: <span class="hljs-string">&apos;postcss-loader&apos;</span>,
+                            <span class="hljs-attr">options</span>: getPostCssConfig( {
+                                <span class="hljs-attr">themeImporter</span>: {
+                                    <span class="hljs-attr">themePath</span>: <span class="hljs-built_in">require</span>.resolve( <span class="hljs-string">&apos;@ckeditor/ckeditor5-theme-lark&apos;</span> )
+                                },
+                                <span class="hljs-attr">minify</span>: <span class="hljs-literal">true</span>
+                            } )
+                        }
                     ]
                 } )
             }

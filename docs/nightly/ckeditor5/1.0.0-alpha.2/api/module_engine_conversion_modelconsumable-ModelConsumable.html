@@ -107,9 +107,9 @@ this situation, because callbacks should only convert those values, which were n
 //   &#x251C;&#x2500; &lt;img /&gt;
 //   &#x2514;&#x2500; &lt;caption&gt;
 //       &#x2514;&#x2500; foo
-modelConversionDispatcher.on( &apos;insert:image&apos;, ( evt, data, consumable, conversionApi ) =&gt; {
+modelConversionDispatcher.on( &apos;insert:image&apos;, ( evt, data, conversionApi ) =&gt; {
     // First, consume the `image` element.
-    consumable.consume( data.item, &apos;insert&apos; );
+    conversionApi.consumable.consume( data.item, &apos;insert&apos; );
 
     // Just create normal image element for the view.
     // Maybe it will be &quot;decorated&quot; later.
@@ -123,7 +123,7 @@ modelConversionDispatcher.on( &apos;insert:image&apos;, ( evt, data, consumable,
         // `modelCaption` insertion change is consumed from consumable values.
         // It will not be converted by other converters, but it&apos;s children (probably some text) will be.
         // Through mapping, converters for text will know where to insert contents of `modelCaption`.
-        if ( consumable.consume( modelCaption, &apos;insert&apos; ) ) {
+        if ( conversionApi.consumable.consume( modelCaption, &apos;insert&apos; ) ) {
             const viewCaption = new ViewElement( &apos;figcaption&apos; );
 
             const viewImageHolder = new ViewElement( &apos;figure&apos;, null, [ viewImage, viewCaption ] );
@@ -3114,15 +3114,15 @@ have same parent, same start index and same end index will get the same symbol.
               </div>
               <ul>
                 <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">contextual</span>
+                  <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">balloon</span>
                   </div>
                   <ul>
                     <li class="toggler--collapsed">
-                      <div class="tree__item__wrapper" data-ln="module:ui/toolbar/contextual/contextualtoolbar"><a class="tree__item--module tree__item__text" href="module_ui_toolbar_contextual_contextualtoolbar.html">contextualtoolbar</a>
+                      <div class="tree__item__wrapper" data-ln="module:ui/toolbar/balloon/balloontoolbar"><a class="tree__item--module tree__item__text" href="module_ui_toolbar_balloon_balloontoolbar.html">balloontoolbar</a>
                       </div>
                       <ul>
-                        <li><a href="module_ui_toolbar_contextual_contextualtoolbar-ContextualToolbar.html">
-                            <div class="tree__item__wrapper" data-ln="module:ui/toolbar/contextual/contextualtoolbar~ContextualToolbar"><span class="tree__item--class tree__item__text">ContextualToolbar</span></div></a>
+                        <li><a href="module_ui_toolbar_balloon_balloontoolbar-BalloonToolbar.html">
+                            <div class="tree__item__wrapper" data-ln="module:ui/toolbar/balloon/balloontoolbar~BalloonToolbar"><span class="tree__item--class tree__item__text">BalloonToolbar</span></div></a>
                         </li>
                       </ul>
                     </li>

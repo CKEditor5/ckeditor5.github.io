@@ -125,9 +125,9 @@ converted the change should also stop the event (for efficiency purposes).</p>
 <a href="module_engine_view_writer-Writer.html">view writer</a> to apply changes to the view document.</p>
 <p>Example of a custom converter for <code>DowncastDispatcher</code>:</p>
 <pre class="prettyprint source"><code>// We will convert inserting &quot;paragraph&quot; model element into the model.
-downcastDispatcher.on( &apos;insert:paragraph&apos;, ( evt, data, consumable, conversionApi ) =&gt; {
+downcastDispatcher.on( &apos;insert:paragraph&apos;, ( evt, data, conversionApi ) =&gt; {
     // Remember to check whether the change has not been consumed yet and consume it.
-    if ( consumable.consume( data.item, &apos;insert&apos; ) ) {
+    if ( conversionApi.consumable.consume( data.item, &apos;insert&apos; ) ) {
         return;
     }
 
@@ -418,7 +418,7 @@ in marker&apos;s range. If range is collapsed single event is dispatched. See ev
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-convertSelection">
-                          <h3><code><a class="member-name" href="#function-convertSelection">convertSelection</a>( selection, Array&lt;module:engine/model/markercollection~Marker&gt;, writer )</code></h3>
+                          <h3><code><a class="member-name" href="#function-convertSelection">convertSelection</a>( selection, markers, writer )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Starts model selection conversion.
@@ -432,11 +432,10 @@ in marker&apos;s range. If range is collapsed single event is dispatched. See ev
  <span><a class="collapsing-list__type" href="module_engine_model_selection-Selection.html">Selection</a></span></code></dt>
                                         <dd><p>Selection to convert.</p>
                                         </dd>
-                                        <dt><code>Array&lt;module:engine/model/markercollection~Marker&gt;
+                                        <dt><code>markers
                                             :
- <span><a class="collapsing-list__type" href="module_engine_model_selection-Selection.html">Selection</a></span></code></dt>
-                                        <dd><p>markers
-Array of markers containing model markers.</p>
+ <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_model_markercollection-Marker.html">Marker</a>&gt;</span></code></dt>
+                                        <dd><p>Array of markers containing model markers.</p>
                                         </dd>
                                         <dt><code>writer
                                             :
@@ -453,6 +452,20 @@ Array of markers containing model markers.</p>
                                         <li><span><a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event:attribute">attribute</a></span>
                                         </li>
                             </ul>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-_clearConversionApi">
+                          <h3><code><a class="member-name" href="#function-_clearConversionApi">_clearConversionApi</a>()</code></h3>
+                          <p class="badges">
+<span class="badge badge--red ">private</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Clears conversion API object.
+                          </p>
+                          <div class="collapsing-list__content">
                           </div>
                         </div>
                       </li>
@@ -553,7 +566,7 @@ assuming that the range has just been inserted to the model.
                       </li>
                       <li class="collapsing-list__item" data-private="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-_testAndFire">
-                          <h3><code><a class="member-name" href="#function-_testAndFire">_testAndFire</a>( type, data, consumable )</code></h3>
+                          <h3><code><a class="member-name" href="#function-_testAndFire">_testAndFire</a>( type, data )</code></h3>
                           <p class="badges">
 <span class="badge badge--red ">private</span>
                           </p>
@@ -573,11 +586,6 @@ assuming that the range has just been inserted to the model.
                                             :
  <span>Object</span></code></dt>
                                         <dd><p>Event data.</p>
-                                        </dd>
-                                        <dt><code>consumable
-                                            :
- <span><a class="collapsing-list__type" href="module_engine_conversion_modelconsumable-ModelConsumable.html">ModelConsumable</a></span></code></dt>
-                                        <dd><p>Values to consume.</p>
                                         </dd>
                                       </dl>
                             <h4>Fires</h4>
@@ -3610,15 +3618,15 @@ if markers are named <code>foo:abc</code>, <code>foo:bar</code>, then it is poss
               </div>
               <ul>
                 <li class="toggler--collapsed">
-                  <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">contextual</span>
+                  <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">balloon</span>
                   </div>
                   <ul>
                     <li class="toggler--collapsed">
-                      <div class="tree__item__wrapper" data-ln="module:ui/toolbar/contextual/contextualtoolbar"><a class="tree__item--module tree__item__text" href="module_ui_toolbar_contextual_contextualtoolbar.html">contextualtoolbar</a>
+                      <div class="tree__item__wrapper" data-ln="module:ui/toolbar/balloon/balloontoolbar"><a class="tree__item--module tree__item__text" href="module_ui_toolbar_balloon_balloontoolbar.html">balloontoolbar</a>
                       </div>
                       <ul>
-                        <li><a href="module_ui_toolbar_contextual_contextualtoolbar-ContextualToolbar.html">
-                            <div class="tree__item__wrapper" data-ln="module:ui/toolbar/contextual/contextualtoolbar~ContextualToolbar"><span class="tree__item--class tree__item__text">ContextualToolbar</span></div></a>
+                        <li><a href="module_ui_toolbar_balloon_balloontoolbar-BalloonToolbar.html">
+                            <div class="tree__item__wrapper" data-ln="module:ui/toolbar/balloon/balloontoolbar~BalloonToolbar"><span class="tree__item--class tree__item__text">BalloonToolbar</span></div></a>
                         </li>
                       </ul>
                     </li>
