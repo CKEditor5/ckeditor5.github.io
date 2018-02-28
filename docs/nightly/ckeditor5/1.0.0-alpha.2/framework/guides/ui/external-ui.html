@@ -100,19 +100,19 @@
 <span class="hljs-keyword">import</span> Enter <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-enter/src/enter&apos;</span>;
 <span class="hljs-keyword">import</span> Typing <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-typing/src/typing&apos;</span>;
 <span class="hljs-keyword">import</span> Paragraph <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;</span>;
-<span class="hljs-keyword">import</span> UndoEngine <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-undo/src/undoengine&apos;</span>;
+<span class="hljs-keyword">import</span> UndoEditing <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-undo/src/undoengine&apos;</span>;
 
 <span class="hljs-comment">// Basic features to associated with the edited content.</span>
-<span class="hljs-keyword">import</span> BoldEngine <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/boldengine&apos;</span>;
-<span class="hljs-keyword">import</span> ItalicEngine <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/italicengine&apos;</span>;
-<span class="hljs-keyword">import</span> UnderlineEngine <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/underlineengine&apos;</span>;
-<span class="hljs-keyword">import</span> HeadingEngine <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-heading/src/headingengine&apos;</span>;
+<span class="hljs-keyword">import</span> BoldEditing <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/bold/boldediting&apos;</span>;
+<span class="hljs-keyword">import</span> ItalicEditing <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/italic/italicediting&apos;</span>;
+<span class="hljs-keyword">import</span> UnderlineEditing <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/underline/underlineediting&apos;</span>;
+<span class="hljs-keyword">import</span> HeadingEditing <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-heading/src/heading/headingediting&apos;</span>;
 
 <span class="hljs-comment">// The easy image integration.</span>
 <span class="hljs-keyword">import</span> EasyImage <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-easy-image/src/easyimage&apos;</span>;
 <span class="hljs-keyword">import</span> { TOKEN_URL } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-cloudservices/tests/_utils/cloudservices-config&apos;</span>;
 </code></pre>
-<div class="info-box notice notice__info"><p>Note that instead of <a href="../../../api/module_basic-styles_bold-Bold.html"><code>Bold</code></a>, which is required for any editor with the default UI to work, just the <a href="../../../api/module_basic-styles_boldengine-BoldEngine.html"><code>BoldEngine</code></a> is imported. It provides the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine" target="_blank" rel="noopener">engine</a> features associated with editing any bold text but does not come with the actual UI.</p><p>Respectively, <code>ItalicEngine</code>, <code>UnderlineEngine</code>, <code>HeadingEngine</code> and <code>UndoEngine</code> are also imported.</p><p>This split between the engine and the UI part of features is not perfect yet. At the current stage, the UI part introduces some vital functionality, such as keystroke definitions (e.g. <kbd>Ctrl</kbd>+<kbd>B</kbd> to &#x201C;bold&#x201D;). This means that by dropping the UI part of features you also lose keystrokes. We <a href="https://github.com/ckeditor/ckeditor5/issues/488" target="_blank" rel="noopener">plan to improve</a> this situation.</p></div>
+<div class="info-box notice notice__info"><p>Note that instead of <a href="../../../api/module_basic-styles_bold-Bold.html"><code>Bold</code></a>, which loads default Bold UI and Bold editing feature, just the <a href="../../../api/module_basic-styles_bold_boldediting-BoldEditing.html"><code>BoldEditing</code></a> is imported. It provides the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine" target="_blank" rel="noopener">engine</a> features associated with editing any bold text but does not come with the actual UI.</p><p>Respectively, <code>ItalicEditing</code>, <code>UnderlineEditing</code>, <code>HeadingEditing</code> and <code>UndoEditing</code> are also imported.</p><p>This split between the engine and the UI part of features is not perfect yet. At the current stage, the UI part introduces some vital functionality, such as keystroke definitions (e.g. <kbd>Ctrl</kbd>+<kbd>B</kbd> to &#x201C;bold&#x201D;). This means that by dropping the UI part of features you also lose keystrokes. We <a href="https://github.com/ckeditor/ckeditor5/issues/488" target="_blank" rel="noopener">plan to improve</a> this situation.</p></div>
 <p>Having imported the very basic editor components, you can define the custom <code>BootstrapEditor</code> class that extends the <a href="../../../api/module_core_editor_editor-Editor.html"><code>Editor</code></a>:</p>
 <pre class="highlight"><code class="js"><span class="hljs-comment">// Extending the Editor class, which brings base editor API.</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BootstrapEditor</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Editor</span> </span>{
@@ -468,7 +468,7 @@ _setupBootstrapHeadingDropdown() {
     .create( $( <span class="hljs-string">&apos;#editor&apos;</span> ).get( <span class="hljs-number">0</span> ), {
         <span class="hljs-attr">plugins</span>: [
             Clipboard, Enter, Typing, Paragraph,
-            BoldEngine, ItalicEngine, UnderlineEngine, HeadingEngine, UndoEngine
+            BoldEditing, ItalicEditing, UnderlineEditing, HeadingEditing, UndoEditing
         ]
     } )
     .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {

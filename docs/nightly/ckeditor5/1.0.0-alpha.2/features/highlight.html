@@ -62,38 +62,11 @@
           <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-highlight/blob/master/docs/features/highlight.md" title="Contribute to this guide"><img src="../../../assets/0.3.66/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5-highlight/issues/new" title="Report an issue"><img src="../../../assets/0.3.66/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
           <h1><img src="../../../assets/0.3.66/img/book.svg" alt="guide">Highlight
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#configuring-the-highlight-options">Configuring the highlight options</a></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav><div class="live-snippet"><style>
-	.marker-yellow {
-		background-color: #fdfd77;
-	}
-
-	.marker-green {
-		background-color: #63f963;
-	}
-
-	.marker-pink {
-		background-color: #fc7999;
-	}
-
-	.marker-blue {
-		background-color: #72cdfd;
-	}
-
-	.pen-red {
-		background-color: transparent;
-		color: #e91313;
-	}
-
-	.pen-green {
-		background-color: transparent;
-		color: #118800;
-	}
-</style>
-</div>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#configuring-the-highlight-options">Configuring the highlight options</a><ol><li><a href="#dropdown">Dropdown</a></li><li><a href="#inline-buttons">Inline buttons</a></li><li><a href="#colors-and-styles">Colors and styles</a><ol><li><a href="#using-css-variables">Using CSS Variables</a></li><li><a href="#inline-color-definitions">Inline color definitions</a></li></ol></li></ol></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 <p>The <a href="../api/module_highlight_highlight-Highlight.html"><code>Highlight</code></a> feature offers a text marking tools that help content authors speed up their work, e.g. reviewing content or marking it for the future reference. It uses inline <code>&lt;marker&gt;</code> elements in the view, supports both markers (background color) and pens (text color), and comes with a flexible configuration.</p>
 <h2 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h2>
 <div class="live-snippet"><div id="snippet-highlight">
-	<p>Highlight feature example.</p>
+	<p>The Highlight feature example.</p>
 	<p>
 		Here are some markers:
 	</p>
@@ -110,6 +83,7 @@
 </div>
 </div>
 <h2 id="configuring-the-highlight-options"><a class="headerlink" href="#configuring-the-highlight-options">#</a> Configuring the highlight options</h2>
+<h3 id="dropdown"><a class="headerlink" href="#dropdown">#</a> Dropdown</h3>
 <p>It is possible to configure which highlight options are supported by the editor.<br>
 You can use the <a href="../api/module_highlight_highlight-HighlightConfig.html#member-options"><code>highlight.options</code></a> configuration and define your own highlight styles.</p>
 <p>For example, the following editor supports only two styles (a green marker and a red pen):</p>
@@ -121,14 +95,14 @@ You can use the <a href="../api/module_highlight_highlight-HighlightConfig.html#
                     <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;greenMarker&apos;</span>,
                     <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;marker-green&apos;</span>,
                     <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Green marker&apos;</span>,
-                    <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;#63f963&apos;</span>,
+                    <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;var(--ck-highlight-marker-green)&apos;</span>,
                     <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;marker&apos;</span>
                 },
                 {
                     <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;redPen&apos;</span>,
                     <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;pen-red&apos;</span>,
                     <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Red pen&apos;</span>,
-                    <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;#e91313&apos;</span>,
+                    <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;var(--ck-highlight-pen-red)&apos;</span>,
                     <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;pen&apos;</span>
                 }
             ]
@@ -140,12 +114,13 @@ You can use the <a href="../api/module_highlight_highlight-HighlightConfig.html#
     .then( ... )
     .catch( ... );
 </code></pre>
-<div class="live-snippet"><div id="snippet-custom-highlight-options">
+<div class="live-snippet"><div id="snippet-highlight-custom-options">
 	<p>
-		Here are defined highlighters: <mark class="marker-green">green one</mark> and <mark class="pen-red">red one</mark>.
+		This editor comes with two highlighters: <mark class="marker-green">green one</mark> and <mark class="pen-red">red one</mark>.
 	</p>
 </div>
 </div>
+<h3 id="inline-buttons"><a class="headerlink" href="#inline-buttons">#</a> Inline buttons</h3>
 <p>Instead of using the (default) <code>highlightDropdown</code>, the feature also supports a configuration with separate buttons directly in the toolbar:</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
@@ -161,20 +136,129 @@ You can use the <a href="../api/module_highlight_highlight-HighlightConfig.html#
     .catch( ... );
 </code></pre>
 <div class="live-snippet"><div id="snippet-highlight-buttons">
-	<p>Highlight feature example.</p>
+	<p>The Highlight feature example.</p>
 	<p>
 		Here are some markers:
 	</p>
 	<ul>
-		<li>the <mark class="marker-yellow">yellow</mark> one,</li>
 		<li>the <mark class="marker-pink">pink</mark> one,</li>
 		<li>the <mark class="marker-green">green</mark> one,</li>
-		<li>the <mark class="marker-blue">blue</mark> one</li>
 	</ul>
 	<p>
 		Here are some pens:
 		<mark class="pen-red">red pen</mark> and <mark class="pen-green">green one</mark>.
 	</p>
+</div>
+</div>
+<h3 id="colors-and-styles"><a class="headerlink" href="#colors-and-styles">#</a> Colors and styles</h3>
+<div class="info-box notice notice__info"><p>See the plugin <a href="../api/module_highlight_highlight-HighlightConfig.html#member-options">options</a> to learn more about defaults.</p></div>
+<h4 id="using-css-variables"><a class="headerlink" href="#using-css-variables">#</a> Using CSS Variables</h4>
+<p>The highlight feature is using the power of <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables" target="_blank" rel="noopener">CSS variables</a> which are defined in the <a href="https://github.com/ckeditor/ckeditor5-highlight/blob/master/theme/highlight.css" target="_blank" rel="noopener">stylesheet</a>. Thanks to that, both the UI and the content styles share the same color definitions, which can be easily customized:</p>
+<pre class="highlight"><code class="css"><span class="hljs-selector-pseudo">:root</span> {
+    <span class="hljs-comment">/* Make green a little darker. */</span>
+    <span class="hljs-attribute">--ck-highlight-marker-green</span>: <span class="hljs-number">#199c19</span>;
+
+    <span class="hljs-comment">/* Make the yellow more &quot;dirty&quot;. */</span>
+    <span class="hljs-attribute">--ck-highlight-marker-yellow</span>: <span class="hljs-number">#cac407</span>;
+
+    <span class="hljs-comment">/* Make red more pinkish. */</span>
+    <span class="hljs-attribute">--ck-highlight-pen-red</span>: <span class="hljs-number">#ec3e6e</span>;
+}
+</code></pre>
+<div class="live-snippet"><style>
+	/* We are not using here :root because of many instances of editor */
+	#snippet-highlight-custom-colors-variables + .ck-editor {
+		/* Make green a little darker. */
+		--ck-highlight-marker-green: #199c19;
+
+		/* Make the yellow more "dirty". */
+		--ck-highlight-marker-yellow: #cac407;
+
+		/* Make red more pinkish. */
+		--ck-highlight-pen-red: #ec3e6e;
+	}
+</style>
+
+<div id="snippet-highlight-custom-colors-variables">
+	<p>
+		An example of highlight colors customized using CSS variables:
+	</p>
+	<ul>
+		<li>the <mark class="marker-green">green one</mark></li>
+		<li>the <mark class="marker-yellow">yellow one</mark></li>
+		<li>the <mark class="pen-red">red one</mark></li>
+	</ul>
+</div>
+</div>
+<h4 id="inline-color-definitions"><a class="headerlink" href="#inline-color-definitions">#</a> Inline color definitions</h4>
+<p>It is possible to use the inline color values in the <code>rgba(R, G, B, A)</code>, <code>#RRGGBB[AA]</code> or <code>hsla(H, S, L, A)</code> formats instead of CSS variables. To do that, customize the <a href="../api/module_highlight_highlight-HighlightConfig.html#member-options">options</a> and define the <code>color</code> property for each option:</p>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">highlight</span>: {
+            <span class="hljs-attr">options</span>: [
+                {
+                    <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;greenMarker&apos;</span>,
+                    <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;marker-green&apos;</span>,
+                    <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Green marker&apos;</span>,
+                    <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;rgb(25, 156, 25)&apos;</span>,
+                    <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;marker&apos;</span>
+                },
+                {
+                    <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;yellowMarker&apos;</span>,
+                    <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;marker-yellow&apos;</span>,
+                    <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Yellow marker&apos;</span>,
+                    <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;#cac407&apos;</span>,
+                    <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;marker&apos;</span>
+                },
+                {
+                    <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;redPen&apos;</span>,
+                    <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;pen-red&apos;</span>,
+                    <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Red pen&apos;</span>,
+                    <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;hsl(343, 82%, 58%)&apos;</span>,
+                    <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;pen&apos;</span>
+                }
+            ]
+        },
+        <span class="hljs-attr">toolbar</span>: [
+            <span class="hljs-string">&apos;headings&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;bulletedList&apos;</span>, <span class="hljs-string">&apos;numberedList&apos;</span>, <span class="hljs-string">&apos;highlightDropdown&apos;</span>, <span class="hljs-string">&apos;undo&apos;</span>, <span class="hljs-string">&apos;redo&apos;</span>
+        ]
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<p>Then, update the classes in the style sheet so the content corresponds to the UI of the editor. It is recommended for the UI buttons and the actual highlights in the text to share the same colors.</p>
+<pre class="highlight"><code class="css"><span class="hljs-selector-class">.marker-green</span> {
+    <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgb</span>(25, 156, 25);
+}
+<span class="hljs-selector-class">.marker-yellow</span> {
+    <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#cac407</span>;
+}
+<span class="hljs-selector-class">.pen-red</span> {
+    <span class="hljs-attribute">color</span>: <span class="hljs-built_in">hsl</span>(343, 82%, 58%);
+}
+</code></pre>
+<div class="live-snippet"><style>
+	/* We are not using here :root because of many instances of editor */
+	#snippet-highlight-custom-colors-inline + .marker-green {
+		background-color: rgb(25, 156, 25);
+	}
+	#snippet-highlight-custom-colors-inline + .marker-yellow {
+		background-color: #cac407;
+	}
+	#snippet-highlight-custom-colors-inline + .pen-red {
+		color: hsl(343, 82%, 58%);
+	}
+</style>
+
+<div id="snippet-highlight-custom-colors-inline">
+	<p>
+		An example of highlight colors defined as RGB, HEX or HSL:
+	</p>
+	<ul>
+		<li>the <mark class="marker-green">green one</mark></li>
+		<li>the <mark class="marker-yellow">yellow one</mark></li>
+		<li>the <mark class="pen-red">red one</mark></li>
+	</ul>
 </div>
 </div>
 <h2 id="installation"><a class="headerlink" href="#installation">#</a> Installation</h2>
@@ -207,12 +291,12 @@ ClassicEditor
 </code></pre>
 <p>The <code>value</code> corresponds to the <code>model</code> property in configuration object. For the default configuration:</p>
 <pre class="highlight"><code class="js">highlight.options = [
-    { <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;yellowMarker&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;marker-yellow&apos;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Yellow Marker&apos;</span>, <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;#fdfd77&apos;</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;marker&apos;</span> },
-    { <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;greenMarker&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;marker-green&apos;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Green marker&apos;</span>, <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;#63f963&apos;</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;marker&apos;</span> },
-    { <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;pinkMarker&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;marker-pink&apos;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Pink marker&apos;</span>, <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;#fc7999&apos;</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;marker&apos;</span> },
-    { <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;blueMarker&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;marker-blue&apos;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Blue marker&apos;</span>, <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;#72cdfd&apos;</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;marker&apos;</span> },
-    { <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;redPen&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;pen-red&apos;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Red pen&apos;</span>, <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;#e91313&apos;</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;pen&apos;</span> },
-    { <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;greenPen&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;pen-green&apos;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Green pen&apos;</span>, <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;#118800&apos;</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;pen&apos;</span> }
+    { <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;yellowMarker&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;marker-yellow&apos;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Yellow Marker&apos;</span>, <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;var(--ck-highlight-marker-yellow)&apos;</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;marker&apos;</span> },
+    { <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;greenMarker&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;marker-green&apos;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Green marker&apos;</span>, <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;var(--ck-highlight-marker-green)&apos;</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;marker&apos;</span> },
+    { <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;pinkMarker&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;marker-pink&apos;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Pink marker&apos;</span>, <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;var(--ck-highlight-marker-pink)&apos;</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;marker&apos;</span> },
+    { <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;blueMarker&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;marker-blue&apos;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Blue marker&apos;</span>, <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;var(--ck-highlight-marker-blue)&apos;</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;marker&apos;</span> },
+    { <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;redPen&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;pen-red&apos;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Red pen&apos;</span>, <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;var(--ck-highlight-pen-red)&apos;</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;pen&apos;</span> },
+    { <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;greenPen&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;pen-green&apos;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Green pen&apos;</span>, <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;var(--ck-highlight-pen-green)&apos;</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;pen&apos;</span> }
 ]
 </code></pre>
 <p>the <code>highlight</code> command will accept the corresponding strings as values:</p>
@@ -278,5 +362,7 @@ transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_rank
     <script src="../snippets/features/highlight/snippet.js"></script>
     <script src="../snippets/features/custom-highlight-options/snippet.js"></script>
     <script src="../snippets/features/highlight-buttons/snippet.js"></script>
+    <script src="../snippets/features/custom-highlight-colors-variables/snippet.js"></script>
+    <script src="../snippets/features/custom-highlight-colors-inline/snippet.js"></script>
   </body>
 </html>
