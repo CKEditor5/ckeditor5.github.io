@@ -63,7 +63,7 @@
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#views">Views</a><ol><li><a href="#definition">Definition</a></li><li><a href="#interaction">Interaction</a></li><li><a href="#best-practices">Best practices</a></li></ol></li><li><a href="#templates">Templates</a></li><li><a href="#view-collections-and-the-ui-tree">View collections and the UI tree</a></li><li><a href="#using-the-existing-components">Using the existing components</a></li><li><a href="#keystrokes-and-focus-management">Keystrokes and focus management</a><ol><li><a href="#focus-tracker">Focus tracker</a></li><li><a href="#keystroke-handler">Keystroke handler</a></li></ol></li></ol></nav>
 <p>The standard UI library of CKEditor 5 is <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-ui" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-ui</code></a>. It provides base classes and helpers that allow building a modular UI that seamlessly integrates with other components of the ecosystem.</p>
 <h2 id="views"><a class="headerlink" href="#views">#</a> Views</h2>
-<p>Views use <a href="#Templates">templates</a> to build the UI. They also provide observable interfaces that other features (e.g. <a href="#Plugins">plugins</a>, <a href="#Commands">commands</a>, etc.) can use to change the DOM without any actual interaction with the native API.</p>
+<p>Views use <a href="#templates">templates</a> to build the UI. They also provide observable interfaces that other features (e.g. <a href="core-editor-architecture.html#plugins">plugins</a>, <a href="core-editor-architecture.html#commands">commands</a>, etc.) can use to change the DOM without any actual interaction with the native API.</p>
 <h3 id="definition"><a class="headerlink" href="#definition">#</a> Definition</h3>
 <p>A simple input view class can be defined as follows:</p>
 <pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SampleInputView</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">View</span> </span>{
@@ -107,7 +107,7 @@
 }
 </code></pre>
 <p>Note that views encapsulate the DOM they render. Because the UI is organized according to the <em>view-per-tree</em> rule, it is clear which view is responsible for which part of the UI so it is unlikely that a collision occurs between two features writing to the same DOM node.</p>
-<p>More often than not, views become children of other views (collections), nodes in the <a href="#View-collections-and-the-UI-tree">UI view tree</a>:</p>
+<p>More often than not, views become children of other views (collections), nodes in the <a href="#view-collections-and-the-ui-tree">UI view tree</a>:</p>
 <pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ParentView</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">View</span> </span>{
     <span class="hljs-keyword">constructor</span>( locale ) {
         <span class="hljs-keyword">super</span>( locale );
@@ -148,7 +148,7 @@ view.placeholder = <span class="hljs-string">&apos;Type some text&apos;</span>;
 <p>will result in:</p>
 <pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo ck-enabled&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;Type some text&quot;</span> /&gt;</span>
 </code></pre>
-<p>Alternatively, they can <a href="#Event-system-and-observables">bind</a> them directly to their own observable properties:</p>
+<p>Alternatively, they can <a href="#event-system-and-observables">bind</a> them directly to their own observable properties:</p>
 <pre class="highlight"><code class="js">view.bind( <span class="hljs-string">&apos;placeholder&apos;</span>, <span class="hljs-string">&apos;isEnabled&apos;</span> ).to( observable, <span class="hljs-string">&apos;placeholderText&apos;</span>, <span class="hljs-string">&apos;isEnabled&apos;</span> );
 
 <span class="hljs-comment">// The following will be automatically reflected in the view#placeholder and</span>
@@ -172,9 +172,9 @@ view.setValue( <span class="hljs-string">&apos;A new value of the input.&apos;</
 view.element.placeholder = <span class="hljs-string">&apos;A new placeholder&apos;</span>;
 </code></pre>
 <h2 id="templates"><a class="headerlink" href="#templates">#</a> Templates</h2>
-<p><a href="../../../api/module_ui_template-Template.html">Templates</a> render DOM elements and text nodes in the UI library. Used primarily by <a href="#Views">views</a>, they are the lowest layer of the UI connecting the application to the web page.</p>
+<p><a href="../../../api/module_ui_template-Template.html">Templates</a> render DOM elements and text nodes in the UI library. Used primarily by <a href="#views">views</a>, they are the lowest layer of the UI connecting the application to the web page.</p>
 <div class="info-box notice"><p>Check out the <a href="../../../api/module_ui_template-TemplateDefinition.html"><code>TemplateDefinition</code></a> to learn more about the template syntax and other advanced concepts.</p></div>
-<p>Templates support <a href="#Event-system-and-observables">observable properties</a> bindings and handle native DOM events. A very simple template can look like this:</p>
+<p>Templates support <a href="#event-system-and-observables">observable properties</a> bindings and handle native DOM events. A very simple template can look like this:</p>
 <pre class="highlight"><code class="js"><span class="hljs-keyword">new</span> Template( {
     <span class="hljs-attr">tag</span>: <span class="hljs-string">&apos;p&apos;</span>,
     <span class="hljs-attr">attributes</span>: {
@@ -197,7 +197,7 @@ view.element.placeholder = <span class="hljs-string">&apos;A new placeholder&apo
 <p>and renders to an HTML element:</p>
 <pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo bar&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;background-color: yellow;&quot;</span>&gt;</span>A paragraph.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 </code></pre>
-<p>where <code>observable#className</code> is <code>&quot;bar&quot;</code>. The <code>observable</code> in the example above can be a <a href="#Views">view</a> or any object which is <a href="../../../api/module_utils_observablemixin-Observable.html">observable</a>. When the value of the <code>className</code> attribute changes, the template updates the <code>class</code> attribute in the DOM. From now on the element is permanently bound to the state of an application.</p>
+<p>where <code>observable#className</code> is <code>&quot;bar&quot;</code>. The <code>observable</code> in the example above can be a <a href="#views">view</a> or any object which is <a href="../../../api/module_utils_observablemixin-Observable.html">observable</a>. When the value of the <code>className</code> attribute changes, the template updates the <code>class</code> attribute in the DOM. From now on the element is permanently bound to the state of an application.</p>
 <p>Similarly, when rendered, the template also takes care of DOM events. A binding to the <code>click</code> event in the definition makes the <code>observable</code> always fire the <code>clicked</code> event upon an action in DOM. This way the <code>observable</code> provides an event interface of the DOM element and all the communication should pass through it.</p>
 <h2 id="view-collections-and-the-ui-tree"><a class="headerlink" href="#view-collections-and-the-ui-tree">#</a> View collections and the UI tree</h2>
 <p>Views are organized into <a href="../../../api/module_ui_viewcollection-ViewCollection.html">collections</a> which manage their elements and propagate DOM events even further. Adding or removing a view in a collection moves the <a href="../../../api/module_ui_view-View.html#member-element">view&#x2019;s element</a> in the DOM to reflect the position.</p>
@@ -264,7 +264,7 @@ buttonBar.set( {
 toolbar.items.add( buttonFoo );
 toolbar.items.add( buttonBar );
 </code></pre>
-<p>The toolbar can now join the <a href="##View-collections-and-the-UI-tree">UI tree</a> or it can be injected straight into the DOM. To keep the example simple, proceed with the latter scenario:</p>
+<p>The toolbar can now join the <a href="#view-collections-and-the-ui-tree">UI tree</a> or it can be injected straight into the DOM. To keep the example simple, proceed with the latter scenario:</p>
 <pre class="highlight"><code class="js">toolbar.render();
 
 <span class="hljs-built_in">document</span>.body.appendChild( toolbar.element );
@@ -305,7 +305,7 @@ focusTracker.add( viewInstance.element );
 </code></pre>
 <p>This information is useful when implementing a certain type of UI whose behavior depends on the focus, for example, contextual panels and floating balloons containing forms should hide when the user decides to abandon them.</p>
 <h3 id="keystroke-handler"><a class="headerlink" href="#keystroke-handler">#</a> Keystroke handler</h3>
-<p>The <a href="../../../api/module_utils_keystrokehandler-KeystrokeHandler.html"><code>KeystrokeHandler</code></a> listens to the keystroke events fired by an HTML element or any of its descendants and executes pre&#x2013;defined actions when the keystroke is pressed. Usually, each <a href="#Views">view</a> creates its own keystroke handler instance which takes care of the keystrokes fired by the elements the view has rendered.</p>
+<p>The <a href="../../../api/module_utils_keystrokehandler-KeystrokeHandler.html"><code>KeystrokeHandler</code></a> listens to the keystroke events fired by an HTML element or any of its descendants and executes pre&#x2013;defined actions when the keystroke is pressed. Usually, each <a href="#views">view</a> creates its own keystroke handler instance which takes care of the keystrokes fired by the elements the view has rendered.</p>
 <pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> KeystrokeHandler <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-utils/src/keystrokehandler&apos;</span>;
 
 <span class="hljs-comment">// ...</span>
