@@ -11,8 +11,8 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.66/css/styles.css" type="text/css" media="screen">
-    <script src="../../../assets/0.3.66/scripts/app.js"></script>
+    <link rel="stylesheet" href="../../../assets/0.3.67/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.67/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -51,15 +51,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.66/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.67/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted main__content--api">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.66/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.67/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <div class="api-header"><img src="../../../assets/0.3.66/img/cog.svg" alt="Class" title="Class"/>
+          <div class="api-header"><img src="../../../assets/0.3.67/img/cog.svg" alt="Class" title="Class"/>
             <div class="api-header__title">
               <h1 data-ln="module:engine/view/document~Document">Document<span class="header__import--hidden"> (engine/view)</span>
               </h1>
@@ -124,6 +124,22 @@
 </div>
           <h2 id="Properties">Properties</h2>
           <ul class="collapsing-list collapsing-list--filtered">
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="member-isComposing">
+                          <h3><code><a class="member-name" href="#member-isComposing">isComposing</a> : <span>Boolean</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+<span class="badge badge--gray "><a href="module_utils_observablemixin-ObservableMixin.html">observable</a></span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">True if composition is in progress inside the document.</p>
+                          <div class="collapsing-list__content">
+<p>This property is updated by the <a href="module_engine_view_observer_compositionobserver-CompositionObserver.html"><code>CompositionObserver</code></a>.
+If the <a href="module_engine_view_observer_compositionobserver-CompositionObserver.html"><code>CompositionObserver</code></a> is disabled this property will not change.</p>
+                          </div>
+                        </div>
+                      </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="member-isFocused">
                           <h3><code><a class="member-name" href="#member-isFocused">isFocused</a> : <span>Boolean</span></code></h3>
@@ -1105,6 +1121,40 @@ be released if no properties provided.</p>
           <h2 id="Events">Events</h2>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="event-change:isComposing">
+                          <h3><code><a class="member-name" href="#event-change:isComposing">change:isComposing</a>( eventInfo, name, value, oldValue )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Fired when the <code>isComposing</code> property changed value.
+                          </p>
+                          <div class="collapsing-list__content"><p></p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>eventInfo
+                                            :
+ <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
+                                        <dt><code>name
+                                            :
+ <span>String</span></code></dt>
+                                        <dd><p>Name of the changed property (<code>isComposing</code>).</p>
+                                        </dd>
+                                        <dt><code>value
+                                            :
+ <span>Boolean</span></code></dt>
+                                        <dd><p>New value of the <code>isComposing</code> property with given key or <code>null</code>, if operation should remove property.</p>
+                                        </dd>
+                                        <dt><code>oldValue
+                                            :
+ <span>Boolean</span></code></dt>
+                                        <dd><p>Old value of the <code>isComposing</code> property with given key or <code>null</code>, if property was not set before.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event-change:isFocused">
                           <h3><code><a class="member-name" href="#event-change:isFocused">change:isFocused</a>( eventInfo, name, value, oldValue )</code></h3>
                         </div>
@@ -1338,6 +1388,87 @@ It&apos;s part of the <a href="module_clipboard_clipboard-Clipboard.html">&quot;
                                         <dt><code>data
                                             :
  <span><a class="collapsing-list__type" href="module_clipboard_clipboard-ClipboardOutputEventData.html">ClipboardOutputEventData</a></span></code></dt>
+                                        <dd><p>Event data.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="event-event:compositionend">
+                          <h3><code><a class="member-name" href="#event-event:compositionend">compositionend</a>( eventInfo, data )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Fired when composition ends inside one of the editables.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>Introduced by <a href="module_engine_view_observer_compositionobserver-CompositionObserver.html"><code>CompositionObserver</code></a>.</p>
+<p>Note that because <a href="module_engine_view_observer_compositionobserver-CompositionObserver.html"><code>CompositionObserver</code></a> is attached by the
+<a href="module_engine_view_view-View.html"><code>View</code></a> this event is available by default.</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>eventInfo
+                                            :
+ <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
+                                        <dt><code>data
+                                            :
+ <span><a class="collapsing-list__type" href="module_engine_view_observer_domeventdata-DomEventData.html">DomEventData</a></span></code></dt>
+                                        <dd><p>Event data.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="event-event:compositionstart">
+                          <h3><code><a class="member-name" href="#event-event:compositionstart">compositionstart</a>( eventInfo, data )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Fired when composition starts inside one of the editables.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>Introduced by <a href="module_engine_view_observer_compositionobserver-CompositionObserver.html"><code>CompositionObserver</code></a>.</p>
+<p>Note that because <a href="module_engine_view_observer_compositionobserver-CompositionObserver.html"><code>CompositionObserver</code></a> is attached by the
+<a href="module_engine_view_view-View.html"><code>View</code></a> this event is available by default.</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>eventInfo
+                                            :
+ <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
+                                        <dt><code>data
+                                            :
+ <span><a class="collapsing-list__type" href="module_engine_view_observer_domeventdata-DomEventData.html">DomEventData</a></span></code></dt>
+                                        <dd><p>Event data.</p>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="event-event:compositionupdate">
+                          <h3><code><a class="member-name" href="#event-event:compositionupdate">compositionupdate</a>( eventInfo, data )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Fired when composition is updated inside one of the editables.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>Introduced by <a href="module_engine_view_observer_compositionobserver-CompositionObserver.html"><code>CompositionObserver</code></a>.</p>
+<p>Note that because <a href="module_engine_view_observer_compositionobserver-CompositionObserver.html"><code>CompositionObserver</code></a> is attached by the
+<a href="module_engine_view_view-View.html"><code>View</code></a> this event is available by default.</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>eventInfo
+                                            :
+ <span><a class="collapsing-list__type" href="module_utils_eventinfo-EventInfo.html">EventInfo</a></span></code></dt>
+                                        <dd><p>An object containing information about the fired event.</p>
+                                        </dd>
+                                        <dt><code>data
+                                            :
+ <span><a class="collapsing-list__type" href="module_engine_view_observer_domeventdata-DomEventData.html">DomEventData</a></span></code></dt>
                                         <dd><p>Event data.</p>
                                         </dd>
                                       </dl>
@@ -3202,6 +3333,15 @@ in the document, and old selection is different then the new selection.
                       <ul>
                         <li><a href="module_engine_view_observer_clickobserver-ClickObserver.html">
                             <div class="tree__item__wrapper" data-ln="module:engine/view/observer/clickobserver~ClickObserver"><span class="tree__item--class tree__item__text">ClickObserver</span></div></a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="toggler--collapsed">
+                      <div class="tree__item__wrapper" data-ln="module:engine/view/observer/compositionobserver"><a class="tree__item--module tree__item__text" href="module_engine_view_observer_compositionobserver.html">compositionobserver</a>
+                      </div>
+                      <ul>
+                        <li><a href="module_engine_view_observer_compositionobserver-CompositionObserver.html">
+                            <div class="tree__item__wrapper" data-ln="module:engine/view/observer/compositionobserver~CompositionObserver"><span class="tree__item--class tree__item__text">CompositionObserver</span></div></a>
                         </li>
                       </ul>
                     </li>

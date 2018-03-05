@@ -11,10 +11,10 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/0.3.66/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../assets/0.3.67/css/styles.css" type="text/css" media="screen">
     <link rel="stylesheet" href="../snippets/features/build-highlight-source/snippet.css" type="text/css">
     <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
-    <script src="../../../assets/0.3.66/scripts/app.js"></script>
+    <script src="../../../assets/0.3.67/scripts/app.js"></script>
     <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
       	function pageView() {
       		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
@@ -53,15 +53,15 @@
       </ul>
       <div class="top__search">
         <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.66/img/loupe.svg" alt="Search"></button>
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.67/img/loupe.svg" alt="Search"></button>
       </div>
     </header>
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-highlight/blob/master/docs/features/highlight.md" title="Contribute to this guide"><img src="../../../assets/0.3.66/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5-highlight/issues/new" title="Report an issue"><img src="../../../assets/0.3.66/img/exclamation-circle.svg" alt="Report an issue"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-highlight/blob/master/docs/features/highlight.md" title="Contribute to this guide"><img src="../../../assets/0.3.67/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5-highlight/issues/new" title="Report an issue"><img src="../../../assets/0.3.67/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
-          <h1><img src="../../../assets/0.3.66/img/book.svg" alt="guide">Highlight
+          <h1><img src="../../../assets/0.3.67/img/book.svg" alt="guide">Highlight
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#configuring-the-highlight-options">Configuring the highlight options</a><ol><li><a href="#dropdown">Dropdown</a></li><li><a href="#inline-buttons">Inline buttons</a></li><li><a href="#colors-and-styles">Colors and styles</a><ol><li><a href="#using-css-variables">Using CSS Variables</a></li><li><a href="#inline-color-definitions">Inline color definitions</a></li></ol></li></ol></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 <p>The <a href="../api/module_highlight_highlight-Highlight.html"><code>Highlight</code></a> feature offers a text marking tools that help content authors speed up their work, e.g. reviewing content or marking it for the future reference. It uses inline <code>&lt;marker&gt;</code> elements in the view, supports both markers (background color) and pens (text color), and comes with a flexible configuration.</p>
 <h2 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h2>
@@ -242,13 +242,15 @@ You can use the <a href="../api/module_highlight_highlight-HighlightConfig.html#
 </code></pre>
 <div class="live-snippet"><style>
 	/* We are not using here :root because of many instances of editor */
-	#snippet-highlight-custom-colors-inline + .marker-green {
+	#snippet-highlight-custom-colors-inline + .ck-editor .marker-green {
 		background-color: rgb(25, 156, 25);
 	}
-	#snippet-highlight-custom-colors-inline + .marker-yellow {
+
+	#snippet-highlight-custom-colors-inline + .ck-editor .marker-yellow {
 		background-color: #cac407;
 	}
-	#snippet-highlight-custom-colors-inline + .pen-red {
+
+	#snippet-highlight-custom-colors-inline + .ck-editor .pen-red {
 		color: hsl(343, 82%, 58%);
 	}
 </style>
