@@ -40,7 +40,7 @@
   </head>
   <body>
     <header class="top" data-project="ckeditor5">
-      <div class="top__logo top__left"><span class="top__logo__product-icon" style="background-image: url( ../assets/img/project-logo.svg );"></span><a class="top__logo__product-title" href="../index.html">CKEditor 5</a></div>
+      <div class="top__logo top__left"><span class="top__logo__product-icon" style="background-image: url( ../assets/img/project-logo.svg )"></span><a class="top__logo__product-title" href="../index.html">CKEditor 5</a></div>
       <ul class="top__menu">
         <li><a href="../builds/index.html">Builds</a></li>
         <li><a href="../framework/index.html">Framework</a></li>
@@ -196,6 +196,29 @@ name and its constructor. If not, then only by its constructor.</p>
 it will be mangled during code minification.</p>
 <p>Naming a plugin is necessary to enable removing it through the
 <a href="module_core_editor_editorconfig-EditorConfig.html#member-removePlugins"><code>config.removePlugins</code></a> option.</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="static-member-requires">
+                          <h3><code><a class="member-name" href="#static-member-requires">requires</a> : <span>Array.&lt;Function&gt;</span> | <span>undefined</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+<span class="badge badge--gray ">inherited</span>
+<span class="badge badge--gray ">static</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">An array of plugins required by this plugin.</p>
+                          <div class="collapsing-list__content">
+<p>To keep a plugin class definition tight it&apos;s recommended to define this property as a static getter:</p>
+<pre class="prettyprint source"><code>import Image from &apos;./image.js&apos;;
+
+export default class ImageCaption {
+    static get requires() {
+        return [ Image ];
+    }
+}</code></pre>
                           </div>
                         </div>
                       </li>

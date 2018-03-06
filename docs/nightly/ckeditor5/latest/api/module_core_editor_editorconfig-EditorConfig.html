@@ -40,7 +40,7 @@
   </head>
   <body>
     <header class="top" data-project="ckeditor5">
-      <div class="top__logo top__left"><span class="top__logo__product-icon" style="background-image: url( ../assets/img/project-logo.svg );"></span><a class="top__logo__product-title" href="../index.html">CKEditor 5</a></div>
+      <div class="top__logo top__left"><span class="top__logo__product-icon" style="background-image: url( ../assets/img/project-logo.svg )"></span><a class="top__logo__product-title" href="../index.html">CKEditor 5</a></div>
       <ul class="top__menu">
         <li><a href="../builds/index.html">Builds</a></li>
         <li><a href="../framework/index.html">Framework</a></li>
@@ -288,7 +288,10 @@ const config = {
                           <div class="collapsing-list__content">
 <pre class="prettyprint source"><code>const config = {
     removePlugins: [ &apos;Bold&apos;, &apos;Italic&apos; ]
-};</code></pre>
+};</code></pre><p><strong>Note:</strong> Be careful when removing plugins using <code>config.removePlugins</code> from CKEditor builds.
+If removed plugins were providing toolbar buttons, the default toolbar configuration included in a build
+will become invalid. In such case you need to provide the updated
+<a href="module_core_editor_editorconfig-EditorConfig.html#member-toolbar">toolbar configuration</a>.</p>
                           </div>
                         </div>
                       </li>
