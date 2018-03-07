@@ -695,7 +695,7 @@ first parameter is a <a href="module_engine_model_item-Item.html">model item</a>
                       </li>
                       <li class="collapsing-list__item" data-protected="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-_setTo">
-                          <h3><code><a class="member-name" href="#function-_setTo">_setTo</a>( selectable, [ backwardSelectionOrOffset ] )</code></h3>
+                          <h3><code><a class="member-name" href="#function-_setTo">_setTo</a>( selectable, [ placeOrOffset ], [ options ] = { [options.backward] } )</code></h3>
                           <p class="badges">
 <span class="badge badge--orange ">protected</span>
                           </p>
@@ -703,7 +703,7 @@ first parameter is a <a href="module_engine_model_item-Item.html">model item</a>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Sets this selection&apos;s ranges and direction to the specified location based on the given
 <a href="module_engine_model_selection-Selection.html">selection</a>, <a href="module_engine_model_position-Position.html">position</a>,
-<a href="module_engine_model_element-Element.html">element</a>, <a href="module_engine_model_position-Position.html">position</a>,
+<a href="module_engine_model_node-Node.html">node</a>, <a href="module_engine_model_position-Position.html">position</a>,
 <a href="module_engine_model_range-Range.html">range</a>, an iterable of <a href="module_engine_model_range-Range.html">ranges</a> or null.
 Should be used only within the <a href="module_engine_model_writer-Writer.html#function-setSelection"><code>setSelection</code></a> method.
                           </p>
@@ -712,13 +712,27 @@ Should be used only within the <a href="module_engine_model_writer-Writer.html#f
                                       <dl>
                                         <dt><code>selectable
                                             :
- <span><a class="collapsing-list__type" href="module_engine_model_selection-Selection.html">Selection</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_documentselection-DocumentSelection.html">DocumentSelection</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span> | <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | <span>null</span></code></dt>
+ <span><a class="collapsing-list__type" href="module_engine_model_selection-Selection.html">Selection</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_documentselection-DocumentSelection.html">DocumentSelection</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span> | <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span> | <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | <span>null</span></code></dt>
                                         <dd>
                                         </dd>
-                                        <dt><code>[ backwardSelectionOrOffset ]
+                                        <dt><code>[ placeOrOffset ]
                                             :
- <span>Boolean</span> | <span>Number</span> | <span>'before'</span> | <span>'end'</span> | <span>'after'</span></code></dt>
+ <span>Number</span> | <span>'before'</span> | <span>'end'</span> | <span>'after'</span> | <span>'on'</span> | <span>'in'</span></code></dt>
+                                        <dd><p>Sets place or offset of the selection.</p>
+                                        </dd>
+                                        <dt><code>[ options ]
+                                            :
+ <span>Object</span></code></dt>
                                         <dd>
+                                                    <div class="dlheading5">Properties
+                                                    </div>
+                                                    <dl>
+                                                      <dt><code>[ options.backward ]
+                                                          :
+ <span>Boolean</span></code></dt>
+                                                      <dd><p>Sets this selection instance to be backward.</p>
+                                                      </dd>
+                                                    </dl>
                                         </dd>
                                       </dl>
                           </div>

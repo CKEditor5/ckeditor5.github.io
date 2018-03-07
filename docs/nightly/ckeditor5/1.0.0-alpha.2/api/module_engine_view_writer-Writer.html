@@ -807,48 +807,8 @@ so they can be used to add special data to elements.
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-setFakeSelection">
-                          <h3><code><a class="member-name" href="#function-setFakeSelection">setFakeSelection</a>( [ value ], [ options ] = { [options.label] } )</code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Sets <a href="module_engine_view_selection-Selection.html">selection&apos;s</a> to be marked as <code>fake</code>. A fake selection does
-not render as browser native selection over selected elements and is hidden to the user.
-This way, no native selection UI artifacts are displayed to the user and selection over elements can be
-represented in other way, for example by applying proper CSS class.
-                          </p>
-                          <div class="collapsing-list__content">
-<p>Additionally fake&apos;s selection label can be provided. It will be used to describe fake selection in DOM (and be
-properly handled by screen readers).</p>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code>[ value ]
-                                            :
- <span>Boolean</span></code></dt>
-                                        <dd><p>If set to true selection will be marked as <code>fake</code>.</p>
-                                          <p>Defaults to <code>true</code></p>
-                                        </dd>
-                                        <dt><code>[ options ]
-                                            :
- <span>Object</span></code></dt>
-                                        <dd><p>Additional options.</p>
-                                                    <div class="dlheading5">Properties
-                                                    </div>
-                                                    <dl>
-                                                      <dt><code>[ options.label ]
-                                                          :
- <span>String</span></code></dt>
-                                                      <dd><p>Fake selection label.</p>
-                                                        <p>Defaults to <code>''</code></p>
-                                                      </dd>
-                                                    </dl>
-                                        </dd>
-                                      </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-setSelection">
-                          <h3><code><a class="member-name" href="#function-setSelection">setSelection</a>( selectable, [ backwardSelectionOrOffset ] )</code></h3>
+                          <h3><code><a class="member-name" href="#function-setSelection">setSelection</a>( selectable, [ placeOrOffset ], [ options ] = { [options.backward], [options.fake], [options.label] } )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Sets <a href="module_engine_view_selection-Selection.html">selection&apos;s</a> ranges and direction to the specified location based on the given
@@ -857,28 +817,46 @@ properly handled by screen readers).</p>
 an iterable of <a href="module_engine_view_range-Range.html">ranges</a> or null.
                           </p>
                           <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>// Sets ranges from the given range.
+<h6>Usage:</h6><pre class="prettyprint source"><code>// Sets selection to the given range.
 const range = new Range( start, end );
-writer.setSelection( range, isBackwardSelection );
+writer.setSelection( range );
 
-// Sets ranges from the iterable of ranges.
+// Sets backward selection to the given range.
+const range = new Range( start, end );
+writer.setSelection( range );
+
+// Sets selection to given ranges.
 const ranges = [ new Range( start1, end2 ), new Range( star2, end2 ) ];
-writer.setSelection( range, isBackwardSelection );
+writer.setSelection( range );
 
-// Sets ranges from the other selection.
+// Sets selection to the other selection.
 const otherSelection = new Selection();
 writer.setSelection( otherSelection );
 
-// Sets collapsed range at the given position.
+// Sets collapsed selection at the given position.
 const position = new Position( root, path );
 writer.setSelection( position );
 
-// Sets collapsed range on the given item.
-const paragraph = writer.createContainerElement( &apos;paragraph&apos; );
-writer.setSelection( paragraph, offset );
+// Sets collapsed selection at the position of given item and offset.
+writer.setSelection( paragraph, offset );</code></pre><p>Creates a range inside an <a href="module_engine_view_element-Element.html">element</a> which starts before the first child of
+that element and ends after the last child of that element.</p>
+<pre class="prettyprint source"><code>writer.setSelection( paragraph, &apos;in&apos; );</code></pre><p>Creates a range on the <a href="module_engine_view_item-Item.html">item</a> which starts before the item and ends just after the item.</p>
+<pre class="prettyprint source"><code>writer.setSelection( paragraph, &apos;on&apos; );
 
 // Removes all ranges.
-writer.setSelection( null );</code></pre>
+writer.setSelection( null );</code></pre><p><code>Writer#setSelection()</code> allow passing additional options (<code>backward</code>, <code>fake</code> and <code>label</code>) as the last argument.</p>
+<pre class="prettyprint source"><code>// Sets selection as backward.
+writer.setSelection( range, { backward: true } );
+
+// Sets selection as fake.
+// Fake selection does not render as browser native selection over selected elements and is hidden to the user.
+// This way, no native selection UI artifacts are displayed to the user and selection over elements can be
+// represented in other way, for example by applying proper CSS class.
+writer.setSelection( range, { fake: true } );
+
+// Additionally fake&apos;s selection label can be provided. It will be used to describe fake selection in DOM
+// (and be  properly handled by screen readers).
+writer.setSelection( range, { fake: true, label: &apos;foo&apos; } );</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>selectable
@@ -886,10 +864,34 @@ writer.setSelection( null );</code></pre>
  <span><a class="collapsing-list__type" href="module_engine_view_selection-Selection.html">Selection</a></span> | <span><a class="collapsing-list__type" href="module_engine_view_position-Position.html">Position</a></span> | <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_view_range-Range.html">Range</a>&gt;</span> | <span><a class="collapsing-list__type" href="module_engine_view_range-Range.html">Range</a></span> | <span><a class="collapsing-list__type" href="module_engine_view_item-Item.html">Item</a></span> | <span>null</span></code></dt>
                                         <dd>
                                         </dd>
-                                        <dt><code>[ backwardSelectionOrOffset ]
+                                        <dt><code>[ placeOrOffset ]
                                             :
- <span>Boolean</span> | <span>Number</span> | <span>'before'</span> | <span>'end'</span> | <span>'after'</span></code></dt>
+ <span>Number</span> | <span>'before'</span> | <span>'end'</span> | <span>'after'</span> | <span>'on'</span> | <span>'in'</span></code></dt>
+                                        <dd><p>Sets place or offset of the selection.</p>
+                                        </dd>
+                                        <dt><code>[ options ]
+                                            :
+ <span>Object</span></code></dt>
                                         <dd>
+                                                    <div class="dlheading5">Properties
+                                                    </div>
+                                                    <dl>
+                                                      <dt><code>[ options.backward ]
+                                                          :
+ <span>Boolean</span></code></dt>
+                                                      <dd><p>Sets this selection instance to be backward.</p>
+                                                      </dd>
+                                                      <dt><code>[ options.fake ]
+                                                          :
+ <span>Boolean</span></code></dt>
+                                                      <dd><p>Sets this selection instance to be marked as <code>fake</code>.</p>
+                                                      </dd>
+                                                      <dt><code>[ options.label ]
+                                                          :
+ <span>String</span></code></dt>
+                                                      <dd><p>Label for the fake selection.</p>
+                                                      </dd>
+                                                    </dl>
                                         </dd>
                                       </dl>
                           </div>

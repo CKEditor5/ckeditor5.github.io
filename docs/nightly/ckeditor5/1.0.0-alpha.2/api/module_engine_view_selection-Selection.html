@@ -258,7 +258,7 @@ collapsed.</p>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-constructor">
-                          <h3><code><a class="member-name" href="#function-constructor">constructor</a>( [ selectable ], [ backwardSelectionOrOffset ] )</code></h3>
+                          <h3><code><a class="member-name" href="#function-constructor">constructor</a>( [ selectable ], [ placeOrOffset ], [ options ] = { [options.backward], [options.fake], [options.label] } )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Creates new selection instance.
@@ -269,11 +269,11 @@ const selection = new Selection();
 
 // Creates selection at the given range.
 const range = new Range( start, end );
-const selection = new Selection( range, isBackwardSelection );
+const selection = new Selection( range );
 
 // Creates selection at the given ranges
 const ranges = [ new Range( start1, end2 ), new Range( star2, end2 ) ];
-const selection = new Selection( ranges, isBackwardSelection );
+const selection = new Selection( ranges );
 
 // Creates selection from the other selection.
 const otherSelection = new Selection();
@@ -283,38 +283,62 @@ const selection = new Selection( otherSelection );
 const position = new Position( root, path );
 const selection = new Selection( position );
 
-// Creates selection at the start position of given element.
+// Creates collapsed selection at the position of given item and offset.
 const paragraph = writer.createElement( &apos;paragraph&apos; );
-const selection = new Selection( paragraph, offset );</code></pre>
+const selection = new Selection( paragraph, offset );
+
+// Creates a range inside an <a href="module_engine_view_element-Element.html">element</a> which starts before the
+// first child of that element and ends after the last child of that element.
+const selection = new Selection( paragraph, &apos;in&apos; );
+
+// Creates a range on an <a href="module_engine_view_item-Item.html">item</a> which starts before the item and ends
+// just after the item.
+const selection = new Selection( paragraph, &apos;on&apos; );</code></pre><p><code>Selection</code>&apos;s constructor allow passing additional options (<code>backward</code>, <code>fake</code> and <code>label</code>) as the last argument.</p>
+<pre class="prettyprint source"><code>// Creates backward selection.
+const selection = new Selection( range, { backward: true } );</code></pre><p>Fake selection does not render as browser native selection over selected elements and is hidden to the user.
+This way, no native selection UI artifacts are displayed to the user and selection over elements can be
+represented in other way, for example by applying proper CSS class.</p>
+<p>Additionally fake&apos;s selection label can be provided. It will be used to describe fake selection in DOM
+(and be  properly handled by screen readers).</p>
+<pre class="prettyprint source"><code>// Creates fake selection with label.
+const selection = new Selection( range, { fake: true, label: &apos;foo&apos; } );</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>[ selectable ]
                                             :
- <span><a class="collapsing-list__type" href="module_engine_view_selection-Selection.html">Selection</a></span> | <span><a class="collapsing-list__type" href="module_engine_view_position-Position.html">Position</a></span> | <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_view_range-Range.html">Range</a>&gt;</span> | <span><a class="collapsing-list__type" href="module_engine_view_range-Range.html">Range</a></span> | <span><a class="collapsing-list__type" href="module_engine_view_item-Item.html">Item</a></span></code></dt>
+ <span><a class="collapsing-list__type" href="module_engine_view_selection-Selection.html">Selection</a></span> | <span><a class="collapsing-list__type" href="module_engine_view_position-Position.html">Position</a></span> | <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_view_range-Range.html">Range</a>&gt;</span> | <span><a class="collapsing-list__type" href="module_engine_view_range-Range.html">Range</a></span> | <span><a class="collapsing-list__type" href="module_engine_view_item-Item.html">Item</a></span> | <span>null</span></code></dt>
                                         <dd>
                                         </dd>
-                                        <dt><code>[ backwardSelectionOrOffset ]
+                                        <dt><code>[ placeOrOffset ]
                                             :
- <span>Boolean</span> | <span>Number</span> | <span>'before'</span> | <span>'end'</span> | <span>'after'</span></code></dt>
+ <span>Number</span> | <span>'before'</span> | <span>'end'</span> | <span>'after'</span> | <span>'on'</span> | <span>'in'</span></code></dt>
+                                        <dd><p>Offset or place when selectable is an <code>Item</code>.</p>
+                                        </dd>
+                                        <dt><code>[ options ]
+                                            :
+ <span>Object</span></code></dt>
                                         <dd>
+                                                    <div class="dlheading5">Properties
+                                                    </div>
+                                                    <dl>
+                                                      <dt><code>[ options.backward ]
+                                                          :
+ <span>Boolean</span></code></dt>
+                                                      <dd><p>Sets this selection instance to be backward.</p>
+                                                      </dd>
+                                                      <dt><code>[ options.fake ]
+                                                          :
+ <span>Boolean</span></code></dt>
+                                                      <dd><p>Sets this selection instance to be marked as <code>fake</code>.</p>
+                                                      </dd>
+                                                      <dt><code>[ options.label ]
+                                                          :
+ <span>String</span></code></dt>
+                                                      <dd><p>Label for the fake selection.</p>
+                                                      </dd>
+                                                    </dl>
                                         </dd>
                                       </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-_removeAllRanges">
-                          <h3><code><a class="member-name" href="#function-_removeAllRanges">_removeAllRanges</a>()</code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Removes all ranges that were added to the selection.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Fires</h4>
-                            <ul>
-                                        <li><span><a href="module_engine_view_selection-Selection.html#event:change">change</a></span>
-                                        </li>
-                            </ul>
                           </div>
                         </div>
                       </li>
@@ -485,53 +509,6 @@ equal to any trimmed range from other selection.
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-protected="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-_setFake">
-                          <h3><code><a class="member-name" href="#function-_setFake">_setFake</a>( [ value ], [ options ] = { [options.label] } )</code></h3>
-                          <p class="badges">
-<span class="badge badge--orange ">protected</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Sets this selection instance to be marked as <code>fake</code>. A fake selection does not render as browser native selection
-over selected elements and is hidden to the user. This way, no native selection UI artifacts are displayed to
-the user and selection over elements can be represented in other way, for example by applying proper CSS class.
-                          </p>
-                          <div class="collapsing-list__content">
-<p>Additionally fake&apos;s selection label can be provided. It will be used to describe fake selection in DOM (and be
-properly handled by screen readers).</p>
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code>[ value ]
-                                            :
- <span>Boolean</span></code></dt>
-                                        <dd><p>If set to true selection will be marked as <code>fake</code>.</p>
-                                          <p>Defaults to <code>true</code></p>
-                                        </dd>
-                                        <dt><code>[ options ]
-                                            :
- <span>Object</span></code></dt>
-                                        <dd><p>Additional options.</p>
-                                                    <div class="dlheading5">Properties
-                                                    </div>
-                                                    <dl>
-                                                      <dt><code>[ options.label ]
-                                                          :
- <span>String</span></code></dt>
-                                                      <dd><p>Fake selection label.</p>
-                                                        <p>Defaults to <code>''</code></p>
-                                                      </dd>
-                                                    </dl>
-                                        </dd>
-                                      </dl>
-                            <h4>Fires</h4>
-                            <ul>
-                                        <li><span><a href="module_engine_view_selection-Selection.html#event:change">change</a></span>
-                                        </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-protected="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-_setFocus">
                           <h3><code><a class="member-name" href="#function-_setFocus">_setFocus</a>( itemOrPosition, [ offset ] )</code></h3>
                           <p class="badges">
@@ -567,43 +544,8 @@ first parameter is a <a href="module_engine_view_item-Item.html">view item</a>.<
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-protected="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-_setRanges">
-                          <h3><code><a class="member-name" href="#function-_setRanges">_setRanges</a>( newRanges, [ isLastBackward ] )</code></h3>
-                          <p class="badges">
-<span class="badge badge--orange ">protected</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Replaces all ranges that were added to the selection with given array of ranges. Last range of the array
-is treated like the last added range and is used to set <a href="module_engine_view_selection-Selection.html#member-anchor">anchor</a> and <a href="module_engine_view_selection-Selection.html#member-focus">focus</a>.
-Accepts a flag describing in which way the selection is made.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code>newRanges
-                                            :
- <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_view_range-Range.html">Range</a>&gt;</span></code></dt>
-                                        <dd><p>Iterable object of ranges to set.</p>
-                                        </dd>
-                                        <dt><code>[ isLastBackward ]
-                                            :
- <span>Boolean</span></code></dt>
-                                        <dd><p>Flag describing if last added range was selected forward - from start to end
-(<code>false</code>) or backward - from end to start (<code>true</code>). Defaults to <code>false</code>.</p>
-                                        </dd>
-                                      </dl>
-                            <h4>Fires</h4>
-                            <ul>
-                                        <li><span><a href="module_engine_view_selection-Selection.html#event:change">change</a></span>
-                                        </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-protected="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-_setTo">
-                          <h3><code><a class="member-name" href="#function-_setTo">_setTo</a>( selectable, [ backwardSelectionOrOffset ] )</code></h3>
+                          <h3><code><a class="member-name" href="#function-_setTo">_setTo</a>( selectable, [ placeOrOffset ], [ options ] = { [options.backward], [options.fake], [options.label] } )</code></h3>
                           <p class="badges">
 <span class="badge badge--orange ">protected</span>
                           </p>
@@ -615,28 +557,38 @@ Accepts a flag describing in which way the selection is made.
 an iterable of <a href="module_engine_view_range-Range.html">ranges</a> or null.
                           </p>
                           <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>// Sets ranges from the given range.
+<pre class="prettyprint source"><code>// Sets selection to the given range.
 const range = new Range( start, end );
-selection.setTo( range, isBackwardSelection );
+selection.setTo( range );
 
-// Sets ranges from the iterable of ranges.
+// Sets selection to given ranges.
 const ranges = [ new Range( start1, end2 ), new Range( star2, end2 ) ];
-selection.setTo( range, isBackwardSelection );
+selection.setTo( range );
 
-// Sets ranges from the other selection.
+// Sets selection to the other selection.
 const otherSelection = new Selection();
 selection.setTo( otherSelection );
 
-// Sets collapsed range at the given position.
+// Sets collapsed selection at the given position.
 const position = new Position( root, path );
 selection.setTo( position );
 
-// Sets collapsed range on the given item.
-const paragraph = writer.createElement( &apos;paragraph&apos; );
-selection.setTo( paragraph, offset );
+// Sets collapsed selection at the position of given item and offset.
+selection.setTo( paragraph, offset );</code></pre><p>Creates a range inside an <a href="module_engine_view_element-Element.html">element</a> which starts before the first child of
+that element and ends after the last child of that element.</p>
+<pre class="prettyprint source"><code>selection.setTo( paragraph, &apos;in&apos; );</code></pre><p>Creates a range on an <a href="module_engine_view_item-Item.html">item</a> which starts before the item and ends just after the item.</p>
+<pre class="prettyprint source"><code>selection.setTo( paragraph, &apos;on&apos; );
 
-// Removes all ranges.
-selection.setTo( null );</code></pre>
+// Clears selection. Removes all ranges.
+selection.setTo( null );</code></pre><p><code>Selection#setTo()</code> method allow passing additional options (<code>backward</code>, <code>fake</code> and <code>label</code>) as the last argument.</p>
+<pre class="prettyprint source"><code>// Sets selection as backward.
+selection.setTo( range, { backward: true } );</code></pre><p>Fake selection does not render as browser native selection over selected elements and is hidden to the user.
+This way, no native selection UI artifacts are displayed to the user and selection over elements can be
+represented in other way, for example by applying proper CSS class.</p>
+<p>Additionally fake&apos;s selection label can be provided. It will be used to describe fake selection in DOM
+(and be  properly handled by screen readers).</p>
+<pre class="prettyprint source"><code>// Creates fake selection with label.
+selection.setTo( range, { fake: true, label: &apos;foo&apos; } );</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>selectable
@@ -644,12 +596,41 @@ selection.setTo( null );</code></pre>
  <span><a class="collapsing-list__type" href="module_engine_view_selection-Selection.html">Selection</a></span> | <span><a class="collapsing-list__type" href="module_engine_view_position-Position.html">Position</a></span> | <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_view_range-Range.html">Range</a>&gt;</span> | <span><a class="collapsing-list__type" href="module_engine_view_range-Range.html">Range</a></span> | <span><a class="collapsing-list__type" href="module_engine_view_item-Item.html">Item</a></span> | <span>null</span></code></dt>
                                         <dd>
                                         </dd>
-                                        <dt><code>[ backwardSelectionOrOffset ]
+                                        <dt><code>[ placeOrOffset ]
                                             :
- <span>Boolean</span> | <span>Number</span> | <span>'before'</span> | <span>'end'</span> | <span>'after'</span></code></dt>
+ <span>Number</span> | <span>'before'</span> | <span>'end'</span> | <span>'after'</span> | <span>'on'</span> | <span>'in'</span></code></dt>
+                                        <dd><p>Sets place or offset of the selection.</p>
+                                        </dd>
+                                        <dt><code>[ options ]
+                                            :
+ <span>Object</span></code></dt>
                                         <dd>
+                                                    <div class="dlheading5">Properties
+                                                    </div>
+                                                    <dl>
+                                                      <dt><code>[ options.backward ]
+                                                          :
+ <span>Boolean</span></code></dt>
+                                                      <dd><p>Sets this selection instance to be backward.</p>
+                                                      </dd>
+                                                      <dt><code>[ options.fake ]
+                                                          :
+ <span>Boolean</span></code></dt>
+                                                      <dd><p>Sets this selection instance to be marked as <code>fake</code>.</p>
+                                                      </dd>
+                                                      <dt><code>[ options.label ]
+                                                          :
+ <span>String</span></code></dt>
+                                                      <dd><p>Label for the fake selection.</p>
+                                                      </dd>
+                                                    </dl>
                                         </dd>
                                       </dl>
+                            <h4>Fires</h4>
+                            <ul>
+                                        <li><span><a href="module_engine_view_selection-Selection.html#event:change">change</a></span>
+                                        </li>
+                            </ul>
                           </div>
                         </div>
                       </li>
@@ -712,6 +693,78 @@ with ranges already stored in selection instance.</p>
                                             :
  <span><a class="collapsing-list__type" href="module_engine_view_range-Range.html">Range</a></span></code></dt>
                                         <dd>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-_setFakeOptions">
+                          <h3><code><a class="member-name" href="#function-_setFakeOptions">_setFakeOptions</a>( [ options ] = { [options.fake], [options.label] } )</code></h3>
+                          <p class="badges">
+<span class="badge badge--red ">private</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Sets this selection instance to be marked as <code>fake</code>. A fake selection does not render as browser native selection
+over selected elements and is hidden to the user. This way, no native selection UI artifacts are displayed to
+the user and selection over elements can be represented in other way, for example by applying proper CSS class.
+                          </p>
+                          <div class="collapsing-list__content">
+<p>Additionally fake&apos;s selection label can be provided. It will be used to describe fake selection in DOM (and be
+properly handled by screen readers).</p>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>[ options ]
+                                            :
+ <span>Object</span></code></dt>
+                                        <dd><p>Options.</p>
+                                                    <div class="dlheading5">Properties
+                                                    </div>
+                                                    <dl>
+                                                      <dt><code>[ options.fake ]
+                                                          :
+ <span>Boolean</span></code></dt>
+                                                      <dd><p>If set to true selection will be marked as <code>fake</code>.</p>
+                                                      </dd>
+                                                      <dt><code>[ options.label ]
+                                                          :
+ <span>String</span></code></dt>
+                                                      <dd><p>Fake selection label.</p>
+                                                        <p>Defaults to <code>''</code></p>
+                                                      </dd>
+                                                    </dl>
+                                        </dd>
+                                      </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-_setRanges">
+                          <h3><code><a class="member-name" href="#function-_setRanges">_setRanges</a>( newRanges, [ isLastBackward ] )</code></h3>
+                          <p class="badges">
+<span class="badge badge--red ">private</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Replaces all ranges that were added to the selection with given array of ranges. Last range of the array
+is treated like the last added range and is used to set <a href="module_engine_view_selection-Selection.html#member-anchor">anchor</a> and <a href="module_engine_view_selection-Selection.html#member-focus">focus</a>.
+Accepts a flag describing in which way the selection is made.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>newRanges
+                                            :
+ <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_view_range-Range.html">Range</a>&gt;</span></code></dt>
+                                        <dd><p>Iterable object of ranges to set.</p>
+                                        </dd>
+                                        <dt><code>[ isLastBackward ]
+                                            :
+ <span>Boolean</span></code></dt>
+                                        <dd><p>Flag describing if last added range was selected forward - from start to end
+(<code>false</code>) or backward - from end to start (<code>true</code>). Defaults to <code>false</code>.</p>
+                                          <p>Defaults to <code>false</code></p>
                                         </dd>
                                       </dl>
                           </div>

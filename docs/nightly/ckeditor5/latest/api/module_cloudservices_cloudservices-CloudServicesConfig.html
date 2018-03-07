@@ -74,7 +74,10 @@
           <div class="main-description"><p>The configuration for all plugins using CKEditor Cloud Services.</p>
 <pre class="prettyprint source"><code>ClassicEditor
     .create( document.querySelector( &apos;#editor&apos; ), {
-        cloudServices: ... // CloudServices config.
+        cloudServices: {
+            uploadUrl: &apos;https://your-organisation-id.cke-cs.com/easyimage/upload/&apos;,
+            tokenUrl: &apos;https://example.com/cs-token-endpoint&apos;
+        }
     } )
     .then( ... )
     .catch( ... );</code></pre><p>See <a href="module_core_editor_editorconfig-EditorConfig.html">all editor options</a>.</p></div>
@@ -123,17 +126,7 @@ The token URL has to point to the service where the token is generated.</p>
 <p>You can read about creating token endpoints in the
 <a href="../../../cs/latest/guides/token-endpoints/tokenendpoint.html" data-glink="">Creating token endpoint</a> guide
 in <a href="../../../cs/latest/index.html" data-glink="">Cloud Services documentation</a>.</p>
-<pre class="prettyprint source"><code>ClassicEditor
-    .create( document.querySelector( &apos;#editor&apos; ), {
-        cloudServices: {
-            tokenUrl: TOKEN_URL
-        },
-        plugins: [ ArticlePluginSet, EasyImage ],
-        toolbar: [ &apos;headings&apos;, &apos;|&apos;, &apos;undo&apos;, &apos;redo&apos;, &apos;uploadImage&apos; ],
-        image: {
-            toolbar: [ &apos;imageStyleFull&apos;, &apos;imageStyleSide&apos;, &apos;|&apos;, &apos;imageTextAlternative&apos; ]
-        }
-    } );</code></pre>
+<p>See <a href="https://docs.ckeditor.com/cs/latest/guides/quick-start.html">Cloud Services Quick Start</a>.</p>
                           </div>
                         </div>
                       </li>
@@ -144,7 +137,6 @@ in <a href="../../../cs/latest/index.html" data-glink="">Cloud Services document
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">The URL to which the files should be uploaded.</p>
                           <div class="collapsing-list__content">
-                            <p>Defaults to <code>'https://files.cke-cs.com/upload/'</code></p>
                           </div>
                         </div>
                       </li>

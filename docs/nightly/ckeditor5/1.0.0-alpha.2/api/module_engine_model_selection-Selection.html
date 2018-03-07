@@ -233,7 +233,7 @@ collapsed.</p>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-constructor">
-                          <h3><code><a class="member-name" href="#function-constructor">constructor</a>( [ selectable ], [ backwardSelectionOrOffset ] )</code></h3>
+                          <h3><code><a class="member-name" href="#function-constructor">constructor</a>( selectable, [ placeOrOffset ], [ options ] = { [options.backward] } )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Creates new selection instance on the given
@@ -248,11 +248,11 @@ const selection = new Selection();
 
 // Creates selection at the given range.
 const range = new Range( start, end );
-const selection = new Selection( range, isBackwardSelection );
+const selection = new Selection( range );
 
 // Creates selection at the given ranges
 const ranges = [ new Range( start1, end2 ), new Range( star2, end2 ) ];
-const selection = new Selection( ranges, isBackwardSelection );
+const selection = new Selection( ranges );
 
 // Creates selection from the other selection.
 // Note: It doesn&apos;t copies selection attributes.
@@ -268,20 +268,44 @@ const selection = new Selection( documentSelection );
 const position = new Position( root, path );
 const selection = new Selection( position );
 
-// Creates selection at the start position of given element.
+// Creates selection at the start position of the given element.
 const paragraph = writer.createElement( &apos;paragraph&apos; );
-const selection = new Selection( paragraph, offset );</code></pre>
+const selection = new Selection( paragraph, offset );
+
+// Creates a range inside an <a href="module_engine_model_element-Element.html">element</a> which starts before the
+// first child of that element and ends after the last child of that element.
+const selection = new Selection( paragraph, &apos;in&apos; );
+
+// Creates a range on an <a href="module_engine_model_item-Item.html">item</a> which starts before the item and ends
+// just after the item.
+const selection = new Selection( paragraph, &apos;on&apos; );</code></pre><p><code>Selection</code>&apos;s constructor allow passing additional options (<code>backward</code>) as the last argument.</p>
+<pre class="prettyprint source"><code>// Creates backward selection.
+const selection = new Selection( range, { backward: true } );</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code>[ selectable ]
+                                        <dt><code>selectable
                                             :
- <span><a class="collapsing-list__type" href="module_engine_model_selection-Selection.html">Selection</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_documentselection-DocumentSelection.html">DocumentSelection</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span> | <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span></code></dt>
+ <span><a class="collapsing-list__type" href="module_engine_model_selection-Selection.html">Selection</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_documentselection-DocumentSelection.html">DocumentSelection</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span> | <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | <span>null</span></code></dt>
                                         <dd>
                                         </dd>
-                                        <dt><code>[ backwardSelectionOrOffset ]
+                                        <dt><code>[ placeOrOffset ]
                                             :
- <span>Boolean</span> | <span>Number</span> | <span>'before'</span> | <span>'end'</span> | <span>'after'</span></code></dt>
+ <span>Number</span> | <span>'before'</span> | <span>'end'</span> | <span>'after'</span> | <span>'on'</span> | <span>'in'</span></code></dt>
+                                        <dd><p>Sets place or offset of the selection.</p>
+                                        </dd>
+                                        <dt><code>[ options ]
+                                            :
+ <span>Object</span></code></dt>
                                         <dd>
+                                                    <div class="dlheading5">Properties
+                                                    </div>
+                                                    <dl>
+                                                      <dt><code>[ options.backward ]
+                                                          :
+ <span>Boolean</span></code></dt>
+                                                      <dd><p>Sets this selection instance to be backward.</p>
+                                                      </dd>
+                                                    </dl>
                                         </dd>
                                       </dl>
                           </div>
@@ -668,7 +692,7 @@ first parameter is a <a href="module_engine_model_item-Item.html">model item</a>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-setTo">
-                          <h3><code><a class="member-name" href="#function-setTo">setTo</a>( selectable, [ backwardSelectionOrOffset ] )</code></h3>
+                          <h3><code><a class="member-name" href="#function-setTo">setTo</a>( selectable, [ placeOrOffset ], [ options ] = { [options.backward] } )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Sets this selection&apos;s ranges and direction to the specified location based on the given
@@ -677,45 +701,63 @@ first parameter is a <a href="module_engine_model_item-Item.html">model item</a>
 <a href="module_engine_model_range-Range.html">range</a>, an iterable of <a href="module_engine_model_range-Range.html">ranges</a> or null.
                           </p>
                           <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>// Sets ranges from the given range.
+<pre class="prettyprint source"><code>// Removes all selection&apos;s ranges.
+selection.setTo( null );
+
+// Sets selection to the given range.
 const range = new Range( start, end );
-selection.setTo( range, isBackwardSelection );
+selection.setTo( range );
 
-// Sets ranges from the iterable of ranges.
+// Sets selection to given ranges.
 const ranges = [ new Range( start1, end2 ), new Range( star2, end2 ) ];
-selection.setTo( ranges, isBackwardSelection );
+selection.setTo( ranges );
 
-// Sets ranges from the other selection.
+// Sets selection to other selection.
 // Note: It doesn&apos;t copies selection attributes.
 const otherSelection = new Selection();
 selection.setTo( otherSelection );
 
-// Sets ranges from the given document selection&apos;s ranges.
+// Sets selection to the given document selection.
 // Note: It doesn&apos;t copies selection attributes.
 const documentSelection = new DocumentSelection( doc );
 selection.setTo( documentSelection );
 
-// Sets range at the given position.
+// Sets collapsed selection at the given position.
 const position = new Position( root, path );
 selection.setTo( position );
 
-// Sets range at the position of given element and optional offset.
-const paragraph = writer.createElement( &apos;paragraph&apos; );
-selection.setTo( paragraph, offset );
-
-// Removes all ranges.
-selection.setTo( null );</code></pre>
+// Sets collapsed selection at the position of the given node and an offset.
+selection.setTo( paragraph, offset );</code></pre><p>Creates a range inside an <a href="module_engine_model_element-Element.html">element</a> which starts before the first child of
+that element and ends after the last child of that element.</p>
+<pre class="prettyprint source"><code>selection.setTo( paragraph, &apos;in&apos; );</code></pre><p>Creates a range on an <a href="module_engine_model_item-Item.html">item</a> which starts before the item and ends just after the item.</p>
+<pre class="prettyprint source"><code>selection.setTo( paragraph, &apos;on&apos; );</code></pre><p><code>Selection#setTo()</code>&apos; method allow passing additional options (<code>backward</code>) as the last argument.</p>
+<pre class="prettyprint source"><code>// Sets backward selection.
+const selection = new Selection( range, { backward: true } );</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>selectable
                                             :
- <span><a class="collapsing-list__type" href="module_engine_model_selection-Selection.html">Selection</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_documentselection-DocumentSelection.html">DocumentSelection</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span> | <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | <span>null</span></code></dt>
+ <span><a class="collapsing-list__type" href="module_engine_model_selection-Selection.html">Selection</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_documentselection-DocumentSelection.html">DocumentSelection</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span> | <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span> | <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | <span>null</span></code></dt>
                                         <dd>
                                         </dd>
-                                        <dt><code>[ backwardSelectionOrOffset ]
+                                        <dt><code>[ placeOrOffset ]
                                             :
- <span>Boolean</span> | <span>Number</span> | <span>'before'</span> | <span>'end'</span> | <span>'after'</span></code></dt>
+ <span>Number</span> | <span>'before'</span> | <span>'end'</span> | <span>'after'</span> | <span>'on'</span> | <span>'in'</span></code></dt>
+                                        <dd><p>Sets place or offset of the selection.</p>
+                                        </dd>
+                                        <dt><code>[ options ]
+                                            :
+ <span>Object</span></code></dt>
                                         <dd>
+                                                    <div class="dlheading5">Properties
+                                                    </div>
+                                                    <dl>
+                                                      <dt><code>[ options.backward ]
+                                                          :
+ <span>Boolean</span></code></dt>
+                                                      <dd><p>Sets this selection instance to be backward.</p>
+                                                      </dd>
+                                                    </dl>
                                         </dd>
                                       </dl>
                           </div>

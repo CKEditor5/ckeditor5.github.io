@@ -374,6 +374,8 @@ writer.insert( text, paragraph, &apos;end&apos; );</code></pre><p>Or insert befo
 <pre class="prettyprint source"><code>const paragraph = writer.createElement( &apos;paragraph&apos; );
 writer.insert( paragraph, anotherParagraph, &apos;after&apos; );</code></pre><p>These parameters works the same way as <a href="module_engine_model_position-Position.html#static-function-createAt"><code>createAt</code></a>.</p>
 <p>Note that if the item already has parent it will be removed from the previous parent.</p>
+<p>Note that you cannot re-insert a node from a document to a different document or document fragment. In this case,
+<code>model-writer-insert-forbidden-move</code> is thrown.</p>
 <p>If you want to move <a href="module_engine_model_range-Range.html">range</a> instead of an
 <a href="module_engine_model_item-Item.html">item</a> use <a href="module_engine_model_writer-Writer.html#function-move">move</a>.</p>
                             <h4>Parameters</h4>
@@ -827,52 +829,70 @@ See <a href="module_engine_model_markercollection-Marker.html#member-managedUsin
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-setSelection">
-                          <h3><code><a class="member-name" href="#function-setSelection">setSelection</a>( selectable, [ backwardSelectionOrOffset ] )</code></h3>
+                          <h3><code><a class="member-name" href="#function-setSelection">setSelection</a>( selectable, [ placeOrOffset ], [ options ] = { [options.backward] } )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Sets this selection&apos;s ranges and direction to the specified location based on the given
 <a href="module_engine_model_selection-Selection.html">selection</a>, <a href="module_engine_model_position-Position.html">position</a>,
-<a href="module_engine_model_element-Element.html">element</a>, <a href="module_engine_model_position-Position.html">position</a>,
+<a href="module_engine_model_node-Node.html">node</a>, <a href="module_engine_model_position-Position.html">position</a>,
 <a href="module_engine_model_range-Range.html">range</a>, an iterable of <a href="module_engine_model_range-Range.html">ranges</a> or null.
                           </p>
                           <div class="collapsing-list__content">
-<pre class="prettyprint source"><code>// Sets ranges from the given range.
+<pre class="prettyprint source"><code>// Sets selection to the given range.
 const range = new Range( start, end );
-writer.setSelection( range, isBackwardSelection );
+writer.setSelection( range );
 
-// Sets ranges from the iterable of ranges.
+// Sets selection to given ranges.
 const ranges = [ new Range( start1, end2 ), new Range( star2, end2 ) ];
-writer.setSelection( range, isBackwardSelection );
+writer.setSelection( range );
 
-// Sets ranges from the other selection.
+// Sets selection to other selection.
 const otherSelection = new Selection();
 writer.setSelection( otherSelection );
 
-// Sets ranges from the given document selection&apos;s ranges.
+// Sets selection to the given document selection.
 const documentSelection = new DocumentSelection( doc );
 writer.setSelection( documentSelection );
 
-// Sets collapsed range at the given position.
+// Sets collapsed selection at the given position.
 const position = new Position( root, path );
 writer.setSelection( position );
 
-// Sets collapsed range at the given offset in element.
-const paragraph = writer.createElement( &apos;paragraph&apos; );
-writer.setSelection( paragraph, offset );
+// Sets collapsed selection at the position of the given node and an offset.
+writer.setSelection( paragraph, offset );</code></pre><p>Creates a range inside an <a href="module_engine_model_element-Element.html">element</a> which starts before the first child of
+that element and ends after the last child of that element.</p>
+<pre class="prettyprint source"><code>writer.setSelection( paragraph, &apos;in&apos; );</code></pre><p>Creates a range on an <a href="module_engine_model_item-Item.html">item</a> which starts before the item and ends just after the item.</p>
+<pre class="prettyprint source"><code>writer.setSelection( paragraph, &apos;on&apos; );
 
-// Removes all ranges.
-writer.setSelection( null );</code></pre><p>Throws <code>writer-incorrect-use</code> error when the writer is used outside the <code>change()</code> block.</p>
+// Removes all selection&apos;s ranges.
+writer.setSelection( null );</code></pre><p><code>Writer#setSelection()</code> allow passing additional options (<code>backward</code>) as the last argument.</p>
+<pre class="prettyprint source"><code>// Sets selection as backward.
+writer.setSelection( range, { backward: true } );</code></pre><p>Throws <code>writer-incorrect-use</code> error when the writer is used outside the <code>change()</code> block.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>selectable
                                             :
- <span><a class="collapsing-list__type" href="module_engine_model_selection-Selection.html">Selection</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_documentselection-DocumentSelection.html">DocumentSelection</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span> | <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span> | <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | <span>null</span></code></dt>
+ <span><a class="collapsing-list__type" href="module_engine_model_selection-Selection.html">Selection</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_documentselection-DocumentSelection.html">DocumentSelection</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_position-Position.html">Position</a></span> | <span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span> | <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a>&gt;</span> | <span><a class="collapsing-list__type" href="module_engine_model_range-Range.html">Range</a></span> | <span>null</span></code></dt>
                                         <dd>
                                         </dd>
-                                        <dt><code>[ backwardSelectionOrOffset ]
+                                        <dt><code>[ placeOrOffset ]
                                             :
- <span>Boolean</span> | <span>Number</span> | <span>'before'</span> | <span>'end'</span> | <span>'after'</span></code></dt>
+ <span>Number</span> | <span>'before'</span> | <span>'end'</span> | <span>'after'</span> | <span>'on'</span> | <span>'in'</span></code></dt>
+                                        <dd><p>Sets place or offset of the selection.</p>
+                                        </dd>
+                                        <dt><code>[ options ]
+                                            :
+ <span>Object</span></code></dt>
                                         <dd>
+                                                    <div class="dlheading5">Properties
+                                                    </div>
+                                                    <dl>
+                                                      <dt><code>[ options.backward ]
+                                                          :
+ <span>Boolean</span></code></dt>
+                                                      <dd><p>Sets this selection instance to be backward.</p>
+                                                      </dd>
+                                                    </dl>
                                         </dd>
                                       </dl>
                           </div>
