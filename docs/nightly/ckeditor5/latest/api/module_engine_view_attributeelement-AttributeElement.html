@@ -224,7 +224,7 @@ This means that view tree got broken.</p>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Parent element. Null by default. Set by <a href="module_engine_view_element-Element.html#function-insertChildren"><code>insertChildren</code></a>.</p>
+                          <p class="collapsing-list__excerpt">Parent element. Null by default. Set by <a href="module_engine_view_element-Element.html#function-_insertChildren"><code>_insertChildren</code></a>.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
@@ -375,9 +375,12 @@ nodes may prevent merging, e.g. two <code>&lt;abbr&gt;</code> nodes next each ot
           </ul>
           <h2 id="Methods">Methods</h2>
           <ul class="collapsing-list collapsing-list--filtered">
-                      <li class="collapsing-list__item" data-public="true">
+                      <li class="collapsing-list__item" data-protected="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-constructor">
                           <h3><code><a class="member-name" href="#function-constructor">constructor</a>()</code></h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+                          </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Creates a attribute element.
@@ -423,6 +426,45 @@ nodes may prevent merging, e.g. two <code>&lt;abbr&gt;</code> nodes next each ot
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-_removeChildren">
+                          <h3><code><a class="member-name" href="#function-_removeChildren">_removeChildren</a>( index, [ howMany ] ) &rarr;  <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_view_node-Node.html">Node</a>&gt;</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Removes number of child nodes starting at the given index and set the parent of these nodes to <code>null</code>.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>index
+                                            :
+ <span>Number</span></code></dt>
+                                        <dd><p>Number of the first node to remove.</p>
+                                        </dd>
+                                        <dt><code>[ howMany ]
+                                            :
+ <span>Number</span></code></dt>
+                                        <dd><p>Number of nodes to remove.</p>
+                                          <p>Defaults to <code>1</code></p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Array.&lt;<a class="collapsing-list__type" href="module_engine_view_node-Node.html">Node</a>&gt;</span></code></dt>
+                                        <dd><p>The array of removed nodes.</p>
+                                        </dd>
+                            </dl>
+                            <h4>Fires</h4>
+                            <ul>
+                                        <li><span><a href="module_engine_view_node-Node.html#event:change">change</a></span>
+                                        </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-_removeClass">
                           <h3><code><a class="member-name" href="#function-_removeClass">_removeClass</a>( className )</code></h3>
                           <p class="badges">
@@ -452,66 +494,22 @@ element._removeClass( [ &apos;foo&apos;, &apos;bar&apos; ] ); // Removes both &a
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-appendChildren">
-                          <h3><code><a class="member-name" href="#function-appendChildren">appendChildren</a>( items ) &rarr;  <span>Number</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-clone">
+                          <h3><code><a class="member-name" href="#function-clone">clone</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_view_node-Node.html">Node</a></span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">inherited</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt"><a href="module_engine_view_element-Element.html#function-insertChildren">Insert</a> a child node or a list of child nodes at the end of this node
-and sets the parent of these nodes to this element.
+                          <p class="collapsing-list__excerpt">Clones this node.
                           </p>
                           <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code>items
-                                            :
- <span><a class="collapsing-list__type" href="module_engine_view_item-Item.html">Item</a></span> | <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_view_item-Item.html">Item</a>&gt;</span></code></dt>
-                                        <dd><p>Items to be inserted.</p>
-                                        </dd>
-                                      </dl>
                             <h4>Returns</h4>
                             <dl>
-                                        <dt><code><span>Number</span></code></dt>
-                                        <dd><p>Number of appended nodes.</p>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_view_node-Node.html">Node</a></span></code></dt>
+                                        <dd><p>Clone of this node.</p>
                                         </dd>
                             </dl>
-                            <h4>Fires</h4>
-                            <ul>
-                                        <li><span><a href="module_engine_view_node-Node.html#event:change">change</a></span>
-                                        </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-clone">
-                          <h3><code><a class="member-name" href="#function-clone">clone</a>( deep ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_view_attributeelement-AttributeElement.html">AttributeElement</a></span></code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Clones provided element with priority.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code>deep
-                                            :
- <span>Boolean</span></code></dt>
-                                        <dd><p>If set to <code>true</code> clones element and all its children recursively. When set to <code>false</code>,
-element will be cloned without any children.</p>
-                                        </dd>
-                                      </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_view_attributeelement-AttributeElement.html">AttributeElement</a></span></code></dt>
-                                        <dd><p>Clone of this element.</p>
-                                        </dd>
-                            </dl>
-                            <div class="collapsing-list__bottom">
-                              Overrides:
- <span><a href="module_engine_view_element-Element.html#clone">Element#clone</a></span> 
-                            </div>
                           </div>
                         </div>
                       </li>
@@ -1031,45 +1029,6 @@ element.hasStyle( &apos;color&apos;, &apos;border-top&apos; ); // Returns true i
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-insertChildren">
-                          <h3><code><a class="member-name" href="#function-insertChildren">insertChildren</a>( index, items ) &rarr;  <span>Number</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Inserts a child node or a list of child nodes on the given index and sets the parent of these nodes to
-this element.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code>index
-                                            :
- <span>Number</span></code></dt>
-                                        <dd><p>Position where nodes should be inserted.</p>
-                                        </dd>
-                                        <dt><code>items
-                                            :
- <span><a class="collapsing-list__type" href="module_engine_view_item-Item.html">Item</a></span> | <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_view_item-Item.html">Item</a>&gt;</span></code></dt>
-                                        <dd><p>Items to be inserted.</p>
-                                        </dd>
-                                      </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span>Number</span></code></dt>
-                                        <dd><p>Number of inserted nodes.</p>
-                                        </dd>
-                            </dl>
-                            <h4>Fires</h4>
-                            <ul>
-                                        <li><span><a href="module_engine_view_node-Node.html#event:change">change</a></span>
-                                        </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-is">
                           <h3><code><a class="member-name" href="#function-is">is</a>( type, [ name ] ) &rarr;  <span>Boolean</span></code></h3>
                           <p class="badges">
@@ -1139,59 +1098,6 @@ Two similar elements can contain different set of children nodes.
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-remove">
-                          <h3><code><a class="member-name" href="#function-remove">remove</a>()</code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Removes node from parent.
-                          </p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-removeChildren">
-                          <h3><code><a class="member-name" href="#function-removeChildren">removeChildren</a>( index, [ howMany ] ) &rarr;  <span>Array.&lt;<a class="collapsing-list__type" href="module_engine_view_node-Node.html">Node</a>&gt;</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Removes number of child nodes starting at the given index and set the parent of these nodes to <code>null</code>.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code>index
-                                            :
- <span>Number</span></code></dt>
-                                        <dd><p>Number of the first node to remove.</p>
-                                        </dd>
-                                        <dt><code>[ howMany ]
-                                            :
- <span>Number</span></code></dt>
-                                        <dd><p>Number of nodes to remove.</p>
-                                          <p>Defaults to <code>1</code></p>
-                                        </dd>
-                                      </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span>Array.&lt;<a class="collapsing-list__type" href="module_engine_view_node-Node.html">Node</a>&gt;</span></code></dt>
-                                        <dd><p>The array of removed nodes.</p>
-                                        </dd>
-                            </dl>
-                            <h4>Fires</h4>
-                            <ul>
-                                        <li><span><a href="module_engine_view_node-Node.html#event:change">change</a></span>
-                                        </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-toJSON">
                           <h3><code><a class="member-name" href="#function-toJSON">toJSON</a>() &rarr;  <span>Object</span></code></h3>
                           <p class="badges">
@@ -1238,6 +1144,129 @@ element._addClass( [ &apos;foo&apos;, &apos;bar&apos; ] ); // Adds &apos;foo&apo
                                         <li><span><a href="module_engine_view_node-Node.html#event:change">change</a></span>
                                         </li>
                             </ul>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-protected="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-_appendChildren">
+                          <h3><code><a class="member-name" href="#function-_appendChildren">_appendChildren</a>( items ) &rarr;  <span>Number</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+<span class="badge badge--gray ">inherited</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt"><a href="module_engine_view_element-Element.html#function-_insertChildren">Insert</a> a child node or a list of child nodes at the end of this node
+and sets the parent of these nodes to this element.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>items
+                                            :
+ <span><a class="collapsing-list__type" href="module_engine_view_item-Item.html">Item</a></span> | <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_view_item-Item.html">Item</a>&gt;</span></code></dt>
+                                        <dd><p>Items to be inserted.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Number</span></code></dt>
+                                        <dd><p>Number of appended nodes.</p>
+                                        </dd>
+                            </dl>
+                            <h4>Fires</h4>
+                            <ul>
+                                        <li><span><a href="module_engine_view_node-Node.html#event:change">change</a></span>
+                                        </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-protected="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-_clone">
+                          <h3><code><a class="member-name" href="#function-_clone">_clone</a>( deep ) &rarr;  <span><a class="collapsing-list__type" href="module_engine_view_attributeelement-AttributeElement.html">AttributeElement</a></span></code></h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Clones provided element with priority.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>deep
+                                            :
+ <span>Boolean</span></code></dt>
+                                        <dd><p>If set to <code>true</code> clones element and all its children recursively. When set to <code>false</code>,
+element will be cloned without any children.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_view_attributeelement-AttributeElement.html">AttributeElement</a></span></code></dt>
+                                        <dd><p>Clone of this element.</p>
+                                        </dd>
+                            </dl>
+                            <div class="collapsing-list__bottom">
+                              Overrides:
+ <span><a href="module_engine_view_element-Element.html#_clone">Element#_clone</a></span> 
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-protected="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-_insertChildren">
+                          <h3><code><a class="member-name" href="#function-_insertChildren">_insertChildren</a>( index, items ) &rarr;  <span>Number</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+<span class="badge badge--gray ">inherited</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Inserts a child node or a list of child nodes on the given index and sets the parent of these nodes to
+this element.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>index
+                                            :
+ <span>Number</span></code></dt>
+                                        <dd><p>Position where nodes should be inserted.</p>
+                                        </dd>
+                                        <dt><code>items
+                                            :
+ <span><a class="collapsing-list__type" href="module_engine_view_item-Item.html">Item</a></span> | <span>Iterable.&lt;<a class="collapsing-list__type" href="module_engine_view_item-Item.html">Item</a>&gt;</span></code></dt>
+                                        <dd><p>Items to be inserted.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Number</span></code></dt>
+                                        <dd><p>Number of inserted nodes.</p>
+                                        </dd>
+                            </dl>
+                            <h4>Fires</h4>
+                            <ul>
+                                        <li><span><a href="module_engine_view_node-Node.html#event:change">change</a></span>
+                                        </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-protected="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-_remove">
+                          <h3><code><a class="member-name" href="#function-_remove">_remove</a>()</code></h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+<span class="badge badge--gray ">inherited</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Removes node from parent.
+                          </p>
+                          <div class="collapsing-list__content">
                           </div>
                         </div>
                       </li>

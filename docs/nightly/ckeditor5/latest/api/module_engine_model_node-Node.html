@@ -88,8 +88,8 @@
 <p><strong>Note:</strong> If a node is detached from the model tree, you can manipulate it using it's API.
 However, it is <strong>very important</strong> that nodes already attached to model tree should be only changed through
 <a href="module_engine_model_writer-Writer.html">Writer API</a>.</p>
-<p>Changes done by <code>Node</code> methods, like <a href="module_engine_model_element-Element.html#function-insertChildren">insertChildren</a> or
-<a href="module_engine_model_node-Node.html#function-setAttribute">setAttribute</a>
+<p>Changes done by <code>Node</code> methods, like <a href="module_engine_model_element-Element.html#function-_insertChildren">_insertChildren</a> or
+<a href="module_engine_model_node-Node.html#function-_setAttribute">_setAttribute</a>
 do not generate <a href="module_engine_model_operation_operation-Operation.html">operations</a>
 which are essential for correct editor work if you modify nodes in <a href="module_engine_model_document-Document.html">document</a> root.</p>
 <p>The flow of working on <code>Node</code> (and classes that inherits from it) is as such:</p>
@@ -301,34 +301,6 @@ This means that model tree got broken.</p>
                                         <dd><p>Node's attributes. See <a href="module_utils_tomap.html#static-function-toMap"><code>toMap</code></a> for a list of accepted values.</p>
                                         </dd>
                                       </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-clearAttributes">
-                          <h3><code><a class="member-name" href="#function-clearAttributes">clearAttributes</a>()</code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Removes all attributes from the node.
-                          </p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-clone">
-                          <h3><code><a class="member-name" href="#function-clone">clone</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span></code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Creates a copy of this node, that is a node with exactly same attributes, and returns it.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span></code></dt>
-                                        <dd><p>Node with same attributes as this node.</p>
-                                        </dd>
-                            </dl>
                           </div>
                         </div>
                       </li>
@@ -565,8 +537,62 @@ obj.is( &apos;textProxy&apos; ); // true for text proxy object</code></pre>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-remove">
-                          <h3><code><a class="member-name" href="#function-remove">remove</a>()</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-toJSON">
+                          <h3><code><a class="member-name" href="#function-toJSON">toJSON</a>() &rarr;  <span>Object</span></code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Converts <code>Node</code> to plain object and returns it.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Object</span></code></dt>
+                                        <dd><p><code>Node</code> converted to plain object.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-protected="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-_clearAttributes">
+                          <h3><code><a class="member-name" href="#function-_clearAttributes">_clearAttributes</a>()</code></h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Removes all attributes from the node.
+                          </p>
+                          <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-protected="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-_clone">
+                          <h3><code><a class="member-name" href="#function-_clone">_clone</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span></code></h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Creates a copy of this node, that is a node with exactly same attributes, and returns it.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_model_node-Node.html">Node</a></span></code></dt>
+                                        <dd><p>Node with same attributes as this node.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-protected="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-_remove">
+                          <h3><code><a class="member-name" href="#function-_remove">_remove</a>()</code></h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+                          </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Removes this node from it&apos;s parent.
@@ -575,9 +601,12 @@ obj.is( &apos;textProxy&apos; ); // true for text proxy object</code></pre>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-removeAttribute">
-                          <h3><code><a class="member-name" href="#function-removeAttribute">removeAttribute</a>( key ) &rarr;  <span>Boolean</span></code></h3>
+                      <li class="collapsing-list__item" data-protected="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-_removeAttribute">
+                          <h3><code><a class="member-name" href="#function-_removeAttribute">_removeAttribute</a>( key ) &rarr;  <span>Boolean</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+                          </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Removes an attribute with given key from the node.
@@ -600,9 +629,12 @@ obj.is( &apos;textProxy&apos; ); // true for text proxy object</code></pre>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-setAttribute">
-                          <h3><code><a class="member-name" href="#function-setAttribute">setAttribute</a>( key, value )</code></h3>
+                      <li class="collapsing-list__item" data-protected="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-_setAttribute">
+                          <h3><code><a class="member-name" href="#function-_setAttribute">_setAttribute</a>( key, value )</code></h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+                          </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Sets attribute on the node. If attribute with the same key already is set, it&apos;s value is overwritten.
@@ -624,9 +656,12 @@ obj.is( &apos;textProxy&apos; ); // true for text proxy object</code></pre>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-setAttributesTo">
-                          <h3><code><a class="member-name" href="#function-setAttributesTo">setAttributesTo</a>( [ attrs ] )</code></h3>
+                      <li class="collapsing-list__item" data-protected="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-_setAttributesTo">
+                          <h3><code><a class="member-name" href="#function-_setAttributesTo">_setAttributesTo</a>( [ attrs ] )</code></h3>
+                          <p class="badges">
+<span class="badge badge--orange ">protected</span>
+                          </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Removes all attributes from the node and sets given attributes.
@@ -640,23 +675,6 @@ obj.is( &apos;textProxy&apos; ); // true for text proxy object</code></pre>
                                         <dd><p>Attributes to set. See <a href="module_utils_tomap.html#static-function-toMap"><code>toMap</code></a> for a list of accepted values.</p>
                                         </dd>
                                       </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-toJSON">
-                          <h3><code><a class="member-name" href="#function-toJSON">toJSON</a>() &rarr;  <span>Object</span></code></h3>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Converts <code>Node</code> to plain object and returns it.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span>Object</span></code></dt>
-                                        <dd><p><code>Node</code> converted to plain object.</p>
-                                        </dd>
-                            </dl>
                           </div>
                         </div>
                       </li>

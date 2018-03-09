@@ -559,36 +559,36 @@ an iterable of <a href="module_engine_view_range-Range.html">ranges</a> or null.
                           <div class="collapsing-list__content">
 <pre class="prettyprint source"><code>// Sets selection to the given range.
 const range = new Range( start, end );
-selection.setTo( range );
+selection._setTo( range );
 
 // Sets selection to given ranges.
 const ranges = [ new Range( start1, end2 ), new Range( star2, end2 ) ];
-selection.setTo( range );
+selection._setTo( range );
 
 // Sets selection to the other selection.
 const otherSelection = new Selection();
-selection.setTo( otherSelection );
+selection._setTo( otherSelection );
 
 // Sets collapsed selection at the given position.
 const position = new Position( root, path );
-selection.setTo( position );
+selection._setTo( position );
 
 // Sets collapsed selection at the position of given item and offset.
-selection.setTo( paragraph, offset );</code></pre><p>Creates a range inside an <a href="module_engine_view_element-Element.html">element</a> which starts before the first child of
+selection._setTo( paragraph, offset );</code></pre><p>Creates a range inside an <a href="module_engine_view_element-Element.html">element</a> which starts before the first child of
 that element and ends after the last child of that element.</p>
-<pre class="prettyprint source"><code>selection.setTo( paragraph, &apos;in&apos; );</code></pre><p>Creates a range on an <a href="module_engine_view_item-Item.html">item</a> which starts before the item and ends just after the item.</p>
-<pre class="prettyprint source"><code>selection.setTo( paragraph, &apos;on&apos; );
+<pre class="prettyprint source"><code>selection._setTo( paragraph, &apos;in&apos; );</code></pre><p>Creates a range on an <a href="module_engine_view_item-Item.html">item</a> which starts before the item and ends just after the item.</p>
+<pre class="prettyprint source"><code>selection._setTo( paragraph, &apos;on&apos; );
 
 // Clears selection. Removes all ranges.
-selection.setTo( null );</code></pre><p><code>Selection#setTo()</code> method allow passing additional options (<code>backward</code>, <code>fake</code> and <code>label</code>) as the last argument.</p>
+selection._setTo( null );</code></pre><p><code>Selection#_setTo()</code> method allow passing additional options (<code>backward</code>, <code>fake</code> and <code>label</code>) as the last argument.</p>
 <pre class="prettyprint source"><code>// Sets selection as backward.
-selection.setTo( range, { backward: true } );</code></pre><p>Fake selection does not render as browser native selection over selected elements and is hidden to the user.
+selection._setTo( range, { backward: true } );</code></pre><p>Fake selection does not render as browser native selection over selected elements and is hidden to the user.
 This way, no native selection UI artifacts are displayed to the user and selection over elements can be
 represented in other way, for example by applying proper CSS class.</p>
 <p>Additionally fake&apos;s selection label can be provided. It will be used to describe fake selection in DOM
 (and be  properly handled by screen readers).</p>
 <pre class="prettyprint source"><code>// Creates fake selection with label.
-selection.setTo( range, { fake: true, label: &apos;foo&apos; } );</code></pre>
+selection._setTo( range, { fake: true, label: &apos;foo&apos; } );</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>selectable
