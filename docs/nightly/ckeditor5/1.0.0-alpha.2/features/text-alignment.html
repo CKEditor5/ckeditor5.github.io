@@ -84,7 +84,7 @@
             <span class="hljs-attr">options</span>: [ <span class="hljs-string">&apos;left&apos;</span>, <span class="hljs-string">&apos;right&apos;</span> ]
         },
         <span class="hljs-attr">toolbar</span>: [
-            <span class="hljs-string">&apos;headings&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;bulletedList&apos;</span>, <span class="hljs-string">&apos;numberedList&apos;</span>, <span class="hljs-string">&apos;alignmentDropdown&apos;</span>, <span class="hljs-string">&apos;undo&apos;</span>, <span class="hljs-string">&apos;redo&apos;</span>
+            <span class="hljs-string">&apos;heading&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;bulletedList&apos;</span>, <span class="hljs-string">&apos;numberedList&apos;</span>, <span class="hljs-string">&apos;alignment&apos;</span>, <span class="hljs-string">&apos;undo&apos;</span>, <span class="hljs-string">&apos;redo&apos;</span>
         ]
     } )
     .then( ... )
@@ -97,11 +97,11 @@
 </div>
 </div>
 <h2 id="configuring-the-toolbar"><a class="headerlink" href="#configuring-the-toolbar">#</a> Configuring the toolbar</h2>
-<p>You can choose to use the alignment drop-down (<code>&apos;alignmentDropdown&apos;</code>) or configure the toolbar to use separate buttons for each of the options:</p>
+<p>You can choose to use the alignment dropdown (<code>&apos;alignment&apos;</code>) or configure the toolbar to use separate buttons for each of the options:</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
         <span class="hljs-attr">toolbar</span>: [
-            <span class="hljs-string">&apos;headings&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;alignLeft&apos;</span>, <span class="hljs-string">&apos;alignRight&apos;</span>, <span class="hljs-string">&apos;alignCenter&apos;</span>, <span class="hljs-string">&apos;alignJustify&apos;</span>
+            <span class="hljs-string">&apos;heading&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;alignment:left&apos;</span>, <span class="hljs-string">&apos;alignment:right&apos;</span>, <span class="hljs-string">&apos;alignment:center&apos;</span>, <span class="hljs-string">&apos;alignment:justify&apos;</span>
         ]
     } )
     .then( ... )
@@ -123,7 +123,7 @@
 ClassicEditor
     .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
         <span class="hljs-attr">plugins</span>: [ Alignment, ... ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;alignmentDropdown&apos;</span>, ... ]
+        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;alignment&apos;</span>, ... ]
     } )
     .then( ... )
     .catch( ... );
@@ -133,13 +133,16 @@ ClassicEditor
 <p>The <a href="../api/module_alignment_alignment-Alignment.html"><code>Alignment</code></a> plugin registers:</p>
 <ul>
 <li>
-<p>Drop-down: <code>&apos;alignmentDropdown&apos;</code>.</p>
+<p>Dropdown: <code>&apos;alignment&apos;</code>.</p>
 </li>
 <li>
-<p>Buttons and commands: <code>&apos;alignLeft&apos;</code>, <code>&apos;alignRight&apos;</code>, <code>&apos;alignCenter&apos;</code>, <code>&apos;alignJustify&apos;</code>.</p>
+<p>Buttons: <code>&apos;alignment:left&apos;</code>, <code>&apos;alignment:right&apos;</code>, <code>&apos;alignment:center&apos;</code>, <code>&apos;alignment:justify&apos;</code>.</p>
 <p>The number of options and their names are based on the <a href="../api/module_alignment_alignment-AlignmentConfig.html#member-options"><code>alignment.options</code></a> configuration option).</p>
+</li>
+<li>
+<p>Command: <code>&apos;alignment&apos;</code>:</p>
 <p>You can align the currently selected block(s) by executing one of these commands:</p>
-<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;alignCenter&apos;</span> );
+<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;align&apos;</span>, { <span class="hljs-attr">value</span>: <span class="hljs-string">&apos;center&apos;</span> } );
 </code></pre>
 </li>
 </ul>

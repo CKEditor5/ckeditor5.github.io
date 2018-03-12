@@ -169,14 +169,14 @@ A disabled command should do nothing when executed.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="member-modelElement">
-                          <h3><code><a class="member-name" href="#member-modelElement">modelElement</a> : <span>String</span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="member-modelElements">
+                          <h3><code><a class="member-name" href="#member-modelElements">modelElements</a> : <span>Array.&lt;String&gt;</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">readonly</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Unique identifier of the command, also element&apos;s name in the model.
+                          <p class="collapsing-list__excerpt">Set of defined model&apos;s elements names that this command support.
 See <a href="module_heading_heading-HeadingOption.html"><code>HeadingOption</code></a>.</p>
                           <div class="collapsing-list__content">
                           </div>
@@ -184,14 +184,16 @@ See <a href="module_heading_heading-HeadingOption.html"><code>HeadingOption</cod
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="member-value">
-                          <h3><code><a class="member-name" href="#member-value">value</a> : <span>Boolean</span></code></h3>
+                          <h3><code><a class="member-name" href="#member-value">value</a> : <span>Boolean</span> | <span>String</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">readonly</span>
 <span class="badge badge--gray "><a href="module_utils_observablemixin-ObservableMixin.html">observable</a></span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Whether the selection starts in a heading of <a href="module_heading_headingcommand-HeadingCommand.html#member-modelElement">this  level</a>.</p>
+                          <p class="collapsing-list__excerpt">If the selection starts in a heading (which <a href="module_heading_headingcommand-HeadingCommand.html#member-modelElements">is  supported  by  this  command</a>)
+the value is set to the name of that heading model element.
+It is  set to <code>false</code> otherwise.</p>
                           <div class="collapsing-list__content">
                             <div class="collapsing-list__bottom">
                               Overrides:
@@ -205,7 +207,7 @@ See <a href="module_heading_heading-HeadingOption.html"><code>HeadingOption</cod
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-constructor">
-                          <h3><code><a class="member-name" href="#function-constructor">constructor</a>( editor, modelElement )</code></h3>
+                          <h3><code><a class="member-name" href="#function-constructor">constructor</a>( editor, modelElements )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Creates an instance of the command.
@@ -218,10 +220,10 @@ See <a href="module_heading_heading-HeadingOption.html"><code>HeadingOption</cod
  <span><a class="collapsing-list__type" href="module_core_editor_editor-Editor.html">Editor</a></span></code></dt>
                                         <dd><p>Editor instance.</p>
                                         </dd>
-                                        <dt><code>modelElement
+                                        <dt><code>modelElements
                                             :
- <span>String</span></code></dt>
-                                        <dd><p>Name of the element which this command will apply in the model.</p>
+ <span>Array.&lt;String&gt;</span></code></dt>
+                                        <dd><p>Names of the element which this command can apply in the model.</p>
                                         </dd>
                                       </dl>
                             <div class="collapsing-list__bottom">
@@ -413,13 +415,30 @@ emitterA.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( emitterC );</cod
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-execute">
-                          <h3><code><a class="member-name" href="#function-execute">execute</a>()</code></h3>
+                          <h3><code><a class="member-name" href="#function-execute">execute</a>( options = { options.value } )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Executes the command. Applies the heading to the selected blocks or, if the first selected
 block is a heading already, turns selected headings (of this level only) to paragraphs.
                           </p>
                           <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>options
+                                            :
+ <span>Object</span></code></dt>
+                                        <dd>
+                                                    <div class="dlheading5">Properties
+                                                    </div>
+                                                    <dl>
+                                                      <dt><code>options.value
+                                                          :
+ <span>String</span></code></dt>
+                                                      <dd><p>Name of the element which this command will apply in the model.</p>
+                                                      </dd>
+                                                    </dl>
+                                        </dd>
+                                      </dl>
                             <h4>Fires</h4>
                             <ul>
                                         <li><span><a href="module_heading_headingcommand-HeadingCommand.html#event:execute">execute</a></span>
@@ -1160,12 +1179,12 @@ be released if no properties provided.</p>
                                         </dd>
                                         <dt><code>value
                                             :
- <span>Boolean</span></code></dt>
+ <span>Boolean</span> | <span>String</span></code></dt>
                                         <dd><p>New value of the <code>value</code> property with given key or <code>null</code>, if operation should remove property.</p>
                                         </dd>
                                         <dt><code>oldValue
                                             :
- <span>Boolean</span></code></dt>
+ <span>Boolean</span> | <span>String</span></code></dt>
                                         <dd><p>Old value of the <code>value</code> property with given key or <code>null</code>, if property was not set before.</p>
                                         </dd>
                                       </dl>
@@ -1315,6 +1334,9 @@ by a high priority listener in order to prevent command execution.</p>
                     <div class="tree__item__wrapper" data-ln="module:alignment/alignmentui~AlignmentUI"><span class="tree__item--class tree__item__text">AlignmentUI</span></div></a>
                 </li>
               </ul>
+            </li>
+            <li><a href="module_alignment_utils.html">
+                <div class="tree__item__wrapper" data-ln="module:alignment/utils"><span class="tree__item--module tree__item__text">utils</span></div></a>
             </li>
           </ul>
         </li>

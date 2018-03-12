@@ -131,7 +131,7 @@
 </ul>
 <p>The minimal configuration, assuming that you use the same methods of handling assets as CKEditor builds, will look like this:</p>
 <pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> CKEditorWebpackPlugin = <span class="hljs-built_in">require</span>( <span class="hljs-string">&apos;@ckeditor/ckeditor5-dev-webpack-plugin&apos;</span> );
-<span class="hljs-keyword">const</span> { getPostCssConfig } = <span class="hljs-built_in">require</span>( <span class="hljs-string">&apos;@ckeditor/ckeditor5-dev-utils&apos;</span> ).styles;
+<span class="hljs-keyword">const</span> { styles } = <span class="hljs-built_in">require</span>( <span class="hljs-string">&apos;@ckeditor/ckeditor5-dev-utils&apos;</span> );
 
 <span class="hljs-built_in">module</span>.exports = {
     <span class="hljs-attr">plugins</span>: [
@@ -153,7 +153,7 @@
                 <span class="hljs-attr">use</span>: [ <span class="hljs-string">&apos;raw-loader&apos;</span> ]
             },
             {
-                <span class="hljs-comment">// Or /ckeditor5-[^/]+\/theme\/[^/]+\.css$/ if you want to limit this loader</span>
+                <span class="hljs-comment">// Or /ckeditor5-[^/]+\/theme\/[\w-/]+\.css$/ if you want to limit this loader</span>
                 <span class="hljs-comment">// to CKEditor 5&apos;s theme only.</span>
                 test: <span class="hljs-regexp">/\.css$/</span>,
                 <span class="hljs-attr">use</span>: [
@@ -165,7 +165,7 @@
                     },
                     {
                         <span class="hljs-attr">loader</span>: <span class="hljs-string">&apos;postcss-loader&apos;</span>,
-                        <span class="hljs-attr">options</span>: getPostCssConfig( {
+                        <span class="hljs-attr">options</span>: styles.getPostCssConfig( {
                             <span class="hljs-attr">themeImporter</span>: {
                                 <span class="hljs-attr">themePath</span>: <span class="hljs-built_in">require</span>.resolve( <span class="hljs-string">&apos;@ckeditor/ckeditor5-theme-lark&apos;</span> )
                             },
@@ -215,7 +215,7 @@ ClassicEditor.build = {
     ],
     <span class="hljs-attr">config</span>: {
         <span class="hljs-attr">toolbar</span>: [
-            <span class="hljs-string">&apos;headings&apos;</span>,
+            <span class="hljs-string">&apos;heading&apos;</span>,
             <span class="hljs-string">&apos;bold&apos;</span>,
             <span class="hljs-string">&apos;italic&apos;</span>,
             <span class="hljs-string">&apos;link&apos;</span>,
@@ -227,8 +227,8 @@ ClassicEditor.build = {
         ],
         <span class="hljs-attr">image</span>: {
             <span class="hljs-attr">toolbar</span>: [
-                <span class="hljs-string">&apos;imageStyleFull&apos;</span>,
-                <span class="hljs-string">&apos;imageStyleSide&apos;</span>,
+                <span class="hljs-string">&apos;imageStyle:full&apos;</span>,
+                <span class="hljs-string">&apos;imageStyle:side&apos;</span>,
                 <span class="hljs-string">&apos;|&apos;</span>,
                 <span class="hljs-string">&apos;imageTextAlternative&apos;</span>
             ]
@@ -287,7 +287,7 @@ ClassicEditor
 
         <span class="hljs-comment">// So is the rest of the default configuration.</span>
         toolbar: [
-            <span class="hljs-string">&apos;headings&apos;</span>,
+            <span class="hljs-string">&apos;heading&apos;</span>,
             <span class="hljs-string">&apos;bold&apos;</span>,
             <span class="hljs-string">&apos;italic&apos;</span>,
             <span class="hljs-string">&apos;link&apos;</span>,
@@ -299,8 +299,8 @@ ClassicEditor
         ],
         <span class="hljs-attr">image</span>: {
             <span class="hljs-attr">toolbar</span>: [
-                <span class="hljs-string">&apos;imageStyleFull&apos;</span>,
-                <span class="hljs-string">&apos;imageStyleSide&apos;</span>,
+                <span class="hljs-string">&apos;imageStyle:full&apos;</span>,
+                <span class="hljs-string">&apos;imageStyle:side&apos;</span>,
                 <span class="hljs-string">&apos;|&apos;</span>,
                 <span class="hljs-string">&apos;imageTextAlternative&apos;</span>
             ]
@@ -344,7 +344,7 @@ ClassicEditor
                     <span class="hljs-attr">use</span>: [
                         {
                             <span class="hljs-attr">loader</span>: <span class="hljs-string">&apos;postcss-loader&apos;</span>,
-                            <span class="hljs-attr">options</span>: getPostCssConfig( {
+                            <span class="hljs-attr">options</span>: styles.getPostCssConfig( {
                                 <span class="hljs-attr">themeImporter</span>: {
                                     <span class="hljs-attr">themePath</span>: <span class="hljs-built_in">require</span>.resolve( <span class="hljs-string">&apos;@ckeditor/ckeditor5-theme-lark&apos;</span> )
                                 },

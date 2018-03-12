@@ -61,7 +61,7 @@
           <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-ui/blob/master/docs/framework/guides/external-ui.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.67/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5-ui/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.67/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
           <h1><img src="../../../../../assets/0.3.67/img/book.svg" alt="guide">Third–party UI
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#readying-the-editor-side">Readying the editor side</a></li><li><a href="#creating-the-bootstrap-ui">Creating the Bootstrap UI</a></li><li><a href="#binding-the-ui-with-the-editor">Binding the UI with the editor</a><ol><li><a href="#binding-the-buttons-to-editor-commands">Binding the buttons to editor commands</a></li><li><a href="#binding-the-drop-down-to-the-heading-commands">Binding the drop-down to the heading commands</a></li></ol></li><li><a href="#running-the-editor">Running the editor</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#readying-the-editor-side">Readying the editor side</a></li><li><a href="#creating-the-bootstrap-ui">Creating the Bootstrap UI</a></li><li><a href="#binding-the-ui-with-the-editor">Binding the UI with the editor</a><ol><li><a href="#binding-the-buttons-to-editor-commands">Binding the buttons to editor commands</a></li><li><a href="#binding-the-dropdown-to-the-heading-commands">Binding the dropdown to the heading commands</a></li></ol></li><li><a href="#running-the-editor">Running the editor</a></li></ol></nav>
 <p>CKEditor 5 is a modular editing framework that allows various flexible configurations. That includes the usage of a third&#x2013;party user interface on top of the base editor classes.</p>
 <p>In this guide, a <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-build-classic" target="_blank" rel="noopener">classic&#x2013;like</a> editor will be bound to a completely separate, existing UI created in <a href="http://getbootstrap.com/" target="_blank" rel="noopener">Bootstrap</a>, providing the basic structure and toolbar items necessary to start editing.</p>
 <div class="live-snippet"><iframe src="../../../snippets/examples/bootstrap-ui-inner/snippet.html" id="snippet-bootstrap-ui-inner"></iframe>
@@ -195,7 +195,7 @@ mix( BootstrapEditor, ElementApiMixin );
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;ck-editor&quot;</span>&gt;</span>
     <span class="hljs-comment">&lt;!-- The toolbar of the editor. --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn-toolbar&quot;</span> <span class="hljs-attr">role</span>=<span class="hljs-string">&quot;toolbar&quot;</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">&quot;Editor toolbar&quot;</span>&gt;</span>
-        <span class="hljs-comment">&lt;!-- The headings drop-down. --&gt;</span>
+        <span class="hljs-comment">&lt;!-- The headings dropdown. --&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn-group mr-2&quot;</span> <span class="hljs-attr">role</span>=<span class="hljs-string">&quot;group&quot;</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">&quot;Headings&quot;</span>&gt;</span>
             <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;dropdown&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;heading&quot;</span>&gt;</span>
               <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-primary btn-sm dropdown-toggle&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">data-toggle</span>=<span class="hljs-string">&quot;dropdown&quot;</span> <span class="hljs-attr">aria-haspopup</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">aria-expanded</span>=<span class="hljs-string">&quot;false&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Headings<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
@@ -250,7 +250,7 @@ mix( BootstrapEditor, ElementApiMixin );
     <span class="hljs-attribute">color</span>: <span class="hljs-built_in">hsl</span>(0, 0%, 47%);
 }
 
-<span class="hljs-comment">/* Make sure the headings drop-down button does not change its size
+<span class="hljs-comment">/* Make sure the headings dropdown button does not change its size
 as different headings are selected. */</span>
 <span class="hljs-selector-class">.ck-editor</span> <span class="hljs-selector-class">.dropdown-toggle</span> <span class="hljs-selector-tag">span</span> {
     <span class="hljs-attribute">display</span>: inline-block;
@@ -261,7 +261,7 @@ as different headings are selected. */</span>
     <span class="hljs-attribute">vertical-align</span>: bottom;
 }
 
-<span class="hljs-comment">/* Make the headings drop-down items visually distinctive. */</span>
+<span class="hljs-comment">/* Make the headings dropdown items visually distinctive. */</span>
 <span class="hljs-selector-class">.ck-editor</span> <span class="hljs-selector-class">.heading-item_heading1</span> { <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1.5em</span>; }
 <span class="hljs-selector-class">.ck-editor</span> <span class="hljs-selector-class">.heading-item_heading2</span> { <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1.3em</span>; }
 <span class="hljs-selector-class">.ck-editor</span> <span class="hljs-selector-class">.heading-item_heading3</span> { <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1.1em</span>; }
@@ -408,9 +408,9 @@ _setupBootstrapToolbarButtons() {
     }
 }
 </code></pre>
-<h3 id="binding-the-drop-down-to-the-heading-commands"><a class="headerlink" href="#binding-the-drop-down-to-the-heading-commands">#</a> Binding the drop-down to the heading commands</h3>
-<p>The drop-down in the toolbar is a more complex case.</p>
-<p>First, it must be populated with heading options for the users to select from. Then, clicking each option must execute a related heading command in the editor. Finally, the drop-down button and the drop-down menu items must reflect the state of the editor, for example, when the selection lands in a heading, a proper menu item should become active and the button should show the name of the heading level.</p>
+<h3 id="binding-the-dropdown-to-the-heading-commands"><a class="headerlink" href="#binding-the-dropdown-to-the-heading-commands">#</a> Binding the dropdown to the heading commands</h3>
+<p>The dropdown in the toolbar is a more complex case.</p>
+<p>First, it must be populated with heading options for the users to select from. Then, clicking each option must execute a related heading command in the editor. Finally, the dropdown button and the dropdown menu items must reflect the state of the editor, for example, when the selection lands in a heading, a proper menu item should become active and the button should show the name of the heading level.</p>
 <pre class="highlight"><code class="js"><span class="hljs-comment">// This method activates the headings dropdown in the toolbar.</span>
 _setupBootstrapHeadingDropdown() {
     <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">this</span>.editor;

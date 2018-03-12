@@ -85,7 +85,7 @@
 &apos;use strict&apos;</span>;
 
 <span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>( <span class="hljs-string">&apos;path&apos;</span> );
-<span class="hljs-keyword">const</span> { getPostCssConfig } = <span class="hljs-built_in">require</span>( <span class="hljs-string">&apos;@ckeditor/ckeditor5-dev-utils&apos;</span> ).styles;
+<span class="hljs-keyword">const</span> { styles } = <span class="hljs-built_in">require</span>( <span class="hljs-string">&apos;@ckeditor/ckeditor5-dev-utils&apos;</span> );
 
 <span class="hljs-built_in">module</span>.exports = {
     <span class="hljs-comment">// https://webpack.js.org/configuration/entry-context/</span>
@@ -119,7 +119,7 @@
                     },
                     {
                         <span class="hljs-attr">loader</span>: <span class="hljs-string">&apos;postcss-loader&apos;</span>,
-                        <span class="hljs-attr">options</span>: getPostCssConfig( {
+                        <span class="hljs-attr">options</span>: styles.getPostCssConfig( {
                             <span class="hljs-attr">themeImporter</span>: {
                                 <span class="hljs-attr">themePath</span>: <span class="hljs-built_in">require</span>.resolve( <span class="hljs-string">&apos;@ckeditor/ckeditor5-theme-lark&apos;</span> )
                             },

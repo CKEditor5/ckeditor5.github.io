@@ -69,9 +69,9 @@
 <li><a href="../api/module_image_imagetoolbar-ImageToolbar.html"><code>ImageToolbar</code></a> adds the image feature&#x2019;s contextual toolbar,</li>
 <li><a href="../api/module_image_imagecaption-ImageCaption.html"><code>ImageCaption</code></a> adds support for captions,</li>
 <li><a href="../api/module_image_imagestyle-ImageStyle.html"><code>ImageStyle</code></a> adds support for image styles,</li>
-<li><a href="../api/module_image_imageupload-ImageUpload.html"><code>ImageUpload</code></a> adds support for uploading dropped or pasted images (note: it is currently located in the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-upload" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-upload</code></a> package but will be moved to the <code>@ckeditor/ckeditor5-image</code> package).</li>
+<li><a href="../api/module_image_imageupload-ImageUpload.html"><code>ImageUpload</code></a> adds support for uploading dropped or pasted images (see: <a href="image-upload.html">Image upload</a>).</li>
 </ul>
-<div class="info-box notice notice__info"><p>The first four features listed above (so all except the upload support) are enabled by default in all builds.</p></div>
+<div class="info-box notice notice__info"><p>All features listed above are enabled by default in all builds.</p></div>
 <h2 id="base-image-support"><a class="headerlink" href="#base-image-support">#</a> Base image support</h2>
 <p>The <a href="../api/module_image_image-Image.html"><code>Image</code></a> feature adds support for plain images with just the <code>alt</code> attribute set. This translates to the following HTML:</p>
 <pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;image&quot;</span>&gt;</span>
@@ -143,7 +143,7 @@
 <p>A side image:</p>
 <pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;image image-style-side&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;...&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;...&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
 </code></pre>
-<div class="info-box notice"><p>The actual styling of the images is the developer&#x2019;s job. The editor comes with some default styles, but they will only be applied to images inside the editor. The developer needs to style them on the target pages.</p><p>Here you can find the source of the default styles applied by the editor: <a href="https://github.com/ckeditor/ckeditor5-image/blob/master/theme/theme.scss" target="_blank" rel="noopener"><code>ckeditor5-image/theme/theme.scss</code></a>.</p></div>
+<div class="info-box notice"><p>The actual styling of the images is the developer&#x2019;s job. The editor comes with some default styles, but they will only be applied to images inside the editor. The developer needs to style them on the target pages.</p><p>Here you can find the source of the default styles applied by the editor: <a href="https://github.com/ckeditor/ckeditor5-image/blob/master/theme/imagestyle.css" target="_blank" rel="noopener"><code>ckeditor5-image/theme/imagestyle.css</code></a>.</p></div>
 <p>Below you can see a demo of the editor with the image styles feature enabled. The default configuration is used. You can change the styles of images through the image&#x2019;s contextual toolbar.</p>
 <div class="live-snippet"><div id="snippet-image-style">
 	<p>This is full width image (default style):</p>
@@ -168,24 +168,24 @@
     .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
         <span class="hljs-attr">image</span>: {
             <span class="hljs-comment">// You need to configure the image toolbar too, so it uses the new style buttons.</span>
-            toolbar: [ <span class="hljs-string">&apos;imageTextAlternative&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;imageStyleAlignLeft&apos;</span>, <span class="hljs-string">&apos;imageStyleFull&apos;</span>, <span class="hljs-string">&apos;imageStyleAlignRight&apos;</span> ],
+            toolbar: [ <span class="hljs-string">&apos;imageTextAlternative&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;imageStyle:alignLeft&apos;</span>, <span class="hljs-string">&apos;imageStyle:full&apos;</span>, <span class="hljs-string">&apos;imageStyle:alignRight&apos;</span> ],
 
             <span class="hljs-attr">styles</span>: [
                 <span class="hljs-comment">// This option is equal to a situation where no style is applied.</span>
-                <span class="hljs-string">&apos;imageStyleFull&apos;</span>,
+                <span class="hljs-string">&apos;full&apos;</span>,
 
                 <span class="hljs-comment">// This represents an image aligned to left.</span>
-                <span class="hljs-string">&apos;imageStyleAlignLeft&apos;</span>,
+                <span class="hljs-string">&apos;alignLeft&apos;</span>,
 
                 <span class="hljs-comment">// This represents an image aligned to right.</span>
-                <span class="hljs-string">&apos;imageStyleAlignRight&apos;</span>
+                <span class="hljs-string">&apos;alignRight&apos;</span>
             ]
         }
     } )
     .then( ... )
     .catch( ... );
 </code></pre>
-<p>In the code sample above we used predefined image styles &#x2013; <code>&apos;imageStyleFull&apos;</code>, <code>&apos;imageStyleAlignLeft&apos;</code> and <code>&apos;imageStyleAlignRight&apos;</code>. The latter two apply, respectively, <code>.image-style-align-left</code> and  <code>.image-style-align-right</code> classes to the <code>&lt;figure&gt;</code> element.</p>
+<p>In the code sample above we used predefined image styles &#x2013; <code>&apos;full&apos;</code>, <code>&apos;alignLeft&apos;</code> and <code>&apos;alignRight&apos;</code>. The latter two apply, respectively, <code>.image-style-align-left</code> and  <code>.image-style-align-right</code> classes to the <code>&lt;figure&gt;</code> element.</p>
 <p>See the result below:</p>
 <div class="live-snippet"><div id="snippet-image-style-custom">
 	<p>An image to play with:</p>
@@ -201,15 +201,16 @@
 <h3 id="defining-custom-styles"><a class="headerlink" href="#defining-custom-styles">#</a> Defining custom styles</h3>
 <p>Besides using the <a href="../api/module_image_imagestyle_utils.html#constant-defaultStyles">5 predefined styles</a>:</p>
 <ul>
-<li><code>&apos;imageStyleFull&apos;</code>,</li>
-<li><code>&apos;imageStyleSide&apos;</code>,</li>
-<li><code>&apos;imageStyleAlignLeft&apos;</code>,</li>
-<li><code>&apos;imageStyleAlignCenter&apos;</code>,</li>
-<li><code>&apos;imageStyleAlignRight&apos;</code></li>
+<li><code>&apos;full&apos;</code>,</li>
+<li><code>&apos;side&apos;</code>,</li>
+<li><code>&apos;alignLeft&apos;</code>,</li>
+<li><code>&apos;alignCenter&apos;</code>,</li>
+<li><code>&apos;alignRight&apos;</code></li>
 </ul>
 <p>you can also define your own styles or modify the existing ones.</p>
 <div class="info-box notice"><p>Reusing (or modifying) predefined styles has this advantage that CKEditor 5 will use its official translations for the defined button titles.</p></div>
-<p>TODO (example)&#x2026;</p>
+<p>You can find advanced examples in the <a href="../api/module_image_image-ImageConfig.html#member-styles"><code>image.styles</code></a> configuration option&#x2019;s documentation.</p>
+<p>TODO (live example)&#x2026;</p>
 <h2 id="image-upload"><a class="headerlink" href="#image-upload">#</a> Image upload</h2>
 <p>See the <a href="image-upload.html">Image upload</a> guide.</p>
 <h2 id="responsive-images"><a class="headerlink" href="#responsive-images">#</a> Responsive images</h2>
@@ -229,7 +230,7 @@ ClassicEditor
     .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
         <span class="hljs-attr">plugins</span>: [ Image, ImageToolbar, ImageCaption, ImageStyle ],
         <span class="hljs-attr">image</span>: {
-            <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;imageTextAlternative&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;imageStyleFull&apos;</span>, <span class="hljs-string">&apos;imageStyleSide&apos;</span> ]
+            <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;imageTextAlternative&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;imageStyle:full&apos;</span>, <span class="hljs-string">&apos;imageStyle:side&apos;</span> ]
         }
     } )
     .then( ... )
@@ -243,8 +244,14 @@ ClassicEditor
 </ul>
 <p>The <a href="../api/module_image_imagestyle-ImageStyle.html"><code>ImageStyle</code></a> plugin registers:</p>
 <ul>
-<li>A command for each defined style (based on the <a href="../api/module_image_image-ImageConfig.html#member-styles"><code>image.styles</code></a> configuration option) &#x2014; e.g. <code>&apos;imageStyleFull&apos;</code> and <code>&apos;imageStyleSide&apos;</code>,</li>
-<li>A button for each defined style &#x2014; e.g. <code>&apos;imageStyleFull&apos;</code> and <code>&apos;imageStyleSide&apos;</code>.</li>
+<li>
+<p>The <code>&apos;imageStyle&apos;</code> command that accepts value based on the <a href="../api/module_image_image-ImageConfig.html#member-styles"><code>image.styles</code></a> configuration option (e.g. <code>&apos;full&apos;</code> and <code>&apos;side&apos;</code>):</p>
+<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;imageStyle&apos;</span>, { <span class="hljs-attr">value</span>: <span class="hljs-string">&apos;side&apos;</span> } );
+</code></pre>
+</li>
+<li>
+<p>A button for each defined style &#x2014; e.g. <code>&apos;imageStyle:full&apos;</code> and <code>&apos;imageStyle:side&apos;</code>.</p>
+</li>
 </ul>
 <h2 id="contribute"><a class="headerlink" href="#contribute">#</a> Contribute</h2>
 <p>The source code of the feature is available on GitHub in <a href="https://github.com/ckeditor/ckeditor5-image" target="_blank" rel="noopener">https://github.com/ckeditor/ckeditor5-image</a>.</p>

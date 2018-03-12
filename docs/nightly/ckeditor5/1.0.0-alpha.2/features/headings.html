@@ -125,13 +125,13 @@
                     <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;headingFancy&apos;</span>,
                     <span class="hljs-attr">view</span>: {
                         <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;h2&apos;</span>,
-                        <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;fancy&apos;</span>,
-
-                        <span class="hljs-comment">// It needs to be converted before the standard &apos;heading2&apos;.</span>
-                        priority: <span class="hljs-string">&apos;high&apos;</span>
+                        <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;fancy&apos;</span>
                     },
                     <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Heading 2 (fancy)&apos;</span>,
-                    <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;ck-heading_heading2_fancy&apos;</span>
+                    <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;ck-heading_heading2_fancy&apos;</span>,
+
+                    <span class="hljs-comment">// It needs to be converted before the standard &apos;heading2&apos;.</span>
+                    priority: <span class="hljs-string">&apos;high&apos;</span>
                 }
             ]
         }
@@ -164,7 +164,7 @@
 ClassicEditor
     .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
         <span class="hljs-attr">plugins</span>: [ Heading, ... ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;headings&apos;</span>, ... ]
+        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;heading&apos;</span>, ... ]
     } )
     .then( ... )
     .catch( ... );
@@ -173,12 +173,12 @@ ClassicEditor
 <p>The <a href="../api/module_heading_heading-Heading.html"><code>Heading</code></a> plugin registers:</p>
 <ul>
 <li>
-<p>The <code>&apos;headings&apos;</code> dropdown.</p>
+<p>The <code>&apos;heading&apos;</code> dropdown.</p>
 </li>
 <li>
-<p>The <code>&apos;heading1&apos;</code>, <code>&apos;heading2&apos;</code>, &#x2026;, <code>&apos;headingN&apos;</code> commands based on the <a href="../api/module_heading_heading-HeadingConfig.html#member-options"><code>heading.options</code></a> configuration option.</p>
+<p>The <code>&apos;heading&apos;</code> command that accepts value based on the <a href="../api/module_heading_heading-HeadingConfig.html#member-options"><code>heading.options</code></a> configuration option.</p>
 <p>You can turn the currently selected block(s) to headings by executing one of these commands:</p>
-<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;heading2&apos;</span> );
+<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;heading&apos;</span>, { <span class="hljs-attr">value</span>: <span class="hljs-string">&apos;heading2&apos;</span> } );
 </code></pre>
 </li>
 </ul>

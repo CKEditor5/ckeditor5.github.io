@@ -134,19 +134,6 @@
 </div>
           <h2 id="Properties">Properties</h2>
           <ul class="collapsing-list collapsing-list--filtered">
-                      <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="member-alignment">
-                          <h3><code><a class="member-name" href="#member-alignment">alignment</a> : <span>'left'</span> | <span>'right'</span> | <span>'center'</span> | <span>'justify'</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">readonly</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">The alignment value handled by the command.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="member-editor">
                           <h3><code><a class="member-name" href="#member-editor">editor</a> : <span><a class="collapsing-list__type" href="module_core_editor_editor-Editor.html">Editor</a></span></code></h3>
@@ -183,15 +170,14 @@ A disabled command should do nothing when executed.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="member-value">
-                          <h3><code><a class="member-name" href="#member-value">value</a> : <span>Boolean</span></code></h3>
+                          <h3><code><a class="member-name" href="#member-value">value</a> : <span>String</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">readonly</span>
 <span class="badge badge--gray "><a href="module_utils_observablemixin-ObservableMixin.html">observable</a></span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">A flag indicating whether the command is active, which means that the selection starts in a block
-which has the same alignment as <a href="module_alignment_alignmentcommand-AlignmentCommand.html#member-alignment">this  command</a>.</p>
+                          <p class="collapsing-list__excerpt">A value of the current block&apos;s alignment.</p>
                           <div class="collapsing-list__content">
                             <div class="collapsing-list__bottom">
                               Overrides:
@@ -200,29 +186,18 @@ which has the same alignment as <a href="module_alignment_alignmentcommand-Align
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="member-_isDefault">
-                          <h3><code><a class="member-name" href="#member-_isDefault">_isDefault</a> : <span>Boolean</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--red ">private</span>
-<span class="badge badge--gray ">readonly</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Whether this command is the default alignment.</p>
-                          <div class="collapsing-list__content">
-                          </div>
-                        </div>
-                      </li>
           </ul>
           <h2 id="Methods">Methods</h2>
           <ul class="collapsing-list collapsing-list--filtered">
-                      <li class="collapsing-list__item" data-public="true">
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-constructor">
-                          <h3><code><a class="member-name" href="#function-constructor">constructor</a>( editor, alignment, isDefault )</code></h3>
+                          <h3><code><a class="member-name" href="#function-constructor">constructor</a>( editor )</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                          </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Creates an instance of the alignment command.
+                          <p class="collapsing-list__excerpt">Creates a new <code>Command</code> instance.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>
@@ -230,23 +205,9 @@ which has the same alignment as <a href="module_alignment_alignmentcommand-Align
                                         <dt><code>editor
                                             :
  <span><a class="collapsing-list__type" href="module_core_editor_editor-Editor.html">Editor</a></span></code></dt>
-                                        <dd><p>The editor instance.</p>
-                                        </dd>
-                                        <dt><code>alignment
-                                            :
- <span>'left'</span> | <span>'right'</span> | <span>'center'</span> | <span>'justify'</span></code></dt>
-                                        <dd><p>Alignment value to be handled by this command.</p>
-                                        </dd>
-                                        <dt><code>isDefault
-                                            :
- <span>Boolean</span></code></dt>
-                                        <dd><p>Indicates if the command is the default alignment.</p>
+                                        <dd><p>Editor on which this command will be used.</p>
                                         </dd>
                                       </dl>
-                            <div class="collapsing-list__bottom">
-                              Overrides:
- <span><a href="module_core_command-Command.html#constructor">Command#constructor</a></span> 
-                            </div>
                           </div>
                         </div>
                       </li>
@@ -427,6 +388,45 @@ emitterA.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( emitterC );</cod
                           <p class="collapsing-list__excerpt">Destroys the command.
                           </p>
                           <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-execute">
+                          <h3><code><a class="member-name" href="#function-execute">execute</a>( [ options ] = { [options.value] } )</code></h3>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Executes the command. Applies the alignment <code>value</code> to the selected blocks.
+If no <code>value</code> is passed, is a default one or is equal to currently selected block&apos;s alignment attribute,
+it will remove the attribute from the selected blocks.
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>[ options ]
+                                            :
+ <span>Object</span></code></dt>
+                                        <dd><p>Options for the executed command.</p>
+                                                    <div class="dlheading5">Properties
+                                                    </div>
+                                                    <dl>
+                                                      <dt><code>[ options.value ]
+                                                          :
+ <span>String</span></code></dt>
+                                                      <dd><p>The value to apply.</p>
+                                                      </dd>
+                                                    </dl>
+                                        </dd>
+                                      </dl>
+                            <h4>Fires</h4>
+                            <ul>
+                                        <li><span><a href="module_alignment_alignmentcommand-AlignmentCommand.html#event:execute">execute</a></span>
+                                        </li>
+                            </ul>
+                            <div class="collapsing-list__bottom">
+                              Overrides:
+ <span><a href="module_core_command-Command.html#execute">Command#execute</a></span> 
+                            </div>
                           </div>
                         </div>
                       </li>
@@ -1096,24 +1096,6 @@ be released if no properties provided.</p>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-protected="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-execute">
-                          <h3><code><a class="member-name" href="#function-execute">execute</a>()</code></h3>
-                          <p class="badges">
-<span class="badge badge--orange ">protected</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Executes the command.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <div class="collapsing-list__bottom">
-                              Overrides:
- <span><a href="module_core_command-Command.html#execute">Command#execute</a></span> 
-                            </div>
-                          </div>
-                        </div>
-                      </li>
                       <li class="collapsing-list__item" data-private="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-_canBeAligned">
                           <h3><code><a class="member-name" href="#function-_canBeAligned">_canBeAligned</a>( block ) &rarr;  <span>Boolean</span></code></h3>
@@ -1137,34 +1119,6 @@ be released if no properties provided.</p>
                             <dl>
                                         <dt><code><span>Boolean</span></code></dt>
                                         <dd>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-private="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-_getValue">
-                          <h3><code><a class="member-name" href="#function-_getValue">_getValue</a>( firstBlock ) &rarr;  <span>Boolean</span></code></h3>
-                          <p class="badges">
-<span class="badge badge--red ">private</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Checks the command&apos;s <a href="module_alignment_alignmentcommand-AlignmentCommand.html#member-value"><code>value</code></a>.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code>firstBlock
-                                            :
- <span><a class="collapsing-list__type" href="module_engine_model_element-Element.html">Element</a></span></code></dt>
-                                        <dd><p>The first block in the selection to be checked.</p>
-                                        </dd>
-                                      </dl>
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span>Boolean</span></code></dt>
-                                        <dd><p>The current value.</p>
                                         </dd>
                             </dl>
                           </div>
@@ -1232,12 +1186,12 @@ be released if no properties provided.</p>
                                         </dd>
                                         <dt><code>value
                                             :
- <span>Boolean</span></code></dt>
+ <span>String</span></code></dt>
                                         <dd><p>New value of the <code>value</code> property with given key or <code>null</code>, if operation should remove property.</p>
                                         </dd>
                                         <dt><code>oldValue
                                             :
- <span>Boolean</span></code></dt>
+ <span>String</span></code></dt>
                                         <dd><p>Old value of the <code>value</code> property with given key or <code>null</code>, if property was not set before.</p>
                                         </dd>
                                       </dl>
@@ -1387,6 +1341,9 @@ by a high priority listener in order to prevent command execution.</p>
                     <div class="tree__item__wrapper" data-ln="module:alignment/alignmentui~AlignmentUI"><span class="tree__item--class tree__item__text">AlignmentUI</span></div></a>
                 </li>
               </ul>
+            </li>
+            <li><a href="module_alignment_utils.html">
+                <div class="tree__item__wrapper" data-ln="module:alignment/utils"><span class="tree__item--module tree__item__text">utils</span></div></a>
             </li>
           </ul>
         </li>

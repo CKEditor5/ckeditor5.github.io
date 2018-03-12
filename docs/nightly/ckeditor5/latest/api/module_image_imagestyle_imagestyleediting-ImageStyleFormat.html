@@ -72,11 +72,11 @@
           <div class="types"><span>Object</span>
           </div>
           <div class="main-description"><p>Image style format descriptor.</p>
-<pre class="prettyprint source"><code>import fullWidthIcon from &apos;path/to/icon.svg`;
+<pre class="prettyprint source"><code>import fullSizeIcon from &apos;path/to/icon.svg&apos;;
 
 const imageStyleFormat = {
-    name: &apos;fullSizeImage&apos;,
-    icon: fullWidthIcon,
+    name: &apos;fullSize&apos;,
+    icon: fullSizeIcon,
     title: &apos;Full size image&apos;,
     className: &apos;image-full-size&apos;
 }</code></pre></div>
@@ -156,9 +156,11 @@ A default style does not apply any CSS class to the view element.</p>
                           <p class="collapsing-list__excerpt">The unique name of the style. It will be used to:</p>
                           <div class="collapsing-list__content">
 <ul>
-<li>register the <a href="module_core_command-Command.html">command</a> which will apply this style,</li>
-<li>store the style&apos;s button in the editor <a href="module_ui_componentfactory-ComponentFactory.html"><code>ComponentFactory</code></a>,</li>
-<li>store the style in the <code>imageStyle</code> model attribute.</li>
+<li>store the chosen style in the model by setting the <code>imageStyle</code> attribute of the <code>&lt;image&gt;</code> element,</li>
+<li>as a value of the <a href="module_image_imagestyle_imagestylecommand-ImageStyleCommand.html#function-execute"><code>imageStyle</code> command</a>,</li>
+<li>when registering button for each of the styles (<code>&apos;imageStyle:{name}&apos;</code>) in the
+<a href="module_ui_componentfactory-ComponentFactory.html">UI components factory</a> (this functionality is provided by the
+<a href="module_image_imagestyle_imagestyleui-ImageStyleUI.html"><code>ImageStyleUI</code></a> plugin),</li>
 </ul>
                           </div>
                         </div>
@@ -246,6 +248,9 @@ A default style does not apply any CSS class to the view element.</p>
                     <div class="tree__item__wrapper" data-ln="module:alignment/alignmentui~AlignmentUI"><span class="tree__item--class tree__item__text">AlignmentUI</span></div></a>
                 </li>
               </ul>
+            </li>
+            <li><a href="module_alignment_utils.html">
+                <div class="tree__item__wrapper" data-ln="module:alignment/utils"><span class="tree__item--module tree__item__text">utils</span></div></a>
             </li>
           </ul>
         </li>

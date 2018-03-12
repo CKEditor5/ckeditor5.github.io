@@ -169,8 +169,8 @@ A disabled command should do nothing when executed.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="member-style">
-                          <h3><code><a class="member-name" href="#member-style">style</a> : <span><a class="collapsing-list__type" href="module_image_imagestyle_imagestyleediting-ImageStyleFormat.html">ImageStyleFormat</a></span></code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="member-styles">
+                          <h3><code><a class="member-name" href="#member-styles">styles</a> : <span>Array.&lt;<a class="collapsing-list__type" href="module_image_imagestyle_imagestyleediting-ImageStyleFormat.html">ImageStyleFormat</a>&gt;</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">readonly</span>
                           </p>
@@ -181,22 +181,38 @@ A disabled command should do nothing when executed.</p>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true">
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="member-value">
-                          <h3><code><a class="member-name" href="#member-value">value</a> : <span>Boolean</span></code></h3>
+                          <h3><code><a class="member-name" href="#member-value">value</a></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">readonly</span>
+<span class="badge badge--gray ">inherited</span>
 <span class="badge badge--gray "><a href="module_utils_observablemixin-ObservableMixin.html">observable</a></span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">The value of the command &#x2014; <code>true</code> if a style handled by the command is applied on a currently selected image,
-<code>false</code> otherwise.</p>
+                          <p class="collapsing-list__excerpt">The value of a command. Concrete command class should define what it represents.</p>
                           <div class="collapsing-list__content">
+<p>For example, the <code>bold</code> command&apos;s value is whether the selection starts in a bolded text.
+And the value of the <code>link</code> command may be an object with links details.</p>
+<p>It&apos;s possible for a command to have no value (e.g. for stateless actions such as <code>imageUpload</code>).</p>
                             <div class="collapsing-list__bottom">
                               Overrides:
  <span><a href="module_core_command-Command.html#value">Command#value</a></span> 
                             </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-private="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="member-_defaultStyle">
+                          <h3><code><a class="member-name" href="#member-_defaultStyle">_defaultStyle</a> : <span>Boolean</span> | <span>String</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--red ">private</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Cached name of the default style if present. If there is no default style it defaults to <code>false</code>.</p>
+                          <div class="collapsing-list__content">
                           </div>
                         </div>
                       </li>
@@ -205,7 +221,7 @@ A disabled command should do nothing when executed.</p>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-constructor">
-                          <h3><code><a class="member-name" href="#function-constructor">constructor</a>( editor, style )</code></h3>
+                          <h3><code><a class="member-name" href="#function-constructor">constructor</a>( editor, styles )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Creates an instance of the image style command. Each command instance is handling one style.
@@ -218,10 +234,10 @@ A disabled command should do nothing when executed.</p>
  <span><a class="collapsing-list__type" href="module_core_editor_editor-Editor.html">Editor</a></span></code></dt>
                                         <dd><p>The editor instance.</p>
                                         </dd>
-                                        <dt><code>style
+                                        <dt><code>styles
                                             :
- <span><a class="collapsing-list__type" href="module_image_imagestyle_imagestyleediting-ImageStyleFormat.html">ImageStyleFormat</a></span></code></dt>
-                                        <dd><p>A style to be applied by this command.</p>
+ <span>Array.&lt;<a class="collapsing-list__type" href="module_image_imagestyle_imagestyleediting-ImageStyleFormat.html">ImageStyleFormat</a>&gt;</span></code></dt>
+                                        <dd><p>A styles that this command supports.</p>
                                         </dd>
                                       </dl>
                             <div class="collapsing-list__bottom">
@@ -413,12 +429,31 @@ emitterA.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( emitterC );</cod
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-execute">
-                          <h3><code><a class="member-name" href="#function-execute">execute</a>()</code></h3>
+                          <h3><code><a class="member-name" href="#function-execute">execute</a>( options = { options.value } )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Executes the command.
                           </p>
                           <div class="collapsing-list__content">
+<pre class="prettyprint source"><code>editor.execute( &apos;imageStyle&apos;, { value: &apos;side&apos; } );</code></pre>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>options
+                                            :
+ <span>Object</span></code></dt>
+                                        <dd>
+                                                    <div class="dlheading5">Properties
+                                                    </div>
+                                                    <dl>
+                                                      <dt><code>options.value
+                                                          :
+ <span>String</span></code></dt>
+                                                      <dd><p>The name of the style (based on the
+<a href="module_image_image-ImageConfig.html#member-styles"><code>image.styles</code></a> configuration option).</p>
+                                                      </dd>
+                                                    </dl>
+                                        </dd>
+                                      </dl>
                             <h4>Fires</h4>
                             <ul>
                                         <li><span><a href="module_image_imagestyle_imagestylecommand-ImageStyleCommand.html#event:execute">execute</a></span>
@@ -1137,9 +1172,12 @@ be released if no properties provided.</p>
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true">
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="event-change:value">
                           <h3><code><a class="member-name" href="#event-change:value">change:value</a>( eventInfo, name, value, oldValue )</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                          </p>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Fired when the <code>value</code> property changed value.
@@ -1159,12 +1197,12 @@ be released if no properties provided.</p>
                                         </dd>
                                         <dt><code>value
                                             :
- <span>Boolean</span></code></dt>
+ <span>*</span></code></dt>
                                         <dd><p>New value of the <code>value</code> property with given key or <code>null</code>, if operation should remove property.</p>
                                         </dd>
                                         <dt><code>oldValue
                                             :
- <span>Boolean</span></code></dt>
+ <span>*</span></code></dt>
                                         <dd><p>Old value of the <code>value</code> property with given key or <code>null</code>, if property was not set before.</p>
                                         </dd>
                                       </dl>
@@ -1314,6 +1352,9 @@ by a high priority listener in order to prevent command execution.</p>
                     <div class="tree__item__wrapper" data-ln="module:alignment/alignmentui~AlignmentUI"><span class="tree__item--class tree__item__text">AlignmentUI</span></div></a>
                 </li>
               </ul>
+            </li>
+            <li><a href="module_alignment_utils.html">
+                <div class="tree__item__wrapper" data-ln="module:alignment/utils"><span class="tree__item--module tree__item__text">utils</span></div></a>
             </li>
           </ul>
         </li>

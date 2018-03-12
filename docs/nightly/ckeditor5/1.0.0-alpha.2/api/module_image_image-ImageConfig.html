@@ -116,12 +116,11 @@
                           <h3><code><a class="member-name" href="#member-styles">styles</a> : <span>Array.&lt;<a class="collapsing-list__type" href="module_image_imagestyle_imagestyleediting-ImageStyleFormat.html">ImageStyleFormat</a>&gt;</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Available image styles.
-The option is used by the <a href="module_image_imagestyle_imagestyleediting-ImageStyleEditing.html"><code>ImageStyleEditing</code></a> feature.</p>
+                          <p class="collapsing-list__excerpt">Available image styles.</p>
                           <div class="collapsing-list__content">
 <p>The default value is:</p>
 <pre class="prettyprint source"><code>const imageConfig = {
-    styles: [ &apos;imageStyleFull&apos;, &apos;imageStyleSide&apos; ]
+    styles: [ &apos;full&apos;, &apos;side&apos; ]
 };</code></pre><p>which configures two default styles:</p>
 <ul>
 <li>the &quot;full&quot; style which doesn&apos;t apply any class, e.g. for images styled to span 100% width of the content,</li>
@@ -140,10 +139,10 @@ const imageConfig = {
     styles: [
         // This will only customize the icon of the &quot;full&quot; style.
         // Note: &apos;right&apos; is one of default icons provided by the feature.
-        { name: &apos;imageStyleFull&apos;, icon: &apos;right&apos; },
+        { name: &apos;full&apos;, icon: &apos;right&apos; },
 
         // This will customize the icon, title and CSS class of the default &quot;side&quot; style.
-        { name: &apos;imageStyleSide&apos;, icon: customIcon, title: &apos;My side style&apos;, class: &apos;custom-side-image&apos; }
+        { name: &apos;side&apos;, icon: customIcon, title: &apos;My side style&apos;, class: &apos;custom-side-image&apos; }
     ]
 };</code></pre><p>If none of the default styles is good enough, it is possible to define independent custom styles too:</p>
 <pre class="prettyprint source"><code>import fullSizeIcon from &apos;@ckeditor/ckeditor5-core/theme/icons/object-center.svg&apos;;
@@ -163,11 +162,11 @@ will automatically translate it to the language of the editor.</p>
 <p>Read more about styling images in the <a href="../features/image.html#image-styles" data-glink="">Image styles guide</a>.</p>
 <p>The feature creates commands based on defined styles, so you can change the style of a selected image by executing
 the following command:</p>
-<pre class="prettyprint source"><code>editor.execute( &apos;imageStyleSide&apos; );</code></pre><p>The features creates also buttons which execute the commands, so assuming that you use the
-default image styles setting you can <a href="module_image_image-ImageConfig.html#member-toolbar">configure the image toolbar</a>
-to contain these options:</p>
+<pre class="prettyprint source"><code>editor.execute( &apos;imageStyle&apos; { value: &apos;side&apos; } );</code></pre><p>The feature creates also buttons which execute the command. So, assuming that you use the
+default image styles setting, you can <a href="module_image_image-ImageConfig.html#member-toolbar">configure the image toolbar</a>
+(or any other toolbar) to contain these options:</p>
 <pre class="prettyprint source"><code>const imageConfig = {
-    toolbar: [ &apos;imageStyleFull&apos;, &apos;imageStyleSide&apos; ]
+    toolbar: [ &apos;imageStyle:full&apos;, &apos;imageStyle:side&apos; ]
 };</code></pre>
                           </div>
                         </div>
@@ -186,9 +185,9 @@ The option is used by the <a href="module_image_imagetoolbar-ImageToolbar.html">
 <li><a href="module_image_imagetextalternative-ImageTextAlternative.html"><code>ImageTextAlternative</code></a>.</li>
 </ul>
 <p>Three toolbar items will be available in <a href="module_ui_componentfactory-ComponentFactory.html"><code>ComponentFactory</code></a>:
-<code>&apos;imageStyleFull&apos;</code>, <code>&apos;imageStyleSide&apos;</code>, and <code>&apos;imageTextAlternative&apos;</code> so you can configure the toolbar like this:</p>
+<code>&apos;imageStyle:full&apos;</code>, <code>&apos;imageStyle:side&apos;</code>, and <code>&apos;imageTextAlternative&apos;</code> so you can configure the toolbar like this:</p>
 <pre class="prettyprint source"><code>const imageConfig = {
-    toolbar: [ &apos;imageStyleFull&apos;, &apos;imageStyleSide&apos;, &apos;|&apos;, &apos;imageTextAlternative&apos; ]
+    toolbar: [ &apos;imageStyle:full&apos;, &apos;imageStyle:side&apos;, &apos;|&apos;, &apos;imageTextAlternative&apos; ]
 };</code></pre><p>Of course, the same buttons can also be used in the
 <a href="module_core_editor_editorconfig-EditorConfig.html#member-toolbar">main editor toolbar</a>.</p>
 <p>Read more about configuring toolbar in <a href="module_core_editor_editorconfig-EditorConfig.html#member-toolbar"><code>toolbar</code></a>.</p>
@@ -268,6 +267,9 @@ The option is used by the <a href="module_image_imagetoolbar-ImageToolbar.html">
                     <div class="tree__item__wrapper" data-ln="module:alignment/alignmentui~AlignmentUI"><span class="tree__item--class tree__item__text">AlignmentUI</span></div></a>
                 </li>
               </ul>
+            </li>
+            <li><a href="module_alignment_utils.html">
+                <div class="tree__item__wrapper" data-ln="module:alignment/utils"><span class="tree__item--module tree__item__text">utils</span></div></a>
             </li>
           </ul>
         </li>
