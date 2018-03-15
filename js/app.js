@@ -3,7 +3,6 @@
  */
 
 import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
-
 import EssentialsPlugin from '@ckeditor/ckeditor5-essentials/src/essentials';
 import AutoformatPlugin from '@ckeditor/ckeditor5-autoformat/src/autoformat';
 import BoldPlugin from '@ckeditor/ckeditor5-basic-styles/src/bold';
@@ -15,11 +14,23 @@ import ImagePlugin from '@ckeditor/ckeditor5-image/src/image';
 import ImagecaptionPlugin from '@ckeditor/ckeditor5-image/src/imagecaption';
 import ImagestylePlugin from '@ckeditor/ckeditor5-image/src/imagestyle';
 import ImagetoolbarPlugin from '@ckeditor/ckeditor5-image/src/imagetoolbar';
+import ImageuploadPlugin from '@ckeditor/ckeditor5-image/src/imageupload';
 import LinkPlugin from '@ckeditor/ckeditor5-link/src/link';
 import ListPlugin from '@ckeditor/ckeditor5-list/src/list';
 import ParagraphPlugin from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 
-import uid from '@ckeditor/ckeditor5-utils/src/uid';
+
+// WARNING: The URLs below should not be used for any other purpose than Easy Image plugin development.
+// Images uploaded using the testing token service may be deleted automatically at any moment.
+// If you would like to try the Easy Image service, please sign up for a free trial (https://ckeditor.com/ckeditor-cloud-services/).
+// Images uploaded during the free trial will not be deleted for the whole trial period and additionally the trial service can be converted
+// into a subscription at any moment, allowing you to preserve all uploaded images.
+const TOKEN_URL = 'https://33333.cke-cs.com/token/dev/ijrDsqFix838Gh3wGO3F77FSW94BwcLXprJ4APSp3XQ26xsUHTi0jcb1hoBt';
+const UPLOAD_URL = 'https://33333.cke-cs.com/easyimage/upload/';
+const CS_CONFIG = {
+	tokenUrl: TOKEN_URL,
+	uploadUrl: UPLOAD_URL
+};
 
 ClassicEditor
 	.create( document.querySelector( '#editor' ), {
@@ -35,13 +46,14 @@ ClassicEditor
 			ImagecaptionPlugin,
 			ImagestylePlugin,
 			ImagetoolbarPlugin,
+			ImageuploadPlugin,
 			LinkPlugin,
 			ListPlugin,
 			ParagraphPlugin
 		],
 		toolbar: {
 			items: [
-				'headings',
+				'heading',
 				'bold',
 				'italic',
 				'link',
@@ -54,15 +66,13 @@ ClassicEditor
 		},
 		image: {
 			toolbar: [
-				'imageStyleFull',
-				'imageStyleSide',
+				'imageStyle:full',
+				'imageStyle:side',
 				'|',
 				'imageTextAlternative'
 			]
 		},
-		cloudServices: {
-			tokenUrl: 'https://j2sns7jmy0.execute-api.eu-central-1.amazonaws.com/prod/token-new'
-		}
+		cloudServices: CS_CONFIG
 	} )
 	.then( ( editor ) => {
 		window.editor = editor;
