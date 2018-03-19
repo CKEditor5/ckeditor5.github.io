@@ -72,13 +72,14 @@
           </p>
           <div class="types">
           </div>
-          <div class="main-description"><p>Model writer it the proper way of modifying model. It should be used whenever you wants to create node, modify
-child nodes, attributes or text. To get writer use <a href="module_engine_model_model-Model.html#function-change"><code>change</code></a> or
-<a href="module_engine_model_model-Model.html#function-enqueueChange"><code>enqueueChange</code></a>.</p>
+          <div class="main-description"><p>The model can only be modified by using the writer. It should be used whenever you want to create a node, modify
+child nodes, attributes or text, set the selection&apos;s position and its attributes.</p>
+<p>The instance of the writer is only available in the <a href="module_engine_model_model-Model.html#function-change"><code>change()</code></a> or
+<a href="module_engine_model_model-Model.html#function-enqueueChange"><code>enqueueChange()</code></a>.</p>
 <pre class="prettyprint source"><code>model.change( writer =&gt; {
     writer.insertText( &apos;foo&apos;, paragraph, &apos;end&apos; );
-} );</code></pre><p>Note that writer can be passed to a nested function but you should never store and use it outside the <code>change</code> or
-<code>enqueueChange</code> block.</p></div>
+} );</code></pre><p>Note that the should never be stored and used outside of the <code>change()</code> or
+<code>enqueueChange()</code> blocks.</p></div>
 <div class="notice notice__filter api-props-filter">
   <div class="api-props-filter__inner">
     <h4>Filtering</h4>
@@ -147,10 +148,10 @@ child nodes, attributes or text. To get writer use <a href="module_engine_model_
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Writer class constructor.
+                          <p class="collapsing-list__excerpt">Creates a writer instance.
                           </p>
                           <div class="collapsing-list__content">
-<p>It is not recommended to use it directly, use <a href="module_engine_model_model-Model.html#function-change"><code>change</code></a> or
+<p><strong>Note:</strong> It is not recommended to use it directly. Use <a href="module_engine_model_model-Model.html#function-change"><code>change</code></a> or
 <a href="module_engine_model_model-Model.html#function-enqueueChange"><code>enqueueChange</code></a> instead.</p>
                             <h4>Parameters</h4>
                                       <dl>
@@ -2702,6 +2703,15 @@ Throws error if you try to unwrap an element which does not have a parent.
                   <ul>
                     <li><a href="module_engine_view_documentfragment-DocumentFragment.html">
                         <div class="tree__item__wrapper" data-ln="module:engine/view/documentfragment~DocumentFragment"><span class="tree__item--class tree__item__text">DocumentFragment</span></div></a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="toggler--collapsed">
+                  <div class="tree__item__wrapper" data-ln="module:engine/view/documentselection"><a class="tree__item--module tree__item__text" href="module_engine_view_documentselection.html">documentselection</a>
+                  </div>
+                  <ul>
+                    <li><a href="module_engine_view_documentselection-DocumentSelection.html">
+                        <div class="tree__item__wrapper" data-ln="module:engine/view/documentselection~DocumentSelection"><span class="tree__item--class tree__item__text">DocumentSelection</span></div></a>
                     </li>
                   </ul>
                 </li>
