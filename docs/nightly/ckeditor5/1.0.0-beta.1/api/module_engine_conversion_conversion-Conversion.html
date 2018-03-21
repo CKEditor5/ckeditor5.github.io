@@ -286,6 +286,30 @@ conversion.attributeToElement( {
     }
 } );
 
+// Use `config.model.name` to define conversion only from given node type, `$text` in this case.
+// The same attribute on different elements may be then handled by a different converter.
+conversion.attributeToElement( {
+    model: {
+        key: &apos;textDecoration&apos;,
+        values: [ &apos;underline&apos;, &apos;lineThrough&apos; ],
+        name: &apos;$text&apos;
+    },
+    view: {
+        underline: {
+            name: &apos;span&apos;,
+            style: {
+                &apos;text-decoration&apos;: &apos;underline&apos;
+            }
+        },
+        lineThrough: {
+            name: &apos;span&apos;,
+            style: {
+                &apos;text-decoration&apos;: &apos;line-through&apos;
+            }
+        }
+    }
+} );
+
 // Use `upcastAlso` to define other view elements that should be also converted to `bold` attribute.
 conversion.attributeToElement( {
     model: &apos;bold&apos;,

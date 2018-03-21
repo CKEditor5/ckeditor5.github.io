@@ -309,26 +309,6 @@ Use the <a href="module_engine_view_writer-Writer.html#function-createText"><cod
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-clone">
-                          <h3><code><a class="member-name" href="#function-clone">clone</a>() &rarr;  <span><a class="collapsing-list__type" href="module_engine_view_node-Node.html">Node</a></span></code></h3>
-                          <p class="badges">
-<span class="badge badge--gray ">inherited</span>
-                          </p>
-                        </div>
-                        <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Clones this node.
-                          </p>
-                          <div class="collapsing-list__content">
-                            <h4>Returns</h4>
-                            <dl>
-                                        <dt><code><span><a class="collapsing-list__type" href="module_engine_view_node-Node.html">Node</a></span></code></dt>
-                                        <dd><p>Clone of this node.</p>
-                                        </dd>
-                            </dl>
-                          </div>
-                        </div>
-                      </li>
-                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-getAncestors">
                           <h3><code><a class="member-name" href="#function-getAncestors">getAncestors</a>( options = { [options.includeSelf], [options.parentFirst] } ) &rarr;  <span>Array</span></code></h3>
                           <p class="badges">
@@ -419,6 +399,35 @@ Which means that if e.g. node A is inside B, then their common ancestor will be 
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-getPath">
+                          <h3><code><a class="member-name" href="#function-getPath">getPath</a>() &rarr;  <span>Array.&lt;Number&gt;</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Gets a path to the node. The path is an array containing indices of consecutive ancestors of this node,
+beginning from <a href="module_engine_view_node-Node.html#member-root">root</a>, down to this node&apos;s index.
+                          </p>
+                          <div class="collapsing-list__content">
+<pre class="prettyprint source"><code>const abc = new Text( &apos;abc&apos; );
+const foo = new Text( &apos;foo&apos; );
+const h1 = new Element( &apos;h1&apos;, null, new Text( &apos;header&apos; ) );
+const p = new Element( &apos;p&apos;, null, [ abc, foo ] );
+const div = new Element( &apos;div&apos;, null, [ h1, p ] );
+foo.getPath(); // Returns [ 1, 3 ]. `foo` is in `p` which is in `div`. `p` starts at offset 1, while `foo` at 3.
+h1.getPath(); // Returns [ 0 ].
+div.getPath(); // Returns [].</code></pre>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Array.&lt;Number&gt;</span></code></dt>
+                                        <dd><p>The path.</p>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-is">
                           <h3><code><a class="member-name" href="#function-is">is</a>( type ) &rarr;  <span>Boolean</span></code></h3>
                           <p class="badges">
@@ -432,7 +441,7 @@ Which means that if e.g. node A is inside B, then their common ancestor will be 
 <p>This method is useful when processing view tree objects that are of unknown type. For example, a function
 may return <a href="module_engine_view_documentfragment-DocumentFragment.html"><code>DocumentFragment</code></a> or <a href="module_engine_view_node-Node.html"><code>Node</code></a>
 that can be either text node or element. This method can be used to check what kind of object is returned.</p>
-<pre class="prettyprint source"><code>obj.is( &apos;node&apos; ); // true for any node, false for document fragment
+<pre class="prettyprint source"><code>obj.is( &apos;node&apos; ); // true for any node, false for document fragment and text fragment
 obj.is( &apos;documentFragment&apos; ); // true for document fragment, false for any node
 obj.is( &apos;element&apos; ); // true for any element, false for text node or document fragment
 obj.is( &apos;element&apos;, &apos;p&apos; ); // true only for element which name is &apos;p&apos;
@@ -456,6 +465,64 @@ obj.is( &apos;text&apos; ); // true for text node, false for element and documen
                               Overrides:
  <span><a href="module_engine_view_node-Node.html#is">Node#is</a></span> 
                             </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-isAfter">
+                          <h3><code><a class="member-name" href="#function-isAfter">isAfter</a>( node ) &rarr;  <span>Boolean</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Returns whether this node is after given node. <code>false</code> is returned if nodes are in different trees (for example,
+in different <a href="module_engine_view_documentfragment-DocumentFragment.html"><code>DocumentFragment</code></a>s).
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>node
+                                            :
+ <span><a class="collapsing-list__type" href="module_engine_view_node-Node.html">Node</a></span></code></dt>
+                                        <dd><p>Node to compare with.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Boolean</span></code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="function-isBefore">
+                          <h3><code><a class="member-name" href="#function-isBefore">isBefore</a>( node ) &rarr;  <span>Boolean</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">Returns whether this node is before given node. <code>false</code> is returned if nodes are in different trees (for example,
+in different <a href="module_engine_view_documentfragment-DocumentFragment.html"><code>DocumentFragment</code></a>s).
+                          </p>
+                          <div class="collapsing-list__content">
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>node
+                                            :
+ <span><a class="collapsing-list__type" href="module_engine_view_node-Node.html">Node</a></span></code></dt>
+                                        <dd><p>Node to compare with.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>Boolean</span></code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
                           </div>
                         </div>
                       </li>
@@ -526,6 +593,10 @@ Both nodes should have the same data to be considered as similar.
                                         <dd><p>Text node that is a clone of this node.</p>
                                         </dd>
                             </dl>
+                            <div class="collapsing-list__bottom">
+                              Overrides:
+ <span><a href="module_engine_view_node-Node.html#_clone">Node#_clone</a></span> 
+                            </div>
                           </div>
                         </div>
                       </li>

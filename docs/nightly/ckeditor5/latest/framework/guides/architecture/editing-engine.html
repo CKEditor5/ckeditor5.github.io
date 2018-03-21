@@ -61,7 +61,7 @@
           <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/architecture/editing-engine.md" title="Contribute to this guide"><img src="../../../../../assets/0.4.0/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.4.0/img/exclamation-circle.svg" alt="Report an issue"></a>
           </div>
           <h1><img src="../../../../../assets/0.4.0/img/book.svg" alt="guide">Editing engine
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#overview">Overview</a></li><li><a href="#model">Model</a><ol><li><a href="#changing-the-model">Changing the model</a></li><li><a href="#text-attributes">Text attributes</a></li><li><a href="#selection-attributes">Selection attributes</a></li><li><a href="#indexes-and-offsets">Indexes and offsets</a></li><li><a href="#positions-ranges-and-selections">Positions, ranges and selections</a></li><li><a href="#markers">Markers</a></li><li><a href="#schema">Schema</a></li></ol></li><li><a href="#view">View</a></li><li><a href="#controller">Controller</a></li><li><a href="#read-next">Read next</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#overview">Overview</a></li><li><a href="#model">Model</a><ol><li><a href="#changing-the-model">Changing the model</a></li><li><a href="#text-attributes">Text attributes</a></li><li><a href="#selection-attributes">Selection attributes</a></li><li><a href="#indexes-and-offsets">Indexes and offsets</a></li><li><a href="#positions-ranges-and-selections">Positions, ranges and selections</a></li><li><a href="#markers">Markers</a></li><li><a href="#schema">Schema</a></li></ol></li><li><a href="#view">View</a><ol><li><a href="#changing-the-view">Changing the view</a></li><li><a href="#element-types">Element types</a></li><li><a href="#positions">Positions</a></li><li><a href="#observers">Observers</a></li></ol></li><li><a href="#conversion">Conversion</a></li><li><a href="#read-next">Read next</a></li></ol></nav>
 <p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-engine</code></a> package is by far the biggest package of all. Therefore, this guide will only scratch the surface here by introducing the main architecture layers and concepts. More detailed guides will follow.</p>
 <h2 id="overview"><a class="headerlink" href="#overview">#</a> Overview</h2>
 <p>The editing engine implements an MVC architecture. The shape of it is not enforced by the engine itself but in most implementations it can be described by this diagram:</p>
@@ -212,7 +212,36 @@ editor.model.change( <span class="hljs-function"><span class="hljs-params">write
 <div class="info-box notice"><p>Currently, there is <a href="https://github.com/ckeditor/ckeditor5-engine/issues/1367" target="_blank" rel="noopener">no straightforward way to override the schema</a> preconfigured by features. If you want to override the default settings when initializing the editor, the best solution is to replace <code>editor.model.schema</code> with a new instance of. This, however, requires rebuilding the editor.</p></div>
 <p>The instance of the schema is available in <a href="../../../api/module_engine_model_model-Model.html#member-schema"><code>editor.model.schema</code></a>. Read an extensive guide about using the schema API in <a href="../../../api/module_engine_model_schema-Schema.html">API docs for the <code>Schema</code> class</a>.</p>
 <h2 id="view"><a class="headerlink" href="#view">#</a> View</h2>
-<h2 id="controller"><a class="headerlink" href="#controller">#</a> Controller</h2>
+<p>Let&#x2019;s again take a look at the editing engine&#x2019;s architecture:</p>
+<p><a href="../../../assets/img/framework-architecture-engine-diagram.png"><img src="../../../assets/img/framework-architecture-engine-diagram.png" alt="Diagram of the engine&#x2019;s MVC architecture."></a></p>
+<p>So far, we talked about the topmost layer of this diagram &#x2013; the model. The role of the model layer is to create an abstraction over the data. Its format was designed to allow storing and modifying the data in the most convenient way, while enabling implementation of complex features. Most features operate (read from it and change it) on the model.</p>
+<p>The view, on the other hand, is an abstract representation of the DOM structure which should be presented to the user (for editing) and which should (in most cases) represent the editor&#x2019;s input/output (i.e. data returned by <code>editor.getData()</code>, data set by <code>editor.setData()</code>, pasted content, etc.).</p>
+<p>What this means is that:</p>
+<ul>
+<li>The view is yet another custom structure.</li>
+<li>It resembles the DOM. While the model&#x2019;s tree structure only slightly resembled the DOM (e.g. by introducing text attributes), the view is much closer to the DOM. In other words, it is a <strong>virtual DOM</strong>.</li>
+<li>There are two &#x201C;pipelines&#x201D; &#x2013; the <strong>editing pipeline</strong> (also called the &#x201C;editing view&#x201D;) and the <strong>data pipeline</strong> (&#x201C;the data view&#x201D;). Treat them as two separate views of one model. The editing pipeline renders and handles the DOM which the user sees and can edit. The data pipeline is used when you call <code>editor.getData()</code>, <code>editor.setData()</code> or paste content into the editor.</li>
+</ul>
+<p>The fact that there are two views is visible in the API:</p>
+<pre class="highlight"><code class="js">editor.editing;                 <span class="hljs-comment">// The editing pipeline (EditingController).</span>
+editor.editing.view;            <span class="hljs-comment">// Editing view&apos;s controller.</span>
+editor.editing.view.document;   <span class="hljs-comment">// Editing view&apos;s document.</span>
+editor.data;                    <span class="hljs-comment">// The data pipeline (DataController).</span>
+</code></pre>
+<div class="info-box notice"><p>Technically, the data pipeline does not have a document and a view controller. It operates on detached view structures, created for the purposes of processing a data.</p><p>It is much simpler than the editing pipeline and in the following part of this section we will be talking about the editing view.</p><p>Check out the <a href="../../../api/module_engine_controller_editingcontroller-EditingController.html"><code>EditingController</code></a>&apos;s and <a href="../../../api/module_engine_controller_datacontroller-DataController.html"><code>DataController</code></a>&apos;s API.</p></div>
+<h3 id="changing-the-view"><a class="headerlink" href="#changing-the-view">#</a> Changing the view</h3>
+<p>Do not change the view manually, unless you really know what you do. If the view needs to be changed, in most cases, it means that the model should be changed first. Then, the changes you apply to the model are converted (<a href="#conversion">conversion</a> is covered below) to the view by specific converters.</p>
+<p>The view may need to be changed manually if the cause of such a change is not represented in the model. For example, the model does not store information about the focus, which is a <a href="../../../api/module_engine_view_document-Document.html#member-isFocused">property of the view</a>. When the focus changes, and you want to represent that in some element&#x2019;s class, you need to change that class manually.</p>
+<p>For that, just like in the model, you should use the <code>change()</code> block (of the view) in which you will have access to the view writer.</p>
+<pre class="highlight"><code class="js">editor.data.view.change( <span class="hljs-function"><span class="hljs-params">writer</span> =&gt;</span> {
+    writer.insert( position1, writer.createText( <span class="hljs-string">&apos;foo&apos;</span> ) );
+} );
+</code></pre>
+<h3 id="element-types"><a class="headerlink" href="#element-types">#</a> Element types</h3>
+<h3 id="positions"><a class="headerlink" href="#positions">#</a> Positions</h3>
+<h3 id="observers"><a class="headerlink" href="#observers">#</a> Observers</h3>
+<h2 id="conversion"><a class="headerlink" href="#conversion">#</a> Conversion</h2>
+<p>TODO: upcasting, downcasting, why and how.</p>
 <h2 id="read-next"><a class="headerlink" href="#read-next">#</a> Read next</h2>
 <p>Once you learnt how to implement editing features, it is time to add a UI for them. You can read about the CKEditor 5&#x2019;s standard UI framework and UI library in the <a href="ui-library.html">UI library</a> guide.</p>
 

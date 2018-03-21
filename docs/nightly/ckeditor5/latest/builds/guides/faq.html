@@ -110,15 +110,16 @@ editor.model.insertContent( modelFragment, editor.model.document.selection );
 <p>We believe each editor build should serve its purpose. Including features that are not used makes little sense because they increase the size of the editor and make the website heavier for no good reason. This is why we do not provide a full editor package similar to what we offer in CKEditor 4.</p>
 <p>At the same time, we recommend you to <a href="development/installing-plugins.html">install plugins</a> to enable <a href="../../features/index.html">additional features</a> or even create a <a href="development/custom-builds.html">custom build</a> to make sure you make most of CKEditor 5.</p>
 <h2 id="how-to-customize-the-ckeditor-5-icons"><a class="headerlink" href="#how-to-customize-the-ckeditor-5-icons">#</a> How to customize the CKEditor 5 icons?</h2>
-<p>The easiest way is to use Webpack&#x2019;s <a href="https://webpack.js.org/plugins/normal-module-replacement-plugin/" target="_blank" rel="noopener"><code>NormalModuleReplacementPlugin</code></a> plugin. To replace the bold icon with the italic (both provided by <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-basic-styles" target="_blank" rel="noopener">ckeditor5-basic-styles</a>) use the following code in your <code>webpack.config.js</code>:</p>
+<p>The easiest way is to use Webpack&#x2019;s <a href="https://webpack.js.org/plugins/normal-module-replacement-plugin/" target="_blank" rel="noopener"><code>NormalModuleReplacementPlugin</code></a> plugin. To replace the bold icon use the following code in your <code>webpack.config.js</code>:</p>
 <pre class="highlight"><code class="js">...
 plugins: [
     <span class="hljs-keyword">new</span> webpack.NormalModuleReplacementPlugin(
         <span class="hljs-regexp">/bold\.svg/</span>,
-        <span class="hljs-string">&apos;../../theme/icons/italic.svg&apos;</span>
+        <span class="hljs-string">&apos;/absolute/path/to/my/icon.svg&apos;</span>
     )
 ]
 </code></pre>
+<p>You can also use the relative path which is resolved relative to the resource that imports <code>bold.svg</code> (the <a href="../../api/module_basic-styles_bold_boldui-BoldUI.html"><code>BoldUI</code></a> class file in this scenario).</p>
 <p>Learn more about <a href="integration/advanced-setup.html#webpack-configuration">building CKEditor 5 using Webpack</a>.</p>
 
         </div>

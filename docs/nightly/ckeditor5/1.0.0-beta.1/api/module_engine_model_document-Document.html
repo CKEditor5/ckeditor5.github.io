@@ -817,11 +817,27 @@ the <a href="module_engine_model_document-Document.html#member-selection">docume
                           <h3><code><a class="member-name" href="#event-change">change</a>( eventInfo, batch )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Fired after an <a href="module_engine_model_model-Model.html#function-enqueueChange">enqueue change block</a> or the outermost
-<a href="module_engine_model_model-Model.html#function-change">change block</a> was executed and the document model tree was changed
-during that block execution.
+                          <p class="collapsing-list__excerpt">Fired after each <a href="module_engine_model_model-Model.html#function-enqueueChange"><code>enqueueChange()</code> block</a> or the outermost
+<a href="module_engine_model_model-Model.html#function-change"><code>change()</code> block</a> was executed and the document was changed
+during that block&apos;s execution.
                           </p>
                           <div class="collapsing-list__content">
+<p>The changes which this event will cover include:</p>
+<ul>
+<li>document structure changes,</li>
+<li>selection changes,</li>
+<li>marker changes.</li>
+</ul>
+<p>If you want to be notified about all these changes, then simply listen to this event like this:</p>
+<pre class="prettyprint source"><code>model.document.on( &apos;change&apos;, () =&gt; {
+    console.log( &apos;The Document has changed!&apos; );
+} );</code></pre><p>If, however, you only want to be notified about structure changes, then check whether the
+<a href="module_engine_model_differ-Differ.html">differ</a> contains any changes:</p>
+<pre class="prettyprint source"><code>model.document.on( &apos;change&apos;, () =&gt; {
+    if ( model.document.differ.getChanges().length &gt; 0 ) {
+        console.log( &apos;The Document has changed!&apos; );
+    }
+} );</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>eventInfo
