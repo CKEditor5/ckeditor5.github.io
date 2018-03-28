@@ -72,10 +72,10 @@
           </p>
           <div class="types">
           </div>
-          <div class="main-description"><p>The configuration of the <a href="module_highlight_highlight-Highlight.html">Highlight feature</a>.</p>
+          <div class="main-description"><p>The configuration of the <a href="module_highlight_highlight-Highlight.html">highlight feature</a>.</p>
 <pre class="prettyprint source"><code>ClassicEditor
     .create( editorElement, {
-        highlight:  ... // Highlight feature config.
+        highlight:  ... // Highlight feature configuration.
     } )
     .then( ... )
     .catch( ... );</code></pre><p>See <a href="module_core_editor_editorconfig-EditorConfig.html">all editor options</a>.</p></div>
@@ -117,7 +117,7 @@
                           <h3><code><a class="member-name" href="#member-options">options</a> : <span>Array.&lt;<a class="collapsing-list__type" href="module_highlight_highlight-HighlightOption.html">HighlightOption</a>&gt;</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">The available highlighters options. The default value is:</p>
+                          <p class="collapsing-list__excerpt">The available highlight options. The default value is:</p>
                           <div class="collapsing-list__content">
 <pre class="prettyprint source"><code>options: [
     {
@@ -164,10 +164,10 @@
     }
 ]</code></pre><p>There are two types of highlighters available:</p>
 <ul>
-<li><code>&apos;marker&apos;</code> - rendered as a <code>&lt;mark&gt;</code> element, styled with the <code>background-color</code>,</li>
-<li><code>&apos;pen&apos;</code> - rendered as a <code>&lt;mark&gt;</code> element, styled with the font <code>color</code>.</li>
+<li><code>&apos;marker&apos;</code> &#x2013; Rendered as a <code>&lt;mark&gt;</code> element, styled with the <code>background-color</code>.</li>
+<li><code>&apos;pen&apos;</code> &#x2013; Rendered as a <code>&lt;mark&gt;</code> element, styled with the font <code>color</code>.</li>
 </ul>
-<p><strong>Note</strong>: The highlight feature provides a style sheet with the CSS classes and corresponding colors defined
+<p><strong>Note</strong>: The highlight feature provides a stylesheet with the CSS classes and corresponding colors defined
 as CSS variables.</p>
 <pre class="prettyprint source"><code>:root {
     --ck-highlight-marker-yellow: #fdfd77;
@@ -183,12 +183,12 @@ as CSS variables.</p>
 .marker-pink { ... }
 .marker-blue { ... }
 .pen-red { ... }
-.pen-green { ... }</code></pre><p><strong>Note</strong>: It is possible to define the <code>color</code> property directly as <code>rgba(R, G, B, A)</code>,
+.pen-green { ... }</code></pre><p>It is possible to define the <code>color</code> property directly as <code>rgba(R, G, B, A)</code>,
 <code>#RRGGBB[AA]</code> or <code>hsla(H, S, L, A)</code>. In such situation, the color will <strong>only</strong> apply to the UI of
 the editor and the <code>&lt;mark&gt;</code> elements in the content must be styled by custom classes provided by
-a dedicated style sheet.</p>
+a dedicated stylesheet.</p>
 <p><strong>Note</strong>: It is recommended for the <code>color</code> property to correspond to the class in the content
-style sheet because it represents the highlighter in the user interface of the editor.</p>
+stylesheet because it represents the highlighter in the user interface of the editor.</p>
 <pre class="prettyprint source"><code>ClassicEditor
     .create( editorElement, {
         highlight: {

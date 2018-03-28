@@ -122,26 +122,35 @@
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="static-function-add">
-                          <h3><code><a class="member-name" href="#static-function-add">add</a>( lang, translations )</code></h3>
+                          <h3><code><a class="member-name" href="#static-function-add">add</a>( language, translations )</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">static</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Adds package translations to existing ones.
-These translations will later be available for <a href="module_utils_translation-service.html#static-function-translate">translate</a>.
+                          <p class="collapsing-list__excerpt">Adds translations to existing ones.
+These translations will later be available for the <a href="module_utils_translation-service.html#static-function-translate"><code>translate()</code></a> function.
                           </p>
                           <div class="collapsing-list__content">
 <pre class="prettyprint source"><code>add( &apos;pl&apos;, {
     &apos;OK&apos;: &apos;OK&apos;,
     &apos;Cancel [context: reject]&apos;: &apos;Anuluj&apos;
-} );</code></pre><p>That function is accessible globally via <code>window.CKEDITOR_TRANSLATIONS.add()</code>. So it&apos;s possible to add translation from
-the other script, just after that one.</p>
-<pre class="prettyprint source"><code>&lt;script src=&quot;./path/to/ckeditor.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;./path/to/translations/en.js&quot;&gt;&lt;/script&gt;</code></pre>
+} );</code></pre><p>If you cannot import this function from this module (e.g. because you use a CKEditor 5 build), then you can
+still add translations by extending the global <code>window.CKEDITOR_TRANSLATIONS</code> object by using a function like
+the one below:</p>
+<pre class="prettyprint source"><code>function addTranslations( language, translations ) {
+    if ( !window.CKEDITOR_TRANSLATIONS ) {
+        window.CKEDITOR_TRANSLATIONS = {};
+    }
+
+    const dictionary = window.CKEDITOR_TRANSLATIONS[ language ] || ( window.CKEDITOR_TRANSLATIONS[ language ] = {} );
+
+    // Extend the dictionary for the given language.
+    Object.assign( dictionary, translations );
+}</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code>lang
+                                        <dt><code>language
                                             :
  <span>String</span></code></dt>
                                         <dd><p>Target language.</p>
@@ -157,14 +166,15 @@ the other script, just after that one.</p>
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="static-function-translate">
-                          <h3><code><a class="member-name" href="#static-function-translate">translate</a>( lang, translationKey ) &rarr;  <span>String</span></code></h3>
+                          <h3><code><a class="member-name" href="#static-function-translate">translate</a>( language, translationKey ) &rarr;  <span>String</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">static</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Translates string if the translation of the string was previously <a href="module_utils_translation-service.html#static-function-add">added</a>
-to the dictionary. This happens in a multi-language mode were translation modules are created by the bundler.
+                          <p class="collapsing-list__excerpt">Translates string if the translation of the string was previously added to the dictionary.
+See <a href="module_utils_translation-service.html">Translation Service</a>.
+This happens in a multi-language mode were translation modules are created by the bundler.
                           </p>
                           <div class="collapsing-list__content">
 <p>When no translation is defined in the dictionary or the dictionary doesn&apos;t exist this function returns
@@ -174,7 +184,7 @@ is left empty, so this function will return the original strings always.</p>
 <pre class="prettyprint source"><code>translate( &apos;pl&apos;, &apos;Cancel [context: reject]&apos; );</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code>lang
+                                        <dt><code>language
                                             :
  <span>String</span></code></dt>
                                         <dd><p>Target language.</p>

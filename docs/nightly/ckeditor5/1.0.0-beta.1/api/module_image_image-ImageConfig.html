@@ -72,7 +72,7 @@
           </p>
           <div class="types">
           </div>
-          <div class="main-description"><p>The configuration of the image features. Used by the image features in <code>@ckeditor/ckeditor5-image</code> package.</p>
+          <div class="main-description"><p>The configuration of the image features. Used by the image features in the <code>@ckeditor/ckeditor5-image</code> package.</p>
 <pre class="prettyprint source"><code>ClassicEditor
     .create( editorElement, {
         image: ... // Image feature options.
@@ -124,14 +124,14 @@
     styles: [ &apos;full&apos;, &apos;side&apos; ]
 };</code></pre><p>which configures two default styles:</p>
 <ul>
-<li>the &quot;full&quot; style which doesn&apos;t apply any class, e.g. for images styled to span 100% width of the content,</li>
+<li>the &quot;full&quot; style which does not apply any class, e.g. for images styled to span 100% width of the content,</li>
 <li>the &quot;side&quot; style with the <code>.image-style-side</code> CSS class.</li>
 </ul>
 <p>See <a href="module_image_imagestyle_utils.html#constant-defaultStyles"><code>defaultStyles</code></a> to learn more about default
 styles provided by the image feature.</p>
 <p>The <a href="module_image_imagestyle_utils.html#constant-defaultStyles">default styles</a> can be customized,
 e.g. to change the icon, title or CSS class of the style. The feature also provides several
-<a href="module_image_imagestyle_utils.html#constant-defaultIcons">default icons</a> to chose from.</p>
+<a href="module_image_imagestyle_utils.html#constant-defaultIcons">default icons</a> to choose from.</p>
 <pre class="prettyprint source"><code>import customIcon from &apos;custom-icon.svg&apos;;
 
 // ...
@@ -145,7 +145,7 @@ const imageConfig = {
         // This will customize the icon, title and CSS class of the default &quot;side&quot; style.
         { name: &apos;side&apos;, icon: customIcon, title: &apos;My side style&apos;, class: &apos;custom-side-image&apos; }
     ]
-};</code></pre><p>If none of the default styles is good enough, it is possible to define independent custom styles too:</p>
+};</code></pre><p>If none of the default styles is good enough, it is possible to define independent custom styles, too:</p>
 <pre class="prettyprint source"><code>import fullSizeIcon from &apos;@ckeditor/ckeditor5-core/theme/icons/object-center.svg&apos;;
 import sideIcon from &apos;@ckeditor/ckeditor5-core/theme/icons/object-right.svg&apos;;
 
@@ -163,7 +163,7 @@ will automatically translate it to the language of the editor.</p>
 <p>Read more about styling images in the <a href="../features/image.html#image-styles" data-glink="">Image styles guide</a>.</p>
 <p>The feature creates commands based on defined styles, so you can change the style of a selected image by executing
 the following command:</p>
-<pre class="prettyprint source"><code>editor.execute( &apos;imageStyle&apos; { value: &apos;side&apos; } );</code></pre><p>The feature creates also buttons which execute the command. So, assuming that you use the
+<pre class="prettyprint source"><code>editor.execute( &apos;imageStyle&apos; { value: &apos;side&apos; } );</code></pre><p>The feature also creates buttons that execute the commands. So, assuming that you use the
 default image styles setting, you can <a href="module_image_image-ImageConfig.html#member-toolbar">configure the image toolbar</a>
 (or any other toolbar) to contain these options:</p>
 <pre class="prettyprint source"><code>const imageConfig = {
@@ -178,14 +178,14 @@ default image styles setting, you can <a href="module_image_image-ImageConfig.ht
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Items to be placed in the image toolbar.
-The option is used by the <a href="module_image_imagetoolbar-ImageToolbar.html"><code>ImageToolbar</code></a> feature.</p>
+This option is used by the <a href="module_image_imagetoolbar-ImageToolbar.html"><code>ImageToolbar</code></a> feature.</p>
                           <div class="collapsing-list__content">
 <p>Assuming that you use the following features:</p>
 <ul>
 <li><a href="module_image_imagestyle-ImageStyle.html"><code>ImageStyle</code></a> (with a default configuration),</li>
-<li><a href="module_image_imagetextalternative-ImageTextAlternative.html"><code>ImageTextAlternative</code></a>.</li>
+<li><a href="module_image_imagetextalternative-ImageTextAlternative.html"><code>ImageTextAlternative</code></a>,</li>
 </ul>
-<p>Three toolbar items will be available in <a href="module_ui_componentfactory-ComponentFactory.html"><code>ComponentFactory</code></a>:
+<p>three toolbar items will be available in <a href="module_ui_componentfactory-ComponentFactory.html"><code>ComponentFactory</code></a>:
 <code>&apos;imageStyle:full&apos;</code>, <code>&apos;imageStyle:side&apos;</code>, and <code>&apos;imageTextAlternative&apos;</code> so you can configure the toolbar like this:</p>
 <pre class="prettyprint source"><code>const imageConfig = {
     toolbar: [ &apos;imageStyle:full&apos;, &apos;imageStyle:side&apos;, &apos;|&apos;, &apos;imageTextAlternative&apos; ]

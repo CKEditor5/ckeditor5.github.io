@@ -106,8 +106,8 @@
           </div>
           <div class="main-description"><p>The <a href=../builds/guides/overview.html#decoupled-editor data-glink>decoupled editor</a> implementation.
 It provides an inline editable and a toolbar. However, unlike other editors,
-it does not render these components anywhere in DOM unless configured.</p>
-<p>This type of an editor is dedicated for integrations which require a customized UI with an open
+it does not render these components anywhere in the DOM unless configured.</p>
+<p>This type of an editor is dedicated to integrations which require a customized UI with an open
 structure, allowing developers to specify the exact location of the interface.</p>
 <p>See the document editor <a href=../examples/builds/document-editor.html data-glink>demo</a> to learn about possible use cases
 for the decoupled editor.</p>
@@ -119,7 +119,7 @@ but it is also available in the <a href=../builds/guides/overview.html#document-
 <p><a href=../builds/guides/overview.html data-glink>Builds</a> are ready-to-use editors with plugins bundled in. When using the editor from
 source you need to take care of loading all plugins by yourself
 (through the <a href="module_core_editor_editorconfig-EditorConfig.html#member-plugins"><code>config.plugins</code></a> option).
-Using the editor from source gives much better flexibility and allows easier customization.</p>
+Using the editor from source gives much better flexibility and allows for easier customization.</p>
 <p>Read more about initializing the editor from source or as a build in
 <a href="module_editor-decoupled_decouplededitor-DecoupledEditor.html#static-function-create"><code>DecoupledEditor.create()</code></a>.</p></div>
 <div class="notice notice__filter api-props-filter">
@@ -352,7 +352,7 @@ in <code>config.removePlugins</code> or unless <code>config.plugins</code> is pa
                           <p class="collapsing-list__excerpt">Creates an instance of the decoupled editor.
                           </p>
                           <div class="collapsing-list__content">
-<p><strong>Note:</strong> do not use the constructor to create editor instances. Use the static
+<p><strong>Note:</strong> Do not use the constructor to create editor instances. Use the static
 <a href="module_editor-decoupled_decouplededitor-DecoupledEditor.html#static-function-create"><code>DecoupledEditor.create()</code></a> method instead.</p>
                             <h4>Parameters</h4>
                                       <dl>
@@ -999,13 +999,13 @@ be released if no properties provided.</p>
                           <p class="collapsing-list__excerpt">Creates a decoupled editor instance.
                           </p>
                           <div class="collapsing-list__content">
-<p>Creating instance when using the <a href="../builds/index.html" data-glink="">CKEditor build</a>:</p>
+<p>Creating an instance when using the <a href="../builds/index.html" data-glink="">CKEditor build</a>:</p>
 <pre class="prettyprint source"><code>DecoupledEditor
     .create( &apos;&lt;p&gt;Editor data&lt;/p&gt;&apos;, {
-        // The location of the toolbar in DOM.
+        // The location of the toolbar in the DOM.
         toolbarContainer: document.querySelector( &apos;body div.toolbar-container&apos; ),
 
-        // The location of the editable in DOM.
+        // The location of the editable in the DOM.
         editableContainer: document.querySelector( &apos;body div.editable-container&apos; )
     } )
     .then( editor =&gt; {
@@ -1013,7 +1013,7 @@ be released if no properties provided.</p>
     } )
     .catch( err =&gt; {
         console.error( err.stack );
-    } );</code></pre><p>Creating instance when using CKEditor from source (make sure to specify the list of plugins to load and the toolbar):</p>
+    } );</code></pre><p>Creating an instance when using CKEditor from source (make sure to specify the list of plugins to load and the toolbar):</p>
 <pre class="prettyprint source"><code>import DecoupledEditor from &apos;@ckeditor/ckeditor5-editor-decoupled/src/decouplededitor&apos;;
 import Essentials from &apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;;
 import Bold from &apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;;
@@ -1025,10 +1025,10 @@ DecoupledEditor
         plugins: [ Essentials, Bold, Italic, ... ],
         toolbar: [ &apos;bold&apos;, &apos;italic&apos;, ... ],
 
-        // The location of the toolbar in DOM.
+        // The location of the toolbar in the DOM.
         toolbarContainer: document.querySelector( &apos;div.toolbar-container&apos; ),
 
-        // The location of the editable in DOM.
+        // The location of the editable in the DOM.
         editableContainer: document.querySelector( &apos;div.editable-container&apos; )
     } )
     .then( editor =&gt; {
@@ -1036,9 +1036,9 @@ DecoupledEditor
     } )
     .catch( err =&gt; {
         console.error( err.stack );
-    } );</code></pre><p><strong>Note</strong>: <a href="module_core_editor_editorconfig-EditorConfig.html#member-toolbarContainer"><code>config.toolbarContainer</code></a> and
-<a href="module_core_editor_editorconfig-EditorConfig.html#member-editableContainer"><code>config.editableContainer</code></a> are optional. It is
-possible to define the location of the UI elements manually once the editor is up and running:</p>
+    } );</code></pre><p><strong>Note</strong>: The <a href="module_core_editor_editorconfig-EditorConfig.html#member-toolbarContainer"><code>config.toolbarContainer</code></a> and
+<a href="module_core_editor_editorconfig-EditorConfig.html#member-editableContainer"><code>config.editableContainer</code></a> settings are optional.
+It is possible to define the location of the UI elements manually once the editor is up and running:</p>
 <pre class="prettyprint source"><code>DecoupledEditor
     .create( &apos;&lt;p&gt;Editor data&lt;/p&gt;&apos; )
     .then( editor =&gt; {

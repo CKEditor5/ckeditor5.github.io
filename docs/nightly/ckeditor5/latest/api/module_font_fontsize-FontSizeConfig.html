@@ -73,10 +73,10 @@
           <div class="types">
           </div>
           <div class="main-description"><p>The configuration of the font size feature.
-The option is used by the <a href="module_font_fontsize_fontsizeediting-FontSizeEditing.html"><code>FontSizeEditing</code></a> feature.</p>
+This option is used by the <a href="module_font_fontsize_fontsizeediting-FontSizeEditing.html"><code>FontSizeEditing</code></a> feature.</p>
 <pre class="prettyprint source"><code>ClassicEditor
     .create( {
-        fontSize: ... // Font size feature config.
+        fontSize: ... // Font size feature configuration.
     } )
     .then( ... )
     .catch( ... );</code></pre><p>See <a href="module_core_editor_editorconfig-EditorConfig.html">all editor options</a>.</p></div>
@@ -130,16 +130,16 @@ or the <a href="module_font_fontsize-FontSizeOption.html"><code>FontSizeOption</
         &apos;big&apos;,
         &apos;huge&apos;
     ]
-};</code></pre><p>It defines 4 sizes: <strong>tiny</strong>, <strong>small</strong>, <strong>big</strong>, and <strong>huge</strong>. These values will be rendered as <code>span</code> elements in view.
+};</code></pre><p>It defines 4 sizes: <strong>tiny</strong>, <strong>small</strong>, <strong>big</strong>, and <strong>huge</strong>. These values will be rendered as <code>&lt;span&gt;</code> elements in the view.
 The <strong>default</strong> defines a text without the <code>fontSize</code> attribute.</p>
-<p>Each <code>span</code> has the <code>class</code> attribute set to the corresponding size name. For instance, this is what the <strong>small</strong> size looks
+<p>Each <code>&lt;span&gt;</code> has the the <code>class</code> attribute set to the corresponding size name. For instance, this is what the <strong>small</strong> size looks
 like in the view:</p>
-<pre class="prettyprint source"><code>&lt;span class=&quot;text-small&quot;&gt;...&lt;/span&gt;</code></pre><p>As an alternative, the font size might be defined using the numerical values (either as a <code>Number</code> or as a <code>String</code>):</p>
+<pre class="prettyprint source"><code>&lt;span class=&quot;text-small&quot;&gt;...&lt;/span&gt;</code></pre><p>As an alternative, the font size might be defined using numerical values (either as a <code>Number</code> or as a <code>String</code>):</p>
 <pre class="prettyprint source"><code>const fontSizeConfig = {
     options: [ 9, 10, 11, 12, 13, 14, 15 ]
 };</code></pre><p>Font size can be applied using the command API. To do that, use the <code>fontSize</code> command and pass the desired font size as a <code>value</code>.
-For example, the below code will apply the <code>fontSize</code> attribute with the <strong>tiny</strong> value to the current selection:</p>
-<pre class="prettyprint source"><code>editor.execute( &apos;fontSize&apos;, { value: &apos;tiny&apos; } );</code></pre><p>Executing <code>fontSize</code> command without value will remove <code>fontSize</code> attribute from the current selection.</p>
+For example, the following code will apply the <code>fontSize</code> attribute with the <strong>tiny</strong> value to the current selection:</p>
+<pre class="prettyprint source"><code>editor.execute( &apos;fontSize&apos;, { value: &apos;tiny&apos; } );</code></pre><p>Executing the <code>fontSize</code> command without value will remove the <code>fontSize</code> attribute from the current selection.</p>
                           </div>
                         </div>
                       </li>

@@ -66,15 +66,13 @@
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#configuring-the-font-family-feature">Configuring the font family feature</a></li><li><a href="#configuring-the-font-size-feature">Configuring the font size feature</a><ol><li><a href="#using-the-predefined-presets">Using the predefined presets</a></li><li><a href="#using-numerical-values">Using numerical values</a></li></ol></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 <p>The <a href="../api/module_font_font-Font.html"><code>Font</code></a> plugin enables the following features in the editor:</p>
 <ul>
-<li><a href="../api/module_font_fontfamily-FontFamily.html"><code>FontFamily</code></a> &#x2013; allows to change the font family by applying inline <code>&lt;span&gt;</code> elements with a <code>font-family</code> in the <code>style</code> attribute,</li>
-<li><a href="../api/module_font_fontsize-FontSize.html"><code>FontSize</code></a> &#x2013; allows to control size by applying inline <code>&lt;span&gt;</code> elements that either have a CSS class or a <code>font-size</code> in the <code>style</code> attribute.</li>
+<li><a href="../api/module_font_fontfamily-FontFamily.html"><code>FontFamily</code></a> &#x2013; Allows to change the font family by applying inline <code>&lt;span&gt;</code> elements with a <code>font-family</code> in the <code>style</code> attribute.</li>
+<li><a href="../api/module_font_fontsize-FontSize.html"><code>FontSize</code></a> &#x2013; Allows to control the font size by applying inline <code>&lt;span&gt;</code> elements that either have a CSS class or a <code>font-size</code> in the <code>style</code> attribute.</li>
 </ul>
 <h2 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h2>
 <div class="live-snippet"><div id="snippet-font">
-	<h2>Font feature sample.</h2>
-
 	<p>
-		This is a mixed text with different sizes of text:
+		This is a mixed text with different font sizes:
 		<span class="text-tiny">tiny</span>,
 		<span class="text-small">small</span>,
 		<span class="text-big">big</span> and
@@ -82,19 +80,19 @@
 	</p>
 
 	<p>
-		<span style="font-family: Arial, Helvetica, sans-serif;">This text has &quot;Arial, Helvetica, sans-serif&quot; family set.</span>
+		<span style="font-family: Arial, Helvetica, sans-serif;">This text has the &quot;Arial, Helvetica, sans-serif&quot; family set.</span>
 	</p>
 
 	<p>
-		<span style="font-family: &apos;Courier New&apos;, Courier, monospace;">This text has &quot;Courier New, Courier, monospace&quot; family set.</span>
+		<span style="font-family: &apos;Courier New&apos;, Courier, monospace;">This text has the &quot;Courier New, Courier, monospace&quot; family set.</span>
 	</p>
 
 </div>
 </div>
 <h2 id="configuring-the-font-family-feature"><a class="headerlink" href="#configuring-the-font-family-feature">#</a> Configuring the font family feature</h2>
 <p>It is possible to configure which font family options are supported by the editor. Use the <a href="../api/module_font_fontfamily-FontFamilyConfig.html#member-options"><code>fontFamily.options</code></a> configuration option to do so.</p>
-<p>Use the special <code>&apos;default&apos;</code> keyword to use the default <code>font-family</code> defined in the web page styles (removes any custom font family).</p>
-<p>For example, the following editor supports only two font families besides the &#x201C;default&#x201D; one:</p>
+<p>Use the special <code>&apos;default&apos;</code> keyword to use the default font family defined in the web page styles. It removes any custom font family.</p>
+<p>For example, the following editor supports only two font families besides the default one:</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
         <span class="hljs-attr">fontFamily</span>: {
@@ -114,21 +112,19 @@
 <div class="live-snippet"><link href="https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Mono" rel="stylesheet">
 
 <div id="snippet-custom-font-family-options">
-	<h2>Font Family feature sample.</h2>
-
 	<p>
-		<span style="font-family: Ubuntu, Arial, sans-serif;">This text has &quot;Ubuntu, Arial, Helvetica, sans-serif&quot; font family set.</span>
+		<span style="font-family: Ubuntu, Arial, sans-serif;">This text has the &quot;Ubuntu, Arial, sans-serif&quot; font family set.</span>
 	</p>
 
 	<p>
-		<span style="font-family: &apos;Ubuntu Mono&apos;, &apos;Courier New&apos;, Courier, monospace;">This text has &quot;Ubuntu Mono, Courier New, Courier, monospace&quot; font family set.</span>
+		<span style="font-family: &apos;Ubuntu Mono&apos;, &apos;Courier New&apos;, Courier, monospace;">This text has the &quot;Ubuntu Mono, Courier New, Courier, monospace&quot; font family set.</span>
 	</p>
 </div>
 </div>
 <h2 id="configuring-the-font-size-feature"><a class="headerlink" href="#configuring-the-font-size-feature">#</a> Configuring the font size feature</h2>
 <p>It is possible to configure which font size options are supported by the editor. Use the <a href="../api/module_font_fontsize-FontSizeConfig.html#member-options"><code>fontSize.options</code></a> configuration option to do so.</p>
-<p>Use the special <code>&apos;normal&apos;</code> keyword to use the default font size defined in the web page styles (removes any custom size).</p>
-<p>The font size feature supports two ways of defining configuration: using  predefined (named) presets or simple numeric values.</p>
+<p>Use the special <code>&apos;normal&apos;</code> keyword to use the default font size defined in the web page styles. It removes any custom font size.</p>
+<p>The font size feature supports two ways of defining the configuration: using  predefined (named) presets or simple numeric values.</p>
 <h3 id="using-the-predefined-presets"><a class="headerlink" href="#using-the-predefined-presets">#</a> Using the predefined presets</h3>
 <p>The font size feature defines 4 named presets:</p>
 <ul>
@@ -140,7 +136,7 @@
 <p>Each size is represented in the view as a <code>&lt;span&gt;</code> element with the <code>text-*</code> class. For example, the <code>&apos;tiny&apos;</code> preset looks as follows in the editor data:</p>
 <pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-tiny&quot;</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
 </code></pre>
-<p>The CSS definition for the classes (presets) must be included in the web page&#x2019;s styles where the edited content is rendered.</p>
+<p>The CSS definition for the classes (presets) must be included in the web page styles where the edited content is rendered.</p>
 <p>Here is an example of the font size CSS classes:</p>
 <pre class="highlight"><code class="css"><span class="hljs-selector-class">.text-tiny</span> {
     <span class="hljs-attribute">font-size</span>: <span class="hljs-number">0.7em</span>;
@@ -176,10 +172,8 @@
     .catch( ... );
 </code></pre>
 <div class="live-snippet"><div id="snippet-custom-font-size-named-options">
-	<h2>Font Size named options sample.</h2>
-
 	<p>
-		This is a mixed text with different sizes of text:
+		This is a mixed text with different font sizes:
 		<span class="text-small">small</span> and
 		<span class="text-big">big</span>
 	</p>
@@ -213,8 +207,6 @@ For example, <code>14</code> will be represented in the editor data as:</p>
     .catch( ... );
 </code></pre>
 <div class="live-snippet"><div id="snippet-custom-font-size-numeric-options">
-	<h2>Font Size feature numerical options sample.</h2>
-
 	<p><span style="font-size: 9px">9px</span></p>
 	<p><span style="font-size: 11px">11px</span></p>
 	<p><span style="font-size: 13px">13px</span></p>
@@ -225,10 +217,10 @@ For example, <code>14</code> will be represented in the editor data as:</p>
 </div>
 </div>
 <h2 id="installation"><a class="headerlink" href="#installation">#</a> Installation</h2>
-<p>To add this feature to your editor install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-font" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-font</code></a> package:</p>
-<pre class="highlight"><code class="">npm install --save @ckeditor/ckeditor5-font
+<p>To add this feature to your editor, install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-font" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-font</code></a> package:</p>
+<pre class="highlight"><code class="bash">npm install --save @ckeditor/ckeditor5-font
 </code></pre>
-<p>And add it to your plugin list and the toolbar configuration:</p>
+<p>Then add it to your plugin list and the toolbar configuration:</p>
 <pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> Font <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-font/src/font&apos;</span>;
 
 ClassicEditor
@@ -239,7 +231,7 @@ ClassicEditor
     .then( ... )
     .catch( ... );
 </code></pre>
-<p>or add one of the font features to your plugin list and the toolbar configuration:</p>
+<p>You can also add one of the font features to your plugin list and the toolbar configuration:</p>
 <pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> FontFamily <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-font/src/fontfamily&apos;</span>;
 
 ClassicEditor
@@ -307,7 +299,7 @@ editor.execute( <span class="hljs-string">&apos;fontSize&apos;</span>, { <span c
 <span class="hljs-comment">// For named presets:</span>
 editor.execute( <span class="hljs-string">&apos;fontSize&apos;</span>, { <span class="hljs-attr">value</span>: <span class="hljs-string">&apos;small&apos;</span> } );
 </code></pre>
-<p>passing an empty value will remove any <code>fontSize</code> set:</p>
+<p>Passing an empty value will remove any <code>fontSize</code> set:</p>
 <pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;fontSize&apos;</span> );
 </code></pre>
 </li>
