@@ -113,9 +113,9 @@ structure, allowing developers to specify the exact location of the interface.</
 for the decoupled editor.</p>
 <p>In order to create a decoupled editor instance, use the static
 <a href="module_editor-decoupled_decouplededitor-DecoupledEditor.html#static-function-create"><code>DecoupledEditor.create()</code></a> method.</p>
-<h4>Decoupled editor and document build</h4><p>The decoupled editor can be used directly from source (if you installed the
+<h4>Decoupled editor and document editor build</h4><p>The decoupled editor can be used directly from source (if you installed the
 <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-editor-decoupled"><code>@ckeditor/ckeditor5-editor-decoupled</code></a> package)
-but it is also available in the <a href=../builds/guides/overview.html#document-editor data-glink>document build</a>.</p>
+but it is also available in the <a href=../builds/guides/overview.html#document-editor data-glink>document editor build</a>.</p>
 <p><a href=../builds/guides/overview.html data-glink>Builds</a> are ready-to-use editors with plugins bundled in. When using the editor from
 source you need to take care of loading all plugins by yourself
 (through the <a href="module_core_editor_editorconfig-EditorConfig.html#member-plugins"><code>config.plugins</code></a> option).
@@ -226,6 +226,22 @@ Used e.g. for setting or retrieving editor data.</p>
                           <p class="collapsing-list__excerpt">The <a href="module_engine_controller_editingcontroller-EditingController.html">editing controller</a>.
 Controls user input and rendering the content for editing.</p>
                           <div class="collapsing-list__content">
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="member-element">
+                          <h3><code><a class="member-name" href="#member-element">element</a> : <span>HTMLElement</span></code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">readonly</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <p class="collapsing-list__excerpt">The element used as an editable. The data will be loaded from it and loaded back to
+it once the editor is destroyed.</p>
+                          <div class="collapsing-list__content">
+<p><strong>Note:</strong> The property is available only when such element has been passed
+to the <a href="module_editor-decoupled_decouplededitor-DecoupledEditor.html#function-constructor"><code>constructor</code></a>.</p>
                           </div>
                         </div>
                       </li>
@@ -343,7 +359,7 @@ in <code>config.removePlugins</code> or unless <code>config.plugins</code> is pa
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-protected="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-constructor">
-                          <h3><code><a class="member-name" href="#function-constructor">constructor</a>( data, config )</code></h3>
+                          <h3><code><a class="member-name" href="#function-constructor">constructor</a>( elementOrData, config )</code></h3>
                           <p class="badges">
 <span class="badge badge--orange ">protected</span>
                           </p>
@@ -356,10 +372,12 @@ in <code>config.removePlugins</code> or unless <code>config.plugins</code> is pa
 <a href="module_editor-decoupled_decouplededitor-DecoupledEditor.html#static-function-create"><code>DecoupledEditor.create()</code></a> method instead.</p>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code>data
+                                        <dt><code>elementOrData
                                             :
- <span>String</span></code></dt>
-                                        <dd><p>The data to be loaded into the editor.</p>
+ <span>HTMLElement</span> | <span>String</span></code></dt>
+                                        <dd><p>The DOM element that serves as an editable.
+The data will be loaded from it and loaded back to it once the editor is destroyed.
+Alternatively, a data string to be loaded into the editor.</p>
                                         </dd>
                                         <dt><code>config
                                             :
@@ -516,6 +534,18 @@ emitterA.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( emitterC );</cod
                           <p class="collapsing-list__excerpt">Destroys the editor instance, releasing all resources used by it.
                           </p>
                           <div class="collapsing-list__content">
+<p><strong>Note</strong>: The decoupled editor does not remove the toolbar and editable when destroyed. You can
+do that yourself in the destruction chain:</p>
+<pre class="prettyprint source"><code>editor.destroy()
+    .then( () =&gt; {
+        // Remove the toolbar from DOM.
+        editor.ui.view.toolbar.element.remove();
+
+        // Remove the editable from DOM.
+        editor.ui.view.editable.element.remove();
+
+        console.log( &apos;Editor was destroyed&apos; );
+    } );</code></pre>
                             <h4>Returns</h4>
                             <dl>
                                         <dt><code><span>Promise</span></code></dt>
@@ -990,7 +1020,7 @@ be released if no properties provided.</p>
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="static-function-create">
-                          <h3><code><a class="member-name" href="#static-function-create">create</a>( data, config ) &rarr;  <span>Promise</span></code></h3>
+                          <h3><code><a class="member-name" href="#static-function-create">create</a>( elementOrData, config ) &rarr;  <span>Promise</span></code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">static</span>
                           </p>
@@ -999,16 +1029,13 @@ be released if no properties provided.</p>
                           <p class="collapsing-list__excerpt">Creates a decoupled editor instance.
                           </p>
                           <div class="collapsing-list__content">
-<p>Creating an instance when using the <a href="../builds/index.html" data-glink="">CKEditor build</a>:</p>
+<p>Creating an instance when using the <a href="../builds/index.html" data-glink="">CKEditor 5 build</a>:</p>
 <pre class="prettyprint source"><code>DecoupledEditor
-    .create( &apos;&lt;p&gt;Editor data&lt;/p&gt;&apos;, {
-        // The location of the toolbar in the DOM.
-        toolbarContainer: document.querySelector( &apos;body div.toolbar-container&apos; ),
-
-        // The location of the editable in the DOM.
-        editableContainer: document.querySelector( &apos;body div.editable-container&apos; )
-    } )
+    .create( document.querySelector( &apos;#editor&apos; ) )
     .then( editor =&gt; {
+        // Append the toolbar to the &lt;body&gt; element.
+        document.body.appendChild( editor.ui.view.toolbar.element );
+
         console.log( &apos;Editor was initialized&apos;, editor );
     } )
     .catch( err =&gt; {
@@ -1021,42 +1048,42 @@ import Italic from &apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;;
 import ...
 
 DecoupledEditor
-    .create( &apos;&lt;p&gt;Editor data&lt;/p&gt;&apos;, {
+    .create( document.querySelector( &apos;#editor&apos; ), {
         plugins: [ Essentials, Bold, Italic, ... ],
-        toolbar: [ &apos;bold&apos;, &apos;italic&apos;, ... ],
-
-        // The location of the toolbar in the DOM.
-        toolbarContainer: document.querySelector( &apos;div.toolbar-container&apos; ),
-
-        // The location of the editable in the DOM.
-        editableContainer: document.querySelector( &apos;div.editable-container&apos; )
+        toolbar: [ &apos;bold&apos;, &apos;italic&apos;, ... ]
     } )
     .then( editor =&gt; {
+        // Append the toolbar to the &lt;body&gt; element.
+        document.body.appendChild( editor.ui.view.toolbar.element );
+
         console.log( &apos;Editor was initialized&apos;, editor );
     } )
     .catch( err =&gt; {
         console.error( err.stack );
-    } );</code></pre><p><strong>Note</strong>: The <a href="module_core_editor_editorconfig-EditorConfig.html#member-toolbarContainer"><code>config.toolbarContainer</code></a> and
-<a href="module_core_editor_editorconfig-EditorConfig.html#member-editableContainer"><code>config.editableContainer</code></a> settings are optional.
-It is possible to define the location of the UI elements manually once the editor is up and running:</p>
+    } );</code></pre><p><strong>Note</strong>: It is possible to create the editor out of a pure data string. The editor will then render
+an editable element that must be inserted into the DOM for the editor to work properly:</p>
 <pre class="prettyprint source"><code>DecoupledEditor
     .create( &apos;&lt;p&gt;Editor data&lt;/p&gt;&apos; )
     .then( editor =&gt; {
-        console.log( &apos;Editor was initialized&apos;, editor );
-
-        // Append the toolbar and editable straight into the &lt;body&gt; element.
+        // Append the toolbar to the &lt;body&gt; element.
         document.body.appendChild( editor.ui.view.toolbar.element );
+
+        // Append the editable to the &lt;body&gt; element.
         document.body.appendChild( editor.ui.view.editable.element );
+
+        console.log( &apos;Editor was initialized&apos;, editor );
     } )
     .catch( err =&gt; {
         console.error( err.stack );
     } );</code></pre>
                             <h4>Parameters</h4>
                                       <dl>
-                                        <dt><code>data
+                                        <dt><code>elementOrData
                                             :
- <span>String</span></code></dt>
-                                        <dd><p>The data to be loaded into the editor.</p>
+ <span>HTMLElement</span> | <span>String</span></code></dt>
+                                        <dd><p>The DOM element that serves as an editable.
+The data will be loaded from it and loaded back to it once the editor is destroyed.
+Alternatively, a data string to be loaded into the editor.</p>
                                         </dd>
                                         <dt><code>config
                                             :

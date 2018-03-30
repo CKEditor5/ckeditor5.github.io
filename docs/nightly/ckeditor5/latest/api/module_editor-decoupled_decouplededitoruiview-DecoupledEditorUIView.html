@@ -109,9 +109,8 @@
 <a href="module_editor-decoupled_decouplededitoruiview-DecoupledEditorUIView.html#member-editable"><code>editable</code></a> and a
 <a href="module_editor-decoupled_decouplededitoruiview-DecoupledEditorUIView.html#member-toolbar"><code>toolbar</code></a>, but without any
 specific arrangement of the components in the DOM.</p>
-<p>See <a href="module_core_editor_editorconfig-EditorConfig.html#member-toolbarContainer"><code>config.toolbarContainer</code></a> and
-<a href="module_core_editor_editorconfig-EditorConfig.html#member-editableContainer"><code>config.editableContainer</code></a> to
-learn more about the UI of the decoupled editor.</p></div>
+<p>See <a href="module_editor-decoupled_decouplededitor-DecoupledEditor.html#static-function-create"><code>DecoupledEditor.create()</code></a>
+to learn more about this view.</p></div>
 <div class="notice notice__filter api-props-filter">
   <div class="api-props-filter__inner">
     <h4>Filtering</h4>
@@ -336,7 +335,7 @@ into the <a href="module_ui_template-Template.html#member-children"><code>childr
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-constructor">
-                          <h3><code><a class="member-name" href="#function-constructor">constructor</a>( locale )</code></h3>
+                          <h3><code><a class="member-name" href="#function-constructor">constructor</a>( locale, [ editableElement ] )</code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Creates an instance of the decoupled editor UI view.
@@ -348,6 +347,11 @@ into the <a href="module_ui_template-Template.html#member-children"><code>childr
                                             :
  <span><a class="collapsing-list__type" href="module_utils_locale-Locale.html">Locale</a></span></code></dt>
                                         <dd><p>The <a href="module_core_editor_editor-Editor.html#member-locale"><code>locale</code></a> instance.</p>
+                                        </dd>
+                                        <dt><code>[ editableElement ]
+                                            :
+ <span>HTMLElement</span></code></dt>
+                                        <dd><p>The DOM element to be used as editable.</p>
                                         </dd>
                                       </dl>
                             <div class="collapsing-list__bottom">
@@ -612,32 +616,23 @@ become a child of another parent view.
                           </div>
                         </div>
                       </li>
-                      <li class="collapsing-list__item" data-public="true">
+                      <li class="collapsing-list__item" data-public="true" data-inherited="true">
                         <div class="collapsing-list__term toggler--collapsed" id="function-destroy">
-                          <h3><code><a class="member-name" href="#function-destroy">destroy</a>( [ removeToolbar ], [ removeEditable ] )</code></h3>
+                          <h3><code><a class="member-name" href="#function-destroy">destroy</a>()</code></h3>
+                          <p class="badges">
+<span class="badge badge--gray ">inherited</span>
+                          </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Destroys the view and removes the <a href="module_editor-decoupled_decouplededitoruiview-DecoupledEditorUIView.html#member-toolbar"><code>toolbar</code></a> and <a href="module_editor-decoupled_decouplededitoruiview-DecoupledEditorUIView.html#member-editable"><code>editable</code></a>
-<a href="module_ui_view-View.html#member-element"><code>element</code></a> from the DOM, if required.
+                          <p class="collapsing-list__excerpt">Recursively destroys the view instance and child views added by <a href="module_ui_view-View.html#function-registerChildren"><code>registerChildren</code></a> and
+residing in collections created by the <a href="module_ui_view-View.html#function-createCollection"><code>createCollection</code></a>.
                           </p>
                           <div class="collapsing-list__content">
-                            <h4>Parameters</h4>
-                                      <dl>
-                                        <dt><code>[ removeToolbar ]
-                                            :
- <span>Boolean</span></code></dt>
-                                        <dd><p>When <code>true</code>, remove the <a href="#toolbar"><code>toolbar</code></a> element from the DOM.</p>
-                                        </dd>
-                                        <dt><code>[ removeEditable ]
-                                            :
- <span>Boolean</span></code></dt>
-                                        <dd><p>When <code>true</code>, remove the <a href="#editable"><code>editable</code></a> element from the DOM.</p>
-                                        </dd>
-                                      </dl>
-                            <div class="collapsing-list__bottom">
-                              Overrides:
- <span><a href="module_ui_editorui_editoruiview-EditorUIView.html#destroy">EditorUIView#destroy</a></span> 
-                            </div>
+<p>Destruction disables all event listeners:</p>
+<ul>
+<li>created on the view, e.g. <code>view.on( &apos;event&apos;, () =&gt; {} )</code>,</li>
+<li>defined in the <a href="module_ui_view-View.html#member-template"><code>template</code></a> for DOM events.</li>
+</ul>
                           </div>
                         </div>
                       </li>

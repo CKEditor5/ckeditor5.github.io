@@ -123,8 +123,8 @@
 </div>
 <h2 id="configuring-the-font-size-feature"><a class="headerlink" href="#configuring-the-font-size-feature">#</a> Configuring the font size feature</h2>
 <p>It is possible to configure which font size options are supported by the editor. Use the <a href="../api/module_font_fontsize-FontSizeConfig.html#member-options"><code>fontSize.options</code></a> configuration option to do so.</p>
-<p>Use the special <code>&apos;normal&apos;</code> keyword to use the default font size defined in the web page styles. It removes any custom font size.</p>
-<p>The font size feature supports two ways of defining the configuration: using  predefined (named) presets or simple numeric values.</p>
+<p>Use the special <code>&apos;default&apos;</code> keyword to use the default font size defined in the web page styles. It removes any custom font size.</p>
+<p>The font size feature supports two ways of defining the configuration: using predefined (named) presets or simple numeric values.</p>
 <h3 id="using-the-predefined-presets"><a class="headerlink" href="#using-the-predefined-presets">#</a> Using the predefined presets</h3>
 <p>The font size feature defines 4 named presets:</p>
 <ul>
@@ -160,7 +160,7 @@
         <span class="hljs-attr">fontSize</span>: {
             <span class="hljs-attr">options</span>: [
                 <span class="hljs-string">&apos;tiny&apos;</span>,
-                <span class="hljs-string">&apos;normal&apos;</span>,
+                <span class="hljs-string">&apos;default&apos;</span>,
                 <span class="hljs-string">&apos;big&apos;</span>
             ]
         },
@@ -185,7 +185,7 @@
 For example, <code>14</code> will be represented in the editor data as:</p>
 <pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;font-size: 14px&quot;</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
 </code></pre>
-<p>Here is an example of the editor that supports numerical font sizes. Note that <code>&apos;normal&apos;</code> is controlled by the default styles of the web page:</p>
+<p>Here is an example of the editor that supports numerical font sizes. Note that <code>&apos;default&apos;</code> is controlled by the default styles of the web page:</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
         <span class="hljs-attr">fontSize</span>: {
@@ -193,7 +193,7 @@ For example, <code>14</code> will be represented in the editor data as:</p>
                 <span class="hljs-number">9</span>,
                 <span class="hljs-number">11</span>,
                 <span class="hljs-number">13</span>,
-                <span class="hljs-string">&apos;normal&apos;</span>,
+                <span class="hljs-string">&apos;default&apos;</span>,
                 <span class="hljs-number">17</span>,
                 <span class="hljs-number">19</span>,
                 <span class="hljs-number">21</span>

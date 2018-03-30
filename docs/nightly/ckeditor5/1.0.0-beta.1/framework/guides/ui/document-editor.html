@@ -64,11 +64,40 @@
           </div>
           <h1><img src="../../../../../assets/0.4.0/img/book.svg" alt="guide">Document editor
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#the-editor">The editor</a></li><li><a href="#the-user-interface">The user interface</a><ol><li><a href="#html">HTML</a></li><li><a href="#styles">Styles</a></li></ol></li><li><a href="#summary">Summary</a></li></ol></nav>
-<p>The <a href="../../../examples/builds/document-editor.html">document editor example</a> showcases the <a href="../../../builds/guides/quick-start.html#document-editor">document editor build</a> designed for document editing with a customized UI representing the layout of a sheet of paper. It was created on top of the <a href="../../../api/module_editor-decoupled_decouplededitor-DecoupledEditor.html"><code>DecoupledEditor</code></a> and makes the best of what it offers: the freedom to choose the location of the crucial UI elements in the application.</p>
+<p>The <a href="../../../examples/builds/document-editor.html">document editor example</a> showcases the <a href="../../../builds/guides/quick-start.html#document-editor">document editor build</a> designed for document editing with a customized UI representing the layout of a sheet of paper. It was created on top of the <a href="../../../api/module_editor-decoupled_decouplededitor-DecoupledEditor.html"><code>DecoupledEditor</code></a> class and makes the best of what it offers: the freedom to choose the location of the crucial UI elements in the application.</p>
 <p>In this tutorial you will learn how to create your own document editor with a customized user interface, step&#x2013;by&#x2013;step.</p>
 <div class="live-snippet"><div class="document-editor">
 	<div class="document-editor__toolbar"></div>
-	<div class="document-editor__editable"></div>
+	<div class="document-editor__editable-container">
+		<div class="document-editor__editable">
+			<h2 style="text-align:center;">The Flavorful Tuscany Meetup</h2>
+			<h3 style="text-align:center;">Welcome letter</h3>
+
+			<p>Dear Guest,</p>
+			<p>We are delighted to welcome you to the annual <em>Flavorful Tuscany Meetup</em> and hope you will enjoy the programme as well as your stay at the <a href="http://ckeditor.com">Bilancino Hotel</a>.</p>
+			<p>Please find below the full schedule of the event.</p>
+
+			<ul>
+				<li>9:30 AM - 11:30 AM	Americano vs. Brewed - &#x201C;know your coffee&#x201D; session with <strong>Stefano Garau</strong></li>
+				<li>1:00 PM - 3:00 PM	Pappardelle al pomodoro - live cooking session with <strong>Rita Fresco</strong></li>
+				<li>5:00 PM - 8:00 PM	Tuscan vineyards at a glance - wine-tasting session with <strong>Frederico Riscoli</strong></li>
+			</ul>
+
+			<blockquote>
+				<p>The annual Flavorful Tuscany meetups are always a culinary discovery. You get the best of Tuscan flavors during an intense one-day stay at one of the top hotels of the region. All the sessions are lead by top chefs passionate about their profession. I would certainly recommend to save the date in your calendar for this one!</p>
+
+				<p>Angelina Calvino, food journalist</p>
+			</blockquote>
+
+			<p>Please arrive at the <a href="http://ckeditor.com">Bilancino Hotel</a> reception desk at least <strong>half an hour earlier</strong> to make sure that the registration process goes as smoothly as possible.</p>
+
+			<p>We look forward to welcoming you to the event.</p>
+
+			<p><strong>Victoria Valc</strong></p>
+			<p><strong>Event Manager</strong></p>
+			<p><strong>Bilancino Hotel</strong></p>
+		</div>
+	</div>
 </div>
 
 <style>
@@ -103,7 +132,7 @@
 	}
 
 	/* Make the editable container look like the inside of a native word processor app. */
-	.document-editor__editable {
+	.document-editor__editable-container {
 		padding: calc( 2 * var(--ck-spacing-large) );
 		background: var(--ck-color-base-foreground);
 
@@ -111,9 +140,9 @@
 		overflow-y: scroll;
 	}
 
-	.document-editor__editable .ck-editor__editable {
+	.document-editor__editable-container .ck-editor__editable {
 		/* Set the dimensions of the "page". */
-		width: 15cm;
+		width: 15.8cm;
 		min-height: 21cm;
 
 		/* Keep the "page" off the boundaries of the container. */
@@ -131,7 +160,7 @@
 	}
 
 	/* Override the page's width in the "Examples" section which is wider. */
-	.main__content-wide .document-editor__editable .ck-editor__editable {
+	.main__content-wide .document-editor__editable-container .ck-editor__editable {
 		width: 18cm;
 	}
 
@@ -207,65 +236,33 @@
 		margin-left: calc( 2 * var(--ck-spacing-large) );
 		margin-right: calc( 2 * var(--ck-spacing-large) );
 	}
-
-	.document-editor__data {
-		display: none;
-	}
 </style>
-
-<div class="document-editor__data">
-	<h2 style="text-align:center;">The Flavorful Tuscany Meetup</h2>
-	<h3 style="text-align:center;">Welcome letter</h3>
-
-	<p>Dear Guest,</p>
-	<p>We are delighted to welcome you to the annual <em>Flavorful Tuscany Meetup</em> and hope you will enjoy the programme as well as your stay at the <a href="http://ckeditor.com">Bilancino Hotel</a>.</p>
-	<p>Please find below the full schedule of the event.</p>
-
-	<ul>
-		<li>9:30 AM - 11:30 AM	Americano vs. Brewed - &#x201C;know your coffee&#x201D; session with <strong>Stefano Garau</strong></li>
-		<li>1:00 PM - 3:00 PM	Pappardelle al pomodoro - live cooking session with <strong>Rita Fresco</strong></li>
-		<li>5:00 PM - 8:00 PM	Tuscan vineyards at a glance - wine-tasting session with <strong>Frederico Riscoli</strong></li>
-	</ul>
-
-	<blockquote>
-		<p>The annual Flavorful Tuscany meetups are always a culinary discovery. You get the best of Tuscan flavors during an intense one-day stay at one of the top hotels of the region. All the sessions are lead by top chefs passionate about their profession. I would certainly recommend to save the date in your calendar for this one!</p>
-
-		<p>Angelina Calvino, food journalist</p>
-	</blockquote>
-
-	<p>Please arrive at the <a href="http://ckeditor.com">Bilancino Hotel</a> reception desk at least <strong>half an hour earlier</strong> to make sure that the registration process goes as smoothly as possible.</p>
-
-	<p>We look forward to welcoming you to the event.</p>
-
-	<p><strong>Victoria Valc</strong></p>
-	<p><strong>Event Manager</strong></p>
-	<p><strong>Bilancino Hotel</strong></p>
-</div>
 </div>
 <h2 id="the-editor"><a class="headerlink" href="#the-editor">#</a> The editor</h2>
-<p>The <code>DecoupledDocumentEditor</code> includes all the necessary features for the task. All you need to do is import it and create a new instance.</p>
+<p>The document editor build includes all the necessary features for the task. All you need to do is import it and create a new instance.</p>
 <div class="info-box notice"><p>See the <a href="../../../builds/guides/quick-start.html#document-editor">quick start guide</a> to learn how to install the document editor build.</p></div>
-<p>Unlike the <a href="../../../builds/guides/overview.html#classic-editor">classic editor</a>, the document editor does not require any data container in the DOM. Instead, it accepts a string containing the initial data as the first argument of the static <code>create()</code> method. To get the output data, use the <a href="../../../api/module_core_editor_utils_dataapimixin-DataApi.html#function-getData"><code>getData</code></a> method.</p>
+<p>The document editor can be created using the existing data container in the DOM. It can also accept a raw data string and create the editable by itself. To get the output data, use the <a href="../../../api/module_core_editor_utils_dataapimixin-DataApi.html#function-getData"><code>getData()</code></a> method.</p>
+<div class="info-box notice"><p>See the <a href="../../../api/module_editor-decoupled_decouplededitor-DecoupledEditor.html#static-function-create"><code>DecoupledEditor.create()</code></a> to learn about different approaches to the initialization of the editor.</p></div>
 <pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> DecoupledDocumentEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-build-decoupled-document/src/ckeditor&apos;</span>;
 
 DecoupledDocumentEditor
-    .create( <span class="hljs-string">&apos;&lt;p&gt;Initial editor data.&lt;/p&gt;&apos;</span>, {
-        <span class="hljs-attr">toolbarContainer</span>: <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;.document-editor__toolbar&apos;</span> ),
-        <span class="hljs-attr">editableContainer</span>: <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;.document-editor__editable&apos;</span> ),
-
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;.document-editor__editable&apos;</span> ), {
         <span class="hljs-attr">cloudServices</span>: {
             ....
         }
     } )
     .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+        <span class="hljs-keyword">const</span> toolbarContainer = <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;.document-editor__toolbar&apos;</span> );
+
+        toolbarContainer.appendChild( editor.ui.view.toolbar.element );
+
         <span class="hljs-built_in">window</span>.editor = editor;
     } )
     .catch( <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
         <span class="hljs-built_in">console</span>.error( err );
     } );
 </code></pre>
-<p>You may have noticed two configuration options used here: <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html#member-toolbarContainer"><code>config.toolbarContainer</code></a> and <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html#member-editableContainer"><code>config.editableContainer</code></a>. They specify the location of the editor toolbar and editable in your application.</p>
-<p>If you do not specify these configuration options, you have to make sure the editor UI is injected into your application after it fires the <a href="../../../api/module_core_editor_editorwithui-EditorWithUI.html#event-uiReady"><code>uiReady</code></a> event. The toolbar element is accessible via <code>editor.ui.view.toolbar.element</code> and the editable element can be found under <code>editor.ui.view.editable.element</code>.</p>
+<p>You may have noticed that you have to make sure the editor UI is injected into your application after it fires the <a href="../../../api/module_core_editor_editorwithui-EditorWithUI.html#event-uiReady"><code>Editor#uiReady</code></a> event. The toolbar element can be found under <code>editor.ui.view.toolbar.element</code>.</p>
 <div class="info-box notice"><p>The document editor supports the Easy Image plugin provided by <a href="https://ckeditor.com/ckeditor-cloud-services/" target="_blank" rel="noopener">CKEditor Cloud Services</a> out of the box. Please refer to the <a href="../../../features/image-upload.html#easy-image">documentation</a> to learn more.</p></div>
 <h2 id="the-user-interface"><a class="headerlink" href="#the-user-interface">#</a> The user interface</h2>
 <p>The code you have just created will run the editor but still, the user interface is missing. Start off with a basic HTML structure to host the editor components (toolbar and editable).</p>
@@ -273,7 +270,11 @@ DecoupledDocumentEditor
 <p>The following structure has two containers that correspond to the configuration you have just used. The editor will inject the toolbar and editable into respective containers as it starts.</p>
 <pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;document-editor&quot;</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;document-editor__toolbar&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;document-editor__editable&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;document-editor__editable-container&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;document-editor__editable&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>The initial editor data.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 </code></pre>
 <p>The <code>&lt;div class=&quot;document-editor&quot;&gt;...&lt;/&lt;div&gt;</code> element is the outermost container of the document editor and, although not mandatory, it is recommended to keep things together.</p>
@@ -313,7 +314,7 @@ DecoupledDocumentEditor
 </code></pre>
 <p>The editable should look like a sheet of paper, centered in its scrollable container:</p>
 <pre class="highlight"><code class="css"><span class="hljs-comment">/* Make the editable container look like the inside of a native word processor application. */</span>
-<span class="hljs-selector-class">.document-editor__editable</span> {
+<span class="hljs-selector-class">.document-editor__editable-container</span> {
     <span class="hljs-attribute">padding</span>: <span class="hljs-built_in">calc</span>( 2 * var(--ck-spacing-large) );
     <span class="hljs-attribute">background</span>: <span class="hljs-built_in">var</span>(--ck-color-base-foreground);
 
@@ -321,7 +322,7 @@ DecoupledDocumentEditor
     <span class="hljs-attribute">overflow-y</span>: scroll;
 }
 
-<span class="hljs-selector-class">.document-editor__editable</span> <span class="hljs-selector-class">.ck-editor__editable</span> {
+<span class="hljs-selector-class">.document-editor__editable-container</span> <span class="hljs-selector-class">.ck-editor__editable</span> {
     <span class="hljs-comment">/* Set the dimensions of the &quot;page&quot;. */</span>
     <span class="hljs-attribute">width</span>: <span class="hljs-number">15.8cm</span>;
     <span class="hljs-attribute">min-height</span>: <span class="hljs-number">21cm</span>;
