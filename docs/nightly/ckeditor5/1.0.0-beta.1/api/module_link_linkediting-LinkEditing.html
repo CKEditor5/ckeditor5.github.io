@@ -805,10 +805,17 @@ be released if no properties provided.</p>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Adds highlight over link which has selection inside, together with two-step caret movement indicates whenever
-user is typing inside the link.
+                          <p class="collapsing-list__excerpt">Adds a visual highlight style to a link in which the selection is anchored.
+Together with two-step caret movement, they indicate that the user is typing inside the link.
                           </p>
                           <div class="collapsing-list__content">
+<p>Highlight is turned on by adding <code>.ck .ck-link_selected</code> classes to the link in the view:</p>
+<ul>
+<li>the classes are removed before conversion has started, as callbacks added with <code>&apos;highest&apos;</code> priority
+to <a href="module_engine_conversion_downcastdispatcher-DowncastDispatcher.html"><code>DowncastDispatcher</code></a> events,</li>
+<li>the classes are added in the view post fixer, after other changes in the model tree were converted to the view.</li>
+</ul>
+<p>This way, adding and removing highlight does not interfere with conversion.</p>
                           </div>
                         </div>
                       </li>

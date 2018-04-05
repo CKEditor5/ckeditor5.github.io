@@ -95,22 +95,22 @@ const pattern = {
 
 // Match view element which has given class.
 const pattern = {
-    class: &apos;foobar&apos;
+    classes: &apos;foobar&apos;
 };
 
 // Match view element class using regular expression.
 const pattern = {
-    class: /foo.../
+    classes: /foo.../
 };
 
 // Multiple classes to match.
 const pattern = {
-    class: [ &apos;baz&apos;, &apos;bar&apos;, /foo.../ ]
+    classes: [ &apos;baz&apos;, &apos;bar&apos;, /foo.../ ]
 }:
 
 // Match view element which has given styles.
 const pattern = {
-    style: {
+    styles: {
         position: &apos;absolute&apos;,
         color: /^\w*blue$/
     }
@@ -119,10 +119,10 @@ const pattern = {
 // Pattern with multiple properties.
 const pattern = {
     name: &apos;span&apos;,
-    style: {
+    styles: {
         &apos;font-weight&apos;: &apos;bold&apos;
     },
-    class: &apos;highlighted&apos;
+    classes: &apos;highlighted&apos;
 };</code></pre><p>If <code>MatcherPattern</code> is given as a <code>Function</code>, the function takes a view element as a first and only parameter and
 the function should decide whether that element matches. If so, it should return what part of the view element has been matched.
 Otherwise, the function should return <code>null</code>. The returned result will be included in <code>match</code> property of the object
@@ -186,7 +186,7 @@ that is, every <code>ElementDefinition</code> also can be used as a <code>Matche
           <ul class="collapsing-list collapsing-list--filtered">
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="">
-                          <h3><code><a class="member-name" href="#">attribute</a> : <span>Object</span></code></h3>
+                          <h3><code><a class="member-name" href="#">attributes</a> : <span>Object</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Object with key-value pairs representing attributes to match.
@@ -197,7 +197,7 @@ Each object key represents attribute name. Value can be given as <code>String</c
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="">
-                          <h3><code><a class="member-name" href="#">class</a> : <span>String</span> | <span>RegExp</span> | <span>Array.&lt;(String | RegExp)&gt;</span></code></h3>
+                          <h3><code><a class="member-name" href="#">classes</a> : <span>String</span> | <span>RegExp</span> | <span>Array.&lt;(String | RegExp)&gt;</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">View element&apos;s class name(s) to match.</p>
@@ -217,7 +217,7 @@ Each object key represents attribute name. Value can be given as <code>String</c
                       </li>
                       <li class="collapsing-list__item" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="">
-                          <h3><code><a class="member-name" href="#">style</a> : <span>Object</span></code></h3>
+                          <h3><code><a class="member-name" href="#">styles</a> : <span>Object</span></code></h3>
                         </div>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Object with key-value pairs representing styles to match.

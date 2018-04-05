@@ -275,7 +275,7 @@ upcastElementToAttribute( { view: &apos;strong&apos;, model: &apos;bold&apos;, p
 upcastElementToAttribute( {
     view: {
         name: &apos;span&apos;,
-        class: &apos;bold&apos;
+        classes: &apos;bold&apos;
     },
     model: &apos;bold&apos;
 } );
@@ -283,7 +283,7 @@ upcastElementToAttribute( {
 upcastElementToAttribute( {
     view: {
         name: &apos;span&apos;,
-        class: [ &apos;styled&apos;, &apos;styled-dark&apos; ]
+        classes: [ &apos;styled&apos;, &apos;styled-dark&apos; ]
     },
     model: {
         key: &apos;styled&apos;,
@@ -294,7 +294,7 @@ upcastElementToAttribute( {
 upcastElementToAttribute( {
     view: {
         name: &apos;span&apos;,
-        style: {
+        styles: {
             &apos;font-size&apos;: /[\s\S]+/
         }
     },
@@ -373,7 +373,7 @@ upcastElementToElement( { view: &apos;p&apos;, model: &apos;paragraph&apos;, pri
 upcastElementToElement( {
     view: {
         name: &apos;p&apos;,
-        class: &apos;fancy&apos;
+        classes: &apos;fancy&apos;
     },
     model: &apos;fancyParagraph&apos;
 } );
@@ -381,7 +381,7 @@ upcastElementToElement( {
 upcastElementToElement( {
     view: {
         name: &apos;p&apos;,
-        class: &apos;heading&apos;
+        classes: &apos;heading&apos;
     },
     model: ( viewElement, modelWriter ) =&gt; {
         return modelWriter.createElement( &apos;heading&apos;, { level: viewElement.getAttribute( &apos;data-level&apos; ) } );
@@ -452,7 +452,7 @@ upcastElementToMarker( {
 upcastElementToMarker( {
     view: {
         name: &apos;span&apos;,
-        attribute: {
+        attributes: {
             &apos;data-marker&apos;: &apos;search&apos;
         }
     },

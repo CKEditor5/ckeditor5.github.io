@@ -305,7 +305,7 @@ downcastAttributeToElement( {
     model: &apos;invert&apos;,
     view: {
         name: &apos;span&apos;,
-        class: [ &apos;font-light&apos;, &apos;bg-dark&apos; ]
+        classes: [ &apos;font-light&apos;, &apos;bg-dark&apos; ]
     }
 } );
 
@@ -317,13 +317,13 @@ downcastAttributeToElement( {
     view: {
         big: {
             name: &apos;span&apos;,
-            style: {
+            styles: {
                 &apos;font-size&apos;: &apos;1.2em&apos;
             }
         },
         small: {
             name: &apos;span&apos;,
-            style: {
+            styles: {
                 &apos;font-size&apos;: &apos;0.8em&apos;
             }
         }
@@ -406,7 +406,7 @@ downcastElementToElement( {
     model: &apos;fancyParagraph&apos;,
     view: {
         name: &apos;p&apos;,
-        class: &apos;fancy&apos;
+        classes: &apos;fancy&apos;
     }
 } );
 
@@ -468,7 +468,7 @@ downcastMarkerToElement( {
     model: &apos;search&apos;,
     view: {
         name: &apos;span&apos;,
-        attribute: {
+        attributes: {
             &apos;data-marker&apos;: &apos;search&apos;
         }
     }
@@ -548,9 +548,9 @@ in the view.</p>
 <p>For container elements, the conversion is two-step. While the converter processes highlight descriptor and passes it
 to a container element, it is the container element instance itself which applies values from highlight descriptor.
 So, in a sense, converter takes care of stating what should be applied on what, while element decides how to apply that.</p>
-<pre class="prettyprint source"><code>downcastMarkerToHighlight( { model: &apos;comment&apos;, view: { class: &apos;comment&apos; } } );
+<pre class="prettyprint source"><code>downcastMarkerToHighlight( { model: &apos;comment&apos;, view: { classes: &apos;comment&apos; } } );
 
-downcastMarkerToHighlight( { model: &apos;comment&apos;, view: { class: &apos;new-comment&apos; }, priority: &apos;high&apos; } );
+downcastMarkerToHighlight( { model: &apos;comment&apos;, view: { classes: &apos;new-comment&apos; }, priority: &apos;high&apos; } );
 
 downcastMarkerToHighlight( {
     model: &apos;comment&apos;,
@@ -559,7 +559,7 @@ downcastMarkerToHighlight( {
          const commentType = data.markerName.split( &apos;:&apos; )[ 1 ];
 
          return {
-             class: [ &apos;comment&apos;, &apos;comment-&apos; + commentType ]
+             classes: [ &apos;comment&apos;, &apos;comment-&apos; + commentType ]
          };
     }
 } );</code></pre><p>If function is passed as <code>config.view</code> parameter, it will be used to generate highlight descriptor. The function

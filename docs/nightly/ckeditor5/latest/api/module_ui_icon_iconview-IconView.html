@@ -561,14 +561,14 @@ emitterA.delegate( &apos;eventX&apos;, &apos;eventY&apos; ).to( emitterC );</cod
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-deregisterChildren">
-                          <h3><code><a class="member-name" href="#function-deregisterChildren">deregisterChildren</a>( children )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-deregisterChild">
+                          <h3><code><a class="member-name" href="#function-deregisterChild">deregisterChild</a>( children )</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">inherited</span>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">The opposite of <a href="module_ui_view-View.html#function-registerChildren"><code>registerChildren</code></a>. Removes a child view from this view instance.
+                          <p class="collapsing-list__excerpt">The opposite of <a href="module_ui_view-View.html#function-registerChild"><code>registerChild</code></a>. Removes a child view from this view instance.
 Once removed, the child is no longer managed by its parent, e.g. it can safely
 become a child of another parent view.
                           </p>
@@ -592,7 +592,7 @@ become a child of another parent view.
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Recursively destroys the view instance and child views added by <a href="module_ui_view-View.html#function-registerChildren"><code>registerChildren</code></a> and
+                          <p class="collapsing-list__excerpt">Recursively destroys the view instance and child views added by <a href="module_ui_view-View.html#function-registerChild"><code>registerChild</code></a> and
 residing in collections created by the <a href="module_ui_view-View.html#function-createCollection"><code>createCollection</code></a>.
                           </p>
                           <div class="collapsing-list__content">
@@ -852,8 +852,8 @@ order they were added.</p>
                         </div>
                       </li>
                       <li class="collapsing-list__item" data-public="true" data-inherited="true">
-                        <div class="collapsing-list__term toggler--collapsed" id="function-registerChildren">
-                          <h3><code><a class="member-name" href="#function-registerChildren">registerChildren</a>( children )</code></h3>
+                        <div class="collapsing-list__term toggler--collapsed" id="function-registerChild">
+                          <h3><code><a class="member-name" href="#function-registerChild">registerChild</a>( children )</code></h3>
                           <p class="badges">
 <span class="badge badge--gray ">inherited</span>
                           </p>
@@ -864,7 +864,7 @@ view is managed by its parent, including <a href="module_ui_view-View.html#funct
 and <a href="module_ui_view-View.html#function-destroy">destruction</a>.
                           </p>
                           <div class="collapsing-list__content">
-<p>To revert this, use <a href="module_ui_view-View.html#function-deregisterChildren"><code>deregisterChildren</code></a>.</p>
+<p>To revert this, use <a href="module_ui_view-View.html#function-deregisterChild"><code>deregisterChild</code></a>.</p>
 <pre class="prettyprint source"><code>class SampleView extends View {
     constructor( locale ) {
         super( locale );
@@ -875,7 +875,7 @@ and <a href="module_ui_view-View.html#function-destroy">destruction</a>.
         this.setTemplate( { tag: &apos;p&apos; } );
 
         // Register the children.
-        this.registerChildren( [ this.childA, this.childB ] );
+        this.registerChild( [ this.childA, this.childB ] );
     }
 
     render() {
@@ -904,7 +904,7 @@ document.body.appendChild( view.element );</code></pre><p><strong>Note</strong>:
             tag: &apos;p&apos;,
 
             // These children will be added automatically. There&apos;s no
-            // need to call <a href="module_ui_view-View.html#function-registerChildren"><code>registerChildren</code></a> for any of them.
+            // need to call <a href="module_ui_view-View.html#function-registerChild"><code>registerChild</code></a> for any of them.
             children: [ this.childA, this.childB ]
         } );
     }
@@ -942,7 +942,7 @@ document.body.appendChild( view.element );</code></pre><p><strong>Note</strong>:
 <ul>
 <li>defined directly in the <a href="module_ui_view-View.html#member-template"><code>template</code></a></li>
 <li>residing in collections created by the <a href="module_ui_view-View.html#function-createCollection"><code>createCollection</code></a> method,</li>
-<li>and added by <a href="module_ui_view-View.html#function-registerChildren"><code>registerChildren</code></a>
+<li>and added by <a href="module_ui_view-View.html#function-registerChild"><code>registerChild</code></a>
 are also rendered in the process.</li>
 </ul>
 <p>In general, <code>render()</code> method is the right place to keep the code which refers to the

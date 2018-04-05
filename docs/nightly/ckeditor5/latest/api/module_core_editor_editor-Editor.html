@@ -99,12 +99,18 @@
           </nav>
           <div class="types">
           </div>
-          <div class="main-description"><p>Class representing the base of the editor. It is the API all plugins can expect to get when using <code>editor</code> property.
-It should be enough to implement editing part of feature (schema definition, conversion, commands, keystrokes, etc.).
-However it does not define editor UI, which is defined in <a href="module_core_editor_editorwithui-EditorWithUI.html"><code>EditorWithUI</code></a>.</p>
-<p>All editors implementation (like <a href="module_editor-classic_classiceditor-ClassicEditor.html"><code>ClassicEditor</code></a> or
+          <div class="main-description"><p>Class representing a basic, generic editor.</p>
+<p>Check out the list of its subclasses to learn about specific editor implementations.</p>
+<p>All editor implementations (like <a href="module_editor-classic_classiceditor-ClassicEditor.html"><code>ClassicEditor</code></a> or
 <a href="module_editor-inline_inlineeditor-InlineEditor.html"><code>InlineEditor</code></a>) should extend this class. They can add their
-own methods and properties.</p></div>
+own methods and properties.</p>
+<p>When you are implementing a plugin, then this editor represents the API
+which your plugin can expect to get when using its <a href="module_core_plugin-Plugin.html#member-editor"><code>editor</code></a> property.</p>
+<p>This API should be sufficient in order to implement the &quot;editing&quot; part of your feature
+(schema definition, conversion, commands, keystrokes, etc.).
+It does not define the editor UI, which is available only if the
+the specific editor implements also the <a href="module_core_editor_editorwithui-EditorWithUI.html"><code>EditorWithUI</code></a> interface
+(as most editor implementations do).</p></div>
 <div class="notice notice__filter api-props-filter">
   <div class="api-props-filter__inner">
     <h4>Filtering</h4>
@@ -308,6 +314,7 @@ in <code>config.removePlugins</code> or unless <code>config.plugins</code> is pa
                           <p class="collapsing-list__excerpt">Creates a new instance of the Editor class.
                           </p>
                           <div class="collapsing-list__content">
+<p>Usually, not to be used directly. See the static <a href="module_core_editor_editor-Editor.html#static-function-create"><code>create()</code></a> method.</p>
                             <h4>Parameters</h4>
                                       <dl>
                                         <dt><code>config
@@ -891,7 +898,7 @@ be released if no properties provided.</p>
                           </p>
                         </div>
                         <div class="collapsing-list__description">
-                          <p class="collapsing-list__excerpt">Creates a basic editor instance.
+                          <p class="collapsing-list__excerpt">Creates and initializes a new editor instance.
                           </p>
                           <div class="collapsing-list__content">
                             <h4>Parameters</h4>

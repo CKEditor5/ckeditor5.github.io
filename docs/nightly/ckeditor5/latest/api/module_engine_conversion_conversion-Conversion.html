@@ -199,12 +199,12 @@ conversion.attributeToAttribute( {
     },
     upcastAlso: {
         right: {
-            style: {
+            styles: {
                 &apos;text-align&apos;: &apos;right&apos;
             }
         },
         center: {
-            style: {
+            styles: {
                 &apos;text-align&apos;: &apos;center&apos;
             }
         }
@@ -282,7 +282,7 @@ conversion.attributeToElement( {
     model: &apos;bold&apos;,
     view: {
         name: &apos;span&apos;,
-        class: &apos;bold&apos;
+        classes: &apos;bold&apos;
     }
 } );
 
@@ -297,13 +297,13 @@ conversion.attributeToElement( {
     view: {
         underline: {
             name: &apos;span&apos;,
-            style: {
+            styles: {
                 &apos;text-decoration&apos;: &apos;underline&apos;
             }
         },
         lineThrough: {
             name: &apos;span&apos;,
-            style: {
+            styles: {
                 &apos;text-decoration&apos;: &apos;line-through&apos;
             }
         }
@@ -318,11 +318,11 @@ conversion.attributeToElement( {
         &apos;b&apos;,
         {
             name: &apos;span&apos;,
-            class: &apos;bold&apos;
+            classes: &apos;bold&apos;
         },
         {
             name: &apos;span&apos;,
-            style: {
+            styles: {
                 &apos;font-weight&apos;: &apos;bold&apos;
             }
         },
@@ -336,7 +336,7 @@ conversion.attributeToElement( {
 
                 return {
                     name: true,
-                    style: [ &apos;font-weight&apos; ]
+                    styles: [ &apos;font-weight&apos; ]
                 };
             }
         }
@@ -353,13 +353,13 @@ conversion.attributeToElement( {
     view: {
         big: {
             name: &apos;span&apos;,
-            style: {
+            styles: {
                 &apos;font-size&apos;: &apos;1.2em&apos;
             }
         },
         small: {
             name: &apos;span&apos;,
-            style: {
+            styles: {
                 &apos;font-size&apos;: &apos;0.8em&apos;
             }
         }
@@ -385,7 +385,7 @@ conversion.attributeToElement( {
                 // Those properties will be &quot;consumed&quot; during conversion.
                 // See `engine.view.Matcher~MatcherPattern` and `engine.view.Matcher#match` for more.
 
-                return { name: true, style: [ &apos;font-size&apos; ] };
+                return { name: true, styles: [ &apos;font-size&apos; ] };
             }
 
             return null;
@@ -410,7 +410,7 @@ conversion.attributeToElement( {
                 // Those properties will be &quot;consumed&quot; during conversion.
                 // See `engine.view.Matcher~MatcherPattern` and `engine.view.Matcher#match` for more.
 
-                return { name: true, style: [ &apos;font-size&apos; ] };
+                return { name: true, styles: [ &apos;font-size&apos; ] };
             }
 
             return null;
@@ -450,7 +450,7 @@ conversion.elementToElement( {
     model: &apos;fancyParagraph&apos;,
     view: {
         name: &apos;p&apos;,
-        class: &apos;fancy&apos;
+        classes: &apos;fancy&apos;
     }
 } );
 
@@ -462,7 +462,7 @@ conversion.elementToElement( {
         &apos;div&apos;,
         {
             // Any element with `display: block` style.
-            style: {
+            styles: {
                 display: &apos;block&apos;
             }
         }
@@ -494,7 +494,7 @@ conversion.elementToElement( {
             // Those properties will be &quot;consumed&quot; during conversion.
             // See `engine.view.Matcher~MatcherPattern` and `engine.view.Matcher#match` for more.
 
-            return { name: true, style: [ &apos;font-size&apos; ] };
+            return { name: true, styles: [ &apos;font-size&apos; ] };
         }
 
         return null;
