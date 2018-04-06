@@ -140,7 +140,7 @@
 		overflow-y: scroll;
 	}
 
-	.document-editor__editable-container .ck-editor__editable {
+	.document-editor__editable-container .document-editor__editable.ck-editor__editable {
 		/* Set the dimensions of the "page". */
 		width: 15.8cm;
 		min-height: 21cm;
@@ -160,7 +160,7 @@
 	}
 
 	/* Override the page's width in the "Examples" section which is wider. */
-	.main__content-wide .document-editor__editable-container .ck-editor__editable {
+	.main__content-wide .document-editor__editable-container .document-editor__editable.ck-editor__editable {
 		width: 18cm;
 	}
 
@@ -243,9 +243,9 @@
 <div class="info-box notice"><p>See the <a href="../../../builds/guides/quick-start.html#document-editor">quick start guide</a> to learn how to install the document editor build.</p></div>
 <p>The document editor can be created using the existing data container in the DOM. It can also accept a raw data string and create the editable by itself. To get the output data, use the <a href="../../../api/module_core_editor_utils_dataapimixin-DataApi.html#function-getData"><code>getData()</code></a> method.</p>
 <div class="info-box notice"><p>See the <a href="../../../api/module_editor-decoupled_decouplededitor-DecoupledEditor.html#static-function-create"><code>DecoupledEditor.create()</code></a> to learn about different approaches to the initialization of the editor.</p></div>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> DecoupledDocumentEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-build-decoupled-document/src/ckeditor&apos;</span>;
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> DecoupledEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-build-decoupled-document/src/ckeditor&apos;</span>;
 
-DecoupledDocumentEditor
+DecoupledEditor
     .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;.document-editor__editable&apos;</span> ), {
         <span class="hljs-attr">cloudServices</span>: {
             ....

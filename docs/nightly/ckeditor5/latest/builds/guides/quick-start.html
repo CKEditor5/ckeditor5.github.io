@@ -189,10 +189,10 @@
 <p>Load the document editor build (here <a href="https://cdn.ckeditor.com/" target="_blank" rel="noopener">CDN</a> location is used):</p>
 <pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.ckeditor.com/ckeditor5/1.0.0-beta.1/decoupled-document/ckeditor.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
-<p>Call the <a href="../../api/module_editor-decoupled_decouplededitor-DecoupledEditor.html#static-function-create"><code>DecoupledDocumentEditor.create()</code></a> method. The decoupled editor requires you to inject the toolbar into DOM and the best place to do that is somewhere in the promise chain (e.g. one of the <code>then( () =&gt; { ... } )</code> blocks).</p>
+<p>Call the <a href="../../api/module_editor-decoupled_decouplededitor-DecoupledEditor.html#static-function-create"><code>DecoupledEditor.create()</code></a> method. The decoupled editor requires you to inject the toolbar into DOM and the best place to do that is somewhere in the promise chain (e.g. one of the <code>then( () =&gt; { ... } )</code> blocks).</p>
 <div class="info-box notice"><p>The following snippet will run the document editor but to make the most of it check out the <a href="../../framework/guides/ui/document-editor.html">comprehensive tutorial</a> which explains step&#x2014;by&#x2014;step how to configure and style the the application for the best editing experience.</p></div>
 <pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
-    DecoupledDocumentEditor
+    DecoupledEditor
         .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ) )
         .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
             <span class="hljs-keyword">const</span> toolbarContainer = <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#toolbar-container&apos;</span> );
@@ -224,7 +224,7 @@
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
     <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
-        DecoupledDocumentEditor
+        DecoupledEditor
             .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ) )
             .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
                 <span class="hljs-keyword">const</span> toolbarContainer = <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#toolbar-container&apos;</span> );

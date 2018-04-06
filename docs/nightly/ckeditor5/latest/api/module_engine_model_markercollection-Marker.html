@@ -106,10 +106,10 @@ Therefore, they are handled in the undo stack and synchronized between clients i
 This type of markers is useful for solutions like spell checking or comments.</p>
 </li>
 </ol>
-<p>Both type of them should be added / updated by <a href="module_engine_model_writer-Writer.html#function-setMarker"><code>setMarker</code></a>
+<p>Both type of them should be added / updated by <a href="module_engine_model_writer-Writer.html#function-addMarker"><code>addMarker</code></a>
 and removed by <a href="module_engine_model_writer-Writer.html#function-removeMarker"><code>removeMarker</code></a> methods.</p>
 <pre class="prettyprint source"><code>model.change( ( writer ) =&gt; {
-    const marker = writer.setMarker( name, range, { usingOperation: true } );
+    const marker = writer.addMarker( name, { range, usingOperation: true } );
 
     // ...
 
@@ -168,7 +168,7 @@ to the range which it is marking at the moment.</p>
                         <div class="collapsing-list__description">
                           <p class="collapsing-list__excerpt">Returns value of flag indicates if the marker is managed using operations or not.
 See <a href="module_engine_model_markercollection-Marker.html">marker  class  description</a> to learn more about marker types.
-See <a href="module_engine_model_writer-Writer.html#function-setMarker"><code>setMarker</code></a>.</p>
+See <a href="module_engine_model_writer-Writer.html#function-addMarker"><code>addMarker</code></a>.</p>
                           <div class="collapsing-list__content">
                           </div>
                         </div>
