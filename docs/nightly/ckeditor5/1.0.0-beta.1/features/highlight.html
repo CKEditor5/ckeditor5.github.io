@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Highlight - CKEditor 5 Documentation</title>
+    <meta property="og:title" content="Highlight - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="/ckeditor5/latest/features/highlight.html">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../assets/0.4.0/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../assets/styles.css" type="text/css">
+    <link rel="stylesheet" href="../snippets/features/build-highlight-source/snippet.css" type="text/css">
+    <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
+    <script src="../../../assets/0.4.0/scripts/app.js"></script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="top__logo top__left"><span class="top__logo__product-icon" style="background-image: url( ../assets/img/project-logo.svg )"></span><a class="top__logo__product-title" href="../index.html">CKEditor 5</a></div>
+      <ul class="top__menu">
+        <li><a href="../builds/index.html">Builds</a></li>
+        <li><a href="../framework/index.html">Framework</a></li>
+        <li><a href="../examples/index.html">Examples</a></li>
+        <li><a class="top__menu__item--active" href="index.html">Features</a></li>
+        <li><a class="top__menu__api" href="../api/index.html">API</a></li>
+        <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."></a></li>
+      </ul>
+      <div class="top__search">
+        <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.4.0/img/loupe.svg" alt="Search"></button>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-highlight/blob/master/docs/features/highlight.md" title="Contribute to this guide"><img src="../../../assets/0.4.0/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5-highlight/issues/new" title="Report an issue"><img src="../../../assets/0.4.0/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <h1><img src="../../../assets/0.4.0/img/book.svg" alt="guide">Highlight
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#configuring-the-highlight-options">Configuring the highlight options</a><ol><li><a href="#dropdown">Dropdown</a></li><li><a href="#inline-buttons">Inline buttons</a></li><li><a href="#colors-and-styles">Colors and styles</a><ol><li><a href="#using-css-variables">Using CSS variables</a></li><li><a href="#inline-color-definitions">Inline color definitions</a></li></ol></li></ol></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
+<p>The <a href="../api/module_highlight_highlight-Highlight.html"><code>Highlight</code></a> feature offers text marking tools that help content authors speed up their work, for example when reviewing content or marking it for future reference. It uses inline <code>&lt;mark&gt;</code> elements in the view, supports both markers (background color) and pens (text color), and comes with a flexible configuration.</p>
+<h2 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h2>
+<div class="live-snippet"><div id="snippet-highlight">
+	<p>The Highlight feature example.</p>
+	<p>
+		Here are some markers:
+	</p>
+	<ul>
+		<li>the <mark class="marker-yellow">yellow</mark> one,</li>
+		<li>the <mark class="marker-pink">pink</mark> one,</li>
+		<li>the <mark class="marker-green">green</mark> one,</li>
+		<li>the <mark class="marker-blue">blue</mark> one</li>
+	</ul>
+	<p>
+		Here are some pens:
+		<mark class="pen-red">red pen</mark> and <mark class="pen-green">green one</mark>.
+	</p>
+</div>
+</div>
+<h2 id="configuring-the-highlight-options"><a class="headerlink" href="#configuring-the-highlight-options">#</a> Configuring the highlight options</h2>
+<h3 id="dropdown"><a class="headerlink" href="#dropdown">#</a> Dropdown</h3>
+<p>It is possible to configure which highlight options are supported by the editor.<br>
+You can use the <a href="../api/module_highlight_highlight-HighlightConfig.html#member-options"><code>highlight.options</code></a> configuration and define your own highlight styles.</p>
+<p>For example, the following editor supports only two styles (a green marker and a red pen):</p>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">highlight</span>: {
+            <span class="hljs-attr">options</span>: [
+                {
+                    <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;greenMarker&apos;</span>,
+                    <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;marker-green&apos;</span>,
+                    <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Green marker&apos;</span>,
+                    <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;var(--ck-highlight-marker-green)&apos;</span>,
+                    <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;marker&apos;</span>
+                },
+                {
+                    <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;redPen&apos;</span>,
+                    <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;pen-red&apos;</span>,
+                    <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Red pen&apos;</span>,
+                    <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;var(--ck-highlight-pen-red)&apos;</span>,
+                    <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;pen&apos;</span>
+                }
+            ]
+        },
+        <span class="hljs-attr">toolbar</span>: [
+            <span class="hljs-string">&apos;heading&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;bulletedList&apos;</span>, <span class="hljs-string">&apos;numberedList&apos;</span>, <span class="hljs-string">&apos;highlight&apos;</span>, <span class="hljs-string">&apos;undo&apos;</span>, <span class="hljs-string">&apos;redo&apos;</span>
+        ]
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<div class="live-snippet"><div id="snippet-highlight-custom-options">
+	<p>
+		This editor comes with two highlighters: <mark class="marker-green">green one</mark> and <mark class="pen-red">red one</mark>.
+	</p>
+</div>
+</div>
+<h3 id="inline-buttons"><a class="headerlink" href="#inline-buttons">#</a> Inline buttons</h3>
+<p>Instead of using the (default) <code>highlight</code> button, the feature also supports a configuration with separate buttons available directly in the toolbar:</p>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">toolbar</span>: {
+            <span class="hljs-attr">items</span>: [
+                <span class="hljs-string">&apos;heading&apos;</span>,
+                <span class="hljs-string">&apos;|&apos;</span>,
+                <span class="hljs-string">&apos;highlight:yellowMarker&apos;</span>, <span class="hljs-string">&apos;highlight:greenMarker&apos;</span>, <span class="hljs-string">&apos;highlight:pinkMarker&apos;</span>,
+                <span class="hljs-string">&apos;highlight:greenPen&apos;</span>, <span class="hljs-string">&apos;highlight:redPen&apos;</span>, <span class="hljs-string">&apos;removeHighlight&apos;</span>,
+                <span class="hljs-string">&apos;|&apos;</span>,
+                <span class="hljs-string">&apos;undo&apos;</span>, <span class="hljs-string">&apos;redo&apos;</span>
+            ]
+        }
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<div class="live-snippet"><div id="snippet-highlight-buttons">
+	<p>The Highlight feature example.</p>
+	<p>
+		Here are some markers:
+	</p>
+	<ul>
+		<li>the <mark class="marker-pink">pink</mark> one,</li>
+		<li>the <mark class="marker-green">green</mark> one,</li>
+	</ul>
+	<p>
+		Here are some pens:
+		<mark class="pen-red">red pen</mark> and <mark class="pen-green">green one</mark>.
+	</p>
+</div>
+</div>
+<h3 id="colors-and-styles"><a class="headerlink" href="#colors-and-styles">#</a> Colors and styles</h3>
+<div class="info-box notice notice__info"><p>See the plugin <a href="../api/module_highlight_highlight-HighlightConfig.html#member-options">options</a> to learn more about defaults.</p></div>
+<h4 id="using-css-variables"><a class="headerlink" href="#using-css-variables">#</a> Using CSS variables</h4>
+<p>The highlight feature is using the power of <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables" target="_blank" rel="noopener">CSS variables</a> which are defined in the <a href="https://github.com/ckeditor/ckeditor5-highlight/blob/master/theme/highlight.css" target="_blank" rel="noopener">stylesheet</a>. Thanks to that, both the UI and the content styles share the same color definitions which can be easily customized:</p>
+<pre class="highlight"><code class="css"><span class="hljs-selector-pseudo">:root</span> {
+    <span class="hljs-comment">/* Make green a little darker. */</span>
+    <span class="hljs-attribute">--ck-highlight-marker-green</span>: <span class="hljs-number">#199c19</span>;
+
+    <span class="hljs-comment">/* Make the yellow more &quot;dirty&quot;. */</span>
+    <span class="hljs-attribute">--ck-highlight-marker-yellow</span>: <span class="hljs-number">#cac407</span>;
+
+    <span class="hljs-comment">/* Make red more pinkish. */</span>
+    <span class="hljs-attribute">--ck-highlight-pen-red</span>: <span class="hljs-number">#ec3e6e</span>;
+}
+</code></pre>
+<div class="live-snippet"><style>
+	/* We are not using here :root because of many instances of editor */
+	#snippet-highlight-custom-colors-variables + .ck-editor {
+		/* Make green a little darker. */
+		--ck-highlight-marker-green: #199c19;
+
+		/* Make the yellow more "dirty". */
+		--ck-highlight-marker-yellow: #cac407;
+
+		/* Make red more pinkish. */
+		--ck-highlight-pen-red: #ec3e6e;
+	}
+</style>
+
+<div id="snippet-highlight-custom-colors-variables">
+	<p>
+		An example of highlight colors customized using CSS variables:
+	</p>
+	<ul>
+		<li>the <mark class="marker-green">green one</mark></li>
+		<li>the <mark class="marker-yellow">yellow one</mark></li>
+		<li>the <mark class="pen-red">red one</mark></li>
+	</ul>
+</div>
+</div>
+<h4 id="inline-color-definitions"><a class="headerlink" href="#inline-color-definitions">#</a> Inline color definitions</h4>
+<p>It is possible to use inline color values in the <code>rgba(R, G, B, A)</code>, <code>#RRGGBB[AA]</code> or <code>hsla(H, S, L, A)</code> formats instead of CSS variables. To do that, customize the <a href="../api/module_highlight_highlight-HighlightConfig.html#member-options">options</a> and define the <code>color</code> property for each option:</p>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">highlight</span>: {
+            <span class="hljs-attr">options</span>: [
+                {
+                    <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;greenMarker&apos;</span>,
+                    <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;marker-green&apos;</span>,
+                    <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Green marker&apos;</span>,
+                    <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;rgb(25, 156, 25)&apos;</span>,
+                    <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;marker&apos;</span>
+                },
+                {
+                    <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;yellowMarker&apos;</span>,
+                    <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;marker-yellow&apos;</span>,
+                    <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Yellow marker&apos;</span>,
+                    <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;#cac407&apos;</span>,
+                    <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;marker&apos;</span>
+                },
+                {
+                    <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;redPen&apos;</span>,
+                    <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;pen-red&apos;</span>,
+                    <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Red pen&apos;</span>,
+                    <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;hsl(343, 82%, 58%)&apos;</span>,
+                    <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;pen&apos;</span>
+                }
+            ]
+        },
+        <span class="hljs-attr">toolbar</span>: [
+            <span class="hljs-string">&apos;heading&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;bulletedList&apos;</span>, <span class="hljs-string">&apos;numberedList&apos;</span>, <span class="hljs-string">&apos;highlight&apos;</span>, <span class="hljs-string">&apos;undo&apos;</span>, <span class="hljs-string">&apos;redo&apos;</span>
+        ]
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<p>Then, update the classes in the stylesheet so the content corresponds to the UI of the editor. It is recommended for the UI buttons and the actual highlights in the text to share the same colors.</p>
+<pre class="highlight"><code class="css"><span class="hljs-selector-class">.marker-green</span> {
+    <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">rgb</span>(25, 156, 25);
+}
+<span class="hljs-selector-class">.marker-yellow</span> {
+    <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#cac407</span>;
+}
+<span class="hljs-selector-class">.pen-red</span> {
+    <span class="hljs-attribute">color</span>: <span class="hljs-built_in">hsl</span>(343, 82%, 58%);
+}
+</code></pre>
+<div class="live-snippet"><style>
+	/* We are not using here :root because of many instances of editor */
+	#snippet-highlight-custom-colors-inline + .ck-editor .marker-green {
+		background-color: rgb(25, 156, 25);
+	}
+
+	#snippet-highlight-custom-colors-inline + .ck-editor .marker-yellow {
+		background-color: #cac407;
+	}
+
+	#snippet-highlight-custom-colors-inline + .ck-editor .pen-red {
+		color: hsl(343, 82%, 58%);
+	}
+</style>
+
+<div id="snippet-highlight-custom-colors-inline">
+	<p>
+		An example of highlight colors defined as RGB, HEX or HSL:
+	</p>
+	<ul>
+		<li>the <mark class="marker-green">green one</mark></li>
+		<li>the <mark class="marker-yellow">yellow one</mark></li>
+		<li>the <mark class="pen-red">red one</mark></li>
+	</ul>
+</div>
+</div>
+<h2 id="installation"><a class="headerlink" href="#installation">#</a> Installation</h2>
+<p>To add this feature to your editor install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-highlight" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-highlight</code></a> package:</p>
+<pre class="highlight"><code class="bash">npm install --save @ckeditor/ckeditor5-highlight
+</code></pre>
+<p>And add it to your plugin list and the toolbar configuration:</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> Highlight <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-highlight/src/highlight&apos;</span>;
+
+ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">plugins</span>: [ Highlight, ... ],
+        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;highlight&apos;</span>, ... ]
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<div class="info-box notice notice__info"><p>Read more about <a href="../builds/guides/development/installing-plugins.html">installing plugins</a>.</p></div>
+<h2 id="common-api"><a class="headerlink" href="#common-api">#</a> Common API</h2>
+<p>The <a href="../api/module_highlight_highlight-Highlight.html"><code>Highlight</code></a> plugin registers:</p>
+<ul>
+<li>
+<p>The <code>&apos;highlight&apos;</code> dropdown,</p>
+</li>
+<li>
+<p>The <a href="../api/module_highlight_highlightcommand-HighlightCommand.html"><code>&apos;highlight&apos;</code></a> command.</p>
+<p>The number of options and their names correspond to the <a href="../api/module_highlight_highlight-HighlightConfig.html#member-options"><code>highlight.options</code></a> configuration option.</p>
+<p>You can change the highlight of the current selection by executing the command with a desired value:</p>
+<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;highlight&apos;</span>, { <span class="hljs-attr">value</span>: <span class="hljs-string">&apos;yellowMarker&apos;</span> } );
+</code></pre>
+<p>The <code>value</code> corresponds to the <code>model</code> property in the configuration object. For the default configuration:</p>
+<pre class="highlight"><code class="js">highlight.options = [
+    { <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;yellowMarker&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;marker-yellow&apos;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Yellow Marker&apos;</span>, <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;var(--ck-highlight-marker-yellow)&apos;</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;marker&apos;</span> },
+    { <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;greenMarker&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;marker-green&apos;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Green marker&apos;</span>, <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;var(--ck-highlight-marker-green)&apos;</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;marker&apos;</span> },
+    { <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;pinkMarker&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;marker-pink&apos;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Pink marker&apos;</span>, <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;var(--ck-highlight-marker-pink)&apos;</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;marker&apos;</span> },
+    { <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;blueMarker&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;marker-blue&apos;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Blue marker&apos;</span>, <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;var(--ck-highlight-marker-blue)&apos;</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;marker&apos;</span> },
+    { <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;redPen&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;pen-red&apos;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Red pen&apos;</span>, <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;var(--ck-highlight-pen-red)&apos;</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;pen&apos;</span> },
+    { <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;greenPen&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;pen-green&apos;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Green pen&apos;</span>, <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;var(--ck-highlight-pen-green)&apos;</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;pen&apos;</span> }
+]
+</code></pre>
+<p>the <code>highlight</code> command will accept the corresponding strings as values:</p>
+<ul>
+<li><code>&apos;yellowMarker&apos;</code> &#x2013; available as the <code>&apos;highlight:yellowMarker&apos;</code> button,</li>
+<li><code>&apos;greenMarker&apos;</code> &#x2013; available as the <code>&apos;highlight:greenMarker&apos;</code> button,</li>
+<li><code>&apos;pinkMarker&apos;</code> &#x2013; available as the <code>&apos;highlight:pinkMarker&apos;</code> button,</li>
+<li><code>&apos;blueMarker&apos;</code> &#x2013; available as the <code>&apos;highlight:blueMarker&apos;</code> button,</li>
+<li><code>&apos;redPen&apos;</code> &#x2013; available as the <code>&apos;highlight:redPen&apos;</code> button,</li>
+<li><code>&apos;greenPen&apos;</code> &#x2013; available as the <code>&apos;highlight:greenPen&apos;</code> button.</li>
+</ul>
+<p>Passing an empty <code>value</code> will remove any <code>highlight</code> from the selection:</p>
+<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;highlight&apos;</span> );
+</code></pre>
+</li>
+</ul>
+<h2 id="contribute"><a class="headerlink" href="#contribute">#</a> Contribute</h2>
+<p>The source code of the feature is available on GitHub in <a href="https://github.com/ckeditor/ckeditor5-highlight" target="_blank" rel="noopener">https://github.com/ckeditor/ckeditor5-highlight</a>.</p>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li><a href="autoformat.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Autoformatting</span></div></a></li>
+                          <li><a href="basic-styles.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic text styles</span></div></a></li>
+                          <li><a href="font.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Font</span></div></a></li>
+                          <li><a href="headings.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Headings</span></div></a></li>
+                          <li><a href="">
+                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Highlight</span></div></a></li>
+                          <li><a href="image-upload.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Image upload</span></div></a></li>
+                          <li><a href="image.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Images</span></div></a></li>
+                          <li><a href="keyboard-support.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Keyboard support</span></div></a></li>
+                          <li><a href="markdown.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Markdown output</span></div></a></li>
+                          <li><a href="read-only.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Read-only support</span></div></a></li>
+                          <li><a href="ui-language.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Setting the UI language</span></div></a></li>
+                          <li><a href="text-alignment.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Text alignment</span></div></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2017-2018 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},debug:false,
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'features' ] = hits.filter( function( h ) {return h.tags.includes( 'features' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'features' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api.unshift( ...apiSearchHits );result = result.concat( hitsGrouped[ 'features' ] );tags.forEach( function( tag ) {if ( tag !== 'features' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+    <script src="../snippets/features/build-highlight-source/snippet.js"></script>
+    <script src="../snippets/features/highlight/snippet.js"></script>
+    <script src="../snippets/features/custom-highlight-options/snippet.js"></script>
+    <script src="../snippets/features/highlight-buttons/snippet.js"></script>
+    <script src="../snippets/features/custom-highlight-colors-variables/snippet.js"></script>
+    <script src="../snippets/features/custom-highlight-colors-inline/snippet.js"></script>
+  </body>
+</html>

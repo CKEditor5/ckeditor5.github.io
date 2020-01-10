@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Development environment - CKEditor 5 Documentation</title>
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:site" content="@ckeditor">
+    <meta property="og:title" content="Development environment - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/framework/guides/contributing/development-environment.html">
+    <meta property="DC.language" content="en">
+    <meta property="DC.publisher" content="CKSource">
+    <meta property="DC.creator" content="CKEditor">
+    <meta property="DC.title" content="Development environment - CKEditor 5 Documentation">
+    <meta property="DC.format" content="text/html">
+    <meta property="DC.type" content="Text">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/guides/contributing/development-environment.html">
+    <link rel="icon" type="image/png" href="../../../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../../../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../../assets/1.2.0/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
+    <script>
+      ( function() {
+      	'use strict';
+      	// Set up global variables;
+      	if ( !window.umebrto ) {
+      		window.umberto = {};
+      	}
+      	window.umberto.relativeAppPath = "../../../../../assets/1.2.0/scripts"
+      
+      	// Add app script
+      	var el = document.createElement( 'script' );
+      	el.setAttribute( 'async', 'async' );
+      	el.setAttribute( 'defer', 'defer' );
+      	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
+      		el.src = "../../../../../assets/1.2.0/scripts/app.js";
+      	} else {
+      		el.src = "../../../../../assets/1.2.0/scripts/app-polyfill.js";
+      	}
+      	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
+      
+      	// Changing documentation theme enable it via `localStorage.setItem( 'theme', 'theme-dark' )`
+      	if ( localStorage.getItem( 'theme' ) === 'theme-dark' ) {
+      		document.getElementsByTagName( 'html' )[ 0 ].classList.add( 'theme-dark' );
+      	}
+      } )();
+    </script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="header__main">
+        <div class="header__main-rwd-button"><a href="#"><span></span><span></span><span></span></a></div>
+        <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
+        <div class="top__search">
+          <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+          <div class="top__search__button"><img src="../../../../../assets/1.2.0/img/loupe.svg" alt="Search"></div>
+        </div>
+      </div>
+      <div class="header__sub">
+        <ul class="top__menu">
+          <li class="top__menu-project-logo"><a href="../../../index.html">CKEditor 5</a></li>
+          <li><a href="../../../builds/index.html">Builds</a></li>
+          <li><a class="top__menu__item--active" href="../../index.html">Framework</a></li>
+          <li><a href="../../../examples/index.html">Examples</a></li>
+          <li><a href="../../../features/index.html">Features</a></li>
+          <li><a class="top__menu__api" href="../../../api/index.html">API</a></li>
+          <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."><svg viewbox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li>
+        </ul>
+      </div>
+      <div class="header__menu-rwd">
+        <ul class="header__menu-rwd__projects">
+          <li data-project="ckeditor5"><a href="../../../../latest/index.html">CKEditor 5
+              <ul class="tree header__menu-rwd__projects-pages">
+                <li data-group="builds"><a href="../../../builds/index.html">Builds</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="framework"><a href="../../index.html">Framework</a>
+                  <!-- Display subpages for active project.-->
+                  <ul class="header__menu-rwd__projects-subpages">
+                            <li>
+                              <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Guides</span></div>
+                              <ul class="tree__item-nested-list">
+                                    <li><a href="../overview.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="../quick-start.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span></div></a></li>
+                                    <li><a href="../creating-simple-plugin.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating a simple plugin</span></div></a></li>
+                                    <li><a href="../development-tools.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development tools</span></div></a></li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Architecture</span></div>
+                                      <ul class="tree__item-nested-list">
+                                            <li><a href="../architecture/intro.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Introduction</span></div></a></li>
+                                            <li><a href="../architecture/core-editor-architecture.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Core editor architecture</span></div></a></li>
+                                            <li><a href="../architecture/editing-engine.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editing engine</span></div></a></li>
+                                            <li><a href="../architecture/ui-library.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">UI library</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Tutorials</span></div>
+                                      <ul class="tree__item-nested-list">
+                                            <li><a href="../tutorials/implementing-a-block-widget.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing a block widget</span></div></a></li>
+                                            <li><a href="../tutorials/implementing-an-inline-widget.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing an inline widget</span></div></a></li>
+                                            <li><a href="../tutorials/using-react-in-a-widget.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Using a React component in a widget</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Deep dive</span></div>
+                                      <ul class="tree__item-nested-list">
+                                            <li><a href="../deep-dive/clipboard.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Clipboard</span></div></a></li>
+                                            <li><a href="../deep-dive/upload-adapter.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom upload adapter</span></div></a></li>
+                                            <li><a href="../deep-dive/observables.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Observables</span></div></a></li>
+                                            <li><a href="../deep-dive/schema.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Schema</span></div></a></li>
+                                            <li>
+                                              <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Conversion</span></div>
+                                              <ul class="tree__item-nested-list">
+                                                    <li><a href="../deep-dive/conversion/conversion-introduction.html">
+                                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Advanced concepts</span></div></a></li>
+                                                    <li><a href="../deep-dive/conversion/conversion-extending-output.html">
+                                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Extending editor output</span></div></a></li>
+                                                    <li><a href="../deep-dive/conversion/conversion-preserving-custom-content.html">
+                                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Preserving custom content</span></div></a></li>
+                                              </ul>
+                                            </li>
+                                            <li>
+                                              <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">User interface</span></div>
+                                              <ul class="tree__item-nested-list">
+                                                    <li><a href="../deep-dive/ui/theme-customization.html">
+                                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Theme customization</span></div></a></li>
+                                                    <li><a href="../deep-dive/ui/external-ui.html">
+                                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Third–party UI</span></div></a></li>
+                                                    <li><a href="../deep-dive/ui/document-editor.html">
+                                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document editor</span></div></a></li>
+                                                    <li><a href="../deep-dive/ui/custom-editor-creator.html">
+                                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating custom editor</span></div></a></li>
+                                              </ul>
+                                            </li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Contributing</span></div>
+                                      <ul class="tree__item-nested-list">
+                                            <li><a href="contributing.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Contributing</span></div></a></li>
+                                            <li><a href>
+                                                <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Development environment</span></div></a></li>
+                                            <li><a href="testing-environment.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Testing environment</span></div></a></li>
+                                            <li><a href="git-commit-message-convention.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Git commit message convention</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Support</span></div>
+                                      <ul class="tree__item-nested-list">
+                                            <li><a href="../support/browser-compatibility.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Browser compatibility</span></div></a></li>
+                                            <li><a href="../support/license-and-legal.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span></div></a></li>
+                                            <li><a href="../support/getting-support.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting support</span></div></a></li>
+                                            <li><a href="../support/reporting-issues.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span></div></a></li>
+                                            <li><a href="../support/versioning-policy.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Versioning policy</span></div></a></li>
+                                            <li><a href="../support/error-codes.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Error codes</span></div></a></li>
+                                      </ul>
+                                    </li>
+                              </ul>
+                            </li>
+                  </ul>
+                </li>
+                <li data-group="examples"><a href="../../../examples/index.html">Examples</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="features"><a href="../../../features/index.html">Features</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="api-reference"><a href="../../../api/index.html">API</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+              </ul></a></li>
+        </ul>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/contributing/development-environment.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.0/img/edit.svg" alt="Contribute to this guide"></a>
+          </div>
+          <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
+          </div>
+          <h1 class="main__content-title"><img src="../../../../../assets/1.2.0/img/book.svg" alt="guide">Development environment
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#requirements">Requirements</a></li><li><a href="#setting-up-the-ckeditor-development-environment">Setting up the CKEditor development environment</a><ol><li><a href="#switching-to-development-version-of-packages">Switching to development version of packages</a></li><li><a href="#fetching-changes">Fetching changes</a></li><li><a href="#working-with-multiple-repositories">Working with multiple repositories</a></li><li><a href="#using-mrgit-for-custom-packages">Using mrgit for custom packages</a></li></ol></li><li><a href="#running-tests">Running tests</a></li><li><a href="#generating-documentation">Generating documentation</a></li><li><a href="#generating-content-styles">Generating content styles</a></li><li><a href="#bisecting-through-a-multi-repository">Bisecting through a multi-repository</a></li><li><a href="#additional-information-for-contributors">Additional information for contributors</a><ol><li><a href="#svg-icons">SVG icons</a></li></ol></li></ol></nav>
+<p>The CKEditor 5 codebase is divided into multiple <a href="http://npmjs.com/" target="_blank" rel="noopener">npm</a> packages, each developed in a separate Git repository. The main package is <a href="https://github.com/ckeditor/ckeditor5" target="_blank" rel="noopener"><code>ckeditor5</code></a> which installs all project dependencies and various development-related resources such as:</p>
+<ul>
+<li>the testing environment setup,</li>
+<li>configuration for <a href="https://www.npmjs.com/package/mrgit" target="_blank" rel="noopener">Mr. Git</a> (a multi-repo management tool) and <a href="https://yarnpkg.com/" target="_blank" rel="noopener">Yarn</a> (a dependency management tool),</li>
+<li>translation management tools,</li>
+<li>documentation generator,</li>
+<li>and release tools.</li>
+</ul>
+<p>You can find all the official packages listed in <a href="https://github.com/ckeditor/ckeditor5#packages" target="_blank" rel="noopener">CKEditor 5 development repository&#x2019;s README</a>.</p>
+<h2 id="requirements"><a class="headerlink" href="#requirements">#</a> Requirements</h2>
+<p>In order to start developing CKEditor 5 you will require:</p>
+<ul>
+<li><a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a> 6.9.0+</li>
+<li><a href="https://git-scm.com/" target="_blank" rel="noopener">Git</a></li>
+</ul>
+<h2 id="setting-up-the-ckeditor-development-environment"><a class="headerlink" href="#setting-up-the-ckeditor-development-environment">#</a> Setting up the CKEditor development environment</h2>
+<p>First, you need to install a couple of tools which you will be using later:</p>
+<ul>
+<li><a href="https://www.npmjs.com/package/mrgit" target="_blank" rel="noopener">mrgit</a> &#x2014; A multi-repo management tool,</li>
+<li><a href="https://yarnpkg.com/" target="_blank" rel="noopener">Yarn</a> &#x2014; A dependency management tool.</li>
+</ul>
+<p>It is best to install them globally in your system for an easier use later on:</p>
+<pre class="highlight"><code class="bash">npm install -g yarn mrgit
+</code></pre>
+<p><strong>Note:</strong> <a href="https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md" target="_blank" rel="noopener">Read how to avoid using <code>sudo</code> to install packages globally</a> or use <a href="https://github.com/creationix/nvm" target="_blank" rel="noopener">nvm</a>.</p>
+<p>Then clone the <a href="https://github.com/ckeditor/ckeditor5" target="_blank" rel="noopener">main repository</a>:</p>
+<pre class="highlight"><code class="bash html">git <span class="hljs-built_in">clone</span> https://github.com/ckeditor/ckeditor5.git
+<span class="hljs-built_in">cd</span> ckeditor5
+</code></pre>
+<p>And install all CKEditor 5 packages from the <a href="http://npmjs.com/" target="_blank" rel="noopener">npm registry</a>.</p>
+<p><strong>Note:</strong> If you plan to use the developement version of CKEditor 5 packages (see the <a href="#switching-to-development-version-of-packages">next section</a>), you can skip this step to save time.</p>
+<pre class="highlight"><code class="bash">yarn install
+</code></pre>
+<h3 id="switching-to-development-version-of-packages"><a class="headerlink" href="#switching-to-development-version-of-packages">#</a> Switching to development version of packages</h3>
+<p>The steps above should install all the packages from npm, which means that you will have the latest releases of all of them. They are available in <code>node_modules/@ckeditor/</code> (we are using <a href="https://docs.npmjs.com/misc/scope" target="_blank" rel="noopener">scoped packages</a>, hence the unusual directory).</p>
+<p>In order to work with development versions of all the official packages, it is recommended to use <code>mrgit</code>. This tool will clone all package repositories to the <code>packages/</code> directory. Then, those packages need to be installed in a way understandable by Node.js-compliant tools (like webpack or Browserify). In order to achieve that we use Yarn&#x2019;s feature called <a href="https://yarnpkg.com/lang/en/docs/workspaces/" target="_blank" rel="noopener">workspaces</a> which creates symlinks to these packages.</p>
+<p>First, clone all the repositories:</p>
+<pre class="highlight"><code class="bash">mrgit sync
+</code></pre>
+<p>Expected result:</p>
+<pre class="highlight"><code class="bash">(master 340feac) p@m /workspace/ckeditor5&gt; tree -L 1 packages/
+packages/
+&#x251C;&#x2500;&#x2500; ckeditor5-autoformat
+&#x251C;&#x2500;&#x2500; ckeditor5-basic-styles
+&#x251C;&#x2500;&#x2500; ckeditor5-clipboard
+...
+&#x2514;&#x2500;&#x2500; ckeditor5-utils
+</code></pre>
+<p>Finally, install all external dependencies (such as the test runner) and create symlinks to CKEditor 5 packages available in the <code>packages/</code> directory with this one command:</p>
+<pre class="highlight"><code class="bash">yarn install
+</code></pre>
+<p>You can check that CKEditor 5 packages which are part of the development environment (so those except <a href="https://github.com/ckeditor/ckeditor5-dev" target="_blank" rel="noopener">development tools</a> and some closed source packages) should be linked:</p>
+<pre class="highlight"><code class="bash">(master ae6f43a) p@m /workspace/misc/ckeditor5&gt; ls -la node_modules/\@ckeditor/
+total 0
+drwxr-xr-x    54 p  staff   1728 11 sty 14:41 .
+drwxr-xr-x  1115 p  staff  35680 11 sty 14:41 ..
+drwxr-xr-x     7 p  staff    224 11 sty 14:41 ckeditor-cloud-services-collaboration
+drwxr-xr-x     6 p  staff    192 11 sty 14:41 ckeditor-cloud-services-core
+lrwxr-xr-x     1 p  staff     41 11 sty 14:41 ckeditor5-adapter-ckfinder -&gt; ../../packages/ckeditor5-adapter-ckfinder
+lrwxr-xr-x     1 p  staff     34 11 sty 14:41 ckeditor5-alignment -&gt; ../../packages/ckeditor5-alignment
+lrwxr-xr-x     1 p  staff     35 11 sty 14:41 ckeditor5-autoformat -&gt; ../../packages/ckeditor5-autoformat
+lrwxr-xr-x     1 p  staff     33 11 sty 14:41 ckeditor5-autosave -&gt; ../../packages/ckeditor5-autosave
+lrwxr-xr-x     1 p  staff     37 11 sty 14:41 ckeditor5-basic-styles -&gt; ../../packages/ckeditor5-basic-styles
+lrwxr-xr-x     1 p  staff     36 11 sty 14:41 ckeditor5-block-quote -&gt; ../../packages/ckeditor5-block-quote
+lrwxr-xr-x     1 p  staff     38 11 sty 14:41 ckeditor5-build-balloon -&gt; ../../packages/ckeditor5-build-balloon
+lrwxr-xr-x     1 p  staff     38 11 sty 14:41 ckeditor5-build-classic -&gt; ../../packages/ckeditor5-build-classic
+lrwxr-xr-x     1 p  staff     49 11 sty 14:41 ckeditor5-build-decoupled-document -&gt; ../../packages/ckeditor5-build-decoupled-document
+lrwxr-xr-x     1 p  staff     37 11 sty 14:41 ckeditor5-build-inline -&gt; ../../packages/ckeditor5-build-inline
+lrwxr-xr-x     1 p  staff     33 11 sty 14:41 ckeditor5-ckfinder -&gt; ../../packages/ckeditor5-ckfinder
+lrwxr-xr-x     1 p  staff     34 11 sty 14:41 ckeditor5-clipboard -&gt; ../../packages/ckeditor5-clipboard
+lrwxr-xr-x     1 p  staff     39 11 sty 14:41 ckeditor5-cloud-services -&gt; ../../packages/ckeditor5-cloud-services
+drwxr-xr-x     7 p  staff    224 11 sty 14:41 ckeditor5-collaboration-core
+drwxr-xr-x     7 p  staff    224 11 sty 14:41 ckeditor5-comments
+lrwxr-xr-x     1 p  staff     29 11 sty 14:41 ckeditor5-core -&gt; ../../packages/ckeditor5-core
+drwxr-xr-x     8 p  staff    256 11 sty 14:41 ckeditor5-dev-docs
+drwxr-xr-x     9 p  staff    288 11 sty 14:41 ckeditor5-dev-env
+drwxr-xr-x     9 p  staff    288 11 sty 14:41 ckeditor5-dev-tests
+drwxr-xr-x     8 p  staff    256 11 sty 14:41 ckeditor5-dev-utils
+drwxr-xr-x     8 p  staff    256 11 sty 14:41 ckeditor5-dev-webpack-plugin
+lrwxr-xr-x     1 p  staff     35 11 sty 14:41 ckeditor5-easy-image -&gt; ../../packages/ckeditor5-easy-image
+lrwxr-xr-x     1 p  staff     39 11 sty 14:41 ckeditor5-editor-balloon -&gt; ../../packages/ckeditor5-editor-balloon
+lrwxr-xr-x     1 p  staff     39 11 sty 14:41 ckeditor5-editor-classic -&gt; ../../packages/ckeditor5-editor-classic
+lrwxr-xr-x     1 p  staff     41 11 sty 14:41 ckeditor5-editor-decoupled -&gt; ../../packages/ckeditor5-editor-decoupled
+lrwxr-xr-x     1 p  staff     38 11 sty 14:41 ckeditor5-editor-inline -&gt; ../../packages/ckeditor5-editor-inline
+lrwxr-xr-x     1 p  staff     31 11 sty 14:41 ckeditor5-engine -&gt; ../../packages/ckeditor5-engine
+lrwxr-xr-x     1 p  staff     30 11 sty 14:41 ckeditor5-enter -&gt; ../../packages/ckeditor5-enter
+
+... and so on
+</code></pre>
+<p>If everything worked correctly, you should be able to run some tests:</p>
+<pre class="highlight"><code class="bash">yarn run <span class="hljs-built_in">test</span> --files=core
+</code></pre>
+<h3 id="fetching-changes"><a class="headerlink" href="#fetching-changes">#</a> Fetching changes</h3>
+<p>Whenever you want to update all packages to their latest versions call:</p>
+<pre class="highlight"><code class="bash html"><span class="hljs-comment"># To update the ckeditor5 repository itself:</span>
+git pull
+
+<span class="hljs-comment"># To update pull changes to all the packages:</span>
+mrgit sync
+
+<span class="hljs-comment"># To install missing dependencies:</span>
+yarn install
+</code></pre>
+<p>From time to time, if the list of dependencies in any of the packages changed, new package has been added to <code>ckeditor5</code> or you just want to make sure that you have the repository up to date, run the <code>reinstall</code> script:</p>
+<pre class="highlight"><code class="bash">git pull
+yarn run reinstall
+</code></pre>
+<p>The <code>reinstall</code> script first calls <code>yarn run clean</code> to remove <code>node_modules/</code> directories from all packages (including <code>ckeditor5</code>) and then <code>yarn run bootstrap</code> which is a shorthand for <code>mrgit sync &amp;&amp; yarn install</code>.</p>
+<h3 id="working-with-multiple-repositories"><a class="headerlink" href="#working-with-multiple-repositories">#</a> Working with multiple repositories</h3>
+<p>Mr. Git implements many useful commands, such as:</p>
+<ul>
+<li><code>mrgit exec &apos;command&apos;</code> &#x2013; executing a shell command in all repositories,</li>
+<li><code>mrgit checkout &lt;branch&gt;</code> &#x2013; checking all repositories to given branch (or hash),</li>
+<li><code>mrgit status</code> &#x2013; displaying information about all repositories.</li>
+</ul>
+<p>Read more about those commands in <a href="https://github.com/cksource/mrgit" target="_blank" rel="noopener">mrgit&#x2019;s documentation</a>.</p>
+<p>Mr. Git has been developed by the <a href="https://cksource.com/" target="_blank" rel="noopener">CKSource team</a> and we are relying on it heavily, hence you can expect more features and improvements to come. However, it is not a CKEditor-specific tool and should be suitable for any multi-repository project (though it best fits JavaScript projects).</p>
+<h3 id="using-mrgit-for-custom-packages"><a class="headerlink" href="#using-mrgit-for-custom-packages">#</a> Using <code>mrgit</code> for custom packages</h3>
+<p>If you are developing custom packages or forked any of the official packages and want <code>mrgit</code> to work with it, change the dependencies configuration in <a href="https://github.com/ckeditor/ckeditor5/blob/master/mrgit.json" target="_blank" rel="noopener"><code>mrgit.json</code></a>. Note that <code>mrgit</code> is able to clone the package from any Git URL. Refer to <a href="https://github.com/cksource/mrgit" target="_blank" rel="noopener">its documentation</a> for more details.</p>
+<h2 id="running-tests"><a class="headerlink" href="#running-tests">#</a> Running tests</h2>
+<p>In order to run tests you need to use the <code>test</code> and <code>manual</code> tasks.</p>
+<pre class="highlight"><code class="bash html">yarn run <span class="hljs-built_in">test</span> --watch --coverage --<span class="hljs-built_in">source</span>-map --files=engine
+</code></pre>
+<p>or, shorter:</p>
+<pre class="highlight"><code class="bash">yarn run <span class="hljs-built_in">test</span> -- -wcs --files=engine
+</code></pre>
+<p>This command will run the <a href="https://github.com/ckeditor/ckeditor5-engine" target="_blank" rel="noopener"><code>ckeditor5-engine</code></a> package&#x2019;s tests.</p>
+<p><strong>Note:</strong> It is not possible to run tests of all packages with code coverage at once because the size of the project (the number of test files and source modules) exceeds webpack&#x2019;s capabilities (it runs out of memory).</p>
+<p>To create a server for manual tests use the <code>manual</code> task:</p>
+<pre class="highlight"><code class="bash">yarn run manual
+</code></pre>
+<p>It accepts the <code>--source-map</code> (<code>-s</code>) and <code>--additionalLanguages=&quot;ar,pl,...&quot;</code> options. Note that it watches for changes in the JavaScript files only (see the <a href="https://github.com/ckeditor/ckeditor5-dev/issues/52" target="_blank" rel="noopener">bug</a>).</p>
+<p>You can read more about the <a href="testing-environment.html">Testing environment</a>.</p>
+<h2 id="generating-documentation"><a class="headerlink" href="#generating-documentation">#</a> Generating documentation</h2>
+<p>To build the documentation you need to run the <code>docs</code> task:</p>
+<pre class="highlight"><code class="bash">yarn run docs
+</code></pre>
+<p>The documentation will be available in <code>build/docs/</code>.</p>
+<p>This task accepts the following arguments:</p>
+<ul>
+<li><code>--skip-api</code> &#x2014; Skips building the API documentation (which takes the majority of the total time).</li>
+<li><code>--skip-snippets</code> &#x2014; Skips building live snippets.</li>
+<li><code>--snippets=snippet-name</code> &#x2014; Whitelist snippets to build (accepts glob patterns).</li>
+<li><code>--skip-validation</code> &#x2014; Skips the final link validation.</li>
+<li><code>--watch</code> &#x2014; Runs the documentation generator in a watch mode. It covers guides (it does not cover API docs).</li>
+<li><code>--production</code> &#x2014; Minifies the assets and performs other actions which are unnecessary during CKEditor 5 development.</li>
+<li><code>--verbose</code> &#x2014; Prints out more information.</li>
+</ul>
+<p>Note: These arguments must be passed after additional <code>--</code>:</p>
+<pre class="highlight"><code class>yarn run docs --skip-api
+</code></pre>
+<h2 id="generating-content-styles"><a class="headerlink" href="#generating-content-styles">#</a> Generating content styles</h2>
+<p>It is possible to generate a stylesheet containing content styles brought by all CKEditor 5 features. In order to do that, execute:</p>
+<pre class="highlight"><code class="bash">yarn docs:content-styles
+</code></pre>
+<p>The stylesheet will be saved in the <code>build/content-styles</code> folder.</p>
+<p>To learn more, refer to the <a href="../../../builds/guides/integration/content-styles.html">Content styles</a> guide.</p>
+<h2 id="bisecting-through-a-multi-repository"><a class="headerlink" href="#bisecting-through-a-multi-repository">#</a> Bisecting through a multi-repository</h2>
+<p>CKEditor 5 is a multi-repository project. It means that <a href="https://git-scm.com/docs/git-bisect" target="_blank" rel="noopener"><code>git bisect</code></a> (which is super handy when tracking which commit introduced a bug) will not work out of the box.</p>
+<p>Fortunately, every commit made to any of the <code>master</code> branches of all CKEditor 5 subpackages will update this subpackage&#x2019;s hash in <code>mrgit.json</code> in the <a href="https://github.com/ckeditor/ckeditor5/commits/master-revisions" target="_blank" rel="noopener"><code>master-revisions</code></a> branch.</p>
+<p>Thanks to that, <code>master-revisions</code> contains an ordered history of all changes which makes it possible to go back to any point in history:</p>
+<pre class="highlight"><code class="bash html"><span class="hljs-comment"># Make sure to update this branch.</span>
+git co master-revisions
+git pull
+
+<span class="hljs-comment"># Check out 30 commits back.</span>
+git co master-revisions~30
+
+<span class="hljs-comment"># Check out subpackages to correct hashes.</span>
+mrgit co
+</code></pre>
+<p>Once you found the point in history which interests you, you can go straight to a commit in a subpackage and PR. For example:</p>
+<pre class="highlight"><code class="bash">(detached:bisect/bad~1 cb2feef ?1) p@m /workspace/ckeditor5&gt; git bisect good
+ab5b5494e5eba7beb4a3bac4ea9c5e6d59a610f5 is the first bad commit
+commit ab5b5494e5eba7beb4a3bac4ea9c5e6d59a610f5
+Author: Travis CI User &lt;travis@example.org&gt;
+Date:   Tue Apr 11 16:45:47 2017 +0000
+
+    Revision: https://github.com/ckeditor/ckeditor5-image/commit/02869eb4478a2f538006c128b30b9727617af665
+
+:100644 100644 611526d5c4beae7046b0a08ec36843cbbe642175 35acdd8ba971d8127dd462a9c8c1162a54f00d58 M    mgit.json
+</code></pre>
+<p>Leads to <a href="https://github.com/ckeditor/ckeditor5-image/commit/02869eb" target="_blank" rel="noopener"><code>ckeditor/ckeditor5-image@02869eb</code></a> which leads to <a href="https://github.com/ckeditor/ckeditor5-image/pull/95" target="_blank" rel="noopener">ckeditor/ckeditor5-image#95</a>.</p>
+<h2 id="additional-information-for-contributors"><a class="headerlink" href="#additional-information-for-contributors">#</a> Additional information for contributors</h2>
+<h3 id="svg-icons"><a class="headerlink" href="#svg-icons">#</a> SVG icons</h3>
+<p>By default, CKEditor 5 supports SVG icons found in the <code>ckeditor5-*/theme/icons</code> folders. Unfortunately, most of the SVG editing software produces the output with comments, obsolete tags, and complex paths, which bloats the DOM and makes the builds heavy for no good reason.</p>
+<p>To remove the excess data and prevent <a href="https://github.com/ckeditor/ckeditor5-ui/issues/245" target="_blank" rel="noopener">certain issues</a>, <strong>all new icons should be optimized before joining the code base</strong>. To do that, you can use the <code>clean-up-svg-icons</code> script in the <a href="#setting-up-the-ckeditor-development-environment">root of the project</a>, a wrapper for the <a href="https://github.com/svg/svgo" target="_blank" rel="noopener">SVGO</a> tool:</p>
+<pre class="highlight"><code class="bash html"><span class="hljs-built_in">cd</span> path/to/ckeditor5
+
+<span class="hljs-comment"># Optimize all SVG files in the folder.</span>
+npm run clean-up-svg-icons path/to/icons/*.svg
+
+<span class="hljs-comment"># Optimize a single SVG file.</span>
+npm run clean-up-svg-icons path/to/icon/icon.svg
+</code></pre>
+<p>The script reduces the icon size up to 70%, depending on the software used to create it and the general complexity of the image.</p>
+<p><strong>Note</strong>: You may still need to tweak the source code of the SVG files manually after using the script:</p>
+<ul>
+<li>The icons should have the <code>viewBox</code> attribute (instead of <code>width</code> and <code>height</code>). The <code>removeDimensions</code> SVGO plugin will not remove <code>width</code> and <code>height</code> if there is no <code>viewBox</code> attribute so make sure it is present.</li>
+<li>Sometimes SVGO leaves empty (transparent) groups <code>&lt;g&gt;...&lt;/g&gt;</code>. They should be removed from the source.</li>
+<li>Make sure the number of <code>&lt;path&gt;</code> elements is minimal. Merge paths whenever possible in the image processor before saving the file.</li>
+</ul>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Guides</span></div>
+                            <ul class="tree__item-nested-list">
+                                    <li><a href="../overview.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="../quick-start.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span></div></a></li>
+                                    <li><a href="../creating-simple-plugin.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating a simple plugin</span></div></a></li>
+                                    <li><a href="../development-tools.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development tools</span></div></a></li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Architecture</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../architecture/intro.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Introduction</span></div></a></li>
+                                              <li><a href="../architecture/core-editor-architecture.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Core editor architecture</span></div></a></li>
+                                              <li><a href="../architecture/editing-engine.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editing engine</span></div></a></li>
+                                              <li><a href="../architecture/ui-library.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">UI library</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Tutorials</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../tutorials/implementing-a-block-widget.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing a block widget</span></div></a></li>
+                                              <li><a href="../tutorials/implementing-an-inline-widget.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing an inline widget</span></div></a></li>
+                                              <li><a href="../tutorials/using-react-in-a-widget.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Using a React component in a widget</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Deep dive</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../deep-dive/clipboard.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Clipboard</span></div></a></li>
+                                              <li><a href="../deep-dive/upload-adapter.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom upload adapter</span></div></a></li>
+                                              <li><a href="../deep-dive/observables.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Observables</span></div></a></li>
+                                              <li><a href="../deep-dive/schema.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Schema</span></div></a></li>
+                                              <li>
+                                                <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Conversion</span></div>
+                                                <ul class="tree__item-nested-list">
+                                                        <li><a href="../deep-dive/conversion/conversion-introduction.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Advanced concepts</span></div></a></li>
+                                                        <li><a href="../deep-dive/conversion/conversion-extending-output.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Extending editor output</span></div></a></li>
+                                                        <li><a href="../deep-dive/conversion/conversion-preserving-custom-content.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Preserving custom content</span></div></a></li>
+                                                </ul>
+                                              </li>
+                                              <li>
+                                                <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">User interface</span></div>
+                                                <ul class="tree__item-nested-list">
+                                                        <li><a href="../deep-dive/ui/theme-customization.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Theme customization</span></div></a></li>
+                                                        <li><a href="../deep-dive/ui/external-ui.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Third–party UI</span></div></a></li>
+                                                        <li><a href="../deep-dive/ui/document-editor.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document editor</span></div></a></li>
+                                                        <li><a href="../deep-dive/ui/custom-editor-creator.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating custom editor</span></div></a></li>
+                                                </ul>
+                                              </li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Contributing</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="contributing.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Contributing</span></div></a></li>
+                                              <li><a href>
+                                                  <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Development environment</span></div></a></li>
+                                              <li><a href="testing-environment.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Testing environment</span></div></a></li>
+                                              <li><a href="git-commit-message-convention.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Git commit message convention</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Support</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../support/browser-compatibility.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Browser compatibility</span></div></a></li>
+                                              <li><a href="../support/license-and-legal.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span></div></a></li>
+                                              <li><a href="../support/getting-support.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting support</span></div></a></li>
+                                              <li><a href="../support/reporting-issues.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span></div></a></li>
+                                              <li><a href="../support/versioning-policy.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Versioning policy</span></div></a></li>
+                                              <li><a href="../support/error-codes.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Error codes</span></div></a></li>
+                                      </ul>
+                                    </li>
+                            </ul>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2003-2020 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'framework' ] = hits.filter( function( h ) {return h.tags.includes( 'framework' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'framework' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'framework' ] );tags.forEach( function( tag ) {if ( tag !== 'framework' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+  </body>
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Git commit message convention - CKEditor 5 Documentation</title>
+    <meta property="og:title" content="Git commit message convention - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="/ckeditor5/latest/framework/guides/contributing/git-commit-message-convention.html">
+    <link rel="icon" type="image/png" href="../../../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../../../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../../assets/0.4.6/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
+    <script>
+      ( function() {
+      	'use strict';
+      	var el = document.createElement( 'script' );
+      	el.setAttribute( 'async', 'async' );
+      	el.setAttribute( 'defer', 'defer' );
+      	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
+      		el.src = "../../../../../assets/0.4.6/scripts/app.js";
+      	} else {
+      		el.src = "../../../../../assets/0.4.6/scripts/app-polyfill.js";
+      	}
+      	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
+      } )();
+    </script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="top__logo top__left"><span class="top__logo__product-icon" style="background-image: url( ../../../assets/img/project-logo.svg )"></span><a class="top__logo__product-title" href="../../../index.html">CKEditor 5</a></div>
+      <ul class="top__menu">
+        <li><a href="../../../builds/index.html">Builds</a></li>
+        <li><a class="top__menu__item--active" href="../../index.html">Framework</a></li>
+        <li><a href="../../../examples/index.html">Examples</a></li>
+        <li><a href="../../../features/index.html">Features</a></li>
+        <li><a class="top__menu__api" href="../../../api/index.html">API</a></li>
+        <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."></a></li>
+      </ul>
+      <div class="top__search">
+        <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.4.6/img/loupe.svg" alt="Search"></button>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/contributing/git-commit-message-convention.md" title="Contribute to this guide"><img src="../../../../../assets/0.4.6/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.4.6/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <h1><img src="../../../../../assets/0.4.6/img/book.svg" alt="guide">Git commit message convention
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#convention">Convention</a><ol><li><a href="#commit-types">Commit types</a></li><li><a href="#example-commits">Example commits</a></li></ol></li><li><a href="#handling-pull-requests">Handling pull requests</a><ol><li><a href="#giving-credit">Giving credit</a></li></ol></li></ol></nav>
+<p>Every commit made <em>directly</em> to the <code>master</code> branch must follow the below convention. Based on commits in the <code>master</code> branch CKEditor 5&#x2019;s release tools will generate changelog entries for the current release.</p>
+<div class="info-box notice"><p>Commits in the ticket branches are not analyzed for the changelog and do not have to follow any specific convention (other than finishing sentences with periods). In case of ticket branches, <strong>only merge commits are analyzed</strong>.</p><p>Therefore, this guide is mainly targeted at core team members. However, it may help you understand how to write a suggested commit message when creating a pull request for CKEditor 5.</p></div>
+<h2 id="convention"><a class="headerlink" href="#convention">#</a> Convention</h2>
+<p>Commit message template:</p>
+<pre class="highlight"><code class="">Type: A short sentence about the commit. Closes #XXX.
+
+Optional description.
+
+NOTE: Special note to be marked in the changelog.
+
+BREAKING CHANGE: If any breaking changes were done, they need to be listed here.
+BREAKING CHANGE: Another breaking change if needed. Closes #YYY.
+</code></pre>
+<h3 id="commit-types"><a class="headerlink" href="#commit-types">#</a> Commit types</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Release</th>
+<th>Description</th>
+<th>Changelog</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Feature</td>
+<td><code>minor</code></td>
+<td>A new feature.</td>
+<td>Visible</td>
+</tr>
+<tr>
+<td>Fix</td>
+<td><code>patch</code></td>
+<td>A bug fix. Should also be used for enhancements if they do not introduce new features at the same time.</td>
+<td>Visible</td>
+</tr>
+<tr>
+<td>Other</td>
+<td><code>patch</code></td>
+<td>An enhancement &#x2014; when it is neither a bug fix nor a feature. Example: public API refactoring. Use it also if you do not want to admit that it was a bug &#x1F609;.</td>
+<td>Visible</td>
+</tr>
+<tr>
+<td>Code style</td>
+<td><code>patch</code></td>
+<td>Our beloved code style improvements (used in the broad meaning of general code quality).</td>
+<td>Hidden</td>
+</tr>
+<tr>
+<td>Docs</td>
+<td><code>patch</code></td>
+<td>Updated documentation.</td>
+<td>Hidden</td>
+</tr>
+<tr>
+<td>Internal</td>
+<td><code>patch</code></td>
+<td>Other kinds of internal changes.</td>
+<td>Hidden</td>
+</tr>
+<tr>
+<td>Tests</td>
+<td><code>patch</code></td>
+<td>Changes in test files.</td>
+<td>Hidden</td>
+</tr>
+<tr>
+<td>Revert</td>
+<td><code>patch</code></td>
+<td>Revert of some commit.</td>
+<td>Hidden</td>
+</tr>
+<tr>
+<td>Release</td>
+<td><code>patch</code></td>
+<td>A special type of commit used by the release tools.</td>
+<td>Hidden</td>
+</tr>
+</tbody>
+</table>
+<p>Each commit can contain additional notes which will be inserted to the changelog:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Is backward compatible?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NOTE</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>BREAKING CHANGES</code> or <code>BREAKING CHANGE</code></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>If any visible change contains the <code>BREAKING CHANGE</code> note, the next release will be marked as <code>major</code> automatically.</p>
+<h3 id="example-commits"><a class="headerlink" href="#example-commits">#</a> Example commits</h3>
+<p>A new feature without any breaking changes.</p>
+<pre class="highlight"><code class="">Feature: Added support for RTL languages. Closes #1.
+
+RTL content will now be rendered correctly.
+
+NOTE: Make sure to set `config.contentDirection` correctly.
+</code></pre>
+<p>A bug fix for an existing feature (closes two tickets):</p>
+<pre class="highlight"><code class="">Fix: The editor will be great again. Closes #3. Closes #4.
+</code></pre>
+<p>Commit with updated documentation:</p>
+<pre class="highlight"><code class="">Docs: Updated the README.
+</code></pre>
+<p>Commit which provides or changes the tests:</p>
+<pre class="highlight"><code class="">Tests: Introduced missing tests. Closes #5.
+</code></pre>
+<p>An enhancement which is not backward compatible. Public API was changed:</p>
+<pre class="highlight"><code class="">Other: Extracted `utils.moo()` to a separate package. Closes #9.
+
+BREAKING CHANGE: The `util.moo()` method is now available in the `moo` package. See #9.
+</code></pre>
+<p>For the commits shown above the changelog will look like this:</p>
+<pre class="highlight"><code class="md html"><span class="hljs-section">Changelog
+=========</span>
+
+<span class="hljs-section">## [1.0.0](https://github.com/ckeditor/ckeditor5-dev/compare/v1.0.0...v0.0.1) (2017-01-04)</span>
+
+<span class="hljs-section">### Bug fixes</span>
+
+<span class="hljs-bullet">* </span>The editor will be great again. Closes [<span class="hljs-string">#3</span>](<span class="hljs-link">https://github.com/ckeditor/ckeditor5-dev/issue/3</span>). Closes [<span class="hljs-string">#4</span>](<span class="hljs-link">https://github.com/ckeditor/ckeditor5-dev/issue/4</span>). ([<span class="hljs-string">a0b4ce8</span>](<span class="hljs-link">https://github.com/ckeditor/ckeditor5-dev/commit/a0b4ce8</span>))
+
+<span class="hljs-section">### Other changes</span>
+
+<span class="hljs-bullet">* </span>Extracted <span class="hljs-code">`utils.moo()`</span> to a separate package. Thanks to [<span class="hljs-string">@CKEditor</span>](<span class="hljs-link">https://github.com/CKEditor</span>). ([<span class="hljs-string">e8cc04f</span>](<span class="hljs-link">https://github.com/ckeditor/ckeditor5-dev/commit/e8cc04f</span>))
+
+<span class="hljs-section">### Features</span>
+
+<span class="hljs-bullet">* </span>Added support for RTL languages. Closes [<span class="hljs-string">#1</span>](<span class="hljs-link">https://github.com/ckeditor/ckeditor5-dev/issue/1</span>). ([<span class="hljs-string">adc59ed</span>](<span class="hljs-link">https://github.com/ckeditor/ckeditor5-dev/commit/adc59ed</span>))
+
+   RTL content will now be rendered correctly.
+
+<span class="hljs-section">### BREAKING CHANGES</span>
+
+<span class="hljs-bullet">* </span>The <span class="hljs-code">`util.moo()`</span> method is now available in the <span class="hljs-code">`moo`</span> package. See [<span class="hljs-string">#9</span>](<span class="hljs-link">https://github.com/ckeditor/ckeditor5-dev/issue/9</span>).
+
+<span class="hljs-section">### NOTE</span>
+
+<span class="hljs-bullet">* </span>Make sure to set <span class="hljs-code">`config.contentDirection`</span> correctly.
+</code></pre>
+<h2 id="handling-pull-requests"><a class="headerlink" href="#handling-pull-requests">#</a> Handling pull requests</h2>
+<p>When making a pull request its author may (it is recommended in the pull request template) propose a merge commit message.</p>
+<p>The reviewer&#x2019;s duty is to validate the proposed message and apply necessary changes (the PR&#x2019;s description can be edited).</p>
+<p>Things like:</p>
+<ul>
+<li>language and grammar of the message,</li>
+<li>type of the change,</li>
+<li>mentioned issue(s) number,</li>
+<li>breaking changes,</li>
+<li>and any additional information</li>
+</ul>
+<p>should be checked and added if missing.</p>
+<p>As a reviewer, remember that the message will end up in the changelog and must be understandable in a broad context of the entire editor. It is not for you &#x2014; it is for other developers.</p>
+<p>When closing a PR remember to copy the source of the message to the textarea with the merge commit message:</p>
+<p><img src="../../../assets/img/closing-a-pr.gif" alt="Screencast how to copy a source version of the suggested commit message when closing a PR."></p>
+<h3 id="giving-credit"><a class="headerlink" href="#giving-credit">#</a> Giving credit</h3>
+<p>When closing a non-core contributor&#x2019;s PR make sure to add information about the contributor to the commit message. For example:</p>
+<pre class="highlight"><code class="">Feature: Added support for RTL languages. Closes #1.
+
+Thanks to @someone!
+</code></pre>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li>
+                            <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Guides</span>
+                              <ul>
+                                      <li><a href="../overview.html">
+                                          <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                      <li><a href="../quick-start.html">
+                                          <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span></div></a></li>
+                                      <li>
+                                        <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Architecture</span>
+                                          <ul>
+                                                  <li><a href="../architecture/intro.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Introduction</span></div></a></li>
+                                                  <li><a href="../architecture/core-editor-architecture.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Core editor architecture</span></div></a></li>
+                                                  <li><a href="../architecture/editing-engine.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editing engine</span></div></a></li>
+                                                  <li><a href="../architecture/ui-library.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">UI library</span></div></a></li>
+                                          </ul>
+                                        </div>
+                                      </li>
+                                      <li>
+                                        <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">User interface</span>
+                                          <ul>
+                                                  <li><a href="../ui/theme-customization.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Theme customization</span></div></a></li>
+                                                  <li><a href="../ui/external-ui.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Third–party UI</span></div></a></li>
+                                                  <li><a href="../ui/document-editor.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document editor</span></div></a></li>
+                                          </ul>
+                                        </div>
+                                      </li>
+                                      <li>
+                                        <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Contributing</span>
+                                          <ul>
+                                                  <li><a href="development-environment.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development environment</span></div></a></li>
+                                                  <li><a href="testing-environment.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Testing environment</span></div></a></li>
+                                                  <li><a href="">
+                                                      <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Git commit message convention</span></div></a></li>
+                                          </ul>
+                                        </div>
+                                      </li>
+                                      <li>
+                                        <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Support</span>
+                                          <ul>
+                                                  <li><a href="../support/browser-compatibility.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Browser compatibility</span></div></a></li>
+                                                  <li><a href="../support/license-and-legal.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span></div></a></li>
+                                                  <li><a href="../support/getting-support.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting support</span></div></a></li>
+                                                  <li><a href="../support/reporting-issues.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span></div></a></li>
+                                                  <li><a href="../support/error-codes.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Error codes</span></div></a></li>
+                                          </ul>
+                                        </div>
+                                      </li>
+                              </ul>
+                            </div>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2017-2018 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},debug:false,
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'framework' ] = hits.filter( function( h ) {return h.tags.includes( 'framework' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'framework' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'framework' ] );tags.forEach( function( tag ) {if ( tag !== 'framework' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+  </body>
+</html>

@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Advanced setup - CKEditor 5 Documentation</title>
+    <meta property="og:title" content="Advanced setup - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="/ckeditor5/latest/builds/guides/integration/advanced-setup.html">
+    <link rel="icon" type="image/png" href="../../../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../../../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../../assets/0.4.9/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
+    <script>
+      ( function() {
+      	'use strict';
+      	var el = document.createElement( 'script' );
+      	el.setAttribute( 'async', 'async' );
+      	el.setAttribute( 'defer', 'defer' );
+      	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
+      		el.src = "../../../../../assets/0.4.9/scripts/app.js";
+      	} else {
+      		el.src = "../../../../../assets/0.4.9/scripts/app-polyfill.js";
+      	}
+      	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
+      } )();
+    </script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="top__logo top__left"><span class="top__logo__product-icon" style="background-image: url( ../../../assets/img/project-logo.svg )"></span><a class="top__logo__product-title" href="../../../index.html">CKEditor 5</a></div>
+      <ul class="top__menu">
+        <li><a class="top__menu__item--active" href="../../index.html">Builds</a></li>
+        <li><a href="../../../framework/index.html">Framework</a></li>
+        <li><a href="../../../examples/index.html">Examples</a></li>
+        <li><a href="../../../features/index.html">Features</a></li>
+        <li><a class="top__menu__api" href="../../../api/index.html">API</a></li>
+        <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."></a></li>
+      </ul>
+      <div class="top__search">
+        <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.4.9/img/loupe.svg" alt="Search"></button>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/integration/advanced-setup.md" title="Contribute to this guide"><img src="../../../../../assets/0.4.9/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.4.9/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <h1><img src="../../../../../assets/0.4.9/img/book.svg" alt="guide">Advanced setup
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#requirements">Requirements</a></li><li><a href="#bundler">Bundler</a></li><li><a href="#scenario-1-integrating-existing-builds">Scenario 1: Integrating existing builds</a></li><li><a href="#scenario-2-building-from-source">Scenario 2: Building from source</a><ol><li><a href="#webpack-configuration">Webpack configuration</a></li><li><a href="#running-the-editor-method-1">Running the editor &#x2013; method 1</a></li><li><a href="#running-the-editor-method-2">Running the editor &#x2013; method 2</a></li><li><a href="#building">Building</a></li><li><a href="#option-extracting-css">Option: Extracting CSS</a></li><li><a href="#option-building-to-es5-target">Option: Building to ES5 target</a></li></ol></li></ol></nav>
+<p>The <a href="installation.html">Installation</a> guide describes the easiest ways to run CKEditor builds in your project and the <a href="../development/custom-builds.html">Custom builds</a> guide explains how to add or remove features from the build or change webpack configuration.</p>
+<p>In this guide, we would like to show you ways to closer integrate CKEditor with your application. Thanks to that, you will be able to optimize the bundling process of your project and customize the builds in a more convenient way.</p>
+<h2 id="requirements"><a class="headerlink" href="#requirements">#</a> Requirements</h2>
+<p>In order to start developing CKEditor 5 you will require:</p>
+<ul>
+<li><a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a> &gt;= 6.0.0</li>
+<li>npm 4.x (<strong>note:</strong> using npm 5 <a href="https://github.com/lerna/lerna/issues/938" target="_blank" rel="noopener">causes</a> some <a href="https://github.com/npm/npm/issues/16991" target="_blank" rel="noopener">problems</a>)</li>
+<li><a href="https://git-scm.com/" target="_blank" rel="noopener">Git</a></li>
+</ul>
+<h2 id="bundler"><a class="headerlink" href="#bundler">#</a> Bundler</h2>
+<p>CKEditor 5 is currently built using <a href="https://webpack.js.org" target="_blank" rel="noopener">webpack</a> (&gt;=3.x.x). All builds, examples and demos are generated using this bundler. It should also be possible to build CKEditor using other bundlers (if they are configured properly), such as <a href="https://github.com/rollup/rollup" target="_blank" rel="noopener">Rollup</a> or <a href="http://browserify.org/" target="_blank" rel="noopener">Browserify</a>, but these setups are not officially supported yet. Also, the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-dev-webpack-plugin" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-dev-webpack-plugin</code></a> that allows to localize the editor is only available for webpack. More work on this subject will be done after v1.0.0.</p>
+<p>Therefore, <strong>a prerequisite to this guide is that you are using webpack as your build tool</strong>.</p>
+<div class="info-box notice notice__warning"><p>Unfortunately, at the moment of writing this note, <a href="https://github.com/ckeditor/ckeditor5-dev/issues/371" target="_blank" rel="noopener">webpack@4.x causes issues</a> so the recommended version is webpack@3.x.</p></div>
+<h2 id="scenario-1-integrating-existing-builds"><a class="headerlink" href="#scenario-1-integrating-existing-builds">#</a> Scenario 1: Integrating existing builds</h2>
+<p>This is the simplest scenario. It assumes that you want to use <a href="../overview.html#available-builds">one of the existing builds</a> &#x201C;as-is&#x201D; (you can, of course, still <a href="configuration.html">configure the editor</a>). It also gives the fastest build times.</p>
+<p>First, install the build of your choice <a href="installation.html#npm">from npm</a>:</p>
+<pre class="highlight"><code class="bash">npm install --save @ckeditor/ckeditor5-build-classic
+</code></pre>
+<p>Now, import the editor build into your code:</p>
+<pre class="highlight"><code class="js"><span class="hljs-comment">// Using ES6 imports:</span>
+<span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-build-classic&apos;</span>;
+
+<span class="hljs-comment">// Or CJS imports:</span>
+<span class="hljs-keyword">const</span> ClassicEditor = <span class="hljs-built_in">require</span>( <span class="hljs-string">&apos;@ckeditor/ckeditor5-build-classic&apos;</span> );
+</code></pre>
+<p>And use it:</p>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ) )
+    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log( editor );
+    } )
+    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.error( error );
+    } );
+</code></pre>
+<p>Since you are using an already built editor (so a result of passing CKEditor 5&#x2019;s source through webpack), you do not need any additional webpack configuration. In this case CKEditor works as a ready-to-use library.</p>
+<h2 id="scenario-2-building-from-source"><a class="headerlink" href="#scenario-2-building-from-source">#</a> Scenario 2: Building from source</h2>
+<p>This scenario allows you to fully control the building process of CKEditor. This means that you will not actually use the builds anymore, but instead build CKEditor from source directly into your project. This integration method gives you full control over which features will be included and how webpack will be configured.</p>
+<div class="info-box notice"><p>Similar results to what this method allows can be achieved by <a href="../development/custom-builds.html">customizing an existing build</a> and integrating your custom build like in scenario 1. This will give faster build times (since CKEditor will be built once and committed), however, it requires maintaining a separate repository and installing the code from that repository into your project (e.g. by publishing a new npm package or using tools like <a href="https://github.com/lerna/lerna" target="_blank" rel="noopener">Lerna</a>). This makes it less convenient than the method described in this scenario.</p></div>
+<p>First of all, you need to install source packages that you will use. If you base your integration on one of the existing builds, you can take them from that build&#x2019;s <code>package.json</code> file (see e.g. <a href="https://github.com/ckeditor/ckeditor5-build-classic/tree/master/package.json" target="_blank" rel="noopener">classic build&#x2019;s <code>package.json</code></a>). At this moment you can choose the editor creator and the features you want.</p>
+<p>Copy these dependencies to your <code>package.json</code> and call <code>npm install</code> to install them. The <code>dependencies</code> (or <code>devDependencies</code>) section of <code>package.json</code> should look more or less like this:</p>
+<pre class="highlight"><code class="js"><span class="hljs-string">&quot;dependencies&quot;</span>: {
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-string">&quot;@ckeditor/ckeditor5-adapter-ckfinder&quot;</span>: <span class="hljs-string">&quot;^x.y.z&quot;</span>,
+    <span class="hljs-string">&quot;@ckeditor/ckeditor5-autoformat&quot;</span>: <span class="hljs-string">&quot;^x.y.z&quot;</span>,
+    <span class="hljs-string">&quot;@ckeditor/ckeditor5-basic-styles&quot;</span>: <span class="hljs-string">&quot;^x.y.z&quot;</span>,
+    <span class="hljs-string">&quot;@ckeditor/ckeditor5-block-quote&quot;</span>: <span class="hljs-string">&quot;^x.y.z&quot;</span>,
+    <span class="hljs-string">&quot;@ckeditor/ckeditor5-easy-image&quot;</span>: <span class="hljs-string">&quot;^x.y.z&quot;</span>,
+    <span class="hljs-string">&quot;@ckeditor/ckeditor5-editor-classic&quot;</span>: <span class="hljs-string">&quot;^x.y.z&quot;</span>,
+    <span class="hljs-string">&quot;@ckeditor/ckeditor5-essentials&quot;</span>: <span class="hljs-string">&quot;^x.y.z&quot;</span>,
+    <span class="hljs-string">&quot;@ckeditor/ckeditor5-heading&quot;</span>: <span class="hljs-string">&quot;^x.y.z&quot;</span>,
+    <span class="hljs-string">&quot;@ckeditor/ckeditor5-image&quot;</span>: <span class="hljs-string">&quot;^x.y.z&quot;</span>,
+    <span class="hljs-string">&quot;@ckeditor/ckeditor5-link&quot;</span>: <span class="hljs-string">&quot;^x.y.z&quot;</span>,
+    <span class="hljs-string">&quot;@ckeditor/ckeditor5-list&quot;</span>: <span class="hljs-string">&quot;^x.y.z&quot;</span>,
+    <span class="hljs-string">&quot;@ckeditor/ckeditor5-paragraph&quot;</span>: <span class="hljs-string">&quot;^x.y.z&quot;</span>,
+    <span class="hljs-string">&quot;@ckeditor/ckeditor5-theme-lark&quot;</span>: <span class="hljs-string">&quot;^x.y.z&quot;</span>,
+    <span class="hljs-string">&quot;@ckeditor/ckeditor5-upload&quot;</span>: <span class="hljs-string">&quot;^x.y.z&quot;</span>
+
+    <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>The second step is to install dependencies needed to build the editor. The list may differ if you want to customize the webpack configuration, but this is a typical setup:</p>
+<pre class="highlight"><code class="bash">npm install --save \
+    @ckeditor/ckeditor5-dev-webpack-plugin \
+    @ckeditor/ckeditor5-dev-utils \
+    postcss-loader \
+    raw-loader \
+    style-loader \
+    webpack@^3.11.0 \
+    webpack-sources@1.0.1
+</code></pre>
+<p>You may also want to install <a href="https://github.com/webpack-contrib/babel-minify-webpack-plugin" target="_blank" rel="noopener"><code>babel-minify-webpack-plugin</code></a> if you plan to minify ES6+ code.</p>
+<div class="info-box notice notice__warning"><p>Unfortunately, at the moment of writing this note, <a href="https://github.com/ckeditor/ckeditor5-dev/issues/371" target="_blank" rel="noopener">webpack@4.x causes issues</a>. Hence, webpack@3.x is used in the scenario above. Additionally, webpack-sources@1.0.1 <a href="https://github.com/ckeditor/ckeditor5/issues/658" target="_blank" rel="noopener">is needed due to another issue</a>.</p></div>
+<h3 id="webpack-configuration"><a class="headerlink" href="#webpack-configuration">#</a> Webpack configuration</h3>
+<p>You can now configure webpack. There are a couple of things that you need to take care of when building CKEditor:</p>
+<ul>
+<li>Handling CSS files of the CKEditor theme. They are included in the CKEditor sources using <code>import &apos;path/to/styles.css&apos;</code> statements, so you need <a href="https://webpack.js.org/loaders/" target="_blank" rel="noopener">proper loaders</a>.</li>
+<li>Similarly, you need to handle bundling SVG icons, which are also imported directly into the source. For that you need the <a href="https://webpack.js.org/loaders/raw-loader/" target="_blank" rel="noopener"><code>raw-loader</code></a>.</li>
+<li>Finally, to localize the editor you need to use the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-dev-webpack-plugin" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-dev-webpack-plugin</code></a> webpack plugin.</li>
+</ul>
+<p>The minimal configuration, assuming that you use the same methods of handling assets as CKEditor builds, will look like this:</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> CKEditorWebpackPlugin = <span class="hljs-built_in">require</span>( <span class="hljs-string">&apos;@ckeditor/ckeditor5-dev-webpack-plugin&apos;</span> );
+<span class="hljs-keyword">const</span> { styles } = <span class="hljs-built_in">require</span>( <span class="hljs-string">&apos;@ckeditor/ckeditor5-dev-utils&apos;</span> );
+
+<span class="hljs-built_in">module</span>.exports = {
+    <span class="hljs-attr">plugins</span>: [
+        <span class="hljs-comment">// ...</span>
+
+        <span class="hljs-keyword">new</span> CKEditorWebpackPlugin( {
+            <span class="hljs-comment">// See https://docs.ckeditor.com/ckeditor5/latest/features/ui-language.html</span>
+            language: <span class="hljs-string">&apos;pl&apos;</span>
+        } )
+    ],
+
+    <span class="hljs-attr">module</span>: {
+        <span class="hljs-attr">rules</span>: [
+            {
+                <span class="hljs-comment">// Or /ckeditor5-[^/]+\/theme\/icons\/[^/]+\.svg$/ if you want to limit this loader</span>
+                <span class="hljs-comment">// to CKEditor 5 icons only.</span>
+                test: <span class="hljs-regexp">/\.svg$/</span>,
+
+                <span class="hljs-attr">use</span>: [ <span class="hljs-string">&apos;raw-loader&apos;</span> ]
+            },
+            {
+                <span class="hljs-comment">// Or /ckeditor5-[^/]+\/theme\/[\w-/]+\.css$/ if you want to limit this loader</span>
+                <span class="hljs-comment">// to CKEditor 5 theme only.</span>
+                test: <span class="hljs-regexp">/\.css$/</span>,
+                <span class="hljs-attr">use</span>: [
+                    {
+                        <span class="hljs-attr">loader</span>: <span class="hljs-string">&apos;style-loader&apos;</span>,
+                        <span class="hljs-attr">options</span>: {
+                            <span class="hljs-attr">singleton</span>: <span class="hljs-literal">true</span>
+                        }
+                    },
+                    {
+                        <span class="hljs-attr">loader</span>: <span class="hljs-string">&apos;postcss-loader&apos;</span>,
+                        <span class="hljs-attr">options</span>: styles.getPostCssConfig( {
+                            <span class="hljs-attr">themeImporter</span>: {
+                                <span class="hljs-attr">themePath</span>: <span class="hljs-built_in">require</span>.resolve( <span class="hljs-string">&apos;@ckeditor/ckeditor5-theme-lark&apos;</span> )
+                            },
+                            <span class="hljs-attr">minify</span>: <span class="hljs-literal">true</span>
+                        } )
+                    },
+                ]
+            }
+        ]
+    }
+};
+</code></pre>
+<h3 id="running-the-editor-method-1"><a class="headerlink" href="#running-the-editor-method-1">#</a> Running the editor &#x2013; method 1</h3>
+<p>You can now import all the needed plugins and the creator directly into your code and use it there. The easiest way to do so is to copy it from the <code>src/ckeditor.js</code> file available in every build repository.</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ClassicEditorBase <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
+<span class="hljs-keyword">import</span> EssentialsPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;</span>;
+<span class="hljs-keyword">import</span> UploadadapterPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-adapter-ckfinder/src/uploadadapter&apos;</span>;
+<span class="hljs-keyword">import</span> AutoformatPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-autoformat/src/autoformat&apos;</span>;
+<span class="hljs-keyword">import</span> BoldPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;</span>;
+<span class="hljs-keyword">import</span> ItalicPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;</span>;
+<span class="hljs-keyword">import</span> BlockquotePlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-block-quote/src/blockquote&apos;</span>;
+<span class="hljs-keyword">import</span> EasyimagePlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-easy-image/src/easyimage&apos;</span>;
+<span class="hljs-keyword">import</span> HeadingPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-heading/src/heading&apos;</span>;
+<span class="hljs-keyword">import</span> ImagePlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-image/src/image&apos;</span>;
+<span class="hljs-keyword">import</span> ImagecaptionPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-image/src/imagecaption&apos;</span>;
+<span class="hljs-keyword">import</span> ImagestylePlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-image/src/imagestyle&apos;</span>;
+<span class="hljs-keyword">import</span> ImagetoolbarPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-image/src/imagetoolbar&apos;</span>;
+<span class="hljs-keyword">import</span> ImageuploadPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-image/src/imageupload&apos;</span>;
+<span class="hljs-keyword">import</span> LinkPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-link/src/link&apos;</span>;
+<span class="hljs-keyword">import</span> ListPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-list/src/list&apos;</span>;
+<span class="hljs-keyword">import</span> ParagraphPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ClassicEditor</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ClassicEditorBase</span> </span>{}
+
+ClassicEditor.build = {
+    <span class="hljs-attr">plugins</span>: [
+        EssentialsPlugin,
+        UploadadapterPlugin,
+        AutoformatPlugin,
+        BoldPlugin,
+        ItalicPlugin,
+        BlockquotePlugin,
+        EasyimagePlugin,
+        HeadingPlugin,
+        ImagePlugin,
+        ImagecaptionPlugin,
+        ImagestylePlugin,
+        ImagetoolbarPlugin,
+        ImageuploadPlugin,
+        LinkPlugin,
+        ListPlugin,
+        ParagraphPlugin
+    ],
+    <span class="hljs-attr">config</span>: {
+        <span class="hljs-attr">toolbar</span>: {
+            <span class="hljs-attr">items</span>: [
+                <span class="hljs-string">&apos;heading&apos;</span>,
+                <span class="hljs-string">&apos;|&apos;</span>,
+                <span class="hljs-string">&apos;bold&apos;</span>,
+                <span class="hljs-string">&apos;italic&apos;</span>,
+                <span class="hljs-string">&apos;link&apos;</span>,
+                <span class="hljs-string">&apos;bulletedList&apos;</span>,
+                <span class="hljs-string">&apos;numberedList&apos;</span>,
+                <span class="hljs-string">&apos;imageUpload&apos;</span>,
+                <span class="hljs-string">&apos;blockQuote&apos;</span>,
+                <span class="hljs-string">&apos;undo&apos;</span>,
+                <span class="hljs-string">&apos;redo&apos;</span>
+            ]
+        },
+        <span class="hljs-attr">image</span>: {
+            <span class="hljs-attr">toolbar</span>: [
+                <span class="hljs-string">&apos;imageStyle:full&apos;</span>,
+                <span class="hljs-string">&apos;imageStyle:side&apos;</span>,
+                <span class="hljs-string">&apos;|&apos;</span>,
+                <span class="hljs-string">&apos;imageTextAlternative&apos;</span>
+            ]
+        },
+        <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;en&apos;</span>
+    }
+};
+
+</code></pre>
+<p>This module will export an editor creator class which has all the plugins and configuration that you need already built-in. To use such editor, simply import that class and call the static <code>.create()</code> method like in all <a href="basic-api.html#creating-an-editor">examples</a>.</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./ckeditor&apos;</span>;
+
+ClassicEditor
+    <span class="hljs-comment">// Note that you do not have to specify the plugin and toolbar configuraiton &#x2014; using defaults from the build.</span>
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ) )
+    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;Editor was initialized&apos;</span>, editor );
+    } )
+    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.error( error.stack );
+    } );
+</code></pre>
+<h3 id="running-the-editor-method-2"><a class="headerlink" href="#running-the-editor-method-2">#</a> Running the editor &#x2013; method 2</h3>
+<p>The second variant how to run the editor is to use the creator class directly, without creating an intermediary subclass. The above code would translate to:</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
+<span class="hljs-keyword">import</span> EssentialsPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;</span>;
+<span class="hljs-keyword">import</span> UploadadapterPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-adapter-ckfinder/src/uploadadapter&apos;</span>;
+<span class="hljs-keyword">import</span> AutoformatPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-autoformat/src/autoformat&apos;</span>;
+<span class="hljs-keyword">import</span> BoldPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;</span>;
+<span class="hljs-keyword">import</span> ItalicPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;</span>;
+<span class="hljs-keyword">import</span> BlockquotePlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-block-quote/src/blockquote&apos;</span>;
+<span class="hljs-keyword">import</span> EasyimagePlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-easy-image/src/easyimage&apos;</span>;
+<span class="hljs-keyword">import</span> HeadingPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-heading/src/heading&apos;</span>;
+<span class="hljs-keyword">import</span> ImagePlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-image/src/image&apos;</span>;
+<span class="hljs-keyword">import</span> ImagecaptionPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-image/src/imagecaption&apos;</span>;
+<span class="hljs-keyword">import</span> ImagestylePlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-image/src/imagestyle&apos;</span>;
+<span class="hljs-keyword">import</span> ImagetoolbarPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-image/src/imagetoolbar&apos;</span>;
+<span class="hljs-keyword">import</span> ImageuploadPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-image/src/imageupload&apos;</span>;
+<span class="hljs-keyword">import</span> LinkPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-link/src/link&apos;</span>;
+<span class="hljs-keyword">import</span> ListPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-list/src/list&apos;</span>;
+<span class="hljs-keyword">import</span> ParagraphPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;</span>;
+
+ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span>), {
+        <span class="hljs-comment">// The plugins are now passed directly to .create().</span>
+        plugins: [
+            EssentialsPlugin,
+            AutoformatPlugin,
+            BoldPlugin,
+            ItalicPlugin,
+            BlockquotePlugin,
+            HeadingPlugin,
+            ImagePlugin,
+            ImagecaptionPlugin,
+            ImagestylePlugin,
+            ImagetoolbarPlugin,
+            LinkPlugin,
+            ListPlugin,
+            ParagraphPlugin
+        ],
+
+        <span class="hljs-comment">// So is the rest of the default configuration.</span>
+        toolbar: [
+            <span class="hljs-string">&apos;heading&apos;</span>,
+            <span class="hljs-string">&apos;bold&apos;</span>,
+            <span class="hljs-string">&apos;italic&apos;</span>,
+            <span class="hljs-string">&apos;link&apos;</span>,
+            <span class="hljs-string">&apos;bulletedList&apos;</span>,
+            <span class="hljs-string">&apos;numberedList&apos;</span>,
+            <span class="hljs-string">&apos;imageUpload&apos;</span>,
+            <span class="hljs-string">&apos;blockQuote&apos;</span>,
+            <span class="hljs-string">&apos;undo&apos;</span>,
+            <span class="hljs-string">&apos;redo&apos;</span>
+        ],
+        <span class="hljs-attr">image</span>: {
+            <span class="hljs-attr">toolbar</span>: [
+                <span class="hljs-string">&apos;imageStyle:full&apos;</span>,
+                <span class="hljs-string">&apos;imageStyle:side&apos;</span>,
+                <span class="hljs-string">&apos;|&apos;</span>,
+                <span class="hljs-string">&apos;imageTextAlternative&apos;</span>
+            ]
+        }
+    } )
+    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log( editor );
+    } )
+    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.error( error );
+    } );
+</code></pre>
+<h3 id="building"><a class="headerlink" href="#building">#</a> Building</h3>
+<p>Finally, you can build your application. Run webpack on your project and the editor will be a part of it.</p>
+<h3 id="option-extracting-css"><a class="headerlink" href="#option-extracting-css">#</a> Option: Extracting CSS</h3>
+<p>One of the most common requirements is to extract CKEditor&#x2019;s CSS to a separate file (by default it is included in the output JavaScript file). To do that, you can use the <a href="https://www.npmjs.com/package/extract-text-webpack-plugin" target="_blank" rel="noopener"><code>extract-text-webpack-plugin</code></a> plugin:</p>
+<pre class="highlight"><code class="bash">npm install --save extract-text-webpack-plugin
+</code></pre>
+<p>And add it to your webpack configuration:</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> ExtractTextPlugin = <span class="hljs-built_in">require</span>( <span class="hljs-string">&apos;extract-text-webpack-plugin&apos;</span> );
+
+<span class="hljs-built_in">module</span>.exports = {
+    <span class="hljs-comment">// ...</span>
+
+    plugins: [
+        <span class="hljs-comment">// ...</span>
+
+        <span class="hljs-keyword">new</span> ExtractTextPlugin( <span class="hljs-string">&apos;styles.css&apos;</span> )
+    ],
+
+    <span class="hljs-attr">module</span>: {
+        <span class="hljs-attr">rules</span>: [
+            {
+                <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.svg$/</span>,
+                <span class="hljs-attr">use</span>: [ <span class="hljs-string">&apos;raw-loader&apos;</span> ]
+            },
+            {
+                <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.css$/</span>,
+                <span class="hljs-attr">use</span>: ExtractTextPlugin.extract( {
+                    <span class="hljs-attr">fallback</span>: <span class="hljs-string">&apos;style-loader&apos;</span>,
+                    <span class="hljs-attr">use</span>: [
+                        {
+                            <span class="hljs-attr">loader</span>: <span class="hljs-string">&apos;postcss-loader&apos;</span>,
+                            <span class="hljs-attr">options</span>: styles.getPostCssConfig( {
+                                <span class="hljs-attr">themeImporter</span>: {
+                                    <span class="hljs-attr">themePath</span>: <span class="hljs-built_in">require</span>.resolve( <span class="hljs-string">&apos;@ckeditor/ckeditor5-theme-lark&apos;</span> )
+                                },
+                                <span class="hljs-attr">minify</span>: <span class="hljs-literal">true</span>
+                            } )
+                        }
+                    ]
+                } )
+            }
+        ]
+    }
+};
+</code></pre>
+<p>Webpack will now create a separate file called <code>styles.css</code> which you will need to load manually into your HTML (using the <code>&lt;link rel=&quot;stylesheet&quot;&gt;</code> tag).</p>
+<h3 id="option-building-to-es5-target"><a class="headerlink" href="#option-building-to-es5-target">#</a> Option: Building to ES5 target</h3>
+<p>CKEditor 5 is written in ECMAScript 2015 (also called ES6). All browsers in which CKEditor 5 is <a href="../support/browser-compatibility.html">currently supported</a> have sufficient ES6 support to run CKEditor 5. Thanks to that, CKEditor 5 Builds are also published in the original ES6 format.</p>
+<p>However, it may happen that your environment requires ES5. For instance, if you use tools like <a href="https://github.com/mishoo/UglifyJS" target="_blank" rel="noopener">UglifyJS</a> which do not support ES6+ yet, you may need to transpile CKEditor 5 source to ES5. This will create ~80% bigger builds but will ensure that your environment can process CKEditor 5 code.</p>
+<p>In order to create an ES5 build of CKEditor 5 you can use <a href="https://babeljs.io/" target="_blank" rel="noopener">Babel</a>:</p>
+<pre class="highlight"><code class="bash">npm install --save babel-loader babel-core babel-preset-env regenerator-runtime
+</code></pre>
+<p>Then, add this item to webpack <a href="https://webpack.js.org/configuration/module/#module-rules" target="_blank" rel="noopener"><code>module.rules</code></a> section:</p>
+<pre class="highlight"><code class="js"><span class="hljs-built_in">module</span>: {
+    <span class="hljs-attr">rules</span>: [
+        {
+            <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.js$/</span>,
+            <span class="hljs-attr">use</span>: [
+                {
+                    <span class="hljs-attr">loader</span>: <span class="hljs-string">&apos;babel-loader&apos;</span>,
+                    <span class="hljs-attr">options</span>: {
+                        <span class="hljs-attr">presets</span>: [ <span class="hljs-built_in">require</span>( <span class="hljs-string">&apos;babel-preset-env&apos;</span> ) ]
+                    }
+                }
+            ]
+        },
+        ...
+    ]
+}
+</code></pre>
+<p>And load <a href="https://www.npmjs.com/package/regenerator-runtime" target="_blank" rel="noopener"><code>regenerator-runtime</code></a> (needed to make ES6 generators work after transpilation) by adding it as the first <a href="https://webpack.js.org/configuration/entry-context/#entry" target="_blank" rel="noopener">entry point</a>:</p>
+<pre class="highlight"><code class="js">entry: [
+    <span class="hljs-built_in">require</span>.resolve( <span class="hljs-string">&apos;regenerator-runtime/runtime.js&apos;</span> ),
+
+    <span class="hljs-comment">// Your entries...</span>
+]
+</code></pre>
+<div class="info-box notice"><p>This setup ensures that the source code is transpiled to ES5. However, it does not ensure that all ES6 polyfills are loaded. Therefore, if you would like to, for example, give <a href="https://github.com/ckeditor/ckeditor5/issues/330" target="_blank" rel="noopener">bringing IE11 compatibility</a> a try, make sure to also load <a href="https://babeljs.io/docs/usage/polyfill/" target="_blank" rel="noopener"><code>babel-polyfill</code></a>.</p></div>
+<div class="info-box notice"><p>The <a href="https://github.com/babel/babel-preset-env" target="_blank" rel="noopener"><code>babel-preset-env</code></a> package lets you choose the environment that you want to support and transpiles ES6+ features to match that environment&#x2019;s capabilities. Without configuration it will produce ES5 builds.</p></div>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li>
+                            <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Guides</span>
+                              <ul>
+                                      <li><a href="../overview.html">
+                                          <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                      <li><a href="../whats-new.html">
+                                          <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">What's new?</span></div></a></li>
+                                      <li><a href="../quick-start.html">
+                                          <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span></div></a></li>
+                                      <li><a href="../faq.html">
+                                          <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">FAQ</span></div></a></li>
+                                      <li>
+                                        <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Integration</span>
+                                          <ul>
+                                                  <li><a href="installation.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Installation</span></div></a></li>
+                                                  <li><a href="basic-api.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic API</span></div></a></li>
+                                                  <li><a href="configuration.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Configuration</span></div></a></li>
+                                                  <li><a href="">
+                                                      <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Advanced setup</span></div></a></li>
+                                          </ul>
+                                        </div>
+                                      </li>
+                                      <li>
+                                        <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Development</span>
+                                          <ul>
+                                                  <li><a href="../development/custom-builds.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom builds</span></div></a></li>
+                                                  <li><a href="../development/plugins.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugins</span></div></a></li>
+                                                  <li><a href="../development/installing-plugins.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Installing plugins</span></div></a></li>
+                                          </ul>
+                                        </div>
+                                      </li>
+                                      <li><a href="../migrate.html">
+                                          <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migration from CKEditor 4</span></div></a></li>
+                                      <li>
+                                        <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Support</span>
+                                          <ul>
+                                                  <li><a href="../support/browser-compatibility.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Browser compatibility</span></div></a></li>
+                                                  <li><a href="../support/license-and-legal.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span></div></a></li>
+                                                  <li><a href="../support/getting-support.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting support</span></div></a></li>
+                                                  <li><a href="../support/reporting-issues.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span></div></a></li>
+                                          </ul>
+                                        </div>
+                                      </li>
+                              </ul>
+                            </div>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2017-2018 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},debug:false,
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'builds' ] = hits.filter( function( h ) {return h.tags.includes( 'builds' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'builds' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'builds' ] );tags.forEach( function( tag ) {if ( tag !== 'builds' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+  </body>
+</html>

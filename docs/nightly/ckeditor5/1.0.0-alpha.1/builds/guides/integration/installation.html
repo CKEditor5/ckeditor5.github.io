@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Installation - CKEditor 5</title>
+    <link rel="canonical" href="/ckeditor5/latest/builds/guides/integration/installation.html">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../../assets/0.3.37/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../../assets/0.3.37/scripts/app.js"></script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top">
+      <div class="top__logo top__left"><span class="top__logo__product-icon" style="background-image: url( ../../../assets/img/project-logo.svg );"></span><a class="top__logo__product-title" href="../../../index.html">CKEditor 5</a></div>
+      <ul class="top__menu">
+        <li><a class="top__menu__item--active" href="../../index.html">Builds</a></li>
+        <li><a href="../../../framework/index.html">Framework</a></li>
+        <li><a href="../../../examples/index.html">Examples</a></li>
+        <li><a href="../../../features/index.html">Features</a></li>
+        <li><a href="../../../api/index.html">API</a></li>
+        <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."></a></li>
+      </ul>
+      <div class="top__search">
+        <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.37/img/loupe.svg" alt="Search"></button>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/integration/installation.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.37/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.37/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <h1><img src="../../../../../assets/0.3.37/img/book.svg" alt="guide">Installation
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Download-options">Download options</a><ol><li><a href="#CDN">CDN</a></li><li><a href="#npm">npm</a></li><li><a href="#Zip-download">Zip download</a><ol><li><a href="#Included-files">Included files</a></li></ol></li></ol></li><li><a href="#Loading-the-API">Loading the API</a></li></ol></nav><h2 id="Download-options"><a href="#Download-options" class="headerlink" title="Download options"></a>Download options</h2><p>There are several options to download CKEditor 5 builds:</p>
+<ul>
+<li><a href="#CDN">CDN</a></li>
+<li><a href="#npm">npm</a></li>
+<li><a href="#Zip-download">Zip download</a></li>
+</ul>
+<p>For the list of available builds check the <a href="../overview.html#Available-builds">Overview</a> page.</p>
+<p>After downloading the editor jump to the <a href="basic-api.html">Basic API guide</a> to see how to create editors.</p>
+<h3 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h3><p>Builds can be loaded inside pages directly from <a href="https://cdn.ckeditor.com/#ckeditor5" target="_blank" rel="external">CKEditor CDN</a>, which is optimized for worldwide super fast content delivery. When using CDN no download is actually needed.</p>
+<h3 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h3><p>All builds are released on npm. <a href="https://www.npmjs.com/search?q=keywords:ckeditor5-build&amp;page=1&amp;ranking=optimal" target="_blank" rel="external">Use this search link</a> to view all build packages available in npm.</p>
+<p>Installing a build with npm is as simple as calling one of the following commands in your project:</p>
+<pre><code class="bash">npm install --save @ckeditor/ckeditor5-build-classic
+# Or:
+npm install --save @ckeditor/ckeditor5-build-inline
+# Or:
+npm install --save @ckeditor/ckeditor5-build-balloon
+</code></pre>
+<p>CKEditor will then be available at <code>node_modules/ckeditor5-build-[name]/build/ckeditor.js</code>. It can also be imported directly to your code by <code>require( &apos;@ckeditor/ckeditor5-build-[name]&apos; )</code>.</p>
+<h3 id="Zip-download"><a href="#Zip-download" class="headerlink" title="Zip download"></a>Zip download</h3><p>Go to the <a href="https://ckeditor.com/ckeditor-5-builds/download/" target="_blank" rel="external">CKEditor 5 builds download page</a> and download your preferred build. For example, you may download the <code>ckeditor5-build-classic-1.0.0.zip</code> file for the Classic editor build.</p>
+<p>Extract the <code>.zip</code> file into a dedicated directory inside your project. It is recommended to include the editor version in the directory name to ensure proper cache invalidation once a new version of CKEditor is installed.</p>
+<h4 id="Included-files"><a href="#Included-files" class="headerlink" title="Included files"></a>Included files</h4><ul>
+<li><code>ckeditor.js</code> &#x2013; the ready-to-use editor bundle, containing the editor and all plugins.</li>
+<li><code>ckeditor.js.map</code> &#x2013; the source map for the editor bundle.</li>
+<li><code>README.md</code> and <code>LICENSE.md</code></li>
+</ul>
+<h2 id="Loading-the-API"><a href="#Loading-the-API" class="headerlink" title="Loading the API"></a>Loading the API</h2><p>After downloading and installing a CKEditor 5 build in your application, it is time to make the editor API available in your pages. For that purpose, it is enough to load the API entry point script:</p>
+<pre><code class="html">&lt;script src=&quot;[ckeditor-build-path]/ckeditor.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>Once the CKEditor script is loaded, you can <a href="basic-api.html">use the API</a> to create editors in your page.</p>
+<div class="info-box notice"><p>The <code>build/ckeditor.js</code> file is generated in the <a href="https://github.com/umdjs/umd" target="_blank" rel="external">UMD format</a> so you can also import it into your application if you use CommonJS modules (like in Node.js) or AMD modules (like in Require.js). Read more in the <a href="basic-api.html#UMD-support">Basic API guide</a>.</p><p>Also, for a more advanced setup, you may wish to bundle the CKEditor script with other scripts used by your application. See <a href="advanced-setup.html">Advanced setup</a> for more information about it.</p></div>
+
+
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li>
+                            <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Guides</span></div>
+                            <ul>
+                                    <li><a href="../overview.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="../whats-new.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">What's new?</span></div></a></li>
+                                    <li><a href="../quick-start.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span></div></a></li>
+                                    <li>
+                                      <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Integration</span></div>
+                                      <ul>
+                                              <li><a href="">
+                                                  <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Installation</span></div></a></li>
+                                              <li><a href="basic-api.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic API</span></div></a></li>
+                                              <li><a href="configuration.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Configuration</span></div></a></li>
+                                              <li><a href="advanced-setup.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Advanced setup</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Development</span></div>
+                                      <ul>
+                                              <li><a href="../development/custom-builds.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom builds</span></div></a></li>
+                                              <li><a href="../development/plugins.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugins</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li><a href="../migrate.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migration from CKEditor 4</span></div></a></li>
+                                    <li>
+                                      <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Support</span></div>
+                                      <ul>
+                                              <li><a href="../support/browser-compatibility.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Browser compatibility</span></div></a></li>
+                                              <li><a href="../support/license-and-legal.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span></div></a></li>
+                                              <li><a href="../support/getting-support.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting support</span></div></a></li>
+                                              <li><a href="../support/reporting-issues.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span></div></a></li>
+                                      </ul>
+                                    </li>
+                            </ul>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},debug:false,
+transformData: function(hits) {var sortingFn = ( a, b ) => {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;return a.custom_ranking > b.custom_ranking ? -1 :a.custom_ranking < b.custom_ranking ? 1 : 0;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];result = result.concat(hits.filter( h => h.tags.includes( 'builds' ) ).slice( 0, 7 ).sort( sortingFn ));tags.forEach( function( tag ) {if ( tag !== 'builds' ) {result = result.concat(hits.filter( h => h.tags.includes( tag ) ).slice( 0, 10 ).sort( sortingFn ).slice( 0, 3 ));}} );return result;}
+});
+</script>
+  </body>
+</html>

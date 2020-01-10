@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Theme customization - CKEditor 5</title>
+    <link rel="canonical" href="/ckeditor5/latest/framework/guides/ui/theme-customization.html">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../../assets/0.3.26/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../snippets/examples/theme-lark/snippet.css" type="text/css">
+    <link rel="stylesheet" href="../../../assets/snippet-styles.css" type="text/css">
+    <script src="../../../../../assets/0.3.26/scripts/app.js"></script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top">
+      <div class="top__logo"><span class="top__logo__product-icon" style="background-image: url( ../../../assets/img/project-logo.svg );"></span><a class="top__logo__product-title" href="../../../index.html">CKEditor 5</a></div>
+      <ul class="top__menu">
+        <li><a href="../../../builds/index.html">Builds</a></li>
+        <li><a class="top__menu__item--active" href="../../index.html">Framework</a></li>
+        <li><a href="../../../examples/index.html">Examples</a></li>
+        <li><a href="../../../features/index.html">Features</a></li>
+        <li><a href="../../../api/index.html">API</a></li>
+      </ul>
+      <div class="top__search">
+        <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.26/img/loupe.svg" alt="Search"></button>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-theme-lark/blob/master/docs/framework/guides/theme-customization.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.26/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5-theme-lark/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.26/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <h1><img src="../../../../../assets/0.3.26/img/book.svg" alt="guide">Theme customization
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Styles-processing-and-bundling">Styles processing and bundling</a></li><li><a href="#Customization-with-SASS-variables">Customization with SASS variables</a></li><li><a href="#Adding-extra-styles-to-the-build">Adding extra styles to the build</a></li></ol></nav><p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-theme-lark" target="_blank" rel="external"><code>@ckeditor/ckeditor5-theme-lark</code></a> is the default theme of CKEditor 5. Lark is modular, <a href="https://en.bem.info/methodology/css/" target="_blank" rel="external">BEM&#x2013;friendly</a> and built in <a href="http://sass-lang.com" target="_blank" rel="external">SASS</a>.</p>
+<p>Although it was designed with versatility and the most common editor use cases in mind, some integrations may require adjustments to make it match the style guidelines of the ecosystem. This kind of customization can be done in two different ways, which can also be used together if needed:</p>
+<ul>
+<li>By building the editor with a set of custom SASS variables and overriding <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#Variable_Defaults___default" target="_blank" rel="external">defaults</a>, which does not change the size of the build.</li>
+<li>By importing an extra <code>.scss</code> file and overriding the CSS rules, which increases the size of the build.</li>
+</ul>
+<p>You can see the demo of an editor with the dark theme as a result of customizations described later in this guide:</p>
+<div class="live-snippet"><div id="snippet-classic-editor">
+	<p>
+		This is <a href="https://ckeditor5.github.io">CKEditor&#xA0;5</a>.
+	</p>
+	<p>
+		It uses the default
+		<a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-theme-lark">Lark</a>
+		theme with various customizations.
+	</p>
+</div>
+</div>
+<h2 id="Styles-processing-and-bundling"><a href="#Styles-processing-and-bundling" class="headerlink" title="Styles processing and bundling"></a>Styles processing and bundling</h2><p>CKEditor 5 is bundled using <a href="https://webpack.js.org/" target="_blank" rel="external">webpack</a> and it handles the importing and processing of the styles using the <a href="https://webpack.js.org/concepts/loaders/" target="_blank" rel="external">loaders</a>. Its configuration can be found in the <code>webpack.config.js</code> file.</p>
+<div class="info-box notice notice__info"><p>To learn more about building CKEditor, check out the <a href="../../../builds/guides/development/custom-builds.html">Creating custom builds</a> guide.</p></div>
+
+<p>The entire process of building and managing the styles boils down to three steps:</p>
+<ol>
+<li><p><strong>Collecting</strong>: Each JavaScript file in the project can import multiple <code>.scss</code> files using the ES6 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import" target="_blank" rel="external"><code>import</code></a> directive. Imported files are handled by the <a href="https://www.npmjs.com/package/css-loader" target="_blank" rel="external">CSS Loader</a>.</p>
+<pre><code class="js"> import &apos;../theme/theme.scss&apos;;
+
+ class AnyEditorClass {
+     ...
+ }
+</code></pre>
+<pre><code class="scss"> // Contents of theme.scss.
+ $color: red;
+
+ .ck-editor {
+     color: $color;
+ }
+</code></pre>
+</li>
+<li><p><strong>Compiling</strong>: The <a href="https://www.npmjs.com/package/sass-loader" target="_blank" rel="external">SASS Loader</a> compiles <code>.scss</code> files from SASS to CSS. Each file is compiled asynchronously, in a separate SASS thread.</p>
+<pre><code class="scss"> .ck-editor {
+     color: $color; // -&gt; color: red;
+ }
+</code></pre>
+</li>
+<li><p><strong>Loading</strong>: Finally the <a href="https://www.npmjs.com/package/style-loader" target="_blank" rel="external">Style loader</a> loads the output CSS along with the <code>ckeditor.js</code> file into a <code>&lt;style&gt;</code> element in the <code>&lt;head&gt;</code> section of the web page.</p>
+<pre><code class="html"> &lt;head&gt;
+     &lt;style type=&quot;text/css&quot;&gt;
+         .ck-editor {
+             color: red;
+         }
+     &lt;/style&gt;
+ &lt;/head&gt;
+</code></pre>
+</li>
+</ol>
+<h2 id="Customization-with-SASS-variables"><a href="#Customization-with-SASS-variables" class="headerlink" title="Customization with SASS variables"></a>Customization with SASS variables</h2><p>Having <a href="../../../builds/guides/development/custom-builds.html#Forking-an-existing-build">cloned</a> an existing build of CKEditor for a quick start, take a look at the specific definitions in the <code>webpack.config.js</code> file.</p>
+<pre><code class="js">module: {
+    rules: [
+        ...
+        {
+            test: /\.scss$/,
+            use: [
+                &apos;style-loader&apos;,
+                &apos;css-loader&apos;,
+                &apos;sass-loader&apos;
+            ]
+        }
+    ]
+}
+</code></pre>
+<p>Each SASS file is compiled in a separate thread, so to override default variables (defined with <code>!default</code>) across the theme, new values must be imported or declared at the very beginning of <strong>each single</strong> SASS file&#x2019;s compilation process. SASS Loader offers the <a href="https://www.npmjs.com/package/sass-loader#environment-variables" target="_blank" rel="external"><code>data</code></a> option to do this.</p>
+<p>Now <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html#_import__import" target="_blank" rel="external"><code>@import</code></a> a <code>custom.scss</code> file located in the root of the repository containing all custom variables.</p>
+<pre><code class="js">use: [
+    &apos;style-loader&apos;,
+    &apos;css-loader&apos;,
+    {
+        loader: &apos;sass-loader&apos;,
+        options: {
+            data: `@import &apos;custom.scss&apos;;`
+        }
+    }
+]
+</code></pre>
+<p>Using the full potential of SASS variables, the customization will make the theme dark, with slightly bigger text and more rounded corners.</p>
+<div class="info-box notice notice__hint"><p>Check out the <a href="https://github.com/ckeditor/ckeditor5-theme-lark/blob/master/theme/helpers/_colors.scss" target="_blank" rel="external">colors helper</a> for the full list of customizable colors. You can also browse <a href="https://github.com/ckeditor/ckeditor5-theme-lark/tree/master/theme/helpers" target="_blank" rel="external">other helpers</a> to learn about other useful SASS variables.</p></div>
+
+<p>The contents of <code>custom.scss</code> could look as below:</p>
+<pre><code class="scss">// Overrides the border radius setting in the theme.
+$ck-border-radius: 4px;
+
+// Overrides the default font size in the theme.
+$ck-font-size-base: 14px;
+
+// Helper variables to avoid duplication in $ck-colors.
+$custom-background: #4A494B;
+$custom-foreground: #3a393d;
+$custom-border: #383738;
+$custom-white: #fff;
+
+// Colors used by the ck-color() mixin across the theme.
+$ck-colors: (
+    // Overrides the default focus color used by the ck-focus-ring() mixin.
+    &apos;border-focus&apos;: #48a3f5,
+
+    // Overrides the default text color in the theme.
+    &apos;text&apos;: #fafafa,
+
+    // Overrides the default shadow colors in the theme.
+    &apos;shadow-drop&apos;: rgba( 0, 0, 0, .2 ),
+    &apos;shadow-inner&apos;: rgba( 0, 0, 0, .1 ),
+
+    // Overrides the default .ck-button class colors.
+    &apos;button-default-background&apos;: $custom-background,
+    &apos;button-default-border&apos;: $custom-border,
+    &apos;button-on-background&apos;: $custom-foreground,
+    &apos;button-on-border&apos;: $custom-border,
+    &apos;button-action-background&apos;: #1ABC9C,
+    &apos;button-action-border&apos;: #49d2b7,
+    &apos;button-action-text&apos;: $custom-white,
+
+    // Overrides the default .ck-dropdown class colors.
+    &apos;dropdown-panel-background&apos;: $custom-background,
+    &apos;dropdown-panel-border&apos;: $custom-foreground,
+    &apos;dropdown-symbol&apos;: #f1f1f1,
+
+    // Overrides the default .ck-input class colors.
+    &apos;input-background&apos;: $custom-foreground,
+    &apos;input-border&apos;: #6b6970,
+    &apos;input-text&apos;: #fafafa,
+
+    // Overrides the default .ck-list class colors.
+    &apos;list-background&apos;: $custom-background,
+    &apos;list-item-background-hover&apos;: $custom-foreground,
+    &apos;list-item-background-active&apos;: #1A8BF1,
+    &apos;list-item-text-active&apos;: $custom-white,
+
+    // Overrides the default .ck-balloon-panel class colors.
+    &apos;panel-background&apos;: $custom-background,
+    &apos;panel-border&apos;: $custom-border,
+
+    // Overrides the default .ck-toolbar class colors.
+    &apos;toolbar-background&apos;: $custom-foreground,
+    &apos;toolbar-border&apos;: $custom-border,
+
+    // Overrides the default .ck-tooltip class colors.
+    &apos;tooltip-background&apos;: #212025,
+    &apos;tooltip-text&apos;: #eee,
+
+    // Overrides the default colors used by the editor.
+    &apos;editor-border&apos;: $custom-background,
+    &apos;editor-toolbar-background&apos;: $custom-background,
+    &apos;editor-toolbar-button-background&apos;: $custom-background,
+    &apos;editor-dropdown-background&apos;: #535254,
+
+    // Overrides the default colors used by the ckeditor5-image package.
+    &apos;image-caption-background&apos;: #f7f7f7,
+    &apos;image-caption-text&apos;: #333,
+
+    // Overrides the default colors used by the ckeditor5-widget package.
+    &apos;widget-border-blurred&apos;: #ddd,
+    &apos;widget-border-hover&apos;: #FFD25C,
+    &apos;widget-editable-focused-background&apos;: $custom-white
+);
+</code></pre>
+<p>It is time to build the editor using <code>npm run build-ckeditor</code> and see the results. From now on, the editor&#x2019;s theme is using customized styles.</p>
+<h2 id="Adding-extra-styles-to-the-build"><a href="#Adding-extra-styles-to-the-build" class="headerlink" title="Adding extra styles to the build"></a>Adding extra styles to the build</h2><p>Not every element of the theme can be customized using SASS variables and some visual tweaking may require more complex CSS rules.</p>
+<p>In the editor demo presented and the very beginning of this guide, the drop down button in the toolbar has a complex inner <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow?v=b" target="_blank" rel="external"><code>box-shadow</code></a> that makes it more appealing. By default, the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-theme-lark" target="_blank" rel="external">Lark</a> theme does not support such shadow and that is why it must be defined separately.</p>
+<pre><code class="css">.ck-editor-toolbar .ck-button.ck-dropdown__button {
+    box-shadow: 0 0 0 1px #5c5b5d inset, 0 0 5px #5c5b5d inset;
+}
+</code></pre>
+<p>The rule above could be added directly to any stylesheet in the web page and most certainly would work as expected.</p>
+<p>But what if the color set customized in the <a href="#Customization-with-SASS-variables">previous part</a> of this guide has changed? Static CSS rules will neither update along with the SASS variables nor can they benefit from the mixins and functions provided by the theme. To add extra styles and keep them within the ecosystem, a separate SASS file should be created (in his example it will be called <code>extras.scss</code>):</p>
+<pre><code class="scss">// Allow using Lark&apos;s ck-box-shadow() mixin.
+@import &apos;~@ckeditor/ckeditor5-theme-lark/theme/helpers/_shadow.scss&apos;;
+
+// Allow using colors defined in Lark and the ck-color() mixin.
+@import &apos;~@ckeditor/ckeditor5-theme-lark/theme/helpers/_colors.scss&apos;;
+
+// The shadow should be 10% brighter than the toolbar background.
+$shadow-color: ck-color( &apos;editor-toolbar-background&apos;, 10 );
+
+.ck-editor-toolbar {
+    .ck-button.ck-dropdown__button {
+        // Apply a dedicated inner box-shadow to the drop-down button.
+        @include ck-box-shadow(
+            0 0 0 1px $shadow-color inset,
+            0 0 5px $shadow-color inset
+        );
+    }
+}
+</code></pre>
+<p>This file then needs to be imported into a JavaScript file that is processed by webpack and the <a href="#Styles-processing-and-bundling">loaders</a>, like for example an entry point of the application.</p>
+<pre><code class="js">import ClassicEditor from &apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;;
+import &apos;extras.scss&apos;;
+
+ClassicEditor
+    .create( ... )
+    .then( editor =&gt; {
+        console.log( editor );
+    } )
+    .catch( err =&gt; {
+        console.error( err.stack );
+    } );
+</code></pre>
+<p>This way, the additional styles will stay up&#x2013;to&#x2013;date as the application develops and changes over the time.</p>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li>
+                            <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Guides</span></div>
+                            <ul>
+                                    <li><a href="../overview.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="../quick-start.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span></div></a></li>
+                                    <li>
+                                      <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Architecture</span></div>
+                                      <ul>
+                                              <li><a href="../architecture/intro.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Introduction</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">User interface</span></div>
+                                      <ul>
+                                              <li><a href="">
+                                                  <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Theme customization</span></div></a></li>
+                                              <li><a href="external-ui.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Third–party UI</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Contributing</span></div>
+                                      <ul>
+                                              <li><a href="../contributing/development-environment.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development environment</span></div></a></li>
+                                              <li><a href="../contributing/testing-environment.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Testing environment</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Support</span></div>
+                                      <ul>
+                                              <li><a href="../support/browser-compatibility.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Browser compatibility</span></div></a></li>
+                                              <li><a href="../support/license-and-legal.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span></div></a></li>
+                                              <li><a href="../support/getting-support.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting support</span></div></a></li>
+                                              <li><a href="../support/reporting-issues.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span></div></a></li>
+                                              <li><a href="../support/error-codes.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Error codes</span></div></a></li>
+                                      </ul>
+                                    </li>
+                            </ul>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script type="text/javascript">docsearch({apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:10,optionalFacetFilters:'(tags:builds<score=1>, tags:framework<score=2>, tags:examples<score=1>, tags:features<score=1>)'},debug:false});</script>
+    <script src="../../../snippets/examples/theme-lark/snippet.js"></script>
+  </body>
+</html>

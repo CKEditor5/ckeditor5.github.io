@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Inline editor - CKEditor 5 Documentation</title>
+    <meta property="og:title" content="Inline editor - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="/ckeditor5/latest/examples/builds/inline-editor.html">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../assets/0.4.6/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../assets/styles.css" type="text/css">
+    <link rel="stylesheet" href="../../snippets/examples/inline-editor/snippet.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/snippet-styles.css" type="text/css">
+    <script>
+      ( function() {
+      	'use strict';
+      	var el = document.createElement( 'script' );
+      	el.setAttribute( 'async', 'async' );
+      	el.setAttribute( 'defer', 'defer' );
+      	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
+      		el.src = "../../../../assets/0.4.6/scripts/app.js";
+      	} else {
+      		el.src = "../../../../assets/0.4.6/scripts/app-polyfill.js";
+      	}
+      	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
+      } )();
+    </script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="top__logo top__left"><span class="top__logo__product-icon" style="background-image: url( ../../assets/img/project-logo.svg )"></span><a class="top__logo__product-title" href="../../index.html">CKEditor 5</a></div>
+      <ul class="top__menu">
+        <li><a href="../../builds/index.html">Builds</a></li>
+        <li><a href="../../framework/index.html">Framework</a></li>
+        <li><a class="top__menu__item--active" href="../index.html">Examples</a></li>
+        <li><a href="../../features/index.html">Features</a></li>
+        <li><a class="top__menu__api" href="../../api/index.html">API</a></li>
+        <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."></a></li>
+      </ul>
+      <div class="top__search">
+        <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+        <button class="top__search__button" type="submit"><img src="../../../../assets/0.4.6/img/loupe.svg" alt="Search"></button>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/examples/builds/inline-editor.md" title="Contribute to this guide"><img src="../../../../assets/0.4.6/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../assets/0.4.6/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <h1><img src="../../../../assets/0.4.6/img/book.svg" alt="guide">Inline editor
+          </h1>
+<p><a href="../../builds/guides/overview.html#inline-editor">Inline editor</a> lets you create your content directly in its target location with the help of a floating toolbar that apprears when the editable text is focused.</p>
+<p>In this example the <a href="../../features/image.html#image-styles">image styles</a> configuration was changed to enable left- and right-aligned images.</p>
+<div class="live-snippet"><div id="snippet-inline-editor">
+	<header data-inline-inject="true">
+		<h2>Gone traveling</h2>
+		<h3>Monthly travel news and inspiration</h3>
+	</header>
+
+	<div data-inline-inject="true">
+		<h3>Destination of the Month</h3>
+
+		<h4>Valletta</h4>
+
+		<figure class="image image-style-align-right">
+			<img alt="Picture of a sunlit facade of a Maltan building." src="../../assets/img/malta.jpg">
+			<figcaption>It&apos;s siesta time in Valletta.</figcaption>
+		</figure>
+
+		<p>The capital city of <a href="https://en.wikipedia.org/wiki/Malta" target="_blank" rel="external">Malta</a> is the top destination this summer. It&#x2019;s home to a cutting-edge contemporary architecture, baroque masterpieces, delicious local cuisine and at least 8 months of sun. It&#x2019;s also a top destination for filmmakers, so you can take a tour through locations familiar to you from Game of Thrones, Gladiator, Troy and many more.</p>
+	</div>
+
+	<div class="demo-row">
+		<div class="demo-row__half">
+			<div data-inline-inject="true">
+				<h3>The three greatest things you learn from traveling</h3>
+				<p><a href="#">Find out more</a></p>
+			</div>
+		</div>
+
+		<div class="demo-row__half">
+			<div data-inline-inject="true">
+				<h3>Walking the capitals of Europe: Warsaw</h3>
+				<p><a href="#">Find out more</a></p>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li>
+                            <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Builds</span>
+                              <ul>
+                                      <li><a href="classic-editor.html">
+                                          <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Classic editor</span></div></a></li>
+                                      <li><a href="">
+                                          <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Inline editor</span></div></a></li>
+                                      <li><a href="balloon-editor.html">
+                                          <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Balloon editor</span></div></a></li>
+                                      <li><a href="document-editor.html">
+                                          <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document editor</span></div></a></li>
+                                      <li><a href="custom-build.html">
+                                          <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom build</span></div></a></li>
+                              </ul>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Framework</span>
+                              <ul>
+                                      <li><a href="../framework/theme-customization.html">
+                                          <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Theme customization</span></div></a></li>
+                                      <li><a href="../framework/custom-ui.html">
+                                          <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom UI (with Bootstrap)</span></div></a></li>
+                              </ul>
+                            </div>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2017-2018 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},debug:false,
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'examples' ] = hits.filter( function( h ) {return h.tags.includes( 'examples' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'examples' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'examples' ] );tags.forEach( function( tag ) {if ( tag !== 'examples' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+    <script src="../../snippets/examples/inline-editor/snippet.js"></script>
+  </body>
+</html>

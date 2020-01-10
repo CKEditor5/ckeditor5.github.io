@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chat with mentions - CKEditor 5 Documentation</title>
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:site" content="@ckeditor">
+    <meta property="og:title" content="Chat with mentions - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/examples/framework/chat-with-mentions.html">
+    <meta property="DC.language" content="en">
+    <meta property="DC.publisher" content="CKSource">
+    <meta property="DC.creator" content="CKEditor">
+    <meta property="DC.title" content="Chat with mentions - CKEditor 5 Documentation">
+    <meta property="DC.format" content="text/html">
+    <meta property="DC.type" content="Text">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/examples/framework/chat-with-mentions.html">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../assets/1.2.0/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../assets/styles.css" type="text/css">
+    <link rel="stylesheet" href="../../snippets/examples/chat-with-mentions/snippet.css" type="text/css">
+    <link rel="stylesheet" href="../../assets/snippet-styles.css" type="text/css">
+    <script>
+      ( function() {
+      	'use strict';
+      	// Set up global variables;
+      	if ( !window.umebrto ) {
+      		window.umberto = {};
+      	}
+      	window.umberto.relativeAppPath = "../../../../assets/1.2.0/scripts"
+      
+      	// Add app script
+      	var el = document.createElement( 'script' );
+      	el.setAttribute( 'async', 'async' );
+      	el.setAttribute( 'defer', 'defer' );
+      	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
+      		el.src = "../../../../assets/1.2.0/scripts/app.js";
+      	} else {
+      		el.src = "../../../../assets/1.2.0/scripts/app-polyfill.js";
+      	}
+      	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
+      
+      	// Changing documentation theme enable it via `localStorage.setItem( 'theme', 'theme-dark' )`
+      	if ( localStorage.getItem( 'theme' ) === 'theme-dark' ) {
+      		document.getElementsByTagName( 'html' )[ 0 ].classList.add( 'theme-dark' );
+      	}
+      } )();
+    </script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="header__main">
+        <div class="header__main-rwd-button"><a href="#"><span></span><span></span><span></span></a></div>
+        <div class="header__main-title"><a class="header__main-title-home" href="../../../../index.html">CKEditor Ecosystem Documentation</a></div>
+        <div class="top__search">
+          <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+          <div class="top__search__button"><img src="../../../../assets/1.2.0/img/loupe.svg" alt="Search"></div>
+        </div>
+      </div>
+      <div class="header__sub">
+        <ul class="top__menu">
+          <li class="top__menu-project-logo"><a href="../../index.html">CKEditor 5</a></li>
+          <li><a href="../../builds/index.html">Builds</a></li>
+          <li><a href="../../framework/index.html">Framework</a></li>
+          <li><a class="top__menu__item--active" href="../index.html">Examples</a></li>
+          <li><a href="../../features/index.html">Features</a></li>
+          <li><a class="top__menu__api" href="../../api/index.html">API</a></li>
+          <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."><svg viewbox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li>
+        </ul>
+      </div>
+      <div class="header__menu-rwd">
+        <ul class="header__menu-rwd__projects">
+          <li data-project="ckeditor5"><a href="../../../latest/index.html">CKEditor 5
+              <ul class="tree header__menu-rwd__projects-pages">
+                <li data-group="builds"><a href="../../builds/index.html">Builds</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="framework"><a href="../../framework/index.html">Framework</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="examples"><a href="../index.html">Examples</a>
+                  <!-- Display subpages for active project.-->
+                  <ul class="header__menu-rwd__projects-subpages">
+                            <li>
+                              <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Builds</span></div>
+                              <ul class="tree__item-nested-list">
+                                    <li><a href="../builds/classic-editor.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Classic editor</span></div></a></li>
+                                    <li><a href="../builds/inline-editor.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Inline editor</span></div></a></li>
+                                    <li><a href="../builds/balloon-block-editor.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Balloon block editor</span></div></a></li>
+                                    <li><a href="../builds/balloon-editor.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Balloon editor</span></div></a></li>
+                                    <li><a href="../builds/document-editor.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document editor</span></div></a></li>
+                                    <li><a href="../builds/custom-build.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom build</span></div></a></li>
+                              </ul>
+                            </li>
+                            <li>
+                              <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Framework</span></div>
+                              <ul class="tree__item-nested-list">
+                                    <li><a href>
+                                        <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Chat with mentions</span></div></a></li>
+                                    <li><a href="theme-customization.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Theme customization</span></div></a></li>
+                                    <li><a href="custom-ui.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom UI (with Bootstrap)</span></div></a></li>
+                                    <li><a href="multi-root-editor.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Multi-root editor</span></div></a></li>
+                              </ul>
+                            </li>
+                  </ul>
+                </li>
+                <li data-group="features"><a href="../../features/index.html">Features</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="api-reference"><a href="../../api/index.html">API</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+              </ul></a></li>
+        </ul>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-mention/blob/master/docs/examples/chat-with-mentions.md" title="Contribute to this guide"><img src="../../../../assets/1.2.0/img/edit.svg" alt="Contribute to this guide"></a>
+          </div>
+          <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Examples</a>
+          </div>
+          <h1 class="main__content-title"><img src="../../../../assets/1.2.0/img/book.svg" alt="guide">Chat with mentions
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#source-code">Source code</a></li></ol></nav>
+<p>The <a href="../../features/mentions.html">mention</a> feature allows developing rich&#x2013;text applications (e.g. chats) with autocomplete suggestions displayed in a dedicated panel as the user types a pre&#x2013;configured marker. For instance, in the editor below, type <strong>&#x201C;@&#x201D;</strong> to mention users and <strong>&#x201C;#&#x201D;</strong> to select from the list of available tags.</p>
+<div class="live-snippet"><div class="chat">
+	<ul class="chat__posts">
+		<li>
+			<img src="../../assets/img/m_1.jpg" alt="avatar" class="photo">
+			<div class="chat__posts__post__message">
+				<strong>Charles Flores</strong>
+				<a class="chat__posts__post__mailto-user" href="mailto:cflores@example.com">@cflores</a>
+				<span class="chat__posts__post__time">2 hours ago</span>
+				<p class="chat__posts__post__content">
+					Thanks for another <a class="mention" data-mention="#yummy" href="https://example.com/social/yummy">#yummy</a> recipe,
+					<a class="mention" data-mention="@dwilliams" href="mailto:dwilliams@example.com">@dwilliams</a>!
+					Makes me <a class="mention" data-mention="#hungry" href="https://example.com/social/hungry">#hungry</a>
+					just looking at the photos 😋. Definitely adding it to my TODO list for our next
+					<a class="mention" data-mention="#mediterranean" href="https://example.com/social/mediterranean">#mediterranean</a> potluck.
+				</p>
+			</div>
+		</li>
+		<li>
+			<img src="../../assets/img/w_1.jpg" alt="avatar" class="photo">
+			<div class="chat__posts__post__message">
+				<strong>Mildred Wilson</strong>
+				<a class="chat__posts__post__mailto-user" href="mailto:mwilson@example.com">@mwilson</a>
+				<span class="chat__posts__post__time">4 hours ago</span>
+				<p class="chat__posts__post__content">
+					Really appreciate the <a class="mention" data-mention="#vegetarian" href="https://example.com/social/vegetarian">#vegetarian</a>
+					and <a class="mention" data-mention="#vegan" href="https://example.com/social/vegan">#vegan</a> variations of your recipes.
+					So thoughtful of you! 🌱
+				</p>
+			</div>
+		</li>
+	</ul>
+	<div class="chat__editor">
+		<p>
+			I agree with <a href="mailto:mwilson@example.com" class="mention" data-mention="@mwilson">@mwilson</a> 👍.
+			It’s so nice of you to always be providing a few options to try! I love
+			<a href="https://example.com/social/greek" class="mention" data-mention="#greek">#greek</a> cuisine with a modern twist,
+			this one will be perfect to try.
+		</p>
+	</div>
+
+	<button class="chat-send" type="button">Send</button>
+</div>
+
+<style>
+	/* ---- General layout ---------------------------------------------------------------------- */
+
+	.chat {
+		margin-bottom: 1em
+	}
+
+	/* ---- Chat posts -------------------------------------------------------------------------- */
+
+	.chat ul.chat__posts {
+		border: 1px solid var(--ck-color-base-border);
+		border-top-left-radius: var(--ck-border-radius);
+		border-top-right-radius: var(--ck-border-radius);
+		border-bottom: none;
+		margin: 1em 0 0;
+		padding: 1em;
+		list-style-position: inside;
+	}
+
+	.chat ul.chat__posts li {
+		display: flex;
+	}
+
+	.chat ul.chat__posts li.new-post {
+		/* Highlight a new post in the chat. */
+		animation: highlight 600ms ease-out;
+	}
+
+	.chat ul.chat__posts li + li {
+		margin-top: 1em;
+	}
+
+	.chat .chat__posts li .photo {
+		border-radius: 100%;
+		height: 40px;
+		margin-right: 1.5em;
+	}
+
+	.chat .chat__posts li .time {
+		color: hsl(0, 0%, 72%);
+		font-size: .9em;
+	}
+
+	.chat .chat__posts .chat__posts__post__message > strong::after,
+	.chat__posts__post__mailto-user::after {
+		content: "•";
+		padding-left: 5px;
+		padding-right: 5px;
+		color: hsl(0, 0%, 72%);
+	}
+
+	@keyframes highlight {
+		0% {
+			background-color: yellow;
+		}
+
+		100% {
+			background-color: white;
+		}
+	}
+
+	/* ---- Chat editor ------------------------------------------------------------------------- */
+
+	.chat .chat__editor {
+		/* Anti–FOUC (flash of unstyled content). */
+		padding: 1em;
+		border: 1px solid var(--ck-color-base-border);
+	}
+
+	.chat .chat__editor + .ck.ck-editor {
+		margin-top: 0;
+	}
+
+	.chat .chat__editor + .ck.ck-editor .ck.ck-toolbar {
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+
+	/* ---- In–editor mention list --------------------------------------------------------------- */
+
+	.ck-mentions .mention__item {
+		display: block;
+	}
+
+	.ck-mentions .mention__item img {
+		border-radius: 100%;
+		height: 30px;
+	}
+
+	.ck-mentions .mention__item span {
+		margin-left: .5em;
+	}
+
+	.ck-mentions .mention__item.ck-on span {
+		color: var(--ck-color-base-background);
+	}
+
+	.ck-mentions .mention__item .mention__item__full-name {
+		color: hsl(0, 0%, 45%);
+	}
+
+	.ck-mentions .mention__item:hover:not(.ck-on) .mention__item__full-name {
+		color: hsl(0, 0%, 40%);
+	}
+
+	/* ---- Chat editor content styles ----------------------------------------------------------- */
+
+	.chat .ck-content .mention {
+		background: unset;
+	}
+
+	.chat .ck.ck-content a,
+	.chat .chat__posts a {
+		color: hsl(231, 89%, 53%);
+	}
+</style>
+</div>
+<p>Learn how to <a href="../../features/mentions.html#configuration">configure mention feeds</a> in the dedicated guide and check out the <a href="#source-code">full source code</a> of this example if you want to implement your own chat using CKEditor 5 WYSIWYG editor.</p>
+<h2 id="source-code"><a class="headerlink" href="#source-code">#</a> Source code</h2>
+<p>The following code will let you run the editor inside a chat application like in the example above. See the <a href="../../builds/guides/integration/installing-plugins.html">installing plugins</a> guide to learn more.</p>
+<p><strong>Note</strong>: You may need to change the path to the <code>assets/img</code> both in the HTML and JavaScript code to load user avatars properly.</p>
+<p>The HTML code of the application is listed below:</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;chat&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;chat__posts&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../../assets/img/m_1.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;avatar&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;photo&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;chat__posts__post__message&quot;</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Charles Flores<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;chat__posts__post__mailto-user&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;mailto:cflores@example.com&quot;</span>&gt;</span>@cflores<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;chat__posts__post__time&quot;</span>&gt;</span>2 hours ago<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;chat__posts__post__content&quot;</span>&gt;</span>
+                    Thanks for another <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;mention&quot;</span> <span class="hljs-attr">data-mention</span>=<span class="hljs-string">&quot;#yummy&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://example.com/social/yummy&quot;</span>&gt;</span>#yummy<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> recipe,
+                    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;mention&quot;</span> <span class="hljs-attr">data-mention</span>=<span class="hljs-string">&quot;@dwilliams&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;mailto:dwilliams@example.com&quot;</span>&gt;</span>@dwilliams<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>!
+                    Makes me <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;mention&quot;</span> <span class="hljs-attr">data-mention</span>=<span class="hljs-string">&quot;#hungry&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://example.com/social/hungry&quot;</span>&gt;</span>#hungry<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+                    just looking at the photos &#x1F60B;. Definitely adding it to my TODO list for our next
+                    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;mention&quot;</span> <span class="hljs-attr">data-mention</span>=<span class="hljs-string">&quot;#mediterranean&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://example.com/social/mediterranean&quot;</span>&gt;</span>#mediterranean<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> potluck.
+                <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../../assets/img/w_1.jpg&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;avatar&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;photo&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;chat__posts__post__message&quot;</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Mildred Wilson<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;chat__posts__post__mailto-user&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;mailto:mwilson@example.com&quot;</span>&gt;</span>@mwilson<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;chat__posts__post__time&quot;</span>&gt;</span>4 hours ago<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;chat__posts__post__content&quot;</span>&gt;</span>
+                    Really appreciate the <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;mention&quot;</span> <span class="hljs-attr">data-mention</span>=<span class="hljs-string">&quot;#vegetarian&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://example.com/social/vegetarian&quot;</span>&gt;</span>#vegetarian<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+                    and <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;mention&quot;</span> <span class="hljs-attr">data-mention</span>=<span class="hljs-string">&quot;#vegan&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://example.com/social/vegan&quot;</span>&gt;</span>#vegan<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> variations of your recipes.
+                    So thoughtful of you! &#x1F331;
+                <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;chat__editor&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+            I agree with <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;mailto:mwilson@example.com&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;mention&quot;</span> <span class="hljs-attr">data-mention</span>=<span class="hljs-string">&quot;@mwilson&quot;</span>&gt;</span>@mwilson<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> &#x1F44D;.
+            It&#x2019;s so nice of you to always be providing a few options to try! I love
+            <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://example.com/social/greek&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;mention&quot;</span> <span class="hljs-attr">data-mention</span>=<span class="hljs-string">&quot;#greek&quot;</span>&gt;</span>#greek<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> cuisine with a modern twist,
+            this one will be perfect to try.
+        <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;chat-send&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span>&gt;</span>Send<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
+    <span class="hljs-comment">/* ---- General layout ---------------------------------------------------------------------- */</span>
+
+    <span class="hljs-selector-class">.chat</span> {
+        <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">1em</span>
+    }
+
+    <span class="hljs-comment">/* ---- Chat posts -------------------------------------------------------------------------- */</span>
+
+    <span class="hljs-selector-class">.chat</span> <span class="hljs-selector-tag">ul</span><span class="hljs-selector-class">.chat__posts</span> {
+        <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-built_in">var</span>(--ck-color-base-border);
+        <span class="hljs-attribute">border-top-left-radius</span>: <span class="hljs-built_in">var</span>(--ck-border-radius);
+        <span class="hljs-attribute">border-top-right-radius</span>: <span class="hljs-built_in">var</span>(--ck-border-radius);
+        <span class="hljs-attribute">border-bottom</span>: none;
+        <span class="hljs-attribute">margin</span>: <span class="hljs-number">1em</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>;
+        <span class="hljs-attribute">padding</span>: <span class="hljs-number">1em</span>;
+        <span class="hljs-attribute">list-style-position</span>: inside;
+    }
+
+    <span class="hljs-selector-class">.chat</span> <span class="hljs-selector-tag">ul</span><span class="hljs-selector-class">.chat__posts</span> <span class="hljs-selector-tag">li</span> {
+        <span class="hljs-attribute">display</span>: flex;
+    }
+
+    <span class="hljs-selector-class">.chat</span> <span class="hljs-selector-tag">ul</span><span class="hljs-selector-class">.chat__posts</span> <span class="hljs-selector-tag">li</span><span class="hljs-selector-class">.new-post</span> {
+        <span class="hljs-comment">/* Highlight a new post in the chat. */</span>
+        <span class="hljs-attribute">animation</span>: highlight <span class="hljs-number">600ms</span> ease-out;
+    }
+
+    <span class="hljs-selector-class">.chat</span> <span class="hljs-selector-tag">ul</span><span class="hljs-selector-class">.chat__posts</span> <span class="hljs-selector-tag">li</span> + <span class="hljs-selector-tag">li</span> {
+        <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">1em</span>;
+    }
+
+    <span class="hljs-selector-class">.chat</span> <span class="hljs-selector-class">.chat__posts</span> <span class="hljs-selector-tag">li</span> <span class="hljs-selector-class">.photo</span> {
+        <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">100%</span>;
+        <span class="hljs-attribute">height</span>: <span class="hljs-number">40px</span>;
+        <span class="hljs-attribute">margin-right</span>: <span class="hljs-number">1.5em</span>;
+    }
+
+    <span class="hljs-selector-class">.chat</span> <span class="hljs-selector-class">.chat__posts</span> <span class="hljs-selector-tag">li</span> <span class="hljs-selector-class">.time</span> {
+        <span class="hljs-attribute">color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">72%</span>);
+        <span class="hljs-attribute">font-size</span>: .<span class="hljs-number">9em</span>;
+    }
+
+    <span class="hljs-selector-class">.chat</span> <span class="hljs-selector-class">.chat__posts</span> <span class="hljs-selector-class">.chat__posts__post__message</span> &gt; <span class="hljs-selector-tag">strong</span><span class="hljs-selector-pseudo">::after</span>,
+    <span class="hljs-selector-class">.chat__posts__post__mailto-user</span><span class="hljs-selector-pseudo">::after</span> {
+        <span class="hljs-attribute">content</span>: <span class="hljs-string">&quot;&#x2022;&quot;</span>;
+        <span class="hljs-attribute">padding-left</span>: <span class="hljs-number">5px</span>;
+        <span class="hljs-attribute">padding-right</span>: <span class="hljs-number">5px</span>;
+        <span class="hljs-attribute">color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">72%</span>);
+    }
+
+    <span class="hljs-keyword">@keyframes</span> highlight {
+        0% {
+            <span class="hljs-attribute">background-color</span>: yellow;
+        }
+
+        100% {
+            <span class="hljs-attribute">background-color</span>: white;
+        }
+    }
+
+    <span class="hljs-comment">/* ---- Chat editor ------------------------------------------------------------------------- */</span>
+
+    <span class="hljs-selector-class">.chat</span> <span class="hljs-selector-class">.chat__editor</span> {
+        <span class="hljs-comment">/* Anti&#x2013;FOUC (flash of unstyled content). */</span>
+        <span class="hljs-attribute">padding</span>: <span class="hljs-number">1em</span>;
+        <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-built_in">var</span>(--ck-color-base-border);
+    }
+
+    <span class="hljs-selector-class">.chat</span> <span class="hljs-selector-class">.chat__editor</span> + <span class="hljs-selector-class">.ck</span><span class="hljs-selector-class">.ck-editor</span> {
+        <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">0</span>;
+    }
+
+    <span class="hljs-selector-class">.chat</span> <span class="hljs-selector-class">.chat__editor</span> + <span class="hljs-selector-class">.ck</span><span class="hljs-selector-class">.ck-editor</span> <span class="hljs-selector-class">.ck</span><span class="hljs-selector-class">.ck-toolbar</span> {
+        <span class="hljs-attribute">border-top-left-radius</span>: <span class="hljs-number">0</span>;
+        <span class="hljs-attribute">border-top-right-radius</span>: <span class="hljs-number">0</span>;
+    }
+
+    <span class="hljs-comment">/* ---- In&#x2013;editor mention list --------------------------------------------------------------- */</span>
+
+    <span class="hljs-selector-class">.ck-mentions</span> <span class="hljs-selector-class">.mention__item</span> {
+        <span class="hljs-attribute">display</span>: block;
+    }
+
+    <span class="hljs-selector-class">.ck-mentions</span> <span class="hljs-selector-class">.mention__item</span> <span class="hljs-selector-tag">img</span> {
+        <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">100%</span>;
+        <span class="hljs-attribute">height</span>: <span class="hljs-number">30px</span>;
+    }
+
+    <span class="hljs-selector-class">.ck-mentions</span> <span class="hljs-selector-class">.mention__item</span> <span class="hljs-selector-tag">span</span> {
+        <span class="hljs-attribute">margin-left</span>: .<span class="hljs-number">5em</span>;
+    }
+
+    <span class="hljs-selector-class">.ck-mentions</span> <span class="hljs-selector-class">.mention__item</span><span class="hljs-selector-class">.ck-on</span> <span class="hljs-selector-tag">span</span> {
+        <span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--ck-color-base-background);
+    }
+
+    <span class="hljs-selector-class">.ck-mentions</span> <span class="hljs-selector-class">.mention__item</span> <span class="hljs-selector-class">.mention__item__full-name</span> {
+        <span class="hljs-attribute">color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">45%</span>);
+    }
+
+    <span class="hljs-selector-class">.ck-mentions</span> <span class="hljs-selector-class">.mention__item</span><span class="hljs-selector-pseudo">:hover</span><span class="hljs-selector-pseudo">:not(.ck-on)</span> <span class="hljs-selector-class">.mention__item__full-name</span> {
+        <span class="hljs-attribute">color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">40%</span>);
+    }
+
+    <span class="hljs-comment">/* ---- Chat editor content styles ----------------------------------------------------------- */</span>
+
+    <span class="hljs-selector-class">.chat</span> <span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.mention</span> {
+        <span class="hljs-attribute">background</span>: unset;
+    }
+
+    <span class="hljs-selector-class">.chat</span> <span class="hljs-selector-class">.ck</span><span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-tag">a</span>,
+    <span class="hljs-selector-class">.chat</span> <span class="hljs-selector-class">.chat__posts</span> <span class="hljs-selector-tag">a</span> {
+        <span class="hljs-attribute">color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">231</span>, <span class="hljs-number">89%</span>, <span class="hljs-number">53%</span>);
+    }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+</code></pre>
+<p>JavaScript code required to run the editor:</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
+<span class="hljs-keyword">import</span> Essentials <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;</span>;
+<span class="hljs-keyword">import</span> Bold <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;</span>;
+<span class="hljs-keyword">import</span> Italic <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;</span>;
+<span class="hljs-keyword">import</span> Underline <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/underline&apos;</span>;
+<span class="hljs-keyword">import</span> Strikethrough <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/strikethrough&apos;</span>;
+<span class="hljs-keyword">import</span> Mention <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-mention/src/mention&apos;</span>;
+<span class="hljs-keyword">import</span> Link <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-link/src/link&apos;</span>;
+<span class="hljs-keyword">import</span> Paragraph <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;</span>;
+
+ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;.chat__editor&apos;</span> ), {
+        <span class="hljs-attr">extraPlugins</span>: [ Essentials, Paragraph, Mention, MentionLinks, Bold, Italic, Underline, Strikethrough, Link ],
+        <span class="hljs-attr">toolbar</span>: {
+            <span class="hljs-attr">items</span>: [
+                <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-string">&apos;italic&apos;</span>, <span class="hljs-string">&apos;underline&apos;</span>, <span class="hljs-string">&apos;strikethrough&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;link&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;undo&apos;</span>, <span class="hljs-string">&apos;redo&apos;</span>
+            ]
+        },
+        <span class="hljs-attr">mention</span>: {
+            <span class="hljs-attr">feeds</span>: [
+                {
+                    <span class="hljs-attr">marker</span>: <span class="hljs-string">&apos;@&apos;</span>,
+                    <span class="hljs-attr">feed</span>: [
+                        { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@cflores&apos;</span>, <span class="hljs-attr">avatar</span>: <span class="hljs-string">&apos;m_1&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Charles Flores&apos;</span> },
+                        { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@gjackson&apos;</span>, <span class="hljs-attr">avatar</span>: <span class="hljs-string">&apos;m_2&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Gerald Jackson&apos;</span> },
+                        { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@wreed&apos;</span>, <span class="hljs-attr">avatar</span>: <span class="hljs-string">&apos;m_3&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Wayne Reed&apos;</span> },
+                        { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@lgarcia&apos;</span>, <span class="hljs-attr">avatar</span>: <span class="hljs-string">&apos;m_4&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Louis Garcia&apos;</span> },
+                        { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@rwilson&apos;</span>, <span class="hljs-attr">avatar</span>: <span class="hljs-string">&apos;m_5&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Roy Wilson&apos;</span> },
+                        { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@mnelson&apos;</span>, <span class="hljs-attr">avatar</span>: <span class="hljs-string">&apos;m_6&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Matthew Nelson&apos;</span> },
+                        { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@rwilliams&apos;</span>, <span class="hljs-attr">avatar</span>: <span class="hljs-string">&apos;m_7&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Randy Williams&apos;</span> },
+                        { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@ajohnson&apos;</span>, <span class="hljs-attr">avatar</span>: <span class="hljs-string">&apos;m_8&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Albert Johnson&apos;</span> },
+                        { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@sroberts&apos;</span>, <span class="hljs-attr">avatar</span>: <span class="hljs-string">&apos;m_9&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Steve Roberts&apos;</span> },
+                        { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@kevans&apos;</span>, <span class="hljs-attr">avatar</span>: <span class="hljs-string">&apos;m_10&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Kevin Evans&apos;</span> },
+                        { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@mwilson&apos;</span>, <span class="hljs-attr">avatar</span>: <span class="hljs-string">&apos;w_1&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Mildred Wilson&apos;</span> },
+                        { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@mnelson&apos;</span>, <span class="hljs-attr">avatar</span>: <span class="hljs-string">&apos;w_2&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Melissa Nelson&apos;</span> },
+                        { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@kallen&apos;</span>, <span class="hljs-attr">avatar</span>: <span class="hljs-string">&apos;w_3&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Kathleen Allen&apos;</span> },
+                        { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@myoung&apos;</span>, <span class="hljs-attr">avatar</span>: <span class="hljs-string">&apos;w_4&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Mary Young&apos;</span> },
+                        { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@arogers&apos;</span>, <span class="hljs-attr">avatar</span>: <span class="hljs-string">&apos;w_5&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Ashley Rogers&apos;</span> },
+                        { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@dgriffin&apos;</span>, <span class="hljs-attr">avatar</span>: <span class="hljs-string">&apos;w_6&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Debra Griffin&apos;</span> },
+                        { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@dwilliams&apos;</span>, <span class="hljs-attr">avatar</span>: <span class="hljs-string">&apos;w_7&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Denise Williams&apos;</span> },
+                        { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@ajames&apos;</span>, <span class="hljs-attr">avatar</span>: <span class="hljs-string">&apos;w_8&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Amy James&apos;</span> },
+                        { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@randerson&apos;</span>, <span class="hljs-attr">avatar</span>: <span class="hljs-string">&apos;w_9&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Ruby Anderson&apos;</span> },
+                        { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@wlee&apos;</span>, <span class="hljs-attr">avatar</span>: <span class="hljs-string">&apos;w_10&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Wanda Lee&apos;</span> }
+                    ],
+                    <span class="hljs-attr">itemRenderer</span>: customItemRenderer
+                },
+                {
+                    <span class="hljs-attr">marker</span>: <span class="hljs-string">&apos;#&apos;</span>,
+                    <span class="hljs-attr">feed</span>: [
+                        <span class="hljs-string">&apos;#american&apos;</span>, <span class="hljs-string">&apos;#asian&apos;</span>, <span class="hljs-string">&apos;#baking&apos;</span>, <span class="hljs-string">&apos;#breakfast&apos;</span>, <span class="hljs-string">&apos;#cake&apos;</span>, <span class="hljs-string">&apos;#caribbean&apos;</span>,
+                        <span class="hljs-string">&apos;#chinese&apos;</span>, <span class="hljs-string">&apos;#chocolate&apos;</span>, <span class="hljs-string">&apos;#cooking&apos;</span>, <span class="hljs-string">&apos;#dairy&apos;</span>, <span class="hljs-string">&apos;#delicious&apos;</span>, <span class="hljs-string">&apos;#delish&apos;</span>,
+                        <span class="hljs-string">&apos;#dessert&apos;</span>, <span class="hljs-string">&apos;#desserts&apos;</span>, <span class="hljs-string">&apos;#dinner&apos;</span>, <span class="hljs-string">&apos;#eat&apos;</span>, <span class="hljs-string">&apos;#eating&apos;</span>, <span class="hljs-string">&apos;#eggs&apos;</span>, <span class="hljs-string">&apos;#fish&apos;</span>,
+                        <span class="hljs-string">&apos;#food&apos;</span>, <span class="hljs-string">&apos;#foodgasm&apos;</span>, <span class="hljs-string">&apos;#foodie&apos;</span>, <span class="hljs-string">&apos;#foodporn&apos;</span>, <span class="hljs-string">&apos;#foods&apos;</span>, <span class="hljs-string">&apos;#french&apos;</span>, <span class="hljs-string">&apos;#fresh&apos;</span>,
+                        <span class="hljs-string">&apos;#fusion&apos;</span>, <span class="hljs-string">&apos;#glutenfree&apos;</span>, <span class="hljs-string">&apos;#greek&apos;</span>, <span class="hljs-string">&apos;#grilling&apos;</span>, <span class="hljs-string">&apos;#halal&apos;</span>, <span class="hljs-string">&apos;#homemade&apos;</span>,
+                        <span class="hljs-string">&apos;#hot&apos;</span>, <span class="hljs-string">&apos;#hungry&apos;</span>, <span class="hljs-string">&apos;#icecream&apos;</span>, <span class="hljs-string">&apos;#indian&apos;</span>, <span class="hljs-string">&apos;#italian&apos;</span>, <span class="hljs-string">&apos;#japanese&apos;</span>, <span class="hljs-string">&apos;#keto&apos;</span>,
+                        <span class="hljs-string">&apos;#korean&apos;</span>, <span class="hljs-string">&apos;#lactosefree&apos;</span>, <span class="hljs-string">&apos;#lunch&apos;</span>, <span class="hljs-string">&apos;#meat&apos;</span>, <span class="hljs-string">&apos;#mediterranean&apos;</span>, <span class="hljs-string">&apos;#mexican&apos;</span>,
+                        <span class="hljs-string">&apos;#moroccan&apos;</span>, <span class="hljs-string">&apos;#nom&apos;</span>, <span class="hljs-string">&apos;#nomnom&apos;</span>, <span class="hljs-string">&apos;#paleo&apos;</span>, <span class="hljs-string">&apos;#poultry&apos;</span>, <span class="hljs-string">&apos;#snack&apos;</span>, <span class="hljs-string">&apos;#spanish&apos;</span>,
+                        <span class="hljs-string">&apos;#sugarfree&apos;</span>, <span class="hljs-string">&apos;#sweet&apos;</span>, <span class="hljs-string">&apos;#sweettooth&apos;</span>, <span class="hljs-string">&apos;#tasty&apos;</span>, <span class="hljs-string">&apos;#thai&apos;</span>, <span class="hljs-string">&apos;#vegan&apos;</span>,
+                        <span class="hljs-string">&apos;#vegetarian&apos;</span>, <span class="hljs-string">&apos;#vietnamese&apos;</span>, <span class="hljs-string">&apos;#yum&apos;</span>, <span class="hljs-string">&apos;#yummy&apos;</span>
+                    ]
+                }
+            ]
+        }
+    } )
+    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+        <span class="hljs-built_in">window</span>.editor = editor;
+
+        <span class="hljs-comment">// Clone the first message in the chat when &quot;Send&quot; is clicked, fill it with new data</span>
+        <span class="hljs-comment">// and append to the chat list.</span>
+        <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;.chat-send&apos;</span> ).addEventListener( <span class="hljs-string">&apos;click&apos;</span>, () =&gt; {
+            <span class="hljs-keyword">const</span> clone = <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;.chat__posts li&apos;</span> ).cloneNode( <span class="hljs-literal">true</span> );
+
+            clone.classList.add( <span class="hljs-string">&apos;new-post&apos;</span> );
+            clone.querySelector( <span class="hljs-string">&apos;img&apos;</span> ).src = <span class="hljs-string">&apos;../../assets/img/m_0.jpg&apos;</span>;
+            clone.querySelector( <span class="hljs-string">&apos;strong&apos;</span> ).textContent = <span class="hljs-string">&apos;CKEditor User&apos;</span>;
+
+            <span class="hljs-keyword">const</span> mailtoUser = clone.querySelector( <span class="hljs-string">&apos;.chat__posts__post__mailto-user&apos;</span> );
+
+            mailtoUser.textContent = <span class="hljs-string">&apos;@ckeditor&apos;</span>;
+            mailtoUser.href = <span class="hljs-string">&apos;mailto:info@cksource.com&apos;</span>;
+
+            clone.querySelector( <span class="hljs-string">&apos;.chat__posts__post__time&apos;</span> ).textContent = <span class="hljs-string">&apos;just now&apos;</span>;
+            clone.querySelector( <span class="hljs-string">&apos;.chat__posts__post__content&apos;</span> ).innerHTML = editor.getData();
+
+            <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;.chat__posts&apos;</span> ).appendChild( clone );
+        } );
+    } )
+    .catch( <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.error( err.stack );
+    } );
+
+<span class="hljs-comment">/*
+ * This plugin customizes the way mentions are handled in the editor model and data.
+ * Instead of a classic &lt;span class=&quot;mention&quot;&gt;&lt;/span&gt;,
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MentionLinks</span>(<span class="hljs-params"> editor </span>) </span>{
+    <span class="hljs-comment">// The upcast converter will convert a view</span>
+    <span class="hljs-comment">//</span>
+    <span class="hljs-comment">//		&lt;a href=&quot;...&quot; class=&quot;mention&quot; data-mention=&quot;...&quot;&gt;...&lt;/a&gt;</span>
+    <span class="hljs-comment">//</span>
+    <span class="hljs-comment">// element to the model &quot;mention&quot; text attribute.</span>
+    editor.conversion.for( <span class="hljs-string">&apos;upcast&apos;</span> ).elementToAttribute( {
+        <span class="hljs-attr">view</span>: {
+            <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;a&apos;</span>,
+            <span class="hljs-attr">key</span>: <span class="hljs-string">&apos;data-mention&apos;</span>,
+            <span class="hljs-attr">classes</span>: <span class="hljs-string">&apos;mention&apos;</span>,
+            <span class="hljs-attr">attributes</span>: {
+                <span class="hljs-attr">href</span>: <span class="hljs-literal">true</span>
+            }
+        },
+        <span class="hljs-attr">model</span>: {
+            <span class="hljs-attr">key</span>: <span class="hljs-string">&apos;mention&apos;</span>,
+            <span class="hljs-attr">value</span>: <span class="hljs-function"><span class="hljs-params">viewItem</span> =&gt;</span> editor.plugins.get( <span class="hljs-string">&apos;Mention&apos;</span> ).toMentionAttribute( viewItem )
+        },
+        <span class="hljs-attr">converterPriority</span>: <span class="hljs-string">&apos;high&apos;</span>
+    } );
+
+    <span class="hljs-comment">// Downcast the model &quot;mention&quot; text attribute to a view</span>
+    <span class="hljs-comment">//</span>
+    <span class="hljs-comment">//		&lt;a href=&quot;...&quot; class=&quot;mention&quot; data-mention=&quot;...&quot;&gt;...&lt;/a&gt;</span>
+    <span class="hljs-comment">//</span>
+    <span class="hljs-comment">// element.</span>
+    editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).attributeToElement( {
+        <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;mention&apos;</span>,
+        <span class="hljs-attr">view</span>: <span class="hljs-function">(<span class="hljs-params"> modelAttributeValue, viewWriter </span>) =&gt;</span> {
+            <span class="hljs-comment">// Do not convert empty attributes (lack of value means no mention).</span>
+            <span class="hljs-keyword">if</span> ( !modelAttributeValue ) {
+                <span class="hljs-keyword">return</span>;
+            }
+
+            <span class="hljs-keyword">let</span> href;
+
+            <span class="hljs-comment">// User mentions are downcasted as mailto: links. Tags become normal URLs.</span>
+            <span class="hljs-keyword">if</span> ( modelAttributeValue.id[ <span class="hljs-number">0</span> ] === <span class="hljs-string">&apos;@&apos;</span> ) {
+                href = <span class="hljs-string">`mailto:<span class="hljs-subst">${ modelAttributeValue.id.slice( <span class="hljs-number">1</span> ) }</span>@example.com`</span>;
+            } <span class="hljs-keyword">else</span> {
+                href = <span class="hljs-string">`https://example.com/social/<span class="hljs-subst">${ modelAttributeValue.id.slice( <span class="hljs-number">1</span> ) }</span>`</span>;
+            }
+
+            <span class="hljs-keyword">return</span> viewWriter.createAttributeElement( <span class="hljs-string">&apos;a&apos;</span>, {
+                <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;mention&apos;</span>,
+                <span class="hljs-string">&apos;data-mention&apos;</span>: modelAttributeValue.id,
+                href
+            } );
+        },
+        <span class="hljs-attr">converterPriority</span>: <span class="hljs-string">&apos;high&apos;</span>
+    } );
+}
+
+<span class="hljs-comment">/*
+ * Customizes the way the list of user suggestions is displayed.
+ * Each user has an @id, a name and an avatar.
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">customItemRenderer</span>(<span class="hljs-params"> item </span>) </span>{
+    <span class="hljs-keyword">const</span> itemElement = <span class="hljs-built_in">document</span>.createElement( <span class="hljs-string">&apos;span&apos;</span> );
+    <span class="hljs-keyword">const</span> avatar = <span class="hljs-built_in">document</span>.createElement( <span class="hljs-string">&apos;img&apos;</span> );
+    <span class="hljs-keyword">const</span> userNameElement = <span class="hljs-built_in">document</span>.createElement( <span class="hljs-string">&apos;span&apos;</span> );
+    <span class="hljs-keyword">const</span> fullNameElement = <span class="hljs-built_in">document</span>.createElement( <span class="hljs-string">&apos;span&apos;</span> );
+
+    itemElement.classList.add( <span class="hljs-string">&apos;mention__item&apos;</span> );
+
+    avatar.src = <span class="hljs-string">`../../assets/img/<span class="hljs-subst">${ item.avatar }</span>.jpg`</span>;
+
+    userNameElement.classList.add( <span class="hljs-string">&apos;mention__item__user-name&apos;</span> );
+    userNameElement.textContent = item.id;
+
+    fullNameElement.classList.add( <span class="hljs-string">&apos;mention__item__full-name&apos;</span> );
+    fullNameElement.textContent = item.name;
+
+    itemElement.appendChild( avatar );
+    itemElement.appendChild( userNameElement );
+    itemElement.appendChild( fullNameElement );
+
+    <span class="hljs-keyword">return</span> itemElement;
+}
+</code></pre>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Builds</span></div>
+                            <ul class="tree__item-nested-list">
+                                    <li><a href="../builds/classic-editor.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Classic editor</span></div></a></li>
+                                    <li><a href="../builds/inline-editor.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Inline editor</span></div></a></li>
+                                    <li><a href="../builds/balloon-block-editor.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Balloon block editor</span></div></a></li>
+                                    <li><a href="../builds/balloon-editor.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Balloon editor</span></div></a></li>
+                                    <li><a href="../builds/document-editor.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document editor</span></div></a></li>
+                                    <li><a href="../builds/custom-build.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom build</span></div></a></li>
+                            </ul>
+                          </li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Framework</span></div>
+                            <ul class="tree__item-nested-list">
+                                    <li><a href>
+                                        <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Chat with mentions</span></div></a></li>
+                                    <li><a href="theme-customization.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Theme customization</span></div></a></li>
+                                    <li><a href="custom-ui.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom UI (with Bootstrap)</span></div></a></li>
+                                    <li><a href="multi-root-editor.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Multi-root editor</span></div></a></li>
+                            </ul>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2003-2020 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'examples' ] = hits.filter( function( h ) {return h.tags.includes( 'examples' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'examples' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'examples' ] );tags.forEach( function( tag ) {if ( tag !== 'examples' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+    <script src="../../assets/snippet.js"></script>
+    <script src="../../snippets/examples/chat-with-mentions/snippet.js"></script>
+  </body>
+</html>

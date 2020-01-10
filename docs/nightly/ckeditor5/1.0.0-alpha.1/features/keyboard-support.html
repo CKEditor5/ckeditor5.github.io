@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Keyboard support - CKEditor 5</title>
+    <link rel="canonical" href="/ckeditor5/latest/features/keyboard-support.html">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../assets/0.3.37/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.37/scripts/app.js"></script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top">
+      <div class="top__logo top__left"><span class="top__logo__product-icon" style="background-image: url( ../assets/img/project-logo.svg );"></span><a class="top__logo__product-title" href="../index.html">CKEditor 5</a></div>
+      <ul class="top__menu">
+        <li><a href="../builds/index.html">Builds</a></li>
+        <li><a href="../framework/index.html">Framework</a></li>
+        <li><a href="../examples/index.html">Examples</a></li>
+        <li><a class="top__menu__item--active" href="index.html">Features</a></li>
+        <li><a href="../api/index.html">API</a></li>
+        <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."></a></li>
+      </ul>
+      <div class="top__search">
+        <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.37/img/loupe.svg" alt="Search"></button>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted keyboard-shortcuts">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/features/keyboard-support.md" title="Contribute to this guide"><img src="../../../assets/0.3.37/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.37/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <h1><img src="../../../assets/0.3.37/img/book.svg" alt="guide">Keyboard support
+          </h1><p>Below is a list of the most important keystrokes supported by CKEditor 5 and its features:</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>PC</th>
+<th>Mac</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Copy</td>
+<td><kbd>Ctrl</kbd> + <kbd>C</kbd></td>
+<td><kbd>&#x2318;</kbd> + <kbd>C</kbd></td>
+</tr>
+<tr>
+<td>Paste</td>
+<td><kbd>Ctrl</kbd> + <kbd>V</kbd></td>
+<td><kbd>&#x2318;</kbd> + <kbd>V</kbd></td>
+</tr>
+<tr>
+<td>Undo</td>
+<td><kbd>Ctrl</kbd> + <kbd>Z</kbd></td>
+<td><kbd>&#x2318;</kbd> + <kbd>Z</kbd></td>
+</tr>
+<tr>
+<td>Redo</td>
+<td><kbd>Ctrl</kbd> + <kbd>Y</kbd> <br> <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd></td>
+<td><kbd>&#x2318;</kbd> + <kbd>Y</kbd> <br> <kbd>&#x2318;</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd></td>
+</tr>
+<tr>
+<td>Bold</td>
+<td><kbd>Ctrl</kbd> + <kbd>B</kbd></td>
+<td><kbd>&#x2318;</kbd> + <kbd>I</kbd></td>
+</tr>
+<tr>
+<td>Italic</td>
+<td><kbd>Ctrl</kbd> + <kbd>I</kbd></td>
+<td><kbd>&#x2318;</kbd> + <kbd>I</kbd></td>
+</tr>
+<tr>
+<td>Link</td>
+<td><kbd>Ctrl</kbd> + <kbd>K</kbd></td>
+<td><kbd>&#x2318;</kbd> + <kbd>K</kbd></td>
+</tr>
+<tr>
+<td>Close contextual balloons and UI components like drop-downs</td>
+<td><kbd>Esc</kbd></td>
+<td><kbd>Esc</kbd></td>
+</tr>
+<tr>
+<td>Nest the current list item (when in a list)</td>
+<td><kbd>Tab</kbd></td>
+<td><kbd>Tab</kbd></td>
+</tr>
+<tr>
+<td>Move focus to the visible contextual balloon</td>
+<td><kbd>Tab</kbd></td>
+<td><kbd>Tab</kbd></td>
+</tr>
+<tr>
+<td>Move focus between fields (inputs and buttons) in contextual balloons</td>
+<td><kbd>Tab</kbd></td>
+<td><kbd>Tab</kbd></td>
+</tr>
+<tr>
+<td>Move focus to the toolbar</td>
+<td><kbd>Alt</kbd> + <kbd>F10</kbd></td>
+<td><kbd>Alt</kbd> + <kbd>F10</kbd> <br> (may require <kbd>Fn</kbd>)</td>
+</tr>
+<tr>
+<td>Navigate through the toolbar</td>
+<td><kbd>&#x2191;</kbd> / <kbd>&#x2192;</kbd> / <kbd>&#x2193;</kbd> / <kbd>&#x2190;</kbd></td>
+<td><kbd>&#x2191;</kbd> / <kbd>&#x2192;</kbd> / <kbd>&#x2193;</kbd> / <kbd>&#x2190;</kbd></td>
+</tr>
+<tr>
+<td>Execute the currently focused button</td>
+<td><kbd>Enter</kbd></td>
+<td><kbd>Enter</kbd></td>
+</tr>
+</tbody>
+</table>
+<style>
+.keyboard-shortcuts th {
+    text-align: center;
+}
+.keyboard-shortcuts td:nth-of-type(1) {
+    text-align: right;
+}
+.keyboard-shortcuts td:nth-of-type(2), .keyboard-shortcuts td:nth-of-type(3) {
+    width: 30%;
+}
+</style>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li><a href="autoformat.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Autoformatting</span></div></a></li>
+                          <li><a href="headings.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Headings</span></div></a></li>
+                          <li><a href="image-upload.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Image upload</span></div></a></li>
+                          <li><a href="image.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Images</span></div></a></li>
+                          <li><a href="">
+                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Keyboard support</span></div></a></li>
+                          <li><a href="markdown.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Markdown output</span></div></a></li>
+                          <li><a href="read-only.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Read-only support</span></div></a></li>
+                          <li><a href="ui-language.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Setting the UI language</span></div></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},debug:false,
+transformData: function(hits) {var sortingFn = ( a, b ) => {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;return a.custom_ranking > b.custom_ranking ? -1 :a.custom_ranking < b.custom_ranking ? 1 : 0;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];result = result.concat(hits.filter( h => h.tags.includes( 'features' ) ).slice( 0, 7 ).sort( sortingFn ));tags.forEach( function( tag ) {if ( tag !== 'features' ) {result = result.concat(hits.filter( h => h.tags.includes( tag ) ).slice( 0, 10 ).sort( sortingFn ).slice( 0, 3 ));}} );return result;}
+});
+</script>
+  </body>
+</html>

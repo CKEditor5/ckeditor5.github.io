@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mention - CKEditor 5 Documentation</title>
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:site" content="@ckeditor">
+    <meta property="og:title" content="Mention - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/features/mention.html">
+    <meta property="DC.language" content="en">
+    <meta property="DC.publisher" content="CKSource">
+    <meta property="DC.creator" content="CKEditor">
+    <meta property="DC.title" content="Mention - CKEditor 5 Documentation">
+    <meta property="DC.format" content="text/html">
+    <meta property="DC.type" content="Text">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/features/mention.html">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../assets/0.22.0/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../assets/styles.css" type="text/css">
+    <link rel="stylesheet" href="../snippets/features/build-mention-source/snippet.css" type="text/css">
+    <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
+    <script>
+      ( function() {
+      	'use strict';
+      	// Set up global variables;
+      	if ( !window.umebrto ) {
+      		window.umberto = {};
+      	}
+      	window.umberto.relativeAppPath = "../../../assets/0.22.0/scripts"
+      
+      	// Add app script
+      	var el = document.createElement( 'script' );
+      	el.setAttribute( 'async', 'async' );
+      	el.setAttribute( 'defer', 'defer' );
+      	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
+      		el.src = "../../../assets/0.22.0/scripts/app.js";
+      	} else {
+      		el.src = "../../../assets/0.22.0/scripts/app-polyfill.js";
+      	}
+      	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
+      
+      	// Changing documentation theme enable it via `localStorage.setItem( 'theme', 'theme-dark' )`
+      	if ( localStorage.getItem( 'theme' ) === 'theme-dark' ) {
+      		document.getElementsByTagName( 'html' )[ 0 ].classList.add( 'theme-dark' );
+      	}
+      } )();
+    </script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="header__main">
+        <div class="header__main-rwd-button"><a href="#"><span></span><span></span><span></span></a></div>
+        <div class="header__main-title"><a class="header__main-title-home" href="../../../index.html">CKEditor Ecosystem Documentation</a></div>
+        <div class="top__search">
+          <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+          <div class="top__search__button"><img src="../../../assets/0.22.0/img/loupe.svg" alt="Search"></div>
+        </div>
+      </div>
+      <div class="header__sub">
+        <ul class="top__menu">
+          <li class="top__menu-project-logo"><a href="../index.html">CKEditor 5</a></li>
+          <li><a href="../builds/index.html">Builds</a></li>
+          <li><a href="../framework/index.html">Framework</a></li>
+          <li><a href="../examples/index.html">Examples</a></li>
+          <li><a class="top__menu__item--active" href="index.html">Features</a></li>
+          <li><a class="top__menu__api" href="../api/index.html">API</a></li>
+          <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."><svg viewbox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li>
+        </ul>
+      </div>
+      <div class="header__menu-rwd">
+        <ul class="header__menu-rwd__projects">
+          <li data-project="ckeditor5"><a href="../../latest/index.html">CKEditor 5
+              <ul class="tree header__menu-rwd__projects-pages">
+                <li data-group="builds"><a href="../builds/index.html">Builds</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="framework"><a href="../framework/index.html">Framework</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="examples"><a href="../examples/index.html">Examples</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="features"><a href="index.html">Features</a>
+                  <!-- Display subpages for active project.-->
+                  <ul class="header__menu-rwd__projects-subpages">
+                            <li><a href="autoformat.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Autoformatting</span></div></a></li>
+                            <li><a href="basic-styles.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic text styles</span></div></a></li>
+                            <li><a href="blocktoolbar.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block toolbar</span></div></a></li>
+                            <li><a href="editor-placeholder.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor placeholder</span></div></a></li>
+                            <li><a href="font.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Font</span></div></a></li>
+                            <li><a href="headings.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Headings</span></div></a></li>
+                            <li><a href="highlight.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Highlight</span></div></a></li>
+                            <li>
+                              <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Image upload</span></div>
+                              <ul class="tree__item-nested-list">
+                                    <li><a href="image-upload/image-upload.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="image-upload/easy-image.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Easy Image</span></div></a></li>
+                                    <li><a href="image-upload/ckfinder.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">CKFinder file manager</span></div></a></li>
+                              </ul>
+                            </li>
+                            <li><a href="image.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Images</span></div></a></li>
+                            <li><a href="keyboard-support.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Keyboard support</span></div></a></li>
+                            <li><a href="link.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Link</span></div></a></li>
+                            <li><a href="markdown.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Markdown output</span></div></a></li>
+                            <li><a href="media-embed.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Media embed</span></div></a></li>
+                            <li><a href>
+                                <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Mention</span></div></a></li>
+                            <li><a href="paste-from-word.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Word</span></div></a></li>
+                            <li><a href="read-only.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Read-only support</span></div></a></li>
+                            <li><a href="remove-format.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Remove formatting</span></div></a></li>
+                            <li><a href="ui-language.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Setting the UI language</span></div></a></li>
+                            <li><a href="table.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Tables</span></div></a></li>
+                            <li><a href="text-alignment.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Text alignment</span></div></a></li>
+                  </ul>
+                </li>
+                <li data-group="api-reference"><a href="../api/index.html">API</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+              </ul></a></li>
+        </ul>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-mention/blob/master/docs/features/mention.md" title="Contribute to this guide"><img src="../../../assets/0.22.0/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5-mention/issues/new" title="Report an issue"><img src="../../../assets/0.22.0/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
+          </div>
+          <h1 class="main__content-title"><img src="../../../assets/0.22.0/img/book.svg" alt="guide">Mention
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#configuration">Configuration</a><ol><li><a href="#providing-the-feed">Providing the feed</a></li><li><a href="#customizing-the-autocomplete-list">Customizing the autocomplete list</a></li><li><a href="#customizing-the-output">Customizing the output</a></li><li><a href="#fully-customized-mention-feed">Fully customized mention feed</a><ol><li><a href="#source-code">Source code</a></li></ol></li><li><a href="#colors-and-styles">Colors and styles</a><ol><li><a href="#using-css-variables">Using CSS variables</a></li></ol></li></ol></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
+
+<p>The <a href="../api/module_mention_mention-Mention.html"><code>Mention</code></a> feature brings support for smart autocompletion based on user input. When a user types a pre-configured marker, such as <code>@</code> or <code>#</code>, they get autocomplete suggestions in a panel displayed next to the caret. The selected suggestion is then inserted into the content.</p>
+<h2 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h2>
+<p>You can type the <code>&apos;@&apos;</code> character to invoke mention autocomplete UI. The demo below is configured to suggest a static list of names (&#x201C;Barney&#x201D;, &#x201C;Lily&#x201D;, &#x201C;Marshall&#x201D;, &#x201C;Robin&#x201D;, and &#x201C;Ted&#x201D;).</p>
+<div class="live-snippet"><div id="snippet-mention">
+	<p>Hello <span class="mention" data-mention="@Ted">@Ted</span>.</p>
+</div>
+</div>
+<h2 id="configuration"><a class="headerlink" href="#configuration">#</a> Configuration</h2>
+<p>The minimal configuration of the mention feature requires defining a <a href="../api/module_mention_mention-MentionFeed.html"><code>feed</code></a> and a <a href="../api/module_mention_mention-MentionFeed.html"><code>marker</code></a>. You can also define <code>minimumCharacters</code> after which the autocomplete panel will show up.</p>
+<p>The code snippet below was used to configure the demo above. It defines the list of names that will be autocompleted after the user types the <code>&apos;@&apos;</code> character.</p>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-comment">// This feature is not available in any of the builds.</span>
+        <span class="hljs-comment">// See the &quot;Installation&quot; section.</span>
+        plugins: [ Mention, ... ],
+
+        <span class="hljs-attr">mention</span>: {
+            <span class="hljs-attr">feeds</span>: [
+                {
+                    <span class="hljs-attr">marker</span>: <span class="hljs-string">&apos;@&apos;</span>,
+                    <span class="hljs-attr">feed</span>: [ <span class="hljs-string">&apos;@Barney&apos;</span>, <span class="hljs-string">&apos;@Lily&apos;</span>, <span class="hljs-string">&apos;@Marshall&apos;</span>, <span class="hljs-string">&apos;@Robin&apos;</span>, <span class="hljs-string">&apos;@Ted&apos;</span> ],
+                    <span class="hljs-attr">minimumCharacters</span>: <span class="hljs-number">1</span>
+                }
+            }
+        }
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<p>Additionally, you can configure:</p>
+<ul>
+<li>How the item is rendered in the autocomplete panel (via setting <a href="../api/module_mention_mention-MentionFeed.html"><code>itemRenderer</code></a>). See <a href="#customizing-the-autocomplete-list">&#x201C;Customizing the autocomplete list&#x201D;</a>.</li>
+<li>How the item is converted during the <a href="../framework/guides/architecture/editing-engine.html#conversion">conversion</a>. See <a href="#customizing-the-output">&#x201C;Customizing the output&#x201D;</a>.</li>
+<li>Multiple feeds &#x2014; in the demo above we used only one feed, which is triggered by the <code>&apos;@&apos;</code> character. You can define multiple feeds but they must use different markers. For example, you can use <code>&apos;@&apos;</code> for people and <code>#</code> for tags.</li>
+</ul>
+<h3 id="providing-the-feed"><a class="headerlink" href="#providing-the-feed">#</a> Providing the feed</h3>
+<p>The <a href="../api/module_mention_mention-MentionFeed.html"><code>feed</code></a> can be provided as:</p>
+<ul>
+<li>a static array &#x2014; good for scenarios with a relatively small set of autocomplete items.</li>
+<li>a callback &#x2014; which provides more control over the returned list of items.</li>
+</ul>
+<p>When using a callback you can return a <code>Promise</code> that resolves with the list of <a href="../api/module_mention_mention-MentionFeedItem.html">matching feed items</a>. Those can be simple strings or plain objects with at least the <code>name</code> property. The other properties of this object can later be used e.g. when <a href="#customizing-the-autocomplete-list">customizing the autocomplete list</a> or <a href="#customizing-the-output">customizing the output</a>.</p>
+<div class="info-box notice"><p>When using external resources to obtain the feed it is recommended to add some caching mechanism so subsequent calls for the same suggestion would load faster.</p><p>You can also consider adding the <code>minimumCharacters</code> option to the feed config so the editor will call the feed callback after minimum characters typed instead of action on marker alone.</p></div>
+<p>The callback receives the query text which should be used to filter item suggestions. It should return a <code>Promise</code> and resolve it with an array of items that match to the feed text.</p>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-comment">// This feature is not available in any of the builds.</span>
+        <span class="hljs-comment">// See the &quot;Installation&quot; section.</span>
+        plugins: [ Mention, ... ],
+
+        <span class="hljs-attr">mention</span>: {
+            <span class="hljs-attr">feeds</span>: [
+                {
+                    <span class="hljs-attr">marker</span>: <span class="hljs-string">&apos;@&apos;</span>,
+                    <span class="hljs-attr">feed</span>: getFeedItems
+                }
+            }
+        }
+    } )
+    .then( ... )
+    .catch( ... );
+
+<span class="hljs-keyword">const</span> items = [
+    { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@swarley&apos;</span>, <span class="hljs-attr">userId</span>: <span class="hljs-string">&apos;1&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Barney Stinson&apos;</span>, <span class="hljs-attr">link</span>: <span class="hljs-string">&apos;https://www.imdb.com/title/tt0460649/characters/nm0000439&apos;</span> },
+    { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@lilypad&apos;</span>, <span class="hljs-attr">userId</span>: <span class="hljs-string">&apos;2&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Lily Aldrin&apos;</span>, <span class="hljs-attr">link</span>: <span class="hljs-string">&apos;https://www.imdb.com/title/tt0460649/characters/nm0004989&apos;</span> },
+    { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@marshmallow&apos;</span>, <span class="hljs-attr">userId</span>: <span class="hljs-string">&apos;3&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Marshall Eriksen&apos;</span>, <span class="hljs-attr">link</span>: <span class="hljs-string">&apos;https://www.imdb.com/title/tt0460649/characters/nm0781981&apos;</span> },
+    { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@rsparkles&apos;</span>, <span class="hljs-attr">userId</span>: <span class="hljs-string">&apos;4&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Robin Scherbatsky&apos;</span>, <span class="hljs-attr">link</span>: <span class="hljs-string">&apos;https://www.imdb.com/title/tt0460649/characters/nm1130627&apos;</span> },
+    { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@tdog&apos;</span>, <span class="hljs-attr">userId</span>: <span class="hljs-string">&apos;5&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Ted Mosby&apos;</span>, <span class="hljs-attr">link</span>: <span class="hljs-string">&apos;https://www.imdb.com/title/tt0460649/characters/nm1102140&apos;</span> }
+];
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getFeedItems</span>(<span class="hljs-params"> queryText </span>) </span>{
+    <span class="hljs-comment">// As an example of an asynchronous action, let&apos;s return a promise</span>
+    <span class="hljs-comment">// that resolves after a 100ms timeout.</span>
+    <span class="hljs-comment">// This can be a server request or any sort of delayed action.</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>( <span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> {
+        setTimeout( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+            <span class="hljs-keyword">const</span> itemsToDisplay = items
+                <span class="hljs-comment">// Filter out the full list of all items to only those matching queryText.</span>
+                .filter( isItemMatching )
+                <span class="hljs-comment">// Return 10 items max - needed for generic queries when the list may contain hundreds of elements.</span>
+                .slice( <span class="hljs-number">0</span>, <span class="hljs-number">10</span> );
+
+            resolve( itemsToDisplay );
+        }, <span class="hljs-number">100</span> );
+    } );
+
+    <span class="hljs-comment">// Filtering function - it uses `name` and `username` properties of an item to find a match.</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isItemMatching</span>(<span class="hljs-params"> item </span>) </span>{
+        <span class="hljs-comment">// Make search case-insensitive.</span>
+        <span class="hljs-keyword">const</span> searchString = queryText.toLowerCase();
+
+        <span class="hljs-comment">// Include an item in the search results if name or username includes the current user input.</span>
+        <span class="hljs-keyword">return</span> (
+            item.name.toLowerCase().includes( searchString ) ||
+            item.id.toLowerCase().includes( searchString )
+        );
+    }
+}
+</code></pre>
+<p>A full, working demo with all possible customizations and its source code is available <a href="#fully-customized-mention-feed">at the end of this section</a>.</p>
+<h3 id="customizing-the-autocomplete-list"><a class="headerlink" href="#customizing-the-autocomplete-list">#</a> Customizing the autocomplete list</h3>
+<p>The items displayed in the autocomplete list can be customized by defining the <a href="../api/module_mention_mention-MentionFeed.html"><code>itemRenderer</code></a> callback.</p>
+<p>This callback takes a feed item (it contains at least the <code>name</code> property) and must return a new DOM element.</p>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">plugins</span>: [ Mention, ... ],
+        <span class="hljs-attr">mention</span>: {
+            <span class="hljs-attr">feeds</span>: [
+                {
+                    <span class="hljs-attr">feed</span>: [ ... ],
+                    <span class="hljs-comment">// Define the custom item renderer:</span>
+                    itemRenderer: customItemRenderer
+                }
+            ]
+        }
+    } )
+    .then( ... )
+    .catch( ... );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">customItemRenderer</span>(<span class="hljs-params"> item </span>) </span>{
+    <span class="hljs-keyword">const</span> itemElement = <span class="hljs-built_in">document</span>.createElement( <span class="hljs-string">&apos;span&apos;</span> );
+
+    itemElement.classList.add( <span class="hljs-string">&apos;custom-item&apos;</span> );
+    itemElement.id = <span class="hljs-string">`mention-list-item-id-<span class="hljs-subst">${ item.userId }</span>`</span>;
+    itemElement.textContent = <span class="hljs-string">`<span class="hljs-subst">${ item.name }</span> `</span>;
+
+    <span class="hljs-keyword">const</span> usernameElement = <span class="hljs-built_in">document</span>.createElement( <span class="hljs-string">&apos;span&apos;</span> );
+
+    usernameElement.classList.add( <span class="hljs-string">&apos;custom-item-username&apos;</span> );
+    usernameElement.textContent = item.id;
+
+    itemElement.appendChild( usernameElement );
+
+    <span class="hljs-keyword">return</span> itemElement;
+}
+</code></pre>
+<p>A full, working demo with all possible customizations and its source code is available <a href="#fully-customized-mention-feed">at the end of this section</a>.</p>
+<h3 id="customizing-the-output"><a class="headerlink" href="#customizing-the-output">#</a> Customizing the output</h3>
+<p>In order to change the markup generated by the editor for mentions, you can overwrite the default converter of the mention feature. To do that, you must specify both <a href="../api/module_engine_conversion_upcastdispatcher-UpcastDispatcher.html">upcast</a> and <a href="../api/module_engine_conversion_downcastdispatcher-DowncastDispatcher.html">downcast</a> converters.</p>
+<p>The example below defined a plugin which overrides the default output:</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">data-mention</span>=<span class="hljs-string">&quot;@Ted&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;mention&quot;</span>&gt;</span>@Ted<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+</code></pre>
+<p>To a link:</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;mention&quot;</span> <span class="hljs-attr">data-mention</span>=<span class="hljs-string">&quot;@Ted&quot;</span> <span class="hljs-attr">data-user-id</span>=<span class="hljs-string">&quot;5&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://www.imdb.com/title/tt0460649/characters/nm1102140&quot;</span>&gt;</span>@tdog<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+</code></pre>
+<p>The converters must be defined with a <code>&apos;high&apos;</code> priority to be executed before the <a href="link.html">link</a> feature&#x2019;s converter and before the default converter of the mention feature. A mention is stored in the model as a <a href="../framework/guides/architecture/editing-engine.html#text-attributes">text attribute</a> which stores an object (see <a href="../api/module_mention_mention-MentionFeedItem.html"><code>MentionFeedItem</code></a>).</p>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">plugins</span>: [ Mention, MentionCustomization, ... ], <span class="hljs-comment">// Add custom mention plugin function.</span>
+        mention: {
+            <span class="hljs-comment">// Configuration...</span>
+        }
+    } )
+    .then( ... )
+    .catch( ... );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MentionCustomization</span>(<span class="hljs-params"> editor </span>) </span>{
+    <span class="hljs-comment">// The upcast converter will convert view &lt;a class=&quot;mention&quot; href=&quot;&quot; data-user-id=&quot;&quot;&gt;</span>
+    <span class="hljs-comment">// elements to the model &apos;mention&apos; text attribute.</span>
+    editor.conversion.for( <span class="hljs-string">&apos;upcast&apos;</span> ).elementToAttribute( {
+        <span class="hljs-attr">view</span>: {
+            <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;a&apos;</span>,
+            <span class="hljs-attr">key</span>: <span class="hljs-string">&apos;data-mention&apos;</span>,
+            <span class="hljs-attr">classes</span>: <span class="hljs-string">&apos;mention&apos;</span>,
+            <span class="hljs-attr">attributes</span>: {
+                <span class="hljs-attr">href</span>: <span class="hljs-literal">true</span>,
+                <span class="hljs-string">&apos;data-user-id&apos;</span>: <span class="hljs-literal">true</span>
+            }
+        },
+        <span class="hljs-attr">model</span>: {
+            <span class="hljs-attr">key</span>: <span class="hljs-string">&apos;mention&apos;</span>,
+            <span class="hljs-attr">value</span>: <span class="hljs-function"><span class="hljs-params">viewItem</span> =&gt;</span> {
+                <span class="hljs-comment">// The mention feature expects that the mention attribute value</span>
+                <span class="hljs-comment">// in the model is a plain object with a set of additional attributes.</span>
+                <span class="hljs-comment">// In order to create a proper object use the toMentionAttribute() helper method:</span>
+                <span class="hljs-keyword">const</span> mentionAttribute = editor.plugins.get( <span class="hljs-string">&apos;Mention&apos;</span> ).toMentionAttribute( viewItem, {
+                    <span class="hljs-comment">// Add any other properties that you need.</span>
+                    link: viewItem.getAttribute( <span class="hljs-string">&apos;href&apos;</span> ),
+                    <span class="hljs-attr">userId</span>: viewItem.getAttribute( <span class="hljs-string">&apos;data-user-id&apos;</span> )
+                } );
+
+                <span class="hljs-keyword">return</span> mentionAttribute;
+            }
+        },
+        <span class="hljs-attr">converterPriority</span>: <span class="hljs-string">&apos;high&apos;</span>
+    } );
+
+    <span class="hljs-comment">// Downcast the model &apos;mention&apos; text attribute to a view &lt;a&gt; element.</span>
+    editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).attributeToElement( {
+        <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;mention&apos;</span>,
+        <span class="hljs-attr">view</span>: <span class="hljs-function">(<span class="hljs-params"> modelAttributeValue, viewWriter </span>) =&gt;</span> {
+            <span class="hljs-comment">// Do not convert empty attributes (lack of value means no mention).</span>
+            <span class="hljs-keyword">if</span> ( !modelAttributeValue ) {
+                <span class="hljs-keyword">return</span>;
+            }
+
+            <span class="hljs-keyword">return</span> viewWriter.createAttributeElement( <span class="hljs-string">&apos;a&apos;</span>, {
+                <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;mention&apos;</span>,
+                <span class="hljs-string">&apos;data-mention&apos;</span>: modelAttributeValue.id,
+                <span class="hljs-string">&apos;data-user-id&apos;</span>: modelAttributeValue.userId,
+                <span class="hljs-string">&apos;href&apos;</span>: modelAttributeValue.link
+            } );
+        },
+        <span class="hljs-attr">converterPriority</span>: <span class="hljs-string">&apos;high&apos;</span>
+    } );
+}
+</code></pre>
+<p>The full working demo with all customization possible is <a href="#fully-customized-mention-feed">at the end of this section</a>.</p>
+<h3 id="fully-customized-mention-feed"><a class="headerlink" href="#fully-customized-mention-feed">#</a> Fully customized mention feed</h3>
+<p>Below is an example of a customized mention feature that:</p>
+<ul>
+<li>Uses a feed of items with additional properties (<code>id</code>, <code>username</code>, <code>link</code>).</li>
+<li>Renders custom item views in the autocomplete panel.</li>
+<li>Converts mention to an <code>&lt;a&gt;</code> element instead of a <code>&lt;span&gt;</code>.</li>
+</ul>
+<div class="live-snippet"><div id="snippet-mention-customization">
+	<p>Hello <a class="mention" data-mention="@tdog" data-user-id="5" href="https://www.imdb.com/title/tt0460649/characters/nm1102140">@tdog</a>!</p>
+</div>
+
+<style>
+	.custom-item {
+		display: block;
+		padding: 1em;
+	}
+
+	.custom-item.ck-on {
+		color: white;
+	}
+
+	.custom-item .custom-item-username {
+		color: #666;
+	}
+
+	.custom-item.ck-on .custom-item-username{
+		color: #ddd;
+	}
+</style>
+</div>
+<h4 id="source-code"><a class="headerlink" href="#source-code">#</a> Source code</h4>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#snippet-mention-customization&apos;</span> ), {
+        <span class="hljs-attr">plugins</span>: [ Mention, MentionCustomization, ... ],
+        <span class="hljs-attr">mention</span>: {
+            <span class="hljs-attr">feeds</span>: [
+                {
+                    <span class="hljs-attr">marker</span>: <span class="hljs-string">&apos;@&apos;</span>,
+                    <span class="hljs-attr">feed</span>: getFeedItems,
+                    <span class="hljs-attr">itemRenderer</span>: customItemRenderer
+                }
+            ]
+        }
+    } )
+    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+        <span class="hljs-built_in">window</span>.editor = editor;
+    } )
+    .catch( <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.error( err.stack );
+    } );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MentionCustomization</span>(<span class="hljs-params"> editor </span>) </span>{
+    <span class="hljs-comment">// The upcast converter will convert &lt;a class=&quot;mention&quot; href=&quot;&quot; data-user-id=&quot;&quot;&gt;</span>
+    <span class="hljs-comment">// elements to the model &apos;mention&apos; attribute.</span>
+    editor.conversion.for( <span class="hljs-string">&apos;upcast&apos;</span> ).elementToAttribute( {
+        <span class="hljs-attr">view</span>: {
+            <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;a&apos;</span>,
+            <span class="hljs-attr">key</span>: <span class="hljs-string">&apos;data-mention&apos;</span>,
+            <span class="hljs-attr">classes</span>: <span class="hljs-string">&apos;mention&apos;</span>,
+            <span class="hljs-attr">attributes</span>: {
+                <span class="hljs-attr">href</span>: <span class="hljs-literal">true</span>,
+                <span class="hljs-string">&apos;data-user-id&apos;</span>: <span class="hljs-literal">true</span>
+            }
+        },
+        <span class="hljs-attr">model</span>: {
+            <span class="hljs-attr">key</span>: <span class="hljs-string">&apos;mention&apos;</span>,
+            <span class="hljs-attr">value</span>: <span class="hljs-function"><span class="hljs-params">viewItem</span> =&gt;</span> {
+                <span class="hljs-comment">// The mention feature expects that the mention attribute value</span>
+                <span class="hljs-comment">// in the model is a plain object with set of additional attributes.</span>
+                <span class="hljs-comment">// In order to create proper object use `toMentionAttribute` helper method:</span>
+                <span class="hljs-keyword">const</span> mentionAttribute = editor.plugins.get( <span class="hljs-string">&apos;Mention&apos;</span> ).toMentionAttribute( viewItem, {
+                    <span class="hljs-comment">// Add any other properties that you need.</span>
+                    link: viewItem.getAttribute( <span class="hljs-string">&apos;href&apos;</span> ),
+                    <span class="hljs-attr">userId</span>: viewItem.getAttribute( <span class="hljs-string">&apos;data-user-id&apos;</span> )
+                } );
+
+                <span class="hljs-keyword">return</span> mentionAttribute;
+            }
+        },
+        <span class="hljs-attr">converterPriority</span>: <span class="hljs-string">&apos;high&apos;</span>
+    } );
+
+    <span class="hljs-comment">// Do not forget to define a downcast converter as well:</span>
+    editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).attributeToElement( {
+        <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;mention&apos;</span>,
+        <span class="hljs-attr">view</span>: <span class="hljs-function">(<span class="hljs-params"> modelAttributeValue, viewWriter </span>) =&gt;</span> {
+            <span class="hljs-comment">// Do not convert empty attributes (lack of value means no mention).</span>
+            <span class="hljs-keyword">if</span> ( !modelAttributeValue ) {
+                <span class="hljs-keyword">return</span>;
+            }
+
+            <span class="hljs-keyword">return</span> viewWriter.createAttributeElement( <span class="hljs-string">&apos;a&apos;</span>, {
+                <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;mention&apos;</span>,
+                <span class="hljs-string">&apos;data-mention&apos;</span>: modelAttributeValue.id,
+                <span class="hljs-string">&apos;data-user-id&apos;</span>: modelAttributeValue.userId,
+                <span class="hljs-string">&apos;href&apos;</span>: modelAttributeValue.link
+            } );
+        },
+        <span class="hljs-attr">converterPriority</span>: <span class="hljs-string">&apos;high&apos;</span>
+    } );
+}
+
+<span class="hljs-keyword">const</span> items = [
+    { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@swarley&apos;</span>, <span class="hljs-attr">userId</span>: <span class="hljs-string">&apos;1&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Barney Stinson&apos;</span>, <span class="hljs-attr">link</span>: <span class="hljs-string">&apos;https://www.imdb.com/title/tt0460649/characters/nm0000439&apos;</span> },
+    { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@lilypad&apos;</span>, <span class="hljs-attr">userId</span>: <span class="hljs-string">&apos;2&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Lily Aldrin&apos;</span>, <span class="hljs-attr">link</span>: <span class="hljs-string">&apos;https://www.imdb.com/title/tt0460649/characters/nm0004989&apos;</span> },
+    { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@marshmallow&apos;</span>, <span class="hljs-attr">userId</span>: <span class="hljs-string">&apos;3&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Marshall Eriksen&apos;</span>, <span class="hljs-attr">link</span>: <span class="hljs-string">&apos;https://www.imdb.com/title/tt0460649/characters/nm0781981&apos;</span> },
+    { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@rsparkles&apos;</span>, <span class="hljs-attr">userId</span>: <span class="hljs-string">&apos;4&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Robin Scherbatsky&apos;</span>, <span class="hljs-attr">link</span>: <span class="hljs-string">&apos;https://www.imdb.com/title/tt0460649/characters/nm1130627&apos;</span> },
+    { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@tdog&apos;</span>, <span class="hljs-attr">userId</span>: <span class="hljs-string">&apos;5&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Ted Mosby&apos;</span>, <span class="hljs-attr">link</span>: <span class="hljs-string">&apos;https://www.imdb.com/title/tt0460649/characters/nm1102140&apos;</span> }
+];
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getFeedItems</span>(<span class="hljs-params"> queryText </span>) </span>{
+    <span class="hljs-comment">// As an example of an asynchronous action, let&apos;s return a promise</span>
+    <span class="hljs-comment">// that resolves after a 100ms timeout.</span>
+    <span class="hljs-comment">// This can be a server request or any sort of delayed action.</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>( <span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> {
+        setTimeout( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+            <span class="hljs-keyword">const</span> itemsToDisplay = items
+                <span class="hljs-comment">// Filter out the full list of all items to only those matching queryText.</span>
+                .filter( isItemMatching )
+                <span class="hljs-comment">// Return 10 items max - needed for generic queries when the list may contain hundreds of elements.</span>
+                .slice( <span class="hljs-number">0</span>, <span class="hljs-number">10</span> );
+
+            resolve( itemsToDisplay );
+        }, <span class="hljs-number">100</span> );
+    } );
+
+    <span class="hljs-comment">// Filtering function - it uses `name` and `username` properties of an item to find a match.</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isItemMatching</span>(<span class="hljs-params"> item </span>) </span>{
+        <span class="hljs-comment">// Make search case-insensitive.</span>
+        <span class="hljs-keyword">const</span> searchString = queryText.toLowerCase();
+
+        <span class="hljs-comment">// Include an item in the search results if name or username includes the current user input.</span>
+        <span class="hljs-keyword">return</span> (
+            item.name.toLowerCase().includes( searchString ) ||
+            item.id.toLowerCase().includes( searchString )
+        );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">customItemRenderer</span>(<span class="hljs-params"> item </span>) </span>{
+    <span class="hljs-keyword">const</span> itemElement = <span class="hljs-built_in">document</span>.createElement( <span class="hljs-string">&apos;span&apos;</span> );
+
+    itemElement.classList.add( <span class="hljs-string">&apos;custom-item&apos;</span> );
+    itemElement.id = <span class="hljs-string">`mention-list-item-id-<span class="hljs-subst">${ item.userId }</span>`</span>;
+    itemElement.textContent = <span class="hljs-string">`<span class="hljs-subst">${ item.name }</span> `</span>;
+
+    <span class="hljs-keyword">const</span> usernameElement = <span class="hljs-built_in">document</span>.createElement( <span class="hljs-string">&apos;span&apos;</span> );
+
+    usernameElement.classList.add( <span class="hljs-string">&apos;custom-item-username&apos;</span> );
+    usernameElement.textContent = item.id;
+
+    itemElement.appendChild( usernameElement );
+
+    <span class="hljs-keyword">return</span> itemElement;
+}
+</code></pre>
+<h3 id="colors-and-styles"><a class="headerlink" href="#colors-and-styles">#</a> Colors and styles</h3>
+<h4 id="using-css-variables"><a class="headerlink" href="#using-css-variables">#</a> Using CSS variables</h4>
+<p>The mention feature is using the power of <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables" target="_blank" rel="noopener">CSS variables</a> which are defined in the <a href="https://github.com/ckeditor/ckeditor5-theme-lark/blob/master/theme/ckeditor5-mention/mentionediting.css" target="_blank" rel="noopener">theme lark stylesheet</a>. Thanks to that mention styles can be <a href="../framework/guides/deep-dive/ui/theme-customization.html">easily customized</a>:</p>
+<pre class="highlight"><code class="css"><span class="hljs-selector-pseudo">:root</span> {
+    <span class="hljs-comment">/* Make mention background blue. */</span>
+    <span class="hljs-attribute">--ck-color-mention-background</span>: <span class="hljs-built_in">hsla</span>(220, 100%, 54%, 0.4);
+
+    <span class="hljs-comment">/* Make mention text dark grey. */</span>
+    <span class="hljs-attribute">--ck-color-mention-text</span>: <span class="hljs-built_in">hsl</span>(0, 0%, 15%);
+}
+</code></pre>
+<div class="live-snippet"><style>
+	/* We are not using here :root because of many instances of editor */
+	#snippet-mention-custom-colors + .ck-editor {
+		/* Make mention background blue. */
+		--ck-color-mention-background: hsla(220, 100%, 54%, 0.4);
+
+		/* Make mention text dark grey. */
+		--ck-color-mention-text: hsl(0, 0%, 15%);
+	}
+</style>
+
+<div id="snippet-mention-custom-colors">
+	<p>Hello <span class="mention" data-mention="@Ted">@Ted</span>.</p>
+</div>
+</div>
+<h2 id="installation"><a class="headerlink" href="#installation">#</a> Installation</h2>
+<p>To add this feature to your editor, install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-mention" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-mention</code></a> package:</p>
+<pre class="highlight"><code class="bash">npm install --save @ckeditor/ckeditor5-mention
+</code></pre>
+<p>Then add <code>Mention</code> to your plugin list and <a href="../api/module_mention_mention-MentionConfig.html">configure</a> the feature:</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> Mention <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-mention/src/mention&apos;</span>;
+
+ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">plugins</span>: [ Mention, ... ],
+        <span class="hljs-attr">mention</span>: {
+            <span class="hljs-comment">// Configuration...</span>
+        }
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<div class="info-box notice notice__info"><p>Read more about <a href="../builds/guides/integration/installing-plugins.html">installing plugins</a>.</p></div>
+<h2 id="common-api"><a class="headerlink" href="#common-api">#</a> Common API</h2>
+<p>The <a href="../api/module_mention_mention-Mention.html"><code>Mention</code></a> plugin registers:</p>
+<ul>
+<li>
+<p>the <code>&apos;mention&apos;</code> command implemented by <a href="../api/module_mention_mentioncommand-MentionCommand.html"><code>MentionCommand</code></a>.</p>
+<p>You can insert a mention element by executing the following code:</p>
+<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;mention&apos;</span>, { <span class="hljs-attr">marker</span>: <span class="hljs-string">&apos;@&apos;</span>, <span class="hljs-attr">mention</span>: <span class="hljs-string">&apos;John&apos;</span> } );
+</code></pre>
+</li>
+</ul>
+<div class="info-box notice"><p>We recommend using the official <a href="../framework/guides/development-tools.html#ckeditor-5-inspector">CKEditor 5 inspector</a> for development and debugging. It will give you tons of useful information about the state of the editor such as internal data structures, selection, commands, and many more.</p></div>
+<h2 id="contribute"><a class="headerlink" href="#contribute">#</a> Contribute</h2>
+<p>The source code of the feature is available on GitHub in <a href="https://github.com/ckeditor/ckeditor5-mention" target="_blank" rel="noopener">https://github.com/ckeditor/ckeditor5-mention</a>.</p>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li><a href="autoformat.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Autoformatting</span></div></a></li>
+                          <li><a href="basic-styles.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic text styles</span></div></a></li>
+                          <li><a href="blocktoolbar.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block toolbar</span></div></a></li>
+                          <li><a href="editor-placeholder.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor placeholder</span></div></a></li>
+                          <li><a href="font.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Font</span></div></a></li>
+                          <li><a href="headings.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Headings</span></div></a></li>
+                          <li><a href="highlight.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Highlight</span></div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Image upload</span></div>
+                            <ul class="tree__item-nested-list">
+                                    <li><a href="image-upload/image-upload.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="image-upload/easy-image.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Easy Image</span></div></a></li>
+                                    <li><a href="image-upload/ckfinder.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">CKFinder file manager</span></div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="image.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Images</span></div></a></li>
+                          <li><a href="keyboard-support.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Keyboard support</span></div></a></li>
+                          <li><a href="link.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Link</span></div></a></li>
+                          <li><a href="markdown.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Markdown output</span></div></a></li>
+                          <li><a href="media-embed.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Media embed</span></div></a></li>
+                          <li><a href>
+                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Mention</span></div></a></li>
+                          <li><a href="paste-from-word.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Word</span></div></a></li>
+                          <li><a href="read-only.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Read-only support</span></div></a></li>
+                          <li><a href="remove-format.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Remove formatting</span></div></a></li>
+                          <li><a href="ui-language.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Setting the UI language</span></div></a></li>
+                          <li><a href="table.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Tables</span></div></a></li>
+                          <li><a href="text-alignment.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Text alignment</span></div></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2003-2019 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'features' ] = hits.filter( function( h ) {return h.tags.includes( 'features' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'features' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'features' ] );tags.forEach( function( tag ) {if ( tag !== 'features' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+    <script src="../assets/snippet.js"></script>
+    <script src="../snippets/features/build-mention-source/snippet.js"></script>
+    <script src="../assets/snippet.js"></script>
+    <script src="../snippets/features/mention/snippet.js"></script>
+    <script src="../assets/snippet.js"></script>
+    <script src="../snippets/features/mention-customization/snippet.js"></script>
+    <script src="../assets/snippet.js"></script>
+    <script src="../snippets/features/custom-mention-colors-variables/snippet.js"></script>
+  </body>
+</html>

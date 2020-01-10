@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>What’s new in CKEditor 5? - CKEditor 5 Documentation</title>
+    <meta property="og:title" content="What’s new in CKEditor 5? - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="/ckeditor5/latest/builds/guides/whats-new.html">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../assets/0.4.4/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../assets/styles.css" type="text/css">
+    <script>
+      ( function() {
+      	'use strict';
+      	var el = document.createElement( 'script' );
+      	el.setAttribute( 'async', 'async' );
+      	el.setAttribute( 'defer', 'defer' );
+      	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
+      		el.src = "../../../../assets/0.4.4/scripts/app.js";
+      	} else {
+      		el.src = "../../../../assets/0.4.4/scripts/app-polyfill.js";
+      	}
+      	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
+      } )();
+    </script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="top__logo top__left"><span class="top__logo__product-icon" style="background-image: url( ../../assets/img/project-logo.svg )"></span><a class="top__logo__product-title" href="../../index.html">CKEditor 5</a></div>
+      <ul class="top__menu">
+        <li><a class="top__menu__item--active" href="../index.html">Builds</a></li>
+        <li><a href="../../framework/index.html">Framework</a></li>
+        <li><a href="../../examples/index.html">Examples</a></li>
+        <li><a href="../../features/index.html">Features</a></li>
+        <li><a class="top__menu__api" href="../../api/index.html">API</a></li>
+        <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."></a></li>
+      </ul>
+      <div class="top__search">
+        <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+        <button class="top__search__button" type="submit"><img src="../../../../assets/0.4.4/img/loupe.svg" alt="Search"></button>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/whats-new.md" title="Contribute to this guide"><img src="../../../../assets/0.4.4/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../assets/0.4.4/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <h1><img src="../../../../assets/0.4.4/img/book.svg" alt="guide">What’s new in CKEditor 5?
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#enhanced-ux">Enhanced UX</a><ol><li><a href="#better-images">Better images</a></li><li><a href="#simple-linking">Simple linking</a></li><li><a href="#autoformatting">Autoformatting</a></li></ol></li><li><a href="#enhanced-classic-editor">Enhanced classic editor</a><ol><li><a href="#new-toolbar">New toolbar</a></li><li><a href="#inlined-content">Inlined content</a></li></ol></li><li><a href="#fewer-features-better-content">Fewer features == better content</a></li><li><a href="#lightweight">Lightweight</a></li><li><a href="#highly-customizable">Highly customizable</a></li><li><a href="#custom-data-model">Custom data model</a></li><li><a href="#collaborative-editing">Collaborative editing</a></li><li><a href="#modern">Modern</a></li></ol></nav>
+<h2 id="enhanced-ux"><a class="headerlink" href="#enhanced-ux">#</a> Enhanced UX</h2>
+<p>CKEditor 5 strives to provide a truly seamless, distraction-free editing experience to allow the users to focus on creating great content.</p>
+<h3 id="better-images"><a class="headerlink" href="#better-images">#</a> Better images</h3>
+<p>Inserting images into the content is now very intuitive, with all technical aspects (uploading, resizing) hidden from the user experience. No more complex dialogs!</p>
+<iframe width="600" height="337" src="https://www.youtube.com/embed/MRnYtmPAJ30?rel=0&amp;" frameborder="0" allowfullscreen></iframe>
+<iframe width="600" height="337" src="https://www.youtube.com/embed/WWT9pkPZSnI?rel=0&amp;" frameborder="0" allowfullscreen></iframe>
+<p>The outdated concept of image alignment was dropped in favor of <a href="../../features/image.html#image-styles">image styles</a>:</p>
+<p><img src="../../assets/img/builds-image-styles.png" alt="Image styles toolbar." width="736"></p>
+<p>When integrated with <a href="../../features/image-upload.html#easy-image">Easy Image</a>, uploading, resizing and producing different image sizes for responsive design is all automated.</p>
+<p><img src="../../assets/img/easy-image.png" alt="Responsive images with Easy Image." width="1440"></p>
+<h3 id="simple-linking"><a class="headerlink" href="#simple-linking">#</a> Simple linking</h3>
+<p>No more complex dialogs for links. When you click a link, first you will see a balloon with an option to either edit the link or open it in a new tab.</p>
+<p><img src="../../assets/img/feature-link-balloon.gif" alt="Simplified link balloon."></p>
+<h3 id="autoformatting"><a class="headerlink" href="#autoformatting">#</a> Autoformatting</h3>
+<p>Start lists, headings and even bold text by typing, without the need to use toolbar buttons. See <a href="../../features/autoformat.html">Autoformatting feature</a> for more details.</p>
+<iframe width="600" height="337" src="https://www.youtube.com/embed/ZmMMyvGiI5A?rel=0" frameborder="0" allowfullscreen></iframe>
+<h2 id="enhanced-classic-editor"><a class="headerlink" href="#enhanced-classic-editor">#</a> Enhanced classic editor</h2>
+<p>For CKEditor 5 we reinvented the concept of the &#x201C;boxed&#x201D; editor.</p>
+<h3 id="new-toolbar"><a class="headerlink" href="#new-toolbar">#</a> New toolbar</h3>
+<p>The toolbar is now always visible when the user scrolls the page down.</p>
+<iframe width="600" height="337" src="https://www.youtube.com/embed/rLZe37MXzHE?rel=0" frameborder="0" allowfullscreen></iframe>
+<h3 id="inlined-content"><a class="headerlink" href="#inlined-content">#</a> Inlined content</h3>
+<p>The editor content is now placed inline in the page &#x2014; it is thus much easier to style it. Additionally, the editor grows with the content (or not, it is up to you!).</p>
+<iframe width="600" height="337" src="https://www.youtube.com/embed/igoI02wBykA?rel=0" frameborder="0" allowfullscreen></iframe>
+<h2 id="fewer-features-better-content"><a class="headerlink" href="#fewer-features-better-content">#</a> Fewer features == better content</h2>
+<p>We focused on creating a tool for writing quality content. At the same time, we simplified the integration of the editor into your system.</p>
+<p>We feel that in previous editor versions we had way too many features and configurations. This was confusing developers and at the same time negatively impacting the end user experience.</p>
+<p>In CKEditor 5 misleading formatting tools were removed, dialogs were stripped out or simplified in favor of well-designed features that require no configuration.</p>
+<h2 id="lightweight"><a class="headerlink" href="#lightweight">#</a> Lightweight</h2>
+<p>The editor is much more lightweight and fast. It brings a fantastic user experience on both desktop and mobile devices.</p>
+<h2 id="highly-customizable"><a class="headerlink" href="#highly-customizable">#</a> Highly customizable</h2>
+<p>CKEditor 5 Builds are based on <a href="../../framework/index.html">CKEditor 5 Framework</a>, which gives powerful customizability and extensibility.</p>
+<h2 id="custom-data-model"><a class="headerlink" href="#custom-data-model">#</a> Custom data model</h2>
+<p>A much more efficient data model was designed for CKEditor 5. This makes the development of features a much more creative experience and improves features such as undo and redo.</p>
+<h2 id="collaborative-editing"><a class="headerlink" href="#collaborative-editing">#</a> Collaborative editing</h2>
+<p>Another important benefit of the custom data model is that it enables the possibility of real-time collaborative editing inside CKEditor by introducing the concepts of &#x201C;operations&#x201D; and &#x201C;operational transformations&#x201D;.</p>
+<!--
+Read more about {@linkTODO collaboration in the CKEditor 5 Framework documentation}.
+-->
+<p>With <a href="https://ckeditor.com/ckeditor-cloud-services/" target="_blank" rel="noopener">collaboration services provided by CKEditor Cloud Services</a> it is now extremely easy to provide collaboration features inside your application.</p>
+<p><a href="https://ckeditor.com/letters/" target="_blank" rel="noopener">Letters</a> is an example of an application using the power of CKEditor 5 for collaboration.</p>
+<p><a href="../../assets/img/letters-collab.jpg"><img src="../../assets/img/letters-collab.jpg" alt="Letters uses CKEditor 5 to allow users collaborate." width="1440"></a></p>
+<h2 id="modern"><a class="headerlink" href="#modern">#</a> Modern</h2>
+<p>CKEditor 5 has been totally rewritten in ECMAScript 2015 (also called ES6), using the power of modules. It provides all the necessary tools to easily integrate it with modern applications and technologies.</p>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li>
+                            <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Guides</span>
+                              <ul>
+                                      <li><a href="overview.html">
+                                          <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                      <li><a href="">
+                                          <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">What's new?</span></div></a></li>
+                                      <li><a href="quick-start.html">
+                                          <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span></div></a></li>
+                                      <li><a href="faq.html">
+                                          <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">FAQ</span></div></a></li>
+                                      <li>
+                                        <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Integration</span>
+                                          <ul>
+                                                  <li><a href="integration/installation.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Installation</span></div></a></li>
+                                                  <li><a href="integration/basic-api.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic API</span></div></a></li>
+                                                  <li><a href="integration/configuration.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Configuration</span></div></a></li>
+                                                  <li><a href="integration/advanced-setup.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Advanced setup</span></div></a></li>
+                                          </ul>
+                                        </div>
+                                      </li>
+                                      <li>
+                                        <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Development</span>
+                                          <ul>
+                                                  <li><a href="development/custom-builds.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom builds</span></div></a></li>
+                                                  <li><a href="development/plugins.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugins</span></div></a></li>
+                                                  <li><a href="development/installing-plugins.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Installing plugins</span></div></a></li>
+                                          </ul>
+                                        </div>
+                                      </li>
+                                      <li><a href="migrate.html">
+                                          <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migration from CKEditor 4</span></div></a></li>
+                                      <li>
+                                        <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Support</span>
+                                          <ul>
+                                                  <li><a href="support/browser-compatibility.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Browser compatibility</span></div></a></li>
+                                                  <li><a href="support/license-and-legal.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span></div></a></li>
+                                                  <li><a href="support/getting-support.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting support</span></div></a></li>
+                                                  <li><a href="support/reporting-issues.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span></div></a></li>
+                                          </ul>
+                                        </div>
+                                      </li>
+                              </ul>
+                            </div>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2017-2018 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},debug:false,
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'builds' ] = hits.filter( function( h ) {return h.tags.includes( 'builds' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'builds' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'builds' ] );tags.forEach( function( tag ) {if ( tag !== 'builds' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+  </body>
+</html>

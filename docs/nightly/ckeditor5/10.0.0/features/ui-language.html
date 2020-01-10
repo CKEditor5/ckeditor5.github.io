@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Setting the UI language - CKEditor 5 Documentation</title>
+    <meta property="og:title" content="Setting the UI language - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="/ckeditor5/latest/features/ui-language.html">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../assets/0.4.9/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../assets/styles.css" type="text/css">
+    <link rel="stylesheet" href="../snippets/features/ui-language/snippet.css" type="text/css">
+    <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
+    <script>
+      ( function() {
+      	'use strict';
+      	var el = document.createElement( 'script' );
+      	el.setAttribute( 'async', 'async' );
+      	el.setAttribute( 'defer', 'defer' );
+      	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
+      		el.src = "../../../assets/0.4.9/scripts/app.js";
+      	} else {
+      		el.src = "../../../assets/0.4.9/scripts/app-polyfill.js";
+      	}
+      	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
+      } )();
+    </script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="top__logo top__left"><span class="top__logo__product-icon" style="background-image: url( ../assets/img/project-logo.svg )"></span><a class="top__logo__product-title" href="../index.html">CKEditor 5</a></div>
+      <ul class="top__menu">
+        <li><a href="../builds/index.html">Builds</a></li>
+        <li><a href="../framework/index.html">Framework</a></li>
+        <li><a href="../examples/index.html">Examples</a></li>
+        <li><a class="top__menu__item--active" href="index.html">Features</a></li>
+        <li><a class="top__menu__api" href="../api/index.html">API</a></li>
+        <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."></a></li>
+      </ul>
+      <div class="top__search">
+        <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.4.9/img/loupe.svg" alt="Search"></button>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/features/ui-language.md" title="Contribute to this guide"><img src="../../../assets/0.4.9/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.4.9/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <h1><img src="../../../assets/0.4.9/img/book.svg" alt="guide">Setting the UI language
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#loading-additional-languages-from-cdn-npm-and-zip-file">Loading additional languages from CDN, npm and zip file</a><ol><li><a href="#cdn">CDN</a></li><li><a href="#npm">npm</a></li><li><a href="#zip">Zip</a></li></ol></li><li><a href="#building-the-editor-using-a-specific-language">Building the editor using a specific language</a></li></ol></nav>
+<p>The UI of the editor can be localized. CKEditor 5 currently supports around 20 languages and the number is growing.</p>
+<p>If you want to help translate CKEditor 5 into your native language, join the <a href="https://www.transifex.com/ckeditor/ckeditor5/" target="_blank" rel="noopener">CKEditor 5 project on Transifex</a>. Your help will be much appreciated!</p>
+<p>See the demo of the editor in German:</p>
+<div class="live-snippet"><div id="snippet-ui-language">
+	<p>This is <a href="https://ckeditor.com">CKEditor&#xA0;5</a>.</p>
+</div>
+</div>
+<h2 id="loading-additional-languages-from-cdn-npm-and-zip-file"><a class="headerlink" href="#loading-additional-languages-from-cdn-npm-and-zip-file">#</a> Loading additional languages from CDN, npm and zip file</h2>
+<p>By default, the editor will display in English. This is the language built into the <code>ckeditor.js</code> files. In order to change the language of the editor UI, you need to load additional language file(s). Check out the following sections to see how to do that:</p>
+<ul>
+<li><a href="#cdn">CDN</a>,</li>
+<li><a href="#npm">npm</a>,</li>
+<li><a href="#zip">Zip download</a>.</li>
+</ul>
+<p>Next, you can configure the editor to use the chosen language:</p>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-comment">// The language code is defined in the https://en.wikipedia.org/wiki/ISO_639-1 standard.</span>
+        language: <span class="hljs-string">&apos;de&apos;</span>
+    } )
+    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log( editor );
+    } )
+    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.error( error );
+    } );
+</code></pre>
+<h3 id="cdn"><a class="headerlink" href="#cdn">#</a> CDN</h3>
+<p>To use different language than default one (English), you need to load the editor together with the preferred language:</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.ckeditor.com/ckeditor5/[version.number]/[distribution]/ckeditor.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.ckeditor.com/ckeditor5/[version.number]/[distribution]/translations/[lang].js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<p>For example:</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.ckeditor.com/ckeditor5/10.0.0/classic/ckeditor.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.ckeditor.com/ckeditor5/10.0.0/classic/translations/de.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<p>See <a href="../builds/guides/integration/installation.html#cdn">CDN installation guides</a> for more information.</p>
+<h3 id="npm"><a class="headerlink" href="#npm">#</a> npm</h3>
+<p>After installing the build from npm, languages will be available at <code>node_modules/@ckeditor/ckeditor5-build-[name]/build/translations/[lang].js</code>.</p>
+<p>Single language can be loaded directly to your code by importing e.g. <code>&apos;@ckeditor/ckeditor5-build-classic/build/translations/de.js&apos;</code>.</p>
+<p>See <a href="../builds/guides/integration/installation.html#npm">npm installation guides</a> for more information.</p>
+<h3 id="zip"><a class="headerlink" href="#zip">#</a> Zip</h3>
+<p>All additional languages are included in the <code>.zip</code> file. You need to include <code>ckeditor.js</code> file together with the chosen language file:</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;[ckeditor-path]/ckeditor.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;[ckeditor-path]/translations/de.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<p>See <a href="../builds/guides/integration/installation.html#zip-download">zip installation guides</a> for more information.</p>
+<h2 id="building-the-editor-using-a-specific-language"><a class="headerlink" href="#building-the-editor-using-a-specific-language">#</a> Building the editor using a specific language</h2>
+<p>Currently, it is possible to change the UI language at the build stage and after the build. A single build of the editor supports the language which was defined in the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-dev-webpack-plugin" target="_blank" rel="noopener">CKEditor 5 webpack plugin</a>&#x2019;s configuration. See the whole translation process to see how you can change the language later.</p>
+<p>If you use one of the <a href="../builds/index.html">predefined editor builds</a>, refer to <a href="../builds/guides/development/custom-builds.html">Creating custom builds</a> to learn how to change the language of your build.</p>
+<p>If you build CKEditor from scratch or integrate it directly into your application, then all you need to do is to:</p>
+<ol>
+<li>
+<p>Install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-dev-webpack-plugin" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-dev-webpack-plugin</code></a> package:</p>
+<pre class="highlight"><code class="bash">npm install --save @ckeditor/ckeditor5-dev-webpack-plugin
+</code></pre>
+</li>
+<li>
+<p>Add it to your webpack configuration:</p>
+<p>Note: The language code is defined in the <a href="https://en.wikipedia.org/wiki/ISO_639-1" target="_blank" rel="noopener">ISO 639-1</a> standard.</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> CKEditorWebpackPlugin = <span class="hljs-built_in">require</span>( <span class="hljs-string">&apos;@ckeditor/ckeditor5-dev-webpack-plugin&apos;</span> );
+
+<span class="hljs-comment">// Define webpack plugins ...</span>
+    plugins: [
+        <span class="hljs-keyword">new</span> CKEditorWebpackPlugin( {
+            <span class="hljs-comment">// Main language that will be built into the main bundle.</span>
+            language: <span class="hljs-string">&apos;en&apos;</span>,
+
+            <span class="hljs-comment">// Additional languages that will be emitted to the `outputDirectory`.</span>
+            <span class="hljs-comment">// This option can be set to an array of language codes or `&apos;all&apos;` to build all found languages.</span>
+            <span class="hljs-comment">// The bundle is optimized for one language when this option is omitted.</span>
+            additionalLanguages: <span class="hljs-string">&apos;all&apos;</span>,
+
+            <span class="hljs-comment">// Optional directory for emitted translations. Relative to the webpack&apos;s output.</span>
+            <span class="hljs-comment">// Defaults to `&apos;translations&apos;`.</span>
+            <span class="hljs-comment">// outputDirectory: &apos;ckeditor5-translations&apos;,</span>
+
+            <span class="hljs-comment">// Whether the build process should fail if an error occurs.</span>
+            <span class="hljs-comment">// Defaults to `false`.</span>
+            <span class="hljs-comment">// strict: true,</span>
+
+            <span class="hljs-comment">// Whether to log all warnings to the console.</span>
+            <span class="hljs-comment">// Defaults to `false`.</span>
+            <span class="hljs-comment">// verbose: true</span>
+        } ),
+
+        <span class="hljs-comment">// Other webpack plugins...</span>
+    ]
+<span class="hljs-comment">// ...</span>
+</code></pre>
+</li>
+<li>
+<p>Run webpack. If the <code>additionalLanguages</code> option is not set, the CKEditor plugin for webpack will replace the <a href="../api/module_utils_locale-Locale.html#function-t"><code>t()</code></a> function call parameters used in the source code with localized language strings. Otherwise the CKEditor plugin for webpack will replace the <a href="../api/module_utils_locale-Locale.html#function-t"><code>t()</code></a> function call parameters with short ids and emit the translation files that should land in the <code>&apos;translations&apos;</code> directory (or different, if the <code>outputDirectory</code> option is specified).</p>
+</li>
+<li>
+<p>If you want to change the language after the build ends, you will need to edit the <code>index.html</code> file, add the translation file and set the UI language to the target one.</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../build/ckeditor.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../build/translations/pl.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+    ClassicEditor
+        .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+            <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;pl&apos;</span>
+        } )
+        .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+            <span class="hljs-built_in">window</span>.editor = editor;
+        } )
+        .catch( <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+            <span class="hljs-built_in">console</span>.error( err.stack );
+        } );
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+</li>
+</ol>
+<div class="info-box notice"><p>We are aware that the current localization method is not sufficient for some needs. It does not support different bundlers (e.g. Rollup or Browserify). We will be extending the localization possibilities in the future.</p><p>You can read more about the used techniques in the <a href="https://github.com/ckeditor/ckeditor5/issues/387" target="_blank" rel="noopener">&#x201C;Implement translation services&#x201D; issue</a> and <a href="https://github.com/ckeditor/ckeditor5/issues/624" target="_blank" rel="noopener">&#x201C;Implement translation services v2&#x201D; issue</a>.</p></div>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li><a href="autoformat.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Autoformatting</span></div></a></li>
+                          <li><a href="font.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Font</span></div></a></li>
+                          <li><a href="headings.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Headings</span></div></a></li>
+                          <li><a href="highlight.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Highlight</span></div></a></li>
+                          <li><a href="image-upload.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Image upload</span></div></a></li>
+                          <li><a href="basic-styles.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic text styles</span></div></a></li>
+                          <li><a href="keyboard-support.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Keyboard support</span></div></a></li>
+                          <li><a href="markdown.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Markdown output</span></div></a></li>
+                          <li><a href="read-only.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Read-only support</span></div></a></li>
+                          <li><a href="">
+                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Setting the UI language</span></div></a></li>
+                          <li><a href="text-alignment.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Text alignment</span></div></a></li>
+                          <li><a href="image.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Images</span></div></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2017-2018 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},debug:false,
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'features' ] = hits.filter( function( h ) {return h.tags.includes( 'features' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'features' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'features' ] );tags.forEach( function( tag ) {if ( tag !== 'features' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+    <script src="../snippets/features/ui-language/snippet.js"></script>
+  </body>
+</html>

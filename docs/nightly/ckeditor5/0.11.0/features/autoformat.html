@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Autoformatting - CKEditor 5</title>
+    <link rel="canonical" href="/ckeditor5/latest/features/autoformat.html">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../assets/0.3.26/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../snippets/build-classic-source/snippet.css" type="text/css">
+    <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
+    <script src="../../../assets/0.3.26/scripts/app.js"></script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top">
+      <div class="top__logo"><span class="top__logo__product-icon" style="background-image: url( ../assets/img/project-logo.svg );"></span><a class="top__logo__product-title" href="../index.html">CKEditor 5</a></div>
+      <ul class="top__menu">
+        <li><a href="../builds/index.html">Builds</a></li>
+        <li><a href="../framework/index.html">Framework</a></li>
+        <li><a href="../examples/index.html">Examples</a></li>
+        <li><a class="top__menu__item--active" href="index.html">Features</a></li>
+        <li><a href="../api/index.html">API</a></li>
+      </ul>
+      <div class="top__search">
+        <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.26/img/loupe.svg" alt="Search"></button>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-autoformat/blob/master/docs/features/autoformat.md" title="Contribute to this guide"><img src="../../../assets/0.3.26/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5-autoformat/issues/new" title="Report an issue"><img src="../../../assets/0.3.26/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <h1><img src="../../../assets/0.3.26/img/book.svg" alt="guide">Autoformatting
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Block-formatting">Block formatting</a></li><li><a href="#Inline-formatting">Inline formatting</a></li><li><a href="#Autoformatting-sample">Autoformatting sample</a></li><li><a href="#Installation">Installation</a></li><li><a href="#Creating-custom-autoformatters">Creating custom autoformatters</a></li><li><a href="#Contribute">Contribute</a></li></ol></nav>
+<p>The <a href="../api/module_autoformat_autoformat-Autoformat.html"><code>Autoformat</code></a> feature allows you to quickly apply formatting to the content you are writing.</p>
+<div class="info-box notice notice__info"><p>This feature is enabled by default in all builds.</p></div>
+
+<h2 id="Block-formatting"><a href="#Block-formatting" class="headerlink" title="Block formatting"></a>Block formatting</h2><p>The following block formatting options are available:</p>
+<ul>
+<li>Bulleted list &#x2013; Start a line with <code>*</code> or <code>-</code> followed by a space.</li>
+<li>Numbered list &#x2013; Start a line with <code>1.</code> or <code>1)</code> followed by a space.</li>
+<li>Headings &#x2013; Start a line with <code>#</code> or <code>##</code> or <code>###</code> followed by a space to create a heading 1, heading 2 or heading 3 (up to heading 6 if <a href="../api/module_heading_heading-HeadingConfig.html#options"><code>options</code></a> defines more headings).</li>
+<li>Block quote &#x2013; Start a line with <code>&gt;</code> followed by a space.</li>
+</ul>
+<h2 id="Inline-formatting"><a href="#Inline-formatting" class="headerlink" title="Inline formatting"></a>Inline formatting</h2><p>The following inline formatting options are available:</p>
+<ul>
+<li>Bold &#x2013; Type <code>**text**</code> or <code>__text__</code>,</li>
+<li>Italic &#x2013; Type <code>*text*</code> or <code>_text_</code>,</li>
+<li>Code &#x2013; Type <code>`text` </code>.</li>
+</ul>
+<h2 id="Autoformatting-sample"><a href="#Autoformatting-sample" class="headerlink" title="Autoformatting sample"></a>Autoformatting sample</h2><p>Example:</p>
+<ol>
+<li>Delete all editor content.</li>
+<li>Press <kbd>#</kbd> and then <kbd>Space</kbd>.</li>
+<li>The current line will be turned into a heading.</li>
+</ol>
+<div class="live-snippet"><div id="snippet-classic-editor-short">
+	<h2>Walking the capitals of Europe: Warsaw</h2>
+	<p>Best time to visit the city is July and August, when it&#x2019;s cool enough to not break a sweat and hot enough to enjoy summer. The city which has quite a combination of both old and modern textures is located by the river of Vistula.</p>
+	<p>The historic <strong>Old Town</strong>, which was reconstructed after the World War II, with its late 18th century characteristics, is a must-see. You can start your walk from the <strong>Nowy &#x15A;wiat Street</strong> which will take you straight to the Old Town.</p>
+	<p>Then you can go to the <strong>Powi&#x15B;le</strong> area and take a walk on the newly renovated promenade on  the riverfront. There are also lots of cafes, bars and restaurants where you can shake off the exhaustion of the day. On Sundays, there are many parks where you can enjoy nature or listen to pianists from around the world playing Chopin.</p>
+	<p>For museum lovers, you can add these to your list:</p>
+	<ul>
+		<li><a href="http://www.polin.pl/en" target="_blank" rel="external">POLIN</a></li>
+		<li><a href="http://www.1944.pl/en" target="_blank" rel="external">Warsaw Uprising Museum</a></li>
+		<li><a href="http://chopin.museum/en" target="_blank" rel="external">Fryderyk Chopin Museum</a></li>
+	</ul>
+</div>
+</div>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><div class="info-box notice notice__info"><p>This feature is enabled by default in all builds. The installation instructions are for developers interested in building their own, custom editor.</p></div>
+
+<p>To add this feature to your editor install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-autoformat" target="_blank" rel="external"><code>@ckeditor/ckeditor5-autoformat</code></a> package:</p>
+<pre><code>npm install --save @ckeditor/ckeditor5-autoformat
+</code></pre><p>And add it to your plugin list:</p>
+<pre><code class="js">import Autoformat from &apos;@ckeditor/ckeditor5-autoformat/src/autoformat&apos;;
+
+ClassicEditor
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Autoformat, ... ],
+        toolbar: [ ... ]
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<div class="info-box notice notice__hint"><p>Remember to add proper features to the editor configuration. Autoformatting will be enabled only for the commands that are included in the actual configuration. For example: <code>bold</code> autoformatting will not work if there is no <code>bold</code> command registered in the editor.</p></div>
+
+<h2 id="Creating-custom-autoformatters"><a href="#Creating-custom-autoformatters" class="headerlink" title="Creating custom autoformatters"></a>Creating custom autoformatters</h2><p>The <a href="../api/module_autoformat_autoformat-Autoformat.html"><code>Autoformat</code></a> feature bases on <a href="../api/module_autoformat_blockautoformatengine-BlockAutoformatEngine.html"><code>BlockAutoformatEngine</code></a> and <a href="../api/module_autoformat_inlineautoformatengine-InlineAutoformatEngine.html"><code>InlineAutoformatEngine</code></a> tools to create the autoformatters mentioned above.</p>
+<p>You can use these tools to create your own autoformatters. Check the <a href="https://github.com/ckeditor/ckeditor5-autoformat/blob/master/src/autoformat.js" target="_blank" rel="external"><code>Autoformat</code> feature&#x2019;s code</a> as an example.</p>
+<h2 id="Contribute"><a href="#Contribute" class="headerlink" title="Contribute"></a>Contribute</h2><p>The source code of the feature is available on GitHub in <a href="https://github.com/ckeditor/ckeditor5-autoformat" target="_blank" rel="external">https://github.com/ckeditor/ckeditor5-autoformat</a>.</p>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li><a href="">
+                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Autoformatting</span></div></a></li>
+                          <li><a href="headings.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Headings</span></div></a></li>
+                          <li><a href="image.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Images</span></div></a></li>
+                          <li><a href="keyboard-support.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Keyboard support</span></div></a></li>
+                          <li><a href="markdown.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Markdown output</span></div></a></li>
+                          <li><a href="read-only.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Read-only support</span></div></a></li>
+                          <li><a href="ui-language.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Setting the UI language</span></div></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script type="text/javascript">docsearch({apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:10,optionalFacetFilters:'(tags:builds<score=1>, tags:framework<score=1>, tags:examples<score=1>, tags:features<score=2>)'},debug:false});</script>
+    <script src="../snippets/build-classic-source/snippet.js"></script>
+    <script src="../snippets/examples/classic-editor-short/snippet.js"></script>
+  </body>
+</html>

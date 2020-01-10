@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CKFinder integration - CKEditor 5 Documentation</title>
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:site" content="@ckeditor">
+    <meta property="og:title" content="CKFinder integration - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta property="DC.language" content="en">
+    <meta property="DC.publisher" content="CKSource">
+    <meta property="DC.creator" content="CKEditor">
+    <meta property="DC.title" content="CKFinder integration - CKEditor 5 Documentation">
+    <meta property="DC.format" content="text/html">
+    <meta property="DC.type" content="Text">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/features/ckfinder.html">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../assets/0.12.1/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../assets/styles.css" type="text/css">
+    <link rel="stylesheet" href="../snippets/features/build-ckfinder-source/snippet.css" type="text/css">
+    <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
+    <script>
+      ( function() {
+      	'use strict';
+      	// Set up global variables;
+      	if ( !window.umebrto ) {
+      		window.umberto = {};
+      	}
+      	window.umberto.relativeAppPath = "../../../assets/0.12.1/scripts"
+      
+      	// Add app script
+      	var el = document.createElement( 'script' );
+      	el.setAttribute( 'async', 'async' );
+      	el.setAttribute( 'defer', 'defer' );
+      	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
+      		el.src = "../../../assets/0.12.1/scripts/app.js";
+      	} else {
+      		el.src = "../../../assets/0.12.1/scripts/app-polyfill.js";
+      	}
+      	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
+      } )();
+    </script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="header__main">
+        <div class="header__main-rwd-button"><a href="#"><span></span><span></span><span></span></a></div>
+        <div class="header__main-title"><a class="header__main-title-home" href="../../../index.html">CKEditor Ecosystem Documentation</a></div>
+        <div class="top__search">
+          <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+          <div class="top__search__button"><img src="../../../assets/0.12.1/img/loupe.svg" alt="Search"></div>
+        </div>
+      </div>
+      <div class="header__sub">
+        <ul class="top__menu">
+          <li class="top__menu-project-logo"><a href="../index.html">CKEditor 5</a></li>
+          <li><a href="../builds/index.html">Builds</a></li>
+          <li><a href="../framework/index.html">Framework</a></li>
+          <li><a href="../examples/index.html">Examples</a></li>
+          <li><a class="top__menu__item--active" href="index.html">Features</a></li>
+          <li><a class="top__menu__api" href="../api/index.html">API</a></li>
+          <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."><svg viewbox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li>
+        </ul>
+      </div>
+      <div class="header__menu-rwd">
+        <ul class="header__menu-rwd__projects">
+          <li data-project="ckeditor5"><a href="../../latest/index.html">CKEditor 5
+              <ul class="tree header__menu-rwd__projects-pages">
+                <li data-group="builds"><a href="../builds/index.html">Builds</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="framework"><a href="../framework/index.html">Framework</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="examples"><a href="../examples/index.html">Examples</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="features"><a href="index.html">Features</a>
+                  <!-- Display subpages for active project.-->
+                  <ul class="header__menu-rwd__projects-subpages">
+                            <li><a href="autoformat.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Autoformatting</span></div></a></li>
+                            <li><a href="basic-styles.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic text styles</span></div></a></li>
+                            <li><a href="blocktoolbar.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block toolbar</span></div></a></li>
+                            <li><a href="">
+                                <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">CKFinder integration</span></div></a></li>
+                            <li>
+                              <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Collaboration</span></div>
+                              <ul class="tree__item-nested-list">
+                              </ul>
+                            </li>
+                            <li><a href="font.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Font</span></div></a></li>
+                            <li><a href="headings.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Headings</span></div></a></li>
+                            <li><a href="highlight.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Highlight</span></div></a></li>
+                            <li><a href="image-upload.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Image upload</span></div></a></li>
+                            <li><a href="image.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Images</span></div></a></li>
+                            <li><a href="keyboard-support.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Keyboard support</span></div></a></li>
+                            <li><a href="link.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Link</span></div></a></li>
+                            <li><a href="markdown.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Markdown output</span></div></a></li>
+                            <li><a href="media-embed.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Media embed</span></div></a></li>
+                            <li><a href="paste-from-word.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Word</span></div></a></li>
+                            <li><a href="read-only.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Read-only support</span></div></a></li>
+                            <li><a href="ui-language.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Setting the UI language</span></div></a></li>
+                            <li><a href="table.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Tables</span></div></a></li>
+                            <li><a href="text-alignment.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Text alignment</span></div></a></li>
+                  </ul>
+                </li>
+                <li data-group="api-reference"><a href="../api/index.html">API</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+              </ul></a></li>
+        </ul>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-ckfinder/blob/master/docs/features/ckfinder.md" title="Contribute to this guide"><img src="../../../assets/0.12.1/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5-ckfinder/issues/new" title="Report an issue"><img src="../../../assets/0.12.1/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
+          </div>
+          <h1 class="main__content-title"><img src="../../../assets/0.12.1/img/book.svg" alt="guide">CKFinder integration
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#installation">Installation</a></li><li><a href="#configuration">Configuration</a><ol><li><a href="#configuring-image-upload">Configuring image upload</a></li><li><a href="#configuring-the-opener">Configuring the opener</a></li></ol></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav><div class="live-snippet"><script src="https://cksource.com/weuy2g4ryt278ywiue/ckfinder.js"></script>
+
+<style>
+	#ckf-modal {
+		z-index: 10101 !important;
+	}
+
+	.ckf-file-preview-root {
+		z-index: 10110 !important;
+	}
+</style>
+</div>
+
+<p>This <a href="../api/module_ckfinder_ckfinder-CKFinder.html">feature</a> allows you to easily insert images as well as links to files into the editor content. It is a bridge between the CKEditor 5 WYSIWYG editor and the <a href="https://ckeditor.com/ckfinder" target="_blank" rel="noopener">CKFinder</a> file manager and uploader.</p>
+<h2 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h2>
+<p>You can use the &#x201C;Insert image or file&#x201D; button in the toolbar to insert an image or a link to any other file. You can also paste the image directly into the editor content and it will be automatically <a href="#configuring-image-upload">uploaded</a> to the server.</p>
+<div class="live-snippet"><div id="snippet-ckfinder">
+	Use toolbar button to insert image or link to a file.
+</div>
+</div>
+<h2 id="installation"><a class="headerlink" href="#installation">#</a> Installation</h2>
+<div class="info-box notice notice__info"><p>This feature is enabled by default in all builds. The installation instructions are for developers interested in building their own, custom editor.</p></div>
+<p>To add this feature to your editor, install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-ckfinder" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-ckfinder</code></a> package:</p>
+<pre class="highlight"><code class="bash">npm install --save @ckeditor/ckeditor5-ckfinder
+</code></pre>
+<p>Then add <code>CKFinder</code> to your plugin list and <a href="#configuration">configure</a> the feature (when necessary):</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> CKFinder <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ckfinder/src/ckfinder&apos;</span>;
+
+ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">plugins</span>: [ CKFinder, ... ],
+        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;ckfinder&apos;</span>, ... ]
+        ckfinder: {
+            <span class="hljs-comment">// Feature configuration.</span>
+        }
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<h2 id="configuration"><a class="headerlink" href="#configuration">#</a> Configuration</h2>
+<p>The feature can be configured using the <a href="../api/module_ckfinder_ckfinder-CKFinderConfig.html"><code>config.ckfinder</code></a> object.</p>
+<p>The file manager configuration can be passed through the <a href="../api/module_ckfinder_ckfinder-CKFinderConfig.html#member-options"><code>config.ckfinder.options</code></a> object. Check the {@link @ckfinder ckfinder3/#!/api/CKFinder.Config file manager documentation} for the complete list of options.</p>
+<p>For instance, the following code will configure the file manager to browse only the specified resource type (in this case: the images):</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> CKFinder <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ckfinder/src/ckfinder&apos;</span>;
+
+ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">plugins</span>: [ CKFinder, ... ],
+        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;ckfinder&apos;</span>, ... ]
+        ckfinder: {
+            <span class="hljs-attr">options</span>: {
+                <span class="hljs-attr">resourceType</span>: <span class="hljs-string">&apos;Images&apos;</span>
+            }
+        }
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<div class="live-snippet"><div id="snippet-ckfinder-options">
+	Use toolbar button to insert image or link to a file.
+</div>
+</div>
+<div class="info-box notice"><p>By default, the editor language is automatically passed to the file manager &#x2014; the file manager &#x201C;inherits&#x201D; the language of the editor. This behavior can be changed by setting the <code>ckfinder.options.language</code> configuration option.</p></div>
+<h3 id="configuring-image-upload"><a class="headerlink" href="#configuring-image-upload">#</a> Configuring image upload</h3>
+<p>This feature allows you to not only browse images, but also upload them automatically to the server (e.g. when the image is dropped into the content) thanks to the <a href="../api/module_adapter-ckfinder_uploadadapter-CKFinderUploadAdapter.html">CKFinder upload adapter</a>. All it requires is the correct <a href="../api/module_ckfinder_ckfinder-CKFinderConfig.html#member-uploadUrl"><code>config.ckfinder.uploadUrl</code></a> path.</p>
+<p>Assuming that the CKFinder file manager is {@link @ckfinder ckfinder3-php/quickstart.html#quickstart_installation_folders installed} (accessible) under <code>https://example.com/ckfinder/</code>, use the following {@link @ckfinder ckfinder3-php/commands.html#command_quick_upload quick upload} command URL to enable the image upload:</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> CKFinder <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ckfinder/src/ckfinder&apos;</span>;
+
+ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">plugins</span>: [ CKFinder, ... ],
+        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;ckfinder&apos;</span>, ... ]
+        ckfinder: {
+            <span class="hljs-comment">// Upload the images to the server using the CKFinder&apos;s QuickUpload command.</span>
+            uploadUrl: <span class="hljs-string">&apos;https://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&amp;type=Images&amp;responseType=json&apos;</span>
+        }
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<h3 id="configuring-the-opener"><a class="headerlink" href="#configuring-the-opener">#</a> Configuring the opener</h3>
+<p>You can change the way the CKFinder file manager opens using the <a href="../api/module_ckfinder_ckfinder-CKFinderConfig.html#member-openerMethod"><code>config.ckfinder.openerMethod</code></a> option.</p>
+<p>By default, the manager opens as a modal. To open it in a new &#x201C;pop-up&#x201D; window, set the configuration value to <code>popup</code>:</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> CKFinder <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ckfinder/src/ckfinder&apos;</span>;
+
+ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">plugins</span>: [ CKFinder, ... ],
+        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;ckfinder&apos;</span>, ... ]
+        ckfinder: {
+            <span class="hljs-comment">// Open the file manager in the popup window.</span>
+            openerMethod: <span class="hljs-string">&apos;popup&apos;</span>
+        }
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<h2 id="common-api"><a class="headerlink" href="#common-api">#</a> Common API</h2>
+<p>The <a href="../api/module_ckfinder_ckfinder-CKFinder.html"><code>CKFinder</code></a> plugin registers:</p>
+<ul>
+<li>
+<p>the <code>&apos;ckfinder&apos;</code> UI button component,</p>
+</li>
+<li>
+<p>the <code>&apos;ckfinder&apos;</code> command implemented by the <a href="../api/module_ckfinder_ckfindercommand-CKFinderCommand.html"><code>CKFinderCommand</code></a>.</p>
+<p>You can open a CKFinder by executing the following code:</p>
+<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;ckfinder&apos;</span> );
+</code></pre>
+</li>
+</ul>
+<h2 id="contribute"><a class="headerlink" href="#contribute">#</a> Contribute</h2>
+<p>The source code of the feature is available on GitHub in <a href="https://github.com/ckeditor/ckeditor5-ckfinder" target="_blank" rel="noopener">https://github.com/ckeditor/ckeditor5-ckfinder</a>.</p>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li><a href="autoformat.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Autoformatting</span></div></a></li>
+                          <li><a href="basic-styles.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic text styles</span></div></a></li>
+                          <li><a href="blocktoolbar.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block toolbar</span></div></a></li>
+                          <li><a href="">
+                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">CKFinder integration</span></div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Collaboration</span></div>
+                            <ul class="tree__item-nested-list">
+                            </ul>
+                          </li>
+                          <li><a href="font.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Font</span></div></a></li>
+                          <li><a href="headings.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Headings</span></div></a></li>
+                          <li><a href="highlight.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Highlight</span></div></a></li>
+                          <li><a href="image-upload.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Image upload</span></div></a></li>
+                          <li><a href="image.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Images</span></div></a></li>
+                          <li><a href="keyboard-support.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Keyboard support</span></div></a></li>
+                          <li><a href="link.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Link</span></div></a></li>
+                          <li><a href="markdown.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Markdown output</span></div></a></li>
+                          <li><a href="media-embed.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Media embed</span></div></a></li>
+                          <li><a href="paste-from-word.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Word</span></div></a></li>
+                          <li><a href="read-only.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Read-only support</span></div></a></li>
+                          <li><a href="ui-language.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Setting the UI language</span></div></a></li>
+                          <li><a href="table.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Tables</span></div></a></li>
+                          <li><a href="text-alignment.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Text alignment</span></div></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2017-2018 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},debug:true,
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'features' ] = hits.filter( function( h ) {return h.tags.includes( 'features' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'features' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'features' ] );tags.forEach( function( tag ) {if ( tag !== 'features' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+    <script src="../assets/snippet.js"></script>
+    <script src="../snippets/features/build-ckfinder-source/snippet.js"></script>
+    <script src="../assets/snippet.js"></script>
+    <script src="../snippets/features/ckfinder/snippet.js"></script>
+    <script src="../assets/snippet.js"></script>
+    <script src="../snippets/features/ckfinder-options/snippet.js"></script>
+  </body>
+</html>

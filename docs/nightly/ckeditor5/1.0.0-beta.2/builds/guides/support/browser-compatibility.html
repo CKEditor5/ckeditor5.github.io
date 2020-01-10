@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Browser compatibility - CKEditor 5 Documentation</title>
+    <meta property="og:title" content="Browser compatibility - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="/ckeditor5/latest/builds/guides/support/browser-compatibility.html">
+    <link rel="icon" type="image/png" href="../../../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../../../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../../assets/0.4.4/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
+    <script>
+      ( function() {
+      	'use strict';
+      	var el = document.createElement( 'script' );
+      	el.setAttribute( 'async', 'async' );
+      	el.setAttribute( 'defer', 'defer' );
+      	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
+      		el.src = "../../../../../assets/0.4.4/scripts/app.js";
+      	} else {
+      		el.src = "../../../../../assets/0.4.4/scripts/app-polyfill.js";
+      	}
+      	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
+      } )();
+    </script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="top__logo top__left"><span class="top__logo__product-icon" style="background-image: url( ../../../assets/img/project-logo.svg )"></span><a class="top__logo__product-title" href="../../../index.html">CKEditor 5</a></div>
+      <ul class="top__menu">
+        <li><a class="top__menu__item--active" href="../../index.html">Builds</a></li>
+        <li><a href="../../../framework/index.html">Framework</a></li>
+        <li><a href="../../../examples/index.html">Examples</a></li>
+        <li><a href="../../../features/index.html">Features</a></li>
+        <li><a class="top__menu__api" href="../../../api/index.html">API</a></li>
+        <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."></a></li>
+      </ul>
+      <div class="top__search">
+        <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.4.4/img/loupe.svg" alt="Search"></button>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/support/browser-compatibility.md" title="Contribute to this guide"><img src="../../../../../assets/0.4.4/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.4.4/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <h1><img src="../../../../../assets/0.4.4/img/book.svg" alt="guide">Browser compatibility
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#desktop-environment">Desktop environment</a><ol><li><a href="#notes">Notes</a></li></ol></li><li><a href="#mobile-environment">Mobile environment</a></li><li><a href="#quality-assurance">Quality assurance</a></li></ol></nav>
+<h2 id="desktop-environment"><a class="headerlink" href="#desktop-environment">#</a> Desktop environment</h2>
+<p>CKEditor 5 is currently supported in the following desktop browsers:</p>
+<ul>
+<li>Full support (see <a href="#notes">notes below</a>):
+<ul>
+<li>Chrome (latest stable release).</li>
+<li>Firefox (latest stable release).</li>
+<li>Safari (latest stable release).</li>
+<li>Opera (latest stable release).</li>
+</ul>
+</li>
+<li>Good support:
+<ul>
+<li>Edge (latest stable release). Known issues:
+<ul>
+<li>Minor issues with selection: <a href="https://github.com/ckeditor/ckeditor5-engine/issues/974" target="_blank" rel="noopener">1</a>, <a href="https://github.com/ckeditor/ckeditor5-engine/issues/928" target="_blank" rel="noopener">2</a>.</li>
+<li>The editor becomes unstable when F12 developer tools are enabled.</li>
+<li>Clipboard integration is broken due to <a href="https://github.com/ckeditor/ckeditor5-clipboard/issues/20" target="_blank" rel="noopener">Edge bugs</a>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Not supported yet:</p>
+<ul>
+<li>Internet Explorer 11. See the <a href="https://github.com/ckeditor/ckeditor5/issues/330" target="_blank" rel="noopener">Compatibility with IE11</a> ticket.</li>
+</ul>
+<h3 id="notes"><a class="headerlink" href="#notes">#</a> Notes</h3>
+<p>Features known to not be fully supported yet:</p>
+<ul>
+<li>Text composition. Input Method Engine (IME) is a mechanism that allows the users to input text in languages such as Japanese and Chinese. This mechanism is not fully supported yet and we will be polishing that feature in a close future.</li>
+<li>Drag and drop inside the editor does not work yet. It is possible to drop images from your system if the <a href="../../../api/module_image_imageupload-ImageUpload.html"><code>ImageUpload</code></a> feature is enabled.</li>
+</ul>
+<h2 id="mobile-environment"><a class="headerlink" href="#mobile-environment">#</a> Mobile environment</h2>
+<p>Although CKEditor 5 works in Safari for iOS and Chrome for Android, it has not been fully tested yet and there are known bugs and inconveniences. Full support for mobile browsers will be our goal after releasing 1.0.0.</p>
+<p>When working on mobile support we need to consider two complex aspects:</p>
+<ul>
+<li>
+<p><strong>Special UI, designed for mobile.</strong></p>
+<p>During the design phase we understood that creating a responsive and touch-friendly UI will not guarantee a desired UX level by itself. Also, that the &#x201C;mobile first&#x201D; approach has no application in this case due to constraints of the mobile environment and specific editing method. Therefore, we plan to introduce a completely customized, mobile-oriented UI.</p>
+<p>We began research on how to display necessary UI controls on the screen and, sadly, it turned out that mobile Safari&#x2019;s viewport mechanics makes it extremely complicated to display the UI in a reliable way. You can read more in the <a href="https://github.com/ckeditor/ckeditor5-design/issues/149" target="_blank" rel="noopener">UX: Mobile editing</a> ticket.</p>
+</li>
+<li>
+<p><strong>Handling mobile browsers&#x2019; quirks.</strong></p>
+<p>Mobile browsers (especially mobile Safari) work differently than their desktop equivalents. <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=118639" target="_blank" rel="noopener">Chrome&#x2019;s incomplete <code>keydown</code> event</a> is just one of the issues that we need to deal with.</p>
+<p>For several years we have worked with W3C on <a href="https://medium.com/content-uneditable/fixing-contenteditable-1a9a5073c35d" target="_blank" rel="noopener">fixing <code>contentEditable</code></a> &#x2014; a technology on which the entire browser-based editing is based. Recently, browser vendors started implementing the core part of <a href="http://w3c.github.io/editing/" target="_blank" rel="noopener">the new specifications</a> &#x2014; the <code>beforeinput</code> event which has a chance to improve the situation. CKEditor 5&#x2019;s architecture was designed with this event in mind, so we will start taking advantage of it as soon as it proves to be stable enough.</p>
+</li>
+</ul>
+<h2 id="quality-assurance"><a class="headerlink" href="#quality-assurance">#</a> Quality assurance</h2>
+<p>To ensure the highest quality, we maintain a complete test suite with a stable 100% of code coverage for each of the packages. As of December 2017, this means over 7000 tests and the number is growing.</p>
+<p>Such an extensive test suite requires a proper continuous integration service. We use <a href="https://travis-ci.com/" target="_blank" rel="noopener">Travis CI</a> as a build platform and <a href="https://www.browserstack.com/" target="_blank" rel="noopener">BrowserStack</a> to be able to run tests on all browsers. These services ensure seamless and fast developer experience and allow us to focus on the job.</p>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li>
+                            <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Guides</span>
+                              <ul>
+                                      <li><a href="../overview.html">
+                                          <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                      <li><a href="../whats-new.html">
+                                          <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">What's new?</span></div></a></li>
+                                      <li><a href="../quick-start.html">
+                                          <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span></div></a></li>
+                                      <li><a href="../faq.html">
+                                          <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">FAQ</span></div></a></li>
+                                      <li>
+                                        <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Integration</span>
+                                          <ul>
+                                                  <li><a href="../integration/installation.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Installation</span></div></a></li>
+                                                  <li><a href="../integration/basic-api.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic API</span></div></a></li>
+                                                  <li><a href="../integration/configuration.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Configuration</span></div></a></li>
+                                                  <li><a href="../integration/advanced-setup.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Advanced setup</span></div></a></li>
+                                          </ul>
+                                        </div>
+                                      </li>
+                                      <li>
+                                        <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Development</span>
+                                          <ul>
+                                                  <li><a href="../development/custom-builds.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom builds</span></div></a></li>
+                                                  <li><a href="../development/plugins.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugins</span></div></a></li>
+                                                  <li><a href="../development/installing-plugins.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Installing plugins</span></div></a></li>
+                                          </ul>
+                                        </div>
+                                      </li>
+                                      <li><a href="../migrate.html">
+                                          <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migration from CKEditor 4</span></div></a></li>
+                                      <li>
+                                        <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Support</span>
+                                          <ul>
+                                                  <li><a href="">
+                                                      <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Browser compatibility</span></div></a></li>
+                                                  <li><a href="license-and-legal.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span></div></a></li>
+                                                  <li><a href="getting-support.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting support</span></div></a></li>
+                                                  <li><a href="reporting-issues.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span></div></a></li>
+                                          </ul>
+                                        </div>
+                                      </li>
+                              </ul>
+                            </div>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2017-2018 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},debug:false,
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'builds' ] = hits.filter( function( h ) {return h.tags.includes( 'builds' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'builds' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'builds' ] );tags.forEach( function( tag ) {if ( tag !== 'builds' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+  </body>
+</html>

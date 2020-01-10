@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Quick start - CKEditor 5 Documentation</title>
+    <meta property="og:title" content="Quick start - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="/ckeditor5/latest/framework/guides/quick-start.html">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../assets/0.4.4/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../assets/styles.css" type="text/css">
+    <script>
+      ( function() {
+      	'use strict';
+      	var el = document.createElement( 'script' );
+      	el.setAttribute( 'async', 'async' );
+      	el.setAttribute( 'defer', 'defer' );
+      	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
+      		el.src = "../../../../assets/0.4.4/scripts/app.js";
+      	} else {
+      		el.src = "../../../../assets/0.4.4/scripts/app-polyfill.js";
+      	}
+      	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
+      } )();
+    </script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="top__logo top__left"><span class="top__logo__product-icon" style="background-image: url( ../../assets/img/project-logo.svg )"></span><a class="top__logo__product-title" href="../../index.html">CKEditor 5</a></div>
+      <ul class="top__menu">
+        <li><a href="../../builds/index.html">Builds</a></li>
+        <li><a class="top__menu__item--active" href="../index.html">Framework</a></li>
+        <li><a href="../../examples/index.html">Examples</a></li>
+        <li><a href="../../features/index.html">Features</a></li>
+        <li><a class="top__menu__api" href="../../api/index.html">API</a></li>
+        <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."></a></li>
+      </ul>
+      <div class="top__search">
+        <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+        <button class="top__search__button" type="submit"><img src="../../../../assets/0.4.4/img/loupe.svg" alt="Search"></button>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/quick-start.md" title="Contribute to this guide"><img src="../../../../assets/0.4.4/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../assets/0.4.4/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <h1><img src="../../../../assets/0.4.4/img/book.svg" alt="guide">Quick start
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#how-to-install-the-framework">How to install the framework?</a></li><li><a href="#lets-start">Let&#x2019;s start!</a></li><li><a href="#creating-a-simple-plugin">Creating a simple plugin</a><ol><li><a href="#step-1-installing-dependencies">Step 1. Installing dependencies</a></li><li><a href="#step-2-creating-a-plugin">Step 2. Creating a plugin</a></li><li><a href="#step-3-registering-a-button">Step 3. Registering a button</a></li><li><a href="#step-4-inserting-a-new-image">Step 4. Inserting a new image</a></li><li><a href="#bonus-enabling-image-captions">Bonus. Enabling image captions</a></li><li><a href="#final-code">Final code</a></li></ol></li></ol></nav>
+<p>This guide will show you how to initialize the editor from source and how to create a simple plugin.</p>
+<h2 id="how-to-install-the-framework"><a class="headerlink" href="#how-to-install-the-framework">#</a> How to install the framework?</h2>
+<p>The framework is made of several <a href="https://npmjs.com" target="_blank" rel="noopener">npm packages</a>. To install it you need:</p>
+<ul>
+<li><a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a> &gt;= 6.0.0</li>
+<li>npm 4.x (<strong>note:</strong> using npm 5 <a href="https://github.com/npm/npm/issues/16991" target="_blank" rel="noopener">is not recommended</a>)</li>
+</ul>
+<p>Besides Node.js and npm you also need <a href="https://webpack.js.org" target="_blank" rel="noopener">webpack@3.x</a> with a few additional packages to use the framework. They are needed to bundle the source code. Read more about building CKEditor 5 in the <a href="../../builds/guides/integration/advanced-setup.html">CKEditor 5 Builds Advanced setup</a> guide.</p>
+<div class="info-box notice notice__warning"><p>Unfortunately, at the moment of writing this note, <a href="https://github.com/ckeditor/ckeditor5-dev/issues/371" target="_blank" rel="noopener">webpack@4.x causes issues</a>.</p></div>
+<!-- TODO replace the link above when the Framework will get its own building guide. -->
+<h2 id="lets-start"><a class="headerlink" href="#lets-start">#</a> Let&#x2019;s start!</h2>
+<p>This guide assumes that you are familiar with npm and your project uses npm already. If not, see the <a href="https://docs.npmjs.com/getting-started/what-is-npm" target="_blank" rel="noopener">npm documentation</a> or call <code>npm init</code> in an empty directory and keep your fingers crossed.</p>
+<p>First, install packages needed to build CKEditor 5.</p>
+<pre class="highlight"><code class="bash">npm install --save \
+    postcss-loader \
+    raw-loader \
+    style-loader \
+    webpack@^3.11.0
+</code></pre>
+<p>The minimal webpack configuration needed to enable building CKEditor 5 is:</p>
+<pre class="highlight"><code class="js"><span class="hljs-comment">// webpack.config.js</span>
+<span class="hljs-meta">
+&apos;use strict&apos;</span>;
+
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>( <span class="hljs-string">&apos;path&apos;</span> );
+<span class="hljs-keyword">const</span> { styles } = <span class="hljs-built_in">require</span>( <span class="hljs-string">&apos;@ckeditor/ckeditor5-dev-utils&apos;</span> );
+
+<span class="hljs-built_in">module</span>.exports = {
+    <span class="hljs-comment">// https://webpack.js.org/configuration/entry-context/</span>
+    entry: <span class="hljs-string">&apos;./app.js&apos;</span>,
+
+    <span class="hljs-comment">// https://webpack.js.org/configuration/output/</span>
+    output: {
+        <span class="hljs-attr">path</span>: path.resolve( __dirname, <span class="hljs-string">&apos;dist&apos;</span> ),
+        <span class="hljs-attr">filename</span>: <span class="hljs-string">&apos;bundle.js&apos;</span>
+    },
+
+    <span class="hljs-attr">module</span>: {
+        <span class="hljs-attr">rules</span>: [
+            {
+                <span class="hljs-comment">// Or /ckeditor5-[^/]+\/theme\/icons\/[^/]+\.svg$/ if you want to limit this loader</span>
+                <span class="hljs-comment">// to CKEditor 5&apos;s icons only.</span>
+                test: <span class="hljs-regexp">/\.svg$/</span>,
+
+                <span class="hljs-attr">use</span>: [ <span class="hljs-string">&apos;raw-loader&apos;</span> ]
+            },
+            {
+                <span class="hljs-comment">// Or /ckeditor5-[^/]+\/theme\/[^/]+\.css$/ if you want to limit this loader</span>
+                <span class="hljs-comment">// to CKEditor 5&apos;s theme only.</span>
+                test: <span class="hljs-regexp">/\.css$/</span>,
+                <span class="hljs-attr">use</span>: [
+                    {
+                        <span class="hljs-attr">loader</span>: <span class="hljs-string">&apos;style-loader&apos;</span>,
+                        <span class="hljs-attr">options</span>: {
+                            <span class="hljs-attr">singleton</span>: <span class="hljs-literal">true</span>
+                        }
+                    },
+                    {
+                        <span class="hljs-attr">loader</span>: <span class="hljs-string">&apos;postcss-loader&apos;</span>,
+                        <span class="hljs-attr">options</span>: styles.getPostCssConfig( {
+                            <span class="hljs-attr">themeImporter</span>: {
+                                <span class="hljs-attr">themePath</span>: <span class="hljs-built_in">require</span>.resolve( <span class="hljs-string">&apos;@ckeditor/ckeditor5-theme-lark&apos;</span> )
+                            },
+                            <span class="hljs-attr">minify</span>: <span class="hljs-literal">true</span>
+                        } )
+                    },
+                ]
+            }
+        ]
+    },
+
+    <span class="hljs-comment">// Useful for debugging.</span>
+    devtool: <span class="hljs-string">&apos;source-map&apos;</span>
+};
+</code></pre>
+<p>Now, you can install some of the CKEditor 5 Framework packages which will allow you initialize a simple editor. You can start with the <a href="../../examples/builds/classic-editor.html">classic editor</a> with a small set of features.</p>
+<pre class="highlight"><code class="bash">npm install --save \
+    @ckeditor/ckeditor5-dev-utils \
+    @ckeditor/ckeditor5-editor-classic \
+    @ckeditor/ckeditor5-essentials \
+    @ckeditor/ckeditor5-paragraph \
+    @ckeditor/ckeditor5-basic-styles \
+    @ckeditor/ckeditor5-theme-lark
+</code></pre>
+<p>Based on these packages you can create a simple application.</p>
+<div class="info-box notice"><p>This guide is using the ES6 modules syntax. If you are not familiar with it, check out this <a href="http://exploringjs.com/es6/ch_modules.html" target="_blank" rel="noopener">article</a>.</p></div>
+<div class="info-box notice notice__warning"><p>Note that in this guide we use the editor class directly (i.e. we use <code>@ckeditor/ckeditor5-editor-classic</code> instead of <code>@ckeditor/ckeditor5-build-classic</code>).</p><p>We do not use any of the <a href="../../builds/guides/overview.html">builds</a> because adding new plugins to them requires rebuilding them anyway. This can be done by <a href="../../builds/guides/development/installing-plugins.html">customizing a build</a> or by including CKEditor 5 source into your application (like in this guide).</p></div>
+<pre class="highlight"><code class="js"><span class="hljs-comment">// app.js</span>
+
+<span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
+<span class="hljs-keyword">import</span> Essentials <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;</span>;
+<span class="hljs-keyword">import</span> Paragraph <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;</span>;
+<span class="hljs-keyword">import</span> Bold <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;</span>;
+<span class="hljs-keyword">import</span> Italic <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;</span>;
+
+ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">plugins</span>: [ Essentials, Paragraph, Bold, Italic ],
+        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-string">&apos;italic&apos;</span> ]
+    } )
+    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;Editor was initialized&apos;</span>, editor );
+    } )
+    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.error( error.stack );
+    } );
+</code></pre>
+<p>You can now run webpack to build the application. To do that, call the <code>webpack</code> executable:</p>
+<pre class="highlight"><code class="bash">./node_modules/.bin/webpack
+</code></pre>
+<div class="info-box notice"><p>You can also install webpack globally (using <code>npm install -g</code>) and run it via a globally available <code>webpack</code>.</p><p>Alternatively, you can add it as an <a href="https://docs.npmjs.com/misc/scripts" target="_blank" rel="noopener">npm script</a>:</p><pre class="highlight"><code class="js"><span class="hljs-string">&quot;scripts&quot;</span>: {
+    <span class="hljs-string">&quot;build&quot;</span>: <span class="hljs-string">&quot;webpack&quot;</span>
+}
+</code></pre><p>And use it via:</p><pre class="highlight"><code class="bash">npm run build
+</code></pre><p>npm adds <code>./node_modules/.bin/</code> to the <code>PATH</code> automatically, so in this case you do not need to install webpack globally.</p></div>
+<p>If everything worked correctly, you should see:</p>
+<pre class="highlight"><code class="">p@m /workspace/quick-start&gt; ./node_modules/.bin/webpack
+Hash: 3973724171776d324f0c
+Version: webpack 3.6.0
+Time: 3322ms
+        Asset     Size  Chunks                    Chunk Names
+    bundle.js  1.93 MB       0  [emitted]  [big]  main
+bundle.js.map   2.2 MB       0  [emitted]         main
+ [143] (webpack)/buildin/harmony-module.js 596 bytes {0} [built]
+ [249] ./app.js 546 bytes {0} [built]
+ [269] (webpack)/buildin/global.js 509 bytes {0} [built]
+    + 456 hidden modules
+</code></pre>
+<p>Finally, it is time to create an HTML page:</p>
+<pre class="highlight"><code class="html"><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>CKEditor 5 Framework &#x2013; Quick start<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;editor&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Editor content goes here.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;dist/bundle.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+<p>Open this page in your browser and you should see the editor up and running. Make sure to check the browser console in case anything seems wrong.</p>
+<p><img src="../../assets/img/framework-quick-start-classic-editor.png" alt="Screenshot of a classic editor with bold and italic features." width="976"></p>
+<h2 id="creating-a-simple-plugin"><a class="headerlink" href="#creating-a-simple-plugin">#</a> Creating a simple plugin</h2>
+<p>After you initilized the editor from source, you are ready to create your first CKEditor 5 plugin.</p>
+<p>CKEditor plugins need to implement the <a href="../../api/module_core_plugin-PluginInterface.html"><code>PluginInterface</code></a>. The easiest way to do that is to inherit from the <a href="../../api/module_core_plugin-Plugin.html">base <code>Plugin</code> class</a>, however, you can also write simple constructor functions. This guide uses the former method.</p>
+<p>The plugin that you will write will use a part of the <a href="../../features/image.html">image feature</a> and will add a simple UI to it &#x2014; an &#x201C;Insert image&#x201D; button, which will open a prompt window asking for the image URL when clicked. Submitting the URL will result in inserting the image into the content and selecting it.</p>
+<h3 id="step-1-installing-dependencies"><a class="headerlink" href="#step-1-installing-dependencies">#</a> Step 1. Installing dependencies</h3>
+<p>Start from installing necessary dependencies:</p>
+<ul>
+<li>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-image" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-image</code></a> package that contains the image feature (on which the plugin will rely).</li>
+<li>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-core" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-core</code></a> package which contains the <a href="../../api/module_core_plugin-Plugin.html"><code>Plugin</code></a> and <a href="../../api/module_core_command-Command.html"><code>Command</code></a> classes.</li>
+<li>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-ui" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-ui</code></a> package which contains the UI library and framework.</li>
+</ul>
+<pre class="highlight"><code class="bash">npm install --save @ckeditor/ckeditor5-image \
+    @ckeditor/ckeditor5-core \
+    @ckeditor/ckeditor5-ui
+</code></pre>
+<div class="info-box notice"><p>Most of the time, you will also want to install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-engine</code></a> package (it contains the <a href="architecture/editing-engine.html">editing engine</a>). It was omitted in this guide because it is unnecessary for a simple plugin like this one.</p></div>
+<p>Now, open the <code>app.js</code> file and start adding code there. Usually, when implementing more complex features you will want to split the code into multiple files (modules). However, to make this guide simpler the entire code will be kept in <code>app.js</code>.</p>
+<p>First thing to do will be to load the core of the image feature:</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> Image <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-image/src/image&apos;</span>;
+
+<span class="hljs-comment">// ...</span>
+
+ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-comment">// Add Image to the plugin list.</span>
+        plugins: [ Essentials, Paragraph, Bold, Italic, Image ],
+
+        <span class="hljs-comment">// ...</span>
+    } )
+    <span class="hljs-comment">// ...</span>
+</code></pre>
+<p>Save the file and run webpack. Refresh the page in your browser (<strong>remember about the cache</strong>) and&#x2026; you should not see any changes. Right! The core of the image feature does not come with any UI, nor have you added any image to the initial HTML. Change this now:</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;editor&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Simple image:<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;image&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://via.placeholder.com/1000x300/02c7cd/fff?text=Placeholder%20image&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;CKEditor 5 rocks!&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<p><img src="../../assets/img/framework-quick-start-classic-editor-with-image.png" alt="Screenshot of a classic editor with bold, italic and image features." width="837"></p>
+<div class="info-box notice"><p>Running webpack with the <code>-w</code> option will start it in the watch mode. This means that webpack will watch your files for changes and rebuild the application every time you save them.</p></div>
+<h3 id="step-2-creating-a-plugin"><a class="headerlink" href="#step-2-creating-a-plugin">#</a> Step 2. Creating a plugin</h3>
+<p>You can now start implementing your new plugin. Create the <code>InsertImage</code> plugin:</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> Plugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/plugin&apos;</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InsertImage</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
+    init() {
+        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;InsertImage was initialized&apos;</span> );
+    }
+}
+</code></pre>
+<p>And add your new plugin to the <code>config.plugins</code> array. After rebuilding the application and refreshing the page you should see &#x201C;InsertImage was initialized&#x201D; logged to the console.</p>
+<div class="info-box notice notice__hint"><p>It was said that your <code>InsertImage</code> plugin relies on the image feature represented here by the <code>Image</code> plugin. You could add the <code>Image</code> plugin as a <a href="../../api/module_core_plugin-PluginInterface.html#static-member-requires">dependency</a> of your <code>InsertImage</code> plugin. This would make the editor initialize <code>Image</code> automatically before initializing <code>InsertImage</code>, so you would be able to remove <code>Image</code> from <code>config.plugins</code>.</p><p>However, this means that your plugin would be coupled with the <code>Image</code> plugin. This is unnecessary &#x2014; they do not need to know about each other. And while it does not change anything in this simple example, it is a good practice to keep plugins as decoupled as possible.</p></div>
+<h3 id="step-3-registering-a-button"><a class="headerlink" href="#step-3-registering-a-button">#</a> Step 3. Registering a button</h3>
+<p>Create a button now:</p>
+<pre class="highlight"><code class="js"><span class="hljs-comment">// This SVG file import will be handled by webpack&apos;s raw-text loader.</span>
+<span class="hljs-comment">// This means that imageIcon will hold the source SVG.</span>
+<span class="hljs-keyword">import</span> imageIcon <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/theme/icons/image.svg&apos;</span>;
+
+<span class="hljs-keyword">import</span> ButtonView <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/button/buttonview&apos;</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InsertImage</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
+    init() {
+        <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">this</span>.editor;
+
+        editor.ui.componentFactory.add( <span class="hljs-string">&apos;insertImage&apos;</span>, locale =&gt; {
+            <span class="hljs-keyword">const</span> view = <span class="hljs-keyword">new</span> ButtonView( locale );
+
+            view.set( {
+                <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Insert image&apos;</span>,
+                <span class="hljs-attr">icon</span>: imageIcon,
+                <span class="hljs-attr">tooltip</span>: <span class="hljs-literal">true</span>
+            } );
+
+            <span class="hljs-comment">// Callback executed once the image is clicked.</span>
+            view.on( <span class="hljs-string">&apos;execute&apos;</span>, () =&gt; {
+                <span class="hljs-keyword">const</span> imageURL = prompt( <span class="hljs-string">&apos;Image URL&apos;</span> );
+            } );
+
+            <span class="hljs-keyword">return</span> view;
+        } );
+    }
+}
+</code></pre>
+<p>And add <code>insertImage</code> to <code>config.toolbar</code>:</p>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-comment">// ...</span>
+
+        toolbar: [ <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-string">&apos;italic&apos;</span>, <span class="hljs-string">&apos;insertImage&apos;</span> ]
+    } )
+    <span class="hljs-comment">// ...</span>
+</code></pre>
+<p>Rebuild the application and refresh the page. You should see a new button in the toolbar. Clicking the button should open a prompt window asking you for the image URL.</p>
+<h3 id="step-4-inserting-a-new-image"><a class="headerlink" href="#step-4-inserting-a-new-image">#</a> Step 4. Inserting a new image</h3>
+<p>Now, let&#x2019;s expand the button&#x2019;s <code>#execute</code> event listener, so it will actually insert new image into the content:</p>
+<pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InsertImage</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
+    init() {
+        <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">this</span>.editor;
+
+        editor.ui.componentFactory.add( <span class="hljs-string">&apos;insertImage&apos;</span>, locale =&gt; {
+            <span class="hljs-keyword">const</span> view = <span class="hljs-keyword">new</span> ButtonView( locale );
+
+            view.set( {
+                <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Insert image&apos;</span>,
+                <span class="hljs-attr">icon</span>: imageIcon,
+                <span class="hljs-attr">tooltip</span>: <span class="hljs-literal">true</span>
+            } );
+
+            <span class="hljs-comment">// Callback executed once the image is clicked.</span>
+            view.on( <span class="hljs-string">&apos;execute&apos;</span>, () =&gt; {
+                <span class="hljs-keyword">const</span> imageUrl = prompt( <span class="hljs-string">&apos;Image URL&apos;</span> );
+
+                editor.model.change( <span class="hljs-function"><span class="hljs-params">writer</span> =&gt;</span> {
+                    <span class="hljs-keyword">const</span> imageElement = writer.createElement( <span class="hljs-string">&apos;image&apos;</span>, {
+                        <span class="hljs-attr">src</span>: imageUrl
+                    } );
+
+                    <span class="hljs-comment">// Insert the image in the current selection location.</span>
+                    editor.model.insertContent( imageElement, editor.model.document.selection );
+                } );
+            } );
+
+            <span class="hljs-keyword">return</span> view;
+        } );
+    }
+}
+</code></pre>
+<p>If you refresh the page, you should now be able to insert new images into the content:</p>
+<p><img src="../../assets/img/framework-quick-start-classic-editor-insert-image.gif" alt="Screencast of inserting a new image." width="640"></p>
+<p>The image is fully functional, you can undo inserting by pressing <kbd>Ctrl</kbd>+<kbd>Z</kbd> and the image is always inserted as a block element (the paragraph that contains the selection is automatically split). This is all handled by the CKEditor 5 engine.</p>
+<div class="info-box notice"><p>As you can see, by clicking the button you are inserting an <code>&lt;image src=&quot;...&quot;&gt;</code> element into the model. The image feature is represented in the model as <code>&lt;image&gt;</code>, while in the view (i.e. the virtual DOM) and in the real DOM it is rendered as <code>&lt;figure class=&quot;image&quot;&gt;&lt;img src=&quot;...&quot;&gt;&lt;/figure&gt;</code>.</p><p>The <code>&lt;image&gt;</code> to <code>&lt;figure&gt;&lt;img&gt;&lt;/figure&gt;</code> transformation is called &#x201C;conversion&#x201D; and it requires a separate guide. However, as you can see in this example, it is a powerful mechanism because it allows non-1:1 mappings.</p></div>
+<p>Congratulations! You have just created your first CKEditor 5 plugin!</p>
+<h3 id="bonus-enabling-image-captions"><a class="headerlink" href="#bonus-enabling-image-captions">#</a> Bonus. Enabling image captions</h3>
+<p>Thanks to the fact that all plugins operate on the model and on the view and know as little about themselves as possible, you can easily enable image captions by simply loading the <a href="../../api/module_image_imagecaption-ImageCaption.html"><code>ImageCaption</code></a> plugin:</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ImageCaption <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-image/src/imagecaption&apos;</span>;
+
+<span class="hljs-comment">// ...</span>
+
+ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-comment">// Add ImageCaption to the plugin list.</span>
+        plugins: [ Essentials, Paragraph, Bold, Italic, Image, InsertImage, ImageCaption ],
+
+        <span class="hljs-comment">// ...</span>
+    } )
+    <span class="hljs-comment">// ...</span>
+</code></pre>
+<p>This should be the result of the change:</p>
+<p><img src="../../assets/img/framework-quick-start-classic-editor-bonus.gif" alt="Screencast of inserting a new image with a caption." width="640"></p>
+<h3 id="final-code"><a class="headerlink" href="#final-code">#</a> Final code</h3>
+<p>If you got lost at any point, this should be your final <code>app.js</code>:</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
+
+<span class="hljs-keyword">import</span> Essentials <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;</span>;
+<span class="hljs-keyword">import</span> Paragraph <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;</span>;
+<span class="hljs-keyword">import</span> Bold <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;</span>;
+<span class="hljs-keyword">import</span> Italic <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;</span>;
+<span class="hljs-keyword">import</span> Image <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-image/src/image&apos;</span>;
+<span class="hljs-keyword">import</span> ImageCaption <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-image/src/imagecaption&apos;</span>;
+
+<span class="hljs-keyword">import</span> Plugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/plugin&apos;</span>;;
+<span class="hljs-keyword">import</span> ButtonView <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/button/buttonview&apos;</span>;
+
+<span class="hljs-keyword">import</span> imageIcon <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/theme/icons/image.svg&apos;</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InsertImage</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
+    init() {
+        <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">this</span>.editor;
+
+        editor.ui.componentFactory.add( <span class="hljs-string">&apos;insertImage&apos;</span>, locale =&gt; {
+            <span class="hljs-keyword">const</span> view = <span class="hljs-keyword">new</span> ButtonView( locale );
+
+            view.set( {
+                <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Insert image&apos;</span>,
+                <span class="hljs-attr">icon</span>: imageIcon,
+                <span class="hljs-attr">tooltip</span>: <span class="hljs-literal">true</span>
+            } );
+
+            <span class="hljs-comment">// Callback executed once the image is clicked.</span>
+            view.on( <span class="hljs-string">&apos;execute&apos;</span>, () =&gt; {
+                <span class="hljs-keyword">const</span> imageUrl = prompt( <span class="hljs-string">&apos;Image URL&apos;</span> );
+
+                editor.model.change( <span class="hljs-function"><span class="hljs-params">writer</span> =&gt;</span> {
+                    <span class="hljs-keyword">const</span> imageElement = writer.createElement( <span class="hljs-string">&apos;image&apos;</span>, {
+                        <span class="hljs-attr">src</span>: imageUrl
+                    } );
+
+                    <span class="hljs-comment">// Insert the image in the current selection location.</span>
+                    editor.model.insertContent( imageElement, editor.model.document.selection );
+                } );
+            } );
+
+            <span class="hljs-keyword">return</span> view;
+        } );
+    }
+}
+
+ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">plugins</span>: [ Essentials, Paragraph, Bold, Italic, Image, InsertImage, ImageCaption ],
+        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-string">&apos;italic&apos;</span>, <span class="hljs-string">&apos;insertImage&apos;</span> ]
+    } )
+    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;Editor was initialized&apos;</span>, editor );
+    } )
+    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.error( error.stack );
+    } );
+</code></pre>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li>
+                            <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Guides</span>
+                              <ul>
+                                      <li><a href="overview.html">
+                                          <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                      <li><a href="">
+                                          <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Quick start</span></div></a></li>
+                                      <li>
+                                        <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Architecture</span>
+                                          <ul>
+                                                  <li><a href="architecture/intro.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Introduction</span></div></a></li>
+                                                  <li><a href="architecture/core-editor-architecture.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Core editor architecture</span></div></a></li>
+                                                  <li><a href="architecture/editing-engine.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editing engine</span></div></a></li>
+                                                  <li><a href="architecture/ui-library.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">UI library</span></div></a></li>
+                                          </ul>
+                                        </div>
+                                      </li>
+                                      <li>
+                                        <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">User interface</span>
+                                          <ul>
+                                                  <li><a href="ui/theme-customization.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Theme customization</span></div></a></li>
+                                                  <li><a href="ui/external-ui.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Third–party UI</span></div></a></li>
+                                                  <li><a href="ui/document-editor.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document editor</span></div></a></li>
+                                          </ul>
+                                        </div>
+                                      </li>
+                                      <li>
+                                        <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Contributing</span>
+                                          <ul>
+                                                  <li><a href="contributing/development-environment.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development environment</span></div></a></li>
+                                                  <li><a href="contributing/testing-environment.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Testing environment</span></div></a></li>
+                                                  <li><a href="contributing/git-commit-message-convention.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Git commit message convention</span></div></a></li>
+                                          </ul>
+                                        </div>
+                                      </li>
+                                      <li>
+                                        <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Support</span>
+                                          <ul>
+                                                  <li><a href="support/browser-compatibility.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Browser compatibility</span></div></a></li>
+                                                  <li><a href="support/license-and-legal.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span></div></a></li>
+                                                  <li><a href="support/getting-support.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting support</span></div></a></li>
+                                                  <li><a href="support/reporting-issues.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span></div></a></li>
+                                                  <li><a href="support/error-codes.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Error codes</span></div></a></li>
+                                          </ul>
+                                        </div>
+                                      </li>
+                              </ul>
+                            </div>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2017-2018 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},debug:false,
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'framework' ] = hits.filter( function( h ) {return h.tags.includes( 'framework' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'framework' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'framework' ] );tags.forEach( function( tag ) {if ( tag !== 'framework' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+  </body>
+</html>

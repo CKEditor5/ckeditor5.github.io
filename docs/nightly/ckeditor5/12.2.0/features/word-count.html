@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Word count - CKEditor 5 Documentation</title>
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:site" content="@ckeditor">
+    <meta property="og:title" content="Word count - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/features/word-count.html">
+    <meta property="DC.language" content="en">
+    <meta property="DC.publisher" content="CKSource">
+    <meta property="DC.creator" content="CKEditor">
+    <meta property="DC.title" content="Word count - CKEditor 5 Documentation">
+    <meta property="DC.format" content="text/html">
+    <meta property="DC.type" content="Text">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/features/word-count.html">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../assets/1.0.0/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../assets/styles.css" type="text/css">
+    <link rel="stylesheet" href="../snippets/features/build-word-count-source/snippet.css" type="text/css">
+    <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
+    <script>
+      ( function() {
+      	'use strict';
+      	// Set up global variables;
+      	if ( !window.umebrto ) {
+      		window.umberto = {};
+      	}
+      	window.umberto.relativeAppPath = "../../../assets/1.0.0/scripts"
+      
+      	// Add app script
+      	var el = document.createElement( 'script' );
+      	el.setAttribute( 'async', 'async' );
+      	el.setAttribute( 'defer', 'defer' );
+      	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
+      		el.src = "../../../assets/1.0.0/scripts/app.js";
+      	} else {
+      		el.src = "../../../assets/1.0.0/scripts/app-polyfill.js";
+      	}
+      	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
+      
+      	// Changing documentation theme enable it via `localStorage.setItem( 'theme', 'theme-dark' )`
+      	if ( localStorage.getItem( 'theme' ) === 'theme-dark' ) {
+      		document.getElementsByTagName( 'html' )[ 0 ].classList.add( 'theme-dark' );
+      	}
+      } )();
+    </script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="header__main">
+        <div class="header__main-rwd-button"><a href="#"><span></span><span></span><span></span></a></div>
+        <div class="header__main-title"><a class="header__main-title-home" href="../../../index.html">CKEditor Ecosystem Documentation</a></div>
+        <div class="top__search">
+          <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+          <div class="top__search__button"><img src="../../../assets/1.0.0/img/loupe.svg" alt="Search"></div>
+        </div>
+      </div>
+      <div class="header__sub">
+        <ul class="top__menu">
+          <li class="top__menu-project-logo"><a href="../index.html">CKEditor 5</a></li>
+          <li><a href="../builds/index.html">Builds</a></li>
+          <li><a href="../framework/index.html">Framework</a></li>
+          <li><a href="../examples/index.html">Examples</a></li>
+          <li><a class="top__menu__item--active" href="index.html">Features</a></li>
+          <li><a class="top__menu__api" href="../api/index.html">API</a></li>
+          <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."><svg viewbox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li>
+        </ul>
+      </div>
+      <div class="header__menu-rwd">
+        <ul class="header__menu-rwd__projects">
+          <li data-project="ckeditor5"><a href="../../latest/index.html">CKEditor 5
+              <ul class="tree header__menu-rwd__projects-pages">
+                <li data-group="builds"><a href="../builds/index.html">Builds</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="framework"><a href="../framework/index.html">Framework</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="examples"><a href="../examples/index.html">Examples</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="features"><a href="index.html">Features</a>
+                  <!-- Display subpages for active project.-->
+                  <ul class="header__menu-rwd__projects-subpages">
+                            <li><a href="autoformat.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Autoformatting</span></div></a></li>
+                            <li><a href="text-transformation.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Automatic text transformation</span></div></a></li>
+                            <li><a href="basic-styles.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic text styles</span></div></a></li>
+                            <li><a href="indent.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block indentation</span></div></a></li>
+                            <li><a href="blocktoolbar.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block toolbar</span></div></a></li>
+                            <li><a href="editor-placeholder.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor placeholder</span></div></a></li>
+                            <li><a href="font.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Font</span></div></a></li>
+                            <li><a href="headings.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Headings</span></div></a></li>
+                            <li><a href="highlight.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Highlight</span></div></a></li>
+                            <li>
+                              <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Image upload</span></div>
+                              <ul class="tree__item-nested-list">
+                                    <li><a href="image-upload/image-upload.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="image-upload/easy-image.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Easy Image</span></div></a></li>
+                                    <li><a href="image-upload/ckfinder.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">CKFinder file manager</span></div></a></li>
+                                    <li><a href="image-upload/base64-upload-adapter.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Base64 upload adapter</span></div></a></li>
+                              </ul>
+                            </li>
+                            <li><a href="image.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Images</span></div></a></li>
+                            <li><a href="keyboard-support.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Keyboard support</span></div></a></li>
+                            <li><a href="link.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Link</span></div></a></li>
+                            <li><a href="markdown.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Markdown output</span></div></a></li>
+                            <li><a href="media-embed.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Media embed</span></div></a></li>
+                            <li><a href="mentions.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Mentions</span></div></a></li>
+                            <li><a href="paste-from-word.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Word</span></div></a></li>
+                            <li><a href="read-only.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Read-only support</span></div></a></li>
+                            <li><a href="remove-format.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Remove formatting</span></div></a></li>
+                            <li><a href="ui-language.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Setting the UI language</span></div></a></li>
+                            <li><a href="table.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Tables</span></div></a></li>
+                            <li><a href="text-alignment.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Text alignment</span></div></a></li>
+                            <li><a href="watchdog.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Watchdog</span></div></a></li>
+                            <li><a href>
+                                <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Word count</span></div></a></li>
+                  </ul>
+                </li>
+                <li data-group="api-reference"><a href="../api/index.html">API</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+              </ul></a></li>
+        </ul>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-word-count/blob/master/docs/features/word-count.md" title="Contribute to this guide"><img src="../../../assets/1.0.0/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5-word-count/issues/new" title="Report an issue"><img src="../../../assets/1.0.0/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
+          </div>
+          <h1 class="main__content-title"><img src="../../../assets/1.0.0/img/book.svg" alt="guide">Word count
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#configuration-options">Configuration options</a></li><li><a href="#update-event">Update event</a></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav><div class="live-snippet"><style>
+	.word-count {
+		padding: 10px 20px;
+		margin-bottom: 15px;
+		background: var(--ck-color-toolbar-background);
+		border-left: 10px hsl(291, 64%, 42%) solid;
+		box-shadow: 2px 2px 2px hsla(0,0%,0%,0.1);
+	}
+
+	.word-count::before {
+		content: "Text statistics";
+		display: block;
+		font-weight: bold;
+		font-size: 1.2em;
+		margin-bottom: .4em;
+	}
+</style>
+</div>
+
+<p>The <a href="../api/module_wordcount_wordcount-WordCount.html"><code>WordCount</code></a> feature provides a possibility to track the number of words and characters written in the editor.</p>
+<h2 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h2>
+<div class="live-snippet"><style>
+	#demo-word-count .ck-word-count * {
+		display: inline-block;
+	}
+
+	#demo-word-count .ck-word-count .ck-word-count__words {
+		margin-right: 1em;
+	}
+</style>
+<div id="demo-editor">
+	<p>The <strong>Battle of Westerplatte</strong> was one of the first battles in Germany's <a href="https://en.wikipedia.org/wiki/Invasion_of_Poland">invasion of Poland</a>, marking the start of <a href="https://en.wikipedia.org/wiki/World_War_II">World War II</a> in <a href="https://en.wikipedia.org/wiki/Europe">Europe</a>. Beginning on 1 September 1939, <a href="https://en.wikipedia.org/wiki/Nazi_Germany">German</a> <a href="https://en.wikipedia.org/wiki/German_Army_(Wehrmacht)">army</a>, <a href="https://en.wikipedia.org/wiki/Kriegsmarine">naval</a> and <a href="https://en.wikipedia.org/wiki/Luftwaffe">air forces</a> and <a href="https://en.wikipedia.org/wiki/Free_City_of_Danzig_Police">Danzig police</a> assaulted <a href="https://en.wikipedia.org/wiki/Poland">Poland</a>'s Military Transit Depot (<i>Wojskowa Składnica Tranzytowa</i>, or <i>WST</i>) on the <a href="https://en.wikipedia.org/wiki/Westerplatte">Westerplatte</a> peninsula in the harbor of the <a href="https://en.wikipedia.org/wiki/Free_City_of_Danzig">Free City of Danzig</a>. The Poles held out for seven days and repelled 13 assaults that included <a href="https://en.wikipedia.org/wiki/Dive_bomber">dive-bomber</a> attacks and naval shelling.</p>
+	<p>Westerplatte's defense served as an inspiration for the <a href="https://en.wikipedia.org/wiki/Polish_Army">Polish Army</a> and people in the face of German advances elsewhere, and is still regarded as a symbol of resistance in modern Poland.</p>
+</div>
+<div id="demo-word-count" class="word-count">
+</div>
+</div>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;editor&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hello world.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;word-count&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-comment">// Configuration details.</span>
+    } )
+    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+        <span class="hljs-keyword">const</span> wordCountPlugin = editor.plugins.get( <span class="hljs-string">&apos;WordCount&apos;</span> );
+        <span class="hljs-keyword">const</span> wordCountWrapper = <span class="hljs-built_in">document</span>.getElementById( <span class="hljs-string">&apos;word-count&apos;</span> );
+
+        wordCountWrapper.appendChild( wordCountPlugin.wordCountContainer );
+    } )
+    .catch( ... );
+</code></pre>
+<h2 id="configuration-options"><a class="headerlink" href="#configuration-options">#</a> Configuration options</h2>
+<p>There are two options which change the output container. If the <a href="../api/module_wordcount_wordcount-WordCountConfig.html#member-displayWords"><code>displayWords</code></a> is set to to <code>false</code>, then the section with word count is hidden. Similarly, when the <a href="../api/module_wordcount_wordcount-WordCountConfig.html#member-displayCharacters"><code>displayCharacters</code></a> is set to <code>false</code> it will hide the character counter.</p>
+<h2 id="update-event"><a class="headerlink" href="#update-event">#</a> Update event</h2>
+<p>Word count feature emits an <a href="../api/module_wordcount_wordcount-WordCount.html#event-update">update event</a> whenever there is a change in the model. This allows implementing customized behavior that reacts to word count updates.</p>
+<p>Below you can find an example, where the background color of a square is changed according to the number of characters in the editor. There is also a progress bar which indicates how many words is in it (the maximal value of the progress bar is set to 100, however, you can write further and progress bar remain in the maximal state).</p>
+<div class="live-snippet">
+<style>
+	.customized-count__color-box {
+		--hue: 180;
+		width: 20px;
+		height: 20px;
+		background-color: hsl( var( --hue ), 100%, 50% );
+		display: inline-block;
+		vertical-align: middle;
+		border-radius: 100%;
+	}
+
+	.customized-count > div {
+		margin-left: 1em;
+	}
+
+	.customized-count span {
+		min-width: 90px;
+		display: inline-block;
+	}
+</style>
+
+<div id="demo-editor-update">
+		<p>A <strong>black hole</strong> is a region of <a href="https://en.wikipedia.org/wiki/Spacetime">spacetime</a> exhibiting <a href="https://en.wikipedia.org/wiki/Gravitation">gravitational</a> acceleration so strong that nothing—no <a href="https://en.wikipedia.org/wiki/Particle">particles</a> or even <a href="https://en.wikipedia.org/wiki/Electromagnetic_radiation">electromagnetic radiation</a> such as <a href="https://en.wikipedia.org/wiki/Light">light</a>—can escape from it.<a href="https://en.wikipedia.org/wiki/Black_hole#cite_note-6">[6]</a> The theory of <a href="https://en.wikipedia.org/wiki/General_relativity">general relativity</a> predicts that a sufficiently compact <a href="https://en.wikipedia.org/wiki/Mass">mass</a> can deform <a href="https://en.wikipedia.org/wiki/Spacetime">spacetime</a> to form a black hole.</p>
+</div>
+<div class="word-count customized-count">
+	<div class="customized-count__words">
+		<label>
+			<span>Words:</span>
+			<progress value="42" max="100"></progress>
+		</label>
+	</div>
+	<div class="customized-count__characters">
+		<span>Characters:</span>
+		<div class="customized-count__color-box"></div>
+	</div>
+</div>
+</div>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-comment">// configuration details</span>
+    } )
+    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+        <span class="hljs-keyword">const</span> wordCountPlugin = editor.plugins.get( <span class="hljs-string">&apos;WordCount&apos;</span> );
+
+        wordCountPlugin.on( <span class="hljs-string">&apos;update&apos;</span>, ( evt, data ) =&gt; {
+            <span class="hljs-comment">// data is an object with &quot;words&quot; and &quot;characters&quot; field</span>
+            doSthWithNewWordsNumber( data.words );
+            doSthWithNewCharactersNumber( data.characters );
+        } );
+
+    } )
+    .catch( ... );
+</code></pre>
+<h2 id="installation"><a class="headerlink" href="#installation">#</a> Installation</h2>
+<p>To add this feature to your rich-text editor, install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-word-count" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-word-count</code></a> package:</p>
+<pre class="highlight"><code class="bash">npm install --save @ckeditor/ckeditor5-word-count
+</code></pre>
+<p>And add it to your plugin list configuration:</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> WordCount <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-word-count/src/wordcount&apos;</span>;
+
+ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">plugins</span>: [ WordCount, ... ],
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<div class="info-box notice notice__info"><p>Read more about <a href="../builds/guides/integration/installing-plugins.html">installing plugins</a>.</p></div>
+<h2 id="common-api"><a class="headerlink" href="#common-api">#</a> Common API</h2>
+<p>The <a href="../api/module_wordcount_wordcount-WordCount.html"><code>WordCount</code></a> plugin provides:</p>
+<ul>
+<li><a href="../api/module_wordcount_wordcount-WordCount.html#member-wordCountContainer"><code>wordCountContainer</code></a> method. It returns a self-updating HTML element which is updated with the current number of words and characters in the editor. There is a possibility to remove &#x201C;Words&#x201D; or &#x201C;Characters&#x201D; counters with proper configuration of <a href="../api/module_wordcount_wordcount-WordCountConfig.html#member-displayWords"><code>displayWords</code></a> and <a href="../api/module_wordcount_wordcount-WordCountConfig.html#member-displayCharacters"><code>displayCharacters</code></a>,</li>
+<li><a href="../api/module_wordcount_wordcount-WordCount.html#event-update">update event</a> which is fired whenever the plugins update the number of counted words and characters. There is a possibility to run own callback function with updated values. Please note that update event is throttled.</li>
+</ul>
+<div class="info-box notice"><p>We recommend using the official <a href="../framework/guides/development-tools.html#ckeditor-5-inspector">CKEditor 5 inspector</a> for development and debugging. It will give you tons of useful information about the state of the editor such as internal data structures, selection, commands, and many more.</p></div>
+<h2 id="contribute"><a class="headerlink" href="#contribute">#</a> Contribute</h2>
+<p>The source code of the feature is available on GitHub in <a href="https://github.com/ckeditor/ckeditor5-word-count" target="_blank" rel="noopener">https://github.com/ckeditor/ckeditor5-word-count</a>.</p>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li><a href="autoformat.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Autoformatting</span></div></a></li>
+                          <li><a href="text-transformation.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Automatic text transformation</span></div></a></li>
+                          <li><a href="basic-styles.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic text styles</span></div></a></li>
+                          <li><a href="indent.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block indentation</span></div></a></li>
+                          <li><a href="blocktoolbar.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block toolbar</span></div></a></li>
+                          <li><a href="editor-placeholder.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor placeholder</span></div></a></li>
+                          <li><a href="font.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Font</span></div></a></li>
+                          <li><a href="headings.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Headings</span></div></a></li>
+                          <li><a href="highlight.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Highlight</span></div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Image upload</span></div>
+                            <ul class="tree__item-nested-list">
+                                    <li><a href="image-upload/image-upload.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="image-upload/easy-image.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Easy Image</span></div></a></li>
+                                    <li><a href="image-upload/ckfinder.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">CKFinder file manager</span></div></a></li>
+                                    <li><a href="image-upload/base64-upload-adapter.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Base64 upload adapter</span></div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="image.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Images</span></div></a></li>
+                          <li><a href="keyboard-support.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Keyboard support</span></div></a></li>
+                          <li><a href="link.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Link</span></div></a></li>
+                          <li><a href="markdown.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Markdown output</span></div></a></li>
+                          <li><a href="media-embed.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Media embed</span></div></a></li>
+                          <li><a href="mentions.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Mentions</span></div></a></li>
+                          <li><a href="paste-from-word.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Word</span></div></a></li>
+                          <li><a href="read-only.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Read-only support</span></div></a></li>
+                          <li><a href="remove-format.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Remove formatting</span></div></a></li>
+                          <li><a href="ui-language.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Setting the UI language</span></div></a></li>
+                          <li><a href="table.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Tables</span></div></a></li>
+                          <li><a href="text-alignment.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Text alignment</span></div></a></li>
+                          <li><a href="watchdog.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Watchdog</span></div></a></li>
+                          <li><a href>
+                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Word count</span></div></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2003-2019 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'features' ] = hits.filter( function( h ) {return h.tags.includes( 'features' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'features' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'features' ] );tags.forEach( function( tag ) {if ( tag !== 'features' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+    <script src="../assets/snippet.js"></script>
+    <script src="../snippets/features/build-word-count-source/snippet.js"></script>
+    <script src="../snippets/features/word-count/snippet.js"></script>
+    <script src="../snippets/features/word-count-update/snippet.js"></script>
+  </body>
+</html>

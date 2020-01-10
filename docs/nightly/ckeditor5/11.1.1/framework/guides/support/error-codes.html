@@ -1,0 +1,2418 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Error codes - CKEditor 5 Documentation</title>
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:site" content="@ckeditor">
+    <meta property="og:title" content="Error codes - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta property="DC.language" content="en">
+    <meta property="DC.publisher" content="CKSource">
+    <meta property="DC.creator" content="CKEditor">
+    <meta property="DC.title" content="Error codes - CKEditor 5 Documentation">
+    <meta property="DC.format" content="text/html">
+    <meta property="DC.type" content="Text">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/guides/support/error-codes.html">
+    <link rel="icon" type="image/png" href="../../../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../../../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../../assets/0.12.1/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
+    <script>
+      ( function() {
+      	'use strict';
+      	// Set up global variables;
+      	if ( !window.umebrto ) {
+      		window.umberto = {};
+      	}
+      	window.umberto.relativeAppPath = "../../../../../assets/0.12.1/scripts"
+      
+      	// Add app script
+      	var el = document.createElement( 'script' );
+      	el.setAttribute( 'async', 'async' );
+      	el.setAttribute( 'defer', 'defer' );
+      	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
+      		el.src = "../../../../../assets/0.12.1/scripts/app.js";
+      	} else {
+      		el.src = "../../../../../assets/0.12.1/scripts/app-polyfill.js";
+      	}
+      	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
+      } )();
+    </script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="header__main">
+        <div class="header__main-rwd-button"><a href="#"><span></span><span></span><span></span></a></div>
+        <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
+        <div class="top__search">
+          <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+          <div class="top__search__button"><img src="../../../../../assets/0.12.1/img/loupe.svg" alt="Search"></div>
+        </div>
+      </div>
+      <div class="header__sub">
+        <ul class="top__menu">
+          <li class="top__menu-project-logo"><a href="../../../index.html">CKEditor 5</a></li>
+          <li><a href="../../../builds/index.html">Builds</a></li>
+          <li><a class="top__menu__item--active" href="../../index.html">Framework</a></li>
+          <li><a href="../../../examples/index.html">Examples</a></li>
+          <li><a href="../../../features/index.html">Features</a></li>
+          <li><a class="top__menu__api" href="../../../api/index.html">API</a></li>
+          <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."><svg viewbox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li>
+        </ul>
+      </div>
+      <div class="header__menu-rwd">
+        <ul class="header__menu-rwd__projects">
+          <li data-project="ckeditor5"><a href="../../../../latest/index.html">CKEditor 5
+              <ul class="tree header__menu-rwd__projects-pages">
+                <li data-group="builds"><a href="../../../builds/index.html">Builds</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="framework"><a href="../../index.html">Framework</a>
+                  <!-- Display subpages for active project.-->
+                  <ul class="header__menu-rwd__projects-subpages">
+                            <li>
+                              <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Guides</span></div>
+                              <ul class="tree__item-nested-list">
+                                    <li><a href="../overview.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="../quick-start.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span></div></a></li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Architecture</span></div>
+                                      <ul class="tree__item-nested-list">
+                                            <li><a href="../architecture/intro.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Introduction</span></div></a></li>
+                                            <li><a href="../architecture/core-editor-architecture.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Core editor architecture</span></div></a></li>
+                                            <li><a href="../architecture/editing-engine.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editing engine</span></div></a></li>
+                                            <li><a href="../architecture/ui-library.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">UI library</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Deep dive</span></div>
+                                      <ul class="tree__item-nested-list">
+                                            <li><a href="../deep-dive/clipboard.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Clipboard</span></div></a></li>
+                                            <li><a href="../deep-dive/observables.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Observables</span></div></a></li>
+                                            <li><a href="../deep-dive/schema.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Schema</span></div></a></li>
+                                            <li>
+                                              <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">User interface</span></div>
+                                              <ul class="tree__item-nested-list">
+                                                    <li><a href="../deep-dive/ui/theme-customization.html">
+                                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Theme customization</span></div></a></li>
+                                                    <li><a href="../deep-dive/ui/external-ui.html">
+                                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Third–party UI</span></div></a></li>
+                                                    <li><a href="../deep-dive/ui/document-editor.html">
+                                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document editor</span></div></a></li>
+                                              </ul>
+                                            </li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Contributing</span></div>
+                                      <ul class="tree__item-nested-list">
+                                            <li><a href="../contributing/contributing.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Contributing</span></div></a></li>
+                                            <li><a href="../contributing/development-environment.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development environment</span></div></a></li>
+                                            <li><a href="../contributing/testing-environment.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Testing environment</span></div></a></li>
+                                            <li><a href="../contributing/git-commit-message-convention.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Git commit message convention</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Support</span></div>
+                                      <ul class="tree__item-nested-list">
+                                            <li><a href="browser-compatibility.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Browser compatibility</span></div></a></li>
+                                            <li><a href="license-and-legal.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span></div></a></li>
+                                            <li><a href="getting-support.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting support</span></div></a></li>
+                                            <li><a href="reporting-issues.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span></div></a></li>
+                                            <li><a href="">
+                                                <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Error codes</span></div></a></li>
+                                      </ul>
+                                    </li>
+                              </ul>
+                            </li>
+                  </ul>
+                </li>
+                <li data-group="examples"><a href="../../../examples/index.html">Examples</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="features"><a href="../../../features/index.html">Features</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="api-reference"><a href="../../../api/index.html">API</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+              </ul></a></li>
+        </ul>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/support/error-codes.md" title="Contribute to this guide"><img src="../../../../../assets/0.12.1/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.12.1/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
+          </div>
+          <h1 class="main__content-title"><img src="../../../../../assets/0.12.1/img/book.svg" alt="guide">Error codes
+          </h1>
+<p>CKEditor 5 Framework logs errors and warnings to the console. The following list contains more detailed descriptions of those issues.</p>
+
+<ul class="collapsing-list">
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-attachtoform-missing-elementapi-interface">
+      <h3><code><a class="member-name" href="#error-attachtoform-missing-elementapi-interface">attachtoform-missing-elementapi-interface</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">The editor passed to <code>attachToForm()</code> must implement the
+<a href="../../../api/module_core_editor_utils_elementapimixin-ElementApi.html"><code>ElementApi</code></a> interface.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-attribute-element-get-elements-with-same-id-no-id">
+      <h3><code><a class="member-name" href="#error-attribute-element-get-elements-with-same-id-no-id">attribute-element-get-elements-with-same-id-no-id</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Cannot get elements with the same id for an attribute element without id.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-attribute-operation-attribute-exists">
+      <h3><code><a class="member-name" href="#error-attribute-operation-attribute-exists">attribute-operation-attribute-exists</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">The attribute with given key already exists for the given node.
+      </p>
+      <div class="collapsing-list__content">
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>node
+              :
+ <span><a class="collapsing-list__type" href="../../../api/module_engine_model_node-Node.html">Node</a></span></code></dt>
+          <dd>
+          </dd>
+          <dt><code>key
+              :
+ <span>String</span></code></dt>
+          <dd>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-attribute-operation-range-not-flat">
+      <h3><code><a class="member-name" href="#error-attribute-operation-range-not-flat">attribute-operation-range-not-flat</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">The range to change is not flat.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-attribute-operation-wrong-old-value">
+      <h3><code><a class="member-name" href="#error-attribute-operation-wrong-old-value">attribute-operation-wrong-old-value</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Changed node has different attribute value than operation&apos;s old attribute value.
+      </p>
+      <div class="collapsing-list__content">
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>item
+              :
+ <span><a class="collapsing-list__type" href="../../../api/module_engine_model_item-Item.html">Item</a></span></code></dt>
+          <dd>
+          </dd>
+          <dt><code>key
+              :
+ <span>String</span></code></dt>
+          <dd>
+          </dd>
+          <dt><code>value
+              :
+ <span>*</span></code></dt>
+          <dd>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-cannot-change-view-tree">
+      <h3><code><a class="member-name" href="#error-cannot-change-view-tree">cannot-change-view-tree</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Thrown when there is an attempt to make changes to the view tree when it is in incorrect state. This may
+cause some unexpected behaviour and inconsistency between the DOM and the view.
+This may be caused by:
+      </p>
+      <div class="collapsing-list__content">
+<ul>
+<li>calling <a href="../../../api/module_engine_view_view-View.html#function-change"><code>change</code></a> or <a href="../../../api/module_engine_view_view-View.html#function-render"><code>render</code></a> during rendering process,</li>
+<li>calling <a href="../../../api/module_engine_view_view-View.html#function-change"><code>change</code></a> or <a href="../../../api/module_engine_view_view-View.html#function-render"><code>render</code></a> inside of
+<a href="../../../api/module_engine_view_document-Document.html#function-registerPostFixer">post-fixer function</a>.</li>
+</ul>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-ckeditor-version-collision">
+      <h3><code><a class="member-name" href="#error-ckeditor-version-collision">ckeditor-version-collision</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">This error is thrown when the <code>CKEDITOR_VERSION</code> global is being set more than once. This happens when in
+two scenarios described above.
+      </p>
+      <div class="collapsing-list__content">
+<h4>Some packages were duplicated</h4><p>CKEditor 5 was built from source packages which were duplicated during installation via npm.
+Normally, npm deduplicates all packages so e.g. <code>@ckeditor/ckeditor5-core</code> is installed only once in <code>node_modules/</code>.
+However, subsequent <code>npm install</code> calls or conflicting version dependencies may cause npm to install some packages
+more than once. Furthermore, <a href="https://github.com/npm/npm/issues/16991">npm in version 5+</a>
+is also known for randomly failing to deduplicate packages.</p>
+<p>We recommend checking if any of the below steps helps:</p>
+<ul>
+<li><code>rm -rf node_modules &amp;&amp; npm install</code> to make sure you have a clean <code>node_modules/</code> &#x2013; this step
+is known to help in majority of cases,</li>
+<li>check whether all CKEditor 5 packages are up to date and reinstall them
+if you changed anything (<code>rm -rf node_modules &amp;&amp; npm install</code>),</li>
+<li>downgrade npm to version 4 if you use a newer version.</li>
+</ul>
+<p>If all packages are correct and compatible with each other the above steps are known to help. If not, you may
+try to check with <code>npm ls</code> how many times <code>@ckeditor/ckeditor5-core</code> is installed. If more than once, verify
+which package causes that.</p>
+<h4>Two+ builds are loaded</h4><p>If you use CKEditor 5 builds, you might have loaded two (or more) <code>ckeditor.js</code> files in one web page
+&#x2013; check your web page for duplicated <code>&lt;script&gt;</code> elements or make sure your page builder/bundler includes CKEditor only once.</p>
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>collidingVersion
+              :
+ <span>String</span></code></dt>
+          <dd><p>The version of the build which has already been (incorrectly) loaded.</p>
+          </dd>
+          <dt><code>version
+              :
+ <span>String</span></code></dt>
+          <dd><p>The version of the build which is supposed to be loaded.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-collection-add-invalid-id">
+      <h3><code><a class="member-name" href="#error-collection-add-invalid-id">collection-add-invalid-id</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">This item&apos;s id should be a string.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-collection-add-item-already-exists">
+      <h3><code><a class="member-name" href="#error-collection-add-item-already-exists">collection-add-item-already-exists</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">This item already exists in the collection.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-collection-add-item-bad-index">
+      <h3><code><a class="member-name" href="#error-collection-add-item-bad-index">collection-add-item-bad-index</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">The index number has invalid value.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-collection-bind-to-rebind">
+      <h3><code><a class="member-name" href="#error-collection-bind-to-rebind">collection-bind-to-rebind</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">The collection cannot be bound more than once.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-collection-get-invalid-arg">
+      <h3><code><a class="member-name" href="#error-collection-get-invalid-arg">collection-get-invalid-arg</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Index or id must be given.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-collection-remove-404">
+      <h3><code><a class="member-name" href="#error-collection-remove-404">collection-remove-404</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Item not found.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-commandcollection-command-not-found">
+      <h3><code><a class="member-name" href="#error-commandcollection-command-not-found">commandcollection-command-not-found</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Command does not exist.
+      </p>
+      <div class="collapsing-list__content">
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>commandName
+              :
+ <span>String</span></code></dt>
+          <dd><p>Name of the command.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-componentfactory-item-exists">
+      <h3><code><a class="member-name" href="#error-componentfactory-item-exists">componentfactory-item-exists</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">The item already exists in the component factory.
+      </p>
+      <div class="collapsing-list__content">
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>name
+              :
+ <span>String</span></code></dt>
+          <dd><p>The name of the component.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-componentfactory-item-missing">
+      <h3><code><a class="member-name" href="#error-componentfactory-item-missing">componentfactory-item-missing</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">The required component is not registered in the component factory. Please make sure
+the provided name is correct and the component has been correctly
+<a href="../../../api/module_ui_componentfactory-ComponentFactory.html#function-add">added</a> to the factory.
+      </p>
+      <div class="collapsing-list__content">
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>name
+              :
+ <span>String</span></code></dt>
+          <dd><p>The name of the missing component.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-contextualballoon-add-view-exist">
+      <h3><code><a class="member-name" href="#error-contextualballoon-add-view-exist">contextualballoon-add-view-exist</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Trying to add configuration of the same view more than once.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-contextualballoon-remove-view-not-exist">
+      <h3><code><a class="member-name" href="#error-contextualballoon-remove-view-not-exist">contextualballoon-remove-view-not-exist</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Trying to remove configuration of the view not defined in the stack.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-conversion-attribute-to-attribute-on-text">
+      <h3><code><a class="member-name" href="#error-conversion-attribute-to-attribute-on-text">conversion-attribute-to-attribute-on-text</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">This error occurs when a <a href="../../../api/module_engine_model_textproxy-TextProxy.html">text node&apos;s</a> attribute is to be downcasted
+by <a href="../../../api/module_engine_conversion_conversion-Conversion.html#function-attributeToAttribute"><code>Attribute to Attribute converter</code></a>.
+In most cases it is caused by converters misconfiguration when only &quot;generic&quot; converter is defined:
+      </p>
+      <div class="collapsing-list__content">
+<pre class="prettyprint source"><code>editor.conversion.for( &apos;downcast&apos; ).add( downcastAttributeToAttribute( {
+    model: &apos;attribute-name&apos;,
+    view: &apos;attribute-name&apos;
+} ) );</code></pre><p>and given attribute is used on text node, for example:</p>
+<pre class="prettyprint source"><code>model.change( writer =&gt; {
+    writer.insertText( &apos;Foo&apos;, { &apos;attribute-name&apos;: &apos;bar&apos; }, parent, 0 );
+} );</code></pre><p>In such cases, to convert the same attribute for both <a href="../../../api/module_engine_model_element-Element.html"><code>Element</code></a>
+and <a href="../../../api/module_engine_model_textproxy-TextProxy.html"><code>Text</code></a> nodes, text specific
+<a href="../../../api/module_engine_conversion_conversion-Conversion.html#function-attributeToElement"><code>Attribute to Element converter</code></a>
+with higher <a href="../../../api/module_utils_priorities-PriorityString.html">priority</a> must also be defined:</p>
+<pre class="prettyprint source"><code>conversion.for( &apos;downcast&apos; ).add( downcastAttributeToElement( {
+    model: {
+        key: &apos;attribute-name&apos;,
+        name: &apos;$text&apos;
+    },
+    view: ( value, writer ) =&gt; {
+        return writer.createAttributeElement( &apos;span&apos;, { &apos;attribute-name&apos;: value } );
+    },
+    converterPriority: &apos;high&apos;
+} ) );</code></pre>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-conversion-for-unknown-group">
+      <h3><code><a class="member-name" href="#error-conversion-for-unknown-group">conversion-for-unknown-group</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Trying to add a converter to an unknown dispatchers group.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-conversion-register-group-exists">
+      <h3><code><a class="member-name" href="#error-conversion-register-group-exists">conversion-register-group-exists</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Trying to register a group name that was already registered.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-datacontroller-init-document-not-empty">
+      <h3><code><a class="member-name" href="#error-datacontroller-init-document-not-empty">datacontroller-init-document-not-empty</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Cannot set initial data to not empty <a href="../../../api/module_engine_model_document-Document.html"><code>Document</code></a>.
+Initial data should be set once, during <a href="../../../api/module_core_editor_editor-Editor.html"><code>Editor</code></a> initialization,
+when the <a href="../../../api/module_engine_model_document-Document.html#member-version"><code>version</code></a> is equal 0.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-detach-operation-on-document-node">
+      <h3><code><a class="member-name" href="#error-detach-operation-on-document-node">detach-operation-on-document-node</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Cannot detach document node.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-document-applyOperation-wrong-version">
+      <h3><code><a class="member-name" href="#error-document-applyOperation-wrong-version">document-applyOperation-wrong-version</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Only operations with matching versions can be applied.
+      </p>
+      <div class="collapsing-list__content">
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>operation
+              :
+ <span><a class="collapsing-list__type" href="../../../api/module_engine_model_operation_operation-Operation.html">Operation</a></span></code></dt>
+          <dd>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-document-selection-gravity-wrong-restore">
+      <h3><code><a class="member-name" href="#error-document-selection-gravity-wrong-restore">document-selection-gravity-wrong-restore</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Restoring gravity for an unknown UID is not possible. Make sure you are using a correct
+UID obtained from the <a href="../../../api/module_engine_model_writer-Writer.html#function-overrideSelectionGravity"><code>overrideSelectionGravity</code></a> to restore.
+      </p>
+      <div class="collapsing-list__content">
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>uid
+              :
+ <span>String</span></code></dt>
+          <dd><p>The unique identifier returned by <a href="#overrideGravity"><code>overrideGravity</code></a>.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-document-selection-wrong-position">
+      <h3><code><a class="member-name" href="#error-document-selection-wrong-position">document-selection-wrong-position</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Range from <a href="../../../api/module_engine_model_documentselection-DocumentSelection.html">document selection</a>
+starts or ends at incorrect position.
+      </p>
+      <div class="collapsing-list__content">
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>range
+              :
+ <span><a class="collapsing-list__type" href="../../../api/module_engine_model_range-Range.html">Range</a></span></code></dt>
+          <dd>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-editor-missing-sourceelement">
+      <h3><code><a class="member-name" href="#error-editor-missing-sourceelement">editor-missing-sourceelement</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Cannot update the source element of a detached editor.
+      </p>
+      <div class="collapsing-list__content">
+<p>The <a href="../../../api/module_core_editor_utils_elementapimixin-ElementApiMixin.html#function-updateSourceElement"><code>updateSourceElement()</code></a> method cannot be called if you did not
+pass an element to <code>Editor.create()</code>.</p>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-filerepository-no-upload-adapter">
+      <h3><code><a class="member-name" href="#error-filerepository-no-upload-adapter">filerepository-no-upload-adapter</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">You need to enable an upload adapter in order to be able to upload files.
+      </p>
+      <div class="collapsing-list__content">
+<p>This warning shows up when <a href="../../../api/module_upload_filerepository-FileRepository.html"><code>FileRepository</code></a> is being used
+without <a href="../../../api/module_upload_filerepository-FileRepository.html#member-createUploadAdapter">definining  an  upload  adapter</a>.</p>
+<p><strong>If you see this warning when using one of the <a href="../../../builds/index.html" data-glink="">CKEditor 5 Builds</a></strong>
+it means that you did not configure any of the upload adapters available by default in those builds.
+See:</p>
+<ul>
+<li><a href="../../../api/module_core_editor_editorconfig-EditorConfig.html#member-cloudServices"><code>config.cloudServices</code></a> for
+Easy Image with Cloud Services integration,</li>
+<li><a href="../../../api/module_core_editor_editorconfig-EditorConfig.html#member-ckfinder"><code>config.ckfinder</code></a> for CKFinder
+file upload integration.</li>
+</ul>
+<p><strong>If you see this warning when using a custom build</strong> there is a chance that you enabled
+a feature like <a href="../../../api/module_image_imageupload-ImageUpload.html"><code>ImageUpload</code></a>,
+or <a href="../../../api/module_image_imageupload_imageuploadui-ImageUploadUI.html"><code>ImageUploadUI</code></a> but you did not enable any upload adapter.
+You can choose one of the existing upload adapters:</p>
+<ul>
+<li><a href="../../../api/module_easy-image_cloudservicesuploadadapter-CloudServicesUploadAdapter.html"><code>CloudServicesUploadAdapter</code></a>
+(remember to <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html#member-cloudServices">configure it</a>)</li>
+<li><a href="../../../api/module_adapter-ckfinder_uploadadapter-CKFinderUploadAdapter.html"><code>CKFinderUploadAdapter</code></a>
+(remember to <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html#member-ckfinder">configure it</a>)</li>
+</ul>
+<p>You can also implement your own upload adapter (in which case, please refer
+to the <a href="../../../api/module_upload_filerepository-UploadAdapter.html"><code>UploadAdapter</code> interface</a> documentation).</p>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-insert-operation-position-invalid">
+      <h3><code><a class="member-name" href="#error-insert-operation-position-invalid">insert-operation-position-invalid</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Insertion position is invalid.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-liveposition-root-not-rootelement">
+      <h3><code><a class="member-name" href="#error-liveposition-root-not-rootelement">liveposition-root-not-rootelement</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">LivePosition&apos;s root has to be an instance of RootElement.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-marker-destroyed">
+      <h3><code><a class="member-name" href="#error-marker-destroyed">marker-destroyed</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Cannot use a <a href="../../../api/module_engine_model_markercollection-MarkerCollection.html#function-destroy">destroyed marker</a> instance.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-merge-operation-how-many-invalid">
+      <h3><code><a class="member-name" href="#error-merge-operation-how-many-invalid">merge-operation-how-many-invalid</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Merge operation specifies wrong number of nodes to move.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-merge-operation-source-position-invalid">
+      <h3><code><a class="member-name" href="#error-merge-operation-source-position-invalid">merge-operation-source-position-invalid</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Merge source position is invalid.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-merge-operation-target-position-invalid">
+      <h3><code><a class="member-name" href="#error-merge-operation-target-position-invalid">merge-operation-target-position-invalid</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Merge target position is invalid.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-model-createPositionAt-offset-required">
+      <h3><code><a class="member-name" href="#error-model-createPositionAt-offset-required">model-createPositionAt-offset-required</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt"><a href="../../../api/module_engine_model_model-Model.html#function-createPositionAt"><code>Model#createPositionAt()</code></a>
+requires the offset to be specified when the first parameter is a model item.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-model-document-createRoot-name-exists">
+      <h3><code><a class="member-name" href="#error-model-document-createRoot-name-exists">model-document-createRoot-name-exists</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">A root with the specified name already exists.
+      </p>
+      <div class="collapsing-list__content">
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>doc
+              :
+ <span><a class="collapsing-list__type" href="../../../api/module_engine_model_document-Document.html">Document</a></span></code></dt>
+          <dd>
+          </dd>
+          <dt><code>name
+              :
+ <span>String</span></code></dt>
+          <dd>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-model-node-not-found-in-parent">
+      <h3><code><a class="member-name" href="#error-model-node-not-found-in-parent">model-node-not-found-in-parent</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">The node&apos;s parent does not contain this node.
+      </p>
+      <div class="collapsing-list__content">
+<p>This error may be thrown from corrupted trees.</p>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-model-nodelist-offset-out-of-bounds">
+      <h3><code><a class="member-name" href="#error-model-nodelist-offset-out-of-bounds">model-nodelist-offset-out-of-bounds</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Given offset cannot be found in the node list.
+      </p>
+      <div class="collapsing-list__content">
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>offset
+              :
+ <span>Number</span></code></dt>
+          <dd>
+          </dd>
+          <dt><code>nodeList
+              :
+ <span><a class="collapsing-list__type" href="../../../api/module_engine_model_nodelist-NodeList.html">NodeList</a></span></code></dt>
+          <dd><p>Stringified node list.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-model-position-after-root">
+      <h3><code><a class="member-name" href="#error-model-position-after-root">model-position-after-root</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">You can not make a position after a root element.
+      </p>
+      <div class="collapsing-list__content">
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>root
+              :
+ <span><a class="collapsing-list__type" href="../../../api/module_engine_model_item-Item.html">Item</a></span></code></dt>
+          <dd>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-model-position-before-root">
+      <h3><code><a class="member-name" href="#error-model-position-before-root">model-position-before-root</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">You can not make a position before a root element.
+      </p>
+      <div class="collapsing-list__content">
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>root
+              :
+ <span><a class="collapsing-list__type" href="../../../api/module_engine_model_item-Item.html">Item</a></span></code></dt>
+          <dd>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-model-position-fromjson-no-root">
+      <h3><code><a class="member-name" href="#error-model-position-fromjson-no-root">model-position-fromjson-no-root</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Cannot create position for document. Root with specified name does not exist.
+      </p>
+      <div class="collapsing-list__content">
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>rootName
+              :
+ <span>String</span></code></dt>
+          <dd>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-model-position-parent-incorrect">
+      <h3><code><a class="member-name" href="#error-model-position-parent-incorrect">model-position-parent-incorrect</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Position parent have to be a model element or model document fragment.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-model-position-path-incorrect">
+      <h3><code><a class="member-name" href="#error-model-position-path-incorrect">model-position-path-incorrect</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Position path must be an array with at least one item.
+      </p>
+      <div class="collapsing-list__content">
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>path</code></dt>
+          <dd>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-model-position-root-invalid">
+      <h3><code><a class="member-name" href="#error-model-position-root-invalid">model-position-root-invalid</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Position root is invalid.
+      </p>
+      <div class="collapsing-list__content">
+<p>Positions can only be anchored in elements or document fragments.</p>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-model-selection-range-intersects">
+      <h3><code><a class="member-name" href="#error-model-selection-range-intersects">model-selection-range-intersects</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Trying to add a range that intersects with another range in the selection.
+      </p>
+      <div class="collapsing-list__content">
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>addedRange
+              :
+ <span><a class="collapsing-list__type" href="../../../api/module_engine_model_range-Range.html">Range</a></span></code></dt>
+          <dd><p>Range that was added to the selection.</p>
+          </dd>
+          <dt><code>intersectingRange
+              :
+ <span><a class="collapsing-list__type" href="../../../api/module_engine_model_range-Range.html">Range</a></span></code></dt>
+          <dd><p>Range in the selection that intersects with <code>addedRange</code>.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-model-selection-set-ranges-not-range">
+      <h3><code><a class="member-name" href="#error-model-selection-set-ranges-not-range">model-selection-set-ranges-not-range</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Selection range set to an object that is not an instance of <a href="../../../api/module_engine_model_range-Range.html"><code>Range</code></a>.
+      </p>
+      <div class="collapsing-list__content">
+<p>Only <a href="../../../api/module_engine_model_range-Range.html"><code>Range</code></a> instances can be used to set a selection.
+Common mistakes leading to this error are:</p>
+<ul>
+<li>using DOM <code>Range</code> object,</li>
+<li>incorrect CKEditor 5 installation with multiple <code>ckeditor5-engine</code> packages having different versions.</li>
+</ul>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-model-selection-setFocus-no-ranges">
+      <h3><code><a class="member-name" href="#error-model-selection-setFocus-no-ranges">model-selection-setFocus-no-ranges</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Cannot set selection focus if there are no ranges in selection.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-model-selection-setTo-not-selectable">
+      <h3><code><a class="member-name" href="#error-model-selection-setTo-not-selectable">model-selection-setTo-not-selectable</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Cannot set selection to given place.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-model-selection-setTo-required-second-parameter">
+      <h3><code><a class="member-name" href="#error-model-selection-setTo-required-second-parameter">model-selection-setTo-required-second-parameter</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">selection.setTo requires the second parameter when the first parameter is a node.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-model-textproxy-wrong-length">
+      <h3><code><a class="member-name" href="#error-model-textproxy-wrong-length">model-textproxy-wrong-length</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Given <code>length</code> value is incorrect.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-model-textproxy-wrong-offsetintext">
+      <h3><code><a class="member-name" href="#error-model-textproxy-wrong-offsetintext">model-textproxy-wrong-offsetintext</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Given <code>offsetInText</code> value is incorrect.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-model-tree-walker-no-start-position">
+      <h3><code><a class="member-name" href="#error-model-tree-walker-no-start-position">model-tree-walker-no-start-position</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Neither boundaries nor starting position of a <code>TreeWalker</code> have been defined.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-move-operation-node-into-itself">
+      <h3><code><a class="member-name" href="#error-move-operation-node-into-itself">move-operation-node-into-itself</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Trying to move a range of nodes into one of nodes from that range.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-move-operation-nodes-do-not-exist">
+      <h3><code><a class="member-name" href="#error-move-operation-nodes-do-not-exist">move-operation-nodes-do-not-exist</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">The nodes which should be moved do not exist.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-move-operation-position-invalid">
+      <h3><code><a class="member-name" href="#error-move-operation-position-invalid">move-operation-position-invalid</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Source position or target position is invalid.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-move-operation-range-into-itself">
+      <h3><code><a class="member-name" href="#error-move-operation-range-into-itself">move-operation-range-into-itself</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Trying to move a range of nodes into the middle of that range.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-nodelist-index-out-of-bounds">
+      <h3><code><a class="member-name" href="#error-nodelist-index-out-of-bounds">nodelist-index-out-of-bounds</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Given index cannot be found in the node list.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-nodelist-insertNodes-not-node">
+      <h3><code><a class="member-name" href="#error-nodelist-insertNodes-not-node">nodelist-insertNodes-not-node</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Trying to insert an object which is not a Node instance.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-observable-bind-duplicate-properties">
+      <h3><code><a class="member-name" href="#error-observable-bind-duplicate-properties">observable-bind-duplicate-properties</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Properties must be unique.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-observable-bind-no-callback">
+      <h3><code><a class="member-name" href="#error-observable-bind-no-callback">observable-bind-no-callback</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Binding multiple observables only possible with callback.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-observable-bind-rebind">
+      <h3><code><a class="member-name" href="#error-observable-bind-rebind">observable-bind-rebind</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Cannot bind the same property more that once.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-observable-bind-to-extra-callback">
+      <h3><code><a class="member-name" href="#error-observable-bind-to-extra-callback">observable-bind-to-extra-callback</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Cannot bind multiple properties and use a callback in one binding.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-observable-bind-to-many-not-one-binding">
+      <h3><code><a class="member-name" href="#error-observable-bind-to-many-not-one-binding">observable-bind-to-many-not-one-binding</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Binding one attribute to many observables only possible with one attribute.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-observable-bind-to-parse-error">
+      <h3><code><a class="member-name" href="#error-observable-bind-to-parse-error">observable-bind-to-parse-error</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Invalid argument syntax in <code>to()</code>.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-observable-bind-to-properties-length">
+      <h3><code><a class="member-name" href="#error-observable-bind-to-properties-length">observable-bind-to-properties-length</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">The number of properties must match.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-observable-bind-wrong-properties">
+      <h3><code><a class="member-name" href="#error-observable-bind-wrong-properties">observable-bind-wrong-properties</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">All properties must be strings.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-observable-set-cannot-override">
+      <h3><code><a class="member-name" href="#error-observable-set-cannot-override">observable-set-cannot-override</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Cannot override an existing property.
+      </p>
+      <div class="collapsing-list__content">
+<p>This error is thrown when trying to <a href="../../../api/module_utils_observablemixin-ObservableMixin.html#function-set">set</a> an property with
+a name of an already existing property. For example:</p>
+<pre class="prettyprint source"><code>let observable = new Model();
+observable.property = 1;
+observable.set( &apos;property&apos;, 2 );            // throws
+
+observable.set( &apos;property&apos;, 1 );
+observable.set( &apos;property&apos;, 2 );            // ok, because this is an existing property.</code></pre>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-observable-unbind-wrong-properties">
+      <h3><code><a class="member-name" href="#error-observable-unbind-wrong-properties">observable-unbind-wrong-properties</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Properties must be strings.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-observablemixin-cannot-decorate-undefined">
+      <h3><code><a class="member-name" href="#error-observablemixin-cannot-decorate-undefined">observablemixin-cannot-decorate-undefined</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Cannot decorate an undefined method.
+      </p>
+      <div class="collapsing-list__content">
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>object
+              :
+ <span>Object</span></code></dt>
+          <dd><p>The object which method should be decorated.</p>
+          </dd>
+          <dt><code>methodName
+              :
+ <span>String</span></code></dt>
+          <dd><p>Name of the method which does not exist.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-operation-utils-move-range-not-flat">
+      <h3><code><a class="member-name" href="#error-operation-utils-move-range-not-flat">operation-utils-move-range-not-flat</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Trying to move a range which starts and ends in different element.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-operation-utils-remove-range-not-flat">
+      <h3><code><a class="member-name" href="#error-operation-utils-remove-range-not-flat">operation-utils-remove-range-not-flat</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Trying to remove a range which starts and ends in different element.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-pendingactions-add-invalid-message">
+      <h3><code><a class="member-name" href="#error-pendingactions-add-invalid-message">pendingactions-add-invalid-message</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">The message must be a string.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-plugincollection-load">
+      <h3><code><a class="member-name" href="#error-plugincollection-load">plugincollection-load</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">It was not possible to load the plugin.
+      </p>
+      <div class="collapsing-list__content">
+<p>This is a generic error logged to the console when a JavaSript error is thrown during the initialization
+of one of the plugins.</p>
+<p>If you correctly handled the promise returned by the editor&apos;s <code>create()</code> method (like shown below)
+you will find the original error logged to the console, too:</p>
+<pre class="prettyprint source"><code>ClassicEditor.create( document.getElementById( &apos;editor&apos; ) )
+    .then( editor =&gt; {
+        // ...
+    } )
+    .catch( error =&gt; {
+        console.error( error );
+    } );</code></pre>
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>plugin
+              :
+ <span>String</span></code></dt>
+          <dd><p>The name of the plugin that could not be loaded.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-plugincollection-plugin-name-conflict">
+      <h3><code><a class="member-name" href="#error-plugincollection-plugin-name-conflict">plugincollection-plugin-name-conflict</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Two plugins with the same <a href="../../../api/module_core_plugin-PluginInterface.html#static-member-pluginName"><code>pluginName</code></a> were loaded.
+This will lead to runtime conflicts between these plugins.
+      </p>
+      <div class="collapsing-list__content">
+<p>In practice, this warning usually means that new plugins were added to an existing CKEditor 5 build.
+Plugins should always be added to a source version of the editor (<code>@ckeditor/ckeditor5-editor-*</code>),
+not to an editor imported from one of the <code>@ckeditor/ckeditor5-build-*</code> packages.</p>
+<p>Check your import paths and the list of plugins passed to
+<a href="../../../api/module_core_editor_editor-Editor.html#static-function-create"><code>Editor.create()</code></a>
+or specified in <a href="../../../api/module_core_editor_editor-Editor.html#static-member-builtinPlugins"><code>Editor.builtinPlugins</code></a>.</p>
+<p>The second option is that your <code>node_modules/</code> directory contains duplicated versions of the same
+CKEditor 5 packages. Normally, on clean installations, npm deduplicates packages in <code>node_modules/</code>, so
+it may be enough to call <code>rm -rf node_modules &amp;&amp; npm i</code>. However, if you installed conflicting versions
+of packages, their dependencies may need to be installed in more than one version which may lead to this
+warning.</p>
+<p>Technically speaking, this error occurs because after adding a plugin to an existing editor build
+dependencies of this plugin are being duplicated.
+They are already built into that editor build and now get added for the second time as dependencies
+of the plugin you are installing.</p>
+<p>Read more about <a href="../../../builds/guides/integration/installing-plugins.html" data-glink="">installing plugins</a>.</p>
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>pluginName
+              :
+ <span>String</span></code></dt>
+          <dd><p>The duplicated plugin name.</p>
+          </dd>
+          <dt><code>plugin1
+              :
+ <span>function</span></code></dt>
+          <dd><p>The first plugin constructor.</p>
+          </dd>
+          <dt><code>plugin2
+              :
+ <span>function</span></code></dt>
+          <dd><p>The second plugin constructor.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-plugincollection-plugin-not-found">
+      <h3><code><a class="member-name" href="#error-plugincollection-plugin-not-found">plugincollection-plugin-not-found</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Some plugins are not available and could not be loaded.
+      </p>
+      <div class="collapsing-list__content">
+<p>Plugin classes (constructors) need to be provided to the editor before they can be loaded by name.
+This is usually done in CKEditor 5 builds by setting the <a href="../../../api/module_core_editor_editor-Editor.html#static-member-builtinPlugins"><code>builtinPlugins</code></a>
+property.</p>
+<p><strong>If you see this warning when using one of the <a href="../../../builds/index.html" data-glink="">CKEditor 5 Builds</a></strong>, it means
+that you try to enable a plugin which was not included in that build. This may be due to a typo
+in the plugin name or simply because that plugin is not a part of this build. In the latter scenario,
+read more about <a href="../../../builds/guides/development/custom-builds.html" data-glink="">custom builds</a>.</p>
+<p><strong>If you see this warning when using one of the editor creators directly</strong> (not a build), then it means
+that you tried loading plugins by name. However, unlike CKEditor 4, CKEditor 5 does not implement a &quot;plugin loader&quot;.
+This means that CKEditor 5 does not know where to load the plugin modules from. Therefore, you need to
+provide each plugin through reference (as a constructor function). Check out the examples in
+<a href="../../../builds/guides/integration/advanced-setup.html#scenario-2-building-from-source" data-glink="">&quot;Building from source&quot;</a>.</p>
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>plugins
+              :
+ <span>Array.&lt;String&gt;</span></code></dt>
+          <dd><p>The name of the plugins which could not be loaded.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-plugincollection-required">
+      <h3><code><a class="member-name" href="#error-plugincollection-required">plugincollection-required</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Cannot load a plugin because one of its dependencies is listed in the <code>removePlugins</code> option.
+      </p>
+      <div class="collapsing-list__content">
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>plugin
+              :
+ <span>function</span></code></dt>
+          <dd><p>The required plugin.</p>
+          </dd>
+          <dt><code>requiredBy
+              :
+ <span>function</span></code></dt>
+          <dd><p>The parent plugin.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-range-create-from-ranges-empty-array">
+      <h3><code><a class="member-name" href="#error-range-create-from-ranges-empty-array">range-create-from-ranges-empty-array</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">At least one range has to be passed to
+<a href="../../../api/module_engine_model_range-Range.html#static-function-_createFromRanges"><code>Range.\_createFromRanges()</code></a>.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-rect-source-not-in-dom">
+      <h3><code><a class="member-name" href="#error-rect-source-not-in-dom">rect-source-not-in-dom</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">The <code>Rect</code> class depends on <code>getBoundingClientRect</code> and <code>getClientRects</code> DOM methods.
+If the <a href="../../../api/module_utils_dom_rect-Rect.html#function-constructor">source</a> of a rect in an HTML element or a DOM range but it does
+not belong to any rendered DOM tree, these methods will fail to obtain the geometry and
+the rect instance makes little sense to the features using it.
+      </p>
+      <div class="collapsing-list__content">
+<p>To get rid of this warning make sure the source passed to the constructor
+is a descendant of <code>window.document.body</code>.</p>
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>source
+              :
+ <span>String</span></code></dt>
+          <dd><p>The source of the Rect instance.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-rename-operation-wrong-name">
+      <h3><code><a class="member-name" href="#error-rename-operation-wrong-name">rename-operation-wrong-name</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Element to change has different name than operation&apos;s old name.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-rename-operation-wrong-position">
+      <h3><code><a class="member-name" href="#error-rename-operation-wrong-position">rename-operation-wrong-position</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Given position is invalid or node after it is not instance of Element.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-renderer-unknown-type">
+      <h3><code><a class="member-name" href="#error-renderer-unknown-type">renderer-unknown-type</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Unknown type passed to Renderer.markToSync.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-rootattribute-operation-attribute-exists">
+      <h3><code><a class="member-name" href="#error-rootattribute-operation-attribute-exists">rootattribute-operation-attribute-exists</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">The attribute with given key already exists for the given node.
+      </p>
+      <div class="collapsing-list__content">
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>root
+              :
+ <span><a class="collapsing-list__type" href="../../../api/module_engine_model_rootelement-RootElement.html">RootElement</a></span></code></dt>
+          <dd>
+          </dd>
+          <dt><code>key
+              :
+ <span>String</span></code></dt>
+          <dd>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-rootattribute-operation-not-a-root">
+      <h3><code><a class="member-name" href="#error-rootattribute-operation-not-a-root">rootattribute-operation-not-a-root</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">The element to change is not a root element.
+      </p>
+      <div class="collapsing-list__content">
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>root
+              :
+ <span><a class="collapsing-list__type" href="../../../api/module_engine_model_rootelement-RootElement.html">RootElement</a></span></code></dt>
+          <dd>
+          </dd>
+          <dt><code>key
+              :
+ <span>String</span></code></dt>
+          <dd>
+          </dd>
+          <dt><code>value
+              :
+ <span>*</span></code></dt>
+          <dd>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-rootattribute-operation-wrong-old-value">
+      <h3><code><a class="member-name" href="#error-rootattribute-operation-wrong-old-value">rootattribute-operation-wrong-old-value</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">The attribute which should be removed does not exists for the given node.
+      </p>
+      <div class="collapsing-list__content">
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>root
+              :
+ <span><a class="collapsing-list__type" href="../../../api/module_engine_model_rootelement-RootElement.html">RootElement</a></span></code></dt>
+          <dd>
+          </dd>
+          <dt><code>key
+              :
+ <span>String</span></code></dt>
+          <dd>
+          </dd>
+          <dt><code>value
+              :
+ <span>*</span></code></dt>
+          <dd>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-rootattributeoperation-fromjson-no-root">
+      <h3><code><a class="member-name" href="#error-rootattributeoperation-fromjson-no-root">rootattributeoperation-fromjson-no-root</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Cannot create RootAttributeOperation for document. Root with specified name does not exist.
+      </p>
+      <div class="collapsing-list__content">
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>rootName
+              :
+ <span>String</span></code></dt>
+          <dd>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-schema-check-merge-no-element-after">
+      <h3><code><a class="member-name" href="#error-schema-check-merge-no-element-after">schema-check-merge-no-element-after</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">The node after the merge position must be an element.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-schema-check-merge-no-element-before">
+      <h3><code><a class="member-name" href="#error-schema-check-merge-no-element-before">schema-check-merge-no-element-before</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">The node before the merge position must be an element.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-selectionchange-infinite-loop">
+      <h3><code><a class="member-name" href="#error-selectionchange-infinite-loop">selectionchange-infinite-loop</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Selection change observer detected an infinite rendering loop.
+Most probably you try to put the selection in the position which is not allowed
+by the browser and browser fixes it automatically what causes <code>selectionchange</code> event on
+which a loopback through a model tries to re-render the wrong selection and again.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-split-operation-graveyard-position-invalid">
+      <h3><code><a class="member-name" href="#error-split-operation-graveyard-position-invalid">split-operation-graveyard-position-invalid</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Graveyard position invalid.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-split-operation-how-many-invalid">
+      <h3><code><a class="member-name" href="#error-split-operation-how-many-invalid">split-operation-how-many-invalid</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Split operation specifies wrong number of nodes to move.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-split-operation-position-invalid">
+      <h3><code><a class="member-name" href="#error-split-operation-position-invalid">split-operation-position-invalid</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Split position is invalid.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-split-operation-split-in-root">
+      <h3><code><a class="member-name" href="#error-split-operation-split-in-root">split-operation-split-in-root</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Cannot split root element.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-template-extend-render">
+      <h3><code><a class="member-name" href="#error-template-extend-render">template-extend-render</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Extending a template after rendering may not work as expected. To make sure
+the <a href="../../../api/module_ui_template-Template.html#static-function-extend">extending</a> works for an element,
+make sure it happens before <a href="../../../api/module_ui_template-Template.html#function-render"><code>render</code></a> is called.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-toolbarview-item-unavailable">
+      <h3><code><a class="member-name" href="#error-toolbarview-item-unavailable">toolbarview-item-unavailable</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">There was a problem processing the configuration of the toolbar. The item with the given
+name does not exist so it was omitted when rendering the toolbar.
+      </p>
+      <div class="collapsing-list__content">
+<p>This warning usually shows up when the <a href="../../../api/module_core_plugin-Plugin.html"><code>Plugin</code></a> which is supposed
+to provide a toolbar item has not been loaded or there is a typo in the configuration.</p>
+<p>Make sure the plugin responsible for this toolbar item is loaded and the toolbar configuration
+is correct, e.g. <a href="../../../api/module_basic-styles_bold-Bold.html"><code>Bold</code></a> is loaded for the <code>&apos;bold&apos;</code> toolbar item.</p>
+<p>You can use the following snippet to retrieve all available toolbar items:</p>
+<pre class="prettyprint source"><code>Array.from( editor.ui.componentFactory.names() );</code></pre>
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>name
+              :
+ <span>String</span></code></dt>
+          <dd><p>The name of the component.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-ui-template-extend-children-mismatch">
+      <h3><code><a class="member-name" href="#error-ui-template-extend-children-mismatch">ui-template-extend-children-mismatch</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">The number of children in extended definition does not match.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-ui-template-revert-not-applied">
+      <h3><code><a class="member-name" href="#error-ui-template-revert-not-applied">ui-template-revert-not-applied</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Attempting to revert a template which has not been applied yet.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-ui-template-wrong-syntax">
+      <h3><code><a class="member-name" href="#error-ui-template-wrong-syntax">ui-template-wrong-syntax</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Node definition cannot have the &quot;tag&quot; and &quot;text&quot; properties at the same time.
+Node definition must have either &quot;tag&quot; or &quot;text&quot; when rendering a new Node.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-ui-view-render-rendered">
+      <h3><code><a class="member-name" href="#error-ui-view-render-rendered">ui-view-render-rendered</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">This View has already been rendered.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-ui-viewcollection-delegate-wrong-events">
+      <h3><code><a class="member-name" href="#error-ui-viewcollection-delegate-wrong-events">ui-viewcollection-delegate-wrong-events</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">All event names must be strings.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-view-conversion-dispatcher-incorrect-result">
+      <h3><code><a class="member-name" href="#error-view-conversion-dispatcher-incorrect-result">view-conversion-dispatcher-incorrect-result</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Incorrect conversion result was dropped.
+      </p>
+      <div class="collapsing-list__content">
+<p><a href="../../../api/module_engine_model_range-Range.html">Model range</a> should be a conversion result.</p>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-view-createPositionAt-offset-required">
+      <h3><code><a class="member-name" href="#error-view-createPositionAt-offset-required">view-createPositionAt-offset-required</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt"><a href="../../../api/module_engine_view_view-View.html#function-createPositionAt"><code>View#createPositionAt()</code></a>
+requires the offset to be specified when the first parameter is a view item.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-view-editableelement-document-already-set">
+      <h3><code><a class="member-name" href="#error-view-editableelement-document-already-set">view-editableelement-document-already-set</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">View document is already set. It can only be set once.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-view-emptyelement-cannot-add">
+      <h3><code><a class="member-name" href="#error-view-emptyelement-cannot-add">view-emptyelement-cannot-add</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Cannot add children to <a href="../../../api/module_engine_view_emptyelement-EmptyElement.html"><code>EmptyElement</code></a>.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-view-focus-no-selection">
+      <h3><code><a class="member-name" href="#error-view-focus-no-selection">view-focus-no-selection</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Before focusing view document, selection should be placed inside one of the view&apos;s editables.
+Normally its selection will be converted from model document (which have default selection), but
+when using view document on its own, we need to manually place selection before focusing it.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-view-node-not-found-in-parent">
+      <h3><code><a class="member-name" href="#error-view-node-not-found-in-parent">view-node-not-found-in-parent</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">The node&apos;s parent does not contain this node. It means that the document tree is corrupted.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-view-position-after-root">
+      <h3><code><a class="member-name" href="#error-view-position-after-root">view-position-after-root</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">You can not make a position after a root.
+      </p>
+      <div class="collapsing-list__content">
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>root
+              :
+ <span><a class="collapsing-list__type" href="../../../api/module_engine_view_node-Node.html">Node</a></span></code></dt>
+          <dd>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-view-position-before-root">
+      <h3><code><a class="member-name" href="#error-view-position-before-root">view-position-before-root</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">You cannot make a position before a root.
+      </p>
+      <div class="collapsing-list__content">
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>root
+              :
+ <span><a class="collapsing-list__type" href="../../../api/module_engine_view_node-Node.html">Node</a></span></code></dt>
+          <dd>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-view-renderer-filler-was-lost">
+      <h3><code><a class="member-name" href="#error-view-renderer-filler-was-lost">view-renderer-filler-was-lost</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">The inline filler node was lost. Most likely, something overwrote the filler text node
+in the DOM.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-view-selection-add-range-not-range">
+      <h3><code><a class="member-name" href="#error-view-selection-add-range-not-range">view-selection-add-range-not-range</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Selection range set to an object that is not an instance of <a href="../../../api/module_engine_view_range-Range.html"><code>Range</code></a>.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-view-selection-range-intersects">
+      <h3><code><a class="member-name" href="#error-view-selection-range-intersects">view-selection-range-intersects</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Trying to add a range that intersects with another range from selection.
+      </p>
+      <div class="collapsing-list__content">
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>addedRange
+              :
+ <span><a class="collapsing-list__type" href="../../../api/module_engine_view_range-Range.html">Range</a></span></code></dt>
+          <dd><p>Range that was added to the selection.</p>
+          </dd>
+          <dt><code>intersectingRange
+              :
+ <span><a class="collapsing-list__type" href="../../../api/module_engine_view_range-Range.html">Range</a></span></code></dt>
+          <dd><p>Range from selection that intersects with <code>addedRange</code>.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-view-selection-setFocus-no-ranges">
+      <h3><code><a class="member-name" href="#error-view-selection-setFocus-no-ranges">view-selection-setFocus-no-ranges</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Cannot set selection focus if there are no ranges in selection.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-view-selection-setTo-not-selectable">
+      <h3><code><a class="member-name" href="#error-view-selection-setTo-not-selectable">view-selection-setTo-not-selectable</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Cannot set selection to given place.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-view-selection-setTo-required-second-parameter">
+      <h3><code><a class="member-name" href="#error-view-selection-setTo-required-second-parameter">view-selection-setTo-required-second-parameter</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">selection.setTo requires the second parameter when the first parameter is a node.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-view-textproxy-wrong-length">
+      <h3><code><a class="member-name" href="#error-view-textproxy-wrong-length">view-textproxy-wrong-length</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Given length value is incorrect.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-view-textproxy-wrong-offsetintext">
+      <h3><code><a class="member-name" href="#error-view-textproxy-wrong-offsetintext">view-textproxy-wrong-offsetintext</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Given offsetInText value is incorrect.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-view-tree-walker-no-start-position">
+      <h3><code><a class="member-name" href="#error-view-tree-walker-no-start-position">view-tree-walker-no-start-position</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Neither boundaries nor starting position have been defined.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-view-uielement-cannot-add">
+      <h3><code><a class="member-name" href="#error-view-uielement-cannot-add">view-uielement-cannot-add</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Cannot add children to <a href="../../../api/module_engine_view_uielement-UIElement.html"><code>UIElement</code></a>.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-view-writer-break-non-container-element">
+      <h3><code><a class="member-name" href="#error-view-writer-break-non-container-element">view-writer-break-non-container-element</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Trying to break an element which is not a container element.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-view-writer-break-root">
+      <h3><code><a class="member-name" href="#error-view-writer-break-root">view-writer-break-root</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Trying to break root element.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-view-writer-cannot-break-empty-element">
+      <h3><code><a class="member-name" href="#error-view-writer-cannot-break-empty-element">view-writer-cannot-break-empty-element</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Cannot break inside EmptyElement instance.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-view-writer-cannot-break-ui-element">
+      <h3><code><a class="member-name" href="#error-view-writer-cannot-break-ui-element">view-writer-cannot-break-ui-element</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Cannot break inside UIElement instance.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-view-writer-insert-invalid-node">
+      <h3><code><a class="member-name" href="#error-view-writer-insert-invalid-node">view-writer-insert-invalid-node</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Inserted nodes should be valid to insert. of <a href="../../../api/module_engine_view_attributeelement-AttributeElement.html">AttributeElement</a>,
+<a href="../../../api/module_engine_view_containerelement-ContainerElement.html">ContainerElement</a>,
+<a href="../../../api/module_engine_view_emptyelement-EmptyElement.html">EmptyElement</a>,
+<a href="../../../api/module_engine_view_uielement-UIElement.html">UIElement</a>, <a href="../../../api/module_engine_view_text-Text.html">Text</a>.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-view-writer-invalid-position-container">
+      <h3><code><a class="member-name" href="#error-view-writer-invalid-position-container">view-writer-invalid-position-container</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Position&apos;s parent container cannot be found.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-view-writer-invalid-range-container">
+      <h3><code><a class="member-name" href="#error-view-writer-invalid-range-container">view-writer-invalid-range-container</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Range container is invalid. This can happen if <a href="../../../api/module_engine_view_range-Range.html#member-start">range start</a> and
+<a href="../../../api/module_engine_view_range-Range.html#member-end">range end</a> positions are not placed inside same container or
+parent container for these positions cannot be found.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-view-writer-merge-containers-invalid-position">
+      <h3><code><a class="member-name" href="#error-view-writer-merge-containers-invalid-position">view-writer-merge-containers-invalid-position</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Element before and after given position cannot be merged.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-view-writer-unwrap-invalid-attribute">
+      <h3><code><a class="member-name" href="#error-view-writer-unwrap-invalid-attribute">view-writer-unwrap-invalid-attribute</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Attribute element need to be instance of attribute element.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-view-writer-wrap-invalid-attribute">
+      <h3><code><a class="member-name" href="#error-view-writer-wrap-invalid-attribute">view-writer-wrap-invalid-attribute</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Attribute element need to be instance of attribute element.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-viewconsumable-invalid-attribute">
+      <h3><code><a class="member-name" href="#error-viewconsumable-invalid-attribute">viewconsumable-invalid-attribute</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Class and style attributes should be handled separately in
+<a href="../../../api/module_engine_conversion_viewconsumable-ViewConsumable.html#function-add"><code>ViewConsumable#add()</code></a>.
+      </p>
+      <div class="collapsing-list__content">
+<p>What you have done is trying to use:</p>
+<pre class="prettyprint source"><code>consumables.add( { attributes: [ &apos;class&apos;, &apos;style&apos; ] } );</code></pre><p>While each class and style should be registered separately:</p>
+<pre class="prettyprint source"><code>consumables.add( { classes: &apos;some-class&apos;, styles: &apos;font-weight&apos; } );</code></pre>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-widget-toolbar-duplicated">
+      <h3><code><a class="member-name" href="#error-widget-toolbar-duplicated">widget-toolbar-duplicated</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Toolbar with the given id was already added.
+      </p>
+      <div class="collapsing-list__content">
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>toolbarId</code></dt>
+          <dd><p>Toolbar id.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-writer-addMarker-marker-exists">
+      <h3><code><a class="member-name" href="#error-writer-addMarker-marker-exists">writer-addMarker-marker-exists</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Marker with provided name already exists.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-writer-addMarker-no-range">
+      <h3><code><a class="member-name" href="#error-writer-addMarker-no-range">writer-addMarker-no-range</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Range parameter is required when adding a new marker.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-writer-addMarker-no-usingOperations">
+      <h3><code><a class="member-name" href="#error-writer-addMarker-no-usingOperations">writer-addMarker-no-usingOperations</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">The <code>options.usingOperations</code> parameter is required when adding a new marker.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-writer-incorrect-use">
+      <h3><code><a class="member-name" href="#error-writer-incorrect-use">writer-incorrect-use</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Trying to use a writer outside a <a href="../../../api/module_engine_model_model-Model.html#function-change"><code>change()</code> or
+{@link module:engine/model/model~Model#enqueueChange <code>enqueueChange()</code></a> blocks.
+      </p>
+      <div class="collapsing-list__content">
+<p>The writer can only be used inside these blocks which ensures that the model
+can only be changed during such &quot;sessions&quot;.</p>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-writer-merge-no-element-after">
+      <h3><code><a class="member-name" href="#error-writer-merge-no-element-after">writer-merge-no-element-after</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Node after merge position must be an element.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-writer-merge-no-element-before">
+      <h3><code><a class="member-name" href="#error-writer-merge-no-element-before">writer-merge-no-element-before</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Node before merge position must be an element.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-writer-move-different-document">
+      <h3><code><a class="member-name" href="#error-writer-move-different-document">writer-move-different-document</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Range is going to be moved within not the same document. Please use
+<a href="../../../api/module_engine_model_writer-Writer.html#function-insert">insert</a> instead.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-writer-move-invalid-range">
+      <h3><code><a class="member-name" href="#error-writer-move-invalid-range">writer-move-invalid-range</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Invalid range to move.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-writer-move-range-not-flat">
+      <h3><code><a class="member-name" href="#error-writer-move-range-not-flat">writer-move-range-not-flat</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Range to move is not flat.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-writer-removeMarker-no-marker">
+      <h3><code><a class="member-name" href="#error-writer-removeMarker-no-marker">writer-removeMarker-no-marker</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Trying to remove marker which does not exist.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-writer-rename-not-element-instance">
+      <h3><code><a class="member-name" href="#error-writer-rename-not-element-instance">writer-rename-not-element-instance</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Trying to rename an object which is not an instance of Element.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-writer-split-element-no-parent">
+      <h3><code><a class="member-name" href="#error-writer-split-element-no-parent">writer-split-element-no-parent</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Element with no parent can not be split.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-writer-unwrap-element-no-parent">
+      <h3><code><a class="member-name" href="#error-writer-unwrap-element-no-parent">writer-unwrap-element-no-parent</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Trying to unwrap an element which has no parent.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-writer-updateMarker-marker-not-exists">
+      <h3><code><a class="member-name" href="#error-writer-updateMarker-marker-not-exists">writer-updateMarker-marker-not-exists</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Marker with provided name does not exists.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-writer-updateMarker-wrong-options">
+      <h3><code><a class="member-name" href="#error-writer-updateMarker-wrong-options">writer-updateMarker-wrong-options</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">One of the options is required - provide range, usingOperations or affectsData.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-writer-wrap-element-attached">
+      <h3><code><a class="member-name" href="#error-writer-wrap-element-attached">writer-wrap-element-attached</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Element to wrap with is already attached to a tree model.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-writer-wrap-element-not-empty">
+      <h3><code><a class="member-name" href="#error-writer-wrap-element-not-empty">writer-wrap-element-not-empty</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Element to wrap with is not empty.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item">
+    <div class="collapsing-list__term toggler--collapsed" id="error-writer-wrap-range-not-flat">
+      <h3><code><a class="member-name" href="#error-writer-wrap-range-not-flat">writer-wrap-range-not-flat</a></code></h3>
+    </div>
+    <div class="collapsing-list__description">
+      <p class="collapsing-list__excerpt">Range to wrap is not flat.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+</ul>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Guides</span></div>
+                            <ul class="tree__item-nested-list">
+                                    <li><a href="../overview.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="../quick-start.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span></div></a></li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Architecture</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../architecture/intro.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Introduction</span></div></a></li>
+                                              <li><a href="../architecture/core-editor-architecture.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Core editor architecture</span></div></a></li>
+                                              <li><a href="../architecture/editing-engine.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editing engine</span></div></a></li>
+                                              <li><a href="../architecture/ui-library.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">UI library</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Deep dive</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../deep-dive/clipboard.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Clipboard</span></div></a></li>
+                                              <li><a href="../deep-dive/observables.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Observables</span></div></a></li>
+                                              <li><a href="../deep-dive/schema.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Schema</span></div></a></li>
+                                              <li>
+                                                <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">User interface</span></div>
+                                                <ul class="tree__item-nested-list">
+                                                        <li><a href="../deep-dive/ui/theme-customization.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Theme customization</span></div></a></li>
+                                                        <li><a href="../deep-dive/ui/external-ui.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Third–party UI</span></div></a></li>
+                                                        <li><a href="../deep-dive/ui/document-editor.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document editor</span></div></a></li>
+                                                </ul>
+                                              </li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Contributing</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../contributing/contributing.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Contributing</span></div></a></li>
+                                              <li><a href="../contributing/development-environment.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development environment</span></div></a></li>
+                                              <li><a href="../contributing/testing-environment.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Testing environment</span></div></a></li>
+                                              <li><a href="../contributing/git-commit-message-convention.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Git commit message convention</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Support</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="browser-compatibility.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Browser compatibility</span></div></a></li>
+                                              <li><a href="license-and-legal.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span></div></a></li>
+                                              <li><a href="getting-support.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting support</span></div></a></li>
+                                              <li><a href="reporting-issues.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span></div></a></li>
+                                              <li><a href="">
+                                                  <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Error codes</span></div></a></li>
+                                      </ul>
+                                    </li>
+                            </ul>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2017-2018 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},debug:true,
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'framework' ] = hits.filter( function( h ) {return h.tags.includes( 'framework' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'framework' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'framework' ] );tags.forEach( function( tag ) {if ( tag !== 'framework' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+  </body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Image upload - CKEditor 5</title>
+    <link rel="canonical" href="/ckeditor5/latest/features/image-upload.html">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../assets/0.3.37/css/styles.css" type="text/css" media="screen">
+    <script src="../../../assets/0.3.37/scripts/app.js"></script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top">
+      <div class="top__logo top__left"><span class="top__logo__product-icon" style="background-image: url( ../assets/img/project-logo.svg );"></span><a class="top__logo__product-title" href="../index.html">CKEditor 5</a></div>
+      <ul class="top__menu">
+        <li><a href="../builds/index.html">Builds</a></li>
+        <li><a href="../framework/index.html">Framework</a></li>
+        <li><a href="../examples/index.html">Examples</a></li>
+        <li><a class="top__menu__item--active" href="index.html">Features</a></li>
+        <li><a href="../api/index.html">API</a></li>
+        <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."></a></li>
+      </ul>
+      <div class="top__search">
+        <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.3.37/img/loupe.svg" alt="Search"></button>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/features/image-upload.md" title="Contribute to this guide"><img src="../../../assets/0.3.37/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../assets/0.3.37/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <h1><img src="../../../assets/0.3.37/img/book.svg" alt="guide">Image upload
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Responsive-images">Responsive images</a></li><li><a href="#Easy-Image">Easy Image</a></li><li><a href="#What-39-s-next">What&apos;s next?</a></li></ol></nav><p>Inserting images into content created with CKEditor is a very common task. CKEditor 5 introduced a totally new way of handling images, with strong focus on the end user experience. The goal is to make this an effortless and intuitive task.</p>
+<p>In a properly configured editor, there are several ways for the end user to insert images:</p>
+<ul>
+<li>Pasting it from the clipboard.</li>
+<li>Dragging a file from the file system.</li>
+<li>Selecting it through a file system dialog.</li>
+<li>Selecting it from a media management tool in your application.</li>
+</ul>
+<p>Excluding the last option, all other ways require the image to be uploaded to a server, which will be the one responsible for providing the image URL used by CKEditor to display the image in the document.</p>
+<p>The image insertion, therefore, is made of a few steps, which are transparent to the end user:</p>
+<ol>
+<li>The user inserts an image.</li>
+<li>A temporary image (placeholder) is inserted.</li>
+<li>The image is being uploaded.</li>
+<li>The server returns the image URL.</li>
+<li>The temporary image is replaced with the definitive one.</li>
+</ol>
+<!-- TODO [ Drawing: workflow ( User Inserts Image ) -> ( Temporary Image Inserted ) -> ( Image Uploaded ) -> ( URL Returned ) -> ( Temporary Image Replaced with Definitive ) ] -->
+<p>To make the above process possible, an image upload plugin must be available. Such plugin will handle both the upload and URL returning steps in the above workflow.</p>
+<h2 id="Responsive-images"><a href="#Responsive-images" class="headerlink" title="Responsive images"></a>Responsive images</h2><p>Another great feature introduced with CKEditor 5 is the ability to have responsive images in the content. With a single image upload, several optimized versions of that image are created after upload, for different size of displays. All this is totally transparent to the end user who uploaded the image.</p>
+<p>Be sure to use image upload plugins with support for responsive images to enjoy this important additional benefit. <a href="#Easy-Image">Easy Image</a> has support for responsive images out of the box, too.</p>
+<h2 id="Easy-Image"><a href="#Easy-Image" class="headerlink" title="Easy Image"></a>Easy Image</h2><p>To make enabling image upload in CKEditor 5 a breeze, by default all builds include the <a href="../api/module_easy-image_easyimage-EasyImage.html"><code>EasyImage</code> plugin</a>, which integrates with the Easy Image service provided by <a href="https://ckeditor.com/ckeditor-cloud-services/" target="_blank" rel="external">CKEditor Cloud Services</a>. Enabling it is straightforward and the results are immediate:</p>
+<div class="info-box notice notice__warning"><p>CKEditor Cloud Services are in private beta. <a href="https://ckeditor.com/contact/" target="_blank" rel="external">Contact us</a> to learn more.</p></div>
+
+<ol>
+<li>Create an account in CKEditor Cloud Services (CS).</li>
+<li>Create an API key in your CS account.</li>
+<li>Create a security token entry point in your application.</li>
+<li><p>Configure CKEditor to use the security token entry point:</p>
+<pre><code class="js"> ClassicCreator
+     .create( document.querySelector( &apos;#editor&apos; ), {
+         cloudServices: {
+             tokenUrl: &apos;http://url-to-retrieve-token.example.com/&apos;
+         }
+     } )
+     .then( ... )
+     .catch( ... );
+</code></pre>
+</li>
+</ol>
+<p>This is all. At this point, image upload will be automatically enabled in your application.</p>
+<h2 id="What-39-s-next"><a href="#What-39-s-next" class="headerlink" title="What&apos;s next?"></a>What&apos;s next?</h2><p>See the <a href="image.html">Image feature</a> guide to learn more about handling images in CKEditor 5.</p>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li><a href="autoformat.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Autoformatting</span></div></a></li>
+                          <li><a href="headings.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Headings</span></div></a></li>
+                          <li><a href="">
+                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Image upload</span></div></a></li>
+                          <li><a href="image.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Images</span></div></a></li>
+                          <li><a href="keyboard-support.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Keyboard support</span></div></a></li>
+                          <li><a href="markdown.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Markdown output</span></div></a></li>
+                          <li><a href="read-only.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Read-only support</span></div></a></li>
+                          <li><a href="ui-language.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Setting the UI language</span></div></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},debug:false,
+transformData: function(hits) {var sortingFn = ( a, b ) => {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;return a.custom_ranking > b.custom_ranking ? -1 :a.custom_ranking < b.custom_ranking ? 1 : 0;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];result = result.concat(hits.filter( h => h.tags.includes( 'features' ) ).slice( 0, 7 ).sort( sortingFn ));tags.forEach( function( tag ) {if ( tag !== 'features' ) {result = result.concat(hits.filter( h => h.tags.includes( tag ) ).slice( 0, 10 ).sort( sortingFn ).slice( 0, 3 ));}} );return result;}
+});
+</script>
+  </body>
+</html>

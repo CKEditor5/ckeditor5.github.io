@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Images - CKEditor 5 Documentation</title>
+    <meta property="og:title" content="Images - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="/ckeditor5/latest/features/image.html">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../assets/0.4.6/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../assets/styles.css" type="text/css">
+    <link rel="stylesheet" href="../snippets/build-classic-source/snippet.css" type="text/css">
+    <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
+    <script>
+      ( function() {
+      	'use strict';
+      	var el = document.createElement( 'script' );
+      	el.setAttribute( 'async', 'async' );
+      	el.setAttribute( 'defer', 'defer' );
+      	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
+      		el.src = "../../../assets/0.4.6/scripts/app.js";
+      	} else {
+      		el.src = "../../../assets/0.4.6/scripts/app-polyfill.js";
+      	}
+      	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
+      } )();
+    </script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="top__logo top__left"><span class="top__logo__product-icon" style="background-image: url( ../assets/img/project-logo.svg )"></span><a class="top__logo__product-title" href="../index.html">CKEditor 5</a></div>
+      <ul class="top__menu">
+        <li><a href="../builds/index.html">Builds</a></li>
+        <li><a href="../framework/index.html">Framework</a></li>
+        <li><a href="../examples/index.html">Examples</a></li>
+        <li><a class="top__menu__item--active" href="index.html">Features</a></li>
+        <li><a class="top__menu__api" href="../api/index.html">API</a></li>
+        <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."></a></li>
+      </ul>
+      <div class="top__search">
+        <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.4.6/img/loupe.svg" alt="Search"></button>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-image/blob/master/docs/features/image.md" title="Contribute to this guide"><img src="../../../assets/0.4.6/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5-image/issues/new" title="Report an issue"><img src="../../../assets/0.4.6/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <h1><img src="../../../assets/0.4.6/img/book.svg" alt="guide">Images
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#base-image-support">Base image support</a></li><li><a href="#image-contextual-toolbar">Image contextual toolbar</a></li><li><a href="#image-captions">Image captions</a></li><li><a href="#image-styles">Image styles</a><ol><li><a href="#configuring-image-styles">Configuring image styles</a></li><li><a href="#defining-custom-styles">Defining custom styles</a></li></ol></li><li><a href="#image-upload">Image upload</a></li><li><a href="#responsive-images">Responsive images</a></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
+<p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-image" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-image</code></a> package contains multiple plugins that implement various image-related features:</p>
+<ul>
+<li><a href="../api/module_image_image-Image.html"><code>Image</code></a> implements basic support for images.</li>
+<li><a href="../api/module_image_imagetoolbar-ImageToolbar.html"><code>ImageToolbar</code></a> adds the image feature&#x2019;s contextual toolbar.</li>
+<li><a href="../api/module_image_imagecaption-ImageCaption.html"><code>ImageCaption</code></a> adds support for captions.</li>
+<li><a href="../api/module_image_imagestyle-ImageStyle.html"><code>ImageStyle</code></a> adds support for image styles.</li>
+<li><a href="../api/module_image_imagetextalternative-ImageTextAlternative.html"><code>ImageTextAlternative</code></a> adds support for adding text alternative.</li>
+<li><a href="../api/module_image_imageupload-ImageUpload.html"><code>ImageUpload</code></a> adds support for uploading dropped or pasted images (see: <a href="image-upload.html">Image upload</a>).</li>
+</ul>
+<div class="info-box notice notice__info"><p>All features listed above are enabled by default in all builds.</p></div>
+<h2 id="base-image-support"><a class="headerlink" href="#base-image-support">#</a> Base image support</h2>
+<p>The <a href="../api/module_image_image-Image.html"><code>Image</code></a> feature adds support for plain images with just the <code>alt</code> attribute set. This translates to the following HTML:</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;image&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;...&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;...&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
+</code></pre>
+<div class="info-box notice notice__hint"><p>This feature follows the markup proposed by the <a href="http://ckeditor.github.io/editor-recommendations/features/images.html" target="_blank" rel="noopener">Editor Recommendations</a> project.</p></div>
+<p>You can see the demo of an editor with the base image feature enabled below:</p>
+<div class="live-snippet"><div id="snippet-image">
+	<p>This is <a href="https://ckeditor.com">CKEditor&#xA0;5</a>.</p>
+
+	<figure class="image">
+		<img src="../assets/img/fields.jpg" alt="Autumn fields">
+	</figure>
+</div>
+</div>
+<div class="info-box notice notice__hint"><p>The base image feature, unlike in CKEditor 4, does not support any user interface for inserting or managing images. Its sole purpose is to lay ground for other plugins (mentioned above) to build the target user experience. This pattern (composition of atomic features) is common for CKEditor 5 and allows the developers to build their own customized experience by implementing specific subfeatures differently.</p></div>
+<h2 id="image-contextual-toolbar"><a class="headerlink" href="#image-contextual-toolbar">#</a> Image contextual toolbar</h2>
+<p>The <a href="../api/module_image_imagetoolbar-ImageToolbar.html"><code>ImageToolbar</code></a> plugin introduces a contextual toolbar for images. The toolbar appears when an image is selected and can be configured to contain any buttons you want. Usually, these will be image-related options such as the text alternative (which is introduced by the base image plugin) button and <a href="#image-styles">image styles buttons</a>.</p>
+<p>See a demo of an editor with the contextual toolbar enabled:</p>
+<div class="live-snippet"><div id="snippet-image-toolbar">
+	<p>This is <a href="https://ckeditor.com">CKEditor&#xA0;5</a>.</p>
+
+	<figure class="image">
+		<img src="../assets/img/fields.jpg" alt="Autumn fields">
+	</figure>
+</div>
+</div>
+<p>The image toolbar is configured to contain the image text alternative button:</p>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">image</span>: {
+            <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;imageTextAlternative&apos;</span> ]
+        }
+    } )
+</code></pre>
+<h2 id="image-captions"><a class="headerlink" href="#image-captions">#</a> Image captions</h2>
+<p>The <a href="../api/module_image_imagecaption-ImageCaption.html"><code>ImageCaption</code></a> plugin adds support for image captions:</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;image&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;...&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;...&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">figcaption</span>&gt;</span>Caption goes here...<span class="hljs-tag">&lt;/<span class="hljs-name">figcaption</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
+</code></pre>
+<p>By default, if the image caption is empty, the <code>&lt;figcaption&gt;</code> element is not visible to the user. You can click the image to reveal the caption. See the demo below:</p>
+<div class="live-snippet"><div id="snippet-image-caption">
+	<p>Image with caption:</p>
+
+	<figure class="image">
+		<img src="../assets/img/fields.jpg" alt="Autumn fields">
+		<figcaption>Autumn fields by Aleksander Nowodzi&#x144;ski</figcaption>
+	</figure>
+
+	<p>Image without caption:</p>
+
+	<figure class="image">
+		<img src="../assets/img/fields.jpg" alt="Autumn fields">
+	</figure>
+</div>
+</div>
+<h2 id="image-styles"><a class="headerlink" href="#image-styles">#</a> Image styles</h2>
+<p>In simple integrations it is enough to let the user insert images, set their text alternative and the editor&#x2019;s job is done. An example of such a simple solution are e.g. <a href="https://github.com" target="_blank" rel="noopener">GitHub</a> comments. The styling of the images (for example, their maximum width and margins) is controlled by GitHub through stylesheets.</p>
+<p>In more advanced scenarios, the user may need to be able to decide whether the image should take the whole width (if it is the article&#x2019;s main photo) or it should take, for example, 50% of the width and be pulled out of the content (so called &#x201C;pulled images&#x201D;). Various integration scenarios require different types of images to be used.</p>
+<p>This is what the <a href="../api/module_image_imagestyle-ImageStyle.html"><code>ImageStyle</code></a> feature is designed for.</p>
+<p>However, unlike in CKEditor 4, in CKEditor 5 the end user does not set the image border, alignment, margins, width, etc. separately. Instead, they can pick one of the styles defined by the developer who prepared the editor integration. This gives the developer control over how the users style images and makes the user&#x2019;s life easier by setting multiple properties at once.</p>
+<p>A style is applied to the image in form of a class. By default, the editor is configured to support two styles: &#x201C;full width&#x201D; (which does not apply any class &#x2014; it is the default style) and &#x201C;side image&#x201D; (which applies the <code>image-style-side</code> class).</p>
+<p>A normal (full width) image:</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;image&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;...&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;...&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
+</code></pre>
+<p>A side image:</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;image image-style-side&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;...&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;...&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
+</code></pre>
+<div class="info-box notice"><p>The actual styling of the images is the developer&#x2019;s job. The editor comes with some default styles, but they will only be applied to images inside the editor. The developer needs to style them appropriately on the target pages.</p><p>You can find the source of the default styles applied by the editor here: <a href="https://github.com/ckeditor/ckeditor5-image/blob/master/theme/imagestyle.css" target="_blank" rel="noopener"><code>ckeditor5-image/theme/imagestyle.css</code></a>.</p></div>
+<p>Below you can see a demo of the editor with the image styles feature enabled. The default configuration is used. You can change the styles of images through the image&#x2019;s contextual toolbar.</p>
+<div class="live-snippet"><div id="snippet-image-style">
+	<p>This is full width image (default style):</p>
+
+	<figure class="image">
+		<img src="../assets/img/fields.jpg" alt="Autumn fields">
+	</figure>
+
+	<p>This is side image:</p>
+
+	<figure class="image image-style-side">
+		<img src="../assets/img/fields.jpg" alt="Autumn fields">
+	</figure>
+
+	<p>Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here.</p>
+</div>
+</div>
+<h3 id="configuring-image-styles"><a class="headerlink" href="#configuring-image-styles">#</a> Configuring image styles</h3>
+<p>The available image styles can be configured using the <a href="../api/module_image_image-ImageConfig.html#member-styles"><code>image.styles</code></a> option.</p>
+<p>The following editor supports the default full image style plus left- and right-aligned images:</p>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">image</span>: {
+            <span class="hljs-comment">// You need to configure the image toolbar, too, so it uses the new style buttons.</span>
+            toolbar: [ <span class="hljs-string">&apos;imageTextAlternative&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;imageStyle:alignLeft&apos;</span>, <span class="hljs-string">&apos;imageStyle:full&apos;</span>, <span class="hljs-string">&apos;imageStyle:alignRight&apos;</span> ],
+
+            <span class="hljs-attr">styles</span>: [
+                <span class="hljs-comment">// This option is equal to a situation where no style is applied.</span>
+                <span class="hljs-string">&apos;full&apos;</span>,
+
+                <span class="hljs-comment">// This represents an image aligned to the left.</span>
+                <span class="hljs-string">&apos;alignLeft&apos;</span>,
+
+                <span class="hljs-comment">// This represents an image aligned to the right.</span>
+                <span class="hljs-string">&apos;alignRight&apos;</span>
+            ]
+        }
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<p>The code sample above uses predefined image styles: <code>&apos;full&apos;</code>, <code>&apos;alignLeft&apos;</code> and <code>&apos;alignRight&apos;</code>. The latter two apply, respectively, the <code>.image-style-align-left</code> and  <code>.image-style-align-right</code> classes to the <code>&lt;figure&gt;</code> element.</p>
+<p>See the result below:</p>
+<div class="live-snippet"><div id="snippet-image-style-custom">
+	<p>An image to play with:</p>
+
+	<figure class="image">
+		<img src="../assets/img/fields.jpg" alt="Autumn fields">
+	</figure>
+
+	<p>Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here. Lots of text here.</p>
+</div>
+</div>
+<div class="info-box notice notice__hint"><p>In the example above the options used represent simple &#x201C;align left&#x201D; and &#x201C;align right&#x201D; styles. Most text editors support left, center and right alignments, however, try not to think about CKEditor 5&#x2019;s image styles in this way. Try to understand what use cases the system needs to support and define semantical options accordingly. Defining useful and clear styles is one of the steps towards a good user experience and clear, portable output. For example, the &#x201C;side image&#x201D; style can be displayed as a floated image on wide screens and as a normal image on low resolution screens.</p></div>
+<h3 id="defining-custom-styles"><a class="headerlink" href="#defining-custom-styles">#</a> Defining custom styles</h3>
+<p>Besides using the <a href="../api/module_image_imagestyle_utils.html#constant-defaultStyles">5 predefined styles</a>:</p>
+<ul>
+<li><code>&apos;full&apos;</code>,</li>
+<li><code>&apos;side&apos;</code>,</li>
+<li><code>&apos;alignLeft&apos;</code>,</li>
+<li><code>&apos;alignCenter&apos;</code>,</li>
+<li><code>&apos;alignRight&apos;</code></li>
+</ul>
+<p>you can also define your own styles or modify the existing ones.</p>
+<div class="info-box notice"><p>Reusing (or modifying) predefined styles has this advantage that CKEditor 5 will use its official translations for the defined button titles.</p></div>
+<p>You can find advanced examples in the <a href="../api/module_image_image-ImageConfig.html#member-styles"><code>image.styles</code></a> configuration option documentation.</p>
+<!-- TODO (live example)... -->
+<h2 id="image-upload"><a class="headerlink" href="#image-upload">#</a> Image upload</h2>
+<p>See the <a href="image-upload.html">Image upload</a> guide.</p>
+<h2 id="responsive-images"><a class="headerlink" href="#responsive-images">#</a> Responsive images</h2>
+<p>Coming soon&#x2026;</p>
+<!-- TODO 6 when finished, link here from the image-upload guide. -->
+<h2 id="installation"><a class="headerlink" href="#installation">#</a> Installation</h2>
+<p>To add image features to your editor, install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-image" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-image</code></a> package:</p>
+<pre class="highlight"><code class="bash">npm install --save @ckeditor/ckeditor5-image
+</code></pre>
+<p>And add the plugins that you need to your plugin list. You also need to set the image toolbar items.</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> Image <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-image/src/image&apos;</span>;
+<span class="hljs-keyword">import</span> ImageToolbar <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-image/src/imagetoolbar&apos;</span>;
+<span class="hljs-keyword">import</span> ImageCaption <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-image/src/imagecaption&apos;</span>;
+<span class="hljs-keyword">import</span> ImageStyle <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-image/src/imagestyle&apos;</span>;
+
+ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">plugins</span>: [ Image, ImageToolbar, ImageCaption, ImageStyle ],
+        <span class="hljs-attr">image</span>: {
+            <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;imageTextAlternative&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;imageStyle:full&apos;</span>, <span class="hljs-string">&apos;imageStyle:side&apos;</span> ]
+        }
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<div class="info-box notice notice__info"><p>Read more about <a href="../builds/guides/development/installing-plugins.html">installing plugins</a>.</p></div>
+<h2 id="common-api"><a class="headerlink" href="#common-api">#</a> Common API</h2>
+<p>The <a href="../api/module_image_image-Image.html"><code>Image</code></a> plugin registers:</p>
+<ul>
+<li>The <code>&apos;imageTextAlternative&apos;</code> button.</li>
+<li>
+<ul>
+<li>The <a href="../api/module_image_imagetextalternative_imagetextalternativecommand-ImageTextAlternativeCommand.html"><code>&apos;imageTextAlternative&apos;</code> command</a></li>
+</ul>
+</li>
+</ul>
+<p>The <a href="../api/module_image_imagestyle-ImageStyle.html"><code>ImageStyle</code></a> plugin registers:</p>
+<ul>
+<li>
+<p>A button for each defined style &#x2014; e.g. <code>&apos;imageStyle:full&apos;</code> and <code>&apos;imageStyle:side&apos;</code>.</p>
+</li>
+<li>
+<p>The <a href="../api/module_image_imagestyle_imagestylecommand-ImageStyleCommand.html"><code>&apos;imageStyle&apos;</code> command</a> which accepts a value based on the <a href="../api/module_image_image-ImageConfig.html#member-styles"><code>image.styles</code></a> configuration option (e.g. <code>&apos;full&apos;</code> and <code>&apos;side&apos;</code>):</p>
+<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;imageStyle&apos;</span>, { <span class="hljs-attr">value</span>: <span class="hljs-string">&apos;side&apos;</span> } );
+</code></pre>
+</li>
+</ul>
+<p>The <a href="../api/module_image_imageupload-ImageUpload.html"><code>ImageUpload</code></a> plugin registers:</p>
+<ul>
+<li>The <code>&apos;imageUpload&apos;</code> button which opens the native file browser to let you upload a file directly from your disk.</li>
+<li>The <a href="../api/module_image_imageupload_imageuploadcommand-ImageUploadCommand.html"><code>&apos;imageUpload&apos;</code> command</a> which accepts the file to upload.</li>
+</ul>
+<h2 id="contribute"><a class="headerlink" href="#contribute">#</a> Contribute</h2>
+<p>The source code of the feature is available on GitHub in <a href="https://github.com/ckeditor/ckeditor5-image" target="_blank" rel="noopener">https://github.com/ckeditor/ckeditor5-image</a>.</p>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li><a href="autoformat.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Autoformatting</span></div></a></li>
+                          <li><a href="font.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Font</span></div></a></li>
+                          <li><a href="headings.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Headings</span></div></a></li>
+                          <li><a href="highlight.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Highlight</span></div></a></li>
+                          <li><a href="image-upload.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Image upload</span></div></a></li>
+                          <li><a href="basic-styles.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic text styles</span></div></a></li>
+                          <li><a href="keyboard-support.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Keyboard support</span></div></a></li>
+                          <li><a href="markdown.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Markdown output</span></div></a></li>
+                          <li><a href="read-only.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Read-only support</span></div></a></li>
+                          <li><a href="ui-language.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Setting the UI language</span></div></a></li>
+                          <li><a href="text-alignment.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Text alignment</span></div></a></li>
+                          <li><a href="">
+                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Images</span></div></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2017-2018 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},debug:false,
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'features' ] = hits.filter( function( h ) {return h.tags.includes( 'features' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'features' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'features' ] );tags.forEach( function( tag ) {if ( tag !== 'features' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+    <script src="../snippets/build-classic-source/snippet.js"></script>
+    <script src="../snippets/features/image/snippet.js"></script>
+    <script src="../snippets/features/image-toolbar/snippet.js"></script>
+    <script src="../snippets/features/image-caption/snippet.js"></script>
+    <script src="../snippets/features/image-style/snippet.js"></script>
+    <script src="../snippets/features/image-style-custom/snippet.js"></script>
+  </body>
+</html>

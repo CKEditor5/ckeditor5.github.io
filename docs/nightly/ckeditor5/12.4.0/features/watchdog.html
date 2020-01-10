@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Watchdog - CKEditor 5 Documentation</title>
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:site" content="@ckeditor">
+    <meta property="og:title" content="Watchdog - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/features/watchdog.html">
+    <meta property="DC.language" content="en">
+    <meta property="DC.publisher" content="CKSource">
+    <meta property="DC.creator" content="CKEditor">
+    <meta property="DC.title" content="Watchdog - CKEditor 5 Documentation">
+    <meta property="DC.format" content="text/html">
+    <meta property="DC.type" content="Text">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/features/watchdog.html">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../assets/1.1.3/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../assets/styles.css" type="text/css">
+    <script>
+      ( function() {
+      	'use strict';
+      	// Set up global variables;
+      	if ( !window.umebrto ) {
+      		window.umberto = {};
+      	}
+      	window.umberto.relativeAppPath = "../../../assets/1.1.3/scripts"
+      
+      	// Add app script
+      	var el = document.createElement( 'script' );
+      	el.setAttribute( 'async', 'async' );
+      	el.setAttribute( 'defer', 'defer' );
+      	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
+      		el.src = "../../../assets/1.1.3/scripts/app.js";
+      	} else {
+      		el.src = "../../../assets/1.1.3/scripts/app-polyfill.js";
+      	}
+      	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
+      
+      	// Changing documentation theme enable it via `localStorage.setItem( 'theme', 'theme-dark' )`
+      	if ( localStorage.getItem( 'theme' ) === 'theme-dark' ) {
+      		document.getElementsByTagName( 'html' )[ 0 ].classList.add( 'theme-dark' );
+      	}
+      } )();
+    </script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="header__main">
+        <div class="header__main-rwd-button"><a href="#"><span></span><span></span><span></span></a></div>
+        <div class="header__main-title"><a class="header__main-title-home" href="../../../index.html">CKEditor Ecosystem Documentation</a></div>
+        <div class="top__search">
+          <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+          <div class="top__search__button"><img src="../../../assets/1.1.3/img/loupe.svg" alt="Search"></div>
+        </div>
+      </div>
+      <div class="header__sub">
+        <ul class="top__menu">
+          <li class="top__menu-project-logo"><a href="../index.html">CKEditor 5</a></li>
+          <li><a href="../builds/index.html">Builds</a></li>
+          <li><a href="../framework/index.html">Framework</a></li>
+          <li><a href="../examples/index.html">Examples</a></li>
+          <li><a class="top__menu__item--active" href="index.html">Features</a></li>
+          <li><a class="top__menu__api" href="../api/index.html">API</a></li>
+          <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."><svg viewbox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li>
+        </ul>
+      </div>
+      <div class="header__menu-rwd">
+        <ul class="header__menu-rwd__projects">
+          <li data-project="ckeditor5"><a href="../../latest/index.html">CKEditor 5
+              <ul class="tree header__menu-rwd__projects-pages">
+                <li data-group="builds"><a href="../builds/index.html">Builds</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="framework"><a href="../framework/index.html">Framework</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="examples"><a href="../examples/index.html">Examples</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="features"><a href="index.html">Features</a>
+                  <!-- Display subpages for active project.-->
+                  <ul class="header__menu-rwd__projects-subpages">
+                            <li><a href="autoformat.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Autoformatting</span></div></a></li>
+                            <li><a href="text-transformation.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Automatic text transformation</span></div></a></li>
+                            <li><a href="basic-styles.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic text styles</span></div></a></li>
+                            <li><a href="indent.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block indentation</span></div></a></li>
+                            <li><a href="blocktoolbar.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block toolbar</span></div></a></li>
+                            <li><a href="title.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document title</span></div></a></li>
+                            <li><a href="editor-placeholder.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor placeholder</span></div></a></li>
+                            <li><a href="font.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Font</span></div></a></li>
+                            <li><a href="headings.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Headings</span></div></a></li>
+                            <li><a href="highlight.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Highlight</span></div></a></li>
+                            <li><a href="horizontal-line.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Horizontal line</span></div></a></li>
+                            <li>
+                              <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Image upload</span></div>
+                              <ul class="tree__item-nested-list">
+                                    <li><a href="image-upload/image-upload.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="image-upload/easy-image.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Easy Image</span></div></a></li>
+                                    <li><a href="image-upload/ckfinder.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">CKFinder file manager</span></div></a></li>
+                                    <li><a href="image-upload/base64-upload-adapter.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Base64 upload adapter</span></div></a></li>
+                                    <li><a href="image-upload/simple-upload-adapter.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Simple upload adapter</span></div></a></li>
+                              </ul>
+                            </li>
+                            <li><a href="image.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Images</span></div></a></li>
+                            <li><a href="keyboard-support.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Keyboard support</span></div></a></li>
+                            <li><a href="link.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Link</span></div></a></li>
+                            <li><a href="markdown.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Markdown output</span></div></a></li>
+                            <li><a href="math-equations.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Math and chemical formulas</span></div></a></li>
+                            <li><a href="media-embed.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Media embed</span></div></a></li>
+                            <li><a href="mentions.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Mentions</span></div></a></li>
+                            <li><a href="page-break.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Page break</span></div></a></li>
+                            <li>
+                              <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Pasting</span></div>
+                              <ul class="tree__item-nested-list">
+                                    <li><a href="pasting/paste-from-word.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Word</span></div></a></li>
+                                    <li><a href="pasting/paste-from-google-docs.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Google Docs</span></div></a></li>
+                              </ul>
+                            </li>
+                            <li><a href="spelling-and-grammar-checking.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Spelling and grammar checking</span></div></a></li>
+                            <li><a href="read-only.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Read-only support</span></div></a></li>
+                            <li><a href="remove-format.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Remove formatting</span></div></a></li>
+                            <li><a href="ui-language.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Setting the UI language</span></div></a></li>
+                            <li><a href="table.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Tables</span></div></a></li>
+                            <li><a href="text-alignment.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Text alignment</span></div></a></li>
+                            <li><a href="todo-lists.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">To-do lists</span></div></a></li>
+                            <li><a href>
+                                <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Watchdog</span></div></a></li>
+                            <li><a href="word-count.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Word and character count</span></div></a></li>
+                  </ul>
+                </li>
+                <li data-group="api-reference"><a href="../api/index.html">API</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+              </ul></a></li>
+        </ul>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-watchdog/blob/master/docs/features/watchdog.md" title="Contribute to this guide"><img src="../../../assets/1.1.3/img/edit.svg" alt="Contribute to this guide"></a>
+          </div>
+          <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
+          </div>
+          <h1 class="main__content-title"><img src="../../../assets/1.1.3/img/book.svg" alt="guide">Watchdog
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#usage">Usage</a><ol><li><a href="#controlling-editor-creation-and-destruction">Controlling editor creation and destruction</a></li><li><a href="#api">API</a></li><li><a href="#configuration">Configuration</a></li></ol></li><li><a href="#limitations">Limitations</a></li></ol></nav>
+<p>Every non-trivial piece of software has bugs. Despite our high quality standards like 100% code coverage, regression testing and manual tests before every release, CKEditor 5 is not free of bugs. Neither is the browser used by the user, your application in which CKEditor 5 is integrated, or any third-party addons that you used.</p>
+<p>In order to limit the effect of an editor crash on the user experience, you can automatically restart the WYSIWYG editor with the content saved just before the crash.</p>
+<p>The <a href="../api/module_watchdog_watchdog-Watchdog.html"><code>Watchdog</code></a> utility allows you to do exactly that. It ensures that an editor instance is running, despite a potential crash. It works by detecting that an editor crashed, destroying it, and automatically creating a new instance of that editor with the content of the previous editor.</p>
+<p>It should be noticed that the most &#x201C;dangerous&#x201D; places in the API - like <code>editor.model.change()</code>, <code>editor.editing.view.change()</code>, emitters - are covered with checks and <code>try-catch</code> blocks that allow detecting unknown errors and restart editor when they occur.</p>
+<h2 id="usage"><a class="headerlink" href="#usage">#</a> Usage</h2>
+<div class="info-box notice"><p>Note: Watchdog can be used only with an <a href="../builds/guides/integration/advanced-setup.html#scenario-2-building-from-source">editor built from source</a>.</p></div>
+<p>Install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-watchdog" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-watchdog</code></a> package:</p>
+<pre class="highlight"><code class="bash">npm install --save @ckeditor/ckeditor5-watchdog
+</code></pre>
+<p>And then change your <code>ClassicEditor.create()</code> call to <code>watchdog.create()</code> as follows:</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
+<span class="hljs-keyword">import</span> Watchdog <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-watchdog/src/watchdog&apos;</span>;
+
+<span class="hljs-keyword">import</span> Essentials <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;</span>;
+<span class="hljs-keyword">import</span> Paragraph <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;</span>;
+<span class="hljs-keyword">import</span> Bold <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;</span>;
+<span class="hljs-keyword">import</span> Italic <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;</span>;
+
+<span class="hljs-comment">// Create a watchdog for the given editor type.</span>
+<span class="hljs-keyword">const</span> watchdog = Watchdog.for( ClassicEditor );
+
+<span class="hljs-comment">// Create a new editor instance.</span>
+watchdog.create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+    <span class="hljs-attr">plugins</span>: [ Essentials, Paragraph, Bold, Italic ],
+    <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-string">&apos;italic&apos;</span>, <span class="hljs-string">&apos;alignment&apos;</span> ]
+} );
+</code></pre>
+<p>In other words, your goal is to create a watchdog instance and make the watchdog create an instance of the editor you want to use. The watchdog will then create a new editor and if it ever crashes, restart it by creating a new editor.</p>
+<div class="info-box notice"><p>A new editor instance is created every time the watchdog detects a crash. Thus, the editor instance should not be kept in your application&#x2019;s state. Use the <a href="../api/module_watchdog_watchdog-Watchdog.html#member-editor"><code>Watchdog#editor</code></a> property instead.</p><p>It also means that any code that should be executed for any new editor instance should be either loaded as an editor plugin or executed in the callbacks defined by <a href="../api/module_watchdog_watchdog-Watchdog.html#function-setCreator"><code>Watchdog#setCreator()</code></a> and <a href="../api/module_watchdog_watchdog-Watchdog.html#function-setDestructor"><code>Watchdog#setDestructor()</code></a>. Read more about controlling the editor creation and destruction in the next section.</p></div>
+<h3 id="controlling-editor-creation-and-destruction"><a class="headerlink" href="#controlling-editor-creation-and-destruction">#</a> Controlling editor creation and destruction</h3>
+<p>For more control over the creation and destruction of editor instances, you can use the <a href="../api/module_watchdog_watchdog-Watchdog.html#function-setCreator"><code>Watchdog#setCreator()</code></a> and, if needed, the <a href="../api/module_watchdog_watchdog-Watchdog.html#function-setDestructor"><code>Watchdog#setDestructor()</code></a> methods:</p>
+<pre class="highlight"><code class="js"><span class="hljs-comment">// Instantiate the watchdog manually (do not use the for() helper).</span>
+<span class="hljs-keyword">const</span> watchdog = <span class="hljs-keyword">new</span> Watchdog();
+
+watchdog.setCreator( <span class="hljs-function">(<span class="hljs-params"> elementOrData, editorConfig </span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> ClassicEditor
+        .create( elementOrData, editorConfig )
+        .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+            <span class="hljs-comment">// Do something with the new editor instance.</span>
+        } );
+} );
+
+watchdog.setDestructor( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+    <span class="hljs-comment">// Do something before the editor is destroyed.</span>
+
+    <span class="hljs-keyword">return</span> editor
+        .destroy()
+        .then( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+            <span class="hljs-comment">// Do something after the editor is destroyed.</span>
+        } );
+ } );
+
+watchdog.create( elementOrData, editorConfig );
+</code></pre>
+<div class="info-box notice"><p>The default (not overridden) editor destructor is the <code>editor =&gt; editor.destroy()</code> function.</p></div>
+<h3 id="api"><a class="headerlink" href="#api">#</a> API</h3>
+<p>Other useful <a href="../api/module_watchdog_watchdog-Watchdog.html">methods, properties and events</a>:</p>
+<pre class="highlight"><code class="js">watchdog.on( <span class="hljs-string">&apos;error&apos;</span>, () =&gt; { <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;Editor crashed.&apos;</span> ) } );
+watchdog.on( <span class="hljs-string">&apos;restart&apos;</span>, () =&gt; { <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;Editor was restarted.&apos;</span> ) } );
+
+<span class="hljs-comment">// Destroy the watchdog and the current editor instance.</span>
+watchdog.destroy();
+
+<span class="hljs-comment">// The current editor instance.</span>
+watchdog.editor;
+
+<span class="hljs-comment">// The current state of the editor.</span>
+<span class="hljs-comment">// The editor might be in one of the following states:</span>
+<span class="hljs-comment">// * `initializing` - before the first initialization, and after crashes, before the editor is ready,</span>
+<span class="hljs-comment">// * `ready` - a state when a user can interact with the editor,</span>
+<span class="hljs-comment">// * `crashed` - a state when an error occurs - it quickly changes to `initializing` or `crashedPermanently` depending on how many and how frequency errors have been caught recently,</span>
+<span class="hljs-comment">// * `crashedPermanently` - a state when the watchdog stops reacting to errors and keeps the editor crashed,</span>
+<span class="hljs-comment">// * `destroyed` - a state when the editor is manually destroyed by the user after calling `watchdog.destroy()`.</span>
+<span class="hljs-comment">// This property is observable.</span>
+watchdog.state;
+
+<span class="hljs-comment">// Listen to state changes.</span>
+watchdog.on( <span class="hljs-string">&apos;change:state&apos;</span> ( evt, name, currentState, prevState ) =&gt; {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">`State changed from <span class="hljs-subst">${ currentState }</span> to <span class="hljs-subst">${ prevState }</span>`</span> );
+
+    <span class="hljs-keyword">if</span> ( currentState === <span class="hljs-string">&apos;crashedPermanently&apos;</span> ) {
+        watchdog.editor.isReadOnly = <span class="hljs-literal">true</span>;
+    }
+} );
+
+<span class="hljs-comment">// An array of editor crashes info.</span>
+watchdog.crashes.forEach( <span class="hljs-function"><span class="hljs-params">crashInfo</span> =&gt;</span> <span class="hljs-built_in">console</span>.log( crashInfo ) );
+</code></pre>
+<h3 id="configuration"><a class="headerlink" href="#configuration">#</a> Configuration</h3>
+<p>Both, the <a href="../api/module_watchdog_watchdog-Watchdog.html#function-constructor"><code>Watchdog#constructor</code></a> and the <a href="../api/module_watchdog_watchdog-Watchdog.html#static-function-for"><code>Watchdog.for</code></a> methods accept a {<a href="../api/module_watchdog_watchdog-WatchdogConfig.html">configuration object</a> with the following optional properties:</p>
+<ul>
+<li><code>crashNumberLimit</code> - A threshold specifying the number of editor errors (defaults to <code>3</code>). After this limit is reached and the time between last errors is shorter than <code>minimumNonErrorTimePeriod</code> the watchdog changes its state to <code>crashedPermanently</code> and it stops restarting the editor. This prevents an infinite restart loop.</li>
+<li><code>minimumNonErrorTimePeriod</code> - An average amount of milliseconds between last editor errors (defaults to 5000). When the period of time between errors is lower than that and the <code>crashNumberLimit</code> is also reached the watchdog changes its state to <code>crashedPermanently</code> and it stops restarting the editor. This prevents an infinite restart loop.</li>
+<li><code>saveInterval</code> - A minimum number of milliseconds between saving editor data internally (defaults to 5000). Note that for large documents this might have an impact on the editor performance.</li>
+</ul>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> watchdog = <span class="hljs-keyword">new</span> Watchdog( {
+    <span class="hljs-attr">minimumNonErrorTimePeriod</span>: <span class="hljs-number">2000</span>,
+    <span class="hljs-attr">crashNumberLimit</span>: <span class="hljs-number">4</span>,
+    <span class="hljs-attr">saveInterval</span>: <span class="hljs-number">1000</span>
+} )
+</code></pre>
+<h2 id="limitations"><a class="headerlink" href="#limitations">#</a> Limitations</h2>
+<p>The CKEditor 5 watchdog listens to uncaught errors which can be associated with the editor instance created by that watchdog. Currently, these errors are <a href="../api/module_utils_ckeditorerror-CKEditorError.html"><code>CKEditorError</code> errors</a> so those explicitly thrown by the editor (by its internal checks). This means that not every runtime error that crashed the editor can be caught which, in turn, means that not every crash can be detected.</p>
+<div class="info-box notice"><p>The watchdog does not handle errors thrown during the editor initialization (by <code>Editor.create()</code>) and editor destruction (<code>Editor#destroy()</code>). Errors thrown at these stages mean that there is a serious problem in the code integrating the editor with your application and such problem cannot be easily fixed by restarting the editor.</p></div>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li><a href="autoformat.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Autoformatting</span></div></a></li>
+                          <li><a href="text-transformation.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Automatic text transformation</span></div></a></li>
+                          <li><a href="basic-styles.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic text styles</span></div></a></li>
+                          <li><a href="indent.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block indentation</span></div></a></li>
+                          <li><a href="blocktoolbar.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block toolbar</span></div></a></li>
+                          <li><a href="title.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document title</span></div></a></li>
+                          <li><a href="editor-placeholder.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor placeholder</span></div></a></li>
+                          <li><a href="font.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Font</span></div></a></li>
+                          <li><a href="headings.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Headings</span></div></a></li>
+                          <li><a href="highlight.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Highlight</span></div></a></li>
+                          <li><a href="horizontal-line.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Horizontal line</span></div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Image upload</span></div>
+                            <ul class="tree__item-nested-list">
+                                    <li><a href="image-upload/image-upload.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="image-upload/easy-image.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Easy Image</span></div></a></li>
+                                    <li><a href="image-upload/ckfinder.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">CKFinder file manager</span></div></a></li>
+                                    <li><a href="image-upload/base64-upload-adapter.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Base64 upload adapter</span></div></a></li>
+                                    <li><a href="image-upload/simple-upload-adapter.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Simple upload adapter</span></div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="image.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Images</span></div></a></li>
+                          <li><a href="keyboard-support.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Keyboard support</span></div></a></li>
+                          <li><a href="link.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Link</span></div></a></li>
+                          <li><a href="markdown.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Markdown output</span></div></a></li>
+                          <li><a href="math-equations.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Math and chemical formulas</span></div></a></li>
+                          <li><a href="media-embed.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Media embed</span></div></a></li>
+                          <li><a href="mentions.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Mentions</span></div></a></li>
+                          <li><a href="page-break.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Page break</span></div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Pasting</span></div>
+                            <ul class="tree__item-nested-list">
+                                    <li><a href="pasting/paste-from-word.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Word</span></div></a></li>
+                                    <li><a href="pasting/paste-from-google-docs.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Google Docs</span></div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="spelling-and-grammar-checking.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Spelling and grammar checking</span></div></a></li>
+                          <li><a href="read-only.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Read-only support</span></div></a></li>
+                          <li><a href="remove-format.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Remove formatting</span></div></a></li>
+                          <li><a href="ui-language.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Setting the UI language</span></div></a></li>
+                          <li><a href="table.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Tables</span></div></a></li>
+                          <li><a href="text-alignment.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Text alignment</span></div></a></li>
+                          <li><a href="todo-lists.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">To-do lists</span></div></a></li>
+                          <li><a href>
+                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Watchdog</span></div></a></li>
+                          <li><a href="word-count.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Word and character count</span></div></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2003-2019 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'features' ] = hits.filter( function( h ) {return h.tags.includes( 'features' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'features' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'features' ] );tags.forEach( function( tag ) {if ( tag !== 'features' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+  </body>
+</html>

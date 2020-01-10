@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Theme customization - CKEditor 5 Documentation</title>
+    <meta property="og:title" content="Theme customization - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/guides/deep-dive/ui/theme-customization.html">
+    <link rel="icon" type="image/png" href="../../../../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../../../../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../../../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../../../../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../../../assets/0.8.2/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../../assets/styles.css" type="text/css">
+    <link rel="stylesheet" href="../../../../snippets/examples/theme-lark/snippet.css" type="text/css">
+    <link rel="stylesheet" href="../../../../assets/snippet-styles.css" type="text/css">
+    <script>
+      ( function() {
+      	'use strict';
+      	var el = document.createElement( 'script' );
+      	el.setAttribute( 'async', 'async' );
+      	el.setAttribute( 'defer', 'defer' );
+      	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
+      		el.src = "../../../../../../assets/0.8.2/scripts/app.js";
+      	} else {
+      		el.src = "../../../../../../assets/0.8.2/scripts/app-polyfill.js";
+      	}
+      	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
+      } )();
+    </script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="top__logo top__left"><span class="top__logo__product-icon" style="background-image: url( ../../../../assets/img/project-logo.svg )"></span><a class="top__logo__product-title" href="../../../../index.html">CKEditor 5</a></div>
+      <ul class="top__menu">
+        <li><a href="../../../../builds/index.html">Builds</a></li>
+        <li><a class="top__menu__item--active" href="../../../index.html">Framework</a></li>
+        <li><a href="../../../../examples/index.html">Examples</a></li>
+        <li><a href="../../../../features/index.html">Features</a></li>
+        <li><a class="top__menu__api" href="../../../../api/index.html">API</a></li>
+        <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."></a></li>
+      </ul>
+      <div class="top__search">
+        <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+        <button class="top__search__button" type="submit"><img src="../../../../../../assets/0.8.2/img/loupe.svg" alt="Search"></button>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-theme-lark/blob/master/docs/framework/guides/theme-customization.md" title="Contribute to this guide"><img src="../../../../../../assets/0.8.2/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5-theme-lark/issues/new" title="Report an issue"><img src="../../../../../../assets/0.8.2/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <h1 class="main__content-title"><img src="../../../../../../assets/0.8.2/img/book.svg" alt="guide">Theme customization
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#styles-processing-and-bundling">Styles processing and bundling</a></li><li><a href="#customization-with-css-variables">Customization with CSS variables</a></li></ol></nav>
+<p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-theme-lark" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-theme-lark</code></a> package contains the default theme of CKEditor 5. Lark is modular, <a href="https://en.bem.info/methodology/css/" target="_blank" rel="noopener">BEM&#x2013;friendly</a> and built using <a href="http://postcss.org/" target="_blank" rel="noopener">PostCSS</a>.</p>
+<p>Although it was designed with versatility and the most common editor use cases in mind, some integrations may require adjustments to make it match the style guidelines of the ecosystem. This kind of customization can be done by importing an extra <code>.css</code> file and overriding the <a href="https://www.w3.org/TR/css-variables/" target="_blank" rel="noopener">native CSS variables</a>.</p>
+<p>Below you can see a demo of an editor with the dark theme as a result of customizations described later in this guide:</p>
+<div class="live-snippet"><div id="snippet-classic-editor">
+	<p>
+		This is <a href="https://ckeditor.com">CKEditor&#xA0;5</a>.
+	</p>
+	<p>
+		It uses the default
+		<a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-theme-lark">Lark</a>
+		theme with various customizations.
+	</p>
+</div>
+</div>
+<h2 id="styles-processing-and-bundling"><a class="headerlink" href="#styles-processing-and-bundling">#</a> Styles processing and bundling</h2>
+<p>CKEditor 5 is bundled using <a href="https://webpack.js.org/" target="_blank" rel="noopener">webpack</a> and it handles the importing and processing of styles using <a href="https://webpack.js.org/concepts/loaders/" target="_blank" rel="noopener">loaders</a>. Its configuration can be found in the <code>webpack.config.js</code> file.</p>
+<div class="info-box notice notice__info"><p>To learn more about building CKEditor, check out the <a href="../../../../builds/guides/development/custom-builds.html">Creating custom builds</a> guide.</p></div>
+<p>The entire process of building and managing the styles boils down to three steps:</p>
+<ol>
+<li>
+<p><strong>Collecting</strong>: Each JavaScript file in the project can import multiple <code>.css</code> files using the ES6 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import" target="_blank" rel="noopener"><code>import</code></a> directive. Imported files are handled by <a href="https://www.npmjs.com/package/postcss-loader" target="_blank" rel="noopener">PostCSS Loader</a>.</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> <span class="hljs-string">&apos;../theme/styles.css&apos;</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AnyEditorClass</span> </span>{
+    ...
+}
+</code></pre>
+<pre class="highlight"><code class="css"><span class="hljs-comment">/* Contents of styles.css. */</span>
+<span class="hljs-selector-pseudo">:root</span> {
+    <span class="hljs-attribute">--color</span>: red;
+}
+
+<span class="hljs-selector-class">.ck-editor</span> {
+    <span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--color);
+}
+</code></pre>
+</li>
+<li>
+<p><strong>Processing</strong>: PostCSS Loader processes <code>.css</code> files to the output CSS. Each file is compiled asynchronously, in a separate processor thread using pre&#x2013;defined plugins.</p>
+</li>
+<li>
+<p><strong>Loading</strong>: Finally the <a href="https://www.npmjs.com/package/style-loader" target="_blank" rel="noopener">style loader</a> loads the output CSS along with the <code>ckeditor.js</code> file into a <code>&lt;style&gt;</code> element in the <code>&lt;head&gt;</code> section of the web page.</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/css&quot;</span>&gt;</span><span class="css">
+        <span class="hljs-selector-class">.ck-editor</span> {
+            <span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--color);
+        }
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+</code></pre>
+</li>
+</ol>
+<h2 id="customization-with-css-variables"><a class="headerlink" href="#customization-with-css-variables">#</a> Customization with CSS variables</h2>
+<p>Having <a href="../../../../builds/guides/development/custom-builds.html#forking-an-existing-build">cloned</a> an existing build of CKEditor for a quick start, let&#x2019;s use the full potential of CSS variables (custom properties). The customization explained in this guide will make the theme dark, with slightly bigger text and more rounded corners.</p>
+<div class="info-box notice notice__hint"><p>Check out the <a href="https://github.com/ckeditor/ckeditor5-theme-lark/blob/master/theme/ckeditor5-ui/globals/_colors.css" target="_blank" rel="noopener">color sheet</a> for a full list of customizable colors. You can also browse <a href="https://github.com/ckeditor/ckeditor5-theme-lark/blob/master/theme/ckeditor5-ui/globals" target="_blank" rel="noopener">other files</a> to learn about other useful tools.</p></div>
+<p>The file containing custom variables will be named <code>custom.css</code> and it will look as below:</p>
+<pre class="highlight"><code class="css"><span class="hljs-selector-pseudo">:root</span> {
+    <span class="hljs-comment">/* Overrides the border radius setting in the theme. */</span>
+    <span class="hljs-attribute">--ck-border-radius</span>: <span class="hljs-number">4px</span>;
+
+    <span class="hljs-comment">/* Overrides the default font size in the theme. */</span>
+    <span class="hljs-attribute">--ck-font-size-base</span>: <span class="hljs-number">14px</span>;
+
+    <span class="hljs-comment">/* Helper variables to avoid duplication in the colors. */</span>
+    <span class="hljs-attribute">--ck-custom-background</span>: <span class="hljs-built_in">hsl</span>(270, 1%, 29%);
+    <span class="hljs-attribute">--ck-custom-foreground</span>: <span class="hljs-built_in">hsl</span>(255, 3%, 18%);
+    <span class="hljs-attribute">--ck-custom-border</span>: <span class="hljs-built_in">hsl</span>(300, 1%, 22%);
+    <span class="hljs-attribute">--ck-custom-white</span>: <span class="hljs-built_in">hsl</span>(0, 0%, 100%);
+
+    <span class="hljs-comment">/* -- Overrides generic colors. ------------------------------------------------------------- */</span>
+
+    <span class="hljs-attribute">--ck-color-base-foreground</span>: <span class="hljs-built_in">var</span>(--ck-custom-background);
+    <span class="hljs-attribute">--ck-color-focus-border</span>: <span class="hljs-built_in">hsl</span>(208, 90%, 62%);
+    <span class="hljs-attribute">--ck-color-text</span>: <span class="hljs-built_in">hsl</span>(0, 0%, 98%);
+    <span class="hljs-attribute">--ck-color-shadow-drop</span>: <span class="hljs-built_in">hsla</span>(0, 0%, 0%, 0.2);
+    <span class="hljs-attribute">--ck-color-shadow-inner</span>: <span class="hljs-built_in">hsla</span>(0, 0%, 0%, 0.1);
+
+    <span class="hljs-comment">/* -- Overrides the default .ck-button class colors. ---------------------------------------- */</span>
+
+    <span class="hljs-attribute">--ck-color-button-default-background</span>: <span class="hljs-built_in">var</span>(--ck-custom-background);
+    <span class="hljs-attribute">--ck-color-button-default-hover-background</span>: <span class="hljs-built_in">hsl</span>(270, 1%, 22%);
+    <span class="hljs-attribute">--ck-color-button-default-active-background</span>: <span class="hljs-built_in">hsl</span>(270, 2%, 20%);
+    <span class="hljs-attribute">--ck-color-button-default-active-shadow</span>: <span class="hljs-built_in">hsl</span>(270, 2%, 23%);
+    <span class="hljs-attribute">--ck-color-button-default-disabled-background</span>: <span class="hljs-built_in">var</span>(--ck-custom-background);
+
+    <span class="hljs-attribute">--ck-color-button-on-background</span>: <span class="hljs-built_in">var</span>(--ck-custom-foreground);
+    <span class="hljs-attribute">--ck-color-button-on-hover-background</span>: <span class="hljs-built_in">hsl</span>(255, 4%, 16%);
+    <span class="hljs-attribute">--ck-color-button-on-active-background</span>: <span class="hljs-built_in">hsl</span>(255, 4%, 14%);
+    <span class="hljs-attribute">--ck-color-button-on-active-shadow</span>: <span class="hljs-built_in">hsl</span>(240, 3%, 19%);
+    <span class="hljs-attribute">--ck-color-button-on-disabled-background</span>: <span class="hljs-built_in">var</span>(--ck-custom-foreground);
+
+    <span class="hljs-attribute">--ck-color-button-action-background</span>: <span class="hljs-built_in">hsl</span>(168, 76%, 42%);
+    <span class="hljs-attribute">--ck-color-button-action-hover-background</span>: <span class="hljs-built_in">hsl</span>(168, 76%, 38%);
+    <span class="hljs-attribute">--ck-color-button-action-active-background</span>: <span class="hljs-built_in">hsl</span>(168, 76%, 36%);
+    <span class="hljs-attribute">--ck-color-button-action-active-shadow</span>: <span class="hljs-built_in">hsl</span>(168, 75%, 34%);
+    <span class="hljs-attribute">--ck-color-button-action-disabled-background</span>: <span class="hljs-built_in">hsl</span>(168, 76%, 42%);
+    <span class="hljs-attribute">--ck-color-button-action-text</span>: <span class="hljs-built_in">var</span>(--ck-custom-white);
+
+    <span class="hljs-attribute">--ck-color-button-save</span>: <span class="hljs-built_in">hsl</span>(120, 100%, 46%);
+    <span class="hljs-attribute">--ck-color-button-cancel</span>: <span class="hljs-built_in">hsl</span>(15, 100%, 56%);
+
+    <span class="hljs-comment">/* -- Overrides the default .ck-dropdown class colors. -------------------------------------- */</span>
+
+    <span class="hljs-attribute">--ck-color-dropdown-panel-background</span>: <span class="hljs-built_in">var</span>(--ck-custom-background);
+    <span class="hljs-attribute">--ck-color-dropdown-panel-border</span>: <span class="hljs-built_in">var</span>(--ck-custom-foreground);
+
+    <span class="hljs-comment">/* -- Overrides the default .ck-input class colors. ----------------------------------------- */</span>
+
+    <span class="hljs-attribute">--ck-color-input-background</span>: <span class="hljs-built_in">var</span>(--ck-custom-foreground);
+    <span class="hljs-attribute">--ck-color-input-border</span>: <span class="hljs-built_in">hsl</span>(257, 3%, 43%);
+    <span class="hljs-attribute">--ck-color-input-text</span>: <span class="hljs-built_in">hsl</span>(0, 0%, 98%);
+    <span class="hljs-attribute">--ck-color-input-disabled-background</span>: <span class="hljs-built_in">hsl</span>(255, 4%, 21%);
+    <span class="hljs-attribute">--ck-color-input-disabled-border</span>: <span class="hljs-built_in">hsl</span>(250, 3%, 38%);
+    <span class="hljs-attribute">--ck-color-input-disabled-text</span>: <span class="hljs-built_in">hsl</span>(0, 0%, 46%);
+
+    <span class="hljs-comment">/* -- Overrides the default .ck-list class colors. ------------------------------------------ */</span>
+
+    <span class="hljs-attribute">--ck-color-list-background</span>: <span class="hljs-built_in">var</span>(--ck-custom-background);
+    <span class="hljs-attribute">--ck-color-list-button-hover-background</span>: <span class="hljs-built_in">var</span>(--ck-color-base-foreground);
+    <span class="hljs-attribute">--ck-color-list-button-on-background</span>: <span class="hljs-built_in">var</span>(--ck-color-base-active);
+    <span class="hljs-attribute">--ck-color-list-button-on-background-focus</span>: <span class="hljs-built_in">var</span>(--ck-color-base-active-focus);
+    <span class="hljs-attribute">--ck-color-list-button-on-text</span>: <span class="hljs-built_in">var</span>(--ck-color-base-background);
+
+    <span class="hljs-comment">/* -- Overrides the default .ck-balloon-panel class colors. --------------------------------- */</span>
+
+    <span class="hljs-attribute">--ck-color-panel-background</span>: <span class="hljs-built_in">var</span>(--ck-custom-background);
+    <span class="hljs-attribute">--ck-color-panel-border</span>: <span class="hljs-built_in">var</span>(--ck-custom-border);
+
+    <span class="hljs-comment">/* -- Overrides the default .ck-toolbar class colors. --------------------------------------- */</span>
+
+    <span class="hljs-attribute">--ck-color-toolbar-background</span>: <span class="hljs-built_in">var</span>(--ck-custom-background);
+    <span class="hljs-attribute">--ck-color-toolbar-border</span>: <span class="hljs-built_in">var</span>(--ck-custom-border);
+
+    <span class="hljs-comment">/* -- Overrides the default .ck-tooltip class colors. --------------------------------------- */</span>
+
+    <span class="hljs-attribute">--ck-color-tooltip-background</span>: <span class="hljs-built_in">hsl</span>(252, 7%, 14%);
+    <span class="hljs-attribute">--ck-color-tooltip-text</span>: <span class="hljs-built_in">hsl</span>(0, 0%, 93%);
+
+    <span class="hljs-comment">/* -- Overrides the default colors used by the ckeditor5-image package. --------------------- */</span>
+
+    <span class="hljs-attribute">--ck-color-image-caption-background</span>: <span class="hljs-built_in">hsl</span>(0, 0%, 97%);
+    <span class="hljs-attribute">--ck-color-image-caption-text</span>: <span class="hljs-built_in">hsl</span>(0, 0%, 20%);
+
+    <span class="hljs-comment">/* -- Overrides the default colors used by the ckeditor5-widget package. -------------------- */</span>
+
+    <span class="hljs-attribute">--ck-color-widget-blurred-border</span>: <span class="hljs-built_in">hsl</span>(0, 0%, 87%);
+    <span class="hljs-attribute">--ck-color-widget-hover-border</span>: <span class="hljs-built_in">hsl</span>(43, 100%, 68%);
+    <span class="hljs-attribute">--ck-color-widget-editable-focus-background</span>: <span class="hljs-built_in">var</span>(--ck-custom-white);
+
+    <span class="hljs-comment">/* -- Overrides the default colors used by the ckeditor5-link package. ---------------------- */</span>
+
+    <span class="hljs-attribute">--ck-color-link-default</span>: <span class="hljs-built_in">hsl</span>(190, 100%, 75%);
+}
+</code></pre>
+<p>This file can be referenced directly in HTML <strong>after the <code>&lt;link&gt;</code> tag injected by the editor</strong> and its content will simply override the default CSS variables. CSS variables are natively <a href="https://caniuse.com/#feat=css-variables" target="_blank" rel="noopener">supported</a> in all major web browsers and just like any other CSS rule, they are prioritized in the order of precedence.</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;custom.css&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/css&quot;</span>&gt;</span>
+</code></pre>
+<p>Alternatively, the style sheet can also be imported into a JavaScript file that is processed by webpack and the <a href="#styles-processing-and-bundling">loaders</a>, becoming a part of the build, e.g. an entry point of the application.</p>
+<div class="info-box notice notice__info"><p>Learn more about <a href="../../quick-start.html">building the editor using webpack</a>.</p></div>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
+
+<span class="hljs-comment">// To override the default styles, this file must be imported after ClassicEditor.</span>
+<span class="hljs-keyword">import</span> <span class="hljs-string">&apos;custom.css&apos;</span>;
+
+ClassicEditor
+    .create( ... )
+    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log( editor );
+    } )
+    .catch( <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.error( err.stack );
+    } );
+
+</code></pre>
+<p>It is time to build the editor using <code>npm run build-ckeditor</code> and see the results. From now on, the editor&#x2019;s theme is using customized styles, which are a part of the build.</p>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Guides</span></div>
+                            <ul class="tree__item-nested-list">
+                                    <li><a href="../../overview.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="../../quick-start.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span></div></a></li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Architecture</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../../architecture/intro.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Introduction</span></div></a></li>
+                                              <li><a href="../../architecture/core-editor-architecture.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Core editor architecture</span></div></a></li>
+                                              <li><a href="../../architecture/editing-engine.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editing engine</span></div></a></li>
+                                              <li><a href="../../architecture/ui-library.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">UI library</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Deep dive</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../clipboard.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Clipboard</span></div></a></li>
+                                              <li><a href="../schema.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Schema</span></div></a></li>
+                                              <li>
+                                                <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">User interface</span></div>
+                                                <ul class="tree__item-nested-list">
+                                                        <li><a href="">
+                                                            <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Theme customization</span></div></a></li>
+                                                        <li><a href="external-ui.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Third–party UI</span></div></a></li>
+                                                        <li><a href="document-editor.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document editor</span></div></a></li>
+                                                </ul>
+                                              </li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Contributing</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../../contributing/development-environment.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development environment</span></div></a></li>
+                                              <li><a href="../../contributing/testing-environment.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Testing environment</span></div></a></li>
+                                              <li><a href="../../contributing/git-commit-message-convention.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Git commit message convention</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Support</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../../support/browser-compatibility.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Browser compatibility</span></div></a></li>
+                                              <li><a href="../../support/license-and-legal.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span></div></a></li>
+                                              <li><a href="../../support/getting-support.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting support</span></div></a></li>
+                                              <li><a href="../../support/reporting-issues.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span></div></a></li>
+                                              <li><a href="../../support/error-codes.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Error codes</span></div></a></li>
+                                      </ul>
+                                    </li>
+                            </ul>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2017-2018 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},debug:false,
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'framework' ] = hits.filter( function( h ) {return h.tags.includes( 'framework' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'framework' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'framework' ] );tags.forEach( function( tag ) {if ( tag !== 'framework' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+    <script src="../../../../snippets/examples/theme-lark/snippet.js"></script>
+  </body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Font - CKEditor 5 Documentation</title>
+    <meta property="og:title" content="Font - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="/ckeditor5/latest/features/font.html">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../assets/0.4.9/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../assets/styles.css" type="text/css">
+    <link rel="stylesheet" href="../snippets/features/build-font-source/snippet.css" type="text/css">
+    <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
+    <script>
+      ( function() {
+      	'use strict';
+      	var el = document.createElement( 'script' );
+      	el.setAttribute( 'async', 'async' );
+      	el.setAttribute( 'defer', 'defer' );
+      	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
+      		el.src = "../../../assets/0.4.9/scripts/app.js";
+      	} else {
+      		el.src = "../../../assets/0.4.9/scripts/app-polyfill.js";
+      	}
+      	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
+      } )();
+    </script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="top__logo top__left"><span class="top__logo__product-icon" style="background-image: url( ../assets/img/project-logo.svg )"></span><a class="top__logo__product-title" href="../index.html">CKEditor 5</a></div>
+      <ul class="top__menu">
+        <li><a href="../builds/index.html">Builds</a></li>
+        <li><a href="../framework/index.html">Framework</a></li>
+        <li><a href="../examples/index.html">Examples</a></li>
+        <li><a class="top__menu__item--active" href="index.html">Features</a></li>
+        <li><a class="top__menu__api" href="../api/index.html">API</a></li>
+        <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."></a></li>
+      </ul>
+      <div class="top__search">
+        <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+        <button class="top__search__button" type="submit"><img src="../../../assets/0.4.9/img/loupe.svg" alt="Search"></button>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-font/blob/master/docs/features/font.md" title="Contribute to this guide"><img src="../../../assets/0.4.9/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5-font/issues/new" title="Report an issue"><img src="../../../assets/0.4.9/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <h1><img src="../../../assets/0.4.9/img/book.svg" alt="guide">Font
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#configuring-the-font-family-feature">Configuring the font family feature</a></li><li><a href="#configuring-the-font-size-feature">Configuring the font size feature</a><ol><li><a href="#using-the-predefined-presets">Using the predefined presets</a></li><li><a href="#using-numerical-values">Using numerical values</a></li></ol></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
+<p>The <a href="../api/module_font_font-Font.html"><code>Font</code></a> plugin enables the following features in the editor:</p>
+<ul>
+<li><a href="../api/module_font_fontfamily-FontFamily.html"><code>FontFamily</code></a> &#x2013; Allows to change the font family by applying inline <code>&lt;span&gt;</code> elements with a <code>font-family</code> in the <code>style</code> attribute.</li>
+<li><a href="../api/module_font_fontsize-FontSize.html"><code>FontSize</code></a> &#x2013; Allows to control the font size by applying inline <code>&lt;span&gt;</code> elements that either have a CSS class or a <code>font-size</code> in the <code>style</code> attribute.</li>
+</ul>
+<h2 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h2>
+<div class="live-snippet"><div id="snippet-font">
+	<p>
+		This is a mixed text with different font sizes:
+		<span class="text-tiny">tiny</span>,
+		<span class="text-small">small</span>,
+		<span class="text-big">big</span> and
+		<span class="text-huge">huge</span>.
+	</p>
+
+	<p>
+		<span style="font-family: Arial, Helvetica, sans-serif;">This text has the &quot;Arial, Helvetica, sans-serif&quot; family set.</span>
+	</p>
+
+	<p>
+		<span style="font-family: &apos;Courier New&apos;, Courier, monospace;">This text has the &quot;Courier New, Courier, monospace&quot; family set.</span>
+	</p>
+
+</div>
+</div>
+<h2 id="configuring-the-font-family-feature"><a class="headerlink" href="#configuring-the-font-family-feature">#</a> Configuring the font family feature</h2>
+<p>It is possible to configure which font family options are supported by the editor. Use the <a href="../api/module_font_fontfamily-FontFamilyConfig.html#member-options"><code>fontFamily.options</code></a> configuration option to do so.</p>
+<p>Use the special <code>&apos;default&apos;</code> keyword to use the default font family defined in the web page styles. It removes any custom font family.</p>
+<p>For example, the following editor supports only two font families besides the default one:</p>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">fontFamily</span>: {
+            <span class="hljs-attr">options</span>: [
+                <span class="hljs-string">&apos;default&apos;</span>,
+                <span class="hljs-string">&apos;Ubuntu, Arial, sans-serif&apos;</span>,
+                <span class="hljs-string">&apos;Ubuntu Mono, Courier New, Courier, monospace&apos;</span>
+            ]
+        },
+        <span class="hljs-attr">toolbar</span>: [
+            <span class="hljs-string">&apos;heading&apos;</span>, <span class="hljs-string">&apos;bulletedList&apos;</span>, <span class="hljs-string">&apos;numberedList&apos;</span>, <span class="hljs-string">&apos;fontFamily&apos;</span>, <span class="hljs-string">&apos;undo&apos;</span>, <span class="hljs-string">&apos;redo&apos;</span>
+        ]
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<div class="live-snippet"><link href="https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Mono" rel="stylesheet">
+
+<div id="snippet-custom-font-family-options">
+	<p>
+		<span style="font-family: Ubuntu, Arial, sans-serif;">This text has the &quot;Ubuntu, Arial, sans-serif&quot; font family set.</span>
+	</p>
+
+	<p>
+		<span style="font-family: &apos;Ubuntu Mono&apos;, &apos;Courier New&apos;, Courier, monospace;">This text has the &quot;Ubuntu Mono, Courier New, Courier, monospace&quot; font family set.</span>
+	</p>
+</div>
+</div>
+<h2 id="configuring-the-font-size-feature"><a class="headerlink" href="#configuring-the-font-size-feature">#</a> Configuring the font size feature</h2>
+<p>It is possible to configure which font size options are supported by the editor. Use the <a href="../api/module_font_fontsize-FontSizeConfig.html#member-options"><code>fontSize.options</code></a> configuration option to do so.</p>
+<p>Use the special <code>&apos;default&apos;</code> keyword to use the default font size defined in the web page styles. It removes any custom font size.</p>
+<p>The font size feature supports two ways of defining the configuration: using predefined (named) presets or simple numeric values.</p>
+<h3 id="using-the-predefined-presets"><a class="headerlink" href="#using-the-predefined-presets">#</a> Using the predefined presets</h3>
+<p>The font size feature defines 4 named presets:</p>
+<ul>
+<li><code>&apos;tiny&apos;</code></li>
+<li><code>&apos;small&apos;</code></li>
+<li><code>&apos;big&apos;</code></li>
+<li><code>&apos;huge&apos;</code></li>
+</ul>
+<p>Each size is represented in the view as a <code>&lt;span&gt;</code> element with the <code>text-*</code> class. For example, the <code>&apos;tiny&apos;</code> preset looks as follows in the editor data:</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-tiny&quot;</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+</code></pre>
+<p>The CSS definition for the classes (presets) must be included in the web page styles where the edited content is rendered.</p>
+<p>Here is an example of the font size CSS classes:</p>
+<pre class="highlight"><code class="css"><span class="hljs-selector-class">.text-tiny</span> {
+    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">0.7em</span>;
+}
+
+<span class="hljs-selector-class">.text-small</span> {
+    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">0.85em</span>;
+}
+
+<span class="hljs-selector-class">.text-big</span> {
+    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1.4em</span>;
+}
+
+<span class="hljs-selector-class">.text-huge</span> {
+    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1.8em</span>;
+}
+</code></pre>
+<p>An example of the editor that supports only two font sizes:</p>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">fontSize</span>: {
+            <span class="hljs-attr">options</span>: [
+                <span class="hljs-string">&apos;tiny&apos;</span>,
+                <span class="hljs-string">&apos;default&apos;</span>,
+                <span class="hljs-string">&apos;big&apos;</span>
+            ]
+        },
+        <span class="hljs-attr">toolbar</span>: [
+            <span class="hljs-string">&apos;heading&apos;</span>, <span class="hljs-string">&apos;bulletedList&apos;</span>, <span class="hljs-string">&apos;numberedList&apos;</span>, <span class="hljs-string">&apos;fontSize&apos;</span>, <span class="hljs-string">&apos;undo&apos;</span>, <span class="hljs-string">&apos;redo&apos;</span>
+        ]
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<div class="live-snippet"><div id="snippet-custom-font-size-named-options">
+	<p>
+		This is a mixed text with different font sizes:
+		<span class="text-small">small</span> and
+		<span class="text-big">big</span>
+	</p>
+</div>
+</div>
+<h3 id="using-numerical-values"><a class="headerlink" href="#using-numerical-values">#</a> Using numerical values</h3>
+<p>The font feature also supports numerical values.</p>
+<p>In this case, each size is represented in the view as a <code>&lt;span&gt;</code> element with the <code>font-size</code> style set in <code>px</code>.<br>
+For example, <code>14</code> will be represented in the editor data as:</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;font-size: 14px&quot;</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+</code></pre>
+<p>Here is an example of the editor that supports numerical font sizes. Note that <code>&apos;default&apos;</code> is controlled by the default styles of the web page:</p>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">fontSize</span>: {
+            <span class="hljs-attr">options</span>: [
+                <span class="hljs-number">9</span>,
+                <span class="hljs-number">11</span>,
+                <span class="hljs-number">13</span>,
+                <span class="hljs-string">&apos;default&apos;</span>,
+                <span class="hljs-number">17</span>,
+                <span class="hljs-number">19</span>,
+                <span class="hljs-number">21</span>
+            ]
+        },
+        <span class="hljs-attr">toolbar</span>: [
+            <span class="hljs-string">&apos;heading&apos;</span>, <span class="hljs-string">&apos;bulletedList&apos;</span>, <span class="hljs-string">&apos;numberedList&apos;</span>, <span class="hljs-string">&apos;fontSize&apos;</span>, <span class="hljs-string">&apos;undo&apos;</span>, <span class="hljs-string">&apos;redo&apos;</span>
+        ]
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<div class="live-snippet"><div id="snippet-custom-font-size-numeric-options">
+	<p><span style="font-size: 9px">9px</span></p>
+	<p><span style="font-size: 11px">11px</span></p>
+	<p><span style="font-size: 13px">13px</span></p>
+	<p>Normal</p>
+	<p><span style="font-size: 17px">17px</span></p>
+	<p><span style="font-size: 19px">19px</span></p>
+	<p><span style="font-size: 21px">21px</span></p>
+</div>
+</div>
+<h2 id="installation"><a class="headerlink" href="#installation">#</a> Installation</h2>
+<p>To add this feature to your editor, install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-font" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-font</code></a> package:</p>
+<pre class="highlight"><code class="bash">npm install --save @ckeditor/ckeditor5-font
+</code></pre>
+<p>Then add it to your plugin list and the toolbar configuration:</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> Font <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-font/src/font&apos;</span>;
+
+ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">plugins</span>: [ Font, ... ],
+        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;fontSize&apos;</span>, <span class="hljs-string">&apos;fontFamily&apos;</span>, ... ]
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<p>You can also add one of the font features to your plugin list and the toolbar configuration:</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> FontFamily <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-font/src/fontfamily&apos;</span>;
+
+ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">plugins</span>: [ FontFamily, ... ],
+        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;fontFamily&apos;</span>, ... ]
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<div class="info-box notice notice__info"><p>Read more about <a href="../builds/guides/development/installing-plugins.html">installing plugins</a>.</p></div>
+<h2 id="common-api"><a class="headerlink" href="#common-api">#</a> Common API</h2>
+<p>The <a href="../api/module_font_fontfamily-FontFamily.html"><code>FontFamily</code></a> plugin registers:</p>
+<ul>
+<li>
+<p>The <code>&apos;fontFamily&apos;</code> dropdown,</p>
+</li>
+<li>
+<p>The <a href="../api/module_font_fontfamily_fontfamilycommand-FontFamilyCommand.html"><code>&apos;fontFamily&apos;</code></a> command.</p>
+<p>The number of options and their names correspond to the <a href="../api/module_font_fontfamily-FontFamilyConfig.html#member-options"><code>fontFamily.options</code></a> configuration option.</p>
+<p>You can change the font family of the current selection by executing the command with a desired value:</p>
+<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;fontFamily&apos;</span>, { <span class="hljs-attr">value</span>: <span class="hljs-string">&apos;Arial&apos;</span> } );
+</code></pre>
+<p>The <code>value</code> must correspond to the first font name in the configuration string. For the following default configuration:</p>
+<pre class="highlight"><code class="js">fontFamily.options = [
+    <span class="hljs-string">&apos;default&apos;</span>,
+    <span class="hljs-string">&apos;Arial, Helvetica, sans-serif&apos;</span>,
+    <span class="hljs-string">&apos;Courier New, Courier, monospace&apos;</span>,
+    <span class="hljs-string">&apos;Georgia, serif&apos;</span>,
+    <span class="hljs-string">&apos;Lucida Sans Unicode, Lucida Grande, sans-serif&apos;</span>,
+    <span class="hljs-string">&apos;Tahoma, Geneva, sans-serif&apos;</span>,
+    <span class="hljs-string">&apos;Times New Roman, Times, serif&apos;</span>,
+    <span class="hljs-string">&apos;Trebuchet MS, Helvetica, sans-serif&apos;</span>,
+    <span class="hljs-string">&apos;Verdana, Geneva, sans-serif&apos;</span>
+]
+</code></pre>
+<p>the <code>fontFamily</code> command will accept the corresponding strings as values:</p>
+<ul>
+<li><code>&apos;Arial&apos;</code></li>
+<li><code>&apos;Courier New&apos;</code></li>
+<li><code>&apos;Georgia&apos;</code></li>
+<li><code>&apos;Lucida Sans Unicode&apos;</code></li>
+<li><code>&apos;Tahoma&apos;</code></li>
+<li><code>&apos;Times New Roman&apos;</code></li>
+<li><code>&apos;Trebuchet MS&apos;</code></li>
+<li><code>&apos;Verdana&apos;</code></li>
+</ul>
+<p>Note that passing an empty value will remove the <code>fontFamily</code> from the selection (<code>default</code>):</p>
+<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;fontFamily&apos;</span> );
+</code></pre>
+</li>
+</ul>
+<p>The <a href="../api/module_font_fontsize-FontSize.html"><code>FontSize</code></a> plugin registers the following components:</p>
+<ul>
+<li>
+<p>The <code>&apos;fontSize&apos;</code> dropdown,</p>
+</li>
+<li>
+<p>The <a href="../api/module_font_fontsize_fontsizecommand-FontSizeCommand.html"><code>&apos;fontSize&apos;</code></a> command.</p>
+<p>The number of options and their names correspond to the <a href="../api/module_font_fontsize-FontSizeConfig.html#member-options"><code>fontSize.options</code></a> configuration option.</p>
+<p>You can change the font size of the current selection by executing the command with a desired value:</p>
+<pre class="highlight"><code class="js"><span class="hljs-comment">// For numerical values:</span>
+editor.execute( <span class="hljs-string">&apos;fontSize&apos;</span>, { <span class="hljs-attr">value</span>: <span class="hljs-number">10</span> } );
+
+<span class="hljs-comment">// For named presets:</span>
+editor.execute( <span class="hljs-string">&apos;fontSize&apos;</span>, { <span class="hljs-attr">value</span>: <span class="hljs-string">&apos;small&apos;</span> } );
+</code></pre>
+<p>Passing an empty value will remove any <code>fontSize</code> set:</p>
+<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;fontSize&apos;</span> );
+</code></pre>
+</li>
+</ul>
+<h2 id="contribute"><a class="headerlink" href="#contribute">#</a> Contribute</h2>
+<p>The source code of the feature is available on GitHub in <a href="https://github.com/ckeditor/ckeditor5-font" target="_blank" rel="noopener">https://github.com/ckeditor/ckeditor5-font</a>.</p>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li><a href="autoformat.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Autoformatting</span></div></a></li>
+                          <li><a href="">
+                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Font</span></div></a></li>
+                          <li><a href="headings.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Headings</span></div></a></li>
+                          <li><a href="highlight.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Highlight</span></div></a></li>
+                          <li><a href="image-upload.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Image upload</span></div></a></li>
+                          <li><a href="basic-styles.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic text styles</span></div></a></li>
+                          <li><a href="keyboard-support.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Keyboard support</span></div></a></li>
+                          <li><a href="markdown.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Markdown output</span></div></a></li>
+                          <li><a href="read-only.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Read-only support</span></div></a></li>
+                          <li><a href="ui-language.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Setting the UI language</span></div></a></li>
+                          <li><a href="text-alignment.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Text alignment</span></div></a></li>
+                          <li><a href="image.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Images</span></div></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2017-2018 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},debug:false,
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'features' ] = hits.filter( function( h ) {return h.tags.includes( 'features' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'features' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'features' ] );tags.forEach( function( tag ) {if ( tag !== 'features' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+    <script src="../snippets/features/build-font-source/snippet.js"></script>
+    <script src="../snippets/features/font/snippet.js"></script>
+    <script src="../snippets/features/custom-font-family-options/snippet.js"></script>
+    <script src="../snippets/features/custom-font-size-named-options/snippet.js"></script>
+    <script src="../snippets/features/custom-font-size-numeric-options/snippet.js"></script>
+  </body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quick start - CKEditor 5</title>
+    <link rel="canonical" href="/ckeditor5/latest/builds/guides/quick-start.html">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../assets/0.3.26/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../assets/0.3.26/scripts/app.js"></script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top">
+      <div class="top__logo"><span class="top__logo__product-icon" style="background-image: url( ../../assets/img/project-logo.svg );"></span><a class="top__logo__product-title" href="../../index.html">CKEditor 5</a></div>
+      <ul class="top__menu">
+        <li><a class="top__menu__item--active" href="../index.html">Builds</a></li>
+        <li><a href="../../framework/index.html">Framework</a></li>
+        <li><a href="../../examples/index.html">Examples</a></li>
+        <li><a href="../../features/index.html">Features</a></li>
+        <li><a href="../../api/index.html">API</a></li>
+      </ul>
+      <div class="top__search">
+        <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+        <button class="top__search__button" type="submit"><img src="../../../../assets/0.3.26/img/loupe.svg" alt="Search"></button>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/quick-start.md" title="Contribute to this guide"><img src="../../../../assets/0.3.26/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../assets/0.3.26/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <h1><img src="../../../../assets/0.3.26/img/book.svg" alt="guide">Quick start
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#Classic-editor">Classic editor</a><ol><li><a href="#Example">Example</a></li></ol></li><li><a href="#Inline-editor">Inline editor</a><ol><li><a href="#Example-1">Example</a></li></ol></li><li><a href="#Balloon-editor">Balloon editor</a><ol><li><a href="#Example-2">Example</a></li></ol></li><li><a href="#Next-steps">Next steps</a></li></ol></nav><p>Creating an editor using a CKEditor 5 build is very simple and can be described in two steps:</p>
+<ol>
+<li>Load the desired editor via the <code>&lt;script&gt;</code> tag.</li>
+<li>Call the static <code>create()</code> method to create the editor.</li>
+</ol>
+<div class="info-box notice"><p>There are other installation and integration methods available. For more information check <a href="integration/installation.html">Installation</a> and <a href="integration/basic-api.html">Basic API</a> guides.</p></div>
+
+<h2 id="Classic-editor"><a href="#Classic-editor" class="headerlink" title="Classic editor"></a>Classic editor</h2><p>In your HTML page add an element that CKEditor should replace:</p>
+<pre><code class="html">&lt;textarea name=&quot;content&quot; id=&quot;editor&quot;&gt;&lt;/textarea&gt;
+</code></pre>
+<p>Load CKEditor 5, the classic editor build (here <a href="https://cdn.ckeditor.com/" target="_blank" rel="external">CDN</a> location is used):</p>
+<pre><code class="html">&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/0.11.0/classic/ckeditor.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>Call the <a href="../../api/module_editor-classic_classiceditor-ClassicEditor.html#create"><code>ClassicEditor.create()</code></a> method.</p>
+<pre><code class="js">&lt;script&gt;
+    ClassicEditor
+        .create( document.querySelector( &apos;#editor&apos; ) )
+        .catch( error =&gt; {
+            console.error( error );
+        } );
+&lt;/script&gt;
+</code></pre>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;CKEditor 5 - Classic editor&lt;/title&gt;
+    &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/0.11.0/classic/ckeditor.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Classic editor&lt;/h1&gt;
+    &lt;textarea name=&quot;content&quot; id=&quot;editor&quot;&gt;
+        &lt;p&gt;This is some sample content.&lt;/p&gt;
+    &lt;/textarea&gt;
+    &lt;script&gt;
+        ClassicEditor
+            .create( document.querySelector( &apos;#editor&apos; ) )
+            .catch( error =&gt; {
+                console.error( error );
+            } );
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="Inline-editor"><a href="#Inline-editor" class="headerlink" title="Inline editor"></a>Inline editor</h2><p>In your HTML page add an element that CKEditor should make editable:</p>
+<pre><code class="html">&lt;div id=&quot;editor&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p>Load CKEditor 5, the inline editor build (here <a href="https://cdn.ckeditor.com/" target="_blank" rel="external">CDN</a> location is used):</p>
+<pre><code class="html">&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/0.11.0/inline/ckeditor.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>Call the <a href="../../api/module_editor-inline_inlineeditor-InlineEditor.html#create"><code>InlineEditor.create()</code></a> method.</p>
+<pre><code class="html">&lt;script&gt;
+    InlineEditor
+        .create( document.querySelector( &apos;#editor&apos; ) )
+        .catch( error =&gt; {
+            console.error( error );
+        } );
+&lt;/script&gt;
+</code></pre>
+<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h3><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;CKEditor 5 - Inline editor&lt;/title&gt;
+    &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/0.11.0/inline/ckeditor.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Inline editor&lt;/h1&gt;
+    &lt;div id=&quot;editor&quot;&gt;
+        &lt;p&gt;This is some sample content.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;script&gt;
+        InlineEditor
+            .create( document.querySelector( &apos;#editor&apos; ) )
+            .catch( error =&gt; {
+                console.error( error );
+            } );
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="Balloon-editor"><a href="#Balloon-editor" class="headerlink" title="Balloon editor"></a>Balloon editor</h2><p>In your HTML page add an element that CKEditor should make editable:</p>
+<pre><code class="html">&lt;div id=&quot;editor&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p>Load CKEditor 5, the balloon editor build (here <a href="https://cdn.ckeditor.com/" target="_blank" rel="external">CDN</a> location is used):</p>
+<pre><code class="html">&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/0.11.0/balloon/ckeditor.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>Call the <a href="../../api/module_editor-balloon_ballooneditor-BalloonEditor.html#create"><code>BalloonEditor.create()</code></a> method.</p>
+<pre><code class="html">&lt;script&gt;
+    BalloonEditor
+        .create( document.querySelector( &apos;#editor&apos; ) )
+        .catch( error =&gt; {
+            console.error( error );
+        } );
+&lt;/script&gt;
+</code></pre>
+<h3 id="Example-2"><a href="#Example-2" class="headerlink" title="Example"></a>Example</h3><pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;CKEditor 5 &#x2013; Balloon editor&lt;/title&gt;
+    &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/0.11.0/balloon/ckeditor.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Balloon editor&lt;/h1&gt;
+    &lt;div id=&quot;editor&quot;&gt;
+        &lt;p&gt;This is some sample content.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;script&gt;
+        BalloonEditor
+            .create( document.querySelector( &apos;#editor&apos; ) )
+            .catch( error =&gt; {
+                console.error( error );
+            } );
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h2 id="Next-steps"><a href="#Next-steps" class="headerlink" title="Next steps"></a>Next steps</h2><p>Check the <a href="integration/configuration.html">Configuration guide</a> to learn how to configure the editor &#x2013; e.g. change the default toolbar.</p>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li>
+                            <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Guides</span></div>
+                            <ul>
+                                    <li><a href="overview.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="whats-new.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">What's new?</span></div></a></li>
+                                    <li><a href="">
+                                        <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Quick start</span></div></a></li>
+                                    <li>
+                                      <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Integration</span></div>
+                                      <ul>
+                                              <li><a href="integration/installation.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Installation</span></div></a></li>
+                                              <li><a href="integration/basic-api.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic API</span></div></a></li>
+                                              <li><a href="integration/configuration.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Configuration</span></div></a></li>
+                                              <li><a href="integration/advanced-setup.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Advanced setup</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Development</span></div>
+                                      <ul>
+                                              <li><a href="development/custom-builds.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom builds</span></div></a></li>
+                                              <li><a href="development/plugins.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugins</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li><a href="migrate.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migration from CKEditor 4</span></div></a></li>
+                                    <li>
+                                      <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Support</span></div>
+                                      <ul>
+                                              <li><a href="support/browser-compatibility.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Browser compatibility</span></div></a></li>
+                                              <li><a href="support/license-and-legal.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span></div></a></li>
+                                              <li><a href="support/getting-support.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting support</span></div></a></li>
+                                              <li><a href="support/reporting-issues.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span></div></a></li>
+                                      </ul>
+                                    </li>
+                            </ul>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <p>&copy; 2017 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script type="text/javascript">docsearch({apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:10,optionalFacetFilters:'(tags:builds<score=2>, tags:framework<score=1>, tags:examples<score=1>, tags:features<score=1>)'},debug:false});</script>
+  </body>
+</html>

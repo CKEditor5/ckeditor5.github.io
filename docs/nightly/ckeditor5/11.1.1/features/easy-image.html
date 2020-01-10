@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Easy Image integration - CKEditor 5 Documentation</title>
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:site" content="@ckeditor">
+    <meta property="og:title" content="Easy Image integration - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta property="DC.language" content="en">
+    <meta property="DC.publisher" content="CKSource">
+    <meta property="DC.creator" content="CKEditor">
+    <meta property="DC.title" content="Easy Image integration - CKEditor 5 Documentation">
+    <meta property="DC.format" content="text/html">
+    <meta property="DC.type" content="Text">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/features/easy-image.html">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../assets/0.12.1/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../assets/styles.css" type="text/css">
+    <link rel="stylesheet" href="../snippets/build-classic-source/snippet.css" type="text/css">
+    <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
+    <script>
+      ( function() {
+      	'use strict';
+      	// Set up global variables;
+      	if ( !window.umebrto ) {
+      		window.umberto = {};
+      	}
+      	window.umberto.relativeAppPath = "../../../assets/0.12.1/scripts"
+      
+      	// Add app script
+      	var el = document.createElement( 'script' );
+      	el.setAttribute( 'async', 'async' );
+      	el.setAttribute( 'defer', 'defer' );
+      	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
+      		el.src = "../../../assets/0.12.1/scripts/app.js";
+      	} else {
+      		el.src = "../../../assets/0.12.1/scripts/app-polyfill.js";
+      	}
+      	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
+      } )();
+    </script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="header__main">
+        <div class="header__main-rwd-button"><a href="#"><span></span><span></span><span></span></a></div>
+        <div class="header__main-title"><a class="header__main-title-home" href="../../../index.html">CKEditor Ecosystem Documentation</a></div>
+        <div class="top__search">
+          <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+          <div class="top__search__button"><img src="../../../assets/0.12.1/img/loupe.svg" alt="Search"></div>
+        </div>
+      </div>
+      <div class="header__sub">
+        <ul class="top__menu">
+          <li class="top__menu-project-logo"><a href="../index.html">CKEditor 5</a></li>
+          <li><a href="../builds/index.html">Builds</a></li>
+          <li><a href="../framework/index.html">Framework</a></li>
+          <li><a href="../examples/index.html">Examples</a></li>
+          <li><a class="top__menu__item--active" href="index.html">Features</a></li>
+          <li><a class="top__menu__api" href="../api/index.html">API</a></li>
+          <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."><svg viewbox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li>
+        </ul>
+      </div>
+      <div class="header__menu-rwd">
+        <ul class="header__menu-rwd__projects">
+          <li data-project="ckeditor5"><a href="../../latest/index.html">CKEditor 5
+              <ul class="tree header__menu-rwd__projects-pages">
+                <li data-group="builds"><a href="../builds/index.html">Builds</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="framework"><a href="../framework/index.html">Framework</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="examples"><a href="../examples/index.html">Examples</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="features"><a href="index.html">Features</a>
+                  <!-- Display subpages for active project.-->
+                  <ul class="header__menu-rwd__projects-subpages">
+                            <li><a href="autoformat.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Autoformatting</span></div></a></li>
+                            <li><a href="basic-styles.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic text styles</span></div></a></li>
+                            <li><a href="blocktoolbar.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block toolbar</span></div></a></li>
+                            <li><a href="ckfinder.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">CKFinder</span></div></a></li>
+                            <li>
+                              <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Collaboration</span></div>
+                              <ul class="tree__item-nested-list">
+                              </ul>
+                            </li>
+                            <li><a href="">
+                                <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Easy Image</span></div></a></li>
+                            <li><a href="font.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Font</span></div></a></li>
+                            <li><a href="headings.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Headings</span></div></a></li>
+                            <li><a href="highlight.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Highlight</span></div></a></li>
+                            <li><a href="image-upload.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Image upload</span></div></a></li>
+                            <li><a href="image.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Images</span></div></a></li>
+                            <li><a href="keyboard-support.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Keyboard support</span></div></a></li>
+                            <li><a href="link.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Link</span></div></a></li>
+                            <li><a href="markdown.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Markdown output</span></div></a></li>
+                            <li><a href="media-embed.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Media embed</span></div></a></li>
+                            <li><a href="paste-from-word.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Word</span></div></a></li>
+                            <li><a href="read-only.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Read-only support</span></div></a></li>
+                            <li><a href="ui-language.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Setting the UI language</span></div></a></li>
+                            <li><a href="table.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Tables</span></div></a></li>
+                            <li><a href="text-alignment.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Text alignment</span></div></a></li>
+                  </ul>
+                </li>
+                <li data-group="api-reference"><a href="../api/index.html">API</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+              </ul></a></li>
+        </ul>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-easy-image/blob/master/docs/features/easy-image.md" title="Contribute to this guide"><img src="../../../assets/0.12.1/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5-easy-image/issues/new" title="Report an issue"><img src="../../../assets/0.12.1/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
+          </div>
+          <h1 class="main__content-title"><img src="../../../assets/0.12.1/img/book.svg" alt="guide">Easy Image integration
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a><ol><li><a href="#configuration">Configuration</a></li><li><a href="#responsive-images">Responsive images</a><ol><li><a href="#why-responsive-images">Why responsive images?</a></li><li><a href="#responsive-images-in-the-markup">Responsive images in the markup</a></li></ol></li><li><a href="#whats-next">What&#x2019;s next?</a></li></ol></li></ol></nav>
+<p>CKEditor 5 introduces a totally new way of handling images, with strong focus on the end&#x2013;user experience. It is called <a href="">Easy Image</a> and its goal is to make the image upload as effortless and intuitive as possible.</p>
+<p>Easy Image is part of the <a href="https://ckeditor.com/ckeditor-cloud-services/" target="_blank" rel="noopener">CKEditor Cloud Services</a> offer. It is a <abbr title="Software as a service">SaaS</abbr> product which:</p>
+<ul>
+<li>securely uploads images,</li>
+<li>takes care of rescaling and {@link @cs guides/easy-image/service-details#image-processing optimizing them} as well as providing <a href="#responsive-images">various image sizes</a> (responsive images),</li>
+<li>delivers uploaded images through a blazing-fast CDN.</li>
+</ul>
+<p>All that, with virtually zero server setup so you do not have to worry about anything.</p>
+<div class="info-box notice"><p>Check out the <a href="image-upload.html">comprehensive &#x201C;Image upload&#x201D; guide</a> to learn about other ways to upload images into CKEditor 5.</p></div>
+<h3 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h3>
+<p>The demo below uses the <a href="../builds/guides/overview.html#classic-editor">Classic editor</a> configured to use the Easy Image service provided by CKEditor Cloud Services:</p>
+
+<div class="live-snippet"><div id="snippet-image-upload">
+	<p>Paste or drop an image directly into the editor. Or use the &quot;Insert image&quot; button in the toolbar.</p>
+</div>
+</div>
+<h2 id="configuration"><a class="headerlink" href="#configuration">#</a> Configuration</h2>
+<p>To make enabling image upload in CKEditor 5 a breeze, by default all builds include the <a href="../api/module_easy-image_easyimage-EasyImage.html"><code>EasyImage</code> plugin</a>, which integrates with the Easy Image service provided by <a href="https://ckeditor.com/ckeditor-cloud-services/" target="_blank" rel="noopener">CKEditor Cloud Services</a>. Enabling it is straightforward and the results are immediate:</p>
+<ol>
+<li>
+<p>Follow {@link @cs guides/easy-image/quick-start Easy Image &#x2014; Quick start} guide to setup an account.</p>
+</li>
+<li>
+<p>Configure CKEditor (see <a href="../api/module_cloud-services_cloudservices-CloudServicesConfig.html"><code>CloudServicesConfig</code></a>):</p>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">cloudServices</span>: {
+            <span class="hljs-attr">tokenUrl</span>: <span class="hljs-string">&apos;https://example.com/cs-token-endpoint&apos;</span>,
+            <span class="hljs-attr">uploadUrl</span>: <span class="hljs-string">&apos;https://your-organization-id.cke-cs.com/easyimage/upload/&apos;</span>
+        }
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+</li>
+</ol>
+<p>This is all. At this point, image upload will be automatically enabled in your application.</p>
+<p>If you are having troubles in setting up Easy Image, please <a href="https://ckeditor.com/contact/" target="_blank" rel="noopener">contact us</a>.</p>
+<h2 id="responsive-images"><a class="headerlink" href="#responsive-images">#</a> Responsive images</h2>
+<p>Another great feature introduced with CKEditor 5 is the ability to have responsive images in the content. With a single image upload, several optimized versions of that image are created, each for a different size of the display. All this is totally transparent to the end user who uploaded the image.</p>
+<p><img src="../assets/img/responsive-images.svg" alt="The visualization of the responsive images approach." width="550"></p>
+<h3 id="why-responsive-images"><a class="headerlink" href="#why-responsive-images">#</a> Why responsive images?</h3>
+<p>Responsive images have two main advantages over the &#x201C;traditional&#x201D; image delivery:</p>
+<ul>
+<li>
+<p><strong>They save the data transfer</strong>: There are countless device and screen size combinations that can be used to display images in your application (smartphones, tablets, laptops, etc.) but you do not need to serve the same full&#x2013;scale images to all of them.</p>
+<p>Using Easy Image guarantees only the particular size variant corresponding to the user&#x2019;s screen size is served, minimizing the amount of data transferred to the client. For large images, this can save up to 90% of the transferred data &#x2014; <a href="https://ckeditor.com/ckeditor-cloud-services/easy-image/" target="_blank" rel="noopener">see it yourself!</a></p>
+</li>
+<li>
+<p><strong>They load a way faster</strong>: because only the image matching the size of the screen is transferred, in most of the cases, it can be loaded and displayed a way faster than a &#x201C;regular&#x201D; full&#x2013;scale image. And the faster it loads, the sooner the users can see it, which greatly improves the user experience of your application. You no longer need to wait ages for a high&#x2013;resolution photos to load on a tiny smartphone screen.</p>
+</li>
+</ul>
+<h3 id="responsive-images-in-the-markup"><a class="headerlink" href="#responsive-images-in-the-markup">#</a> Responsive images in the markup</h3>
+<p>Responsive images delivered by the Easy Image service are transparent to your application. Once uploaded, the image appears in the editor content as a &#x201C;regular&#x201D; image but with some additional attributes like the <code>srcset</code>.</p>
+<p>The <code>srcset</code> attribute specifies the image variants dedicated for the various screen sizes for the web browser to choose from (360px, 720px, 1080px, 1440px, etc.), for instance the <code>image.jpg</code> file  uploaded by the user will have the following markup:</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;image&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">img</span>
+        <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.cke-cs.com/images/image.jpg&quot;</span>
+        <span class="hljs-attr">srcset</span>=<span class="hljs-string">&quot;https://cdn.cke-cs.com/images/image.jpg/w_360 360w,
+            https://cdn.cke-cs.com/images/image.jpg/w_720 720w,
+            https://cdn.cke-cs.com/images/image.jpg/w_1080 1080w,
+            ...
+            https://cdn.cke-cs.com/images/image.jpg/w_2880 2880w,
+            https://cdn.cke-cs.com/images/image.jpg/w_3240 3240w,
+            https://cdn.cke-cs.com/images/image.jpg/w_3543 3543w&quot;</span>
+        <span class="hljs-attr">sizes</span>=<span class="hljs-string">&quot;100vw&quot;</span>
+        <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;...&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">figcaption</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">figcaption</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
+</code></pre>
+<p>The variety of the image sizes in the <code>srcset</code> attribute allows the web browser to choose the best one for the particular screen size so it loads faster and with less data transferred. See the detailed {@link @cs guides/easy-image/service-details documentation} of the Easy Image to learn more about responsive images and other features offered by the service.</p>
+<h2 id="whats-next"><a class="headerlink" href="#whats-next">#</a> What&#x2019;s next?</h2>
+<p>Check out the <a href="image-upload.html">comprehensive &#x201C;Image upload&#x201D; guide</a> to learn more about different ways of uploading images in CKEditor 5. See the <a href="image.html">Image feature</a> guide to find out more about handling images in CKEditor 5.</p>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li><a href="autoformat.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Autoformatting</span></div></a></li>
+                          <li><a href="basic-styles.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic text styles</span></div></a></li>
+                          <li><a href="blocktoolbar.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block toolbar</span></div></a></li>
+                          <li><a href="ckfinder.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">CKFinder</span></div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Collaboration</span></div>
+                            <ul class="tree__item-nested-list">
+                            </ul>
+                          </li>
+                          <li><a href="">
+                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Easy Image</span></div></a></li>
+                          <li><a href="font.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Font</span></div></a></li>
+                          <li><a href="headings.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Headings</span></div></a></li>
+                          <li><a href="highlight.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Highlight</span></div></a></li>
+                          <li><a href="image-upload.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Image upload</span></div></a></li>
+                          <li><a href="image.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Images</span></div></a></li>
+                          <li><a href="keyboard-support.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Keyboard support</span></div></a></li>
+                          <li><a href="link.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Link</span></div></a></li>
+                          <li><a href="markdown.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Markdown output</span></div></a></li>
+                          <li><a href="media-embed.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Media embed</span></div></a></li>
+                          <li><a href="paste-from-word.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Word</span></div></a></li>
+                          <li><a href="read-only.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Read-only support</span></div></a></li>
+                          <li><a href="ui-language.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Setting the UI language</span></div></a></li>
+                          <li><a href="table.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Tables</span></div></a></li>
+                          <li><a href="text-alignment.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Text alignment</span></div></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2017-2018 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},debug:true,
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'features' ] = hits.filter( function( h ) {return h.tags.includes( 'features' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'features' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'features' ] );tags.forEach( function( tag ) {if ( tag !== 'features' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+    <script src="../assets/snippet.js"></script>
+    <script src="../snippets/build-classic-source/snippet.js"></script>
+    <script src="../assets/snippet.js"></script>
+    <script src="../snippets/features/easy-image/snippet.js"></script>
+  </body>
+</html>

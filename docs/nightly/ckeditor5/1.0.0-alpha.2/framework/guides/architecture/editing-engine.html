@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Editing engine - CKEditor 5 Documentation</title>
+    <meta property="og:title" content="Editing engine - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="/ckeditor5/latest/framework/guides/architecture/editing-engine.html">
+    <link rel="icon" type="image/png" href="../../../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../../../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../../assets/0.3.67/css/styles.css" type="text/css" media="screen">
+    <script src="../../../../../assets/0.3.67/scripts/app.js"></script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="top__logo top__left"><span class="top__logo__product-icon" style="background-image: url( ../../../assets/img/project-logo.svg )"></span><a class="top__logo__product-title" href="../../../index.html">CKEditor 5</a></div>
+      <ul class="top__menu">
+        <li><a href="../../../builds/index.html">Builds</a></li>
+        <li><a class="top__menu__item--active" href="../../index.html">Framework</a></li>
+        <li><a href="../../../examples/index.html">Examples</a></li>
+        <li><a href="../../../features/index.html">Features</a></li>
+        <li><a class="top__menu__api" href="../../../api/index.html">API</a></li>
+        <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."></a></li>
+      </ul>
+      <div class="top__search">
+        <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.3.67/img/loupe.svg" alt="Search"></button>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/architecture/editing-engine.md" title="Contribute to this guide"><img src="../../../../../assets/0.3.67/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.3.67/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <h1><img src="../../../../../assets/0.3.67/img/book.svg" alt="guide">Editing engine
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#overview">Overview</a></li><li><a href="#model">Model</a><ol><li><a href="#text-attributes">Text attributes</a></li><li><a href="#selection-attributes">Selection attributes</a></li><li><a href="#positions">Positions</a></li></ol></li><li><a href="#view">View</a></li><li><a href="#controller">Controller</a></li><li><a href="#read-next">Read next</a></li></ol></nav>
+<p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-engine</code></a> package is by far the biggest package of all. Therefore, this guide will only scratch the surface here by introducing the main architecture layers and concepts. More detailed guides will follow.</p>
+<h2 id="overview"><a class="headerlink" href="#overview">#</a> Overview</h2>
+<p>The editing engine implements an MVC architecture. The shape of it is not enforced by the engine itself but in most implementations it can be described by this diagram:</p>
+<p><a href="../../../assets/img/framework-architecture-engine-diagram.png"><img src="../../../assets/img/framework-architecture-engine-diagram.png" alt="Diagram of the engine&#x2019;s MVC architecture."></a></p>
+<p>What you can see are three layers: <strong>model</strong>, <strong>controller</strong> and <strong>view</strong>. There is one <strong>model document</strong> which is <strong>converted</strong> to two views &#x2014; the <strong>editing view</strong> and the <strong>data view</strong>. These two views represent, respectively, the content that the user is editing (the DOM structure that you see in the browser) and the editor input and output data (in a format which the plugged data processor understands). Both views feature virtual DOM structures (custom, DOM-like structures) on which converters and features work and which are then <strong>rendered</strong> to the DOM.</p>
+<p>The green blocks are the code introduced by editor features (plugins). So features control what changes are done to the model, how they are converted to the view and how the model needs to be changed based on fired events (view&#x2019;s and model&#x2019;s ones).</p>
+<p>Let&#x2019;s now talk about each layer separately.</p>
+<h2 id="model"><a class="headerlink" href="#model">#</a> Model</h2>
+<p>The model is implemented by a DOM-like tree structure of <a href="../../../api/module_engine_model_element-Element.html">elements</a> and <a href="../../../api/module_engine_model_text-Text.html">text nodes</a>. Like in the DOM, its central point is a <a href="../../../api/module_engine_model_document-Document.html">document</a> which contains <a href="../../../api/module_engine_model_document-Document.html#member-roots">root elements</a> (the model, as well as the view, may have multiple roots). The document also holds its <a href="../../../api/module_engine_model_documentselection-DocumentSelection.html">selection</a>, <a href="../../../api/module_engine_model_history-History.html">history of changes</a> and <a href="../../../api/module_engine_model_schema-Schema.html">schema</a>.</p>
+<p>All changes made to the document structure are done by applying <a href="../../../api/module_engine_model_operation_operation-Operation.html">operations</a>. The concept of operations comes from <a href="https://en.wikipedia.org/wiki/Operational_transformation" target="_blank" rel="noopener">Operational Transformation</a> (in short: OT), a technology enabling collaboration functionality. Since OT requires that a system is able to transform every operation by every other one (to figure out the result of concurrently applied operations), the set of operations needs to be small. CKEditor 5 features a non-linear model (normally, OT implementations use flat, array-like models while CKEditor 5 uses a tree structure), hence the set of potential semantic changes is more complex. To handle that, the editing engine implements a small set of operations (six to be precise) and a bigger set of <a href="../../../api/module_engine_model_delta_delta-Delta.html">&#x201C;deltas&#x201D;</a> &#x2014; groups of operations with additional semantics attached (there are eleven deltas and the number will grow). Finally, deltas are grouped in <a href="../../../api/module_engine_model_batch-Batch.html">batches</a>. A batch can be understood as a single undo step.</p>
+<div class="info-box notice"><p>The technology implemented by CKEditor 5 is experimental. The subject of applying Operational Transformation to tree structures is not yet well researched and, in early 2015 when we started designing and implementing our own system, we were aware of just one existing and proven implementation (of which there was little information).</p><p>During the last 3 years we changed our approach and reworked the implementation multiple times. In fact, we are still learning about new types of issues and constantly align and improve the engine. One of the most important things that we learned was that implementing OT is just a part of the job on your way to real-time collaborative editing. We needed to create additional mechanisms and change the whole architecture to enable concurrent editing by multiple users with features like undo and ability to display selections of other users.</p><p>As a result of all this, the API and some important concepts are constantly changing. We have the implementation well tested already, but the engine still requires <a href="https://github.com/ckeditor/ckeditor5-engine/issues/1008" target="_blank" rel="noopener">a lot of cleaning and some implementation tweaks</a>.</p><p>This means that information from this guide may be a bit confusing when confronted with the existing APIs. For instance, you may find that <a href="https://github.com/ckeditor/ckeditor5-engine/issues/858" target="_blank" rel="noopener">model elements and text nodes can be modified directly</a> (without applying operations). Please keep that in mind, and when in doubt, <a href="https://github.com/ckeditor/ckeditor5-engine/issues/new" target="_blank" rel="noopener">report issues</a>.</p></div>
+<p>As mentioned earlier, going into details would make an awfully long article, so only a few more notable facts will be explained here.</p>
+<h3 id="text-attributes"><a class="headerlink" href="#text-attributes">#</a> Text attributes</h3>
+<p>Text styles such as &#x201C;bold&#x201D; and &#x201C;italic&#x201D; are not kept in the model as elements but as text attributes (think &#x2014; like element attributes). The following DOM structure:</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+    &quot;Foo &quot;
+    <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>
+        &quot;bar&quot;
+    <span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</code></pre>
+<p>would translate to the following model structure:</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span>&gt;</span>
+    &quot;Foo &quot;  // text node
+    &quot;bar&quot;   // text node with bold=true attribute
+<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
+</code></pre>
+<p>Such representation of inline text styling allows to significantly reduce the complexity of algorithms operating on the model. For instance, if you have the following DOM structure:</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+    &quot;Foo &quot;
+    <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>
+        &quot;bar&quot;
+    <span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</code></pre>
+<p>and you have a selection before the letter <code>&quot;b&quot;</code> (<code>&quot;Foo ^bar&quot;</code>), is this position inside or outside <code>&lt;strong&gt;</code>? If you use <a href="https://developer.mozilla.org/en-US/docs/Web/API/Selection" target="_blank" rel="noopener">native DOM Selection</a>, you may get both positions &#x2014; one anchored in <code>&lt;p&gt;</code> and the other anchored in <code>&lt;strong&gt;</code>. In CKEditor 5 this position translates exactly to <code>&quot;Foo ^bar&quot;</code>.</p>
+<h3 id="selection-attributes"><a class="headerlink" href="#selection-attributes">#</a> Selection attributes</h3>
+<p>OK, but how to let CKEditor 5 know that I want the selection to &#x201C;be bold&#x201D; in the case described above? This is important information because it affects whether or not the typed text will be bold, too.</p>
+<p>To handle that, selection also <a href="../../../api/module_engine_model_selection-Selection.html#function-setAttribute">has attributes</a>. If the selection is placed in <code>&quot;Foo ^bar&quot;</code> and it has the attribute <code>bold=true</code>, you know that the user will type bold text.</p>
+<h3 id="positions"><a class="headerlink" href="#positions">#</a> Positions</h3>
+<p>However, it has just been said that inside <code>&lt;paragraph&gt;</code> there are two text nodes: <code>&quot;Foo &quot;</code> and <code>&quot;bar&quot;</code>. If you know how <a href="https://developer.mozilla.org/en-US/docs/Web/API/Range" target="_blank" rel="noopener">native DOM Ranges</a> work you might thus ask: &#x201C;But if the selection is at the boundary of two text nodes, is it anchored in the left one, the right one, or in the containing element?&#x201D;</p>
+<p>This is, indeed, another problem with DOM APIs. Not only can positions outside and inside some element be identical visually but also they can be anchored inside or outside a text node (if the position is at a text node boundary). This all creates extreme complications when implementing editing algorithms.</p>
+<p>To avoid such troubles, and to make collaborative editing possible for real, CKEditor 5 uses the concepts of <strong>indexes</strong> and <strong>offsets</strong>. Indexes relate to nodes (elements and text nodes) while offsets relate to positions. For example, in the following structure:</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span>&gt;</span>
+    &quot;Foo &quot;
+    <span class="hljs-tag">&lt;<span class="hljs-name">image</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">image</span>&gt;</span>
+    &quot;bar&quot;
+<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
+</code></pre>
+<p>The <code>&quot;Foo &quot;</code> text node is at index <code>0</code> in its parent, <code>&lt;image&gt;&lt;/image&gt;</code> is at index <code>1</code> and <code>&quot;bar&quot;</code> is at index <code>2</code>.</p>
+<p>On the other hand, offset <code>x</code> in <code>&lt;paragraph&gt;</code> translates to:</p>
+<table>
+<thead>
+<tr>
+<th>offset</th>
+<th>position</th>
+<th>node</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td><code>&lt;paragraph&gt;^Foo &lt;image&gt;&lt;/image&gt;bar&lt;/paragraph&gt;</code></td>
+<td><code>&quot;Foo &quot;</code></td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td><code>&lt;paragraph&gt;F^oo &lt;image&gt;&lt;/image&gt;bar&lt;/paragraph&gt;</code></td>
+<td><code>&quot;Foo &quot;</code></td>
+</tr>
+<tr>
+<td><code>4</code></td>
+<td><code>&lt;paragraph&gt;Foo ^&lt;image&gt;&lt;/image&gt;bar&lt;/paragraph&gt;</code></td>
+<td><code>&lt;image&gt;</code></td>
+</tr>
+<tr>
+<td><code>6</code></td>
+<td><code>&lt;paragraph&gt;Foo &lt;image&gt;&lt;/image&gt;b^ar&lt;/paragraph&gt;</code></td>
+<td><code>&quot;bar&quot;</code></td>
+</tr>
+</tbody>
+</table>
+<p>The engine also defines three main classes which operate on offsets:</p>
+<ul>
+<li>A <a href="../../../api/module_engine_model_position-Position.html"><code>Position</code></a> instance contains an <a href="../../../api/module_engine_model_position-Position.html#member-path">array of offsets</a> (which is called a &#x201C;path&#x201D;). See the examples in <a href="../../../api/module_engine_model_position-Position.html#member-path"><code>Position#path</code> API documentation</a> to better understand how paths work.</li>
+<li><a href="../../../api/module_engine_model_range-Range.html"><code>Range</code></a> contains two positions: <a href="../../../api/module_engine_model_range-Range.html#member-start">start</a> and <a href="../../../api/module_engine_model_range-Range.html#member-end">end</a> ones.</li>
+<li>Finally, there is <a href="../../../api/module_engine_model_selection-Selection.html"><code>Selection</code></a> which contains one or more ranges and attributes.</li>
+</ul>
+<h2 id="view"><a class="headerlink" href="#view">#</a> View</h2>
+<h2 id="controller"><a class="headerlink" href="#controller">#</a> Controller</h2>
+<h2 id="read-next"><a class="headerlink" href="#read-next">#</a> Read next</h2>
+<p>Once you learnt how to implement editing features, it is time to add a UI for them. You can read about the CKEditor 5&#x2019;s standard UI framework and UI library in the <a href="ui-library.html">UI library</a> guide.</p>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li>
+                            <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Guides</span></div>
+                            <ul>
+                                    <li><a href="../overview.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="../quick-start.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span></div></a></li>
+                                    <li>
+                                      <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Architecture</span></div>
+                                      <ul>
+                                              <li><a href="intro.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Introduction</span></div></a></li>
+                                              <li><a href="core-editor-architecture.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Core editor architecture</span></div></a></li>
+                                              <li><a href="">
+                                                  <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Editing engine</span></div></a></li>
+                                              <li><a href="ui-library.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">UI library</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">User interface</span></div>
+                                      <ul>
+                                              <li><a href="../ui/theme-customization.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Theme customization</span></div></a></li>
+                                              <li><a href="../ui/external-ui.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Third–party UI</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Contributing</span></div>
+                                      <ul>
+                                              <li><a href="../contributing/development-environment.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development environment</span></div></a></li>
+                                              <li><a href="../contributing/testing-environment.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Testing environment</span></div></a></li>
+                                              <li><a href="../contributing/git-commit-message-convention.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Git commit message convention</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Support</span></div>
+                                      <ul>
+                                              <li><a href="../support/browser-compatibility.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Browser compatibility</span></div></a></li>
+                                              <li><a href="../support/license-and-legal.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span></div></a></li>
+                                              <li><a href="../support/getting-support.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting support</span></div></a></li>
+                                              <li><a href="../support/reporting-issues.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span></div></a></li>
+                                              <li><a href="../support/error-codes.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Error codes</span></div></a></li>
+                                      </ul>
+                                    </li>
+                            </ul>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2017-2018 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},debug:false,
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'framework' ] = hits.filter( function( h ) {return h.tags.includes( 'framework' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'framework' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api.unshift( ...apiSearchHits );result = result.concat( hitsGrouped[ 'framework' ] );tags.forEach( function( tag ) {if ( tag !== 'framework' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+  </body>
+</html>

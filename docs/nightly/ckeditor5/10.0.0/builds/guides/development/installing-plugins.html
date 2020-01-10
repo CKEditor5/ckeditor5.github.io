@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Installing plugins - CKEditor 5 Documentation</title>
+    <meta property="og:title" content="Installing plugins - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="/ckeditor5/latest/builds/guides/development/installing-plugins.html">
+    <link rel="icon" type="image/png" href="../../../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../../../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../../assets/0.4.9/css/styles.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
+    <script>
+      ( function() {
+      	'use strict';
+      	var el = document.createElement( 'script' );
+      	el.setAttribute( 'async', 'async' );
+      	el.setAttribute( 'defer', 'defer' );
+      	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
+      		el.src = "../../../../../assets/0.4.9/scripts/app.js";
+      	} else {
+      		el.src = "../../../../../assets/0.4.9/scripts/app-polyfill.js";
+      	}
+      	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
+      } )();
+    </script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="top__logo top__left"><span class="top__logo__product-icon" style="background-image: url( ../../../assets/img/project-logo.svg )"></span><a class="top__logo__product-title" href="../../../index.html">CKEditor 5</a></div>
+      <ul class="top__menu">
+        <li><a class="top__menu__item--active" href="../../index.html">Builds</a></li>
+        <li><a href="../../../framework/index.html">Framework</a></li>
+        <li><a href="../../../examples/index.html">Examples</a></li>
+        <li><a href="../../../features/index.html">Features</a></li>
+        <li><a class="top__menu__api" href="../../../api/index.html">API</a></li>
+        <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."></a></li>
+      </ul>
+      <div class="top__search">
+        <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+        <button class="top__search__button" type="submit"><img src="../../../../../assets/0.4.9/img/loupe.svg" alt="Search"></button>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/development/installing-plugins.md" title="Contribute to this guide"><img src="../../../../../assets/0.4.9/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5/issues/new" title="Report an issue"><img src="../../../../../assets/0.4.9/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <h1><img src="../../../../../assets/0.4.9/img/book.svg" alt="guide">Installing plugins
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#requirements">Requirements</a></li><li><a href="#adding-a-plugin-to-a-build">Adding a plugin to a build</a></li><li><a href="#adding-a-plugin-to-an-editor">Adding a plugin to an editor</a></li><li><a href="#difference-between-both-methods">Difference between both methods</a></li></ol></nav>
+<p>CKEditor 5 plugins are distributed through <a href="https://www.npmjs.com" target="_blank" rel="noopener">npm</a> packages and are implemented in a modular way, which means that a single plugin may consist of multiple JavaScript files.</p>
+<p>In this guide you can learn how to add plugins to your editor in the two most common scenarios:</p>
+<ul>
+<li>When you use an <a href="../overview.html">editor build</a>,</li>
+<li>When you <a href="../../../framework/guides/quick-start.html">build your editor from source</a>.</li>
+</ul>
+<h2 id="requirements"><a class="headerlink" href="#requirements">#</a> Requirements</h2>
+<p>In order to start developing CKEditor 5 you will require:</p>
+<ul>
+<li><a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a> &gt;= 6.0.0</li>
+<li>npm 4.x (<strong>note:</strong> using npm 5 <a href="https://github.com/lerna/lerna/issues/938" target="_blank" rel="noopener">causes</a> some <a href="https://github.com/npm/npm/issues/16991" target="_blank" rel="noopener">problems</a>)</li>
+</ul>
+<h2 id="adding-a-plugin-to-a-build"><a class="headerlink" href="#adding-a-plugin-to-a-build">#</a> Adding a plugin to a build</h2>
+<p>Adding plugins to existing builds is done through their customization. Editor builds are maintained in their respective GitHub repositories. Therefore, assuming that you want to customize the <a href="https://npmjs.com/package/@ckeditor/ckeditor5-build-classic" target="_blank" rel="noopener">classic editor build</a> you need to:</p>
+<ol>
+<li>Clone the build repository.</li>
+<li>Install the plugin package.</li>
+<li>Add it to the build configuration.</li>
+<li>Bundle the build.</li>
+</ol>
+<pre class="highlight"><code class="">git clone -b stable https://github.com/ckeditor/ckeditor5-build-classic.git
+cd ckeditor5-build-classic
+npm install
+</code></pre>
+<p>Now, install the plugin package:</p>
+<pre class="highlight"><code class="">npm install --save-dev @ckeditor/ckeditor5-alignment
+</code></pre>
+<p>Edit the <code>build-config.js</code> file to add your plugin to the list of plugins which will be included in the build and to add your feature&#x2019;s button to the toolbar:</p>
+<pre class="highlight"><code class="">module.exports = {
+    // The editor creator to use.
+    editor: &apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;,
+
+    // The name under which the editor will be exported.
+    moduleName: &apos;ClassicEditor&apos;,
+
+    // Plugins to include in the build.
+    plugins: [
+        &apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;,
+
+        &apos;@ckeditor/ckeditor5-adapter-ckfinder/src/uploadadapter&apos;,
+        &apos;@ckeditor/ckeditor5-autoformat/src/autoformat&apos;,
+        &apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;,
+        &apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;,
+        &apos;@ckeditor/ckeditor5-block-quote/src/blockquote&apos;,
+        &apos;@ckeditor/ckeditor5-easy-image/src/easyimage&apos;,
+        &apos;@ckeditor/ckeditor5-heading/src/heading&apos;,
+        &apos;@ckeditor/ckeditor5-image/src/image&apos;,
+        &apos;@ckeditor/ckeditor5-image/src/imagecaption&apos;,
+        &apos;@ckeditor/ckeditor5-image/src/imagestyle&apos;,
+        &apos;@ckeditor/ckeditor5-image/src/imagetoolbar&apos;,
+        &apos;@ckeditor/ckeditor5-link/src/link&apos;,
+        &apos;@ckeditor/ckeditor5-list/src/list&apos;,
+        &apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;,
+        &apos;@ckeditor/ckeditor5-upload/src/imageupload&apos;,
+
+        &apos;@ckeditor/ckeditor5-alignment/src/alignment&apos;, //    &lt;--- ADDED
+    ],
+
+    // Editor config.
+    config: {
+        toolbar: {
+            items: [
+                &apos;heading&apos;,
+                &apos;alignment&apos;, //                      &lt;--- ADDED
+                &apos;bold&apos;,
+                &apos;italic&apos;,
+                &apos;link&apos;,
+                &apos;bulletedList&apos;,
+                &apos;numberedList&apos;,
+                &apos;blockQuote&apos;,
+                &apos;undo&apos;,
+                &apos;redo&apos;
+            ]
+        },
+
+        image: {
+            toolbar: [ &apos;imageStyle:full&apos;, &apos;imageStyle:side&apos;, &apos;|&apos;, &apos;imageTextAlternative&apos; ]
+        },
+
+        // UI language. Language codes follow the https://en.wikipedia.org/wiki/ISO_639-1 format.
+        language: &apos;en&apos;
+    }
+};
+</code></pre>
+<p>Finally, bundle the build:</p>
+<pre class="highlight"><code class="">npm run build
+</code></pre>
+<p>If everything worked, the editor build (which is available in the <code>build/</code> directory) should be updated.</p>
+<p>You can open the <code>sample/index.html</code> file in your browser to see whether the plugin was installed correctly.</p>
+<p>This was a quick version of how a build can be customized. Read more about <a href="custom-builds.html">customizing existing editor builds</a> in a separate guide.</p>
+<h2 id="adding-a-plugin-to-an-editor"><a class="headerlink" href="#adding-a-plugin-to-an-editor">#</a> Adding a plugin to an editor</h2>
+<p>If you <a href="../../../framework/guides/quick-start.html">build the editor from source</a>, then the process of installing a new plugin boils down to these three steps:</p>
+<ol>
+<li>Installing the plugin package.</li>
+<li>Adding it to your editor&#x2019;s configuration.</li>
+<li>Building your project.</li>
+</ol>
+<p>For example, if you wish to install the text alignment feature:</p>
+<pre class="highlight"><code class="">npm install --save-dev @ckeditor/ckeditor5-alignment
+</code></pre>
+<p>Edit the code that initializes the editor:</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
+<span class="hljs-keyword">import</span> Essentials <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;</span>;
+<span class="hljs-keyword">import</span> Paragraph <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;</span>;
+<span class="hljs-keyword">import</span> Bold <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;</span>;
+<span class="hljs-keyword">import</span> Italic <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;</span>;
+
+<span class="hljs-keyword">import</span> Alignment <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-alignment/src/alignment&apos;</span>; <span class="hljs-comment">//   &lt;--- ADDED</span>
+
+ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">plugins</span>: [ Essentials, Paragraph, Bold, Italic, Alignment ], <span class="hljs-comment">//   &lt;--- MODIFIED</span>
+        toolbar: [ <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-string">&apos;italic&apos;</span>, <span class="hljs-string">&apos;alignment&apos;</span> ] <span class="hljs-comment">//             &lt;--- MODIFIED</span>
+    } )
+    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;Editor was initialized&apos;</span>, editor );
+    } )
+    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.error( error.stack );
+    } );
+</code></pre>
+<p>After rebuilding your project, the new feature will be available in the editor.</p>
+<div class="info-box notice notice__warning"><p>One of the possible mistakes is trying to add a plugin in this way to an existing (bundled) editor build. Installing an existing build and then trying to add a plugin to it may not work if that plugin needs to import any of the source editor modules.</p><p>The reason why this method will not work is that dependencies of the added plugin may duplicate the code already bundled in the used editor build. In the best scenario, this is going to raise the overall code size. In the worst scenario, an application built this way may be unstable.</p></div>
+<h2 id="difference-between-both-methods"><a class="headerlink" href="#difference-between-both-methods">#</a> Difference between both methods</h2>
+<p>What is the difference between adding a plugin to an editor build and adding a plugin by passing the <code>config.plugins</code> option to the static <code>create()</code> method?</p>
+<p>The first method builds the plugin into the editor class. This means that you can then initialize the editor without passing <code>config.plugins</code> at all and the editor will automatically enable all built-in plugins:</p>
+<pre class="highlight"><code class="js"><span class="hljs-comment">// Assuming you use e.g. webpack which can load UMD modules by using ES6 syntax.</span>
+<span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-build-classic&apos;</span>;
+
+ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;editor&apos;</span> ), {
+        <span class="hljs-comment">// Look, ma! No plugins!</span>
+    } )
+    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;Editor was initialized&apos;</span>, editor );
+    } )
+    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.error( error.stack );
+    } );
+</code></pre>
+<p>All this works because a typical <code>src/ckeditor.js</code> module that you can find in every editor build repository (see e.g. <a href="https://github.com/ckeditor/ckeditor5-build-classic/blob/stable/src/ckeditor.js" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-build-classic</code></a>), which is created based on the <code>build-config.js</code> file and based on which a build is created, looks like this:</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ClassicEditorBase <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
+<span class="hljs-keyword">import</span> EssentialsPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;</span>;
+<span class="hljs-keyword">import</span> UploadadapterPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-adapter-ckfinder/src/uploadadapter&apos;</span>;
+<span class="hljs-keyword">import</span> AutoformatPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-autoformat/src/autoformat&apos;</span>;
+<span class="hljs-keyword">import</span> BoldPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;</span>;
+<span class="hljs-keyword">import</span> ItalicPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;</span>;
+<span class="hljs-keyword">import</span> BlockquotePlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-block-quote/src/blockquote&apos;</span>;
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ClassicEditor</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ClassicEditorBase</span> </span>{}
+
+ClassicEditor.build = {
+    <span class="hljs-attr">plugins</span>: [
+        EssentialsPlugin,
+        UploadadapterPlugin,
+        AutoformatPlugin,
+        BoldPlugin,
+        ItalicPlugin,
+        BlockquotePlugin,
+        <span class="hljs-comment">// ...</span>
+    ],
+    <span class="hljs-attr">config</span>: {
+        <span class="hljs-attr">toolbar</span>: {
+            <span class="hljs-attr">items</span>: [
+                <span class="hljs-string">&apos;heading&apos;</span>,
+                <span class="hljs-string">&apos;bold&apos;</span>,
+                <span class="hljs-comment">// ...</span>
+            ]
+        },
+        <span class="hljs-comment">// ...</span>
+    }
+};
+</code></pre>
+<p>This code imports the source of the classic editor and extends it with a static property <code>build</code> in which it defines a set of plugins and configuration to be used by this editor class.</p>
+<p>In this approach, all editor instances created by using this editor build will by default load all these built-in plugins and configuration.</p>
+<div class="info-box notice"><p>You can still use the <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html#member-removePlugins"><code>config.removePlugins</code></a> and <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html#member-plugins"><code>config.plugins</code></a> options to override the default configuration.</p></div>
+<p>When building the editor from source and not using a build as a base, you can also use the static <code>build</code> property of editor classes. However, in this situation it is usually more convenient to simply pass all the plugins directly to the static <code>create()</code> method:</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
+<span class="hljs-keyword">import</span> Essentials <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;</span>;
+<span class="hljs-keyword">import</span> Paragraph <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;</span>;
+<span class="hljs-keyword">import</span> Bold <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;</span>;
+<span class="hljs-keyword">import</span> Italic <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;</span>;
+
+ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">plugins</span>: [ Essentials, Paragraph, Bold, Italic ],
+        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-string">&apos;italic&apos;</span> ]
+    } )
+    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;Editor was initialized&apos;</span>, editor );
+    } )
+    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.error( error.stack );
+    } );
+</code></pre>
+<p>So, in short, both methods use very similar mechanisms. However, adding a plugin through the static <code>build</code> property (which happens in editor builds) lets you automatically enable it in all editor instances created using this editor class, while passing a plugin to <code>create()</code> will naturally affect only one instance.</p>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li>
+                            <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Guides</span>
+                              <ul>
+                                      <li><a href="../overview.html">
+                                          <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                      <li><a href="../whats-new.html">
+                                          <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">What's new?</span></div></a></li>
+                                      <li><a href="../quick-start.html">
+                                          <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span></div></a></li>
+                                      <li><a href="../faq.html">
+                                          <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">FAQ</span></div></a></li>
+                                      <li>
+                                        <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Integration</span>
+                                          <ul>
+                                                  <li><a href="../integration/installation.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Installation</span></div></a></li>
+                                                  <li><a href="../integration/basic-api.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic API</span></div></a></li>
+                                                  <li><a href="../integration/configuration.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Configuration</span></div></a></li>
+                                                  <li><a href="../integration/advanced-setup.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Advanced setup</span></div></a></li>
+                                          </ul>
+                                        </div>
+                                      </li>
+                                      <li>
+                                        <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Development</span>
+                                          <ul>
+                                                  <li><a href="custom-builds.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom builds</span></div></a></li>
+                                                  <li><a href="plugins.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Plugins</span></div></a></li>
+                                                  <li><a href="">
+                                                      <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Installing plugins</span></div></a></li>
+                                          </ul>
+                                        </div>
+                                      </li>
+                                      <li><a href="../migrate.html">
+                                          <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Migration from CKEditor 4</span></div></a></li>
+                                      <li>
+                                        <div class="tree__item__wrapper--disabled"><span class="tree__item--folder tree__item__text">Support</span>
+                                          <ul>
+                                                  <li><a href="../support/browser-compatibility.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Browser compatibility</span></div></a></li>
+                                                  <li><a href="../support/license-and-legal.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span></div></a></li>
+                                                  <li><a href="../support/getting-support.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting support</span></div></a></li>
+                                                  <li><a href="../support/reporting-issues.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span></div></a></li>
+                                          </ul>
+                                        </div>
+                                      </li>
+                              </ul>
+                            </div>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2017-2018 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},debug:false,
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'builds' ] = hits.filter( function( h ) {return h.tags.includes( 'builds' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'builds' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'builds' ] );tags.forEach( function( tag ) {if ( tag !== 'builds' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+  </body>
+</html>

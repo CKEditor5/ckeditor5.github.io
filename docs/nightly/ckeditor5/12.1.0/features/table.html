@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tables - CKEditor 5 Documentation</title>
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:site" content="@ckeditor">
+    <meta property="og:title" content="Tables - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/features/table.html">
+    <meta property="DC.language" content="en">
+    <meta property="DC.publisher" content="CKSource">
+    <meta property="DC.creator" content="CKEditor">
+    <meta property="DC.title" content="Tables - CKEditor 5 Documentation">
+    <meta property="DC.format" content="text/html">
+    <meta property="DC.type" content="Text">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/features/table.html">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../assets/1.0.0/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../assets/styles.css" type="text/css">
+    <link rel="stylesheet" href="../snippets/features/build-table-source/snippet.css" type="text/css">
+    <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
+    <script>
+      ( function() {
+      	'use strict';
+      	// Set up global variables;
+      	if ( !window.umebrto ) {
+      		window.umberto = {};
+      	}
+      	window.umberto.relativeAppPath = "../../../assets/1.0.0/scripts"
+      
+      	// Add app script
+      	var el = document.createElement( 'script' );
+      	el.setAttribute( 'async', 'async' );
+      	el.setAttribute( 'defer', 'defer' );
+      	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
+      		el.src = "../../../assets/1.0.0/scripts/app.js";
+      	} else {
+      		el.src = "../../../assets/1.0.0/scripts/app-polyfill.js";
+      	}
+      	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
+      
+      	// Changing documentation theme enable it via `localStorage.setItem( 'theme', 'theme-dark' )`
+      	if ( localStorage.getItem( 'theme' ) === 'theme-dark' ) {
+      		document.getElementsByTagName( 'html' )[ 0 ].classList.add( 'theme-dark' );
+      	}
+      } )();
+    </script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="header__main">
+        <div class="header__main-rwd-button"><a href="#"><span></span><span></span><span></span></a></div>
+        <div class="header__main-title"><a class="header__main-title-home" href="../../../index.html">CKEditor Ecosystem Documentation</a></div>
+        <div class="top__search">
+          <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+          <div class="top__search__button"><img src="../../../assets/1.0.0/img/loupe.svg" alt="Search"></div>
+        </div>
+      </div>
+      <div class="header__sub">
+        <ul class="top__menu">
+          <li class="top__menu-project-logo"><a href="../index.html">CKEditor 5</a></li>
+          <li><a href="../builds/index.html">Builds</a></li>
+          <li><a href="../framework/index.html">Framework</a></li>
+          <li><a href="../examples/index.html">Examples</a></li>
+          <li><a class="top__menu__item--active" href="index.html">Features</a></li>
+          <li><a class="top__menu__api" href="../api/index.html">API</a></li>
+          <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."><svg viewbox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li>
+        </ul>
+      </div>
+      <div class="header__menu-rwd">
+        <ul class="header__menu-rwd__projects">
+          <li data-project="ckeditor5"><a href="../../latest/index.html">CKEditor 5
+              <ul class="tree header__menu-rwd__projects-pages">
+                <li data-group="builds"><a href="../builds/index.html">Builds</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="framework"><a href="../framework/index.html">Framework</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="examples"><a href="../examples/index.html">Examples</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="features"><a href="index.html">Features</a>
+                  <!-- Display subpages for active project.-->
+                  <ul class="header__menu-rwd__projects-subpages">
+                            <li><a href="autoformat.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Autoformatting</span></div></a></li>
+                            <li><a href="basic-styles.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic text styles</span></div></a></li>
+                            <li><a href="blocktoolbar.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block toolbar</span></div></a></li>
+                            <li><a href="editor-placeholder.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor placeholder</span></div></a></li>
+                            <li><a href="font.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Font</span></div></a></li>
+                            <li><a href="headings.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Headings</span></div></a></li>
+                            <li><a href="highlight.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Highlight</span></div></a></li>
+                            <li>
+                              <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Image upload</span></div>
+                              <ul class="tree__item-nested-list">
+                                    <li><a href="image-upload/image-upload.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="image-upload/easy-image.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Easy Image</span></div></a></li>
+                                    <li><a href="image-upload/ckfinder.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">CKFinder file manager</span></div></a></li>
+                              </ul>
+                            </li>
+                            <li><a href="image.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Images</span></div></a></li>
+                            <li><a href="keyboard-support.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Keyboard support</span></div></a></li>
+                            <li><a href="link.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Link</span></div></a></li>
+                            <li><a href="markdown.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Markdown output</span></div></a></li>
+                            <li><a href="media-embed.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Media embed</span></div></a></li>
+                            <li><a href="mentions.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Mentions</span></div></a></li>
+                            <li><a href="paste-from-word.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Word</span></div></a></li>
+                            <li><a href="read-only.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Read-only support</span></div></a></li>
+                            <li><a href="remove-format.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Remove formatting</span></div></a></li>
+                            <li><a href="ui-language.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Setting the UI language</span></div></a></li>
+                            <li><a href>
+                                <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Tables</span></div></a></li>
+                            <li><a href="text-alignment.html">
+                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Text alignment</span></div></a></li>
+                  </ul>
+                </li>
+                <li data-group="api-reference"><a href="../api/index.html">API</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+              </ul></a></li>
+        </ul>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-table/blob/master/docs/features/table.md" title="Contribute to this guide"><img src="../../../assets/1.0.0/img/edit.svg" alt="Contribute to this guide"></a><a href="https://github.com/ckeditor/ckeditor5-table/issues/new" title="Report an issue"><img src="../../../assets/1.0.0/img/exclamation-circle.svg" alt="Report an issue"></a>
+          </div>
+          <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
+          </div>
+          <h1 class="main__content-title"><img src="../../../assets/1.0.0/img/book.svg" alt="guide">Tables
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#installation">Installation</a></li><li><a href="#block-vs-inline-content-in-table-cells">Block vs inline content in table cells</a><ol><li><a href="#inline-content">Inline content</a></li><li><a href="#block-content">Block content</a></li></ol></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
+<p>The <a href="../api/module_table_table-Table.html"><code>Table</code></a> feature offers table creation and editing tools that help content authors bring tabular data into their documents.</p>
+<h2 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h2>
+<div class="live-snippet"><div id="snippet-table">
+	<p>The ultimate table of <a href="https://en.wikipedia.org/wiki/List_of_coffee_drinks">coffee drinks</a>:</p>
+	<table>
+		<thead>
+			<tr>
+				<th rowspan="2"></th>
+				<th scope="col" rowspan="2">Espresso</th>
+				<th scope="colgroup" colspan="2">Milk</th>
+				<th scope="col" rowspan="2">Water</th>
+			</tr>
+			<tr>
+				<th scope="col">Steamed</th>
+				<th scope="col">Foam</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th scope="row">Cappuccino</th>
+				<td>yes</td>
+				<td>yes</td>
+				<td>yes</td>
+				<td>no</td>
+			</tr>
+			<tr>
+				<th scope="row">Macchiato</th>
+				<td>yes</td>
+				<td>no</td>
+				<td>yes</td>
+				<td>no</td>
+			</tr>
+			<tr>
+				<th scope="row">Latte</th>
+				<td>yes</td>
+				<td>yes</td>
+				<td>no</td>
+				<td>no</td>
+			</tr>
+			<tr>
+				<th scope="row">Americano</th>
+				<td>yes</td>
+				<td>no</td>
+				<td>no</td>
+				<td>yes</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<style>
+	.ck.ck-content table td,
+	.ck.ck-content table th {
+		vertical-align: middle;
+	}
+</style>
+</div>
+<h2 id="installation"><a class="headerlink" href="#installation">#</a> Installation</h2>
+<div class="info-box notice notice__info"><p>This feature is enabled by default in all builds. The installation instructions are for developers interested in building their own, custom rich text editor.</p></div>
+<p>To add this feature to your editor, install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-table" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-table</code></a> package:</p>
+<pre class="highlight"><code class="bash">npm install --save @ckeditor/ckeditor5-table
+</code></pre>
+<p>Then add <code>Table</code> and <code>TableToolbar</code> plugins to your plugin list and configure the table toolbar:</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> Table <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-table/src/table&apos;</span>;
+<span class="hljs-keyword">import</span> TableToolbar <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-table/src/tabletoolbar&apos;</span>;
+
+ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">plugins</span>: [ Table, TableToolbar, Bold, ... ],
+        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;insertTable&apos;</span>, ... ],
+        <span class="hljs-attr">table</span>: {
+            <span class="hljs-attr">contentToolbar</span>: [ <span class="hljs-string">&apos;tableColumn&apos;</span>, <span class="hljs-string">&apos;tableRow&apos;</span>, <span class="hljs-string">&apos;mergeTableCells&apos;</span> ]
+        }
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<h2 id="block-vs-inline-content-in-table-cells"><a class="headerlink" href="#block-vs-inline-content-in-table-cells">#</a> Block vs inline content in table cells</h2>
+<p>The table feature allows creating block content (like paragraphs, lists, headings, etc.) in table cells. However, if a table cell contains just one paragraph and this paragraph has no special attributes (like text alignment), this cell content is considered &#x201C;inline&#x201D; and the paragraph is not rendered.</p>
+<p>This means that a table cell can be in two states: with inline content or with block content. The reason for this differentiation is that most tables contain only inline content (e.g. in the <a href="#demo">demo</a> above) and it is common for &#x201C;data tables&#x201D; to not contain any block content. In such scenario, printing out <code>&lt;p&gt;</code> elements would be semantically incorrect and also unnecessary. There are, however, scenarios where the user wants to create, for example, a list inside the table and then support for block content is necessary, too.</p>
+<div class="info-box notice"><p>&#x201C;Rendering&#x201D; here means the view layer. In the model a cell is always filled with at least a <code>&lt;paragraph&gt;</code>. It is because of consistency, as since a cell always has some block content, the text is never directly inside <code>&lt;tableCell&gt;</code>. This also allows features like <kbd>Enter</kbd> support to work out of the box (since a <code>&lt;paragraph&gt;</code> exists in the model, it can be split despite the fact that it is not present in the view).</p></div>
+<h3 id="inline-content"><a class="headerlink" href="#inline-content">#</a> Inline content</h3>
+<p>The following is the model representation of table cells with inline content only (a single <code>&lt;paragraph&gt;</code> inside):</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tableRow</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">tableCell</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span>&gt;</span>Foo<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">tableCell</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">tableCell</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span>&gt;</span>Bar<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">tableCell</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">tableRow</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+</code></pre>
+<p>The above model structure will be rendered to the <a href="../api/module_editor-classic_classiceditor-ClassicEditor.html#function-getData">data</a> as:</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;table&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Foo<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Bar<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
+</code></pre>
+<p>In the editing view (the editable container in which the user edits the content) additional <code>&lt;span&gt;</code> elements are created to compensate for the hidden <code>&lt;paragraph&gt;</code> elements:</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;table&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Foo<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Bar<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
+</code></pre>
+<h3 id="block-content"><a class="headerlink" href="#block-content">#</a> Block content</h3>
+<p>If a table cell contains any other block content than a single <code>&lt;paragraph&gt;</code> with no attributes, these block elements will be rendered.</p>
+<p>The following is a sample table with some block content (model representation):</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tableRow</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">tableCell</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span>&gt;</span>Foo<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span>&gt;</span>Bar<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">tableCell</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">tableCell</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">heading1</span>&gt;</span>Some title<span class="hljs-tag">&lt;/<span class="hljs-name">heading1</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">tableCell</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">tableCell</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span> <span class="hljs-attr">textAlign</span>=<span class="hljs-string">&quot;right&quot;</span>&gt;</span>Baz<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">tableCell</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">tableRow</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+</code></pre>
+<p>The above model structure will be rendered to the data and to the editing view as:</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;table&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Foo<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Bar<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Some title<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;text-align: right;&quot;</span>&gt;</span>Baz<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
+</code></pre>
+<div class="info-box notice notice__info"><p>At the moment it is not possible to completely disallow block content in tables. See the <a href="https://github.com/ckeditor/ckeditor5-table/issues/101" target="_blank" rel="noopener">discussion on GitHub</a> about adding a configuration option that would enable that. &#x1F44D; if you need this feature.</p></div>
+<h2 id="common-api"><a class="headerlink" href="#common-api">#</a> Common API</h2>
+<p>The <a href="../api/module_table_table-Table.html"><code>Table</code></a> plugin registers the following UI components:</p>
+<ul>
+<li>The <code>&apos;insertTable&apos;</code> dropdown.</li>
+<li>The <code>&apos;tableColumn&apos;</code> dropdown.</li>
+<li>The <code>&apos;tableRow&apos;</code> dropdown.</li>
+<li>The <code>&apos;mergeTableCells&apos;</code> dropdown.</li>
+</ul>
+<p>And the following commands:</p>
+<table>
+<thead>
+<tr>
+<th><a href="../framework/guides/architecture/core-editor-architecture.html#commands">Command</a> name</th>
+<th>Implemented by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&apos;insertTable&apos;</code></td>
+<td><a href="../api/module_table_commands_inserttablecommand-InsertTableCommand.html"><code>InsertTableCommand</code></a></td>
+</tr>
+<tr>
+<td><code>&apos;insertTableColumnLeft&apos;</code></td>
+<td><a href="../api/module_table_commands_insertcolumncommand-InsertColumnCommand.html"><code>InsertColumnCommand</code></a></td>
+</tr>
+<tr>
+<td><code>&apos;insertTableColumnRight&apos;</code></td>
+<td><a href="../api/module_table_commands_insertcolumncommand-InsertColumnCommand.html"><code>InsertColumnCommand</code></a></td>
+</tr>
+<tr>
+<td><code>&apos;insertTableRowAbove&apos;</code></td>
+<td><a href="../api/module_table_commands_insertrowcommand-InsertRowCommand.html"><code>InsertRowCommand</code></a></td>
+</tr>
+<tr>
+<td><code>&apos;insertTableRowBelow&apos;</code></td>
+<td><a href="../api/module_table_commands_insertrowcommand-InsertRowCommand.html"><code>InsertRowCommand</code></a></td>
+</tr>
+<tr>
+<td><code>&apos;removeTableColumn&apos;</code></td>
+<td><a href="../api/module_table_commands_removecolumncommand-RemoveColumnCommand.html"><code>RemoveColumnCommand</code></a></td>
+</tr>
+<tr>
+<td><code>&apos;removeTableRow&apos;</code></td>
+<td><a href="../api/module_table_commands_removerowcommand-RemoveRowCommand.html"><code>RemoveRowCommand</code></a></td>
+</tr>
+<tr>
+<td><code>&apos;setTableColumnHeader&apos;</code></td>
+<td><a href="../api/module_table_commands_setheadercolumncommand-SetHeaderColumnCommand.html"><code>SetHeaderColumnCommand</code></a></td>
+</tr>
+<tr>
+<td><code>&apos;setTableRowHeader&apos;</code></td>
+<td><a href="../api/module_table_commands_setheaderrowcommand-SetHeaderRowCommand.html"><code>SetHeaderRowCommand</code></a></td>
+</tr>
+<tr>
+<td><code>&apos;mergeTableCellRight&apos;</code></td>
+<td><a href="../api/module_table_commands_mergecellcommand-MergeCellCommand.html"><code>MergeCellCommand</code></a></td>
+</tr>
+<tr>
+<td><code>&apos;mergeTableCellLeft&apos;</code></td>
+<td><a href="../api/module_table_commands_mergecellcommand-MergeCellCommand.html"><code>MergeCellCommand</code></a></td>
+</tr>
+<tr>
+<td><code>&apos;mergeTableCellUp&apos;</code></td>
+<td><a href="../api/module_table_commands_mergecellcommand-MergeCellCommand.html"><code>MergeCellCommand</code></a></td>
+</tr>
+<tr>
+<td><code>&apos;mergeTableCellDown&apos;</code></td>
+<td><a href="../api/module_table_commands_mergecellcommand-MergeCellCommand.html"><code>MergeCellCommand</code></a></td>
+</tr>
+<tr>
+<td><code>&apos;splitTableCellVertically&apos;</code></td>
+<td><a href="../api/module_table_commands_splitcellcommand-SplitCellCommand.html"><code>SplitCellCommand</code></a></td>
+</tr>
+<tr>
+<td><code>&apos;splitTableCellHorizontally&apos;</code></td>
+<td><a href="../api/module_table_commands_splitcellcommand-SplitCellCommand.html"><code>SplitCellCommand</code></a></td>
+</tr>
+</tbody>
+</table>
+<p>The <a href="../api/module_table_tabletoolbar-TableToolbar.html"><code>TableToolbar</code></a> plugin introduces two balloon toolbars for tables.</p>
+<ul>
+<li>The content toolbar shows up when table cell is selected and is anchored to the table. It is possible to <a href="../api/module_table_table-TableConfig.html#member-contentToolbar">configure</a> its content. Normally, it contains the table-related tools such as <code>&apos;tableColumn&apos;</code>, <code>&apos;tableRow&apos;</code>, and <code>&apos;mergeTableCells&apos;</code> dropdowns.</li>
+<li>The table toolbar shows up when the whole table is selected, for instance using the widget handler. It is possible to <a href="../api/module_table_table-TableConfig.html#member-tableToolbar">configure</a> its content.</li>
+</ul>
+<div class="info-box notice"><p>We recommend using the official <a href="../framework/guides/development-tools.html#ckeditor-5-inspector">CKEditor 5 inspector</a> for development and debugging. It will give you tons of useful information about the state of the editor such as internal data structures, selection, commands, and many more.</p></div>
+<h2 id="contribute"><a class="headerlink" href="#contribute">#</a> Contribute</h2>
+<p>The source code of the feature is available on GitHub in <a href="https://github.com/ckeditor/ckeditor5-table" target="_blank" rel="noopener">https://github.com/ckeditor/ckeditor5-table</a>.</p>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li><a href="autoformat.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Autoformatting</span></div></a></li>
+                          <li><a href="basic-styles.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic text styles</span></div></a></li>
+                          <li><a href="blocktoolbar.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block toolbar</span></div></a></li>
+                          <li><a href="editor-placeholder.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor placeholder</span></div></a></li>
+                          <li><a href="font.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Font</span></div></a></li>
+                          <li><a href="headings.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Headings</span></div></a></li>
+                          <li><a href="highlight.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Highlight</span></div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Image upload</span></div>
+                            <ul class="tree__item-nested-list">
+                                    <li><a href="image-upload/image-upload.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="image-upload/easy-image.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Easy Image</span></div></a></li>
+                                    <li><a href="image-upload/ckfinder.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">CKFinder file manager</span></div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="image.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Images</span></div></a></li>
+                          <li><a href="keyboard-support.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Keyboard support</span></div></a></li>
+                          <li><a href="link.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Link</span></div></a></li>
+                          <li><a href="markdown.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Markdown output</span></div></a></li>
+                          <li><a href="media-embed.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Media embed</span></div></a></li>
+                          <li><a href="mentions.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Mentions</span></div></a></li>
+                          <li><a href="paste-from-word.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Word</span></div></a></li>
+                          <li><a href="read-only.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Read-only support</span></div></a></li>
+                          <li><a href="remove-format.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Remove formatting</span></div></a></li>
+                          <li><a href="ui-language.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Setting the UI language</span></div></a></li>
+                          <li><a href>
+                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Tables</span></div></a></li>
+                          <li><a href="text-alignment.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Text alignment</span></div></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2003-2019 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'features' ] = hits.filter( function( h ) {return h.tags.includes( 'features' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'features' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'features' ] );tags.forEach( function( tag ) {if ( tag !== 'features' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+    <script src="../assets/snippet.js"></script>
+    <script src="../snippets/features/build-table-source/snippet.js"></script>
+    <script src="../snippets/features/table/snippet.js"></script>
+  </body>
+</html>
