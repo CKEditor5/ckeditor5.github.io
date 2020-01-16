@@ -558,6 +558,40 @@ the provided name is correct and the component has been correctly
     </div>
   </li>
   <li class="collapsing-list__item collapsing-list__item--visible">
+    <div class="collapsing-list__term toggler--collapsed" id="error-context-addEditor-private-context">
+      <h3><code><a class="member-name" href="#error-context-addEditor-private-context">context-addEditor-private-context</a></code></h3>
+    </div>
+    <div class="collapsing-list__description collapsing-list__description--error-page">
+      <p class="collapsing-list__excerpt">Cannot add multiple editors to the context which is created by the editor.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item collapsing-list__item--visible">
+    <div class="collapsing-list__term toggler--collapsed" id="error-context-initplugins-constructor-only">
+      <h3><code><a class="member-name" href="#error-context-initplugins-constructor-only">context-initplugins-constructor-only</a></code></h3>
+    </div>
+    <div class="collapsing-list__description collapsing-list__description--error-page">
+      <p class="collapsing-list__excerpt">Only a constructor function is allowed as a <a href="../../../api/module_core_contextplugin-ContextPlugin.html">context plugin</a>.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item collapsing-list__item--visible">
+    <div class="collapsing-list__term toggler--collapsed" id="error-context-initplugins-invalid-plugin">
+      <h3><code><a class="member-name" href="#error-context-initplugins-invalid-plugin">context-initplugins-invalid-plugin</a></code></h3>
+    </div>
+    <div class="collapsing-list__description collapsing-list__description--error-page">
+      <p class="collapsing-list__excerpt">Only a plugin marked as a <a href="../../../api/module_core_contextplugin-ContextPlugin.html#static-member-isContextPlugin">context plugin</a>
+is allowed to be used with a context.
+      </p>
+      <div class="collapsing-list__content">
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item collapsing-list__item--visible">
     <div class="collapsing-list__term toggler--collapsed" id="error-contextualballoon-add-view-exist">
       <h3><code><a class="member-name" href="#error-contextualballoon-add-view-exist">contextualballoon-add-view-exist</a></code></h3>
     </div>
@@ -1654,6 +1688,35 @@ observable.set( &apos;property&apos;, 2 );            // ok, because this is an 
     </div>
   </li>
   <li class="collapsing-list__item collapsing-list__item--visible">
+    <div class="collapsing-list__term toggler--collapsed" id="error-plugincollection-context-required">
+      <h3><code><a class="member-name" href="#error-plugincollection-context-required">plugincollection-context-required</a></code></h3>
+    </div>
+    <div class="collapsing-list__description collapsing-list__description--error-page">
+      <p class="collapsing-list__excerpt">If a plugin is a <code>ContextPlugin</code> all plugins it requires should also be a <code>ContextPlugin</code>,
+instead of <code>Plugin</code>. In other words, if one plugin can be used in the <code>Context</code>,
+all its requirements also should be ready to be used in the<code>Context</code>. Note that context
+provides only a part of the API provided by the editor. If one plugin needs a full
+editor API, all plugins which require it, are considered as plugins which need a full
+editor API.
+      </p>
+      <div class="collapsing-list__content">
+        <h4>Parameters</h4>
+        <dl>
+          <dt><code>plugin
+              :
+ <span>String</span></code></dt>
+          <dd><p>The name of the required plugin.</p>
+          </dd>
+          <dt><code>requiredBy
+              :
+ <span>String</span></code></dt>
+          <dd><p>The name of the parent plugin.</p>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </li>
+  <li class="collapsing-list__item collapsing-list__item--visible">
     <div class="collapsing-list__term toggler--collapsed" id="error-plugincollection-load">
       <h3><code><a class="member-name" href="#error-plugincollection-load">plugincollection-load</a></code></h3>
     </div>
@@ -1797,13 +1860,13 @@ to check if plugin was loaded.</p>
         <dl>
           <dt><code>plugin
               :
- <span>function</span></code></dt>
-          <dd><p>The required plugin.</p>
+ <span>String</span></code></dt>
+          <dd><p>The name of the required plugin.</p>
           </dd>
           <dt><code>requiredBy
               :
- <span>function</span></code></dt>
-          <dd><p>The parent plugin.</p>
+ <span>String</span></code></dt>
+          <dd><p>The name of the parent plugin.</p>
           </dd>
         </dl>
       </div>
