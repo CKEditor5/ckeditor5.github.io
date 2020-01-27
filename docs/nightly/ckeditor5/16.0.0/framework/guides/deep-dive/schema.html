@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/1.2.0/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
     <script>
       ( function() {
@@ -33,16 +33,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../assets/1.2.0/scripts"
+      	window.umberto.relativeAppPath = "../../../../../assets/1.2.1/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../assets/1.2.0/scripts/app.js";
+      		el.src = "../../../../../assets/1.2.1/scripts/app.js";
       	} else {
-      		el.src = "../../../../../assets/1.2.0/scripts/app-polyfill.js";
+      		el.src = "../../../../../assets/1.2.1/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -84,7 +84,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../assets/1.2.0/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -230,11 +230,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-engine/blob/master/docs/framework/guides/deep-dive/schema.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.0/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-engine/blob/master/docs/framework/guides/deep-dive/schema.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../assets/1.2.0/img/book.svg" alt="guide">Schema
+          <h1 class="main__content-title"><img src="../../../../../assets/1.2.1/img/book.svg" alt="guide">Schema
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#quick-recap">Quick recap</a></li><li><a href="#defining-allowed-structures">Defining allowed structures</a></li><li><a href="#generic-items">Generic items</a></li><li><a href="#defining-advanced-rules-in-checkchild-callbacks">Defining advanced rules in checkChild() callbacks</a></li><li><a href="#implementing-additional-constraints">Implementing additional constraints</a></li><li><a href="#who-checks-the-schema">Who checks the schema?</a><ol><li><a href="#low-level-apis">Low-level APIs</a></li><li><a href="#high-level-apis">High-level APIs</a></li></ol></li></ol></nav>
 <p>This article assumes that you have already read the <a href="../architecture/editing-engine.html#schema">&#x201C;Schema&#x201D;</a> section of the <a href="../architecture/editing-engine.html">introduction to the editing engine architecture</a>.</p>
 <h2 id="quick-recap"><a class="headerlink" href="#quick-recap">#</a> Quick recap</h2>
@@ -258,7 +258,7 @@
     <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">foo</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">myElement</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">myElement</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">foo</span>&gt;</span></span>
-<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">$root</span>&gt;</span>
+&lt;<span class="hljs-regexp">/$root&gt;
 </span></code></pre>
 <h2 id="generic-items"><a class="headerlink" href="#generic-items">#</a> Generic items</h2>
 <p>There are three basic generic items: <code>$root</code>, <code>$block</code> and <code>$text</code>. They are defined as follows:</p>

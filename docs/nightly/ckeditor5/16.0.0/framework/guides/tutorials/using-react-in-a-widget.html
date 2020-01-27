@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/1.2.0/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../../../snippets/framework/tutorials/using-react-in-widget/snippet.css" type="text/css">
     <link rel="stylesheet" href="../../../assets/snippet-styles.css" type="text/css">
@@ -35,16 +35,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../assets/1.2.0/scripts"
+      	window.umberto.relativeAppPath = "../../../../../assets/1.2.1/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../assets/1.2.0/scripts/app.js";
+      		el.src = "../../../../../assets/1.2.1/scripts/app.js";
       	} else {
-      		el.src = "../../../../../assets/1.2.0/scripts/app-polyfill.js";
+      		el.src = "../../../../../assets/1.2.1/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -86,7 +86,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../assets/1.2.0/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -232,11 +232,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/tutorials/using-react-in-a-widget.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.0/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/tutorials/using-react-in-a-widget.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../assets/1.2.0/img/book.svg" alt="guide">Using a React component in a block widget
+          <h1 class="main__content-title"><img src="../../../../../assets/1.2.1/img/book.svg" alt="guide">Using a React component in a block widget
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#before-you-start">Before you start</a></li><li><a href="#lets-start">Let&#x2019;s start</a></li><li><a href="#application-structure">Application structure</a></li><li><a href="#ckeditor-classes">CKEditor classes</a><ol><li><a href="#editing-plugin">Editing plugin</a></li><li><a href="#command">Command</a></li></ol></li><li><a href="#react-components">React components</a><ol><li><a href="#product-list">Product list</a></li><li><a href="#product-preview">Product preview</a></li><li><a href="#main-application-component">Main application component</a></li></ol></li><li><a href="#styles-and-assets">Styles and assets</a></li><li><a href="#demo">Demo</a></li><li><a href="#full-source-code">Full source code</a><ol><li><a href="#appjs">app.js</a></li><li><a href="#productprevieweditingjs">productpreviewediting.js</a></li><li><a href="#insertproductpreviewcommandjs">insertproductpreviewcommand.js</a></li><li><a href="#productlistjs">productlist.js</a></li><li><a href="#productpreviewjs">productpreview.js</a></li><li><a href="#indexhtml">index.html</a></li></ol></li></ol></nav>
 <p>In this tutorial, you will learn how to implement an editor plugin that uses the power of the <a href="https://reactjs.org/" target="_blank" rel="noopener">React</a> library inside the CKEditor 5 widget ecosystem. You will build a &#x201C;Product preview&#x201D; feature which renders an actual React component inside the editor to display some useful information about the product.</p>
 <p>Later on, you will use the &#x201C;Product preview&#x201D; feature to build a simple React application that displays an editor next to the list of available products, allowing the user to insert the product into the editor content by clicking it on the list.</p>
@@ -357,10 +357,10 @@
 
 <span class="hljs-comment">// Render the &lt;App&gt; in the &lt;div class=&quot;app&quot;&gt;&lt;/div&gt; element found in the DOM.</span>
 ReactDOM.render(
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">App</span> /&gt;</span>,
-    document.querySelector( &apos;.app&apos; )
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">App</span> /&gt;</span></span>,
+    <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;.app&apos;</span> )
 );
-</span></code></pre>
+</code></pre>
 <p>Add an <code>index.html</code> page next to the <code>app.js</code> file:</p>
 <pre class="highlight"><code class="html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
@@ -624,10 +624,10 @@ Entrypoint main [big] = bundle.js bundle.js.map
                 })}
             <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
             <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>Tip<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span>: Clicking the product will add it to the editor.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>;
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
     }
 }
-</span></code></pre>
+</code></pre>
 <h3 id="product-preview"><a class="headerlink" href="#product-preview">#</a> Product preview</h3>
 <p>The actual preview of the product, with its name, price and an image. Instances of the <code>&lt;ProductPreview&gt;</code> component populate both the <a href="#product-list"><code>&lt;ProductList&gt;</code></a> and the <a href="#editing-plugin">editor widgets</a> in the content.</p>
 <p>Clicking a preview in the sidebar executes the <a href="#command"><code>&apos;insertProduct&apos;</code></a> editor command and inserts the same preview into the editor content.</p>
@@ -740,71 +740,71 @@ Entrypoint main [big] = bundle.js bundle.js.map
                     <span class="hljs-keyword">const</span> product = <span class="hljs-keyword">this</span>.props.products.find( <span class="hljs-function"><span class="hljs-params">product</span> =&gt;</span> product.id === id );
 
                     ReactDOM.render(
-                        &lt;ProductPreview id={id} {...product} /&gt;,
+                        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">ProductPreview</span> <span class="hljs-attr">id</span>=<span class="hljs-string">{id}</span> {<span class="hljs-attr">...product</span>} /&gt;</span></span>,
                         domElement
                     );
                 }
             }
         };
 
-        this.handleEditorDataChange = this.handleEditorDataChange.bind( this );
-        this.handleEditorInit = this.handleEditorInit.bind( this );
+        <span class="hljs-keyword">this</span>.handleEditorDataChange = <span class="hljs-keyword">this</span>.handleEditorDataChange.bind( <span class="hljs-keyword">this</span> );
+        <span class="hljs-keyword">this</span>.handleEditorInit = <span class="hljs-keyword">this</span>.handleEditorInit.bind( <span class="hljs-keyword">this</span> );
     }
 
-    // A handler executed when the user types or modifies the editor content.
-    // It updates the state of the application.
+    <span class="hljs-comment">// A handler executed when the user types or modifies the editor content.</span>
+    <span class="hljs-comment">// It updates the state of the application.</span>
     handleEditorDataChange( evt, editor ) {
-        this.setState( {
-            editorData: editor.getData()
+        <span class="hljs-keyword">this</span>.setState( {
+            <span class="hljs-attr">editorData</span>: editor.getData()
         } );
     }
 
-    // A handler executed when the editor has been initialized and is ready.
-    // It synchronizes the initial data state and saves the reference to the editor instance.
+    <span class="hljs-comment">// A handler executed when the editor has been initialized and is ready.</span>
+    <span class="hljs-comment">// It synchronizes the initial data state and saves the reference to the editor instance.</span>
     handleEditorInit( editor ) {
-        this.editor = editor;
+        <span class="hljs-keyword">this</span>.editor = editor;
 
-        this.setState( {
-            editorData: editor.getData()
+        <span class="hljs-keyword">this</span>.setState( {
+            <span class="hljs-attr">editorData</span>: editor.getData()
         } );
 
-        // CKEditor 5 inspector allows you to take a peek into the editor&apos;s model and view
-        // data layers. Use it to debug the application and learn more about the editor.
+        <span class="hljs-comment">// CKEditor 5 inspector allows you to take a peek into the editor&apos;s model and view</span>
+        <span class="hljs-comment">// data layers. Use it to debug the application and learn more about the editor.</span>
         CKEditorInspector.attach( editor );
     }
 
     render() {
-        return [
-            // The application renders two columns:
-            // * in the left one, the &lt;CKEditor&gt; and the textarea displaying live
-            //   editor data are rendered.
-            // * in the right column, a &lt;ProductList&gt; is rendered with available &lt;ProductPreviews&gt;
-            //   to choose from.
-            &lt;div className=&quot;app__offer-editor&quot; key=&quot;offer-editor&quot;&gt;
-                &lt;h3&gt;Product offer editor&lt;/h3&gt;
-                &lt;CKEditor
-                    editor={ClassicEditor}
-                    data={this.state.editorData}
-                    config={this.editorConfig}
-                    onChange={this.handleEditorDataChange}
-                    onInit={this.handleEditorInit}
-                /&gt;
+        <span class="hljs-keyword">return</span> [
+            <span class="hljs-comment">// The application renders two columns:</span>
+            <span class="hljs-comment">// * in the left one, the &lt;CKEditor&gt; and the textarea displaying live</span>
+            <span class="hljs-comment">//   editor data are rendered.</span>
+            <span class="hljs-comment">// * in the right column, a &lt;ProductList&gt; is rendered with available &lt;ProductPreviews&gt;</span>
+            <span class="hljs-comment">//   to choose from.</span>
+            <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;app__offer-editor&quot;</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&quot;offer-editor&quot;</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Product offer editor<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">CKEditor</span>
+                    <span class="hljs-attr">editor</span>=<span class="hljs-string">{ClassicEditor}</span>
+                    <span class="hljs-attr">data</span>=<span class="hljs-string">{this.state.editorData}</span>
+                    <span class="hljs-attr">config</span>=<span class="hljs-string">{this.editorConfig}</span>
+                    <span class="hljs-attr">onChange</span>=<span class="hljs-string">{this.handleEditorDataChange}</span>
+                    <span class="hljs-attr">onInit</span>=<span class="hljs-string">{this.handleEditorInit}</span>
+                /&gt;</span>
 
-                &lt;h3&gt;Editor data&lt;/h3&gt;
-                &lt;textarea value={this.state.editorData} readOnly={true}&gt;&lt;/textarea&gt;
-            &lt;/div&gt;,
+                <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Editor data<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{this.state.editorData}</span> <span class="hljs-attr">readOnly</span>=<span class="hljs-string">{true}</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>,
             &lt;ProductList
-                key=&quot;product-list&quot;
-                products={this.props.products}
+                key=<span class="hljs-string">&quot;product-list&quot;</span>
+                products={<span class="hljs-keyword">this</span>.props.products}
                 onClick={( id ) =&gt; {
-                    this.editor.execute( &apos;insertProduct&apos;, id );
-                    this.editor.editing.view.focus();
-                }}
-            /&gt;
+                    <span class="hljs-keyword">this</span>.editor.execute( <span class="hljs-string">&apos;insertProduct&apos;</span>, id );
+                    <span class="hljs-keyword">this</span>.editor.editing.view.focus();
+                &lt;!--&#xFFFC;<span class="hljs-number">0</span>--&gt;
+            <span class="hljs-regexp">/&gt;
         ];
     }
 }
-</code></pre>
+</span></code></pre>
 <p>The JavaScript code is ready, but to run the application you need to specify a couple of product definitions. Do that when mounting the <code>&lt;App&gt;</code> component:</p>
 <pre class="highlight"><code class="js"><span class="hljs-comment">// app.js</span>
 
@@ -845,10 +845,10 @@ ReactDOM.render(
                 <span class="hljs-attr">image:</span> &apos;<span class="hljs-attr">product4.jpg</span>&apos;
             }
         ]}
-    /&gt;</span>,
-    document.querySelector( &apos;.app&apos; )
+    /&gt;</span></span>,
+    <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;.app&apos;</span> )
 );
-</span></code></pre>
+</code></pre>
 <p>Please note that each product comes with its own image (e.g. <code>product1.jpg</code>), which should be stored in the <code>assets/</code> directory to load correctly with the CSS <code>background-image</code>. Learn more about styles in the <a href="#styles-and-assets">next section</a>.</p>
 <h2 id="styles-and-assets"><a class="headerlink" href="#styles-and-assets">#</a> Styles and assets</h2>
 <p>The application needs some styling to look good. You are going to put them in the <code>assets/styles.css</code> file imported in your main HTML file (<code>index.html</code>):</p>
@@ -1495,106 +1495,106 @@ ReactDOM.render(
                     <span class="hljs-keyword">const</span> product = <span class="hljs-keyword">this</span>.props.products.find( <span class="hljs-function"><span class="hljs-params">product</span> =&gt;</span> product.id === id );
 
                     ReactDOM.render(
-                        &lt;ProductPreview id={id} {...product} /&gt;,
+                        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">ProductPreview</span> <span class="hljs-attr">id</span>=<span class="hljs-string">{id}</span> {<span class="hljs-attr">...product</span>} /&gt;</span></span>,
                         domElement
                     );
                 }
             }
         };
 
-        this.handleEditorDataChange = this.handleEditorDataChange.bind( this );
-        this.handleEditorInit = this.handleEditorInit.bind( this );
+        <span class="hljs-keyword">this</span>.handleEditorDataChange = <span class="hljs-keyword">this</span>.handleEditorDataChange.bind( <span class="hljs-keyword">this</span> );
+        <span class="hljs-keyword">this</span>.handleEditorInit = <span class="hljs-keyword">this</span>.handleEditorInit.bind( <span class="hljs-keyword">this</span> );
     }
 
-    // A handler executed when the user types or modifies the editor content.
-    // It updates the state of the application.
+    <span class="hljs-comment">// A handler executed when the user types or modifies the editor content.</span>
+    <span class="hljs-comment">// It updates the state of the application.</span>
     handleEditorDataChange( evt, editor ) {
-        this.setState( {
-            editorData: editor.getData()
+        <span class="hljs-keyword">this</span>.setState( {
+            <span class="hljs-attr">editorData</span>: editor.getData()
         } );
     }
 
-    // A handler executed when the editor has been initialized and is ready.
-    // It synchronizes the initial data state and saves the reference to the editor instance.
+    <span class="hljs-comment">// A handler executed when the editor has been initialized and is ready.</span>
+    <span class="hljs-comment">// It synchronizes the initial data state and saves the reference to the editor instance.</span>
     handleEditorInit( editor ) {
-        this.editor = editor;
+        <span class="hljs-keyword">this</span>.editor = editor;
 
-        this.setState( {
-            editorData: editor.getData()
+        <span class="hljs-keyword">this</span>.setState( {
+            <span class="hljs-attr">editorData</span>: editor.getData()
         } );
 
-        // CKEditor 5 inspector allows you to take a peek into the editor&apos;s model and view
-        // data layers. Use it to debug the application and learn more about the editor.
+        <span class="hljs-comment">// CKEditor 5 inspector allows you to take a peek into the editor&apos;s model and view</span>
+        <span class="hljs-comment">// data layers. Use it to debug the application and learn more about the editor.</span>
         CKEditorInspector.attach( editor );
     }
 
     render() {
-        return [
-            // The application renders two columns:
-            // * in the left one, the &lt;CKEditor&gt; and the textarea displaying live
-            //   editor data are rendered.
-            // * in the right column, a &lt;ProductList&gt; is rendered with available &lt;ProductPreviews&gt;
-            //   to choose from.
-            &lt;div className=&quot;app__offer-editor&quot; key=&quot;offer-editor&quot;&gt;
-                &lt;h3&gt;Product offer editor&lt;/h3&gt;
-                &lt;CKEditor
-                    editor={ClassicEditor}
-                    data={this.state.editorData}
-                    config={this.editorConfig}
-                    onChange={this.handleEditorDataChange}
-                    onInit={this.handleEditorInit}
-                /&gt;
+        <span class="hljs-keyword">return</span> [
+            <span class="hljs-comment">// The application renders two columns:</span>
+            <span class="hljs-comment">// * in the left one, the &lt;CKEditor&gt; and the textarea displaying live</span>
+            <span class="hljs-comment">//   editor data are rendered.</span>
+            <span class="hljs-comment">// * in the right column, a &lt;ProductList&gt; is rendered with available &lt;ProductPreviews&gt;</span>
+            <span class="hljs-comment">//   to choose from.</span>
+            <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;app__offer-editor&quot;</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&quot;offer-editor&quot;</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Product offer editor<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">CKEditor</span>
+                    <span class="hljs-attr">editor</span>=<span class="hljs-string">{ClassicEditor}</span>
+                    <span class="hljs-attr">data</span>=<span class="hljs-string">{this.state.editorData}</span>
+                    <span class="hljs-attr">config</span>=<span class="hljs-string">{this.editorConfig}</span>
+                    <span class="hljs-attr">onChange</span>=<span class="hljs-string">{this.handleEditorDataChange}</span>
+                    <span class="hljs-attr">onInit</span>=<span class="hljs-string">{this.handleEditorInit}</span>
+                /&gt;</span>
 
-                &lt;h3&gt;Editor data&lt;/h3&gt;
-                &lt;textarea value={this.state.editorData} readOnly={true}&gt;&lt;/textarea&gt;
-            &lt;/div&gt;,
+                <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Editor data<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{this.state.editorData}</span> <span class="hljs-attr">readOnly</span>=<span class="hljs-string">{true}</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>,
             &lt;ProductList
-                key=&quot;product-list&quot;
-                products={this.props.products}
+                key=<span class="hljs-string">&quot;product-list&quot;</span>
+                products={<span class="hljs-keyword">this</span>.props.products}
                 onClick={( id ) =&gt; {
-                    this.editor.execute( &apos;insertProduct&apos;, id );
-                    this.editor.editing.view.focus();
-                }}
-            /&gt;
+                    <span class="hljs-keyword">this</span>.editor.execute( <span class="hljs-string">&apos;insertProduct&apos;</span>, id );
+                    <span class="hljs-keyword">this</span>.editor.editing.view.focus();
+                &lt;!--&#xFFFC;<span class="hljs-number">1</span>--&gt;
+            <span class="hljs-regexp">/&gt;
         ];
     }
 }
 
-// Render the &lt;App&gt; in the &lt;div class=&quot;app&quot;&gt;&lt;/div&gt; element found in the DOM.
+/</span><span class="hljs-regexp">/ Render the &lt;App&gt; in the &lt;div class=&quot;app&quot;&gt;&lt;/</span>div&gt; element found <span class="hljs-keyword">in</span> the DOM.
 ReactDOM.render(
-    &lt;App
-        // Feeding the application with predefined products.
-        // In a real-life application, this sort of data would be loaded
-        // from a database. To keep this tutorial simple, a few
-        //  hard&#x2013;coded product definitions will be used.
-        products={[
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">App</span>
+        // <span class="hljs-attr">Feeding</span> <span class="hljs-attr">the</span> <span class="hljs-attr">application</span> <span class="hljs-attr">with</span> <span class="hljs-attr">predefined</span> <span class="hljs-attr">products.</span>
+        // <span class="hljs-attr">In</span> <span class="hljs-attr">a</span> <span class="hljs-attr">real-life</span> <span class="hljs-attr">application</span>, <span class="hljs-attr">this</span> <span class="hljs-attr">sort</span> <span class="hljs-attr">of</span> <span class="hljs-attr">data</span> <span class="hljs-attr">would</span> <span class="hljs-attr">be</span> <span class="hljs-attr">loaded</span>
+        // <span class="hljs-attr">from</span> <span class="hljs-attr">a</span> <span class="hljs-attr">database.</span> <span class="hljs-attr">To</span> <span class="hljs-attr">keep</span> <span class="hljs-attr">this</span> <span class="hljs-attr">tutorial</span> <span class="hljs-attr">simple</span>, <span class="hljs-attr">a</span> <span class="hljs-attr">few</span>
+        //  <span class="hljs-attr">hard</span>&#x2013;<span class="hljs-attr">coded</span> <span class="hljs-attr">product</span> <span class="hljs-attr">definitions</span> <span class="hljs-attr">will</span> <span class="hljs-attr">be</span> <span class="hljs-attr">used.</span>
+        <span class="hljs-attr">products</span>=<span class="hljs-string">{[</span>
             {
-                id: 1,
-                name: &apos;Colors of summer in Poland&apos;,
-                price: &apos;$1500&apos;,
-                image: &apos;product1.jpg&apos;
+                <span class="hljs-attr">id:</span> <span class="hljs-attr">1</span>,
+                <span class="hljs-attr">name:</span> &apos;<span class="hljs-attr">Colors</span> <span class="hljs-attr">of</span> <span class="hljs-attr">summer</span> <span class="hljs-attr">in</span> <span class="hljs-attr">Poland</span>&apos;,
+                <span class="hljs-attr">price:</span> &apos;$<span class="hljs-attr">1500</span>&apos;,
+                <span class="hljs-attr">image:</span> &apos;<span class="hljs-attr">product1.jpg</span>&apos;
             },
             {
-                id: 2,
-                name: &apos;Mediterranean sun on Malta&apos;,
-                price: &apos;$1899&apos;,
-                image: &apos;product2.jpg&apos;
+                <span class="hljs-attr">id:</span> <span class="hljs-attr">2</span>,
+                <span class="hljs-attr">name:</span> &apos;<span class="hljs-attr">Mediterranean</span> <span class="hljs-attr">sun</span> <span class="hljs-attr">on</span> <span class="hljs-attr">Malta</span>&apos;,
+                <span class="hljs-attr">price:</span> &apos;$<span class="hljs-attr">1899</span>&apos;,
+                <span class="hljs-attr">image:</span> &apos;<span class="hljs-attr">product2.jpg</span>&apos;
             },
             {
-                id: 3,
-                name: &apos;Tastes of Asia&apos;,
-                price: &apos;$2599&apos;,
-                image: &apos;product3.jpg&apos;
+                <span class="hljs-attr">id:</span> <span class="hljs-attr">3</span>,
+                <span class="hljs-attr">name:</span> &apos;<span class="hljs-attr">Tastes</span> <span class="hljs-attr">of</span> <span class="hljs-attr">Asia</span>&apos;,
+                <span class="hljs-attr">price:</span> &apos;$<span class="hljs-attr">2599</span>&apos;,
+                <span class="hljs-attr">image:</span> &apos;<span class="hljs-attr">product3.jpg</span>&apos;
             },
             {
-                id: 4,
-                name: &apos;Exotic India&apos;,
-                price: &apos;$2200&apos;,
-                image: &apos;product4.jpg&apos;
+                <span class="hljs-attr">id:</span> <span class="hljs-attr">4</span>,
+                <span class="hljs-attr">name:</span> &apos;<span class="hljs-attr">Exotic</span> <span class="hljs-attr">India</span>&apos;,
+                <span class="hljs-attr">price:</span> &apos;$<span class="hljs-attr">2200</span>&apos;,
+                <span class="hljs-attr">image:</span> &apos;<span class="hljs-attr">product4.jpg</span>&apos;
             }
         ]}
-    /&gt;,
-    document.querySelector( &apos;.app&apos; )
+    /&gt;</span></span>,
+    <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;.app&apos;</span> )
 );
 </code></pre>
 <h3 id="productprevieweditingjs"><a class="headerlink" href="#productprevieweditingjs">#</a> <code>productpreviewediting.js</code></h3>
@@ -1753,10 +1753,10 @@ ReactDOM.render(
                 })}
             <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
             <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>Tip<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span>: Clicking the product will add it to the editor.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>;
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
     }
 }
-</span></code></pre>
+</code></pre>
 <h3 id="productpreviewjs"><a class="headerlink" href="#productpreviewjs">#</a> <code>productpreview.js</code></h3>
 <pre class="highlight"><code class="jsx html"><span class="hljs-comment">// react/productpreview.js</span>
 
