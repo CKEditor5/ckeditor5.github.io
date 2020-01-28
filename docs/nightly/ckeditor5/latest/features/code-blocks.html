@@ -284,7 +284,7 @@
 <pre><code class="language-css">body { color: red }</code></pre>
 </div>
 </div>
-<p>By default, the CSS class of the <code>&lt;code&gt;</code> element in the data and editing is generated using the <code>language</code> property (prefixed with &#x201C;language-&#x201D;). You can customize it by specifying an optional <code>class</code> property:</p>
+<p>By default, the CSS class of the <code>&lt;code&gt;</code> element in the data and editing is generated using the <code>language</code> property (prefixed with &#x201C;language-&#x201D;). You can customize it by specifying an optional <code>class</code> property. You can set <strong>multiple classes</strong> but <strong>only the first one</strong> will be used as defining language class:</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
         <span class="hljs-attr">codeBlock</span>: {
@@ -296,7 +296,8 @@
                 { <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;php&apos;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;PHP&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;php-code&apos;</span> },
 
                 <span class="hljs-comment">// Use the &quot;js&quot; class for JavaScript code blocks.</span>
-                { <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;javascript&apos;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;JavaScript&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;js&apos;</span> },
+                <span class="hljs-comment">// Note that only the first (&quot;js&quot;) class will determine the language of the block when loading data.</span>
+                { <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;javascript&apos;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;JavaScript&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;js javascript js-code&apos;</span> },
 
                 <span class="hljs-comment">// Python code blocks will have the default &quot;language-python&quot; CSS class.</span>
                 { <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;python&apos;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Python&apos;</span> }
