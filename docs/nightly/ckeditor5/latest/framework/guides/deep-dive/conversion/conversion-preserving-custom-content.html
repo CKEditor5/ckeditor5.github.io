@@ -396,7 +396,7 @@
         }
     } );
 
-    <span class="hljs-comment">// Model-to-view converter for the &lt;div&gt; element (attrbiutes are converted separately).</span>
+    <span class="hljs-comment">// Model-to-view converter for the &lt;div&gt; element (attributes are converted separately).</span>
     editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).elementToElement( {
         <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;div&apos;</span>,
         <span class="hljs-attr">view</span>: <span class="hljs-string">&apos;div&apos;</span>
@@ -538,16 +538,33 @@
 <pre class="highlight"><code class="js"><span class="hljs-comment">/**
  * Plugin that converts custom attributes for elements that are wrapped in &lt;figure&gt; in the view.
  */</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">CustomFigureAttributes</span>(<span class="hljs-params"> editor </span>) </span>{
-    <span class="hljs-comment">// Define on which elements the CSS classes should be preserved:</span>
-    setupCustomClassConversion( <span class="hljs-string">&apos;img&apos;</span>, <span class="hljs-string">&apos;image&apos;</span>, editor );
-    setupCustomClassConversion( <span class="hljs-string">&apos;table&apos;</span>, <span class="hljs-string">&apos;table&apos;</span>, editor );
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomFigureAttributes</span> </span>{
+    <span class="hljs-comment">/**
+     * Plugin&apos;s constructor - receives editor instance on creation.
+     */</span>
+    <span class="hljs-keyword">constructor</span>( editor ) {
+        <span class="hljs-comment">// Save reference to the editor.</span>
+        <span class="hljs-keyword">this</span>.editor = editor;
+    }
 
-    editor.conversion.for( <span class="hljs-string">&apos;upcast&apos;</span> ).add( upcastCustomClasses( <span class="hljs-string">&apos;figure&apos;</span> ), { <span class="hljs-attr">priority</span>: <span class="hljs-string">&apos;low&apos;</span> } );
+    <span class="hljs-comment">/**
+     * Setups conversion and extends table &amp; image features schema.
+     *
+     * Schema extending must be done in the &#x201C;afterInit()&#x201D; call because plugins define their schema in &#x201C;init()&#x201C;.
+     */</span>
+    afterInit() {
+        <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">this</span>.editor;
 
-    <span class="hljs-comment">// Define custom attributes that should be preserved.</span>
-    setupCustomAttributeConversion( <span class="hljs-string">&apos;img&apos;</span>, <span class="hljs-string">&apos;image&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>, editor );
-    setupCustomAttributeConversion( <span class="hljs-string">&apos;table&apos;</span>, <span class="hljs-string">&apos;table&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>, editor );
+        <span class="hljs-comment">// Define on which elements the CSS classes should be preserved:</span>
+        setupCustomClassConversion( <span class="hljs-string">&apos;img&apos;</span>, <span class="hljs-string">&apos;image&apos;</span>, editor );
+        setupCustomClassConversion( <span class="hljs-string">&apos;table&apos;</span>, <span class="hljs-string">&apos;table&apos;</span>, editor );
+
+        editor.conversion.for( <span class="hljs-string">&apos;upcast&apos;</span> ).add( upcastCustomClasses( <span class="hljs-string">&apos;figure&apos;</span> ), { <span class="hljs-attr">priority</span>: <span class="hljs-string">&apos;low&apos;</span> } );
+
+        <span class="hljs-comment">// Define custom attributes that should be preserved.</span>
+        setupCustomAttributeConversion( <span class="hljs-string">&apos;img&apos;</span>, <span class="hljs-string">&apos;image&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>, editor );
+        setupCustomAttributeConversion( <span class="hljs-string">&apos;table&apos;</span>, <span class="hljs-string">&apos;table&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>, editor );
+    }
 }
 
 <span class="hljs-comment">/**
