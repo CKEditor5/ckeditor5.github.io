@@ -892,17 +892,15 @@ deprecated and will be removed in the near future. Please use <a href="../../../
       <p class="collapsing-list__excerpt">This error is thrown when a user tries to use a <code>&lt;textarea&gt;</code> element to create a non-classic editor in it.
       </p>
       <div class="collapsing-list__content">
-<p>Textarea element represents a plain-text and cannot be used as a editable root element with included CKEditor5.
-Content of an editor should be nicely present to the user and show him how it&apos;s going to looks like. Textarea element
-doesn&apos;t support such behavior.</p>
-<p>Typically you can use a <code>div</code> for storing editor content instead:</p>
+<p>The textarea element represents plain text and in general, cannot be used as an editable root element with CKEditor 5 included.
+Only <a href="../../../builds/guides/overview.html#classic-editor" data-glink>Classic Editor</a> has implemented a special mechanism that
+<strong>replaces</strong> the DOM element and loads the data from it.</p>
+<p>Typically you can use a <code>div</code> for storing the editor content instead:</p>
 <pre class="prettyprint source"><code>&lt;div id=&quot;editor&quot;&gt;
     &lt;p&gt;Initial content.&lt;/p&gt;
-&lt;/div&gt;</code></pre><p>Only <a href="../../../builds/guides/overview.html#classic-editor" data-glink>Classic Editor</a> has implemented a special system, which
-<strong>replace</strong> DOM element and load data from it
-(<a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html#static-function-create">more information</a>). All other editors
-use an existing element, load data from it and make this element editable. Details about behaviour of each editor
-might be found in an associated description of a <code>create</code> method of each editor.</p>
+&lt;/div&gt;</code></pre><p>(<a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html#static-function-create">read more</a>). All other editor types
+use an existing element, load the data from it, and make this element editable. Refer to the description of the <code>create()</code> method
+for each editor type to learn more about this behavior.</p>
       </div>
     </div>
   </li>
@@ -1692,11 +1690,11 @@ observable.set( &apos;property&apos;, 2 );            // ok, because this is an 
       <h3><code><a class="member-name" href="#error-plugincollection-context-required">plugincollection-context-required</a></code></h3>
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
-      <p class="collapsing-list__excerpt">If a plugin is a <code>ContextPlugin</code> all plugins it requires should also be a <code>ContextPlugin</code>,
-instead of <code>Plugin</code>. In other words, if one plugin can be used in the <code>Context</code>,
-all its requirements also should be ready to be used in the<code>Context</code>. Note that context
+      <p class="collapsing-list__excerpt">If a plugin is a context plugin, all plugins it requires should also be context plugins
+instead of plugins. In other words, if one plugin can be used in the context,
+all its requirements should also be ready to be used in the context. Note that the context
 provides only a part of the API provided by the editor. If one plugin needs a full
-editor API, all plugins which require it, are considered as plugins which need a full
+editor API, all plugins which require it are considered as plugins that need a full
 editor API.
       </p>
       <div class="collapsing-list__content">
@@ -1726,7 +1724,7 @@ editor API.
       <div class="collapsing-list__content">
 <p>This is a generic error logged to the console when a JavaSript error is thrown during the initialization
 of one of the plugins.</p>
-<p>If you correctly handled the promise returned by the editor&apos;s <code>create()</code> method (like shown below)
+<p>If you correctly handled the promise returned by the editor&apos;s <code>create()</code> method (like shown below),
 you will find the original error logged to the console, too:</p>
 <pre class="prettyprint source"><code>ClassicEditor.create( document.getElementById( &apos;editor&apos; ) )
     .then( editor =&gt; {
