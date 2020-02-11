@@ -889,18 +889,15 @@ deprecated and will be removed in the near future. Please use <a href="../../../
       <h3><code><a class="member-name" href="#error-editor-wrong-element">editor-wrong-element</a></code></h3>
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
-      <p class="collapsing-list__excerpt">This error is thrown when a user tries to use a <code>&lt;textarea&gt;</code> element to create a non-classic editor in it.
+      <p class="collapsing-list__excerpt">This error is thrown when trying to pass a <code>&lt;textarea&gt;</code> element to a <code>create()</code> function of an editor class.
       </p>
       <div class="collapsing-list__content">
-<p>The textarea element represents plain text and in general, cannot be used as an editable root element with CKEditor 5 included.
-Only <a href="../../../builds/guides/overview.html#classic-editor" data-glink>Classic Editor</a> has implemented a special mechanism that
-<strong>replaces</strong> the DOM element and loads the data from it.</p>
-<p>Typically you can use a <code>div</code> for storing the editor content instead:</p>
+<p>The only editor type which can be initialized on <code>&lt;textarea&gt;</code> elements is <a href="../../../builds/guides/overview.html#classic-editor" data-glink>classic editor</a>.
+This editor hides the passed element and inserts its own UI next to it. Other types of editors reuse the passed element as their root
+editable element and therefore <code>&lt;textarea&gt;</code> is not appropriate for them. Use a <code>&lt;div&gt;</code> or another text container instead:</p>
 <pre class="prettyprint source"><code>&lt;div id=&quot;editor&quot;&gt;
     &lt;p&gt;Initial content.&lt;/p&gt;
-&lt;/div&gt;</code></pre><p>(<a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html#static-function-create">read more</a>). All other editor types
-use an existing element, load the data from it, and make this element editable. Refer to the description of the <code>create()</code> method
-for each editor type to learn more about this behavior.</p>
+&lt;/div&gt;</code></pre>
       </div>
     </div>
   </li>
@@ -2132,8 +2129,8 @@ is missing. Make sure the correct URL is specified for the image upload to work 
       <h3><code><a class="member-name" href="#error-special-character-invalid-group-name">special-character-invalid-group-name</a></code></h3>
     </div>
     <div class="collapsing-list__description collapsing-list__description--error-page">
-      <p class="collapsing-list__excerpt">The name &quot;All&quot; for special category group cannot be used because it&apos;s a special category which displays all available
-special characters.
+      <p class="collapsing-list__excerpt">The name &quot;All&quot; for a special category group cannot be used because it is a special category that displays all
+available special characters.
       </p>
       <div class="collapsing-list__content">
       </div>
@@ -2682,19 +2679,6 @@ parent container for these positions cannot be found.
 <p>What you have done is trying to use:</p>
 <pre class="prettyprint source"><code>consumables.add( { attributes: [ &apos;class&apos;, &apos;style&apos; ] } );</code></pre><p>While each class and style should be registered separately:</p>
 <pre class="prettyprint source"><code>consumables.add( { classes: &apos;some-class&apos;, styles: &apos;font-weight&apos; } );</code></pre>
-      </div>
-    </div>
-  </li>
-  <li class="collapsing-list__item collapsing-list__item--visible">
-    <div class="collapsing-list__term toggler--collapsed" id="error-watchdog-creator-not-defined">
-      <h3><code><a class="member-name" href="#error-watchdog-creator-not-defined">watchdog-creator-not-defined</a></code></h3>
-    </div>
-    <div class="collapsing-list__description collapsing-list__description--error-page">
-      <p class="collapsing-list__excerpt">The watchdog&apos;s editor creator is not defined. Define it by using
-<a href="../../../api/module_watchdog_watchdog-Watchdog.html#function-setCreator"><code>Watchdog#setCreator()</code></a> or
-the <a href="../../../api/module_watchdog_watchdog-Watchdog.html#static-function-for"><code>Watchdog.for()</code></a> helper.
-      </p>
-      <div class="collapsing-list__content">
       </div>
     </div>
   </li>

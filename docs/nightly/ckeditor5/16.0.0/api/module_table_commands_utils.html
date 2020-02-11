@@ -176,6 +176,50 @@
           <h2 id="functions">Functions</h2>
           <ul class="collapsing-list collapsing-list--filtered" data-type="functions">
                       <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
+                        <div class="collapsing-list__term toggler--collapsed" id="static-function-addDefaultUnitToNumericValue">
+                          <h3><code><a class="member-name" href="#static-function-addDefaultUnitToNumericValue">addDefaultUnitToNumericValue</a>( value, defaultUnit ) &rarr;  <span>String</span> | <span>*</span></code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:table/commands/utils.addDefaultUnitToNumericValue</code></span>
+                          </h3>
+                          <p class="badges">
+<span class="badge badge--gray ">static</span>
+                          </p>
+                        </div>
+                        <div class="collapsing-list__description">
+                          <div class="collapsing-list__excerpt">
+                            <p>Adds a unit to a value if the value is a number or a string representing a number.</p>
+                                      <div class="see-source"><a href="https://github.com/ckeditor/ckeditor5-table/blob/5d20046336287a5a99bddddfa5c768beef5a6c32/src/commands/utils.js#L89-L102" target="_blank" rel="noopener noreferrer">
+                                          <svg viewBox="0 0 1024 1024">
+                                            <path d="M512 0C229.12 0 0 229.12 0 512c0 226.56 146.56 417.92 350.08 485.76 25.6 4.48 35.2-10.88 35.2-24.32 0-12.16-.64-52.48-.64-95.36-128.64 23.68-161.92-31.36-172.16-60.16-5.76-14.72-30.72-60.16-52.48-72.32-17.92-9.6-43.52-33.28-.64-33.92 40.32-.64 69.12 37.12 78.72 52.48 46.08 77.44 119.68 55.68 149.12 42.24 4.48-33.28 17.92-55.68 32.64-68.48-113.92-12.8-232.96-56.96-232.96-252.8 0-55.68 19.84-101.76 52.48-137.6-5.12-12.8-23.04-65.28 5.12-135.68 0 0 42.88-13.44 140.8 52.48 40.96-11.52 84.48-17.28 128-17.28 43.52 0 87.04 5.76 128 17.28 97.92-66.56 140.8-52.48 140.8-52.48 28.16 70.4 10.24 122.88 5.12 135.68 32.64 35.84 52.48 81.28 52.48 137.6 0 196.48-119.68 240-233.6 252.8 18.56 16 34.56 46.72 34.56 94.72 0 68.48-.64 123.52-.64 140.8 0 13.44 9.6 29.44 35.2 24.32C877.44 929.92 1024 737.92 1024 512 1024 229.12 794.88 0 512 0z"></path>
+                                          </svg>See source</a></div>
+                          </div>
+                          <div class="collapsing-list__content">
+<p><strong>Note</strong>: It does nothing to non-numeric values.</p>
+<pre class="prettyprint source"><code>getSingleValue( 25, &apos;px&apos; );        // &apos;25px&apos;
+getSingleValue( 25, &apos;em&apos; );        // &apos;25em&apos;
+getSingleValue( &apos;25em&apos;, &apos;px&apos; );    // &apos;25em&apos;
+getSingleValue( &apos;foo&apos;, &apos;px&apos; );    // &apos;foo&apos;</code></pre>
+                            <h4>Parameters</h4>
+                                      <dl>
+                                        <dt><code>value
+                                            :
+ <span>*</span></code></dt>
+                                        <dd>
+                                        </dd>
+                                        <dt><code>defaultUnit
+                                            :
+ <span>String</span></code></dt>
+                                        <dd><p>A default unit added to a numeric value.</p>
+                                        </dd>
+                                      </dl>
+                            <h4>Returns</h4>
+                            <dl>
+                                        <dt><code><span>String</span> | <span>*</span></code></dt>
+                                        <dd>
+                                        </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="collapsing-list__item collapsing-list__item--visible" data-public="true">
                         <div class="collapsing-list__term toggler--collapsed" id="static-function-createEmptyTableCell">
                           <h3><code><a class="member-name" href="#static-function-createEmptyTableCell">createEmptyTableCell</a>( writer, insertPosition, attributes )</code><span class="collapsing-list__dev-names" aria-hidden="true"><code>module:table/commands/utils.createEmptyTableCell</code></span>
                           </h3>
@@ -186,7 +230,7 @@
                         <div class="collapsing-list__description">
                           <div class="collapsing-list__excerpt">
                             <p>Common method to create empty table cell - it will create proper model structure as table cell must have at least one block inside.</p>
-                                      <div class="see-source"><a href="https://github.com/ckeditor/ckeditor5-table/blob/19fc8e9ba0c697591faf3ae061b0ffcf99d97787/src/commands/utils.js#L48-L54" target="_blank" rel="noopener noreferrer">
+                                      <div class="see-source"><a href="https://github.com/ckeditor/ckeditor5-table/blob/5d20046336287a5a99bddddfa5c768beef5a6c32/src/commands/utils.js#L48-L54" target="_blank" rel="noopener noreferrer">
                                           <svg viewBox="0 0 1024 1024">
                                             <path d="M512 0C229.12 0 0 229.12 0 512c0 226.56 146.56 417.92 350.08 485.76 25.6 4.48 35.2-10.88 35.2-24.32 0-12.16-.64-52.48-.64-95.36-128.64 23.68-161.92-31.36-172.16-60.16-5.76-14.72-30.72-60.16-52.48-72.32-17.92-9.6-43.52-33.28-.64-33.92 40.32-.64 69.12 37.12 78.72 52.48 46.08 77.44 119.68 55.68 149.12 42.24 4.48-33.28 17.92-55.68 32.64-68.48-113.92-12.8-232.96-56.96-232.96-252.8 0-55.68 19.84-101.76 52.48-137.6-5.12-12.8-23.04-65.28 5.12-135.68 0 0 42.88-13.44 140.8 52.48 40.96-11.52 84.48-17.28 128-17.28 43.52 0 87.04 5.76 128 17.28 97.92-66.56 140.8-52.48 140.8-52.48 28.16 70.4 10.24 122.88 5.12 135.68 32.64 35.84 52.48 81.28 52.48 137.6 0 196.48-119.68 240-233.6 252.8 18.56 16 34.56 46.72 34.56 94.72 0 68.48-.64 123.52-.64 140.8 0 13.44 9.6 29.44 35.2 24.32C877.44 929.92 1024 737.92 1024 512 1024 229.12 794.88 0 512 0z"></path>
                                           </svg>See source</a></div>
@@ -224,7 +268,7 @@
                         <div class="collapsing-list__description">
                           <div class="collapsing-list__excerpt">
                             <p>Returns the parent element of given name. Returns undefined if position is not inside desired parent.</p>
-                                      <div class="see-source"><a href="https://github.com/ckeditor/ckeditor5-table/blob/19fc8e9ba0c697591faf3ae061b0ffcf99d97787/src/commands/utils.js#L12-L18" target="_blank" rel="noopener noreferrer">
+                                      <div class="see-source"><a href="https://github.com/ckeditor/ckeditor5-table/blob/5d20046336287a5a99bddddfa5c768beef5a6c32/src/commands/utils.js#L12-L18" target="_blank" rel="noopener noreferrer">
                                           <svg viewBox="0 0 1024 1024">
                                             <path d="M512 0C229.12 0 0 229.12 0 512c0 226.56 146.56 417.92 350.08 485.76 25.6 4.48 35.2-10.88 35.2-24.32 0-12.16-.64-52.48-.64-95.36-128.64 23.68-161.92-31.36-172.16-60.16-5.76-14.72-30.72-60.16-52.48-72.32-17.92-9.6-43.52-33.28-.64-33.92 40.32-.64 69.12 37.12 78.72 52.48 46.08 77.44 119.68 55.68 149.12 42.24 4.48-33.28 17.92-55.68 32.64-68.48-113.92-12.8-232.96-56.96-232.96-252.8 0-55.68 19.84-101.76 52.48-137.6-5.12-12.8-23.04-65.28 5.12-135.68 0 0 42.88-13.44 140.8 52.48 40.96-11.52 84.48-17.28 128-17.28 43.52 0 87.04 5.76 128 17.28 97.92-66.56 140.8-52.48 140.8-52.48 28.16 70.4 10.24 122.88 5.12 135.68 32.64 35.84 52.48 81.28 52.48 137.6 0 196.48-119.68 240-233.6 252.8 18.56 16 34.56 46.72 34.56 94.72 0 68.48-.64 123.52-.64 140.8 0 13.44 9.6 29.44 35.2 24.32C877.44 929.92 1024 737.92 1024 512 1024 229.12 794.88 0 512 0z"></path>
                                           </svg>See source</a></div>
@@ -263,7 +307,7 @@
                         <div class="collapsing-list__description">
                           <div class="collapsing-list__excerpt">
                             <p>Returns a string if all four values of box sides are equal.</p>
-                                      <div class="see-source"><a href="https://github.com/ckeditor/ckeditor5-table/blob/19fc8e9ba0c697591faf3ae061b0ffcf99d97787/src/commands/utils.js#L61-L76" target="_blank" rel="noopener noreferrer">
+                                      <div class="see-source"><a href="https://github.com/ckeditor/ckeditor5-table/blob/5d20046336287a5a99bddddfa5c768beef5a6c32/src/commands/utils.js#L61-L76" target="_blank" rel="noopener noreferrer">
                                           <svg viewBox="0 0 1024 1024">
                                             <path d="M512 0C229.12 0 0 229.12 0 512c0 226.56 146.56 417.92 350.08 485.76 25.6 4.48 35.2-10.88 35.2-24.32 0-12.16-.64-52.48-.64-95.36-128.64 23.68-161.92-31.36-172.16-60.16-5.76-14.72-30.72-60.16-52.48-72.32-17.92-9.6-43.52-33.28-.64-33.92 40.32-.64 69.12 37.12 78.72 52.48 46.08 77.44 119.68 55.68 149.12 42.24 4.48-33.28 17.92-55.68 32.64-68.48-113.92-12.8-232.96-56.96-232.96-252.8 0-55.68 19.84-101.76 52.48-137.6-5.12-12.8-23.04-65.28 5.12-135.68 0 0 42.88-13.44 140.8 52.48 40.96-11.52 84.48-17.28 128-17.28 43.52 0 87.04 5.76 128 17.28 97.92-66.56 140.8-52.48 140.8-52.48 28.16 70.4 10.24 122.88 5.12 135.68 32.64 35.84 52.48 81.28 52.48 137.6 0 196.48-119.68 240-233.6 252.8 18.56 16 34.56 46.72 34.56 94.72 0 68.48-.64 123.52-.64 140.8 0 13.44 9.6 29.44 35.2 24.32C877.44 929.92 1024 737.92 1024 512 1024 229.12 794.88 0 512 0z"></path>
                                           </svg>See source</a></div>
@@ -303,7 +347,7 @@ getSingleValue( { top: &apos;foo&apos;, right: &apos;foo&apos; } );</code></pre>
                         <div class="collapsing-list__description">
                           <div class="collapsing-list__excerpt">
                             <p>A common method to update the numeric value. If a value is the default one, it will be unset.</p>
-                                      <div class="see-source"><a href="https://github.com/ckeditor/ckeditor5-table/blob/19fc8e9ba0c697591faf3ae061b0ffcf99d97787/src/commands/utils.js#L31-L39" target="_blank" rel="noopener noreferrer">
+                                      <div class="see-source"><a href="https://github.com/ckeditor/ckeditor5-table/blob/5d20046336287a5a99bddddfa5c768beef5a6c32/src/commands/utils.js#L31-L39" target="_blank" rel="noopener noreferrer">
                                           <svg viewBox="0 0 1024 1024">
                                             <path d="M512 0C229.12 0 0 229.12 0 512c0 226.56 146.56 417.92 350.08 485.76 25.6 4.48 35.2-10.88 35.2-24.32 0-12.16-.64-52.48-.64-95.36-128.64 23.68-161.92-31.36-172.16-60.16-5.76-14.72-30.72-60.16-52.48-72.32-17.92-9.6-43.52-33.28-.64-33.92 40.32-.64 69.12 37.12 78.72 52.48 46.08 77.44 119.68 55.68 149.12 42.24 4.48-33.28 17.92-55.68 32.64-68.48-113.92-12.8-232.96-56.96-232.96-252.8 0-55.68 19.84-101.76 52.48-137.6-5.12-12.8-23.04-65.28 5.12-135.68 0 0 42.88-13.44 140.8 52.48 40.96-11.52 84.48-17.28 128-17.28 43.52 0 87.04 5.76 128 17.28 97.92-66.56 140.8-52.48 140.8-52.48 28.16 70.4 10.24 122.88 5.12 135.68 32.64 35.84 52.48 81.28 52.48 137.6 0 196.48-119.68 240-233.6 252.8 18.56 16 34.56 46.72 34.56 94.72 0 68.48-.64 123.52-.64 140.8 0 13.44 9.6 29.44 35.2 24.32C877.44 929.92 1024 737.92 1024 512 1024 229.12 794.88 0 512 0z"></path>
                                           </svg>See source</a></div>
@@ -5563,10 +5607,46 @@ getSingleValue( { top: &apos;foo&apos;, right: &apos;foo&apos; } );</code></pre>
           </div>
           <ul>
             <li class="toggler--collapsed">
+              <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">utils</span>
+              </div>
+              <ul>
+                <li><a href="module_watchdog_utils_areconnectedthroughproperties.html">
+                    <div class="tree__item__wrapper" data-ln="module:watchdog/utils/areconnectedthroughproperties"><span class="tree__item--module tree__item__text">areconnectedthroughproperties</span></div></a>
+                </li>
+                <li><a href="module_watchdog_utils_getsubnodes.html">
+                    <div class="tree__item__wrapper" data-ln="module:watchdog/utils/getsubnodes"><span class="tree__item--module tree__item__text">getsubnodes</span></div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:watchdog/contextwatchdog"><a class="tree__item--module tree__item__text" href="module_watchdog_contextwatchdog.html">contextwatchdog</a>
+              </div>
+              <ul>
+                <li><a href="module_watchdog_contextwatchdog-ContextWatchdog.html">
+                    <div class="tree__item__wrapper" data-ln="module:watchdog/contextwatchdog~ContextWatchdog"><span class="tree__item--class tree__item__text">ContextWatchdog</span></div></a>
+                </li>
+                <li><a href="module_watchdog_contextwatchdog-EditorWatchdogConfiguration.html">
+                    <div class="tree__item__wrapper" data-ln="module:watchdog/contextwatchdog~EditorWatchdogConfiguration"><span class="tree__item--typedef tree__item__text">EditorWatchdogConfiguration</span></div></a>
+                </li>
+                <li><a href="module_watchdog_contextwatchdog-WatchdogItemConfiguration.html">
+                    <div class="tree__item__wrapper" data-ln="module:watchdog/contextwatchdog~WatchdogItemConfiguration"><span class="tree__item--typedef tree__item__text">WatchdogItemConfiguration</span></div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="toggler--collapsed">
+              <div class="tree__item__wrapper" data-ln="module:watchdog/editorwatchdog"><a class="tree__item--module tree__item__text" href="module_watchdog_editorwatchdog.html">editorwatchdog</a>
+              </div>
+              <ul>
+                <li><a href="module_watchdog_editorwatchdog-EditorWatchdog.html">
+                    <div class="tree__item__wrapper" data-ln="module:watchdog/editorwatchdog~EditorWatchdog"><span class="tree__item--class tree__item__text">EditorWatchdog</span></div></a>
+                </li>
+              </ul>
+            </li>
+            <li class="toggler--collapsed">
               <div class="tree__item__wrapper" data-ln="module:watchdog/watchdog"><a class="tree__item--module tree__item__text" href="module_watchdog_watchdog.html">watchdog</a>
               </div>
               <ul>
-                <li><a href="module_watchdog_watchdog-Watchdog.html">
+                <li data-private="true"><a href="module_watchdog_watchdog-Watchdog.html">
                     <div class="tree__item__wrapper" data-ln="module:watchdog/watchdog~Watchdog"><span class="tree__item--class tree__item__text">Watchdog</span></div></a>
                 </li>
                 <li><a href="module_watchdog_watchdog-WatchdogConfig.html">
