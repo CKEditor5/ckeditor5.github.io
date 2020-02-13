@@ -219,10 +219,66 @@
           <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
           </div>
           <h1 class="main__content-title"><img src="../../../assets/1.2.1/img/book.svg" alt="guide">Tables
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#installation">Installation</a></li><li><a href="#block-vs-inline-content-in-table-cells">Block vs inline content in table cells</a><ol><li><a href="#inline-content">Inline content</a></li><li><a href="#block-content">Block content</a></li></ol></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#styling-tables">Styling tables</a></li><li><a href="#installation">Installation</a></li><li><a href="#block-vs-inline-content-in-table-cells">Block vs inline content in table cells</a><ol><li><a href="#inline-content">Inline content</a></li><li><a href="#block-content">Block content</a></li></ol></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 <p>The <a href="../api/module_table_table-Table.html"><code>Table</code></a> feature offers table creation and editing tools that help content authors bring tabular data into their documents.</p>
 <h2 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h2>
 <div class="live-snippet"><div id="snippet-table">
+	<p>The ultimate table of <a href="https://en.wikipedia.org/wiki/List_of_coffee_drinks">coffee drinks</a>:</p>
+	<table>
+		<thead>
+			<tr>
+				<th rowspan="2"></th>
+				<th scope="col" rowspan="2">Espresso</th>
+				<th scope="colgroup" colspan="2">Milk</th>
+				<th scope="col" rowspan="2">Water</th>
+			</tr>
+			<tr>
+				<th scope="col">Steamed</th>
+				<th scope="col">Foam</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th scope="row">Cappuccino</th>
+				<td>yes</td>
+				<td>yes</td>
+				<td>yes</td>
+				<td>no</td>
+			</tr>
+			<tr>
+				<th scope="row">Macchiato</th>
+				<td>yes</td>
+				<td>no</td>
+				<td>yes</td>
+				<td>no</td>
+			</tr>
+			<tr>
+				<th scope="row">Latte</th>
+				<td>yes</td>
+				<td>yes</td>
+				<td>no</td>
+				<td>no</td>
+			</tr>
+			<tr>
+				<th scope="row">Americano</th>
+				<td>yes</td>
+				<td>no</td>
+				<td>no</td>
+				<td>yes</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<style>
+	.ck.ck-content table td,
+	.ck.ck-content table th {
+		vertical-align: middle;
+	}
+</style>
+</div>
+<h2 id="styling-tables"><a class="headerlink" href="#styling-tables">#</a> Styling tables</h2>
+<div class="live-snippet"><div id="snippet-table-styling">
 	<p>The ultimate table of <a href="https://en.wikipedia.org/wiki/List_of_coffee_drinks">coffee drinks</a>:</p>
 	<table>
 		<thead>
@@ -574,5 +630,6 @@ transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_rank
     <script src="../assets/snippet.js"></script>
     <script src="../snippets/features/build-table-source/snippet.js"></script>
     <script src="../snippets/features/table/snippet.js"></script>
+    <script src="../snippets/features/table-styling/snippet.js"></script>
   </body>
 </html>

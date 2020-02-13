@@ -222,15 +222,53 @@
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#configuration">Configuration</a><ol><li><a href="#adding-a-new-category">Adding a new category</a></li><li><a href="#adding-characters-to-an-existing-category">Adding characters to an existing category</a></li><li><a href="#removing-categories">Removing categories</a></li></ol></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 <p>The <a href="../api/module_special-characters_specialcharacters-SpecialCharacters.html"><code>SpecialCharacters</code></a> plugin provides a possibility to insert a special character into the rich-text editor.</p>
 <h2 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h2>
-<p>Use the editor below to see the <a href="../api/module_special-characters_specialcharacters-SpecialCharacters.html"><code>SpecialCharacters</code></a> plugin in action.</p>
+<p>Use the editor below to see the special characters plugin in action.</p>
 
 <div class="live-snippet"><div id="snippet-special-characters">
-	<h2 style="text-align:center;">The Flavorful Tuscany Meetup</h2>
-	<h3 style="text-align:center;">Welcome letter</h3>
-	<p>Dear Guest,</p>
-	<p>We are delighted to welcome you to the annual <i>Flavorful Tuscany Meetup</i> and hope you will enjoy the programme as well as your stay at the <a href="https://ckeditor.com">Bilancino Hotel</a>.</p>
-	<p>Please arrive at the <a href="https://ckeditor.com">Bilancino Hotel</a> reception desk at least half an hour earlier to make sure that the registration process goes as smoothly as possible.</p>
-	<p>We look forward to welcoming you to the event. The full schedule can be found below.</p>
+	<h3>Euro foreign exchange reference rates</h3>
+	<p>As of February 10, 2020</p>
+	<p>All currencies quoted against the euro (€) as base currency.</p>
+	<table>
+		<thead>
+			<tr>
+				<th scope="col">Currency name</th>
+				<th scope="col">Symbol</th>
+				<th scope="col">Spot</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>US Dollar</td>
+				<td>$</td>
+				<td>1.0951</td>
+			</tr>
+			<tr>
+				<td>British Pound</td>
+				<td>£</td>
+				<td>0.8463</td>
+			</tr>
+			<tr>
+				<td>Indian Rupee</td>
+				<td>₹</td>
+				<td>78.1070</td>
+			</tr>
+			<tr>
+				<td>Japanese Yen</td>
+				<td>¥</td>
+				<td>120.1800</td>
+			</tr>
+			<tr>
+				<td>Russian Ruble</td>
+				<td>₽</td>
+				<td>70.1120</td>
+			</tr>
+			<tr>
+				<td>Turkish Lira</td>
+				<td>₺</td>
+				<td>6.5897</td>
+			</tr>
+		</tbody>
+	</table>
 </div>
 
 <style>
@@ -241,9 +279,10 @@
 </style>
 </div>
 <h2 id="configuration"><a class="headerlink" href="#configuration">#</a> Configuration</h2>
+<p>By default, a few categories of special characters have been defined. You can easily customize the special characters available in your WYSIWYG editor installation by adding new categories, extending the existing ones or removing them altogether.</p>
 <h3 id="adding-a-new-category"><a class="headerlink" href="#adding-a-new-category">#</a> Adding a new category</h3>
 <p>You can define a new special characters category using the <a href="../api/module_special-characters_specialcharacters-SpecialCharacters.html#function-addItems"><code>SpecialCharacters#addItems()</code></a> function.</p>
-<p>For example, the following plugin adds the &#x201C;Emoji&#x201D; category in the special characters dropdown.</p>
+<p>For example, the following plugin adds the &#x201C;Emoji&#x201D; category to the special characters dropdown.</p>
 <pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> SpecialCharacters <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-special-characters/src/specialcharacters&apos;</span>;
 <span class="hljs-keyword">import</span> SpecialCharactersEssentials <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-special-characters/src/specialcharactersessentials&apos;</span>;
 
@@ -251,9 +290,9 @@
     editor.plugins.get( <span class="hljs-string">&apos;SpecialCharacters&apos;</span> ).addItems( <span class="hljs-string">&apos;Emoji&apos;</span>, [
         { <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;smiley face&apos;</span>, <span class="hljs-attr">character</span>: <span class="hljs-string">&apos;&#x1F60A;&apos;</span> },
         { <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;rocket&apos;</span>, <span class="hljs-attr">character</span>: <span class="hljs-string">&apos;&#x1F680;&apos;</span> },
-        { <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;basketball&apos;</span>, <span class="hljs-attr">character</span>: <span class="hljs-string">&apos;&#x1F3C0;&apos;</span> },
+        { <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;wind blowing face&apos;</span>, <span class="hljs-attr">character</span>: <span class="hljs-string">&apos;&#x1F32C;&#xFE0F;&apos;</span> },
         { <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;floppy disk&apos;</span>, <span class="hljs-attr">character</span>: <span class="hljs-string">&apos;&#x1F4BE;&apos;</span> },
-        { <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;hearth&apos;</span>, <span class="hljs-attr">character</span>: <span class="hljs-string">&apos;&#x2764;&apos;</span> }
+        { <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;heart&apos;</span>, <span class="hljs-attr">character</span>: <span class="hljs-string">&apos;&#x2764;&#xFE0F;&apos;</span> }
     ] );
 }
 
@@ -269,16 +308,12 @@ ClassicEditor
     .then( ... )
     .catch( ... );
 </code></pre>
-<p>After adding the above plugin into the editor, the new category will be available in the special characters dropdown.</p>
-<div class="info-box notice"><p>A title of a special character must be unique across the entire special characters set.</p></div>
-<p>Below, you can see a demo based on the example shown above. Use the special characters icon in the editor&#x2019;s toolbar then select &#x201C;Emoji&#x201D; in the select dropdown in order to insert a emoji into the editor.</p>
+<p>After adding the above plugin to the editor configuration, the new category will become available in the special characters dropdown.</p>
+<div class="info-box notice"><p>The title of a special character must be unique across the entire special characters set.</p></div>
+<p>Below you can see a demo based on the example shown above. Use the special characters icon in the editor toolbar and then select &#x201C;Emoji&#x201D; in the select dropdown in order to insert an emoji into the WYSIWYG editor.</p>
 <div class="live-snippet"><div id="snippet-special-characters-new-category">
-	<h2 style="text-align:center;">The Flavorful Tuscany Meetup</h2>
-	<h3 style="text-align:center;">Welcome letter</h3>
-	<p>Dear Guest,</p>
-	<p>We are delighted to welcome you to the annual <i>Flavorful Tuscany Meetup</i> and hope you will enjoy the programme as well as your stay at the <a href="https://ckeditor.com">Bilancino Hotel</a>.</p>
-	<p>Please arrive at the <a href="https://ckeditor.com">Bilancino Hotel</a> reception desk at least half an hour earlier to make sure that the registration process goes as smoothly as possible.</p>
-	<p>We look forward to welcoming you to the event. The full schedule can be found below.</p>
+	<p>Build your CKEditor 5 in a breeze. 🌬 Choose an editor type and customize plugins, toolbar and language in 5 simple steps. 😊</p>
+	<p>The new <a href="https://ckeditor.com/ckeditor-5/online-builder/">CKEditor 5 online builder</a> is finally here! 🚀</p>
 </div>
 
 <style>
@@ -289,7 +324,7 @@ ClassicEditor
 </style>
 </div>
 <h3 id="adding-characters-to-an-existing-category"><a class="headerlink" href="#adding-characters-to-an-existing-category">#</a> Adding characters to an existing category</h3>
-<p>By using the <a href="../api/module_special-characters_specialcharacters-SpecialCharacters.html#function-addItems"><code>SpecialCharacters#addItems()</code></a> function, you can also add new special characters into existing category.</p>
+<p>By using the <a href="../api/module_special-characters_specialcharacters-SpecialCharacters.html#function-addItems"><code>SpecialCharacters#addItems()</code></a> function you can also add new special characters into an existing category.</p>
 <pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> SpecialCharacters <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-special-characters/src/specialcharacters&apos;</span>;
 <span class="hljs-keyword">import</span> SpecialCharactersEssentials <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-special-characters/src/specialcharactersessentials&apos;</span>;
 
@@ -314,15 +349,60 @@ ClassicEditor
     .then( ... )
     .catch( ... );
 </code></pre>
-<div class="info-box notice"><p>A title of a special character must be unique across the entire special characters set.</p></div>
-<p>Below, you can see a demo based on the example shown above. Use the special characters icon in the editor&#x2019;s toolbar then select &#x201C;Arrows&#x201D; in the select dropdown. You&#x2019;ll see that it contains more arrows than the other instances.</p>
+<div class="info-box notice"><p>The title of a special character must be unique across the entire special characters set.</p></div>
+<p>Below, you can see a demo based on the example shown above. Use the special characters icon in the editor toolbar and then select &#x201C;Arrows&#x201D; in the select dropdown. You will see that the category now contains the additional arrow characters added in the configuration above.</p>
 <div class="live-snippet"><div id="snippet-special-characters-extended-category">
-	<h2 style="text-align:center;">The Flavorful Tuscany Meetup</h2>
-	<h3 style="text-align:center;">Welcome letter</h3>
-	<p>Dear Guest,</p>
-	<p>We are delighted to welcome you to the annual <i>Flavorful Tuscany Meetup</i> and hope you will enjoy the programme as well as your stay at the <a href="https://ckeditor.com">Bilancino Hotel</a>.</p>
-	<p>Please arrive at the <a href="https://ckeditor.com">Bilancino Hotel</a> reception desk at least half an hour earlier to make sure that the registration process goes as smoothly as possible.</p>
-	<p>We look forward to welcoming you to the event. The full schedule can be found below.</p>
+	<h3>Euro foreign exchange reference rates</h3>
+	<p>As of February 10, 2020</p>
+	<p>All currencies quoted against the euro (€) as base currency.</p>
+	<table>
+		<thead>
+			<tr>
+				<th scope="col">Currency name</th>
+				<th scope="col">Symbol</th>
+				<th scope="col">Spot</th>
+				<th scope="col">Change</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>US Dollar</td>
+				<td>$</td>
+				<td>1.0951</td>
+				<td>↓</td>
+			</tr>
+			<tr>
+				<td>British Pound</td>
+				<td>£</td>
+				<td>0.8463</td>
+				<td>↓</td>
+			</tr>
+			<tr>
+				<td>Indian Rupee</td>
+				<td>₹</td>
+				<td>78.1070</td>
+				<td>↓</td>
+			</tr>
+			<tr>
+				<td>Japanese Yen</td>
+				<td>¥</td>
+				<td>120.1800</td>
+				<td>↓</td>
+			</tr>
+			<tr>
+				<td>Russian Ruble</td>
+				<td>₽</td>
+				<td>70.1120</td>
+				<td>↑</td>
+			</tr>
+			<tr>
+				<td>Turkish Lira</td>
+				<td>₺</td>
+				<td>6.5897</td>
+				<td>↑</td>
+			</tr>
+		</tbody>
+	</table>
 </div>
 
 <style>
@@ -333,17 +413,17 @@ ClassicEditor
 </style>
 </div>
 <h3 id="removing-categories"><a class="headerlink" href="#removing-categories">#</a> Removing categories</h3>
-<p>The special characters feature exposes each category as a separate plugin. While the <a href="../api/module_special-characters_specialcharactersessentials-SpecialCharactersEssentials.html"><code>SpecialCharactersEssentials</code></a> plugin can be used to conveniently include all of them, you can customize the category list by adding individual plugins.</p>
-<p>The <code>@ckeditor/ckeditor5-special-characters</code> package provides special characters grouped into the following categories:</p>
+<p>The special characters feature exposes each category as a separate plugin. While the <a href="../api/module_special-characters_specialcharactersessentials-SpecialCharactersEssentials.html"><code>SpecialCharactersEssentials</code></a> plugin can be used to conveniently include all of them, you can customize the category list by adding individual plugins with particular categories.</p>
+<p>By default, the <code>@ckeditor/ckeditor5-special-characters</code> package provides special characters grouped into the following categories:</p>
 <ul>
-<li><a href="../api/module_special-characters_specialcharactersarrows-SpecialCharactersArrows.html"><code>SpecialCharactersArrows</code></a> &#x2013; arrows special characters,</li>
-<li><a href="../api/module_special-characters_specialcharacterscurrency-SpecialCharactersCurrency.html"><code>SpecialCharactersCurrency</code></a> - currency special characters,</li>
-<li><a href="../api/module_special-characters_specialcharacterslatin-SpecialCharactersLatin.html"><code>SpecialCharactersLatin</code></a> &#x2013; Latin special characters,</li>
-<li><a href="../api/module_special-characters_specialcharactersmathematical-SpecialCharactersMathematical.html"><code>SpecialCharactersMathematical</code></a> &#x2013; mathematical special characters,</li>
-<li><a href="../api/module_special-characters_specialcharacterstext-SpecialCharactersText.html"><code>SpecialCharactersText</code></a> &#x2013; text special characters,</li>
-<li><a href="../api/module_special-characters_specialcharactersessentials-SpecialCharactersEssentials.html"><code>SpecialCharactersEssentials</code></a> &#x2013; combining plugins listed above.</li>
+<li><a href="../api/module_special-characters_specialcharactersarrows-SpecialCharactersArrows.html"><code>SpecialCharactersArrows</code></a> &#x2013; Arrows special characters.</li>
+<li><a href="../api/module_special-characters_specialcharacterscurrency-SpecialCharactersCurrency.html"><code>SpecialCharactersCurrency</code></a> &#x2013; Currency special characters.</li>
+<li><a href="../api/module_special-characters_specialcharacterslatin-SpecialCharactersLatin.html"><code>SpecialCharactersLatin</code></a> &#x2013; Latin special characters.</li>
+<li><a href="../api/module_special-characters_specialcharactersmathematical-SpecialCharactersMathematical.html"><code>SpecialCharactersMathematical</code></a> &#x2013; Mathematical special characters.</li>
+<li><a href="../api/module_special-characters_specialcharacterstext-SpecialCharactersText.html"><code>SpecialCharactersText</code></a> &#x2013; Text special characters.</li>
+<li><a href="../api/module_special-characters_specialcharactersessentials-SpecialCharactersEssentials.html"><code>SpecialCharactersEssentials</code></a> &#x2013; Combines the plugins listed above.</li>
 </ul>
-<p>For example, you can limit categories to &#x201C;Mathematical&#x201D; and &#x201C;Currency&#x201D; only by picking the <a href="../api/module_special-characters_specialcharactersmathematical-SpecialCharactersMathematical.html"><code>SpecialCharactersMathematical</code></a> and <a href="../api/module_special-characters_specialcharacterscurrency-SpecialCharactersCurrency.html"><code>SpecialCharactersCurrency</code></a> plugins, like so:</p>
+<p>For example, you can limit the categories to &#x201C;Mathematical&#x201D; and &#x201C;Currency&#x201D; only by picking the <a href="../api/module_special-characters_specialcharactersmathematical-SpecialCharactersMathematical.html"><code>SpecialCharactersMathematical</code></a> and <a href="../api/module_special-characters_specialcharacterscurrency-SpecialCharactersCurrency.html"><code>SpecialCharactersCurrency</code></a> plugins, like so:</p>
 <pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> SpecialCharacters <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-special-characters/src/specialcharacters&apos;</span>;
 <span class="hljs-keyword">import</span> SpecialCharactersCurrency <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-special-characters/src/specialcharacterscurrency&apos;</span>;
 <span class="hljs-keyword">import</span> SpecialCharactersMathematical <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-special-characters/src/specialcharactersmathematical&apos;</span>;
@@ -360,14 +440,52 @@ ClassicEditor
     .then( ... )
     .catch( ... );
 </code></pre>
-<p>Below, you can see a demo based on the example shown above. After clicking the special character icon in the editor&#x2019;s toolbar you can see that it contains fewer categories compared to other editors on this page.</p>
+<p>Below, you can see a demo based on the example shown above. After clicking the special character icon in the editor toolbar you can see that it contains fewer categories compared to other editors on this page.</p>
 <div class="live-snippet"><div id="snippet-special-characters-limited-categories">
-	<h2 style="text-align:center;">The Flavorful Tuscany Meetup</h2>
-	<h3 style="text-align:center;">Welcome letter</h3>
-	<p>Dear Guest,</p>
-	<p>We are delighted to welcome you to the annual <i>Flavorful Tuscany Meetup</i> and hope you will enjoy the programme as well as your stay at the <a href="https://ckeditor.com">Bilancino Hotel</a>.</p>
-	<p>Please arrive at the <a href="https://ckeditor.com">Bilancino Hotel</a> reception desk at least half an hour earlier to make sure that the registration process goes as smoothly as possible.</p>
-	<p>We look forward to welcoming you to the event. The full schedule can be found below.</p>
+	<h3>Euro foreign exchange reference rates</h3>
+	<p>As of February 10, 2020</p>
+	<p>All currencies quoted against the euro (€) as base currency.</p>
+	<table>
+		<thead>
+			<tr>
+				<th scope="col">Currency name</th>
+				<th scope="col">Symbol</th>
+				<th scope="col">Spot</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>US Dollar</td>
+				<td>$</td>
+				<td>1.0951</td>
+			</tr>
+			<tr>
+				<td>British Pound</td>
+				<td>£</td>
+				<td>0.8463</td>
+			</tr>
+			<tr>
+				<td>Indian Rupee</td>
+				<td>₹</td>
+				<td>78.1070</td>
+			</tr>
+			<tr>
+				<td>Japanese Yen</td>
+				<td>¥</td>
+				<td>120.1800</td>
+			</tr>
+			<tr>
+				<td>Russian Ruble</td>
+				<td>₽</td>
+				<td>70.1120</td>
+			</tr>
+			<tr>
+				<td>Turkish Lira</td>
+				<td>₺</td>
+				<td>6.5897</td>
+			</tr>
+		</tbody>
+	</table>
 </div>
 
 <style>
@@ -382,9 +500,9 @@ ClassicEditor
 <pre class="highlight"><code class="plaintext">npm install --save @ckeditor/ckeditor5-special-characters
 </code></pre>
 <p>And add it to your plugin list configuration:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// Core plugin that provides the API for management special characters and their categories.</span>
+<pre class="highlight"><code class="js"><span class="hljs-comment">// Core plugin that provides the API for the management of special characters and their categories.</span>
 <span class="hljs-keyword">import</span> SpecialCharacters <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-special-characters/src/specialcharacters&apos;</span>;
-<span class="hljs-comment">// Plugin that combines the basic set of special characters.</span>
+<span class="hljs-comment">// A plugin that combines a basic set of special characters.</span>
 <span class="hljs-keyword">import</span> SpecialCharactersEssentials <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-special-characters/src/specialcharactersessentials&apos;</span>;
 
 ClassicEditor
