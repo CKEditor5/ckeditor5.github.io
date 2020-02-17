@@ -186,7 +186,7 @@
                         <div class="collapsing-list__description">
                           <div class="collapsing-list__excerpt">
                             <p>Injects a table layout post-fixer into the model.</p>
-                                      <div class="see-source"><a href="https://github.com/ckeditor/ckeditor5-table/blob/9ba6856406a14e7e57749a38eaa31f9d8b2c4109/src/converters/table-layout-post-fixer.js#L13-L215" target="_blank" rel="noopener noreferrer">
+                                      <div class="see-source"><a href="https://github.com/ckeditor/ckeditor5-table/blob/0c164a9d36e81c8dc479286660937d6661712a37/src/converters/table-layout-post-fixer.js#L13-L215" target="_blank" rel="noopener noreferrer">
                                           <svg viewBox="0 0 1024 1024">
                                             <path d="M512 0C229.12 0 0 229.12 0 512c0 226.56 146.56 417.92 350.08 485.76 25.6 4.48 35.2-10.88 35.2-24.32 0-12.16-.64-52.48-.64-95.36-128.64 23.68-161.92-31.36-172.16-60.16-5.76-14.72-30.72-60.16-52.48-72.32-17.92-9.6-43.52-33.28-.64-33.92 40.32-.64 69.12 37.12 78.72 52.48 46.08 77.44 119.68 55.68 149.12 42.24 4.48-33.28 17.92-55.68 32.64-68.48-113.92-12.8-232.96-56.96-232.96-252.8 0-55.68 19.84-101.76 52.48-137.6-5.12-12.8-23.04-65.28 5.12-135.68 0 0 42.88-13.44 140.8 52.48 40.96-11.52 84.48-17.28 128-17.28 43.52 0 87.04 5.76 128 17.28 97.92-66.56 140.8-52.48 140.8-52.48 28.16 70.4 10.24 122.88 5.12 135.68 32.64 35.84 52.48 81.28 52.48 137.6 0 196.48-119.68 240-233.6 252.8 18.56 16 34.56 46.72 34.56 94.72 0 68.48-.64 123.52-.64 140.8 0 13.44 9.6 29.44 35.2 24.32C877.44 929.92 1024 737.92 1024 512 1024 229.12 794.88 0 512 0z"></path>
                                           </svg>See source</a></div>
@@ -197,16 +197,16 @@ after a <a href="module_engine_model_model-Model.html#function-change"><code>cha
 <p>The correct structure means that:</p>
 <ul>
 <li>All table rows have the same size.</li>
-<li>None of a table cells that extend vertically beyond their section (either header or body).</li>
-<li>A table cell has always at least one element as child.</li>
+<li>None of the table cells extend vertically beyond their section (either header or body).</li>
+<li>A table cell has always at least one element as a child.</li>
 </ul>
 <p>If the table structure is not correct, the post-fixer will automatically correct it in two steps:</p>
 <ol>
-<li>It will clip table cells that extends beyond it section.</li>
-<li>It will add empty table cells to those rows which are narrower then the widest table row.</li>
+<li>It will clip table cells that extend beyond their section.</li>
+<li>It will add empty table cells to the rows that are narrower than the widest table row.</li>
 </ol>
-<h5>Clipping overlapping table cells</h5><p>Such situation may occur when pasting a table (or part of a table) to the editor from external sources.</p>
-<p>For example, see the following table which has the cell (FOO) with the rowspan attribute (2):</p>
+<h5>Clipping overlapping table cells</h5><p>Such situation may occur when pasting a table (or a part of a table) to the editor from external sources.</p>
+<p>For example, see the following table which has a cell (FOO) with the rowspan attribute (2):</p>
 <pre class="prettyprint source"><code>&lt;table headingRows=&quot;1&quot;&gt;
     &lt;tableRow&gt;
         &lt;tableCell rowspan=&quot;2&quot;&gt;&lt;paragraph&gt;FOO&lt;/paragraph&gt;&lt;/tableCell&gt;
@@ -216,7 +216,7 @@ after a <a href="module_engine_model_model-Model.html#function-change"><code>cha
         &lt;tableCell&gt;&lt;paragraph&gt;BAZ&lt;/paragraph&gt;&lt;/tableCell&gt;
         &lt;tableCell&gt;&lt;paragraph&gt;XYZ&lt;/paragraph&gt;&lt;/tableCell&gt;
     &lt;/tableRow&gt;
-&lt;/table&gt;</code></pre><p>will be rendered in the view as:</p>
+&lt;/table&gt;</code></pre><p>It will be rendered in the view as:</p>
 <pre class="prettyprint source"><code>&lt;table&gt;
     &lt;thead&gt;
         &lt;tr&gt;
@@ -230,17 +230,17 @@ after a <a href="module_engine_model_model-Model.html#function-change"><code>cha
             &lt;td&gt;XYZ&lt;/td&gt;
         &lt;/tr&gt;
     &lt;/tbody&gt;
-&lt;/table&gt;</code></pre><p>In the above example the table will be rendered as a table with two rows - one in the header and second one in the body.
-The table cell (FOO) cannot span over multiple rows as it would expand from the header to the body section.
-The <code>rowspan</code> attribute must be changed to (1). The value (1) is a default value of the <code>rowspan</code> attribute
+&lt;/table&gt;</code></pre><p>In the above example the table will be rendered as a table with two rows: one in the header and second one in the body.
+The table cell (FOO) cannot span over multiple rows as it would extend from the header to the body section.
+The <code>rowspan</code> attribute must be changed to (1). The value (1) is the default value of the <code>rowspan</code> attribute
 so the <code>rowspan</code> attribute will be removed from the model.</p>
-<p>The table cell with BAZ contents will be in the first column of the table.</p>
-<h5>Adding missing table cells</h5><p>The table post-fixer will insert empty table cells to equalize table rows sizes (number of columns).
-The size of a table row is calculated by counting column spans of table cells - both horizontal (from the same row) and
-vertical (from rows above).</p>
-<p>In the above example, the table row in the body section of the table is narrower then the row from the header - it has two cells
-with the default colspan (1). The header row has one cell with colspan (1) and second with colspan (2).
-The table cell (FOO) does not expand beyond the head section (and as such will be fixed in the first step of this post-fixer).
+<p>The table cell with BAZ in the content will be in the first column of the table.</p>
+<h5>Adding missing table cells</h5><p>The table post-fixer will insert empty table cells to equalize table row sizes (the number of columns).
+The size of a table row is calculated by counting column spans of table cells, both horizontal (from the same row) and
+vertical (from the rows above).</p>
+<p>In the above example, the table row in the body section of the table is narrower then the row from the header: it has two cells
+with the default colspan (1). The header row has one cell with colspan (1) and the second with colspan (2).
+The table cell (FOO) does not extend beyond the head section (and as such will be fixed in the first step of this post-fixer).
 The post-fixer will add a missing table cell to the row in the body section of the table.</p>
 <p>The table from the above example will be fixed and rendered to the view as below:</p>
 <pre class="prettyprint source"><code>&lt;table&gt;
@@ -256,11 +256,11 @@ The post-fixer will add a missing table cell to the row in the body section of t
             &lt;td&gt;XYZ&lt;/td&gt;
         &lt;/tr&gt;
     &lt;/tbody&gt;
-&lt;/table&gt;</code></pre><h5>Collaboration &amp; Undo - Expectations vs post-fixer results</h5><p>The table post-fixer only ensures proper structure without deeper analysis of the nature of a change. As such, it might lead
-to a structure which was not intended by the user changes. In particular, it will also fix undo steps (in conjunction with collaboration)
-in which editor content might not return to the original state.</p>
-<p>This will usually happen when one or more users changes size of the table.</p>
-<p>As en example see a table below:</p>
+&lt;/table&gt;</code></pre><h5>Collaboration and undo - Expectations vs post-fixer results</h5><p>The table post-fixer only ensures proper structure without a deeper analysis of the nature of the change. As such, it might lead
+to a structure which was not intended by the user. In particular, it will also fix undo steps (in conjunction with collaboration)
+in which the editor content might not return to the original state.</p>
+<p>This will usually happen when one or more users change the size of the table.</p>
+<p>As an example see the table below:</p>
 <pre class="prettyprint source"><code>&lt;table&gt;
     &lt;tbody&gt;
         &lt;tr&gt;
@@ -272,11 +272,11 @@ in which editor content might not return to the original state.</p>
             &lt;td&gt;22&lt;/td&gt;
         &lt;/tr&gt;
     &lt;/tbody&gt;
-&lt;/table&gt;</code></pre><p>and user actions:</p>
+&lt;/table&gt;</code></pre><p>and the user actions:</p>
 <ol>
-<li>Both user have table with two rows and two columns.</li>
-<li>User A adds a column at the end of the table - this will insert empty table cells to two rows.</li>
-<li>User B adds a row at the end of the table- this will insert a row with two empty table cells.</li>
+<li>Both users have a table with two rows and two columns.</li>
+<li>User A adds a column at the end of the table. This will insert empty table cells to two rows.</li>
+<li>User B adds a row at the end of the table. This will insert a row with two empty table cells.</li>
 <li>Both users will have a table as below:</li>
 </ol>
 <pre class="prettyprint source"><code>&lt;table&gt;
@@ -296,7 +296,7 @@ in which editor content might not return to the original state.</p>
             &lt;td&gt;(empty, inserted by B)&lt;/td&gt;
         &lt;/tr&gt;
     &lt;/tbody&gt;
-&lt;/table&gt;</code></pre><p>The last row is shorter then others so table post-fixer will add empty row to tha last row:</p>
+&lt;/table&gt;</code></pre><p>The last row is shorter then others so the table post-fixer will add an empty row to the last row:</p>
 <pre class="prettyprint source"><code>&lt;table&gt;
     &lt;tbody&gt;
         &lt;tr&gt;
@@ -312,12 +312,12 @@ in which editor content might not return to the original state.</p>
         &lt;tr&gt;
             &lt;td&gt;(empty, inserted by B)&lt;/td&gt;
             &lt;td&gt;(empty, inserted by B)&lt;/td&gt;
-            &lt;td&gt;(empty, inserted by a post-fixer)&lt;/td&gt;
+            &lt;td&gt;(empty, inserted by the post-fixer)&lt;/td&gt;
         &lt;/tr&gt;
     &lt;/tbody&gt;
-&lt;/table&gt;</code></pre><p>Unfortunately undo doesn&apos;t know the nature of changes and depending which user will apply post-fixer changes undoing them might lead to
-broken table. If User B will undo inserting column to a table the undo engine will undo only operations of
-inserting empty cells to rows from initial table state (row 1 &amp; 2) but the cell in post-fixed row will remain:</p>
+&lt;/table&gt;</code></pre><p>Unfortunately undo does not know the nature of the changes and depending on which user applies the post-fixer changes, undoing them
+might lead to a broken table. If User B undoes inserting the column to the table, the undo engine will undo only the operations of
+inserting empty cells to rows from the initial table state (row 1 and 2) but the cell in the post-fixed row will remain:</p>
 <pre class="prettyprint source"><code>&lt;table&gt;
     &lt;tbody&gt;
         &lt;tr&gt;
@@ -334,7 +334,7 @@ inserting empty cells to rows from initial table state (row 1 &amp; 2) but the c
             &lt;td&gt;(empty, inserted by a post-fixer)&lt;/td&gt;
         &lt;/tr&gt;
     &lt;/tbody&gt;
-&lt;/table&gt;</code></pre><p>After undo the table post-fixer will detect that two rows are shorter then other and will fix table to:</p>
+&lt;/table&gt;</code></pre><p>After undo, the table post-fixer will detect that two rows are shorter than others and will fix the table to:</p>
 <pre class="prettyprint source"><code>&lt;table&gt;
     &lt;tbody&gt;
         &lt;tr&gt;
