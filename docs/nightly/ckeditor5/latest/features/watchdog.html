@@ -221,17 +221,17 @@
 <p>Every non-trivial piece of software has bugs. Despite our high quality standards like 100% code coverage, regression testing and manual tests before every release, CKEditor 5 is not free of bugs. Neither is the browser used by the user, your application in which CKEditor 5 is integrated, or any third-party addons that you used.</p>
 <p>In order to limit the effect of an editor crash on the user experience, you can automatically restart the WYSIWYG editor with the content saved just before the crash.</p>
 <p>The <a href="../api/module_watchdog_watchdog-Watchdog.html"><code>Watchdog</code></a> utility allows you to do exactly that. It ensures that an editor instance is running, despite a potential crash. It works by detecting that an editor crashed, destroying it, and automatically creating a new instance of that editor with the content of the previous editor.</p>
-<p>It should be noticed that the most &#x201C;dangerous&#x201D; places in the API - like <code>editor.model.change()</code>, <code>editor.editing.view.change()</code>, emitters - are covered with checks and <code>try-catch</code> blocks that allow detecting unknown errors and restart editor when they occur.</p>
+<p>Note that the most &#x201C;dangerous&#x201D; places in the CKEditor 5 API, like <code>editor.model.change()</code>, <code>editor.editing.view.change()</code> or emitters, are covered with checks and <code>try-catch</code> blocks that allow detecting unknown errors and restart the editor when they occur.</p>
 <p>There are two available types of watchdogs:</p>
 <ul>
-<li><a href="#editor-watchdog">editor watchdog</a> - to be used with a single editor instance,</li>
-<li><a href="#context-watchdog">context watchdog</a> - to be used when your application uses <code>Context</code>.</li>
+<li><a href="#editor-watchdog">Editor watchdog</a> &#x2013; To be used with a single editor instance.</li>
+<li><a href="#context-watchdog">Context watchdog</a> &#x2013; To be used when your application uses the context.</li>
 </ul>
-<div class="info-box notice"><p>Note: a watchdog can be used only with an <a href="../builds/guides/integration/advanced-setup.html#scenario-2-building-from-source">editor built from source</a>.</p></div>
+<div class="info-box notice"><p>Note: A watchdog can be used only with an <a href="../builds/guides/integration/advanced-setup.html#scenario-2-building-from-source">editor built from source</a>.</p></div>
 <h2 id="usage"><a class="headerlink" href="#usage">#</a> Usage</h2>
 <h3 id="editor-watchdog"><a class="headerlink" href="#editor-watchdog">#</a> Editor watchdog</h3>
 <p>Install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-watchdog" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-watchdog</code></a> package:</p>
-<pre class="highlight"><code class="bash">npm install --save @ckeditor/ckeditor5-watchdog
+<pre class="highlight"><code class>npm install --save @ckeditor/ckeditor5-watchdog
 </code></pre>
 <p>Then, change your <code>ClassicEditor.create()</code> call to <code>watchdog.create()</code> as follows:</p>
 <pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
@@ -254,8 +254,8 @@ watchdog.create( <span class="hljs-built_in">document</span>.querySelector( <spa
 <p>In other words, your goal is to create a watchdog instance and make the watchdog create an instance of the editor you want to use. The watchdog will then create a new editor and if it ever crashes, restart it by creating a new editor.</p>
 <div class="info-box notice"><p>A new editor instance is created every time the watchdog detects a crash. Thus, the editor instance should not be kept in your application&#x2019;s state. Use the <a href="../api/module_watchdog_editorwatchdog-EditorWatchdog.html#member-editor"><code>EditorWatchdog#editor</code></a> property instead.</p><p>It also means that any code that should be executed for any new editor instance should be either loaded as an editor plugin or executed in the callbacks defined using <a href="../api/module_watchdog_editorwatchdog-EditorWatchdog.html#function-setCreator"><code>EditorWatchdog#setCreator()</code></a> and <a href="../api/module_watchdog_editorwatchdog-EditorWatchdog.html#function-setDestructor"><code>EditorWatchdog#setDestructor()</code></a>. Read more about controlling the editor creation and destruction in the next section.</p></div>
 <h4 id="controlling-editor-creation-and-destruction"><a class="headerlink" href="#controlling-editor-creation-and-destruction">#</a> Controlling editor creation and destruction</h4>
-<p>For more control over the creation and destruction of editor instances, you can use <a href="../api/module_watchdog_editorwatchdog-EditorWatchdog.html#function-setCreator"><code>EditorWatchdog#setCreator()</code></a> and, if needed, the <a href="../api/module_watchdog_editorwatchdog-EditorWatchdog.html#function-setDestructor"><code>EditorWatchdog#setDestructor()</code></a>:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// Create editor watchdog.</span>
+<p>For more control over the creation and destruction of editor instances, you can use <a href="../api/module_watchdog_editorwatchdog-EditorWatchdog.html#function-setCreator"><code>EditorWatchdog#setCreator()</code></a> and, if needed, the <a href="../api/module_watchdog_editorwatchdog-EditorWatchdog.html#function-setDestructor"><code>EditorWatchdog#setDestructor()</code></a> methods:</p>
+<pre class="highlight"><code class="js"><span class="hljs-comment">// Create an editor watchdog.</span>
 <span class="hljs-keyword">const</span> watchdog = <span class="hljs-keyword">new</span> EditorWatchdog();
 
 <span class="hljs-comment">// Define a callback that will create an editor instance and return it.</span>
@@ -278,10 +278,10 @@ watchdog.setDestructor( <span class="hljs-function"><span class="hljs-params">ed
         } );
 } );
 
-<span class="hljs-comment">// Create editor instance and start watching it.</span>
+<span class="hljs-comment">// Create an editor instance and start watching it.</span>
 watchdog.create( elementOrData, editorConfig );
 </code></pre>
-<div class="info-box notice"><p>The default (not overridden ny <code>setDestructor()</code>) editor destructor simply executes <code>Editor#destroy()</code>.</p></div>
+<div class="info-box notice"><p>The default (not overridden by <code>setDestructor()</code>) editor destructor simply executes <code>Editor#destroy()</code>.</p></div>
 <h4 id="editor-watchdog-api"><a class="headerlink" href="#editor-watchdog-api">#</a> Editor watchdog API</h4>
 <p>Other useful <a href="../api/module_watchdog_editorwatchdog-EditorWatchdog.html">methods, properties and events</a>:</p>
 <pre class="highlight"><code class="js">watchdog.on( <span class="hljs-string">&apos;error&apos;</span>, () =&gt; { <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;Editor crashed.&apos;</span> ) } );
@@ -296,11 +296,11 @@ watchdog.editor;
 <span class="hljs-comment">// The current state of the editor.</span>
 <span class="hljs-comment">// The editor might be in one of the following states:</span>
 <span class="hljs-comment">//</span>
-<span class="hljs-comment">// * `initializing` - before the first initialization, and after crashes, before the editor is ready,</span>
-<span class="hljs-comment">// * `ready` - a state when a user can interact with the editor,</span>
-<span class="hljs-comment">// * `crashed` - a state when an error occurs - it quickly changes to `initializing` or `crashedPermanently` depending on how many and how frequency errors have been caught recently,</span>
-<span class="hljs-comment">// * `crashedPermanently` - a state when the watchdog stops reacting to errors and keeps the editor crashed,</span>
-<span class="hljs-comment">// * `destroyed` - a state when the editor is manually destroyed by the user after calling `watchdog.destroy()`.</span>
+<span class="hljs-comment">// * `initializing` - Before the first initialization, and after crashes, before the editor is ready.</span>
+<span class="hljs-comment">// * `ready` - A state when the user can interact with the editor.</span>
+<span class="hljs-comment">// * `crashed` - A state when an error occurs. It quickly changes to `initializing` or `crashedPermanently` depending on how many and how frequent errors have been caught recently.</span>
+<span class="hljs-comment">// * `crashedPermanently` - A state when the watchdog stops reacting to errors and keeps the editor crashed.</span>
+<span class="hljs-comment">// * `destroyed` - A state when the editor is manually destroyed by the user after calling `watchdog.destroy()`.</span>
 watchdog.state;
 
 <span class="hljs-comment">// Listen to state changes.</span>
@@ -319,12 +319,12 @@ watchdog.on( <span class="hljs-string">&apos;stateChange&apos;</span>, () =&gt; 
     prevState = currentState;
 } );
 
-<span class="hljs-comment">// An array of editor crashes info.</span>
+<span class="hljs-comment">// An array of editor crash information.</span>
 watchdog.crashes.forEach( <span class="hljs-function"><span class="hljs-params">crashInfo</span> =&gt;</span> <span class="hljs-built_in">console</span>.log( crashInfo ) );
 </code></pre>
 <h3 id="context-watchdog"><a class="headerlink" href="#context-watchdog">#</a> Context watchdog</h3>
 <p>Install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-watchdog" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-watchdog</code></a> package:</p>
-<pre class="highlight"><code class="bash">npm install --save @ckeditor/ckeditor5-watchdog
+<pre class="highlight"><code class>npm install --save @ckeditor/ckeditor5-watchdog
 </code></pre>
 <p>And then change your editor and context initialization code:</p>
 <pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
@@ -336,12 +336,12 @@ watchdog.crashes.forEach( <span class="hljs-function"><span class="hljs-params">
 <span class="hljs-keyword">import</span> Italic <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;</span>;
 <span class="hljs-keyword">import</span> Context <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/context&apos;</span>;
 
-<span class="hljs-comment">// Create a context watchdog and pass the `Context` class with optional watchdog configuration:</span>
+<span class="hljs-comment">// Create a context watchdog and pass the context class with optional watchdog configuration:</span>
 <span class="hljs-keyword">const</span> watchdog = <span class="hljs-keyword">new</span> ContextWatchdog( Context, {
     <span class="hljs-attr">crashNumberLimit</span>: <span class="hljs-number">10</span>
 } );
 
-<span class="hljs-comment">// Initialize the watchdog with context configuration:</span>
+<span class="hljs-comment">// Initialize the watchdog with the context configuration:</span>
 <span class="hljs-keyword">await</span> watchdog.create( {
     <span class="hljs-attr">plugins</span>: [
         <span class="hljs-comment">// ...</span>
@@ -350,7 +350,7 @@ watchdog.crashes.forEach( <span class="hljs-function"><span class="hljs-params">
 } );
 
 <span class="hljs-comment">// Add editor instances.</span>
-<span class="hljs-comment">// You mat also use multiple `ContextWatchdog#add()` calls, each adding a single editor.</span>
+<span class="hljs-comment">// You may also use multiple `ContextWatchdog#add()` calls, each adding a single editor.</span>
 <span class="hljs-keyword">await</span> watchdog.add( [ {
     <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;editor1&apos;</span>,
     <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;editor&apos;</span>,
@@ -394,7 +394,7 @@ watchdog.crashes.forEach( <span class="hljs-function"><span class="hljs-params">
     <span class="hljs-attr">creator</span>: <span class="hljs-function">(<span class="hljs-params"> element, config </span>) =&gt;</span> ClassicEditor.create( element, config )
 } );
 </code></pre>
-<p>To destroy one of the item instances use <a href="../api/module_watchdog_contextwatchdog-ContextWatchdog.html#function-remove"><code>ContextWatchdog#remove</code></a>:</p>
+<p>To destroy one of the item instances, use <a href="../api/module_watchdog_contextwatchdog-ContextWatchdog.html#function-remove"><code>ContextWatchdog#remove</code></a>:</p>
 <pre class="highlight"><code class="js"><span class="hljs-keyword">await</span> watchdog.remove( [ <span class="hljs-string">&apos;editor1&apos;</span>, <span class="hljs-string">&apos;editor2&apos;</span> ] );
 
 <span class="hljs-comment">// Or:</span>
@@ -403,7 +403,7 @@ watchdog.crashes.forEach( <span class="hljs-function"><span class="hljs-params">
 </code></pre>
 <h4 id="context-watchdog-api"><a class="headerlink" href="#context-watchdog-api">#</a> Context watchdog API</h4>
 <p>The context watchdog feature provides the following API:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// Creating watchdog that will use the `Context` class and watchdog configuration.</span>
+<pre class="highlight"><code class="js"><span class="hljs-comment">// Creating a watchdog that will use the context class and the watchdog configuration.</span>
 <span class="hljs-keyword">const</span> watchdog = <span class="hljs-keyword">new</span> ContextWatchdog( Context, watchdogConfig );
 
 <span class="hljs-comment">// Setting a custom creator for the context.</span>
@@ -417,6 +417,7 @@ watchdog.setCreator( <span class="hljs-keyword">async</span> config =&gt; {
 
 <span class="hljs-comment">// Setting a custom destructor for the context.</span>
 watchdog.setDestructor( <span class="hljs-keyword">async</span> context =&gt; {
+    
     <span class="hljs-comment">// Do something before destroy.</span>
 
     <span class="hljs-keyword">await</span> context.destroy();
@@ -447,15 +448,15 @@ watchdog.setDestructor( <span class="hljs-keyword">async</span> context =&gt; {
     <span class="hljs-comment">// ...</span>
 ] );
 
-<span class="hljs-comment">// Remove and destroy given item (or items).</span>
+<span class="hljs-comment">// Remove and destroy a given item (or items).</span>
 <span class="hljs-keyword">await</span> watchdog.remove( <span class="hljs-string">&apos;editor1&apos;</span> );
 
 <span class="hljs-keyword">await</span> watchdog.remove( [ <span class="hljs-string">&apos;editor1&apos;</span>, <span class="hljs-string">&apos;editor2&apos;</span>, ... ] );
 
-<span class="hljs-comment">// Getting given item instance.</span>
+<span class="hljs-comment">// Getting the given item instance.</span>
 <span class="hljs-keyword">const</span> editor1 = watchdog.getItem( <span class="hljs-string">&apos;editor1&apos;</span> );
 
-<span class="hljs-comment">// Getting given item state.</span>
+<span class="hljs-comment">// Getting the state of the given item.</span>
 <span class="hljs-keyword">const</span> editor1State = watchdog.getItemState( <span class="hljs-string">&apos;editor1&apos;</span> );
 
 <span class="hljs-comment">// Getting the context state.</span>
@@ -466,29 +467,28 @@ watchdog.setDestructor( <span class="hljs-keyword">async</span> context =&gt; {
 <span class="hljs-comment">// See also `ContextWatchdog#event:itemError`.</span>
 watchdog.on( <span class="hljs-string">&apos;error&apos;</span>, ( _, { error } ) =&gt; {
 
-<span class="hljs-comment">// The `restart` event is fired when the context is set back to the `ready` state (after it was in `crashed` state).</span>
+<span class="hljs-comment">// The `restart` event is fired when the context is set back to the `ready` state (after it was in the `crashed` state).</span>
 <span class="hljs-comment">// Similarly, this event is not thrown for internal item restarts.</span>
 watchdog.on( <span class="hljs-string">&apos;restart&apos;</span>, () =&gt; {
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;The context has been restarted.&apos;</span> );
 } );
 
-
 <span class="hljs-comment">// The `itemError` event is fired when an error occurred in one of the added items.</span>
 watchdog.on( <span class="hljs-string">&apos;itemError&apos;</span>, ( _, { error, itemId } ) =&gt; {
-    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">`An error occurred in an item with the &apos;<span class="hljs-subst">${ itemId }</span>&apos; id.`</span> );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">`An error occurred in an item with the &apos;<span class="hljs-subst">${ itemId }</span>&apos; ID.`</span> );
 } );
 
-<span class="hljs-comment">// The `itemRestart` event is fired when an item is set back to the `ready` state (after it was in `crashed` state).</span>
+<span class="hljs-comment">// The `itemRestart` event is fired when an item is set back to the `ready` state (after it was in the `crashed` state).</span>
 watchdog.on( <span class="hljs-string">&apos;itemRestart&apos;</span>, ( _, { itemId } ) =&gt; {
-    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;An item with with the &apos;</span>${ itemId }<span class="hljs-string">&apos; id has been restarted.&apos;</span> );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;An item with with the &apos;</span>${ itemId }<span class="hljs-string">&apos; ID has been restarted.&apos;</span> );
 } );
 </code></pre>
 <h2 id="configuration"><a class="headerlink" href="#configuration">#</a> Configuration</h2>
 <p>Both <a href="../api/module_watchdog_editorwatchdog-EditorWatchdog.html#function-constructor"><code>EditorWatchdog</code></a> and <a href="../api/module_watchdog_contextwatchdog-ContextWatchdog.html#function-constructor"><code>ContextWatchdog</code></a> constructors accept a <a href="../api/module_watchdog_watchdog-WatchdogConfig.html">configuration object</a> as the second argument with the following optional properties:</p>
 <ul>
-<li><code>crashNumberLimit</code> - A threshold specifying the number of errors (defaults to <code>3</code>). After this limit is reached and the time between last errors is shorter than <code>minimumNonErrorTimePeriod</code> the watchdog changes its state to <code>crashedPermanently</code> and it stops restarting the editor. This prevents an infinite restart loop.</li>
-<li><code>minimumNonErrorTimePeriod</code> - An average amount of milliseconds between last editor errors (defaults to 5000). When the period of time between errors is lower than that and the <code>crashNumberLimit</code> is also reachedm the watchdog changes its state to <code>crashedPermanently</code> and it stops restarting the editor. This prevents an infinite restart loop.</li>
-<li><code>saveInterval</code> - A minimum number of milliseconds between saving editor data internally (defaults to 5000). Note that for large documents this might have an impact on the editor performance.</li>
+<li><code>crashNumberLimit</code> &#x2013; A threshold specifying the number of errors (defaults to <code>3</code>). After this limit is reached and the time between last errors is shorter than <code>minimumNonErrorTimePeriod</code>, the watchdog changes its state to <code>crashedPermanently</code> and it stops restarting the editor. This prevents an infinite restart loop.</li>
+<li><code>minimumNonErrorTimePeriod</code> &#x2013; An average number of milliseconds between the last editor errors (defaults to 5000). When the period of time between errors is lower than that and the <code>crashNumberLimit</code> is also reached, the watchdog changes its state to <code>crashedPermanently</code> and it stops restarting the editor. This prevents an infinite restart loop.</li>
+<li><code>saveInterval</code> &#x2013; A minimum number of milliseconds between saving the editor data internally (defaults to 5000). Note that for large documents this might impact the editor performance.</li>
 </ul>
 <pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> editorWatchdog = <span class="hljs-keyword">new</span> EditorWatchdog( ClassicEditor, {
     <span class="hljs-attr">minimumNonErrorTimePeriod</span>: <span class="hljs-number">2000</span>,
