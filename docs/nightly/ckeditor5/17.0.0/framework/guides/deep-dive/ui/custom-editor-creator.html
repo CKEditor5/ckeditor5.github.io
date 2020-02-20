@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Creating custom editor - CKEditor 5 Documentation</title>
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:site" content="@ckeditor">
+    <meta property="og:title" content="Creating custom editor - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/framework/guides/deep-dive/ui/custom-editor-creator.html">
+    <meta property="DC.language" content="en">
+    <meta property="DC.publisher" content="CKSource">
+    <meta property="DC.creator" content="CKEditor">
+    <meta property="DC.title" content="Creating custom editor - CKEditor 5 Documentation">
+    <meta property="DC.format" content="text/html">
+    <meta property="DC.type" content="Text">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/guides/deep-dive/ui/custom-editor-creator.html">
+    <link rel="icon" type="image/png" href="../../../../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../../../../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../../../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../../../../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../assets/styles.css" type="text/css">
+    <script>
+      ( function() {
+      	'use strict';
+      	// Set up global variables;
+      	if ( !window.umebrto ) {
+      		window.umberto = {};
+      	}
+      	window.umberto.relativeAppPath = "../../../../../../assets/1.2.1/scripts"
+      
+      	// Add app script
+      	var el = document.createElement( 'script' );
+      	el.setAttribute( 'async', 'async' );
+      	el.setAttribute( 'defer', 'defer' );
+      	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
+      		el.src = "../../../../../../assets/1.2.1/scripts/app.js";
+      	} else {
+      		el.src = "../../../../../../assets/1.2.1/scripts/app-polyfill.js";
+      	}
+      	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
+      
+      	// Changing documentation theme enable it via `localStorage.setItem( 'theme', 'theme-dark' )`
+      	if ( localStorage.getItem( 'theme' ) === 'theme-dark' ) {
+      		document.getElementsByTagName( 'html' )[ 0 ].classList.add( 'theme-dark' );
+      	}
+      } )();
+    </script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="header__main">
+        <div class="header__main-rwd-button"><a href="#"><span></span><span></span><span></span></a></div>
+        <div class="header__main-title"><a class="header__main-title-home" href="../../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
+        <div class="top__search">
+          <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+          <div class="top__search__button"><img src="../../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+        </div>
+      </div>
+      <div class="header__sub">
+        <ul class="top__menu">
+          <li class="top__menu-project-logo"><a href="../../../../index.html">CKEditor 5</a></li>
+          <li><a href="../../../../builds/index.html">Builds</a></li>
+          <li><a class="top__menu__item--active" href="../../../index.html">Framework</a></li>
+          <li><a href="../../../../examples/index.html">Examples</a></li>
+          <li><a href="../../../../features/index.html">Features</a></li>
+          <li><a class="top__menu__api" href="../../../../api/index.html">API</a></li>
+          <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."><svg viewbox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li>
+        </ul>
+      </div>
+      <div class="header__menu-rwd">
+        <ul class="header__menu-rwd__projects">
+          <li data-project="ckeditor5"><a href="../../../../../latest/index.html">CKEditor 5
+              <ul class="tree header__menu-rwd__projects-pages">
+                <li data-group="builds"><a href="../../../../builds/index.html">Builds</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="framework"><a href="../../../index.html">Framework</a>
+                  <!-- Display subpages for active project.-->
+                  <ul class="header__menu-rwd__projects-subpages">
+                            <li>
+                              <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Guides</span></div>
+                              <ul class="tree__item-nested-list">
+                                    <li><a href="../../overview.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="../../quick-start.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span></div></a></li>
+                                    <li><a href="../../creating-simple-plugin.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating a simple plugin</span></div></a></li>
+                                    <li><a href="../../development-tools.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development tools</span></div></a></li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Architecture</span></div>
+                                      <ul class="tree__item-nested-list">
+                                            <li><a href="../../architecture/intro.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Introduction</span></div></a></li>
+                                            <li><a href="../../architecture/core-editor-architecture.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Core editor architecture</span></div></a></li>
+                                            <li><a href="../../architecture/editing-engine.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editing engine</span></div></a></li>
+                                            <li><a href="../../architecture/ui-library.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">UI library</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Tutorials</span></div>
+                                      <ul class="tree__item-nested-list">
+                                            <li><a href="../../tutorials/implementing-a-block-widget.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing a block widget</span></div></a></li>
+                                            <li><a href="../../tutorials/implementing-an-inline-widget.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing an inline widget</span></div></a></li>
+                                            <li><a href="../../tutorials/using-react-in-a-widget.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Using a React component in a widget</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Deep dive</span></div>
+                                      <ul class="tree__item-nested-list">
+                                            <li><a href="../clipboard.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Clipboard</span></div></a></li>
+                                            <li><a href="../upload-adapter.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom upload adapter</span></div></a></li>
+                                            <li><a href="../observables.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Observables</span></div></a></li>
+                                            <li><a href="../schema.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Schema</span></div></a></li>
+                                            <li>
+                                              <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Conversion</span></div>
+                                              <ul class="tree__item-nested-list">
+                                                    <li><a href="../conversion/conversion-introduction.html">
+                                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Advanced concepts</span></div></a></li>
+                                                    <li><a href="../conversion/conversion-extending-output.html">
+                                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Extending editor output</span></div></a></li>
+                                                    <li><a href="../conversion/conversion-preserving-custom-content.html">
+                                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Preserving custom content</span></div></a></li>
+                                              </ul>
+                                            </li>
+                                            <li>
+                                              <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">User interface</span></div>
+                                              <ul class="tree__item-nested-list">
+                                                    <li><a href="theme-customization.html">
+                                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Theme customization</span></div></a></li>
+                                                    <li><a href="external-ui.html">
+                                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Third–party UI</span></div></a></li>
+                                                    <li><a href="document-editor.html">
+                                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document editor</span></div></a></li>
+                                                    <li><a href>
+                                                        <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Creating custom editor</span></div></a></li>
+                                              </ul>
+                                            </li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Contributing</span></div>
+                                      <ul class="tree__item-nested-list">
+                                            <li><a href="../../contributing/contributing.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Contributing</span></div></a></li>
+                                            <li><a href="../../contributing/development-environment.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development environment</span></div></a></li>
+                                            <li><a href="../../contributing/testing-environment.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Testing environment</span></div></a></li>
+                                            <li><a href="../../contributing/git-commit-message-convention.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Git commit message convention</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Support</span></div>
+                                      <ul class="tree__item-nested-list">
+                                            <li><a href="../../support/browser-compatibility.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Browser compatibility</span></div></a></li>
+                                            <li><a href="../../support/license-and-legal.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span></div></a></li>
+                                            <li><a href="../../support/getting-support.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting support</span></div></a></li>
+                                            <li><a href="../../support/reporting-issues.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span></div></a></li>
+                                            <li><a href="../../support/versioning-policy.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Versioning policy</span></div></a></li>
+                                            <li><a href="../../support/error-codes.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Error codes</span></div></a></li>
+                                      </ul>
+                                    </li>
+                              </ul>
+                            </li>
+                  </ul>
+                </li>
+                <li data-group="examples"><a href="../../../../examples/index.html">Examples</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="features"><a href="../../../../features/index.html">Features</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="api-reference"><a href="../../../../api/index.html">API</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+              </ul></a></li>
+        </ul>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/custom-editor-creator.md" title="Contribute to this guide"><img src="../../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          </div>
+          <div class="rwd-breadcrumbs"><a href="../../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">Framework</a>
+          </div>
+          <h1 class="main__content-title"><img src="../../../../../../assets/1.2.1/img/book.svg" alt="guide">Implementing a custom editor creator
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#editor-class">Editor class</a></li><li><a href="#editorui-class">EditorUI class</a></li><li><a href="#editoruiview-class">EditorUIView class</a></li><li><a href="#initializing-custom-editor-instance">Initializing custom editor instance</a></li></ol></nav>
+<p>The flexible architecture of CKEditor 5 allows creating completely custom editors. Not only the <a href="../../../../examples/framework/theme-customization.html">theme styling can be changed</a> or the <a href="../../../../examples/framework/custom-ui.html">UI redesigned</a> but also the entire editor initialization process can be modified allowing to create new editor types. Thanks to that, apart from the standard editors (like <a href="../../../../examples/builds/classic-editor.html">classic</a>, <a href="../../../../examples/builds/inline-editor.html">inline</a>, <a href="../../../../examples/builds/balloon-editor.html">balloon</a> or <a href="../../../../examples/builds/document-editor.html">document</a>), custom types like a <a href="../../../../examples/framework/multi-root-editor.html"><strong>multi-root editor</strong></a> can be created.</p>
+<p>This guide goes through the process of implementing a custom, multi-root editor. You can check out the <a href="../../../../examples/framework/multi-root-editor.html">demo of the multi-root editor</a> too.</p>
+<h2 id="editor-class"><a class="headerlink" href="#editor-class">#</a> Editor class</h2>
+<p>The <code>*Editor</code> class is the main class of each editor type. It initializes the whole editor and its UI parts. The custom creator class should extend the <a href="../../../../api/module_core_editor_editor-Editor.html">base <code>Editor</code> class</a>. In case of a multi-root editor it may look like below:</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> Editor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/editor/editor&apos;</span>;
+<span class="hljs-keyword">import</span> DataApiMixin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/editor/utils/dataapimixin&apos;</span>;
+<span class="hljs-keyword">import</span> HtmlDataProcessor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-engine/src/dataprocessor/htmldataprocessor&apos;</span>;
+<span class="hljs-keyword">import</span> getDataFromElement <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-utils/src/dom/getdatafromelement&apos;</span>;
+<span class="hljs-keyword">import</span> setDataInElement <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-utils/src/dom/setdatainelement&apos;</span>;
+<span class="hljs-keyword">import</span> mix <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-utils/src/mix&apos;</span>;
+
+<span class="hljs-comment">/**
+ * The multi-root editor implementation. It provides inline editables and a single toolbar.
+ *
+ * Unlike other editors, the toolbar is not rendered automatically and needs to be attached to the DOM manually.
+ *
+ * This type of an editor is dedicated to integrations which require a customized UI with an open
+ * structure, allowing developers to specify the exact location of the interface.
+ *
+ * @mixes module:core/editor/utils/dataapimixin~DataApiMixin
+ * @implements module:core/editor/editorwithui~EditorWithUI
+ * @extends module:core/editor/editor~Editor
+ */</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MultirootEditor</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Editor</span> </span>{
+    <span class="hljs-comment">/**
+     * Creates an instance of the multi-root editor.
+     *
+     * **Note:** Do not use the constructor to create editor instances. Use the static `MultirootEditor.create()` method instead.
+     *
+     * <span class="hljs-doctag">@protected</span>
+     * <span class="hljs-doctag">@param <span class="hljs-type">{Object.&lt;String,HTMLElement&gt;}</span> </span>sourceElements The list of DOM elements that will be the source
+     * for the created editor (on which the editor will be initialized).
+     * <span class="hljs-doctag">@param <span class="hljs-type">{module:core/editor/editorconfig~EditorConfig}</span> </span>config The editor configuration.
+     */</span>
+    <span class="hljs-keyword">constructor</span>( sourceElements, config ) {
+        <span class="hljs-keyword">super</span>( config );
+
+        <span class="hljs-keyword">this</span>.data.processor = <span class="hljs-keyword">new</span> HtmlDataProcessor();
+
+        <span class="hljs-comment">// Create root and UIView element for each editable container.</span>
+        <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">const</span> rootName <span class="hljs-keyword">of</span> <span class="hljs-built_in">Object</span>.keys( sourceElements ) ) {
+            <span class="hljs-keyword">this</span>.model.document.createRoot( <span class="hljs-string">&apos;$root&apos;</span>, rootName );
+        }
+
+        <span class="hljs-keyword">this</span>.ui = <span class="hljs-keyword">new</span> MultirootEditorUI( <span class="hljs-keyword">this</span>, <span class="hljs-keyword">new</span> MultirootEditorUIView( <span class="hljs-keyword">this</span>.locale, <span class="hljs-keyword">this</span>.editing.view, sourceElements ) );
+    }
+
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@inheritDoc</span>
+     */</span>
+    destroy() {
+        <span class="hljs-comment">// Cache the data and editable DOM elements, then destroy.</span>
+        <span class="hljs-comment">// It&apos;s safe to assume that the model-&gt;view conversion will not work after super.destroy(),</span>
+        <span class="hljs-comment">// same as `ui.getEditableElement()` method will not return editables.</span>
+        <span class="hljs-keyword">const</span> data = {};
+        <span class="hljs-keyword">const</span> editables = {};
+        <span class="hljs-keyword">const</span> editablesNames = <span class="hljs-built_in">Array</span>.from( <span class="hljs-keyword">this</span>.ui.getEditableElementsNames() );
+
+        <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">const</span> rootName <span class="hljs-keyword">of</span> editablesNames ) {
+            data[ rootName ] = <span class="hljs-keyword">this</span>.getData( { rootName } );
+            editables[ rootName ] = <span class="hljs-keyword">this</span>.ui.getEditableElement( rootName );
+        }
+
+        <span class="hljs-keyword">this</span>.ui.destroy();
+
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">super</span>.destroy()
+            .then( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+                <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">const</span> rootName <span class="hljs-keyword">of</span> editablesNames ) {
+                    setDataInElement( editables[ rootName ], data[ rootName ] );
+                }
+            } );
+    }
+
+    <span class="hljs-comment">/**
+     * Creates a multi-root editor instance.
+     *
+     * <span class="hljs-doctag">@param <span class="hljs-type">{Object.&lt;String,HTMLElement&gt;}</span> </span>sourceElements The list of DOM elements that will be the source
+     * for the created editor (on which the editor will be initialized).
+     * <span class="hljs-doctag">@param <span class="hljs-type">{module:core/editor/editorconfig~EditorConfig}</span> </span>config The editor configuration.
+     * <span class="hljs-doctag">@returns <span class="hljs-type">{Promise}</span> </span>A promise resolved once the editor is ready. The promise returns the created multi-root editor instance.
+     */</span>
+    <span class="hljs-keyword">static</span> create( sourceElements, config ) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>( <span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> {
+            <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">new</span> <span class="hljs-keyword">this</span>( sourceElements, config );
+
+            resolve(
+                editor.initPlugins()
+                    .then( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> editor.ui.init() )
+                    .then( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+                        <span class="hljs-keyword">const</span> initialData = {};
+
+                        <span class="hljs-comment">// Create initial data object containing data from all roots.</span>
+                        <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">const</span> rootName <span class="hljs-keyword">of</span> <span class="hljs-built_in">Object</span>.keys( sourceElements ) ) {
+                            initialData[ rootName ] = getDataFromElement( sourceElements[ rootName ] );
+                        }
+
+                        <span class="hljs-keyword">return</span> editor.data.init( initialData );
+                    } )
+                    .then( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> editor.fire( <span class="hljs-string">&apos;ready&apos;</span> ) )
+                    .then( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> editor )
+            );
+        } );
+    }
+}
+
+mix( MultirootEditor, DataApiMixin );
+</code></pre>
+<h2 id="editorui-class"><a class="headerlink" href="#editorui-class">#</a> EditorUI class</h2>
+<p>The <code>*EditorUI</code> class is the main UI class which initializes UI components (the main view and the toolbar) and sets up mechanisms like focus tracker or placeholder management. The custom <code>*EditorUI</code> class should extend the <a href="../../../../api/module_core_editor_editorui-EditorUI.html">base <code>EditorUI</code> class</a> like below:</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> EditorUI <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/editor/editorui&apos;</span>;
+<span class="hljs-keyword">import</span> enableToolbarKeyboardFocus <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/toolbar/enabletoolbarkeyboardfocus&apos;</span>;
+<span class="hljs-keyword">import</span> normalizeToolbarConfig <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/toolbar/normalizetoolbarconfig&apos;</span>;
+<span class="hljs-keyword">import</span> { enablePlaceholder } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-engine/src/view/placeholder&apos;</span>;
+
+<span class="hljs-comment">/**
+ * The multi-root editor UI class.
+ *
+ * @extends module:core/editor/editorui~EditorUI
+ */</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MultirootEditorUI</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">EditorUI</span> </span>{
+    <span class="hljs-comment">/**
+     * Creates an instance of the multi-root editor UI class.
+     *
+     * <span class="hljs-doctag">@param <span class="hljs-type">{module:core/editor/editor~Editor}</span> </span>editor The editor instance.
+     * <span class="hljs-doctag">@param <span class="hljs-type">{module:ui/editorui/editoruiview~EditorUIView}</span> </span>view The view of the UI.
+     */</span>
+    <span class="hljs-keyword">constructor</span>( editor, view ) {
+        <span class="hljs-keyword">super</span>( editor );
+
+        <span class="hljs-comment">/**
+         * The main (top&#x2013;most) view of the editor UI.
+         *
+         * @readonly
+         * @member {module:ui/editorui/editoruiview~EditorUIView} #view
+         */</span>
+        <span class="hljs-keyword">this</span>.view = view;
+
+        <span class="hljs-comment">/**
+         * A normalized `config.toolbar` object.
+         *
+         * @type {Object}
+         * @private
+         */</span>
+        <span class="hljs-keyword">this</span>._toolbarConfig = normalizeToolbarConfig( editor.config.get( <span class="hljs-string">&apos;toolbar&apos;</span> ) );
+    }
+
+    <span class="hljs-comment">/**
+     * Initializes the UI.
+     */</span>
+    init() {
+        <span class="hljs-keyword">const</span> view = <span class="hljs-keyword">this</span>.view;
+        <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">this</span>.editor;
+        <span class="hljs-keyword">const</span> editingView = editor.editing.view;
+
+        <span class="hljs-keyword">let</span> lastFocusedEditableElement;
+
+        view.render();
+
+        <span class="hljs-comment">// Keep track of the last focused editable element. Knowing which one was focused</span>
+        <span class="hljs-comment">// is useful when the focus moves from editable to other UI components like balloons</span>
+        <span class="hljs-comment">// (especially inputs) but the editable remains the &quot;focus context&quot; (e.g. link balloon</span>
+        <span class="hljs-comment">// attached to a link in an editable). In this case, the editable should preserve visual</span>
+        <span class="hljs-comment">// focus styles.</span>
+        <span class="hljs-keyword">this</span>.focusTracker.on( <span class="hljs-string">&apos;change:focusedElement&apos;</span>, ( evt, name, focusedElement ) =&gt; {
+            <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">const</span> editable <span class="hljs-keyword">of</span> <span class="hljs-keyword">this</span>.view.editables ) {
+                <span class="hljs-keyword">if</span> ( editable.element === focusedElement ) {
+                    lastFocusedEditableElement = editable.element;
+                }
+            }
+        } );
+
+        <span class="hljs-comment">// If the focus tracker loses focus, stop tracking the last focused editable element.</span>
+        <span class="hljs-comment">// Wherever the focus is restored, it will no longer be in the context of that editable</span>
+        <span class="hljs-comment">// because the focus &quot;came from the outside&quot;, as opposed to the focus moving from one element</span>
+        <span class="hljs-comment">// to another withing the editor UI.</span>
+        <span class="hljs-keyword">this</span>.focusTracker.on( <span class="hljs-string">&apos;change:isFocused&apos;</span>, ( evt, name, isFocused ) =&gt; {
+            <span class="hljs-keyword">if</span> ( !isFocused ) {
+                lastFocusedEditableElement = <span class="hljs-literal">null</span>;
+            }
+        } );
+
+        <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">const</span> editable <span class="hljs-keyword">of</span> <span class="hljs-keyword">this</span>.view.editables ) {
+            <span class="hljs-comment">// The editable UI element in DOM is available for sure only after the editor UI view has been rendered.</span>
+            <span class="hljs-comment">// But it can be available earlier if a DOM element has been passed to MultirootEditor.create().</span>
+            <span class="hljs-keyword">const</span> editableElement = editable.element;
+
+            <span class="hljs-comment">// Register each editable UI view in the editor.</span>
+            <span class="hljs-keyword">this</span>.setEditableElement( editable.name, editableElement );
+
+            <span class="hljs-comment">// Let the global focus tracker know that the editable UI element is focusable and</span>
+            <span class="hljs-comment">// belongs to the editor. From now on, the focus tracker will sustain the editor focus</span>
+            <span class="hljs-comment">// as long as the editable is focused (e.g. the user is typing).</span>
+            <span class="hljs-keyword">this</span>.focusTracker.add( editableElement );
+
+            <span class="hljs-comment">// Let the editable UI element respond to the changes in the global editor focus</span>
+            <span class="hljs-comment">// tracker. It has been added to the same tracker a few lines above but, in reality, there are</span>
+            <span class="hljs-comment">// many focusable areas in the editor, like balloons, toolbars or dropdowns and as long</span>
+            <span class="hljs-comment">// as they have focus, the editable should act like it is focused too (although technically</span>
+            <span class="hljs-comment">// it isn&apos;t), e.g. by setting the proper CSS class, visually announcing focus to the user.</span>
+            <span class="hljs-comment">// Doing otherwise will result in editable focus styles disappearing, once e.g. the</span>
+            <span class="hljs-comment">// toolbar gets focused.</span>
+            editable.bind( <span class="hljs-string">&apos;isFocused&apos;</span> ).to( <span class="hljs-keyword">this</span>.focusTracker, <span class="hljs-string">&apos;isFocused&apos;</span>, <span class="hljs-keyword">this</span>.focusTracker, <span class="hljs-string">&apos;focusedElement&apos;</span>,
+                ( isFocused, focusedElement ) =&gt; {
+                    <span class="hljs-comment">// When the focus tracker is blurred, it means the focus moved out of the editor UI.</span>
+                    <span class="hljs-comment">// No editable will maintain focus then.</span>
+                    <span class="hljs-keyword">if</span> ( !isFocused ) {
+                        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+                    }
+
+                    <span class="hljs-comment">// If the focus tracker says the editor UI is focused and currently focused element</span>
+                    <span class="hljs-comment">// is the editable, then the editable should be visually marked as focused too.</span>
+                    <span class="hljs-keyword">if</span> ( focusedElement === editableElement ) {
+                        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+                    }
+                    <span class="hljs-comment">// If the focus tracker says the editor UI is focused but the focused element is</span>
+                    <span class="hljs-comment">// not an editable, it is possible that the editable is still (context&#x2013;)focused.</span>
+                    <span class="hljs-comment">// For instance, the focused element could be an input inside of a balloon attached</span>
+                    <span class="hljs-comment">// to the content in the editable. In such case, the editable should remain _visually_</span>
+                    <span class="hljs-comment">// focused even though technically the focus is somewhere else. The focus moved from</span>
+                    <span class="hljs-comment">// the editable to the input but the focus context remained the same.</span>
+                    <span class="hljs-keyword">else</span> {
+                        <span class="hljs-keyword">return</span> lastFocusedEditableElement === editableElement;
+                    }
+                } );
+
+            <span class="hljs-comment">// Bind the editable UI element to the editing view, making it an end&#x2013; and entry&#x2013;point</span>
+            <span class="hljs-comment">// of the editor&apos;s engine. This is where the engine meets the UI.</span>
+            editingView.attachDomRoot( editableElement, editable.name );
+        }
+
+        <span class="hljs-keyword">this</span>._initPlaceholder();
+        <span class="hljs-keyword">this</span>._initToolbar();
+        <span class="hljs-keyword">this</span>.fire( <span class="hljs-string">&apos;ready&apos;</span> );
+    }
+
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@inheritDoc</span>
+     */</span>
+    destroy() {
+        <span class="hljs-keyword">const</span> view = <span class="hljs-keyword">this</span>.view;
+        <span class="hljs-keyword">const</span> editingView = <span class="hljs-keyword">this</span>.editor.editing.view;
+
+        <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">const</span> editable <span class="hljs-keyword">of</span> <span class="hljs-keyword">this</span>.view.editables ) {
+            editingView.detachDomRoot( editable.name );
+        }
+
+        view.destroy();
+
+        <span class="hljs-keyword">super</span>.destroy();
+    }
+
+    <span class="hljs-comment">/**
+     * Initializes the editor main toolbar and its panel.
+     *
+     * <span class="hljs-doctag">@private</span>
+     */</span>
+    _initToolbar() {
+        <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">this</span>.editor;
+        <span class="hljs-keyword">const</span> view = <span class="hljs-keyword">this</span>.view;
+        <span class="hljs-keyword">const</span> toolbar = view.toolbar;
+
+        toolbar.fillFromConfig( <span class="hljs-keyword">this</span>._toolbarConfig.items, <span class="hljs-keyword">this</span>.componentFactory );
+
+        enableToolbarKeyboardFocus( {
+            <span class="hljs-attr">origin</span>: editor.editing.view,
+            <span class="hljs-attr">originFocusTracker</span>: <span class="hljs-keyword">this</span>.focusTracker,
+            <span class="hljs-attr">originKeystrokeHandler</span>: editor.keystrokes,
+            toolbar
+        } );
+    }
+
+    <span class="hljs-comment">/**
+     * Enable the placeholder text on the editing root, if any was configured.
+     *
+     * <span class="hljs-doctag">@private</span>
+     */</span>
+    _initPlaceholder() {
+        <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">this</span>.editor;
+        <span class="hljs-keyword">const</span> editingView = editor.editing.view;
+
+        <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">const</span> editable <span class="hljs-keyword">of</span> <span class="hljs-keyword">this</span>.view.editables ) {
+            <span class="hljs-keyword">const</span> editingRoot = editingView.document.getRoot( editable.name );
+            <span class="hljs-keyword">const</span> sourceElement = <span class="hljs-keyword">this</span>.getEditableElement( editable.name );
+
+            <span class="hljs-keyword">const</span> placeholderText = editor.config.get( <span class="hljs-string">&apos;placeholder&apos;</span> )[ editable.name ] ||
+                sourceElement &amp;&amp; sourceElement.tagName.toLowerCase() === <span class="hljs-string">&apos;textarea&apos;</span> &amp;&amp; sourceElement.getAttribute( <span class="hljs-string">&apos;placeholder&apos;</span> );
+
+            <span class="hljs-keyword">if</span> ( placeholderText ) {
+                enablePlaceholder( {
+                    <span class="hljs-attr">view</span>: editingView,
+                    <span class="hljs-attr">element</span>: editingRoot,
+                    <span class="hljs-attr">text</span>: placeholderText,
+                    <span class="hljs-attr">isDirectHost</span>: <span class="hljs-literal">false</span>
+                } );
+            }
+        }
+    }
+}
+</code></pre>
+<h2 id="editoruiview-class"><a class="headerlink" href="#editoruiview-class">#</a> EditorUIView class</h2>
+<p>Finally, the <code>*EditorUIView</code> class is responsible for registering and handling all editables and creating the editor toolbar. The custom <code>*EditorUIView</code> class should extend the <a href="../../../../api/module_ui_editorui_editoruiview-EditorUIView.html">base <code>EditorUIView</code> class</a>:</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> EditorUIView <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/editorui/editoruiview&apos;</span>;
+<span class="hljs-keyword">import</span> InlineEditableUIView <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/editableui/inline/inlineeditableuiview&apos;</span>;
+<span class="hljs-keyword">import</span> ToolbarView <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/toolbar/toolbarview&apos;</span>;
+<span class="hljs-keyword">import</span> Template <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/template&apos;</span>;
+
+<span class="hljs-comment">/**
+ * The multi-root editor UI view. It is a virtual view providing an inline editable, but without
+ * any specific arrangement of the components in the DOM.
+ *
+ * @extends module:ui/editorui/editoruiview~EditorUIView
+ */</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MultirootEditorUIView</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">EditorUIView</span> </span>{
+    <span class="hljs-comment">/**
+     * Creates an instance of the multi-root editor UI view.
+     *
+     * <span class="hljs-doctag">@param <span class="hljs-type">{module:utils/locale~Locale}</span> </span>locale The {<span class="hljs-doctag">@link </span>module:core/editor/editor~Editor#locale} instance.
+     * <span class="hljs-doctag">@param <span class="hljs-type">{module:engine/view/view~View}</span> </span>editingView The editing view instance this view is related to.
+     * <span class="hljs-doctag">@param <span class="hljs-type">{Object.&lt;String,HTMLElement&gt;}</span> </span>editableElements The list of editable elements, containing name and html element
+     * for each editable.
+     */</span>
+    <span class="hljs-keyword">constructor</span>( locale, editingView, editableElements ) {
+        <span class="hljs-keyword">super</span>( locale );
+
+        <span class="hljs-comment">/**
+         * The main toolbar of the multi-root editor UI.
+         *
+         * @readonly
+         * @member {module:ui/toolbar/toolbarview~ToolbarView}
+         */</span>
+        <span class="hljs-keyword">this</span>.toolbar = <span class="hljs-keyword">new</span> ToolbarView( locale );
+
+        <span class="hljs-comment">/**
+         * The editables of the multi-root editor UI.
+         *
+         * @readonly
+         * @member {Array.&lt;module:ui/editableui/inline/inlineeditableuiview~InlineEditableUIView&gt;}
+         */</span>
+        <span class="hljs-keyword">this</span>.editables = [];
+
+        <span class="hljs-comment">// Create InlineEditableUIView instance for each editable.</span>
+        <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">const</span> editableName <span class="hljs-keyword">of</span> <span class="hljs-built_in">Object</span>.keys( editableElements ) ) {
+            <span class="hljs-keyword">const</span> editable = <span class="hljs-keyword">new</span> InlineEditableUIView( locale, editingView, editableElements[ editableName ] );
+
+            editable.name = editableName;
+            <span class="hljs-keyword">this</span>.editables.push( editable );
+        }
+
+        <span class="hljs-comment">// This toolbar may be placed anywhere in the page so things like font size need to be reset in it.</span>
+        <span class="hljs-comment">// Because of the above, make sure the toolbar supports rounded corners.</span>
+        <span class="hljs-comment">// Also, make sure the toolbar has the proper dir attribute because its ancestor may not have one</span>
+        <span class="hljs-comment">// and some toolbar item styles depend on this attribute.</span>
+        Template.extend( <span class="hljs-keyword">this</span>.toolbar.template, {
+            <span class="hljs-attr">attributes</span>: {
+                <span class="hljs-attr">class</span>: [
+                    <span class="hljs-string">&apos;ck-reset_all&apos;</span>,
+                    <span class="hljs-string">&apos;ck-rounded-corners&apos;</span>
+                ],
+                <span class="hljs-attr">dir</span>: locale.uiLanguageDirection
+            }
+        } );
+    }
+
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@inheritDoc</span>
+     */</span>
+    render() {
+        <span class="hljs-keyword">super</span>.render();
+
+        <span class="hljs-keyword">this</span>.registerChild( <span class="hljs-keyword">this</span>.editables );
+        <span class="hljs-keyword">this</span>.registerChild( [ <span class="hljs-keyword">this</span>.toolbar ] );
+    }
+}
+</code></pre>
+<h2 id="initializing-custom-editor-instance"><a class="headerlink" href="#initializing-custom-editor-instance">#</a> Initializing custom editor instance</h2>
+<p>Now with the multi-root editor creator ready, the fully usable editor instance can be created.</p>
+<p>With HTML like:</p>
+<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;toolbar&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">header</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;header&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Gone traveling<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Monthly travel news and inspiration<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;content&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Destination of the Month<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Valletta<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;image image-style-align-right&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;Picture of a sunlit facade of a Maltan building.&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../../../../assets/img/malta.jpg&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">figcaption</span>&gt;</span>It&apos;s siesta time in Valletta.<span class="hljs-tag">&lt;/<span class="hljs-name">figcaption</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>The capital city of <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://en.wikipedia.org/wiki/Malta&quot;</span> <span class="hljs-attr">target</span>=<span class="hljs-string">&quot;_blank&quot;</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;external&quot;</span>&gt;</span>Malta<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> is the top destination this summer. It&#x2019;s home to a cutting-edge contemporary architecture, baroque masterpieces, delicious local cuisine and at least 8 months of sun. It&#x2019;s also a top destination for filmmakers, so you can take a tour through locations familiar to you from Game of Thrones, Gladiator, Troy and many more.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;demo-row&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;demo-row__half&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;footer-left&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>The three greatest things you learn from traveling<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>Find out more<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;demo-row__half&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;footer-right&quot;</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Walking the capitals of Europe: Warsaw<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>Find out more<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+<p>The editor can be initialized with the code below:</p>
+<pre class="highlight"><code class="js">MultirootEditor
+    .create( {
+        <span class="hljs-attr">header</span>: <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#header&apos;</span> ),
+        <span class="hljs-attr">content</span>: <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#content&apos;</span> ),
+        <span class="hljs-attr">footerleft</span>: <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#footer-left&apos;</span> ),
+        <span class="hljs-attr">footerright</span>: <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#footer-right&apos;</span> )
+    }, {
+        <span class="hljs-attr">plugins</span>: [ Essentials, Paragraph, Heading, Bold, Italic, List, Link, BlockQuote, Image, ImageCaption,
+            ImageStyle, ImageToolbar, ImageUpload, Table, TableToolbar, MediaEmbed, EasyImage ],
+        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;heading&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-string">&apos;italic&apos;</span>, <span class="hljs-string">&apos;link&apos;</span>, <span class="hljs-string">&apos;bulletedList&apos;</span>, <span class="hljs-string">&apos;numberedList&apos;</span>, <span class="hljs-string">&apos;imageUpload&apos;</span>, <span class="hljs-string">&apos;blockQuote&apos;</span>,
+            <span class="hljs-string">&apos;insertTable&apos;</span>, <span class="hljs-string">&apos;mediaEmbed&apos;</span>, <span class="hljs-string">&apos;undo&apos;</span>, <span class="hljs-string">&apos;redo&apos;</span> ],
+        <span class="hljs-attr">image</span>: {
+            <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;imageTextAlternative&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;imageStyle:alignLeft&apos;</span>, <span class="hljs-string">&apos;imageStyle:full&apos;</span>, <span class="hljs-string">&apos;imageStyle:alignRight&apos;</span> ],
+            <span class="hljs-attr">styles</span>: [ <span class="hljs-string">&apos;full&apos;</span>, <span class="hljs-string">&apos;alignLeft&apos;</span>, <span class="hljs-string">&apos;alignRight&apos;</span> ]
+        },
+        <span class="hljs-attr">table</span>: {
+            <span class="hljs-attr">contentToolbar</span>: [
+                <span class="hljs-string">&apos;tableColumn&apos;</span>,
+                <span class="hljs-string">&apos;tableRow&apos;</span>,
+                <span class="hljs-string">&apos;mergeTableCells&apos;</span>
+            ]
+        },
+        <span class="hljs-attr">placeholder</span>: {
+            <span class="hljs-attr">header</span>: <span class="hljs-string">&apos;Header text goes here&apos;</span>,
+            <span class="hljs-attr">content</span>: <span class="hljs-string">&apos;Type content here&apos;</span>,
+            <span class="hljs-attr">footerleft</span>: <span class="hljs-string">&apos;Left footer content&apos;</span>,
+            <span class="hljs-attr">footerright</span>: <span class="hljs-string">&apos;Right footer content&apos;</span>
+        },
+    } )
+    .then( <span class="hljs-function"><span class="hljs-params">newEditor</span> =&gt;</span> {
+        <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#toolbar&apos;</span> ).appendChild( newEditor.ui.view.toolbar.element );
+
+        <span class="hljs-built_in">window</span>.editor = newEditor;
+    } )
+    .catch( <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.error( err.stack );
+    } );
+</code></pre>
+<p>This will create the exact same editor as the one used on the <a href="../../../../examples/framework/multi-root-editor.html">multi-root editor editor example page</a>.</p>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Guides</span></div>
+                            <ul class="tree__item-nested-list">
+                                    <li><a href="../../overview.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="../../quick-start.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span></div></a></li>
+                                    <li><a href="../../creating-simple-plugin.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating a simple plugin</span></div></a></li>
+                                    <li><a href="../../development-tools.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development tools</span></div></a></li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Architecture</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../../architecture/intro.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Introduction</span></div></a></li>
+                                              <li><a href="../../architecture/core-editor-architecture.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Core editor architecture</span></div></a></li>
+                                              <li><a href="../../architecture/editing-engine.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editing engine</span></div></a></li>
+                                              <li><a href="../../architecture/ui-library.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">UI library</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Tutorials</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../../tutorials/implementing-a-block-widget.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing a block widget</span></div></a></li>
+                                              <li><a href="../../tutorials/implementing-an-inline-widget.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing an inline widget</span></div></a></li>
+                                              <li><a href="../../tutorials/using-react-in-a-widget.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Using a React component in a widget</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Deep dive</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../clipboard.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Clipboard</span></div></a></li>
+                                              <li><a href="../upload-adapter.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom upload adapter</span></div></a></li>
+                                              <li><a href="../observables.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Observables</span></div></a></li>
+                                              <li><a href="../schema.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Schema</span></div></a></li>
+                                              <li>
+                                                <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Conversion</span></div>
+                                                <ul class="tree__item-nested-list">
+                                                        <li><a href="../conversion/conversion-introduction.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Advanced concepts</span></div></a></li>
+                                                        <li><a href="../conversion/conversion-extending-output.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Extending editor output</span></div></a></li>
+                                                        <li><a href="../conversion/conversion-preserving-custom-content.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Preserving custom content</span></div></a></li>
+                                                </ul>
+                                              </li>
+                                              <li>
+                                                <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">User interface</span></div>
+                                                <ul class="tree__item-nested-list">
+                                                        <li><a href="theme-customization.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Theme customization</span></div></a></li>
+                                                        <li><a href="external-ui.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Third–party UI</span></div></a></li>
+                                                        <li><a href="document-editor.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document editor</span></div></a></li>
+                                                        <li><a href>
+                                                            <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Creating custom editor</span></div></a></li>
+                                                </ul>
+                                              </li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Contributing</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../../contributing/contributing.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Contributing</span></div></a></li>
+                                              <li><a href="../../contributing/development-environment.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development environment</span></div></a></li>
+                                              <li><a href="../../contributing/testing-environment.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Testing environment</span></div></a></li>
+                                              <li><a href="../../contributing/git-commit-message-convention.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Git commit message convention</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Support</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../../support/browser-compatibility.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Browser compatibility</span></div></a></li>
+                                              <li><a href="../../support/license-and-legal.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span></div></a></li>
+                                              <li><a href="../../support/getting-support.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting support</span></div></a></li>
+                                              <li><a href="../../support/reporting-issues.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span></div></a></li>
+                                              <li><a href="../../support/versioning-policy.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Versioning policy</span></div></a></li>
+                                              <li><a href="../../support/error-codes.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Error codes</span></div></a></li>
+                                      </ul>
+                                    </li>
+                            </ul>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2003-2020 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'framework' ] = hits.filter( function( h ) {return h.tags.includes( 'framework' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'framework' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'framework' ] );tags.forEach( function( tag ) {if ( tag !== 'framework' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+  </body>
+</html>

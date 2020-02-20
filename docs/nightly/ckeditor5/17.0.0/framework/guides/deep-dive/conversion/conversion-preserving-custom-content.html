@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Preserving custom content - CKEditor 5 Documentation</title>
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:site" content="@ckeditor">
+    <meta property="og:title" content="Preserving custom content - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/framework/guides/deep-dive/conversion/conversion-preserving-custom-content.html">
+    <meta property="DC.language" content="en">
+    <meta property="DC.publisher" content="CKSource">
+    <meta property="DC.creator" content="CKEditor">
+    <meta property="DC.title" content="Preserving custom content - CKEditor 5 Documentation">
+    <meta property="DC.format" content="text/html">
+    <meta property="DC.type" content="Text">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/guides/deep-dive/conversion/conversion-preserving-custom-content.html">
+    <link rel="icon" type="image/png" href="../../../../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../../../../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../../../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../../../../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../assets/styles.css" type="text/css">
+    <link rel="stylesheet" href="../../../../snippets/framework/build-extending-content-source/snippet.css" type="text/css">
+    <link rel="stylesheet" href="../../../../assets/snippet-styles.css" type="text/css">
+    <script>
+      ( function() {
+      	'use strict';
+      	// Set up global variables;
+      	if ( !window.umebrto ) {
+      		window.umberto = {};
+      	}
+      	window.umberto.relativeAppPath = "../../../../../../assets/1.2.1/scripts"
+      
+      	// Add app script
+      	var el = document.createElement( 'script' );
+      	el.setAttribute( 'async', 'async' );
+      	el.setAttribute( 'defer', 'defer' );
+      	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
+      		el.src = "../../../../../../assets/1.2.1/scripts/app.js";
+      	} else {
+      		el.src = "../../../../../../assets/1.2.1/scripts/app-polyfill.js";
+      	}
+      	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
+      
+      	// Changing documentation theme enable it via `localStorage.setItem( 'theme', 'theme-dark' )`
+      	if ( localStorage.getItem( 'theme' ) === 'theme-dark' ) {
+      		document.getElementsByTagName( 'html' )[ 0 ].classList.add( 'theme-dark' );
+      	}
+      } )();
+    </script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  </head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="header__main">
+        <div class="header__main-rwd-button"><a href="#"><span></span><span></span><span></span></a></div>
+        <div class="header__main-title"><a class="header__main-title-home" href="../../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
+        <div class="top__search">
+          <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+          <div class="top__search__button"><img src="../../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+        </div>
+      </div>
+      <div class="header__sub">
+        <ul class="top__menu">
+          <li class="top__menu-project-logo"><a href="../../../../index.html">CKEditor 5</a></li>
+          <li><a href="../../../../builds/index.html">Builds</a></li>
+          <li><a class="top__menu__item--active" href="../../../index.html">Framework</a></li>
+          <li><a href="../../../../examples/index.html">Examples</a></li>
+          <li><a href="../../../../features/index.html">Features</a></li>
+          <li><a class="top__menu__api" href="../../../../api/index.html">API</a></li>
+          <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."><svg viewbox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li>
+        </ul>
+      </div>
+      <div class="header__menu-rwd">
+        <ul class="header__menu-rwd__projects">
+          <li data-project="ckeditor5"><a href="../../../../../latest/index.html">CKEditor 5
+              <ul class="tree header__menu-rwd__projects-pages">
+                <li data-group="builds"><a href="../../../../builds/index.html">Builds</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="framework"><a href="../../../index.html">Framework</a>
+                  <!-- Display subpages for active project.-->
+                  <ul class="header__menu-rwd__projects-subpages">
+                            <li>
+                              <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Guides</span></div>
+                              <ul class="tree__item-nested-list">
+                                    <li><a href="../../overview.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="../../quick-start.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span></div></a></li>
+                                    <li><a href="../../creating-simple-plugin.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating a simple plugin</span></div></a></li>
+                                    <li><a href="../../development-tools.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development tools</span></div></a></li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Architecture</span></div>
+                                      <ul class="tree__item-nested-list">
+                                            <li><a href="../../architecture/intro.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Introduction</span></div></a></li>
+                                            <li><a href="../../architecture/core-editor-architecture.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Core editor architecture</span></div></a></li>
+                                            <li><a href="../../architecture/editing-engine.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editing engine</span></div></a></li>
+                                            <li><a href="../../architecture/ui-library.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">UI library</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Tutorials</span></div>
+                                      <ul class="tree__item-nested-list">
+                                            <li><a href="../../tutorials/implementing-a-block-widget.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing a block widget</span></div></a></li>
+                                            <li><a href="../../tutorials/implementing-an-inline-widget.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing an inline widget</span></div></a></li>
+                                            <li><a href="../../tutorials/using-react-in-a-widget.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Using a React component in a widget</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Deep dive</span></div>
+                                      <ul class="tree__item-nested-list">
+                                            <li><a href="../clipboard.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Clipboard</span></div></a></li>
+                                            <li><a href="../upload-adapter.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom upload adapter</span></div></a></li>
+                                            <li><a href="../observables.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Observables</span></div></a></li>
+                                            <li><a href="../schema.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Schema</span></div></a></li>
+                                            <li>
+                                              <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Conversion</span></div>
+                                              <ul class="tree__item-nested-list">
+                                                    <li><a href="conversion-introduction.html">
+                                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Advanced concepts</span></div></a></li>
+                                                    <li><a href="conversion-extending-output.html">
+                                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Extending editor output</span></div></a></li>
+                                                    <li><a href>
+                                                        <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Preserving custom content</span></div></a></li>
+                                              </ul>
+                                            </li>
+                                            <li>
+                                              <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">User interface</span></div>
+                                              <ul class="tree__item-nested-list">
+                                                    <li><a href="../ui/theme-customization.html">
+                                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Theme customization</span></div></a></li>
+                                                    <li><a href="../ui/external-ui.html">
+                                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Third–party UI</span></div></a></li>
+                                                    <li><a href="../ui/document-editor.html">
+                                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document editor</span></div></a></li>
+                                                    <li><a href="../ui/custom-editor-creator.html">
+                                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating custom editor</span></div></a></li>
+                                              </ul>
+                                            </li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Contributing</span></div>
+                                      <ul class="tree__item-nested-list">
+                                            <li><a href="../../contributing/contributing.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Contributing</span></div></a></li>
+                                            <li><a href="../../contributing/development-environment.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development environment</span></div></a></li>
+                                            <li><a href="../../contributing/testing-environment.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Testing environment</span></div></a></li>
+                                            <li><a href="../../contributing/git-commit-message-convention.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Git commit message convention</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Support</span></div>
+                                      <ul class="tree__item-nested-list">
+                                            <li><a href="../../support/browser-compatibility.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Browser compatibility</span></div></a></li>
+                                            <li><a href="../../support/license-and-legal.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span></div></a></li>
+                                            <li><a href="../../support/getting-support.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting support</span></div></a></li>
+                                            <li><a href="../../support/reporting-issues.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span></div></a></li>
+                                            <li><a href="../../support/versioning-policy.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Versioning policy</span></div></a></li>
+                                            <li><a href="../../support/error-codes.html">
+                                                <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Error codes</span></div></a></li>
+                                      </ul>
+                                    </li>
+                              </ul>
+                            </li>
+                  </ul>
+                </li>
+                <li data-group="examples"><a href="../../../../examples/index.html">Examples</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="features"><a href="../../../../features/index.html">Features</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+                <li data-group="api-reference"><a href="../../../../api/index.html">API</a>
+                  <!-- Display subpages for active project.-->
+                </li>
+              </ul></a></li>
+        </ul>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-engine/blob/master/docs/framework/guides/deep-dive/conversion-preserving-custom-content.md" title="Contribute to this guide"><img src="../../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          </div>
+          <div class="rwd-breadcrumbs"><a href="../../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">Framework</a>
+          </div>
+          <h1 class="main__content-title"><img src="../../../../../../assets/1.2.1/img/book.svg" alt="guide">Preserving custom content
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#before-starting">Before starting</a><ol><li><a href="#code-architecture">Code architecture</a></li><li><a href="#ckeditor-5-inspector">CKEditor 5 inspector</a></li></ol></li><li><a href="#loading-content-with-a-custom-attribute">Loading content with a custom attribute</a></li><li><a href="#loading-content-with-all-attributes">Loading content with all attributes</a></li><li><a href="#parsing-attribute-values">Parsing attribute values</a></li><li><a href="#adding-extra-attributes-to-elements-contained-in-a-figure">Adding extra attributes to elements contained in a figure</a></li><li><a href="#whats-next">What&#x2019;s next?</a></li></ol></nav>
+
+<p>The <a href="conversion-extending-output.html">previous guide</a> focused on post&#x2013;processing of the CKEditor 5 data output. In this one, you will also extend the editor model so custom data can be loaded into it (<a href="../../architecture/editing-engine.html#data-pipeline">&#x201C;upcasted&#x201D;</a>). This will allow you not only to &#x201C;correct&#x201D; the editor output but, for instance, losslessly load data unsupported by the CKEditor 5 features.</p>
+<p>Eventually, this knowledge will allow you to create your custom features on top of the core features of CKEditor 5.</p>
+<h2 id="before-starting"><a class="headerlink" href="#before-starting">#</a> Before starting</h2>
+<h3 id="code-architecture"><a class="headerlink" href="#code-architecture">#</a> Code architecture</h3>
+<p>It is recommended that the code that customizes the editor data and editing pipelines is delivered as <a href="../../architecture/core-editor-architecture.html#plugins">plugins</a> and all examples in this guide follow this convention.</p>
+<p>Also for the sake of simplicity all examples use the same <a href="../../../../api/module_editor-classic_classiceditor-ClassicEditor.html"><code>ClassicEditor</code></a>, but keep in mind that code snippets will work with other editors, too.</p>
+<p>Finally, none of the converters covered in this guide require to import any module from CKEditor 5 Framework, hence, you can write them without rebuilding the editor. In other words, such converters can easily be added to existing <a href="../../../../builds/guides/overview.html">CKEditor 5 builds</a>.</p>
+<h3 id="ckeditor-5-inspector"><a class="headerlink" href="#ckeditor-5-inspector">#</a> CKEditor 5 inspector</h3>
+<p><a href="../../development-tools.html#ckeditor-5-inspector">CKEditor 5 inspector</a> is an invaluable help when working with the model and view structures. It allows browsing their structure and checking selection positions like in typical browser developer tools. Make sure to enable the inspector when playing with CKEditor 5.</p>
+<h2 id="loading-content-with-a-custom-attribute"><a class="headerlink" href="#loading-content-with-a-custom-attribute">#</a> Loading content with a custom attribute</h2>
+<p>In this example links (<code>&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;</code>) loaded into the editor content will preserve their <code>target</code> attribute, which is not supported by the <a href="../../../../features/link.html">Link</a> feature. The DOM <code>target</code> attribute will be stored in the editor model as a <code>linkTarget</code> attribute.</p>
+<p>Unlike the <a href="conversion-extending-output.html#adding-an-html-attribute-to-certain-inline-elements">downcast&#x2013;only solution</a>, this approach does not change the content loaded into the editor. Links without the <code>target</code> attribute will not get one and links with the attribute will preserve its value.</p>
+<div class="info-box notice"><p>Note that the same behavior can be obtained with <a href="../../../../features/link.html#custom-link-attributes-decorators">link decorators</a>:</p><pre class="highlight"><code class="js">ClassicEditor
+    .create( ..., {
+        <span class="hljs-comment">// ...</span>
+        <span class="hljs-attr">link</span>: {
+            <span class="hljs-attr">decorators</span>: {
+                <span class="hljs-attr">addGreenLink</span>: {
+                    <span class="hljs-attr">mode</span>: <span class="hljs-string">&apos;automatic&apos;</span>,
+                    <span class="hljs-attr">attributes</span>: {
+                        <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;my-green-link&apos;</span>
+                    }
+                }
+            }
+        }
+    } )
+</code></pre>
+</div>
+<div class="live-snippet"><style>
+	#snippet-link-target + .ck-editor .ck-content a[target]::after {
+		content: "target=\"" attr(target) "\"";
+		font-size: 0.6em;
+		position: relative;
+		left: 0em;
+		top: -1em;
+		background: #00ffa6;
+		color: #000;
+		padding: 1px 3px;
+		border-radius: 10px;
+	}
+
+	#snippet-link-target-content {
+		width: 100%;
+		height: 8em;
+		font-family: monospace;
+	}
+</style>
+
+<div id="snippet-link-target">
+	<p>This <a href="https://ckeditor.com" target="_blank">editor</a> allows <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a" target="_parent">links</a> with a <code>target</code> attribute to be loaded into the content.</p>
+</div>
+
+<p><b>Note</b>: You can play with the content to see that different link <code>target</code> values are also handled.</p>
+
+<textarea id="snippet-link-target-content">
+&lt;p&gt;A few links with different targets:&lt;/p&gt;&#10;&lt;ul&gt;&#10;&#9;&lt;li&gt;&lt;a href=&quot;https://ckeditor.com&quot; target=&quot;_blank&quot;&gt;CKEditor&lt;/a&gt;&lt;/li&gt;&#10;&#9;&lt;li&gt;&lt;a href=&quot;https://ckeditor.com/ckfinder/&quot;&gt;CKFinder&lt;/a&gt;&lt;/li&gt;&#10;&#9;&lt;li&gt;&lt;a href=&quot;https://cksource.com&quot; target=&quot;_parent&quot;&gt;CKSource&lt;/a&gt;&lt;/li&gt;&#10;&#9;&lt;li&gt;&lt;a href=&quot;https://cksource.com/team/&quot; target=&quot;_top&quot;&gt;Team&lt;/a&gt;&lt;/li&gt;&#10;&lt;/ul&gt;
+</textarea>
+
+<p>
+	<button type="button" id="snippet-link-target-content-update">Set editor data</button>
+</p>
+</div>
+<p>The <code>target</code> attribute in the editor is allowed thanks to two custom converters plugged into the &#x201C;downcast&#x201D; and &#x201C;upcast&#x201D; pipelines, following the default converters brought by the <a href="../../../../features/link.html">Link</a> feature:</p>
+<pre class="highlight"><code class="js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">AllowLinkTarget</span>(<span class="hljs-params"> editor </span>) </span>{
+    <span class="hljs-comment">// Allow the &quot;linkTarget&quot; attribute in the editor model.</span>
+    editor.model.schema.extend( <span class="hljs-string">&apos;$text&apos;</span>, { <span class="hljs-attr">allowAttributes</span>: <span class="hljs-string">&apos;linkTarget&apos;</span> } );
+
+    <span class="hljs-comment">// Tell the editor that the model &quot;linkTarget&quot; attribute converts into &lt;a target=&quot;...&quot;&gt;&lt;/a&gt;</span>
+    editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).attributeToElement( {
+        <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;linkTarget&apos;</span>,
+        <span class="hljs-attr">view</span>: <span class="hljs-function">(<span class="hljs-params"> attributeValue, writer </span>) =&gt;</span> {
+            <span class="hljs-keyword">const</span> linkElement = writer.createAttributeElement( <span class="hljs-string">&apos;a&apos;</span>, { <span class="hljs-attr">target</span>: attributeValue }, { <span class="hljs-attr">priority</span>: <span class="hljs-number">5</span> } );
+            writer.setCustomProperty( <span class="hljs-string">&apos;link&apos;</span>, <span class="hljs-literal">true</span>, linkElement );
+
+            <span class="hljs-keyword">return</span> linkElement;
+        },
+        <span class="hljs-attr">converterPriority</span>: <span class="hljs-string">&apos;low&apos;</span>
+    } );
+
+    <span class="hljs-comment">// Tell the editor that &lt;a target=&quot;...&quot;&gt;&lt;/a&gt; converts into the &quot;linkTarget&quot; attribute in the model.</span>
+    editor.conversion.for( <span class="hljs-string">&apos;upcast&apos;</span> ).attributeToAttribute( {
+        <span class="hljs-attr">view</span>: {
+            <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;a&apos;</span>,
+            <span class="hljs-attr">key</span>: <span class="hljs-string">&apos;target&apos;</span>
+        },
+        <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;linkTarget&apos;</span>,
+        <span class="hljs-attr">converterPriority</span>: <span class="hljs-string">&apos;low&apos;</span>
+    } );
+}
+</code></pre>
+<p>Activate the plugin in the editor:</p>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( ..., {
+        <span class="hljs-attr">extraPlugins</span>: [ AllowLinkTarget ],
+    } )
+    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+        <span class="hljs-comment">// ...</span>
+    } )
+    .catch( <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.error( err.stack );
+    } );
+</code></pre>
+<p>Add some CSS styles to easily see different link targets:</p>
+<pre class="highlight"><code class="css"><span class="hljs-selector-tag">a</span><span class="hljs-selector-attr">[target]</span><span class="hljs-selector-pseudo">::after</span> {
+    <span class="hljs-attribute">content</span>: <span class="hljs-string">&quot;target=\&quot;&quot;</span> <span class="hljs-built_in">attr</span>(target) <span class="hljs-string">&quot;\&quot;&quot;</span>;
+    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">0.6em</span>;
+    <span class="hljs-attribute">position</span>: relative;
+    <span class="hljs-attribute">left</span>: <span class="hljs-number">0em</span>;
+    <span class="hljs-attribute">top</span>: -<span class="hljs-number">1em</span>;
+    <span class="hljs-attribute">background</span>: <span class="hljs-number">#00ffa6</span>;
+    <span class="hljs-attribute">color</span>: <span class="hljs-number">#000</span>;
+    <span class="hljs-attribute">padding</span>: <span class="hljs-number">1px</span> <span class="hljs-number">3px</span>;
+    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">10px</span>;
+}
+</code></pre>
+<h2 id="loading-content-with-all-attributes"><a class="headerlink" href="#loading-content-with-all-attributes">#</a> Loading content with all attributes</h2>
+<p>In this example <code>&lt;div&gt;</code> elements (<code>&lt;div&gt;...&lt;/div&gt;</code>) loaded into the editor content will preserve their attributes. All the DOM attributes will be stored in the editor model as corresponding attributes.</p>
+<div class="live-snippet"><div id="snippet-div-attributes">
+	<div id="special-section-a" style="background: #eafbd7;padding:.8em .8em 0;margin-bottom:.8em;border:1px solid #8bc34a;">
+		<p><strong>Special section A</strong>: It has set "style" and "id" attributes.</p>
+	</div>
+
+	<p>Regular content of the editor.</p>
+
+	<div id="special-section-b" style="background: #ffeed0;padding:.8em .8em 0;margin-bottom:.8em;border:1px solid #ff8f00;" spellcheck="false">
+		<p><strong>Special section B</strong>: It has set "style", "id" and spellcheck="false" attributes.</p>
+		<p>This section disables the native browser spellchecker.</p>
+	</div>
+</div>
+</div>
+<p>All attributes are allowed on <code>&lt;div&gt;</code> elements thanks to custom &#x201C;upcast&#x201D; and &#x201C;downcast&#x201D; converters that copy each attribute one by one.</p>
+<p>Allowing every possible attribute on a <code>&lt;div&gt;</code> element in the model is done by adding an <a href="../../../../api/module_engine_model_schema-Schema.html#function-addAttributeCheck">addAttributeCheck()</a> callback.</p>
+<div class="info-box notice"><p>Allowing every attribute on <code>&lt;div&gt;</code> elements might introduce security issues &#x2014; including XSS attacks. The production code should use only application-related attributes and/or properly encode data.</p></div>
+<p>Adding &#x201C;upcast&#x201D; and &#x201C;downcast&#x201D; converters for the <code>&lt;div&gt;</code> element is enough for cases where its attributes do not change. If the attributes in the model are modified, these <code>elementToElement()</code> converters will not be called as the <code>&lt;div&gt;</code> is already converted. To overcome this, a lower-level API is used.</p>
+<p>Instead of using predefined converters, the <a href="../../../../api/module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event-attribute"><code>attribute</code></a> event listener is registered for the &#x201C;downcast&#x201D; dispatcher.</p>
+<pre class="highlight"><code class="js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ConvertDivAttributes</span>(<span class="hljs-params"> editor </span>) </span>{
+    <span class="hljs-comment">// Allow &lt;div&gt; elements in the model.</span>
+    editor.model.schema.register( <span class="hljs-string">&apos;div&apos;</span>, {
+        <span class="hljs-attr">allowWhere</span>: <span class="hljs-string">&apos;$block&apos;</span>,
+        <span class="hljs-attr">allowContentOf</span>: <span class="hljs-string">&apos;$root&apos;</span>
+    } );
+
+    <span class="hljs-comment">// Allow &lt;div&gt; elements in the model to have all attributes.</span>
+    editor.model.schema.addAttributeCheck( <span class="hljs-function"><span class="hljs-params">context</span> =&gt;</span> {
+        <span class="hljs-keyword">if</span> ( context.endsWith( <span class="hljs-string">&apos;div&apos;</span> ) ) {
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        }
+    } );
+
+    <span class="hljs-comment">// View-to-model converter converting a view &lt;div&gt; with all its attributes to the model.</span>
+    editor.conversion.for( <span class="hljs-string">&apos;upcast&apos;</span> ).elementToElement( {
+        <span class="hljs-attr">view</span>: <span class="hljs-string">&apos;div&apos;</span>,
+        <span class="hljs-attr">model</span>: <span class="hljs-function">(<span class="hljs-params"> viewElement, modelWriter </span>) =&gt;</span> {
+            <span class="hljs-keyword">return</span> modelWriter.createElement( <span class="hljs-string">&apos;div&apos;</span>, viewElement.getAttributes() );
+        }
+    } );
+
+    <span class="hljs-comment">// Model-to-view converter for the &lt;div&gt; element (attributes are converted separately).</span>
+    editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).elementToElement( {
+        <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;div&apos;</span>,
+        <span class="hljs-attr">view</span>: <span class="hljs-string">&apos;div&apos;</span>
+    } );
+
+    <span class="hljs-comment">// Model-to-view converter for &lt;div&gt; attributes.</span>
+    <span class="hljs-comment">// Note that a lower-level, event-based API is used here.</span>
+    editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).add( <span class="hljs-function"><span class="hljs-params">dispatcher</span> =&gt;</span> {
+        dispatcher.on( <span class="hljs-string">&apos;attribute&apos;</span>, ( evt, data, conversionApi ) =&gt; {
+            <span class="hljs-comment">// Convert &lt;div&gt; attributes only.</span>
+            <span class="hljs-keyword">if</span> ( data.item.name != <span class="hljs-string">&apos;div&apos;</span> ) {
+                <span class="hljs-keyword">return</span>;
+            }
+
+            <span class="hljs-keyword">const</span> viewWriter = conversionApi.writer;
+            <span class="hljs-keyword">const</span> viewDiv = conversionApi.mapper.toViewElement( data.item );
+
+            <span class="hljs-comment">// In the model-to-view conversion we convert changes.</span>
+            <span class="hljs-comment">// An attribute can be added or removed or changed.</span>
+            <span class="hljs-comment">// The below code handles all 3 cases.</span>
+            <span class="hljs-keyword">if</span> ( data.attributeNewValue ) {
+                viewWriter.setAttribute( data.attributeKey, data.attributeNewValue, viewDiv );
+            } <span class="hljs-keyword">else</span> {
+                viewWriter.removeAttribute( data.attributeKey, viewDiv );
+            }
+        } );
+    } );
+}
+</code></pre>
+<p>Activate the plugin in the editor:</p>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( ..., {
+        <span class="hljs-attr">extraPlugins</span>: [ ConvertDivAttributes ],
+    } )
+    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+        <span class="hljs-comment">// ...</span>
+    } )
+    .catch( <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.error( err.stack );
+    } );
+</code></pre>
+<h2 id="parsing-attribute-values"><a class="headerlink" href="#parsing-attribute-values">#</a> Parsing attribute values</h2>
+<p>Some features, like <a href="../../../../features/font.html">Font</a>, allow only specific values for inline attributes. In this example you will add a converter that will parse any <code>font-size</code> value into one of the defined values.</p>
+<div class="live-snippet"><div id="snippet-arbitrary-attribute-values">
+	<ul>
+		<li>test: <span style="font-size:13.5px">13.5px (gets rounded to 14px automatically)</span></li>
+		<li>test: <span style="font-size:32px">32px</span></li>
+		<li>test: <span style="font-size:8px">8px</span></li>
+	</ul>
+</div>
+</div>
+<p>Parsing any font value to the model requires adding a custom &#x201C;upcast&#x201D; converter that will override the default converter from <code>FontSize</code>. Unlike the default one, this converter parses values set in CSS nad sets them into the model.</p>
+<p>As the default &#x201C;downcast&#x201D; converter only operates on pre-defined values, you will also add a model-to-view converter that simply outputs any model value to font size using <code>px</code> units.</p>
+<pre class="highlight"><code class="js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">HandleFontSizeValue</span>(<span class="hljs-params"> editor </span>) </span>{
+    <span class="hljs-comment">// Add a special catch-all converter for the font size feature.</span>
+    editor.conversion.for( <span class="hljs-string">&apos;upcast&apos;</span> ).elementToAttribute( {
+        <span class="hljs-attr">view</span>: {
+            <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;span&apos;</span>,
+            <span class="hljs-attr">styles</span>: {
+                <span class="hljs-string">&apos;font-size&apos;</span>: <span class="hljs-regexp">/[\s\S]+/</span>
+            }
+        },
+        <span class="hljs-attr">model</span>: {
+            <span class="hljs-attr">key</span>: <span class="hljs-string">&apos;fontSize&apos;</span>,
+            <span class="hljs-attr">value</span>: <span class="hljs-function"><span class="hljs-params">viewElement</span> =&gt;</span> {
+                <span class="hljs-keyword">const</span> value = <span class="hljs-built_in">parseFloat</span>( viewElement.getStyle( <span class="hljs-string">&apos;font-size&apos;</span> ) ).toFixed( <span class="hljs-number">0</span> );
+
+                <span class="hljs-comment">// It might be needed to further convert the value to meet business requirements.</span>
+                <span class="hljs-comment">// In the sample the font size is configured to handle only the sizes:</span>
+                <span class="hljs-comment">// 12, 14, &apos;default&apos;, 18, 20, 22, 24, 26, 28, 30</span>
+                <span class="hljs-comment">// Other sizes will be converted to the model but the UI might not be aware of them.</span>
+
+                <span class="hljs-comment">// The font size feature expects numeric values to be Number, not String.</span>
+                <span class="hljs-keyword">return</span> <span class="hljs-built_in">parseInt</span>( value );
+            }
+        },
+        <span class="hljs-attr">converterPriority</span>: <span class="hljs-string">&apos;high&apos;</span>
+    } );
+
+    <span class="hljs-comment">// Add a special converter for the font size feature to convert all (even not configured)</span>
+    <span class="hljs-comment">// model attribute values.</span>
+    editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).attributeToElement( {
+        <span class="hljs-attr">model</span>: {
+            <span class="hljs-attr">key</span>: <span class="hljs-string">&apos;fontSize&apos;</span>
+        },
+        <span class="hljs-attr">view</span>: <span class="hljs-function">(<span class="hljs-params"> modelValue, viewWriter </span>) =&gt;</span> {
+            <span class="hljs-keyword">return</span> viewWriter.createAttributeElement( <span class="hljs-string">&apos;span&apos;</span>, {
+                <span class="hljs-attr">style</span>: <span class="hljs-string">`font-size:<span class="hljs-subst">${ modelValue }</span>px`</span>
+            } );
+        },
+        <span class="hljs-attr">converterPriority</span>: <span class="hljs-string">&apos;high&apos;</span>
+    } );
+}
+</code></pre>
+<p>Activate the plugin in the editor:</p>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( ..., {
+        <span class="hljs-attr">items</span>: [ <span class="hljs-string">&apos;heading&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-string">&apos;italic&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;fontSize&apos;</span> ],
+        <span class="hljs-attr">fontSize</span>: {
+            <span class="hljs-attr">options</span>: [ <span class="hljs-number">10</span>, <span class="hljs-number">12</span>, <span class="hljs-number">14</span>, <span class="hljs-string">&apos;default&apos;</span>, <span class="hljs-number">18</span>, <span class="hljs-number">20</span>, <span class="hljs-number">22</span> ]
+        },
+        <span class="hljs-attr">extraPlugins</span>: [ HandleFontSizeValue ],
+    } )
+    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+        <span class="hljs-comment">// ...</span>
+    } )
+    .catch( <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.error( err.stack );
+    } );
+</code></pre>
+<h2 id="adding-extra-attributes-to-elements-contained-in-a-figure"><a class="headerlink" href="#adding-extra-attributes-to-elements-contained-in-a-figure">#</a> Adding extra attributes to elements contained in a figure</h2>
+<p>The <a href="../../../../features/image.html">Image</a> and <a href="../../../../features/table.html">Table</a> features wrap view elements (<code>&lt;img&gt;</code> for Image nad <code>&lt;table&gt;</code> for Table) in <code>&lt;figure&gt;</code>. During the downcast conversion, the model element is mapped to <code>&lt;figure&gt;</code> and not the inner element. In such cases the default <code>conversion.attributeToAttribute()</code> conversion helpers could lose information about the element that the attribute should be set on.</p>
+<p>To overcome this limitation it is sufficient to write a custom converter that adds custom attributes to elements already converted by base features. The key point is to add these converters with a lower priority than the base converters so they will be called after the base ones.</p>
+<div class="live-snippet"><head>
+	<style>
+		.ck-content figure.table-foo table,
+		.ck-content figure.img-foo {
+			border: 2px solid deeppink;
+		}
+	</style>
+</head>
+
+<div id="snippet-custom-figure-attributes">
+	<h2>Image:</h2>
+	<figure class="image">
+		<img alt="bar" class="img-foo" id="img-foo-1" src="../../../../assets/img/fields.jpg">
+		<figcaption>Caption</figcaption>
+	</figure>
+
+	<h2>Table:</h2>
+	<table class="table-foo" id="table-foo-1" >
+		<tr>
+			<td>foo</td>
+		</tr>
+	</table>
+</div>
+</div>
+<p>The sample below is extensible. To add your own attributes to preserve, just add another <code>setupCustomAttributeConversion()</code> call with desired names.</p>
+<pre class="highlight"><code class="js"><span class="hljs-comment">/**
+ * Plugin that converts custom attributes for elements that are wrapped in &lt;figure&gt; in the view.
+ */</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomFigureAttributes</span> </span>{
+    <span class="hljs-comment">/**
+     * Plugin&apos;s constructor - receives editor instance on creation.
+     */</span>
+    <span class="hljs-keyword">constructor</span>( editor ) {
+        <span class="hljs-comment">// Save reference to the editor.</span>
+        <span class="hljs-keyword">this</span>.editor = editor;
+    }
+
+    <span class="hljs-comment">/**
+     * Setups conversion and extends table &amp; image features schema.
+     *
+     * Schema extending must be done in the &#x201C;afterInit()&#x201D; call because plugins define their schema in &#x201C;init()&#x201C;.
+     */</span>
+    afterInit() {
+        <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">this</span>.editor;
+
+        <span class="hljs-comment">// Define on which elements the CSS classes should be preserved:</span>
+        setupCustomClassConversion( <span class="hljs-string">&apos;img&apos;</span>, <span class="hljs-string">&apos;image&apos;</span>, editor );
+        setupCustomClassConversion( <span class="hljs-string">&apos;table&apos;</span>, <span class="hljs-string">&apos;table&apos;</span>, editor );
+
+        editor.conversion.for( <span class="hljs-string">&apos;upcast&apos;</span> ).add( upcastCustomClasses( <span class="hljs-string">&apos;figure&apos;</span> ), { <span class="hljs-attr">priority</span>: <span class="hljs-string">&apos;low&apos;</span> } );
+
+        <span class="hljs-comment">// Define custom attributes that should be preserved.</span>
+        setupCustomAttributeConversion( <span class="hljs-string">&apos;img&apos;</span>, <span class="hljs-string">&apos;image&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>, editor );
+        setupCustomAttributeConversion( <span class="hljs-string">&apos;table&apos;</span>, <span class="hljs-string">&apos;table&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>, editor );
+    }
+}
+
+<span class="hljs-comment">/**
+ * Sets up a conversion that preservers classes on &lt;img&gt; and &lt;table&gt; elements.
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setupCustomClassConversion</span>(<span class="hljs-params"> viewElementName, modelElementName, editor </span>) </span>{
+    <span class="hljs-comment">// The &apos;customClass&apos; attribute will store custom classes from the data in the model so schema definitions allow this attribute.</span>
+    editor.model.schema.extend( modelElementName, { <span class="hljs-attr">allowAttributes</span>: [ <span class="hljs-string">&apos;customClass&apos;</span> ] } );
+
+    <span class="hljs-comment">// Define upcast converters for the &lt;img&gt; and &lt;table&gt; elements with a &quot;low&quot; priority so they are run after the default converters.</span>
+    editor.conversion.for( <span class="hljs-string">&apos;upcast&apos;</span> ).add( upcastCustomClasses( viewElementName ), { <span class="hljs-attr">priority</span>: <span class="hljs-string">&apos;low&apos;</span> } );
+
+    <span class="hljs-comment">// Define downcast converters for a model element with a &quot;low&quot; priority so they are run after the default converters.</span>
+    editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).add( downcastCustomClasses( modelElementName ), { <span class="hljs-attr">priority</span>: <span class="hljs-string">&apos;low&apos;</span> } );
+}
+
+<span class="hljs-comment">/**
+ * Sets up a conversion for a custom attribute on view elements contained inside a &lt;figure&gt;.
+ *
+ * This method:
+ * - Adds proper schema rules.
+ * - Adds an upcast converter.
+ * - Adds a downcast converter.
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setupCustomAttributeConversion</span>(<span class="hljs-params"> viewElementName, modelElementName, viewAttribute, editor </span>) </span>{
+    <span class="hljs-comment">// Extend the schema to store an attribute in the model.</span>
+    <span class="hljs-keyword">const</span> modelAttribute = <span class="hljs-string">`custom<span class="hljs-subst">${ viewAttribute }</span>`</span>;
+
+    editor.model.schema.extend( modelElementName, { <span class="hljs-attr">allowAttributes</span>: [ modelAttribute ] } );
+
+    editor.conversion.for( <span class="hljs-string">&apos;upcast&apos;</span> ).add( upcastAttribute( viewElementName, viewAttribute, modelAttribute ) );
+    editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).add( downcastAttribute( modelElementName, viewElementName, viewAttribute, modelAttribute ) );
+}
+
+<span class="hljs-comment">/**
+ * Creates an upcast converter that will pass all classes from the view element to the model element.
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">upcastCustomClasses</span>(<span class="hljs-params"> elementName </span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">dispatcher</span> =&gt;</span> dispatcher.on( <span class="hljs-string">`element:<span class="hljs-subst">${ elementName }</span>`</span>, ( evt, data, conversionApi ) =&gt; {
+        <span class="hljs-keyword">const</span> viewItem = data.viewItem;
+        <span class="hljs-keyword">const</span> modelRange = data.modelRange;
+
+        <span class="hljs-keyword">const</span> modelElement = modelRange &amp;&amp; modelRange.start.nodeAfter;
+
+        <span class="hljs-keyword">if</span> ( !modelElement ) {
+            <span class="hljs-keyword">return</span>;
+        }
+
+        <span class="hljs-comment">// The upcast conversion picks up classes from the base element and from the &lt;figure&gt; element so it should be extensible.</span>
+        <span class="hljs-keyword">const</span> currentAttributeValue = modelElement.getAttribute( <span class="hljs-string">&apos;customClass&apos;</span> ) || [];
+
+        currentAttributeValue.push( ...viewItem.getClassNames() );
+
+        conversionApi.writer.setAttribute( <span class="hljs-string">&apos;customClass&apos;</span>, currentAttributeValue, modelElement );
+    } );
+}
+
+<span class="hljs-comment">/**
+ * Creates a downcast converter that adds classes defined in the `customClass` attribute to a given view element.
+ *
+ * This converter expects that the view element is nested in a &lt;figure&gt; element.
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">downcastCustomClasses</span>(<span class="hljs-params"> modelElementName </span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">dispatcher</span> =&gt;</span> dispatcher.on( <span class="hljs-string">`insert:<span class="hljs-subst">${ modelElementName }</span>`</span>, ( evt, data, conversionApi ) =&gt; {
+        <span class="hljs-keyword">const</span> modelElement = data.item;
+
+        <span class="hljs-keyword">const</span> viewFigure = conversionApi.mapper.toViewElement( modelElement );
+
+        <span class="hljs-keyword">if</span> ( !viewFigure ) {
+            <span class="hljs-keyword">return</span>;
+        }
+
+        <span class="hljs-comment">// The code below assumes that classes are set on the &lt;figure&gt; element...</span>
+        conversionApi.writer.addClass( modelElement.getAttribute( <span class="hljs-string">&apos;customClass&apos;</span> ), viewFigure );
+
+        <span class="hljs-comment">// ... but if you prefer the classes to be passed to the &lt;img&gt; element, find the view element inside the &lt;figure&gt;:</span>
+        <span class="hljs-comment">//</span>
+        <span class="hljs-comment">// const viewElement = findViewChild( viewFigure, viewElementName, conversionApi );</span>
+        <span class="hljs-comment">//</span>
+        <span class="hljs-comment">// conversionApi.writer.addClass( modelElement.getAttribute( &apos;customClass&apos; ), viewElement );</span>
+    } );
+}
+
+<span class="hljs-comment">/**
+ * Helper method that searches for a given view element in all children of the model element.
+ *
+ * <span class="hljs-doctag">@param <span class="hljs-type">{module:engine/view/item~Item}</span> <span class="hljs-variable">viewElement</span></span>
+ * <span class="hljs-doctag">@param <span class="hljs-type">{String}</span> <span class="hljs-variable">viewElementName</span></span>
+ * <span class="hljs-doctag">@param <span class="hljs-type">{module:engine/conversion/downcastdispatcher~DowncastConversionApi}</span> <span class="hljs-variable">conversionApi</span></span>
+ * <span class="hljs-doctag">@return <span class="hljs-type">{module:engine/view/item~Item}</span></span>
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">findViewChild</span>(<span class="hljs-params"> viewElement, viewElementName, conversionApi </span>) </span>{
+    <span class="hljs-keyword">const</span> viewChildren = <span class="hljs-built_in">Array</span>.from( conversionApi.writer.createRangeIn( viewElement ).getItems() );
+
+    <span class="hljs-keyword">return</span> viewChildren.find( <span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> item.is( viewElementName ) );
+}
+
+<span class="hljs-comment">/**
+ * Returns the custom attribute upcast converter.
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">upcastAttribute</span>(<span class="hljs-params"> viewElementName, viewAttribute, modelAttribute </span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">dispatcher</span> =&gt;</span> dispatcher.on( <span class="hljs-string">`element:<span class="hljs-subst">${ viewElementName }</span>`</span>, ( evt, data, conversionApi ) =&gt; {
+        <span class="hljs-keyword">const</span> viewItem = data.viewItem;
+        <span class="hljs-keyword">const</span> modelRange = data.modelRange;
+
+        <span class="hljs-keyword">const</span> modelElement = modelRange &amp;&amp; modelRange.start.nodeAfter;
+
+        <span class="hljs-keyword">if</span> ( !modelElement ) {
+            <span class="hljs-keyword">return</span>;
+        }
+
+        conversionApi.writer.setAttribute( modelAttribute, viewItem.getAttribute( viewAttribute ), modelElement );
+    } );
+}
+
+<span class="hljs-comment">/**
+ * Returns the custom attribute downcast converter.
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">downcastAttribute</span>(<span class="hljs-params"> modelElementName, viewElementName, viewAttribute, modelAttribute </span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">dispatcher</span> =&gt;</span> dispatcher.on( <span class="hljs-string">`insert:<span class="hljs-subst">${ modelElementName }</span>`</span>, ( evt, data, conversionApi ) =&gt; {
+        <span class="hljs-keyword">const</span> modelElement = data.item;
+
+        <span class="hljs-keyword">const</span> viewFigure = conversionApi.mapper.toViewElement( modelElement );
+        <span class="hljs-keyword">const</span> viewElement = findViewChild( viewFigure, viewElementName, conversionApi );
+
+        <span class="hljs-keyword">if</span> ( !viewElement ) {
+            <span class="hljs-keyword">return</span>;
+        }
+
+        conversionApi.writer.setAttribute( viewAttribute, modelElement.getAttribute( modelAttribute ), viewElement );
+    } );
+}
+</code></pre>
+<p>Activate the plugin in the editor:</p>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( ..., {
+        <span class="hljs-attr">extraPlugins</span>: [ CustomFigureAttributes ],
+    } )
+    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+        <span class="hljs-comment">// ...</span>
+    } )
+    .catch( <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+        <span class="hljs-built_in">console</span>.error( err.stack );
+    } );
+</code></pre>
+<h2 id="whats-next"><a class="headerlink" href="#whats-next">#</a> What&#x2019;s next?</h2>
+<p>If you would like to read more about how to extend the output of existing CKEditor 5 features, refer to the <a href="conversion-extending-output.html">Extending the editor output</a> guide.</p>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Guides</span></div>
+                            <ul class="tree__item-nested-list">
+                                    <li><a href="../../overview.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="../../quick-start.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span></div></a></li>
+                                    <li><a href="../../creating-simple-plugin.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating a simple plugin</span></div></a></li>
+                                    <li><a href="../../development-tools.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development tools</span></div></a></li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Architecture</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../../architecture/intro.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Introduction</span></div></a></li>
+                                              <li><a href="../../architecture/core-editor-architecture.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Core editor architecture</span></div></a></li>
+                                              <li><a href="../../architecture/editing-engine.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editing engine</span></div></a></li>
+                                              <li><a href="../../architecture/ui-library.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">UI library</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Tutorials</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../../tutorials/implementing-a-block-widget.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing a block widget</span></div></a></li>
+                                              <li><a href="../../tutorials/implementing-an-inline-widget.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing an inline widget</span></div></a></li>
+                                              <li><a href="../../tutorials/using-react-in-a-widget.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Using a React component in a widget</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Deep dive</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../clipboard.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Clipboard</span></div></a></li>
+                                              <li><a href="../upload-adapter.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom upload adapter</span></div></a></li>
+                                              <li><a href="../observables.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Observables</span></div></a></li>
+                                              <li><a href="../schema.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Schema</span></div></a></li>
+                                              <li>
+                                                <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Conversion</span></div>
+                                                <ul class="tree__item-nested-list">
+                                                        <li><a href="conversion-introduction.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Advanced concepts</span></div></a></li>
+                                                        <li><a href="conversion-extending-output.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Extending editor output</span></div></a></li>
+                                                        <li><a href>
+                                                            <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Preserving custom content</span></div></a></li>
+                                                </ul>
+                                              </li>
+                                              <li>
+                                                <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">User interface</span></div>
+                                                <ul class="tree__item-nested-list">
+                                                        <li><a href="../ui/theme-customization.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Theme customization</span></div></a></li>
+                                                        <li><a href="../ui/external-ui.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Third–party UI</span></div></a></li>
+                                                        <li><a href="../ui/document-editor.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document editor</span></div></a></li>
+                                                        <li><a href="../ui/custom-editor-creator.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating custom editor</span></div></a></li>
+                                                </ul>
+                                              </li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Contributing</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../../contributing/contributing.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Contributing</span></div></a></li>
+                                              <li><a href="../../contributing/development-environment.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development environment</span></div></a></li>
+                                              <li><a href="../../contributing/testing-environment.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Testing environment</span></div></a></li>
+                                              <li><a href="../../contributing/git-commit-message-convention.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Git commit message convention</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Support</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../../support/browser-compatibility.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Browser compatibility</span></div></a></li>
+                                              <li><a href="../../support/license-and-legal.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span></div></a></li>
+                                              <li><a href="../../support/getting-support.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting support</span></div></a></li>
+                                              <li><a href="../../support/reporting-issues.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span></div></a></li>
+                                              <li><a href="../../support/versioning-policy.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Versioning policy</span></div></a></li>
+                                              <li><a href="../../support/error-codes.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Error codes</span></div></a></li>
+                                      </ul>
+                                    </li>
+                            </ul>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2003-2020 <a href="http://cksource.com">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'framework' ] = hits.filter( function( h ) {return h.tags.includes( 'framework' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'framework' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'framework' ] );tags.forEach( function( tag ) {if ( tag !== 'framework' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+    <script src="../../../../assets/snippet.js"></script>
+    <script src="../../../../snippets/framework/build-extending-content-source/snippet.js"></script>
+    <script src="../../../../snippets/framework/extending-content-allow-link-target/snippet.js"></script>
+    <script src="../../../../snippets/framework/extending-content-allow-div-attributes/snippet.js"></script>
+    <script src="../../../../snippets/framework/extending-content-arbitrary-attribute-values/snippet.js"></script>
+    <script src="../../../../snippets/framework/extending-content-custom-figure-attributes/snippet.js"></script>
+  </body>
+</html>
