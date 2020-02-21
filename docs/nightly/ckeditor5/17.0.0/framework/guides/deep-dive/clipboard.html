@@ -235,7 +235,7 @@
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../../assets/1.2.1/img/book.svg" alt="guide">Clipboard
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#input-pipeline">Input pipeline</a><ol><li><a href="#handling-clipboard-input-differently">Handling clipboard input differently</a></li><li><a href="#processing-input-content">Processing input content</a></li></ol></li><li><a href="#output-pipeline">Output pipeline</a><ol><li><a href="#1-on-link-moduleengineviewdocument~documenteventcopy-viewdocumentcopy-and-link-moduleengineviewdocument~documenteventcut-viewdocumentcut">1. On view.Document#copy and view.Document#cut</a></li><li><a href="#2-on-link-moduleengineviewdocument~documenteventclipboardoutput-viewdocumentclipboardoutput">2. On view.Document#clipboardOutput</a></li></ol></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#input-pipeline">Input pipeline</a><ol><li><a href="#handling-clipboard-input-differently">Handling clipboard input differently</a></li><li><a href="#processing-input-content">Processing input content</a></li><li><a href="#paste-as-plain-text-plugin-example">Paste as plain text plugin example</a></li></ol></li><li><a href="#output-pipeline">Output pipeline</a><ol><li><a href="#1-on-link-moduleengineviewdocument~documenteventcopy-viewdocumentcopy-and-link-moduleengineviewdocument~documenteventcut-viewdocumentcut">1. On view.Document#copy and view.Document#cut</a></li><li><a href="#2-on-link-moduleengineviewdocument~documenteventclipboardoutput-viewdocumentclipboardoutput">2. On view.Document#clipboardOutput</a></li></ol></li></ol></nav>
 <p>The clipboard feature (implemented by the <a href="../../../api/module_clipboard_clipboard-Clipboard.html"><code>Clipboard</code></a> plugin) is responsible for the integration with the native clipboard &#x2014; a feature of the operating system and the browser used when the user copies, cuts, pastes or drags and drops content within the editor or from/to the &#x201C;outside&#x201D;.</p>
 <p>CKEditor 5 intercepts all native events like <code>copy</code>, <code>cut</code> or <code>drop</code> and handles them on its side. The goal is to not allow the browser to touch the content in the rich text editor which would lead to the browser messing it up.</p>
 <p>There are two directions in which the content is processed:</p>
@@ -309,6 +309,106 @@ editor.plugins.get( <span class="hljs-string">&apos;Clipboard&apos;</span> ).on(
 <pre class="highlight"><code class="js">editor.plugins.get( <span class="hljs-string">&apos;Clipboard&apos;</span> ).on( <span class="hljs-string">&apos;inputTransformation&apos;</span>, ( evt, data ) =&gt; {
     <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;Content was inserted.&apos;</span> );
 }, { <span class="hljs-attr">priority</span>: <span class="hljs-string">&apos;lowest&apos;</span> } );
+</code></pre>
+<h3 id="paste-as-plain-text-plugin-example"><a class="headerlink" href="#paste-as-plain-text-plugin-example">#</a> Paste as plain text plugin example</h3>
+<p>You can use knowledge from previous sections to create a full plugin which will allow users to paste the content as plain text while the feature is toggled on.</p>
+<p>If you are not familiar with creating plugins in CKEditor 5, we would advise starting from reading <a href="../creating-simple-plugin.html">Creating a simple plugin</a> guide to get a better understanding of what&#x2019;s going on in the code below.</p>
+<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
+
+<span class="hljs-keyword">import</span> Essentials <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;</span>;
+<span class="hljs-keyword">import</span> Paragraph <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;</span>;
+<span class="hljs-keyword">import</span> Bold <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;</span>;
+<span class="hljs-keyword">import</span> Italic <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;</span>;
+
+<span class="hljs-keyword">import</span> Plugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/plugin&apos;</span>;
+<span class="hljs-keyword">import</span> Command <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/command&apos;</span>;
+<span class="hljs-keyword">import</span> ButtonView <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/button/buttonview&apos;</span>;
+
+<span class="hljs-keyword">import</span> plainTextToHtml <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-clipboard/src/utils/plaintexttohtml&apos;</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PastePlainText</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
+    <span class="hljs-keyword">static</span> <span class="hljs-keyword">get</span> pluginName() {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;PastePlainText&apos;</span>
+    }
+
+    <span class="hljs-keyword">static</span> <span class="hljs-keyword">get</span> requires() {
+        <span class="hljs-keyword">return</span> [ PastePlainTextUI, PastePlainTextCommand ]
+    }
+
+    init() {
+        <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">this</span>.editor;
+
+        editor.commands.add( <span class="hljs-string">&apos;pastePlainText&apos;</span>, <span class="hljs-keyword">new</span> PastePlainTextCommand( editor ) );
+
+        <span class="hljs-comment">// Logic responsible for converting HTML to plain text.</span>
+        <span class="hljs-keyword">const</span> clipboardPlugin = editor.plugins.get( <span class="hljs-string">&apos;Clipboard&apos;</span> );
+        <span class="hljs-keyword">const</span> command = editor.commands.get( <span class="hljs-string">&apos;pastePlainText&apos;</span> );
+        <span class="hljs-keyword">const</span> editingView = editor.editing.view;
+
+        editingView.document.on( <span class="hljs-string">&apos;clipboardInput&apos;</span>, ( evt, data ) =&gt; {
+            <span class="hljs-keyword">if</span> ( editor.isReadOnly || !command.value ) {
+                <span class="hljs-keyword">return</span>;
+            }
+
+            <span class="hljs-keyword">const</span> dataTransfer = data.dataTransfer;
+            <span class="hljs-keyword">let</span> content = plainTextToHtml( dataTransfer.getData( <span class="hljs-string">&apos;text/plain&apos;</span> ) );
+            content = clipboardPlugin._htmlDataProcessor.toView( content );
+            clipboardPlugin.fire( <span class="hljs-string">&apos;inputTransformation&apos;</span>, { content, dataTransfer } );
+            editingView.scrollToTheSelection();
+
+            evt.stop();
+        } );
+    }
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PastePlainTextUI</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
+    init() {
+        <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">this</span>.editor;
+
+        editor.ui.componentFactory.add( <span class="hljs-string">&apos;pastePlainText&apos;</span>, locale =&gt; {
+            <span class="hljs-keyword">const</span> view = <span class="hljs-keyword">new</span> ButtonView( locale );
+            <span class="hljs-keyword">const</span> command = editor.commands.get( <span class="hljs-string">&apos;pastePlainText&apos;</span> );
+
+            view.set( {
+                <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Paste as plain text&apos;</span>,
+                <span class="hljs-attr">withText</span>: <span class="hljs-literal">true</span>,
+                <span class="hljs-attr">tooltip</span>: <span class="hljs-literal">true</span>,
+                <span class="hljs-attr">isToggleable</span>: <span class="hljs-literal">true</span>
+            } );
+
+            <span class="hljs-comment">// Callback executed once the button is clicked.</span>
+            view.on( <span class="hljs-string">&apos;execute&apos;</span>, () =&gt; {
+                editor.execute( <span class="hljs-string">&apos;pastePlainText&apos;</span> );
+            } );
+
+            view.bind( <span class="hljs-string">&apos;isOn&apos;</span>, <span class="hljs-string">&apos;isEnabled&apos;</span> ).to( command, <span class="hljs-string">&apos;value&apos;</span>, <span class="hljs-string">&apos;isEnabled&apos;</span> );
+
+            <span class="hljs-keyword">return</span> view;
+        } );
+    }
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PastePlainTextCommand</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Command</span> </span>{
+    refresh() {
+        <span class="hljs-comment">// Disable the command if the editor is in read-only mode.</span>
+        <span class="hljs-keyword">this</span>.isEnabled = !<span class="hljs-keyword">this</span>.editor.isReadOnly;
+    }
+
+    execute() {
+        <span class="hljs-comment">// Activate pasting plain text.</span>
+        <span class="hljs-keyword">this</span>.value = !<span class="hljs-keyword">this</span>.value;
+    }
+}
+
+ClassicEditor
+    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
+        <span class="hljs-attr">plugins</span>: [ Essentials, Paragraph, Bold, Italic, PastePlainText ],
+        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-string">&apos;italic&apos;</span>, <span class="hljs-string">&apos;pastePlainText&apos;</span> ],
+        <span class="hljs-comment">// ...</span>
+    } )
+    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+    	<span class="hljs-built_in">console</span>.log( error );
+    } );
 </code></pre>
 <h2 id="output-pipeline"><a class="headerlink" href="#output-pipeline">#</a> Output pipeline</h2>
 <p>The output pipeline is the equivalent of the input pipeline but for the copy and cut operations.<br>
