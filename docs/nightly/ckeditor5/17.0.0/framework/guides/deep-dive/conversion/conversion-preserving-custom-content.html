@@ -578,7 +578,9 @@
     editor.conversion.for( <span class="hljs-string">&apos;upcast&apos;</span> ).add( upcastCustomClasses( viewElementName ), { <span class="hljs-attr">priority</span>: <span class="hljs-string">&apos;low&apos;</span> } );
 
     <span class="hljs-comment">// Define downcast converters for a model element with a &quot;low&quot; priority so they are run after the default converters.</span>
-    editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).add( downcastCustomClasses( modelElementName ), { <span class="hljs-attr">priority</span>: <span class="hljs-string">&apos;low&apos;</span> } );
+    <span class="hljs-comment">// Use `downcastCustomClassesToFigure` if you&apos;d like to keep your classes on &lt;figure&gt; element or `downcastCustomClassesToChild` if you&apos;d like to keep your classes on a &lt;figure&gt; child element, i.e. &lt;img&gt;.</span>
+    editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).add( downcastCustomClassesToFigure( modelElementName ), { <span class="hljs-attr">priority</span>: <span class="hljs-string">&apos;low&apos;</span> } );
+    <span class="hljs-comment">// editor.conversion.for( &apos;downcast&apos; ).add( downcastCustomClassesToChild( viewElementName, modelElementName ), { priority: &apos;low&apos; } );</span>
 }
 
 <span class="hljs-comment">/**
@@ -623,11 +625,11 @@
 }
 
 <span class="hljs-comment">/**
- * Creates a downcast converter that adds classes defined in the `customClass` attribute to a given view element.
+ * Creates a downcast converter that adds classes defined in the `customClass` attribute to a &lt;figure&gt; element.
  *
  * This converter expects that the view element is nested in a &lt;figure&gt; element.
  */</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">downcastCustomClasses</span>(<span class="hljs-params"> modelElementName </span>) </span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">downcastCustomClassesToFigure</span>(<span class="hljs-params"> modelElementName </span>) </span>{
     <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">dispatcher</span> =&gt;</span> dispatcher.on( <span class="hljs-string">`insert:<span class="hljs-subst">${ modelElementName }</span>`</span>, ( evt, data, conversionApi ) =&gt; {
         <span class="hljs-keyword">const</span> modelElement = data.item;
 
@@ -637,14 +639,30 @@
             <span class="hljs-keyword">return</span>;
         }
 
-        <span class="hljs-comment">// The code below assumes that classes are set on the &lt;figure&gt; element...</span>
+        <span class="hljs-comment">// The code below assumes that classes are set on the &lt;figure&gt; element.</span>
         conversionApi.writer.addClass( modelElement.getAttribute( <span class="hljs-string">&apos;customClass&apos;</span> ), viewFigure );
+    } );
+}
 
-        <span class="hljs-comment">// ... but if you prefer the classes to be passed to the &lt;img&gt; element, find the view element inside the &lt;figure&gt;:</span>
-        <span class="hljs-comment">//</span>
-        <span class="hljs-comment">// const viewElement = findViewChild( viewFigure, viewElementName, conversionApi );</span>
-        <span class="hljs-comment">//</span>
-        <span class="hljs-comment">// conversionApi.writer.addClass( modelElement.getAttribute( &apos;customClass&apos; ), viewElement );</span>
+<span class="hljs-comment">/**
+ * Creates a downcast converter that adds classes defined in the `customClass` attribute to a &lt;figure&gt; child element.
+ *
+ * This converter expects that the view element is nested in a &lt;figure&gt; element.
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">downcastCustomClassesToChild</span>(<span class="hljs-params"> viewElementName, modelElementName </span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">dispatcher</span> =&gt;</span> dispatcher.on( <span class="hljs-string">`insert:<span class="hljs-subst">${ modelElementName }</span>`</span>, ( evt, data, conversionApi ) =&gt; {
+        <span class="hljs-keyword">const</span> modelElement = data.item;
+
+        <span class="hljs-keyword">const</span> viewFigure = conversionApi.mapper.toViewElement( modelElement );
+
+        <span class="hljs-keyword">if</span> ( !viewFigure ) {
+            <span class="hljs-keyword">return</span>;
+        }
+
+        <span class="hljs-comment">// The code below assumes that classes are set on the element inside the &lt;figure&gt;.</span>
+        <span class="hljs-keyword">const</span> viewElement = findViewChild( viewFigure, viewElementName, conversionApi );
+
+        conversionApi.writer.addClass( modelElement.getAttribute( <span class="hljs-string">&apos;customClass&apos;</span> ), viewElement );
     } );
 }
 
