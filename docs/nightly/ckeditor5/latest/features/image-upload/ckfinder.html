@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../../snippets/features/build-ckfinder-source/snippet.css" type="text/css">
     <link rel="stylesheet" href="../../assets/snippet-styles.css" type="text/css">
@@ -35,16 +35,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -86,7 +86,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -214,11 +214,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-ckfinder/blob/master/docs/features/ckfinder.md" title="Contribute to this guide"><img src="../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-ckfinder/blob/master/docs/features/ckfinder.md" title="Contribute to this guide"><img src="../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Features</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../assets/1.2.1/img/book.svg" alt="guide">CKFinder file manager integration
+          <h1 class="main__content-title"><img src="../../../../assets/1.2.2/img/book.svg" alt="guide">CKFinder file manager integration
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a><ol><li><a href="#image-upload-only">Image upload only</a></li><li><a href="#full-integration">Full integration</a></li></ol></li><li><a href="#configuration">Configuration</a><ol><li><a href="#configuring-the-image-upload-only">Configuring the image upload only</a></li><li><a href="#configuring-the-full-integration">Configuring the full integration</a><ol><li><a href="#configuring-the-opener">Configuring the opener</a></li></ol></li><li><a href="#configuring-allowed-file-types">Configuring allowed file types</a><ol><li><a href="#client-side-configuration">Client-side configuration</a></li><li><a href="#server-side-configuration">Server-side configuration</a></li></ol></li></ol></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#whats-next">What&#x2019;s next?</a></li><li><a href="#contribute">Contribute</a></li></ol></nav><div class="live-snippet"><script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script>
 
 <style>
@@ -279,18 +279,18 @@
 <h3 id="configuring-the-image-upload-only"><a class="headerlink" href="#configuring-the-image-upload-only">#</a> Configuring the image upload only</h3>
 <p>This feature can upload images automatically to the server (e.g. when the image is dropped into the content) thanks to the <a href="../../api/module_adapter-ckfinder_uploadadapter-CKFinderUploadAdapter.html">CKFinder upload adapter</a>. All it requires is the correct <a href="../../api/module_ckfinder_ckfinder-CKFinderConfig.html#member-uploadUrl"><code>config.ckfinder.uploadUrl</code></a> path.</p>
 <p>Assuming that the <a href="https://ckeditor.com/docs/ckfinder/ckfinder3-php/quickstart.html#quickstart_installation_folders" target="_blank" rel="noopener">CKFinder PHP server-side connector is installed</a> (available) under <code>https://example.com/ckfinder/</code>, use the following <a href="https://ckeditor.com/docs/ckfinder/ckfinder3-php/commands.html#command_quick_upload" target="_blank" rel="noopener">quick upload</a> command URL to enable the image upload:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> CKFinder <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ckfinder/src/ckfinder&apos;</span>;
+<pre class="highlight"><code class="js">import CKFinder from &apos;@ckeditor/ckeditor5-ckfinder/src/ckfinder&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ CKFinder, ... ],
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ CKFinder, ... ],
 
-        <span class="hljs-comment">// Enable the &quot;Insert image&quot; button in the toolbar.</span>
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;imageUpload&apos;</span>, ... ],
+        // Enable the &quot;Insert image&quot; button in the toolbar.
+        toolbar: [ &apos;imageUpload&apos;, ... ],
 
-        <span class="hljs-attr">ckfinder</span>: {
-            <span class="hljs-comment">// Upload the images to the server using the CKFinder QuickUpload command.</span>
-            <span class="hljs-attr">uploadUrl</span>: <span class="hljs-string">&apos;https://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&amp;type=Images&amp;responseType=json&apos;</span>
+        ckfinder: {
+            // Upload the images to the server using the CKFinder QuickUpload command.
+            uploadUrl: &apos;https://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&amp;type=Images&amp;responseType=json&apos;
         }
     } )
     .then( ... )
@@ -300,7 +300,7 @@ ClassicEditor
 <h3 id="configuring-the-full-integration"><a class="headerlink" href="#configuring-the-full-integration">#</a> Configuring the full integration</h3>
 <p>To use both the image upload functionality and the file manager user interface in your application, you must first load the CKFinder JavaScript library and then enable CKFinder integration in your rich-text editor instance.</p>
 <p>The easiest way to load the CKFinder library is to include the <code>&lt;script&gt;</code> tag loading the <code>ckfinder.js</code> file first:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;script src=&quot;https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>Then:</p>
 <ul>
@@ -314,22 +314,22 @@ ClassicEditor
 </ul>
 </li>
 </ul>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> CKFinder <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ckfinder/src/ckfinder&apos;</span>;
+<pre class="highlight"><code class="js">import CKFinder from &apos;@ckeditor/ckeditor5-ckfinder/src/ckfinder&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ CKFinder, ... ],
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ CKFinder, ... ],
 
-        <span class="hljs-comment">// Enable the CKFinder button in the toolbar.</span>
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;ckfinder&apos;</span>, ... ]
+        // Enable the CKFinder button in the toolbar.
+        toolbar: [ &apos;ckfinder&apos;, ... ]
 
-        <span class="hljs-attr">ckfinder</span>: {
-            <span class="hljs-comment">// Upload the images to the server using the CKFinder QuickUpload command.</span>
-            <span class="hljs-attr">uploadUrl</span>: <span class="hljs-string">&apos;https://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&amp;type=Images&amp;responseType=json&apos;</span>,
+        ckfinder: {
+            // Upload the images to the server using the CKFinder QuickUpload command.
+            uploadUrl: &apos;https://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&amp;type=Images&amp;responseType=json&apos;,
 
-            <span class="hljs-comment">// Define the CKFinder configuration (if necessary).</span>
-            <span class="hljs-attr">options</span>: {
-                <span class="hljs-attr">resourceType</span>: <span class="hljs-string">&apos;Images&apos;</span>
+            // Define the CKFinder configuration (if necessary).
+            options: {
+                resourceType: &apos;Images&apos;
             }
         }
     } )
@@ -340,15 +340,15 @@ ClassicEditor
 <h4 id="configuring-the-opener"><a class="headerlink" href="#configuring-the-opener">#</a> Configuring the opener</h4>
 <p>You can change the way CKFinder opens using the <a href="../../api/module_ckfinder_ckfinder-CKFinderConfig.html#member-openerMethod"><code>config.ckfinder.openerMethod</code></a> option.</p>
 <p>By default, the file manager opens as a modal. To open it in a new &#x201C;pop-up&#x201D; window, set the configuration value to <code>popup</code>:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> CKFinder <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ckfinder/src/ckfinder&apos;</span>;
+<pre class="highlight"><code class="js">import CKFinder from &apos;@ckeditor/ckeditor5-ckfinder/src/ckfinder&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ CKFinder, ... ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;ckfinder&apos;</span>, ... ]
-        <span class="hljs-attr">ckfinder</span>: {
-            <span class="hljs-comment">// Open the file manager in the pop-up window.</span>
-            <span class="hljs-attr">openerMethod</span>: <span class="hljs-string">&apos;popup&apos;</span>
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ CKFinder, ... ],
+        toolbar: [ &apos;ckfinder&apos;, ... ]
+        ckfinder: {
+            // Open the file manager in the pop-up window.
+            openerMethod: &apos;popup&apos;
         }
     } )
     .then( ... )
@@ -371,14 +371,14 @@ ClassicEditor
 <pre class="highlight"><code class="bash">npm install --save @ckeditor/ckeditor5-ckfinder
 </code></pre>
 <p>Then add <a href="../../api/module_ckfinder_ckfinder-CKFinder.html"><code>CKFinder</code></a> to your plugin list and <a href="#configuration">configure</a> the feature (when necessary). For instance:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> CKFinder <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ckfinder/src/ckfinder&apos;</span>;
+<pre class="highlight"><code class="js">import CKFinder from &apos;@ckeditor/ckeditor5-ckfinder/src/ckfinder&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ CKFinder, ... ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;ckfinder&apos;</span>, <span class="hljs-string">&apos;imageUpload&apos;</span> ... ], <span class="hljs-comment">// Depending on your preference.</span>
-        <span class="hljs-attr">ckfinder</span>: {
-            <span class="hljs-comment">// Feature configuration.</span>
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ CKFinder, ... ],
+        toolbar: [ &apos;ckfinder&apos;, &apos;imageUpload&apos; ... ], // Depending on your preference.
+        ckfinder: {
+            // Feature configuration.
         }
     } )
     .then( ... )
@@ -393,7 +393,7 @@ ClassicEditor
 <li>
 <p>The <code>&apos;ckfinder&apos;</code> command implemented by the <a href="../../api/module_ckfinder_ckfindercommand-CKFinderCommand.html"><code>CKFinderCommand</code></a>.</p>
 <p>You can open CKFinder by executing the following code:</p>
-<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;ckfinder&apos;</span> );
+<pre class="highlight"><code class="js">editor.execute( &apos;ckfinder&apos; );
 </code></pre>
 </li>
 </ul>

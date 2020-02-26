@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../../../snippets/framework/tutorials/block-widget/snippet.css" type="text/css">
     <link rel="stylesheet" href="../../../assets/snippet-styles.css" type="text/css">
@@ -35,16 +35,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -86,7 +86,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -232,11 +232,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/tutorials/implementing-a-block-widget.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/tutorials/implementing-a-block-widget.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../assets/1.2.1/img/book.svg" alt="guide">Implementing a block widget
+          <h1 class="main__content-title"><img src="../../../../../assets/1.2.2/img/book.svg" alt="guide">Implementing a block widget
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#before-you-start">Before you start</a></li><li><a href="#lets-start">Let&#x2019;s start</a></li><li><a href="#plugin-structure">Plugin structure</a></li><li><a href="#the-model-and-the-view-layers">The model and the view layers</a><ol><li><a href="#defining-the-schema">Defining the schema</a></li><li><a href="#defining-converters">Defining converters</a></li><li><a href="#whats-in-the-model">What&#x2019;s in the model?</a></li><li><a href="#behavior-before-widgetizing-simple-box">Behavior before &#x201C;widgetizing&#x201D; simple box</a></li><li><a href="#making-simple-box-a-widget">Making simple box a widget</a></li><li><a href="#behavior-after-widgetizing-simple-box">Behavior after &#x201C;widgetizing&#x201D; simple box</a></li></ol></li><li><a href="#creating-a-command">Creating a command</a></li><li><a href="#creating-a-button">Creating a button</a></li><li><a href="#demo">Demo</a></li><li><a href="#full-source-code">Full source code</a></li></ol></nav>
 <p>In this tutorial, you will learn how to implement a more complex CKEditor 5 plugin.</p>
 <p>You will build a &#x201C;Simple box&#x201D; feature which will allow the user to insert a custom box with a title and body fields into the document. You will use the widget utilities and work with the model-view conversion in order to properly set up the behavior of this feature. Later on, you will create a UI which will allow for inserting new simple boxes into the document with the toolbar button.</p>
@@ -264,43 +264,43 @@
     @ckeditor/ckeditor5-theme-lark
 </code></pre>
 <p>Create a minimal webpack configuration:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// webpack.config.js</span>
+<pre class="highlight"><code class="js">// webpack.config.js
 
-<span class="hljs-meta">&apos;use strict&apos;</span>;
+&apos;use strict&apos;;
 
-<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>( <span class="hljs-string">&apos;path&apos;</span> );
-<span class="hljs-keyword">const</span> { styles } = <span class="hljs-built_in">require</span>( <span class="hljs-string">&apos;@ckeditor/ckeditor5-dev-utils&apos;</span> );
+const path = require( &apos;path&apos; );
+const { styles } = require( &apos;@ckeditor/ckeditor5-dev-utils&apos; );
 
-<span class="hljs-built_in">module</span>.exports = {
-    <span class="hljs-attr">entry</span>: <span class="hljs-string">&apos;./app.js&apos;</span>,
+module.exports = {
+    entry: &apos;./app.js&apos;,
 
-    <span class="hljs-attr">output</span>: {
-        <span class="hljs-attr">path</span>: path.resolve( __dirname, <span class="hljs-string">&apos;dist&apos;</span> ),
-        <span class="hljs-attr">filename</span>: <span class="hljs-string">&apos;bundle.js&apos;</span>
+    output: {
+        path: path.resolve( __dirname, &apos;dist&apos; ),
+        filename: &apos;bundle.js&apos;
     },
 
-    <span class="hljs-attr">module</span>: {
-        <span class="hljs-attr">rules</span>: [
+    module: {
+        rules: [
             {
-                <span class="hljs-attr">test</span>: <span class="hljs-regexp">/ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/</span>,
-                <span class="hljs-attr">use</span>: [ <span class="hljs-string">&apos;raw-loader&apos;</span> ]
+                test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
+                use: [ &apos;raw-loader&apos; ]
             },
             {
-                <span class="hljs-attr">test</span>: <span class="hljs-regexp">/ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/</span>,
-                <span class="hljs-attr">use</span>: [
+                test: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
+                use: [
                     {
-                        <span class="hljs-attr">loader</span>: <span class="hljs-string">&apos;style-loader&apos;</span>,
-                        <span class="hljs-attr">options</span>: {
-                            <span class="hljs-attr">injectType</span>: <span class="hljs-string">&apos;singletonStyleTag&apos;</span>
+                        loader: &apos;style-loader&apos;,
+                        options: {
+                            injectType: &apos;singletonStyleTag&apos;
                         }
                     },
                     {
-                        <span class="hljs-attr">loader</span>: <span class="hljs-string">&apos;postcss-loader&apos;</span>,
-                        <span class="hljs-attr">options</span>: styles.getPostCssConfig( {
-                            <span class="hljs-attr">themeImporter</span>: {
-                                <span class="hljs-attr">themePath</span>: <span class="hljs-built_in">require</span>.resolve( <span class="hljs-string">&apos;@ckeditor/ckeditor5-theme-lark&apos;</span> )
+                        loader: &apos;postcss-loader&apos;,
+                        options: styles.getPostCssConfig( {
+                            themeImporter: {
+                                themePath: require.resolve( &apos;@ckeditor/ckeditor5-theme-lark&apos; )
                             },
-                            <span class="hljs-attr">minify</span>: <span class="hljs-literal">true</span>
+                            minify: true
                         } )
                     },
                 ]
@@ -308,57 +308,57 @@
         ]
     },
 
-    <span class="hljs-comment">// Useful for debugging.</span>
-    <span class="hljs-attr">devtool</span>: <span class="hljs-string">&apos;source-map&apos;</span>,
+    // Useful for debugging.
+    devtool: &apos;source-map&apos;,
 
-    <span class="hljs-comment">// By default webpack logs warnings if the bundle is bigger than 200kb.</span>
-    <span class="hljs-attr">performance</span>: { <span class="hljs-attr">hints</span>: <span class="hljs-literal">false</span> }
+    // By default webpack logs warnings if the bundle is bigger than 200kb.
+    performance: { hints: false }
 };
 </code></pre>
 <p>Create your project&#x2019;s entry point:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// app.js</span>
+<pre class="highlight"><code class="js">// app.js
 
-<span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
-<span class="hljs-keyword">import</span> Essentials <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;</span>;
-<span class="hljs-keyword">import</span> Paragraph <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;</span>;
-<span class="hljs-keyword">import</span> Heading <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-heading/src/heading&apos;</span>;
-<span class="hljs-keyword">import</span> List <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-list/src/list&apos;</span>;
-<span class="hljs-keyword">import</span> Bold <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;</span>;
-<span class="hljs-keyword">import</span> Italic <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;</span>;
+import ClassicEditor from &apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;;
+import Essentials from &apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;;
+import Paragraph from &apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;;
+import Heading from &apos;@ckeditor/ckeditor5-heading/src/heading&apos;;
+import List from &apos;@ckeditor/ckeditor5-list/src/list&apos;;
+import Bold from &apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;;
+import Italic from &apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ Essentials, Paragraph, Heading, List, Bold, Italic ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;heading&apos;</span>, <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-string">&apos;italic&apos;</span>, <span class="hljs-string">&apos;numberedList&apos;</span>, <span class="hljs-string">&apos;bulletedList&apos;</span> ]
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Essentials, Paragraph, Heading, List, Bold, Italic ],
+        toolbar: [ &apos;heading&apos;, &apos;bold&apos;, &apos;italic&apos;, &apos;numberedList&apos;, &apos;bulletedList&apos; ]
     } )
-    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;Editor was initialized&apos;</span>, editor );
+    .then( editor =&gt; {
+        console.log( &apos;Editor was initialized&apos;, editor );
 
-        <span class="hljs-comment">// Expose for playing in the console.</span>
-        <span class="hljs-built_in">window</span>.editor = editor;
+        // Expose for playing in the console.
+        window.editor = editor;
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error( error.stack );
+    .catch( error =&gt; {
+        console.error( error.stack );
     } );
 </code></pre>
 <p>And an <code>index.html</code> page:</p>
-<pre class="highlight"><code class="html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>CKEditor 5 Framework &#x2013; Implementing a simple widget<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;editor&quot;</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Editor content goes here.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;CKEditor 5 Framework &#x2013; Implementing a simple widget&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div id=&quot;editor&quot;&gt;
+            &lt;p&gt;Editor content goes here.&lt;/p&gt;
+        &lt;/div&gt;
 
-        <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;dist/bundle.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+        &lt;script src=&quot;dist/bundle.js&quot;&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
 </code></pre>
 <p>Finally, build your project:</p>
-<pre class="highlight"><code class="bash">p@m /workspace/creating<span class="hljs-_">-a</span>-plugin&gt; ./node_modules/.bin/webpack --mode development
+<pre class="highlight"><code class="bash">p@m /workspace/creating-a-plugin&gt; ./node_modules/.bin/webpack --mode development
 Hash: a4a7cf092b8d69199848
 Version: webpack 4.28.4
 Time: 5467ms
@@ -395,68 +395,68 @@ Entrypoint main [big] = bundle.js bundle.js.map
 </code></pre>
 <p>Now define the 3 plugins.</p>
 <p>First, the master (glue) plugin. Its role is to simply load the &#x201C;editing&#x201D; and &#x201C;UI&#x201D; parts.</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// simplebox/simplebox.js</span>
+<pre class="highlight"><code class="js">// simplebox/simplebox.js
 
-<span class="hljs-keyword">import</span> SimpleBoxEditing <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./simpleboxediting&apos;</span>;
-<span class="hljs-keyword">import</span> SimpleBoxUI <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./simpleboxui&apos;</span>;
-<span class="hljs-keyword">import</span> Plugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/plugin&apos;</span>;
+import SimpleBoxEditing from &apos;./simpleboxediting&apos;;
+import SimpleBoxUI from &apos;./simpleboxui&apos;;
+import Plugin from &apos;@ckeditor/ckeditor5-core/src/plugin&apos;;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SimpleBox</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
-    <span class="hljs-keyword">static</span> <span class="hljs-keyword">get</span> requires() {
-        <span class="hljs-keyword">return</span> [ SimpleBoxEditing, SimpleBoxUI ];
+export default class SimpleBox extends Plugin {
+    static get requires() {
+        return [ SimpleBoxEditing, SimpleBoxUI ];
     }
 }
 </code></pre>
 <p>Now, the remaining two plugins:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// simplebox/simpleboxui.js</span>
+<pre class="highlight"><code class="js">// simplebox/simpleboxui.js
 
-<span class="hljs-keyword">import</span> Plugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/plugin&apos;</span>;
+import Plugin from &apos;@ckeditor/ckeditor5-core/src/plugin&apos;;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SimpleBoxUI</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
+export default class SimpleBoxUI extends Plugin {
     init() {
-        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;SimpleBoxUI#init() got called&apos;</span> );
+        console.log( &apos;SimpleBoxUI#init() got called&apos; );
     }
 }
 </code></pre>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// simplebox/simpleboxediting.js</span>
+<pre class="highlight"><code class="js">// simplebox/simpleboxediting.js
 
-<span class="hljs-keyword">import</span> Plugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/plugin&apos;</span>;
+import Plugin from &apos;@ckeditor/ckeditor5-core/src/plugin&apos;;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SimpleBoxEditing</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
+export default class SimpleBoxEditing extends Plugin {
     init() {
-        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;SimpleBoxEditing#init() got called&apos;</span> );
+        console.log( &apos;SimpleBoxEditing#init() got called&apos; );
     }
 }
 </code></pre>
 <p>Finally, you need to load the <code>SimpleBox</code> plugin in your <code>app.js</code> file:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// app.js</span>
+<pre class="highlight"><code class="js">// app.js
 
-<span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
-<span class="hljs-keyword">import</span> Essentials <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;</span>;
-<span class="hljs-keyword">import</span> Paragraph <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;</span>;
-<span class="hljs-keyword">import</span> Heading <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-heading/src/heading&apos;</span>;
-<span class="hljs-keyword">import</span> List <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-list/src/list&apos;</span>;
-<span class="hljs-keyword">import</span> Bold <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;</span>;
-<span class="hljs-keyword">import</span> Italic <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;</span>;
+import ClassicEditor from &apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;;
+import Essentials from &apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;;
+import Paragraph from &apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;;
+import Heading from &apos;@ckeditor/ckeditor5-heading/src/heading&apos;;
+import List from &apos;@ckeditor/ckeditor5-list/src/list&apos;;
+import Bold from &apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;;
+import Italic from &apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;;
 
-<span class="hljs-keyword">import</span> SimpleBox <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./simplebox/simplebox&apos;</span>;                                 <span class="hljs-comment">// ADDED</span>
+import SimpleBox from &apos;./simplebox/simplebox&apos;;                                 // ADDED
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [
             Essentials, Paragraph, Heading, List, Bold, Italic,
-            SimpleBox                                                          <span class="hljs-comment">// ADDED</span>
+            SimpleBox                                                          // ADDED
         ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;heading&apos;</span>, <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-string">&apos;italic&apos;</span>, <span class="hljs-string">&apos;numberedList&apos;</span>, <span class="hljs-string">&apos;bulletedList&apos;</span> ]
+        toolbar: [ &apos;heading&apos;, &apos;bold&apos;, &apos;italic&apos;, &apos;numberedList&apos;, &apos;bulletedList&apos; ]
     } )
-    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;Editor was initialized&apos;</span>, editor );
+    .then( editor =&gt; {
+        console.log( &apos;Editor was initialized&apos;, editor );
 
-        <span class="hljs-comment">// Expose for playing in the console.</span>
-        <span class="hljs-built_in">window</span>.editor = editor;
+        // Expose for playing in the console.
+        window.editor = editor;
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error( error.stack );
+    .catch( error =&gt; {
+        console.error( error.stack );
     } );
 </code></pre>
 <p>Rebuild your project, refresh the browser and you should see that the the <code>SimpleBoxEditing</code> and <code>SmpleBoxUI</code> plugins were loaded:</p>
@@ -465,55 +465,55 @@ ClassicEditor
 <p>CKEditor 5 implements an MVC architecture and its custom data model, while still being a tree structure, does not map to the DOM 1:1. You can think about the model as about an even more semantical representation of the editor content, while the DOM is one of its possible representations.</p>
 <div class="info-box notice"><p>Read more about the <a href="../architecture/editing-engine.html#overview">editing engine architecture</a>.</p></div>
 <p>Since your simple box feature is meant to be a box with a title and description fields, define its model representation like this:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">simpleBox</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">simpleBoxTitle</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">simpleBoxTitle</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">simpleBoxDescription</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">simpleBoxDescription</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">simpleBox</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;simpleBox&gt;
+    &lt;simpleBoxTitle&gt;&lt;/simpleBoxTitle&gt;
+    &lt;simpleBoxDescription&gt;&lt;/simpleBoxDescription&gt;
+&lt;/simpleBox&gt;
 </code></pre>
 <h3 id="defining-the-schema"><a class="headerlink" href="#defining-the-schema">#</a> Defining the schema</h3>
 <p>You need to start with defining the model&#x2019;s schema. You need to define 3 elements and their types as well as allowed parent/children.</p>
 <div class="info-box notice"><p>Read more about the <a href="../architecture/editing-engine.html#schema">schema</a>.</p></div>
 <p>Update the <code>SimpleBoxEditing</code> plugin with this definition.</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// simplebox/simpleboxediting.js</span>
+<pre class="highlight"><code class="js">// simplebox/simpleboxediting.js
 
-<span class="hljs-keyword">import</span> Plugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/plugin&apos;</span>;
+import Plugin from &apos;@ckeditor/ckeditor5-core/src/plugin&apos;;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SimpleBoxEditing</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
+export default class SimpleBoxEditing extends Plugin {
     init() {
-        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;SimpleBoxEditing#init() got called&apos;</span> );
+        console.log( &apos;SimpleBoxEditing#init() got called&apos; );
 
-        <span class="hljs-keyword">this</span>._defineSchema();                                                  <span class="hljs-comment">// ADDED</span>
+        this._defineSchema();                                                  // ADDED
     }
 
-    _defineSchema() {                                                          <span class="hljs-comment">// ADDED</span>
-        <span class="hljs-keyword">const</span> schema = <span class="hljs-keyword">this</span>.editor.model.schema;
+    _defineSchema() {                                                          // ADDED
+        const schema = this.editor.model.schema;
 
-        schema.register( <span class="hljs-string">&apos;simpleBox&apos;</span>, {
-            <span class="hljs-comment">// Behaves like a self-contained object (e.g. an image).</span>
-            <span class="hljs-attr">isObject</span>: <span class="hljs-literal">true</span>,
+        schema.register( &apos;simpleBox&apos;, {
+            // Behaves like a self-contained object (e.g. an image).
+            isObject: true,
 
-            <span class="hljs-comment">// Allow in places where other blocks are allowed (e.g. directly in the root).</span>
-            <span class="hljs-attr">allowWhere</span>: <span class="hljs-string">&apos;$block&apos;</span>
+            // Allow in places where other blocks are allowed (e.g. directly in the root).
+            allowWhere: &apos;$block&apos;
         } );
 
-        schema.register( <span class="hljs-string">&apos;simpleBoxTitle&apos;</span>, {
-            <span class="hljs-comment">// Cannot be split or left by the caret.</span>
-            <span class="hljs-attr">isLimit</span>: <span class="hljs-literal">true</span>,
+        schema.register( &apos;simpleBoxTitle&apos;, {
+            // Cannot be split or left by the caret.
+            isLimit: true,
 
-            <span class="hljs-attr">allowIn</span>: <span class="hljs-string">&apos;simpleBox&apos;</span>,
+            allowIn: &apos;simpleBox&apos;,
 
-            <span class="hljs-comment">// Allow content which is allowed in blocks (i.e. text with attributes).</span>
-            <span class="hljs-attr">allowContentOf</span>: <span class="hljs-string">&apos;$block&apos;</span>
+            // Allow content which is allowed in blocks (i.e. text with attributes).
+            allowContentOf: &apos;$block&apos;
         } );
 
-        schema.register( <span class="hljs-string">&apos;simpleBoxDescription&apos;</span>, {
-            <span class="hljs-comment">// Cannot be split or left by the caret.</span>
-            <span class="hljs-attr">isLimit</span>: <span class="hljs-literal">true</span>,
+        schema.register( &apos;simpleBoxDescription&apos;, {
+            // Cannot be split or left by the caret.
+            isLimit: true,
 
-            <span class="hljs-attr">allowIn</span>: <span class="hljs-string">&apos;simpleBox&apos;</span>,
+            allowIn: &apos;simpleBox&apos;,
 
-            <span class="hljs-comment">// Allow content which is allowed in the root (e.g. paragraphs).</span>
-            <span class="hljs-attr">allowContentOf</span>: <span class="hljs-string">&apos;$root&apos;</span>
+            // Allow content which is allowed in the root (e.g. paragraphs).
+            allowContentOf: &apos;$root&apos;
         } );
     }
 }
@@ -525,108 +525,108 @@ ClassicEditor
 <div class="info-box notice"><p>Read more about the <a href="../architecture/editing-engine.html#conversion">model-view conversion</a>.</p></div>
 <p>This is the moment when you need to think about how you want to render the <code>&lt;simpleBox&gt;</code> element and its children to the DOM (what the user will see) and to the data. CKEditor 5 allows converting the model to a different structure for editing purposes and a different one to be stored as &#x201C;data&#x201D; or exchanged with other applications when copy-pasting the content. However, for simplicity, use the same representation in both pipelines for now.</p>
 <p>The structure in the view that you want to achieve:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;simple-box&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;simple-box-title&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;simple-box-description&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;section class=&quot;simple-box&quot;&gt;
+    &lt;h1 class=&quot;simple-box-title&quot;&gt;&lt;/h1&gt;
+    &lt;div class=&quot;simple-box-description&quot;&gt;&lt;/div&gt;
+&lt;/section&gt;
 </code></pre>
 <p>Use the <a href="../../../api/module_engine_conversion_conversion-Conversion.html#function-elementToElement"><code>conversion.elementToElement()</code></a> method to define all the converters.</p>
 <div class="info-box notice"><p>You can use this high-level two-way converters definition because you define the same converters for the <a href="../architecture/editing-engine.html#data-pipeline">data</a> and <a href="../architecture/editing-engine.html#editing-pipeline">editing</a> pipelines.</p><p>Later on you will switch to more fine-grained converters to get more control over the conversion.</p></div>
 <p>You need to define converters for 3 model elements. Update the <code>SimpleBoxEditing</code> plugin with this code:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// simplebox/simpleboxediting.js</span>
+<pre class="highlight"><code class="js">// simplebox/simpleboxediting.js
 
-<span class="hljs-keyword">import</span> Plugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/plugin&apos;</span>;
+import Plugin from &apos;@ckeditor/ckeditor5-core/src/plugin&apos;;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SimpleBoxEditing</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
+export default class SimpleBoxEditing extends Plugin {
     init() {
-        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;SimpleBoxEditing#init() got called&apos;</span> );
+        console.log( &apos;SimpleBoxEditing#init() got called&apos; );
 
-        <span class="hljs-keyword">this</span>._defineSchema();
-        <span class="hljs-keyword">this</span>._defineConverters();                                              <span class="hljs-comment">// ADDED</span>
+        this._defineSchema();
+        this._defineConverters();                                              // ADDED
     }
 
     _defineSchema() {
-        <span class="hljs-comment">// ...</span>
+        // ...
     }
 
-    _defineConverters() {                                                      <span class="hljs-comment">// ADDED</span>
-        <span class="hljs-keyword">const</span> conversion = <span class="hljs-keyword">this</span>.editor.conversion;
+    _defineConverters() {                                                      // ADDED
+        const conversion = this.editor.conversion;
 
         conversion.elementToElement( {
-            <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;simpleBox&apos;</span>,
-            <span class="hljs-attr">view</span>: {
-                <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;section&apos;</span>,
-                <span class="hljs-attr">classes</span>: <span class="hljs-string">&apos;simple-box&apos;</span>
+            model: &apos;simpleBox&apos;,
+            view: {
+                name: &apos;section&apos;,
+                classes: &apos;simple-box&apos;
             }
         } );
 
         conversion.elementToElement( {
-            <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;simpleBoxTitle&apos;</span>,
-            <span class="hljs-attr">view</span>: {
-                <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;h1&apos;</span>,
-                <span class="hljs-attr">classes</span>: <span class="hljs-string">&apos;simple-box-title&apos;</span>
+            model: &apos;simpleBoxTitle&apos;,
+            view: {
+                name: &apos;h1&apos;,
+                classes: &apos;simple-box-title&apos;
             }
         } );
 
         conversion.elementToElement( {
-            <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;simpleBoxDescription&apos;</span>,
-            <span class="hljs-attr">view</span>: {
-                <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;div&apos;</span>,
-                <span class="hljs-attr">classes</span>: <span class="hljs-string">&apos;simple-box-description&apos;</span>
+            model: &apos;simpleBoxDescription&apos;,
+            view: {
+                name: &apos;div&apos;,
+                classes: &apos;simple-box-description&apos;
             }
         } );
     }
 }
 </code></pre>
 <p>Once you have converters, you can try to see the simple box in action. You have not defined a way to insert a new simple box into the document yet, so load it via the editor data. In order to do that, you need to modify the <code>index.html</code> file:</p>
-<pre class="highlight"><code class="html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>CKEditor 5 Framework &#x2013; Implementing a simple widget<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;CKEditor 5 Framework &#x2013; Implementing a simple widget&lt;/title&gt;
 
-        <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
-            <span class="hljs-selector-class">.simple-box</span> {
-                <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span>;
-                <span class="hljs-attribute">margin</span>: <span class="hljs-number">1em</span> <span class="hljs-number">0</span>;
+        &lt;style&gt;
+            .simple-box {
+                padding: 10px;
+                margin: 1em 0;
 
-                <span class="hljs-attribute">background</span>: <span class="hljs-built_in">rgba</span>( <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.1</span> );
-                <span class="hljs-attribute">border</span>: solid <span class="hljs-number">1px</span> <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">77%</span>);
-                <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">2px</span>;
+                background: rgba( 0, 0, 0, 0.1 );
+                border: solid 1px hsl(0, 0%, 77%);
+                border-radius: 2px;
             }
 
-            <span class="hljs-selector-class">.simple-box-title</span>, <span class="hljs-selector-class">.simple-box-description</span> {
-                <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span>;
-                <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
+            .simple-box-title, .simple-box-description {
+                padding: 10px;
+                margin: 0;
 
-                <span class="hljs-attribute">background</span>: <span class="hljs-number">#FFF</span>;
-                <span class="hljs-attribute">border</span>: solid <span class="hljs-number">1px</span> <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">77%</span>);
+                background: #FFF;
+                border: solid 1px hsl(0, 0%, 77%);
             }
 
-            <span class="hljs-selector-class">.simple-box-title</span> {
-                <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">10px</span>;
+            .simple-box-title {
+                margin-bottom: 10px;
             }
-        </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;editor&quot;</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is a simple box:<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div id=&quot;editor&quot;&gt;
+            &lt;p&gt;This is a simple box:&lt;/p&gt;
 
-            <span class="hljs-tag">&lt;<span class="hljs-name">section</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;simple-box&quot;</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;simple-box-title&quot;</span>&gt;</span>Box title<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;simple-box-description&quot;</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>The description goes here.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>It can contain lists,<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>and other block elements like headings.<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-                    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
-                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-            <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            &lt;section class=&quot;simple-box&quot;&gt;
+                &lt;h1 class=&quot;simple-box-title&quot;&gt;Box title&lt;/h1&gt;
+                &lt;div class=&quot;simple-box-description&quot;&gt;
+                    &lt;p&gt;The description goes here.&lt;/p&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;It can contain lists,&lt;/li&gt;
+                        &lt;li&gt;and other block elements like headings.&lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/div&gt;
+            &lt;/section&gt;
+        &lt;/div&gt;
 
-        <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;dist/bundle.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+        &lt;script src=&quot;dist/bundle.js&quot;&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
 </code></pre>
 <p>Rebuild your project and voila &#x2014; that&#x2019;s your first simple box instance:</p>
 <p><img src="../../../assets/img/tutorial-implementing-a-widget-3.png" data-lightbox="true" alt="Screenshot of a classic editor with an instance of a simple box inside."></p>
@@ -635,51 +635,51 @@ ClassicEditor
 <p><img src="../../../assets/img/tutorial-implementing-a-widget-4.png" data-lightbox="true" alt="Screenshot of a DOM structure of the simple box instance &#x2013; it looks exactly like the data loaded into the editor."></p>
 <p>However, what&#x2019;s in the model?</p>
 <p>To learn that, use the official <a href="../development-tools.html#ckeditor-5-inspector">CKEditor 5 inspector</a>. Once <a href="../development-tools.html#ckeditor-5-inspector">installed</a>, you need to load it in the <code>app.js</code> file:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// app.js</span>
+<pre class="highlight"><code class="js">// app.js
 
-<span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
-<span class="hljs-keyword">import</span> Essentials <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;</span>;
-<span class="hljs-keyword">import</span> Paragraph <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;</span>;
-<span class="hljs-keyword">import</span> Heading <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-heading/src/heading&apos;</span>;
-<span class="hljs-keyword">import</span> List <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-list/src/list&apos;</span>;
-<span class="hljs-keyword">import</span> Bold <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;</span>;
-<span class="hljs-keyword">import</span> Italic <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;</span>;
+import ClassicEditor from &apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;;
+import Essentials from &apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;;
+import Paragraph from &apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;;
+import Heading from &apos;@ckeditor/ckeditor5-heading/src/heading&apos;;
+import List from &apos;@ckeditor/ckeditor5-list/src/list&apos;;
+import Bold from &apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;;
+import Italic from &apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;;
 
-<span class="hljs-keyword">import</span> SimpleBox <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./simplebox/simplebox&apos;</span>;
+import SimpleBox from &apos;./simplebox/simplebox&apos;;
 
-<span class="hljs-keyword">import</span> CKEditorInspector <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-inspector&apos;</span>;                 <span class="hljs-comment">// ADDED</span>
+import CKEditorInspector from &apos;@ckeditor/ckeditor5-inspector&apos;;                 // ADDED
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [
             Essentials, Paragraph, Heading, List, Bold, Italic,
             SimpleBox
         ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;heading&apos;</span>, <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-string">&apos;italic&apos;</span>, <span class="hljs-string">&apos;numberedList&apos;</span>, <span class="hljs-string">&apos;bulletedList&apos;</span> ]
+        toolbar: [ &apos;heading&apos;, &apos;bold&apos;, &apos;italic&apos;, &apos;numberedList&apos;, &apos;bulletedList&apos; ]
     } )
-    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;Editor was initialized&apos;</span>, editor );
+    .then( editor =&gt; {
+        console.log( &apos;Editor was initialized&apos;, editor );
 
-        CKEditorInspector.attach( <span class="hljs-string">&apos;editor&apos;</span>, editor );
+        CKEditorInspector.attach( &apos;editor&apos;, editor );
 
-        <span class="hljs-built_in">window</span>.editor = editor;
+        window.editor = editor;
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error( error.stack );
+    .catch( error =&gt; {
+        console.error( error.stack );
     } );
 </code></pre>
 <p>After rebuilding your project and refreshing the page you will see the inspector:</p>
 <p><img src="../../../assets/img/tutorial-implementing-a-widget-4b.png" data-lightbox="true" alt="Screenshot of a the simple box widget&#x2019;s structure displayed by CKEditor 5 inspector."></p>
 <p>You will see the following HTML-like string:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span>&gt;</span>[]This is a simple box:<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">simpleBox</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">simpleBoxTitle</span>&gt;</span>Box title<span class="hljs-tag">&lt;/<span class="hljs-name">simpleBoxTitle</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">simpleBoxDescription</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span>&gt;</span>The description goes here.<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">listItem</span> <span class="hljs-attr">listIndent</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-attr">listType</span>=<span class="hljs-string">&quot;bulleted&quot;</span>&gt;</span>It can contain lists,<span class="hljs-tag">&lt;/<span class="hljs-name">listItem</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">listItem</span> <span class="hljs-attr">listIndent</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-attr">listType</span>=<span class="hljs-string">&quot;bulleted&quot;</span>&gt;</span>and other block elements like headings.<span class="hljs-tag">&lt;/<span class="hljs-name">listItem</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">simpleBoxDescription</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">simpleBox</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;paragraph&gt;[]This is a simple box:&lt;/paragraph&gt;
+&lt;simpleBox&gt;
+    &lt;simpleBoxTitle&gt;Box title&lt;/simpleBoxTitle&gt;
+    &lt;simpleBoxDescription&gt;
+        &lt;paragraph&gt;The description goes here.&lt;/paragraph&gt;
+        &lt;listItem listIndent=&quot;0&quot; listType=&quot;bulleted&quot;&gt;It can contain lists,&lt;/listItem&gt;
+        &lt;listItem listIndent=&quot;0&quot; listType=&quot;bulleted&quot;&gt;and other block elements like headings.&lt;/listItem&gt;
+    &lt;/simpleBoxDescription&gt;
+&lt;/simpleBox&gt;
 </code></pre>
 <p>As you can see, this structure is quite different than the HTML input/output. If you look closely, you will also notice the <code>[]</code> characters in the first paragraph &#x2014; this is the selection position.</p>
 <p>Play a bit with the editor features (bold, italic, headings, lists, selection) to see how the model structure changes.</p>
@@ -705,104 +705,104 @@ ClassicEditor
 </code></pre>
 <p>Now it is time to revisit the <code>_defineConverters()</code> method that you defined earlier. You will use the <a href="../../../api/module_engine_conversion_upcasthelpers-UpcastHelpers.html#function-elementToElement"><code>elementToElement()</code> upcast helper</a> and the <a href="../../../api/module_engine_conversion_downcasthelpers-DowncastHelpers.html#function-elementToElement"><code>elementToElement()</code> downcast helper</a> instead of the two-way <code>elementToElement()</code> converter helper.</p>
 <p>Additionally, you need to ensure that the <a href="../../../api/module_widget_widget-Widget.html"><code>Widget</code></a> plugin is loaded. If you omit it, the elements in the view will have all the classes (e.g. <code>ck-widget</code>) but there will be no &#x201C;behaviors&#x201D; loaded (e.g. clicking a widget will not select it).</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// simplebox/simpleboxediting.js</span>
+<pre class="highlight"><code class="js">// simplebox/simpleboxediting.js
 
-<span class="hljs-keyword">import</span> Plugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/plugin&apos;</span>;
+import Plugin from &apos;@ckeditor/ckeditor5-core/src/plugin&apos;;
 
-<span class="hljs-comment">// ADDED 2 imports</span>
-<span class="hljs-keyword">import</span> { toWidget, toWidgetEditable } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-widget/src/utils&apos;</span>;
-<span class="hljs-keyword">import</span> Widget <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-widget/src/widget&apos;</span>;
+// ADDED 2 imports
+import { toWidget, toWidgetEditable } from &apos;@ckeditor/ckeditor5-widget/src/utils&apos;;
+import Widget from &apos;@ckeditor/ckeditor5-widget/src/widget&apos;;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SimpleBoxEditing</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
-    <span class="hljs-keyword">static</span> <span class="hljs-keyword">get</span> requires() {                                                    <span class="hljs-comment">// ADDED</span>
-        <span class="hljs-keyword">return</span> [ Widget ];
+export default class SimpleBoxEditing extends Plugin {
+    static get requires() {                                                    // ADDED
+        return [ Widget ];
     }
 
     init() {
-        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;SimpleBoxEditing#init() got called&apos;</span> );
+        console.log( &apos;SimpleBoxEditing#init() got called&apos; );
 
-        <span class="hljs-keyword">this</span>._defineSchema();
-        <span class="hljs-keyword">this</span>._defineConverters();
+        this._defineSchema();
+        this._defineConverters();
     }
 
     _defineSchema() {
-        <span class="hljs-comment">// ...</span>
+        // ...
     }
 
-    _defineConverters() {                                                      <span class="hljs-comment">// MODIFIED</span>
-        <span class="hljs-keyword">const</span> conversion = <span class="hljs-keyword">this</span>.editor.conversion;
+    _defineConverters() {                                                      // MODIFIED
+        const conversion = this.editor.conversion;
 
-        <span class="hljs-comment">// &lt;simpleBox&gt; converters</span>
-        conversion.for( <span class="hljs-string">&apos;upcast&apos;</span> ).elementToElement( {
-            <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;simpleBox&apos;</span>,
-            <span class="hljs-attr">view</span>: {
-                <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;section&apos;</span>,
-                <span class="hljs-attr">classes</span>: <span class="hljs-string">&apos;simple-box&apos;</span>
+        // &lt;simpleBox&gt; converters
+        conversion.for( &apos;upcast&apos; ).elementToElement( {
+            model: &apos;simpleBox&apos;,
+            view: {
+                name: &apos;section&apos;,
+                classes: &apos;simple-box&apos;
             }
         } );
-        conversion.for( <span class="hljs-string">&apos;dataDowncast&apos;</span> ).elementToElement( {
-            <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;simpleBox&apos;</span>,
-            <span class="hljs-attr">view</span>: {
-                <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;section&apos;</span>,
-                <span class="hljs-attr">classes</span>: <span class="hljs-string">&apos;simple-box&apos;</span>
+        conversion.for( &apos;dataDowncast&apos; ).elementToElement( {
+            model: &apos;simpleBox&apos;,
+            view: {
+                name: &apos;section&apos;,
+                classes: &apos;simple-box&apos;
             }
         } );
-        conversion.for( <span class="hljs-string">&apos;editingDowncast&apos;</span> ).elementToElement( {
-            <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;simpleBox&apos;</span>,
-            <span class="hljs-attr">view</span>: <span class="hljs-function">(<span class="hljs-params"> modelElement, viewWriter </span>) =&gt;</span> {
-                <span class="hljs-keyword">const</span> section = viewWriter.createContainerElement( <span class="hljs-string">&apos;section&apos;</span>, { <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;simple-box&apos;</span> } );
+        conversion.for( &apos;editingDowncast&apos; ).elementToElement( {
+            model: &apos;simpleBox&apos;,
+            view: ( modelElement, viewWriter ) =&gt; {
+                const section = viewWriter.createContainerElement( &apos;section&apos;, { class: &apos;simple-box&apos; } );
 
-                <span class="hljs-keyword">return</span> toWidget( section, viewWriter, { <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;simple box widget&apos;</span> } );
-            }
-        } );
-
-        <span class="hljs-comment">// &lt;simpleBoxTitle&gt; converters</span>
-        conversion.for( <span class="hljs-string">&apos;upcast&apos;</span> ).elementToElement( {
-            <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;simpleBoxTitle&apos;</span>,
-            <span class="hljs-attr">view</span>: {
-                <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;h1&apos;</span>,
-                <span class="hljs-attr">classes</span>: <span class="hljs-string">&apos;simple-box-title&apos;</span>
-            }
-        } );
-        conversion.for( <span class="hljs-string">&apos;dataDowncast&apos;</span> ).elementToElement( {
-            <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;simpleBoxTitle&apos;</span>,
-            <span class="hljs-attr">view</span>: {
-                <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;h1&apos;</span>,
-                <span class="hljs-attr">classes</span>: <span class="hljs-string">&apos;simple-box-title&apos;</span>
-            }
-        } );
-        conversion.for( <span class="hljs-string">&apos;editingDowncast&apos;</span> ).elementToElement( {
-            <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;simpleBoxTitle&apos;</span>,
-            <span class="hljs-attr">view</span>: <span class="hljs-function">(<span class="hljs-params"> modelElement, viewWriter </span>) =&gt;</span> {
-                <span class="hljs-comment">// Note: You use a more specialized createEditableElement() method here.</span>
-                <span class="hljs-keyword">const</span> h1 = viewWriter.createEditableElement( <span class="hljs-string">&apos;h1&apos;</span>, { <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;simple-box-title&apos;</span> } );
-
-                <span class="hljs-keyword">return</span> toWidgetEditable( h1, viewWriter );
+                return toWidget( section, viewWriter, { label: &apos;simple box widget&apos; } );
             }
         } );
 
-        <span class="hljs-comment">// &lt;simpleBoxDescription&gt; converters</span>
-        conversion.for( <span class="hljs-string">&apos;upcast&apos;</span> ).elementToElement( {
-            <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;simpleBoxDescription&apos;</span>,
-            <span class="hljs-attr">view</span>: {
-                <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;div&apos;</span>,
-                <span class="hljs-attr">classes</span>: <span class="hljs-string">&apos;simple-box-description&apos;</span>
+        // &lt;simpleBoxTitle&gt; converters
+        conversion.for( &apos;upcast&apos; ).elementToElement( {
+            model: &apos;simpleBoxTitle&apos;,
+            view: {
+                name: &apos;h1&apos;,
+                classes: &apos;simple-box-title&apos;
             }
         } );
-        conversion.for( <span class="hljs-string">&apos;dataDowncast&apos;</span> ).elementToElement( {
-            <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;simpleBoxDescription&apos;</span>,
-            <span class="hljs-attr">view</span>: {
-                <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;div&apos;</span>,
-                <span class="hljs-attr">classes</span>: <span class="hljs-string">&apos;simple-box-description&apos;</span>
+        conversion.for( &apos;dataDowncast&apos; ).elementToElement( {
+            model: &apos;simpleBoxTitle&apos;,
+            view: {
+                name: &apos;h1&apos;,
+                classes: &apos;simple-box-title&apos;
             }
         } );
-        conversion.for( <span class="hljs-string">&apos;editingDowncast&apos;</span> ).elementToElement( {
-            <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;simpleBoxDescription&apos;</span>,
-            <span class="hljs-attr">view</span>: <span class="hljs-function">(<span class="hljs-params"> modelElement, viewWriter </span>) =&gt;</span> {
-                <span class="hljs-comment">// Note: You use a more specialized createEditableElement() method here.</span>
-                <span class="hljs-keyword">const</span> div = viewWriter.createEditableElement( <span class="hljs-string">&apos;div&apos;</span>, { <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;simple-box-description&apos;</span> } );
+        conversion.for( &apos;editingDowncast&apos; ).elementToElement( {
+            model: &apos;simpleBoxTitle&apos;,
+            view: ( modelElement, viewWriter ) =&gt; {
+                // Note: You use a more specialized createEditableElement() method here.
+                const h1 = viewWriter.createEditableElement( &apos;h1&apos;, { class: &apos;simple-box-title&apos; } );
 
-                <span class="hljs-keyword">return</span> toWidgetEditable( div, viewWriter );
+                return toWidgetEditable( h1, viewWriter );
+            }
+        } );
+
+        // &lt;simpleBoxDescription&gt; converters
+        conversion.for( &apos;upcast&apos; ).elementToElement( {
+            model: &apos;simpleBoxDescription&apos;,
+            view: {
+                name: &apos;div&apos;,
+                classes: &apos;simple-box-description&apos;
+            }
+        } );
+        conversion.for( &apos;dataDowncast&apos; ).elementToElement( {
+            model: &apos;simpleBoxDescription&apos;,
+            view: {
+                name: &apos;div&apos;,
+                classes: &apos;simple-box-description&apos;
+            }
+        } );
+        conversion.for( &apos;editingDowncast&apos; ).elementToElement( {
+            model: &apos;simpleBoxDescription&apos;,
+            view: ( modelElement, viewWriter ) =&gt; {
+                // Note: You use a more specialized createEditableElement() method here.
+                const div = viewWriter.createEditableElement( &apos;div&apos;, { class: &apos;simple-box-description&apos; } );
+
+                return toWidgetEditable( div, viewWriter );
             }
         } );
     }
@@ -829,146 +829,146 @@ ClassicEditor
 <li>and &#x201C;can you insert a new simple box here (at the current selection position)&#x201D;.</li>
 </ul>
 <p>Create a new file <code>insertsimpleboxcommand.js</code> in the <code>simplebox/</code> directory. You will use the <a href="../../../api/module_engine_model_model-Model.html#function-insertContent"><code>model.insertContent()</code></a> method which will be able to, for example, split a paragraph if you try to insert a simple box in the middle of it (which is not allowed by the schema).</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// simplebox/insertsimpleboxcommand.js</span>
+<pre class="highlight"><code class="js">// simplebox/insertsimpleboxcommand.js
 
-<span class="hljs-keyword">import</span> Command <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/command&apos;</span>;
+import Command from &apos;@ckeditor/ckeditor5-core/src/command&apos;;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InsertSimpleBoxCommand</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Command</span> </span>{
+export default class InsertSimpleBoxCommand extends Command {
     execute() {
-        <span class="hljs-keyword">this</span>.editor.model.change( <span class="hljs-function"><span class="hljs-params">writer</span> =&gt;</span> {
-            <span class="hljs-comment">// Insert &lt;simpleBox&gt;*&lt;/simpleBox&gt; at the current selection position</span>
-            <span class="hljs-comment">// in a way that will result in creating a valid model structure.</span>
-            <span class="hljs-keyword">this</span>.editor.model.insertContent( createSimpleBox( writer ) );
+        this.editor.model.change( writer =&gt; {
+            // Insert &lt;simpleBox&gt;*&lt;/simpleBox&gt; at the current selection position
+            // in a way that will result in creating a valid model structure.
+            this.editor.model.insertContent( createSimpleBox( writer ) );
         } );
     }
 
     refresh() {
-        <span class="hljs-keyword">const</span> model = <span class="hljs-keyword">this</span>.editor.model;
-        <span class="hljs-keyword">const</span> selection = model.document.selection;
-        <span class="hljs-keyword">const</span> allowedIn = model.schema.findAllowedParent( selection.getFirstPosition(), <span class="hljs-string">&apos;simpleBox&apos;</span> );
+        const model = this.editor.model;
+        const selection = model.document.selection;
+        const allowedIn = model.schema.findAllowedParent( selection.getFirstPosition(), &apos;simpleBox&apos; );
 
-        <span class="hljs-keyword">this</span>.isEnabled = allowedIn !== <span class="hljs-literal">null</span>;
+        this.isEnabled = allowedIn !== null;
     }
 }
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createSimpleBox</span>(<span class="hljs-params"> writer </span>) </span>{
-    <span class="hljs-keyword">const</span> simpleBox = writer.createElement( <span class="hljs-string">&apos;simpleBox&apos;</span> );
-    <span class="hljs-keyword">const</span> simpleBoxTitle = writer.createElement( <span class="hljs-string">&apos;simpleBoxTitle&apos;</span> );
-    <span class="hljs-keyword">const</span> simpleBoxDescription = writer.createElement( <span class="hljs-string">&apos;simpleBoxDescription&apos;</span> );
+function createSimpleBox( writer ) {
+    const simpleBox = writer.createElement( &apos;simpleBox&apos; );
+    const simpleBoxTitle = writer.createElement( &apos;simpleBoxTitle&apos; );
+    const simpleBoxDescription = writer.createElement( &apos;simpleBoxDescription&apos; );
 
     writer.append( simpleBoxTitle, simpleBox );
     writer.append( simpleBoxDescription, simpleBox );
 
-    <span class="hljs-comment">// There must be at least one paragraph for the description to be editable.</span>
-    <span class="hljs-comment">// See https://github.com/ckeditor/ckeditor5/issues/1464.</span>
-    writer.appendElement( <span class="hljs-string">&apos;paragraph&apos;</span>, simpleBoxDescription );
+    // There must be at least one paragraph for the description to be editable.
+    // See https://github.com/ckeditor/ckeditor5/issues/1464.
+    writer.appendElement( &apos;paragraph&apos;, simpleBoxDescription );
 
-    <span class="hljs-keyword">return</span> simpleBox;
+    return simpleBox;
 }
 </code></pre>
 <p>Import the command and register it in the <code>SimpleBoxEditing</code> plugin:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// simplebox/simpleboxediting.js</span>
+<pre class="highlight"><code class="js">// simplebox/simpleboxediting.js
 
-<span class="hljs-keyword">import</span> Plugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/plugin&apos;</span>;
+import Plugin from &apos;@ckeditor/ckeditor5-core/src/plugin&apos;;
 
-<span class="hljs-keyword">import</span> { toWidget, toWidgetEditable } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-widget/src/utils&apos;</span>;
-<span class="hljs-keyword">import</span> Widget <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-widget/src/widget&apos;</span>;
+import { toWidget, toWidgetEditable } from &apos;@ckeditor/ckeditor5-widget/src/utils&apos;;
+import Widget from &apos;@ckeditor/ckeditor5-widget/src/widget&apos;;
 
-<span class="hljs-keyword">import</span> InsertSimpleBoxCommand <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./insertsimpleboxcommand&apos;</span>;                 <span class="hljs-comment">// ADDED</span>
+import InsertSimpleBoxCommand from &apos;./insertsimpleboxcommand&apos;;                 // ADDED
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SimpleBoxEditing</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
-    <span class="hljs-keyword">static</span> <span class="hljs-keyword">get</span> requires() {
-        <span class="hljs-keyword">return</span> [ Widget ];
+export default class SimpleBoxEditing extends Plugin {
+    static get requires() {
+        return [ Widget ];
     }
 
     init() {
-        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;SimpleBoxEditing#init() got called&apos;</span> );
+        console.log( &apos;SimpleBoxEditing#init() got called&apos; );
 
-        <span class="hljs-keyword">this</span>._defineSchema();
-        <span class="hljs-keyword">this</span>._defineConverters();
+        this._defineSchema();
+        this._defineConverters();
 
-        <span class="hljs-comment">// ADDED</span>
-        <span class="hljs-keyword">this</span>.editor.commands.add( <span class="hljs-string">&apos;insertSimpleBox&apos;</span>, <span class="hljs-keyword">new</span> InsertSimpleBoxCommand( <span class="hljs-keyword">this</span>.editor ) );
+        // ADDED
+        this.editor.commands.add( &apos;insertSimpleBox&apos;, new InsertSimpleBoxCommand( this.editor ) );
     }
 
     _defineSchema() {
-        <span class="hljs-comment">// ...</span>
+        // ...
     }
 
     _defineConverters() {
-        <span class="hljs-comment">// ...</span>
+        // ...
     }
 }
 </code></pre>
 <p>You can now execute this command in order to insert a new simple box. Calling:</p>
-<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;insertSimpleBox&apos;</span> );
+<pre class="highlight"><code class="js">editor.execute( &apos;insertSimpleBox&apos; );
 </code></pre>
 <p>Should result in:</p>
 <p><img src="../../../assets/img/tutorial-implementing-a-widget-6.png" data-lightbox="true" alt="Screenshot of a simple box instance inserted at the beginning of the editor content."></p>
 <p>You can also try inspecting the <code>isEnabled</code> property value (or just checking it in CKEditor 5 inspector):</p>
-<pre class="highlight"><code class="js"><span class="hljs-built_in">console</span>.log( editor.commands.get( <span class="hljs-string">&apos;insertSimpleBox&apos;</span> ).isEnabled );
+<pre class="highlight"><code class="js">console.log( editor.commands.get( &apos;insertSimpleBox&apos; ).isEnabled );
 </code></pre>
 <p>It is always <code>true</code> except when the selection is in one place &#x2014; in other simple box&#x2019;s title. You can also observe that executing the command when the selection is in that place takes no effect.</p>
 <p>Change one more thing before you move forward &#x2014; disallow <code>simpleBox</code> inside <code>simpleBoxDescription</code>, too. This can be done by <a href="../../../api/module_engine_model_schema-Schema.html#function-addChildCheck">defining a custom child check</a>:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// simplebox/simpleboxediting.js</span>
+<pre class="highlight"><code class="js">// simplebox/simpleboxediting.js
 
-<span class="hljs-comment">// ... imports</span>
+// ... imports
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SimpleBoxEditing</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
-    <span class="hljs-keyword">static</span> <span class="hljs-keyword">get</span> requires() {
-        <span class="hljs-keyword">return</span> [ Widget ];
+export default class SimpleBoxEditing extends Plugin {
+    static get requires() {
+        return [ Widget ];
     }
 
     init() {
-        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;SimpleBoxEditing#init() got called&apos;</span> );
+        console.log( &apos;SimpleBoxEditing#init() got called&apos; );
 
-        <span class="hljs-keyword">this</span>._defineSchema();
-        <span class="hljs-keyword">this</span>._defineConverters();
+        this._defineSchema();
+        this._defineConverters();
 
-        <span class="hljs-keyword">this</span>.editor.commands.add( <span class="hljs-string">&apos;insertSimpleBox&apos;</span>, <span class="hljs-keyword">new</span> InsertSimpleBoxCommand( <span class="hljs-keyword">this</span>.editor ) );
+        this.editor.commands.add( &apos;insertSimpleBox&apos;, new InsertSimpleBoxCommand( this.editor ) );
     }
 
     _defineSchema() {
-        <span class="hljs-keyword">const</span> schema = <span class="hljs-keyword">this</span>.editor.model.schema;
+        const schema = this.editor.model.schema;
 
-        schema.register( <span class="hljs-string">&apos;simpleBox&apos;</span>, {
-            <span class="hljs-comment">// Behaves like a self-contained object (e.g. an image).</span>
-            <span class="hljs-attr">isObject</span>: <span class="hljs-literal">true</span>,
+        schema.register( &apos;simpleBox&apos;, {
+            // Behaves like a self-contained object (e.g. an image).
+            isObject: true,
 
-            <span class="hljs-comment">// Allow in places where other blocks are allowed (e.g. directly in the root).</span>
-            <span class="hljs-attr">allowWhere</span>: <span class="hljs-string">&apos;$block&apos;</span>
+            // Allow in places where other blocks are allowed (e.g. directly in the root).
+            allowWhere: &apos;$block&apos;
         } );
 
-        schema.register( <span class="hljs-string">&apos;simpleBoxTitle&apos;</span>, {
-            <span class="hljs-comment">// Cannot be split or left by the caret.</span>
-            <span class="hljs-attr">isLimit</span>: <span class="hljs-literal">true</span>,
+        schema.register( &apos;simpleBoxTitle&apos;, {
+            // Cannot be split or left by the caret.
+            isLimit: true,
 
-            <span class="hljs-attr">allowIn</span>: <span class="hljs-string">&apos;simpleBox&apos;</span>,
+            allowIn: &apos;simpleBox&apos;,
 
-            <span class="hljs-comment">// Allow content which is allowed in blocks (i.e. text with attributes).</span>
-            <span class="hljs-attr">allowContentOf</span>: <span class="hljs-string">&apos;$block&apos;</span>
+            // Allow content which is allowed in blocks (i.e. text with attributes).
+            allowContentOf: &apos;$block&apos;
         } );
 
-        schema.register( <span class="hljs-string">&apos;simpleBoxDescription&apos;</span>, {
-            <span class="hljs-comment">// Cannot be split or left by the caret.</span>
-            <span class="hljs-attr">isLimit</span>: <span class="hljs-literal">true</span>,
+        schema.register( &apos;simpleBoxDescription&apos;, {
+            // Cannot be split or left by the caret.
+            isLimit: true,
 
-            <span class="hljs-attr">allowIn</span>: <span class="hljs-string">&apos;simpleBox&apos;</span>,
+            allowIn: &apos;simpleBox&apos;,
 
-            <span class="hljs-comment">// Allow content which is allowed in the root (e.g. paragraphs).</span>
-            <span class="hljs-attr">allowContentOf</span>: <span class="hljs-string">&apos;$root&apos;</span>
+            // Allow content which is allowed in the root (e.g. paragraphs).
+            allowContentOf: &apos;$root&apos;
         } );
 
-        <span class="hljs-comment">// ADDED</span>
-        schema.addChildCheck( <span class="hljs-function">(<span class="hljs-params"> context, childDefinition </span>) =&gt;</span> {
-            <span class="hljs-keyword">if</span> ( context.endsWith( <span class="hljs-string">&apos;simpleBoxDescription&apos;</span> ) &amp;&amp; childDefinition.name == <span class="hljs-string">&apos;simpleBox&apos;</span> ) {
-                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        // ADDED
+        schema.addChildCheck( ( context, childDefinition ) =&gt; {
+            if ( context.endsWith( &apos;simpleBoxDescription&apos; ) &amp;&amp; childDefinition.name == &apos;simpleBox&apos; ) {
+                return false;
             }
         } );
     }
 
     _defineConverters() {
-        <span class="hljs-comment">// ...</span>
+        // ...
     }
 }
 </code></pre>
@@ -977,58 +977,58 @@ ClassicEditor
 <p>It is time to allow the editor users to insert the widget into the content. The best way to do that is through a UI button in the toolbar. You can quickly create one using the <a href="../../../api/module_ui_button_buttonview-ButtonView.html"><code>ButtonView</code></a> class brought by the <a href="../architecture/ui-library.html">UI framework</a> of CKEditor 5.</p>
 <p>The button should execute the <a href="#creating-a-command">command</a> when clicked and become inactive if the widget cannot be inserted into some particular position of the selection (<a href="#defining-the-schema">as defined in the schema</a>).</p>
 <p>See what it looks like in practice and extend the <code>SimpleBoxUI</code> plugin <a href="#plugin-structure">created earlier</a>:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// simplebox/simpleboxui.js</span>
+<pre class="highlight"><code class="js">// simplebox/simpleboxui.js
 
-<span class="hljs-keyword">import</span> ButtonView <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/button/buttonview&apos;</span>;
-<span class="hljs-keyword">import</span> Plugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/plugin&apos;</span>;
+import ButtonView from &apos;@ckeditor/ckeditor5-ui/src/button/buttonview&apos;;
+import Plugin from &apos;@ckeditor/ckeditor5-core/src/plugin&apos;;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SimpleBoxUI</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
+export default class SimpleBoxUI extends Plugin {
     init() {
-        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;SimpleBoxUI#init() got called&apos;</span> );
+        console.log( &apos;SimpleBoxUI#init() got called&apos; );
 
-        <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">this</span>.editor;
-        <span class="hljs-keyword">const</span> t = editor.t;
+        const editor = this.editor;
+        const t = editor.t;
 
-        <span class="hljs-comment">// The &quot;simpleBox&quot; button must be registered among the UI components of the editor</span>
-        <span class="hljs-comment">// to be displayed in the toolbar.</span>
-        editor.ui.componentFactory.add( <span class="hljs-string">&apos;simpleBox&apos;</span>, locale =&gt; {
-            <span class="hljs-comment">// The state of the button will be bound to the widget command.</span>
-            <span class="hljs-keyword">const</span> command = editor.commands.get( <span class="hljs-string">&apos;insertSimpleBox&apos;</span> );
+        // The &quot;simpleBox&quot; button must be registered among the UI components of the editor
+        // to be displayed in the toolbar.
+        editor.ui.componentFactory.add( &apos;simpleBox&apos;, locale =&gt; {
+            // The state of the button will be bound to the widget command.
+            const command = editor.commands.get( &apos;insertSimpleBox&apos; );
 
-            <span class="hljs-comment">// The button will be an instance of ButtonView.</span>
-            <span class="hljs-keyword">const</span> buttonView = <span class="hljs-keyword">new</span> ButtonView( locale );
+            // The button will be an instance of ButtonView.
+            const buttonView = new ButtonView( locale );
 
             buttonView.set( {
-                <span class="hljs-comment">// The t() function helps localize the editor. All strings enclosed in t() can be</span>
-                <span class="hljs-comment">// translated and change when the language of the editor changes.</span>
-                <span class="hljs-attr">label</span>: t( <span class="hljs-string">&apos;Simple Box&apos;</span> ),
-                <span class="hljs-attr">withText</span>: <span class="hljs-literal">true</span>,
-                <span class="hljs-attr">tooltip</span>: <span class="hljs-literal">true</span>
+                // The t() function helps localize the editor. All strings enclosed in t() can be
+                // translated and change when the language of the editor changes.
+                label: t( &apos;Simple Box&apos; ),
+                withText: true,
+                tooltip: true
             } );
 
-            <span class="hljs-comment">// Bind the state of the button to the command.</span>
-            buttonView.bind( <span class="hljs-string">&apos;isOn&apos;</span>, <span class="hljs-string">&apos;isEnabled&apos;</span> ).to( command, <span class="hljs-string">&apos;value&apos;</span>, <span class="hljs-string">&apos;isEnabled&apos;</span> );
+            // Bind the state of the button to the command.
+            buttonView.bind( &apos;isOn&apos;, &apos;isEnabled&apos; ).to( command, &apos;value&apos;, &apos;isEnabled&apos; );
 
-            <span class="hljs-comment">// Execute the command when the button is clicked (executed).</span>
-            <span class="hljs-keyword">this</span>.listenTo( buttonView, <span class="hljs-string">&apos;execute&apos;</span>, () =&gt; editor.execute( <span class="hljs-string">&apos;insertSimpleBox&apos;</span> ) );
+            // Execute the command when the button is clicked (executed).
+            this.listenTo( buttonView, &apos;execute&apos;, () =&gt; editor.execute( &apos;insertSimpleBox&apos; ) );
 
-            <span class="hljs-keyword">return</span> buttonView;
+            return buttonView;
         } );
     }
 }
 </code></pre>
 <p>The last thing you need to do is tell the editor to display the button in the toolbar. To do that, you will need to slightly modify the code that runs the editor instance and include the button in the <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html#member-toolbar">toolbar configuration</a>:</p>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ Essentials, Paragraph, Heading, List, Bold, Italic, SimpleBox ],
-        <span class="hljs-comment">// Insert the &quot;simpleBox&quot; button into the editor toolbar.</span>
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;heading&apos;</span>, <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-string">&apos;italic&apos;</span>, <span class="hljs-string">&apos;numberedList&apos;</span>, <span class="hljs-string">&apos;bulletedList&apos;</span>, <span class="hljs-string">&apos;simpleBox&apos;</span> ]
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Essentials, Paragraph, Heading, List, Bold, Italic, SimpleBox ],
+        // Insert the &quot;simpleBox&quot; button into the editor toolbar.
+        toolbar: [ &apos;heading&apos;, &apos;bold&apos;, &apos;italic&apos;, &apos;numberedList&apos;, &apos;bulletedList&apos;, &apos;simpleBox&apos; ]
     } )
-    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
-        <span class="hljs-comment">// ...</span>
+    .then( editor =&gt; {
+        // ...
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-        <span class="hljs-comment">// ...</span>
+    .catch( error =&gt; {
+        // ...
     } );
 </code></pre>
 <p>Refresh the web page and try it yourself:</p>
@@ -1075,237 +1075,237 @@ ClassicEditor
 </div>
 <h2 id="full-source-code"><a class="headerlink" href="#full-source-code">#</a> Full source code</h2>
 <p>The following code contains a complete implementation of the <code>SimpleBox</code> plugin (and all its dependencies) and the code to run the editor. You can paste it into the <a href="#plugin-structure"><code>app.js</code></a> file and it will run out&#x2013;of&#x2013;the&#x2013;box:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
-<span class="hljs-keyword">import</span> Essentials <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;</span>;
-<span class="hljs-keyword">import</span> Bold <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;</span>;
-<span class="hljs-keyword">import</span> Italic <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;</span>;
-<span class="hljs-keyword">import</span> Heading <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-heading/src/heading&apos;</span>;
-<span class="hljs-keyword">import</span> List <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-list/src/list&apos;</span>;
-<span class="hljs-keyword">import</span> Paragraph <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;</span>;
+<pre class="highlight"><code class="js">import ClassicEditor from &apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;;
+import Essentials from &apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;;
+import Bold from &apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;;
+import Italic from &apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;;
+import Heading from &apos;@ckeditor/ckeditor5-heading/src/heading&apos;;
+import List from &apos;@ckeditor/ckeditor5-list/src/list&apos;;
+import Paragraph from &apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;;
 
-<span class="hljs-keyword">import</span> Plugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/plugin&apos;</span>;
-<span class="hljs-keyword">import</span> { toWidget, toWidgetEditable } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-widget/src/utils&apos;</span>;
-<span class="hljs-keyword">import</span> Widget <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-widget/src/widget&apos;</span>;
-<span class="hljs-keyword">import</span> Command <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/command&apos;</span>;
-<span class="hljs-keyword">import</span> ButtonView <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/button/buttonview&apos;</span>;
+import Plugin from &apos;@ckeditor/ckeditor5-core/src/plugin&apos;;
+import { toWidget, toWidgetEditable } from &apos;@ckeditor/ckeditor5-widget/src/utils&apos;;
+import Widget from &apos;@ckeditor/ckeditor5-widget/src/widget&apos;;
+import Command from &apos;@ckeditor/ckeditor5-core/src/command&apos;;
+import ButtonView from &apos;@ckeditor/ckeditor5-ui/src/button/buttonview&apos;;
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SimpleBox</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
-    <span class="hljs-keyword">static</span> <span class="hljs-keyword">get</span> requires() {
-        <span class="hljs-keyword">return</span> [ SimpleBoxEditing, SimpleBoxUI ];
+class SimpleBox extends Plugin {
+    static get requires() {
+        return [ SimpleBoxEditing, SimpleBoxUI ];
     }
 }
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SimpleBoxUI</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
+class SimpleBoxUI extends Plugin {
     init() {
-        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;SimpleBoxUI#init() got called&apos;</span> );
+        console.log( &apos;SimpleBoxUI#init() got called&apos; );
 
-        <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">this</span>.editor;
-        <span class="hljs-keyword">const</span> t = editor.t;
+        const editor = this.editor;
+        const t = editor.t;
 
-        <span class="hljs-comment">// The &quot;simpleBox&quot; button must be registered among the UI components of the editor</span>
-        <span class="hljs-comment">// to be displayed in the toolbar.</span>
-        editor.ui.componentFactory.add( <span class="hljs-string">&apos;simpleBox&apos;</span>, locale =&gt; {
-            <span class="hljs-comment">// The state of the button will be bound to the widget command.</span>
-            <span class="hljs-keyword">const</span> command = editor.commands.get( <span class="hljs-string">&apos;insertSimpleBox&apos;</span> );
+        // The &quot;simpleBox&quot; button must be registered among the UI components of the editor
+        // to be displayed in the toolbar.
+        editor.ui.componentFactory.add( &apos;simpleBox&apos;, locale =&gt; {
+            // The state of the button will be bound to the widget command.
+            const command = editor.commands.get( &apos;insertSimpleBox&apos; );
 
-            <span class="hljs-comment">// The button will be an instance of ButtonView.</span>
-            <span class="hljs-keyword">const</span> buttonView = <span class="hljs-keyword">new</span> ButtonView( locale );
+            // The button will be an instance of ButtonView.
+            const buttonView = new ButtonView( locale );
 
             buttonView.set( {
-                <span class="hljs-comment">// The t() function helps localize the editor. All strings enclosed in t() can be</span>
-                <span class="hljs-comment">// translated and change when the language of the editor changes.</span>
-                <span class="hljs-attr">label</span>: t( <span class="hljs-string">&apos;Simple Box&apos;</span> ),
-                <span class="hljs-attr">withText</span>: <span class="hljs-literal">true</span>,
-                <span class="hljs-attr">tooltip</span>: <span class="hljs-literal">true</span>
+                // The t() function helps localize the editor. All strings enclosed in t() can be
+                // translated and change when the language of the editor changes.
+                label: t( &apos;Simple Box&apos; ),
+                withText: true,
+                tooltip: true
             } );
 
-            <span class="hljs-comment">// Bind the state of the button to the command.</span>
-            buttonView.bind( <span class="hljs-string">&apos;isOn&apos;</span>, <span class="hljs-string">&apos;isEnabled&apos;</span> ).to( command, <span class="hljs-string">&apos;value&apos;</span>, <span class="hljs-string">&apos;isEnabled&apos;</span> );
+            // Bind the state of the button to the command.
+            buttonView.bind( &apos;isOn&apos;, &apos;isEnabled&apos; ).to( command, &apos;value&apos;, &apos;isEnabled&apos; );
 
-            <span class="hljs-comment">// Execute the command when the button is clicked (executed).</span>
-            <span class="hljs-keyword">this</span>.listenTo( buttonView, <span class="hljs-string">&apos;execute&apos;</span>, () =&gt; editor.execute( <span class="hljs-string">&apos;insertSimpleBox&apos;</span> ) );
+            // Execute the command when the button is clicked (executed).
+            this.listenTo( buttonView, &apos;execute&apos;, () =&gt; editor.execute( &apos;insertSimpleBox&apos; ) );
 
-            <span class="hljs-keyword">return</span> buttonView;
+            return buttonView;
         } );
     }
 }
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SimpleBoxEditing</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
-    <span class="hljs-keyword">static</span> <span class="hljs-keyword">get</span> requires() {
-        <span class="hljs-keyword">return</span> [ Widget ];
+class SimpleBoxEditing extends Plugin {
+    static get requires() {
+        return [ Widget ];
     }
 
     init() {
-        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;SimpleBoxEditing#init() got called&apos;</span> );
+        console.log( &apos;SimpleBoxEditing#init() got called&apos; );
 
-        <span class="hljs-keyword">this</span>._defineSchema();
-        <span class="hljs-keyword">this</span>._defineConverters();
+        this._defineSchema();
+        this._defineConverters();
 
-        <span class="hljs-keyword">this</span>.editor.commands.add( <span class="hljs-string">&apos;insertSimpleBox&apos;</span>, <span class="hljs-keyword">new</span> InsertSimpleBoxCommand( <span class="hljs-keyword">this</span>.editor ) );
+        this.editor.commands.add( &apos;insertSimpleBox&apos;, new InsertSimpleBoxCommand( this.editor ) );
     }
 
     _defineSchema() {
-        <span class="hljs-keyword">const</span> schema = <span class="hljs-keyword">this</span>.editor.model.schema;
+        const schema = this.editor.model.schema;
 
-        schema.register( <span class="hljs-string">&apos;simpleBox&apos;</span>, {
-            <span class="hljs-comment">// Behaves like a self-contained object (e.g. an image).</span>
-            <span class="hljs-attr">isObject</span>: <span class="hljs-literal">true</span>,
+        schema.register( &apos;simpleBox&apos;, {
+            // Behaves like a self-contained object (e.g. an image).
+            isObject: true,
 
-            <span class="hljs-comment">// Allow in places where other blocks are allowed (e.g. directly in the root).</span>
-            <span class="hljs-attr">allowWhere</span>: <span class="hljs-string">&apos;$block&apos;</span>
+            // Allow in places where other blocks are allowed (e.g. directly in the root).
+            allowWhere: &apos;$block&apos;
         } );
 
-        schema.register( <span class="hljs-string">&apos;simpleBoxTitle&apos;</span>, {
-            <span class="hljs-comment">// Cannot be split or left by the caret.</span>
-            <span class="hljs-attr">isLimit</span>: <span class="hljs-literal">true</span>,
+        schema.register( &apos;simpleBoxTitle&apos;, {
+            // Cannot be split or left by the caret.
+            isLimit: true,
 
-            <span class="hljs-attr">allowIn</span>: <span class="hljs-string">&apos;simpleBox&apos;</span>,
+            allowIn: &apos;simpleBox&apos;,
 
-            <span class="hljs-comment">// Allow content which is allowed in blocks (i.e. text with attributes).</span>
-            <span class="hljs-attr">allowContentOf</span>: <span class="hljs-string">&apos;$block&apos;</span>
+            // Allow content which is allowed in blocks (i.e. text with attributes).
+            allowContentOf: &apos;$block&apos;
         } );
 
-        schema.register( <span class="hljs-string">&apos;simpleBoxDescription&apos;</span>, {
-            <span class="hljs-comment">// Cannot be split or left by the caret.</span>
-            <span class="hljs-attr">isLimit</span>: <span class="hljs-literal">true</span>,
+        schema.register( &apos;simpleBoxDescription&apos;, {
+            // Cannot be split or left by the caret.
+            isLimit: true,
 
-            <span class="hljs-attr">allowIn</span>: <span class="hljs-string">&apos;simpleBox&apos;</span>,
+            allowIn: &apos;simpleBox&apos;,
 
-            <span class="hljs-comment">// Allow content which is allowed in the root (e.g. paragraphs).</span>
-            <span class="hljs-attr">allowContentOf</span>: <span class="hljs-string">&apos;$root&apos;</span>
+            // Allow content which is allowed in the root (e.g. paragraphs).
+            allowContentOf: &apos;$root&apos;
         } );
 
-        schema.addChildCheck( <span class="hljs-function">(<span class="hljs-params"> context, childDefinition </span>) =&gt;</span> {
-            <span class="hljs-keyword">if</span> ( context.endsWith( <span class="hljs-string">&apos;simpleBoxDescription&apos;</span> ) &amp;&amp; childDefinition.name == <span class="hljs-string">&apos;simpleBox&apos;</span> ) {
-                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        schema.addChildCheck( ( context, childDefinition ) =&gt; {
+            if ( context.endsWith( &apos;simpleBoxDescription&apos; ) &amp;&amp; childDefinition.name == &apos;simpleBox&apos; ) {
+                return false;
             }
         } );
     }
 
     _defineConverters() {
-        <span class="hljs-keyword">const</span> conversion = <span class="hljs-keyword">this</span>.editor.conversion;
+        const conversion = this.editor.conversion;
 
-        <span class="hljs-comment">// &lt;simpleBox&gt; converters</span>
-        conversion.for( <span class="hljs-string">&apos;upcast&apos;</span> ).elementToElement( {
-            <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;simpleBox&apos;</span>,
-            <span class="hljs-attr">view</span>: {
-                <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;section&apos;</span>,
-                <span class="hljs-attr">classes</span>: <span class="hljs-string">&apos;simple-box&apos;</span>
+        // &lt;simpleBox&gt; converters
+        conversion.for( &apos;upcast&apos; ).elementToElement( {
+            model: &apos;simpleBox&apos;,
+            view: {
+                name: &apos;section&apos;,
+                classes: &apos;simple-box&apos;
             }
         } );
-        conversion.for( <span class="hljs-string">&apos;dataDowncast&apos;</span> ).elementToElement( {
-            <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;simpleBox&apos;</span>,
-            <span class="hljs-attr">view</span>: {
-                <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;section&apos;</span>,
-                <span class="hljs-attr">classes</span>: <span class="hljs-string">&apos;simple-box&apos;</span>
+        conversion.for( &apos;dataDowncast&apos; ).elementToElement( {
+            model: &apos;simpleBox&apos;,
+            view: {
+                name: &apos;section&apos;,
+                classes: &apos;simple-box&apos;
             }
         } );
-        conversion.for( <span class="hljs-string">&apos;editingDowncast&apos;</span> ).elementToElement( {
-            <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;simpleBox&apos;</span>,
-            <span class="hljs-attr">view</span>: <span class="hljs-function">(<span class="hljs-params"> modelElement, viewWriter </span>) =&gt;</span> {
-                <span class="hljs-keyword">const</span> section = viewWriter.createContainerElement( <span class="hljs-string">&apos;section&apos;</span>, { <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;simple-box&apos;</span> } );
+        conversion.for( &apos;editingDowncast&apos; ).elementToElement( {
+            model: &apos;simpleBox&apos;,
+            view: ( modelElement, viewWriter ) =&gt; {
+                const section = viewWriter.createContainerElement( &apos;section&apos;, { class: &apos;simple-box&apos; } );
 
-                <span class="hljs-keyword">return</span> toWidget( section, viewWriter, { <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;simple box widget&apos;</span> } );
-            }
-        } );
-
-        <span class="hljs-comment">// &lt;simpleBoxTitle&gt; converters</span>
-        conversion.for( <span class="hljs-string">&apos;upcast&apos;</span> ).elementToElement( {
-            <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;simpleBoxTitle&apos;</span>,
-            <span class="hljs-attr">view</span>: {
-                <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;h1&apos;</span>,
-                <span class="hljs-attr">classes</span>: <span class="hljs-string">&apos;simple-box-title&apos;</span>
-            }
-        } );
-        conversion.for( <span class="hljs-string">&apos;dataDowncast&apos;</span> ).elementToElement( {
-            <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;simpleBoxTitle&apos;</span>,
-            <span class="hljs-attr">view</span>: {
-                <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;h1&apos;</span>,
-                <span class="hljs-attr">classes</span>: <span class="hljs-string">&apos;simple-box-title&apos;</span>
-            }
-        } );
-        conversion.for( <span class="hljs-string">&apos;editingDowncast&apos;</span> ).elementToElement( {
-            <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;simpleBoxTitle&apos;</span>,
-            <span class="hljs-attr">view</span>: <span class="hljs-function">(<span class="hljs-params"> modelElement, viewWriter </span>) =&gt;</span> {
-                <span class="hljs-comment">// Note: You use a more specialized createEditableElement() method here.</span>
-                <span class="hljs-keyword">const</span> h1 = viewWriter.createEditableElement( <span class="hljs-string">&apos;h1&apos;</span>, { <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;simple-box-title&apos;</span> } );
-
-                <span class="hljs-keyword">return</span> toWidgetEditable( h1, viewWriter );
+                return toWidget( section, viewWriter, { label: &apos;simple box widget&apos; } );
             }
         } );
 
-        <span class="hljs-comment">// &lt;simpleBoxDescription&gt; converters</span>
-        conversion.for( <span class="hljs-string">&apos;upcast&apos;</span> ).elementToElement( {
-            <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;simpleBoxDescription&apos;</span>,
-            <span class="hljs-attr">view</span>: {
-                <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;div&apos;</span>,
-                <span class="hljs-attr">classes</span>: <span class="hljs-string">&apos;simple-box-description&apos;</span>
+        // &lt;simpleBoxTitle&gt; converters
+        conversion.for( &apos;upcast&apos; ).elementToElement( {
+            model: &apos;simpleBoxTitle&apos;,
+            view: {
+                name: &apos;h1&apos;,
+                classes: &apos;simple-box-title&apos;
             }
         } );
-        conversion.for( <span class="hljs-string">&apos;dataDowncast&apos;</span> ).elementToElement( {
-            <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;simpleBoxDescription&apos;</span>,
-            <span class="hljs-attr">view</span>: {
-                <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;div&apos;</span>,
-                <span class="hljs-attr">classes</span>: <span class="hljs-string">&apos;simple-box-description&apos;</span>
+        conversion.for( &apos;dataDowncast&apos; ).elementToElement( {
+            model: &apos;simpleBoxTitle&apos;,
+            view: {
+                name: &apos;h1&apos;,
+                classes: &apos;simple-box-title&apos;
             }
         } );
-        conversion.for( <span class="hljs-string">&apos;editingDowncast&apos;</span> ).elementToElement( {
-            <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;simpleBoxDescription&apos;</span>,
-            <span class="hljs-attr">view</span>: <span class="hljs-function">(<span class="hljs-params"> modelElement, viewWriter </span>) =&gt;</span> {
-                <span class="hljs-comment">// Note: You use a more specialized createEditableElement() method here.</span>
-                <span class="hljs-keyword">const</span> div = viewWriter.createEditableElement( <span class="hljs-string">&apos;div&apos;</span>, { <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;simple-box-description&apos;</span> } );
+        conversion.for( &apos;editingDowncast&apos; ).elementToElement( {
+            model: &apos;simpleBoxTitle&apos;,
+            view: ( modelElement, viewWriter ) =&gt; {
+                // Note: You use a more specialized createEditableElement() method here.
+                const h1 = viewWriter.createEditableElement( &apos;h1&apos;, { class: &apos;simple-box-title&apos; } );
 
-                <span class="hljs-keyword">return</span> toWidgetEditable( div, viewWriter );
+                return toWidgetEditable( h1, viewWriter );
+            }
+        } );
+
+        // &lt;simpleBoxDescription&gt; converters
+        conversion.for( &apos;upcast&apos; ).elementToElement( {
+            model: &apos;simpleBoxDescription&apos;,
+            view: {
+                name: &apos;div&apos;,
+                classes: &apos;simple-box-description&apos;
+            }
+        } );
+        conversion.for( &apos;dataDowncast&apos; ).elementToElement( {
+            model: &apos;simpleBoxDescription&apos;,
+            view: {
+                name: &apos;div&apos;,
+                classes: &apos;simple-box-description&apos;
+            }
+        } );
+        conversion.for( &apos;editingDowncast&apos; ).elementToElement( {
+            model: &apos;simpleBoxDescription&apos;,
+            view: ( modelElement, viewWriter ) =&gt; {
+                // Note: You use a more specialized createEditableElement() method here.
+                const div = viewWriter.createEditableElement( &apos;div&apos;, { class: &apos;simple-box-description&apos; } );
+
+                return toWidgetEditable( div, viewWriter );
             }
         } );
     }
 }
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InsertSimpleBoxCommand</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Command</span> </span>{
+class InsertSimpleBoxCommand extends Command {
     execute() {
-        <span class="hljs-keyword">this</span>.editor.model.change( <span class="hljs-function"><span class="hljs-params">writer</span> =&gt;</span> {
-            <span class="hljs-comment">// Insert &lt;simpleBox&gt;*&lt;/simpleBox&gt; at the current selection position</span>
-            <span class="hljs-comment">// in a way that will result in creating a valid model structure.</span>
-            <span class="hljs-keyword">this</span>.editor.model.insertContent( createSimpleBox( writer ) );
+        this.editor.model.change( writer =&gt; {
+            // Insert &lt;simpleBox&gt;*&lt;/simpleBox&gt; at the current selection position
+            // in a way that will result in creating a valid model structure.
+            this.editor.model.insertContent( createSimpleBox( writer ) );
         } );
     }
 
     refresh() {
-        <span class="hljs-keyword">const</span> model = <span class="hljs-keyword">this</span>.editor.model;
-        <span class="hljs-keyword">const</span> selection = model.document.selection;
-        <span class="hljs-keyword">const</span> allowedIn = model.schema.findAllowedParent( selection.getFirstPosition(), <span class="hljs-string">&apos;simpleBox&apos;</span> );
+        const model = this.editor.model;
+        const selection = model.document.selection;
+        const allowedIn = model.schema.findAllowedParent( selection.getFirstPosition(), &apos;simpleBox&apos; );
 
-        <span class="hljs-keyword">this</span>.isEnabled = allowedIn !== <span class="hljs-literal">null</span>;
+        this.isEnabled = allowedIn !== null;
     }
 }
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createSimpleBox</span>(<span class="hljs-params"> writer </span>) </span>{
-    <span class="hljs-keyword">const</span> simpleBox = writer.createElement( <span class="hljs-string">&apos;simpleBox&apos;</span> );
-    <span class="hljs-keyword">const</span> simpleBoxTitle = writer.createElement( <span class="hljs-string">&apos;simpleBoxTitle&apos;</span> );
-    <span class="hljs-keyword">const</span> simpleBoxDescription = writer.createElement( <span class="hljs-string">&apos;simpleBoxDescription&apos;</span> );
+function createSimpleBox( writer ) {
+    const simpleBox = writer.createElement( &apos;simpleBox&apos; );
+    const simpleBoxTitle = writer.createElement( &apos;simpleBoxTitle&apos; );
+    const simpleBoxDescription = writer.createElement( &apos;simpleBoxDescription&apos; );
 
     writer.append( simpleBoxTitle, simpleBox );
     writer.append( simpleBoxDescription, simpleBox );
 
-    <span class="hljs-comment">// There must be at least one paragraph for the description to be editable.</span>
-    <span class="hljs-comment">// See https://github.com/ckeditor/ckeditor5/issues/1464.</span>
-    writer.appendElement( <span class="hljs-string">&apos;paragraph&apos;</span>, simpleBoxDescription );
+    // There must be at least one paragraph for the description to be editable.
+    // See https://github.com/ckeditor/ckeditor5/issues/1464.
+    writer.appendElement( &apos;paragraph&apos;, simpleBoxDescription );
 
-    <span class="hljs-keyword">return</span> simpleBox;
+    return simpleBox;
 }
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ Essentials, Bold, Italic, Heading, List, Paragraph, SimpleBox ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;heading&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-string">&apos;italic&apos;</span>, <span class="hljs-string">&apos;numberedList&apos;</span>, <span class="hljs-string">&apos;bulletedList&apos;</span>, <span class="hljs-string">&apos;simpleBox&apos;</span> ],
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Essentials, Bold, Italic, Heading, List, Paragraph, SimpleBox ],
+        toolbar: [ &apos;heading&apos;, &apos;|&apos;, &apos;bold&apos;, &apos;italic&apos;, &apos;numberedList&apos;, &apos;bulletedList&apos;, &apos;simpleBox&apos; ],
     } )
-    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;Editor was initialized&apos;</span>, editor );
+    .then( editor =&gt; {
+        console.log( &apos;Editor was initialized&apos;, editor );
 
-        <span class="hljs-built_in">window</span>.editor = editor;
+        window.editor = editor;
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error( err.stack );
+    .catch( err =&gt; {
+        console.error( err.stack );
     } );
 </code></pre>
 

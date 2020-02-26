@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../../../../snippets/examples/theme-lark/snippet.css" type="text/css">
     <link rel="stylesheet" href="../../../../assets/snippet-styles.css" type="text/css">
@@ -35,16 +35,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -86,7 +86,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -232,11 +232,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-theme-lark/blob/master/docs/framework/guides/theme-customization.md" title="Contribute to this guide"><img src="../../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-theme-lark/blob/master/docs/framework/guides/theme-customization.md" title="Contribute to this guide"><img src="../../../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../../assets/1.2.1/img/book.svg" alt="guide">Theme customization
+          <h1 class="main__content-title"><img src="../../../../../../assets/1.2.2/img/book.svg" alt="guide">Theme customization
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#styles-processing-and-bundling">Styles processing and bundling</a></li><li><a href="#customization-with-css-variables">Customization with CSS variables</a></li></ol></nav>
 <p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-theme-lark" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-theme-lark</code></a> package contains the default theme of CKEditor 5. Lark is modular, <a href="https://en.bem.info/methodology/css/" target="_blank" rel="noopener">BEM&#x2013;friendly</a> and built using <a href="http://postcss.org/" target="_blank" rel="noopener">PostCSS</a>.</p>
 <p>Although it was designed with versatility and the most common editor use cases in mind, some integrations may require adjustments to make it match the style guidelines of the ecosystem. This kind of customization can be done by importing an extra <code>.css</code> file and overriding the <a href="https://www.w3.org/TR/css-variables/" target="_blank" rel="noopener">native CSS variables</a>.</p>
@@ -259,19 +259,19 @@
 <ol>
 <li>
 <p><strong>Collecting</strong>: Each JavaScript file in the project can import multiple <code>.css</code> files using the ES6 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import" target="_blank" rel="noopener"><code>import</code></a> directive. Imported files are handled by <a href="https://www.npmjs.com/package/postcss-loader" target="_blank" rel="noopener">PostCSS Loader</a>.</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> <span class="hljs-string">&apos;../theme/styles.css&apos;</span>;
+<pre class="highlight"><code class="js">import &apos;../theme/styles.css&apos;;
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AnyEditorClass</span> </span>{
+class AnyEditorClass {
     ...
 }
 </code></pre>
-<pre class="highlight"><code class="css"><span class="hljs-comment">/* Contents of styles.css. */</span>
-<span class="hljs-selector-pseudo">:root</span> {
-    <span class="hljs-attribute">--color</span>: red;
+<pre class="highlight"><code class="css">/* Contents of styles.css. */
+:root {
+    --color: red;
 }
 
-<span class="hljs-selector-class">.ck-editor</span> {
-    <span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--color);
+.ck-editor {
+    color: var(--color);
 }
 </code></pre>
 </li>
@@ -280,13 +280,13 @@
 </li>
 <li>
 <p><strong>Loading</strong>: Finally the <a href="https://www.npmjs.com/package/style-loader" target="_blank" rel="noopener">style loader</a> loads the output CSS along with the <code>ckeditor.js</code> file into a <code>&lt;style&gt;</code> element in the <code>&lt;head&gt;</code> section of the web page.</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/css&quot;</span>&gt;</span><span class="css">
-        <span class="hljs-selector-class">.ck-editor</span> {
-            <span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--color);
+<pre class="highlight"><code class="html">&lt;head&gt;
+    &lt;style type=&quot;text/css&quot;&gt;
+        .ck-editor {
+            color: var(--color);
         }
-    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+    &lt;/style&gt;
+&lt;/head&gt;
 </code></pre>
 </li>
 </ol>
@@ -294,126 +294,126 @@
 <p>Having <a href="../../../../builds/guides/development/custom-builds.html#forking-an-existing-build">cloned</a> an existing build of CKEditor for a quick start, let&#x2019;s use the full potential of CSS variables (custom properties). The customization explained in this guide will make the theme dark, with slightly bigger text and more rounded corners.</p>
 <div class="info-box notice notice__hint"><p>Check out the <a href="https://github.com/ckeditor/ckeditor5-theme-lark/blob/master/theme/ckeditor5-ui/globals/_colors.css" target="_blank" rel="noopener">color sheet</a> for a full list of customizable colors. You can also browse <a href="https://github.com/ckeditor/ckeditor5-theme-lark/blob/master/theme/ckeditor5-ui/globals" target="_blank" rel="noopener">other files</a> to learn about other useful tools.</p></div>
 <p>The file containing custom variables will be named <code>custom.css</code> and it will look as below:</p>
-<pre class="highlight"><code class="css"><span class="hljs-selector-pseudo">:root</span> {
-    <span class="hljs-comment">/* Overrides the border radius setting in the theme. */</span>
-    <span class="hljs-attribute">--ck-border-radius</span>: <span class="hljs-number">4px</span>;
+<pre class="highlight"><code class="css">:root {
+    /* Overrides the border radius setting in the theme. */
+    --ck-border-radius: 4px;
 
-    <span class="hljs-comment">/* Overrides the default font size in the theme. */</span>
-    <span class="hljs-attribute">--ck-font-size-base</span>: <span class="hljs-number">14px</span>;
+    /* Overrides the default font size in the theme. */
+    --ck-font-size-base: 14px;
 
-    <span class="hljs-comment">/* Helper variables to avoid duplication in the colors. */</span>
-    <span class="hljs-attribute">--ck-custom-background</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">270</span>, <span class="hljs-number">1%</span>, <span class="hljs-number">29%</span>);
-    <span class="hljs-attribute">--ck-custom-foreground</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">255</span>, <span class="hljs-number">3%</span>, <span class="hljs-number">18%</span>);
-    <span class="hljs-attribute">--ck-custom-border</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">300</span>, <span class="hljs-number">1%</span>, <span class="hljs-number">22%</span>);
-    <span class="hljs-attribute">--ck-custom-white</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">100%</span>);
+    /* Helper variables to avoid duplication in the colors. */
+    --ck-custom-background: hsl(270, 1%, 29%);
+    --ck-custom-foreground: hsl(255, 3%, 18%);
+    --ck-custom-border: hsl(300, 1%, 22%);
+    --ck-custom-white: hsl(0, 0%, 100%);
 
-    <span class="hljs-comment">/* -- Overrides generic colors. ------------------------------------------------------------- */</span>
+    /* -- Overrides generic colors. ------------------------------------------------------------- */
 
-    <span class="hljs-attribute">--ck-color-base-foreground</span>: <span class="hljs-built_in">var</span>(--ck-custom-background);
-    <span class="hljs-attribute">--ck-color-focus-border</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">208</span>, <span class="hljs-number">90%</span>, <span class="hljs-number">62%</span>);
-    <span class="hljs-attribute">--ck-color-text</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">98%</span>);
-    <span class="hljs-attribute">--ck-color-shadow-drop</span>: <span class="hljs-built_in">hsla</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">0.2</span>);
-    <span class="hljs-attribute">--ck-color-shadow-inner</span>: <span class="hljs-built_in">hsla</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">0.1</span>);
+    --ck-color-base-foreground: var(--ck-custom-background);
+    --ck-color-focus-border: hsl(208, 90%, 62%);
+    --ck-color-text: hsl(0, 0%, 98%);
+    --ck-color-shadow-drop: hsla(0, 0%, 0%, 0.2);
+    --ck-color-shadow-inner: hsla(0, 0%, 0%, 0.1);
 
-    <span class="hljs-comment">/* -- Overrides the default .ck-button class colors. ---------------------------------------- */</span>
+    /* -- Overrides the default .ck-button class colors. ---------------------------------------- */
 
-    <span class="hljs-attribute">--ck-color-button-default-background</span>: <span class="hljs-built_in">var</span>(--ck-custom-background);
-    <span class="hljs-attribute">--ck-color-button-default-hover-background</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">270</span>, <span class="hljs-number">1%</span>, <span class="hljs-number">22%</span>);
-    <span class="hljs-attribute">--ck-color-button-default-active-background</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">270</span>, <span class="hljs-number">2%</span>, <span class="hljs-number">20%</span>);
-    <span class="hljs-attribute">--ck-color-button-default-active-shadow</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">270</span>, <span class="hljs-number">2%</span>, <span class="hljs-number">23%</span>);
-    <span class="hljs-attribute">--ck-color-button-default-disabled-background</span>: <span class="hljs-built_in">var</span>(--ck-custom-background);
+    --ck-color-button-default-background: var(--ck-custom-background);
+    --ck-color-button-default-hover-background: hsl(270, 1%, 22%);
+    --ck-color-button-default-active-background: hsl(270, 2%, 20%);
+    --ck-color-button-default-active-shadow: hsl(270, 2%, 23%);
+    --ck-color-button-default-disabled-background: var(--ck-custom-background);
 
-    <span class="hljs-attribute">--ck-color-button-on-background</span>: <span class="hljs-built_in">var</span>(--ck-custom-foreground);
-    <span class="hljs-attribute">--ck-color-button-on-hover-background</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">255</span>, <span class="hljs-number">4%</span>, <span class="hljs-number">16%</span>);
-    <span class="hljs-attribute">--ck-color-button-on-active-background</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">255</span>, <span class="hljs-number">4%</span>, <span class="hljs-number">14%</span>);
-    <span class="hljs-attribute">--ck-color-button-on-active-shadow</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">240</span>, <span class="hljs-number">3%</span>, <span class="hljs-number">19%</span>);
-    <span class="hljs-attribute">--ck-color-button-on-disabled-background</span>: <span class="hljs-built_in">var</span>(--ck-custom-foreground);
+    --ck-color-button-on-background: var(--ck-custom-foreground);
+    --ck-color-button-on-hover-background: hsl(255, 4%, 16%);
+    --ck-color-button-on-active-background: hsl(255, 4%, 14%);
+    --ck-color-button-on-active-shadow: hsl(240, 3%, 19%);
+    --ck-color-button-on-disabled-background: var(--ck-custom-foreground);
 
-    <span class="hljs-attribute">--ck-color-button-action-background</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">168</span>, <span class="hljs-number">76%</span>, <span class="hljs-number">42%</span>);
-    <span class="hljs-attribute">--ck-color-button-action-hover-background</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">168</span>, <span class="hljs-number">76%</span>, <span class="hljs-number">38%</span>);
-    <span class="hljs-attribute">--ck-color-button-action-active-background</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">168</span>, <span class="hljs-number">76%</span>, <span class="hljs-number">36%</span>);
-    <span class="hljs-attribute">--ck-color-button-action-active-shadow</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">168</span>, <span class="hljs-number">75%</span>, <span class="hljs-number">34%</span>);
-    <span class="hljs-attribute">--ck-color-button-action-disabled-background</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">168</span>, <span class="hljs-number">76%</span>, <span class="hljs-number">42%</span>);
-    <span class="hljs-attribute">--ck-color-button-action-text</span>: <span class="hljs-built_in">var</span>(--ck-custom-white);
+    --ck-color-button-action-background: hsl(168, 76%, 42%);
+    --ck-color-button-action-hover-background: hsl(168, 76%, 38%);
+    --ck-color-button-action-active-background: hsl(168, 76%, 36%);
+    --ck-color-button-action-active-shadow: hsl(168, 75%, 34%);
+    --ck-color-button-action-disabled-background: hsl(168, 76%, 42%);
+    --ck-color-button-action-text: var(--ck-custom-white);
 
-    <span class="hljs-attribute">--ck-color-button-save</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">120</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">46%</span>);
-    <span class="hljs-attribute">--ck-color-button-cancel</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">15</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">56%</span>);
+    --ck-color-button-save: hsl(120, 100%, 46%);
+    --ck-color-button-cancel: hsl(15, 100%, 56%);
 
-    <span class="hljs-comment">/* -- Overrides the default .ck-dropdown class colors. -------------------------------------- */</span>
+    /* -- Overrides the default .ck-dropdown class colors. -------------------------------------- */
 
-    <span class="hljs-attribute">--ck-color-dropdown-panel-background</span>: <span class="hljs-built_in">var</span>(--ck-custom-background);
-    <span class="hljs-attribute">--ck-color-dropdown-panel-border</span>: <span class="hljs-built_in">var</span>(--ck-custom-foreground);
+    --ck-color-dropdown-panel-background: var(--ck-custom-background);
+    --ck-color-dropdown-panel-border: var(--ck-custom-foreground);
 
-    <span class="hljs-comment">/* -- Overrides the default .ck-splitbutton class colors. ----------------------------------- */</span>
+    /* -- Overrides the default .ck-splitbutton class colors. ----------------------------------- */
 
-    <span class="hljs-attribute">--ck-color-split-button-hover-background</span>: <span class="hljs-built_in">var</span>(--ck-color-button-default-hover-background);
-    <span class="hljs-attribute">--ck-color-split-button-hover-border</span>: <span class="hljs-built_in">var</span>(--ck-custom-foreground);
+    --ck-color-split-button-hover-background: var(--ck-color-button-default-hover-background);
+    --ck-color-split-button-hover-border: var(--ck-custom-foreground);
 
-    <span class="hljs-comment">/* -- Overrides the default .ck-input class colors. ----------------------------------------- */</span>
+    /* -- Overrides the default .ck-input class colors. ----------------------------------------- */
 
-    <span class="hljs-attribute">--ck-color-input-background</span>: <span class="hljs-built_in">var</span>(--ck-custom-foreground);
-    <span class="hljs-attribute">--ck-color-input-border</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">257</span>, <span class="hljs-number">3%</span>, <span class="hljs-number">43%</span>);
-    <span class="hljs-attribute">--ck-color-input-text</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">98%</span>);
-    <span class="hljs-attribute">--ck-color-input-disabled-background</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">255</span>, <span class="hljs-number">4%</span>, <span class="hljs-number">21%</span>);
-    <span class="hljs-attribute">--ck-color-input-disabled-border</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">250</span>, <span class="hljs-number">3%</span>, <span class="hljs-number">38%</span>);
-    <span class="hljs-attribute">--ck-color-input-disabled-text</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">46%</span>);
+    --ck-color-input-background: var(--ck-custom-foreground);
+    --ck-color-input-border: hsl(257, 3%, 43%);
+    --ck-color-input-text: hsl(0, 0%, 98%);
+    --ck-color-input-disabled-background: hsl(255, 4%, 21%);
+    --ck-color-input-disabled-border: hsl(250, 3%, 38%);
+    --ck-color-input-disabled-text: hsl(0, 0%, 46%);
 
-    <span class="hljs-comment">/* -- Overrides the default .ck-list class colors. ------------------------------------------ */</span>
+    /* -- Overrides the default .ck-list class colors. ------------------------------------------ */
 
-    <span class="hljs-attribute">--ck-color-list-background</span>: <span class="hljs-built_in">var</span>(--ck-custom-background);
-    <span class="hljs-attribute">--ck-color-list-button-hover-background</span>: <span class="hljs-built_in">var</span>(--ck-color-base-foreground);
-    <span class="hljs-attribute">--ck-color-list-button-on-background</span>: <span class="hljs-built_in">var</span>(--ck-color-base-active);
-    <span class="hljs-attribute">--ck-color-list-button-on-background-focus</span>: <span class="hljs-built_in">var</span>(--ck-color-base-active-focus);
-    <span class="hljs-attribute">--ck-color-list-button-on-text</span>: <span class="hljs-built_in">var</span>(--ck-color-base-background);
+    --ck-color-list-background: var(--ck-custom-background);
+    --ck-color-list-button-hover-background: var(--ck-color-base-foreground);
+    --ck-color-list-button-on-background: var(--ck-color-base-active);
+    --ck-color-list-button-on-background-focus: var(--ck-color-base-active-focus);
+    --ck-color-list-button-on-text: var(--ck-color-base-background);
 
-    <span class="hljs-comment">/* -- Overrides the default .ck-balloon-panel class colors. --------------------------------- */</span>
+    /* -- Overrides the default .ck-balloon-panel class colors. --------------------------------- */
 
-    <span class="hljs-attribute">--ck-color-panel-background</span>: <span class="hljs-built_in">var</span>(--ck-custom-background);
-    <span class="hljs-attribute">--ck-color-panel-border</span>: <span class="hljs-built_in">var</span>(--ck-custom-border);
+    --ck-color-panel-background: var(--ck-custom-background);
+    --ck-color-panel-border: var(--ck-custom-border);
 
-    <span class="hljs-comment">/* -- Overrides the default .ck-toolbar class colors. --------------------------------------- */</span>
+    /* -- Overrides the default .ck-toolbar class colors. --------------------------------------- */
 
-    <span class="hljs-attribute">--ck-color-toolbar-background</span>: <span class="hljs-built_in">var</span>(--ck-custom-background);
-    <span class="hljs-attribute">--ck-color-toolbar-border</span>: <span class="hljs-built_in">var</span>(--ck-custom-border);
+    --ck-color-toolbar-background: var(--ck-custom-background);
+    --ck-color-toolbar-border: var(--ck-custom-border);
 
-    <span class="hljs-comment">/* -- Overrides the default .ck-tooltip class colors. --------------------------------------- */</span>
+    /* -- Overrides the default .ck-tooltip class colors. --------------------------------------- */
 
-    <span class="hljs-attribute">--ck-color-tooltip-background</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">252</span>, <span class="hljs-number">7%</span>, <span class="hljs-number">14%</span>);
-    <span class="hljs-attribute">--ck-color-tooltip-text</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">93%</span>);
+    --ck-color-tooltip-background: hsl(252, 7%, 14%);
+    --ck-color-tooltip-text: hsl(0, 0%, 93%);
 
-    <span class="hljs-comment">/* -- Overrides the default colors used by the ckeditor5-image package. --------------------- */</span>
+    /* -- Overrides the default colors used by the ckeditor5-image package. --------------------- */
 
-    <span class="hljs-attribute">--ck-color-image-caption-background</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">97%</span>);
-    <span class="hljs-attribute">--ck-color-image-caption-text</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">20%</span>);
+    --ck-color-image-caption-background: hsl(0, 0%, 97%);
+    --ck-color-image-caption-text: hsl(0, 0%, 20%);
 
-    <span class="hljs-comment">/* -- Overrides the default colors used by the ckeditor5-widget package. -------------------- */</span>
+    /* -- Overrides the default colors used by the ckeditor5-widget package. -------------------- */
 
-    <span class="hljs-attribute">--ck-color-widget-blurred-border</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">87%</span>);
-    <span class="hljs-attribute">--ck-color-widget-hover-border</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">43</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">68%</span>);
-    <span class="hljs-attribute">--ck-color-widget-editable-focus-background</span>: <span class="hljs-built_in">var</span>(--ck-custom-white);
+    --ck-color-widget-blurred-border: hsl(0, 0%, 87%);
+    --ck-color-widget-hover-border: hsl(43, 100%, 68%);
+    --ck-color-widget-editable-focus-background: var(--ck-custom-white);
 
-    <span class="hljs-comment">/* -- Overrides the default colors used by the ckeditor5-link package. ---------------------- */</span>
+    /* -- Overrides the default colors used by the ckeditor5-link package. ---------------------- */
 
-    <span class="hljs-attribute">--ck-color-link-default</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">190</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">75%</span>);
+    --ck-color-link-default: hsl(190, 100%, 75%);
 }
 </code></pre>
 <p>This file can be referenced directly in HTML <strong>after the <code>&lt;link&gt;</code> tag injected by the editor</strong> and its content will simply override the default CSS variables. CSS variables are natively <a href="https://caniuse.com/#feat=css-variables" target="_blank" rel="noopener">supported</a> in all major web browsers and just like any other CSS rule, they are prioritized in the order of precedence.</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;custom.css&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/css&quot;</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;link rel=&quot;stylesheet&quot; href=&quot;custom.css&quot; type=&quot;text/css&quot;&gt;
 </code></pre>
 <p>Alternatively, the style sheet can also be imported into a JavaScript file that is processed by webpack and the <a href="#styles-processing-and-bundling">loaders</a>, becoming a part of the build, e.g. an entry point of the application.</p>
 <div class="info-box notice notice__info"><p>Learn more about <a href="../../quick-start.html">building the editor using webpack</a>.</p></div>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
+<pre class="highlight"><code class="js">import ClassicEditor from &apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;;
 
-<span class="hljs-comment">// To override the default styles, this file must be imported after ClassicEditor.</span>
-<span class="hljs-keyword">import</span> <span class="hljs-string">&apos;custom.css&apos;</span>;
+// To override the default styles, this file must be imported after ClassicEditor.
+import &apos;custom.css&apos;;
 
 ClassicEditor
     .create( ... )
-    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log( editor );
+    .then( editor =&gt; {
+        console.log( editor );
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error( err.stack );
+    .catch( err =&gt; {
+        console.error( err.stack );
     } );
 
 </code></pre>

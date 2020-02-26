@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../../../../assets/snippet-styles.css" type="text/css">
     <script>
@@ -34,16 +34,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -85,7 +85,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -231,11 +231,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-ui/blob/master/docs/framework/guides/external-ui.md" title="Contribute to this guide"><img src="../../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-ui/blob/master/docs/framework/guides/external-ui.md" title="Contribute to this guide"><img src="../../../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../../assets/1.2.1/img/book.svg" alt="guide">Third–party UI
+          <h1 class="main__content-title"><img src="../../../../../../assets/1.2.2/img/book.svg" alt="guide">Third–party UI
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#readying-the-editor-side">Readying the editor side</a></li><li><a href="#creating-the-bootstrap-ui">Creating the Bootstrap UI</a></li><li><a href="#binding-the-ui-with-the-editor">Binding the UI with the editor</a><ol><li><a href="#binding-the-buttons-to-editor-commands">Binding the buttons to editor commands</a></li><li><a href="#binding-the-dropdown-to-the-heading-commands">Binding the dropdown to the heading commands</a></li></ol></li><li><a href="#running-the-editor">Running the editor</a></li></ol></nav>
 <p>CKEditor 5 is a modular editing framework that allows various flexible configurations. This includes the usage of a third&#x2013;party user interface on top of the base editor classes.</p>
 <p>In this guide, a <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-build-classic" target="_blank" rel="noopener">classic&#x2013;like</a> editor will be bound to a completely separate, existing UI created in <a href="http://getbootstrap.com/" target="_blank" rel="noopener">Bootstrap</a>, providing the basic structure and toolbar items necessary to start editing.</p>
@@ -251,95 +251,95 @@
 </div>
 <h2 id="readying-the-editor-side"><a class="headerlink" href="#readying-the-editor-side">#</a> Readying the editor side</h2>
 <p>The ready&#x2013;to&#x2013;use builds of CKEditor like <a href="../../../../examples/builds/classic-editor.html">Classic</a> or <a href="../../../../examples/builds/inline-editor.html">Inline</a> come with a dedicated default user interface and a theme. However, to create an editor instance bound to a Bootstrap UI, only a limited subset of features is required. You need to import them first:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// Basic classes to create an editor.</span>
-<span class="hljs-keyword">import</span> Editor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/editor/editor&apos;</span>;
-<span class="hljs-keyword">import</span> EditorUI <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/editor/editorui&apos;</span>;
-<span class="hljs-keyword">import</span> EditorUIView <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/editorui/editoruiview&apos;</span>;
-<span class="hljs-keyword">import</span> FocusTracker <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-utils/src/focustracker&apos;</span>;
-<span class="hljs-keyword">import</span> ComponentFactory <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/componentfactory&apos;</span>;
-<span class="hljs-keyword">import</span> InlineEditableUIView <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/editableui/inline/inlineeditableuiview&apos;</span>;
-<span class="hljs-keyword">import</span> HtmlDataProcessor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-engine/src/dataprocessor/htmldataprocessor&apos;</span>;
-<span class="hljs-keyword">import</span> ElementReplacer <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-utils/src/elementreplacer&apos;</span>;
+<pre class="highlight"><code class="js">// Basic classes to create an editor.
+import Editor from &apos;@ckeditor/ckeditor5-core/src/editor/editor&apos;;
+import EditorUI from &apos;@ckeditor/ckeditor5-core/src/editor/editorui&apos;;
+import EditorUIView from &apos;@ckeditor/ckeditor5-ui/src/editorui/editoruiview&apos;;
+import FocusTracker from &apos;@ckeditor/ckeditor5-utils/src/focustracker&apos;;
+import ComponentFactory from &apos;@ckeditor/ckeditor5-ui/src/componentfactory&apos;;
+import InlineEditableUIView from &apos;@ckeditor/ckeditor5-ui/src/editableui/inline/inlineeditableuiview&apos;;
+import HtmlDataProcessor from &apos;@ckeditor/ckeditor5-engine/src/dataprocessor/htmldataprocessor&apos;;
+import ElementReplacer from &apos;@ckeditor/ckeditor5-utils/src/elementreplacer&apos;;
 
-<span class="hljs-comment">// Interfaces to extend the basic Editor API.</span>
-<span class="hljs-keyword">import</span> DataApiMixin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/editor/utils/dataapimixin&apos;</span>;
-<span class="hljs-keyword">import</span> ElementApiMixin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/editor/utils/elementapimixin&apos;</span>;
+// Interfaces to extend the basic Editor API.
+import DataApiMixin from &apos;@ckeditor/ckeditor5-core/src/editor/utils/dataapimixin&apos;;
+import ElementApiMixin from &apos;@ckeditor/ckeditor5-core/src/editor/utils/elementapimixin&apos;;
 
-<span class="hljs-comment">// Helper function for adding interfaces to the Editor class.</span>
-<span class="hljs-keyword">import</span> mix <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-utils/src/mix&apos;</span>;
+// Helper function for adding interfaces to the Editor class.
+import mix from &apos;@ckeditor/ckeditor5-utils/src/mix&apos;;
 
-<span class="hljs-comment">// Helper function that gets the data from an HTML element that the Editor is attached to.</span>
-<span class="hljs-keyword">import</span> getDataFromElement <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-utils/src/dom/getdatafromelement&apos;</span>;
+// Helper function that gets the data from an HTML element that the Editor is attached to.
+import getDataFromElement from &apos;@ckeditor/ckeditor5-utils/src/dom/getdatafromelement&apos;;
 
-<span class="hljs-comment">// Helper function that binds the editor with an HTMLForm element.</span>
-<span class="hljs-keyword">import</span> attachToForm <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/editor/utils/attachtoform&apos;</span>;
+// Helper function that binds the editor with an HTMLForm element.
+import attachToForm from &apos;@ckeditor/ckeditor5-core/src/editor/utils/attachtoform&apos;;
 
-<span class="hljs-comment">// Basic features that every editor should enable.</span>
-<span class="hljs-keyword">import</span> Clipboard <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-clipboard/src/clipboard&apos;</span>;
-<span class="hljs-keyword">import</span> Enter <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-enter/src/enter&apos;</span>;
-<span class="hljs-keyword">import</span> Typing <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-typing/src/typing&apos;</span>;
-<span class="hljs-keyword">import</span> Paragraph <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;</span>;
-<span class="hljs-keyword">import</span> UndoEditing <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-undo/src/undoengine&apos;</span>;
+// Basic features that every editor should enable.
+import Clipboard from &apos;@ckeditor/ckeditor5-clipboard/src/clipboard&apos;;
+import Enter from &apos;@ckeditor/ckeditor5-enter/src/enter&apos;;
+import Typing from &apos;@ckeditor/ckeditor5-typing/src/typing&apos;;
+import Paragraph from &apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;;
+import UndoEditing from &apos;@ckeditor/ckeditor5-undo/src/undoengine&apos;;
 
-<span class="hljs-comment">// Basic features associated with the edited content.</span>
-<span class="hljs-keyword">import</span> BoldEditing <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/bold/boldediting&apos;</span>;
-<span class="hljs-keyword">import</span> ItalicEditing <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/italic/italicediting&apos;</span>;
-<span class="hljs-keyword">import</span> UnderlineEditing <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/underline/underlineediting&apos;</span>;
-<span class="hljs-keyword">import</span> HeadingEditing <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-heading/src/heading/headingediting&apos;</span>;
+// Basic features associated with the edited content.
+import BoldEditing from &apos;@ckeditor/ckeditor5-basic-styles/src/bold/boldediting&apos;;
+import ItalicEditing from &apos;@ckeditor/ckeditor5-basic-styles/src/italic/italicediting&apos;;
+import UnderlineEditing from &apos;@ckeditor/ckeditor5-basic-styles/src/underline/underlineediting&apos;;
+import HeadingEditing from &apos;@ckeditor/ckeditor5-heading/src/heading/headingediting&apos;;
 </code></pre>
 <div class="info-box notice notice__info"><p>Note that instead of <a href="../../../../api/module_basic-styles_bold-Bold.html"><code>Bold</code></a>, which loads the default bold UI and bold editing feature, just the <a href="../../../../api/module_basic-styles_bold_boldediting-BoldEditing.html"><code>BoldEditing</code></a> is imported. It provides the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine" target="_blank" rel="noopener">engine</a> features associated with editing any bold text but does not come with the actual UI.</p><p>Respectively, <code>ItalicEditing</code>, <code>UnderlineEditing</code>, <code>HeadingEditing</code> and <code>UndoEditing</code> are also imported.</p></div>
 <p>Having imported the very basic editor components, you can define the custom <code>BootstrapEditor</code> class that extends the <a href="../../../../api/module_core_editor_editor-Editor.html"><code>Editor</code></a>:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// Extending the Editor class, which brings the base editor API.</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BootstrapEditor</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Editor</span> </span>{
-    <span class="hljs-keyword">constructor</span>( element, config ) {
-        <span class="hljs-keyword">super</span>( config );
+<pre class="highlight"><code class="js">// Extending the Editor class, which brings the base editor API.
+export default class BootstrapEditor extends Editor {
+    constructor( element, config ) {
+        super( config );
 
-        <span class="hljs-comment">// Remember the element the editor is created with.</span>
-        <span class="hljs-keyword">this</span>.sourceElement = element;
+        // Remember the element the editor is created with.
+        this.sourceElement = element;
 
-        <span class="hljs-comment">// Use the HTML data processor in this editor.</span>
-        <span class="hljs-keyword">this</span>.data.processor = <span class="hljs-keyword">new</span> HtmlDataProcessor();
+        // Use the HTML data processor in this editor.
+        this.data.processor = new HtmlDataProcessor();
 
-        <span class="hljs-comment">// Create the (&quot;main&quot;) root element of the model tree.</span>
-        <span class="hljs-keyword">this</span>.model.document.createRoot();
+        // Create the (&quot;main&quot;) root element of the model tree.
+        this.model.document.createRoot();
 
-        <span class="hljs-comment">// The UI layer of the editor.</span>
-        <span class="hljs-keyword">this</span>.ui = <span class="hljs-keyword">new</span> BootstrapEditorUI( <span class="hljs-keyword">this</span> );
+        // The UI layer of the editor.
+        this.ui = new BootstrapEditorUI( this );
 
-        <span class="hljs-comment">// When editor#element is a textarea inside a form element,</span>
-        <span class="hljs-comment">// the content of this textarea will be updated on form submit.</span>
-        attachToForm( <span class="hljs-keyword">this</span> );
+        // When editor#element is a textarea inside a form element,
+        // the content of this textarea will be updated on form submit.
+        attachToForm( this );
     }
 
     destroy() {
-        <span class="hljs-comment">// When destroyed, the editor sets the output of editor#getData() into editor#element...</span>
-        <span class="hljs-keyword">this</span>.updateSourceElement();
+        // When destroyed, the editor sets the output of editor#getData() into editor#element...
+        this.updateSourceElement();
 
-        <span class="hljs-comment">// ...and destroys the UI.</span>
-        <span class="hljs-keyword">this</span>.ui.destroy();
+        // ...and destroys the UI.
+        this.ui.destroy();
 
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">super</span>.destroy();
+        return super.destroy();
     }
 
-    <span class="hljs-keyword">static</span> create( element, config ) {
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>( <span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> {
-            <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">new</span> <span class="hljs-keyword">this</span>( element, config );
+    static create( element, config ) {
+        return new Promise( resolve =&gt; {
+            const editor = new this( element, config );
 
             resolve(
                 editor.initPlugins()
-                    <span class="hljs-comment">// Initialize the UI first. See the BootstrapEditorUI class to learn more.</span>
-                    .then( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> editor.ui.init( element ) )
-                    <span class="hljs-comment">// Fill the editable with the initial data.</span>
-                    .then( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> editor.data.init( getDataFromElement( element ) ) )
-                    <span class="hljs-comment">// Fire the `editor#ready` event that announce the editor is complete and ready to use.</span>
-                    .then( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> editor.fire( <span class="hljs-string">&apos;ready&apos;</span> ) )
-                    .then( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> editor )
+                    // Initialize the UI first. See the BootstrapEditorUI class to learn more.
+                    .then( () =&gt; editor.ui.init( element ) )
+                    // Fill the editable with the initial data.
+                    .then( () =&gt; editor.data.init( getDataFromElement( element ) ) )
+                    // Fire the `editor#ready` event that announce the editor is complete and ready to use.
+                    .then( () =&gt; editor.fire( &apos;ready&apos; ) )
+                    .then( () =&gt; editor )
             );
         } );
     }
 }
 
-<span class="hljs-comment">// Mixing interfaces, which extends the basic editor API.</span>
+// Mixing interfaces, which extends the basic editor API.
 mix( BootstrapEditor, DataApiMixin );
 mix( BootstrapEditor, ElementApiMixin );
 </code></pre>
@@ -347,209 +347,209 @@ mix( BootstrapEditor, ElementApiMixin );
 <p>Although the editor is ready to use, it is just a bare editable area &#x2014; which is not much use to the users. You need to give it an actual interface with the toolbar and buttons.</p>
 <div class="info-box notice notice__hint"><p>Refer to the Bootstrap <a href="https://getbootstrap.com/docs/4.0/getting-started/introduction/" target="_blank" rel="noopener">Getting started</a> guide to learn how to include Bootstrap in your web page.</p></div>
 <p>With the Bootstrap framework loaded in the web page, you can define the actual UI of the editor in HTML:</p>
-<pre class="highlight"><code class="html"><span class="hljs-comment">&lt;!-- The outermost cotainer of the editor. --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;ck-editor&quot;</span>&gt;</span>
-    <span class="hljs-comment">&lt;!-- The toolbar of the editor. --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn-toolbar&quot;</span> <span class="hljs-attr">role</span>=<span class="hljs-string">&quot;toolbar&quot;</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">&quot;Editor toolbar&quot;</span>&gt;</span>
-        <span class="hljs-comment">&lt;!-- The headings dropdown. --&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn-group mr-2&quot;</span> <span class="hljs-attr">role</span>=<span class="hljs-string">&quot;group&quot;</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">&quot;Headings&quot;</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;dropdown&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;heading&quot;</span>&gt;</span>
-              <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-primary btn-sm dropdown-toggle&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">data-toggle</span>=<span class="hljs-string">&quot;dropdown&quot;</span> <span class="hljs-attr">aria-haspopup</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">aria-expanded</span>=<span class="hljs-string">&quot;false&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Headings<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-              <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;dropdown-menu&quot;</span> <span class="hljs-attr">aria-labelledby</span>=<span class="hljs-string">&quot;heading-button&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;!-- The outermost cotainer of the editor. --&gt;
+&lt;div class=&quot;ck-editor&quot;&gt;
+    &lt;!-- The toolbar of the editor. --&gt;
+    &lt;div class=&quot;btn-toolbar&quot; role=&quot;toolbar&quot; aria-label=&quot;Editor toolbar&quot;&gt;
+        &lt;!-- The headings dropdown. --&gt;
+        &lt;div class=&quot;btn-group mr-2&quot; role=&quot;group&quot; aria-label=&quot;Headings&quot;&gt;
+            &lt;div class=&quot;dropdown&quot; id=&quot;heading&quot;&gt;
+              &lt;button class=&quot;btn btn-primary btn-sm dropdown-toggle&quot; type=&quot;button&quot; data-toggle=&quot;dropdown&quot; aria-haspopup=&quot;true&quot; aria-expanded=&quot;false&quot;&gt;&lt;span&gt;Headings&lt;/span&gt;&lt;/button&gt;
+              &lt;div class=&quot;dropdown-menu&quot; aria-labelledby=&quot;heading-button&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
 
-        <span class="hljs-comment">&lt;!-- Basic styles buttons. --&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn-group mr-2&quot;</span> <span class="hljs-attr">role</span>=<span class="hljs-string">&quot;group&quot;</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">&quot;Basic styles&quot;</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-primary btn-sm&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;bold&quot;</span>&gt;</span>B<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-primary btn-sm&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;italic&quot;</span>&gt;</span>I<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-primary btn-sm&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;underline&quot;</span>&gt;</span>U<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        &lt;!-- Basic styles buttons. --&gt;
+        &lt;div class=&quot;btn-group mr-2&quot; role=&quot;group&quot; aria-label=&quot;Basic styles&quot;&gt;
+            &lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-sm&quot; id=&quot;bold&quot;&gt;B&lt;/button&gt;
+            &lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-sm&quot; id=&quot;italic&quot;&gt;I&lt;/button&gt;
+            &lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-sm&quot; id=&quot;underline&quot;&gt;U&lt;/button&gt;
+        &lt;/div&gt;
 
-        <span class="hljs-comment">&lt;!-- Undo and redo buttons. --&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn-group mr-2&quot;</span> <span class="hljs-attr">role</span>=<span class="hljs-string">&quot;group&quot;</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">&quot;Undo&quot;</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-primary btn-sm&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;undo&quot;</span>&gt;</span><span class="hljs-symbol">&amp;larr;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn btn-primary btn-sm&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;redo&quot;</span>&gt;</span><span class="hljs-symbol">&amp;rarr;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        &lt;!-- Undo and redo buttons. --&gt;
+        &lt;div class=&quot;btn-group mr-2&quot; role=&quot;group&quot; aria-label=&quot;Undo&quot;&gt;
+            &lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-sm&quot; id=&quot;undo&quot;&gt;&amp;larr;&lt;/button&gt;
+            &lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-sm&quot; id=&quot;redo&quot;&gt;&amp;rarr;&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
 
-    <span class="hljs-comment">&lt;!-- The container with the data of the editor. --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;editor&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hello world!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    &lt;!-- The container with the data of the editor. --&gt;
+    &lt;div id=&quot;editor&quot;&gt;
+        &lt;p&gt;Hello world!&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
 </code></pre>
 <p>Although Bootstrap provides most of the CSS, it does not come with styles dedicated for <a href="https://en.wikipedia.org/wiki/WYSIWYG" target="_blank" rel="noopener">WYSIWYG</a> text editors and some tweaking is needed:</p>
-<pre class="highlight"><code class="css"><span class="hljs-comment">/* Give the editor some space and limits using a border. */</span>
-<span class="hljs-selector-class">.ck-editor</span> {
-    <span class="hljs-attribute">margin</span>: <span class="hljs-number">1em</span> <span class="hljs-number">0</span>;
-    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-built_in">hsla</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">0.1</span>);
-    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">4px</span>;
+<pre class="highlight"><code class="css">/* Give the editor some space and limits using a border. */
+.ck-editor {
+    margin: 1em 0;
+    border: 1px solid hsla(0, 0%, 0%, 0.1);
+    border-radius: 4px;
 }
 
-<span class="hljs-comment">/* Adding internal spacing, border and background to the toolbar.  */</span>
-<span class="hljs-selector-class">.ck-editor</span> <span class="hljs-selector-class">.btn-toolbar</span> {
-    <span class="hljs-attribute">padding</span>: .<span class="hljs-number">5rem</span>;
-    <span class="hljs-attribute">background</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">240</span>, <span class="hljs-number">14%</span>, <span class="hljs-number">97%</span>);
-    <span class="hljs-attribute">border-bottom</span>: <span class="hljs-number">1px</span> solid <span class="hljs-built_in">hsla</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">0.1</span>);
+/* Adding internal spacing, border and background to the toolbar.  */
+.ck-editor .btn-toolbar {
+    padding: .5rem;
+    background: hsl(240, 14%, 97%);
+    border-bottom: 1px solid hsla(0, 0%, 0%, 0.1);
 }
 
-<span class="hljs-comment">/* Tweaking the editable area for better readability. */</span>
-<span class="hljs-selector-class">.ck-editor</span> <span class="hljs-selector-class">.ck-editor__editable</span> {
-    <span class="hljs-attribute">padding</span>: <span class="hljs-number">2em</span> <span class="hljs-number">2em</span> <span class="hljs-number">1em</span>;
-    <span class="hljs-attribute">overflow</span>: auto;
+/* Tweaking the editable area for better readability. */
+.ck-editor .ck-editor__editable {
+    padding: 2em 2em 1em;
+    overflow: auto;
 }
 
-<span class="hljs-comment">/* When in read&#x2013;only mode, the editable should fade out. */</span>
-<span class="hljs-selector-class">.ck-editor</span> <span class="hljs-selector-class">.ck-editor__editable</span><span class="hljs-selector-class">.ck-read-only</span> {
-    <span class="hljs-attribute">background</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">98%</span>);
-    <span class="hljs-attribute">color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">47%</span>);
+/* When in read&#x2013;only mode, the editable should fade out. */
+.ck-editor .ck-editor__editable.ck-read-only {
+    background: hsl(0, 0%, 98%);
+    color: hsl(0, 0%, 47%);
 }
 
-<span class="hljs-comment">/* Make sure the headings dropdown button does not change its size
-as different headings are selected. */</span>
-<span class="hljs-selector-class">.ck-editor</span> <span class="hljs-selector-class">.dropdown-toggle</span> <span class="hljs-selector-tag">span</span> {
-    <span class="hljs-attribute">display</span>: inline-block;
-    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;
-    <span class="hljs-attribute">text-align</span>: left;
-    <span class="hljs-attribute">overflow</span>: hidden;
-    <span class="hljs-attribute">text-overflow</span>: ellipsis;
-    <span class="hljs-attribute">vertical-align</span>: bottom;
+/* Make sure the headings dropdown button does not change its size
+as different headings are selected. */
+.ck-editor .dropdown-toggle span {
+    display: inline-block;
+    width: 100px;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: bottom;
 }
 
-<span class="hljs-comment">/* Make the headings dropdown items visually distinctive. */</span>
-<span class="hljs-selector-class">.ck-editor</span> <span class="hljs-selector-class">.heading-item_heading1</span> { <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1.5em</span>; }
-<span class="hljs-selector-class">.ck-editor</span> <span class="hljs-selector-class">.heading-item_heading2</span> { <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1.3em</span>; }
-<span class="hljs-selector-class">.ck-editor</span> <span class="hljs-selector-class">.heading-item_heading3</span> { <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1.1em</span>; }
+/* Make the headings dropdown items visually distinctive. */
+.ck-editor .heading-item_heading1 { font-size: 1.5em; }
+.ck-editor .heading-item_heading2 { font-size: 1.3em; }
+.ck-editor .heading-item_heading3 { font-size: 1.1em; }
 
-<span class="hljs-selector-class">.ck-editor</span> <span class="hljs-selector-attr">[class*=<span class="hljs-string">&quot;heading-item_&quot;</span>]</span> {
-    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">22px</span>;
-    <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span>;
+.ck-editor [class*=&quot;heading-item_&quot;] {
+    line-height: 22px;
+    padding: 10px;
 }
 
-<span class="hljs-selector-class">.ck-editor</span> <span class="hljs-selector-attr">[class*=<span class="hljs-string">&quot;heading-item_heading&quot;</span>]</span> {
-  <span class="hljs-attribute">font-weight</span>: bold;
+.ck-editor [class*=&quot;heading-item_heading&quot;] {
+  font-weight: bold;
 }
 
-<span class="hljs-comment">/* Give the basic styles buttons the icon&#x2013;like look and feel. */</span>
-<span class="hljs-selector-class">.ck-editor</span> <span class="hljs-selector-id">#bold</span> { <span class="hljs-attribute">font-weight</span>: bold; }
-<span class="hljs-selector-class">.ck-editor</span> <span class="hljs-selector-id">#italic</span> { <span class="hljs-attribute">font-style</span>: italic; }
-<span class="hljs-selector-class">.ck-editor</span> <span class="hljs-selector-id">#underline</span> { <span class="hljs-attribute">text-decoration</span>: underline; }
+/* Give the basic styles buttons the icon&#x2013;like look and feel. */
+.ck-editor #bold { font-weight: bold; }
+.ck-editor #italic { font-style: italic; }
+.ck-editor #underline { text-decoration: underline; }
 </code></pre>
 <h2 id="binding-the-ui-with-the-editor"><a class="headerlink" href="#binding-the-ui-with-the-editor">#</a> Binding the UI with the editor</h2>
 <p>At this stage, you should bind the editor created at the very beginning of this guide with the Bootstrap UI defined in HTML. All the UI logic will be wrapped into a separate class matching the <code>EditorUI</code> <a href="../../../../api/module_core_editor_editorui-EditorUI.html">interface</a>. You may have noticed this line in the constructor of the <code>BootstrapEditor</code>:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">this</span>.ui = <span class="hljs-keyword">new</span> BootstrapEditorUI( <span class="hljs-keyword">this</span> );
+<pre class="highlight"><code class="js">this.ui = new BootstrapEditorUI( this );
 </code></pre>
 <p>Define the <code>BootstrapEditorUI</code> and then have a closer look at the content of the class:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// The class organizing the UI of the editor, binding it with existing Bootstrap elements in the DOM.</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BootstrapEditorUI</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">EditorUI</span> </span>{
-    <span class="hljs-keyword">constructor</span>( editor ) {
-        <span class="hljs-keyword">super</span>( editor );
+<pre class="highlight"><code class="js">// The class organizing the UI of the editor, binding it with existing Bootstrap elements in the DOM.
+class BootstrapEditorUI extends EditorUI {
+    constructor( editor ) {
+        super( editor );
 
-        <span class="hljs-comment">// A helper to easily replace the editor#element with editor.editable#element.</span>
-        <span class="hljs-keyword">this</span>._elementReplacer = <span class="hljs-keyword">new</span> ElementReplacer();
+        // A helper to easily replace the editor#element with editor.editable#element.
+        this._elementReplacer = new ElementReplacer();
 
-        <span class="hljs-comment">// The global UI view of the editor. It aggregates various Bootstrap DOM elements.</span>
-        <span class="hljs-keyword">const</span> view = <span class="hljs-keyword">this</span>._view = <span class="hljs-keyword">new</span> EditorUIView( editor.locale );
+        // The global UI view of the editor. It aggregates various Bootstrap DOM elements.
+        const view = this._view = new EditorUIView( editor.locale );
 
-        <span class="hljs-comment">// This is the main editor element in the DOM.</span>
-        view.element = $( <span class="hljs-string">&apos;.ck-editor&apos;</span> );
+        // This is the main editor element in the DOM.
+        view.element = $( &apos;.ck-editor&apos; );
 
-        <span class="hljs-comment">// This is the editable view in the DOM. It will replace the data container in the DOM.</span>
-        view.editable = <span class="hljs-keyword">new</span> InlineEditableUIView( editor.locale, editor.editing.view );
+        // This is the editable view in the DOM. It will replace the data container in the DOM.
+        view.editable = new InlineEditableUIView( editor.locale, editor.editing.view );
 
-        <span class="hljs-comment">// References to the dropdown elements for further usage. See #_setupBootstrapHeadingDropdown.</span>
-        view.dropdownMenu = view.element.find( <span class="hljs-string">&apos;.dropdown-menu&apos;</span> );
-        view.dropdownToggle = view.element.find( <span class="hljs-string">&apos;.dropdown-toggle&apos;</span> );
+        // References to the dropdown elements for further usage. See #_setupBootstrapHeadingDropdown.
+        view.dropdownMenu = view.element.find( &apos;.dropdown-menu&apos; );
+        view.dropdownToggle = view.element.find( &apos;.dropdown-toggle&apos; );
 
-        <span class="hljs-comment">// References to the toolbar buttons for further usage. See #_setupBootstrapToolbarButtons.</span>
+        // References to the toolbar buttons for further usage. See #_setupBootstrapToolbarButtons.
         view.toolbarButtons = {};
 
-        [ <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-string">&apos;italic&apos;</span>, <span class="hljs-string">&apos;underline&apos;</span>, <span class="hljs-string">&apos;undo&apos;</span>, <span class="hljs-string">&apos;redo&apos;</span> ].forEach( <span class="hljs-function"><span class="hljs-params">name</span> =&gt;</span> {
-            <span class="hljs-comment">// Retrieve the jQuery object corresponding with the button in the DOM.</span>
-            view.toolbarButtons[ name ] = view.element.find( <span class="hljs-string">`#<span class="hljs-subst">${ name }</span>`</span> );
+        [ &apos;bold&apos;, &apos;italic&apos;, &apos;underline&apos;, &apos;undo&apos;, &apos;redo&apos; ].forEach( name =&gt; {
+            // Retrieve the jQuery object corresponding with the button in the DOM.
+            view.toolbarButtons[ name ] = view.element.find( `#${ name }` );
         } );
     }
 
-    <span class="hljs-comment">// All EditorUI subclasses should expose their view instance</span>
-    <span class="hljs-comment">// so other UI classes can access it if necessary.</span>
-    <span class="hljs-keyword">get</span> view() {
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._view;
+    // All EditorUI subclasses should expose their view instance
+    // so other UI classes can access it if necessary.
+    get view() {
+        return this._view;
     }
 
     init( replacementElement ) {
-        <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">this</span>.editor;
-        <span class="hljs-keyword">const</span> view = <span class="hljs-keyword">this</span>.view;
-        <span class="hljs-keyword">const</span> editingView = editor.editing.view;
+        const editor = this.editor;
+        const view = this.view;
+        const editingView = editor.editing.view;
 
-        <span class="hljs-comment">// Create an editing root in the editing layer. It will correspond with the</span>
-        <span class="hljs-comment">// document root created in the constructor().</span>
-        <span class="hljs-keyword">const</span> editingRoot = editingView.document.getRoot();
+        // Create an editing root in the editing layer. It will correspond with the
+        // document root created in the constructor().
+        const editingRoot = editingView.document.getRoot();
 
-        <span class="hljs-comment">// The editable UI and editing root should share the same name.</span>
+        // The editable UI and editing root should share the same name.
         view.editable.name = editingRoot.rootName;
 
-        <span class="hljs-comment">// Render the editable component in the DOM first.</span>
+        // Render the editable component in the DOM first.
         view.editable.render();
 
-        <span class="hljs-keyword">const</span> editableElement = view.editable.element;
+        const editableElement = view.editable.element;
 
-        <span class="hljs-comment">// Register editable element so it is available via getEditableElement() method.</span>
-        <span class="hljs-keyword">this</span>.setEditableElement( view.editable.name, editableElement );
+        // Register editable element so it is available via getEditableElement() method.
+        this.setEditableElement( view.editable.name, editableElement );
 
-        <span class="hljs-comment">// Let the editable UI element respond to the changes in the global editor focus tracker</span>
-        <span class="hljs-comment">// and let the focus tracker know about the editable element.</span>
-        <span class="hljs-keyword">this</span>.focusTracker.add( editableElement );
-        view.editable.bind( <span class="hljs-string">&apos;isFocused&apos;</span> ).to( <span class="hljs-keyword">this</span>.focusTracker );
+        // Let the editable UI element respond to the changes in the global editor focus tracker
+        // and let the focus tracker know about the editable element.
+        this.focusTracker.add( editableElement );
+        view.editable.bind( &apos;isFocused&apos; ).to( this.focusTracker );
 
-        <span class="hljs-comment">// Bind the editable UI element to the editing view, making it an end&#x2013; and entry&#x2013;point</span>
-        <span class="hljs-comment">// of the editor&apos;s engine. This is where the engine meets the UI.</span>
+        // Bind the editable UI element to the editing view, making it an end&#x2013; and entry&#x2013;point
+        // of the editor&apos;s engine. This is where the engine meets the UI.
         editingView.attachDomRoot( editableElement );
 
-        <span class="hljs-comment">// Setup the existing, external Bootstrap UI so it works with the rest of the editor.</span>
-        <span class="hljs-keyword">this</span>._setupBootstrapToolbarButtons();
-        <span class="hljs-keyword">this</span>._setupBootstrapHeadingDropdown();
+        // Setup the existing, external Bootstrap UI so it works with the rest of the editor.
+        this._setupBootstrapToolbarButtons();
+        this._setupBootstrapHeadingDropdown();
 
-        <span class="hljs-comment">// Replace the editor#element with editor.editable#element.</span>
-        <span class="hljs-keyword">this</span>._elementReplacer.replace( replacementElement, editableElement );
+        // Replace the editor#element with editor.editable#element.
+        this._elementReplacer.replace( replacementElement, editableElement );
 
-        <span class="hljs-comment">// Tell the world that the UI of the editor is ready to use.</span>
-        <span class="hljs-keyword">this</span>.fire( <span class="hljs-string">&apos;ready&apos;</span> );
+        // Tell the world that the UI of the editor is ready to use.
+        this.fire( &apos;ready&apos; );
     }
 
     destroy() {
-        <span class="hljs-comment">// Restore the original editor#element.</span>
-        <span class="hljs-keyword">this</span>._elementReplacer.restore();
+        // Restore the original editor#element.
+        this._elementReplacer.restore();
 
-        <span class="hljs-comment">// Destroy the view.</span>
-        <span class="hljs-keyword">this</span>._view.editable.destroy();
-        <span class="hljs-keyword">this</span>._view.destroy();
+        // Destroy the view.
+        this._view.editable.destroy();
+        this._view.destroy();
 
-        <span class="hljs-keyword">super</span>.destroy();
+        super.destroy();
     }
 
-    <span class="hljs-comment">// This method activates Bold, Italic, Underline, Undo and Redo buttons in the toolbar.</span>
+    // This method activates Bold, Italic, Underline, Undo and Redo buttons in the toolbar.
     _setupBootstrapToolbarButtons() {
         ...
     }
 
-    <span class="hljs-comment">// This method activates the headings dropdown in the toolbar.</span>
+    // This method activates the headings dropdown in the toolbar.
     _setupBootstrapHeadingDropdown() {
         ...
     }
 }
 </code></pre>
 <p>Almost every feature in the editor defines some command, e.g. <a href="../../../../api/module_heading_headingcommand-HeadingCommand.html"><code>HeadingCommand</code></a> or <a href="../../../../api/module_undo_undocommand-UndoCommand.html"><code>UndoCommand</code></a>. Commands can be executed:</p>
-<pre class="highlight"><code class="js">editor.exectute( <span class="hljs-string">&apos;undo&apos;</span> );
+<pre class="highlight"><code class="js">editor.exectute( &apos;undo&apos; );
 </code></pre>
 <p>But they also come with default observable properties like <code>value</code> and <code>isEnabled</code>. These are the entry points when it comes to creating a custom user interface because their values represent the actual state of the editor and can be followed in simple event listeners:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> command = editor.commands.get( <span class="hljs-string">&apos;undo&apos;</span> );
+<pre class="highlight"><code class="js">const command = editor.commands.get( &apos;undo&apos; );
 
-command.on( <span class="hljs-string">&apos;change:isEnabled&apos;</span>, ( evt, name, isEnabled ) =&gt; {
-    <span class="hljs-keyword">if</span> ( isEnabled ) {
-        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;Whoa, you can undo some stuff now.&apos;</span> );
-    } <span class="hljs-keyword">else</span> {
-        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;There is nothing to undo in the editor.&apos;</span> );
+command.on( &apos;change:isEnabled&apos;, ( evt, name, isEnabled ) =&gt; {
+    if ( isEnabled ) {
+        console.log( &apos;Whoa, you can undo some stuff now.&apos; );
+    } else {
+        console.log( &apos;There is nothing to undo in the editor.&apos; );
     }
 } );
 </code></pre>
@@ -557,39 +557,39 @@ command.on( <span class="hljs-string">&apos;change:isEnabled&apos;</span>, ( evt
 <p>Knowing that, fill out the missing methods of the <code>BootstrapEditorUI</code>.</p>
 <h3 id="binding-the-buttons-to-editor-commands"><a class="headerlink" href="#binding-the-buttons-to-editor-commands">#</a> Binding the buttons to editor commands</h3>
 <p><code>_setupBootstrapToolbarButtons()</code> is a method that binds Bootstrap toolbar buttons to the editor features (commands). It activates the corresponding editor commands upon clicking and makes the buttons listen to the state of the commands to update their CSS classes:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// This method activates Bold, Italic, Underline, Undo and Redo buttons in the toolbar.</span>
+<pre class="highlight"><code class="js">// This method activates Bold, Italic, Underline, Undo and Redo buttons in the toolbar.
 _setupBootstrapToolbarButtons() {
-    <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">this</span>.editor;
+    const editor = this.editor;
 
-    <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">const</span> name <span class="hljs-keyword">in</span> <span class="hljs-keyword">this</span>.view.toolbarButtons ) {
-        <span class="hljs-comment">// Retrieve the editor command corresponding with the ID of the button in the DOM.</span>
-        <span class="hljs-keyword">const</span> command = editor.commands.get( name );
-        <span class="hljs-keyword">const</span> button = <span class="hljs-keyword">this</span>.view.toolbarButtons[ name ];
+    for ( const name in this.view.toolbarButtons ) {
+        // Retrieve the editor command corresponding with the ID of the button in the DOM.
+        const command = editor.commands.get( name );
+        const button = this.view.toolbarButtons[ name ];
 
-        <span class="hljs-comment">// Clicking the buttons should execute the editor command...</span>
-        button.click( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> editor.execute( name ) );
+        // Clicking the buttons should execute the editor command...
+        button.click( () =&gt; editor.execute( name ) );
 
-        <span class="hljs-comment">// ...but it should not steal the focus so the editing is uninterrupted.</span>
-        button.mousedown( <span class="hljs-function"><span class="hljs-params">evt</span> =&gt;</span> evt.preventDefault() );
+        // ...but it should not steal the focus so the editing is uninterrupted.
+        button.mousedown( evt =&gt; evt.preventDefault() );
 
-        <span class="hljs-keyword">const</span> onValueChange = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-            button.toggleClass( <span class="hljs-string">&apos;active&apos;</span>, command.value );
+        const onValueChange = () =&gt; {
+            button.toggleClass( &apos;active&apos;, command.value );
         };
 
-        <span class="hljs-keyword">const</span> onIsEnabledChange = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-            button.attr( <span class="hljs-string">&apos;disabled&apos;</span>, () =&gt; !command.isEnabled );
+        const onIsEnabledChange = () =&gt; {
+            button.attr( &apos;disabled&apos;, () =&gt; !command.isEnabled );
         };
 
-        <span class="hljs-comment">// Commands can become disabled, e.g. when the editor is read-only.</span>
-        <span class="hljs-comment">// Make sure the buttons reflect this state change.</span>
-        command.on( <span class="hljs-string">&apos;change:isEnabled&apos;</span>, onIsEnabledChange );
+        // Commands can become disabled, e.g. when the editor is read-only.
+        // Make sure the buttons reflect this state change.
+        command.on( &apos;change:isEnabled&apos;, onIsEnabledChange );
         onIsEnabledChange();
 
-        <span class="hljs-comment">// Bold, Italic and Underline commands have a value that changes</span>
-        <span class="hljs-comment">// when the selection starts in an element the command creates.</span>
-        <span class="hljs-comment">// The button should indicate that e.g. you are editing text which is already bold.</span>
-        <span class="hljs-keyword">if</span> ( !<span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>( [ <span class="hljs-string">&apos;undo&apos;</span>, <span class="hljs-string">&apos;redo&apos;</span> ] ).has( name ) ) {
-            command.on( <span class="hljs-string">&apos;change:value&apos;</span>, onValueChange );
+        // Bold, Italic and Underline commands have a value that changes
+        // when the selection starts in an element the command creates.
+        // The button should indicate that e.g. you are editing text which is already bold.
+        if ( !new Set( [ &apos;undo&apos;, &apos;redo&apos; ] ).has( name ) ) {
+            command.on( &apos;change:value&apos;, onValueChange );
             onValueChange();
         }
     }
@@ -598,33 +598,33 @@ _setupBootstrapToolbarButtons() {
 <h3 id="binding-the-dropdown-to-the-heading-commands"><a class="headerlink" href="#binding-the-dropdown-to-the-heading-commands">#</a> Binding the dropdown to the heading commands</h3>
 <p>The dropdown in the toolbar is a more complex case.</p>
 <p>First, it must be populated with heading options for the users to select from. Then, clicking each option must execute a related heading command in the editor. Finally, the dropdown button and the dropdown menu items must reflect the state of the editor, for example, when the selection lands in a heading, a proper menu item should become active and the button should show the name of the heading level.</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// This method activates the headings dropdown in the toolbar.</span>
+<pre class="highlight"><code class="js">// This method activates the headings dropdown in the toolbar.
 _setupBootstrapHeadingDropdown() {
-    <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">this</span>.editor;
-    <span class="hljs-keyword">const</span> dropdownMenu = <span class="hljs-keyword">this</span>.view.dropdownMenu;
-    <span class="hljs-keyword">const</span> dropdownToggle = <span class="hljs-keyword">this</span>.view.dropdownToggle;
+    const editor = this.editor;
+    const dropdownMenu = this.view.dropdownMenu;
+    const dropdownToggle = this.view.dropdownToggle;
 
-    <span class="hljs-comment">// Retrieve the editor commands for heading and paragraph.</span>
-    <span class="hljs-keyword">const</span> headingCommand = editor.commands.get( <span class="hljs-string">&apos;heading&apos;</span> );
-    <span class="hljs-keyword">const</span> paragraphCommand = editor.commands.get( <span class="hljs-string">&apos;paragraph&apos;</span> );
+    // Retrieve the editor commands for heading and paragraph.
+    const headingCommand = editor.commands.get( &apos;heading&apos; );
+    const paragraphCommand = editor.commands.get( &apos;paragraph&apos; );
 
-    <span class="hljs-comment">// Create a dropdown menu entry for each heading configuration option.</span>
-    editor.config.get( <span class="hljs-string">&apos;heading.options&apos;</span> ).map( <span class="hljs-function"><span class="hljs-params">option</span> =&gt;</span> {
-        <span class="hljs-comment">// Check if options is a paragraph or a heading as their commands differ slightly.</span>
-        <span class="hljs-keyword">const</span> isParagraph = option.model === <span class="hljs-string">&apos;paragraph&apos;</span>;
+    // Create a dropdown menu entry for each heading configuration option.
+    editor.config.get( &apos;heading.options&apos; ).map( option =&gt; {
+        // Check if options is a paragraph or a heading as their commands differ slightly.
+        const isParagraph = option.model === &apos;paragraph&apos;;
 
-        <span class="hljs-comment">// Create the menu item DOM element.</span>
-        <span class="hljs-keyword">const</span> menuItem = $(
-            <span class="hljs-string">`&lt;a href=&quot;#&quot; class=&quot;dropdown-item heading-item_<span class="hljs-subst">${ option.model }</span>&quot;&gt;`</span> +
-                <span class="hljs-string">`<span class="hljs-subst">${ option.title }</span>`</span> +
-            <span class="hljs-string">&apos;&lt;/a&gt;&apos;</span>
+        // Create the menu item DOM element.
+        const menuItem = $(
+            `&lt;a href=&quot;#&quot; class=&quot;dropdown-item heading-item_${ option.model }&quot;&gt;` +
+                `${ option.title }` +
+            &apos;&lt;/a&gt;&apos;
         );
 
-        <span class="hljs-comment">// Upon click, the dropdown menu item should execute the command and focus</span>
-        <span class="hljs-comment">// the editing view to keep the editing process uninterrupted.</span>
-        menuItem.click( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-            <span class="hljs-keyword">const</span> commandName = isParagraph ? <span class="hljs-string">&apos;paragraph&apos;</span> : <span class="hljs-string">&apos;heading&apos;</span>;
-            <span class="hljs-keyword">const</span> commandValue = isParagraph ? <span class="hljs-literal">undefined</span> : { <span class="hljs-attr">value</span>: option.model };
+        // Upon click, the dropdown menu item should execute the command and focus
+        // the editing view to keep the editing process uninterrupted.
+        menuItem.click( () =&gt; {
+            const commandName = isParagraph ? &apos;paragraph&apos; : &apos;heading&apos;;
+            const commandValue = isParagraph ? undefined : { value: option.model };
 
             editor.execute( commandName, commandValue );
             editor.editing.view.focus();
@@ -632,40 +632,40 @@ _setupBootstrapHeadingDropdown() {
 
         dropdownMenu.append( menuItem );
 
-        <span class="hljs-keyword">const</span> command = isParagraph ? paragraphCommand : headingCommand;
+        const command = isParagraph ? paragraphCommand : headingCommand;
 
-        <span class="hljs-comment">// Make sure the dropdown and its items reflect the state of the</span>
-        <span class="hljs-comment">// currently active command.</span>
-        <span class="hljs-keyword">const</span> onValueChange = isParagraph ? onValueChangeParagraph : onValueChangeHeading;
-        command.on( <span class="hljs-string">&apos;change:value&apos;</span>, onValueChange );
+        // Make sure the dropdown and its items reflect the state of the
+        // currently active command.
+        const onValueChange = isParagraph ? onValueChangeParagraph : onValueChangeHeading;
+        command.on( &apos;change:value&apos;, onValueChange );
         onValueChange();
 
-        <span class="hljs-comment">// Heading commands can become disabled, e.g. when the editor is read-only.</span>
-        <span class="hljs-comment">// Make sure the UI reflects this state change.</span>
-        command.on( <span class="hljs-string">&apos;change:isEnabled&apos;</span>, onIsEnabledChange );
+        // Heading commands can become disabled, e.g. when the editor is read-only.
+        // Make sure the UI reflects this state change.
+        command.on( &apos;change:isEnabled&apos;, onIsEnabledChange );
 
         onIsEnabledChange();
 
-        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onValueChangeHeading</span>(<span class="hljs-params"></span>) </span>{
-            <span class="hljs-keyword">const</span> isActive = !isParagraph &amp;&amp; command.value === option.model;
+        function onValueChangeHeading() {
+            const isActive = !isParagraph &amp;&amp; command.value === option.model;
 
-            <span class="hljs-keyword">if</span> ( isActive ) {
-                dropdownToggle.children( <span class="hljs-string">&apos;:first&apos;</span> ).text( option.title );
+            if ( isActive ) {
+                dropdownToggle.children( &apos;:first&apos; ).text( option.title );
             }
 
-            menuItem.toggleClass( <span class="hljs-string">&apos;active&apos;</span>, isActive );
+            menuItem.toggleClass( &apos;active&apos;, isActive );
         }
 
-        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onValueChangeParagraph</span>(<span class="hljs-params"></span>) </span>{
-            <span class="hljs-keyword">if</span> ( command.value ) {
-                dropdownToggle.children( <span class="hljs-string">&apos;:first&apos;</span> ).text( option.title );
+        function onValueChangeParagraph() {
+            if ( command.value ) {
+                dropdownToggle.children( &apos;:first&apos; ).text( option.title );
             }
 
-            menuItem.toggleClass( <span class="hljs-string">&apos;active&apos;</span>, command.value );
+            menuItem.toggleClass( &apos;active&apos;, command.value );
         }
 
-        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onIsEnabledChange</span>(<span class="hljs-params"></span>) </span>{
-            dropdownToggle.attr( <span class="hljs-string">&apos;disabled&apos;</span>, () =&gt; !command.isEnabled );
+        function onIsEnabledChange() {
+            dropdownToggle.attr( &apos;disabled&apos;, () =&gt; !command.isEnabled );
         }
     } );
 }
@@ -673,17 +673,17 @@ _setupBootstrapHeadingDropdown() {
 <h2 id="running-the-editor"><a class="headerlink" href="#running-the-editor">#</a> Running the editor</h2>
 <p>When the editor classes and the user interface are ready, it is time to run the editor. Just make sure all the plugins are loaded and the right DOM element is passed to <code>BootstrapEditor#create</code>:</p>
 <pre class="highlight"><code class="js">BootstrapEditor
-    .create( $( <span class="hljs-string">&apos;#editor&apos;</span> ).get( <span class="hljs-number">0</span> ), {
-        <span class="hljs-attr">plugins</span>: [
+    .create( $( &apos;#editor&apos; ).get( 0 ), {
+        plugins: [
             Clipboard, Enter, Typing, Paragraph,
             BoldEditing, ItalicEditing, UnderlineEditing, HeadingEditing, UndoEditing
         ]
     } )
-    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
-        <span class="hljs-built_in">window</span>.editor = editor;
+    .then( editor =&gt; {
+        window.editor = editor;
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error( err.stack );
+    .catch( err =&gt; {
+        console.error( err.stack );
     } );
 </code></pre>
 <p>Once everything works as expected, you may want to create a custom build of your editor to ship it across the applications. To learn more check out the <a href="../../../../builds/guides/development/custom-builds.html">Creating custom builds</a> guide.</p>

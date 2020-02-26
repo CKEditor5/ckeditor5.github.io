@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../../snippets/framework/development-tools/inspector/snippet.css" type="text/css">
     <link rel="stylesheet" href="../../assets/snippet-styles.css" type="text/css">
@@ -35,16 +35,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -86,7 +86,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -232,11 +232,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/development-tools.md" title="Contribute to this guide"><img src="../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/development-tools.md" title="Contribute to this guide"><img src="../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../assets/1.2.1/img/book.svg" alt="guide">Development tools
+          <h1 class="main__content-title"><img src="../../../../assets/1.2.2/img/book.svg" alt="guide">Development tools
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#ckeditor-5-inspector">CKEditor 5 inspector</a><ol><li><a href="#importing-the-inspector">Importing the inspector</a></li><li><a href="#enabling-the-inspector">Enabling the inspector</a></li><li><a href="#inspecting-multiple-editors">Inspecting multiple editors</a></li><li><a href="#demo">Demo</a></li></ol></li><li><a href="#compatibility">Compatibility</a><ol><li><a href="#contributing-to-the-inspector">Contributing to the inspector</a></li></ol></li><li><a href="#testing-helpers">Testing helpers</a></li></ol></nav>
 <p>In this guide you will learn about developer tools that will help you develop and debug CKEditor 5 plugins and features.</p>
 <h2 id="ckeditor-5-inspector"><a class="headerlink" href="#ckeditor-5-inspector">#</a> CKEditor 5 inspector</h2>
@@ -248,29 +248,29 @@
 <pre class="highlight"><code class="bash">npm install --save-dev @ckeditor/ckeditor5-inspector
 </code></pre>
 <p>and then either import it as a module:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> CKEditorInspector <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-inspector&apos;</span>;
+<pre class="highlight"><code class="js">import CKEditorInspector from &apos;@ckeditor/ckeditor5-inspector&apos;;
 </code></pre>
 <p>or as a plain <code>&lt;script&gt;</code> tag in the HTML of your application:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../node_modules/@ckeditor/ckeditor5-inspector/build/inspector.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;script src=&quot;../node_modules/@ckeditor/ckeditor5-inspector/build/inspector.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <h3 id="enabling-the-inspector"><a class="headerlink" href="#enabling-the-inspector">#</a> Enabling the inspector</h3>
 <p>Attach the inspector to the editor instance when <a href="../../builds/guides/integration/basic-api.html#creating-an-editor">created</a> using the <code>CKEditorInspector.attach()</code> method:</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( ... )
-    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
+    .then( editor =&gt; {
         CKEditorInspector.attach( editor );
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error( error );
+    .catch( error =&gt; {
+        console.error( error );
     } );
 </code></pre>
 <p>The inspector will show up at the bottom of the screen.</p>
 <h3 id="inspecting-multiple-editors"><a class="headerlink" href="#inspecting-multiple-editors">#</a> Inspecting multiple editors</h3>
 <p>You can inspect multiple CKEditor 5 instances at a time by calling <code>CKEditorInspector.attach()</code> for each one of them. Then you can switch the inspector context to inspect different editor instances.</p>
 <p>You can specify the name of the editor when attaching to make working with multiple instances easier:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// Inspecting two editor instances at the same time.</span>
-CKEditorInspector.attach( <span class="hljs-string">&apos;header-editor&apos;</span>, editor );
-CKEditorInspector.attach( <span class="hljs-string">&apos;body-editor&apos;</span>, editor );
+<pre class="highlight"><code class="js">// Inspecting two editor instances at the same time.
+CKEditorInspector.attach( &apos;header-editor&apos;, editor );
+CKEditorInspector.attach( &apos;body-editor&apos;, editor );
 </code></pre>
 <p>The editor switcher is in the upper&#x2013;right corner of the inspector panel.</p>
 <h3 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h3>
@@ -301,16 +301,16 @@ CKEditorInspector.attach( <span class="hljs-string">&apos;body-editor&apos;</spa
 <p>They allow for &#x201C;stringifying&#x201D; the <a href="architecture/editing-engine.html#model">model</a> and <a href="architecture/editing-engine.html#view">view</a> structures, selections, ranges, and positions as well as for loading them from a string. They are often used when writing tests.</p>
 <div class="info-box notice"><p>Both tools are designed for prototyping, debugging, and testing purposes. Do not use them in production-grade code.</p></div>
 <p>For instance, to take a peek at the editor model, you could use the <a href="../../api/module_engine_dev-utils_model.html#static-function-getData"><code>getData()</code></a> helper:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> { getData } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-engine/src/dev-utils/model&apos;</span>;
+<pre class="highlight"><code class="js">import { getData } from &apos;@ckeditor/ckeditor5-engine/src/dev-utils/model&apos;;
 
-<span class="hljs-comment">// ...</span>
+// ...
 
 ClassicEditor
-    .create( <span class="hljs-string">&apos;&lt;p&gt;Hello &lt;b&gt;world&lt;/b&gt;!&lt;/p&gt;&apos;</span> )
-    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log( getData( editor.model ) );
+    .create( &apos;&lt;p&gt;Hello &lt;b&gt;world&lt;/b&gt;!&lt;/p&gt;&apos; )
+    .then( editor =&gt; {
+        console.log( getData( editor.model ) );
 
-        <span class="hljs-comment">// -&gt; &apos;&lt;paragraph&gt;[]Hello &lt;$text bold=&quot;true&quot;&gt;world&lt;/$text&gt;!&lt;/paragraph&gt;&apos;</span>
+        // -&gt; &apos;&lt;paragraph&gt;[]Hello &lt;$text bold=&quot;true&quot;&gt;world&lt;/$text&gt;!&lt;/paragraph&gt;&apos;
     } );
 </code></pre>
 <p>See the helper documentation to learn more about useful options.</p>

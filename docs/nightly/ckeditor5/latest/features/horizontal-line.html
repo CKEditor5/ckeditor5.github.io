@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../snippets/features/horizontal-line/snippet.css" type="text/css">
     <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
@@ -35,16 +35,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -86,7 +86,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -214,11 +214,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-horizontal-line/blob/master/docs/features/horizontal-line.md" title="Contribute to this guide"><img src="../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-horizontal-line/blob/master/docs/features/horizontal-line.md" title="Contribute to this guide"><img src="../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../assets/1.2.1/img/book.svg" alt="guide">Horizontal line
+          <h1 class="main__content-title"><img src="../../../assets/1.2.2/img/book.svg" alt="guide">Horizontal line
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 <p>The <a href="../api/module_horizontal-line_horizontalline-HorizontalLine.html"><code>HorizontalLine</code></a> plugin provides the possibility to insert a horizontal line into the rich-text editor.</p>
 <h2 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h2>
@@ -282,12 +282,12 @@
 <pre class="highlight"><code class="plaintext">npm install --save @ckeditor/ckeditor5-horizontal-line
 </code></pre>
 <p>And add it to your plugin list configuration:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> HorizontalLine <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-horizontal-line/src/horizontalline&apos;</span>;
+<pre class="highlight"><code class="js">import HorizontalLine from &apos;@ckeditor/ckeditor5-horizontal-line/src/horizontalline&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ HorizontalLine, ... ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;horizontalLine&apos;</span>, ... ],
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ HorizontalLine, ... ],
+        toolbar: [ &apos;horizontalLine&apos;, ... ],
     } )
     .then( ... )
     .catch( ... );
@@ -300,8 +300,8 @@ ClassicEditor
 <li>the <code>&apos;horizontalLine&apos;</code> command implemented by <a href="../api/module_horizontal-line_horizontallinecommand-HorizontalLineCommand.html"><code>HorizontalLineCommand</code></a>.</li>
 </ul>
 <p>The command can be executed using the <a href="../api/module_core_editor_editor-Editor.html#function-execute"><code>editor.execute()</code></a> method:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// Inserts a horizontal line into the selected content.</span>
-editor.execute( <span class="hljs-string">&apos;horizontalLine&apos;</span> );
+<pre class="highlight"><code class="js">// Inserts a horizontal line into the selected content.
+editor.execute( &apos;horizontalLine&apos; );
 </code></pre>
 <div class="info-box notice"><p>We recommend using the official <a href="../framework/guides/development-tools.html#ckeditor-5-inspector">CKEditor 5 inspector</a> for development and debugging. It will give you tons of useful information about the state of the editor such as internal data structures, selection, commands, and many more.</p></div>
 <h2 id="contribute"><a class="headerlink" href="#contribute">#</a> Contribute</h2>

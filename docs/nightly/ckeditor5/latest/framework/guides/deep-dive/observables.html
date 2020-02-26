@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
     <script>
       ( function() {
@@ -33,16 +33,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -84,7 +84,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -230,20 +230,20 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-utils/blob/master/docs/framework/guides/deep-dive/observables.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-utils/blob/master/docs/framework/guides/deep-dive/observables.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../assets/1.2.1/img/book.svg" alt="guide">Observables
+          <h1 class="main__content-title"><img src="../../../../../assets/1.2.2/img/book.svg" alt="guide">Observables
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#making-properties-observable">Making properties observable</a></li><li><a href="#property-bindings">Property bindings</a><ol><li><a href="#simple-bindings">Simple bindings</a><ol><li><a href="#renaming-properties">Renaming properties</a></li></ol></li><li><a href="#binding-multiple-properties">Binding multiple properties</a></li><li><a href="#binding-with-multiple-observables">Binding with multiple observables</a></li><li><a href="#binding-with-an-array-of-observables">Binding with an array of observables</a></li><li><a href="#releasing-the-bindings">Releasing the bindings</a></li></ol></li><li><a href="#decorating-object-methods">Decorating object methods</a><ol><li><a href="#cancelling-the-execution">Cancelling the execution</a></li><li><a href="#changing-the-returned-value">Changing the returned value</a></li><li><a href="#changing-arguments-on-the-fly">Changing arguments on the fly</a></li></ol></li></ol></nav>
 <p><a href="../../../api/module_utils_observablemixin-Observable.html">Observables</a> are objects which have properties that can be observed. That means when the value of such property changes, an event is fired by the observable and the change can be reflected in other pieces of the code that listen to that event.</p>
 <p>Observables are common building blocks of the <a href="../../index.html">CKEditor 5 Framework</a>. They are particularly popular in the UI, the <a href="../../../api/module_ui_view-View.html"><code>View</code></a> class and its subclasses  benefiting from the observable interface the most: it is the <a href="../architecture/ui-library.html#interaction">templates bound to the observables</a> what makes the user interface dynamic and interactive. Some of the basic classes like <a href="../../../api/module_core_editor_editor-Editor.html"><code>Editor</code></a> or <a href="../../../api/module_core_command-Command.html"><code>Command</code></a> are observables too.</p>
 <p>Any class can become observable; all you need to do is mix the <a href="../../../api/module_utils_observablemixin-ObservableMixin.html"><code>ObservableMixin</code></a> into it:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ObservableMixin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-utils/src/observablemixin&apos;</span>;
-<span class="hljs-keyword">import</span> mix <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-utils/src/mix&apos;</span>;
+<pre class="highlight"><code class="js">import ObservableMixin from &apos;@ckeditor/ckeditor5-utils/src/observablemixin&apos;;
+import mix from &apos;@ckeditor/ckeditor5-utils/src/mix&apos;;
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AnyClass</span> </span>{
-    <span class="hljs-comment">// ...</span>
+class AnyClass {
+    // ...
 }
 
 mix( AnyClass, ObservableMixin );
@@ -253,82 +253,82 @@ mix( AnyClass, ObservableMixin );
 <h2 id="making-properties-observable"><a class="headerlink" href="#making-properties-observable">#</a> Making properties observable</h2>
 <p>Having mixed the <a href="../../../api/module_utils_observablemixin-ObservableMixin.html"><code>ObservableMixin</code></a> into your class, you can define observable properties. To do that, use the <a href="../../../api/module_utils_observablemixin-ObservableMixin.html#function-set"><code>set()</code> method</a>.</p>
 <p>Let&#x2019;s create a simple UI view (component) named <code>Button</code> with a couple of properties and see what they look like:</p>
-<pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Button</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">View</span> </span>{
-    <span class="hljs-keyword">constructor</span>() {
-        <span class="hljs-keyword">super</span>();
+<pre class="highlight"><code class="js">class Button extends View {
+    constructor() {
+        super();
 
-        <span class="hljs-comment">// This property is not observable.</span>
-        <span class="hljs-comment">// Not all properties must be observable, it&apos;s always up to you!</span>
-        <span class="hljs-keyword">this</span>.type = <span class="hljs-string">&apos;button&apos;</span>;
+        // This property is not observable.
+        // Not all properties must be observable, it&apos;s always up to you!
+        this.type = &apos;button&apos;;
 
-        <span class="hljs-keyword">const</span> bind = <span class="hljs-keyword">this</span>.bindTemplate;
+        const bind = this.bindTemplate;
 
-        <span class="hljs-comment">// this.label is observable but undefined.</span>
-        <span class="hljs-keyword">this</span>.set( <span class="hljs-string">&apos;label&apos;</span> );
+        // this.label is observable but undefined.
+        this.set( &apos;label&apos; );
 
-        <span class="hljs-comment">// this.isOn is observable and false.</span>
-        <span class="hljs-keyword">this</span>.set( <span class="hljs-string">&apos;isOn&apos;</span>, <span class="hljs-literal">false</span> );
+        // this.isOn is observable and false.
+        this.set( &apos;isOn&apos;, false );
 
-        <span class="hljs-comment">// this.isEnabled is observable and true.</span>
-        <span class="hljs-keyword">this</span>.set( <span class="hljs-string">&apos;isEnabled&apos;</span>, <span class="hljs-literal">true</span> );
+        // this.isEnabled is observable and true.
+        this.set( &apos;isEnabled&apos;, true );
 
-        <span class="hljs-comment">// ...</span>
+        // ...
     }
 }
 </code></pre>
 <p>Note that because <code>Button</code> extends the <a href="../../../api/module_ui_view-View.html"><code>View</code></a> class (which is already observable), you do not need to mix the <code>ObservableMixin</code>.</p>
-<div class="info-box notice notice__info"><p>The <code>set()</code> method can accept an object of key/value pairs to shorten the code. Knowing that, making properties observable can be as simple as:</p><pre class="highlight"><code class="js"><span class="hljs-keyword">this</span>.set( {
-    <span class="hljs-attr">label</span>: <span class="hljs-literal">undefined</span>,
-    <span class="hljs-attr">isOn</span>: <span class="hljs-literal">false</span>,
-    <span class="hljs-attr">isEnabled</span>: <span class="hljs-literal">true</span>
+<div class="info-box notice notice__info"><p>The <code>set()</code> method can accept an object of key/value pairs to shorten the code. Knowing that, making properties observable can be as simple as:</p><pre class="highlight"><code class="js">this.set( {
+    label: undefined,
+    isOn: false,
+    isEnabled: true
 } );
 </code></pre>
 </div>
 <p>Finally, let&#x2019;s create a new view and see how it communicates with the world.</p>
 <p>Each time the <code>label</code> property changes, the view fires the <code>change:label</code> event containing information about its state in the past and the new value. The <code>change:isEnabled</code> and <code>change:isOn</code> events will be fired for changes of <code>isEnabled</code> and <code>isOn</code>, respectively.</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> view = <span class="hljs-keyword">new</span> Button();
+<pre class="highlight"><code class="js">const view = new Button();
 
-view.on( <span class="hljs-string">&apos;change:label&apos;</span>, ( evt, propertyName, newValue, oldValue ) =&gt; {
-    <span class="hljs-built_in">console</span>.log(
-        <span class="hljs-string">`#<span class="hljs-subst">${ propertyName }</span> has changed from &quot;<span class="hljs-subst">${ oldValue }</span>&quot; to &quot;<span class="hljs-subst">${ newValue }</span>&quot;`</span>
+view.on( &apos;change:label&apos;, ( evt, propertyName, newValue, oldValue ) =&gt; {
+    console.log(
+        `#${ propertyName } has changed from &quot;${ oldValue }&quot; to &quot;${ newValue }&quot;`
     );
 } )
 
-view.label = <span class="hljs-string">&apos;Hello world!&apos;</span>; <span class="hljs-comment">// -&gt; #label has changed from &quot;undefined&quot; to &quot;Hello world!&quot;</span>
-view.label = <span class="hljs-string">&apos;Bold&apos;</span>; <span class="hljs-comment">// -&gt; #label has changed from &quot;Hello world!&quot; to &quot;Bold&quot;</span>
+view.label = &apos;Hello world!&apos;; // -&gt; #label has changed from &quot;undefined&quot; to &quot;Hello world!&quot;
+view.label = &apos;Bold&apos;; // -&gt; #label has changed from &quot;Hello world!&quot; to &quot;Bold&quot;
 
-view.type = <span class="hljs-string">&apos;submit&apos;</span>; <span class="hljs-comment">// Changing a regular property fires no event.</span>
+view.type = &apos;submit&apos;; // Changing a regular property fires no event.
 </code></pre>
 <p>The events fired by the view are used to update the DOM and make the component dynamic. Let&#x2019;s give our view some template and bind it to the observable properties we created.</p>
 <div class="info-box notice"><p>You can learn more about the UI of the editor and template system in the dedicated <a href="../architecture/ui-library.html#templates">guide</a>.</p></div>
-<pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Button</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">View</span> </span>{
-    <span class="hljs-keyword">constructor</span>() {
-        <span class="hljs-keyword">super</span>();
+<pre class="highlight"><code class="js">class Button extends View {
+    constructor() {
+        super();
 
-        <span class="hljs-comment">// ...</span>
+        // ...
 
-        <span class="hljs-comment">// This template will have the following symbolic representation in DOM:</span>
-        <span class="hljs-comment">//</span>
-        <span class="hljs-comment">// 	&lt;button class=&quot;[ck-disabled] ck-[on|off]&quot; type=&quot;button&quot;&gt;</span>
-        <span class="hljs-comment">// 		{{ this.label }}</span>
-        <span class="hljs-comment">// 	&lt;/button&gt;</span>
-        <span class="hljs-comment">//</span>
-        <span class="hljs-keyword">this</span>.setTemplate( {
-            <span class="hljs-attr">tag</span>: <span class="hljs-string">&apos;button&apos;</span>,
-            <span class="hljs-attr">attributes</span>: {
-                <span class="hljs-attr">class</span>: [
-                    <span class="hljs-comment">// The &apos;ck-on&apos; and &apos;ck-off&apos; classes toggle according to the #isOn property.</span>
-                    bind.to( <span class="hljs-string">&apos;isOn&apos;</span>, value =&gt; value ? <span class="hljs-string">&apos;ck-on&apos;</span> : <span class="hljs-string">&apos;ck-off&apos;</span> ),
+        // This template will have the following symbolic representation in DOM:
+        //
+        // 	&lt;button class=&quot;[ck-disabled] ck-[on|off]&quot; type=&quot;button&quot;&gt;
+        // 		{{ this.label }}
+        // 	&lt;/button&gt;
+        //
+        this.setTemplate( {
+            tag: &apos;button&apos;,
+            attributes: {
+                class: [
+                    // The &apos;ck-on&apos; and &apos;ck-off&apos; classes toggle according to the #isOn property.
+                    bind.to( &apos;isOn&apos;, value =&gt; value ? &apos;ck-on&apos; : &apos;ck-off&apos; ),
 
-                    <span class="hljs-comment">// The &apos;ck-enabled&apos; class appears when the #isEnabled property is false.</span>
-                    bind.if( <span class="hljs-string">&apos;isEnabled&apos;</span>, <span class="hljs-string">&apos;ck-disabled&apos;</span>, value =&gt; !value )
+                    // The &apos;ck-enabled&apos; class appears when the #isEnabled property is false.
+                    bind.if( &apos;isEnabled&apos;, &apos;ck-disabled&apos;, value =&gt; !value )
                 ],
-                <span class="hljs-attr">type</span>: <span class="hljs-keyword">this</span>.type
+                type: this.type
             },
-            <span class="hljs-attr">children</span>: [
+            children: [
                 {
-                    <span class="hljs-comment">// The text of the button is bound to the #label property.</span>
-                    <span class="hljs-attr">text</span>: bind.to( <span class="hljs-string">&apos;label&apos;</span> )
+                    // The text of the button is bound to the #label property.
+                    text: bind.to( &apos;label&apos; )
                 }
             ]
         } );
@@ -336,16 +336,16 @@ view.type = <span class="hljs-string">&apos;submit&apos;</span>; <span class="hl
 }
 </code></pre>
 <p>Because <code>label</code>, <code>isOn</code>, and <code>isEnabled</code> are observables, any change will be immediately reflected in DOM:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> button = <span class="hljs-keyword">new</span> Button();
+<pre class="highlight"><code class="js">const button = new Button();
 
-<span class="hljs-comment">// Render the button to create its #element.</span>
+// Render the button to create its #element.
 button.render();
 
-button.label = <span class="hljs-string">&apos;Bold&apos;</span>;     <span class="hljs-comment">// &lt;button class=&quot;ck-off&quot; type=&quot;button&quot;&gt;Bold&lt;/button&gt;</span>
-button.isOn = <span class="hljs-literal">true</span>;        <span class="hljs-comment">// &lt;button class=&quot;ck-on&quot; type=&quot;button&quot;&gt;Bold&lt;/button&gt;</span>
-button.label = <span class="hljs-string">&apos;B&apos;</span>;        <span class="hljs-comment">// &lt;button class=&quot;ck-on&quot; type=&quot;button&quot;&gt;B&lt;/button&gt;</span>
-button.isOff = <span class="hljs-literal">false</span>;      <span class="hljs-comment">// &lt;button class=&quot;ck-off&quot; type=&quot;button&quot;&gt;B&lt;/button&gt;</span>
-button.isEnabled = <span class="hljs-literal">false</span>;  <span class="hljs-comment">// &lt;button class=&quot;ck-off ck-disabled&quot; type=&quot;button&quot;&gt;B&lt;/button&gt;</span>
+button.label = &apos;Bold&apos;;     // &lt;button class=&quot;ck-off&quot; type=&quot;button&quot;&gt;Bold&lt;/button&gt;
+button.isOn = true;        // &lt;button class=&quot;ck-on&quot; type=&quot;button&quot;&gt;Bold&lt;/button&gt;
+button.label = &apos;B&apos;;        // &lt;button class=&quot;ck-on&quot; type=&quot;button&quot;&gt;B&lt;/button&gt;
+button.isOff = false;      // &lt;button class=&quot;ck-off&quot; type=&quot;button&quot;&gt;B&lt;/button&gt;
+button.isEnabled = false;  // &lt;button class=&quot;ck-off ck-disabled&quot; type=&quot;button&quot;&gt;B&lt;/button&gt;
 </code></pre>
 <h2 id="property-bindings"><a class="headerlink" href="#property-bindings">#</a> Property bindings</h2>
 <p>One observable can also propagate its state (or part of it) to another observable to simplify the code, e.g. to avoid numerous <code>change:property</code> event listeners. To start binding object properties, make sure both objects (classes) mix the <a href="../../../api/module_utils_observablemixin-ObservableMixin.html"><code>ObservableMixin</code></a>, then use the <a href="../../../api/module_utils_observablemixin-ObservableMixin.html#function-bind"><code>bind()</code></a> method to create the binding.</p>
@@ -353,11 +353,11 @@ button.isEnabled = <span class="hljs-literal">false</span>;  <span class="hljs-c
 <p>Let&#x2019;s use our bold button instance from the previous chapter and bind it to the bold command. That will let the button use certain command properties and automate the user interface in just a couple of lines.</p>
 <p>The bold command is an actual command of the editor (registered by the <a href="../../../api/module_basic-styles_bold_boldediting-BoldEditing.html"><code>BoldEditing</code></a>) and offers two observable properties: <code>value</code> and <code>isEnabled</code>. To get the command, use <code>editor.commands.get( &apos;bold&apos; )</code>.</p>
 <p>Note that both <code>Button</code> and <a href="../../../api/module_core_command-Command.html"><code>Command</code></a> classes are <a href="../../../api/module_utils_observablemixin-Observable.html">observable</a>, which is why we can bind their properties.</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> button = <span class="hljs-keyword">new</span> Button();
-<span class="hljs-keyword">const</span> command = editor.commands.get( <span class="hljs-string">&apos;bold&apos;</span> );
+<pre class="highlight"><code class="js">const button = new Button();
+const command = editor.commands.get( &apos;bold&apos; );
 </code></pre>
 <p>Any &#x201C;decent&#x201D; button must update its look when the command becomes disabled. A simple property binding doing that could look as follows:</p>
-<pre class="highlight"><code class="js">button.bind( <span class="hljs-string">&apos;isEnabled&apos;</span> ).to( command );
+<pre class="highlight"><code class="js">button.bind( &apos;isEnabled&apos; ).to( command );
 </code></pre>
 <p>After that:</p>
 <ul>
@@ -368,164 +368,164 @@ button.isEnabled = <span class="hljs-literal">false</span>;  <span class="hljs-c
 <p>Note that <code>command.isEnabled</code> <strong>must</strong> be defined using the <code>set()</code> method for the binding to be dynamic. In this case we are lucky because <a href="../../../api/module_core_command-Command.html#member-isEnabled"><code>isEnabled</code></a> is a standard observable property of every command in the editor. But keep in mind that when you create your own observable class, using <code>set()</code> method is the only way to define observable properties.</p>
 <h4 id="renaming-properties"><a class="headerlink" href="#renaming-properties">#</a> Renaming properties</h4>
 <p>Now let&#x2019;s dive into the <code>bind( ... ).to( ... )</code> syntax for a minute. As a matter of fact, the last example corresponds to the following code:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> button = <span class="hljs-keyword">new</span> Button();
-<span class="hljs-keyword">const</span> command = editor.commands.get( <span class="hljs-string">&apos;bold&apos;</span> );
+<pre class="highlight"><code class="js">const button = new Button();
+const command = editor.commands.get( &apos;bold&apos; );
 
-button.bind( <span class="hljs-string">&apos;isEnabled&apos;</span> ).to( command, <span class="hljs-string">&apos;isEnabled&apos;</span> );
+button.bind( &apos;isEnabled&apos; ).to( command, &apos;isEnabled&apos; );
 </code></pre>
 <p>You probably noticed the <code>to( ... )</code> interface which helps specify the name of the property (or just &#x201C;rename&#x201D; the property in the binding).</p>
 <p>Both <code>Button</code> and <code>Command</code> class share the same <code>isEnabled</code> property, which allowed us to shorten the code. But if we decided to bind the <code>Button#isOn</code> to the <code>Command#value</code>, the code would be as follows:</p>
-<pre class="highlight"><code class="js">button.bind( <span class="hljs-string">&apos;isOn&apos;</span> ).to( command, <span class="hljs-string">&apos;value&apos;</span> );
+<pre class="highlight"><code class="js">button.bind( &apos;isOn&apos; ).to( command, &apos;value&apos; );
 </code></pre>
 <p>The property has been &#x201C;renamed&#x201D; in the binding and from now on, whenever <code>command.value</code> changes, the value of <code>button.isOn</code> will reflect it.</p>
 <h3 id="binding-multiple-properties"><a class="headerlink" href="#binding-multiple-properties">#</a> Binding multiple properties</h3>
 <p>It is possible to bind more that one property at a time to simplify the code:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> button = <span class="hljs-keyword">new</span> Button();
-<span class="hljs-keyword">const</span> command = editor.commands.get( <span class="hljs-string">&apos;bold&apos;</span> );
+<pre class="highlight"><code class="js">const button = new Button();
+const command = editor.commands.get( &apos;bold&apos; );
 
-button.bind( <span class="hljs-string">&apos;isOn&apos;</span>, <span class="hljs-string">&apos;isEnabled&apos;</span> ).to( command, <span class="hljs-string">&apos;value&apos;</span>, <span class="hljs-string">&apos;isEnabled&apos;</span> );
+button.bind( &apos;isOn&apos;, &apos;isEnabled&apos; ).to( command, &apos;value&apos;, &apos;isEnabled&apos; );
 </code></pre>
 <p>which is the same as:</p>
-<pre class="highlight"><code class="js">button.bind( <span class="hljs-string">&apos;isOn&apos;</span> ).to( command, <span class="hljs-string">&apos;value&apos;</span> );
-button.bind( <span class="hljs-string">&apos;isEnabled&apos;</span> ).to( command, <span class="hljs-string">&apos;isEnabled&apos;</span> );
+<pre class="highlight"><code class="js">button.bind( &apos;isOn&apos; ).to( command, &apos;value&apos; );
+button.bind( &apos;isEnabled&apos; ).to( command, &apos;isEnabled&apos; );
 </code></pre>
 <p>In the above binding, the value of <code>button.isEnabled</code> will reflect <code>command.isEnabled</code> and the value of <code>button.isOn</code> will reflect <code>command.value</code>.</p>
 <p>Note that the <code>value</code> property of the command has also been &#x201C;renamed&#x201D; in the binding like in the <a href="#renaming-properties">previous example</a>.</p>
 <h3 id="binding-with-multiple-observables"><a class="headerlink" href="#binding-with-multiple-observables">#</a> Binding with multiple observables</h3>
 <p>The binding can include more than one observable, combining multiple properties in a custom callback function. Let&#x2019;s create a button that gets enabled only when the <code>command</code> is enabled and the <a href="../../../api/module_engine_view_document-Document.html">editing document</a> (also an <code>Observable</code>) is focused:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> button = <span class="hljs-keyword">new</span> Button();
-<span class="hljs-keyword">const</span> command = editor.commands.get( <span class="hljs-string">&apos;bold&apos;</span> );
-<span class="hljs-keyword">const</span> editingDocument = editor.editing.view.document;
+<pre class="highlight"><code class="js">const button = new Button();
+const command = editor.commands.get( &apos;bold&apos; );
+const editingDocument = editor.editing.view.document;
 
-button.bind( <span class="hljs-string">&apos;isEnabled&apos;</span> ).to( command, <span class="hljs-string">&apos;isEnabled&apos;</span>, editingDocument, <span class="hljs-string">&apos;isFocused&apos;</span>,
+button.bind( &apos;isEnabled&apos; ).to( command, &apos;isEnabled&apos;, editingDocument, &apos;isFocused&apos;,
     ( isCommandEnabled, isDocumentFocused ) =&gt; isCommandEnabled &amp;&amp; isDocumentFocused );
 </code></pre>
 <p>The binding makes the value of <code>button.isEnabled</code> depend both on <code>command.isEnabled</code> and <code>editingDocument.isFocused</code> as specified by the function: both must be <code>true</code> for the button to become enabled.</p>
 <h3 id="binding-with-an-array-of-observables"><a class="headerlink" href="#binding-with-an-array-of-observables">#</a> Binding with an array of observables</h3>
 <p>It is possible to bind the same property to an array of observables. Let&#x2019;s bind our button to multiple commands so that each and every one must be enabled for the button to become enabled:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> button = <span class="hljs-keyword">new</span> Button();
-<span class="hljs-keyword">const</span> commands =  [ commandA, commandB, commandC ];
+<pre class="highlight"><code class="js">const button = new Button();
+const commands =  [ commandA, commandB, commandC ];
 
-button.bind( <span class="hljs-string">&apos;isEnabled&apos;</span> ).toMany( commands, <span class="hljs-string">&apos;isEnabled&apos;</span>, ( isAEnabled, isBEnabled, isCEnabled ) =&gt; {
-    <span class="hljs-keyword">return</span> isAEnabled &amp;&amp; isBEnabled &amp;&amp; isCEnabled;
+button.bind( &apos;isEnabled&apos; ).toMany( commands, &apos;isEnabled&apos;, ( isAEnabled, isBEnabled, isCEnabled ) =&gt; {
+    return isAEnabled &amp;&amp; isBEnabled &amp;&amp; isCEnabled;
 } );
 </code></pre>
 <p>The binding can be simplified using the spread operator (<code>...</code>) and the <code>Array.every()</code> method:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> commands =  [ commandA, commandB, commandC ];
+<pre class="highlight"><code class="js">const commands =  [ commandA, commandB, commandC ];
 
-button.bind( <span class="hljs-string">&apos;isEnabled&apos;</span> ).toMany( commands, <span class="hljs-string">&apos;isEnabled&apos;</span>, ( ...areEnabled ) =&gt; {
-    <span class="hljs-keyword">return</span> areEnabled.every( <span class="hljs-function"><span class="hljs-params">isCommandEnabled</span> =&gt;</span> isCommandEnabled );
+button.bind( &apos;isEnabled&apos; ).toMany( commands, &apos;isEnabled&apos;, ( ...areEnabled ) =&gt; {
+    return areEnabled.every( isCommandEnabled =&gt; isCommandEnabled );
 } );
 </code></pre>
 <p>This kind of binding can be useful e.g. when a button opens a dropdown containing a number of other commands&#x2019; buttons and it should be disabled when none of the commands is enabled.</p>
 <h3 id="releasing-the-bindings"><a class="headerlink" href="#releasing-the-bindings">#</a> Releasing the bindings</h3>
 <p>If you don&#x2019;t want your object&#x2019;s properties to be bound any longer, you can use the <a href="../../../api/module_utils_observablemixin-ObservableMixin.html#function-unbind"><code>unbind()</code></a> method.</p>
 <p>You can specify the names of the properties to selectively unbind them</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> button = <span class="hljs-keyword">new</span> Button();
-<span class="hljs-keyword">const</span> command = editor.commands.get( <span class="hljs-string">&apos;bold&apos;</span> );
+<pre class="highlight"><code class="js">const button = new Button();
+const command = editor.commands.get( &apos;bold&apos; );
 
-button.bind( <span class="hljs-string">&apos;isOn&apos;</span>, <span class="hljs-string">&apos;isEnabled&apos;</span> ).to( command, <span class="hljs-string">&apos;value&apos;</span>, <span class="hljs-string">&apos;isEnabled&apos;</span> );
+button.bind( &apos;isOn&apos;, &apos;isEnabled&apos; ).to( command, &apos;value&apos;, &apos;isEnabled&apos; );
 
-<span class="hljs-comment">// ...</span>
+// ...
 
-<span class="hljs-comment">// From now on, button#isEnabled is no longer bound to the command.</span>
-button.unbind( <span class="hljs-string">&apos;isEnabled&apos;</span> );
+// From now on, button#isEnabled is no longer bound to the command.
+button.unbind( &apos;isEnabled&apos; );
 </code></pre>
 <p>or you can dismiss all bindings by calling the method without arguments</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> button = <span class="hljs-keyword">new</span> Button();
-<span class="hljs-keyword">const</span> command = editor.commands.get( <span class="hljs-string">&apos;bold&apos;</span> );
+<pre class="highlight"><code class="js">const button = new Button();
+const command = editor.commands.get( &apos;bold&apos; );
 
-button.bind( <span class="hljs-string">&apos;isOn&apos;</span>, <span class="hljs-string">&apos;isEnabled&apos;</span> ).to( command, <span class="hljs-string">&apos;value&apos;</span>, <span class="hljs-string">&apos;isEnabled&apos;</span> );
+button.bind( &apos;isOn&apos;, &apos;isEnabled&apos; ).to( command, &apos;value&apos;, &apos;isEnabled&apos; );
 
-<span class="hljs-comment">// ...</span>
+// ...
 
-<span class="hljs-comment">// Both #isEnabled and #isOn properties are independent back again.</span>
-<span class="hljs-comment">// They will retain the last values determined by the bindings, though.</span>
+// Both #isEnabled and #isOn properties are independent back again.
+// They will retain the last values determined by the bindings, though.
 button.unbind();
 </code></pre>
 <h2 id="decorating-object-methods"><a class="headerlink" href="#decorating-object-methods">#</a> Decorating object methods</h2>
 <p>Decorating object methods transforms them into event&#x2013;driven ones without changing their original behavior.</p>
 <p>When a method is decorated, an event of the same name is created and fired each time the method is executed. By listening to the event it is possible to cancel the execution, change the arguments or the value returned by the method. This offers an additional flexibility, e.g. giving a third&#x2013;party code some way to interact with core classes that decorate their methods.</p>
 <p>Decorating is possible using the <a href="../../../api/module_utils_observablemixin-ObservableMixin.html#function-decorate"><code>decorate()</code></a> method. Let&#x2019;s decorate a <code>focus</code> method of a <code>Button</code> class we created in the <a href="#making-properties-observable">previous chapters</a> and see what if offers:</p>
-<pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Button</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">View</span> </span>{
-    <span class="hljs-keyword">constructor</span>() {
-        <span class="hljs-comment">// ...</span>
+<pre class="highlight"><code class="js">class Button extends View {
+    constructor() {
+        // ...
 
-        <span class="hljs-keyword">this</span>.decorate( <span class="hljs-string">&apos;focus&apos;</span> );
+        this.decorate( &apos;focus&apos; );
     }
 
-    <span class="hljs-comment">/**
+    /**
      * Focuses the button.
      *
-     * <span class="hljs-doctag">@param <span class="hljs-type">{Boolean}</span> </span>force When `true`, the button will be focused again, even if already
+     * @param {Boolean} force When `true`, the button will be focused again, even if already
      * focused in DOM.
-     * <span class="hljs-doctag">@returns <span class="hljs-type">{Boolean}</span> </span>`true` when the DOM element was focused in DOM, `false` otherwise.
-     */</span>
+     * @returns {Boolean} `true` when the DOM element was focused in DOM, `false` otherwise.
+     */
     focus( force ) {
-        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">`Focusing button, force argument=&quot;<span class="hljs-subst">${ force }</span>&quot;`</span> );
+        console.log( `Focusing button, force argument=&quot;${ force }&quot;` );
 
-        <span class="hljs-comment">// Unless forced, the button will only focus when not already focused.</span>
-        <span class="hljs-keyword">if</span> ( force || <span class="hljs-built_in">document</span>.activeElement != <span class="hljs-keyword">this</span>.element ) {
-            <span class="hljs-keyword">this</span>.element.focus();
+        // Unless forced, the button will only focus when not already focused.
+        if ( force || document.activeElement != this.element ) {
+            this.element.focus();
 
-            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+            return true;
         }
 
-        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        return false;
     }
 }
 </code></pre>
 <h3 id="cancelling-the-execution"><a class="headerlink" href="#cancelling-the-execution">#</a> Cancelling the execution</h3>
 <p>Because the <code>focus()</code> method is now event&#x2013;driven, it can be controlled externally. E.g. the focusing could be stopped for certain arguments. Note the <code>high</code> listener <a href="../../../api/module_utils_priorities-PriorityString.html">priority</a> used to intercept the default action:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> button = <span class="hljs-keyword">new</span> Button();
+<pre class="highlight"><code class="js">const button = new Button();
 
-<span class="hljs-comment">// Render the button to create its #element.</span>
+// Render the button to create its #element.
 button.render();
 
-<span class="hljs-comment">// The logic controlling the behavior of the button.</span>
-button.on( <span class="hljs-string">&apos;focus&apos;</span>, ( evt, [ isForced ] ) =&gt; {
-    <span class="hljs-comment">// Disallow forcing the focus of this button.</span>
-    <span class="hljs-keyword">if</span> ( isForced === <span class="hljs-literal">true</span> ) {
+// The logic controlling the behavior of the button.
+button.on( &apos;focus&apos;, ( evt, [ isForced ] ) =&gt; {
+    // Disallow forcing the focus of this button.
+    if ( isForced === true ) {
         evt.stop();
     }
-}, { <span class="hljs-attr">priority</span>: <span class="hljs-string">&apos;high&apos;</span> } );
+}, { priority: &apos;high&apos; } );
 
-button.focus(); <span class="hljs-comment">// -&gt; &apos;Focusing button, force argument=&quot;undefined&quot;&apos;</span>
-button.focus( <span class="hljs-literal">true</span> ); <span class="hljs-comment">// Nothing is logged, the execution has been stopped.</span>
+button.focus(); // -&gt; &apos;Focusing button, force argument=&quot;undefined&quot;&apos;
+button.focus( true ); // Nothing is logged, the execution has been stopped.
 </code></pre>
 <h3 id="changing-the-returned-value"><a class="headerlink" href="#changing-the-returned-value">#</a> Changing the returned value</h3>
 <p>It is possible to control the returned value of a decorated method using an event listener. The returned value is passed in the event data as a <code>return</code> property:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> button = <span class="hljs-keyword">new</span> Button();
+<pre class="highlight"><code class="js">const button = new Button();
 
-<span class="hljs-comment">// Render the button to create its #element.</span>
+// Render the button to create its #element.
 button.render();
 
-<span class="hljs-comment">// The logic controlling the behavior of the button.</span>
-button.on( <span class="hljs-string">&apos;focus&apos;</span>, ( evt, [ isForced ] ) =&gt; {
-    <span class="hljs-comment">// Pretend the button wasn&apos;t focused if the focus was forced.</span>
-    <span class="hljs-keyword">if</span> ( isForced === <span class="hljs-literal">true</span> ) {
-        evt.return = <span class="hljs-literal">false</span>;
+// The logic controlling the behavior of the button.
+button.on( &apos;focus&apos;, ( evt, [ isForced ] ) =&gt; {
+    // Pretend the button wasn&apos;t focused if the focus was forced.
+    if ( isForced === true ) {
+        evt.return = false;
     }
 } );
 
-<span class="hljs-built_in">console</span>.log( button.focus() ); <span class="hljs-comment">// -&gt; true</span>
-<span class="hljs-built_in">console</span>.log( button.focus( <span class="hljs-literal">true</span> ) ); <span class="hljs-comment">// -&gt; false</span>
+console.log( button.focus() ); // -&gt; true
+console.log( button.focus( true ) ); // -&gt; false
 </code></pre>
 <h3 id="changing-arguments-on-the-fly"><a class="headerlink" href="#changing-arguments-on-the-fly">#</a> Changing arguments on the fly</h3>
 <p>Just like the returned value, the arguments passed to the method can be changed in the event listener. Note the <code>high</code> listener <a href="../../../api/module_utils_priorities-PriorityString.html">priority</a> of the used to intercept the default action:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> button = <span class="hljs-keyword">new</span> Button();
+<pre class="highlight"><code class="js">const button = new Button();
 
-<span class="hljs-comment">// Render the button to create its #element.</span>
+// Render the button to create its #element.
 button.render();
 
-<span class="hljs-comment">// The logic controlling the behavior of the button.</span>
-button.on( <span class="hljs-string">&apos;focus&apos;</span>, ( evt, args ) =&gt; {
-    <span class="hljs-comment">// Always force the focus.</span>
-    args[ <span class="hljs-number">0</span> ] = <span class="hljs-literal">true</span>;
-}, { <span class="hljs-attr">priority</span>: <span class="hljs-string">&apos;high&apos;</span> } );
+// The logic controlling the behavior of the button.
+button.on( &apos;focus&apos;, ( evt, args ) =&gt; {
+    // Always force the focus.
+    args[ 0 ] = true;
+}, { priority: &apos;high&apos; } );
 
-button.focus(); <span class="hljs-comment">// -&gt; &apos;Focusing button, force=&quot;true&quot;&apos;</span>
-button.focus( <span class="hljs-literal">true</span> ); <span class="hljs-comment">// -&gt; &apos;Focusing button, force=&quot;true&quot;&apos;</span>
+button.focus(); // -&gt; &apos;Focusing button, force=&quot;true&quot;&apos;
+button.focus( true ); // -&gt; &apos;Focusing button, force=&quot;true&quot;&apos;
 </code></pre>
 
         </div>

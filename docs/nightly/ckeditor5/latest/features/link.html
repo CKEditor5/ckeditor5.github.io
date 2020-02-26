@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../snippets/features/build-link-source/snippet.css" type="text/css">
     <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
@@ -35,16 +35,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -86,7 +86,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -214,11 +214,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-link/blob/master/docs/features/link.md" title="Contribute to this guide"><img src="../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-link/blob/master/docs/features/link.md" title="Contribute to this guide"><img src="../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../assets/1.2.1/img/book.svg" alt="guide">Link
+          <h1 class="main__content-title"><img src="../../../assets/1.2.2/img/book.svg" alt="guide">Link
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#typing-around-links">Typing around links</a></li><li><a href="#custom-link-attributes-decorators">Custom link attributes (decorators)</a><ol><li><a href="#demo-2">Demo</a></li><li><a href="#configuration">Configuration</a><ol><li><a href="#adding-target-and-rel-attributes-to-external-links">Adding target and rel attributes to external links</a></li><li><a href="#adding-attributes-to-links-based-on-predefined-rules-automatic-decorators">Adding attributes to links based on pre&#x2013;defined rules (automatic decorators)</a></li><li><a href="#adding-attributes-to-links-using-the-ui-manual-decorators">Adding attributes to links using the UI (manual decorators)</a></li></ol></li></ol></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 <p>The <a href="../api/module_link_link-Link.html"><code>Link</code></a> feature brings support for link editing to the rich-text editor. It allows for inserting hyperlinks into the edited content and offers the UI to create and edit them.</p>
 <h2 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h2>
@@ -282,24 +282,24 @@
 </div>
 <p>The following code was used to run the editor. Learn more about the <a href="#configuration">configuration</a> of the feature.</p>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">toolbar</span>: {
-            <span class="hljs-attr">items</span>: [
-                <span class="hljs-comment">// ...</span>
-                <span class="hljs-string">&apos;link&apos;</span>
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        toolbar: {
+            items: [
+                // ...
+                &apos;link&apos;
             ],
         },
-        <span class="hljs-attr">link</span>: {
-            <span class="hljs-comment">// Automatically add target=&quot;_blank&quot; and rel=&quot;noopener noreferrer&quot; to all external links.</span>
-            <span class="hljs-attr">addTargetToExternalLinks</span>: <span class="hljs-literal">true</span>,
+        link: {
+            // Automatically add target=&quot;_blank&quot; and rel=&quot;noopener noreferrer&quot; to all external links.
+            addTargetToExternalLinks: true,
 
-            <span class="hljs-comment">// Let the users control the &quot;download&quot; attribute of each link.</span>
-            <span class="hljs-attr">decorators</span>: [
+            // Let the users control the &quot;download&quot; attribute of each link.
+            decorators: [
                 {
-                    <span class="hljs-attr">mode</span>: <span class="hljs-string">&apos;manual&apos;</span>,
-                    <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Downloadable&apos;</span>,
-                    <span class="hljs-attr">attributes</span>: {
-                        <span class="hljs-attr">download</span>: <span class="hljs-string">&apos;download&apos;</span>
+                    mode: &apos;manual&apos;,
+                    label: &apos;Downloadable&apos;,
+                    attributes: {
+                        download: &apos;download&apos;
                     }
                 }
             ]
@@ -315,10 +315,10 @@
 <h4 id="adding-target-and-rel-attributes-to-external-links"><a class="headerlink" href="#adding-target-and-rel-attributes-to-external-links">#</a> Adding <code>target</code> and <code>rel</code> attributes to external links</h4>
 <p>A very common use case for (automatic) link decorators is adding <code>target=&quot;_blank&quot;</code> and <code>rel=&quot;noopener noreferrer&quot;</code> attributes to all external links in the document. A dedicated <a href="../api/module_link_link-LinkConfig.html#member-addTargetToExternalLinks"><code>config.link.addTargetToExternalLinks</code></a> configuration has been created for that purpose. When this option is set to <code>true</code>, all links starting with <code>http://</code>, <code>https://</code> or <code>//</code> are &#x201C;decorated&#x201D; with <code>target</code> and <code>rel</code> attributes.</p>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-comment">// ...</span>
-        <span class="hljs-attr">link</span>: {
-            <span class="hljs-attr">addTargetToExternalLinks</span>: <span class="hljs-literal">true</span>
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        // ...
+        link: {
+            addTargetToExternalLinks: true
         }
     } )
     .then( ... )
@@ -326,16 +326,16 @@
 </code></pre>
 <p>Internally, this configuration corresponds to an <a href="#adding-attributes-to-links-based-on-predefined-rules-automatic-decorators">automatic decorator</a> with the following <a href="../api/module_link_link-LinkDecoratorAutomaticDefinition.html">definition</a>:</p>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-comment">// ...</span>
-        <span class="hljs-attr">link</span>: {
-            <span class="hljs-attr">decorators</span>: {
-                <span class="hljs-attr">addTargetToExternalLinks</span>: {
-                    <span class="hljs-attr">mode</span>: <span class="hljs-string">&apos;automatic&apos;</span>,
-                    <span class="hljs-attr">callback</span>: <span class="hljs-function"><span class="hljs-params">url</span> =&gt;</span> <span class="hljs-regexp">/^(https?:)?\/\//</span>.test( url ),
-                    <span class="hljs-attr">attributes</span>: {
-                        <span class="hljs-attr">target</span>: <span class="hljs-string">&apos;_blank&apos;</span>,
-                        <span class="hljs-attr">rel</span>: <span class="hljs-string">&apos;noopener noreferrer&apos;</span>
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        // ...
+        link: {
+            decorators: {
+                addTargetToExternalLinks: {
+                    mode: &apos;automatic&apos;,
+                    callback: url =&gt; /^(https?:)?\/\//.test( url ),
+                    attributes: {
+                        target: &apos;_blank&apos;,
+                        rel: &apos;noopener noreferrer&apos;
                     }
                 }
             }
@@ -346,16 +346,16 @@
 </code></pre>
 <p>If you want to leave the decision whether a link should open in a new tab to the users, do not use the <code>config.link.addTargetToExternalLinks</code> configuration but define a new <a href="#adding-attributes-to-links-using-the-ui-manual-decorators">manual decorator</a> with the following definition instead:</p>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-comment">// ...</span>
-        <span class="hljs-attr">link</span>: {
-            <span class="hljs-attr">decorators</span>: {
-                <span class="hljs-attr">addTargetToExternalLinks</span>: {
-                    <span class="hljs-attr">mode</span>: <span class="hljs-string">&apos;manual&apos;</span>,
-                    <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Open in a new tab&apos;</span>,
-                    <span class="hljs-attr">attributes</span>: {
-                        <span class="hljs-attr">target</span>: <span class="hljs-string">&apos;_blank&apos;</span>,
-                        <span class="hljs-attr">rel</span>: <span class="hljs-string">&apos;noopener noreferrer&apos;</span>
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        // ...
+        link: {
+            decorators: {
+                addTargetToExternalLinks: {
+                    mode: &apos;manual&apos;,
+                    label: &apos;Open in a new tab&apos;,
+                    attributes: {
+                        target: &apos;_blank&apos;,
+                        rel: &apos;noopener noreferrer&apos;
                     }
                 }
             }
@@ -368,15 +368,15 @@
 <p>Automatic link decorators match all links in the editor content against a <a href="../api/module_link_link-LinkDecoratorAutomaticDefinition.html">function</a> which decides whether the link should receive some set of attributes, considering the URL (<code>href</code>) of the link. These decorators work silently and are being applied during the <a href="../framework/guides/architecture/editing-engine.html#conversion">data downcast</a> only.</p>
 <p>For instance, to create an automatic decorator that adds the <code>download=&quot;file.pdf&quot;</code> attribute to all links ending with the <code>&quot;.pdf&quot;</code> extension, you should add the following <a href="../api/module_link_link-LinkDecoratorAutomaticDefinition.html">definition</a> to <a href="../api/module_link_link-LinkConfig.html#member-decorators"><code>config.link.decorators</code></a>:</p>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-comment">// ...</span>
-        <span class="hljs-attr">link</span>: {
-            <span class="hljs-attr">decorators</span>: {
-                <span class="hljs-attr">detectDownloadable</span>: {
-                    <span class="hljs-attr">mode</span>: <span class="hljs-string">&apos;automatic&apos;</span>,
-                    <span class="hljs-attr">callback</span>: <span class="hljs-function"><span class="hljs-params">url</span> =&gt;</span> url.endsWith( <span class="hljs-string">&apos;.pdf&apos;</span> ),
-                    <span class="hljs-attr">attributes</span>: {
-                        <span class="hljs-attr">download</span>: <span class="hljs-string">&apos;file.pdf&apos;</span>
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        // ...
+        link: {
+            decorators: {
+                detectDownloadable: {
+                    mode: &apos;automatic&apos;,
+                    callback: url =&gt; url.endsWith( &apos;.pdf&apos; ),
+                    attributes: {
+                        download: &apos;file.pdf&apos;
                     }
                 }
             }
@@ -390,15 +390,15 @@
 <p>Manual link decorators are represented in the link editing balloon as switch buttons that the users can use to control the presence of attributes of a particular link (check out the <a href="#demo">demo</a> to learn more). Each manual decorator <a href="../api/module_link_link-LinkDecoratorManualDefinition.html">definition</a> contains a human&#x2013;readable label displayed next to the switch button in the link editing balloon. Make sure it is compact and precise for the convenience of the users.</p>
 <p>To configure a &#x201C;Downloadable&#x201D; switch button in the link editing balloon that adds the <code>download=&quot;file&quot;</code> attribute to the link when turned on, add the following definition to <a href="../api/module_link_link-LinkConfig.html#member-decorators"><code>config.link.decorators</code></a>:</p>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-comment">// ...</span>
-        <span class="hljs-attr">link</span>: {
-            <span class="hljs-attr">decorators</span>: {
-                <span class="hljs-attr">toggleDownloadable</span>: {
-                    <span class="hljs-attr">mode</span>: <span class="hljs-string">&apos;manual&apos;</span>,
-                    <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Downloadable&apos;</span>,
-                    <span class="hljs-attr">attributes</span>: {
-                        <span class="hljs-attr">download</span>: <span class="hljs-string">&apos;file&apos;</span>
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        // ...
+        link: {
+            decorators: {
+                toggleDownloadable: {
+                    mode: &apos;manual&apos;,
+                    label: &apos;Downloadable&apos;,
+                    attributes: {
+                        download: &apos;file&apos;
                     }
                 }
             }
@@ -413,12 +413,12 @@
 <pre class="highlight"><code class="bash">npm install --save @ckeditor/ckeditor5-link
 </code></pre>
 <p>Then add the <code>Link</code> plugin to your plugin list:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> Link <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-link/src/link&apos;</span>;
+<pre class="highlight"><code class="js">import Link from &apos;@ckeditor/ckeditor5-link/src/link&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ Link, ... ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;link&apos;</span>, ... ],
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Link, ... ],
+        toolbar: [ &apos;link&apos;, ... ],
     } )
     .then( ... )
     .catch( ... );
@@ -430,15 +430,15 @@ ClassicEditor
 <li>The <code>&apos;unlink&apos;</code> command implemented by <a href="../api/module_link_unlinkcommand-UnlinkCommand.html"><code>UnlinkCommand</code></a>.</li>
 </ul>
 <p>The commands can be executed using the <a href="../api/module_core_editor_editor-Editor.html#function-execute"><code>editor.execute()</code></a> method:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// Applies the link to the selected content.</span>
-<span class="hljs-comment">// When the selection is collapsed, it creates new text wrapped in a link.</span>
-editor.execute( <span class="hljs-string">&apos;link&apos;</span>, <span class="hljs-string">&apos;http://example.com&apos;</span> );
+<pre class="highlight"><code class="js">// Applies the link to the selected content.
+// When the selection is collapsed, it creates new text wrapped in a link.
+editor.execute( &apos;link&apos;, &apos;http://example.com&apos; );
 
-<span class="hljs-comment">// If there are decorators configured, the command can set their state.</span>
-editor.execute( <span class="hljs-string">&apos;link&apos;</span>, <span class="hljs-string">&apos;http://example.com&apos;</span>, { <span class="hljs-attr">linkIsExternal</span>: <span class="hljs-literal">true</span> } );
+// If there are decorators configured, the command can set their state.
+editor.execute( &apos;link&apos;, &apos;http://example.com&apos;, { linkIsExternal: true } );
 
-<span class="hljs-comment">// Removes the link from the selection (and all decorators if present).</span>
-editor.execute( <span class="hljs-string">&apos;unlink&apos;</span> );
+// Removes the link from the selection (and all decorators if present).
+editor.execute( &apos;unlink&apos; );
 </code></pre>
 <p>Links are represented in the <a href="../api/module_engine_model_model-Model.html">model</a> using the <code>linkHref</code> attribute. <a href="#adding-attributes-to-links-using-the-ui-manual-decorators">Manual link decorators</a> are represented in the model using text attributes corresponding to their names, as configured in <a href="../api/module_link_link-LinkConfig.html#member-decorators"><code>config.link.decorators</code></a>.</p>
 <div class="info-box notice"><p>We recommend using the official <a href="../framework/guides/development-tools.html#ckeditor-5-inspector">CKEditor 5 inspector</a> for development and debugging. It will give you tons of useful information about the state of the editor such as internal data structures, selection, commands, and many more.</p></div>

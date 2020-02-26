@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../../assets/styles.css" type="text/css">
     <script>
       ( function() {
@@ -33,16 +33,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -84,7 +84,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -199,11 +199,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/frameworks/angular.md" title="Contribute to this guide"><img src="../../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/frameworks/angular.md" title="Contribute to this guide"><img src="../../../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">Builds</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../../assets/1.2.1/img/book.svg" alt="guide">Rich text editor component for Angular
+          <h1 class="main__content-title"><img src="../../../../../../assets/1.2.2/img/book.svg" alt="guide">Rich text editor component for Angular
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#quick-start">Quick start</a><ol><li><a href="#using-the-document-editor-build">Using the Document editor build</a></li><li><a href="#using-a-custom-ckeditor-5-build">Using a custom CKEditor 5 build</a></li><li><a href="#using-the-editor-with-collaboration-plugins">Using the editor with collaboration plugins</a></li><li><a href="#strict-mode-project-tips">Strict mode project tips</a></li></ol></li><li><a href="#integration-with-ngmodel">Integration with ngModel</a></li><li><a href="#supported-input-properties">Supported @Input properties</a><ol><li><a href="#editor-required">editor (required)</a></li><li><a href="#config">config</a></li><li><a href="#data">data</a></li><li><a href="#tagname">tagName</a></li><li><a href="#disabled">disabled</a></li></ol></li><li><a href="#supported-output-properties">Supported @Output properties</a><ol><li><a href="#ready">ready</a></li><li><a href="#change">change</a></li><li><a href="#blur">blur</a></li><li><a href="#focus">focus</a></li></ol></li><li><a href="#styling">Styling</a><ol><li><a href="#setting-the-height-via-the-component-stylesheet">Setting the height via the component stylesheet</a></li><li><a href="#setting-the-height-via-a-global-stylesheet">Setting the height via a global stylesheet</a></li><li><a href="#setting-the-placeholder">Setting the placeholder</a></li></ol></li><li><a href="#accessing-the-editor-instance">Accessing the editor instance</a></li><li><a href="#localization">Localization</a><ol><li><a href="#1-loading-translation-files">1. Loading translation files</a></li><li><a href="#2-configuring-the-language">2. Configuring the language</a></li></ol></li><li><a href="#contributing-and-reporting-issues">Contributing and reporting issues</a></li></ol></nav>
 <p><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-angular" target="_blank" rel="noopener"><img src="https://badge.fury.io/js/%40ckeditor%2Fckeditor5-angular.svg" alt="npm version"></a></p>
 <p>CKEditor 5 consists of <a href="../../overview.html">ready-to-use editor builds</a> and <a href="../../../../framework/guides/overview.html">CKEditor 5 Framework</a> upon which the builds are based.</p>
@@ -218,42 +218,42 @@
 <pre class="highlight"><code class="bash">npm install --save @ckeditor/ckeditor5-build-classic
 </code></pre>
 <p>Now, add <code>CKEditorModule</code> to modules whose components will be using the <code>&lt;ckeditor&gt;</code> component in their templates.</p>
-<pre class="highlight"><code class="ts html"><span class="hljs-keyword">import</span> { CKEditorModule } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-angular&apos;</span>;
+<pre class="highlight"><code class="ts">import { CKEditorModule } from &apos;@ckeditor/ckeditor5-angular&apos;;
 
-<span class="hljs-meta">@NgModule</span>( {
+@NgModule( {
     imports: [
         CKEditorModule,
-        <span class="hljs-comment">// ...</span>
+        // ...
     ],
-    <span class="hljs-comment">// ...</span>
+    // ...
 } )
 </code></pre>
 <p>Import the editor build in your Angular component and assign it to a <code>public</code> property to make it accessible from the template:</p>
-<pre class="highlight"><code class="ts html"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-build-classic&apos;</span>;
+<pre class="highlight"><code class="ts">import * as ClassicEditor from &apos;@ckeditor/ckeditor5-build-classic&apos;;
 
-<span class="hljs-meta">@Component</span>( {
-    <span class="hljs-comment">// ...</span>
+@Component( {
+    // ...
 } )
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyComponent {
-    <span class="hljs-keyword">public</span> Editor = ClassicEditor;
-    <span class="hljs-comment">// ...</span>
+export class MyComponent {
+    public Editor = ClassicEditor;
+    // ...
 }
 </code></pre>
 <p>Finally, use the <code>&lt;ckeditor&gt;</code> tag in the template to run the rich text editor:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">ckeditor</span> [<span class="hljs-attr">editor</span>]=<span class="hljs-string">&quot;Editor&quot;</span> <span class="hljs-attr">data</span>=<span class="hljs-string">&quot;&lt;p&gt;Hello, world!&lt;/p&gt;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ckeditor</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;ckeditor [editor]=&quot;Editor&quot; data=&quot;&lt;p&gt;Hello, world!&lt;/p&gt;&quot;&gt;&lt;/ckeditor&gt;
 </code></pre>
 <p>Rebuild your application and CKEditor 5 should greet you with &#x201C;Hello, world!&#x201D;.</p>
 <h3 id="using-the-document-editor-build"><a class="headerlink" href="#using-the-document-editor-build">#</a> Using the Document editor build</h3>
 <p>If you want to use the <a href="../../../../framework/guides/deep-dive/ui/document-editor.html">document editor build</a>, you need to <a href="../../../../api/module_editor-decoupled_decouplededitor-DecoupledEditor.html#static-function-create">add the toolbar to the DOM manually</a>.</p>
-<pre class="highlight"><code class="ts html"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> DecoupledEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-build-decoupled-document&apos;</span>;
+<pre class="highlight"><code class="ts">import * as DecoupledEditor from &apos;@ckeditor/ckeditor5-build-decoupled-document&apos;;
 
-<span class="hljs-meta">@Component</span>( {
-    <span class="hljs-comment">// ...</span>
+@Component( {
+    // ...
 } )
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyComponent {
-    <span class="hljs-keyword">public</span> Editor = DecoupledEditor;
+export class MyComponent {
+    public Editor = DecoupledEditor;
 
-    <span class="hljs-keyword">public</span> onReady( editor ) {
+    public onReady( editor ) {
         editor.ui.getEditableElement().parentElement.insertBefore(
             editor.ui.view.toolbar.element,
             editor.ui.getEditableElement()
@@ -262,26 +262,26 @@
 }
 </code></pre>
 <p>And then, in the template:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">ckeditor</span> [<span class="hljs-attr">editor</span>]=<span class="hljs-string">&quot;Editor&quot;</span> <span class="hljs-attr">data</span>=<span class="hljs-string">&quot;&lt;p&gt;Hello, world!&lt;/p&gt;&quot;</span> (<span class="hljs-attr">ready</span>)=<span class="hljs-string">&quot;onReady($event)&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ckeditor</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;ckeditor [editor]=&quot;Editor&quot; data=&quot;&lt;p&gt;Hello, world!&lt;/p&gt;&quot; (ready)=&quot;onReady($event)&quot;&gt;&lt;/ckeditor&gt;
 </code></pre>
 <h3 id="using-a-custom-ckeditor-5-build"><a class="headerlink" href="#using-a-custom-ckeditor-5-build">#</a> Using a custom CKEditor 5 build</h3>
 <p>If you want to add more plugins to the existing build or customize something that cannot be controlled with the <a href="../configuration.html">editor configuration</a> you should create a custom build first, using the <a href="../../development/custom-builds.html">create a custom build guide</a>.</p>
 <p>You should finish the above tutorial with the generated <code>ckeditor.js</code> file (and corresponding translation files). In the next step you should copy it to the <code>src</code> directory and import it to the component file.</p>
-<pre class="highlight"><code class="ts html"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> Editor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;path/to/the/ckeditor&apos;</span>;
+<pre class="highlight"><code class="ts">import * as Editor from &apos;path/to/the/ckeditor&apos;;
 
-<span class="hljs-meta">@Component</span>( {
-    <span class="hljs-comment">// ...</span>
+@Component( {
+    // ...
 } )
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyComponent {
-    <span class="hljs-keyword">public</span> Editor = Editor;
-    <span class="hljs-comment">// ...</span>
+export class MyComponent {
+    public Editor = Editor;
+    // ...
 }
 </code></pre>
 <p>Note that to allow importing JavaScript files without providing their corresponding types you need to set <code>allowJs</code> to <code>true</code> in the <code>tsconfig.json</code> file. Also, make sure that you target <code>ES6</code> or higher, otherwise you are likely to end up with <a href="https://github.com/ckeditor/ckeditor5-angular/issues/20" target="_blank" rel="noopener">a weird transpilation error</a> in the production build.</p>
-<pre class="highlight"><code class="json html"><span class="hljs-string">&quot;compilerOptions&quot;</span>: {
-    <span class="hljs-attr">&quot;allowJs&quot;</span>: <span class="hljs-literal">true</span>,
-    <span class="hljs-attr">&quot;target&quot;</span>: <span class="hljs-string">&quot;es2015&quot;</span>
-    <span class="hljs-comment">// other options</span>
+<pre class="highlight"><code class="json">&quot;compilerOptions&quot;: {
+    &quot;allowJs&quot;: true,
+    &quot;target&quot;: &quot;es2015&quot;
+    // other options
 }
 </code></pre>
 <div class="info-box notice"><p>If you cannot set the target higher than <code>es5</code>, try to set <code>&quot;buildOptimizer&quot;: false</code> which will produce a bigger, but correct production build.</p></div>
@@ -300,13 +300,13 @@
 <h3 id="strict-mode-project-tips"><a class="headerlink" href="#strict-mode-project-tips">#</a> Strict mode project tips</h3>
 <p>If you have the strict mode set in your project, you need to specify types for CKEditor 5 packages. Otherwise you will get the <code>Could not find a declaration file for module</code> error.</p>
 <p>To fix that you need to create a TypeScript declaration file and declare modules that miss their types:</p>
-<pre class="highlight"><code class="ts html"><span class="hljs-comment">// typings.d.ts</span>
+<pre class="highlight"><code class="ts">// typings.d.ts
 
-<span class="hljs-comment">// You should specify the CKEditor 5 build you use here:</span>
-<span class="hljs-keyword">declare</span> <span class="hljs-keyword">module</span> &apos;@ckeditor/ckeditor5-build-classic&apos; {
-    <span class="hljs-keyword">const</span> ClassicEditorBuild: <span class="hljs-built_in">any</span>;
+// You should specify the CKEditor 5 build you use here:
+declare module &apos;@ckeditor/ckeditor5-build-classic&apos; {
+    const ClassicEditorBuild: any;
 
-    <span class="hljs-keyword">export</span> = ClassicEditorBuild;
+    export = ClassicEditorBuild;
 }
 </code></pre>
 <p>Unfortunately, CKEditor 5 builds do not ship with corresponding TypeScript typings yet. If you are interested in this topic you can add your vote or a comment <a href="https://github.com/ckeditor/ckeditor5/issues/504" target="_blank" rel="noopener">here</a>.</p>
@@ -315,20 +315,20 @@
 <ol>
 <li>
 <p>Create some model in your component to share with the editor:</p>
-<pre class="highlight"><code class="ts html"><span class="hljs-meta">@Component</span>( {
-    <span class="hljs-comment">// ...</span>
+<pre class="highlight"><code class="ts html">@Component( {
+    // ...
 } )
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyComponent {
-    <span class="hljs-keyword">public</span> model = {
-        editorData: <span class="hljs-string">&apos;&lt;p&gt;Hello, world!&lt;/p&gt;&apos;</span>
+export class MyComponent {
+    public model = {
+        editorData: &apos;&lt;p&gt;Hello, world!&lt;/p&gt;&apos;
     };
-    <span class="hljs-comment">// ...</span>
+    // ...
 }
 </code></pre>
 </li>
 <li>
 <p>Use the model in the template to enable a two&#x2013;way data binding:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">ckeditor</span> [(<span class="hljs-attr">ngModel</span>)]=<span class="hljs-string">&quot;model.editorData&quot;</span> [<span class="hljs-attr">editor</span>]=<span class="hljs-string">&quot;Editor&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ckeditor</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;ckeditor [(ngModel)]=&quot;model.editorData&quot; [editor]=&quot;Editor&quot;&gt;&lt;/ckeditor&gt;
 </code></pre>
 </li>
 </ol>
@@ -336,50 +336,50 @@
 <p>The following <code>@Input</code> properties are supported by the CKEditor 5 rich text editor component for Angular:</p>
 <h3 id="editor-required"><a class="headerlink" href="#editor-required">#</a> <code>editor</code> (required)</h3>
 <p>The <a href="../basic-api.html"><code>Editor</code></a> which provides the static <a href="../../../../api/module_core_editor_editor-Editor.html#static-function-create"><code>create()</code></a> method to create an instance of the editor:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">ckeditor</span> [<span class="hljs-attr">editor</span>]=<span class="hljs-string">&quot;Editor&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ckeditor</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;ckeditor [editor]=&quot;Editor&quot;&gt;&lt;/ckeditor&gt;
 </code></pre>
 <h3 id="config"><a class="headerlink" href="#config">#</a> <code>config</code></h3>
 <p>The <a href="../../../../api/module_core_editor_editorconfig-EditorConfig.html">configuration</a> of the editor:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">ckeditor</span> [<span class="hljs-attr">config</span>]=<span class="hljs-string">&quot;{ toolbar: [ &apos;heading&apos;, &apos;|&apos;, &apos;bold&apos;, &apos;italic&apos; ] }&quot;</span> <span class="hljs-attr">...</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ckeditor</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;ckeditor [config]=&quot;{ toolbar: [ &apos;heading&apos;, &apos;|&apos;, &apos;bold&apos;, &apos;italic&apos; ] }&quot; ...&gt;&lt;/ckeditor&gt;
 </code></pre>
 <h3 id="data"><a class="headerlink" href="#data">#</a> <code>data</code></h3>
 <p>The initial data of the editor. It can be a static value:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">ckeditor</span> <span class="hljs-attr">data</span>=<span class="hljs-string">&quot;&lt;p&gt;Hello, world!&lt;/p&gt;&quot;</span> <span class="hljs-attr">...</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ckeditor</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;ckeditor data=&quot;&lt;p&gt;Hello, world!&lt;/p&gt;&quot; ...&gt;&lt;/ckeditor&gt;
 </code></pre>
 <p>or a shared parent component&#x2019;s property</p>
-<pre class="highlight"><code class="ts html"><span class="hljs-meta">@Component</span>( {
-    <span class="hljs-comment">// ...</span>
+<pre class="highlight"><code class="ts html">@Component( {
+    // ...
 } )
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyComponent {
-    <span class="hljs-keyword">public</span> editorData = <span class="hljs-string">&apos;&lt;p&gt;Hello, world!&lt;/p&gt;&apos;</span>;
-    <span class="hljs-comment">// ...</span>
+export class MyComponent {
+    public editorData = &apos;&lt;p&gt;Hello, world!&lt;/p&gt;&apos;;
+    // ...
 }
 </code></pre>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">ckeditor</span> [<span class="hljs-attr">data</span>]=<span class="hljs-string">&quot;editorData&quot;</span> <span class="hljs-attr">...</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ckeditor</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;ckeditor [data]=&quot;editorData&quot; ...&gt;&lt;/ckeditor&gt;
 </code></pre>
 <h3 id="tagname"><a class="headerlink" href="#tagname">#</a> <code>tagName</code></h3>
 <p>The tag name of the HTML element on which the rich text editor will be created.</p>
 <p>The default tag is <code>&lt;div&gt;</code>.</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">ckeditor</span> <span class="hljs-attr">tagName</span>=<span class="hljs-string">&quot;textarea&quot;</span> <span class="hljs-attr">...</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ckeditor</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;ckeditor tagName=&quot;textarea&quot; ...&gt;&lt;/ckeditor&gt;
 </code></pre>
 <h3 id="disabled"><a class="headerlink" href="#disabled">#</a> <code>disabled</code></h3>
 <p>Controls the editor&#x2019;s <a href="../../../../api/module_core_editor_editor-Editor.html#member-isReadOnly">read&#x2013;only</a> state:</p>
-<pre class="highlight"><code class="ts html"><span class="hljs-meta">@Component</span>( {
-    <span class="hljs-comment">// ...</span>
+<pre class="highlight"><code class="ts">@Component( {
+    // ...
 } )
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyComponent {
-    <span class="hljs-keyword">public</span> isDisabled = <span class="hljs-literal">false</span>;
-    <span class="hljs-comment">// ...</span>
+export class MyComponent {
+    public isDisabled = false;
+    // ...
     toggleDisabled() {
-        <span class="hljs-keyword">this</span>.isDisabled = !<span class="hljs-keyword">this</span>.isDisabled
+        this.isDisabled = !this.isDisabled
     }
 }
 </code></pre>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">ckeditor</span> [<span class="hljs-attr">disabled</span>]=<span class="hljs-string">&quot;isDisabled&quot;</span> <span class="hljs-attr">...</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ckeditor</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;ckeditor [disabled]=&quot;isDisabled&quot; ...&gt;&lt;/ckeditor&gt;
 
-<span class="hljs-tag">&lt;<span class="hljs-name">button</span> (<span class="hljs-attr">click</span>)=<span class="hljs-string">&quot;toggleDisabled()&quot;</span>&gt;</span>
-    <span class="hljs-comment">{{</span> isDisabled ? &apos;Enable editor&apos; : &apos;Disable editor&apos; <span class="hljs-comment">}}</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+&lt;button (click)=&quot;toggleDisabled()&quot;&gt;
+    {{ isDisabled ? &apos;Enable editor&apos; : &apos;Disable editor&apos; }}
+&lt;/button&gt;
 </code></pre>
 <h2 id="supported-output-properties"><a class="headerlink" href="#supported-output-properties">#</a> Supported <code>@Output</code> properties</h2>
 <p>The following <code>@Output</code> properties are supported by the CKEditor 5 rich text editor component for Angular:</p>
@@ -389,21 +389,21 @@ It is fired with the editor instance.</p>
 <h3 id="change"><a class="headerlink" href="#change">#</a> <code>change</code></h3>
 <p>Fired when the content of the editor has changed. It corresponds with the <a href="../../../../api/module_engine_model_document-Document.html#event-change:data"><code>editor.model.document#change:data</code></a> event.<br>
 It is fired with an object containing the editor and the CKEditor 5 <code>change:data</code> event object.</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">ckeditor</span> [<span class="hljs-attr">editor</span>]=<span class="hljs-string">&quot;Editor&quot;</span> (<span class="hljs-attr">change</span>)=<span class="hljs-string">&quot;onChange($event)&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ckeditor</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;ckeditor [editor]=&quot;Editor&quot; (change)=&quot;onChange($event)&quot;&gt;&lt;/ckeditor&gt;
 </code></pre>
-<pre class="highlight"><code class="ts html"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-build-classic&apos;</span>;
-<span class="hljs-keyword">import</span> { ChangeEvent } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-angular/ckeditor.component&apos;</span>;
+<pre class="highlight"><code class="ts">import * as ClassicEditor from &apos;@ckeditor/ckeditor5-build-classic&apos;;
+import { ChangeEvent } from &apos;@ckeditor/ckeditor5-angular/ckeditor.component&apos;;
 
-<span class="hljs-meta">@Component</span>( {
-    <span class="hljs-comment">// ...</span>
+@Component( {
+    // ...
 } )
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyComponent {
-    <span class="hljs-keyword">public</span> Editor = ClassicEditor;
+export class MyComponent {
+    public Editor = ClassicEditor;
 
-    <span class="hljs-keyword">public</span> onChange( { editor }: ChangeEvent ) {
-        <span class="hljs-keyword">const</span> data = editor.getData();
+    public onChange( { editor }: ChangeEvent ) {
+        const data = editor.getData();
 
-        <span class="hljs-built_in">console</span>.log( data );
+        console.log( data );
     }
     ...
 }
@@ -418,34 +418,34 @@ It is fired with an object containing the editor and the CKEditor 5 <code>focus<
 <p>The CKEditor 5 rich text editor component for Angular can be styled using the component stylesheet or using a global stylesheet. See how to set the CKEditor 5 component&#x2019;s height using these two approaches.</p>
 <h3 id="setting-the-height-via-the-component-stylesheet"><a class="headerlink" href="#setting-the-height-via-the-component-stylesheet">#</a> Setting the height via the component stylesheet</h3>
 <p>First, create a (S)CSS file in the parent component&#x2019;s directory and style the given editor&#x2019;s part preceded by the <code>:host</code> and <code>::ng-deep</code> pseudo selectors:</p>
-<pre class="highlight"><code class="css"><span class="hljs-comment">/* src/app/app.component.css */</span>
+<pre class="highlight"><code class="css">/* src/app/app.component.css */
 
-<span class="hljs-selector-pseudo">:host</span> <span class="hljs-selector-pseudo">::ng-deep</span> <span class="hljs-selector-class">.ck-editor__editable_inline</span> {
-    <span class="hljs-attribute">min-height</span>: <span class="hljs-number">500px</span>;
+:host ::ng-deep .ck-editor__editable_inline {
+    min-height: 500px;
 }
 </code></pre>
 <p>Then in the parent component add the relative path to the above stylesheet:</p>
-<pre class="highlight"><code class="ts html"><span class="hljs-comment">/* src/app/app.component.ts */</span>
+<pre class="highlight"><code class="ts">/* src/app/app.component.ts */
 
-<span class="hljs-meta">@Component</span>( {
-    <span class="hljs-comment">// ...</span>
-    styleUrls: [ <span class="hljs-string">&apos;./app.component.css&apos;</span> ]
+@Component( {
+    // ...
+    styleUrls: [ &apos;./app.component.css&apos; ]
 } )
 </code></pre>
 <h3 id="setting-the-height-via-a-global-stylesheet"><a class="headerlink" href="#setting-the-height-via-a-global-stylesheet">#</a> Setting the height via a global stylesheet</h3>
 <p>To style the component using a global stylesheet, first, create it:</p>
-<pre class="highlight"><code class="css"><span class="hljs-comment">/* src/styles.css */</span>
+<pre class="highlight"><code class="css">/* src/styles.css */
 
-<span class="hljs-selector-class">.ck-editor__editable_inline</span> {
-    <span class="hljs-attribute">min-height</span>: <span class="hljs-number">500px</span>;
+.ck-editor__editable_inline {
+    min-height: 500px;
 }
 </code></pre>
 <p>Then, add it in the <code>angular.json</code> configuration file:</p>
-<pre class="highlight"><code class="json html"><span class="hljs-string">&quot;architect&quot;</span>: {
-    <span class="hljs-attr">&quot;build&quot;</span>: {
-        <span class="hljs-attr">&quot;options&quot;</span>: {
-            <span class="hljs-attr">&quot;styles&quot;</span>: [
-                { <span class="hljs-attr">&quot;input&quot;</span>: <span class="hljs-string">&quot;src/styles.css&quot;</span> }
+<pre class="highlight"><code class="json">&quot;architect&quot;: {
+    &quot;build&quot;: {
+        &quot;options&quot;: {
+            &quot;styles&quot;: [
+                { &quot;input&quot;: &quot;src/styles.css&quot; }
             ]
         }
     }
@@ -453,29 +453,29 @@ It is fired with an object containing the editor and the CKEditor 5 <code>focus<
 </code></pre>
 <h3 id="setting-the-placeholder"><a class="headerlink" href="#setting-the-placeholder">#</a> Setting the placeholder</h3>
 <p>To display <a href="../../../../features/editor-placeholder.html">the placeholder</a> in the main editable element, set the <code>placeholder</code> field in the CKEditor 5 rich text editor component configuration:</p>
-<pre class="highlight"><code class="ts html"><span class="hljs-meta">@Component</span>( {
-    <span class="hljs-comment">// ...</span>
+<pre class="highlight"><code class="ts">@Component( {
+    // ...
 } )
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyComponent {
-    <span class="hljs-keyword">public</span> config = {
-        placeholder: <span class="hljs-string">&apos;Type the content here!&apos;</span>
+export class MyComponent {
+    public config = {
+        placeholder: &apos;Type the content here!&apos;
     }
 }
 </code></pre>
 <h2 id="accessing-the-editor-instance"><a class="headerlink" href="#accessing-the-editor-instance">#</a> Accessing the editor instance</h2>
 <p>The CKEditor 5 rich text editor component provides all the functionality needed for most use cases. When access to the full CKEditor 5 API is needed you can get the editor instance with an additional step.</p>
 <p>To do this, create a template reference variable <code>#editor</code> pointing to the <code>&lt;ckeditor&gt;</code> component:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">ckeditor</span> #<span class="hljs-attr">editor</span> [<span class="hljs-attr">editor</span>]=<span class="hljs-string">&quot;Editor&quot;</span> <span class="hljs-attr">...</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">ckeditor</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;ckeditor #editor [editor]=&quot;Editor&quot; ...&gt;&lt;/ckeditor&gt;
 </code></pre>
 <p>Then get the <code>&lt;ckeditor&gt;</code> component using a property decorated by <code>@ViewChild( &apos;editor&apos; )</code> and access the editor instance when needed:</p>
-<pre class="highlight"><code class="ts html"><span class="hljs-meta">@Component</span>()
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyComponent {
-    <span class="hljs-meta">@ViewChild</span>( <span class="hljs-string">&apos;editor&apos;</span> ) editorComponent: CKEditorComponent;
+<pre class="highlight"><code class="ts">@Component()
+export class MyComponent {
+    @ViewChild( &apos;editor&apos; ) editorComponent: CKEditorComponent;
 
-    <span class="hljs-keyword">public</span> getEditor() {
-        <span class="hljs-comment">// Warning: This may return &quot;undefined&quot; if the editor is hidden behind the `*ngIf` directive or</span>
-        <span class="hljs-comment">// if the editor is not fully initialised yet.</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.editorComponent.editorInstance;
+    public getEditor() {
+        // Warning: This may return &quot;undefined&quot; if the editor is hidden behind the `*ngIf` directive or
+        // if the editor is not fully initialised yet.
+        return this.editorComponent.editorInstance;
     }
 }
 </code></pre>
@@ -487,17 +487,17 @@ It is fired with an object containing the editor and the CKEditor 5 <code>focus<
 <ul>
 <li>
 <p>By importing translations for given languages directly in your component file:</p>
-<pre class="highlight"><code class="ts html"><span class="hljs-keyword">import</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-build-classic/build/translations/de&apos;</span>;
-<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-build-classic&apos;</span>;
+<pre class="highlight"><code class="ts">import &apos;@ckeditor/ckeditor5-build-classic/build/translations/de&apos;;
+import * as ClassicEditor from &apos;@ckeditor/ckeditor5-build-classic&apos;;
 ...
 </code></pre>
 </li>
 <li>
 <p>By adding paths to translation files to the <code>&quot;scripts&quot;</code> array in <code>angular.json</code>:</p>
-<pre class="highlight"><code class="json html"><span class="hljs-string">&quot;architect&quot;</span>: {
-    <span class="hljs-attr">&quot;build&quot;</span>: {
-        <span class="hljs-attr">&quot;options&quot;</span>: {
-            <span class="hljs-attr">&quot;scripts&quot;</span>: [ <span class="hljs-string">&quot;node_modules/@ckeditor/ckeditor5-build-classic/build/translations/de.js&quot;</span> ]
+<pre class="highlight"><code class="json">&quot;architect&quot;: {
+    &quot;build&quot;: {
+        &quot;options&quot;: {
+            &quot;scripts&quot;: [ &quot;node_modules/@ckeditor/ckeditor5-build-classic/build/translations/de.js&quot; ]
         }
     }
 }
@@ -506,13 +506,13 @@ It is fired with an object containing the editor and the CKEditor 5 <code>focus<
 </ul>
 <h3 id="2-configuring-the-language"><a class="headerlink" href="#2-configuring-the-language">#</a> 2. Configuring the language</h3>
 <p>Then, you need to configure the editor to use the given language:</p>
-<pre class="highlight"><code class="ts html"><span class="hljs-meta">@Component</span>( {
-    <span class="hljs-comment">// ...</span>
+<pre class="highlight"><code class="ts">@Component( {
+    // ...
 } )
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> MyComponent {
-    <span class="hljs-keyword">public</span> Editor = ClassicEditor;
-    <span class="hljs-keyword">public</span> config = {
-        language: <span class="hljs-string">&apos;de&apos;</span>
+export class MyComponent {
+    public Editor = ClassicEditor;
+    public config = {
+        language: &apos;de&apos;
     };
 }
 </code></pre>

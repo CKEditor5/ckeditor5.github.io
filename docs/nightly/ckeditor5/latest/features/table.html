@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../snippets/features/build-table-source/snippet.css" type="text/css">
     <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
@@ -35,16 +35,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -86,7 +86,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -214,11 +214,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-table/blob/master/docs/features/table.md" title="Contribute to this guide"><img src="../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-table/blob/master/docs/features/table.md" title="Contribute to this guide"><img src="../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../assets/1.2.1/img/book.svg" alt="guide">Tables
+          <h1 class="main__content-title"><img src="../../../assets/1.2.2/img/book.svg" alt="guide">Tables
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demos">Demos</a><ol><li><a href="#basic-table-features">Basic table features</a></li><li><a href="#table-and-cell-styling-tools">Table and cell styling tools</a></li></ol></li><li><a href="#installation">Installation</a><ol><li><a href="#basic-table-features-2">Basic table features</a></li><li><a href="#table-and-cell-styling-tools-2">Table and cell styling tools</a></li></ol></li><li><a href="#configuring-styling-tools">Configuring styling tools</a><ol><li><a href="#customizing-color-palettes">Customizing color palettes</a></li></ol></li><li><a href="#block-vs-inline-content-in-table-cells">Block vs inline content in table cells</a><ol><li><a href="#inline-content">Inline content</a></li><li><a href="#block-content">Block content</a></li></ol></li><li><a href="#common-api">Common API</a><ol><li><a href="#ui-components">UI components</a><ol><li><a href="#toolbars">Toolbars</a></li></ol></li><li><a href="#editor-commands">Editor commands</a></li></ol></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 <p>The <a href="../api/module_table_table-Table.html"><code>Table</code></a> feature offers table creation and editing tools that help content authors bring tabular data into their documents.</p>
 <h2 id="demos"><a class="headerlink" href="#demos">#</a> Demos</h2>
@@ -369,15 +369,15 @@
 <pre class="highlight"><code class>npm install --save @ckeditor/ckeditor5-table
 </code></pre>
 <p>Then add the <code>Table</code> and <code>TableToolbar</code> plugins to your plugin list and configure the table toolbar:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> Table <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-table/src/table&apos;</span>;
-<span class="hljs-keyword">import</span> TableToolbar <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-table/src/tabletoolbar&apos;</span>;
+<pre class="highlight"><code class="js">import Table from &apos;@ckeditor/ckeditor5-table/src/table&apos;;
+import TableToolbar from &apos;@ckeditor/ckeditor5-table/src/tabletoolbar&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ Table, TableToolbar, Bold, ... ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;insertTable&apos;</span>, ... ],
-        <span class="hljs-attr">table</span>: {
-            <span class="hljs-attr">contentToolbar</span>: [ <span class="hljs-string">&apos;tableColumn&apos;</span>, <span class="hljs-string">&apos;tableRow&apos;</span>, <span class="hljs-string">&apos;mergeTableCells&apos;</span> ]
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Table, TableToolbar, Bold, ... ],
+        toolbar: [ &apos;insertTable&apos;, ... ],
+        table: {
+            contentToolbar: [ &apos;tableColumn&apos;, &apos;tableRow&apos;, &apos;mergeTableCells&apos; ]
         }
     } )
     .then( ... )
@@ -388,29 +388,29 @@ ClassicEditor
 <pre class="highlight"><code class>npm install --save @ckeditor/ckeditor5-table
 </code></pre>
 <p>Then add the <code>Table</code>, <code>TableToolbar</code>, <strong><code>TableProperties</code></strong>, and <strong><code>TableCellProperties</code></strong> plugins to your plugin list and configure the table toolbar:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> Table <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-table/src/table&apos;</span>;
-<span class="hljs-keyword">import</span> TableToolbar <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-table/src/tabletoolbar&apos;</span>;
-<span class="hljs-keyword">import</span> TableProperties <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-table/src/tableproperties&apos;</span>;
-<span class="hljs-keyword">import</span> TableCellProperties <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-table/src/tablecellproperties&apos;</span>;
+<pre class="highlight"><code class="js">import Table from &apos;@ckeditor/ckeditor5-table/src/table&apos;;
+import TableToolbar from &apos;@ckeditor/ckeditor5-table/src/tabletoolbar&apos;;
+import TableProperties from &apos;@ckeditor/ckeditor5-table/src/tableproperties&apos;;
+import TableCellProperties from &apos;@ckeditor/ckeditor5-table/src/tablecellproperties&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ Table, TableToolbar, TableProperties, TableCellProperties, Bold, ... ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;insertTable&apos;</span>, ... ],
-        <span class="hljs-attr">table</span>: {
-            <span class="hljs-attr">contentToolbar</span>: [
-                <span class="hljs-string">&apos;tableColumn&apos;</span>, <span class="hljs-string">&apos;tableRow&apos;</span>, <span class="hljs-string">&apos;mergeTableCells&apos;</span>,
-                <span class="hljs-string">&apos;tableProperties&apos;</span>, <span class="hljs-string">&apos;tableCellProperties&apos;</span>
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Table, TableToolbar, TableProperties, TableCellProperties, Bold, ... ],
+        toolbar: [ &apos;insertTable&apos;, ... ],
+        table: {
+            contentToolbar: [
+                &apos;tableColumn&apos;, &apos;tableRow&apos;, &apos;mergeTableCells&apos;,
+                &apos;tableProperties&apos;, &apos;tableCellProperties&apos;
             ],
 
-            <span class="hljs-comment">// Configuration of the TableProperties plugin.</span>
-            <span class="hljs-attr">tableProperties</span>: {
-                <span class="hljs-comment">// ...</span>
+            // Configuration of the TableProperties plugin.
+            tableProperties: {
+                // ...
             },
 
-            <span class="hljs-comment">// Configuration of the TableCellProperties plugin.</span>
-            <span class="hljs-attr">tableCellProperties</span>: {
-                <span class="hljs-comment">// ...</span>
+            // Configuration of the TableCellProperties plugin.
+            tableCellProperties: {
+                // ...
             }
         }
     } )
@@ -474,55 +474,55 @@ ClassicEditor
 </ul>
 <div class="info-box notice"><p>The above configurations <strong>do not</strong> impact the <a href="../builds/guides/integration/basic-api.html#setting-the-editor-data">data loaded into the editor</a>, i.e. they do not limit or filter the colors in the data. They are used only in the user interface allowing users to pick colors in a more convenient way.</p></div>
 <p>For instance, to define the same color palette for all border and background configurations, use the following code snippet:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> customColorPalette = [
+<pre class="highlight"><code class="js">const customColorPalette = [
     {
-        <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;hsl(4, 90%, 58%)&apos;</span>,
-        <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Red&apos;</span>
+        color: &apos;hsl(4, 90%, 58%)&apos;,
+        label: &apos;Red&apos;
     },
     {
-        <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;hsl(340, 82%, 52%)&apos;</span>,
-        <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Pink&apos;</span>
+        color: &apos;hsl(340, 82%, 52%)&apos;,
+        label: &apos;Pink&apos;
     },
     {
-        <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;hsl(291, 64%, 42%)&apos;</span>,
-        <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Purple&apos;</span>
+        color: &apos;hsl(291, 64%, 42%)&apos;,
+        label: &apos;Purple&apos;
     },
     {
-        <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;hsl(262, 52%, 47%)&apos;</span>,
-        <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Deep Purple&apos;</span>
+        color: &apos;hsl(262, 52%, 47%)&apos;,
+        label: &apos;Deep Purple&apos;
     },
     {
-        <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;hsl(231, 48%, 48%)&apos;</span>,
-        <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Indigo&apos;</span>
+        color: &apos;hsl(231, 48%, 48%)&apos;,
+        label: &apos;Indigo&apos;
     },
     {
-        <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;hsl(207, 90%, 54%)&apos;</span>,
-        <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Blue&apos;</span>
+        color: &apos;hsl(207, 90%, 54%)&apos;,
+        label: &apos;Blue&apos;
     },
 
-    <span class="hljs-comment">// ...</span>
+    // ...
 ];
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ Table, TableToolbar, TableProperties, TableCellProperties, Bold, ... ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;insertTable&apos;</span>, ... ],
-        <span class="hljs-attr">table</span>: {
-            <span class="hljs-attr">contentToolbar</span>: [
-                <span class="hljs-string">&apos;tableColumn&apos;</span>, <span class="hljs-string">&apos;tableRow&apos;</span>, <span class="hljs-string">&apos;mergeTableCells&apos;</span>,
-                <span class="hljs-string">&apos;tableProperties&apos;</span>, <span class="hljs-string">&apos;tableCellProperties&apos;</span>
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Table, TableToolbar, TableProperties, TableCellProperties, Bold, ... ],
+        toolbar: [ &apos;insertTable&apos;, ... ],
+        table: {
+            contentToolbar: [
+                &apos;tableColumn&apos;, &apos;tableRow&apos;, &apos;mergeTableCells&apos;,
+                &apos;tableProperties&apos;, &apos;tableCellProperties&apos;
             ],
 
-            <span class="hljs-comment">// Set the palettes for tables.</span>
-            <span class="hljs-attr">tableProperties</span>: {
-                <span class="hljs-attr">borderColors</span>: customColorPalette,
-                <span class="hljs-attr">backgroundColors</span>: customColorPalette
+            // Set the palettes for tables.
+            tableProperties: {
+                borderColors: customColorPalette,
+                backgroundColors: customColorPalette
             },
 
-            <span class="hljs-comment">// Set the palettes for table cells.</span>
-            <span class="hljs-attr">tableCellProperties</span>: {
-                <span class="hljs-attr">borderColors</span>: customColorPalette,
-                <span class="hljs-attr">backgroundColors</span>: customColorPalette
+            // Set the palettes for table cells.
+            tableCellProperties: {
+                borderColors: customColorPalette,
+                backgroundColors: customColorPalette
             }
         }
     } )
@@ -535,78 +535,78 @@ ClassicEditor
 <div class="info-box notice"><p>&#x201C;Rendering&#x201D; here means the view layer. In the model a cell is always filled with at least a <code>&lt;paragraph&gt;</code>. This is because of consistency, as &#x2014; since a cell always has some block content &#x2014; the text is never directly inside <code>&lt;tableCell&gt;</code>. This also allows features like <kbd>Enter</kbd> support to work out of the box (since a <code>&lt;paragraph&gt;</code> exists in the model, it can be split despite the fact that it is not present in the view).</p></div>
 <h3 id="inline-content"><a class="headerlink" href="#inline-content">#</a> Inline content</h3>
 <p>The following is the model representation of table cells with inline content only (a single <code>&lt;paragraph&gt;</code> inside):</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">tableRow</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">tableCell</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span>&gt;</span>Foo<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">tableCell</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">tableCell</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span>&gt;</span>Bar<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">tableCell</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">tableRow</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;table&gt;
+    &lt;tableRow&gt;
+        &lt;tableCell&gt;
+            &lt;paragraph&gt;Foo&lt;/paragraph&gt;
+        &lt;/tableCell&gt;
+        &lt;tableCell&gt;
+            &lt;paragraph&gt;Bar&lt;/paragraph&gt;
+        &lt;/tableCell&gt;
+    &lt;/tableRow&gt;
+&lt;/table&gt;
 </code></pre>
 <p>The above model structure will be rendered to the <a href="../api/module_editor-classic_classiceditor-ClassicEditor.html#function-getData">data</a> as:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;table&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Foo<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Bar<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-            <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;figure class=&quot;table&quot;&gt;
+    &lt;table&gt;
+        &lt;tbody&gt;
+            &lt;tr&gt;
+                &lt;td&gt;Foo&lt;/td&gt;
+                &lt;td&gt;Bar&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/figure&gt;
 </code></pre>
 <p>In the editing view (the editable container in which the user edits the content), additional <code>&lt;span&gt;</code> elements are created to compensate for the hidden <code>&lt;paragraph&gt;</code> elements:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;table&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Foo<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>Bar<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-            <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;figure class=&quot;table&quot;&gt;
+    &lt;table&gt;
+        &lt;tbody&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;span&gt;Foo&lt;/span&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;span&gt;Bar&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/figure&gt;
 </code></pre>
 <h3 id="block-content"><a class="headerlink" href="#block-content">#</a> Block content</h3>
 <p>If a table cell contains any other block content than a single <code>&lt;paragraph&gt;</code> with no attributes, these block elements will be rendered.</p>
 <p>The following is a sample table with some block content (model representation):</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">tableRow</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">tableCell</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span>&gt;</span>Foo<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span>&gt;</span>Bar<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">tableCell</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">tableCell</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">heading1</span>&gt;</span>Some title<span class="hljs-tag">&lt;/<span class="hljs-name">heading1</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">tableCell</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">tableCell</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span> <span class="hljs-attr">textAlign</span>=<span class="hljs-string">&quot;right&quot;</span>&gt;</span>Baz<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">tableCell</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">tableRow</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;table&gt;
+    &lt;tableRow&gt;
+        &lt;tableCell&gt;
+            &lt;paragraph&gt;Foo&lt;/paragraph&gt;
+            &lt;paragraph&gt;Bar&lt;/paragraph&gt;
+        &lt;/tableCell&gt;
+        &lt;tableCell&gt;
+            &lt;heading1&gt;Some title&lt;/heading1&gt;
+        &lt;/tableCell&gt;
+        &lt;tableCell&gt;
+            &lt;paragraph textAlign=&quot;right&quot;&gt;Baz&lt;/paragraph&gt;
+        &lt;/tableCell&gt;
+    &lt;/tableRow&gt;
+&lt;/table&gt;
 </code></pre>
 <p>The above model structure will be rendered to the data and to the editing view as:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;table&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Foo<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Bar<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-                <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Some title<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
-                <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>
-                    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;text-align: right;&quot;</span>&gt;</span>Baz<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-                <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
-            <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;figure class=&quot;table&quot;&gt;
+    &lt;table&gt;
+        &lt;tbody&gt;
+            &lt;tr&gt;
+                &lt;td&gt;
+                    &lt;p&gt;Foo&lt;/p&gt;
+                    &lt;p&gt;Bar&lt;/p&gt;
+                &lt;/td&gt;
+                &lt;td&gt;
+                    &lt;h2&gt;Some title&lt;/h2&gt;
+                &lt;/td&gt;
+                &lt;td&gt;
+                    &lt;p style=&quot;text-align: right;&quot;&gt;Baz&lt;/p&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/figure&gt;
 </code></pre>
 <div class="info-box notice notice__info"><p>At the moment it is not possible to completely disallow block content in tables. See the <a href="https://github.com/ckeditor/ckeditor5-table/issues/101" target="_blank" rel="noopener">discussion on GitHub</a> about adding a configuration option that would enable that. Add a &#x1F44D; if you need this feature.</p></div>
 <h2 id="common-api"><a class="headerlink" href="#common-api">#</a> Common API</h2>

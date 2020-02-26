@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
     <script>
       ( function() {
@@ -33,16 +33,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -84,7 +84,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -230,11 +230,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/contributing/testing-environment.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/contributing/testing-environment.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../assets/1.2.1/img/book.svg" alt="guide">Testing environment
+          <h1 class="main__content-title"><img src="../../../../../assets/1.2.2/img/book.svg" alt="guide">Testing environment
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#introduction">Introduction</a></li><li><a href="#running-automated-tests">Running automated tests</a><ol><li><a href="#examples">Examples</a></li></ol></li><li><a href="#running-manual-tests">Running manual tests</a><ol><li><a href="#creating-a-manual-test">Creating a manual test</a></li></ol></li><li><a href="#test-suite-and-ci">Test suite and CI</a></li></ol></nav>
 <p>Before reading this article we recommend getting familiar with the CKEditor 5 <a href="development-environment.html">development environment</a>.</p>
 <h2 id="introduction"><a class="headerlink" href="#introduction">#</a> Introduction</h2>
@@ -254,13 +254,13 @@
 </ul>
 <h3 id="examples"><a class="headerlink" href="#examples">#</a> Examples</h3>
 <p>Run all tests with the code coverage check of the <a href="https://github.com/ckeditor/ckeditor5-core" target="_blank" rel="noopener"><code>ckeditor5-core</code></a> package:</p>
-<pre class="highlight"><code class="bash">yarn run <span class="hljs-built_in">test</span> -c --files=core
+<pre class="highlight"><code class="bash">yarn run test -c --files=core
 </code></pre>
 <p>Run and watch the <a href="https://github.com/ckeditor/ckeditor5-engine/tree/master/tests/view" target="_blank" rel="noopener">engine&#x2019;s <code>view</code> namespace tests</a> and all the tests in <a href="https://github.com/ckeditor/ckeditor5-typing" target="_blank" rel="noopener"><code>ckeditor5-typing</code></a>:</p>
-<pre class="highlight"><code class="bash">yarn run <span class="hljs-built_in">test</span> -cw --files=engine/view,typing
+<pre class="highlight"><code class="bash">yarn run test -cw --files=engine/view,typing
 </code></pre>
 <p>Run the <code>bold*.js</code> tests in the <a href="https://github.com/ckeditor/ckeditor5-basic-styles" target="_blank" rel="noopener"><code>ckeditor5-basic-styles</code></a> package:</p>
-<pre class="highlight"><code class="bash">yarn run <span class="hljs-built_in">test</span> -cw --files=basic-styles/bold*.js
+<pre class="highlight"><code class="bash">yarn run test -cw --files=basic-styles/bold*.js
 </code></pre>
 <h2 id="running-manual-tests"><a class="headerlink" href="#running-manual-tests">#</a> Running manual tests</h2>
 <p>In order to start the manual tests server, use the <code>yarn run manual</code> task.</p>
@@ -281,43 +281,43 @@
 </ul>
 <p>All 3 files are combined together and create a single manual test.</p>
 <p>An example Markdown file:</p>
-<pre class="highlight"><code class="md html"><span class="hljs-section">## Create a new link</span>
-<span class="hljs-bullet">
-1. </span>Select a fragment of the regular text.
-<span class="hljs-bullet">2. </span>Click the toolbar &quot;Link&quot; button.
-<span class="hljs-bullet">3. </span>Check if the balloon panel attached to the selection appeared.
-<span class="hljs-bullet">4. </span>Fill in the &quot;Link URL&quot; input in the panel.
-<span class="hljs-bullet">5. </span>Click the &quot;Save&quot; button.
-<span class="hljs-bullet">6. </span>Check if the selected text is converted into a link.
+<pre class="highlight"><code class="md">## Create a new link
+
+1. Select a fragment of the regular text.
+2. Click the toolbar &quot;Link&quot; button.
+3. Check if the balloon panel attached to the selection appeared.
+4. Fill in the &quot;Link URL&quot; input in the panel.
+5. Click the &quot;Save&quot; button.
+6. Check if the selected text is converted into a link.
 </code></pre>
 <p>An example HTML file:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="css">
-        <span class="hljs-comment">/*
+<pre class="highlight"><code class="html">&lt;head&gt;
+    &lt;style&gt;
+        /*
           Some additional styles which this test needs.
           And yes &#x2013; the test builder will merge this tag with the head defined in the template.
-        */</span>
-    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+        */
+    &lt;/style&gt;
+&lt;/head&gt;
 
-<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;editor&quot;</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+&lt;div id=&quot;editor&quot;&gt;...&lt;/div&gt;
 </code></pre>
 <p>An example JavaScript file:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">/* globals console, window, document */</span>
+<pre class="highlight"><code class="js">/* globals console, window, document */
 
-<span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classic.js&apos;</span>;
-<span class="hljs-keyword">import</span> Essentials <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-essentials/src/essentials.js&apos;</span>;
-<span class="hljs-keyword">import</span> Paragraph <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-paragraph/src/paragraph.js&apos;</span>;
+import ClassicEditor from &apos;@ckeditor/ckeditor5-editor-classic/src/classic.js&apos;;
+import Essentials from &apos;@ckeditor/ckeditor5-essentials/src/essentials.js&apos;;
+import Paragraph from &apos;@ckeditor/ckeditor5-paragraph/src/paragraph.js&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ Essentials, Paragraph ]
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Essentials, Paragraph ]
     } )
-    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
-        <span class="hljs-built_in">window</span>.editor = editor;
+    .then( editor =&gt; {
+        window.editor = editor;
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error( err.stack );
+    .catch( err =&gt; {
+        console.error( err.stack );
     } );
 </code></pre>
 <div class="info-box notice"><p>Do not forget to add all dependencies of your manual test as <code>devDependencies</code> (in <code>package.json</code>).</p></div>

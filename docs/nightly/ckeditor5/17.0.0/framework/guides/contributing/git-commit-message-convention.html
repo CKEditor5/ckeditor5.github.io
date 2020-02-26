@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
     <script>
       ( function() {
@@ -33,16 +33,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -84,7 +84,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -230,11 +230,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/contributing/git-commit-message-convention.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/contributing/git-commit-message-convention.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../assets/1.2.1/img/book.svg" alt="guide">Git commit message convention
+          <h1 class="main__content-title"><img src="../../../../../assets/1.2.2/img/book.svg" alt="guide">Git commit message convention
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#convention">Convention</a><ol><li><a href="#commit-types">Commit types</a></li><li><a href="#example-commits">Example commits</a></li></ol></li><li><a href="#handling-pull-requests">Handling pull requests</a><ol><li><a href="#giving-credit">Giving credit</a></li></ol></li></ol></nav>
 <p>Every commit made <em>directly</em> to the <code>master</code> branch must follow the below convention. Based on commits in the <code>master</code> branch CKEditor 5 release tools will generate changelog entries for the current release.</p>
 <div class="info-box notice"><p>Commits in the ticket branches are not analyzed for the changelog and do not have to follow any specific convention (other than finishing sentences with periods). In case of ticket branches, <strong>only merge commits are analyzed</strong>.</p><p>Therefore, this guide is mainly targeted at core team members. However, it may help you understand how to write a suggested commit message when creating a pull request for CKEditor 5.</p></div>
@@ -359,32 +359,32 @@ NOTE: Make sure to set `config.contentDirection` correctly.
 BREAKING CHANGE: The `util.moo()` method is now available in the `moo` package. See #9.
 </code></pre>
 <p>For the commits shown above the changelog will look like this:</p>
-<pre class="highlight"><code class="md html"><span class="hljs-section">Changelog
-=========</span>
+<pre class="highlight"><code class="md">Changelog
+=========
 
-<span class="hljs-section">## [1.0.0](https://github.com/ckeditor/ckeditor5-dev/compare/v1.0.0...v0.0.1) (2017-01-04)</span>
+## [1.0.0](https://github.com/ckeditor/ckeditor5-dev/compare/v1.0.0...v0.0.1) (2017-01-04)
 
-<span class="hljs-section">### Bug fixes</span>
-<span class="hljs-bullet">
-* </span>The editor will be great again. Closes [<span class="hljs-string">#3</span>](<span class="hljs-link">https://github.com/ckeditor/ckeditor5-dev/issue/3</span>). Closes [<span class="hljs-string">#4</span>](<span class="hljs-link">https://github.com/ckeditor/ckeditor5-dev/issue/4</span>). ([<span class="hljs-string">a0b4ce8</span>](<span class="hljs-link">https://github.com/ckeditor/ckeditor5-dev/commit/a0b4ce8</span>))
+### Bug fixes
 
-<span class="hljs-section">### Other changes</span>
-<span class="hljs-bullet">
-* </span>Extracted <span class="hljs-code">`utils.moo()`</span> to a separate package. Thanks to [<span class="hljs-string">@CKEditor</span>](<span class="hljs-link">https://github.com/CKEditor</span>). ([<span class="hljs-string">e8cc04f</span>](<span class="hljs-link">https://github.com/ckeditor/ckeditor5-dev/commit/e8cc04f</span>))
+* The editor will be great again. Closes [#3](https://github.com/ckeditor/ckeditor5-dev/issue/3). Closes [#4](https://github.com/ckeditor/ckeditor5-dev/issue/4). ([a0b4ce8](https://github.com/ckeditor/ckeditor5-dev/commit/a0b4ce8))
 
-<span class="hljs-section">### Features</span>
-<span class="hljs-bullet">
-* </span>Added support for RTL languages. Closes [<span class="hljs-string">#1</span>](<span class="hljs-link">https://github.com/ckeditor/ckeditor5-dev/issue/1</span>). ([<span class="hljs-string">adc59ed</span>](<span class="hljs-link">https://github.com/ckeditor/ckeditor5-dev/commit/adc59ed</span>))
+### Other changes
+
+* Extracted `utils.moo()` to a separate package. Thanks to [@CKEditor](https://github.com/CKEditor). ([e8cc04f](https://github.com/ckeditor/ckeditor5-dev/commit/e8cc04f))
+
+### Features
+
+* Added support for RTL languages. Closes [#1](https://github.com/ckeditor/ckeditor5-dev/issue/1). ([adc59ed](https://github.com/ckeditor/ckeditor5-dev/commit/adc59ed))
 
    RTL content will now be rendered correctly.
 
-<span class="hljs-section">### BREAKING CHANGES</span>
-<span class="hljs-bullet">
-* </span>The <span class="hljs-code">`util.moo()`</span> method is now available in the <span class="hljs-code">`moo`</span> package. See [<span class="hljs-string">#9</span>](<span class="hljs-link">https://github.com/ckeditor/ckeditor5-dev/issue/9</span>).
+### BREAKING CHANGES
 
-<span class="hljs-section">### NOTE</span>
-<span class="hljs-bullet">
-* </span>Make sure to set <span class="hljs-code">`config.contentDirection`</span> correctly.
+* The `util.moo()` method is now available in the `moo` package. See [#9](https://github.com/ckeditor/ckeditor5-dev/issue/9).
+
+### NOTE
+
+* Make sure to set `config.contentDirection` correctly.
 </code></pre>
 <h2 id="handling-pull-requests"><a class="headerlink" href="#handling-pull-requests">#</a> Handling pull requests</h2>
 <p>When making a pull request its author may (it is recommended in the pull request template) propose a merge commit message.</p>

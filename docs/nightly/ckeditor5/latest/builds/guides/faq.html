@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../assets/styles.css" type="text/css">
     <script>
       ( function() {
@@ -33,16 +33,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -84,7 +84,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -199,11 +199,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/faq.md" title="Contribute to this guide"><img src="../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/faq.md" title="Contribute to this guide"><img src="../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Builds</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../assets/1.2.1/img/book.svg" alt="guide">Frequently asked questions
+          <h1 class="main__content-title"><img src="../../../../assets/1.2.2/img/book.svg" alt="guide">Frequently asked questions
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#why-does-the-editor-filter-out-my-content-styles-classes-elements-where-is-configallowedcontent-true">Why does the editor filter out my content (styles, classes, elements)? Where is config.allowedContent = true?</a></li><li><a href="#how-to-turn-the-source-mode-on-how-to-write-a-source-mode-plugin">How to turn the source mode on? How to write a source mode plugin?</a></li><li><a href="#what-happened-to-the-contentscss-file-how-do-i-style-the-content-of-the-editor">What happened to the contents.css file? How do I style the content of the editor?</a></li><li><a href="#the-build-i-downloaded-is-missing-some-features-how-do-i-add-them">The build I downloaded is missing some features. How do I add them?</a></li><li><a href="#where-are-the-editorinserthtml-and-editorinserttext-methods-how-to-insert-some-content">Where are the editor.insertHtml() and editor.insertText() methods? How to insert some content?</a></li><li><a href="#what-happened-to-the-global-windowckeditor-how-to-list-all-instances-of-the-editor">What happened to the global window.CKEDITOR? How to list all instances of the editor?</a></li><li><a href="#how-to-enable-image-dragdrop-and-upload-where-should-i-start">How to enable image drag&amp;drop and upload? Where should I start?</a></li><li><a href="#how-to-use-ckeditor-5-with-frameworks-angular-react-vue-etc">How to use CKEditor 5 with frameworks (Angular, React, Vue, etc.)?</a></li><li><a href="#how-to-get-a-fullyfeatured-editor-build-aka-ckeditor-4-full-package">How to get a fully&#x2013;featured editor build (a.k.a. CKEditor 4 &#x201C;Full Package&#x201D;)?</a></li><li><a href="#how-to-customize-the-ckeditor-5-icons">How to customize the CKEditor 5 icons?</a></li><li><a href="#how-to-get-the-editor-instance-object-from-the-dom-element">How to get the editor instance object from the DOM element?</a></li><li><a href="#how-to-add-an-attribute-to-the-editor-editable-in-dom">How to add an attribute to the editor editable in DOM?</a></li></ol></nav>
 <h2 id="why-does-the-editor-filter-out-my-content-styles-classes-elements-where-is-configallowedcontent-true"><a class="headerlink" href="#why-does-the-editor-filter-out-my-content-styles-classes-elements-where-is-configallowedcontent-true">#</a> Why does the editor filter out my content (styles, classes, elements)? Where is <code>config.allowedContent = true</code>?</h2>
 <p>Unlike <a href="https://ckeditor.com/ckeditor-4/" target="_blank" rel="noopener">CKEditor 4</a>, CKEditor 5 implements a custom <a href="../../framework/guides/architecture/editing-engine.html">data model</a>. This means that every piece of content that is loaded into the editor needs to be converted to that model and then rendered back to the view.</p>
@@ -221,22 +221,22 @@
 <h2 id="where-are-the-editorinserthtml-and-editorinserttext-methods-how-to-insert-some-content"><a class="headerlink" href="#where-are-the-editorinserthtml-and-editorinserttext-methods-how-to-insert-some-content">#</a> Where are the <code>editor.insertHtml()</code> and <code>editor.insertText()</code> methods? How to insert some content?</h2>
 <p>Because CKEditor 5 uses a custom <a href="../../framework/guides/architecture/editing-engine.html">data model</a>, whenever you want to insert anything, you should modify the model first, which is then converted back to the view where the users input their content (called &#x201C;editable&#x201D;). In CKEditor 5, HTML is just one of many possible output formats. You can learn more about the ways of changing the model in the <a href="../../framework/guides/architecture/editing-engine.html#changing-the-model">dedicated guide</a>.</p>
 <p>To insert a new link at the current position, use the following snippet:</p>
-<pre class="highlight"><code class="js">editor.model.change( <span class="hljs-function"><span class="hljs-params">writer</span> =&gt;</span> {
-    <span class="hljs-keyword">const</span> insertPosition = editor.model.document.selection.getFirstPosition();
+<pre class="highlight"><code class="js">editor.model.change( writer =&gt; {
+    const insertPosition = editor.model.document.selection.getFirstPosition();
 
-    writer.insertText( <span class="hljs-string">&apos;CKEditor 5 rocks!&apos;</span>, { <span class="hljs-attr">linkHref</span>: <span class="hljs-string">&apos;https://ckeditor.com/&apos;</span> }, insertPosition );
+    writer.insertText( &apos;CKEditor 5 rocks!&apos;, { linkHref: &apos;https://ckeditor.com/&apos; }, insertPosition );
 } );
 </code></pre>
 <p>And to insert some plain text, you can use a slightly shorter one:</p>
-<pre class="highlight"><code class="js">editor.model.change( <span class="hljs-function"><span class="hljs-params">writer</span> =&gt;</span> {
-    writer.insertText( <span class="hljs-string">&apos;Plain text&apos;</span>, editor.model.document.selection.getFirstPosition() );
+<pre class="highlight"><code class="js">editor.model.change( writer =&gt; {
+    writer.insertText( &apos;Plain text&apos;, editor.model.document.selection.getFirstPosition() );
 } );
 </code></pre>
 <p>You may have noticed that a link is represented as a text with an attribute in the editor model. See the API of the <a href="../../api/module_engine_model_writer-Writer.html">model writer</a> to learn about other useful methods that can help you modify the editor model.</p>
 <p>To insert some longer HTML code, you can parse it to the <a href="../../api/module_engine_model_documentfragment-DocumentFragment.html">model fragment</a> first and then <a href="../../api/module_engine_model_model-Model.html#function-insertContent">insert</a> it into the editor model:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> content = <span class="hljs-string">&apos;&lt;p&gt;A paragraph with &lt;a href=&quot;https://ckeditor.com&quot;&gt;some link&lt;/a&gt;.&apos;</span>;
-<span class="hljs-keyword">const</span> viewFragment = editor.data.processor.toView( content );
-<span class="hljs-keyword">const</span> modelFragment = editor.data.toModel( viewFragment );
+<pre class="highlight"><code class="js">const content = &apos;&lt;p&gt;A paragraph with &lt;a href=&quot;https://ckeditor.com&quot;&gt;some link&lt;/a&gt;.&apos;;
+const viewFragment = editor.data.processor.toView( content );
+const modelFragment = editor.data.toModel( viewFragment );
 
 editor.model.insertContent( modelFragment );
 </code></pre>
@@ -255,9 +255,9 @@ editor.model.insertContent( modelFragment );
 <p>The easiest way is to use webpack&#x2019;s <a href="https://webpack.js.org/plugins/normal-module-replacement-plugin/" target="_blank" rel="noopener"><code>NormalModuleReplacementPlugin</code></a> plugin. For example, to replace the bold icon use the following code in your <code>webpack.config.js</code>:</p>
 <pre class="highlight"><code class="js">...
 plugins: [
-    <span class="hljs-keyword">new</span> webpack.NormalModuleReplacementPlugin(
-        <span class="hljs-regexp">/bold\.svg/</span>,
-        <span class="hljs-string">&apos;/absolute/path/to/my/icon.svg&apos;</span>
+    new webpack.NormalModuleReplacementPlugin(
+        /bold\.svg/,
+        &apos;/absolute/path/to/my/icon.svg&apos;
     )
 ]
 </code></pre>
@@ -265,37 +265,37 @@ plugins: [
 <p>Learn more about <a href="integration/advanced-setup.html#webpack-configuration">building CKEditor 5 using webpack</a>.</p>
 <h2 id="how-to-get-the-editor-instance-object-from-the-dom-element"><a class="headerlink" href="#how-to-get-the-editor-instance-object-from-the-dom-element">#</a> How to get the editor instance object from the DOM element?</h2>
 <p>If you have a reference to the editor editable&#x2019;s DOM element (the one with the <code>.ck-editor__editable</code> class and the <code>contenteditable</code> attribute), you can access the editor instance this editable element belongs to using the <code>ckeditorInstance</code> property:</p>
-<pre class="highlight"><code class="html"><span class="hljs-comment">&lt;!-- The editable element in the editor&apos;s DOM structure. --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;... ck-editor__editable ...&quot;</span> <span class="hljs-attr">contenteditable</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span>
-    <span class="hljs-comment">&lt;!-- Editable content. --&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;!-- The editable element in the editor&apos;s DOM structure. --&gt;
+&lt;div class=&quot;... ck-editor__editable ...&quot; contenteditable=&quot;true&quot;&gt;
+    &lt;!-- Editable content. --&gt;
+&lt;/div&gt;
 </code></pre>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// A reference to the editor editable element in the DOM.</span>
-<span class="hljs-keyword">const</span> domEditableElement = <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;.ck-editor__editable&apos;</span> );
+<pre class="highlight"><code class="js">// A reference to the editor editable element in the DOM.
+const domEditableElement = document.querySelector( &apos;.ck-editor__editable&apos; );
 
-<span class="hljs-comment">// Get the editor instance from the editable element.</span>
-<span class="hljs-keyword">const</span> editorInstance = domEditableElement.ckeditorInstance;
+// Get the editor instance from the editable element.
+const editorInstance = domEditableElement.ckeditorInstance;
 
-<span class="hljs-comment">// Use the editor instance API.</span>
-editorInstance.setData( <span class="hljs-string">&apos;&lt;p&gt;Hello world!&lt;p&gt;&apos;</span> );
+// Use the editor instance API.
+editorInstance.setData( &apos;&lt;p&gt;Hello world!&lt;p&gt;&apos; );
 </code></pre>
 <h2 id="how-to-add-an-attribute-to-the-editor-editable-in-dom"><a class="headerlink" href="#how-to-add-an-attribute-to-the-editor-editable-in-dom">#</a> How to add an attribute to the editor editable in DOM?</h2>
 <p>If you have a reference to the editor instance, simply use the <a href="../../framework/guides/architecture/editing-engine.html#changing-the-view"><code>change()</code></a> method of the view and set the new attribute via the <a href="../../api/module_engine_view_downcastwriter-DowncastWriter.html">view downcast writer</a>:</p>
-<pre class="highlight"><code class="js">editor.editing.view.change( <span class="hljs-function"><span class="hljs-params">writer</span> =&gt;</span> {
-    <span class="hljs-keyword">const</span> viewEditableRoot = editor.editing.view.document.getRoot();
+<pre class="highlight"><code class="js">editor.editing.view.change( writer =&gt; {
+    const viewEditableRoot = editor.editing.view.document.getRoot();
 
-    writer.setAttribute( <span class="hljs-string">&apos;myAttribute&apos;</span>, <span class="hljs-string">&apos;value&apos;</span>, viewEditableRoot );
+    writer.setAttribute( &apos;myAttribute&apos;, &apos;value&apos;, viewEditableRoot );
 } );
 </code></pre>
 <p>If you do not have the reference to the editor instance but you have access to the editable element in the DOM, you can <a href="#how-to-get-the-editor-instance-object-from-the-dom-element">access it using the <code>ckeditorInstance</code> property</a> and then use the same API to set the attribute:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> domEditableElement = <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;.ck-editor__editable&apos;</span> );
-<span class="hljs-keyword">const</span> editorInstance = domEditableElement.ckeditorInstance;
+<pre class="highlight"><code class="js">const domEditableElement = document.querySelector( &apos;.ck-editor__editable&apos; );
+const editorInstance = domEditableElement.ckeditorInstance;
 
-editorInstance.editing.view.change( <span class="hljs-function"><span class="hljs-params">writer</span> =&gt;</span> {
-    <span class="hljs-comment">// Map the editable element in the DOM to the editable element in the editor&apos;s view.</span>
-    <span class="hljs-keyword">const</span> viewEditableRoot = editorInstance.editing.view.domConverter.mapDomToView( domEditableElement );
+editorInstance.editing.view.change( writer =&gt; {
+    // Map the editable element in the DOM to the editable element in the editor&apos;s view.
+    const viewEditableRoot = editorInstance.editing.view.domConverter.mapDomToView( domEditableElement );
 
-    writer.setAttribute( <span class="hljs-string">&apos;myAttribute&apos;</span>, <span class="hljs-string">&apos;value&apos;</span>, viewEditableRoot );
+    writer.setAttribute( &apos;myAttribute&apos;, &apos;value&apos;, viewEditableRoot );
 } );
 </code></pre>
 

@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../assets/styles.css" type="text/css">
     <script>
       ( function() {
@@ -33,16 +33,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -84,7 +84,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -212,11 +212,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-upload/blob/master/docs/features/simple-upload-adapter.md" title="Contribute to this guide"><img src="../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-upload/blob/master/docs/features/simple-upload-adapter.md" title="Contribute to this guide"><img src="../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Features</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../assets/1.2.1/img/book.svg" alt="guide">Simple upload adapter
+          <h1 class="main__content-title"><img src="../../../../assets/1.2.2/img/book.svg" alt="guide">Simple upload adapter
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#installation">Installation</a></li><li><a href="#configuration">Configuration</a><ol><li><a href="#configuring-allowed-file-types">Configuring allowed file types</a><ol><li><a href="#client-side-configuration">Client-side configuration</a></li><li><a href="#server-side-configuration">Server-side configuration</a></li></ol></li></ol></li><li><a href="#server-side-configuration-2">Server-side configuration</a><ol><li><a href="#communication-protocol">Communication protocol</a></li><li><a href="#successful-upload">Successful upload</a></li><li><a href="#error-handling">Error handling</a></li><li><a href="#upload-progress">Upload progress</a></li></ol></li><li><a href="#whats-next">What&#x2019;s next?</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 <p>The <a href="../../api/module_upload_adapters_simpleuploadadapter-SimpleUploadAdapter.html">simple upload adapter</a> plugin allows uploading images to your server using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest" target="_blank" rel="noopener"><code>XMLHttpRequest</code></a> API with a minimal <a href="#configuration">editor configuration</a>.</p>
 <p>See the <a href="#server-side-configuration">Server&#x2013;side configuration</a> section to learn about the requirements your server&#x2013;side application must meet to support this upload adapter.</p>
@@ -227,14 +227,14 @@
 <pre class="highlight"><code class="plaintext">npm install --save @ckeditor/ckeditor5-upload
 </code></pre>
 <p>Add the <a href="../../api/module_upload_adapters_simpleuploadadapter-SimpleUploadAdapter.html"><code>SimpleUploadAdapter</code></a> to your plugin list and <a href="#configuration">configure</a> the feature. For instance:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> SimpleUploadAdapter <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter&apos;</span>;
+<pre class="highlight"><code class="js">import SimpleUploadAdapter from &apos;@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ SimpleUploadAdapter, ... ],
-        <span class="hljs-attr">toolbar</span>: [ ... ],
-        <span class="hljs-attr">simpleUpload</span>: {
-            <span class="hljs-comment">// Feature configuration.</span>
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ SimpleUploadAdapter, ... ],
+        toolbar: [ ... ],
+        simpleUpload: {
+            // Feature configuration.
         }
     } )
     .then( ... )
@@ -243,20 +243,20 @@ ClassicEditor
 <div class="info-box notice notice__info"><p>Read more about <a href="../../builds/guides/integration/installing-plugins.html">installing plugins</a>.</p></div>
 <h2 id="configuration"><a class="headerlink" href="#configuration">#</a> Configuration</h2>
 <p>The client side of this feature is configurable using the <a href="../../api/module_upload_adapters_simpleuploadadapter-SimpleUploadConfig.html"><code>config.simpleUpload</code></a> object.</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> SimpleUploadAdapter <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter&apos;</span>;
+<pre class="highlight"><code class="js">import SimpleUploadAdapter from &apos;@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ SimpleUploadAdapter, ... ],
-        <span class="hljs-attr">toolbar</span>: [ ... ],
-        <span class="hljs-attr">simpleUpload</span>: {
-            <span class="hljs-comment">// The URL that the images are uploaded to.</span>
-            <span class="hljs-attr">uploadUrl</span>: <span class="hljs-string">&apos;http://example.com&apos;</span>,
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ SimpleUploadAdapter, ... ],
+        toolbar: [ ... ],
+        simpleUpload: {
+            // The URL that the images are uploaded to.
+            uploadUrl: &apos;http://example.com&apos;,
 
-            <span class="hljs-comment">// Headers sent along with the XMLHttpRequest to the upload server.</span>
-            <span class="hljs-attr">headers</span>: {
-                <span class="hljs-string">&apos;X-CSRF-TOKEN&apos;</span>: <span class="hljs-string">&apos;CSFR-Token&apos;</span>,
-                <span class="hljs-attr">Authorization</span>: <span class="hljs-string">&apos;Bearer &lt;JSON Web Token&gt;&apos;</span>
+            // Headers sent along with the XMLHttpRequest to the upload server.
+            headers: {
+                &apos;X-CSRF-TOKEN&apos;: &apos;CSFR-Token&apos;,
+                Authorization: &apos;Bearer &lt;JSON Web Token&gt;&apos;
             }
         }
     } )
@@ -285,19 +285,19 @@ ClassicEditor
 <ul>
 <li>
 <p>An object containing the <code>url</code> property which points to the uploaded image on the server:</p>
-<pre class="highlight"><code class="json html">{
-    <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;https://example.com/images/foo.jpg&quot;</span>
+<pre class="highlight"><code class="json">{
+    &quot;url&quot;: &quot;https://example.com/images/foo.jpg&quot;
 }
 </code></pre>
 </li>
 <li>
 <p>Or an object with the <code>urls</code> property, if you want to use <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank" rel="noopener">responsive images</a> and the server supports it:</p>
-<pre class="highlight"><code class="json html">{
-    <span class="hljs-attr">&quot;urls&quot;</span>: {
-        <span class="hljs-attr">&quot;default&quot;</span>: <span class="hljs-string">&quot;https://example.com/images/foo.jpg&quot;</span>,
-        <span class="hljs-attr">&quot;800&quot;</span>: <span class="hljs-string">&quot;https://example.com/images/foo-800.jpg&quot;</span>,
-        <span class="hljs-attr">&quot;1024&quot;</span>: <span class="hljs-string">&quot;https://example.com/images/foo-1024.jpg&quot;</span>,
-        <span class="hljs-attr">&quot;1920&quot;</span>: <span class="hljs-string">&quot;https://example.com/images/foo-1920.jpg&quot;</span>
+<pre class="highlight"><code class="json">{
+    &quot;urls&quot;: {
+        &quot;default&quot;: &quot;https://example.com/images/foo.jpg&quot;,
+        &quot;800&quot;: &quot;https://example.com/images/foo-800.jpg&quot;,
+        &quot;1024&quot;: &quot;https://example.com/images/foo-1024.jpg&quot;,
+        &quot;1920&quot;: &quot;https://example.com/images/foo-1920.jpg&quot;
     }
 }
 </code></pre>
@@ -312,9 +312,9 @@ ClassicEditor
 <h3 id="error-handling"><a class="headerlink" href="#error-handling">#</a> Error handling</h3>
 <p>If something went wrong, the server must return an object that contains the <code>error</code> property. This will terminate the upload in the editor, e.g. allowing the user to select another image if the previous one was too big or did not meet some other validation criteria.</p>
 <p>If the <code>error</code> object contains a <code>message</code>, it will be passed to the <a href="../../api/module_ui_notification_notification-Notification.html#function-showWarning">editor notification system</a> and displayed to the user. For the convenience of the users, use clear and possibly specific error messages.</p>
-<pre class="highlight"><code class="json html">{
-    <span class="hljs-attr">&quot;error&quot;</span>: {
-        <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;The image upload failed because the image was too big (max 1.5MB).&quot;</span>
+<pre class="highlight"><code class="json">{
+    &quot;error&quot;: {
+        &quot;message&quot;: &quot;The image upload failed because the image was too big (max 1.5MB).&quot;
     }
 }
 </code></pre>

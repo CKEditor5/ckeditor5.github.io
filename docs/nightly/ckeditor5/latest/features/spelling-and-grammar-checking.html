@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../snippets/build-classic-source/snippet.css" type="text/css">
     <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
@@ -35,16 +35,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -86,7 +86,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -214,11 +214,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/features/spelling-and-grammar-checking.md" title="Contribute to this guide"><img src="../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/features/spelling-and-grammar-checking.md" title="Contribute to this guide"><img src="../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../assets/1.2.1/img/book.svg" alt="guide">Proofreading, spelling and grammar checking
+          <h1 class="main__content-title"><img src="../../../assets/1.2.2/img/book.svg" alt="guide">Proofreading, spelling and grammar checking
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#supported-languages">Supported languages</a></li><li><a href="#installation">Installation</a><ol><li><a href="#wproofreader-cloud">WProofreader Cloud</a></li><li><a href="#wproofreader-server">WProofreader Server</a></li></ol></li><li><a href="#configuration">Configuration</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 
 <div class="info-box notice"><p>The spell checker for CKEditor 5 is a commercial solution provided by our partner, <a href="https://webspellchecker.com/" target="_blank" rel="noopener">WebSpellChecker</a>. You can report any issues in its <a href="https://github.com/WebSpellChecker/wproofreader" target="_blank" rel="noopener">GitHub repository</a>. The license can be purchased <a href="https://ckeditor.com/contact/" target="_blank" rel="noopener">here</a>.</p></div>
@@ -248,32 +248,32 @@
 <h3 id="wproofreader-cloud"><a class="headerlink" href="#wproofreader-cloud">#</a> WProofreader Cloud</h3>
 <p>After signing up for a <a href="https://ckeditor.com/contact/" target="_blank" rel="noopener">trial or paid version</a>, you will receive your service ID which is used to activate the service.</p>
 <p>Add the following configuration to your page:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
-    <span class="hljs-built_in">window</span>.WEBSPELLCHECKER_CONFIG = {
-        <span class="hljs-attr">autoSearch</span>: <span class="hljs-literal">true</span>,
-        <span class="hljs-attr">enableGrammar</span>: <span class="hljs-literal">true</span>,
-        <span class="hljs-attr">serviceId</span>: <span class="hljs-string">&apos;your-service-ID&apos;</span>
+<pre class="highlight"><code class="html">&lt;script&gt;
+    window.WEBSPELLCHECKER_CONFIG = {
+        autoSearch: true,
+        enableGrammar: true,
+        serviceId: &apos;your-service-ID&apos;
     };
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+&lt;/script&gt;
 </code></pre>
 <p>And then load the proofreader script:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://svc.webspellchecker.net/spellcheck31/wscbundle/wscbundle.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;script src=&quot;https://svc.webspellchecker.net/spellcheck31/wscbundle/wscbundle.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>Refer to the <a href="https://github.com/WebSpellChecker/wproofreader#wproofreader-cloud" target="_blank" rel="noopener">official documentation</a> for more details about the cloud setup and available configuration options.</p>
 <h3 id="wproofreader-server"><a class="headerlink" href="#wproofreader-server">#</a> WProofreader Server</h3>
 <p>After signing up for a <a href="https://ckeditor.com/contact/" target="_blank" rel="noopener">trial or paid version</a>, you will receive access to the WebSpellChecker Server package to install on your own server.</p>
 <p>You will need to add the following configuration to your page:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
-    <span class="hljs-built_in">window</span>.WEBSPELLCHECKER_CONFIG = {
-        <span class="hljs-attr">autoSearch</span>: <span class="hljs-literal">true</span>,
-        <span class="hljs-attr">enableGrammar</span>: <span class="hljs-literal">true</span>,
-        <span class="hljs-attr">servicePort</span>: <span class="hljs-string">&apos;2880&apos;</span>,
-        <span class="hljs-attr">servicePath</span>: <span class="hljs-string">&apos;/&apos;</span>
+<pre class="highlight"><code class="html">&lt;script&gt;
+    window.WEBSPELLCHECKER_CONFIG = {
+        autoSearch: true,
+        enableGrammar: true,
+        servicePort: &apos;2880&apos;,
+        servicePath: &apos;/&apos;
     };
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+&lt;/script&gt;
 </code></pre>
 <p>Then specify the path to the service on your page:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;http(s)://your_host_name/spellcheck/wscbundle/wscbundle.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;script src=&quot;http(s)://your_host_name/spellcheck/wscbundle/wscbundle.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>Refer to the <a href="https://github.com/WebSpellChecker/wproofreader#wproofreader-server" target="_blank" rel="noopener">official documentation</a> for more details about the server setup and available configuration options.</p>
 <h2 id="configuration"><a class="headerlink" href="#configuration">#</a> Configuration</h2>

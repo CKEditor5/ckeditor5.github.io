@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../snippets/features/build-indent-source/snippet.css" type="text/css">
     <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
@@ -35,16 +35,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -86,7 +86,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -214,11 +214,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-indent/blob/master/docs/features/indent.md" title="Contribute to this guide"><img src="../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-indent/blob/master/docs/features/indent.md" title="Contribute to this guide"><img src="../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../assets/1.2.1/img/book.svg" alt="guide">Block indentation
+          <h1 class="main__content-title"><img src="../../../assets/1.2.2/img/book.svg" alt="guide">Block indentation
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#configuring-the-block-indentation-feature">Configuring the block indentation feature</a><ol><li><a href="#using-offset-and-unit">Using offset and unit</a></li><li><a href="#using-css-classes">Using CSS classes</a></li></ol></li><li><a href="#indenting-lists">Indenting lists</a></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 <p>The block indentation feature allows you to set indentation for text blocks such as paragraphs or headings and lists. It is implemented by three plugins: <a href="../api/module_indent_indent-Indent.html"><code>Indent</code></a>, <a href="../api/module_indent_indentblock-IndentBlock.html"><code>IndentBlock</code></a> and <a href="../api/module_list_list-List.html"><code>List</code></a>.</p>
 <div class="info-box notice notice__info"><p>Block indentation can be removed with the <a href="remove-format.html">remove format</a> feature.</p></div>
@@ -253,17 +253,17 @@
 <p>By default, the block indentation feature increases or decreases the current indentation by the given offset, using the given unit.</p>
 <p>The rich-text editor from the <a href="#demo">demo</a> section above uses the default configuration, which defines a <code>40px</code> indentation step.</p>
 <p>You can change that value to, for example, <code>1em</code>:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> Indent <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-indent/src/indent&apos;</span>;
+<pre class="highlight"><code class="js">import Indent from &apos;@ckeditor/ckeditor5-indent/src/indent&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ Indent, ... ],
-        <span class="hljs-attr">toolbar</span>: {
-            <span class="hljs-attr">items</span>: [ <span class="hljs-string">&apos;heading&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;outdent&apos;</span>, <span class="hljs-string">&apos;indent&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;bulletedList&apos;</span>, <span class="hljs-string">&apos;numberedList&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;undo&apos;</span>, <span class="hljs-string">&apos;redo&apos;</span> ]
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Indent, ... ],
+        toolbar: {
+            items: [ &apos;heading&apos;, &apos;|&apos;, &apos;outdent&apos;, &apos;indent&apos;, &apos;|&apos;, &apos;bulletedList&apos;, &apos;numberedList&apos;, &apos;|&apos;, &apos;undo&apos;, &apos;redo&apos; ]
         },
-        <span class="hljs-attr">indentBlock</span>: {
-            <span class="hljs-attr">offset</span>: <span class="hljs-number">1</span>,
-            <span class="hljs-attr">unit</span>: <span class="hljs-string">&apos;em&apos;</span>
+        indentBlock: {
+            offset: 1,
+            unit: &apos;em&apos;
         }
     } )
     .then( ... )
@@ -272,20 +272,20 @@ ClassicEditor
 <h3 id="using-css-classes"><a class="headerlink" href="#using-css-classes">#</a> Using CSS classes</h3>
 <p>If you want more semantics in your content, use CSS classes instead of fixed indentation units. You can then adjust the levels in the style sheets of your application whenever you want.</p>
 <p>Here is how you can configure the block indentation feature to set indentation by applying one of the defined CSS classes:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> Indent <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-indent/src/indent&apos;</span>;
-<span class="hljs-keyword">import</span> IndentBlock <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-indent/src/indentblock&apos;</span>;
+<pre class="highlight"><code class="js">import Indent from &apos;@ckeditor/ckeditor5-indent/src/indent&apos;;
+import IndentBlock from &apos;@ckeditor/ckeditor5-indent/src/indentblock&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ Indent, IndentBlock, ... ],
-        <span class="hljs-attr">toolbar</span>: {
-            <span class="hljs-attr">items</span>: [ <span class="hljs-string">&apos;heading&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;outdent&apos;</span>, <span class="hljs-string">&apos;indent&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;bulletedList&apos;</span>, <span class="hljs-string">&apos;numberedList&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;undo&apos;</span>, <span class="hljs-string">&apos;redo&apos;</span> ]
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Indent, IndentBlock, ... ],
+        toolbar: {
+            items: [ &apos;heading&apos;, &apos;|&apos;, &apos;outdent&apos;, &apos;indent&apos;, &apos;|&apos;, &apos;bulletedList&apos;, &apos;numberedList&apos;, &apos;|&apos;, &apos;undo&apos;, &apos;redo&apos; ]
         },
-        <span class="hljs-attr">indentBlock</span>: {
-            <span class="hljs-attr">classes</span>: [
-                <span class="hljs-string">&apos;custom-block-indent-a&apos;</span>, <span class="hljs-comment">// First step - smallest indentation.</span>
-                <span class="hljs-string">&apos;custom-block-indent-b&apos;</span>,
-                <span class="hljs-string">&apos;custom-block-indent-c&apos;</span>  <span class="hljs-comment">// Last step - biggest indentation.</span>
+        indentBlock: {
+            classes: [
+                &apos;custom-block-indent-a&apos;, // First step - smallest indentation.
+                &apos;custom-block-indent-b&apos;,
+                &apos;custom-block-indent-c&apos;  // Last step - biggest indentation.
             ]
         }
     } )
@@ -295,16 +295,16 @@ ClassicEditor
 <p>Using classes instead of fixed units (<code>px</code> or <code>em</code>) has another advantage &#x2014; you retain control over what indentation levels are used in the documents. For instance, you can limit indentation to 2 or 3 different levels and there is no way the users can go beyond that. In the example above, the <code>.custom-block-indent-c</code> class level is the maximum allowed indentation value. This should help keep your content clean and predictable.</p>
 <p>In this configuration the WYSIWYG editor will restrict indentation levels to the set of provided classes. The class with the last index in the array has the biggest indentation.</p>
 <p>In the demo below the CSS classes are defined as follows:</p>
-<pre class="highlight"><code class="css"><span class="hljs-selector-class">.custom-block-indent-a</span> {
-    <span class="hljs-attribute">margin-left</span>: <span class="hljs-number">10%</span>;
+<pre class="highlight"><code class="css">.custom-block-indent-a {
+    margin-left: 10%;
 }
 
-<span class="hljs-selector-class">.custom-block-indent-b</span> {
-    <span class="hljs-attribute">margin-left</span>: <span class="hljs-number">20%</span>;
+.custom-block-indent-b {
+    margin-left: 20%;
 }
 
-<span class="hljs-selector-class">.custom-block-indent-c</span> {
-    <span class="hljs-attribute">margin-left</span>: <span class="hljs-number">30%</span>;
+.custom-block-indent-c {
+    margin-left: 30%;
 }
 </code></pre>
 <div class="info-box notice"><p>Note that for <abbr title="right-to-left">RTL</abbr> content, <code>&apos;margin-right&apos;</code> should be used instead. Learn more about <a href="ui-language.html#setting-the-language-of-the-content">configuring language of the editor content</a>.</p></div>
@@ -352,13 +352,13 @@ ClassicEditor
 <pre class="highlight"><code class="bash">npm install --save @ckeditor/ckeditor5-indent
 </code></pre>
 <p>Then add it to your plugin list and the toolbar configuration:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> Indent <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-indent/src/indent&apos;</span>;
-<span class="hljs-keyword">import</span> IndentBlock <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-indent/src/indentblock&apos;</span>;
+<pre class="highlight"><code class="js">import Indent from &apos;@ckeditor/ckeditor5-indent/src/indent&apos;;
+import IndentBlock from &apos;@ckeditor/ckeditor5-indent/src/indentblock&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ Indent, IndentBlock, ... ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;outdent&apos;</span>, <span class="hljs-string">&apos;indent&apos;</span>, ... ]
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Indent, IndentBlock, ... ],
+        toolbar: [ &apos;outdent&apos;, &apos;indent&apos;, ... ]
     } )
     .then( ... )
     .catch( ... );
@@ -383,13 +383,13 @@ ClassicEditor
 <li>
 <p>The <a href="../api/module_indent_indentblockcommand-IndentBlockCommand.html"><code>&apos;indentBlock&apos;</code></a> command.</p>
 <p>You can increase the indentation of the text block that contains the selection by:</p>
-<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;indentBlock&apos;</span> );
+<pre class="highlight"><code class="js">editor.execute( &apos;indentBlock&apos; );
 </code></pre>
 </li>
 <li>
 <p>The <a href="../api/module_indent_indentblockcommand-IndentBlockCommand.html"><code>&apos;outdentBlock&apos;</code></a> command.</p>
 <p>You can decrease the indentation of the text block that contains the selection by:</p>
-<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;outdentBlock&apos;</span> );
+<pre class="highlight"><code class="js">editor.execute( &apos;outdentBlock&apos; );
 </code></pre>
 </li>
 </ul>

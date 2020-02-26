@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
     <script>
       ( function() {
@@ -33,16 +33,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -84,7 +84,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -230,11 +230,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/contributing/development-environment.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/contributing/development-environment.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../assets/1.2.1/img/book.svg" alt="guide">Development environment
+          <h1 class="main__content-title"><img src="../../../../../assets/1.2.2/img/book.svg" alt="guide">Development environment
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#requirements">Requirements</a></li><li><a href="#setting-up-the-ckeditor-development-environment">Setting up the CKEditor development environment</a><ol><li><a href="#switching-to-development-version-of-packages">Switching to development version of packages</a></li><li><a href="#fetching-changes">Fetching changes</a></li><li><a href="#working-with-multiple-repositories">Working with multiple repositories</a></li><li><a href="#using-mrgit-for-custom-packages">Using mrgit for custom packages</a></li></ol></li><li><a href="#running-tests">Running tests</a></li><li><a href="#generating-documentation">Generating documentation</a></li><li><a href="#generating-content-styles">Generating content styles</a></li><li><a href="#bisecting-through-a-multi-repository">Bisecting through a multi-repository</a></li><li><a href="#additional-information-for-contributors">Additional information for contributors</a><ol><li><a href="#svg-icons">SVG icons</a></li></ol></li></ol></nav>
 <p>The CKEditor 5 codebase is divided into multiple <a href="http://npmjs.com/" target="_blank" rel="noopener">npm</a> packages, each developed in a separate Git repository. The main package is <a href="https://github.com/ckeditor/ckeditor5" target="_blank" rel="noopener"><code>ckeditor5</code></a> which installs all project dependencies and various development-related resources such as:</p>
 <ul>
@@ -262,8 +262,8 @@
 </code></pre>
 <p><strong>Note:</strong> <a href="https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md" target="_blank" rel="noopener">Read how to avoid using <code>sudo</code> to install packages globally</a> or use <a href="https://github.com/creationix/nvm" target="_blank" rel="noopener">nvm</a>.</p>
 <p>Then clone the <a href="https://github.com/ckeditor/ckeditor5" target="_blank" rel="noopener">main repository</a>:</p>
-<pre class="highlight"><code class="bash html">git <span class="hljs-built_in">clone</span> https://github.com/ckeditor/ckeditor5.git
-<span class="hljs-built_in">cd</span> ckeditor5
+<pre class="highlight"><code class="bash">git clone https://github.com/ckeditor/ckeditor5.git
+cd ckeditor5
 </code></pre>
 <p>And install all CKEditor 5 packages from the <a href="http://npmjs.com/" target="_blank" rel="noopener">npm registry</a>.</p>
 <p><strong>Note:</strong> If you plan to use the developement version of CKEditor 5 packages (see the <a href="#switching-to-development-version-of-packages">next section</a>), you can skip this step to save time.</p>
@@ -326,17 +326,17 @@ lrwxr-xr-x     1 p  staff     30 11 sty 14:41 ckeditor5-enter -&gt; ../../packag
 ... and so on
 </code></pre>
 <p>If everything worked correctly, you should be able to run some tests:</p>
-<pre class="highlight"><code class="bash">yarn run <span class="hljs-built_in">test</span> --files=core
+<pre class="highlight"><code class="bash">yarn run test --files=core
 </code></pre>
 <h3 id="fetching-changes"><a class="headerlink" href="#fetching-changes">#</a> Fetching changes</h3>
 <p>Whenever you want to update all packages to their latest versions call:</p>
-<pre class="highlight"><code class="bash html"><span class="hljs-comment"># To update the ckeditor5 repository itself:</span>
+<pre class="highlight"><code class="bash"># To update the ckeditor5 repository itself:
 git pull
 
-<span class="hljs-comment"># To update pull changes to all the packages:</span>
+# To update pull changes to all the packages:
 mrgit sync
 
-<span class="hljs-comment"># To install missing dependencies:</span>
+# To install missing dependencies:
 yarn install
 </code></pre>
 <p>From time to time, if the list of dependencies in any of the packages changed, new package has been added to <code>ckeditor5</code> or you just want to make sure that you have the repository up to date, run the <code>reinstall</code> script:</p>
@@ -357,10 +357,10 @@ yarn run reinstall
 <p>If you are developing custom packages or forked any of the official packages and want <code>mrgit</code> to work with it, change the dependencies configuration in <a href="https://github.com/ckeditor/ckeditor5/blob/master/mrgit.json" target="_blank" rel="noopener"><code>mrgit.json</code></a>. Note that <code>mrgit</code> is able to clone the package from any Git URL. Refer to <a href="https://github.com/cksource/mrgit" target="_blank" rel="noopener">its documentation</a> for more details.</p>
 <h2 id="running-tests"><a class="headerlink" href="#running-tests">#</a> Running tests</h2>
 <p>In order to run tests you need to use the <code>test</code> and <code>manual</code> tasks.</p>
-<pre class="highlight"><code class="bash html">yarn run <span class="hljs-built_in">test</span> --watch --coverage --<span class="hljs-built_in">source</span>-map --files=engine
+<pre class="highlight"><code class="bash">yarn run test --watch --coverage --source-map --files=engine
 </code></pre>
 <p>or, shorter:</p>
-<pre class="highlight"><code class="bash">yarn run <span class="hljs-built_in">test</span> -- -wcs --files=engine
+<pre class="highlight"><code class="bash">yarn run test -- -wcs --files=engine
 </code></pre>
 <p>This command will run the <a href="https://github.com/ckeditor/ckeditor5-engine" target="_blank" rel="noopener"><code>ckeditor5-engine</code></a> package&#x2019;s tests.</p>
 <p><strong>Note:</strong> It is not possible to run tests of all packages with code coverage at once because the size of the project (the number of test files and source modules) exceeds webpack&#x2019;s capabilities (it runs out of memory).</p>
@@ -397,14 +397,14 @@ yarn run reinstall
 <p>CKEditor 5 is a multi-repository project. It means that <a href="https://git-scm.com/docs/git-bisect" target="_blank" rel="noopener"><code>git bisect</code></a> (which is super handy when tracking which commit introduced a bug) will not work out of the box.</p>
 <p>Fortunately, every commit made to any of the <code>master</code> branches of all CKEditor 5 subpackages will update this subpackage&#x2019;s hash in <code>mrgit.json</code> in the <a href="https://github.com/ckeditor/ckeditor5/commits/master-revisions" target="_blank" rel="noopener"><code>master-revisions</code></a> branch.</p>
 <p>Thanks to that, <code>master-revisions</code> contains an ordered history of all changes which makes it possible to go back to any point in history:</p>
-<pre class="highlight"><code class="bash html"><span class="hljs-comment"># Make sure to update this branch.</span>
+<pre class="highlight"><code class="bash"># Make sure to update this branch.
 git co master-revisions
 git pull
 
-<span class="hljs-comment"># Check out 30 commits back.</span>
+# Check out 30 commits back.
 git co master-revisions~30
 
-<span class="hljs-comment"># Check out subpackages to correct hashes.</span>
+# Check out subpackages to correct hashes.
 mrgit co
 </code></pre>
 <p>Once you found the point in history which interests you, you can go straight to a commit in a subpackage and PR. For example:</p>
@@ -423,12 +423,12 @@ Date:   Tue Apr 11 16:45:47 2017 +0000
 <h3 id="svg-icons"><a class="headerlink" href="#svg-icons">#</a> SVG icons</h3>
 <p>By default, CKEditor 5 supports SVG icons found in the <code>ckeditor5-*/theme/icons</code> folders. Unfortunately, most of the SVG editing software produces the output with comments, obsolete tags, and complex paths, which bloats the DOM and makes the builds heavy for no good reason.</p>
 <p>To remove the excess data and prevent <a href="https://github.com/ckeditor/ckeditor5-ui/issues/245" target="_blank" rel="noopener">certain issues</a>, <strong>all new icons should be optimized before joining the code base</strong>. To do that, you can use the <code>clean-up-svg-icons</code> script in the <a href="#setting-up-the-ckeditor-development-environment">root of the project</a>, a wrapper for the <a href="https://github.com/svg/svgo" target="_blank" rel="noopener">SVGO</a> tool:</p>
-<pre class="highlight"><code class="bash html"><span class="hljs-built_in">cd</span> path/to/ckeditor5
+<pre class="highlight"><code class="bash">cd path/to/ckeditor5
 
-<span class="hljs-comment"># Optimize all SVG files in the folder.</span>
+# Optimize all SVG files in the folder.
 npm run clean-up-svg-icons path/to/icons/*.svg
 
-<span class="hljs-comment"># Optimize a single SVG file.</span>
+# Optimize a single SVG file.
 npm run clean-up-svg-icons path/to/icon/icon.svg
 </code></pre>
 <p>The script reduces the icon size up to 70%, depending on the software used to create it and the general complexity of the image.</p>

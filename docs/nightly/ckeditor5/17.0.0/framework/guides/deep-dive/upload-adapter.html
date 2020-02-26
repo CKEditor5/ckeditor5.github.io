@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
     <script>
       ( function() {
@@ -33,16 +33,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -84,7 +84,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -230,11 +230,11 @@
     <main class="main">
       <section class="main__content formatted custom-adapter">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-image/blob/master/docs/framework/guides/deep-dive/upload-adapter.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-image/blob/master/docs/framework/guides/deep-dive/upload-adapter.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../assets/1.2.1/img/book.svg" alt="guide">Custom image upload adapter
+          <h1 class="main__content-title"><img src="../../../../../assets/1.2.2/img/book.svg" alt="guide">Custom image upload adapter
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#glossary-of-terms">Glossary of terms</a></li><li><a href="#how-does-the-image-upload-work">How does the image upload work?</a></li><li><a href="#the-anatomy-of-the-adapter">The anatomy of the adapter</a></li><li><a href="#implementing-a-custom-upload-adapter">Implementing a custom upload adapter</a><ol><li><a href="#using-xmlhttprequest-in-an-adapter">Using XMLHttpRequest in an adapter</a></li><li><a href="#responsive-images-and-srcset-attribute">Responsive images and srcset attribute</a></li><li><a href="#activating-a-custom-upload-adapter">Activating a custom upload adapter</a></li><li><a href="#the-complete-implementation">The complete implementation</a></li></ol></li><li><a href="#whats-next">What&#x2019;s next?</a></li></ol></nav>
 <p>In this guide you will learn the basic concepts of the file upload architecture in CKEditor 5 WYSIWYG editor which will help you implement your own custom upload adapter.</p>
 <p>While this guide is mainly focused on the image upload (the most common kind of upload), keep in mind that the presented concepts and the API allow developing all sorts of file upload adapters for different file types like PDFs, movies, etc.</p>
@@ -345,35 +345,35 @@
 <li>The <a href="../../../api/module_upload_filerepository-UploadAdapter.html#function-abort"><code>abort()</code></a> method must allow the editor to abort the upload process. It is necessary, for instance, when the image was removed from the content by the user before the upload finished or the editor instance was <a href="../../../api/module_core_editor_editor-Editor.html#function-destroy">destroyed</a>.</li>
 </ul>
 <p>In its simplest form, a custom adapter implementing the <code>UploadAdapter</code> interface will look as follows. Note that <code>server.upload()</code>, <code>server.onUploadProgress()</code> and <code>server.abortUpload()</code>  should be replaced by specific implementations (dedicated for your application) and only demonstrate the minimal communication necessary for the upload to work:</p>
-<pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyUploadAdapter</span> </span>{
-    <span class="hljs-keyword">constructor</span>( loader ) {
-        <span class="hljs-comment">// The file loader instance to use during the upload.</span>
-        <span class="hljs-keyword">this</span>.loader = loader;
+<pre class="highlight"><code class="js">class MyUploadAdapter {
+    constructor( loader ) {
+        // The file loader instance to use during the upload.
+        this.loader = loader;
     }
 
-    <span class="hljs-comment">// Starts the upload process.</span>
+    // Starts the upload process.
     upload() {
-        <span class="hljs-comment">// Update the loader&apos;s progress.</span>
-        server.onUploadProgress( <span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> {
+        // Update the loader&apos;s progress.
+        server.onUploadProgress( data =&gt; {
             loader.uploadTotal = data.total;
             loader.uploaded = data.uploaded;
         } );
 
-        <span class="hljs-comment">// Return a promise that will be resolved when the file is uploaded.</span>
-        <span class="hljs-keyword">return</span> loader.file
-            .then( <span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> server.upload( file ) );
+        // Return a promise that will be resolved when the file is uploaded.
+        return loader.file
+            .then( file =&gt; server.upload( file ) );
     }
 
-    <span class="hljs-comment">// Aborts the upload process.</span>
+    // Aborts the upload process.
     abort() {
-        <span class="hljs-comment">// Reject the promise returned from the upload() method.</span>
+        // Reject the promise returned from the upload() method.
         server.abortUpload();
     }
 }
 </code></pre>
 <p>Define the <a href="../../../api/module_upload_filerepository-FileRepository.html#member-createUploadAdapter"><code>FileRepository.createUploadAdapter()</code></a> factory method which uses the <code>MyUploadAdapter</code> class to enable the upload adapter in the editor:</p>
-<pre class="highlight"><code class="js">editor.plugins.get( <span class="hljs-string">&apos;FileRepository&apos;</span> ).createUploadAdapter = <span class="hljs-function">(<span class="hljs-params"> loader </span>) =&gt;</span> {
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> MyUploadAdapter( loader );
+<pre class="highlight"><code class="js">editor.plugins.get( &apos;FileRepository&apos; ).createUploadAdapter = ( loader ) =&gt; {
+    return new MyUploadAdapter( loader );
 };
 </code></pre>
 <h2 id="implementing-a-custom-upload-adapter"><a class="headerlink" href="#implementing-a-custom-upload-adapter">#</a> Implementing a custom upload adapter</h2>
@@ -382,100 +382,100 @@
 <div class="info-box notice"><p>If the <a href="../../../features/image-upload/simple-upload-adapter.html">Simple upload adapter</a> is not enough for you and you want a custom upload adapter developed on top this guide, go straight to the <a href="#the-complete-implementation">full source code</a> and start experimenting.</p></div>
 <div class="info-box notice"><p>Note that this is just an example implementation and <code>XMLHttpRequest</code> might not necessarily be the best solution for your application.</p><p>Use the provided code snippets as an inspiration for your own custom upload adapter &#x2014; it is up to you to choose the technologies and APIs to use. For instance, you may want to check out the native <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" target="_blank" rel="noopener"><code>fetch()</code> API</a> that works with <code>Promises</code> out of the box.</p></div>
 <p>To start off, define the <code>MyUploadAdapter</code> class with its constructor.</p>
-<pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyUploadAdapter</span> </span>{
-    <span class="hljs-keyword">constructor</span>( loader ) {
-        <span class="hljs-comment">// The file loader instance to use during the upload. It sounds scary but do not</span>
-        <span class="hljs-comment">// worry &#x2014; the loader will be passed into the adapter later on in this guide.</span>
-        <span class="hljs-keyword">this</span>.loader = loader;
+<pre class="highlight"><code class="js">class MyUploadAdapter {
+    constructor( loader ) {
+        // The file loader instance to use during the upload. It sounds scary but do not
+        // worry &#x2014; the loader will be passed into the adapter later on in this guide.
+        this.loader = loader;
     }
 
-    <span class="hljs-comment">// ...</span>
+    // ...
 }
 </code></pre>
 <p>Implement the minimal <code>UploadAdapter</code> adapter interface as explained in <a href="#the-anatomy-of-the-adapter">&#x201C;The anatomy of the adapter&#x201D;</a> section. The details of the implementation are explained in the following chapters of this guide.</p>
-<pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyUploadAdapter</span> </span>{
-    <span class="hljs-comment">// ...</span>
+<pre class="highlight"><code class="js">class MyUploadAdapter {
+    // ...
 
-    <span class="hljs-comment">// Starts the upload process.</span>
+    // Starts the upload process.
     upload() {
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.loader.file
-            .then( <span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>( <span class="hljs-function">(<span class="hljs-params"> resolve, reject </span>) =&gt;</span> {
-                <span class="hljs-keyword">this</span>._initRequest();
-                <span class="hljs-keyword">this</span>._initListeners( resolve, reject, file );
-                <span class="hljs-keyword">this</span>._sendRequest( file );
+        return this.loader.file
+            .then( file =&gt; new Promise( ( resolve, reject ) =&gt; {
+                this._initRequest();
+                this._initListeners( resolve, reject, file );
+                this._sendRequest( file );
             } ) );
     }
 
-    <span class="hljs-comment">// Aborts the upload process.</span>
+    // Aborts the upload process.
     abort() {
-        <span class="hljs-keyword">if</span> ( <span class="hljs-keyword">this</span>.xhr ) {
-            <span class="hljs-keyword">this</span>.xhr.abort();
+        if ( this.xhr ) {
+            this.xhr.abort();
         }
     }
 
-    <span class="hljs-comment">// ...</span>
+    // ...
 }
 </code></pre>
 <h3 id="using-xmlhttprequest-in-an-adapter"><a class="headerlink" href="#using-xmlhttprequest-in-an-adapter">#</a> Using <code>XMLHttpRequest</code> in an adapter</h3>
 <p>Let&#x2019;s see what the <code>_initRequest()</code> method looks like in your custom upload adapter. It should prepare the <code>XMLHttpRequest</code> object before it can be used to upload an image.</p>
 <div class="info-box notice"><p>Note that for the sake of keeping the code simple, in this example implementation no particular security mechanism is used that would prevent your application and services from being abused.</p><p>We <strong>strongly recommend</strong> using both authentication and <a href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery_%28CSRF%29" target="_blank" rel="noopener"><abbr title="Cross-site request forgery">CSRF</abbr> protection</a> mechanisms (i.e. CSRF tokens) in your application. For instance, they can be implemented as <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/setRequestHeader" target="_blank" rel="noopener"><code>XMLHttpRequest</code></a> headers.</p></div>
-<pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyUploadAdapter</span> </span>{
-    <span class="hljs-comment">// ...</span>
+<pre class="highlight"><code class="js">class MyUploadAdapter {
+    // ...
 
-    <span class="hljs-comment">// Initializes the XMLHttpRequest object using the URL passed to the constructor.</span>
+    // Initializes the XMLHttpRequest object using the URL passed to the constructor.
     _initRequest() {
-        <span class="hljs-keyword">const</span> xhr = <span class="hljs-keyword">this</span>.xhr = <span class="hljs-keyword">new</span> XMLHttpRequest();
+        const xhr = this.xhr = new XMLHttpRequest();
 
-        <span class="hljs-comment">// Note that your request may look different. It is up to you and your editor</span>
-        <span class="hljs-comment">// integration to choose the right communication channel. This example uses</span>
-        <span class="hljs-comment">// a POST request with JSON as a data structure but your configuration</span>
-        <span class="hljs-comment">// could be different.</span>
-        xhr.open( <span class="hljs-string">&apos;POST&apos;</span>, <span class="hljs-string">&apos;http://example.com/image/upload/path&apos;</span>, <span class="hljs-literal">true</span> );
-        xhr.responseType = <span class="hljs-string">&apos;json&apos;</span>;
+        // Note that your request may look different. It is up to you and your editor
+        // integration to choose the right communication channel. This example uses
+        // a POST request with JSON as a data structure but your configuration
+        // could be different.
+        xhr.open( &apos;POST&apos;, &apos;http://example.com/image/upload/path&apos;, true );
+        xhr.responseType = &apos;json&apos;;
     }
 }
 </code></pre>
 <p>Now let&#x2019;s focus on the <code>_initListeners()</code> method which attaches the <code>error</code>, <code>abort</code>, <code>load</code>, and <code>progress</code> event listeners to the <code>XMLHttpRequest</code> object created in the last step.</p>
 <p>A successful image upload will finish when the upload promise is resolved upon the <code>load</code> event fired by the <code>XMLHttpRequest</code> request. The promise must be resolved with an object containing information about the image. See the documentation of the <a href="../../../api/module_upload_filerepository-UploadAdapter.html#function-upload"><code>upload()</code></a> method to learn more.</p>
-<pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyUploadAdapter</span> </span>{
-    <span class="hljs-comment">// ...</span>
+<pre class="highlight"><code class="js">class MyUploadAdapter {
+    // ...
 
-    <span class="hljs-comment">// Initializes XMLHttpRequest listeners.</span>
+    // Initializes XMLHttpRequest listeners.
     _initListeners( resolve, reject, file ) {
-        <span class="hljs-keyword">const</span> xhr = <span class="hljs-keyword">this</span>.xhr;
-        <span class="hljs-keyword">const</span> loader = <span class="hljs-keyword">this</span>.loader;
-        <span class="hljs-keyword">const</span> genericErrorText = <span class="hljs-string">`Couldn&apos;t upload file: <span class="hljs-subst">${ file.name }</span>.`</span>;
+        const xhr = this.xhr;
+        const loader = this.loader;
+        const genericErrorText = `Couldn&apos;t upload file: ${ file.name }.`;
 
-        xhr.addEventListener( <span class="hljs-string">&apos;error&apos;</span>, () =&gt; reject( genericErrorText ) );
-        xhr.addEventListener( <span class="hljs-string">&apos;abort&apos;</span>, () =&gt; reject() );
-        xhr.addEventListener( <span class="hljs-string">&apos;load&apos;</span>, () =&gt; {
-            <span class="hljs-keyword">const</span> response = xhr.response;
+        xhr.addEventListener( &apos;error&apos;, () =&gt; reject( genericErrorText ) );
+        xhr.addEventListener( &apos;abort&apos;, () =&gt; reject() );
+        xhr.addEventListener( &apos;load&apos;, () =&gt; {
+            const response = xhr.response;
 
-            <span class="hljs-comment">// This example assumes the XHR server&apos;s &quot;response&quot; object will come with</span>
-            <span class="hljs-comment">// an &quot;error&quot; which has its own &quot;message&quot; that can be passed to reject()</span>
-            <span class="hljs-comment">// in the upload promise.</span>
-            <span class="hljs-comment">//</span>
-            <span class="hljs-comment">// Your integration may handle upload errors in a different way so make sure</span>
-            <span class="hljs-comment">// it is done properly. The reject() function must be called when the upload fails.</span>
-            <span class="hljs-keyword">if</span> ( !response || response.error ) {
-                <span class="hljs-keyword">return</span> reject( response &amp;&amp; response.error ? response.error.message : genericErrorText );
+            // This example assumes the XHR server&apos;s &quot;response&quot; object will come with
+            // an &quot;error&quot; which has its own &quot;message&quot; that can be passed to reject()
+            // in the upload promise.
+            //
+            // Your integration may handle upload errors in a different way so make sure
+            // it is done properly. The reject() function must be called when the upload fails.
+            if ( !response || response.error ) {
+                return reject( response &amp;&amp; response.error ? response.error.message : genericErrorText );
             }
 
-            <span class="hljs-comment">// If the upload is successful, resolve the upload promise with an object containing</span>
-            <span class="hljs-comment">// at least the &quot;default&quot; URL, pointing to the image on the server.</span>
-            <span class="hljs-comment">// This URL will be used to display the image in the content. Learn more in the</span>
-            <span class="hljs-comment">// UploadAdapter#upload documentation.</span>
+            // If the upload is successful, resolve the upload promise with an object containing
+            // at least the &quot;default&quot; URL, pointing to the image on the server.
+            // This URL will be used to display the image in the content. Learn more in the
+            // UploadAdapter#upload documentation.
             resolve( {
-                <span class="hljs-attr">default</span>: response.url
+                default: response.url
             } );
         } );
 
-        <span class="hljs-comment">// Upload progress when it is supported. The file loader has the #uploadTotal and #uploaded</span>
-        <span class="hljs-comment">// properties which are used e.g. to display the upload progress bar in the editor</span>
-        <span class="hljs-comment">// user interface.</span>
-        <span class="hljs-keyword">if</span> ( xhr.upload ) {
-            xhr.upload.addEventListener( <span class="hljs-string">&apos;progress&apos;</span>, evt =&gt; {
-                <span class="hljs-keyword">if</span> ( evt.lengthComputable ) {
+        // Upload progress when it is supported. The file loader has the #uploadTotal and #uploaded
+        // properties which are used e.g. to display the upload progress bar in the editor
+        // user interface.
+        if ( xhr.upload ) {
+            xhr.upload.addEventListener( &apos;progress&apos;, evt =&gt; {
+                if ( evt.lengthComputable ) {
                     loader.uploadTotal = evt.total;
                     loader.uploaded = evt.loaded;
                 }
@@ -486,163 +486,163 @@
 </code></pre>
 <p>Last but not least, the <code>_sendRequest()</code> method sends the <code>XMLHttpRequest</code>. In this example, the <a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData" target="_blank" rel="noopener"><code>FormData</code></a> interface is used to pass the file provided by the <a href="../../../api/module_upload_filerepository-FileRepository.html#function-createLoader">file loader</a>.</p>
 <div class="info-box notice"><p>Note that both the data format and actual data passed to <code>XMLHttpRequest.send()</code> in this example implementation are arbitrary. Your implementation could be different and it will depend on the back&#x2013;end of your application and interfaces it provides.</p></div>
-<pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyUploadAdapter</span> </span>{
-    <span class="hljs-comment">// ...</span>
+<pre class="highlight"><code class="js">class MyUploadAdapter {
+    // ...
 
-    <span class="hljs-comment">// Prepares the data and sends the request.</span>
+    // Prepares the data and sends the request.
     _sendRequest( file ) {
-        <span class="hljs-comment">// Prepare the form data.</span>
-        <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">new</span> FormData();
+        // Prepare the form data.
+        const data = new FormData();
 
-        data.append( <span class="hljs-string">&apos;upload&apos;</span>, file );
+        data.append( &apos;upload&apos;, file );
 
-        <span class="hljs-comment">// Important note: This is the right place to implement security mechanisms</span>
-        <span class="hljs-comment">// like authentication and CSRF protection. For instance, you can use</span>
-        <span class="hljs-comment">// XMLHttpRequest.setRequestHeader() to set the request headers containing</span>
-        <span class="hljs-comment">// the CSRF token generated earlier by your application.</span>
+        // Important note: This is the right place to implement security mechanisms
+        // like authentication and CSRF protection. For instance, you can use
+        // XMLHttpRequest.setRequestHeader() to set the request headers containing
+        // the CSRF token generated earlier by your application.
 
-        <span class="hljs-comment">// Send the request.</span>
-        <span class="hljs-keyword">this</span>.xhr.send( data );
+        // Send the request.
+        this.xhr.send( data );
     }
 }
 </code></pre>
 <h3 id="responsive-images-and-srcset-attribute"><a class="headerlink" href="#responsive-images-and-srcset-attribute">#</a> Responsive images and <code>srcset</code> attribute</h3>
 <p>If the upload is successful, a <code>Promise</code> returned by the <a href="../../../api/module_upload_filerepository-UploadAdapter.html#function-upload"><code>MyUploadAdapter.upload()</code></a> method can resolve with more than just a <code>default</code> path to the uploaded image (see the implementation of <code>MyUploadAdapter._initListeners()</code>), which usually looks like this:</p>
 <pre class="highlight"><code class="js">{
-    <span class="hljs-attr">default</span>: <span class="hljs-string">&apos;http://example.com/images/image&#x2013;default-size.png&apos;</span>
+    default: &apos;http://example.com/images/image&#x2013;default-size.png&apos;
 }
 </code></pre>
 <p>Other image sizes can also be provided in the response, allowing <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank" rel="noopener">responsive images</a> in the editor. The response containing more than just one image size could look like this:</p>
 <pre class="highlight"><code class="js">{
-    <span class="hljs-attr">default</span>: <span class="hljs-string">&apos;http://example.com/images/image&#x2013;default-size.png&apos;</span>,
-    <span class="hljs-string">&apos;160&apos;</span>: <span class="hljs-string">&apos;http://example.com/images/image&#x2013;size-160.image.png&apos;</span>,
-    <span class="hljs-string">&apos;500&apos;</span>: <span class="hljs-string">&apos;http://example.com/images/image&#x2013;size-500.image.png&apos;</span>,
-    <span class="hljs-string">&apos;1000&apos;</span>: <span class="hljs-string">&apos;http://example.com/images/image&#x2013;size-1000.image.png&apos;</span>,
-    <span class="hljs-string">&apos;1052&apos;</span>: <span class="hljs-string">&apos;http://example.com/images/image&#x2013;default-size.png&apos;</span>
+    default: &apos;http://example.com/images/image&#x2013;default-size.png&apos;,
+    &apos;160&apos;: &apos;http://example.com/images/image&#x2013;size-160.image.png&apos;,
+    &apos;500&apos;: &apos;http://example.com/images/image&#x2013;size-500.image.png&apos;,
+    &apos;1000&apos;: &apos;http://example.com/images/image&#x2013;size-1000.image.png&apos;,
+    &apos;1052&apos;: &apos;http://example.com/images/image&#x2013;default-size.png&apos;
 }
 </code></pre>
 <div class="info-box notice"><p>When returning multiple images, the widest returned one should be the default one. It is essential to correctly set the <code>width</code> attribute of the image in the rich-text editor content.</p></div>
 <p>The <a href="../../../api/module_image_imageupload-ImageUpload.html">image upload</a> plugin, which is capable of handling multiple image sizes returned by the upload adapter, will automatically add the URLs to other images sizes to the <code>srcset</code> attribute of the image in the content.</p>
 <div class="info-box notice"><p>The <a href="../../../features/image-upload/easy-image.html">Easy Image</a> feature provides responsive image support <a href="../../../features/image-upload/easy-image.html#responsive-images">out of the box</a>.</p></div>
 <p>Knowing that, you can implement the <code>XMLHttpRequest#load</code> listener that resolves the upload promise in the <a href="#using-xmlhttprequest-in-an-adapter">previous section</a> so that it passes the entire <code>urls</code> property of the server response to the image upload plugin:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// ...</span>
+<pre class="highlight"><code class="js">// ...
 
-xhr.addEventListener( <span class="hljs-string">&apos;load&apos;</span>, () =&gt; {
-    <span class="hljs-keyword">const</span> response = xhr.response;
+xhr.addEventListener( &apos;load&apos;, () =&gt; {
+    const response = xhr.response;
 
-    <span class="hljs-comment">// ...</span>
+    // ...
 
-    <span class="hljs-comment">// response.urls = {</span>
-    <span class="hljs-comment">// 	default: &apos;http://example.com/images/image&#x2013;default-size.png&apos;,</span>
-    <span class="hljs-comment">// 	&apos;160&apos;: &apos;...&apos;,</span>
-    <span class="hljs-comment">// 	&apos;500&apos;: &apos;...&apos;,</span>
-    <span class="hljs-comment">// 	// ...</span>
-    <span class="hljs-comment">// 	&apos;1052&apos;: &apos;http://example.com/images/image&#x2013;default-size.png&apos;</span>
-    <span class="hljs-comment">// }</span>
+    // response.urls = {
+    // 	default: &apos;http://example.com/images/image&#x2013;default-size.png&apos;,
+    // 	&apos;160&apos;: &apos;...&apos;,
+    // 	&apos;500&apos;: &apos;...&apos;,
+    // 	// ...
+    // 	&apos;1052&apos;: &apos;http://example.com/images/image&#x2013;default-size.png&apos;
+    // }
     resolve( response.urls );
 } );
 </code></pre>
 <h3 id="activating-a-custom-upload-adapter"><a class="headerlink" href="#activating-a-custom-upload-adapter">#</a> Activating a custom upload adapter</h3>
 <p>Having implemented the adapter, you must figure out how to enable it in the WYSIWYG editor. The good news is that it is pretty easy, and you do not need to <a href="../../../builds/guides/development/custom-builds.html">rebuild the editor</a> to do that!</p>
 <p>You are going to extend the basic implementation presented in <a href="#the-anatomy-of-the-adapter">&#x201C;The anatomy of the adapter&#x201D;</a> section of this guide so your custom adapter becomes an editor plugin. To do that, create a simple standalone plugin (<code>MyCustomUploadAdapterPlugin</code>) that will <a href="../../../api/module_upload_filerepository-FileRepository.html#function-createLoader">create an instance of the file loader</a> and glue it with your custom <code>MyUploadAdapter</code>.</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-build-classic&apos;</span>;
+<pre class="highlight"><code class="js">import ClassicEditor from &apos;@ckeditor/ckeditor5-build-classic&apos;;
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyUploadAdapter</span> </span>{
-    <span class="hljs-comment">// ...</span>
+class MyUploadAdapter {
+    // ...
 }
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MyCustomUploadAdapterPlugin</span>(<span class="hljs-params"> editor </span>) </span>{
-    editor.plugins.get( <span class="hljs-string">&apos;FileRepository&apos;</span> ).createUploadAdapter = <span class="hljs-function">(<span class="hljs-params"> loader </span>) =&gt;</span> {
-        <span class="hljs-comment">// Configure the URL to the upload script in your back-end here!</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> MyUploadAdapter( loader );
+function MyCustomUploadAdapterPlugin( editor ) {
+    editor.plugins.get( &apos;FileRepository&apos; ).createUploadAdapter = ( loader ) =&gt; {
+        // Configure the URL to the upload script in your back-end here!
+        return new MyUploadAdapter( loader );
     };
 }
 </code></pre>
 <p>Enable the <code>MyCustomUploadAdapterPlugin</code> in the editor by using the <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html#member-extraPlugins"><code>config.extraPlugins</code></a> option:</p>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">extraPlugins</span>: [ MyCustomUploadAdapterPlugin ],
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        extraPlugins: [ MyCustomUploadAdapterPlugin ],
 
-        <span class="hljs-comment">// ...</span>
+        // ...
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log( error );
+    .catch( error =&gt; {
+        console.log( error );
     } );
 </code></pre>
 <p>Run the editor and see if your implementation works. Drop an image into the WYSIWYG editor content and it should be uploaded to the server thanks to the <code>MyUploadAdapter</code>.</p>
 <h3 id="the-complete-implementation"><a class="headerlink" href="#the-complete-implementation">#</a> The complete implementation</h3>
 <p>Here is what the complete implementation of an <code>XMLHttpRequest</code>&#x2013;based upload adapter looks like. You can use this code as a foundation to build custom upload adapters for your applications.</p>
-<pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyUploadAdapter</span> </span>{
-    <span class="hljs-keyword">constructor</span>( loader ) {
-        <span class="hljs-comment">// The file loader instance to use during the upload.</span>
-        <span class="hljs-keyword">this</span>.loader = loader;
+<pre class="highlight"><code class="js">class MyUploadAdapter {
+    constructor( loader ) {
+        // The file loader instance to use during the upload.
+        this.loader = loader;
     }
 
-    <span class="hljs-comment">// Starts the upload process.</span>
+    // Starts the upload process.
     upload() {
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.loader.file
-            .then( <span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>( <span class="hljs-function">(<span class="hljs-params"> resolve, reject </span>) =&gt;</span> {
-                <span class="hljs-keyword">this</span>._initRequest();
-                <span class="hljs-keyword">this</span>._initListeners( resolve, reject, file );
-                <span class="hljs-keyword">this</span>._sendRequest( file );
+        return this.loader.file
+            .then( file =&gt; new Promise( ( resolve, reject ) =&gt; {
+                this._initRequest();
+                this._initListeners( resolve, reject, file );
+                this._sendRequest( file );
             } ) );
     }
 
-    <span class="hljs-comment">// Aborts the upload process.</span>
+    // Aborts the upload process.
     abort() {
-        <span class="hljs-keyword">if</span> ( <span class="hljs-keyword">this</span>.xhr ) {
-            <span class="hljs-keyword">this</span>.xhr.abort();
+        if ( this.xhr ) {
+            this.xhr.abort();
         }
     }
 
-    <span class="hljs-comment">// Initializes the XMLHttpRequest object using the URL passed to the constructor.</span>
+    // Initializes the XMLHttpRequest object using the URL passed to the constructor.
     _initRequest() {
-        <span class="hljs-keyword">const</span> xhr = <span class="hljs-keyword">this</span>.xhr = <span class="hljs-keyword">new</span> XMLHttpRequest();
+        const xhr = this.xhr = new XMLHttpRequest();
 
-        <span class="hljs-comment">// Note that your request may look different. It is up to you and your editor</span>
-        <span class="hljs-comment">// integration to choose the right communication channel. This example uses</span>
-        <span class="hljs-comment">// a POST request with JSON as a data structure but your configuration</span>
-        <span class="hljs-comment">// could be different.</span>
-        xhr.open( <span class="hljs-string">&apos;POST&apos;</span>, <span class="hljs-string">&apos;http://example.com/image/upload/path&apos;</span>, <span class="hljs-literal">true</span> );
-        xhr.responseType = <span class="hljs-string">&apos;json&apos;</span>;
+        // Note that your request may look different. It is up to you and your editor
+        // integration to choose the right communication channel. This example uses
+        // a POST request with JSON as a data structure but your configuration
+        // could be different.
+        xhr.open( &apos;POST&apos;, &apos;http://example.com/image/upload/path&apos;, true );
+        xhr.responseType = &apos;json&apos;;
     }
 
-    <span class="hljs-comment">// Initializes XMLHttpRequest listeners.</span>
+    // Initializes XMLHttpRequest listeners.
     _initListeners( resolve, reject, file ) {
-        <span class="hljs-keyword">const</span> xhr = <span class="hljs-keyword">this</span>.xhr;
-        <span class="hljs-keyword">const</span> loader = <span class="hljs-keyword">this</span>.loader;
-        <span class="hljs-keyword">const</span> genericErrorText = <span class="hljs-string">`Couldn&apos;t upload file: <span class="hljs-subst">${ file.name }</span>.`</span>;
+        const xhr = this.xhr;
+        const loader = this.loader;
+        const genericErrorText = `Couldn&apos;t upload file: ${ file.name }.`;
 
-        xhr.addEventListener( <span class="hljs-string">&apos;error&apos;</span>, () =&gt; reject( genericErrorText ) );
-        xhr.addEventListener( <span class="hljs-string">&apos;abort&apos;</span>, () =&gt; reject() );
-        xhr.addEventListener( <span class="hljs-string">&apos;load&apos;</span>, () =&gt; {
-            <span class="hljs-keyword">const</span> response = xhr.response;
+        xhr.addEventListener( &apos;error&apos;, () =&gt; reject( genericErrorText ) );
+        xhr.addEventListener( &apos;abort&apos;, () =&gt; reject() );
+        xhr.addEventListener( &apos;load&apos;, () =&gt; {
+            const response = xhr.response;
 
-            <span class="hljs-comment">// This example assumes the XHR server&apos;s &quot;response&quot; object will come with</span>
-            <span class="hljs-comment">// an &quot;error&quot; which has its own &quot;message&quot; that can be passed to reject()</span>
-            <span class="hljs-comment">// in the upload promise.</span>
-            <span class="hljs-comment">//</span>
-            <span class="hljs-comment">// Your integration may handle upload errors in a different way so make sure</span>
-            <span class="hljs-comment">// it is done properly. The reject() function must be called when the upload fails.</span>
-            <span class="hljs-keyword">if</span> ( !response || response.error ) {
-                <span class="hljs-keyword">return</span> reject( response &amp;&amp; response.error ? response.error.message : genericErrorText );
+            // This example assumes the XHR server&apos;s &quot;response&quot; object will come with
+            // an &quot;error&quot; which has its own &quot;message&quot; that can be passed to reject()
+            // in the upload promise.
+            //
+            // Your integration may handle upload errors in a different way so make sure
+            // it is done properly. The reject() function must be called when the upload fails.
+            if ( !response || response.error ) {
+                return reject( response &amp;&amp; response.error ? response.error.message : genericErrorText );
             }
 
-            <span class="hljs-comment">// If the upload is successful, resolve the upload promise with an object containing</span>
-            <span class="hljs-comment">// at least the &quot;default&quot; URL, pointing to the image on the server.</span>
-            <span class="hljs-comment">// This URL will be used to display the image in the content. Learn more in the</span>
-            <span class="hljs-comment">// UploadAdapter#upload documentation.</span>
+            // If the upload is successful, resolve the upload promise with an object containing
+            // at least the &quot;default&quot; URL, pointing to the image on the server.
+            // This URL will be used to display the image in the content. Learn more in the
+            // UploadAdapter#upload documentation.
             resolve( {
-                <span class="hljs-attr">default</span>: response.url
+                default: response.url
             } );
         } );
 
-        <span class="hljs-comment">// Upload progress when it is supported. The file loader has the #uploadTotal and #uploaded</span>
-        <span class="hljs-comment">// properties which are used e.g. to display the upload progress bar in the editor</span>
-        <span class="hljs-comment">// user interface.</span>
-        <span class="hljs-keyword">if</span> ( xhr.upload ) {
-            xhr.upload.addEventListener( <span class="hljs-string">&apos;progress&apos;</span>, evt =&gt; {
-                <span class="hljs-keyword">if</span> ( evt.lengthComputable ) {
+        // Upload progress when it is supported. The file loader has the #uploadTotal and #uploaded
+        // properties which are used e.g. to display the upload progress bar in the editor
+        // user interface.
+        if ( xhr.upload ) {
+            xhr.upload.addEventListener( &apos;progress&apos;, evt =&gt; {
+                if ( evt.lengthComputable ) {
                     loader.uploadTotal = evt.total;
                     loader.uploaded = evt.loaded;
                 }
@@ -650,42 +650,42 @@ xhr.addEventListener( <span class="hljs-string">&apos;load&apos;</span>, () =&gt
         }
     }
 
-    <span class="hljs-comment">// Prepares the data and sends the request.</span>
+    // Prepares the data and sends the request.
     _sendRequest( file ) {
-        <span class="hljs-comment">// Prepare the form data.</span>
-        <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">new</span> FormData();
+        // Prepare the form data.
+        const data = new FormData();
 
-        data.append( <span class="hljs-string">&apos;upload&apos;</span>, file );
+        data.append( &apos;upload&apos;, file );
 
-        <span class="hljs-comment">// Important note: This is the right place to implement security mechanisms</span>
-        <span class="hljs-comment">// like authentication and CSRF protection. For instance, you can use</span>
-        <span class="hljs-comment">// XMLHttpRequest.setRequestHeader() to set the request headers containing</span>
-        <span class="hljs-comment">// the CSRF token generated earlier by your application.</span>
+        // Important note: This is the right place to implement security mechanisms
+        // like authentication and CSRF protection. For instance, you can use
+        // XMLHttpRequest.setRequestHeader() to set the request headers containing
+        // the CSRF token generated earlier by your application.
 
-        <span class="hljs-comment">// Send the request.</span>
-        <span class="hljs-keyword">this</span>.xhr.send( data );
+        // Send the request.
+        this.xhr.send( data );
     }
 }
 
-<span class="hljs-comment">// ...</span>
+// ...
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MyCustomUploadAdapterPlugin</span>(<span class="hljs-params"> editor </span>) </span>{
-    editor.plugins.get( <span class="hljs-string">&apos;FileRepository&apos;</span> ).createUploadAdapter = <span class="hljs-function">(<span class="hljs-params"> loader </span>) =&gt;</span> {
-        <span class="hljs-comment">// Configure the URL to the upload script in your back-end here!</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> MyUploadAdapter( loader );
+function MyCustomUploadAdapterPlugin( editor ) {
+    editor.plugins.get( &apos;FileRepository&apos; ).createUploadAdapter = ( loader ) =&gt; {
+        // Configure the URL to the upload script in your back-end here!
+        return new MyUploadAdapter( loader );
     };
 }
 
-<span class="hljs-comment">// ...</span>
+// ...
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">extraPlugins</span>: [ MyCustomUploadAdapterPlugin ],
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        extraPlugins: [ MyCustomUploadAdapterPlugin ],
 
-        <span class="hljs-comment">// ...</span>
+        // ...
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log( error );
+    .catch( error =&gt; {
+        console.log( error );
     } );
 </code></pre>
 <h2 id="whats-next"><a class="headerlink" href="#whats-next">#</a> What&#x2019;s next?</h2>

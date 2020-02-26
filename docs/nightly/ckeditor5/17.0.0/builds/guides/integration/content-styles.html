@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
     <script>
       ( function() {
@@ -33,16 +33,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -84,7 +84,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -199,11 +199,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/integration/content-styles.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/integration/content-styles.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Builds</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../assets/1.2.1/img/book.svg" alt="guide">Content styles
+          <h1 class="main__content-title"><img src="../../../../../assets/1.2.2/img/book.svg" alt="guide">Content styles
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#sharing-content-styles-between-frontend-and-backend">Sharing content styles between front&#x2013;end and back&#x2013;end</a></li><li><a href="#the-full-list-of-content-styles">The full list of content styles</a></li></ol></nav>
 <p>Some of the <a href="../../../features/index.html">core editor features</a> bring additional CSS to control the look of the content they produce. Take, for example, the <a href="../../../features/image.html">image feature</a> that needs special content styles to render images and their captions in the content. Or the <a href="../../../api/module_block-quote_blockquote-BlockQuote.html">block quote</a> feature that displays quotes in italic with a subtle border on the side.</p>
 <p><img src="../../../assets/img/builds-content-styles.png" data-lightbox="true" alt="Editor content styles." width="823"></p>
@@ -216,313 +216,313 @@
 <li>By generating it using a dedicated script. Learn more in the <a href="../../../framework/guides/contributing/development-environment.html#generating-content-styles">Development environment</a> guide.</li>
 </ul>
 <p>Load the <code>content-styles.css</code> file in your application by adding the following code to the template:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;path/to/assets/content-styles.css&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/css&quot;</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;link rel=&quot;stylesheet&quot; href=&quot;path/to/assets/content-styles.css&quot; type=&quot;text/css&quot;&gt;
 </code></pre>
 <p>The content in the front&#x2013;end of your application should now look the same as when edited by the users.</p>
 <div class="info-box notice notice__warning"><p><strong>Important!</strong></p><p>If you take a closer look at the content styles, you may notice they are prefixed with the <code>.ck-content</code> class selector. This narrows their scope when used in CKEditor 5 so they do not affect the rest of the application. To use them in the front&#x2013;end, <strong>you will have to</strong> add the <code>ck-content</code> CSS class to the container of your content. Otherwise the styles will not be applied.</p></div>
 <div class="info-box notice"><p>If you are not afraid to get your hands dirty, you can always create a custom CKEditor 5 build from the source code with <strong>all</strong> the CSS (both UI and the content) extracted to a separate file. See how to do that in a <a href="advanced-setup.html#option-extracting-css">dedicated guide</a>.</p></div>
 <h2 id="the-full-list-of-content-styles"><a class="headerlink" href="#the-full-list-of-content-styles">#</a> The full list of content styles</h2>
 <p>Below there is a full list of content styles used by the editor features. You can copy it and use straight in your project. <strong>Make sure to add the <code>ck-content</code> class to your content container for the styles to work</strong> (<a href="#sharing-content-styles-between-frontend-and-backend">see above</a>).</p>
-<pre class="highlight"><code class="css"><span class="hljs-comment">/*
+<pre class="highlight"><code class="css">/*
  * CKEditor 5 (v16.0.0) content styles.
  * Generated on Thu, 13 Feb 2020 14:40:38 GMT.
  * For more information, check out https://ckeditor.com/docs/ckeditor5/latest/builds/guides/integration/content-styles.html
- */</span>
+ */
 
-<span class="hljs-selector-pseudo">:root</span> {
-    <span class="hljs-attribute">--ck-highlight-marker-blue</span>: <span class="hljs-number">#72cdfd</span>;
-    <span class="hljs-attribute">--ck-highlight-marker-green</span>: <span class="hljs-number">#63f963</span>;
-    <span class="hljs-attribute">--ck-highlight-marker-pink</span>: <span class="hljs-number">#fc7999</span>;
-    <span class="hljs-attribute">--ck-highlight-marker-yellow</span>: <span class="hljs-number">#fdfd77</span>;
-    <span class="hljs-attribute">--ck-highlight-pen-green</span>: <span class="hljs-number">#118800</span>;
-    <span class="hljs-attribute">--ck-highlight-pen-red</span>: <span class="hljs-number">#e91313</span>;
-    <span class="hljs-attribute">--ck-image-style-spacing</span>: <span class="hljs-number">1.5em</span>;
-    <span class="hljs-attribute">--ck-todo-list-checkmark-size</span>: <span class="hljs-number">16px</span>;
+:root {
+    --ck-highlight-marker-blue: #72cdfd;
+    --ck-highlight-marker-green: #63f963;
+    --ck-highlight-marker-pink: #fc7999;
+    --ck-highlight-marker-yellow: #fdfd77;
+    --ck-highlight-pen-green: #118800;
+    --ck-highlight-pen-red: #e91313;
+    --ck-image-style-spacing: 1.5em;
+    --ck-todo-list-checkmark-size: 16px;
 }
 
-<span class="hljs-comment">/* ckeditor5-list/theme/todolist.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.todo-list</span> {
-    <span class="hljs-attribute">list-style</span>: none;
+/* ckeditor5-list/theme/todolist.css */
+.ck-content .todo-list {
+    list-style: none;
 }
-<span class="hljs-comment">/* ckeditor5-list/theme/todolist.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.todo-list</span> <span class="hljs-selector-tag">li</span> {
-    <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">5px</span>;
+/* ckeditor5-list/theme/todolist.css */
+.ck-content .todo-list li {
+    margin-bottom: 5px;
 }
-<span class="hljs-comment">/* ckeditor5-list/theme/todolist.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.todo-list</span> <span class="hljs-selector-tag">li</span> <span class="hljs-selector-class">.todo-list</span> {
-    <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">5px</span>;
+/* ckeditor5-list/theme/todolist.css */
+.ck-content .todo-list li .todo-list {
+    margin-top: 5px;
 }
-<span class="hljs-comment">/* ckeditor5-list/theme/todolist.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.todo-list</span> <span class="hljs-selector-class">.todo-list__label</span> &gt; <span class="hljs-selector-tag">input</span> {
-    <span class="hljs-attribute">-webkit-appearance</span>: none;
-    <span class="hljs-attribute">display</span>: inline-block;
-    <span class="hljs-attribute">position</span>: relative;
-    <span class="hljs-attribute">width</span>: <span class="hljs-built_in">var</span>(--ck-todo-list-checkmark-size);
-    <span class="hljs-attribute">height</span>: <span class="hljs-built_in">var</span>(--ck-todo-list-checkmark-size);
-    <span class="hljs-attribute">vertical-align</span>: middle;
-    <span class="hljs-attribute">border</span>: <span class="hljs-number">0</span>;
-    <span class="hljs-attribute">left</span>: -<span class="hljs-number">25px</span>;
-    <span class="hljs-attribute">margin-right</span>: -<span class="hljs-number">15px</span>;
-    <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;
-    <span class="hljs-attribute">margin-left</span>: <span class="hljs-number">0</span>;
+/* ckeditor5-list/theme/todolist.css */
+.ck-content .todo-list .todo-list__label &gt; input {
+    -webkit-appearance: none;
+    display: inline-block;
+    position: relative;
+    width: var(--ck-todo-list-checkmark-size);
+    height: var(--ck-todo-list-checkmark-size);
+    vertical-align: middle;
+    border: 0;
+    left: -25px;
+    margin-right: -15px;
+    right: 0;
+    margin-left: 0;
 }
-<span class="hljs-comment">/* ckeditor5-list/theme/todolist.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.todo-list</span> <span class="hljs-selector-class">.todo-list__label</span> &gt; <span class="hljs-selector-tag">input</span><span class="hljs-selector-pseudo">::before</span> {
-    <span class="hljs-attribute">display</span>: block;
-    <span class="hljs-attribute">position</span>: absolute;
-    <span class="hljs-attribute">box-sizing</span>: border-box;
-    <span class="hljs-attribute">content</span>: <span class="hljs-string">&apos;&apos;</span>;
-    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
-    <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;
-    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">20%</span>);
-    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">2px</span>;
-    <span class="hljs-attribute">transition</span>: <span class="hljs-number">250ms</span> ease-in-out box-shadow, <span class="hljs-number">250ms</span> ease-in-out background, <span class="hljs-number">250ms</span> ease-in-out border;
+/* ckeditor5-list/theme/todolist.css */
+.ck-content .todo-list .todo-list__label &gt; input::before {
+    display: block;
+    position: absolute;
+    box-sizing: border-box;
+    content: &apos;&apos;;
+    width: 100%;
+    height: 100%;
+    border: 1px solid hsl(0, 0%, 20%);
+    border-radius: 2px;
+    transition: 250ms ease-in-out box-shadow, 250ms ease-in-out background, 250ms ease-in-out border;
 }
-<span class="hljs-comment">/* ckeditor5-list/theme/todolist.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.todo-list</span> <span class="hljs-selector-class">.todo-list__label</span> &gt; <span class="hljs-selector-tag">input</span><span class="hljs-selector-pseudo">::after</span> {
-    <span class="hljs-attribute">display</span>: block;
-    <span class="hljs-attribute">position</span>: absolute;
-    <span class="hljs-attribute">box-sizing</span>: content-box;
-    <span class="hljs-attribute">pointer-events</span>: none;
-    <span class="hljs-attribute">content</span>: <span class="hljs-string">&apos;&apos;</span>;
-    <span class="hljs-attribute">left</span>: <span class="hljs-built_in">calc</span>( var(--ck-todo-list-checkmark-size) / <span class="hljs-number">3</span> );
-    <span class="hljs-attribute">top</span>: <span class="hljs-built_in">calc</span>( var(--ck-todo-list-checkmark-size) / <span class="hljs-number">5.3</span> );
-    <span class="hljs-attribute">width</span>: <span class="hljs-built_in">calc</span>( var(--ck-todo-list-checkmark-size) / <span class="hljs-number">5.3</span> );
-    <span class="hljs-attribute">height</span>: <span class="hljs-built_in">calc</span>( var(--ck-todo-list-checkmark-size) / <span class="hljs-number">2.6</span> );
-    <span class="hljs-attribute">border-style</span>: solid;
-    <span class="hljs-attribute">border-color</span>: transparent;
-    <span class="hljs-attribute">border-width</span>: <span class="hljs-number">0</span> <span class="hljs-built_in">calc</span>( var(--ck-todo-list-checkmark-size) / <span class="hljs-number">8</span> ) <span class="hljs-built_in">calc</span>( var(--ck-todo-list-checkmark-size) / <span class="hljs-number">8</span> ) <span class="hljs-number">0</span>;
-    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(<span class="hljs-number">45deg</span>);
+/* ckeditor5-list/theme/todolist.css */
+.ck-content .todo-list .todo-list__label &gt; input::after {
+    display: block;
+    position: absolute;
+    box-sizing: content-box;
+    pointer-events: none;
+    content: &apos;&apos;;
+    left: calc( var(--ck-todo-list-checkmark-size) / 3 );
+    top: calc( var(--ck-todo-list-checkmark-size) / 5.3 );
+    width: calc( var(--ck-todo-list-checkmark-size) / 5.3 );
+    height: calc( var(--ck-todo-list-checkmark-size) / 2.6 );
+    border-style: solid;
+    border-color: transparent;
+    border-width: 0 calc( var(--ck-todo-list-checkmark-size) / 8 ) calc( var(--ck-todo-list-checkmark-size) / 8 ) 0;
+    transform: rotate(45deg);
 }
-<span class="hljs-comment">/* ckeditor5-list/theme/todolist.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.todo-list</span> <span class="hljs-selector-class">.todo-list__label</span> &gt; <span class="hljs-selector-tag">input</span><span class="hljs-selector-attr">[checked]</span><span class="hljs-selector-pseudo">::before</span> {
-    <span class="hljs-attribute">background</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">126</span>, <span class="hljs-number">64%</span>, <span class="hljs-number">41%</span>);
-    <span class="hljs-attribute">border-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">126</span>, <span class="hljs-number">64%</span>, <span class="hljs-number">41%</span>);
+/* ckeditor5-list/theme/todolist.css */
+.ck-content .todo-list .todo-list__label &gt; input[checked]::before {
+    background: hsl(126, 64%, 41%);
+    border-color: hsl(126, 64%, 41%);
 }
-<span class="hljs-comment">/* ckeditor5-list/theme/todolist.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.todo-list</span> <span class="hljs-selector-class">.todo-list__label</span> &gt; <span class="hljs-selector-tag">input</span><span class="hljs-selector-attr">[checked]</span><span class="hljs-selector-pseudo">::after</span> {
-    <span class="hljs-attribute">border-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">100%</span>);
+/* ckeditor5-list/theme/todolist.css */
+.ck-content .todo-list .todo-list__label &gt; input[checked]::after {
+    border-color: hsl(0, 0%, 100%);
 }
-<span class="hljs-comment">/* ckeditor5-list/theme/todolist.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.todo-list</span> <span class="hljs-selector-class">.todo-list__label</span> <span class="hljs-selector-class">.todo-list__label__description</span> {
-    <span class="hljs-attribute">vertical-align</span>: middle;
+/* ckeditor5-list/theme/todolist.css */
+.ck-content .todo-list .todo-list__label .todo-list__label__description {
+    vertical-align: middle;
 }
-<span class="hljs-comment">/* ckeditor5-media-embed/theme/mediaembed.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.media</span> {
-    <span class="hljs-attribute">clear</span>: both;
-    <span class="hljs-attribute">margin</span>: <span class="hljs-number">1em</span> <span class="hljs-number">0</span>;
-    <span class="hljs-attribute">display</span>: block;
-    <span class="hljs-attribute">min-width</span>: <span class="hljs-number">15em</span>;
+/* ckeditor5-media-embed/theme/mediaembed.css */
+.ck-content .media {
+    clear: both;
+    margin: 1em 0;
+    display: block;
+    min-width: 15em;
 }
-<span class="hljs-comment">/* ckeditor5-basic-styles/theme/code.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-tag">code</span> {
-    <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsla</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">78%</span>, <span class="hljs-number">0.3</span>);
-    <span class="hljs-attribute">padding</span>: .<span class="hljs-number">15em</span>;
-    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">2px</span>;
+/* ckeditor5-basic-styles/theme/code.css */
+.ck-content code {
+    background-color: hsla(0, 0%, 78%, 0.3);
+    padding: .15em;
+    border-radius: 2px;
 }
-<span class="hljs-comment">/* ckeditor5-block-quote/theme/blockquote.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-tag">blockquote</span> {
-    <span class="hljs-attribute">overflow</span>: hidden;
-    <span class="hljs-attribute">padding-right</span>: <span class="hljs-number">1.5em</span>;
-    <span class="hljs-attribute">padding-left</span>: <span class="hljs-number">1.5em</span>;
-    <span class="hljs-attribute">margin-left</span>: <span class="hljs-number">0</span>;
-    <span class="hljs-attribute">margin-right</span>: <span class="hljs-number">0</span>;
-    <span class="hljs-attribute">font-style</span>: italic;
-    <span class="hljs-attribute">border-left</span>: solid <span class="hljs-number">5px</span> <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">80%</span>);
+/* ckeditor5-block-quote/theme/blockquote.css */
+.ck-content blockquote {
+    overflow: hidden;
+    padding-right: 1.5em;
+    padding-left: 1.5em;
+    margin-left: 0;
+    margin-right: 0;
+    font-style: italic;
+    border-left: solid 5px hsl(0, 0%, 80%);
 }
-<span class="hljs-comment">/* ckeditor5-block-quote/theme/blockquote.css */</span>
-<span class="hljs-selector-class">.ck-content</span><span class="hljs-selector-attr">[dir=<span class="hljs-string">&quot;rtl&quot;</span>]</span> <span class="hljs-selector-tag">blockquote</span> {
-    <span class="hljs-attribute">border-left</span>: <span class="hljs-number">0</span>;
-    <span class="hljs-attribute">border-right</span>: solid <span class="hljs-number">5px</span> <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">80%</span>);
+/* ckeditor5-block-quote/theme/blockquote.css */
+.ck-content[dir=&quot;rtl&quot;] blockquote {
+    border-left: 0;
+    border-right: solid 5px hsl(0, 0%, 80%);
 }
-<span class="hljs-comment">/* ckeditor5-table/theme/table.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.table</span> {
-    <span class="hljs-attribute">margin</span>: <span class="hljs-number">1em</span> auto;
-    <span class="hljs-attribute">display</span>: table;
+/* ckeditor5-table/theme/table.css */
+.ck-content .table {
+    margin: 1em auto;
+    display: table;
 }
-<span class="hljs-comment">/* ckeditor5-table/theme/table.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.table</span> <span class="hljs-selector-tag">table</span> {
-    <span class="hljs-attribute">border-collapse</span>: collapse;
-    <span class="hljs-attribute">border-spacing</span>: <span class="hljs-number">0</span>;
-    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
-    <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;
-    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> double <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">70%</span>);
+/* ckeditor5-table/theme/table.css */
+.ck-content .table table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px double hsl(0, 0%, 70%);
 }
-<span class="hljs-comment">/* ckeditor5-table/theme/table.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.table</span> <span class="hljs-selector-tag">table</span> <span class="hljs-selector-tag">td</span>,
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.table</span> <span class="hljs-selector-tag">table</span> <span class="hljs-selector-tag">th</span> {
-    <span class="hljs-attribute">min-width</span>: <span class="hljs-number">2em</span>;
-    <span class="hljs-attribute">padding</span>: .<span class="hljs-number">4em</span>;
-    <span class="hljs-attribute">border-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">85%</span>);
+/* ckeditor5-table/theme/table.css */
+.ck-content .table table td,
+.ck-content .table table th {
+    min-width: 2em;
+    padding: .4em;
+    border-color: hsl(0, 0%, 85%);
 }
-<span class="hljs-comment">/* ckeditor5-table/theme/table.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.table</span> <span class="hljs-selector-tag">table</span> <span class="hljs-selector-tag">th</span> {
-    <span class="hljs-attribute">font-weight</span>: bold;
-    <span class="hljs-attribute">background</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">98%</span>);
+/* ckeditor5-table/theme/table.css */
+.ck-content .table table th {
+    font-weight: bold;
+    background: hsl(0, 0%, 98%);
 }
-<span class="hljs-comment">/* ckeditor5-image/theme/imagecaption.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.image</span> &gt; <span class="hljs-selector-tag">figcaption</span> {
-    <span class="hljs-attribute">display</span>: table-caption;
-    <span class="hljs-attribute">caption-side</span>: bottom;
-    <span class="hljs-attribute">word-break</span>: break-word;
-    <span class="hljs-attribute">color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">20%</span>);
-    <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">97%</span>);
-    <span class="hljs-attribute">padding</span>: .<span class="hljs-number">6em</span>;
-    <span class="hljs-attribute">font-size</span>: .<span class="hljs-number">75em</span>;
-    <span class="hljs-attribute">outline-offset</span>: -<span class="hljs-number">1px</span>;
+/* ckeditor5-image/theme/imagecaption.css */
+.ck-content .image &gt; figcaption {
+    display: table-caption;
+    caption-side: bottom;
+    word-break: break-word;
+    color: hsl(0, 0%, 20%);
+    background-color: hsl(0, 0%, 97%);
+    padding: .6em;
+    font-size: .75em;
+    outline-offset: -1px;
 }
-<span class="hljs-comment">/* ckeditor5-image/theme/image.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.image</span> {
-    <span class="hljs-attribute">display</span>: table;
-    <span class="hljs-attribute">clear</span>: both;
-    <span class="hljs-attribute">text-align</span>: center;
-    <span class="hljs-attribute">margin</span>: <span class="hljs-number">1em</span> auto;
+/* ckeditor5-image/theme/image.css */
+.ck-content .image {
+    display: table;
+    clear: both;
+    text-align: center;
+    margin: 1em auto;
 }
-<span class="hljs-comment">/* ckeditor5-image/theme/image.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.image</span> &gt; <span class="hljs-selector-tag">img</span> {
-    <span class="hljs-attribute">display</span>: block;
-    <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> auto;
-    <span class="hljs-attribute">max-width</span>: <span class="hljs-number">100%</span>;
-    <span class="hljs-attribute">min-width</span>: <span class="hljs-number">50px</span>;
+/* ckeditor5-image/theme/image.css */
+.ck-content .image &gt; img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    min-width: 50px;
 }
-<span class="hljs-comment">/* ckeditor5-image/theme/imageresize.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.image</span><span class="hljs-selector-class">.image_resized</span> {
-    <span class="hljs-attribute">max-width</span>: <span class="hljs-number">100%</span>;
-    <span class="hljs-attribute">display</span>: block;
-    <span class="hljs-attribute">box-sizing</span>: border-box;
+/* ckeditor5-image/theme/imageresize.css */
+.ck-content .image.image_resized {
+    max-width: 100%;
+    display: block;
+    box-sizing: border-box;
 }
-<span class="hljs-comment">/* ckeditor5-image/theme/imageresize.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.image</span><span class="hljs-selector-class">.image_resized</span> <span class="hljs-selector-tag">img</span> {
-    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+/* ckeditor5-image/theme/imageresize.css */
+.ck-content .image.image_resized img {
+    width: 100%;
 }
-<span class="hljs-comment">/* ckeditor5-image/theme/imageresize.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.image</span><span class="hljs-selector-class">.image_resized</span> &gt; <span class="hljs-selector-tag">figcaption</span> {
-    <span class="hljs-attribute">display</span>: block;
+/* ckeditor5-image/theme/imageresize.css */
+.ck-content .image.image_resized &gt; figcaption {
+    display: block;
 }
-<span class="hljs-comment">/* ckeditor5-highlight/theme/highlight.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.marker-yellow</span> {
-    <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--ck-highlight-marker-yellow);
+/* ckeditor5-highlight/theme/highlight.css */
+.ck-content .marker-yellow {
+    background-color: var(--ck-highlight-marker-yellow);
 }
-<span class="hljs-comment">/* ckeditor5-highlight/theme/highlight.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.marker-green</span> {
-    <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--ck-highlight-marker-green);
+/* ckeditor5-highlight/theme/highlight.css */
+.ck-content .marker-green {
+    background-color: var(--ck-highlight-marker-green);
 }
-<span class="hljs-comment">/* ckeditor5-highlight/theme/highlight.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.marker-pink</span> {
-    <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--ck-highlight-marker-pink);
+/* ckeditor5-highlight/theme/highlight.css */
+.ck-content .marker-pink {
+    background-color: var(--ck-highlight-marker-pink);
 }
-<span class="hljs-comment">/* ckeditor5-highlight/theme/highlight.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.marker-blue</span> {
-    <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">var</span>(--ck-highlight-marker-blue);
+/* ckeditor5-highlight/theme/highlight.css */
+.ck-content .marker-blue {
+    background-color: var(--ck-highlight-marker-blue);
 }
-<span class="hljs-comment">/* ckeditor5-highlight/theme/highlight.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.pen-red</span> {
-    <span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--ck-highlight-pen-red);
-    <span class="hljs-attribute">background-color</span>: transparent;
+/* ckeditor5-highlight/theme/highlight.css */
+.ck-content .pen-red {
+    color: var(--ck-highlight-pen-red);
+    background-color: transparent;
 }
-<span class="hljs-comment">/* ckeditor5-highlight/theme/highlight.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.pen-green</span> {
-    <span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--ck-highlight-pen-green);
-    <span class="hljs-attribute">background-color</span>: transparent;
+/* ckeditor5-highlight/theme/highlight.css */
+.ck-content .pen-green {
+    color: var(--ck-highlight-pen-green);
+    background-color: transparent;
 }
-<span class="hljs-comment">/* ckeditor5-image/theme/imagestyle.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.image-style-side</span>,
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.image-style-align-left</span>,
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.image-style-align-center</span>,
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.image-style-align-right</span> {
-    <span class="hljs-attribute">max-width</span>: <span class="hljs-number">50%</span>;
+/* ckeditor5-image/theme/imagestyle.css */
+.ck-content .image-style-side,
+.ck-content .image-style-align-left,
+.ck-content .image-style-align-center,
+.ck-content .image-style-align-right {
+    max-width: 50%;
 }
-<span class="hljs-comment">/* ckeditor5-image/theme/imagestyle.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.image-style-side</span> {
-    <span class="hljs-attribute">float</span>: right;
-    <span class="hljs-attribute">margin-left</span>: <span class="hljs-built_in">var</span>(--ck-image-style-spacing);
+/* ckeditor5-image/theme/imagestyle.css */
+.ck-content .image-style-side {
+    float: right;
+    margin-left: var(--ck-image-style-spacing);
 }
-<span class="hljs-comment">/* ckeditor5-image/theme/imagestyle.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.image-style-align-left</span> {
-    <span class="hljs-attribute">float</span>: left;
-    <span class="hljs-attribute">margin-right</span>: <span class="hljs-built_in">var</span>(--ck-image-style-spacing);
+/* ckeditor5-image/theme/imagestyle.css */
+.ck-content .image-style-align-left {
+    float: left;
+    margin-right: var(--ck-image-style-spacing);
 }
-<span class="hljs-comment">/* ckeditor5-image/theme/imagestyle.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.image-style-align-center</span> {
-    <span class="hljs-attribute">margin-left</span>: auto;
-    <span class="hljs-attribute">margin-right</span>: auto;
+/* ckeditor5-image/theme/imagestyle.css */
+.ck-content .image-style-align-center {
+    margin-left: auto;
+    margin-right: auto;
 }
-<span class="hljs-comment">/* ckeditor5-image/theme/imagestyle.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.image-style-align-right</span> {
-    <span class="hljs-attribute">float</span>: right;
-    <span class="hljs-attribute">margin-left</span>: <span class="hljs-built_in">var</span>(--ck-image-style-spacing);
+/* ckeditor5-image/theme/imagestyle.css */
+.ck-content .image-style-align-right {
+    float: right;
+    margin-left: var(--ck-image-style-spacing);
 }
-<span class="hljs-comment">/* ckeditor5-page-break/theme/pagebreak.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.page-break</span> {
-    <span class="hljs-attribute">position</span>: relative;
-    <span class="hljs-attribute">clear</span>: both;
-    <span class="hljs-attribute">padding</span>: <span class="hljs-number">5px</span> <span class="hljs-number">0</span>;
-    <span class="hljs-attribute">display</span>: flex;
-    <span class="hljs-attribute">align-items</span>: center;
-    <span class="hljs-attribute">justify-content</span>: center;
+/* ckeditor5-page-break/theme/pagebreak.css */
+.ck-content .page-break {
+    position: relative;
+    clear: both;
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-<span class="hljs-comment">/* ckeditor5-page-break/theme/pagebreak.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.page-break</span><span class="hljs-selector-pseudo">::after</span> {
-    <span class="hljs-attribute">content</span>: <span class="hljs-string">&apos;&apos;</span>;
-    <span class="hljs-attribute">position</span>: absolute;
-    <span class="hljs-attribute">border-bottom</span>: <span class="hljs-number">2px</span> dashed <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">77%</span>);
-    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
+/* ckeditor5-page-break/theme/pagebreak.css */
+.ck-content .page-break::after {
+    content: &apos;&apos;;
+    position: absolute;
+    border-bottom: 2px dashed hsl(0, 0%, 77%);
+    width: 100%;
 }
-<span class="hljs-comment">/* ckeditor5-page-break/theme/pagebreak.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.page-break__label</span> {
-    <span class="hljs-attribute">position</span>: relative;
-    <span class="hljs-attribute">z-index</span>: <span class="hljs-number">1</span>;
-    <span class="hljs-attribute">padding</span>: .<span class="hljs-number">3em</span> .<span class="hljs-number">6em</span>;
-    <span class="hljs-attribute">display</span>: block;
-    <span class="hljs-attribute">text-transform</span>: uppercase;
-    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">77%</span>);
-    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">2px</span>;
-    <span class="hljs-attribute">font-family</span>: Helvetica, Arial, Tahoma, Verdana, Sans-Serif;
-    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">0.75em</span>;
-    <span class="hljs-attribute">font-weight</span>: bold;
-    <span class="hljs-attribute">color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">20%</span>);
-    <span class="hljs-attribute">background</span>: <span class="hljs-number">#fff</span>;
-    <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">2px</span> <span class="hljs-number">2px</span> <span class="hljs-number">1px</span> <span class="hljs-built_in">hsla</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">0.15</span>);
-    <span class="hljs-attribute">-webkit-user-select</span>: none;
-    <span class="hljs-attribute">-moz-user-select</span>: none;
-    <span class="hljs-attribute">-ms-user-select</span>: none;
-    <span class="hljs-attribute">user-select</span>: none;
+/* ckeditor5-page-break/theme/pagebreak.css */
+.ck-content .page-break__label {
+    position: relative;
+    z-index: 1;
+    padding: .3em .6em;
+    display: block;
+    text-transform: uppercase;
+    border: 1px solid hsl(0, 0%, 77%);
+    border-radius: 2px;
+    font-family: Helvetica, Arial, Tahoma, Verdana, Sans-Serif;
+    font-size: 0.75em;
+    font-weight: bold;
+    color: hsl(0, 0%, 20%);
+    background: #fff;
+    box-shadow: 2px 2px 1px hsla(0, 0%, 0%, 0.15);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
-<span class="hljs-comment">/* ckeditor5-horizontal-line/theme/horizontalline.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-tag">hr</span> {
-    <span class="hljs-attribute">border-width</span>: <span class="hljs-number">1px</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>;
-    <span class="hljs-attribute">border-style</span>: solid;
-    <span class="hljs-attribute">border-color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">37%</span>);
-    <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
+/* ckeditor5-horizontal-line/theme/horizontalline.css */
+.ck-content hr {
+    border-width: 1px 0 0;
+    border-style: solid;
+    border-color: hsl(0, 0%, 37%);
+    margin: 0;
 }
-<span class="hljs-comment">/* ckeditor5-code-block/theme/codeblock.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-tag">pre</span> {
-    <span class="hljs-attribute">padding</span>: <span class="hljs-number">1em</span>;
-    <span class="hljs-attribute">color</span>: <span class="hljs-number">#353535</span>;
-    <span class="hljs-attribute">background</span>: <span class="hljs-built_in">hsla</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">78%</span>, <span class="hljs-number">0.3</span>);
-    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">77%</span>);
-    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">2px</span>;
-    <span class="hljs-attribute">text-align</span>: left;
-    <span class="hljs-attribute">direction</span>: ltr;
-    <span class="hljs-attribute">tab-size</span>: <span class="hljs-number">4</span>;
-    <span class="hljs-attribute">white-space</span>: pre-wrap;
-    <span class="hljs-attribute">font-style</span>: normal;
-    <span class="hljs-attribute">min-width</span>: <span class="hljs-number">200px</span>;
+/* ckeditor5-code-block/theme/codeblock.css */
+.ck-content pre {
+    padding: 1em;
+    color: #353535;
+    background: hsla(0, 0%, 78%, 0.3);
+    border: 1px solid hsl(0, 0%, 77%);
+    border-radius: 2px;
+    text-align: left;
+    direction: ltr;
+    tab-size: 4;
+    white-space: pre-wrap;
+    font-style: normal;
+    min-width: 200px;
 }
-<span class="hljs-comment">/* ckeditor5-code-block/theme/codeblock.css */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-tag">pre</span> <span class="hljs-selector-tag">code</span> {
-    <span class="hljs-attribute">background</span>: unset;
-    <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;
-    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">0</span>;
+/* ckeditor5-code-block/theme/codeblock.css */
+.ck-content pre code {
+    background: unset;
+    padding: 0;
+    border-radius: 0;
 }
-<span class="hljs-keyword">@media</span> print {
-    <span class="hljs-comment">/* ckeditor5-page-break/theme/pagebreak.css */</span>
-    <span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.page-break</span> {
-        <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;
+@media print {
+    /* ckeditor5-page-break/theme/pagebreak.css */
+    .ck-content .page-break {
+        padding: 0;
     }
-    <span class="hljs-comment">/* ckeditor5-page-break/theme/pagebreak.css */</span>
-    <span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.page-break</span><span class="hljs-selector-pseudo">::after</span> {
-        <span class="hljs-attribute">display</span>: none;
+    /* ckeditor5-page-break/theme/pagebreak.css */
+    .ck-content .page-break::after {
+        display: none;
     }
 }
 </code></pre>

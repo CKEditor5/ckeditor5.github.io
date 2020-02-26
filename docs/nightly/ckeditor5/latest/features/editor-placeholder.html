@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../snippets/build-classic-source/snippet.css" type="text/css">
     <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
@@ -35,16 +35,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -86,7 +86,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -214,11 +214,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/features/editor-placeholder.md" title="Contribute to this guide"><img src="../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/features/editor-placeholder.md" title="Contribute to this guide"><img src="../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../assets/1.2.1/img/book.svg" alt="guide">Editor placeholder
+          <h1 class="main__content-title"><img src="../../../assets/1.2.2/img/book.svg" alt="guide">Editor placeholder
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#configuring-the-placeholder">Configuring the placeholder</a><ol><li><a href="#using-the-placeholder-attribute-of-a-textarea">Using the placeholder attribute of a textarea</a></li><li><a href="#using-the-editor-configuration">Using the editor configuration</a></li></ol></li><li><a href="#styling-the-placeholder">Styling the placeholder</a></li></ol></nav>
 
 <p>CKEditor 5 can display a configurable placeholder text when the content is empty. The placeholder helps users locate the editor in the application and prompts to input the content. It works similarly to the native DOM <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#The_placeholder_attribute" target="_blank" rel="noopener"><code>placeholder</code> attribute</a> used by inputs.</p>
@@ -231,15 +231,15 @@
 <p>There are two different ways of configuring the editor placeholder text:</p>
 <h3 id="using-the-placeholder-attribute-of-a-textarea"><a class="headerlink" href="#using-the-placeholder-attribute-of-a-textarea">#</a> Using the <code>placeholder</code> attribute of a textarea</h3>
 <p>Set the <code>placeholder</code> attribute on a <code>&lt;textarea&gt;</code> element passed to the <code>Editor.create()</code> method (for instance <a href="../api/module_editor-classic_classiceditor-ClassicEditor.html#static-function-create"><code>ClassicEditor.create()</code></a>) to configure the placeholder:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;editor&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;Type the content here!&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;textarea id=&quot;editor&quot; placeholder=&quot;Type the content here!&quot;&gt;&lt;/textarea&gt;
 </code></pre>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ) )
-    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log( editor );
+    .create( document.querySelector( &apos;#editor&apos; ) )
+    .then( editor =&gt; {
+        console.log( editor );
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error( error );
+    .catch( error =&gt; {
+        console.error( error );
     } );
 </code></pre>
 <h3 id="using-the-editor-configuration"><a class="headerlink" href="#using-the-editor-configuration">#</a> Using the editor configuration</h3>
@@ -250,21 +250,21 @@
 <li>to override the <code>placeholder</code> text of a <code>&lt;textarea&gt;</code>, if one was passed into <code>Editor.create()</code> but the placeholder text should be different.</li>
 </ul>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">placeholder</span>: <span class="hljs-string">&apos;Type the content here!&apos;</span>
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        placeholder: &apos;Type the content here!&apos;
     } )
-    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log( editor );
+    .then( editor =&gt; {
+        console.log( editor );
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error( error );
+    .catch( error =&gt; {
+        console.error( error );
     } );
 </code></pre>
 <h2 id="styling-the-placeholder"><a class="headerlink" href="#styling-the-placeholder">#</a> Styling the placeholder</h2>
 <p>The editor placeholder text is displayed using a CSS pseudo&#x2013;element (<code>::before</code>) related to the first empty element in the editor content (usually a paragraph). You can use the following snippet to change the appearance of the placeholder:</p>
-<pre class="highlight"><code class="css"><span class="hljs-selector-class">.ck</span><span class="hljs-selector-class">.ck-editor__editable</span> &gt; <span class="hljs-selector-class">.ck-placeholder</span><span class="hljs-selector-pseudo">::before</span> {
-    <span class="hljs-attribute">color</span>: <span class="hljs-number">#d21714</span>;
-    <span class="hljs-attribute">font-family</span>: Georgia;
+<pre class="highlight"><code class="css">.ck.ck-editor__editable &gt; .ck-placeholder::before {
+    color: #d21714;
+    font-family: Georgia;
 }
 </code></pre>
 <div class="live-snippet"><style>

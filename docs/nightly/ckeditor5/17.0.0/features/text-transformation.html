@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../snippets/features/build-text-transformation-source/snippet.css" type="text/css">
     <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
@@ -35,16 +35,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -86,7 +86,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -214,11 +214,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-typing/blob/master/docs/features/text-transformation.md" title="Contribute to this guide"><img src="../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-typing/blob/master/docs/features/text-transformation.md" title="Contribute to this guide"><img src="../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../assets/1.2.1/img/book.svg" alt="guide">Automatic text transformation (autocorrect)
+          <h1 class="main__content-title"><img src="../../../assets/1.2.2/img/book.svg" alt="guide">Automatic text transformation (autocorrect)
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#related-productivity-features">Related productivity features</a></li><li><a href="#configuring-transformations">Configuring transformations</a><ol><li><a href="#example-using-transformationsinclude">Example: Using transformations.include</a></li><li><a href="#example-using-transformationsremove-and-extra">Example: Using transformations.remove and extra</a></li></ol></li><li><a href="#installation">Installation</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 
 <p>The <a href="../api/module_typing_texttransformation-TextTransformation.html"><code>TextTransformation</code></a> feature brings support for implementing autocorrection options, i.e. automatically turning predefined snippets into their improved forms. Here are some examples that will be transformed in your WYSIWYG editor:</p>
@@ -278,15 +278,15 @@
 <p>For instance, in order to use only the transformations from the &#x201C;quotes&#x201D; and &#x201C;typography&#x201D; groups and to turn <code>CKE</code> into <code>CKEditor</code>, you can use the <code>transformations.include</code> property like this:</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( editorElement, {
-        <span class="hljs-attr">typing</span>: {
-            <span class="hljs-attr">transformations</span>: {
-                <span class="hljs-attr">include</span>: [
-                    <span class="hljs-comment">// Use only the &apos;quotes&apos; and &apos;typography&apos; groups.</span>
-                    <span class="hljs-string">&apos;quotes&apos;</span>,
-                    <span class="hljs-string">&apos;typography&apos;</span>,
+        typing: {
+            transformations: {
+                include: [
+                    // Use only the &apos;quotes&apos; and &apos;typography&apos; groups.
+                    &apos;quotes&apos;,
+                    &apos;typography&apos;,
 
-                    <span class="hljs-comment">// Plus some custom transformation.</span>
-                    { <span class="hljs-attr">from</span>: <span class="hljs-string">&apos;CKE&apos;</span>, <span class="hljs-attr">to</span>: <span class="hljs-string">&apos;CKEditor&apos;</span> }
+                    // Plus some custom transformation.
+                    { from: &apos;CKE&apos;, to: &apos;CKEditor&apos; }
                 ],
             }
         }
@@ -298,39 +298,39 @@
 <p>Another example, removing a few transformations and adding some extra ones:</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( editorElement, {
-        <span class="hljs-attr">typing</span>: {
-            <span class="hljs-attr">transformations</span>: {
-                <span class="hljs-attr">remove</span>: [
-                    <span class="hljs-comment">// Do not use the transformations from the</span>
-                    <span class="hljs-comment">// &apos;symbols&apos; and &apos;quotes&apos; groups.</span>
-                    <span class="hljs-string">&apos;symbols&apos;</span>,
-                    <span class="hljs-string">&apos;quotes&apos;</span>,
+        typing: {
+            transformations: {
+                remove: [
+                    // Do not use the transformations from the
+                    // &apos;symbols&apos; and &apos;quotes&apos; groups.
+                    &apos;symbols&apos;,
+                    &apos;quotes&apos;,
 
-                    <span class="hljs-comment">// As well as the following transformations.</span>
-                    <span class="hljs-string">&apos;arrowLeft&apos;</span>,
-                    <span class="hljs-string">&apos;arrowRight&apos;</span>
+                    // As well as the following transformations.
+                    &apos;arrowLeft&apos;,
+                    &apos;arrowRight&apos;
                 ],
 
-                <span class="hljs-attr">extra</span>: [
-                    <span class="hljs-comment">// Add some custom transformations &#x2013; e.g. for emojis.</span>
-                    { <span class="hljs-attr">from</span>: <span class="hljs-string">&apos;:)&apos;</span>, <span class="hljs-attr">to</span>: <span class="hljs-string">&apos;&#x1F642;&apos;</span> },
-                    { <span class="hljs-attr">from</span>: <span class="hljs-string">&apos;:+1:&apos;</span>, <span class="hljs-attr">to</span>: <span class="hljs-string">&apos;&#x1F44D;&apos;</span> },
-                    { <span class="hljs-attr">from</span>: <span class="hljs-string">&apos;:tada:&apos;</span>, <span class="hljs-attr">to</span>: <span class="hljs-string">&apos;&#x1F389;&apos;</span> },
+                extra: [
+                    // Add some custom transformations &#x2013; e.g. for emojis.
+                    { from: &apos;:)&apos;, to: &apos;&#x1F642;&apos; },
+                    { from: &apos;:+1:&apos;, to: &apos;&#x1F44D;&apos; },
+                    { from: &apos;:tada:&apos;, to: &apos;&#x1F389;&apos; },
 
-                    <span class="hljs-comment">// You can also define patterns using regular expressions.</span>
-                    <span class="hljs-comment">// Note: The pattern must end with `$` and all its fragments must be wrapped</span>
-                    <span class="hljs-comment">// with capturing groups.</span>
-                    <span class="hljs-comment">// The following rule replaces ` &quot;foo&quot;` with ` &#xAB;foo&#xBB;`.</span>
+                    // You can also define patterns using regular expressions.
+                    // Note: The pattern must end with `$` and all its fragments must be wrapped
+                    // with capturing groups.
+                    // The following rule replaces ` &quot;foo&quot;` with ` &#xAB;foo&#xBB;`.
                     {
-                        <span class="hljs-attr">from</span>: <span class="hljs-regexp">/(^|\s)(&quot;)([^&quot;]*)(&quot;)$/</span>,
-                        <span class="hljs-attr">to</span>: [ <span class="hljs-literal">null</span>, <span class="hljs-string">&apos;&#xAB;&apos;</span>, <span class="hljs-literal">null</span>, <span class="hljs-string">&apos;&#xBB;&apos;</span> ]
+                        from: /(^|\s)(&quot;)([^&quot;]*)(&quot;)$/,
+                        to: [ null, &apos;&#xAB;&apos;, null, &apos;&#xBB;&apos; ]
                     },
 
-                    <span class="hljs-comment">// Finally, you can define `to` as a callback.</span>
-                    <span class="hljs-comment">// This (naive) rule will auto-capitalize the first word after a period.</span>
+                    // Finally, you can define `to` as a callback.
+                    // This (naive) rule will auto-capitalize the first word after a period.
                     {
-                        <span class="hljs-attr">from</span>: <span class="hljs-regexp">/(\. )([a-z])$/</span>,
-                        <span class="hljs-attr">to</span>: <span class="hljs-function"><span class="hljs-params">matches</span> =&gt;</span> [ <span class="hljs-literal">null</span>, matches[ <span class="hljs-number">1</span> ].toUpperCase() ]
+                        from: /(\. )([a-z])$/,
+                        to: matches =&gt; [ null, matches[ 1 ].toUpperCase() ]
                     }
                 ],
             }
@@ -350,11 +350,11 @@
 <pre class="highlight"><code class="bash">npm install --save @ckeditor/ckeditor5-typing
 </code></pre>
 <p>And add it to your plugin list configuration:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> TextTransformation <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-typing/src/texttransformation&apos;</span>;
+<pre class="highlight"><code class="js">import TextTransformation from &apos;@ckeditor/ckeditor5-typing/src/texttransformation&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ TextTransformation, ... ],
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ TextTransformation, ... ],
     } )
     .then( ... )
     .catch( ... );

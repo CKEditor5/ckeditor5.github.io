@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../../assets/styles.css" type="text/css">
     <script>
       ( function() {
@@ -33,16 +33,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -84,7 +84,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -230,11 +230,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-engine/blob/master/docs/framework/guides/deep-dive/conversion-introduction.md" title="Contribute to this guide"><img src="../../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-engine/blob/master/docs/framework/guides/deep-dive/conversion-introduction.md" title="Contribute to this guide"><img src="../../../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../../assets/1.2.1/img/book.svg" alt="guide">Advanced conversion concepts
+          <h1 class="main__content-title"><img src="../../../../../../assets/1.2.2/img/book.svg" alt="guide">Advanced conversion concepts
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#inline-and-block-content">Inline and block content</a></li><li><a href="#conversion-of-multiple-text-attributes">Conversion of multiple text attributes</a></li><li><a href="#merging-attribute-elements-during-conversion">Merging attribute elements during conversion</a></li><li><a href="#examples">Examples</a></li></ol></nav>
 <p>This guide extends the <a href="../../architecture/editing-engine.html">introduction to CKEditor 5 editing engine architecture</a>. Therefore, we highly recommend reading the former guide first.</p>
 <p>In this guide we will dive deeper into some of the conversion concepts.</p>
@@ -242,12 +242,12 @@
 <p>Generally speaking, there are two main types of the content in the editor view and data output: inline and block.</p>
 <p>The inline content means elements like <code>&lt;strong&gt;</code>, <code>&lt;a&gt;</code> or <code>&lt;span&gt;</code>. Unlike <code>&lt;p&gt;</code>, <code>&lt;blockquote&gt;</code> or <code>&lt;div&gt;</code>, inline elements do not structure the data. Instead, they mark some text in a specific (visual and semantical) way. These elements are a characteristic of a text. For instance, you could say that some part of the text is bold, or is linked, etc&#x2026; This concept has its reflection in the model of the rich-text editor where <code>&lt;a&gt;</code> or <code>&lt;strong&gt;</code> are not represented as elements. Instead, they are attributes of the text.</p>
 <p>For example &#x2014; in the model, you might have a <code>&lt;paragraph&gt;</code> element with the &#x201C;Foo bar&#x201D; text, where &#x201C;bar&#x201D; has the <code>bold</code> attribute set to <code>true</code>. A pseudo&#x2013;code of this <em>model</em> data structure could look as follows:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;paragraph&gt;
     &quot;Foo &quot;			// no attributes
     &quot;bar&quot;			// bold=true
-<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
+&lt;/paragraph&gt;
 </code></pre>
-<div class="info-box notice"><p>Throughout the rest of this guide the following, shorter convention will be used to represent model text attributes:</p><pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span>&gt;</span>Foo <span class="hljs-tag">&lt;<span class="hljs-name">$text</span> <span class="hljs-attr">bold</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span>bar<span class="hljs-tag">&lt;/<span class="hljs-name">$text</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
+<div class="info-box notice"><p>Throughout the rest of this guide the following, shorter convention will be used to represent model text attributes:</p><pre class="highlight"><code class="html">&lt;paragraph&gt;Foo &lt;$text bold=&quot;true&quot;&gt;bar&lt;/$text&gt;&lt;/paragraph&gt;
 </code></pre>
 </div>
 <p>Note that there is no <code>&lt;strong&gt;</code> or any other additional element there, it is just some text with an attribute.</p>
@@ -256,30 +256,30 @@
 <p>A model text node may have multiple attributes (e.g. be bolded and linked) and all of them are converted to their respective view elements by independent converters.</p>
 <p>Keep in mind that in the model, attributes do not have any specific order. This is contrary to the editor view or HTML output, where inline elements are nested in one another. Fortunately, the nesting happens automatically during the conversion from the model to the view. This makes working in the model simpler, as features do not need to take care of breaking or rearranging elements in the model.</p>
 <p>For instance, consider the following model structure:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">$text</span> <span class="hljs-attr">bold</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">linkHref</span>=<span class="hljs-string">&quot;url&quot;</span>&gt;</span>Foo <span class="hljs-tag">&lt;/<span class="hljs-name">$text</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">$text</span> <span class="hljs-attr">linkHref</span>=<span class="hljs-string">&quot;url&quot;</span>&gt;</span>bar<span class="hljs-tag">&lt;/<span class="hljs-name">$text</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">$text</span> <span class="hljs-attr">bold</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span> baz<span class="hljs-tag">&lt;/<span class="hljs-name">$text</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;paragraph&gt;
+    &lt;$text bold=&quot;true&quot; linkHref=&quot;url&quot;&gt;Foo &lt;/$text&gt;
+    &lt;$text linkHref=&quot;url&quot;&gt;bar&lt;/$text&gt;
+    &lt;$text bold=&quot;true&quot;&gt; baz&lt;/$text&gt;
+&lt;/paragraph&gt;
 </code></pre>
 <p>During the conversion, it will be converted to the following view structure:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;url&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>Foo <span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>bar<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span> baz<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;p&gt;
+    &lt;a href=&quot;url&quot;&gt;&lt;strong&gt;Foo &lt;/strong&gt;bar&lt;/a&gt;&lt;strong&gt; baz&lt;/strong&gt;
+&lt;/p&gt;
 </code></pre>
 <p>Note that the <code>&lt;a&gt;</code> element is converted in such way that it always becomes the &#x201C;topmost&#x201D; element. This is intentional so that no element ever breaks a link, which would otherwise look as follows:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;url&quot;</span>&gt;</span>Foo <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;url&quot;</span>&gt;</span>bar<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span> baz<span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;p&gt;
+    &lt;strong&gt;&lt;a href=&quot;url&quot;&gt;Foo &lt;/a&gt;&lt;/strong&gt;&lt;a href=&quot;url&quot;&gt;bar&lt;/a&gt;&lt;strong&gt; baz&lt;/strong&gt;
+&lt;/p&gt;
 </code></pre>
 <p>There are two links with the same <code>href</code> attribute next to each other in the generated view (editor output), which is semantically wrong. To make sure that it never happens, the view element that represents a link must have a <em>priority</em> defined. Most elements, like for instance <code>&lt;strong&gt;</code>, do not care about it and stick to the default priority (<code>10</code>). The <a href="../../../../features/link.html">link feature</a> ensures that all view <code>&lt;a&gt;</code> elements have the priority set to <code>5</code> so they are kept outside other elements.</p>
 <h2 id="merging-attribute-elements-during-conversion"><a class="headerlink" href="#merging-attribute-elements-during-conversion">#</a> Merging attribute elements during conversion</h2>
 <p>Most of the simple view inline elements like <code>&lt;strong&gt;</code> or <code>&lt;em&gt;</code> do not have any attributes. Some of them have just one, for instance <code>&lt;a&gt;</code> has its <code>href</code>.</p>
 <p>But it is easy to come up with features that style a part of a text in a more complex way. An example would be the <a href="../../../../features/font.html">font family feature</a>. When used, it adds the <code>fontFamily</code> attribute to the text in the model, which is later converted to a <code>&lt;span&gt;</code> element with a corresponding <code>style</code> attribute.</p>
 <p>So what would happen if several attributes were set on the same part of the text? Take this model example where <code>fontSize</code> is used next to <code>fontFamily</code>:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">$text</span> <span class="hljs-attr">fontFamily</span>=<span class="hljs-string">&quot;Tahoma&quot;</span> <span class="hljs-attr">fontSize</span>=<span class="hljs-string">&quot;big&quot;</span>&gt;</span>foo<span class="hljs-tag">&lt;/<span class="hljs-name">$text</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;paragraph&gt;
+    &lt;$text fontFamily=&quot;Tahoma&quot; fontSize=&quot;big&quot;&gt;foo&lt;/$text&gt;
+&lt;/paragraph&gt;
 </code></pre>
 <p>CKEditor 5 features are implemented in a granular way, which means that e.g. the font size converter is completely independent from the font family converter. This means that the above example is converted as follows:</p>
 <ul>
@@ -287,16 +287,16 @@
 <li><code>fontSize=&quot;value&quot;</code> converts to <code>&lt;span class=&quot;text-value&quot;&gt;</code>.</li>
 </ul>
 <p>And, in theory, you could expect the following HTML as a result:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;font-family: Tahoma;&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-big&quot;</span>&gt;</span>foo<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;p&gt;
+    &lt;span style=&quot;font-family: Tahoma;&quot;&gt;
+        &lt;span class=&quot;text-big&quot;&gt;foo&lt;/span&gt;
+    &lt;/span&gt;
+&lt;/p&gt;
 </code></pre>
 <p>But this is not the most optimal output you can get from the rich-text editor. Why not have just one <code>&lt;span&gt;</code> element instead?</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;font-family: Tahoma;&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-big&quot;</span>&gt;</span>foo<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;p&gt;
+    &lt;span style=&quot;font-family: Tahoma;&quot; class=&quot;text-big&quot;&gt;foo&lt;/span&gt;
+&lt;/p&gt;
 </code></pre>
 <p>Obviously a single <code>&lt;span&gt;</code> makes more sense. And thanks to the merging mechanism built into the conversion process, this would be the actual result of the conversion.</p>
 <p>Why is it so? In the above scenario, two model attributes are converted to <code>&lt;span&gt;</code> elements. When the first attribute (say, <code>fontFamily</code>) is converted, there is no <code>&lt;span&gt;</code> in the view yet. So the first <code>&lt;span&gt;</code> is added with the <code>style</code> attribute. But then, when <code>fontSize</code> is converted, the <code>&lt;span&gt;</code> is already in the view. The <a href="../../../../api/module_engine_view_downcastwriter-DowncastWriter.html">downcast writer</a> recognizes it and checks whether the elements can be merged, following these 3 rules:</p>

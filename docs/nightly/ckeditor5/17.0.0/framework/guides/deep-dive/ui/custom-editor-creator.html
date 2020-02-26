@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../../assets/styles.css" type="text/css">
     <script>
       ( function() {
@@ -33,16 +33,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -84,7 +84,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -230,24 +230,24 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/custom-editor-creator.md" title="Contribute to this guide"><img src="../../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/custom-editor-creator.md" title="Contribute to this guide"><img src="../../../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../../assets/1.2.1/img/book.svg" alt="guide">Implementing a custom editor creator
+          <h1 class="main__content-title"><img src="../../../../../../assets/1.2.2/img/book.svg" alt="guide">Implementing a custom editor creator
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#editor-class">Editor class</a></li><li><a href="#editorui-class">EditorUI class</a></li><li><a href="#editoruiview-class">EditorUIView class</a></li><li><a href="#initializing-custom-editor-instance">Initializing custom editor instance</a></li></ol></nav>
 <p>The flexible architecture of CKEditor 5 allows creating completely custom editors. Not only the <a href="../../../../examples/framework/theme-customization.html">theme styling can be changed</a> or the <a href="../../../../examples/framework/custom-ui.html">UI redesigned</a> but also the entire editor initialization process can be modified allowing to create new editor types. Thanks to that, apart from the standard editors (like <a href="../../../../examples/builds/classic-editor.html">classic</a>, <a href="../../../../examples/builds/inline-editor.html">inline</a>, <a href="../../../../examples/builds/balloon-editor.html">balloon</a> or <a href="../../../../examples/builds/document-editor.html">document</a>), custom types like a <a href="../../../../examples/framework/multi-root-editor.html"><strong>multi-root editor</strong></a> can be created.</p>
 <p>This guide goes through the process of implementing a custom, multi-root editor. You can check out the <a href="../../../../examples/framework/multi-root-editor.html">demo of the multi-root editor</a> too.</p>
 <h2 id="editor-class"><a class="headerlink" href="#editor-class">#</a> Editor class</h2>
 <p>The <code>*Editor</code> class is the main class of each editor type. It initializes the whole editor and its UI parts. The custom creator class should extend the <a href="../../../../api/module_core_editor_editor-Editor.html">base <code>Editor</code> class</a>. In case of a multi-root editor it may look like below:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> Editor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/editor/editor&apos;</span>;
-<span class="hljs-keyword">import</span> DataApiMixin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/editor/utils/dataapimixin&apos;</span>;
-<span class="hljs-keyword">import</span> HtmlDataProcessor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-engine/src/dataprocessor/htmldataprocessor&apos;</span>;
-<span class="hljs-keyword">import</span> getDataFromElement <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-utils/src/dom/getdatafromelement&apos;</span>;
-<span class="hljs-keyword">import</span> setDataInElement <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-utils/src/dom/setdatainelement&apos;</span>;
-<span class="hljs-keyword">import</span> mix <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-utils/src/mix&apos;</span>;
+<pre class="highlight"><code class="js">import Editor from &apos;@ckeditor/ckeditor5-core/src/editor/editor&apos;;
+import DataApiMixin from &apos;@ckeditor/ckeditor5-core/src/editor/utils/dataapimixin&apos;;
+import HtmlDataProcessor from &apos;@ckeditor/ckeditor5-engine/src/dataprocessor/htmldataprocessor&apos;;
+import getDataFromElement from &apos;@ckeditor/ckeditor5-utils/src/dom/getdatafromelement&apos;;
+import setDataInElement from &apos;@ckeditor/ckeditor5-utils/src/dom/setdatainelement&apos;;
+import mix from &apos;@ckeditor/ckeditor5-utils/src/mix&apos;;
 
-<span class="hljs-comment">/**
+/**
  * The multi-root editor implementation. It provides inline editables and a single toolbar.
  *
  * Unlike other editors, the toolbar is not rendered automatically and needs to be attached to the DOM manually.
@@ -258,84 +258,84 @@
  * @mixes module:core/editor/utils/dataapimixin~DataApiMixin
  * @implements module:core/editor/editorwithui~EditorWithUI
  * @extends module:core/editor/editor~Editor
- */</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MultirootEditor</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Editor</span> </span>{
-    <span class="hljs-comment">/**
+ */
+class MultirootEditor extends Editor {
+    /**
      * Creates an instance of the multi-root editor.
      *
      * **Note:** Do not use the constructor to create editor instances. Use the static `MultirootEditor.create()` method instead.
      *
-     * <span class="hljs-doctag">@protected</span>
-     * <span class="hljs-doctag">@param <span class="hljs-type">{Object.&lt;String,HTMLElement&gt;}</span> </span>sourceElements The list of DOM elements that will be the source
+     * @protected
+     * @param {Object.&lt;String,HTMLElement&gt;} sourceElements The list of DOM elements that will be the source
      * for the created editor (on which the editor will be initialized).
-     * <span class="hljs-doctag">@param <span class="hljs-type">{module:core/editor/editorconfig~EditorConfig}</span> </span>config The editor configuration.
-     */</span>
-    <span class="hljs-keyword">constructor</span>( sourceElements, config ) {
-        <span class="hljs-keyword">super</span>( config );
+     * @param {module:core/editor/editorconfig~EditorConfig} config The editor configuration.
+     */
+    constructor( sourceElements, config ) {
+        super( config );
 
-        <span class="hljs-keyword">this</span>.data.processor = <span class="hljs-keyword">new</span> HtmlDataProcessor();
+        this.data.processor = new HtmlDataProcessor();
 
-        <span class="hljs-comment">// Create root and UIView element for each editable container.</span>
-        <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">const</span> rootName <span class="hljs-keyword">of</span> <span class="hljs-built_in">Object</span>.keys( sourceElements ) ) {
-            <span class="hljs-keyword">this</span>.model.document.createRoot( <span class="hljs-string">&apos;$root&apos;</span>, rootName );
+        // Create root and UIView element for each editable container.
+        for ( const rootName of Object.keys( sourceElements ) ) {
+            this.model.document.createRoot( &apos;$root&apos;, rootName );
         }
 
-        <span class="hljs-keyword">this</span>.ui = <span class="hljs-keyword">new</span> MultirootEditorUI( <span class="hljs-keyword">this</span>, <span class="hljs-keyword">new</span> MultirootEditorUIView( <span class="hljs-keyword">this</span>.locale, <span class="hljs-keyword">this</span>.editing.view, sourceElements ) );
+        this.ui = new MultirootEditorUI( this, new MultirootEditorUIView( this.locale, this.editing.view, sourceElements ) );
     }
 
-    <span class="hljs-comment">/**
-     * <span class="hljs-doctag">@inheritDoc</span>
-     */</span>
+    /**
+     * @inheritDoc
+     */
     destroy() {
-        <span class="hljs-comment">// Cache the data and editable DOM elements, then destroy.</span>
-        <span class="hljs-comment">// It&apos;s safe to assume that the model-&gt;view conversion will not work after super.destroy(),</span>
-        <span class="hljs-comment">// same as `ui.getEditableElement()` method will not return editables.</span>
-        <span class="hljs-keyword">const</span> data = {};
-        <span class="hljs-keyword">const</span> editables = {};
-        <span class="hljs-keyword">const</span> editablesNames = <span class="hljs-built_in">Array</span>.from( <span class="hljs-keyword">this</span>.ui.getEditableElementsNames() );
+        // Cache the data and editable DOM elements, then destroy.
+        // It&apos;s safe to assume that the model-&gt;view conversion will not work after super.destroy(),
+        // same as `ui.getEditableElement()` method will not return editables.
+        const data = {};
+        const editables = {};
+        const editablesNames = Array.from( this.ui.getEditableElementsNames() );
 
-        <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">const</span> rootName <span class="hljs-keyword">of</span> editablesNames ) {
-            data[ rootName ] = <span class="hljs-keyword">this</span>.getData( { rootName } );
-            editables[ rootName ] = <span class="hljs-keyword">this</span>.ui.getEditableElement( rootName );
+        for ( const rootName of editablesNames ) {
+            data[ rootName ] = this.getData( { rootName } );
+            editables[ rootName ] = this.ui.getEditableElement( rootName );
         }
 
-        <span class="hljs-keyword">this</span>.ui.destroy();
+        this.ui.destroy();
 
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">super</span>.destroy()
-            .then( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-                <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">const</span> rootName <span class="hljs-keyword">of</span> editablesNames ) {
+        return super.destroy()
+            .then( () =&gt; {
+                for ( const rootName of editablesNames ) {
                     setDataInElement( editables[ rootName ], data[ rootName ] );
                 }
             } );
     }
 
-    <span class="hljs-comment">/**
+    /**
      * Creates a multi-root editor instance.
      *
-     * <span class="hljs-doctag">@param <span class="hljs-type">{Object.&lt;String,HTMLElement&gt;}</span> </span>sourceElements The list of DOM elements that will be the source
+     * @param {Object.&lt;String,HTMLElement&gt;} sourceElements The list of DOM elements that will be the source
      * for the created editor (on which the editor will be initialized).
-     * <span class="hljs-doctag">@param <span class="hljs-type">{module:core/editor/editorconfig~EditorConfig}</span> </span>config The editor configuration.
-     * <span class="hljs-doctag">@returns <span class="hljs-type">{Promise}</span> </span>A promise resolved once the editor is ready. The promise returns the created multi-root editor instance.
-     */</span>
-    <span class="hljs-keyword">static</span> create( sourceElements, config ) {
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>( <span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> {
-            <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">new</span> <span class="hljs-keyword">this</span>( sourceElements, config );
+     * @param {module:core/editor/editorconfig~EditorConfig} config The editor configuration.
+     * @returns {Promise} A promise resolved once the editor is ready. The promise returns the created multi-root editor instance.
+     */
+    static create( sourceElements, config ) {
+        return new Promise( resolve =&gt; {
+            const editor = new this( sourceElements, config );
 
             resolve(
                 editor.initPlugins()
-                    .then( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> editor.ui.init() )
-                    .then( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-                        <span class="hljs-keyword">const</span> initialData = {};
+                    .then( () =&gt; editor.ui.init() )
+                    .then( () =&gt; {
+                        const initialData = {};
 
-                        <span class="hljs-comment">// Create initial data object containing data from all roots.</span>
-                        <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">const</span> rootName <span class="hljs-keyword">of</span> <span class="hljs-built_in">Object</span>.keys( sourceElements ) ) {
+                        // Create initial data object containing data from all roots.
+                        for ( const rootName of Object.keys( sourceElements ) ) {
                             initialData[ rootName ] = getDataFromElement( sourceElements[ rootName ] );
                         }
 
-                        <span class="hljs-keyword">return</span> editor.data.init( initialData );
+                        return editor.data.init( initialData );
                     } )
-                    .then( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> editor.fire( <span class="hljs-string">&apos;ready&apos;</span> ) )
-                    .then( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> editor )
+                    .then( () =&gt; editor.fire( &apos;ready&apos; ) )
+                    .then( () =&gt; editor )
             );
         } );
     }
@@ -345,190 +345,190 @@ mix( MultirootEditor, DataApiMixin );
 </code></pre>
 <h2 id="editorui-class"><a class="headerlink" href="#editorui-class">#</a> EditorUI class</h2>
 <p>The <code>*EditorUI</code> class is the main UI class which initializes UI components (the main view and the toolbar) and sets up mechanisms like focus tracker or placeholder management. The custom <code>*EditorUI</code> class should extend the <a href="../../../../api/module_core_editor_editorui-EditorUI.html">base <code>EditorUI</code> class</a> like below:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> EditorUI <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/editor/editorui&apos;</span>;
-<span class="hljs-keyword">import</span> enableToolbarKeyboardFocus <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/toolbar/enabletoolbarkeyboardfocus&apos;</span>;
-<span class="hljs-keyword">import</span> normalizeToolbarConfig <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/toolbar/normalizetoolbarconfig&apos;</span>;
-<span class="hljs-keyword">import</span> { enablePlaceholder } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-engine/src/view/placeholder&apos;</span>;
+<pre class="highlight"><code class="js">import EditorUI from &apos;@ckeditor/ckeditor5-core/src/editor/editorui&apos;;
+import enableToolbarKeyboardFocus from &apos;@ckeditor/ckeditor5-ui/src/toolbar/enabletoolbarkeyboardfocus&apos;;
+import normalizeToolbarConfig from &apos;@ckeditor/ckeditor5-ui/src/toolbar/normalizetoolbarconfig&apos;;
+import { enablePlaceholder } from &apos;@ckeditor/ckeditor5-engine/src/view/placeholder&apos;;
 
-<span class="hljs-comment">/**
+/**
  * The multi-root editor UI class.
  *
  * @extends module:core/editor/editorui~EditorUI
- */</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MultirootEditorUI</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">EditorUI</span> </span>{
-    <span class="hljs-comment">/**
+ */
+class MultirootEditorUI extends EditorUI {
+    /**
      * Creates an instance of the multi-root editor UI class.
      *
-     * <span class="hljs-doctag">@param <span class="hljs-type">{module:core/editor/editor~Editor}</span> </span>editor The editor instance.
-     * <span class="hljs-doctag">@param <span class="hljs-type">{module:ui/editorui/editoruiview~EditorUIView}</span> </span>view The view of the UI.
-     */</span>
-    <span class="hljs-keyword">constructor</span>( editor, view ) {
-        <span class="hljs-keyword">super</span>( editor );
+     * @param {module:core/editor/editor~Editor} editor The editor instance.
+     * @param {module:ui/editorui/editoruiview~EditorUIView} view The view of the UI.
+     */
+    constructor( editor, view ) {
+        super( editor );
 
-        <span class="hljs-comment">/**
+        /**
          * The main (top&#x2013;most) view of the editor UI.
          *
          * @readonly
          * @member {module:ui/editorui/editoruiview~EditorUIView} #view
-         */</span>
-        <span class="hljs-keyword">this</span>.view = view;
+         */
+        this.view = view;
 
-        <span class="hljs-comment">/**
+        /**
          * A normalized `config.toolbar` object.
          *
          * @type {Object}
          * @private
-         */</span>
-        <span class="hljs-keyword">this</span>._toolbarConfig = normalizeToolbarConfig( editor.config.get( <span class="hljs-string">&apos;toolbar&apos;</span> ) );
+         */
+        this._toolbarConfig = normalizeToolbarConfig( editor.config.get( &apos;toolbar&apos; ) );
     }
 
-    <span class="hljs-comment">/**
+    /**
      * Initializes the UI.
-     */</span>
+     */
     init() {
-        <span class="hljs-keyword">const</span> view = <span class="hljs-keyword">this</span>.view;
-        <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">this</span>.editor;
-        <span class="hljs-keyword">const</span> editingView = editor.editing.view;
+        const view = this.view;
+        const editor = this.editor;
+        const editingView = editor.editing.view;
 
-        <span class="hljs-keyword">let</span> lastFocusedEditableElement;
+        let lastFocusedEditableElement;
 
         view.render();
 
-        <span class="hljs-comment">// Keep track of the last focused editable element. Knowing which one was focused</span>
-        <span class="hljs-comment">// is useful when the focus moves from editable to other UI components like balloons</span>
-        <span class="hljs-comment">// (especially inputs) but the editable remains the &quot;focus context&quot; (e.g. link balloon</span>
-        <span class="hljs-comment">// attached to a link in an editable). In this case, the editable should preserve visual</span>
-        <span class="hljs-comment">// focus styles.</span>
-        <span class="hljs-keyword">this</span>.focusTracker.on( <span class="hljs-string">&apos;change:focusedElement&apos;</span>, ( evt, name, focusedElement ) =&gt; {
-            <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">const</span> editable <span class="hljs-keyword">of</span> <span class="hljs-keyword">this</span>.view.editables ) {
-                <span class="hljs-keyword">if</span> ( editable.element === focusedElement ) {
+        // Keep track of the last focused editable element. Knowing which one was focused
+        // is useful when the focus moves from editable to other UI components like balloons
+        // (especially inputs) but the editable remains the &quot;focus context&quot; (e.g. link balloon
+        // attached to a link in an editable). In this case, the editable should preserve visual
+        // focus styles.
+        this.focusTracker.on( &apos;change:focusedElement&apos;, ( evt, name, focusedElement ) =&gt; {
+            for ( const editable of this.view.editables ) {
+                if ( editable.element === focusedElement ) {
                     lastFocusedEditableElement = editable.element;
                 }
             }
         } );
 
-        <span class="hljs-comment">// If the focus tracker loses focus, stop tracking the last focused editable element.</span>
-        <span class="hljs-comment">// Wherever the focus is restored, it will no longer be in the context of that editable</span>
-        <span class="hljs-comment">// because the focus &quot;came from the outside&quot;, as opposed to the focus moving from one element</span>
-        <span class="hljs-comment">// to another withing the editor UI.</span>
-        <span class="hljs-keyword">this</span>.focusTracker.on( <span class="hljs-string">&apos;change:isFocused&apos;</span>, ( evt, name, isFocused ) =&gt; {
-            <span class="hljs-keyword">if</span> ( !isFocused ) {
-                lastFocusedEditableElement = <span class="hljs-literal">null</span>;
+        // If the focus tracker loses focus, stop tracking the last focused editable element.
+        // Wherever the focus is restored, it will no longer be in the context of that editable
+        // because the focus &quot;came from the outside&quot;, as opposed to the focus moving from one element
+        // to another withing the editor UI.
+        this.focusTracker.on( &apos;change:isFocused&apos;, ( evt, name, isFocused ) =&gt; {
+            if ( !isFocused ) {
+                lastFocusedEditableElement = null;
             }
         } );
 
-        <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">const</span> editable <span class="hljs-keyword">of</span> <span class="hljs-keyword">this</span>.view.editables ) {
-            <span class="hljs-comment">// The editable UI element in DOM is available for sure only after the editor UI view has been rendered.</span>
-            <span class="hljs-comment">// But it can be available earlier if a DOM element has been passed to MultirootEditor.create().</span>
-            <span class="hljs-keyword">const</span> editableElement = editable.element;
+        for ( const editable of this.view.editables ) {
+            // The editable UI element in DOM is available for sure only after the editor UI view has been rendered.
+            // But it can be available earlier if a DOM element has been passed to MultirootEditor.create().
+            const editableElement = editable.element;
 
-            <span class="hljs-comment">// Register each editable UI view in the editor.</span>
-            <span class="hljs-keyword">this</span>.setEditableElement( editable.name, editableElement );
+            // Register each editable UI view in the editor.
+            this.setEditableElement( editable.name, editableElement );
 
-            <span class="hljs-comment">// Let the global focus tracker know that the editable UI element is focusable and</span>
-            <span class="hljs-comment">// belongs to the editor. From now on, the focus tracker will sustain the editor focus</span>
-            <span class="hljs-comment">// as long as the editable is focused (e.g. the user is typing).</span>
-            <span class="hljs-keyword">this</span>.focusTracker.add( editableElement );
+            // Let the global focus tracker know that the editable UI element is focusable and
+            // belongs to the editor. From now on, the focus tracker will sustain the editor focus
+            // as long as the editable is focused (e.g. the user is typing).
+            this.focusTracker.add( editableElement );
 
-            <span class="hljs-comment">// Let the editable UI element respond to the changes in the global editor focus</span>
-            <span class="hljs-comment">// tracker. It has been added to the same tracker a few lines above but, in reality, there are</span>
-            <span class="hljs-comment">// many focusable areas in the editor, like balloons, toolbars or dropdowns and as long</span>
-            <span class="hljs-comment">// as they have focus, the editable should act like it is focused too (although technically</span>
-            <span class="hljs-comment">// it isn&apos;t), e.g. by setting the proper CSS class, visually announcing focus to the user.</span>
-            <span class="hljs-comment">// Doing otherwise will result in editable focus styles disappearing, once e.g. the</span>
-            <span class="hljs-comment">// toolbar gets focused.</span>
-            editable.bind( <span class="hljs-string">&apos;isFocused&apos;</span> ).to( <span class="hljs-keyword">this</span>.focusTracker, <span class="hljs-string">&apos;isFocused&apos;</span>, <span class="hljs-keyword">this</span>.focusTracker, <span class="hljs-string">&apos;focusedElement&apos;</span>,
+            // Let the editable UI element respond to the changes in the global editor focus
+            // tracker. It has been added to the same tracker a few lines above but, in reality, there are
+            // many focusable areas in the editor, like balloons, toolbars or dropdowns and as long
+            // as they have focus, the editable should act like it is focused too (although technically
+            // it isn&apos;t), e.g. by setting the proper CSS class, visually announcing focus to the user.
+            // Doing otherwise will result in editable focus styles disappearing, once e.g. the
+            // toolbar gets focused.
+            editable.bind( &apos;isFocused&apos; ).to( this.focusTracker, &apos;isFocused&apos;, this.focusTracker, &apos;focusedElement&apos;,
                 ( isFocused, focusedElement ) =&gt; {
-                    <span class="hljs-comment">// When the focus tracker is blurred, it means the focus moved out of the editor UI.</span>
-                    <span class="hljs-comment">// No editable will maintain focus then.</span>
-                    <span class="hljs-keyword">if</span> ( !isFocused ) {
-                        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+                    // When the focus tracker is blurred, it means the focus moved out of the editor UI.
+                    // No editable will maintain focus then.
+                    if ( !isFocused ) {
+                        return false;
                     }
 
-                    <span class="hljs-comment">// If the focus tracker says the editor UI is focused and currently focused element</span>
-                    <span class="hljs-comment">// is the editable, then the editable should be visually marked as focused too.</span>
-                    <span class="hljs-keyword">if</span> ( focusedElement === editableElement ) {
-                        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+                    // If the focus tracker says the editor UI is focused and currently focused element
+                    // is the editable, then the editable should be visually marked as focused too.
+                    if ( focusedElement === editableElement ) {
+                        return true;
                     }
-                    <span class="hljs-comment">// If the focus tracker says the editor UI is focused but the focused element is</span>
-                    <span class="hljs-comment">// not an editable, it is possible that the editable is still (context&#x2013;)focused.</span>
-                    <span class="hljs-comment">// For instance, the focused element could be an input inside of a balloon attached</span>
-                    <span class="hljs-comment">// to the content in the editable. In such case, the editable should remain _visually_</span>
-                    <span class="hljs-comment">// focused even though technically the focus is somewhere else. The focus moved from</span>
-                    <span class="hljs-comment">// the editable to the input but the focus context remained the same.</span>
-                    <span class="hljs-keyword">else</span> {
-                        <span class="hljs-keyword">return</span> lastFocusedEditableElement === editableElement;
+                    // If the focus tracker says the editor UI is focused but the focused element is
+                    // not an editable, it is possible that the editable is still (context&#x2013;)focused.
+                    // For instance, the focused element could be an input inside of a balloon attached
+                    // to the content in the editable. In such case, the editable should remain _visually_
+                    // focused even though technically the focus is somewhere else. The focus moved from
+                    // the editable to the input but the focus context remained the same.
+                    else {
+                        return lastFocusedEditableElement === editableElement;
                     }
                 } );
 
-            <span class="hljs-comment">// Bind the editable UI element to the editing view, making it an end&#x2013; and entry&#x2013;point</span>
-            <span class="hljs-comment">// of the editor&apos;s engine. This is where the engine meets the UI.</span>
+            // Bind the editable UI element to the editing view, making it an end&#x2013; and entry&#x2013;point
+            // of the editor&apos;s engine. This is where the engine meets the UI.
             editingView.attachDomRoot( editableElement, editable.name );
         }
 
-        <span class="hljs-keyword">this</span>._initPlaceholder();
-        <span class="hljs-keyword">this</span>._initToolbar();
-        <span class="hljs-keyword">this</span>.fire( <span class="hljs-string">&apos;ready&apos;</span> );
+        this._initPlaceholder();
+        this._initToolbar();
+        this.fire( &apos;ready&apos; );
     }
 
-    <span class="hljs-comment">/**
-     * <span class="hljs-doctag">@inheritDoc</span>
-     */</span>
+    /**
+     * @inheritDoc
+     */
     destroy() {
-        <span class="hljs-keyword">const</span> view = <span class="hljs-keyword">this</span>.view;
-        <span class="hljs-keyword">const</span> editingView = <span class="hljs-keyword">this</span>.editor.editing.view;
+        const view = this.view;
+        const editingView = this.editor.editing.view;
 
-        <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">const</span> editable <span class="hljs-keyword">of</span> <span class="hljs-keyword">this</span>.view.editables ) {
+        for ( const editable of this.view.editables ) {
             editingView.detachDomRoot( editable.name );
         }
 
         view.destroy();
 
-        <span class="hljs-keyword">super</span>.destroy();
+        super.destroy();
     }
 
-    <span class="hljs-comment">/**
+    /**
      * Initializes the editor main toolbar and its panel.
      *
-     * <span class="hljs-doctag">@private</span>
-     */</span>
+     * @private
+     */
     _initToolbar() {
-        <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">this</span>.editor;
-        <span class="hljs-keyword">const</span> view = <span class="hljs-keyword">this</span>.view;
-        <span class="hljs-keyword">const</span> toolbar = view.toolbar;
+        const editor = this.editor;
+        const view = this.view;
+        const toolbar = view.toolbar;
 
-        toolbar.fillFromConfig( <span class="hljs-keyword">this</span>._toolbarConfig.items, <span class="hljs-keyword">this</span>.componentFactory );
+        toolbar.fillFromConfig( this._toolbarConfig.items, this.componentFactory );
 
         enableToolbarKeyboardFocus( {
-            <span class="hljs-attr">origin</span>: editor.editing.view,
-            <span class="hljs-attr">originFocusTracker</span>: <span class="hljs-keyword">this</span>.focusTracker,
-            <span class="hljs-attr">originKeystrokeHandler</span>: editor.keystrokes,
+            origin: editor.editing.view,
+            originFocusTracker: this.focusTracker,
+            originKeystrokeHandler: editor.keystrokes,
             toolbar
         } );
     }
 
-    <span class="hljs-comment">/**
+    /**
      * Enable the placeholder text on the editing root, if any was configured.
      *
-     * <span class="hljs-doctag">@private</span>
-     */</span>
+     * @private
+     */
     _initPlaceholder() {
-        <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">this</span>.editor;
-        <span class="hljs-keyword">const</span> editingView = editor.editing.view;
+        const editor = this.editor;
+        const editingView = editor.editing.view;
 
-        <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">const</span> editable <span class="hljs-keyword">of</span> <span class="hljs-keyword">this</span>.view.editables ) {
-            <span class="hljs-keyword">const</span> editingRoot = editingView.document.getRoot( editable.name );
-            <span class="hljs-keyword">const</span> sourceElement = <span class="hljs-keyword">this</span>.getEditableElement( editable.name );
+        for ( const editable of this.view.editables ) {
+            const editingRoot = editingView.document.getRoot( editable.name );
+            const sourceElement = this.getEditableElement( editable.name );
 
-            <span class="hljs-keyword">const</span> placeholderText = editor.config.get( <span class="hljs-string">&apos;placeholder&apos;</span> )[ editable.name ] ||
-                sourceElement &amp;&amp; sourceElement.tagName.toLowerCase() === <span class="hljs-string">&apos;textarea&apos;</span> &amp;&amp; sourceElement.getAttribute( <span class="hljs-string">&apos;placeholder&apos;</span> );
+            const placeholderText = editor.config.get( &apos;placeholder&apos; )[ editable.name ] ||
+                sourceElement &amp;&amp; sourceElement.tagName.toLowerCase() === &apos;textarea&apos; &amp;&amp; sourceElement.getAttribute( &apos;placeholder&apos; );
 
-            <span class="hljs-keyword">if</span> ( placeholderText ) {
+            if ( placeholderText ) {
                 enablePlaceholder( {
-                    <span class="hljs-attr">view</span>: editingView,
-                    <span class="hljs-attr">element</span>: editingRoot,
-                    <span class="hljs-attr">text</span>: placeholderText,
-                    <span class="hljs-attr">isDirectHost</span>: <span class="hljs-literal">false</span>
+                    view: editingView,
+                    element: editingRoot,
+                    text: placeholderText,
+                    isDirectHost: false
                 } );
             }
         }
@@ -537,155 +537,155 @@ mix( MultirootEditor, DataApiMixin );
 </code></pre>
 <h2 id="editoruiview-class"><a class="headerlink" href="#editoruiview-class">#</a> EditorUIView class</h2>
 <p>Finally, the <code>*EditorUIView</code> class is responsible for registering and handling all editables and creating the editor toolbar. The custom <code>*EditorUIView</code> class should extend the <a href="../../../../api/module_ui_editorui_editoruiview-EditorUIView.html">base <code>EditorUIView</code> class</a>:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> EditorUIView <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/editorui/editoruiview&apos;</span>;
-<span class="hljs-keyword">import</span> InlineEditableUIView <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/editableui/inline/inlineeditableuiview&apos;</span>;
-<span class="hljs-keyword">import</span> ToolbarView <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/toolbar/toolbarview&apos;</span>;
-<span class="hljs-keyword">import</span> Template <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/template&apos;</span>;
+<pre class="highlight"><code class="js">import EditorUIView from &apos;@ckeditor/ckeditor5-ui/src/editorui/editoruiview&apos;;
+import InlineEditableUIView from &apos;@ckeditor/ckeditor5-ui/src/editableui/inline/inlineeditableuiview&apos;;
+import ToolbarView from &apos;@ckeditor/ckeditor5-ui/src/toolbar/toolbarview&apos;;
+import Template from &apos;@ckeditor/ckeditor5-ui/src/template&apos;;
 
-<span class="hljs-comment">/**
+/**
  * The multi-root editor UI view. It is a virtual view providing an inline editable, but without
  * any specific arrangement of the components in the DOM.
  *
  * @extends module:ui/editorui/editoruiview~EditorUIView
- */</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MultirootEditorUIView</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">EditorUIView</span> </span>{
-    <span class="hljs-comment">/**
+ */
+class MultirootEditorUIView extends EditorUIView {
+    /**
      * Creates an instance of the multi-root editor UI view.
      *
-     * <span class="hljs-doctag">@param <span class="hljs-type">{module:utils/locale~Locale}</span> </span>locale The {<span class="hljs-doctag">@link </span>module:core/editor/editor~Editor#locale} instance.
-     * <span class="hljs-doctag">@param <span class="hljs-type">{module:engine/view/view~View}</span> </span>editingView The editing view instance this view is related to.
-     * <span class="hljs-doctag">@param <span class="hljs-type">{Object.&lt;String,HTMLElement&gt;}</span> </span>editableElements The list of editable elements, containing name and html element
+     * @param {module:utils/locale~Locale} locale The <a href="../../../../api/module_core_editor_editor-Editor.html#member-locale"><code>locale</code></a> instance.
+     * @param {module:engine/view/view~View} editingView The editing view instance this view is related to.
+     * @param {Object.&lt;String,HTMLElement&gt;} editableElements The list of editable elements, containing name and html element
      * for each editable.
-     */</span>
-    <span class="hljs-keyword">constructor</span>( locale, editingView, editableElements ) {
-        <span class="hljs-keyword">super</span>( locale );
+     */
+    constructor( locale, editingView, editableElements ) {
+        super( locale );
 
-        <span class="hljs-comment">/**
+        /**
          * The main toolbar of the multi-root editor UI.
          *
          * @readonly
          * @member {module:ui/toolbar/toolbarview~ToolbarView}
-         */</span>
-        <span class="hljs-keyword">this</span>.toolbar = <span class="hljs-keyword">new</span> ToolbarView( locale );
+         */
+        this.toolbar = new ToolbarView( locale );
 
-        <span class="hljs-comment">/**
+        /**
          * The editables of the multi-root editor UI.
          *
          * @readonly
          * @member {Array.&lt;module:ui/editableui/inline/inlineeditableuiview~InlineEditableUIView&gt;}
-         */</span>
-        <span class="hljs-keyword">this</span>.editables = [];
+         */
+        this.editables = [];
 
-        <span class="hljs-comment">// Create InlineEditableUIView instance for each editable.</span>
-        <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">const</span> editableName <span class="hljs-keyword">of</span> <span class="hljs-built_in">Object</span>.keys( editableElements ) ) {
-            <span class="hljs-keyword">const</span> editable = <span class="hljs-keyword">new</span> InlineEditableUIView( locale, editingView, editableElements[ editableName ] );
+        // Create InlineEditableUIView instance for each editable.
+        for ( const editableName of Object.keys( editableElements ) ) {
+            const editable = new InlineEditableUIView( locale, editingView, editableElements[ editableName ] );
 
             editable.name = editableName;
-            <span class="hljs-keyword">this</span>.editables.push( editable );
+            this.editables.push( editable );
         }
 
-        <span class="hljs-comment">// This toolbar may be placed anywhere in the page so things like font size need to be reset in it.</span>
-        <span class="hljs-comment">// Because of the above, make sure the toolbar supports rounded corners.</span>
-        <span class="hljs-comment">// Also, make sure the toolbar has the proper dir attribute because its ancestor may not have one</span>
-        <span class="hljs-comment">// and some toolbar item styles depend on this attribute.</span>
-        Template.extend( <span class="hljs-keyword">this</span>.toolbar.template, {
-            <span class="hljs-attr">attributes</span>: {
-                <span class="hljs-attr">class</span>: [
-                    <span class="hljs-string">&apos;ck-reset_all&apos;</span>,
-                    <span class="hljs-string">&apos;ck-rounded-corners&apos;</span>
+        // This toolbar may be placed anywhere in the page so things like font size need to be reset in it.
+        // Because of the above, make sure the toolbar supports rounded corners.
+        // Also, make sure the toolbar has the proper dir attribute because its ancestor may not have one
+        // and some toolbar item styles depend on this attribute.
+        Template.extend( this.toolbar.template, {
+            attributes: {
+                class: [
+                    &apos;ck-reset_all&apos;,
+                    &apos;ck-rounded-corners&apos;
                 ],
-                <span class="hljs-attr">dir</span>: locale.uiLanguageDirection
+                dir: locale.uiLanguageDirection
             }
         } );
     }
 
-    <span class="hljs-comment">/**
-     * <span class="hljs-doctag">@inheritDoc</span>
-     */</span>
+    /**
+     * @inheritDoc
+     */
     render() {
-        <span class="hljs-keyword">super</span>.render();
+        super.render();
 
-        <span class="hljs-keyword">this</span>.registerChild( <span class="hljs-keyword">this</span>.editables );
-        <span class="hljs-keyword">this</span>.registerChild( [ <span class="hljs-keyword">this</span>.toolbar ] );
+        this.registerChild( this.editables );
+        this.registerChild( [ this.toolbar ] );
     }
 }
 </code></pre>
 <h2 id="initializing-custom-editor-instance"><a class="headerlink" href="#initializing-custom-editor-instance">#</a> Initializing custom editor instance</h2>
 <p>Now with the multi-root editor creator ready, the fully usable editor instance can be created.</p>
 <p>With HTML like:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;toolbar&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;div id=&quot;toolbar&quot;&gt;&lt;/div&gt;
 
-<span class="hljs-tag">&lt;<span class="hljs-name">header</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;header&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Gone traveling<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Monthly travel news and inspiration<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+&lt;header id=&quot;header&quot;&gt;
+    &lt;h2&gt;Gone traveling&lt;/h2&gt;
+    &lt;h3&gt;Monthly travel news and inspiration&lt;/h3&gt;
+&lt;/header&gt;
 
-<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;content&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Destination of the Month<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+&lt;div id=&quot;content&quot;&gt;
+    &lt;h3&gt;Destination of the Month&lt;/h3&gt;
 
-    <span class="hljs-tag">&lt;<span class="hljs-name">h4</span>&gt;</span>Valletta<span class="hljs-tag">&lt;/<span class="hljs-name">h4</span>&gt;</span>
+    &lt;h4&gt;Valletta&lt;/h4&gt;
 
-    <span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;image image-style-align-right&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;Picture of a sunlit facade of a Maltan building.&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../../../../assets/img/malta.jpg&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">figcaption</span>&gt;</span>It&apos;s siesta time in Valletta.<span class="hljs-tag">&lt;/<span class="hljs-name">figcaption</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
+    &lt;figure class=&quot;image image-style-align-right&quot;&gt;
+        &lt;img alt=&quot;Picture of a sunlit facade of a Maltan building.&quot; src=&quot;../../../../assets/img/malta.jpg&quot;&gt;
+        &lt;figcaption&gt;It&apos;s siesta time in Valletta.&lt;/figcaption&gt;
+    &lt;/figure&gt;
 
-    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>The capital city of <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://en.wikipedia.org/wiki/Malta&quot;</span> <span class="hljs-attr">target</span>=<span class="hljs-string">&quot;_blank&quot;</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;external&quot;</span>&gt;</span>Malta<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> is the top destination this summer. It&#x2019;s home to a cutting-edge contemporary architecture, baroque masterpieces, delicious local cuisine and at least 8 months of sun. It&#x2019;s also a top destination for filmmakers, so you can take a tour through locations familiar to you from Game of Thrones, Gladiator, Troy and many more.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    &lt;p&gt;The capital city of &lt;a href=&quot;https://en.wikipedia.org/wiki/Malta&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Malta&lt;/a&gt; is the top destination this summer. It&#x2019;s home to a cutting-edge contemporary architecture, baroque masterpieces, delicious local cuisine and at least 8 months of sun. It&#x2019;s also a top destination for filmmakers, so you can take a tour through locations familiar to you from Game of Thrones, Gladiator, Troy and many more.&lt;/p&gt;
+&lt;/div&gt;
 
-<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;demo-row&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;demo-row__half&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;footer-left&quot;</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>The three greatest things you learn from traveling<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>Find out more<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+&lt;div class=&quot;demo-row&quot;&gt;
+    &lt;div class=&quot;demo-row__half&quot;&gt;
+        &lt;div id=&quot;footer-left&quot;&gt;
+            &lt;h3&gt;The three greatest things you learn from traveling&lt;/h3&gt;
+            &lt;p&gt;&lt;a href=&quot;#&quot;&gt;Find out more&lt;/a&gt;&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
 
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;demo-row__half&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;footer-right&quot;</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Walking the capitals of Europe: Warsaw<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;#&quot;</span>&gt;</span>Find out more<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    &lt;div class=&quot;demo-row__half&quot;&gt;
+        &lt;div id=&quot;footer-right&quot;&gt;
+            &lt;h3&gt;Walking the capitals of Europe: Warsaw&lt;/h3&gt;
+            &lt;p&gt;&lt;a href=&quot;#&quot;&gt;Find out more&lt;/a&gt;&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
 </code></pre>
 <p>The editor can be initialized with the code below:</p>
 <pre class="highlight"><code class="js">MultirootEditor
     .create( {
-        <span class="hljs-attr">header</span>: <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#header&apos;</span> ),
-        <span class="hljs-attr">content</span>: <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#content&apos;</span> ),
-        <span class="hljs-attr">footerleft</span>: <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#footer-left&apos;</span> ),
-        <span class="hljs-attr">footerright</span>: <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#footer-right&apos;</span> )
+        header: document.querySelector( &apos;#header&apos; ),
+        content: document.querySelector( &apos;#content&apos; ),
+        footerleft: document.querySelector( &apos;#footer-left&apos; ),
+        footerright: document.querySelector( &apos;#footer-right&apos; )
     }, {
-        <span class="hljs-attr">plugins</span>: [ Essentials, Paragraph, Heading, Bold, Italic, List, Link, BlockQuote, Image, ImageCaption,
+        plugins: [ Essentials, Paragraph, Heading, Bold, Italic, List, Link, BlockQuote, Image, ImageCaption,
             ImageStyle, ImageToolbar, ImageUpload, Table, TableToolbar, MediaEmbed, EasyImage ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;heading&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-string">&apos;italic&apos;</span>, <span class="hljs-string">&apos;link&apos;</span>, <span class="hljs-string">&apos;bulletedList&apos;</span>, <span class="hljs-string">&apos;numberedList&apos;</span>, <span class="hljs-string">&apos;imageUpload&apos;</span>, <span class="hljs-string">&apos;blockQuote&apos;</span>,
-            <span class="hljs-string">&apos;insertTable&apos;</span>, <span class="hljs-string">&apos;mediaEmbed&apos;</span>, <span class="hljs-string">&apos;undo&apos;</span>, <span class="hljs-string">&apos;redo&apos;</span> ],
-        <span class="hljs-attr">image</span>: {
-            <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;imageTextAlternative&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;imageStyle:alignLeft&apos;</span>, <span class="hljs-string">&apos;imageStyle:full&apos;</span>, <span class="hljs-string">&apos;imageStyle:alignRight&apos;</span> ],
-            <span class="hljs-attr">styles</span>: [ <span class="hljs-string">&apos;full&apos;</span>, <span class="hljs-string">&apos;alignLeft&apos;</span>, <span class="hljs-string">&apos;alignRight&apos;</span> ]
+        toolbar: [ &apos;heading&apos;, &apos;|&apos;, &apos;bold&apos;, &apos;italic&apos;, &apos;link&apos;, &apos;bulletedList&apos;, &apos;numberedList&apos;, &apos;imageUpload&apos;, &apos;blockQuote&apos;,
+            &apos;insertTable&apos;, &apos;mediaEmbed&apos;, &apos;undo&apos;, &apos;redo&apos; ],
+        image: {
+            toolbar: [ &apos;imageTextAlternative&apos;, &apos;|&apos;, &apos;imageStyle:alignLeft&apos;, &apos;imageStyle:full&apos;, &apos;imageStyle:alignRight&apos; ],
+            styles: [ &apos;full&apos;, &apos;alignLeft&apos;, &apos;alignRight&apos; ]
         },
-        <span class="hljs-attr">table</span>: {
-            <span class="hljs-attr">contentToolbar</span>: [
-                <span class="hljs-string">&apos;tableColumn&apos;</span>,
-                <span class="hljs-string">&apos;tableRow&apos;</span>,
-                <span class="hljs-string">&apos;mergeTableCells&apos;</span>
+        table: {
+            contentToolbar: [
+                &apos;tableColumn&apos;,
+                &apos;tableRow&apos;,
+                &apos;mergeTableCells&apos;
             ]
         },
-        <span class="hljs-attr">placeholder</span>: {
-            <span class="hljs-attr">header</span>: <span class="hljs-string">&apos;Header text goes here&apos;</span>,
-            <span class="hljs-attr">content</span>: <span class="hljs-string">&apos;Type content here&apos;</span>,
-            <span class="hljs-attr">footerleft</span>: <span class="hljs-string">&apos;Left footer content&apos;</span>,
-            <span class="hljs-attr">footerright</span>: <span class="hljs-string">&apos;Right footer content&apos;</span>
+        placeholder: {
+            header: &apos;Header text goes here&apos;,
+            content: &apos;Type content here&apos;,
+            footerleft: &apos;Left footer content&apos;,
+            footerright: &apos;Right footer content&apos;
         },
     } )
-    .then( <span class="hljs-function"><span class="hljs-params">newEditor</span> =&gt;</span> {
-        <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#toolbar&apos;</span> ).appendChild( newEditor.ui.view.toolbar.element );
+    .then( newEditor =&gt; {
+        document.querySelector( &apos;#toolbar&apos; ).appendChild( newEditor.ui.view.toolbar.element );
 
-        <span class="hljs-built_in">window</span>.editor = newEditor;
+        window.editor = newEditor;
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error( err.stack );
+    .catch( err =&gt; {
+        console.error( err.stack );
     } );
 </code></pre>
 <p>This will create the exact same editor as the one used on the <a href="../../../../examples/framework/multi-root-editor.html">multi-root editor editor example page</a>.</p>

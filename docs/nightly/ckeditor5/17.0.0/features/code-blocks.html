@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../snippets/features/build-code-block-source/snippet.css" type="text/css">
     <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
@@ -35,16 +35,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -86,7 +86,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -214,11 +214,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-code-block/blob/master/docs/features/code-blocks.md" title="Contribute to this guide"><img src="../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-code-block/blob/master/docs/features/code-blocks.md" title="Contribute to this guide"><img src="../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../assets/1.2.1/img/book.svg" alt="guide">Code blocks
+          <h1 class="main__content-title"><img src="../../../assets/1.2.2/img/book.svg" alt="guide">Code blocks
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#configuring-code-block-languages">Configuring code block languages</a><ol><li><a href="#integration-with-code-highlighters">Integration with code highlighters</a></li></ol></li><li><a href="#tips-and-tweaks">Tips and tweaks</a><ol><li><a href="#editing-text-around-code-blocks">Editing text around code blocks</a></li><li><a href="#changing-line-indentation">Changing line indentation</a></li><li><a href="#preserving-line-indentation">Preserving line indentation</a></li></ol></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 <div class="live-snippet"><style>
 	/* Override documentation styles for <pre> and <code>. */
@@ -262,15 +262,15 @@
 </div>
 <h2 id="configuring-code-block-languages"><a class="headerlink" href="#configuring-code-block-languages">#</a> Configuring code block languages</h2>
 <p>Each code block can be assigned a programming language. The language of the code block is represented as a CSS class of the <code>&lt;code&gt;</code> element, both when editing and in the editor data:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">code</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;language-javascript&quot;</span>&gt;</span>window.alert( &apos;Hello world!&apos; )<span class="hljs-tag">&lt;/<span class="hljs-name">code</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;window.alert( &apos;Hello world!&apos; )&lt;/code&gt;&lt;/pre&gt;
 </code></pre>
 <p>It is possible to configure which languages are available to the users. You can use the <a href="../api/module_code-block_codeblock-CodeBlockConfig.html#member-languages"><code>codeBlock.languages</code></a> configuration and define your own languages. For example, the following editor supports only two languages (CSS and XML/HTML):</p>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">codeBlock</span>: {
-            <span class="hljs-attr">languages</span>: [
-                { <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;css&apos;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;CSS&apos;</span> },
-                { <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;xml&apos;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;HTML/XML&apos;</span> }
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        codeBlock: {
+            languages: [
+                { language: &apos;css&apos;, label: &apos;CSS&apos; },
+                { language: &apos;xml&apos;, label: &apos;HTML/XML&apos; }
             ]
         }
     } )
@@ -286,21 +286,21 @@
 </div>
 <p>By default, the CSS class of the <code>&lt;code&gt;</code> element in the data and editing is generated using the <code>language</code> property (prefixed with &#x201C;language-&#x201D;). You can customize it by specifying an optional <code>class</code> property. You can set <strong>multiple classes</strong> but <strong>only the first one</strong> will be used as defining language class:</p>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">codeBlock</span>: {
-            <span class="hljs-attr">languages</span>: [
-                <span class="hljs-comment">// Do not render the CSS class for the plain text code blocks.</span>
-                { <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;plaintext&apos;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Plain text&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;&apos;</span> },
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        codeBlock: {
+            languages: [
+                // Do not render the CSS class for the plain text code blocks.
+                { language: &apos;plaintext&apos;, label: &apos;Plain text&apos;, class: &apos;&apos; },
 
-                <span class="hljs-comment">// Use the &quot;php-code&quot; class for PHP code blocks.</span>
-                { <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;php&apos;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;PHP&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;php-code&apos;</span> },
+                // Use the &quot;php-code&quot; class for PHP code blocks.
+                { language: &apos;php&apos;, label: &apos;PHP&apos;, class: &apos;php-code&apos; },
 
-                <span class="hljs-comment">// Use the &quot;js&quot; class for JavaScript code blocks.</span>
-                <span class="hljs-comment">// Note that only the first (&quot;js&quot;) class will determine the language of the block when loading data.</span>
-                { <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;javascript&apos;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;JavaScript&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;js javascript js-code&apos;</span> },
+                // Use the &quot;js&quot; class for JavaScript code blocks.
+                // Note that only the first (&quot;js&quot;) class will determine the language of the block when loading data.
+                { language: &apos;javascript&apos;, label: &apos;JavaScript&apos;, class: &apos;js javascript js-code&apos; },
 
-                <span class="hljs-comment">// Python code blocks will have the default &quot;language-python&quot; CSS class.</span>
-                { <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;python&apos;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Python&apos;</span> }
+                // Python code blocks will have the default &quot;language-python&quot; CSS class.
+                { language: &apos;python&apos;, label: &apos;Python&apos; }
             ]
         }
     } )
@@ -309,7 +309,7 @@
 </code></pre>
 <div class="info-box notice"><p>The first language defined in the configuration is considered the default one. This means it will be applied to code blocks loaded from the data that have no CSS <code>class</code> specified (or no <code>class</code> matching the <a href="../api/module_code-block_codeblock-CodeBlockConfig.html#member-languages">configuration</a>). It will also be used when creating new code blocks using the toolbar button. By default it is &#x201C;Plain text&#x201D; (the <code>language-plaintext</code> CSS class).</p></div>
 <h3 id="integration-with-code-highlighters"><a class="headerlink" href="#integration-with-code-highlighters">#</a> Integration with code highlighters</h3>
-<p>Although live code block highlighting is impossible when editing in CKEditor 5 (<a href="https://github.com/ckeditor/ckeditor5/issues/436#issuecomment-548399675" target="_blank" rel="noopener">learn more</a>), the content can be highlighted when displayed in the frontend (e.g. in blog posts, messages, etc.).</p>
+<p>Although live code block highlighting <em><strong>is impossible when editing</strong></em> in CKEditor 5 (<a href="https://github.com/ckeditor/ckeditor5/issues/436#issuecomment-548399675" target="_blank" rel="noopener">learn more</a>), the content can be highlighted when displayed in the frontend (e.g. in blog posts, messages, etc.).</p>
 <p>The code language <a href="../api/module_code-block_codeblock-CodeBlockConfig.html#member-languages">configuration</a> helps to integrate with external code highlighters (e.g. <a href="https://highlightjs.org/" target="_blank" rel="noopener">highlight.js</a> or <a href="https://prismjs.com/" target="_blank" rel="noopener">Prism</a>). Please refer to the documentation of the highlighter of your choice and make sure the CSS classes configured in <code>codeBlock.languages</code> correspond with the code syntax auto&#x2013;detection feature of the highlighter.</p>
 <h2 id="tips-and-tweaks"><a class="headerlink" href="#tips-and-tweaks">#</a> Tips and tweaks</h2>
 <h3 id="editing-text-around-code-blocks"><a class="headerlink" href="#editing-text-around-code-blocks">#</a> Editing text around code blocks</h3>
@@ -341,12 +341,12 @@
 <pre class="highlight"><code class>npm install --save @ckeditor/ckeditor5-code-block
 </code></pre>
 <p>Then add it to your plugin list and the toolbar configuration:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> CodeBlock <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-code-block/src/codeblock&apos;</span>;
+<pre class="highlight"><code class="js">import CodeBlock from &apos;@ckeditor/ckeditor5-code-block/src/codeblock&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ CodeBlock, ... ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;codeBlock&apos;</span>, ... ]
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ CodeBlock, ... ],
+        toolbar: [ &apos;codeBlock&apos;, ... ]
     } )
     .then( ... )
     .catch( ... );
@@ -362,27 +362,27 @@ ClassicEditor
 <p>The <a href="../api/module_code-block_codeblockcommand-CodeBlockCommand.html"><code>&apos;codeBlock&apos;</code></a> command.</p>
 <p>The command converts selected WYSIWYG editor content into a code block. If no content is selected, it creates a new code block at the place of the selection.</p>
 <p>You can choose which language the code block is written in when executing the command. The language will be set in the editor model and reflected as a CSS class visible in the editing view and the editor (data) output:</p>
-<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;codeBlock&apos;</span>, { <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;css&apos;</span> } );
+<pre class="highlight"><code class="js">editor.execute( &apos;codeBlock&apos;, { language: &apos;css&apos; } );
 </code></pre>
 <p>When executing the command, you can use languages defined by the <a href="../api/module_code-block_codeblock-CodeBlockConfig.html#member-languages"><code>codeBlock.languages</code></a> configuration. The default list of languages is as follows:</p>
 <pre class="highlight"><code class="js">codeBlock.languages: [
-    { <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;plaintext&apos;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Plain text&apos;</span> }, <span class="hljs-comment">// The default language.</span>
-    { <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;c&apos;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;C&apos;</span> },
-    { <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;cs&apos;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;C#&apos;</span> },
-    { <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;cpp&apos;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;C++&apos;</span> },
-    { <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;css&apos;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;CSS&apos;</span> },
-    { <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;diff&apos;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Diff&apos;</span> },
-    { <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;xml&apos;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;HTML/XML&apos;</span> },
-    { <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;java&apos;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Java&apos;</span> },
-    { <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;javascript&apos;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;JavaScript&apos;</span> },
-    { <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;php&apos;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;PHP&apos;</span> },
-    { <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;python&apos;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Python&apos;</span> },
-    { <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;ruby&apos;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Ruby&apos;</span> },
-    { <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;typescript&apos;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;TypeScript&apos;</span> },
+    { language: &apos;plaintext&apos;, label: &apos;Plain text&apos; }, // The default language.
+    { language: &apos;c&apos;, label: &apos;C&apos; },
+    { language: &apos;cs&apos;, label: &apos;C#&apos; },
+    { language: &apos;cpp&apos;, label: &apos;C++&apos; },
+    { language: &apos;css&apos;, label: &apos;CSS&apos; },
+    { language: &apos;diff&apos;, label: &apos;Diff&apos; },
+    { language: &apos;xml&apos;, label: &apos;HTML/XML&apos; },
+    { language: &apos;java&apos;, label: &apos;Java&apos; },
+    { language: &apos;javascript&apos;, label: &apos;JavaScript&apos; },
+    { language: &apos;php&apos;, label: &apos;PHP&apos; },
+    { language: &apos;python&apos;, label: &apos;Python&apos; },
+    { language: &apos;ruby&apos;, label: &apos;Ruby&apos; },
+    { language: &apos;typescript&apos;, label: &apos;TypeScript&apos; },
 ]
 </code></pre>
 <p><strong>Note</strong>: If you execute the command with a specific <code>language</code> when the selection is anchored in a code block, and use the additional <code>forceValue: true</code> parameter, it will update the language of this particular block.</p>
-<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;codeBlock&apos;</span>, { <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;java&apos;</span>, <span class="hljs-attr">forceValue</span>: <span class="hljs-literal">true</span> } );
+<pre class="highlight"><code class="js">editor.execute( &apos;codeBlock&apos;, { language: &apos;java&apos;, forceValue: true } );
 </code></pre>
 <p><strong>Note</strong>: If the selection is already in a code block, executing the command will convert the block back into plain paragraphs.</p>
 </li>

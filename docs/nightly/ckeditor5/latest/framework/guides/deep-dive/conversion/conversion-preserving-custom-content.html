@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../../../../snippets/framework/build-extending-content-source/snippet.css" type="text/css">
     <link rel="stylesheet" href="../../../../assets/snippet-styles.css" type="text/css">
@@ -35,16 +35,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -86,7 +86,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -232,11 +232,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-engine/blob/master/docs/framework/guides/deep-dive/conversion-preserving-custom-content.md" title="Contribute to this guide"><img src="../../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-engine/blob/master/docs/framework/guides/deep-dive/conversion-preserving-custom-content.md" title="Contribute to this guide"><img src="../../../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../../assets/1.2.1/img/book.svg" alt="guide">Preserving custom content
+          <h1 class="main__content-title"><img src="../../../../../../assets/1.2.2/img/book.svg" alt="guide">Preserving custom content
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#before-starting">Before starting</a><ol><li><a href="#code-architecture">Code architecture</a></li><li><a href="#ckeditor-5-inspector">CKEditor 5 inspector</a></li></ol></li><li><a href="#loading-content-with-a-custom-attribute">Loading content with a custom attribute</a></li><li><a href="#loading-content-with-all-attributes">Loading content with all attributes</a></li><li><a href="#parsing-attribute-values">Parsing attribute values</a></li><li><a href="#adding-extra-attributes-to-elements-contained-in-a-figure">Adding extra attributes to elements contained in a figure</a></li><li><a href="#whats-next">What&#x2019;s next?</a></li></ol></nav>
 
 <p>The <a href="conversion-extending-output.html">previous guide</a> focused on post&#x2013;processing of the CKEditor 5 data output. In this one, you will also extend the editor model so custom data can be loaded into it (<a href="../../architecture/editing-engine.html#data-pipeline">&#x201C;upcasted&#x201D;</a>). This will allow you not only to &#x201C;correct&#x201D; the editor output but, for instance, losslessly load data unsupported by the CKEditor 5 features.</p>
@@ -253,13 +253,13 @@
 <p>Unlike the <a href="conversion-extending-output.html#adding-an-html-attribute-to-certain-inline-elements">downcast&#x2013;only solution</a>, this approach does not change the content loaded into the editor. Links without the <code>target</code> attribute will not get one and links with the attribute will preserve its value.</p>
 <div class="info-box notice"><p>Note that the same behavior can be obtained with <a href="../../../../features/link.html#custom-link-attributes-decorators">link decorators</a>:</p><pre class="highlight"><code class="js">ClassicEditor
     .create( ..., {
-        <span class="hljs-comment">// ...</span>
-        <span class="hljs-attr">link</span>: {
-            <span class="hljs-attr">decorators</span>: {
-                <span class="hljs-attr">addGreenLink</span>: {
-                    <span class="hljs-attr">mode</span>: <span class="hljs-string">&apos;automatic&apos;</span>,
-                    <span class="hljs-attr">attributes</span>: {
-                        <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;my-green-link&apos;</span>
+        // ...
+        link: {
+            decorators: {
+                addGreenLink: {
+                    mode: &apos;automatic&apos;,
+                    attributes: {
+                        class: &apos;my-green-link&apos;
                     }
                 }
             }
@@ -302,56 +302,56 @@
 </p>
 </div>
 <p>The <code>target</code> attribute in the editor is allowed thanks to two custom converters plugged into the &#x201C;downcast&#x201D; and &#x201C;upcast&#x201D; pipelines, following the default converters brought by the <a href="../../../../features/link.html">Link</a> feature:</p>
-<pre class="highlight"><code class="js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">AllowLinkTarget</span>(<span class="hljs-params"> editor </span>) </span>{
-    <span class="hljs-comment">// Allow the &quot;linkTarget&quot; attribute in the editor model.</span>
-    editor.model.schema.extend( <span class="hljs-string">&apos;$text&apos;</span>, { <span class="hljs-attr">allowAttributes</span>: <span class="hljs-string">&apos;linkTarget&apos;</span> } );
+<pre class="highlight"><code class="js">function AllowLinkTarget( editor ) {
+    // Allow the &quot;linkTarget&quot; attribute in the editor model.
+    editor.model.schema.extend( &apos;$text&apos;, { allowAttributes: &apos;linkTarget&apos; } );
 
-    <span class="hljs-comment">// Tell the editor that the model &quot;linkTarget&quot; attribute converts into &lt;a target=&quot;...&quot;&gt;&lt;/a&gt;</span>
-    editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).attributeToElement( {
-        <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;linkTarget&apos;</span>,
-        <span class="hljs-attr">view</span>: <span class="hljs-function">(<span class="hljs-params"> attributeValue, writer </span>) =&gt;</span> {
-            <span class="hljs-keyword">const</span> linkElement = writer.createAttributeElement( <span class="hljs-string">&apos;a&apos;</span>, { <span class="hljs-attr">target</span>: attributeValue }, { <span class="hljs-attr">priority</span>: <span class="hljs-number">5</span> } );
-            writer.setCustomProperty( <span class="hljs-string">&apos;link&apos;</span>, <span class="hljs-literal">true</span>, linkElement );
+    // Tell the editor that the model &quot;linkTarget&quot; attribute converts into &lt;a target=&quot;...&quot;&gt;&lt;/a&gt;
+    editor.conversion.for( &apos;downcast&apos; ).attributeToElement( {
+        model: &apos;linkTarget&apos;,
+        view: ( attributeValue, writer ) =&gt; {
+            const linkElement = writer.createAttributeElement( &apos;a&apos;, { target: attributeValue }, { priority: 5 } );
+            writer.setCustomProperty( &apos;link&apos;, true, linkElement );
 
-            <span class="hljs-keyword">return</span> linkElement;
+            return linkElement;
         },
-        <span class="hljs-attr">converterPriority</span>: <span class="hljs-string">&apos;low&apos;</span>
+        converterPriority: &apos;low&apos;
     } );
 
-    <span class="hljs-comment">// Tell the editor that &lt;a target=&quot;...&quot;&gt;&lt;/a&gt; converts into the &quot;linkTarget&quot; attribute in the model.</span>
-    editor.conversion.for( <span class="hljs-string">&apos;upcast&apos;</span> ).attributeToAttribute( {
-        <span class="hljs-attr">view</span>: {
-            <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;a&apos;</span>,
-            <span class="hljs-attr">key</span>: <span class="hljs-string">&apos;target&apos;</span>
+    // Tell the editor that &lt;a target=&quot;...&quot;&gt;&lt;/a&gt; converts into the &quot;linkTarget&quot; attribute in the model.
+    editor.conversion.for( &apos;upcast&apos; ).attributeToAttribute( {
+        view: {
+            name: &apos;a&apos;,
+            key: &apos;target&apos;
         },
-        <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;linkTarget&apos;</span>,
-        <span class="hljs-attr">converterPriority</span>: <span class="hljs-string">&apos;low&apos;</span>
+        model: &apos;linkTarget&apos;,
+        converterPriority: &apos;low&apos;
     } );
 }
 </code></pre>
 <p>Activate the plugin in the editor:</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( ..., {
-        <span class="hljs-attr">extraPlugins</span>: [ AllowLinkTarget ],
+        extraPlugins: [ AllowLinkTarget ],
     } )
-    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
-        <span class="hljs-comment">// ...</span>
+    .then( editor =&gt; {
+        // ...
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error( err.stack );
+    .catch( err =&gt; {
+        console.error( err.stack );
     } );
 </code></pre>
 <p>Add some CSS styles to easily see different link targets:</p>
-<pre class="highlight"><code class="css"><span class="hljs-selector-tag">a</span><span class="hljs-selector-attr">[target]</span><span class="hljs-selector-pseudo">::after</span> {
-    <span class="hljs-attribute">content</span>: <span class="hljs-string">&quot;target=\&quot;&quot;</span> <span class="hljs-built_in">attr</span>(target) <span class="hljs-string">&quot;\&quot;&quot;</span>;
-    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">0.6em</span>;
-    <span class="hljs-attribute">position</span>: relative;
-    <span class="hljs-attribute">left</span>: <span class="hljs-number">0em</span>;
-    <span class="hljs-attribute">top</span>: -<span class="hljs-number">1em</span>;
-    <span class="hljs-attribute">background</span>: <span class="hljs-number">#00ffa6</span>;
-    <span class="hljs-attribute">color</span>: <span class="hljs-number">#000</span>;
-    <span class="hljs-attribute">padding</span>: <span class="hljs-number">1px</span> <span class="hljs-number">3px</span>;
-    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">10px</span>;
+<pre class="highlight"><code class="css">a[target]::after {
+    content: &quot;target=\&quot;&quot; attr(target) &quot;\&quot;&quot;;
+    font-size: 0.6em;
+    position: relative;
+    left: 0em;
+    top: -1em;
+    background: #00ffa6;
+    color: #000;
+    padding: 1px 3px;
+    border-radius: 10px;
 }
 </code></pre>
 <h2 id="loading-content-with-all-attributes"><a class="headerlink" href="#loading-content-with-all-attributes">#</a> Loading content with all attributes</h2>
@@ -374,52 +374,52 @@
 <div class="info-box notice"><p>Allowing every attribute on <code>&lt;div&gt;</code> elements might introduce security issues &#x2014; including XSS attacks. The production code should use only application-related attributes and/or properly encode data.</p></div>
 <p>Adding &#x201C;upcast&#x201D; and &#x201C;downcast&#x201D; converters for the <code>&lt;div&gt;</code> element is enough for cases where its attributes do not change. If the attributes in the model are modified, these <code>elementToElement()</code> converters will not be called as the <code>&lt;div&gt;</code> is already converted. To overcome this, a lower-level API is used.</p>
 <p>Instead of using predefined converters, the <a href="../../../../api/module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event-attribute"><code>attribute</code></a> event listener is registered for the &#x201C;downcast&#x201D; dispatcher.</p>
-<pre class="highlight"><code class="js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ConvertDivAttributes</span>(<span class="hljs-params"> editor </span>) </span>{
-    <span class="hljs-comment">// Allow &lt;div&gt; elements in the model.</span>
-    editor.model.schema.register( <span class="hljs-string">&apos;div&apos;</span>, {
-        <span class="hljs-attr">allowWhere</span>: <span class="hljs-string">&apos;$block&apos;</span>,
-        <span class="hljs-attr">allowContentOf</span>: <span class="hljs-string">&apos;$root&apos;</span>
+<pre class="highlight"><code class="js">function ConvertDivAttributes( editor ) {
+    // Allow &lt;div&gt; elements in the model.
+    editor.model.schema.register( &apos;div&apos;, {
+        allowWhere: &apos;$block&apos;,
+        allowContentOf: &apos;$root&apos;
     } );
 
-    <span class="hljs-comment">// Allow &lt;div&gt; elements in the model to have all attributes.</span>
-    editor.model.schema.addAttributeCheck( <span class="hljs-function"><span class="hljs-params">context</span> =&gt;</span> {
-        <span class="hljs-keyword">if</span> ( context.endsWith( <span class="hljs-string">&apos;div&apos;</span> ) ) {
-            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    // Allow &lt;div&gt; elements in the model to have all attributes.
+    editor.model.schema.addAttributeCheck( context =&gt; {
+        if ( context.endsWith( &apos;div&apos; ) ) {
+            return true;
         }
     } );
 
-    <span class="hljs-comment">// View-to-model converter converting a view &lt;div&gt; with all its attributes to the model.</span>
-    editor.conversion.for( <span class="hljs-string">&apos;upcast&apos;</span> ).elementToElement( {
-        <span class="hljs-attr">view</span>: <span class="hljs-string">&apos;div&apos;</span>,
-        <span class="hljs-attr">model</span>: <span class="hljs-function">(<span class="hljs-params"> viewElement, modelWriter </span>) =&gt;</span> {
-            <span class="hljs-keyword">return</span> modelWriter.createElement( <span class="hljs-string">&apos;div&apos;</span>, viewElement.getAttributes() );
+    // View-to-model converter converting a view &lt;div&gt; with all its attributes to the model.
+    editor.conversion.for( &apos;upcast&apos; ).elementToElement( {
+        view: &apos;div&apos;,
+        model: ( viewElement, modelWriter ) =&gt; {
+            return modelWriter.createElement( &apos;div&apos;, viewElement.getAttributes() );
         }
     } );
 
-    <span class="hljs-comment">// Model-to-view converter for the &lt;div&gt; element (attributes are converted separately).</span>
-    editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).elementToElement( {
-        <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;div&apos;</span>,
-        <span class="hljs-attr">view</span>: <span class="hljs-string">&apos;div&apos;</span>
+    // Model-to-view converter for the &lt;div&gt; element (attributes are converted separately).
+    editor.conversion.for( &apos;downcast&apos; ).elementToElement( {
+        model: &apos;div&apos;,
+        view: &apos;div&apos;
     } );
 
-    <span class="hljs-comment">// Model-to-view converter for &lt;div&gt; attributes.</span>
-    <span class="hljs-comment">// Note that a lower-level, event-based API is used here.</span>
-    editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).add( <span class="hljs-function"><span class="hljs-params">dispatcher</span> =&gt;</span> {
-        dispatcher.on( <span class="hljs-string">&apos;attribute&apos;</span>, ( evt, data, conversionApi ) =&gt; {
-            <span class="hljs-comment">// Convert &lt;div&gt; attributes only.</span>
-            <span class="hljs-keyword">if</span> ( data.item.name != <span class="hljs-string">&apos;div&apos;</span> ) {
-                <span class="hljs-keyword">return</span>;
+    // Model-to-view converter for &lt;div&gt; attributes.
+    // Note that a lower-level, event-based API is used here.
+    editor.conversion.for( &apos;downcast&apos; ).add( dispatcher =&gt; {
+        dispatcher.on( &apos;attribute&apos;, ( evt, data, conversionApi ) =&gt; {
+            // Convert &lt;div&gt; attributes only.
+            if ( data.item.name != &apos;div&apos; ) {
+                return;
             }
 
-            <span class="hljs-keyword">const</span> viewWriter = conversionApi.writer;
-            <span class="hljs-keyword">const</span> viewDiv = conversionApi.mapper.toViewElement( data.item );
+            const viewWriter = conversionApi.writer;
+            const viewDiv = conversionApi.mapper.toViewElement( data.item );
 
-            <span class="hljs-comment">// In the model-to-view conversion we convert changes.</span>
-            <span class="hljs-comment">// An attribute can be added or removed or changed.</span>
-            <span class="hljs-comment">// The below code handles all 3 cases.</span>
-            <span class="hljs-keyword">if</span> ( data.attributeNewValue ) {
+            // In the model-to-view conversion we convert changes.
+            // An attribute can be added or removed or changed.
+            // The below code handles all 3 cases.
+            if ( data.attributeNewValue ) {
                 viewWriter.setAttribute( data.attributeKey, data.attributeNewValue, viewDiv );
-            } <span class="hljs-keyword">else</span> {
+            } else {
                 viewWriter.removeAttribute( data.attributeKey, viewDiv );
             }
         } );
@@ -429,13 +429,13 @@
 <p>Activate the plugin in the editor:</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( ..., {
-        <span class="hljs-attr">extraPlugins</span>: [ ConvertDivAttributes ],
+        extraPlugins: [ ConvertDivAttributes ],
     } )
-    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
-        <span class="hljs-comment">// ...</span>
+    .then( editor =&gt; {
+        // ...
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error( err.stack );
+    .catch( err =&gt; {
+        console.error( err.stack );
     } );
 </code></pre>
 <h2 id="parsing-attribute-values"><a class="headerlink" href="#parsing-attribute-values">#</a> Parsing attribute values</h2>
@@ -450,61 +450,61 @@
 </div>
 <p>Parsing any font value to the model requires adding a custom &#x201C;upcast&#x201D; converter that will override the default converter from <code>FontSize</code>. Unlike the default one, this converter parses values set in CSS nad sets them into the model.</p>
 <p>As the default &#x201C;downcast&#x201D; converter only operates on pre-defined values, you will also add a model-to-view converter that simply outputs any model value to font size using <code>px</code> units.</p>
-<pre class="highlight"><code class="js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">HandleFontSizeValue</span>(<span class="hljs-params"> editor </span>) </span>{
-    <span class="hljs-comment">// Add a special catch-all converter for the font size feature.</span>
-    editor.conversion.for( <span class="hljs-string">&apos;upcast&apos;</span> ).elementToAttribute( {
-        <span class="hljs-attr">view</span>: {
-            <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;span&apos;</span>,
-            <span class="hljs-attr">styles</span>: {
-                <span class="hljs-string">&apos;font-size&apos;</span>: <span class="hljs-regexp">/[\s\S]+/</span>
+<pre class="highlight"><code class="js">function HandleFontSizeValue( editor ) {
+    // Add a special catch-all converter for the font size feature.
+    editor.conversion.for( &apos;upcast&apos; ).elementToAttribute( {
+        view: {
+            name: &apos;span&apos;,
+            styles: {
+                &apos;font-size&apos;: /[\s\S]+/
             }
         },
-        <span class="hljs-attr">model</span>: {
-            <span class="hljs-attr">key</span>: <span class="hljs-string">&apos;fontSize&apos;</span>,
-            <span class="hljs-attr">value</span>: <span class="hljs-function"><span class="hljs-params">viewElement</span> =&gt;</span> {
-                <span class="hljs-keyword">const</span> value = <span class="hljs-built_in">parseFloat</span>( viewElement.getStyle( <span class="hljs-string">&apos;font-size&apos;</span> ) ).toFixed( <span class="hljs-number">0</span> );
+        model: {
+            key: &apos;fontSize&apos;,
+            value: viewElement =&gt; {
+                const value = parseFloat( viewElement.getStyle( &apos;font-size&apos; ) ).toFixed( 0 );
 
-                <span class="hljs-comment">// It might be needed to further convert the value to meet business requirements.</span>
-                <span class="hljs-comment">// In the sample the font size is configured to handle only the sizes:</span>
-                <span class="hljs-comment">// 12, 14, &apos;default&apos;, 18, 20, 22, 24, 26, 28, 30</span>
-                <span class="hljs-comment">// Other sizes will be converted to the model but the UI might not be aware of them.</span>
+                // It might be needed to further convert the value to meet business requirements.
+                // In the sample the font size is configured to handle only the sizes:
+                // 12, 14, &apos;default&apos;, 18, 20, 22, 24, 26, 28, 30
+                // Other sizes will be converted to the model but the UI might not be aware of them.
 
-                <span class="hljs-comment">// The font size feature expects numeric values to be Number, not String.</span>
-                <span class="hljs-keyword">return</span> <span class="hljs-built_in">parseInt</span>( value );
+                // The font size feature expects numeric values to be Number, not String.
+                return parseInt( value );
             }
         },
-        <span class="hljs-attr">converterPriority</span>: <span class="hljs-string">&apos;high&apos;</span>
+        converterPriority: &apos;high&apos;
     } );
 
-    <span class="hljs-comment">// Add a special converter for the font size feature to convert all (even not configured)</span>
-    <span class="hljs-comment">// model attribute values.</span>
-    editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).attributeToElement( {
-        <span class="hljs-attr">model</span>: {
-            <span class="hljs-attr">key</span>: <span class="hljs-string">&apos;fontSize&apos;</span>
+    // Add a special converter for the font size feature to convert all (even not configured)
+    // model attribute values.
+    editor.conversion.for( &apos;downcast&apos; ).attributeToElement( {
+        model: {
+            key: &apos;fontSize&apos;
         },
-        <span class="hljs-attr">view</span>: <span class="hljs-function">(<span class="hljs-params"> modelValue, viewWriter </span>) =&gt;</span> {
-            <span class="hljs-keyword">return</span> viewWriter.createAttributeElement( <span class="hljs-string">&apos;span&apos;</span>, {
-                <span class="hljs-attr">style</span>: <span class="hljs-string">`font-size:<span class="hljs-subst">${ modelValue }</span>px`</span>
+        view: ( modelValue, viewWriter ) =&gt; {
+            return viewWriter.createAttributeElement( &apos;span&apos;, {
+                style: `font-size:${ modelValue }px`
             } );
         },
-        <span class="hljs-attr">converterPriority</span>: <span class="hljs-string">&apos;high&apos;</span>
+        converterPriority: &apos;high&apos;
     } );
 }
 </code></pre>
 <p>Activate the plugin in the editor:</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( ..., {
-        <span class="hljs-attr">items</span>: [ <span class="hljs-string">&apos;heading&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-string">&apos;italic&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;fontSize&apos;</span> ],
-        <span class="hljs-attr">fontSize</span>: {
-            <span class="hljs-attr">options</span>: [ <span class="hljs-number">10</span>, <span class="hljs-number">12</span>, <span class="hljs-number">14</span>, <span class="hljs-string">&apos;default&apos;</span>, <span class="hljs-number">18</span>, <span class="hljs-number">20</span>, <span class="hljs-number">22</span> ]
+        items: [ &apos;heading&apos;, &apos;|&apos;, &apos;bold&apos;, &apos;italic&apos;, &apos;|&apos;, &apos;fontSize&apos; ],
+        fontSize: {
+            options: [ 10, 12, 14, &apos;default&apos;, 18, 20, 22 ]
         },
-        <span class="hljs-attr">extraPlugins</span>: [ HandleFontSizeValue ],
+        extraPlugins: [ HandleFontSizeValue ],
     } )
-    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
-        <span class="hljs-comment">// ...</span>
+    .then( editor =&gt; {
+        // ...
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error( err.stack );
+    .catch( err =&gt; {
+        console.error( err.stack );
     } );
 </code></pre>
 <h2 id="adding-extra-attributes-to-elements-contained-in-a-figure"><a class="headerlink" href="#adding-extra-attributes-to-elements-contained-in-a-figure">#</a> Adding extra attributes to elements contained in a figure</h2>
@@ -535,181 +535,181 @@
 </div>
 </div>
 <p>The sample below is extensible. To add your own attributes to preserve, just add another <code>setupCustomAttributeConversion()</code> call with desired names.</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">/**
+<pre class="highlight"><code class="js">/**
  * Plugin that converts custom attributes for elements that are wrapped in &lt;figure&gt; in the view.
- */</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomFigureAttributes</span> </span>{
-    <span class="hljs-comment">/**
+ */
+class CustomFigureAttributes {
+    /**
      * Plugin&apos;s constructor - receives editor instance on creation.
-     */</span>
-    <span class="hljs-keyword">constructor</span>( editor ) {
-        <span class="hljs-comment">// Save reference to the editor.</span>
-        <span class="hljs-keyword">this</span>.editor = editor;
+     */
+    constructor( editor ) {
+        // Save reference to the editor.
+        this.editor = editor;
     }
 
-    <span class="hljs-comment">/**
+    /**
      * Setups conversion and extends table &amp; image features schema.
      *
      * Schema extending must be done in the &#x201C;afterInit()&#x201D; call because plugins define their schema in &#x201C;init()&#x201C;.
-     */</span>
+     */
     afterInit() {
-        <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">this</span>.editor;
+        const editor = this.editor;
 
-        <span class="hljs-comment">// Define on which elements the CSS classes should be preserved:</span>
-        setupCustomClassConversion( <span class="hljs-string">&apos;img&apos;</span>, <span class="hljs-string">&apos;image&apos;</span>, editor );
-        setupCustomClassConversion( <span class="hljs-string">&apos;table&apos;</span>, <span class="hljs-string">&apos;table&apos;</span>, editor );
+        // Define on which elements the CSS classes should be preserved:
+        setupCustomClassConversion( &apos;img&apos;, &apos;image&apos;, editor );
+        setupCustomClassConversion( &apos;table&apos;, &apos;table&apos;, editor );
 
-        editor.conversion.for( <span class="hljs-string">&apos;upcast&apos;</span> ).add( upcastCustomClasses( <span class="hljs-string">&apos;figure&apos;</span> ), { <span class="hljs-attr">priority</span>: <span class="hljs-string">&apos;low&apos;</span> } );
+        editor.conversion.for( &apos;upcast&apos; ).add( upcastCustomClasses( &apos;figure&apos; ), { priority: &apos;low&apos; } );
 
-        <span class="hljs-comment">// Define custom attributes that should be preserved.</span>
-        setupCustomAttributeConversion( <span class="hljs-string">&apos;img&apos;</span>, <span class="hljs-string">&apos;image&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>, editor );
-        setupCustomAttributeConversion( <span class="hljs-string">&apos;table&apos;</span>, <span class="hljs-string">&apos;table&apos;</span>, <span class="hljs-string">&apos;id&apos;</span>, editor );
+        // Define custom attributes that should be preserved.
+        setupCustomAttributeConversion( &apos;img&apos;, &apos;image&apos;, &apos;id&apos;, editor );
+        setupCustomAttributeConversion( &apos;table&apos;, &apos;table&apos;, &apos;id&apos;, editor );
     }
 }
 
-<span class="hljs-comment">/**
+/**
  * Sets up a conversion that preservers classes on &lt;img&gt; and &lt;table&gt; elements.
- */</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setupCustomClassConversion</span>(<span class="hljs-params"> viewElementName, modelElementName, editor </span>) </span>{
-    <span class="hljs-comment">// The &apos;customClass&apos; attribute will store custom classes from the data in the model so schema definitions allow this attribute.</span>
-    editor.model.schema.extend( modelElementName, { <span class="hljs-attr">allowAttributes</span>: [ <span class="hljs-string">&apos;customClass&apos;</span> ] } );
+ */
+function setupCustomClassConversion( viewElementName, modelElementName, editor ) {
+    // The &apos;customClass&apos; attribute will store custom classes from the data in the model so schema definitions allow this attribute.
+    editor.model.schema.extend( modelElementName, { allowAttributes: [ &apos;customClass&apos; ] } );
 
-    <span class="hljs-comment">// Define upcast converters for the &lt;img&gt; and &lt;table&gt; elements with a &quot;low&quot; priority so they are run after the default converters.</span>
-    editor.conversion.for( <span class="hljs-string">&apos;upcast&apos;</span> ).add( upcastCustomClasses( viewElementName ), { <span class="hljs-attr">priority</span>: <span class="hljs-string">&apos;low&apos;</span> } );
+    // Define upcast converters for the &lt;img&gt; and &lt;table&gt; elements with a &quot;low&quot; priority so they are run after the default converters.
+    editor.conversion.for( &apos;upcast&apos; ).add( upcastCustomClasses( viewElementName ), { priority: &apos;low&apos; } );
 
-    <span class="hljs-comment">// Define downcast converters for a model element with a &quot;low&quot; priority so they are run after the default converters.</span>
-    <span class="hljs-comment">// Use `downcastCustomClassesToFigure` if you&apos;d like to keep your classes on &lt;figure&gt; element or `downcastCustomClassesToChild` if you&apos;d like to keep your classes on a &lt;figure&gt; child element, i.e. &lt;img&gt;.</span>
-    editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).add( downcastCustomClassesToFigure( modelElementName ), { <span class="hljs-attr">priority</span>: <span class="hljs-string">&apos;low&apos;</span> } );
-    <span class="hljs-comment">// editor.conversion.for( &apos;downcast&apos; ).add( downcastCustomClassesToChild( viewElementName, modelElementName ), { priority: &apos;low&apos; } );</span>
+    // Define downcast converters for a model element with a &quot;low&quot; priority so they are run after the default converters.
+    // Use `downcastCustomClassesToFigure` if you&apos;d like to keep your classes on &lt;figure&gt; element or `downcastCustomClassesToChild` if you&apos;d like to keep your classes on a &lt;figure&gt; child element, i.e. &lt;img&gt;.
+    editor.conversion.for( &apos;downcast&apos; ).add( downcastCustomClassesToFigure( modelElementName ), { priority: &apos;low&apos; } );
+    // editor.conversion.for( &apos;downcast&apos; ).add( downcastCustomClassesToChild( viewElementName, modelElementName ), { priority: &apos;low&apos; } );
 }
 
-<span class="hljs-comment">/**
+/**
  * Sets up a conversion for a custom attribute on view elements contained inside a &lt;figure&gt;.
  *
  * This method:
  * - Adds proper schema rules.
  * - Adds an upcast converter.
  * - Adds a downcast converter.
- */</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setupCustomAttributeConversion</span>(<span class="hljs-params"> viewElementName, modelElementName, viewAttribute, editor </span>) </span>{
-    <span class="hljs-comment">// Extend the schema to store an attribute in the model.</span>
-    <span class="hljs-keyword">const</span> modelAttribute = <span class="hljs-string">`custom<span class="hljs-subst">${ viewAttribute }</span>`</span>;
+ */
+function setupCustomAttributeConversion( viewElementName, modelElementName, viewAttribute, editor ) {
+    // Extend the schema to store an attribute in the model.
+    const modelAttribute = `custom${ viewAttribute }`;
 
-    editor.model.schema.extend( modelElementName, { <span class="hljs-attr">allowAttributes</span>: [ modelAttribute ] } );
+    editor.model.schema.extend( modelElementName, { allowAttributes: [ modelAttribute ] } );
 
-    editor.conversion.for( <span class="hljs-string">&apos;upcast&apos;</span> ).add( upcastAttribute( viewElementName, viewAttribute, modelAttribute ) );
-    editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).add( downcastAttribute( modelElementName, viewElementName, viewAttribute, modelAttribute ) );
+    editor.conversion.for( &apos;upcast&apos; ).add( upcastAttribute( viewElementName, viewAttribute, modelAttribute ) );
+    editor.conversion.for( &apos;downcast&apos; ).add( downcastAttribute( modelElementName, viewElementName, viewAttribute, modelAttribute ) );
 }
 
-<span class="hljs-comment">/**
+/**
  * Creates an upcast converter that will pass all classes from the view element to the model element.
- */</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">upcastCustomClasses</span>(<span class="hljs-params"> elementName </span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">dispatcher</span> =&gt;</span> dispatcher.on( <span class="hljs-string">`element:<span class="hljs-subst">${ elementName }</span>`</span>, ( evt, data, conversionApi ) =&gt; {
-        <span class="hljs-keyword">const</span> viewItem = data.viewItem;
-        <span class="hljs-keyword">const</span> modelRange = data.modelRange;
+ */
+function upcastCustomClasses( elementName ) {
+    return dispatcher =&gt; dispatcher.on( `element:${ elementName }`, ( evt, data, conversionApi ) =&gt; {
+        const viewItem = data.viewItem;
+        const modelRange = data.modelRange;
 
-        <span class="hljs-keyword">const</span> modelElement = modelRange &amp;&amp; modelRange.start.nodeAfter;
+        const modelElement = modelRange &amp;&amp; modelRange.start.nodeAfter;
 
-        <span class="hljs-keyword">if</span> ( !modelElement ) {
-            <span class="hljs-keyword">return</span>;
+        if ( !modelElement ) {
+            return;
         }
 
-        <span class="hljs-comment">// The upcast conversion picks up classes from the base element and from the &lt;figure&gt; element so it should be extensible.</span>
-        <span class="hljs-keyword">const</span> currentAttributeValue = modelElement.getAttribute( <span class="hljs-string">&apos;customClass&apos;</span> ) || [];
+        // The upcast conversion picks up classes from the base element and from the &lt;figure&gt; element so it should be extensible.
+        const currentAttributeValue = modelElement.getAttribute( &apos;customClass&apos; ) || [];
 
         currentAttributeValue.push( ...viewItem.getClassNames() );
 
-        conversionApi.writer.setAttribute( <span class="hljs-string">&apos;customClass&apos;</span>, currentAttributeValue, modelElement );
+        conversionApi.writer.setAttribute( &apos;customClass&apos;, currentAttributeValue, modelElement );
     } );
 }
 
-<span class="hljs-comment">/**
+/**
  * Creates a downcast converter that adds classes defined in the `customClass` attribute to a &lt;figure&gt; element.
  *
  * This converter expects that the view element is nested in a &lt;figure&gt; element.
- */</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">downcastCustomClassesToFigure</span>(<span class="hljs-params"> modelElementName </span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">dispatcher</span> =&gt;</span> dispatcher.on( <span class="hljs-string">`insert:<span class="hljs-subst">${ modelElementName }</span>`</span>, ( evt, data, conversionApi ) =&gt; {
-        <span class="hljs-keyword">const</span> modelElement = data.item;
+ */
+function downcastCustomClassesToFigure( modelElementName ) {
+    return dispatcher =&gt; dispatcher.on( `insert:${ modelElementName }`, ( evt, data, conversionApi ) =&gt; {
+        const modelElement = data.item;
 
-        <span class="hljs-keyword">const</span> viewFigure = conversionApi.mapper.toViewElement( modelElement );
+        const viewFigure = conversionApi.mapper.toViewElement( modelElement );
 
-        <span class="hljs-keyword">if</span> ( !viewFigure ) {
-            <span class="hljs-keyword">return</span>;
+        if ( !viewFigure ) {
+            return;
         }
 
-        <span class="hljs-comment">// The code below assumes that classes are set on the &lt;figure&gt; element.</span>
-        conversionApi.writer.addClass( modelElement.getAttribute( <span class="hljs-string">&apos;customClass&apos;</span> ), viewFigure );
+        // The code below assumes that classes are set on the &lt;figure&gt; element.
+        conversionApi.writer.addClass( modelElement.getAttribute( &apos;customClass&apos; ), viewFigure );
     } );
 }
 
-<span class="hljs-comment">/**
+/**
  * Creates a downcast converter that adds classes defined in the `customClass` attribute to a &lt;figure&gt; child element.
  *
  * This converter expects that the view element is nested in a &lt;figure&gt; element.
- */</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">downcastCustomClassesToChild</span>(<span class="hljs-params"> viewElementName, modelElementName </span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">dispatcher</span> =&gt;</span> dispatcher.on( <span class="hljs-string">`insert:<span class="hljs-subst">${ modelElementName }</span>`</span>, ( evt, data, conversionApi ) =&gt; {
-        <span class="hljs-keyword">const</span> modelElement = data.item;
+ */
+function downcastCustomClassesToChild( viewElementName, modelElementName ) {
+    return dispatcher =&gt; dispatcher.on( `insert:${ modelElementName }`, ( evt, data, conversionApi ) =&gt; {
+        const modelElement = data.item;
 
-        <span class="hljs-keyword">const</span> viewFigure = conversionApi.mapper.toViewElement( modelElement );
+        const viewFigure = conversionApi.mapper.toViewElement( modelElement );
 
-        <span class="hljs-keyword">if</span> ( !viewFigure ) {
-            <span class="hljs-keyword">return</span>;
+        if ( !viewFigure ) {
+            return;
         }
 
-        <span class="hljs-comment">// The code below assumes that classes are set on the element inside the &lt;figure&gt;.</span>
-        <span class="hljs-keyword">const</span> viewElement = findViewChild( viewFigure, viewElementName, conversionApi );
+        // The code below assumes that classes are set on the element inside the &lt;figure&gt;.
+        const viewElement = findViewChild( viewFigure, viewElementName, conversionApi );
 
-        conversionApi.writer.addClass( modelElement.getAttribute( <span class="hljs-string">&apos;customClass&apos;</span> ), viewElement );
+        conversionApi.writer.addClass( modelElement.getAttribute( &apos;customClass&apos; ), viewElement );
     } );
 }
 
-<span class="hljs-comment">/**
+/**
  * Helper method that searches for a given view element in all children of the model element.
  *
- * <span class="hljs-doctag">@param <span class="hljs-type">{module:engine/view/item~Item}</span> <span class="hljs-variable">viewElement</span></span>
- * <span class="hljs-doctag">@param <span class="hljs-type">{String}</span> <span class="hljs-variable">viewElementName</span></span>
- * <span class="hljs-doctag">@param <span class="hljs-type">{module:engine/conversion/downcastdispatcher~DowncastConversionApi}</span> <span class="hljs-variable">conversionApi</span></span>
- * <span class="hljs-doctag">@return <span class="hljs-type">{module:engine/view/item~Item}</span></span>
- */</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">findViewChild</span>(<span class="hljs-params"> viewElement, viewElementName, conversionApi </span>) </span>{
-    <span class="hljs-keyword">const</span> viewChildren = <span class="hljs-built_in">Array</span>.from( conversionApi.writer.createRangeIn( viewElement ).getItems() );
+ * @param {module:engine/view/item~Item} viewElement
+ * @param {String} viewElementName
+ * @param {module:engine/conversion/downcastdispatcher~DowncastConversionApi} conversionApi
+ * @return {module:engine/view/item~Item}
+ */
+function findViewChild( viewElement, viewElementName, conversionApi ) {
+    const viewChildren = Array.from( conversionApi.writer.createRangeIn( viewElement ).getItems() );
 
-    <span class="hljs-keyword">return</span> viewChildren.find( <span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> item.is( viewElementName ) );
+    return viewChildren.find( item =&gt; item.is( viewElementName ) );
 }
 
-<span class="hljs-comment">/**
+/**
  * Returns the custom attribute upcast converter.
- */</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">upcastAttribute</span>(<span class="hljs-params"> viewElementName, viewAttribute, modelAttribute </span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">dispatcher</span> =&gt;</span> dispatcher.on( <span class="hljs-string">`element:<span class="hljs-subst">${ viewElementName }</span>`</span>, ( evt, data, conversionApi ) =&gt; {
-        <span class="hljs-keyword">const</span> viewItem = data.viewItem;
-        <span class="hljs-keyword">const</span> modelRange = data.modelRange;
+ */
+function upcastAttribute( viewElementName, viewAttribute, modelAttribute ) {
+    return dispatcher =&gt; dispatcher.on( `element:${ viewElementName }`, ( evt, data, conversionApi ) =&gt; {
+        const viewItem = data.viewItem;
+        const modelRange = data.modelRange;
 
-        <span class="hljs-keyword">const</span> modelElement = modelRange &amp;&amp; modelRange.start.nodeAfter;
+        const modelElement = modelRange &amp;&amp; modelRange.start.nodeAfter;
 
-        <span class="hljs-keyword">if</span> ( !modelElement ) {
-            <span class="hljs-keyword">return</span>;
+        if ( !modelElement ) {
+            return;
         }
 
         conversionApi.writer.setAttribute( modelAttribute, viewItem.getAttribute( viewAttribute ), modelElement );
     } );
 }
 
-<span class="hljs-comment">/**
+/**
  * Returns the custom attribute downcast converter.
- */</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">downcastAttribute</span>(<span class="hljs-params"> modelElementName, viewElementName, viewAttribute, modelAttribute </span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">dispatcher</span> =&gt;</span> dispatcher.on( <span class="hljs-string">`insert:<span class="hljs-subst">${ modelElementName }</span>`</span>, ( evt, data, conversionApi ) =&gt; {
-        <span class="hljs-keyword">const</span> modelElement = data.item;
+ */
+function downcastAttribute( modelElementName, viewElementName, viewAttribute, modelAttribute ) {
+    return dispatcher =&gt; dispatcher.on( `insert:${ modelElementName }`, ( evt, data, conversionApi ) =&gt; {
+        const modelElement = data.item;
 
-        <span class="hljs-keyword">const</span> viewFigure = conversionApi.mapper.toViewElement( modelElement );
-        <span class="hljs-keyword">const</span> viewElement = findViewChild( viewFigure, viewElementName, conversionApi );
+        const viewFigure = conversionApi.mapper.toViewElement( modelElement );
+        const viewElement = findViewChild( viewFigure, viewElementName, conversionApi );
 
-        <span class="hljs-keyword">if</span> ( !viewElement ) {
-            <span class="hljs-keyword">return</span>;
+        if ( !viewElement ) {
+            return;
         }
 
         conversionApi.writer.setAttribute( viewAttribute, modelElement.getAttribute( modelAttribute ), viewElement );
@@ -719,13 +719,13 @@
 <p>Activate the plugin in the editor:</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( ..., {
-        <span class="hljs-attr">extraPlugins</span>: [ CustomFigureAttributes ],
+        extraPlugins: [ CustomFigureAttributes ],
     } )
-    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
-        <span class="hljs-comment">// ...</span>
+    .then( editor =&gt; {
+        // ...
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error( err.stack );
+    .catch( err =&gt; {
+        console.error( err.stack );
     } );
 </code></pre>
 <h2 id="whats-next"><a class="headerlink" href="#whats-next">#</a> What&#x2019;s next?</h2>

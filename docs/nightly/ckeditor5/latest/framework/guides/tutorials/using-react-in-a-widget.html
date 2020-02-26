@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../../../snippets/framework/tutorials/using-react-in-widget/snippet.css" type="text/css">
     <link rel="stylesheet" href="../../../assets/snippet-styles.css" type="text/css">
@@ -35,16 +35,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -86,7 +86,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -232,11 +232,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/tutorials/using-react-in-a-widget.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/tutorials/using-react-in-a-widget.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../assets/1.2.1/img/book.svg" alt="guide">Using a React component in a block widget
+          <h1 class="main__content-title"><img src="../../../../../assets/1.2.2/img/book.svg" alt="guide">Using a React component in a block widget
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#before-you-start">Before you start</a></li><li><a href="#lets-start">Let&#x2019;s start</a></li><li><a href="#application-structure">Application structure</a></li><li><a href="#ckeditor-classes">CKEditor classes</a><ol><li><a href="#editing-plugin">Editing plugin</a></li><li><a href="#command">Command</a></li></ol></li><li><a href="#react-components">React components</a><ol><li><a href="#product-list">Product list</a></li><li><a href="#product-preview">Product preview</a></li><li><a href="#main-application-component">Main application component</a></li></ol></li><li><a href="#styles-and-assets">Styles and assets</a></li><li><a href="#demo">Demo</a></li><li><a href="#full-source-code">Full source code</a><ol><li><a href="#appjs">app.js</a></li><li><a href="#productprevieweditingjs">productpreviewediting.js</a></li><li><a href="#insertproductpreviewcommandjs">insertproductpreviewcommand.js</a></li><li><a href="#productlistjs">productlist.js</a></li><li><a href="#productpreviewjs">productpreview.js</a></li><li><a href="#indexhtml">index.html</a></li></ol></li></ol></nav>
 <p>In this tutorial, you will learn how to implement an editor plugin that uses the power of the <a href="https://reactjs.org/" target="_blank" rel="noopener">React</a> library inside the CKEditor 5 widget ecosystem. You will build a &#x201C;Product preview&#x201D; feature which renders an actual React component inside the editor to display some useful information about the product.</p>
 <p>Later on, you will use the &#x201C;Product preview&#x201D; feature to build a simple React application that displays an editor next to the list of available products, allowing the user to insert the product into the editor content by clicking it on the list.</p>
@@ -283,50 +283,50 @@
     webpack-cli@3
 </code></pre>
 <p>Create a minimal <a href="https://webpack.js.org" target="_blank" rel="noopener">webpack</a> configuration and save it as <code>webpack.config.js</code> in the root of the application. To learn more about using webpack with CKEditor 5 and React, check out the <a href="../../../builds/guides/integration/frameworks/react.html#integrating-ckeditor-5-built-from-source">Integrating CKEditor 5 built from source</a> section of the CKEditor 5 React component guide.</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// webpack.config.js</span>
+<pre class="highlight"><code class="js">// webpack.config.js
 
-<span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>( <span class="hljs-string">&apos;webpack&apos;</span> );
-<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>( <span class="hljs-string">&apos;path&apos;</span> );
-<span class="hljs-keyword">const</span> { styles } = <span class="hljs-built_in">require</span>( <span class="hljs-string">&apos;@ckeditor/ckeditor5-dev-utils&apos;</span> );
+const webpack = require( &apos;webpack&apos; );
+const path = require( &apos;path&apos; );
+const { styles } = require( &apos;@ckeditor/ckeditor5-dev-utils&apos; );
 
-<span class="hljs-built_in">module</span>.exports = {
-    <span class="hljs-attr">entry</span>: path.resolve( __dirname, <span class="hljs-string">&apos;app.js&apos;</span> ),
+module.exports = {
+    entry: path.resolve( __dirname, &apos;app.js&apos; ),
 
-    <span class="hljs-attr">output</span>: {
-        <span class="hljs-attr">path</span>: path.resolve( __dirname, <span class="hljs-string">&apos;dist&apos;</span> ),
-        <span class="hljs-attr">filename</span>: <span class="hljs-string">&apos;bundle.js&apos;</span>
+    output: {
+        path: path.resolve( __dirname, &apos;dist&apos; ),
+        filename: &apos;bundle.js&apos;
     },
 
-    <span class="hljs-attr">module</span>: {
-        <span class="hljs-attr">rules</span>: [
+    module: {
+        rules: [
             {
-                <span class="hljs-attr">test</span>: <span class="hljs-regexp">/ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/</span>,
-                <span class="hljs-attr">use</span>: [ <span class="hljs-string">&apos;raw-loader&apos;</span> ]
+                test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
+                use: [ &apos;raw-loader&apos; ]
             },
             {
-                <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.js$/</span>,
-                <span class="hljs-attr">exclude</span>: <span class="hljs-regexp">/node_modules/</span>,
-                <span class="hljs-attr">loader</span>: <span class="hljs-string">&apos;babel-loader&apos;</span>,
-                <span class="hljs-attr">query</span>: {
-                    <span class="hljs-attr">presets</span>: [ <span class="hljs-string">&apos;@babel/react&apos;</span> ]
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: &apos;babel-loader&apos;,
+                query: {
+                    presets: [ &apos;@babel/react&apos; ]
                 }
             },
             {
-                <span class="hljs-attr">test</span>: <span class="hljs-regexp">/ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/</span>,
-                <span class="hljs-attr">use</span>: [
+                test: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
+                use: [
                     {
-                        <span class="hljs-attr">loader</span>: <span class="hljs-string">&apos;style-loader&apos;</span>,
-                        <span class="hljs-attr">options</span>: {
-                            <span class="hljs-attr">injectType</span>: <span class="hljs-string">&apos;singletonStyleTag&apos;</span>
+                        loader: &apos;style-loader&apos;,
+                        options: {
+                            injectType: &apos;singletonStyleTag&apos;
                         }
                     },
                     {
-                        <span class="hljs-attr">loader</span>: <span class="hljs-string">&apos;postcss-loader&apos;</span>,
-                        <span class="hljs-attr">options</span>: styles.getPostCssConfig( {
-                            <span class="hljs-attr">themeImporter</span>: {
-                                <span class="hljs-attr">themePath</span>: <span class="hljs-built_in">require</span>.resolve( <span class="hljs-string">&apos;@ckeditor/ckeditor5-theme-lark&apos;</span> )
+                        loader: &apos;postcss-loader&apos;,
+                        options: styles.getPostCssConfig( {
+                            themeImporter: {
+                                themePath: require.resolve( &apos;@ckeditor/ckeditor5-theme-lark&apos; )
                             },
-                            <span class="hljs-attr">minify</span>: <span class="hljs-literal">true</span>
+                            minify: true
                         } )
                     }
                 ]
@@ -334,45 +334,45 @@
         ]
     },
 
-    <span class="hljs-comment">// Useful for debugging.</span>
-    <span class="hljs-attr">devtool</span>: <span class="hljs-string">&apos;source-map&apos;</span>,
+    // Useful for debugging.
+    devtool: &apos;source-map&apos;,
 
-    <span class="hljs-comment">// By default webpack logs warnings if the bundle is bigger than 200kb.</span>
-    <span class="hljs-attr">performance</span>: { <span class="hljs-attr">hints</span>: <span class="hljs-literal">false</span> }
+    // By default webpack logs warnings if the bundle is bigger than 200kb.
+    performance: { hints: false }
 };
 </code></pre>
 <p>Create your project&#x2019;s entry point and save it as <code>app.js</code>, also in the root of the application:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// app.js</span>
+<pre class="highlight"><code class="js">// app.js
 
-<span class="hljs-comment">// Imports necessary to run a React application.</span>
-<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>;
-<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react-dom&apos;</span>;
+// Imports necessary to run a React application.
+import React from &apos;react&apos;;
+import ReactDOM from &apos;react-dom&apos;;
 
-<span class="hljs-comment">// The React application class.</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+// The React application class.
+class App extends React.Component {
     render() {
-        <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;Hello world!&apos;</span>;
+        return &apos;Hello world!&apos;;
     }
 }
 
-<span class="hljs-comment">// Render the &lt;App&gt; in the &lt;div class=&quot;app&quot;&gt;&lt;/div&gt; element found in the DOM.</span>
+// Render the &lt;App&gt; in the &lt;div class=&quot;app&quot;&gt;&lt;/div&gt; element found in the DOM.
 ReactDOM.render(
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">App</span> /&gt;</span></span>,
-    <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;.app&apos;</span> )
+    &lt;App /&gt;,
+    document.querySelector( &apos;.app&apos; )
 );
 </code></pre>
 <p>Add an <code>index.html</code> page next to the <code>app.js</code> file:</p>
-<pre class="highlight"><code class="html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Using React components in CKEditor 5 widgets<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;dist/bundle.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;Using React components in CKEditor 5 widgets&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div class=&quot;app&quot;&gt;&lt;/div&gt;
+        &lt;script src=&quot;dist/bundle.js&quot;&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
 </code></pre>
 <p>Finally, build your project and see if everything worked well by opening the index page in your browser:</p>
 <pre class="highlight"><code class="bash">oleq@MBP15 ckeditor5-react-in-widgets&gt; node_modules/.bin/webpack --mode development
@@ -459,111 +459,111 @@ Entrypoint main [big] = bundle.js bundle.js.map
 	</tr>
 </table>
 <p>Here is the full source code of the <code>ProductPreviewEditing</code> editor plugin:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// ckeditor/productpreviewediting.js</span>
+<pre class="highlight"><code class="js">// ckeditor/productpreviewediting.js
 
-<span class="hljs-keyword">import</span> Plugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/plugin&apos;</span>;
-<span class="hljs-keyword">import</span> { toWidget } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-widget/src/utils&apos;</span>;
-<span class="hljs-keyword">import</span> Widget <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-widget/src/widget&apos;</span>;
-<span class="hljs-keyword">import</span> InsertProductPreviewCommand <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./insertproductpreviewcommand&apos;</span>;
+import Plugin from &apos;@ckeditor/ckeditor5-core/src/plugin&apos;;
+import { toWidget } from &apos;@ckeditor/ckeditor5-widget/src/utils&apos;;
+import Widget from &apos;@ckeditor/ckeditor5-widget/src/widget&apos;;
+import InsertProductPreviewCommand from &apos;./insertproductpreviewcommand&apos;;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductPreviewEditing</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
-    <span class="hljs-keyword">static</span> <span class="hljs-keyword">get</span> requires() {
-        <span class="hljs-keyword">return</span> [ Widget ];
+export default class ProductPreviewEditing extends Plugin {
+    static get requires() {
+        return [ Widget ];
     }
 
     init() {
-        <span class="hljs-keyword">this</span>._defineSchema();
-        <span class="hljs-keyword">this</span>._defineConverters();
+        this._defineSchema();
+        this._defineConverters();
 
-        <span class="hljs-keyword">this</span>.editor.commands.add( <span class="hljs-string">&apos;insertProduct&apos;</span>, <span class="hljs-keyword">new</span> InsertProductPreviewCommand( <span class="hljs-keyword">this</span>.editor ) );
+        this.editor.commands.add( &apos;insertProduct&apos;, new InsertProductPreviewCommand( this.editor ) );
     }
 
     _defineSchema() {
-        <span class="hljs-keyword">const</span> schema = <span class="hljs-keyword">this</span>.editor.model.schema;
+        const schema = this.editor.model.schema;
 
-        schema.register( <span class="hljs-string">&apos;productPreview&apos;</span>, {
-            <span class="hljs-comment">// Behaves like a self-contained object (e.g. an image).</span>
-            <span class="hljs-attr">isObject</span>: <span class="hljs-literal">true</span>,
+        schema.register( &apos;productPreview&apos;, {
+            // Behaves like a self-contained object (e.g. an image).
+            isObject: true,
 
-            <span class="hljs-comment">// Allow in places where other blocks are allowed (e.g. directly in the root).</span>
-            <span class="hljs-attr">allowWhere</span>: <span class="hljs-string">&apos;$block&apos;</span>,
+            // Allow in places where other blocks are allowed (e.g. directly in the root).
+            allowWhere: &apos;$block&apos;,
 
-            <span class="hljs-comment">// Each product preview has an ID. A unique ID tells the application which</span>
-            <span class="hljs-comment">// product it represents and makes it possible to render it inside a widget.</span>
-            <span class="hljs-attr">allowAttributes</span>: [ <span class="hljs-string">&apos;id&apos;</span> ]
+            // Each product preview has an ID. A unique ID tells the application which
+            // product it represents and makes it possible to render it inside a widget.
+            allowAttributes: [ &apos;id&apos; ]
         } );
     }
 
     _defineConverters() {
-        <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">this</span>.editor;
-        <span class="hljs-keyword">const</span> conversion = editor.conversion;
-        <span class="hljs-keyword">const</span> renderProduct = editor.config.get( <span class="hljs-string">&apos;products&apos;</span> ).productRenderer;
+        const editor = this.editor;
+        const conversion = editor.conversion;
+        const renderProduct = editor.config.get( &apos;products&apos; ).productRenderer;
 
-        <span class="hljs-comment">// &lt;productPreview&gt; converters ((data) view &#x2192; model)</span>
-        conversion.for( <span class="hljs-string">&apos;upcast&apos;</span> ).elementToElement( {
-            <span class="hljs-attr">view</span>: {
-                <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;section&apos;</span>,
-                <span class="hljs-attr">classes</span>: <span class="hljs-string">&apos;product&apos;</span>
+        // &lt;productPreview&gt; converters ((data) view &#x2192; model)
+        conversion.for( &apos;upcast&apos; ).elementToElement( {
+            view: {
+                name: &apos;section&apos;,
+                classes: &apos;product&apos;
             },
-            <span class="hljs-attr">model</span>: <span class="hljs-function">(<span class="hljs-params"> viewElement, modelWriter </span>) =&gt;</span> {
-                <span class="hljs-comment">// Read the &quot;data-id&quot; attribute from the view and set it as the &quot;id&quot; in the model.</span>
-                <span class="hljs-keyword">return</span> modelWriter.createElement( <span class="hljs-string">&apos;productPreview&apos;</span>, {
-                    <span class="hljs-attr">id</span>: <span class="hljs-built_in">parseInt</span>( viewElement.getAttribute( <span class="hljs-string">&apos;data-id&apos;</span> ) )
+            model: ( viewElement, modelWriter ) =&gt; {
+                // Read the &quot;data-id&quot; attribute from the view and set it as the &quot;id&quot; in the model.
+                return modelWriter.createElement( &apos;productPreview&apos;, {
+                    id: parseInt( viewElement.getAttribute( &apos;data-id&apos; ) )
                 } );
             }
         } );
 
-        <span class="hljs-comment">// &lt;productPreview&gt; converters (model &#x2192; data view)</span>
-        conversion.for( <span class="hljs-string">&apos;dataDowncast&apos;</span> ).elementToElement( {
-            <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;productPreview&apos;</span>,
-            <span class="hljs-attr">view</span>: <span class="hljs-function">(<span class="hljs-params"> modelElement, viewWriter </span>) =&gt;</span> {
-                <span class="hljs-comment">// In the data view, the model &lt;productPreview&gt; corresponds to:</span>
-                <span class="hljs-comment">//</span>
-                <span class="hljs-comment">// &lt;section class=&quot;product&quot; data-id=&quot;...&quot;&gt;&lt;/section&gt;</span>
-                <span class="hljs-keyword">return</span> viewWriter.createEmptyElement( <span class="hljs-string">&apos;section&apos;</span>, {
-                    <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;product&apos;</span>,
-                    <span class="hljs-string">&apos;data-id&apos;</span>: modelElement.getAttribute( <span class="hljs-string">&apos;id&apos;</span> )
+        // &lt;productPreview&gt; converters (model &#x2192; data view)
+        conversion.for( &apos;dataDowncast&apos; ).elementToElement( {
+            model: &apos;productPreview&apos;,
+            view: ( modelElement, viewWriter ) =&gt; {
+                // In the data view, the model &lt;productPreview&gt; corresponds to:
+                //
+                // &lt;section class=&quot;product&quot; data-id=&quot;...&quot;&gt;&lt;/section&gt;
+                return viewWriter.createEmptyElement( &apos;section&apos;, {
+                    class: &apos;product&apos;,
+                    &apos;data-id&apos;: modelElement.getAttribute( &apos;id&apos; )
                 } );
             }
         } );
 
-        <span class="hljs-comment">// &lt;productPreview&gt; converters (model &#x2192; editing view)</span>
-        conversion.for( <span class="hljs-string">&apos;editingDowncast&apos;</span> ).elementToElement( {
-            <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;productPreview&apos;</span>,
-            <span class="hljs-attr">view</span>: <span class="hljs-function">(<span class="hljs-params"> modelElement, viewWriter </span>) =&gt;</span> {
-                <span class="hljs-comment">// In the editing view, the model &lt;productPreview&gt; corresponds to:</span>
-                <span class="hljs-comment">//</span>
-                <span class="hljs-comment">// &lt;section class=&quot;product&quot; data-id=&quot;...&quot;&gt;</span>
-                <span class="hljs-comment">//     &lt;div class=&quot;product__react-wrapper&quot;&gt;</span>
-                <span class="hljs-comment">//         &lt;ProductPreview /&gt; (React component)</span>
-                <span class="hljs-comment">//     &lt;/div&gt;</span>
-                <span class="hljs-comment">// &lt;/section&gt;</span>
-                <span class="hljs-keyword">const</span> id = modelElement.getAttribute( <span class="hljs-string">&apos;id&apos;</span> );
+        // &lt;productPreview&gt; converters (model &#x2192; editing view)
+        conversion.for( &apos;editingDowncast&apos; ).elementToElement( {
+            model: &apos;productPreview&apos;,
+            view: ( modelElement, viewWriter ) =&gt; {
+                // In the editing view, the model &lt;productPreview&gt; corresponds to:
+                //
+                // &lt;section class=&quot;product&quot; data-id=&quot;...&quot;&gt;
+                //     &lt;div class=&quot;product__react-wrapper&quot;&gt;
+                //         &lt;ProductPreview /&gt; (React component)
+                //     &lt;/div&gt;
+                // &lt;/section&gt;
+                const id = modelElement.getAttribute( &apos;id&apos; );
 
-                <span class="hljs-comment">// The outermost &lt;section class=&quot;product&quot; data-id=&quot;...&quot;&gt;&lt;/section&gt; element.</span>
-                <span class="hljs-keyword">const</span> section = viewWriter.createContainerElement( <span class="hljs-string">&apos;section&apos;</span>, {
-                    <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;product&apos;</span>,
-                    <span class="hljs-string">&apos;data-id&apos;</span>: id
+                // The outermost &lt;section class=&quot;product&quot; data-id=&quot;...&quot;&gt;&lt;/section&gt; element.
+                const section = viewWriter.createContainerElement( &apos;section&apos;, {
+                    class: &apos;product&apos;,
+                    &apos;data-id&apos;: id
                 } );
 
-                <span class="hljs-comment">// The inner &lt;div class=&quot;product__react-wrapper&quot;&gt;&lt;/div&gt; element.</span>
-                <span class="hljs-comment">// This element will host a React &lt;ProductPreview /&gt; component.</span>
-                <span class="hljs-keyword">const</span> reactWrapper = viewWriter.createUIElement( <span class="hljs-string">&apos;div&apos;</span>, {
-                    <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;product__react-wrapper&apos;</span>
-                }, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"> domDocument </span>) </span>{
-                    <span class="hljs-keyword">const</span> domElement = <span class="hljs-keyword">this</span>.toDomElement( domDocument );
+                // The inner &lt;div class=&quot;product__react-wrapper&quot;&gt;&lt;/div&gt; element.
+                // This element will host a React &lt;ProductPreview /&gt; component.
+                const reactWrapper = viewWriter.createUIElement( &apos;div&apos;, {
+                    class: &apos;product__react-wrapper&apos;
+                }, function( domDocument ) {
+                    const domElement = this.toDomElement( domDocument );
 
-                    <span class="hljs-comment">// This the place where React renders the actual product preview hosted</span>
-                    <span class="hljs-comment">// by a UIElement in the view. You are using a function (renderer) passed as</span>
-                    <span class="hljs-comment">// editor.config.products#productRenderer.</span>
+                    // This the place where React renders the actual product preview hosted
+                    // by a UIElement in the view. You are using a function (renderer) passed as
+                    // editor.config.products#productRenderer.
                     renderProduct( id, domElement );
 
-                    <span class="hljs-keyword">return</span> domElement;
+                    return domElement;
                 } );
 
-                viewWriter.insert( viewWriter.createPositionAt( section, <span class="hljs-number">0</span> ), reactWrapper );
+                viewWriter.insert( viewWriter.createPositionAt( section, 0 ), reactWrapper );
 
-                <span class="hljs-keyword">return</span> toWidget( section, viewWriter, { <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;product preview widget&apos;</span> } );
+                return toWidget( section, viewWriter, { label: &apos;product preview widget&apos; } );
             }
         } );
     }
@@ -572,25 +572,25 @@ Entrypoint main [big] = bundle.js bundle.js.map
 <h3 id="command"><a class="headerlink" href="#command">#</a> Command</h3>
 <p>The <code>InsertProductPreviewCommand</code> inserts the <code>productPreview</code> element into the model at the current selection position. It is executed by the <code>&lt;ProductPreview&gt;</code> React component in the application sidebar to insert a widget into the editor content.</p>
 <p>Learn more about widget commands in the <a href="implementing-a-block-widget.html#creating-a-command">Implementing a block widget</a> guide. You can see this command in action in the section about the <a href="#main-application-component">main application component</a>.</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// ckeditor/insertproductpreviewcommand.js</span>
+<pre class="highlight"><code class="js">// ckeditor/insertproductpreviewcommand.js
 
-<span class="hljs-keyword">import</span> Command <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/command&apos;</span>;
+import Command from &apos;@ckeditor/ckeditor5-core/src/command&apos;;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InsertProductPreviewCommand</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Command</span> </span>{
+export default class InsertProductPreviewCommand extends Command {
     execute( id ) {
-        <span class="hljs-keyword">this</span>.editor.model.change( <span class="hljs-function"><span class="hljs-params">writer</span> =&gt;</span> {
-            <span class="hljs-comment">// Insert &lt;productPreview id=&quot;...&quot;&gt;*&lt;/productPreview&gt; at the current selection position</span>
-            <span class="hljs-comment">// in a way which will result in creating a valid model structure.</span>
-            <span class="hljs-keyword">this</span>.editor.model.insertContent( writer.createElement( <span class="hljs-string">&apos;productPreview&apos;</span>, { id } ) );
+        this.editor.model.change( writer =&gt; {
+            // Insert &lt;productPreview id=&quot;...&quot;&gt;*&lt;/productPreview&gt; at the current selection position
+            // in a way which will result in creating a valid model structure.
+            this.editor.model.insertContent( writer.createElement( &apos;productPreview&apos;, { id } ) );
         } );
     }
 
     refresh() {
-        <span class="hljs-keyword">const</span> model = <span class="hljs-keyword">this</span>.editor.model;
-        <span class="hljs-keyword">const</span> selection = model.document.selection;
-        <span class="hljs-keyword">const</span> allowedIn = model.schema.findAllowedParent( selection.getFirstPosition(), <span class="hljs-string">&apos;productPreview&apos;</span> );
+        const model = this.editor.model;
+        const selection = model.document.selection;
+        const allowedIn = model.schema.findAllowedParent( selection.getFirstPosition(), &apos;productPreview&apos; );
 
-        <span class="hljs-keyword">this</span>.isEnabled = allowedIn !== <span class="hljs-literal">null</span>;
+        this.isEnabled = allowedIn !== null;
     }
 }
 </code></pre>
@@ -603,57 +603,57 @@ Entrypoint main [big] = bundle.js bundle.js.map
 </ul>
 <h3 id="product-list"><a class="headerlink" href="#product-list">#</a> Product list</h3>
 <p>The <code>&lt;ProductList&gt;</code> React component renders instances of <code>&lt;ProductPreview&gt;</code>. When clicked, the preview executes a callback passed in <a href="https://reactjs.org/docs/components-and-props.html" target="_blank" rel="noopener">&#x201C;props&#x201D;</a> that inserts its own copy into the editor content by executing the <a href="#command"><code>&apos;insertProduct&apos;</code></a> editor command. The list is displayed in the sidebar of the <a href="#main-application-component">application</a>.</p>
-<pre class="highlight"><code class="jsx html"><span class="hljs-comment">// react/productlist.js</span>
+<pre class="highlight"><code class="jsx html">// react/productlist.js
 
-<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>;
-<span class="hljs-keyword">import</span> ProductPreview <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./productpreview&apos;</span>;
+import React from &apos;react&apos;;
+import ProductPreview from &apos;./productpreview&apos;;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductList</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+export default class ProductList extends React.Component {
     render() {
-        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;app__product-list&quot;</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Products<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+        return &lt;div className=&quot;app__product-list&quot;&gt;
+            &lt;h3&gt;Products&lt;/h3&gt;
+            &lt;ul&gt;
                 {this.props.products.map( product =&gt; {
-                    return <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{product.id}</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">ProductPreview</span>
-                            <span class="hljs-attr">id</span>=<span class="hljs-string">{product.id}</span>
-                            <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.props.onClick}</span>
-                            {<span class="hljs-attr">...product</span>}
-                        /&gt;</span>
-                    <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>;
+                    return &lt;li key={product.id}&gt;
+                        &lt;ProductPreview
+                            id={product.id}
+                            onClick={this.props.onClick}
+                            {...product}
+                        /&gt;
+                    &lt;/li&gt;;
                 })}
-            <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>Tip<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span>: Clicking the product will add it to the editor.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+            &lt;/ul&gt;
+            &lt;p&gt;&lt;b&gt;Tip&lt;/b&gt;: Clicking the product will add it to the editor.&lt;/p&gt;
+        &lt;/div&gt;;
     }
 }
 </code></pre>
 <h3 id="product-preview"><a class="headerlink" href="#product-preview">#</a> Product preview</h3>
 <p>The actual preview of the product, with its name, price and an image. Instances of the <code>&lt;ProductPreview&gt;</code> component populate both the <a href="#product-list"><code>&lt;ProductList&gt;</code></a> and the <a href="#editing-plugin">editor widgets</a> in the content.</p>
 <p>Clicking a preview in the sidebar executes the <a href="#command"><code>&apos;insertProduct&apos;</code></a> editor command and inserts the same preview into the editor content.</p>
-<pre class="highlight"><code class="jsx html"><span class="hljs-comment">// react/productpreview.js</span>
+<pre class="highlight"><code class="jsx html">// react/productpreview.js
 
-<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>;
+import React from &apos;react&apos;;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductPreview</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+export default class ProductPreview extends React.Component {
     render() {
-        <span class="hljs-keyword">const</span> style = {
-            <span class="hljs-string">&apos;--product-image&apos;</span>: <span class="hljs-string">`url(<span class="hljs-subst">${ <span class="hljs-keyword">this</span>.props.image }</span>)`</span>
+        const style = {
+            &apos;--product-image&apos;: `url(${ this.props.image })`
         };
 
-        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>
-            <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;product-preview&quot;</span>
-            <span class="hljs-attr">style</span>=<span class="hljs-string">{style}</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">button</span>
-                    <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;product-preview__add&quot;</span>
-                    <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> this.props.onClick( this.props.id )}
+        return &lt;div
+            className=&quot;product-preview&quot;
+            style={style}&gt;
+                &lt;button
+                    className=&quot;product-preview__add&quot;
+                    onClick={() =&gt; this.props.onClick( this.props.id )}
                     title=&quot;Add to the offer&quot;
                 &gt;
-                    <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-                <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;product-preview__name&quot;</span>&gt;</span>{this.props.name}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;product-preview__price&quot;</span>&gt;</span>from {this.props.price}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+                    &lt;span&gt;+&lt;/span&gt;
+                &lt;/button&gt;
+                &lt;span className=&quot;product-preview__name&quot;&gt;{this.props.name}&lt;/span&gt;
+                &lt;span className=&quot;product-preview__price&quot;&gt;from {this.props.price}&lt;/span&gt;
+            &lt;/div&gt;
     }
 }
 </code></pre>
@@ -661,355 +661,355 @@ Entrypoint main [big] = bundle.js bundle.js.map
 <p>So far, you have CKEditor classes that bring the product preview into the content, a list of products, and a product component ready. It is time to glue things together in the <code>App</code> class.</p>
 <p>You are going to extend the <a href="#lets-start">main application file</a> skeleton that you created earlier in this tutorial so it renders the <a href="../../../builds/guides/integration/frameworks/react.html">official <code>&lt;CKEditor&gt;</code> React component</a> on the left side, and the list of available products on the right.</p>
 <p>Have a look at the full source code of the <code>App</code> class:</p>
-<pre class="highlight"><code class="jsx html"><span class="hljs-comment">// app.js</span>
+<pre class="highlight"><code class="jsx html">// app.js
 
-<span class="hljs-comment">// Imports necessary to run a React application.</span>
-<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>;
-<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react-dom&apos;</span>;
+// Imports necessary to run a React application.
+import React from &apos;react&apos;;
+import ReactDOM from &apos;react-dom&apos;;
 
-<span class="hljs-comment">// The official &lt;CKEditor&gt; component for React.</span>
-<span class="hljs-keyword">import</span> CKEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-react&apos;</span>;
+// The official &lt;CKEditor&gt; component for React.
+import CKEditor from &apos;@ckeditor/ckeditor5-react&apos;;
 
-<span class="hljs-comment">// The official CKEditor 5 instance inspector. It helps understand the editor view and model.</span>
-<span class="hljs-keyword">import</span> CKEditorInspector <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-inspector&apos;</span>;
+// The official CKEditor 5 instance inspector. It helps understand the editor view and model.
+import CKEditorInspector from &apos;@ckeditor/ckeditor5-inspector&apos;;
 
-<span class="hljs-comment">// The base editor class and features required to run the editor.</span>
-<span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
-<span class="hljs-keyword">import</span> Essentials <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;</span>;
-<span class="hljs-keyword">import</span> Heading <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-heading/src/heading&apos;</span>;
-<span class="hljs-keyword">import</span> Bold <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;</span>;
-<span class="hljs-keyword">import</span> Italic <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;</span>;
-<span class="hljs-keyword">import</span> Underline <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/underline&apos;</span>;
-<span class="hljs-keyword">import</span> Link <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-link/src/link&apos;</span>;
-<span class="hljs-keyword">import</span> Table <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-table/src/table&apos;</span>;
-<span class="hljs-keyword">import</span> TableToolbar <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-table/src/tabletoolbar&apos;</span>;
-<span class="hljs-keyword">import</span> Paragraph <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;</span>;
+// The base editor class and features required to run the editor.
+import ClassicEditor from &apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;;
+import Essentials from &apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;;
+import Heading from &apos;@ckeditor/ckeditor5-heading/src/heading&apos;;
+import Bold from &apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;;
+import Italic from &apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;;
+import Underline from &apos;@ckeditor/ckeditor5-basic-styles/src/underline&apos;;
+import Link from &apos;@ckeditor/ckeditor5-link/src/link&apos;;
+import Table from &apos;@ckeditor/ckeditor5-table/src/table&apos;;
+import TableToolbar from &apos;@ckeditor/ckeditor5-table/src/tabletoolbar&apos;;
+import Paragraph from &apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;;
 
-<span class="hljs-comment">// CKEditor plugin implementing a product widget to be used in the editor content.</span>
-<span class="hljs-keyword">import</span> ProductPreviewEditing <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./ckeditor/productpreviewediting&apos;</span>;
+// CKEditor plugin implementing a product widget to be used in the editor content.
+import ProductPreviewEditing from &apos;./ckeditor/productpreviewediting&apos;;
 
-<span class="hljs-comment">// React components to render the list of products and the product preview.</span>
-<span class="hljs-keyword">import</span> ProductList <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./react/productlist&apos;</span>;
-<span class="hljs-keyword">import</span> ProductPreview <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./react/productpreview&apos;</span>;
+// React components to render the list of products and the product preview.
+import ProductList from &apos;./react/productlist&apos;;
+import ProductPreview from &apos;./react/productpreview&apos;;
 
-<span class="hljs-comment">// The React application class. It renders the editor and the product list.</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
-    <span class="hljs-keyword">constructor</span>( props ) {
-        <span class="hljs-keyword">super</span>( props );
+// The React application class. It renders the editor and the product list.
+class App extends React.Component {
+    constructor( props ) {
+        super( props );
 
-        <span class="hljs-comment">// A place to store the reference to the editor instance created by the &lt;CKEditor&gt; component.</span>
-        <span class="hljs-comment">// The editor instance is created asynchronously and is only available when the editor is ready.</span>
-        <span class="hljs-keyword">this</span>.editor = <span class="hljs-literal">null</span>;
+        // A place to store the reference to the editor instance created by the &lt;CKEditor&gt; component.
+        // The editor instance is created asynchronously and is only available when the editor is ready.
+        this.editor = null;
 
-        <span class="hljs-keyword">this</span>.state = {
-            <span class="hljs-comment">// The initial editor data. It is bound to the editor instance and will change as</span>
-            <span class="hljs-comment">// the user types and modifies the content of the editor.</span>
-            <span class="hljs-attr">editorData</span>: <span class="hljs-string">&apos;&lt;h2&gt;Check our last minute deals!&lt;/h2&gt;&lt;p&gt;The capital city of &lt;a href=&quot;https://en.wikipedia.org/wiki/Malta&quot;&gt;Malta&lt;/a&gt; is the top destination this summer. It&#x2019;s home to a cutting-edge contemporary architecture, baroque masterpieces, delicious local cuisine and at least 8 months of sun.&lt;/p&gt;&lt;section class=&quot;product&quot; data-id=&quot;2&quot;&gt;&lt;/section&gt;&lt;p&gt;You&#x2019;ll definitely love exploring &lt;a href=&quot;https://en.wikipedia.org/wiki/Warsaw&quot;&gt;Warsaw&lt;/a&gt;! Best time to visit the city is July and August, when it&#x2019;s cool enough to not break a sweat and hot enough to enjoy summer. The city which has quite a combination of both old and modern textures is located by the river Vistula.&lt;/p&gt;&lt;section class=&quot;product&quot; data-id=&quot;1&quot;&gt;&lt;/section&gt;&lt;h3&gt;Other destinations&lt;/h3&gt;&lt;figure class=&quot;table&quot;&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Destination&lt;/th&gt;&lt;th&gt;Trip details&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;section class=&quot;product&quot; data-id=&quot;3&quot;&gt;&lt;/section&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;/td&gt;&lt;td&gt;Getting used to an entirely different culture can be challenging. While it&#x2019;s also nice to learn about cultures online or from books, nothing comes close to experiencing cultural diversity in person. You learn to appreciate each and every single one of the differences while you become more culturally fluid. &lt;a href=&quot;http://ckeditor.com&quot;&gt;Find out more...&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;section class=&quot;product&quot; data-id=&quot;4&quot;&gt;&lt;/section&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;/td&gt;&lt;td&gt;Tourists frequently admit that Taj Mahal &quot;simply cannot be described with words&quot;. And that&#x2019;s probably true. The more you try the more speechless you become. Words give only a semblance of truth. &lt;a href=&quot;http://ckeditor.com&quot;&gt;Find out more...&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;&apos;</span>
+        this.state = {
+            // The initial editor data. It is bound to the editor instance and will change as
+            // the user types and modifies the content of the editor.
+            editorData: &apos;&lt;h2&gt;Check our last minute deals!&lt;/h2&gt;&lt;p&gt;The capital city of &lt;a href=&quot;https://en.wikipedia.org/wiki/Malta&quot;&gt;Malta&lt;/a&gt; is the top destination this summer. It&#x2019;s home to a cutting-edge contemporary architecture, baroque masterpieces, delicious local cuisine and at least 8 months of sun.&lt;/p&gt;&lt;section class=&quot;product&quot; data-id=&quot;2&quot;&gt;&lt;/section&gt;&lt;p&gt;You&#x2019;ll definitely love exploring &lt;a href=&quot;https://en.wikipedia.org/wiki/Warsaw&quot;&gt;Warsaw&lt;/a&gt;! Best time to visit the city is July and August, when it&#x2019;s cool enough to not break a sweat and hot enough to enjoy summer. The city which has quite a combination of both old and modern textures is located by the river Vistula.&lt;/p&gt;&lt;section class=&quot;product&quot; data-id=&quot;1&quot;&gt;&lt;/section&gt;&lt;h3&gt;Other destinations&lt;/h3&gt;&lt;figure class=&quot;table&quot;&gt;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Destination&lt;/th&gt;&lt;th&gt;Trip details&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;section class=&quot;product&quot; data-id=&quot;3&quot;&gt;&lt;/section&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;/td&gt;&lt;td&gt;Getting used to an entirely different culture can be challenging. While it&#x2019;s also nice to learn about cultures online or from books, nothing comes close to experiencing cultural diversity in person. You learn to appreciate each and every single one of the differences while you become more culturally fluid. &lt;a href=&quot;http://ckeditor.com&quot;&gt;Find out more...&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;section class=&quot;product&quot; data-id=&quot;4&quot;&gt;&lt;/section&gt;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&lt;/td&gt;&lt;td&gt;Tourists frequently admit that Taj Mahal &quot;simply cannot be described with words&quot;. And that&#x2019;s probably true. The more you try the more speechless you become. Words give only a semblance of truth. &lt;a href=&quot;http://ckeditor.com&quot;&gt;Find out more...&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;&apos;
         };
 
-        <span class="hljs-comment">// The configuration of the &lt;CKEditor&gt; instance.</span>
-        <span class="hljs-keyword">this</span>.editorConfig = {
-            <span class="hljs-attr">plugins</span>: [
-                <span class="hljs-comment">// A set of editor features to be enabled and made available to the user.</span>
+        // The configuration of the &lt;CKEditor&gt; instance.
+        this.editorConfig = {
+            plugins: [
+                // A set of editor features to be enabled and made available to the user.
                 Essentials, Heading, Bold, Italic, Underline,
                 Link, Paragraph, Table, TableToolbar,
 
-                <span class="hljs-comment">// Your custom plugin implementing the widget is loaded here.</span>
+                // Your custom plugin implementing the widget is loaded here.
                 ProductPreviewEditing
             ],
-            <span class="hljs-attr">toolbar</span>: [
-                <span class="hljs-string">&apos;heading&apos;</span>,
-                <span class="hljs-string">&apos;|&apos;</span>,
-                <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-string">&apos;italic&apos;</span>, <span class="hljs-string">&apos;underline&apos;</span>,
-                <span class="hljs-string">&apos;|&apos;</span>,
-                <span class="hljs-string">&apos;link&apos;</span>, <span class="hljs-string">&apos;insertTable&apos;</span>,
-                <span class="hljs-string">&apos;|&apos;</span>,
-                <span class="hljs-string">&apos;undo&apos;</span>, <span class="hljs-string">&apos;redo&apos;</span>
+            toolbar: [
+                &apos;heading&apos;,
+                &apos;|&apos;,
+                &apos;bold&apos;, &apos;italic&apos;, &apos;underline&apos;,
+                &apos;|&apos;,
+                &apos;link&apos;, &apos;insertTable&apos;,
+                &apos;|&apos;,
+                &apos;undo&apos;, &apos;redo&apos;
             ],
-            <span class="hljs-attr">table</span>: {
-                <span class="hljs-attr">contentToolbar</span>: [
-                    <span class="hljs-string">&apos;tableColumn&apos;</span>,
-                    <span class="hljs-string">&apos;tableRow&apos;</span>,
-                    <span class="hljs-string">&apos;mergeTableCells&apos;</span>
+            table: {
+                contentToolbar: [
+                    &apos;tableColumn&apos;,
+                    &apos;tableRow&apos;,
+                    &apos;mergeTableCells&apos;
                 ]
             },
-            <span class="hljs-comment">// The configuration of the Products plugin. It specifies a function that will allow</span>
-            <span class="hljs-comment">// the editor to render a React &lt;ProductPreview&gt; component inside a product widget.</span>
-            <span class="hljs-attr">products</span>: {
-                <span class="hljs-attr">productRenderer</span>: <span class="hljs-function">(<span class="hljs-params"> id, domElement </span>) =&gt;</span> {
-                    <span class="hljs-keyword">const</span> product = <span class="hljs-keyword">this</span>.props.products.find( <span class="hljs-function"><span class="hljs-params">product</span> =&gt;</span> product.id === id );
+            // The configuration of the Products plugin. It specifies a function that will allow
+            // the editor to render a React &lt;ProductPreview&gt; component inside a product widget.
+            products: {
+                productRenderer: ( id, domElement ) =&gt; {
+                    const product = this.props.products.find( product =&gt; product.id === id );
 
                     ReactDOM.render(
-                        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">ProductPreview</span> <span class="hljs-attr">id</span>=<span class="hljs-string">{id}</span> {<span class="hljs-attr">...product</span>} /&gt;</span></span>,
+                        &lt;ProductPreview id={id} {...product} /&gt;,
                         domElement
                     );
                 }
             }
         };
 
-        <span class="hljs-keyword">this</span>.handleEditorDataChange = <span class="hljs-keyword">this</span>.handleEditorDataChange.bind( <span class="hljs-keyword">this</span> );
-        <span class="hljs-keyword">this</span>.handleEditorInit = <span class="hljs-keyword">this</span>.handleEditorInit.bind( <span class="hljs-keyword">this</span> );
+        this.handleEditorDataChange = this.handleEditorDataChange.bind( this );
+        this.handleEditorInit = this.handleEditorInit.bind( this );
     }
 
-    <span class="hljs-comment">// A handler executed when the user types or modifies the editor content.</span>
-    <span class="hljs-comment">// It updates the state of the application.</span>
+    // A handler executed when the user types or modifies the editor content.
+    // It updates the state of the application.
     handleEditorDataChange( evt, editor ) {
-        <span class="hljs-keyword">this</span>.setState( {
-            <span class="hljs-attr">editorData</span>: editor.getData()
+        this.setState( {
+            editorData: editor.getData()
         } );
     }
 
-    <span class="hljs-comment">// A handler executed when the editor has been initialized and is ready.</span>
-    <span class="hljs-comment">// It synchronizes the initial data state and saves the reference to the editor instance.</span>
+    // A handler executed when the editor has been initialized and is ready.
+    // It synchronizes the initial data state and saves the reference to the editor instance.
     handleEditorInit( editor ) {
-        <span class="hljs-keyword">this</span>.editor = editor;
+        this.editor = editor;
 
-        <span class="hljs-keyword">this</span>.setState( {
-            <span class="hljs-attr">editorData</span>: editor.getData()
+        this.setState( {
+            editorData: editor.getData()
         } );
 
-        <span class="hljs-comment">// CKEditor 5 inspector allows you to take a peek into the editor&apos;s model and view</span>
-        <span class="hljs-comment">// data layers. Use it to debug the application and learn more about the editor.</span>
+        // CKEditor 5 inspector allows you to take a peek into the editor&apos;s model and view
+        // data layers. Use it to debug the application and learn more about the editor.
         CKEditorInspector.attach( editor );
     }
 
     render() {
-        <span class="hljs-keyword">return</span> [
-            <span class="hljs-comment">// The application renders two columns:</span>
-            <span class="hljs-comment">// * in the left one, the &lt;CKEditor&gt; and the textarea displaying live</span>
-            <span class="hljs-comment">//   editor data are rendered.</span>
-            <span class="hljs-comment">// * in the right column, a &lt;ProductList&gt; is rendered with available &lt;ProductPreviews&gt;</span>
-            <span class="hljs-comment">//   to choose from.</span>
-            <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;app__offer-editor&quot;</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&quot;offer-editor&quot;</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Product offer editor<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">CKEditor</span>
-                    <span class="hljs-attr">editor</span>=<span class="hljs-string">{ClassicEditor}</span>
-                    <span class="hljs-attr">data</span>=<span class="hljs-string">{this.state.editorData}</span>
-                    <span class="hljs-attr">config</span>=<span class="hljs-string">{this.editorConfig}</span>
-                    <span class="hljs-attr">onChange</span>=<span class="hljs-string">{this.handleEditorDataChange}</span>
-                    <span class="hljs-attr">onInit</span>=<span class="hljs-string">{this.handleEditorInit}</span>
-                /&gt;</span>
+        return [
+            // The application renders two columns:
+            // * in the left one, the &lt;CKEditor&gt; and the textarea displaying live
+            //   editor data are rendered.
+            // * in the right column, a &lt;ProductList&gt; is rendered with available &lt;ProductPreviews&gt;
+            //   to choose from.
+            &lt;div className=&quot;app__offer-editor&quot; key=&quot;offer-editor&quot;&gt;
+                &lt;h3&gt;Product offer editor&lt;/h3&gt;
+                &lt;CKEditor
+                    editor={ClassicEditor}
+                    data={this.state.editorData}
+                    config={this.editorConfig}
+                    onChange={this.handleEditorDataChange}
+                    onInit={this.handleEditorInit}
+                /&gt;
 
-                <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Editor data<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{this.state.editorData}</span> <span class="hljs-attr">readOnly</span>=<span class="hljs-string">{true}</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>
-            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>,
+                &lt;h3&gt;Editor data&lt;/h3&gt;
+                &lt;textarea value={this.state.editorData} readOnly={true}&gt;&lt;/textarea&gt;
+            &lt;/div&gt;,
             &lt;ProductList
-                key=<span class="hljs-string">&quot;product-list&quot;</span>
-                products={<span class="hljs-keyword">this</span>.props.products}
+                key=&quot;product-list&quot;
+                products={this.props.products}
                 onClick={( id ) =&gt; {
-                    <span class="hljs-keyword">this</span>.editor.execute( <span class="hljs-string">&apos;insertProduct&apos;</span>, id );
-                    <span class="hljs-keyword">this</span>.editor.editing.view.focus();
-                &lt;!--&#xFFFC;<span class="hljs-number">0</span>--&gt;
-            <span class="hljs-regexp">/&gt;
+                    this.editor.execute( &apos;insertProduct&apos;, id );
+                    this.editor.editing.view.focus();
+                }}
+            /&gt;
         ];
     }
 }
-</span></code></pre>
+</code></pre>
 <p>The JavaScript code is ready, but to run the application you need to specify a couple of product definitions. Do that when mounting the <code>&lt;App&gt;</code> component:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// app.js</span>
+<pre class="highlight"><code class="js">// app.js
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
-    <span class="hljs-comment">// ...</span>
+class App extends React.Component {
+    // ...
 }
 
-<span class="hljs-comment">// Render the &lt;App&gt; in the &lt;div class=&quot;app&quot;&gt;&lt;/div&gt; element found in the DOM.</span>
+// Render the &lt;App&gt; in the &lt;div class=&quot;app&quot;&gt;&lt;/div&gt; element found in the DOM.
 ReactDOM.render(
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">App</span>
-        // <span class="hljs-attr">Feeding</span> <span class="hljs-attr">the</span> <span class="hljs-attr">application</span> <span class="hljs-attr">with</span> <span class="hljs-attr">predefined</span> <span class="hljs-attr">products.</span>
-        // <span class="hljs-attr">In</span> <span class="hljs-attr">a</span> <span class="hljs-attr">real-life</span> <span class="hljs-attr">application</span>, <span class="hljs-attr">this</span> <span class="hljs-attr">sort</span> <span class="hljs-attr">of</span> <span class="hljs-attr">data</span> <span class="hljs-attr">would</span> <span class="hljs-attr">be</span> <span class="hljs-attr">loaded</span>
-        // <span class="hljs-attr">from</span> <span class="hljs-attr">a</span> <span class="hljs-attr">database.</span> <span class="hljs-attr">To</span> <span class="hljs-attr">keep</span> <span class="hljs-attr">this</span> <span class="hljs-attr">tutorial</span> <span class="hljs-attr">simple</span>, <span class="hljs-attr">a</span> <span class="hljs-attr">few</span>
-        //  <span class="hljs-attr">hard</span>&#x2013;<span class="hljs-attr">coded</span> <span class="hljs-attr">product</span> <span class="hljs-attr">definitions</span> <span class="hljs-attr">will</span> <span class="hljs-attr">be</span> <span class="hljs-attr">used.</span>
-        <span class="hljs-attr">products</span>=<span class="hljs-string">{[</span>
+    &lt;App
+        // Feeding the application with predefined products.
+        // In a real-life application, this sort of data would be loaded
+        // from a database. To keep this tutorial simple, a few
+        //  hard&#x2013;coded product definitions will be used.
+        products={[
             {
-                <span class="hljs-attr">id:</span> <span class="hljs-attr">1</span>,
-                <span class="hljs-attr">name:</span> &apos;<span class="hljs-attr">Colors</span> <span class="hljs-attr">of</span> <span class="hljs-attr">summer</span> <span class="hljs-attr">in</span> <span class="hljs-attr">Poland</span>&apos;,
-                <span class="hljs-attr">price:</span> &apos;$<span class="hljs-attr">1500</span>&apos;,
-                <span class="hljs-attr">image:</span> &apos;<span class="hljs-attr">product1.jpg</span>&apos;
+                id: 1,
+                name: &apos;Colors of summer in Poland&apos;,
+                price: &apos;$1500&apos;,
+                image: &apos;product1.jpg&apos;
             },
             {
-                <span class="hljs-attr">id:</span> <span class="hljs-attr">2</span>,
-                <span class="hljs-attr">name:</span> &apos;<span class="hljs-attr">Mediterranean</span> <span class="hljs-attr">sun</span> <span class="hljs-attr">on</span> <span class="hljs-attr">Malta</span>&apos;,
-                <span class="hljs-attr">price:</span> &apos;$<span class="hljs-attr">1899</span>&apos;,
-                <span class="hljs-attr">image:</span> &apos;<span class="hljs-attr">product2.jpg</span>&apos;
+                id: 2,
+                name: &apos;Mediterranean sun on Malta&apos;,
+                price: &apos;$1899&apos;,
+                image: &apos;product2.jpg&apos;
             },
             {
-                <span class="hljs-attr">id:</span> <span class="hljs-attr">3</span>,
-                <span class="hljs-attr">name:</span> &apos;<span class="hljs-attr">Tastes</span> <span class="hljs-attr">of</span> <span class="hljs-attr">Asia</span>&apos;,
-                <span class="hljs-attr">price:</span> &apos;$<span class="hljs-attr">2599</span>&apos;,
-                <span class="hljs-attr">image:</span> &apos;<span class="hljs-attr">product3.jpg</span>&apos;
+                id: 3,
+                name: &apos;Tastes of Asia&apos;,
+                price: &apos;$2599&apos;,
+                image: &apos;product3.jpg&apos;
             },
             {
-                <span class="hljs-attr">id:</span> <span class="hljs-attr">4</span>,
-                <span class="hljs-attr">name:</span> &apos;<span class="hljs-attr">Exotic</span> <span class="hljs-attr">India</span>&apos;,
-                <span class="hljs-attr">price:</span> &apos;$<span class="hljs-attr">2200</span>&apos;,
-                <span class="hljs-attr">image:</span> &apos;<span class="hljs-attr">product4.jpg</span>&apos;
+                id: 4,
+                name: &apos;Exotic India&apos;,
+                price: &apos;$2200&apos;,
+                image: &apos;product4.jpg&apos;
             }
         ]}
-    /&gt;</span></span>,
-    <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;.app&apos;</span> )
+    /&gt;,
+    document.querySelector( &apos;.app&apos; )
 );
 </code></pre>
 <p>Please note that each product comes with its own image (e.g. <code>product1.jpg</code>), which should be stored in the <code>assets/</code> directory to load correctly with the CSS <code>background-image</code>. Learn more about styles in the <a href="#styles-and-assets">next section</a>.</p>
 <h2 id="styles-and-assets"><a class="headerlink" href="#styles-and-assets">#</a> Styles and assets</h2>
 <p>The application needs some styling to look good. You are going to put them in the <code>assets/styles.css</code> file imported in your main HTML file (<code>index.html</code>):</p>
-<pre class="highlight"><code class="css"><span class="hljs-comment">/* assets/styles.css */</span>
+<pre class="highlight"><code class="css">/* assets/styles.css */
 
-<span class="hljs-comment">/* --- General application styles --------------------------------------------------- */</span>
+/* --- General application styles --------------------------------------------------- */
 
-<span class="hljs-selector-class">.app</span> {
-    <span class="hljs-attribute">display</span>: flex;
-    <span class="hljs-attribute">flex-direction</span>: row;
-    <span class="hljs-attribute">justify-content</span>: center;
-    <span class="hljs-attribute">font-family</span>: <span class="hljs-string">&quot;Helvetica Neue&quot;</span>,Helvetica,Arial,sans-serif;
-    <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> auto;
+.app {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-family: &quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;
+    margin: 0 auto;
 }
 
-<span class="hljs-selector-class">.app</span> <span class="hljs-selector-tag">h2</span> {
-    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1.3em</span>;
+.app h2 {
+    font-size: 1.3em;
 }
 
-<span class="hljs-selector-class">.app</span> <span class="hljs-selector-tag">textarea</span> {
-    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
-    <span class="hljs-attribute">height</span>: <span class="hljs-number">150px</span>;
-    <span class="hljs-attribute">font-family</span>: <span class="hljs-string">&apos;Courier New&apos;</span>, Courier, monospace;
-    <span class="hljs-attribute">box-sizing</span>: border-box;
-    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">14px</span>;
+.app textarea {
+    width: 100%;
+    height: 150px;
+    font-family: &apos;Courier New&apos;, Courier, monospace;
+    box-sizing: border-box;
+    font-size: 14px;
 }
 
-<span class="hljs-comment">/* --- Product offer editor styles ----------------------------------------------------- */</span>
+/* --- Product offer editor styles ----------------------------------------------------- */
 
-<span class="hljs-selector-class">.app</span> <span class="hljs-selector-class">.app__offer-editor</span> {
-    <span class="hljs-attribute">flex</span>: <span class="hljs-number">1</span> <span class="hljs-number">1</span> auto;
-    <span class="hljs-attribute">max-width</span>: <span class="hljs-number">800px</span>;
+.app .app__offer-editor {
+    flex: 1 1 auto;
+    max-width: 800px;
 }
 
-<span class="hljs-comment">/* --- Generic product preview styles --------------------------------------------------- */</span>
+/* --- Generic product preview styles --------------------------------------------------- */
 
-<span class="hljs-selector-class">.app</span> <span class="hljs-selector-class">.product-preview</span> {
-    <span class="hljs-attribute">background-repeat</span>: no-repeat;
-    <span class="hljs-attribute">background-position</span>: center;
-    <span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">var</span>(--product-image);
-    <span class="hljs-attribute">background-size</span>: cover;
-    <span class="hljs-attribute">height</span>: <span class="hljs-number">150px</span>;
-    <span class="hljs-attribute">position</span>: relative;
-    <span class="hljs-attribute">overflow</span>: hidden;
-    <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">1px</span> <span class="hljs-number">1px</span> <span class="hljs-number">3px</span> <span class="hljs-built_in">hsla</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">0%</span>, .<span class="hljs-number">3</span>);
-    <span class="hljs-attribute">min-width</span>: <span class="hljs-number">160px</span>;
+.app .product-preview {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: var(--product-image);
+    background-size: cover;
+    height: 150px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 1px 1px 3px hsla(0, 0%, 0%, .3);
+    min-width: 160px;
 }
 
-<span class="hljs-selector-class">.app</span> <span class="hljs-selector-class">.product-preview</span> <span class="hljs-selector-class">.product-preview__name</span> {
-    <span class="hljs-attribute">padding</span>: <span class="hljs-number">10px</span>;
-    <span class="hljs-attribute">background</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">100%</span>);
-    <span class="hljs-attribute">font-weight</span>: bold;
-    <span class="hljs-attribute">position</span>: absolute;
-    <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;
-    <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;
-    <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;
+.app .product-preview .product-preview__name {
+    padding: 10px;
+    background: hsl(0, 0%, 100%);
+    font-weight: bold;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
-<span class="hljs-selector-class">.app</span> <span class="hljs-selector-class">.product-preview</span> <span class="hljs-selector-class">.product-preview__price</span> {
-    <span class="hljs-attribute">position</span>: absolute;
-    <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;
-    <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;
-    <span class="hljs-attribute">display</span>: block;
-    <span class="hljs-attribute">background</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">346</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">56%</span>);
-    <span class="hljs-attribute">padding</span>: <span class="hljs-number">6px</span> <span class="hljs-number">10px</span>;
-    <span class="hljs-attribute">min-width</span>: <span class="hljs-number">50px</span>;
-    <span class="hljs-attribute">text-align</span>: center;
-    <span class="hljs-attribute">color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">100%</span>);
-    <span class="hljs-attribute">text-transform</span>: uppercase;
-    <span class="hljs-attribute">font-size</span>: .<span class="hljs-number">8em</span>;
+.app .product-preview .product-preview__price {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    background: hsl(346, 100%, 56%);
+    padding: 6px 10px;
+    min-width: 50px;
+    text-align: center;
+    color: hsl(0, 0%, 100%);
+    text-transform: uppercase;
+    font-size: .8em;
 }
 
-<span class="hljs-selector-class">.app</span> <span class="hljs-selector-class">.product-preview</span> <span class="hljs-selector-class">.product-preview__add</span> {
-    <span class="hljs-attribute">display</span>: none;
+.app .product-preview .product-preview__add {
+    display: none;
 }
 
-<span class="hljs-comment">/* --- Product list styles --------------------------------------------------- */</span>
+/* --- Product list styles --------------------------------------------------- */
 
-<span class="hljs-selector-class">.app</span> <span class="hljs-selector-class">.app__product-list</span> {
-    <span class="hljs-attribute">margin-left</span>: <span class="hljs-number">20px</span>;
-    <span class="hljs-attribute">padding</span>: <span class="hljs-number">20px</span>;
-    <span class="hljs-attribute">min-width</span>: <span class="hljs-number">400px</span>;
-    <span class="hljs-attribute">border-left</span>: <span class="hljs-number">1px</span> solid <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">87%</span>);
+.app .app__product-list {
+    margin-left: 20px;
+    padding: 20px;
+    min-width: 400px;
+    border-left: 1px solid hsl(0, 0%, 87%);
 }
 
-<span class="hljs-selector-class">.app</span> <span class="hljs-selector-class">.app__product-list</span> <span class="hljs-selector-tag">h2</span> {
-    <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">10px</span>;
+.app .app__product-list h2 {
+    margin-top: 10px;
 }
 
-<span class="hljs-selector-class">.app</span> <span class="hljs-selector-class">.app__product-list</span> <span class="hljs-selector-tag">ul</span> {
-    <span class="hljs-attribute">display</span>: grid;
-    <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-number">1</span>fr <span class="hljs-number">1</span>fr;
-    <span class="hljs-attribute">grid-gap</span>: <span class="hljs-number">10px</span>;
-    <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">10px</span>;
-    <span class="hljs-attribute">list-style-type</span>: none;
-    <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
-    <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;
+.app .app__product-list ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    margin-top: 10px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
-<span class="hljs-selector-class">.app</span> <span class="hljs-selector-class">.app__product-list</span> <span class="hljs-selector-class">.product-preview</span> {
-    <span class="hljs-attribute">opacity</span>: .<span class="hljs-number">7</span>;
+.app .app__product-list .product-preview {
+    opacity: .7;
 }
 
-<span class="hljs-selector-class">.app</span> <span class="hljs-selector-class">.app__product-list</span> <span class="hljs-selector-class">.product-preview</span><span class="hljs-selector-pseudo">:hover</span> {
-    <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;
+.app .app__product-list .product-preview:hover {
+    opacity: 1;
 }
 
-<span class="hljs-selector-class">.app</span> <span class="hljs-selector-class">.app__product-list</span> <span class="hljs-selector-class">.product-preview</span><span class="hljs-selector-pseudo">:hover</span> <span class="hljs-selector-class">.product-preview__add</span> {
-    <span class="hljs-attribute">display</span>: block;
+.app .app__product-list .product-preview:hover .product-preview__add {
+    display: block;
 }
 
-<span class="hljs-selector-class">.app</span> <span class="hljs-selector-class">.app__product-list</span> <span class="hljs-selector-class">.product-preview</span> <span class="hljs-selector-class">.product-preview__add</span> {
-    <span class="hljs-attribute">display</span>: none;
-    <span class="hljs-attribute">position</span>: absolute;
-    <span class="hljs-attribute">width</span>: <span class="hljs-number">40px</span>;
-    <span class="hljs-attribute">height</span>: <span class="hljs-number">40px</span>;
-    <span class="hljs-attribute">top</span>: <span class="hljs-number">45%</span>;
-    <span class="hljs-attribute">left</span>: <span class="hljs-number">50%</span>;
+.app .app__product-list .product-preview .product-preview__add {
+    display: none;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 45%;
+    left: 50%;
 
-    <span class="hljs-attribute">border</span>: <span class="hljs-number">0</span>;
-    <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;
-    <span class="hljs-attribute">cursor</span>: pointer;
-    <span class="hljs-attribute">font-weight</span>: bold;
-    <span class="hljs-attribute">text-align</span>: center;
-    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">100px</span>;
-    <span class="hljs-attribute">background</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">100%</span>);
-    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(-<span class="hljs-number">50%</span>, -<span class="hljs-number">50%</span>);
-    <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">2px</span> <span class="hljs-number">2px</span> <span class="hljs-number">2px</span> <span class="hljs-built_in">hsla</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">0%</span>, .<span class="hljs-number">3</span>);
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 100px;
+    background: hsl(0, 0%, 100%);
+    transform: translate(-50%, -50%);
+    box-shadow: 2px 2px 2px hsla(0, 0%, 0%, .3);
 }
 
-<span class="hljs-selector-class">.app</span> <span class="hljs-selector-class">.app__product-list</span> <span class="hljs-selector-class">.product-preview</span> <span class="hljs-selector-class">.product-preview__add</span> <span class="hljs-selector-tag">span</span> {
-    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">25px</span>;
-    <span class="hljs-attribute">vertical-align</span>: middle;
-    <span class="hljs-attribute">color</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">24%</span>);
-    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">40px</span>;
-    <span class="hljs-attribute">display</span>: inline-block;
+.app .app__product-list .product-preview .product-preview__add span {
+    font-size: 25px;
+    vertical-align: middle;
+    color: hsl(0, 0%, 24%);
+    line-height: 40px;
+    display: inline-block;
 }
 
-<span class="hljs-selector-class">.app</span> <span class="hljs-selector-class">.app__product-list</span> <span class="hljs-selector-class">.product-preview</span> <span class="hljs-selector-class">.product-preview__name</span> {
-    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">10px</span>;
+.app .app__product-list .product-preview .product-preview__name {
+    font-size: 10px;
 }
 
-<span class="hljs-selector-class">.app</span> <span class="hljs-selector-class">.app__product-list</span> <span class="hljs-selector-class">.product-preview</span> <span class="hljs-selector-class">.product-preview__price</span> {
-    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">10px</span>;
+.app .app__product-list .product-preview .product-preview__price {
+    font-size: 10px;
 }
 
-<span class="hljs-comment">/* --- In-editor product widget styles --------------------------------------------------- */</span>
+/* --- In-editor product widget styles --------------------------------------------------- */
 
-<span class="hljs-selector-class">.app</span> <span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.product</span> {
-    <span class="hljs-attribute">margin</span>: <span class="hljs-number">1em</span>;
-    <span class="hljs-attribute">animation</span>: slideUp <span class="hljs-number">0.3s</span> ease;
+.app .ck-content .product {
+    margin: 1em;
+    animation: slideUp 0.3s ease;
 }
 
-<span class="hljs-keyword">@keyframes</span> slideUp {
+@keyframes slideUp {
     0% {
-        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;
-        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateY</span>(<span class="hljs-number">1em</span>);
+        opacity: 0;
+        transform: translateY(1em);
     }
     100% {
-        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;
-        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateY</span>(<span class="hljs-number">0</span>);
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 </code></pre>
@@ -1381,50 +1381,50 @@ ReactDOM.render(
 <h2 id="full-source-code"><a class="headerlink" href="#full-source-code">#</a> Full source code</h2>
 <p>The following code snippets present the complete implementation of the application (and all its dependencies). Follow the <a href="#application-structure">application structure</a> diagram to re&#x2013;create the application.</p>
 <h3 id="appjs"><a class="headerlink" href="#appjs">#</a> <code>app.js</code></h3>
-<pre class="highlight"><code class="jsx html"><span class="hljs-comment">// app.js</span>
+<pre class="highlight"><code class="jsx html">// app.js
 
-<span class="hljs-comment">// Imports necessary to run a React application.</span>
-<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>;
-<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react-dom&apos;</span>;
+// Imports necessary to run a React application.
+import React from &apos;react&apos;;
+import ReactDOM from &apos;react-dom&apos;;
 
-<span class="hljs-comment">// The official &lt;CKEditor&gt; component for React.</span>
-<span class="hljs-keyword">import</span> CKEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-react&apos;</span>;
+// The official &lt;CKEditor&gt; component for React.
+import CKEditor from &apos;@ckeditor/ckeditor5-react&apos;;
 
-<span class="hljs-comment">// The official CKEditor 5 instance inspector. It helps understand the editor view and model.</span>
-<span class="hljs-keyword">import</span> CKEditorInspector <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-inspector&apos;</span>;
+// The official CKEditor 5 instance inspector. It helps understand the editor view and model.
+import CKEditorInspector from &apos;@ckeditor/ckeditor5-inspector&apos;;
 
-<span class="hljs-comment">// The base editor class and features required to run the editor.</span>
-<span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
-<span class="hljs-keyword">import</span> Essentials <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;</span>;
-<span class="hljs-keyword">import</span> Heading <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-heading/src/heading&apos;</span>;
-<span class="hljs-keyword">import</span> Bold <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;</span>;
-<span class="hljs-keyword">import</span> Italic <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;</span>;
-<span class="hljs-keyword">import</span> Underline <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/underline&apos;</span>;
-<span class="hljs-keyword">import</span> Link <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-link/src/link&apos;</span>;
-<span class="hljs-keyword">import</span> Table <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-table/src/table&apos;</span>;
-<span class="hljs-keyword">import</span> TableToolbar <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-table/src/tabletoolbar&apos;</span>;
-<span class="hljs-keyword">import</span> Paragraph <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;</span>;
+// The base editor class and features required to run the editor.
+import ClassicEditor from &apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;;
+import Essentials from &apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;;
+import Heading from &apos;@ckeditor/ckeditor5-heading/src/heading&apos;;
+import Bold from &apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;;
+import Italic from &apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;;
+import Underline from &apos;@ckeditor/ckeditor5-basic-styles/src/underline&apos;;
+import Link from &apos;@ckeditor/ckeditor5-link/src/link&apos;;
+import Table from &apos;@ckeditor/ckeditor5-table/src/table&apos;;
+import TableToolbar from &apos;@ckeditor/ckeditor5-table/src/tabletoolbar&apos;;
+import Paragraph from &apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;;
 
-<span class="hljs-comment">// CKEditor plugin implementing a product widget to be used in the editor content.</span>
-<span class="hljs-keyword">import</span> ProductPreviewEditing <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./ckeditor/productpreviewediting&apos;</span>;
+// CKEditor plugin implementing a product widget to be used in the editor content.
+import ProductPreviewEditing from &apos;./ckeditor/productpreviewediting&apos;;
 
-<span class="hljs-comment">// React components to render the list of products and the product preview.</span>
-<span class="hljs-keyword">import</span> ProductList <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./react/productlist&apos;</span>;
-<span class="hljs-keyword">import</span> ProductPreview <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./react/productpreview&apos;</span>;
+// React components to render the list of products and the product preview.
+import ProductList from &apos;./react/productlist&apos;;
+import ProductPreview from &apos;./react/productpreview&apos;;
 
-<span class="hljs-comment">// The React application class. It renders the editor and the product list.</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
-    <span class="hljs-keyword">constructor</span>( props ) {
-        <span class="hljs-keyword">super</span>( props );
+// The React application class. It renders the editor and the product list.
+class App extends React.Component {
+    constructor( props ) {
+        super( props );
 
-        <span class="hljs-comment">// A place to store the reference to the editor instance created by the &lt;CKEditor&gt; component.</span>
-        <span class="hljs-comment">// The editor instance is created asynchronously and is only available when the editor is ready.</span>
-        <span class="hljs-keyword">this</span>.editor = <span class="hljs-literal">null</span>;
+        // A place to store the reference to the editor instance created by the &lt;CKEditor&gt; component.
+        // The editor instance is created asynchronously and is only available when the editor is ready.
+        this.editor = null;
 
-        <span class="hljs-keyword">this</span>.state = {
-            <span class="hljs-comment">// The initial editor data. It is bound to the editor instance and will change as</span>
-            <span class="hljs-comment">// the user types and modifies the content of the editor.</span>
-            <span class="hljs-attr">editorData</span>: <span class="hljs-string">`
+        this.state = {
+            // The initial editor data. It is bound to the editor instance and will change as
+            // the user types and modifies the content of the editor.
+            editorData: `
                 &lt;h2&gt;Check our last minute deals!&lt;/h2&gt;
 
                 &lt;p&gt;Aenean erat conubia pretium libero habitant turpis vivamus dignissim molestie, phasellus libero! Curae; consequat cubilia mattis. Litora non iaculis tincidunt.&lt;/p&gt;
@@ -1459,344 +1459,344 @@ ReactDOM.render(
                         &lt;/tbody&gt;
                     &lt;/table&gt;
                 &lt;/figure&gt;
-            `</span>,
+            `,
         };
 
-        <span class="hljs-comment">// The configuration of the &lt;CKEditor&gt; instance.</span>
-        <span class="hljs-keyword">this</span>.editorConfig = {
-            <span class="hljs-attr">plugins</span>: [
-                <span class="hljs-comment">// A set of editor features to be enabled and made available to the user.</span>
+        // The configuration of the &lt;CKEditor&gt; instance.
+        this.editorConfig = {
+            plugins: [
+                // A set of editor features to be enabled and made available to the user.
                 Essentials, Heading, Bold, Italic, Underline,
                 Link, Paragraph, Table, TableToolbar,
 
-                <span class="hljs-comment">// Your custom plugin implementing the widget is loaded here.</span>
+                // Your custom plugin implementing the widget is loaded here.
                 ProductPreviewEditing
             ],
-            <span class="hljs-attr">toolbar</span>: [
-                <span class="hljs-string">&apos;heading&apos;</span>,
-                <span class="hljs-string">&apos;|&apos;</span>,
-                <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-string">&apos;italic&apos;</span>, <span class="hljs-string">&apos;underline&apos;</span>,
-                <span class="hljs-string">&apos;|&apos;</span>,
-                <span class="hljs-string">&apos;link&apos;</span>, <span class="hljs-string">&apos;insertTable&apos;</span>,
-                <span class="hljs-string">&apos;|&apos;</span>,
-                <span class="hljs-string">&apos;undo&apos;</span>, <span class="hljs-string">&apos;redo&apos;</span>
+            toolbar: [
+                &apos;heading&apos;,
+                &apos;|&apos;,
+                &apos;bold&apos;, &apos;italic&apos;, &apos;underline&apos;,
+                &apos;|&apos;,
+                &apos;link&apos;, &apos;insertTable&apos;,
+                &apos;|&apos;,
+                &apos;undo&apos;, &apos;redo&apos;
             ],
-            <span class="hljs-attr">table</span>: {
-                <span class="hljs-attr">contentToolbar</span>: [
-                    <span class="hljs-string">&apos;tableColumn&apos;</span>,
-                    <span class="hljs-string">&apos;tableRow&apos;</span>,
-                    <span class="hljs-string">&apos;mergeTableCells&apos;</span>
+            table: {
+                contentToolbar: [
+                    &apos;tableColumn&apos;,
+                    &apos;tableRow&apos;,
+                    &apos;mergeTableCells&apos;
                 ]
             },
-            <span class="hljs-comment">// The configuration of the Products plugin. It specifies a function that will allow</span>
-            <span class="hljs-comment">// the editor to render a React &lt;ProductPreview&gt; component inside a product widget.</span>
-            <span class="hljs-attr">products</span>: {
-                <span class="hljs-attr">productRenderer</span>: <span class="hljs-function">(<span class="hljs-params"> id, domElement </span>) =&gt;</span> {
-                    <span class="hljs-keyword">const</span> product = <span class="hljs-keyword">this</span>.props.products.find( <span class="hljs-function"><span class="hljs-params">product</span> =&gt;</span> product.id === id );
+            // The configuration of the Products plugin. It specifies a function that will allow
+            // the editor to render a React &lt;ProductPreview&gt; component inside a product widget.
+            products: {
+                productRenderer: ( id, domElement ) =&gt; {
+                    const product = this.props.products.find( product =&gt; product.id === id );
 
                     ReactDOM.render(
-                        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">ProductPreview</span> <span class="hljs-attr">id</span>=<span class="hljs-string">{id}</span> {<span class="hljs-attr">...product</span>} /&gt;</span></span>,
+                        &lt;ProductPreview id={id} {...product} /&gt;,
                         domElement
                     );
                 }
             }
         };
 
-        <span class="hljs-keyword">this</span>.handleEditorDataChange = <span class="hljs-keyword">this</span>.handleEditorDataChange.bind( <span class="hljs-keyword">this</span> );
-        <span class="hljs-keyword">this</span>.handleEditorInit = <span class="hljs-keyword">this</span>.handleEditorInit.bind( <span class="hljs-keyword">this</span> );
+        this.handleEditorDataChange = this.handleEditorDataChange.bind( this );
+        this.handleEditorInit = this.handleEditorInit.bind( this );
     }
 
-    <span class="hljs-comment">// A handler executed when the user types or modifies the editor content.</span>
-    <span class="hljs-comment">// It updates the state of the application.</span>
+    // A handler executed when the user types or modifies the editor content.
+    // It updates the state of the application.
     handleEditorDataChange( evt, editor ) {
-        <span class="hljs-keyword">this</span>.setState( {
-            <span class="hljs-attr">editorData</span>: editor.getData()
+        this.setState( {
+            editorData: editor.getData()
         } );
     }
 
-    <span class="hljs-comment">// A handler executed when the editor has been initialized and is ready.</span>
-    <span class="hljs-comment">// It synchronizes the initial data state and saves the reference to the editor instance.</span>
+    // A handler executed when the editor has been initialized and is ready.
+    // It synchronizes the initial data state and saves the reference to the editor instance.
     handleEditorInit( editor ) {
-        <span class="hljs-keyword">this</span>.editor = editor;
+        this.editor = editor;
 
-        <span class="hljs-keyword">this</span>.setState( {
-            <span class="hljs-attr">editorData</span>: editor.getData()
+        this.setState( {
+            editorData: editor.getData()
         } );
 
-        <span class="hljs-comment">// CKEditor 5 inspector allows you to take a peek into the editor&apos;s model and view</span>
-        <span class="hljs-comment">// data layers. Use it to debug the application and learn more about the editor.</span>
+        // CKEditor 5 inspector allows you to take a peek into the editor&apos;s model and view
+        // data layers. Use it to debug the application and learn more about the editor.
         CKEditorInspector.attach( editor );
     }
 
     render() {
-        <span class="hljs-keyword">return</span> [
-            <span class="hljs-comment">// The application renders two columns:</span>
-            <span class="hljs-comment">// * in the left one, the &lt;CKEditor&gt; and the textarea displaying live</span>
-            <span class="hljs-comment">//   editor data are rendered.</span>
-            <span class="hljs-comment">// * in the right column, a &lt;ProductList&gt; is rendered with available &lt;ProductPreviews&gt;</span>
-            <span class="hljs-comment">//   to choose from.</span>
-            <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;app__offer-editor&quot;</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&quot;offer-editor&quot;</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Product offer editor<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">CKEditor</span>
-                    <span class="hljs-attr">editor</span>=<span class="hljs-string">{ClassicEditor}</span>
-                    <span class="hljs-attr">data</span>=<span class="hljs-string">{this.state.editorData}</span>
-                    <span class="hljs-attr">config</span>=<span class="hljs-string">{this.editorConfig}</span>
-                    <span class="hljs-attr">onChange</span>=<span class="hljs-string">{this.handleEditorDataChange}</span>
-                    <span class="hljs-attr">onInit</span>=<span class="hljs-string">{this.handleEditorInit}</span>
-                /&gt;</span>
+        return [
+            // The application renders two columns:
+            // * in the left one, the &lt;CKEditor&gt; and the textarea displaying live
+            //   editor data are rendered.
+            // * in the right column, a &lt;ProductList&gt; is rendered with available &lt;ProductPreviews&gt;
+            //   to choose from.
+            &lt;div className=&quot;app__offer-editor&quot; key=&quot;offer-editor&quot;&gt;
+                &lt;h3&gt;Product offer editor&lt;/h3&gt;
+                &lt;CKEditor
+                    editor={ClassicEditor}
+                    data={this.state.editorData}
+                    config={this.editorConfig}
+                    onChange={this.handleEditorDataChange}
+                    onInit={this.handleEditorInit}
+                /&gt;
 
-                <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Editor data<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{this.state.editorData}</span> <span class="hljs-attr">readOnly</span>=<span class="hljs-string">{true}</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>
-            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>,
+                &lt;h3&gt;Editor data&lt;/h3&gt;
+                &lt;textarea value={this.state.editorData} readOnly={true}&gt;&lt;/textarea&gt;
+            &lt;/div&gt;,
             &lt;ProductList
-                key=<span class="hljs-string">&quot;product-list&quot;</span>
-                products={<span class="hljs-keyword">this</span>.props.products}
+                key=&quot;product-list&quot;
+                products={this.props.products}
                 onClick={( id ) =&gt; {
-                    <span class="hljs-keyword">this</span>.editor.execute( <span class="hljs-string">&apos;insertProduct&apos;</span>, id );
-                    <span class="hljs-keyword">this</span>.editor.editing.view.focus();
-                &lt;!--&#xFFFC;<span class="hljs-number">1</span>--&gt;
-            <span class="hljs-regexp">/&gt;
+                    this.editor.execute( &apos;insertProduct&apos;, id );
+                    this.editor.editing.view.focus();
+                }}
+            /&gt;
         ];
     }
 }
 
-/</span><span class="hljs-regexp">/ Render the &lt;App&gt; in the &lt;div class=&quot;app&quot;&gt;&lt;/</span>div&gt; element found <span class="hljs-keyword">in</span> the DOM.
+// Render the &lt;App&gt; in the &lt;div class=&quot;app&quot;&gt;&lt;/div&gt; element found in the DOM.
 ReactDOM.render(
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">App</span>
-        // <span class="hljs-attr">Feeding</span> <span class="hljs-attr">the</span> <span class="hljs-attr">application</span> <span class="hljs-attr">with</span> <span class="hljs-attr">predefined</span> <span class="hljs-attr">products.</span>
-        // <span class="hljs-attr">In</span> <span class="hljs-attr">a</span> <span class="hljs-attr">real-life</span> <span class="hljs-attr">application</span>, <span class="hljs-attr">this</span> <span class="hljs-attr">sort</span> <span class="hljs-attr">of</span> <span class="hljs-attr">data</span> <span class="hljs-attr">would</span> <span class="hljs-attr">be</span> <span class="hljs-attr">loaded</span>
-        // <span class="hljs-attr">from</span> <span class="hljs-attr">a</span> <span class="hljs-attr">database.</span> <span class="hljs-attr">To</span> <span class="hljs-attr">keep</span> <span class="hljs-attr">this</span> <span class="hljs-attr">tutorial</span> <span class="hljs-attr">simple</span>, <span class="hljs-attr">a</span> <span class="hljs-attr">few</span>
-        //  <span class="hljs-attr">hard</span>&#x2013;<span class="hljs-attr">coded</span> <span class="hljs-attr">product</span> <span class="hljs-attr">definitions</span> <span class="hljs-attr">will</span> <span class="hljs-attr">be</span> <span class="hljs-attr">used.</span>
-        <span class="hljs-attr">products</span>=<span class="hljs-string">{[</span>
+    &lt;App
+        // Feeding the application with predefined products.
+        // In a real-life application, this sort of data would be loaded
+        // from a database. To keep this tutorial simple, a few
+        //  hard&#x2013;coded product definitions will be used.
+        products={[
             {
-                <span class="hljs-attr">id:</span> <span class="hljs-attr">1</span>,
-                <span class="hljs-attr">name:</span> &apos;<span class="hljs-attr">Colors</span> <span class="hljs-attr">of</span> <span class="hljs-attr">summer</span> <span class="hljs-attr">in</span> <span class="hljs-attr">Poland</span>&apos;,
-                <span class="hljs-attr">price:</span> &apos;$<span class="hljs-attr">1500</span>&apos;,
-                <span class="hljs-attr">image:</span> &apos;<span class="hljs-attr">product1.jpg</span>&apos;
+                id: 1,
+                name: &apos;Colors of summer in Poland&apos;,
+                price: &apos;$1500&apos;,
+                image: &apos;product1.jpg&apos;
             },
             {
-                <span class="hljs-attr">id:</span> <span class="hljs-attr">2</span>,
-                <span class="hljs-attr">name:</span> &apos;<span class="hljs-attr">Mediterranean</span> <span class="hljs-attr">sun</span> <span class="hljs-attr">on</span> <span class="hljs-attr">Malta</span>&apos;,
-                <span class="hljs-attr">price:</span> &apos;$<span class="hljs-attr">1899</span>&apos;,
-                <span class="hljs-attr">image:</span> &apos;<span class="hljs-attr">product2.jpg</span>&apos;
+                id: 2,
+                name: &apos;Mediterranean sun on Malta&apos;,
+                price: &apos;$1899&apos;,
+                image: &apos;product2.jpg&apos;
             },
             {
-                <span class="hljs-attr">id:</span> <span class="hljs-attr">3</span>,
-                <span class="hljs-attr">name:</span> &apos;<span class="hljs-attr">Tastes</span> <span class="hljs-attr">of</span> <span class="hljs-attr">Asia</span>&apos;,
-                <span class="hljs-attr">price:</span> &apos;$<span class="hljs-attr">2599</span>&apos;,
-                <span class="hljs-attr">image:</span> &apos;<span class="hljs-attr">product3.jpg</span>&apos;
+                id: 3,
+                name: &apos;Tastes of Asia&apos;,
+                price: &apos;$2599&apos;,
+                image: &apos;product3.jpg&apos;
             },
             {
-                <span class="hljs-attr">id:</span> <span class="hljs-attr">4</span>,
-                <span class="hljs-attr">name:</span> &apos;<span class="hljs-attr">Exotic</span> <span class="hljs-attr">India</span>&apos;,
-                <span class="hljs-attr">price:</span> &apos;$<span class="hljs-attr">2200</span>&apos;,
-                <span class="hljs-attr">image:</span> &apos;<span class="hljs-attr">product4.jpg</span>&apos;
+                id: 4,
+                name: &apos;Exotic India&apos;,
+                price: &apos;$2200&apos;,
+                image: &apos;product4.jpg&apos;
             }
         ]}
-    /&gt;</span></span>,
-    <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;.app&apos;</span> )
+    /&gt;,
+    document.querySelector( &apos;.app&apos; )
 );
 </code></pre>
 <h3 id="productprevieweditingjs"><a class="headerlink" href="#productprevieweditingjs">#</a> <code>productpreviewediting.js</code></h3>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// ckeditor/productpreviewediting.js</span>
+<pre class="highlight"><code class="js">// ckeditor/productpreviewediting.js
 
-<span class="hljs-keyword">import</span> Plugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/plugin&apos;</span>;
-<span class="hljs-keyword">import</span> { toWidget } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-widget/src/utils&apos;</span>;
-<span class="hljs-keyword">import</span> Widget <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-widget/src/widget&apos;</span>;
-<span class="hljs-keyword">import</span> InsertProductPreviewCommand <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./insertproductpreviewcommand&apos;</span>;
+import Plugin from &apos;@ckeditor/ckeditor5-core/src/plugin&apos;;
+import { toWidget } from &apos;@ckeditor/ckeditor5-widget/src/utils&apos;;
+import Widget from &apos;@ckeditor/ckeditor5-widget/src/widget&apos;;
+import InsertProductPreviewCommand from &apos;./insertproductpreviewcommand&apos;;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductPreviewEditing</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
-    <span class="hljs-keyword">static</span> <span class="hljs-keyword">get</span> requires() {
-        <span class="hljs-keyword">return</span> [ Widget ];
+export default class ProductPreviewEditing extends Plugin {
+    static get requires() {
+        return [ Widget ];
     }
 
     init() {
-        <span class="hljs-keyword">this</span>._defineSchema();
-        <span class="hljs-keyword">this</span>._defineConverters();
+        this._defineSchema();
+        this._defineConverters();
 
-        <span class="hljs-keyword">this</span>.editor.commands.add( <span class="hljs-string">&apos;insertProduct&apos;</span>, <span class="hljs-keyword">new</span> InsertProductPreviewCommand( <span class="hljs-keyword">this</span>.editor ) );
+        this.editor.commands.add( &apos;insertProduct&apos;, new InsertProductPreviewCommand( this.editor ) );
     }
 
     _defineSchema() {
-        <span class="hljs-keyword">const</span> schema = <span class="hljs-keyword">this</span>.editor.model.schema;
+        const schema = this.editor.model.schema;
 
-        schema.register( <span class="hljs-string">&apos;productPreview&apos;</span>, {
-            <span class="hljs-comment">// Behaves like a self-contained object (e.g. an image).</span>
-            <span class="hljs-attr">isObject</span>: <span class="hljs-literal">true</span>,
+        schema.register( &apos;productPreview&apos;, {
+            // Behaves like a self-contained object (e.g. an image).
+            isObject: true,
 
-            <span class="hljs-comment">// Allow in places where other blocks are allowed (e.g. directly in the root).</span>
-            <span class="hljs-attr">allowWhere</span>: <span class="hljs-string">&apos;$block&apos;</span>,
+            // Allow in places where other blocks are allowed (e.g. directly in the root).
+            allowWhere: &apos;$block&apos;,
 
-            <span class="hljs-comment">// Each product preview has an ID. A unique ID tells the application which</span>
-            <span class="hljs-comment">// product it represents and makes it possible to render it inside a widget.</span>
-            <span class="hljs-attr">allowAttributes</span>: [ <span class="hljs-string">&apos;id&apos;</span> ]
+            // Each product preview has an ID. A unique ID tells the application which
+            // product it represents and makes it possible to render it inside a widget.
+            allowAttributes: [ &apos;id&apos; ]
         } );
     }
 
     _defineConverters() {
-        <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">this</span>.editor;
-        <span class="hljs-keyword">const</span> conversion = editor.conversion;
-        <span class="hljs-keyword">const</span> renderProduct = editor.config.get( <span class="hljs-string">&apos;products&apos;</span> ).productRenderer;
+        const editor = this.editor;
+        const conversion = editor.conversion;
+        const renderProduct = editor.config.get( &apos;products&apos; ).productRenderer;
 
-        <span class="hljs-comment">// &lt;productPreview&gt; converters ((data) view &#x2192; model)</span>
-        conversion.for( <span class="hljs-string">&apos;upcast&apos;</span> ).elementToElement( {
-            <span class="hljs-attr">view</span>: {
-                <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;section&apos;</span>,
-                <span class="hljs-attr">classes</span>: <span class="hljs-string">&apos;product&apos;</span>
+        // &lt;productPreview&gt; converters ((data) view &#x2192; model)
+        conversion.for( &apos;upcast&apos; ).elementToElement( {
+            view: {
+                name: &apos;section&apos;,
+                classes: &apos;product&apos;
             },
-            <span class="hljs-attr">model</span>: <span class="hljs-function">(<span class="hljs-params"> viewElement, modelWriter </span>) =&gt;</span> {
-                <span class="hljs-comment">// Read the &quot;data-id&quot; attribute from the view and set it as the &quot;id&quot; in the model.</span>
-                <span class="hljs-keyword">return</span> modelWriter.createElement( <span class="hljs-string">&apos;productPreview&apos;</span>, {
-                    <span class="hljs-attr">id</span>: <span class="hljs-built_in">parseInt</span>( viewElement.getAttribute( <span class="hljs-string">&apos;data-id&apos;</span> ) )
+            model: ( viewElement, modelWriter ) =&gt; {
+                // Read the &quot;data-id&quot; attribute from the view and set it as the &quot;id&quot; in the model.
+                return modelWriter.createElement( &apos;productPreview&apos;, {
+                    id: parseInt( viewElement.getAttribute( &apos;data-id&apos; ) )
                 } );
             }
         } );
 
-        <span class="hljs-comment">// &lt;productPreview&gt; converters (model &#x2192; data view)</span>
-        conversion.for( <span class="hljs-string">&apos;dataDowncast&apos;</span> ).elementToElement( {
-            <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;productPreview&apos;</span>,
-            <span class="hljs-attr">view</span>: <span class="hljs-function">(<span class="hljs-params"> modelElement, viewWriter </span>) =&gt;</span> {
-                <span class="hljs-comment">// In the data view, the model &lt;productPreview&gt; corresponds to:</span>
-                <span class="hljs-comment">//</span>
-                <span class="hljs-comment">// &lt;section class=&quot;product&quot; data-id=&quot;...&quot;&gt;&lt;/section&gt;</span>
-                <span class="hljs-keyword">return</span> viewWriter.createEmptyElement( <span class="hljs-string">&apos;section&apos;</span>, {
-                    <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;product&apos;</span>,
-                    <span class="hljs-string">&apos;data-id&apos;</span>: modelElement.getAttribute( <span class="hljs-string">&apos;id&apos;</span> )
+        // &lt;productPreview&gt; converters (model &#x2192; data view)
+        conversion.for( &apos;dataDowncast&apos; ).elementToElement( {
+            model: &apos;productPreview&apos;,
+            view: ( modelElement, viewWriter ) =&gt; {
+                // In the data view, the model &lt;productPreview&gt; corresponds to:
+                //
+                // &lt;section class=&quot;product&quot; data-id=&quot;...&quot;&gt;&lt;/section&gt;
+                return viewWriter.createEmptyElement( &apos;section&apos;, {
+                    class: &apos;product&apos;,
+                    &apos;data-id&apos;: modelElement.getAttribute( &apos;id&apos; )
                 } );
             }
         } );
 
-        <span class="hljs-comment">// &lt;productPreview&gt; converters (model &#x2192; editing view)</span>
-        conversion.for( <span class="hljs-string">&apos;editingDowncast&apos;</span> ).elementToElement( {
-            <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;productPreview&apos;</span>,
-            <span class="hljs-attr">view</span>: <span class="hljs-function">(<span class="hljs-params"> modelElement, viewWriter </span>) =&gt;</span> {
-                <span class="hljs-comment">// In the editing view, the model &lt;productPreview&gt; corresponds to:</span>
-                <span class="hljs-comment">//</span>
-                <span class="hljs-comment">// &lt;section class=&quot;product&quot; data-id=&quot;...&quot;&gt;</span>
-                <span class="hljs-comment">//     &lt;div class=&quot;product__react-wrapper&quot;&gt;</span>
-                <span class="hljs-comment">//         &lt;ProductPreview /&gt; (React component)</span>
-                <span class="hljs-comment">//     &lt;/div&gt;</span>
-                <span class="hljs-comment">// &lt;/section&gt;</span>
-                <span class="hljs-keyword">const</span> id = modelElement.getAttribute( <span class="hljs-string">&apos;id&apos;</span> );
+        // &lt;productPreview&gt; converters (model &#x2192; editing view)
+        conversion.for( &apos;editingDowncast&apos; ).elementToElement( {
+            model: &apos;productPreview&apos;,
+            view: ( modelElement, viewWriter ) =&gt; {
+                // In the editing view, the model &lt;productPreview&gt; corresponds to:
+                //
+                // &lt;section class=&quot;product&quot; data-id=&quot;...&quot;&gt;
+                //     &lt;div class=&quot;product__react-wrapper&quot;&gt;
+                //         &lt;ProductPreview /&gt; (React component)
+                //     &lt;/div&gt;
+                // &lt;/section&gt;
+                const id = modelElement.getAttribute( &apos;id&apos; );
 
-                <span class="hljs-comment">// The outermost &lt;section class=&quot;product&quot; data-id=&quot;...&quot;&gt;&lt;/section&gt; element.</span>
-                <span class="hljs-keyword">const</span> section = viewWriter.createContainerElement( <span class="hljs-string">&apos;section&apos;</span>, {
-                    <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;product&apos;</span>,
-                    <span class="hljs-string">&apos;data-id&apos;</span>: id
+                // The outermost &lt;section class=&quot;product&quot; data-id=&quot;...&quot;&gt;&lt;/section&gt; element.
+                const section = viewWriter.createContainerElement( &apos;section&apos;, {
+                    class: &apos;product&apos;,
+                    &apos;data-id&apos;: id
                 } );
 
-                <span class="hljs-comment">// The inner &lt;div class=&quot;product__react-wrapper&quot;&gt;&lt;/div&gt; element.</span>
-                <span class="hljs-comment">// This element will host a React &lt;ProductPreview /&gt; component.</span>
-                <span class="hljs-keyword">const</span> reactWrapper = viewWriter.createUIElement( <span class="hljs-string">&apos;div&apos;</span>, {
-                    <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;product__react-wrapper&apos;</span>
-                }, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"> domDocument </span>) </span>{
-                    <span class="hljs-keyword">const</span> domElement = <span class="hljs-keyword">this</span>.toDomElement( domDocument );
+                // The inner &lt;div class=&quot;product__react-wrapper&quot;&gt;&lt;/div&gt; element.
+                // This element will host a React &lt;ProductPreview /&gt; component.
+                const reactWrapper = viewWriter.createUIElement( &apos;div&apos;, {
+                    class: &apos;product__react-wrapper&apos;
+                }, function( domDocument ) {
+                    const domElement = this.toDomElement( domDocument );
 
-                    <span class="hljs-comment">// This the place where React renders the actual product preview hosted</span>
-                    <span class="hljs-comment">// by a UIElement in the view. You are using a function (renderer) passed as</span>
-                    <span class="hljs-comment">// editor.config.products#productRenderer.</span>
+                    // This the place where React renders the actual product preview hosted
+                    // by a UIElement in the view. You are using a function (renderer) passed as
+                    // editor.config.products#productRenderer.
                     renderProduct( id, domElement );
 
-                    <span class="hljs-keyword">return</span> domElement;
+                    return domElement;
                 } );
 
-                viewWriter.insert( viewWriter.createPositionAt( section, <span class="hljs-number">0</span> ), reactWrapper );
+                viewWriter.insert( viewWriter.createPositionAt( section, 0 ), reactWrapper );
 
-                <span class="hljs-keyword">return</span> toWidget( section, viewWriter, { <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;product preview widget&apos;</span> } );
+                return toWidget( section, viewWriter, { label: &apos;product preview widget&apos; } );
             }
         } );
     }
 }
 </code></pre>
 <h3 id="insertproductpreviewcommandjs"><a class="headerlink" href="#insertproductpreviewcommandjs">#</a> <code>insertproductpreviewcommand.js</code></h3>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// ckeditor/insertproductpreviewcommand.js</span>
+<pre class="highlight"><code class="js">// ckeditor/insertproductpreviewcommand.js
 
-<span class="hljs-keyword">import</span> Command <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/command&apos;</span>;
+import Command from &apos;@ckeditor/ckeditor5-core/src/command&apos;;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">InsertProductPreviewCommand</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Command</span> </span>{
+export default class InsertProductPreviewCommand extends Command {
     execute( id ) {
-        <span class="hljs-keyword">this</span>.editor.model.change( <span class="hljs-function"><span class="hljs-params">writer</span> =&gt;</span> {
-            <span class="hljs-comment">// Insert &lt;productPreview id=&quot;...&quot;&gt;*&lt;/productPreview&gt; at the current selection position</span>
-            <span class="hljs-comment">// in a way which will result in creating a valid model structure.</span>
-            <span class="hljs-keyword">this</span>.editor.model.insertContent( writer.createElement( <span class="hljs-string">&apos;productPreview&apos;</span>, { id } ) );
+        this.editor.model.change( writer =&gt; {
+            // Insert &lt;productPreview id=&quot;...&quot;&gt;*&lt;/productPreview&gt; at the current selection position
+            // in a way which will result in creating a valid model structure.
+            this.editor.model.insertContent( writer.createElement( &apos;productPreview&apos;, { id } ) );
         } );
     }
 
     refresh() {
-        <span class="hljs-keyword">const</span> model = <span class="hljs-keyword">this</span>.editor.model;
-        <span class="hljs-keyword">const</span> selection = model.document.selection;
-        <span class="hljs-keyword">const</span> allowedIn = model.schema.findAllowedParent( selection.getFirstPosition(), <span class="hljs-string">&apos;productPreview&apos;</span> );
+        const model = this.editor.model;
+        const selection = model.document.selection;
+        const allowedIn = model.schema.findAllowedParent( selection.getFirstPosition(), &apos;productPreview&apos; );
 
-        <span class="hljs-keyword">this</span>.isEnabled = allowedIn !== <span class="hljs-literal">null</span>;
+        this.isEnabled = allowedIn !== null;
     }
 }
 </code></pre>
 <h3 id="productlistjs"><a class="headerlink" href="#productlistjs">#</a> <code>productlist.js</code></h3>
-<pre class="highlight"><code class="jsx html"><span class="hljs-comment">// react/productlist.js</span>
+<pre class="highlight"><code class="jsx html">// react/productlist.js
 
-<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>;
-<span class="hljs-keyword">import</span> ProductPreview <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;./productpreview&apos;</span>;
+import React from &apos;react&apos;;
+import ProductPreview from &apos;./productpreview&apos;;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductList</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+export default class ProductList extends React.Component {
     render() {
-        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;app__product-list&quot;</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Products<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+        return &lt;div className=&quot;app__product-list&quot;&gt;
+            &lt;h3&gt;Products&lt;/h3&gt;
+            &lt;ul&gt;
                 {this.props.products.map( product =&gt; {
-                    return <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{product.id}</span>&gt;</span>
-                        <span class="hljs-tag">&lt;<span class="hljs-name">ProductPreview</span>
-                            <span class="hljs-attr">id</span>=<span class="hljs-string">{product.id}</span>
-                            <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.props.onClick}</span>
-                            {<span class="hljs-attr">...product</span>}
-                        /&gt;</span>
-                    <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>;
+                    return &lt;li key={product.id}&gt;
+                        &lt;ProductPreview
+                            id={product.id}
+                            onClick={this.props.onClick}
+                            {...product}
+                        /&gt;
+                    &lt;/li&gt;;
                 })}
-            <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>Tip<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span>: Clicking the product will add it to the editor.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>;
+            &lt;/ul&gt;
+            &lt;p&gt;&lt;b&gt;Tip&lt;/b&gt;: Clicking the product will add it to the editor.&lt;/p&gt;
+        &lt;/div&gt;;
     }
 }
 </code></pre>
 <h3 id="productpreviewjs"><a class="headerlink" href="#productpreviewjs">#</a> <code>productpreview.js</code></h3>
-<pre class="highlight"><code class="jsx html"><span class="hljs-comment">// react/productpreview.js</span>
+<pre class="highlight"><code class="jsx html">// react/productpreview.js
 
-<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;react&apos;</span>;
+import React from &apos;react&apos;;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProductPreview</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+export default class ProductPreview extends React.Component {
     render() {
-        <span class="hljs-keyword">const</span> style = {
-            <span class="hljs-string">&apos;--product-image&apos;</span>: <span class="hljs-string">`url(<span class="hljs-subst">${ <span class="hljs-keyword">this</span>.props.image }</span>)`</span>
+        const style = {
+            &apos;--product-image&apos;: `url(${ this.props.image })`
         };
 
-        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>
-            <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;product-preview&quot;</span>
-            <span class="hljs-attr">style</span>=<span class="hljs-string">{style}</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">button</span>
-                    <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;product-preview__add&quot;</span>
-                    <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> this.props.onClick( this.props.id )}
+        return &lt;div
+            className=&quot;product-preview&quot;
+            style={style}&gt;
+                &lt;button
+                    className=&quot;product-preview__add&quot;
+                    onClick={() =&gt; this.props.onClick( this.props.id )}
                     title=&quot;Add to the offer&quot;
                 &gt;
-                    <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-                <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;product-preview__name&quot;</span>&gt;</span>{this.props.name}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-                <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;product-preview__price&quot;</span>&gt;</span>from {this.props.price}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+                    &lt;span&gt;+&lt;/span&gt;
+                &lt;/button&gt;
+                &lt;span className=&quot;product-preview__name&quot;&gt;{this.props.name}&lt;/span&gt;
+                &lt;span className=&quot;product-preview__price&quot;&gt;from {this.props.price}&lt;/span&gt;
+            &lt;/div&gt;
     }
 }
 </code></pre>
 <h3 id="indexhtml"><a class="headerlink" href="#indexhtml">#</a> <code>index.html</code></h3>
-<pre class="highlight"><code class="html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Using React components in CKEditor 5 widgets<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;assets/styles.css&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;dist/bundle.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;Using React components in CKEditor 5 widgets&lt;/title&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;assets/styles.css&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div class=&quot;app&quot;&gt;&lt;/div&gt;
+        &lt;script src=&quot;dist/bundle.js&quot;&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
 </code></pre>
 
         </div>

@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
     <script>
       ( function() {
@@ -33,16 +33,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -84,7 +84,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -230,11 +230,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-engine/blob/master/docs/framework/guides/deep-dive/schema.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-engine/blob/master/docs/framework/guides/deep-dive/schema.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../assets/1.2.1/img/book.svg" alt="guide">Schema
+          <h1 class="main__content-title"><img src="../../../../../assets/1.2.2/img/book.svg" alt="guide">Schema
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#quick-recap">Quick recap</a></li><li><a href="#defining-allowed-structures">Defining allowed structures</a></li><li><a href="#generic-items">Generic items</a></li><li><a href="#defining-advanced-rules-in-checkchild-callbacks">Defining advanced rules in checkChild() callbacks</a></li><li><a href="#implementing-additional-constraints">Implementing additional constraints</a></li><li><a href="#who-checks-the-schema">Who checks the schema?</a><ol><li><a href="#low-level-apis">Low-level APIs</a></li><li><a href="#high-level-apis">High-level APIs</a></li></ol></li></ol></nav>
 <p>This article assumes that you have already read the <a href="../architecture/editing-engine.html#schema">&#x201C;Schema&#x201D;</a> section of the <a href="../architecture/editing-engine.html">introduction to the editing engine architecture</a>.</p>
 <h2 id="quick-recap"><a class="headerlink" href="#quick-recap">#</a> Quick recap</h2>
@@ -243,48 +243,48 @@
 <p>Elements and attributes are checked by features separately by using the <a href="../../../api/module_engine_model_schema-Schema.html#function-checkChild"><code>Schema#checkChild()</code></a> and <a href="../../../api/module_engine_model_schema-Schema.html#function-checkAttribute"><code>Schema#checkAttribute()</code></a> methods.</p>
 <h2 id="defining-allowed-structures"><a class="headerlink" href="#defining-allowed-structures">#</a> Defining allowed structures</h2>
 <p>When a feature introduces a model element, it should register it in the schema. Besides defining that such an element may exist in the model, the feature also needs to define where this element can be placed:</p>
-<pre class="highlight"><code class="js">schema.register( <span class="hljs-string">&apos;myElement&apos;</span>, {
-    <span class="hljs-attr">allowIn</span>: <span class="hljs-string">&apos;$root&apos;</span>
+<pre class="highlight"><code class="js">schema.register( &apos;myElement&apos;, {
+    allowIn: &apos;$root&apos;
 } );
 </code></pre>
 <p>This lets the schema know that <code>&lt;myElement&gt;</code> can be a child of <code>&lt;$root&gt;</code>. The <code>$root</code> element is one of the generic nodes defined by the editing framework. By default, the editor names the main root element a <code>&lt;$root&gt;</code>, so the above definition allows <code>&lt;myElement&gt;</code> in the main editor element.</p>
 <p>In other words, this would be correct:</p>
-<pre class="highlight"><code class="xml html"><span class="hljs-tag">&lt;<span class="hljs-name">$root</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">myElement</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">myElement</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">$root</span>&gt;</span>
+<pre class="highlight"><code class="xml">&lt;$root&gt;
+    &lt;myElement&gt;&lt;/myElement&gt;
+&lt;/$root&gt;
 </code></pre>
 <p>While this would be incorrect:</p>
 <pre class="highlight"><code class="js">&lt;$root&gt;
-    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">foo</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">myElement</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">myElement</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">foo</span>&gt;</span></span>
-&lt;<span class="hljs-regexp">/$root&gt;
-</span></code></pre>
+    &lt;foo&gt;
+        &lt;myElement&gt;&lt;/myElement&gt;
+    &lt;/foo&gt;
+&lt;/$root&gt;
+</code></pre>
 <h2 id="generic-items"><a class="headerlink" href="#generic-items">#</a> Generic items</h2>
 <p>There are three basic generic items: <code>$root</code>, <code>$block</code> and <code>$text</code>. They are defined as follows:</p>
-<pre class="highlight"><code class="js">schema.register( <span class="hljs-string">&apos;$root&apos;</span>, {
-    <span class="hljs-attr">isLimit</span>: <span class="hljs-literal">true</span>
+<pre class="highlight"><code class="js">schema.register( &apos;$root&apos;, {
+    isLimit: true
 } );
-schema.register( <span class="hljs-string">&apos;$block&apos;</span>, {
-    <span class="hljs-attr">allowIn</span>: <span class="hljs-string">&apos;$root&apos;</span>,
-    <span class="hljs-attr">isBlock</span>: <span class="hljs-literal">true</span>
+schema.register( &apos;$block&apos;, {
+    allowIn: &apos;$root&apos;,
+    isBlock: true
 } );
-schema.register( <span class="hljs-string">&apos;$text&apos;</span>, {
-    <span class="hljs-attr">allowIn</span>: <span class="hljs-string">&apos;$block&apos;</span>,
-    <span class="hljs-attr">isInline</span>: <span class="hljs-literal">true</span>
+schema.register( &apos;$text&apos;, {
+    allowIn: &apos;$block&apos;,
+    isInline: true
 } );
 </code></pre>
 <p>These definitions can then be reused by features to create their own definitions in a more extensible way. For example, the <a href="../../../api/module_paragraph_paragraph-Paragraph.html"><code>Paragraph</code></a> feature will define its item as:</p>
-<pre class="highlight"><code class="js">schema.register( <span class="hljs-string">&apos;paragraph&apos;</span>, {
-    <span class="hljs-attr">inheritAllFrom</span>: <span class="hljs-string">&apos;$block&apos;</span>
+<pre class="highlight"><code class="js">schema.register( &apos;paragraph&apos;, {
+    inheritAllFrom: &apos;$block&apos;
 } );
 </code></pre>
 <p>Which translates to:</p>
-<pre class="highlight"><code class="js">schema.register( <span class="hljs-string">&apos;paragraph&apos;</span>, {
-    <span class="hljs-attr">allowWhere</span>: <span class="hljs-string">&apos;$block&apos;</span>,
-    <span class="hljs-attr">allowContentOf</span>: <span class="hljs-string">&apos;$block&apos;</span>,
-    <span class="hljs-attr">allowAttributesOf</span>: <span class="hljs-string">&apos;$block&apos;</span>,
-    <span class="hljs-attr">inheritTypesFrom</span>: <span class="hljs-string">&apos;$block&apos;</span>
+<pre class="highlight"><code class="js">schema.register( &apos;paragraph&apos;, {
+    allowWhere: &apos;$block&apos;,
+    allowContentOf: &apos;$block&apos;,
+    allowAttributesOf: &apos;$block&apos;,
+    inheritTypesFrom: &apos;$block&apos;
 } );
 </code></pre>
 <p>Which can be read as:</p>
@@ -295,9 +295,9 @@ schema.register( <span class="hljs-string">&apos;$text&apos;</span>, {
 <li>The <code>&lt;paragraph&gt;</code> element will inherit all <code>is*</code> properties of <code>&lt;$block&gt;</code> (e.g. <code>isBlock</code>).</li>
 </ul>
 <p>Thanks to the fact that the <code>&lt;paragraph&gt;</code> definition is inherited from <code>&lt;$block&gt;</code> other features can use the <code>&lt;$block&gt;</code> type to indirectly extend the <code>&lt;paragraph&gt;</code> definition. For example, the <a href="../../../api/module_block-quote_blockquote-BlockQuote.html"><code>BlockQuote</code></a> feature does this:</p>
-<pre class="highlight"><code class="js">schema.register( <span class="hljs-string">&apos;blockQuote&apos;</span>, {
-    <span class="hljs-attr">allowWhere</span>: <span class="hljs-string">&apos;$block&apos;</span>,
-    <span class="hljs-attr">allowContentOf</span>: <span class="hljs-string">&apos;$root&apos;</span>
+<pre class="highlight"><code class="js">schema.register( &apos;blockQuote&apos;, {
+    allowWhere: &apos;$block&apos;,
+    allowContentOf: &apos;$root&apos;
 } );
 </code></pre>
 <p>Thanks to that, despite the fact that block quote and paragraph features know nothing about themselves, paragraphs will be allowed in block quotes and block quotes will be allowed in all places where blocks are allowed. So if anyone registers a <code>&lt;section&gt;</code> element (with the <code>allowContentOf: &apos;$root&apos;</code> rule), that <code>&lt;section&gt;</code> elements will allow block quotes, too.</p>
@@ -308,13 +308,13 @@ schema.register( <span class="hljs-string">&apos;$text&apos;</span>, {
 <p>These listeners can be added either by listening directly to the <a href="../../../api/module_engine_model_schema-Schema.html#event-checkChild"><code>event:checkChild</code></a> event or by using the handy <a href="../../../api/module_engine_model_schema-Schema.html#function-addChildCheck"><code>Schema#addChildCheck()</code></a> method.</p>
 <p>For instance, the block quote feature defines such a listener to disallow nested <code>&lt;blockQuote&gt;</code> structures:</p>
 <pre class="highlight"><code class="js">schema.addChildCheck( context, childDefinition ) =&gt; {
-    <span class="hljs-comment">// Note that the context is automatically normalized to a SchemaContext instance and</span>
-    <span class="hljs-comment">// the child to its definition (SchemaCompiledItemDefinition).</span>
+    // Note that the context is automatically normalized to a SchemaContext instance and
+    // the child to its definition (SchemaCompiledItemDefinition).
 
-    <span class="hljs-comment">// If checkChild() is called with a context that ends with blockQuote and blockQuote as a child</span>
-    <span class="hljs-comment">// to check, make the checkChild() method return false.</span>
-    <span class="hljs-keyword">if</span> ( context.endsWith( <span class="hljs-string">&apos;blockQuote&apos;</span> ) &amp;&amp; childDefinition.name == <span class="hljs-string">&apos;blockQuote&apos;</span> ) {
-        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    // If checkChild() is called with a context that ends with blockQuote and blockQuote as a child
+    // to check, make the checkChild() method return false.
+    if ( context.endsWith( &apos;blockQuote&apos; ) &amp;&amp; childDefinition.name == &apos;blockQuote&apos; ) {
+        return false;
     }
 } );
 </code></pre>
@@ -326,20 +326,20 @@ TODO
 <h2 id="implementing-additional-constraints"><a class="headerlink" href="#implementing-additional-constraints">#</a> Implementing additional constraints</h2>
 <p>Schema&#x2019;s capabilities are limited to simple (and atomic) <a href="../../../api/module_engine_model_schema-Schema.html#function-checkChild"><code>Schema#checkChild()</code></a> and <a href="../../../api/module_engine_model_schema-Schema.html#function-checkAttribute"><code>Schema#checkAttribute()</code></a> checks on purpose. One may imagine that the schema should support defining more complex rules such as &quot;element <code>&lt;x&gt;</code> must be always followed by <code>&lt;y&gt;</code>&quot;. While it is feasible to create an API that would enable feeding the schema with such definitions, it is unfortunately unrealistic to then expect that every editing feature will consider these rules when processing the model. It is also unrealistic to expect that it will be done automatically by the schema and the editing engine themselves.</p>
 <p>For instance, let&#x2019;s get back to the &quot;element <code>&lt;x&gt;</code> must be always followed by <code>&lt;y&gt;</code>&quot; rule and this initial content:</p>
-<pre class="highlight"><code class="xml html"><span class="hljs-tag">&lt;<span class="hljs-name">$root</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">x</span>&gt;</span>foo<span class="hljs-tag">&lt;/<span class="hljs-name">x</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">y</span>&gt;</span>bar[bom<span class="hljs-tag">&lt;/<span class="hljs-name">y</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">z</span>&gt;</span>bom]bar<span class="hljs-tag">&lt;/<span class="hljs-name">z</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">$root</span>&gt;</span>
+<pre class="highlight"><code class="xml html">&lt;$root&gt;
+    &lt;x&gt;foo&lt;/x&gt;
+    &lt;y&gt;bar[bom&lt;/y&gt;
+    &lt;z&gt;bom]bar&lt;/z&gt;
+&lt;/$root&gt;
 </code></pre>
 <p>Now imagine that the user presses the &#x201C;Block quote&#x201D; button. Normally it would wrap the two selected blocks (<code>&lt;y&gt;</code> and <code>&lt;z&gt;</code>) with a <code>&lt;blockQuote&gt;</code> element:</p>
-<pre class="highlight"><code class="xml html"><span class="hljs-tag">&lt;<span class="hljs-name">$root</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">x</span>&gt;</span>foo<span class="hljs-tag">&lt;/<span class="hljs-name">x</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">blockQuote</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">y</span>&gt;</span>bar[bom<span class="hljs-tag">&lt;/<span class="hljs-name">y</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">z</span>&gt;</span>bom]bar<span class="hljs-tag">&lt;/<span class="hljs-name">z</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">blockQuote</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">$root</span>&gt;</span>
+<pre class="highlight"><code class="xml html">&lt;$root&gt;
+    &lt;x&gt;foo&lt;/x&gt;
+    &lt;blockQuote&gt;
+        &lt;y&gt;bar[bom&lt;/y&gt;
+        &lt;z&gt;bom]bar&lt;/z&gt;
+    &lt;/blockQuote&gt;
+&lt;/$root&gt;
 </code></pre>
 <p>But it turns out that this creates an incorrect structure &#x2014; <code>&lt;x&gt;</code> is not followed by <code>&lt;y&gt;</code> anymore.</p>
 <p>What should happen instead? There are at least 4 possible solutions: the block quote feature should not be applicable in such a context, someone should create a new <code>&lt;y&gt;</code> right after <code>&lt;x&gt;</code>, <code>&lt;x&gt;</code> should be moved inside <code>&lt;blockQuote&gt;</code> together with <code>&lt;y&gt;</code> or vice versa.</p>

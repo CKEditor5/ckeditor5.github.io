@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
     <script>
       ( function() {
@@ -33,16 +33,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -84,7 +84,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -199,26 +199,26 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/integration/configuration.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/integration/configuration.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Builds</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../assets/1.2.1/img/book.svg" alt="guide">Configuration
+          <h1 class="main__content-title"><img src="../../../../../assets/1.2.2/img/book.svg" alt="guide">Configuration
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#removing-features">Removing features</a><ol><li><a href="#list-of-plugins">List of plugins</a></li></ol></li><li><a href="#adding-features">Adding features</a><ol><li><a href="#adding-complex-features">Adding complex features</a></li><li><a href="#adding-simple-standalone-features">Adding simple (standalone) features</a></li></ol></li><li><a href="#toolbar-setup">Toolbar setup</a><ol><li><a href="#listing-available-items">Listing available items</a></li></ol></li><li><a href="#other-configuration-options">Other configuration options</a></li></ol></nav>
 <p>When creating an editor in your page, it is possible to set up <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html">configurations</a> that change many of its aspects. For example:</p>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;heading&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-string">&apos;italic&apos;</span>, <span class="hljs-string">&apos;link&apos;</span>, <span class="hljs-string">&apos;bulletedList&apos;</span>, <span class="hljs-string">&apos;numberedList&apos;</span>, <span class="hljs-string">&apos;blockQuote&apos;</span> ],
-        <span class="hljs-attr">heading</span>: {
-            <span class="hljs-attr">options</span>: [
-                { <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;paragraph&apos;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Paragraph&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;ck-heading_paragraph&apos;</span> },
-                { <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;heading1&apos;</span>, <span class="hljs-attr">view</span>: <span class="hljs-string">&apos;h1&apos;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Heading 1&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;ck-heading_heading1&apos;</span> },
-                { <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;heading2&apos;</span>, <span class="hljs-attr">view</span>: <span class="hljs-string">&apos;h2&apos;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Heading 2&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;ck-heading_heading2&apos;</span> }
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        toolbar: [ &apos;heading&apos;, &apos;|&apos;, &apos;bold&apos;, &apos;italic&apos;, &apos;link&apos;, &apos;bulletedList&apos;, &apos;numberedList&apos;, &apos;blockQuote&apos; ],
+        heading: {
+            options: [
+                { model: &apos;paragraph&apos;, title: &apos;Paragraph&apos;, class: &apos;ck-heading_paragraph&apos; },
+                { model: &apos;heading1&apos;, view: &apos;h1&apos;, title: &apos;Heading 1&apos;, class: &apos;ck-heading_heading1&apos; },
+                { model: &apos;heading2&apos;, view: &apos;h2&apos;, title: &apos;Heading 2&apos;, class: &apos;ck-heading_heading2&apos; }
             ]
         }
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log( error );
+    .catch( error =&gt; {
+        console.log( error );
     } );
 </code></pre>
 <p>As you can see, configurations are set by a simple JavaScript object passed to the <code>create()</code> method.</p>
@@ -226,20 +226,20 @@
 <p>Builds come with all features included in the distribution package enabled by default. They are defined as plugins for CKEditor.</p>
 <p>In some cases, you may need to have different editor setups in your application, all based on the same build. For that purpose, you need to control the plugins available in the editor at runtime.</p>
 <p>In the example below <code>Heading</code> and <code>Link</code> plugins are removed:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// Remove a few plugins from the default setup.</span>
+<pre class="highlight"><code class="js">// Remove a few plugins from the default setup.
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">removePlugins</span>: [ <span class="hljs-string">&apos;Heading&apos;</span>, <span class="hljs-string">&apos;Link&apos;</span> ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-string">&apos;italic&apos;</span>, <span class="hljs-string">&apos;bulletedList&apos;</span>, <span class="hljs-string">&apos;numberedList&apos;</span>, <span class="hljs-string">&apos;blockQuote&apos;</span> ]
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        removePlugins: [ &apos;Heading&apos;, &apos;Link&apos; ],
+        toolbar: [ &apos;bold&apos;, &apos;italic&apos;, &apos;bulletedList&apos;, &apos;numberedList&apos;, &apos;blockQuote&apos; ]
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log( error );
+    .catch( error =&gt; {
+        console.log( error );
     } );
 </code></pre>
 <div class="info-box notice"><p>Be careful when removing plugins from CKEditor builds using <code>config.removePlugins</code>. If removed plugins were providing toolbar buttons, the default toolbar configuration included in a build will become invalid. In such case you need to provide the updated toolbar configuration as in the example above.</p></div>
 <h3 id="list-of-plugins"><a class="headerlink" href="#list-of-plugins">#</a> List of plugins</h3>
 <p>Each build has a number of plugins available. You can easily list all plugins available in your build:</p>
-<pre class="highlight"><code class="js">ClassicEditor.builtinPlugins.map( <span class="hljs-function"><span class="hljs-params">plugin</span> =&gt;</span> plugin.pluginName );
+<pre class="highlight"><code class="js">ClassicEditor.builtinPlugins.map( plugin =&gt; plugin.pluginName );
 </code></pre>
 <h2 id="adding-features"><a class="headerlink" href="#adding-features">#</a> Adding features</h2>
 <h3 id="adding-complex-features"><a class="headerlink" href="#adding-complex-features">#</a> Adding complex features</h3>
@@ -247,56 +247,56 @@ ClassicEditor
 <h3 id="adding-simple-standalone-features"><a class="headerlink" href="#adding-simple-standalone-features">#</a> Adding simple (standalone) features</h3>
 <p>There is an exception to every rule. Although it is impossible to add plugins that have dependencies to <a href="../../../api/core.html"><code>@ckeditor/ckeditor5-core</code></a> or <a href="../../../api/engine.html"><code>@ckeditor/ckeditor5-engine</code></a> (that includes nearly all existing official plugins) without rebuilding the build, it is still possible to add simple, <strong>dependency-free</strong> plugins.</p>
 <p>You can do that using the <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html#member-extraPlugins"><code>config.extraPlugins</code></a> configuration. The <a href="../../../api/module_core_plugin-PluginInterface.html">plugin interface</a> allows plugins to be simple functions and you can define them in just a few lines, for instance:</p>
-<pre class="highlight"><code class="js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MyPlugin</span>(<span class="hljs-params"> editor </span>) </span>{
-    <span class="hljs-comment">// ...</span>
+<pre class="highlight"><code class="js">function MyPlugin( editor ) {
+    // ...
 }
 </code></pre>
 <p>or</p>
-<pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyPlugin</span> </span>{
-    <span class="hljs-keyword">constructor</span>( editor ) {
-        <span class="hljs-comment">// ...</span>
+<pre class="highlight"><code class="js">class MyPlugin {
+    constructor( editor ) {
+        // ...
     }
 
     init() {
-        <span class="hljs-comment">// ...</span>
+        // ...
     }
 }
 </code></pre>
 <p>An example plugin that you may want to add this way is a <a href="../../../framework/guides/deep-dive/upload-adapter.html">custom upload adapter</a>.</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-build-classic&apos;</span>;
+<pre class="highlight"><code class="js">import ClassicEditor from &apos;@ckeditor/ckeditor5-build-classic&apos;;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MyUploadAdapterPlugin</span>(<span class="hljs-params"> editor </span>) </span>{
-    editor.plugins.get( <span class="hljs-string">&apos;FileRepository&apos;</span> ).createUploadAdapter = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"> loader </span>) </span>{
-        <span class="hljs-comment">// ...</span>
+function MyUploadAdapterPlugin( editor ) {
+    editor.plugins.get( &apos;FileRepository&apos; ).createUploadAdapter = function( loader ) {
+        // ...
     };
 }
 
-<span class="hljs-comment">// Load the custom upload adapter as a plugin of the editor.</span>
+// Load the custom upload adapter as a plugin of the editor.
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">extraPlugins</span>: [ MyUploadAdapterPlugin ],
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        extraPlugins: [ MyUploadAdapterPlugin ],
 
-        <span class="hljs-comment">// ...</span>
+        // ...
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log( error );
+    .catch( error =&gt; {
+        console.log( error );
     } );
 </code></pre>
 <h2 id="toolbar-setup"><a class="headerlink" href="#toolbar-setup">#</a> Toolbar setup</h2>
 <p>In builds that contain toolbars an optimal default configuration is defined for it. You may need a different toolbar arrangement, though, and this can be achieved through configuration.</p>
 <p>Each editor may have a different toolbar configuration scheme, so it is recommended to check its documentation. In any case, the following example may give you a general idea:</p>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-string">&apos;italic&apos;</span>, <span class="hljs-string">&apos;link&apos;</span> ]
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        toolbar: [ &apos;bold&apos;, &apos;italic&apos;, &apos;link&apos; ]
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log( error );
+    .catch( error =&gt; {
+        console.log( error );
     } );
 </code></pre>
 <div class="info-box notice notice__hint"><p>The above is a strict UI-related configuration. Removing a toolbar item does not remove the feature from the editor internals. If your goal with the toolbar configuration is to remove features, the right solution is to also remove their respective plugins. Check <a href="#removing-features">Removing features</a> above for more information.</p></div>
 <h3 id="listing-available-items"><a class="headerlink" href="#listing-available-items">#</a> Listing available items</h3>
 <p>You can use the following snippet to retrieve all toolbar items available in your editor:</p>
-<pre class="highlight"><code class="js"><span class="hljs-built_in">Array</span>.from( editor.ui.componentFactory.names() );
+<pre class="highlight"><code class="js">Array.from( editor.ui.componentFactory.names() );
 </code></pre>
 <h2 id="other-configuration-options"><a class="headerlink" href="#other-configuration-options">#</a> Other configuration options</h2>
 <p>See <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html"><code>EditorConfig</code></a> to learn about all available configuration options.</p>

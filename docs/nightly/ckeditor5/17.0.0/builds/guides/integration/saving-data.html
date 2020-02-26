@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../../../snippets/builds/saving-data/build-autosave-source/snippet.css" type="text/css">
     <link rel="stylesheet" href="../../../assets/snippet-styles.css" type="text/css">
@@ -35,16 +35,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -86,7 +86,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -201,55 +201,55 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/integration/saving-data.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/integration/saving-data.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Builds</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../assets/1.2.1/img/book.svg" alt="guide">Getting and saving data
+          <h1 class="main__content-title"><img src="../../../../../assets/1.2.2/img/book.svg" alt="guide">Getting and saving data
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#automatic-integration-with-html-forms">Automatic integration with HTML forms</a></li><li><a href="#manually-retrieving-the-data">Manually retrieving the data</a></li><li><a href="#autosave-feature">Autosave feature</a><ol><li><a href="#demo">Demo</a></li></ol></li><li><a href="#handling-users-exiting-the-page">Handling users exiting the page</a><ol><li><a href="#demo-2">Demo</a></li></ol></li></ol></nav>
 
 <p>CKEditor 5 allows you to retrieve the data from and save it to your server (or to your system in general) in various ways. In this guide you can learn about the available options along with their pros and cons.</p>
 <h2 id="automatic-integration-with-html-forms"><a class="headerlink" href="#automatic-integration-with-html-forms">#</a> Automatic integration with HTML forms</h2>
 <p>This is the classic way of integrating the editor. It is typically used in simpler CMSes, forums, comment sections, etc.</p>
 <p>This approach is only available in the <a href="../overview.html#classic-editor">Classic editor</a> and only if the editor was used to replace a <code>&lt;textarea&gt;</code> element:</p>
-<pre class="highlight"><code class="html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>CKEditor 5 - Classic editor<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Classic editor<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;[URL]&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;content&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;editor&quot;</span>&gt;</span>
-            <span class="hljs-symbol">&amp;lt;</span>p<span class="hljs-symbol">&amp;gt;</span>This is some sample content.<span class="hljs-symbol">&amp;lt;</span>/p<span class="hljs-symbol">&amp;gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Submit&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;CKEditor 5 - Classic editor&lt;/title&gt;
+    &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Classic editor&lt;/h1&gt;
+    &lt;form action=&quot;[URL]&quot; method=&quot;post&quot;&gt;
+        &lt;textarea name=&quot;content&quot; id=&quot;editor&quot;&gt;
+            &amp;lt;p&amp;gt;This is some sample content.&amp;lt;/p&amp;gt;
+        &lt;/textarea&gt;
+        &lt;p&gt;&lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;&lt;/p&gt;
+    &lt;/form&gt;
+    &lt;script&gt;
         ClassicEditor
-            .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ) )
-            .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-                <span class="hljs-built_in">console</span>.error( error );
+            .create( document.querySelector( &apos;#editor&apos; ) )
+            .catch( error =&gt; {
+                console.error( error );
             } );
-    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 </code></pre>
 <p>Classic editor will automatically update the value of the <code>&lt;textarea&gt;</code> element once the user submits the form. You do not need any additional JavaScript code to send the editor data to the server.</p>
 <p>In your HTTP server, you can now read the editor data from the <code>content</code> variable of the POST request. For instance, in PHP, you can get it in this way:</p>
-<pre class="highlight"><code class="php"><span class="hljs-meta">&lt;?php</span>
-    $editor_data = $_POST[ <span class="hljs-string">&apos;content&apos;</span> ];
-<span class="hljs-meta">?&gt;</span>
+<pre class="highlight"><code class="php">&lt;?php
+    $editor_data = $_POST[ &apos;content&apos; ];
+?&gt;
 </code></pre>
 <div class="info-box notice"><p>Please note that the replaced <code>&lt;textarea&gt;</code> element is updated automatically by CKEditor straight before the submission. If you need to access the <code>&lt;textarea&gt;</code> value programatically with JavaScript (e.g. in the <code>onsubmit</code> handler to validate the entered data), there is a chance that the <code>&lt;textarea&gt;</code> element would still store the original data. In order to update the value of the replaced <code>&lt;textarea&gt;</code>, use the <a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html#function-updateSourceElement"><code>editor.updateSourceElement()</code></a> method.</p><p>If you need to get the actual data from CKEditor at any moment using JavaScript, use the <a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html#function-getData"><code>editor.getData()</code></a> method as described in the next section.</p></div>
-<div class="info-box notice"><p>When you print the data from the database to a <code>&lt;textarea&gt;</code> element in an HTML page, you need to encode it correctly. For instance, if you use PHP then a minimal solution would look like this:</p><pre class="highlight"><code class="php"><span class="hljs-meta">&lt;?php</span>
-    $data = str_replace( <span class="hljs-string">&apos;&amp;&apos;</span>, <span class="hljs-string">&apos;&amp;amp;&apos;</span>, $data );
-<span class="hljs-meta">?&gt;</span>
-<p>&lt;textarea name=<span class="hljs-string">&#x201C;content&#x201D;</span> id=<span class="hljs-string">&#x201C;editor&#x201D;</span>&gt;<span class="hljs-meta">&lt;?</span>= $data <span class="hljs-meta">?&gt;</span>&lt;/textarea&gt;<br>
-</p></code></pre><p>Thanks to that, the <code>&lt;textarea&gt;</code> will be printed out like this:</p><pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span>&gt;</span><span class="hljs-symbol">&amp;lt;</span>p&gt;This is some sample content.<span class="hljs-symbol">&amp;lt;</span>/p&gt;<span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span><br>
-</code></pre><p>Instead of being printed like this:</p><pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is some sample content.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span><br>
+<div class="info-box notice"><p>When you print the data from the database to a <code>&lt;textarea&gt;</code> element in an HTML page, you need to encode it correctly. For instance, if you use PHP then a minimal solution would look like this:</p><pre class="highlight"><code class="php">&lt;?php
+    $data = str_replace( &apos;&amp;&apos;, &apos;&amp;amp;&apos;, $data );
+?&gt;
+<p>&lt;textarea name=&#x201C;content&#x201D; id=&#x201C;editor&#x201D;&gt;&lt;?= $data ?&gt;&lt;/textarea&gt;<br>
+</p></code></pre><p>Thanks to that, the <code>&lt;textarea&gt;</code> will be printed out like this:</p><pre class="highlight"><code class="html">&lt;textarea&gt;&amp;lt;p&gt;This is some sample content.&amp;lt;/p&gt;&lt;/textarea&gt;<br>
+</code></pre><p>Instead of being printed like this:</p><pre class="highlight"><code class="html">&lt;textarea&gt;&lt;p&gt;This is some sample content.&lt;/p&gt;&lt;/textarea&gt;<br>
 </code></pre><p>While simple content like mentioned above does not itself require to be encoded, encoding the data will prevent losing text like &#x201C;&lt;&#x201D; or &#x201C;&lt;img&gt;&#x201D;.</p></div><p></p>
 <h2 id="manually-retrieving-the-data"><a class="headerlink" href="#manually-retrieving-the-data">#</a> Manually retrieving the data</h2>
 <p>When you:</p>
@@ -260,22 +260,22 @@
 </ul>
 <p>you can retrieve the data from the editor by using the <a href="../../../api/module_editor-classic_classiceditor-ClassicEditor.html#function-getData"><code>editor.getData()</code></a> method.</p>
 <p>For that, you need to store the reference to the <code>editor</code> because &#x2014; unlike in CKEditor 4 &#x2014; there is no global <code>CKEDITOR.instances</code> property. You can do that in multiple ways, for example by assigning the <code>editor</code> to a variable defined outside the <code>then()</code>&apos;s callback:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">let</span> editor;
+<pre class="highlight"><code class="js">let editor;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ) )
-    .then( <span class="hljs-function"><span class="hljs-params">newEditor</span> =&gt;</span> {
+    .create( document.querySelector( &apos;#editor&apos; ) )
+    .then( newEditor =&gt; {
         editor = newEditor;
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error( error );
+    .catch( error =&gt; {
+        console.error( error );
     } );
 
-<span class="hljs-comment">// Assuming there is a &lt;button id=&quot;submit&quot;&gt;Submit&lt;/button&gt; in your application.</span>
-<span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#submit&apos;</span> ).addEventListener( <span class="hljs-string">&apos;click&apos;</span>, () =&gt; {
-    <span class="hljs-keyword">const</span> editorData = editor.getData();
+// Assuming there is a &lt;button id=&quot;submit&quot;&gt;Submit&lt;/button&gt; in your application.
+document.querySelector( &apos;#submit&apos; ).addEventListener( &apos;click&apos;, () =&gt; {
+    const editorData = editor.getData();
 
-    <span class="hljs-comment">// ...</span>
+    // ...
 } );
 </code></pre>
 <h2 id="autosave-feature"><a class="headerlink" href="#autosave-feature">#</a> Autosave feature</h2>
@@ -283,20 +283,20 @@ ClassicEditor
 <div class="info-box notice"><p>This plugin is unavailable in any of the builds by default so you need to <a href="installing-plugins.html">install it</a>.</p></div>
 <p>Assuming that you implemented a <code>saveData()</code> function that sends the data to your server and returns a promise which is resolved once the data is successfully saved, configuring the autosave feature is as simple as:</p>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [
             Autosave,
 
-            <span class="hljs-comment">// ... other plugins</span>
+            // ... other plugins
         ],
 
-        <span class="hljs-attr">autosave</span>: {
+        autosave: {
             save( editor ) {
-                <span class="hljs-keyword">return</span> saveData( editor.getData() );
+                return saveData( editor.getData() );
             }
         },
 
-        <span class="hljs-comment">// ... other configuration options</span>
+        // ... other configuration options
     } );
 </code></pre>
 <p>The autosave feature listens to the <a href="../../../api/module_engine_model_document-Document.html#event-change:data"><code>editor.model.document#change:data</code></a> event, throttles it and executes the <code>config.autosave.save()</code> function.</p>
@@ -308,61 +308,61 @@ ClassicEditor
 <p>This automatically secures you from the user leaving the page before the content is saved or some ongoing actions like image upload did not finish.</p>
 <p>The minimum time period between two save actions can be configured using the <a href="../../../api/module_autosave_autosave-AutosaveConfig.html#member-waitingTime"><code>config.waitingTime</code></a> property to not overload the backend. 1 second is the default waiting time before the next save action if nothing has changed in the meantime after the editor data has changed.</p>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">autosave</span>: {
-            <span class="hljs-attr">waitingTime</span>: <span class="hljs-number">5000</span>, <span class="hljs-comment">// in ms</span>
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        autosave: {
+            waitingTime: 5000, // in ms
             save( editor ) {}
         },
 
-        <span class="hljs-comment">// ... other configuration options</span>
+        // ... other configuration options
     } );
 </code></pre>
 <h3 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h3>
 <p>This demo shows a simple integration of the editor with a fake HTTP server (which needs 1000ms to save the content).</p>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [
             Autosave,
 
-            <span class="hljs-comment">// ... other plugins</span>
+            // ... other plugins
         ],
 
-        <span class="hljs-attr">autosave</span>: {
+        autosave: {
             save( editor ) {
-                <span class="hljs-keyword">return</span> saveData( editor.getData() );
+                return saveData( editor.getData() );
             }
         }
     } )
-    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
-        <span class="hljs-built_in">window</span>.editor = editor;
+    .then( editor =&gt; {
+        window.editor = editor;
 
         displayStatus( editor );
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error( err.stack );
+    .catch( err =&gt; {
+        console.error( err.stack );
     } );
 
-<span class="hljs-comment">// Save the data to a fake HTTP server (emulated here with a setTimeout()).</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">saveData</span>(<span class="hljs-params"> data </span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>( <span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> {
-        setTimeout( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-            <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;Saved&apos;</span>, data );
+// Save the data to a fake HTTP server (emulated here with a setTimeout()).
+function saveData( data ) {
+    return new Promise( resolve =&gt; {
+        setTimeout( () =&gt; {
+            console.log( &apos;Saved&apos;, data );
 
             resolve();
         }, HTTP_SERVER_LAG );
     } );
 }
 
-<span class="hljs-comment">// Update the &quot;Status: Saving...&quot; info.</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">displayStatus</span>(<span class="hljs-params"> editor </span>) </span>{
-    <span class="hljs-keyword">const</span> pendingActions = editor.plugins.get( <span class="hljs-string">&apos;PendingActions&apos;</span> );
-    <span class="hljs-keyword">const</span> statusIndicator = <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor-status&apos;</span> );
+// Update the &quot;Status: Saving...&quot; info.
+function displayStatus( editor ) {
+    const pendingActions = editor.plugins.get( &apos;PendingActions&apos; );
+    const statusIndicator = document.querySelector( &apos;#editor-status&apos; );
 
-    pendingActions.on( <span class="hljs-string">&apos;change:hasAny&apos;</span>, ( evt, propertyName, newValue ) =&gt; {
-        <span class="hljs-keyword">if</span> ( newValue ) {
-            statusIndicator.classList.add( <span class="hljs-string">&apos;busy&apos;</span> );
-        } <span class="hljs-keyword">else</span> {
-            statusIndicator.classList.remove( <span class="hljs-string">&apos;busy&apos;</span> );
+    pendingActions.on( &apos;change:hasAny&apos;, ( evt, propertyName, newValue ) =&gt; {
+        if ( newValue ) {
+            statusIndicator.classList.add( &apos;busy&apos; );
+        } else {
+            statusIndicator.classList.remove( &apos;busy&apos; );
         }
     } );
 }
@@ -498,57 +498,57 @@ ClassicEditor
 <h3 id="demo-2"><a class="headerlink" href="#demo-2">#</a> Demo</h3>
 <p>The example below shows how all these mechanisms can be used together to enable or disable a &#x201C;Save&#x201D; button and block the user from leaving the page without saving the data.</p>
 <div class="info-box notice"><p>The <a href="../../../api/module_core_pendingactions-PendingActions.html"><code>PendingActions</code></a> plugin is unavailable in any of the builds by default so you need to <a href="installing-plugins.html">install it</a>.</p></div>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// Note: We need to build the editor from source.</span>
-<span class="hljs-comment">// We cannot use existing builds in this case.</span>
-<span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
+<pre class="highlight"><code class="js">// Note: We need to build the editor from source.
+// We cannot use existing builds in this case.
+import ClassicEditor from &apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;;
 
-<span class="hljs-keyword">import</span> PendingActions <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-core/src/pendingactions&apos;</span>;
+import PendingActions from &apos;@ckeditor/ckeditor5-core/src/pendingactions&apos;;
 
-<span class="hljs-keyword">let</span> isDirty = <span class="hljs-literal">false</span>;
+let isDirty = false;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [
             PendingActions,
 
-            <span class="hljs-comment">// ... other plugins</span>
+            // ... other plugins
         ]
     } )
-    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
-        <span class="hljs-built_in">window</span>.editor = editor;
+    .then( editor =&gt; {
+        window.editor = editor;
 
         handleStatusChanges( editor );
         handleSaveButton( editor );
         handleBeforeunload( editor );
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error( err.stack );
+    .catch( err =&gt; {
+        console.error( err.stack );
     } );
 
-<span class="hljs-comment">// Handle clicking the &quot;Save&quot; button by sending the data to a</span>
-<span class="hljs-comment">// fake HTTP server (emulated here with setTimeout()).</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">handleSaveButton</span>(<span class="hljs-params"> editor </span>) </span>{
-    <span class="hljs-keyword">const</span> saveButton = <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#save&apos;</span> );
-    <span class="hljs-keyword">const</span> pendingActions = editor.plugins.get( <span class="hljs-string">&apos;PendingActions&apos;</span> );
+// Handle clicking the &quot;Save&quot; button by sending the data to a
+// fake HTTP server (emulated here with setTimeout()).
+function handleSaveButton( editor ) {
+    const saveButton = document.querySelector( &apos;#save&apos; );
+    const pendingActions = editor.plugins.get( &apos;PendingActions&apos; );
 
-    saveButton.addEventListener( <span class="hljs-string">&apos;click&apos;</span>, evt =&gt; {
-        <span class="hljs-keyword">const</span> data = editor.getData();
+    saveButton.addEventListener( &apos;click&apos;, evt =&gt; {
+        const data = editor.getData();
 
-        <span class="hljs-comment">// Register the action of saving the data as a &quot;pending action&quot;.</span>
-        <span class="hljs-comment">// All asynchronous actions related to the editor are tracked like this,</span>
-        <span class="hljs-comment">// so later on you only need to check `pendingActions.hasAny` to check</span>
-        <span class="hljs-comment">// whether the editor is busy or not.</span>
-        <span class="hljs-keyword">const</span> action = pendingActions.add( <span class="hljs-string">&apos;Saving changes&apos;</span> );
+        // Register the action of saving the data as a &quot;pending action&quot;.
+        // All asynchronous actions related to the editor are tracked like this,
+        // so later on you only need to check `pendingActions.hasAny` to check
+        // whether the editor is busy or not.
+        const action = pendingActions.add( &apos;Saving changes&apos; );
 
         evt.preventDefault();
 
-        <span class="hljs-comment">// Save the data to a fake HTTP server.</span>
-        setTimeout( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        // Save the data to a fake HTTP server.
+        setTimeout( () =&gt; {
             pendingActions.remove( action );
 
-            <span class="hljs-comment">// Reset isDirty only if the data did not change in the meantime.</span>
-            <span class="hljs-keyword">if</span> ( data == editor.getData() ) {
-                isDirty = <span class="hljs-literal">false</span>;
+            // Reset isDirty only if the data did not change in the meantime.
+            if ( data == editor.getData() ) {
+                isDirty = false;
             }
 
             updateStatus( editor );
@@ -556,45 +556,45 @@ ClassicEditor
     } );
 }
 
-<span class="hljs-comment">// Listen to new changes (to enable the &quot;Save&quot; button) and to</span>
-<span class="hljs-comment">// pending actions (to show the spinner animation when the editor is busy).</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">handleStatusChanges</span>(<span class="hljs-params"> editor </span>) </span>{
-    editor.plugins.get( <span class="hljs-string">&apos;PendingActions&apos;</span> ).on( <span class="hljs-string">&apos;change:hasAny&apos;</span>, () =&gt; updateStatus( editor ) );
+// Listen to new changes (to enable the &quot;Save&quot; button) and to
+// pending actions (to show the spinner animation when the editor is busy).
+function handleStatusChanges( editor ) {
+    editor.plugins.get( &apos;PendingActions&apos; ).on( &apos;change:hasAny&apos;, () =&gt; updateStatus( editor ) );
 
-    editor.model.document.on( <span class="hljs-string">&apos;change:data&apos;</span>, () =&gt; {
-        isDirty = <span class="hljs-literal">true</span>;
+    editor.model.document.on( &apos;change:data&apos;, () =&gt; {
+        isDirty = true;
 
         updateStatus( editor );
     } );
 }
 
-<span class="hljs-comment">// If the user tries to leave the page before the data is saved, ask</span>
-<span class="hljs-comment">// them whether they are sure they want to proceed.</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">handleBeforeunload</span>(<span class="hljs-params"> editor </span>) </span>{
-    <span class="hljs-keyword">const</span> pendingActions = editor.plugins.get( <span class="hljs-string">&apos;PendingActions&apos;</span> );
+// If the user tries to leave the page before the data is saved, ask
+// them whether they are sure they want to proceed.
+function handleBeforeunload( editor ) {
+    const pendingActions = editor.plugins.get( &apos;PendingActions&apos; );
 
-    <span class="hljs-built_in">window</span>.addEventListener( <span class="hljs-string">&apos;beforeunload&apos;</span>, evt =&gt; {
-        <span class="hljs-keyword">if</span> ( pendingActions.hasAny ) {
+    window.addEventListener( &apos;beforeunload&apos;, evt =&gt; {
+        if ( pendingActions.hasAny ) {
             evt.preventDefault();
         }
     } );
 }
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">updateStatus</span>(<span class="hljs-params"> editor </span>) </span>{
-    <span class="hljs-keyword">const</span> saveButton = <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#save&apos;</span> );
+function updateStatus( editor ) {
+    const saveButton = document.querySelector( &apos;#save&apos; );
 
-    <span class="hljs-comment">// Disables the &quot;Save&quot; button when the data on the server is up to date.</span>
-    <span class="hljs-keyword">if</span> ( isDirty ) {
-        saveButton.classList.add( <span class="hljs-string">&apos;active&apos;</span> );
-    } <span class="hljs-keyword">else</span> {
-        saveButton.classList.remove( <span class="hljs-string">&apos;active&apos;</span> );
+    // Disables the &quot;Save&quot; button when the data on the server is up to date.
+    if ( isDirty ) {
+        saveButton.classList.add( &apos;active&apos; );
+    } else {
+        saveButton.classList.remove( &apos;active&apos; );
     }
 
-    <span class="hljs-comment">// Shows the spinner animation.</span>
-    <span class="hljs-keyword">if</span> ( editor.plugins.get( <span class="hljs-string">&apos;PendingActions&apos;</span> ).hasAny ) {
-        saveButton.classList.add( <span class="hljs-string">&apos;saving&apos;</span> );
-    } <span class="hljs-keyword">else</span> {
-        saveButton.classList.remove( <span class="hljs-string">&apos;saving&apos;</span> );
+    // Shows the spinner animation.
+    if ( editor.plugins.get( &apos;PendingActions&apos; ).hasAny ) {
+        saveButton.classList.add( &apos;saving&apos; );
+    } else {
+        saveButton.classList.remove( &apos;saving&apos; );
     }
 }
 </code></pre>

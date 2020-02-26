@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../snippets/build-classic-source/snippet.css" type="text/css">
     <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
@@ -35,16 +35,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -86,7 +86,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -214,11 +214,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-heading/blob/master/docs/features/headings.md" title="Contribute to this guide"><img src="../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-heading/blob/master/docs/features/headings.md" title="Contribute to this guide"><img src="../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../assets/1.2.1/img/book.svg" alt="guide">Headings
+          <h1 class="main__content-title"><img src="../../../assets/1.2.2/img/book.svg" alt="guide">Headings
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#heading-levels">Heading levels</a><ol><li><a href="#configuring-heading-levels">Configuring heading levels</a></li><li><a href="#configuring-custom-heading-elements">Configuring custom heading elements</a></li></ol></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 
 <p>The <a href="../api/module_heading_heading-Heading.html"><code>Heading</code></a> feature enables support for headings.</p>
@@ -231,19 +231,19 @@
 <h3 id="configuring-heading-levels"><a class="headerlink" href="#configuring-heading-levels">#</a> Configuring heading levels</h3>
 <p>It is, of course, possible to configure which heading levels the editor should support and how they should be named in the Headings dropdown. Use the <a href="../api/module_heading_heading-HeadingConfig.html#member-options"><code>heading.options</code></a> configuration option to do so.</p>
 <p>For example, the following editor will support only two levels of headings &#x2014; <code>&lt;h1&gt;</code> and <code>&lt;h2&gt;</code>:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;editor&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Heading 1<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Heading 2<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://ckeditor.com&quot;</span>&gt;</span>CKEditor 5<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;div id=&quot;editor&quot;&gt;
+    &lt;h1&gt;Heading 1&lt;/h1&gt;
+    &lt;h2&gt;Heading 2&lt;/h2&gt;
+    &lt;p&gt;This is &lt;a href=&quot;https://ckeditor.com&quot;&gt;CKEditor 5&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
 </code></pre>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">heading</span>: {
-            <span class="hljs-attr">options</span>: [
-                { <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;paragraph&apos;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Paragraph&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;ck-heading_paragraph&apos;</span> },
-                { <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;heading1&apos;</span>, <span class="hljs-attr">view</span>: <span class="hljs-string">&apos;h1&apos;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Heading 1&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;ck-heading_heading1&apos;</span> },
-                { <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;heading2&apos;</span>, <span class="hljs-attr">view</span>: <span class="hljs-string">&apos;h2&apos;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Heading 2&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;ck-heading_heading2&apos;</span> }
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        heading: {
+            options: [
+                { model: &apos;paragraph&apos;, title: &apos;Paragraph&apos;, class: &apos;ck-heading_paragraph&apos; },
+                { model: &apos;heading1&apos;, view: &apos;h1&apos;, title: &apos;Heading 1&apos;, class: &apos;ck-heading_heading1&apos; },
+                { model: &apos;heading2&apos;, view: &apos;h2&apos;, title: &apos;Heading 2&apos;, class: &apos;ck-heading_heading2&apos; }
             ]
         }
     } )
@@ -259,39 +259,39 @@
 <h3 id="configuring-custom-heading-elements"><a class="headerlink" href="#configuring-custom-heading-elements">#</a> Configuring custom heading elements</h3>
 <p>It is also possible to define fully custom elements for headings by using the <a href="../api/module_engine_conversion_conversion-ConverterDefinition.html">advanced format</a> of the <a href="../api/module_heading_heading-HeadingConfig.html#member-options"><code>heading.options</code></a> configuration option.</p>
 <p>For example, the following editor will support the following two heading options at the same time: <code>&lt;h2 class=&quot;fancy&quot;&gt;</code> and <code>&lt;h2&gt;</code>:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;style&gt;
     // Styles for the heading in the content and for the dropdown item.
     h2.fancy, .ck-heading_heading2_fancy {
         color: #ff0050;
         font-size: 17px;
     }
-<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+&lt;/style&gt;
 
-<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;snippet-custom-heading-levels&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Heading 1<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>Heading 2<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;fancy&quot;</span>&gt;</span>Fancy Heading 2<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://ckeditor.com&quot;</span>&gt;</span>CKEditor 5<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+&lt;div id=&quot;snippet-custom-heading-levels&quot;&gt;
+    &lt;h1&gt;Heading 1&lt;/h1&gt;
+    &lt;h2&gt;Heading 2&lt;/h2&gt;
+    &lt;h2 class=&quot;fancy&quot;&gt;Fancy Heading 2&lt;/h2&gt;
+    &lt;p&gt;This is &lt;a href=&quot;https://ckeditor.com&quot;&gt;CKEditor 5&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
 </code></pre>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">heading</span>: {
-            <span class="hljs-attr">options</span>: [
-                { <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;paragraph&apos;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Paragraph&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;ck-heading_paragraph&apos;</span> },
-                { <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;heading1&apos;</span>, <span class="hljs-attr">view</span>: <span class="hljs-string">&apos;h1&apos;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Heading 1&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;ck-heading_heading1&apos;</span> },
-                { <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;heading2&apos;</span>, <span class="hljs-attr">view</span>: <span class="hljs-string">&apos;h2&apos;</span>, <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Heading 2&apos;</span>, <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;ck-heading_heading2&apos;</span> },
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        heading: {
+            options: [
+                { model: &apos;paragraph&apos;, title: &apos;Paragraph&apos;, class: &apos;ck-heading_paragraph&apos; },
+                { model: &apos;heading1&apos;, view: &apos;h1&apos;, title: &apos;Heading 1&apos;, class: &apos;ck-heading_heading1&apos; },
+                { model: &apos;heading2&apos;, view: &apos;h2&apos;, title: &apos;Heading 2&apos;, class: &apos;ck-heading_heading2&apos; },
                 {
-                    <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;headingFancy&apos;</span>,
-                    <span class="hljs-attr">view</span>: {
-                        <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;h2&apos;</span>,
-                        <span class="hljs-attr">classes</span>: <span class="hljs-string">&apos;fancy&apos;</span>
+                    model: &apos;headingFancy&apos;,
+                    view: {
+                        name: &apos;h2&apos;,
+                        classes: &apos;fancy&apos;
                     },
-                    <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;Heading 2 (fancy)&apos;</span>,
-                    <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;ck-heading_heading2_fancy&apos;</span>,
+                    title: &apos;Heading 2 (fancy)&apos;,
+                    class: &apos;ck-heading_heading2_fancy&apos;,
 
-                    <span class="hljs-comment">// It needs to be converted before the standard &apos;heading2&apos;.</span>
-                    <span class="hljs-attr">converterPriority</span>: <span class="hljs-string">&apos;high&apos;</span>
+                    // It needs to be converted before the standard &apos;heading2&apos;.
+                    converterPriority: &apos;high&apos;
                 }
             ]
         }
@@ -319,12 +319,12 @@
 <pre class="highlight"><code class>npm install --save @ckeditor/ckeditor5-heading
 </code></pre>
 <p>And add it to your plugin list and toolbar configuration:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> Heading <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-heading/src/heading&apos;</span>;
+<pre class="highlight"><code class="js">import Heading from &apos;@ckeditor/ckeditor5-heading/src/heading&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ Heading, ... ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;heading&apos;</span>, ... ]
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Heading, ... ],
+        toolbar: [ &apos;heading&apos;, ... ]
     } )
     .then( ... )
     .catch( ... );
@@ -339,7 +339,7 @@ ClassicEditor
 <li>
 <p>The <code>&apos;heading&apos;</code> command that accepts value based on the <a href="../api/module_heading_heading-HeadingConfig.html#member-options"><code>heading.options</code></a> configuration option.</p>
 <p>You can turn the currently selected block(s) to headings by executing one of these commands:</p>
-<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;heading&apos;</span>, { <span class="hljs-attr">value</span>: <span class="hljs-string">&apos;heading2&apos;</span> } );
+<pre class="highlight"><code class="js">editor.execute( &apos;heading&apos;, { value: &apos;heading2&apos; } );
 </code></pre>
 </li>
 </ul>

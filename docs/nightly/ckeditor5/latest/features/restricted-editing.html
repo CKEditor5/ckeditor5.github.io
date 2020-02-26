@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../snippets/features/restricted-editing/snippet.css" type="text/css">
     <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
@@ -35,16 +35,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -86,7 +86,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -214,11 +214,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-restricted-editing/blob/master/docs/features/restricted-editing.md" title="Contribute to this guide"><img src="../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-restricted-editing/blob/master/docs/features/restricted-editing.md" title="Contribute to this guide"><img src="../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../assets/1.2.1/img/book.svg" alt="guide">Restricted editing
+          <h1 class="main__content-title"><img src="../../../assets/1.2.2/img/book.svg" alt="guide">Restricted editing
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#configuration">Configuration</a></li><li><a href="#installation">Installation</a><ol><li><a href="#running-the-standard-editing-mode">Running the standard editing mode</a></li><li><a href="#running-the-restricted-editing-mode">Running the restricted editing mode</a></li></ol></li><li><a href="#common-api">Common API</a></li><li><a href="#real-time-collaboration">Real-time collaboration</a></li><li><a href="#contribute">Contribute</a></li></ol></nav><p>The restricted editing feature allows you to define which parts of a document can be editable for a group of users who have more restricted editing rights.</p>
 <p>In order to do that, this feature introduces two editing modes:</p>
 <ul>
@@ -252,15 +252,15 @@
 </div>
 <h2 id="configuration"><a class="headerlink" href="#configuration">#</a> Configuration</h2>
 <p>It is possible to configure which features should be available in the restricted mode. For instance, the following configuration will not only allow typing and deleting but also bolding text.</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> RestrictedEditingMode <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-restricted-editing/src/restrictededitingmode&apos;</span>;
-<span class="hljs-keyword">import</span> Bold <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;</span>;
+<pre class="highlight"><code class="js">import RestrictedEditingMode from &apos;@ckeditor/ckeditor5-restricted-editing/src/restrictededitingmode&apos;;
+import Bold from &apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ Bold, RestrictedEditingMode, ... ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;restrictedEditing&apos;</span>, ... ],
-        <span class="hljs-attr">restrictedEditing</span>: {
-            <span class="hljs-attr">allowedCommands</span>: [ <span class="hljs-string">&apos;bold&apos;</span> ]
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Bold, RestrictedEditingMode, ... ],
+        toolbar: [ &apos;bold&apos;, &apos;|&apos;, &apos;restrictedEditing&apos;, ... ],
+        restrictedEditing: {
+            allowedCommands: [ &apos;bold&apos; ]
         }
     } )
     .then( ... )
@@ -273,24 +273,24 @@ ClassicEditor
 </code></pre>
 <h3 id="running-the-standard-editing-mode"><a class="headerlink" href="#running-the-standard-editing-mode">#</a> Running the standard editing mode</h3>
 <p>In order to initialize the editor in the standard editing mode, add the <a href="../api/module_restricted-editing_standardeditingmode-StandardEditingMode.html"><code>StandardEditingMode</code></a> plugin and add the <code>&apos;restrictedEditingException&apos;</code> button to the toolbar:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> StandardEditingMode <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-restricted-editing/src/standardeditingmode&apos;</span>;
+<pre class="highlight"><code class="js">import StandardEditingMode from &apos;@ckeditor/ckeditor5-restricted-editing/src/standardeditingmode&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ StandardEditingMode, ... ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;restrictedEditingException&apos;</span>, ... ]
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ StandardEditingMode, ... ],
+        toolbar: [ &apos;restrictedEditingException&apos;, ... ]
     } )
     .then( ... )
     .catch( ... );
 </code></pre>
 <h3 id="running-the-restricted-editing-mode"><a class="headerlink" href="#running-the-restricted-editing-mode">#</a> Running the restricted editing mode</h3>
 <p>In order to initialize the editor in the restricted editing mode, add the <a href="../api/module_restricted-editing_restrictededitingmode-RestrictedEditingMode.html"><code>RestrictedEditingMode</code></a> plugin and add the <code>&apos;restrictedEditing&apos;</code> button to the toolbar:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> RestrictedEditingMode <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-restricted-editing/src/restrictededitingmode&apos;</span>;
+<pre class="highlight"><code class="js">import RestrictedEditingMode from &apos;@ckeditor/ckeditor5-restricted-editing/src/restrictededitingmode&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ RestrictedEditingMode, ... ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;restrictedEditing&apos;</span>, ... ]
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ RestrictedEditingMode, ... ],
+        toolbar: [ &apos;restrictedEditing&apos;, ... ]
     } )
     .then( ... )
     .catch( ... );

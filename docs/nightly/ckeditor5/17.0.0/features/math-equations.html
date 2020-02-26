@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../snippets/features/mathtype/snippet.css" type="text/css">
     <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
@@ -35,16 +35,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -86,7 +86,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -214,11 +214,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/features/math-equations.md" title="Contribute to this guide"><img src="../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/features/math-equations.md" title="Contribute to this guide"><img src="../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../assets/1.2.1/img/book.svg" alt="guide">Math equations and chemical formulas
+          <h1 class="main__content-title"><img src="../../../assets/1.2.2/img/book.svg" alt="guide">Math equations and chemical formulas
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#usage">Usage</a></li><li><a href="#editing-modes">Editing modes</a></li><li><a href="#installation">Installation</a></li></ol></nav>
 <div class="info-box notice"><p>This feature is provided as a commercial solution called MathType delivered by our partner, <a href="http://www.wiris.com" target="_blank" rel="noopener">Wiris</a>.<br>
 You can report any issues in the official CKEditor 5 <a href="https://github.com/ckeditor/ckeditor5/issues" target="_blank" rel="noopener">GitHub repository</a>. A license can be purchased <a href="https://ckeditor.com/contact/" target="_blank" rel="noopener">here</a>.</p></div>
@@ -256,12 +256,12 @@ You can report any issues in the official CKEditor 5 <a href="https://github.com
 <pre class="highlight"><code class="bash">npm install --save @wiris/mathtype-ckeditor5
 </code></pre>
 <p>Then add it to your plugin list and the toolbar configuration:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> MathType <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@wiris/mathtype-ckeditor5&apos;</span>;
+<pre class="highlight"><code class="js">import MathType from &apos;@wiris/mathtype-ckeditor5&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ MathType, ... ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;MathType&apos;</span>, <span class="hljs-string">&apos;ChemType&apos;</span>, ... ]
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ MathType, ... ],
+        toolbar: [ &apos;MathType&apos;, &apos;ChemType&apos;, ... ]
     } )
     .then( ... )
     .catch( ... );

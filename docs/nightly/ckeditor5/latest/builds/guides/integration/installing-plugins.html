@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
     <script>
       ( function() {
@@ -33,16 +33,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -84,7 +84,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -199,11 +199,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/integration/installing-plugins.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/integration/installing-plugins.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Builds</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../assets/1.2.1/img/book.svg" alt="guide">Installing plugins
+          <h1 class="main__content-title"><img src="../../../../../assets/1.2.2/img/book.svg" alt="guide">Installing plugins
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#requirements">Requirements</a></li><li><a href="#adding-a-plugin-to-a-build">Adding a plugin to a build</a></li><li><a href="#adding-a-plugin-to-an-editor">Adding a plugin to an editor</a></li><li><a href="#difference-between-both-methods">Difference between both methods</a></li></ol></nav>
 <p>CKEditor 5 plugins are distributed through <a href="https://www.npmjs.com" target="_blank" rel="noopener">npm</a> packages and are implemented in a modular way, which means that a single plugin may consist of multiple JavaScript files.</p>
 <p>In this guide you can learn how to add plugins to your editor in the two most common scenarios:</p>
@@ -226,39 +226,39 @@
 <li>Add it to the build configuration.</li>
 <li>Bundle the build.</li>
 </ol>
-<pre class="highlight"><code class="bash html">git <span class="hljs-built_in">clone</span> -b stable https://github.com/ckeditor/ckeditor5-build-classic.git
-<span class="hljs-built_in">cd</span> ckeditor5-build-classic
+<pre class="highlight"><code class="bash">git clone -b stable https://github.com/ckeditor/ckeditor5-build-classic.git
+cd ckeditor5-build-classic
 npm install
 </code></pre>
 <p>Now, install the plugin package:</p>
 <pre class="highlight"><code class="bash">npm install --save-dev @ckeditor/ckeditor5-alignment
 </code></pre>
 <p>Edit the <code>src/ckeditor.js</code> file to add your plugin to the list of plugins which will be included in the build and to add your feature&#x2019;s button to the toolbar:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// The editor creator to use.</span>
-<span class="hljs-keyword">import</span> ClassicEditorBase <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
+<pre class="highlight"><code class="js">// The editor creator to use.
+import ClassicEditorBase from &apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;;
 
-<span class="hljs-keyword">import</span> Essentials <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;</span>;
-<span class="hljs-keyword">import</span> UploadAdapter <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-adapter-ckfinder/src/uploadadapter&apos;</span>;
-<span class="hljs-keyword">import</span> Autoformat <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-autoformat/src/autoformat&apos;</span>;
-<span class="hljs-keyword">import</span> Bold <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;</span>;
-<span class="hljs-keyword">import</span> Italic <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;</span>;
-<span class="hljs-keyword">import</span> BlockQuote <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-block-quote/src/blockquote&apos;</span>;
-<span class="hljs-keyword">import</span> EasyImage <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-easy-image/src/easyimage&apos;</span>;
-<span class="hljs-keyword">import</span> Heading <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-heading/src/heading&apos;</span>;
-<span class="hljs-keyword">import</span> Image <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-image/src/image&apos;</span>;
-<span class="hljs-keyword">import</span> ImageCaption <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-image/src/imagecaption&apos;</span>;
-<span class="hljs-keyword">import</span> ImageStyle <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-image/src/imagestyle&apos;</span>;
-<span class="hljs-keyword">import</span> ImageToolbar <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-image/src/imagetoolbar&apos;</span>;
-<span class="hljs-keyword">import</span> ImageUpload <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-image/src/imageupload&apos;</span>;
-<span class="hljs-keyword">import</span> Link <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-link/src/link&apos;</span>;
-<span class="hljs-keyword">import</span> List <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-list/src/list&apos;</span>;
-<span class="hljs-keyword">import</span> Paragraph <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;</span>;
+import Essentials from &apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;;
+import UploadAdapter from &apos;@ckeditor/ckeditor5-adapter-ckfinder/src/uploadadapter&apos;;
+import Autoformat from &apos;@ckeditor/ckeditor5-autoformat/src/autoformat&apos;;
+import Bold from &apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;;
+import Italic from &apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;;
+import BlockQuote from &apos;@ckeditor/ckeditor5-block-quote/src/blockquote&apos;;
+import EasyImage from &apos;@ckeditor/ckeditor5-easy-image/src/easyimage&apos;;
+import Heading from &apos;@ckeditor/ckeditor5-heading/src/heading&apos;;
+import Image from &apos;@ckeditor/ckeditor5-image/src/image&apos;;
+import ImageCaption from &apos;@ckeditor/ckeditor5-image/src/imagecaption&apos;;
+import ImageStyle from &apos;@ckeditor/ckeditor5-image/src/imagestyle&apos;;
+import ImageToolbar from &apos;@ckeditor/ckeditor5-image/src/imagetoolbar&apos;;
+import ImageUpload from &apos;@ckeditor/ckeditor5-image/src/imageupload&apos;;
+import Link from &apos;@ckeditor/ckeditor5-link/src/link&apos;;
+import List from &apos;@ckeditor/ckeditor5-list/src/list&apos;;
+import Paragraph from &apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;;
 
-<span class="hljs-keyword">import</span> Alignment <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-alignment/src/alignment&apos;</span>;     <span class="hljs-comment">// &lt;--- ADDED</span>
+import Alignment from &apos;@ckeditor/ckeditor5-alignment/src/alignment&apos;;     // &lt;--- ADDED
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ClassicEditor</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ClassicEditorBase</span> </span>{}
+export default class ClassicEditor extends ClassicEditorBase {}
 
-<span class="hljs-comment">// Plugins to include in the build.</span>
+// Plugins to include in the build.
 ClassicEditor.builtinPlugins = [
     Essentials,
     UploadAdapter,
@@ -276,37 +276,37 @@ ClassicEditor.builtinPlugins = [
     Link,
     List,
     Paragraph,
-    Alignment                                                            <span class="hljs-comment">// &lt;--- ADDED</span>
+    Alignment                                                            // &lt;--- ADDED
 ];
 
-<span class="hljs-comment">// Editor configuration.</span>
+// Editor configuration.
 ClassicEditor.defaultConfig = {
-    <span class="hljs-attr">toolbar</span>: {
-        <span class="hljs-attr">items</span>: [
-            <span class="hljs-string">&apos;heading&apos;</span>,
-            <span class="hljs-string">&apos;|&apos;</span>,
-            <span class="hljs-string">&apos;alignment&apos;</span>,                                                 <span class="hljs-comment">// &lt;--- ADDED</span>
-            <span class="hljs-string">&apos;bold&apos;</span>,
-            <span class="hljs-string">&apos;italic&apos;</span>,
-            <span class="hljs-string">&apos;link&apos;</span>,
-            <span class="hljs-string">&apos;bulletedList&apos;</span>,
-            <span class="hljs-string">&apos;numberedList&apos;</span>,
-            <span class="hljs-string">&apos;imageUpload&apos;</span>,
-            <span class="hljs-string">&apos;blockQuote&apos;</span>,
-            <span class="hljs-string">&apos;undo&apos;</span>,
-            <span class="hljs-string">&apos;redo&apos;</span>
+    toolbar: {
+        items: [
+            &apos;heading&apos;,
+            &apos;|&apos;,
+            &apos;alignment&apos;,                                                 // &lt;--- ADDED
+            &apos;bold&apos;,
+            &apos;italic&apos;,
+            &apos;link&apos;,
+            &apos;bulletedList&apos;,
+            &apos;numberedList&apos;,
+            &apos;imageUpload&apos;,
+            &apos;blockQuote&apos;,
+            &apos;undo&apos;,
+            &apos;redo&apos;
         ]
     },
-    <span class="hljs-attr">image</span>: {
-        <span class="hljs-attr">toolbar</span>: [
-            <span class="hljs-string">&apos;imageStyle:full&apos;</span>,
-            <span class="hljs-string">&apos;imageStyle:side&apos;</span>,
-            <span class="hljs-string">&apos;|&apos;</span>,
-            <span class="hljs-string">&apos;imageTextAlternative&apos;</span>
+    image: {
+        toolbar: [
+            &apos;imageStyle:full&apos;,
+            &apos;imageStyle:side&apos;,
+            &apos;|&apos;,
+            &apos;imageTextAlternative&apos;
         ]
     },
-    <span class="hljs-comment">// This value must be kept in sync with the language defined in webpack.config.js.</span>
-    <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;en&apos;</span>
+    // This value must be kept in sync with the language defined in webpack.config.js.
+    language: &apos;en&apos;
 };
 </code></pre>
 <p>Finally, bundle the build:</p>
@@ -326,24 +326,24 @@ ClassicEditor.defaultConfig = {
 <pre class="highlight"><code class="bash">npm install --save-dev @ckeditor/ckeditor5-alignment
 </code></pre>
 <p>Edit the code that initializes the editor:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
-<span class="hljs-keyword">import</span> Essentials <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;</span>;
-<span class="hljs-keyword">import</span> Paragraph <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;</span>;
-<span class="hljs-keyword">import</span> Bold <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;</span>;
-<span class="hljs-keyword">import</span> Italic <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;</span>;
+<pre class="highlight"><code class="js">import ClassicEditor from &apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;;
+import Essentials from &apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;;
+import Paragraph from &apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;;
+import Bold from &apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;;
+import Italic from &apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;;
 
-<span class="hljs-keyword">import</span> Alignment <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-alignment/src/alignment&apos;</span>;     <span class="hljs-comment">// &lt;--- ADDED</span>
+import Alignment from &apos;@ckeditor/ckeditor5-alignment/src/alignment&apos;;     // &lt;--- ADDED
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ Essentials, Paragraph, Bold, Italic, Alignment ],     <span class="hljs-comment">// &lt;--- MODIFIED</span>
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-string">&apos;italic&apos;</span>, <span class="hljs-string">&apos;alignment&apos;</span> ]                       <span class="hljs-comment">// &lt;--- MODIFIED</span>
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Essentials, Paragraph, Bold, Italic, Alignment ],     // &lt;--- MODIFIED
+        toolbar: [ &apos;bold&apos;, &apos;italic&apos;, &apos;alignment&apos; ]                       // &lt;--- MODIFIED
     } )
-    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;Editor was initialized&apos;</span>, editor );
+    .then( editor =&gt; {
+        console.log( &apos;Editor was initialized&apos;, editor );
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error( error.stack );
+    .catch( error =&gt; {
+        console.error( error.stack );
     } );
 </code></pre>
 <p>After rebuilding your project, the new feature will be available in the editor.</p>
@@ -351,31 +351,31 @@ ClassicEditor
 <h2 id="difference-between-both-methods"><a class="headerlink" href="#difference-between-both-methods">#</a> Difference between both methods</h2>
 <p>What is the difference between adding a plugin to an editor build and adding a plugin by passing the <code>config.plugins</code> option to the static <code>create()</code> method?</p>
 <p>The first method builds the plugin into the editor class. This means that you can then initialize the editor without passing <code>config.plugins</code> at all and the editor will automatically enable all built-in plugins:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// Assuming you use e.g. webpack which can load UMD modules by using ES6 syntax.</span>
-<span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-build-classic&apos;</span>;
+<pre class="highlight"><code class="js">// Assuming you use e.g. webpack which can load UMD modules by using ES6 syntax.
+import ClassicEditor from &apos;@ckeditor/ckeditor5-build-classic&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-comment">// Look, ma! No plugins!</span>
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        // Look, ma! No plugins!
     } )
-    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;Editor was initialized&apos;</span>, editor );
+    .then( editor =&gt; {
+        console.log( &apos;Editor was initialized&apos;, editor );
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error( error.stack );
+    .catch( error =&gt; {
+        console.error( error.stack );
     } );
 </code></pre>
 <p>All this works because a typical <code>src/ckeditor.js</code> module that you can find in every editor build repository (see for example <a href="https://github.com/ckeditor/ckeditor5-build-classic/blob/stable/src/ckeditor.js" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-build-classic</code></a>) looks like this:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ClassicEditorBase <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
-<span class="hljs-keyword">import</span> Essentials <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;</span>;
-<span class="hljs-keyword">import</span> UploadAdapter <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-adapter-ckfinder/src/uploadadapter&apos;</span>;
-<span class="hljs-keyword">import</span> Autoformat <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-autoformat/src/autoformat&apos;</span>;
-<span class="hljs-keyword">import</span> Bold <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;</span>;
-<span class="hljs-keyword">import</span> Italic <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;</span>;
-<span class="hljs-keyword">import</span> BlockQuote <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-block-quote/src/blockquote&apos;</span>;
-<span class="hljs-comment">// ...</span>
+<pre class="highlight"><code class="js">import ClassicEditorBase from &apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;;
+import Essentials from &apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;;
+import UploadAdapter from &apos;@ckeditor/ckeditor5-adapter-ckfinder/src/uploadadapter&apos;;
+import Autoformat from &apos;@ckeditor/ckeditor5-autoformat/src/autoformat&apos;;
+import Bold from &apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;;
+import Italic from &apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;;
+import BlockQuote from &apos;@ckeditor/ckeditor5-block-quote/src/blockquote&apos;;
+// ...
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ClassicEditor</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ClassicEditorBase</span> </span>{}
+export default class ClassicEditor extends ClassicEditorBase {}
 
 ClassicEditor.builtinPlugins = [
     Essentials,
@@ -384,40 +384,40 @@ ClassicEditor.builtinPlugins = [
     Bold,
     Italic,
     BlockQuote,
-    <span class="hljs-comment">// ...</span>
+    // ...
 ];
 
 ClassicEditor.defaultConfig = {
-    <span class="hljs-attr">toolbar</span>: {
-        <span class="hljs-attr">items</span>: [
-            <span class="hljs-string">&apos;heading&apos;</span>,
-            <span class="hljs-string">&apos;bold&apos;</span>,
-            <span class="hljs-comment">// ...</span>
+    toolbar: {
+        items: [
+            &apos;heading&apos;,
+            &apos;bold&apos;,
+            // ...
         ]
     },
-    <span class="hljs-comment">// ...</span>
+    // ...
 };
 </code></pre>
 <p>This code imports the source of the classic editor and extends it with a static <code>builtinPlugins</code> and <code>defaultConfig</code> properties where it defines a set of plugins and configuration to be used by this editor class.</p>
 <p>In this approach, all editor instances created by using this editor build will by default load all these built-in plugins and configuration.</p>
 <div class="info-box notice"><p>You can still use the <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html#member-removePlugins"><code>config.removePlugins</code></a> and <a href="../../../api/module_core_editor_editorconfig-EditorConfig.html#member-plugins"><code>config.plugins</code></a> options to override the default configuration.</p></div>
 <p>When building the editor from source and not using a build as a base, you can also use the static <code>builtinPlugins</code> and <code>defaultConfig</code> properties of editor classes. However, in this situation it is usually more convenient to simply pass all the plugins directly to the static <code>create()</code> method:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ClassicEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
-<span class="hljs-keyword">import</span> Essentials <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;</span>;
-<span class="hljs-keyword">import</span> Paragraph <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;</span>;
-<span class="hljs-keyword">import</span> Bold <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;</span>;
-<span class="hljs-keyword">import</span> Italic <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;</span>;
+<pre class="highlight"><code class="js">import ClassicEditor from &apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;;
+import Essentials from &apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;;
+import Paragraph from &apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;;
+import Bold from &apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;;
+import Italic from &apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ Essentials, Paragraph, Bold, Italic ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-string">&apos;italic&apos;</span> ]
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Essentials, Paragraph, Bold, Italic ],
+        toolbar: [ &apos;bold&apos;, &apos;italic&apos; ]
     } )
-    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;Editor was initialized&apos;</span>, editor );
+    .then( editor =&gt; {
+        console.log( &apos;Editor was initialized&apos;, editor );
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error( error.stack );
+    .catch( error =&gt; {
+        console.error( error.stack );
     } );
 </code></pre>
 <p>So, in short, both methods use very similar mechanisms. However, adding a plugin through the static <code>builtinPlugins</code> property (which happens in editor builds) lets you automatically enable it in all editor instances created using this editor class, while passing a plugin to <code>create()</code> will naturally affect only one instance.</p>

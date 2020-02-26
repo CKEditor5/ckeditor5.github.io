@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../assets/styles.css" type="text/css">
     <script>
       ( function() {
@@ -33,16 +33,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -84,7 +84,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -199,11 +199,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/quick-start.md" title="Contribute to this guide"><img src="../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/quick-start.md" title="Contribute to this guide"><img src="../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Builds</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../assets/1.2.1/img/book.svg" alt="guide">Quick start
+          <h1 class="main__content-title"><img src="../../../../assets/1.2.2/img/book.svg" alt="guide">Quick start
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#classic-editor">Classic editor</a><ol><li><a href="#example">Example</a></li></ol></li><li><a href="#inline-editor">Inline editor</a><ol><li><a href="#example-2">Example</a></li></ol></li><li><a href="#balloon-editor">Balloon editor</a><ol><li><a href="#example-3">Example</a></li></ol></li><li><a href="#balloon-block-editor">Balloon block editor</a><ol><li><a href="#example-4">Example</a></li></ol></li><li><a href="#document-editor">Document editor</a><ol><li><a href="#example-5">Example</a></li></ol></li><li><a href="#next-steps">Next steps</a></li></ol></nav>
 <p>Creating an editor using a CKEditor 5 build is very simple and can be described in two steps:</p>
 <ol>
@@ -213,213 +213,213 @@
 <div class="info-box notice"><p>There are other installation and integration methods available. For more information check <a href="integration/installation.html">Installation</a> and <a href="integration/basic-api.html">Basic API</a> guides.</p></div>
 <h2 id="classic-editor"><a class="headerlink" href="#classic-editor">#</a> Classic editor</h2>
 <p>In your HTML page add an element that CKEditor should replace:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;editor&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;div id=&quot;editor&quot;&gt;&lt;/div&gt;
 </code></pre>
 <p>Load the classic editor build (here <a href="https://cdn.ckeditor.com/" target="_blank" rel="noopener">CDN</a> location is used):</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>Call the <a href="../../api/module_editor-classic_classiceditor-ClassicEditor.html#static-function-create"><code>ClassicEditor.create()</code></a> method.</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<pre class="highlight"><code class="html">&lt;script&gt;
     ClassicEditor
-        .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ) )
-        .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-            <span class="hljs-built_in">console</span>.error( error );
+        .create( document.querySelector( &apos;#editor&apos; ) )
+        .catch( error =&gt; {
+            console.error( error );
         } );
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+&lt;/script&gt;
 </code></pre>
 <h3 id="example"><a class="headerlink" href="#example">#</a> Example</h3>
-<pre class="highlight"><code class="html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>CKEditor 5 &#x2013; Classic editor<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Classic editor<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;editor&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is some sample content.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;CKEditor 5 &#x2013; Classic editor&lt;/title&gt;
+    &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Classic editor&lt;/h1&gt;
+    &lt;div id=&quot;editor&quot;&gt;
+        &lt;p&gt;This is some sample content.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;script&gt;
         ClassicEditor
-            .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ) )
-            .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-                <span class="hljs-built_in">console</span>.error( error );
+            .create( document.querySelector( &apos;#editor&apos; ) )
+            .catch( error =&gt; {
+                console.error( error );
             } );
-    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 </code></pre>
 <h2 id="inline-editor"><a class="headerlink" href="#inline-editor">#</a> Inline editor</h2>
 <p>In your HTML page add an element that CKEditor should make editable:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;editor&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;div id=&quot;editor&quot;&gt;&lt;/div&gt;
 </code></pre>
 <p>Load the inline editor build (here <a href="https://cdn.ckeditor.com/" target="_blank" rel="noopener">CDN</a> location is used):</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.ckeditor.com/ckeditor5/17.0.0/inline/ckeditor.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/17.0.0/inline/ckeditor.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>Call the <a href="../../api/module_editor-inline_inlineeditor-InlineEditor.html#static-function-create"><code>InlineEditor.create()</code></a> method.</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<pre class="highlight"><code class="html">&lt;script&gt;
     InlineEditor
-        .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ) )
-        .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-            <span class="hljs-built_in">console</span>.error( error );
+        .create( document.querySelector( &apos;#editor&apos; ) )
+        .catch( error =&gt; {
+            console.error( error );
         } );
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+&lt;/script&gt;
 </code></pre>
 <h3 id="example-2"><a class="headerlink" href="#example-2">#</a> Example</h3>
-<pre class="highlight"><code class="html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>CKEditor 5 - Inline editor<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.ckeditor.com/ckeditor5/17.0.0/inline/ckeditor.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Inline editor<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;editor&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is some sample content.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;CKEditor 5 - Inline editor&lt;/title&gt;
+    &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/17.0.0/inline/ckeditor.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Inline editor&lt;/h1&gt;
+    &lt;div id=&quot;editor&quot;&gt;
+        &lt;p&gt;This is some sample content.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;script&gt;
         InlineEditor
-            .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ) )
-            .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-                <span class="hljs-built_in">console</span>.error( error );
+            .create( document.querySelector( &apos;#editor&apos; ) )
+            .catch( error =&gt; {
+                console.error( error );
             } );
-    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 </code></pre>
 <h2 id="balloon-editor"><a class="headerlink" href="#balloon-editor">#</a> Balloon editor</h2>
 <p>In your HTML page add an element that CKEditor should make editable:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;editor&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;div id=&quot;editor&quot;&gt;&lt;/div&gt;
 </code></pre>
 <p>Load the balloon editor build (here <a href="https://cdn.ckeditor.com/" target="_blank" rel="noopener">CDN</a> location is used):</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.ckeditor.com/ckeditor5/17.0.0/balloon/ckeditor.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/17.0.0/balloon/ckeditor.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>Call the <a href="../../api/module_editor-balloon_ballooneditor-BalloonEditor.html#static-function-create"><code>BalloonEditor.create()</code></a> method.</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<pre class="highlight"><code class="html">&lt;script&gt;
     BalloonEditor
-        .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ) )
-        .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-            <span class="hljs-built_in">console</span>.error( error );
+        .create( document.querySelector( &apos;#editor&apos; ) )
+        .catch( error =&gt; {
+            console.error( error );
         } );
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+&lt;/script&gt;
 </code></pre>
 <h3 id="example-3"><a class="headerlink" href="#example-3">#</a> Example</h3>
-<pre class="highlight"><code class="html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>CKEditor 5 &#x2013; Balloon editor<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.ckeditor.com/ckeditor5/17.0.0/balloon/ckeditor.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Balloon editor<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;editor&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is some sample content.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;CKEditor 5 &#x2013; Balloon editor&lt;/title&gt;
+    &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/17.0.0/balloon/ckeditor.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Balloon editor&lt;/h1&gt;
+    &lt;div id=&quot;editor&quot;&gt;
+        &lt;p&gt;This is some sample content.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;script&gt;
         BalloonEditor
-            .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ) )
-            .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-                <span class="hljs-built_in">console</span>.error( error );
+            .create( document.querySelector( &apos;#editor&apos; ) )
+            .catch( error =&gt; {
+                console.error( error );
             } );
-    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 </code></pre>
 <h2 id="balloon-block-editor"><a class="headerlink" href="#balloon-block-editor">#</a> Balloon block editor</h2>
 <p>In your HTML page add an element that CKEditor should make editable:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;editor&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;div id=&quot;editor&quot;&gt;&lt;/div&gt;
 </code></pre>
 <p>Load the balloon block editor build (here <a href="https://cdn.ckeditor.com/" target="_blank" rel="noopener">CDN</a> location is used):</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.ckeditor.com/ckeditor5/17.0.0/balloon-block/ckeditor.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/17.0.0/balloon-block/ckeditor.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>Call the <a href="../../api/module_editor-balloon_ballooneditor-BalloonEditor.html#static-function-create"><code>BalloonEditor.create()</code></a> method.</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<pre class="highlight"><code class="html">&lt;script&gt;
     BalloonEditor
-        .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ) )
-        .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-            <span class="hljs-built_in">console</span>.error( error );
+        .create( document.querySelector( &apos;#editor&apos; ) )
+        .catch( error =&gt; {
+            console.error( error );
         } );
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+&lt;/script&gt;
 </code></pre>
 <p><strong>Note:</strong> You can configure the block toolbar items using the <a href="../../api/module_core_editor_editorconfig-EditorConfig.html#member-blockToolbar"><code>config.blockToolbar</code></a> option.</p>
 <h3 id="example-4"><a class="headerlink" href="#example-4">#</a> Example</h3>
-<pre class="highlight"><code class="html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>CKEditor 5 &#x2013; Balloon block editor<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.ckeditor.com/ckeditor5/17.0.0/balloon-block/ckeditor.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Balloon editor<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;editor&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is some sample content.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;CKEditor 5 &#x2013; Balloon block editor&lt;/title&gt;
+    &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/17.0.0/balloon-block/ckeditor.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Balloon editor&lt;/h1&gt;
+    &lt;div id=&quot;editor&quot;&gt;
+        &lt;p&gt;This is some sample content.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;script&gt;
         BalloonEditor
-            .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ) )
-            .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-                <span class="hljs-built_in">console</span>.error( error );
+            .create( document.querySelector( &apos;#editor&apos; ) )
+            .catch( error =&gt; {
+                console.error( error );
             } );
-    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 </code></pre>
 <h2 id="document-editor"><a class="headerlink" href="#document-editor">#</a> Document editor</h2>
 <p>Load the document editor build (here <a href="https://cdn.ckeditor.com/" target="_blank" rel="noopener">CDN</a> location is used):</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.ckeditor.com/ckeditor5/17.0.0/decoupled-document/ckeditor.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/17.0.0/decoupled-document/ckeditor.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>Call the <a href="../../api/module_editor-decoupled_decouplededitor-DecoupledEditor.html#static-function-create"><code>DecoupledEditor.create()</code></a> method. The decoupled editor requires you to inject the toolbar into the DOM and the best place to do that is somewhere in the promise chain (e.g. one of the <code>then( () =&gt; { ... } )</code> blocks).</p>
 <div class="info-box notice"><p>The following snippet will run the document editor but to make the most of it check out the <a href="../../framework/guides/deep-dive/ui/document-editor.html">comprehensive tutorial</a> which explains step&#x2014;by&#x2014;step how to configure and style the application for the best editing experience.</p></div>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<pre class="highlight"><code class="html">&lt;script&gt;
     DecoupledEditor
-        .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ) )
-        .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
-            <span class="hljs-keyword">const</span> toolbarContainer = <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#toolbar-container&apos;</span> );
+        .create( document.querySelector( &apos;#editor&apos; ) )
+        .then( editor =&gt; {
+            const toolbarContainer = document.querySelector( &apos;#toolbar-container&apos; );
 
             toolbarContainer.appendChild( editor.ui.view.toolbar.element );
         } )
-        .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-            <span class="hljs-built_in">console</span>.error( error );
+        .catch( error =&gt; {
+            console.error( error );
         } );
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+&lt;/script&gt;
 </code></pre>
 <h3 id="example-5"><a class="headerlink" href="#example-5">#</a> Example</h3>
-<pre class="highlight"><code class="html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>CKEditor 5 &#x2013; Document editor<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://cdn.ckeditor.com/ckeditor5/17.0.0/decoupled-document/ckeditor.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Document editor<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;CKEditor 5 &#x2013; Document editor&lt;/title&gt;
+    &lt;script src=&quot;https://cdn.ckeditor.com/ckeditor5/17.0.0/decoupled-document/ckeditor.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Document editor&lt;/h1&gt;
 
-    <span class="hljs-comment">&lt;!-- The toolbar will be rendered in this container. --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;toolbar-container&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    &lt;!-- The toolbar will be rendered in this container. --&gt;
+    &lt;div id=&quot;toolbar-container&quot;&gt;&lt;/div&gt;
 
-    <span class="hljs-comment">&lt;!-- This container will become the editable. --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;editor&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>This is the initial editor content.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    &lt;!-- This container will become the editable. --&gt;
+    &lt;div id=&quot;editor&quot;&gt;
+        &lt;p&gt;This is the initial editor content.&lt;/p&gt;
+    &lt;/div&gt;
 
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+    &lt;script&gt;
         DecoupledEditor
-            .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ) )
-            .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
-                <span class="hljs-keyword">const</span> toolbarContainer = <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#toolbar-container&apos;</span> );
+            .create( document.querySelector( &apos;#editor&apos; ) )
+            .then( editor =&gt; {
+                const toolbarContainer = document.querySelector( &apos;#toolbar-container&apos; );
 
                 toolbarContainer.appendChild( editor.ui.view.toolbar.element );
             } )
-            .catch( <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-                <span class="hljs-built_in">console</span>.error( error );
+            .catch( error =&gt; {
+                console.error( error );
             } );
-    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 </code></pre>
 <h2 id="next-steps"><a class="headerlink" href="#next-steps">#</a> Next steps</h2>
 <p>Check the <a href="integration/configuration.html">Configuration guide</a> to learn how to configure the editor &#x2014; for example, change the default toolbar.</p>

@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../snippets/features/special-characters-source/snippet.css" type="text/css">
     <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
@@ -35,16 +35,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -86,7 +86,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -214,11 +214,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-special-characters/blob/master/docs/features/special-characters.md" title="Contribute to this guide"><img src="../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-special-characters/blob/master/docs/features/special-characters.md" title="Contribute to this guide"><img src="../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../assets/1.2.1/img/book.svg" alt="guide">Special characters
+          <h1 class="main__content-title"><img src="../../../assets/1.2.2/img/book.svg" alt="guide">Special characters
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#configuration">Configuration</a><ol><li><a href="#adding-a-new-category">Adding a new category</a></li><li><a href="#adding-characters-to-an-existing-category">Adding characters to an existing category</a></li><li><a href="#removing-categories">Removing categories</a></li></ol></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 <p>The <a href="../api/module_special-characters_specialcharacters-SpecialCharacters.html"><code>SpecialCharacters</code></a> plugin provides a possibility to insert a special character into the rich-text editor.</p>
 <h2 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h2>
@@ -250,27 +250,27 @@
 <h3 id="adding-a-new-category"><a class="headerlink" href="#adding-a-new-category">#</a> Adding a new category</h3>
 <p>You can define a new special characters category using the <a href="../api/module_special-characters_specialcharacters-SpecialCharacters.html#function-addItems"><code>SpecialCharacters#addItems()</code></a> function.</p>
 <p>For example, the following plugin adds the &#x201C;Emoji&#x201D; category to the special characters dropdown.</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> SpecialCharacters <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-special-characters/src/specialcharacters&apos;</span>;
-<span class="hljs-keyword">import</span> SpecialCharactersEssentials <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-special-characters/src/specialcharactersessentials&apos;</span>;
+<pre class="highlight"><code class="js">import SpecialCharacters from &apos;@ckeditor/ckeditor5-special-characters/src/specialcharacters&apos;;
+import SpecialCharactersEssentials from &apos;@ckeditor/ckeditor5-special-characters/src/specialcharactersessentials&apos;;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">SpecialCharactersEmoji</span>(<span class="hljs-params"> editor </span>) </span>{
-    editor.plugins.get( <span class="hljs-string">&apos;SpecialCharacters&apos;</span> ).addItems( <span class="hljs-string">&apos;Emoji&apos;</span>, [
-        { <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;smiley face&apos;</span>, <span class="hljs-attr">character</span>: <span class="hljs-string">&apos;&#x1F60A;&apos;</span> },
-        { <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;rocket&apos;</span>, <span class="hljs-attr">character</span>: <span class="hljs-string">&apos;&#x1F680;&apos;</span> },
-        { <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;wind blowing face&apos;</span>, <span class="hljs-attr">character</span>: <span class="hljs-string">&apos;&#x1F32C;&#xFE0F;&apos;</span> },
-        { <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;floppy disk&apos;</span>, <span class="hljs-attr">character</span>: <span class="hljs-string">&apos;&#x1F4BE;&apos;</span> },
-        { <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;heart&apos;</span>, <span class="hljs-attr">character</span>: <span class="hljs-string">&apos;&#x2764;&#xFE0F;&apos;</span> }
+function SpecialCharactersEmoji( editor ) {
+    editor.plugins.get( &apos;SpecialCharacters&apos; ).addItems( &apos;Emoji&apos;, [
+        { title: &apos;smiley face&apos;, character: &apos;&#x1F60A;&apos; },
+        { title: &apos;rocket&apos;, character: &apos;&#x1F680;&apos; },
+        { title: &apos;wind blowing face&apos;, character: &apos;&#x1F32C;&#xFE0F;&apos; },
+        { title: &apos;floppy disk&apos;, character: &apos;&#x1F4BE;&apos; },
+        { title: &apos;heart&apos;, character: &apos;&#x2764;&#xFE0F;&apos; }
     ] );
 }
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [
             SpecialCharacters, SpecialCharactersEssentials, SpecialCharactersEmoji,
 
-            <span class="hljs-comment">// Other plugins...</span>
+            // Other plugins...
         ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;specialCharacters&apos;</span>, ... ],
+        toolbar: [ &apos;specialCharacters&apos;, ... ],
     } )
     .then( ... )
     .catch( ... );
@@ -292,26 +292,26 @@ ClassicEditor
 </div>
 <h3 id="adding-characters-to-an-existing-category"><a class="headerlink" href="#adding-characters-to-an-existing-category">#</a> Adding characters to an existing category</h3>
 <p>By using the <a href="../api/module_special-characters_specialcharacters-SpecialCharacters.html#function-addItems"><code>SpecialCharacters#addItems()</code></a> function you can also add new special characters into an existing category.</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> SpecialCharacters <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-special-characters/src/specialcharacters&apos;</span>;
-<span class="hljs-keyword">import</span> SpecialCharactersEssentials <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-special-characters/src/specialcharactersessentials&apos;</span>;
+<pre class="highlight"><code class="js">import SpecialCharacters from &apos;@ckeditor/ckeditor5-special-characters/src/specialcharacters&apos;;
+import SpecialCharactersEssentials from &apos;@ckeditor/ckeditor5-special-characters/src/specialcharactersessentials&apos;;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">SpecialCharactersArrowsExtended</span>(<span class="hljs-params"> editor </span>) </span>{
-    editor.plugins.get( <span class="hljs-string">&apos;SpecialCharacters&apos;</span> ).addItems( <span class="hljs-string">&apos;Arrows&apos;</span>, [
-        { <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;simple arrow left&apos;</span>, <span class="hljs-attr">character</span>: <span class="hljs-string">&apos;&#x2190;&apos;</span> },
-        { <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;simple arrow up&apos;</span>, <span class="hljs-attr">character</span>: <span class="hljs-string">&apos;&#x2191;&apos;</span> },
-        { <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;simple arrow right&apos;</span>, <span class="hljs-attr">character</span>: <span class="hljs-string">&apos;&#x2192;&apos;</span> },
-        { <span class="hljs-attr">title</span>: <span class="hljs-string">&apos;simple arrow down&apos;</span>, <span class="hljs-attr">character</span>: <span class="hljs-string">&apos;&#x2193;&apos;</span> }
+function SpecialCharactersArrowsExtended( editor ) {
+    editor.plugins.get( &apos;SpecialCharacters&apos; ).addItems( &apos;Arrows&apos;, [
+        { title: &apos;simple arrow left&apos;, character: &apos;&#x2190;&apos; },
+        { title: &apos;simple arrow up&apos;, character: &apos;&#x2191;&apos; },
+        { title: &apos;simple arrow right&apos;, character: &apos;&#x2192;&apos; },
+        { title: &apos;simple arrow down&apos;, character: &apos;&#x2193;&apos; }
     ] );
 }
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [
             SpecialCharacters, SpecialCharactersEssentials, SpecialCharactersArrowsExtended,
 
-            <span class="hljs-comment">// Other plugins...</span>
+            // Other plugins...
         ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;specialCharacters&apos;</span>, ... ],
+        toolbar: [ &apos;specialCharacters&apos;, ... ],
     } )
     .then( ... )
     .catch( ... );
@@ -351,18 +351,18 @@ ClassicEditor
 <li><a href="../api/module_special-characters_specialcharactersessentials-SpecialCharactersEssentials.html"><code>SpecialCharactersEssentials</code></a> &#x2013; Combines the plugins listed above.</li>
 </ul>
 <p>For example, you can limit the categories to &#x201C;Mathematical&#x201D; and &#x201C;Currency&#x201D; only by picking the <a href="../api/module_special-characters_specialcharactersmathematical-SpecialCharactersMathematical.html"><code>SpecialCharactersMathematical</code></a> and <a href="../api/module_special-characters_specialcharacterscurrency-SpecialCharactersCurrency.html"><code>SpecialCharactersCurrency</code></a> plugins, like so:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> SpecialCharacters <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-special-characters/src/specialcharacters&apos;</span>;
-<span class="hljs-keyword">import</span> SpecialCharactersCurrency <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-special-characters/src/specialcharacterscurrency&apos;</span>;
-<span class="hljs-keyword">import</span> SpecialCharactersMathematical <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-special-characters/src/specialcharactersmathematical&apos;</span>;
+<pre class="highlight"><code class="js">import SpecialCharacters from &apos;@ckeditor/ckeditor5-special-characters/src/specialcharacters&apos;;
+import SpecialCharactersCurrency from &apos;@ckeditor/ckeditor5-special-characters/src/specialcharacterscurrency&apos;;
+import SpecialCharactersMathematical from &apos;@ckeditor/ckeditor5-special-characters/src/specialcharactersmathematical&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [
             SpecialCharacters, SpecialCharactersCurrency, SpecialCharactersMathematical,
 
-            <span class="hljs-comment">// Other plugins...</span>
+            // Other plugins...
         ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;specialCharacters&apos;</span>, ... ],
+        toolbar: [ &apos;specialCharacters&apos;, ... ],
     } )
     .then( ... )
     .catch( ... );
@@ -394,15 +394,15 @@ ClassicEditor
 <pre class="highlight"><code class="plaintext">npm install --save @ckeditor/ckeditor5-special-characters
 </code></pre>
 <p>And add it to your plugin list configuration:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// Core plugin that provides the API for the management of special characters and their categories.</span>
-<span class="hljs-keyword">import</span> SpecialCharacters <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-special-characters/src/specialcharacters&apos;</span>;
-<span class="hljs-comment">// A plugin that combines a basic set of special characters.</span>
-<span class="hljs-keyword">import</span> SpecialCharactersEssentials <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-special-characters/src/specialcharactersessentials&apos;</span>;
+<pre class="highlight"><code class="js">// Core plugin that provides the API for the management of special characters and their categories.
+import SpecialCharacters from &apos;@ckeditor/ckeditor5-special-characters/src/specialcharacters&apos;;
+// A plugin that combines a basic set of special characters.
+import SpecialCharactersEssentials from &apos;@ckeditor/ckeditor5-special-characters/src/specialcharactersessentials&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ SpecialCharacters, SpecialCharactersEssentials, ... ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;specialCharacters&apos;</span>, ... ],
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ SpecialCharacters, SpecialCharactersEssentials, ... ],
+        toolbar: [ &apos;specialCharacters&apos;, ... ],
     } )
     .then( ... )
     .catch( ... );

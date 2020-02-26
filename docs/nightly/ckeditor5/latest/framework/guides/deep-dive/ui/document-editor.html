@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../../../../snippets/examples/document-editor/snippet.css" type="text/css">
     <link rel="stylesheet" href="../../../../assets/snippet-styles.css" type="text/css">
@@ -35,16 +35,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -86,7 +86,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -232,11 +232,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-editor-decoupled/blob/master/docs/framework/guides/document-editor.md" title="Contribute to this guide"><img src="../../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-editor-decoupled/blob/master/docs/framework/guides/document-editor.md" title="Contribute to this guide"><img src="../../../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../../assets/1.2.1/img/book.svg" alt="guide">Document editor
+          <h1 class="main__content-title"><img src="../../../../../../assets/1.2.2/img/book.svg" alt="guide">Document editor
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#the-editor">The editor</a></li><li><a href="#the-user-interface">The user interface</a><ol><li><a href="#html">HTML</a></li><li><a href="#styles">Styles</a></li></ol></li><li><a href="#summary">Summary</a></li></ol></nav>
 <p>The <a href="../../../../examples/builds/document-editor.html">document editor example</a> showcases the <a href="../../../../builds/guides/quick-start.html#document-editor">document editor build</a> designed for document editing with a customized UI representing the layout of a sheet of paper. It was created on top of the <a href="../../../../api/module_editor-decoupled_decouplededitor-DecoupledEditor.html"><code>DecoupledEditor</code></a> class and makes the best of what it offers: the freedom to choose the location of the crucial UI elements in the application.</p>
 <p>In this tutorial you will learn how to create your own document editor with a customized user interface, step&#x2013;by&#x2013;step.</p>
@@ -485,23 +485,23 @@
 <div class="info-box notice"><p>See the <a href="../../../../builds/guides/quick-start.html#document-editor">Quick start guide</a> to learn how to install the document editor build.</p></div>
 <p>Document editor can be created using the existing data container in the DOM. It can also accept a raw data string and create the editable by itself. To get the output data, use the <a href="../../../../api/module_core_editor_utils_dataapimixin-DataApi.html#function-getData"><code>getData()</code></a> method.</p>
 <div class="info-box notice"><p>See the <a href="../../../../api/module_editor-decoupled_decouplededitor-DecoupledEditor.html#static-function-create"><code>DecoupledEditor.create()</code></a> method to learn about different approaches to the initialization of the editor.</p></div>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> DecoupledEditor <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-build-decoupled-document/src/ckeditor&apos;</span>;
+<pre class="highlight"><code class="js">import DecoupledEditor from &apos;@ckeditor/ckeditor5-build-decoupled-document/src/ckeditor&apos;;
 
 DecoupledEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;.document-editor__editable&apos;</span> ), {
-        <span class="hljs-attr">cloudServices</span>: {
+    .create( document.querySelector( &apos;.document-editor__editable&apos; ), {
+        cloudServices: {
             ....
         }
     } )
-    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
-        <span class="hljs-keyword">const</span> toolbarContainer = <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;.document-editor__toolbar&apos;</span> );
+    .then( editor =&gt; {
+        const toolbarContainer = document.querySelector( &apos;.document-editor__toolbar&apos; );
 
         toolbarContainer.appendChild( editor.ui.view.toolbar.element );
 
-        <span class="hljs-built_in">window</span>.editor = editor;
+        window.editor = editor;
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error( err );
+    .catch( err =&gt; {
+        console.error( err );
     } );
 </code></pre>
 <p>You may have noticed that you have to make sure the editor UI is injected into your application after it fires the <a href="../../../../api/module_core_editor_editorui-EditorUI.html#event-ready"><code>EditorUI#ready</code></a> event. The toolbar element can be found under <code>editor.ui.view.toolbar.element</code>.</p>
@@ -510,159 +510,159 @@ DecoupledEditor
 <p>The code you have just created will run the editor but the user interface is still missing. Start off with a basic HTML structure to host the editor components (the toolbar and the editable).</p>
 <h3 id="html"><a class="headerlink" href="#html">#</a> HTML</h3>
 <p>The following structure has two containers that correspond to the configuration you have just used. The editor will inject the toolbar and the editable into respective containers as it starts.</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;document-editor&quot;</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;document-editor__toolbar&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;document-editor__editable-container&quot;</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;document-editor__editable&quot;</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>The initial editor data.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;div class=&quot;document-editor&quot;&gt;
+    &lt;div class=&quot;document-editor__toolbar&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;document-editor__editable-container&quot;&gt;
+        &lt;div class=&quot;document-editor__editable&quot;&gt;
+            &lt;p&gt;The initial editor data.&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
 </code></pre>
 <p>The <code>&lt;div class=&quot;document-editor&quot;&gt;...&lt;/&lt;div&gt;</code> element is the outermost container of the document editor and, although not mandatory, it is recommended to use it to keep things together.</p>
 <div class="info-box notice notice__warning"><p>Make sure the HTML structure is available in the DOM when the editor is created. To do so, put the editor bootstrap code somewhere later in HTML or use the <a href="https://developer.mozilla.org/en-US/docs/Web/Events/DOMContentLoaded" target="_blank" rel="noopener"><code>DOMContentLoaded</code></a> event to defer your JavaScript execution until the DOM is ready.</p></div>
 <h3 id="styles"><a class="headerlink" href="#styles">#</a> Styles</h3>
 <p>Styles are what the document editor really needs to materialize. Begin with the styles of the main container:</p>
-<pre class="highlight"><code class="css"><span class="hljs-selector-class">.document-editor</span> {
-    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-built_in">var</span>(--ck-color-base-border);
-    <span class="hljs-attribute">border-radius</span>: <span class="hljs-built_in">var</span>(--ck-border-radius);
+<pre class="highlight"><code class="css">.document-editor {
+    border: 1px solid var(--ck-color-base-border);
+    border-radius: var(--ck-border-radius);
 
-    <span class="hljs-comment">/* Set vertical boundaries for the document editor. */</span>
-    <span class="hljs-attribute">max-height</span>: <span class="hljs-number">700px</span>;
+    /* Set vertical boundaries for the document editor. */
+    max-height: 700px;
 
-    <span class="hljs-comment">/* This element is a flex container for easier rendering. */</span>
-    <span class="hljs-attribute">display</span>: flex;
-    <span class="hljs-attribute">flex-flow</span>: column nowrap;
+    /* This element is a flex container for easier rendering. */
+    display: flex;
+    flex-flow: column nowrap;
 }
 </code></pre>
 <p>Then, make the toolbar look like it floats over the &#x201C;page&#x201D;:</p>
-<pre class="highlight"><code class="css"><span class="hljs-selector-class">.document-editor__toolbar</span> {
-    <span class="hljs-comment">/* Make sure the toolbar container is always above the editable. */</span>
-    <span class="hljs-attribute">z-index</span>: <span class="hljs-number">1</span>;
+<pre class="highlight"><code class="css">.document-editor__toolbar {
+    /* Make sure the toolbar container is always above the editable. */
+    z-index: 1;
 
-    <span class="hljs-comment">/* Create the illusion of the toolbar floating over the editable. */</span>
-    <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">5px</span> <span class="hljs-built_in">hsla</span>( <span class="hljs-number">0</span>,<span class="hljs-number">0%</span>,<span class="hljs-number">0%</span>,.<span class="hljs-number">2</span> );
+    /* Create the illusion of the toolbar floating over the editable. */
+    box-shadow: 0 0 5px hsla( 0,0%,0%,.2 );
 
-    <span class="hljs-comment">/* Use the CKEditor CSS variables to keep the UI consistent. */</span>
-    <span class="hljs-attribute">border-bottom</span>: <span class="hljs-number">1px</span> solid <span class="hljs-built_in">var</span>(--ck-color-toolbar-border);
+    /* Use the CKEditor CSS variables to keep the UI consistent. */
+    border-bottom: 1px solid var(--ck-color-toolbar-border);
 }
 
-<span class="hljs-comment">/* Adjust the look of the toolbar inside the container. */</span>
-<span class="hljs-selector-class">.document-editor__toolbar</span> <span class="hljs-selector-class">.ck-toolbar</span> {
-    <span class="hljs-attribute">border</span>: <span class="hljs-number">0</span>;
-    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">0</span>;
+/* Adjust the look of the toolbar inside the container. */
+.document-editor__toolbar .ck-toolbar {
+    border: 0;
+    border-radius: 0;
 }
 </code></pre>
 <p>The editable should look like a sheet of paper, centered in its scrollable container:</p>
-<pre class="highlight"><code class="css"><span class="hljs-comment">/* Make the editable container look like the inside of a native word processor application. */</span>
-<span class="hljs-selector-class">.document-editor__editable-container</span> {
-    <span class="hljs-attribute">padding</span>: <span class="hljs-built_in">calc</span>( <span class="hljs-number">2</span> * var(--ck-spacing-large) );
-    <span class="hljs-attribute">background</span>: <span class="hljs-built_in">var</span>(--ck-color-base-foreground);
+<pre class="highlight"><code class="css">/* Make the editable container look like the inside of a native word processor application. */
+.document-editor__editable-container {
+    padding: calc( 2 * var(--ck-spacing-large) );
+    background: var(--ck-color-base-foreground);
 
-    <span class="hljs-comment">/* Make it possible to scroll the &quot;page&quot; of the edited content. */</span>
-    <span class="hljs-attribute">overflow-y</span>: scroll;
+    /* Make it possible to scroll the &quot;page&quot; of the edited content. */
+    overflow-y: scroll;
 }
 
-<span class="hljs-selector-class">.document-editor__editable-container</span> <span class="hljs-selector-class">.ck-editor__editable</span> {
-    <span class="hljs-comment">/* Set the dimensions of the &quot;page&quot;. */</span>
-    <span class="hljs-attribute">width</span>: <span class="hljs-number">15.8cm</span>;
-    <span class="hljs-attribute">min-height</span>: <span class="hljs-number">21cm</span>;
+.document-editor__editable-container .ck-editor__editable {
+    /* Set the dimensions of the &quot;page&quot;. */
+    width: 15.8cm;
+    min-height: 21cm;
 
-    <span class="hljs-comment">/* Keep the &quot;page&quot; off the boundaries of the container. */</span>
-    <span class="hljs-attribute">padding</span>: <span class="hljs-number">1cm</span> <span class="hljs-number">2cm</span> <span class="hljs-number">2cm</span>;
+    /* Keep the &quot;page&quot; off the boundaries of the container. */
+    padding: 1cm 2cm 2cm;
 
-    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> <span class="hljs-built_in">hsl</span>( <span class="hljs-number">0</span>,<span class="hljs-number">0%</span>,<span class="hljs-number">82.7%</span> ) solid;
-    <span class="hljs-attribute">border-radius</span>: <span class="hljs-built_in">var</span>(--ck-border-radius);
-    <span class="hljs-attribute">background</span>: white;
+    border: 1px hsl( 0,0%,82.7% ) solid;
+    border-radius: var(--ck-border-radius);
+    background: white;
 
-    <span class="hljs-comment">/* The &quot;page&quot; should cast a slight shadow (3D illusion). */</span>
-    <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">5px</span> <span class="hljs-built_in">hsla</span>( <span class="hljs-number">0</span>,<span class="hljs-number">0%</span>,<span class="hljs-number">0%</span>,.<span class="hljs-number">1</span> );
+    /* The &quot;page&quot; should cast a slight shadow (3D illusion). */
+    box-shadow: 0 0 5px hsla( 0,0%,0%,.1 );
 
-    <span class="hljs-comment">/* Center the &quot;page&quot;. */</span>
-    <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span> auto;
+    /* Center the &quot;page&quot;. */
+    margin: 0 auto;
 }
 </code></pre>
 <p>All you need to do now is style the actual content of the editor. Start with defining some basic font styles:</p>
-<pre class="highlight"><code class="css"><span class="hljs-comment">/* Set the default font for the &quot;page&quot; of the content. */</span>
-<span class="hljs-selector-class">.document-editor</span> <span class="hljs-selector-class">.ck-content</span>,
-<span class="hljs-selector-class">.document-editor</span> <span class="hljs-selector-class">.ck-heading-dropdown</span> <span class="hljs-selector-class">.ck-list</span> <span class="hljs-selector-class">.ck-button__label</span> {
-    <span class="hljs-attribute">font</span>: <span class="hljs-number">16px</span>/<span class="hljs-number">1.6</span> <span class="hljs-string">&quot;Helvetica Neue&quot;</span>, Helvetica, Arial, sans-serif;
+<pre class="highlight"><code class="css">/* Set the default font for the &quot;page&quot; of the content. */
+.document-editor .ck-content,
+.document-editor .ck-heading-dropdown .ck-list .ck-button__label {
+    font: 16px/1.6 &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;
 }
 </code></pre>
 <p>Then focus on headings and paragraphs. Note that what the users see in the headings dropdown should correspond to the actual edited content for the best user experience.</p>
 <div class="info-box notice"><p>It is recommended to use the <code>.ck-content</code> CSS class to visually style the content of the editor (headings, paragraphs, lists, etc.).</p></div>
-<pre class="highlight"><code class="css"><span class="hljs-comment">/* Adjust the headings dropdown to host some larger heading styles. */</span>
-<span class="hljs-selector-class">.document-editor</span> <span class="hljs-selector-class">.ck-heading-dropdown</span> <span class="hljs-selector-class">.ck-list</span> <span class="hljs-selector-class">.ck-button__label</span> {
-    <span class="hljs-attribute">line-height</span>: <span class="hljs-built_in">calc</span>( <span class="hljs-number">1.7</span> * var(--ck-line-height-base) * <span class="hljs-built_in">var</span>(--ck-font-size-base) );
-    <span class="hljs-attribute">min-width</span>: <span class="hljs-number">6em</span>;
+<pre class="highlight"><code class="css">/* Adjust the headings dropdown to host some larger heading styles. */
+.document-editor .ck-heading-dropdown .ck-list .ck-button__label {
+    line-height: calc( 1.7 * var(--ck-line-height-base) * var(--ck-font-size-base) );
+    min-width: 6em;
 }
 
-<span class="hljs-comment">/* Scale down all heading previews because they are way too big to be presented in the UI.
-Preserve the relative scale, though. */</span>
-<span class="hljs-selector-class">.document-editor</span> <span class="hljs-selector-class">.ck-heading-dropdown</span> <span class="hljs-selector-class">.ck-list</span> <span class="hljs-selector-class">.ck-button</span><span class="hljs-selector-pseudo">:not(.ck-heading_paragraph)</span> <span class="hljs-selector-class">.ck-button__label</span> {
-    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scale</span>(<span class="hljs-number">0.8</span>);
-    <span class="hljs-attribute">transform-origin</span>: left;
+/* Scale down all heading previews because they are way too big to be presented in the UI.
+Preserve the relative scale, though. */
+.document-editor .ck-heading-dropdown .ck-list .ck-button:not(.ck-heading_paragraph) .ck-button__label {
+    transform: scale(0.8);
+    transform-origin: left;
 }
 
-<span class="hljs-comment">/* Set the styles for &quot;Heading 1&quot;. */</span>
-<span class="hljs-selector-class">.document-editor</span> <span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-tag">h2</span>,
-<span class="hljs-selector-class">.document-editor</span> <span class="hljs-selector-class">.ck-heading-dropdown</span> <span class="hljs-selector-class">.ck-heading_heading1</span> <span class="hljs-selector-class">.ck-button__label</span> {
-    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">2.18em</span>;
-    <span class="hljs-attribute">font-weight</span>: normal;
+/* Set the styles for &quot;Heading 1&quot;. */
+.document-editor .ck-content h2,
+.document-editor .ck-heading-dropdown .ck-heading_heading1 .ck-button__label {
+    font-size: 2.18em;
+    font-weight: normal;
 }
 
-<span class="hljs-selector-class">.document-editor</span> <span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-tag">h2</span> {
-    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">1.37em</span>;
-    <span class="hljs-attribute">padding-top</span>: .<span class="hljs-number">342em</span>;
-    <span class="hljs-attribute">margin-bottom</span>: .<span class="hljs-number">142em</span>;
+.document-editor .ck-content h2 {
+    line-height: 1.37em;
+    padding-top: .342em;
+    margin-bottom: .142em;
 }
 
-<span class="hljs-comment">/* Set the styles for &quot;Heading 2&quot;. */</span>
-<span class="hljs-selector-class">.document-editor</span> <span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-tag">h3</span>,
-<span class="hljs-selector-class">.document-editor</span> <span class="hljs-selector-class">.ck-heading-dropdown</span> <span class="hljs-selector-class">.ck-heading_heading2</span> <span class="hljs-selector-class">.ck-button__label</span> {
-    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1.75em</span>;
-    <span class="hljs-attribute">font-weight</span>: normal;
-    <span class="hljs-attribute">color</span>: <span class="hljs-built_in">hsl</span>( <span class="hljs-number">203</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">50%</span> );
+/* Set the styles for &quot;Heading 2&quot;. */
+.document-editor .ck-content h3,
+.document-editor .ck-heading-dropdown .ck-heading_heading2 .ck-button__label {
+    font-size: 1.75em;
+    font-weight: normal;
+    color: hsl( 203, 100%, 50% );
 }
 
-<span class="hljs-selector-class">.document-editor</span> <span class="hljs-selector-class">.ck-heading-dropdown</span> <span class="hljs-selector-class">.ck-heading_heading2</span><span class="hljs-selector-class">.ck-on</span> <span class="hljs-selector-class">.ck-button__label</span> {
-    <span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--ck-color-list-button-on-text);
+.document-editor .ck-heading-dropdown .ck-heading_heading2.ck-on .ck-button__label {
+    color: var(--ck-color-list-button-on-text);
 }
 
-<span class="hljs-comment">/* Set the styles for &quot;Heading 2&quot;. */</span>
-<span class="hljs-selector-class">.document-editor</span> <span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-tag">h3</span> {
-    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">1.86em</span>;
-    <span class="hljs-attribute">padding-top</span>: .<span class="hljs-number">171em</span>;
-    <span class="hljs-attribute">margin-bottom</span>: .<span class="hljs-number">357em</span>;
+/* Set the styles for &quot;Heading 2&quot;. */
+.document-editor .ck-content h3 {
+    line-height: 1.86em;
+    padding-top: .171em;
+    margin-bottom: .357em;
 }
 
-<span class="hljs-comment">/* Set the styles for &quot;Heading 3&quot;. */</span>
-<span class="hljs-selector-class">.document-editor</span> <span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-tag">h4</span>,
-<span class="hljs-selector-class">.document-editor</span> <span class="hljs-selector-class">.ck-heading-dropdown</span> <span class="hljs-selector-class">.ck-heading_heading3</span> <span class="hljs-selector-class">.ck-button__label</span> {
-    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1.31em</span>;
-    <span class="hljs-attribute">font-weight</span>: bold;
+/* Set the styles for &quot;Heading 3&quot;. */
+.document-editor .ck-content h4,
+.document-editor .ck-heading-dropdown .ck-heading_heading3 .ck-button__label {
+    font-size: 1.31em;
+    font-weight: bold;
 }
 
-<span class="hljs-selector-class">.document-editor</span> <span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-tag">h4</span> {
-    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">1.24em</span>;
-    <span class="hljs-attribute">padding-top</span>: .<span class="hljs-number">286em</span>;
-    <span class="hljs-attribute">margin-bottom</span>: .<span class="hljs-number">952em</span>;
+.document-editor .ck-content h4 {
+    line-height: 1.24em;
+    padding-top: .286em;
+    margin-bottom: .952em;
 }
 
-<span class="hljs-comment">/* Set the styles for &quot;Paragraph&quot;. */</span>
-<span class="hljs-selector-class">.document-editor</span> <span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-tag">p</span> {
-    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1em</span>;
-    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">1.63em</span>;
-    <span class="hljs-attribute">padding-top</span>: .<span class="hljs-number">5em</span>;
-    <span class="hljs-attribute">margin-bottom</span>: <span class="hljs-number">1.13em</span>;
+/* Set the styles for &quot;Paragraph&quot;. */
+.document-editor .ck-content p {
+    font-size: 1em;
+    line-height: 1.63em;
+    padding-top: .5em;
+    margin-bottom: 1.13em;
 }
 </code></pre>
 <p>A finishing touch that makes the block quotes more sophisticated and the styling is complete.</p>
-<pre class="highlight"><code class="css"><span class="hljs-comment">/* Make the block quoted text serif with some additional spacing. */</span>
-<span class="hljs-selector-class">.document-editor</span> <span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-tag">blockquote</span> {
-    <span class="hljs-attribute">font-family</span>: Georgia, serif;
-    <span class="hljs-attribute">margin-left</span>: <span class="hljs-built_in">calc</span>( <span class="hljs-number">2</span> * var(--ck-spacing-large) );
-    <span class="hljs-attribute">margin-right</span>: <span class="hljs-built_in">calc</span>( <span class="hljs-number">2</span> * var(--ck-spacing-large) );
+<pre class="highlight"><code class="css">/* Make the block quoted text serif with some additional spacing. */
+.document-editor .ck-content blockquote {
+    font-family: Georgia, serif;
+    margin-left: calc( 2 * var(--ck-spacing-large) );
+    margin-right: calc( 2 * var(--ck-spacing-large) );
 }
 </code></pre>
 <h2 id="summary"><a class="headerlink" href="#summary">#</a> Summary</h2>

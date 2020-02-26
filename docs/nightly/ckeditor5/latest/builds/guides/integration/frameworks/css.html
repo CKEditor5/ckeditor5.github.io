@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../../assets/styles.css" type="text/css">
     <script>
       ( function() {
@@ -33,16 +33,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -84,7 +84,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -199,11 +199,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/frameworks/css.md" title="Contribute to this guide"><img src="../../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/frameworks/css.md" title="Contribute to this guide"><img src="../../../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">Builds</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../../assets/1.2.1/img/book.svg" alt="guide">Compatibility with CSS frameworks
+          <h1 class="main__content-title"><img src="../../../../../../assets/1.2.2/img/book.svg" alt="guide">Compatibility with CSS frameworks
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#compatibility-with-bootstrap">Compatibility with Bootstrap</a><ol><li><a href="#bootstrap-modals">Bootstrap modals</a></li><li><a href="#bootstrap-table-styles">Bootstrap table styles</a></li></ol></li><li><a href="#compatibility-with-foundation">Compatibility with Foundation</a></li><li><a href="#compatibility-with-materialize">Compatibility with Materialize</a></li><li><a href="#compatibility-with-semantic-ui">Compatibility with Semantic-UI</a></li></ol></nav>
 <p>CKEditor 5 is compatible with most of the popular CSS frameworks. However, to properly integrate with some of them, additional tweaks may be necessary. This is mostly due to the fact that:</p>
 <ul>
@@ -220,40 +220,40 @@
 <li>Configure Bootstrap so it stops &#x201C;stealing&#x201D; the focus from the rich-text editor input fields.</li>
 </ul>
 <p>To address the first issue, add the following styles to your application:</p>
-<pre class="highlight"><code class="css"><span class="hljs-comment">/*
+<pre class="highlight"><code class="css">/*
  * Configure the z-index of the editor UI, so when inside a Bootstrap
  * modal, it will be rendered over the modal.
- */</span>
-<span class="hljs-selector-pseudo">:root</span> {
-    <span class="hljs-attribute">--ck-z-default</span>: <span class="hljs-number">100</span>;
-    <span class="hljs-attribute">--ck-z-modal</span>: <span class="hljs-built_in">calc</span>( var(--ck-z-default) + <span class="hljs-number">999</span> );
+ */
+:root {
+    --ck-z-default: 100;
+    --ck-z-modal: calc( var(--ck-z-default) + 999 );
 }
 </code></pre>
 <p>Pass the <a href="https://getbootstrap.com/docs/4.1/components/modal/#options" target="_blank" rel="noopener"><code>focus: false</code></a> option to Bootstrap <code>modal()</code> function to fix the second issue:</p>
-<pre class="highlight"><code class="js">$( <span class="hljs-string">&apos;#modal-container&apos;</span> ).modal( {
-    <span class="hljs-attr">focus</span>: <span class="hljs-literal">false</span>
+<pre class="highlight"><code class="js">$( &apos;#modal-container&apos; ).modal( {
+    focus: false
 } );
 </code></pre>
 <p><a href="https://codepen.io/ckeditor/pen/vzvgOe" target="_blank" rel="noopener">Check out the demo of CKEditor 5 rich-text editor working correctly with Bootstrap</a>.</p>
 <h3 id="bootstrap-table-styles"><a class="headerlink" href="#bootstrap-table-styles">#</a> Bootstrap table styles</h3>
 <p>There is also a known <a href="https://github.com/ckeditor/ckeditor5-table/issues/154" target="_blank" rel="noopener">issue</a> concerning table styles brought by Bootstrap breaking the table (widget) layout during editing. If you do not want any additional space around edited tables when using Bootstrap, add the following styles to your application:</p>
-<pre class="highlight"><code class="css"><span class="hljs-comment">/*
+<pre class="highlight"><code class="css">/*
  * Override the width of the table set by Bootstrap content styles.
  * See: https://github.com/ckeditor/ckeditor5-table/issues/154.
- */</span>
-<span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-class">.table</span> {
-    <span class="hljs-attribute">width</span>: auto;
+ */
+.ck-content .table {
+    width: auto;
 }
 </code></pre>
 <h2 id="compatibility-with-foundation"><a class="headerlink" href="#compatibility-with-foundation">#</a> Compatibility with Foundation</h2>
 <p>CKEditor 5 requires some minor adjustments to the <code>z-index</code> of the UI to work properly with <a href="https://foundation.zurb.com/sites.html" target="_blank" rel="noopener">Foundation</a> (and with the <a href="https://foundation.zurb.com/sites/docs/reveal.html" target="_blank" rel="noopener">Reveal</a> modal, too).</p>
-<pre class="highlight"><code class="css"><span class="hljs-comment">/*
+<pre class="highlight"><code class="css">/*
  * Configure the z-index of the editor UI, so when inside a Reveal modal,
  * it will be rendered over the modal.
- */</span>
-<span class="hljs-selector-pseudo">:root</span> {
-    <span class="hljs-attribute">--ck-z-default</span>: <span class="hljs-number">100</span>;
-    <span class="hljs-attribute">--ck-z-modal</span>: <span class="hljs-built_in">calc</span>( var(--ck-z-default) + <span class="hljs-number">999</span> );
+ */
+:root {
+    --ck-z-default: 100;
+    --ck-z-modal: calc( var(--ck-z-default) + 999 );
 }
 </code></pre>
 <p><a href="https://codepen.io/ckeditor/pen/VqXYQq" target="_blank" rel="noopener">Check out the demo of CKEditor 5 rich-text editor working correctly with Foundation</a>.</p>
@@ -266,74 +266,74 @@
 <li>Configure modals so they stop &#x201C;stealing&#x201D; the focus from the rich-text editor input fields.</li>
 </ul>
 <p>Use the following CSS to address the issues with the <code>z-index</code> and selector specificity:</p>
-<pre class="highlight"><code class="css"><span class="hljs-comment">/*
+<pre class="highlight"><code class="css">/*
  * Configure the z-index of the editor UI, so when inside a Materialize
  * modal, it will be rendered over the modal.
- */</span>
-<span class="hljs-selector-pseudo">:root</span> {
-    <span class="hljs-attribute">--ck-z-default</span>: <span class="hljs-number">100</span>;
-    <span class="hljs-attribute">--ck-z-modal</span>: <span class="hljs-built_in">calc</span>( var(--ck-z-default) + <span class="hljs-number">999</span> );
+ */
+:root {
+    --ck-z-default: 100;
+    --ck-z-modal: calc( var(--ck-z-default) + 999 );
 }
 
-<span class="hljs-comment">/*
+/*
  * Bring back the default CKEditor 5 input appearance by overriding
  * high&#x2013;specificity styles brought by materialize.css.
  *
  * See: https://github.com/Dogfalo/materialize/blob/v1-dev/sass/components/forms/_input-fields.scss#L10-L40
- */</span>
-<span class="hljs-selector-class">.ck</span> <span class="hljs-selector-tag">input</span><span class="hljs-selector-class">.ck-input</span><span class="hljs-selector-class">.ck-input-text</span> {
-    <span class="hljs-attribute">box-shadow</span>: <span class="hljs-built_in">var</span>(--ck-inner-shadow),<span class="hljs-number">0</span> <span class="hljs-number">0</span>;
-    <span class="hljs-attribute">background</span>: <span class="hljs-built_in">var</span>(--ck-color-input-background);
-    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-built_in">var</span>(--ck-color-input-border);
-    <span class="hljs-attribute">padding</span>: <span class="hljs-built_in">var</span>(--ck-spacing-extra-tiny) <span class="hljs-built_in">var</span>(--ck-spacing-medium);
-    <span class="hljs-attribute">transition-property</span>: box-shadow,border;
-    <span class="hljs-attribute">transition</span>: .<span class="hljs-number">2s</span> ease-in-out;
+ */
+.ck input.ck-input.ck-input-text {
+    box-shadow: var(--ck-inner-shadow),0 0;
+    background: var(--ck-color-input-background);
+    border: 1px solid var(--ck-color-input-border);
+    padding: var(--ck-spacing-extra-tiny) var(--ck-spacing-medium);
+    transition-property: box-shadow,border;
+    transition: .2s ease-in-out;
 
-    <span class="hljs-attribute">height</span>: inherit;
-    <span class="hljs-attribute">width</span>: inherit;
-    <span class="hljs-attribute">font-size</span>: inherit;
-    <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
-    <span class="hljs-attribute">box-sizing</span>: border-box;
+    height: inherit;
+    width: inherit;
+    font-size: inherit;
+    margin: 0;
+    box-sizing: border-box;
 }
 
-<span class="hljs-selector-class">.ck</span> <span class="hljs-selector-tag">input</span><span class="hljs-selector-class">.ck-input</span><span class="hljs-selector-class">.ck-input-text</span><span class="hljs-selector-pseudo">:focus</span> {
-    <span class="hljs-attribute">border</span>: <span class="hljs-built_in">var</span>(--ck-focus-ring);
-    <span class="hljs-attribute">box-shadow</span>: <span class="hljs-built_in">var</span>(--ck-focus-outer-shadow),<span class="hljs-built_in">var</span>(--ck-inner-shadow);
+.ck input.ck-input.ck-input-text:focus {
+    border: var(--ck-focus-ring);
+    box-shadow: var(--ck-focus-outer-shadow),var(--ck-inner-shadow);
 }
 </code></pre>
-<pre class="highlight"><code class="css"><span class="hljs-comment">/*
+<pre class="highlight"><code class="css">/*
  * Bring back the default &lt;ul&gt; and &lt;li&gt; appearance.
  *
  * See: https://github.com/Dogfalo/materialize/blob/v1-dev/sass/components/_global.scss#L28-L37
- */</span>
-<span class="hljs-selector-class">.ck</span><span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-tag">ul</span>,
-<span class="hljs-selector-class">.ck</span><span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-tag">ul</span> <span class="hljs-selector-tag">li</span> {
-  <span class="hljs-attribute">list-style-type</span>: inherit;
+ */
+.ck.ck-content ul,
+.ck.ck-content ul li {
+  list-style-type: inherit;
 }
 
-<span class="hljs-selector-class">.ck</span><span class="hljs-selector-class">.ck-content</span> <span class="hljs-selector-tag">ul</span> {
-  <span class="hljs-comment">/* Default user agent stylesheet, you can change it to your needs. */</span>
-  <span class="hljs-attribute">padding-left</span>: <span class="hljs-number">40px</span>;
+.ck.ck-content ul {
+  /* Default user agent stylesheet, you can change it to your needs. */
+  padding-left: 40px;
 }
 </code></pre>
 <p>To change the behavior of the modals and prevent them from &#x201C;stealing&#x201D; the focus, use the <a href="https://materializecss.com/modals.html#options" target="_blank" rel="noopener"><code>dismissible: false</code></a> option.</p>
-<pre class="highlight"><code class="js">M.Modal.init( modal, { <span class="hljs-attr">dismissible</span>: <span class="hljs-literal">false</span> } );
+<pre class="highlight"><code class="js">M.Modal.init( modal, { dismissible: false } );
 
-<span class="hljs-comment">// Or &quot;jQuery way&quot;:</span>
-$( <span class="hljs-string">&apos;#modal-container&apos;</span> ).modal( {
-    <span class="hljs-attr">dismissible</span>: <span class="hljs-literal">false</span>
+// Or &quot;jQuery way&quot;:
+$( &apos;#modal-container&apos; ).modal( {
+    dismissible: false
 } );
 </code></pre>
 <p><a href="https://codepen.io/ckeditor/pen/gZebwy" target="_blank" rel="noopener">Check out the demo of CKEditor 5 rich-text editor working correctly with Materialize.css</a>.</p>
 <h2 id="compatibility-with-semantic-ui"><a class="headerlink" href="#compatibility-with-semantic-ui">#</a> Compatibility with Semantic-UI</h2>
 <p>CKEditor 5 works properly with <a href="https://semantic-ui.com/" target="_blank" rel="noopener">Semantic-UI</a> after a small CSS tweak. To use the <a href="../../overview.html#balloon-editor">balloon editor</a> inside a modal, it is necessary to configure the <code>z-index</code> property of the floating editor UI to make it render over the modal:</p>
-<pre class="highlight"><code class="css"><span class="hljs-comment">/*
+<pre class="highlight"><code class="css">/*
  * Configure the z-index of the editor UI, so when inside a Semantic-UI modal,
  * it will be rendered over the modal.
- */</span>
-<span class="hljs-selector-pseudo">:root</span> {
-    <span class="hljs-attribute">--ck-z-default</span>: <span class="hljs-number">100</span>;
-    <span class="hljs-attribute">--ck-z-modal</span>: <span class="hljs-built_in">calc</span>( var(--ck-z-default) + <span class="hljs-number">999</span> );
+ */
+:root {
+    --ck-z-default: 100;
+    --ck-z-modal: calc( var(--ck-z-default) + 999 );
 }
 </code></pre>
 <p><a href="https://codepen.io/ckeditor/pen/OrZBpV" target="_blank" rel="noopener">Check out the demo of CKEditor 5 rich-text editor working correctly with Semantic-UI</a>.</p>

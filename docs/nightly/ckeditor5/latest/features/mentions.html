@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../snippets/features/build-mention-source/snippet.css" type="text/css">
     <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
@@ -35,16 +35,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -86,7 +86,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -214,11 +214,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-mention/blob/master/docs/features/mentions.md" title="Contribute to this guide"><img src="../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-mention/blob/master/docs/features/mentions.md" title="Contribute to this guide"><img src="../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../assets/1.2.1/img/book.svg" alt="guide">Mentions (autocompletion)
+          <h1 class="main__content-title"><img src="../../../assets/1.2.2/img/book.svg" alt="guide">Mentions (autocompletion)
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#related-productivity-features">Related productivity features</a></li><li><a href="#configuration">Configuration</a><ol><li><a href="#providing-the-feed">Providing the feed</a></li><li><a href="#customizing-the-autocomplete-list">Customizing the autocomplete list</a></li><li><a href="#customizing-the-output">Customizing the output</a></li><li><a href="#fully-customized-mention-feed">Fully customized mention feed</a><ol><li><a href="#source-code">Source code</a></li></ol></li><li><a href="#colors-and-styles">Colors and styles</a><ol><li><a href="#using-css-variables">Using CSS variables</a></li></ol></li></ol></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 
 <p>The <a href="../api/module_mention_mention-Mention.html"><code>Mention</code></a> feature brings support for smart autocompletion based on user input. When a user types a pre-configured marker, such as <code>@</code> or <code>#</code>, they get autocomplete suggestions in a panel displayed next to the caret. The selected suggestion is then inserted into the content.</p>
@@ -239,17 +239,17 @@
 <p>The minimal configuration of the mention feature requires defining a <a href="../api/module_mention_mention-MentionFeed.html"><code>feed</code></a> and a <a href="../api/module_mention_mention-MentionFeed.html"><code>marker</code></a>. You can also define <code>minimumCharacters</code> after which the autocomplete panel will show up.</p>
 <p>The code snippet below was used to configure the demo above. It defines the list of names that will be autocompleted after the user types the &#x201C;@&#x201D; character.</p>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-comment">// This feature is not available in any of the builds.</span>
-        <span class="hljs-comment">// See the &quot;Installation&quot; section.</span>
-        <span class="hljs-attr">plugins</span>: [ Mention, ... ],
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        // This feature is not available in any of the builds.
+        // See the &quot;Installation&quot; section.
+        plugins: [ Mention, ... ],
 
-        <span class="hljs-attr">mention</span>: {
-            <span class="hljs-attr">feeds</span>: [
+        mention: {
+            feeds: [
                 {
-                    <span class="hljs-attr">marker</span>: <span class="hljs-string">&apos;@&apos;</span>,
-                    <span class="hljs-attr">feed</span>: [ <span class="hljs-string">&apos;@Barney&apos;</span>, <span class="hljs-string">&apos;@Lily&apos;</span>, <span class="hljs-string">&apos;@Marshall&apos;</span>, <span class="hljs-string">&apos;@Robin&apos;</span>, <span class="hljs-string">&apos;@Ted&apos;</span> ],
-                    <span class="hljs-attr">minimumCharacters</span>: <span class="hljs-number">1</span>
+                    marker: &apos;@&apos;,
+                    feed: [ &apos;@Barney&apos;, &apos;@Lily&apos;, &apos;@Marshall&apos;, &apos;@Robin&apos;, &apos;@Ted&apos; ],
+                    minimumCharacters: 1
                 }
             ]
         }
@@ -273,16 +273,16 @@
 <div class="info-box notice"><p>When using external resources to obtain the feed it is recommended to add some caching mechanism so subsequent calls for the same suggestion would load faster.</p><p>You can also consider adding the <code>minimumCharacters</code> option to the feed configuration so the editor will call the feed callback after some minimum number of characters typed instead of an action on a marker alone.</p></div>
 <p>The callback receives the query text which should be used to filter item suggestions. It should return a <code>Promise</code> and resolve it with an array of items that match the feed text.</p>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-comment">// This feature is not available in any of the builds.</span>
-        <span class="hljs-comment">// See the &quot;Installation&quot; section.</span>
-        <span class="hljs-attr">plugins</span>: [ Mention, ... ],
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        // This feature is not available in any of the builds.
+        // See the &quot;Installation&quot; section.
+        plugins: [ Mention, ... ],
 
-        <span class="hljs-attr">mention</span>: {
-            <span class="hljs-attr">feeds</span>: [
+        mention: {
+            feeds: [
                 {
-                    <span class="hljs-attr">marker</span>: <span class="hljs-string">&apos;@&apos;</span>,
-                    <span class="hljs-attr">feed</span>: getFeedItems
+                    marker: &apos;@&apos;,
+                    feed: getFeedItems
                 }
             }
         ]
@@ -290,37 +290,37 @@
     .then( ... )
     .catch( ... );
 
-<span class="hljs-keyword">const</span> items = [
-    { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@swarley&apos;</span>, <span class="hljs-attr">userId</span>: <span class="hljs-string">&apos;1&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Barney Stinson&apos;</span>, <span class="hljs-attr">link</span>: <span class="hljs-string">&apos;https://www.imdb.com/title/tt0460649/characters/nm0000439&apos;</span> },
-    { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@lilypad&apos;</span>, <span class="hljs-attr">userId</span>: <span class="hljs-string">&apos;2&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Lily Aldrin&apos;</span>, <span class="hljs-attr">link</span>: <span class="hljs-string">&apos;https://www.imdb.com/title/tt0460649/characters/nm0004989&apos;</span> },
-    { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@marshmallow&apos;</span>, <span class="hljs-attr">userId</span>: <span class="hljs-string">&apos;3&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Marshall Eriksen&apos;</span>, <span class="hljs-attr">link</span>: <span class="hljs-string">&apos;https://www.imdb.com/title/tt0460649/characters/nm0781981&apos;</span> },
-    { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@rsparkles&apos;</span>, <span class="hljs-attr">userId</span>: <span class="hljs-string">&apos;4&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Robin Scherbatsky&apos;</span>, <span class="hljs-attr">link</span>: <span class="hljs-string">&apos;https://www.imdb.com/title/tt0460649/characters/nm1130627&apos;</span> },
-    { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@tdog&apos;</span>, <span class="hljs-attr">userId</span>: <span class="hljs-string">&apos;5&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Ted Mosby&apos;</span>, <span class="hljs-attr">link</span>: <span class="hljs-string">&apos;https://www.imdb.com/title/tt0460649/characters/nm1102140&apos;</span> }
+const items = [
+    { id: &apos;@swarley&apos;, userId: &apos;1&apos;, name: &apos;Barney Stinson&apos;, link: &apos;https://www.imdb.com/title/tt0460649/characters/nm0000439&apos; },
+    { id: &apos;@lilypad&apos;, userId: &apos;2&apos;, name: &apos;Lily Aldrin&apos;, link: &apos;https://www.imdb.com/title/tt0460649/characters/nm0004989&apos; },
+    { id: &apos;@marshmallow&apos;, userId: &apos;3&apos;, name: &apos;Marshall Eriksen&apos;, link: &apos;https://www.imdb.com/title/tt0460649/characters/nm0781981&apos; },
+    { id: &apos;@rsparkles&apos;, userId: &apos;4&apos;, name: &apos;Robin Scherbatsky&apos;, link: &apos;https://www.imdb.com/title/tt0460649/characters/nm1130627&apos; },
+    { id: &apos;@tdog&apos;, userId: &apos;5&apos;, name: &apos;Ted Mosby&apos;, link: &apos;https://www.imdb.com/title/tt0460649/characters/nm1102140&apos; }
 ];
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getFeedItems</span>(<span class="hljs-params"> queryText </span>) </span>{
-    <span class="hljs-comment">// As an example of an asynchronous action, return a promise</span>
-    <span class="hljs-comment">// that resolves after a 100ms timeout.</span>
-    <span class="hljs-comment">// This can be a server request or any sort of delayed action.</span>
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>( <span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> {
-        setTimeout( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-            <span class="hljs-keyword">const</span> itemsToDisplay = items
-                <span class="hljs-comment">// Filter out the full list of all items to only those matching the query text.</span>
+function getFeedItems( queryText ) {
+    // As an example of an asynchronous action, return a promise
+    // that resolves after a 100ms timeout.
+    // This can be a server request or any sort of delayed action.
+    return new Promise( resolve =&gt; {
+        setTimeout( () =&gt; {
+            const itemsToDisplay = items
+                // Filter out the full list of all items to only those matching the query text.
                 .filter( isItemMatching )
-                <span class="hljs-comment">// Return 10 items max - needed for generic queries when the list may contain hundreds of elements.</span>
-                .slice( <span class="hljs-number">0</span>, <span class="hljs-number">10</span> );
+                // Return 10 items max - needed for generic queries when the list may contain hundreds of elements.
+                .slice( 0, 10 );
 
             resolve( itemsToDisplay );
-        }, <span class="hljs-number">100</span> );
+        }, 100 );
     } );
 
-    <span class="hljs-comment">// Filtering function - it uses the `name` and `username` properties of an item to find a match.</span>
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isItemMatching</span>(<span class="hljs-params"> item </span>) </span>{
-        <span class="hljs-comment">// Make the search case-insensitive.</span>
-        <span class="hljs-keyword">const</span> searchString = queryText.toLowerCase();
+    // Filtering function - it uses the `name` and `username` properties of an item to find a match.
+    function isItemMatching( item ) {
+        // Make the search case-insensitive.
+        const searchString = queryText.toLowerCase();
 
-        <span class="hljs-comment">// Include an item in the search results if the name or username includes the current user input.</span>
-        <span class="hljs-keyword">return</span> (
+        // Include an item in the search results if the name or username includes the current user input.
+        return (
             item.name.toLowerCase().includes( searchString ) ||
             item.id.toLowerCase().includes( searchString )
         );
@@ -332,14 +332,14 @@
 <p>The items displayed in the autocomplete list can be customized by defining the <a href="../api/module_mention_mention-MentionFeed.html"><code>itemRenderer</code></a> callback.</p>
 <p>This callback takes a feed item (it contains at least the <code>name</code> property) and must return a new DOM element.</p>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ Mention, ... ],
-        <span class="hljs-attr">mention</span>: {
-            <span class="hljs-attr">feeds</span>: [
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Mention, ... ],
+        mention: {
+            feeds: [
                 {
-                    <span class="hljs-attr">feed</span>: [ ... ],
-                    <span class="hljs-comment">// Define the custom item renderer.</span>
-                    <span class="hljs-attr">itemRenderer</span>: customItemRenderer
+                    feed: [ ... ],
+                    // Define the custom item renderer.
+                    itemRenderer: customItemRenderer
                 }
             ]
         }
@@ -347,92 +347,92 @@
     .then( ... )
     .catch( ... );
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">customItemRenderer</span>(<span class="hljs-params"> item </span>) </span>{
-    <span class="hljs-keyword">const</span> itemElement = <span class="hljs-built_in">document</span>.createElement( <span class="hljs-string">&apos;span&apos;</span> );
+function customItemRenderer( item ) {
+    const itemElement = document.createElement( &apos;span&apos; );
 
-    itemElement.classList.add( <span class="hljs-string">&apos;custom-item&apos;</span> );
-    itemElement.id = <span class="hljs-string">`mention-list-item-id-<span class="hljs-subst">${ item.userId }</span>`</span>;
-    itemElement.textContent = <span class="hljs-string">`<span class="hljs-subst">${ item.name }</span> `</span>;
+    itemElement.classList.add( &apos;custom-item&apos; );
+    itemElement.id = `mention-list-item-id-${ item.userId }`;
+    itemElement.textContent = `${ item.name } `;
 
-    <span class="hljs-keyword">const</span> usernameElement = <span class="hljs-built_in">document</span>.createElement( <span class="hljs-string">&apos;span&apos;</span> );
+    const usernameElement = document.createElement( &apos;span&apos; );
 
-    usernameElement.classList.add( <span class="hljs-string">&apos;custom-item-username&apos;</span> );
+    usernameElement.classList.add( &apos;custom-item-username&apos; );
     usernameElement.textContent = item.id;
 
     itemElement.appendChild( usernameElement );
 
-    <span class="hljs-keyword">return</span> itemElement;
+    return itemElement;
 }
 </code></pre>
 <p>A full, working demo with all possible customizations and its source code is available <a href="#fully-customized-mention-feed">at the end of this section</a>.</p>
 <h3 id="customizing-the-output"><a class="headerlink" href="#customizing-the-output">#</a> Customizing the output</h3>
 <p>In order to change the markup generated by the editor for mentions, you can overwrite the default converter of the mention feature. To do that, you must specify both <a href="../api/module_engine_conversion_upcastdispatcher-UpcastDispatcher.html">upcast</a> and <a href="../api/module_engine_conversion_downcastdispatcher-DowncastDispatcher.html">downcast</a> converters.</p>
 <p>The example below defines a plugin that overrides the default output:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">data-mention</span>=<span class="hljs-string">&quot;@Ted&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;mention&quot;</span>&gt;</span>@Ted<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;span data-mention=&quot;@Ted&quot; class=&quot;mention&quot;&gt;@Ted&lt;/span&gt;
 </code></pre>
 <p>To a link:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;mention&quot;</span> <span class="hljs-attr">data-mention</span>=<span class="hljs-string">&quot;@Ted&quot;</span> <span class="hljs-attr">data-user-id</span>=<span class="hljs-string">&quot;5&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://www.imdb.com/title/tt0460649/characters/nm1102140&quot;</span>&gt;</span>@tdog<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;a class=&quot;mention&quot; data-mention=&quot;@Ted&quot; data-user-id=&quot;5&quot; href=&quot;https://www.imdb.com/title/tt0460649/characters/nm1102140&quot;&gt;@tdog&lt;/a&gt;
 </code></pre>
 <p>The converters must be defined with a <code>&apos;high&apos;</code> priority to be executed before the <a href="link.html">link</a> feature&#x2019;s converter and before the default converter of the mention feature. A mention is stored in the model as a <a href="../framework/guides/architecture/editing-engine.html#text-attributes">text attribute</a> that stores an object (see <a href="../api/module_mention_mention-MentionFeedItem.html"><code>MentionFeedItem</code></a>).</p>
 <p><strong>Note:</strong> The feature prevents copying fragments of existing mentions. If only a part of a mention is selected, it will be copied as plain text. The internal converter with the <a href="../api/module_engine_conversion_conversion-ConverterDefinition.html"><code>&apos;highest&apos;</code> priority</a> controls this behaviour; thus, we do not recommend adding mention converters with the <code>&apos;highest&apos;</code> priority to avoid collisions and quirky results.</p>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ Mention, MentionCustomization, ... ], <span class="hljs-comment">// Add the custom mention plugin function.</span>
-        <span class="hljs-attr">mention</span>: {
-            <span class="hljs-comment">// Configuration...</span>
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Mention, MentionCustomization, ... ], // Add the custom mention plugin function.
+        mention: {
+            // Configuration...
         }
     } )
     .then( ... )
     .catch( ... );
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MentionCustomization</span>(<span class="hljs-params"> editor </span>) </span>{
-    <span class="hljs-comment">// The upcast converter will convert view &lt;a class=&quot;mention&quot; href=&quot;&quot; data-user-id=&quot;&quot;&gt;</span>
-    <span class="hljs-comment">// elements to the model &apos;mention&apos; text attribute.</span>
-    editor.conversion.for( <span class="hljs-string">&apos;upcast&apos;</span> ).elementToAttribute( {
-        <span class="hljs-attr">view</span>: {
-            <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;a&apos;</span>,
-            <span class="hljs-attr">key</span>: <span class="hljs-string">&apos;data-mention&apos;</span>,
-            <span class="hljs-attr">classes</span>: <span class="hljs-string">&apos;mention&apos;</span>,
-            <span class="hljs-attr">attributes</span>: {
-                <span class="hljs-attr">href</span>: <span class="hljs-literal">true</span>,
-                <span class="hljs-string">&apos;data-user-id&apos;</span>: <span class="hljs-literal">true</span>
+function MentionCustomization( editor ) {
+    // The upcast converter will convert view &lt;a class=&quot;mention&quot; href=&quot;&quot; data-user-id=&quot;&quot;&gt;
+    // elements to the model &apos;mention&apos; text attribute.
+    editor.conversion.for( &apos;upcast&apos; ).elementToAttribute( {
+        view: {
+            name: &apos;a&apos;,
+            key: &apos;data-mention&apos;,
+            classes: &apos;mention&apos;,
+            attributes: {
+                href: true,
+                &apos;data-user-id&apos;: true
             }
         },
-        <span class="hljs-attr">model</span>: {
-            <span class="hljs-attr">key</span>: <span class="hljs-string">&apos;mention&apos;</span>,
-            <span class="hljs-attr">value</span>: <span class="hljs-function"><span class="hljs-params">viewItem</span> =&gt;</span> {
-                <span class="hljs-comment">// The mention feature expects that the mention attribute value</span>
-                <span class="hljs-comment">// in the model is a plain object with a set of additional attributes.</span>
-                <span class="hljs-comment">// In order to create a proper object use the toMentionAttribute() helper method:</span>
-                <span class="hljs-keyword">const</span> mentionAttribute = editor.plugins.get( <span class="hljs-string">&apos;Mention&apos;</span> ).toMentionAttribute( viewItem, {
-                    <span class="hljs-comment">// Add any other properties that you need.</span>
-                    <span class="hljs-attr">link</span>: viewItem.getAttribute( <span class="hljs-string">&apos;href&apos;</span> ),
-                    <span class="hljs-attr">userId</span>: viewItem.getAttribute( <span class="hljs-string">&apos;data-user-id&apos;</span> )
+        model: {
+            key: &apos;mention&apos;,
+            value: viewItem =&gt; {
+                // The mention feature expects that the mention attribute value
+                // in the model is a plain object with a set of additional attributes.
+                // In order to create a proper object use the toMentionAttribute() helper method:
+                const mentionAttribute = editor.plugins.get( &apos;Mention&apos; ).toMentionAttribute( viewItem, {
+                    // Add any other properties that you need.
+                    link: viewItem.getAttribute( &apos;href&apos; ),
+                    userId: viewItem.getAttribute( &apos;data-user-id&apos; )
                 } );
 
-                <span class="hljs-keyword">return</span> mentionAttribute;
+                return mentionAttribute;
             }
         },
-        <span class="hljs-attr">converterPriority</span>: <span class="hljs-string">&apos;high&apos;</span>
+        converterPriority: &apos;high&apos;
     } );
 
-    <span class="hljs-comment">// Downcast the model &apos;mention&apos; text attribute to a view &lt;a&gt; element.</span>
-    editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).attributeToElement( {
-        <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;mention&apos;</span>,
-        <span class="hljs-attr">view</span>: <span class="hljs-function">(<span class="hljs-params"> modelAttributeValue, viewWriter </span>) =&gt;</span> {
-            <span class="hljs-comment">// Do not convert empty attributes (lack of value means no mention).</span>
-            <span class="hljs-keyword">if</span> ( !modelAttributeValue ) {
-                <span class="hljs-keyword">return</span>;
+    // Downcast the model &apos;mention&apos; text attribute to a view &lt;a&gt; element.
+    editor.conversion.for( &apos;downcast&apos; ).attributeToElement( {
+        model: &apos;mention&apos;,
+        view: ( modelAttributeValue, viewWriter ) =&gt; {
+            // Do not convert empty attributes (lack of value means no mention).
+            if ( !modelAttributeValue ) {
+                return;
             }
 
-            <span class="hljs-keyword">return</span> viewWriter.createAttributeElement( <span class="hljs-string">&apos;a&apos;</span>, {
-                <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;mention&apos;</span>,
-                <span class="hljs-string">&apos;data-mention&apos;</span>: modelAttributeValue.id,
-                <span class="hljs-string">&apos;data-user-id&apos;</span>: modelAttributeValue.userId,
-                <span class="hljs-string">&apos;href&apos;</span>: modelAttributeValue.link
+            return viewWriter.createAttributeElement( &apos;a&apos;, {
+                class: &apos;mention&apos;,
+                &apos;data-mention&apos;: modelAttributeValue.id,
+                &apos;data-user-id&apos;: modelAttributeValue.userId,
+                &apos;href&apos;: modelAttributeValue.link
             } );
         },
-        <span class="hljs-attr">converterPriority</span>: <span class="hljs-string">&apos;high&apos;</span>
+        converterPriority: &apos;high&apos;
     } );
 }
 </code></pre>
@@ -469,139 +469,139 @@
 </div>
 <h4 id="source-code"><a class="headerlink" href="#source-code">#</a> Source code</h4>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#snippet-mention-customization&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ Mention, MentionCustomization, ... ],
-        <span class="hljs-attr">mention</span>: {
-            <span class="hljs-attr">feeds</span>: [
+    .create( document.querySelector( &apos;#snippet-mention-customization&apos; ), {
+        plugins: [ Mention, MentionCustomization, ... ],
+        mention: {
+            feeds: [
                 {
-                    <span class="hljs-attr">marker</span>: <span class="hljs-string">&apos;@&apos;</span>,
-                    <span class="hljs-attr">feed</span>: getFeedItems,
-                    <span class="hljs-attr">itemRenderer</span>: customItemRenderer
+                    marker: &apos;@&apos;,
+                    feed: getFeedItems,
+                    itemRenderer: customItemRenderer
                 }
             ]
         }
     } )
-    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
-        <span class="hljs-built_in">window</span>.editor = editor;
+    .then( editor =&gt; {
+        window.editor = editor;
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error( err.stack );
+    .catch( err =&gt; {
+        console.error( err.stack );
     } );
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MentionCustomization</span>(<span class="hljs-params"> editor </span>) </span>{
-    <span class="hljs-comment">// The upcast converter will convert &lt;a class=&quot;mention&quot; href=&quot;&quot; data-user-id=&quot;&quot;&gt;</span>
-    <span class="hljs-comment">// elements to the model &apos;mention&apos; attribute.</span>
-    editor.conversion.for( <span class="hljs-string">&apos;upcast&apos;</span> ).elementToAttribute( {
-        <span class="hljs-attr">view</span>: {
-            <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;a&apos;</span>,
-            <span class="hljs-attr">key</span>: <span class="hljs-string">&apos;data-mention&apos;</span>,
-            <span class="hljs-attr">classes</span>: <span class="hljs-string">&apos;mention&apos;</span>,
-            <span class="hljs-attr">attributes</span>: {
-                <span class="hljs-attr">href</span>: <span class="hljs-literal">true</span>,
-                <span class="hljs-string">&apos;data-user-id&apos;</span>: <span class="hljs-literal">true</span>
+function MentionCustomization( editor ) {
+    // The upcast converter will convert &lt;a class=&quot;mention&quot; href=&quot;&quot; data-user-id=&quot;&quot;&gt;
+    // elements to the model &apos;mention&apos; attribute.
+    editor.conversion.for( &apos;upcast&apos; ).elementToAttribute( {
+        view: {
+            name: &apos;a&apos;,
+            key: &apos;data-mention&apos;,
+            classes: &apos;mention&apos;,
+            attributes: {
+                href: true,
+                &apos;data-user-id&apos;: true
             }
         },
-        <span class="hljs-attr">model</span>: {
-            <span class="hljs-attr">key</span>: <span class="hljs-string">&apos;mention&apos;</span>,
-            <span class="hljs-attr">value</span>: <span class="hljs-function"><span class="hljs-params">viewItem</span> =&gt;</span> {
-                <span class="hljs-comment">// The mention feature expects that the mention attribute value</span>
-                <span class="hljs-comment">// in the model is a plain object with a set of additional attributes.</span>
-                <span class="hljs-comment">// In order to create a proper object, use the toMentionAttribute helper method:</span>
-                <span class="hljs-keyword">const</span> mentionAttribute = editor.plugins.get( <span class="hljs-string">&apos;Mention&apos;</span> ).toMentionAttribute( viewItem, {
-                    <span class="hljs-comment">// Add any other properties that you need.</span>
-                    <span class="hljs-attr">link</span>: viewItem.getAttribute( <span class="hljs-string">&apos;href&apos;</span> ),
-                    <span class="hljs-attr">userId</span>: viewItem.getAttribute( <span class="hljs-string">&apos;data-user-id&apos;</span> )
+        model: {
+            key: &apos;mention&apos;,
+            value: viewItem =&gt; {
+                // The mention feature expects that the mention attribute value
+                // in the model is a plain object with a set of additional attributes.
+                // In order to create a proper object, use the toMentionAttribute helper method:
+                const mentionAttribute = editor.plugins.get( &apos;Mention&apos; ).toMentionAttribute( viewItem, {
+                    // Add any other properties that you need.
+                    link: viewItem.getAttribute( &apos;href&apos; ),
+                    userId: viewItem.getAttribute( &apos;data-user-id&apos; )
                 } );
 
-                <span class="hljs-keyword">return</span> mentionAttribute;
+                return mentionAttribute;
             }
         },
-        <span class="hljs-attr">converterPriority</span>: <span class="hljs-string">&apos;high&apos;</span>
+        converterPriority: &apos;high&apos;
     } );
 
-    <span class="hljs-comment">// Downcast the model &apos;mention&apos; text attribute to a view &lt;a&gt; element.</span>
-    editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).attributeToElement( {
-        <span class="hljs-attr">model</span>: <span class="hljs-string">&apos;mention&apos;</span>,
-        <span class="hljs-attr">view</span>: <span class="hljs-function">(<span class="hljs-params"> modelAttributeValue, viewWriter </span>) =&gt;</span> {
-            <span class="hljs-comment">// Do not convert empty attributes (lack of value means no mention).</span>
-            <span class="hljs-keyword">if</span> ( !modelAttributeValue ) {
-                <span class="hljs-keyword">return</span>;
+    // Downcast the model &apos;mention&apos; text attribute to a view &lt;a&gt; element.
+    editor.conversion.for( &apos;downcast&apos; ).attributeToElement( {
+        model: &apos;mention&apos;,
+        view: ( modelAttributeValue, viewWriter ) =&gt; {
+            // Do not convert empty attributes (lack of value means no mention).
+            if ( !modelAttributeValue ) {
+                return;
             }
 
-            <span class="hljs-keyword">return</span> viewWriter.createAttributeElement( <span class="hljs-string">&apos;a&apos;</span>, {
-                <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;mention&apos;</span>,
-                <span class="hljs-string">&apos;data-mention&apos;</span>: modelAttributeValue.id,
-                <span class="hljs-string">&apos;data-user-id&apos;</span>: modelAttributeValue.userId,
-                <span class="hljs-string">&apos;href&apos;</span>: modelAttributeValue.link
+            return viewWriter.createAttributeElement( &apos;a&apos;, {
+                class: &apos;mention&apos;,
+                &apos;data-mention&apos;: modelAttributeValue.id,
+                &apos;data-user-id&apos;: modelAttributeValue.userId,
+                &apos;href&apos;: modelAttributeValue.link
             } );
         },
-        <span class="hljs-attr">converterPriority</span>: <span class="hljs-string">&apos;high&apos;</span>
+        converterPriority: &apos;high&apos;
     } );
 }
 
-<span class="hljs-keyword">const</span> items = [
-    { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@swarley&apos;</span>, <span class="hljs-attr">userId</span>: <span class="hljs-string">&apos;1&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Barney Stinson&apos;</span>, <span class="hljs-attr">link</span>: <span class="hljs-string">&apos;https://www.imdb.com/title/tt0460649/characters/nm0000439&apos;</span> },
-    { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@lilypad&apos;</span>, <span class="hljs-attr">userId</span>: <span class="hljs-string">&apos;2&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Lily Aldrin&apos;</span>, <span class="hljs-attr">link</span>: <span class="hljs-string">&apos;https://www.imdb.com/title/tt0460649/characters/nm0004989&apos;</span> },
-    { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@marshmallow&apos;</span>, <span class="hljs-attr">userId</span>: <span class="hljs-string">&apos;3&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Marshall Eriksen&apos;</span>, <span class="hljs-attr">link</span>: <span class="hljs-string">&apos;https://www.imdb.com/title/tt0460649/characters/nm0781981&apos;</span> },
-    { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@rsparkles&apos;</span>, <span class="hljs-attr">userId</span>: <span class="hljs-string">&apos;4&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Robin Scherbatsky&apos;</span>, <span class="hljs-attr">link</span>: <span class="hljs-string">&apos;https://www.imdb.com/title/tt0460649/characters/nm1130627&apos;</span> },
-    { <span class="hljs-attr">id</span>: <span class="hljs-string">&apos;@tdog&apos;</span>, <span class="hljs-attr">userId</span>: <span class="hljs-string">&apos;5&apos;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&apos;Ted Mosby&apos;</span>, <span class="hljs-attr">link</span>: <span class="hljs-string">&apos;https://www.imdb.com/title/tt0460649/characters/nm1102140&apos;</span> }
+const items = [
+    { id: &apos;@swarley&apos;, userId: &apos;1&apos;, name: &apos;Barney Stinson&apos;, link: &apos;https://www.imdb.com/title/tt0460649/characters/nm0000439&apos; },
+    { id: &apos;@lilypad&apos;, userId: &apos;2&apos;, name: &apos;Lily Aldrin&apos;, link: &apos;https://www.imdb.com/title/tt0460649/characters/nm0004989&apos; },
+    { id: &apos;@marshmallow&apos;, userId: &apos;3&apos;, name: &apos;Marshall Eriksen&apos;, link: &apos;https://www.imdb.com/title/tt0460649/characters/nm0781981&apos; },
+    { id: &apos;@rsparkles&apos;, userId: &apos;4&apos;, name: &apos;Robin Scherbatsky&apos;, link: &apos;https://www.imdb.com/title/tt0460649/characters/nm1130627&apos; },
+    { id: &apos;@tdog&apos;, userId: &apos;5&apos;, name: &apos;Ted Mosby&apos;, link: &apos;https://www.imdb.com/title/tt0460649/characters/nm1102140&apos; }
 ];
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getFeedItems</span>(<span class="hljs-params"> queryText </span>) </span>{
-    <span class="hljs-comment">// As an example of an asynchronous action, return a promise</span>
-    <span class="hljs-comment">// that resolves after a 100ms timeout.</span>
-    <span class="hljs-comment">// This can be a server request or any sort of delayed action.</span>
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>( <span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> {
-        setTimeout( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-            <span class="hljs-keyword">const</span> itemsToDisplay = items
-                <span class="hljs-comment">// Filter out the full list of all items to only those matching the query text.</span>
+function getFeedItems( queryText ) {
+    // As an example of an asynchronous action, return a promise
+    // that resolves after a 100ms timeout.
+    // This can be a server request or any sort of delayed action.
+    return new Promise( resolve =&gt; {
+        setTimeout( () =&gt; {
+            const itemsToDisplay = items
+                // Filter out the full list of all items to only those matching the query text.
                 .filter( isItemMatching )
-                <span class="hljs-comment">// Return 10 items max - needed for generic queries when the list may contain hundreds of elements.</span>
-                .slice( <span class="hljs-number">0</span>, <span class="hljs-number">10</span> );
+                // Return 10 items max - needed for generic queries when the list may contain hundreds of elements.
+                .slice( 0, 10 );
 
             resolve( itemsToDisplay );
-        }, <span class="hljs-number">100</span> );
+        }, 100 );
     } );
 
-    <span class="hljs-comment">// Filtering function - it uses `name` and `username` properties of an item to find a match.</span>
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isItemMatching</span>(<span class="hljs-params"> item </span>) </span>{
-        <span class="hljs-comment">// Make the search case-insensitive.</span>
-        <span class="hljs-keyword">const</span> searchString = queryText.toLowerCase();
+    // Filtering function - it uses `name` and `username` properties of an item to find a match.
+    function isItemMatching( item ) {
+        // Make the search case-insensitive.
+        const searchString = queryText.toLowerCase();
 
-        <span class="hljs-comment">// Include an item in the search results if name or username includes the current user input.</span>
-        <span class="hljs-keyword">return</span> (
+        // Include an item in the search results if name or username includes the current user input.
+        return (
             item.name.toLowerCase().includes( searchString ) ||
             item.id.toLowerCase().includes( searchString )
         );
     }
 }
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">customItemRenderer</span>(<span class="hljs-params"> item </span>) </span>{
-    <span class="hljs-keyword">const</span> itemElement = <span class="hljs-built_in">document</span>.createElement( <span class="hljs-string">&apos;span&apos;</span> );
+function customItemRenderer( item ) {
+    const itemElement = document.createElement( &apos;span&apos; );
 
-    itemElement.classList.add( <span class="hljs-string">&apos;custom-item&apos;</span> );
-    itemElement.id = <span class="hljs-string">`mention-list-item-id-<span class="hljs-subst">${ item.userId }</span>`</span>;
-    itemElement.textContent = <span class="hljs-string">`<span class="hljs-subst">${ item.name }</span> `</span>;
+    itemElement.classList.add( &apos;custom-item&apos; );
+    itemElement.id = `mention-list-item-id-${ item.userId }`;
+    itemElement.textContent = `${ item.name } `;
 
-    <span class="hljs-keyword">const</span> usernameElement = <span class="hljs-built_in">document</span>.createElement( <span class="hljs-string">&apos;span&apos;</span> );
+    const usernameElement = document.createElement( &apos;span&apos; );
 
-    usernameElement.classList.add( <span class="hljs-string">&apos;custom-item-username&apos;</span> );
+    usernameElement.classList.add( &apos;custom-item-username&apos; );
     usernameElement.textContent = item.id;
 
     itemElement.appendChild( usernameElement );
 
-    <span class="hljs-keyword">return</span> itemElement;
+    return itemElement;
 }
 </code></pre>
 <h3 id="colors-and-styles"><a class="headerlink" href="#colors-and-styles">#</a> Colors and styles</h3>
 <h4 id="using-css-variables"><a class="headerlink" href="#using-css-variables">#</a> Using CSS variables</h4>
 <p>The mention feature is using the power of <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables" target="_blank" rel="noopener">CSS variables</a> which are defined in the <a href="https://github.com/ckeditor/ckeditor5-theme-lark/blob/master/theme/ckeditor5-mention/mention.css" target="_blank" rel="noopener">Lark theme stylesheet</a>. Thanks to that, mention styles can be <a href="../framework/guides/deep-dive/ui/theme-customization.html">easily customized</a>:</p>
-<pre class="highlight"><code class="css"><span class="hljs-selector-pseudo">:root</span> {
-    <span class="hljs-comment">/* Make the mention background blue. */</span>
-    <span class="hljs-attribute">--ck-color-mention-background</span>: <span class="hljs-built_in">hsla</span>(<span class="hljs-number">220</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">54%</span>, <span class="hljs-number">0.4</span>);
+<pre class="highlight"><code class="css">:root {
+    /* Make the mention background blue. */
+    --ck-color-mention-background: hsla(220, 100%, 54%, 0.4);
 
-    <span class="hljs-comment">/* Make the mention text dark grey. */</span>
-    <span class="hljs-attribute">--ck-color-mention-text</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0%</span>, <span class="hljs-number">15%</span>);
+    /* Make the mention text dark grey. */
+    --ck-color-mention-text: hsl(0, 0%, 15%);
 }
 </code></pre>
 <div class="live-snippet"><style>
@@ -624,13 +624,13 @@
 <pre class="highlight"><code class="bash">npm install --save @ckeditor/ckeditor5-mention
 </code></pre>
 <p>Then add <code>Mention</code> to your plugin list and <a href="../api/module_mention_mention-MentionConfig.html">configure</a> the feature:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> Mention <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-mention/src/mention&apos;</span>;
+<pre class="highlight"><code class="js">import Mention from &apos;@ckeditor/ckeditor5-mention/src/mention&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ Mention, ... ],
-        <span class="hljs-attr">mention</span>: {
-            <span class="hljs-comment">// Configuration...</span>
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Mention, ... ],
+        mention: {
+            // Configuration...
         }
     } )
     .then( ... )
@@ -643,7 +643,7 @@ ClassicEditor
 <li>
 <p>The <code>&apos;mention&apos;</code> command implemented by <a href="../api/module_mention_mentioncommand-MentionCommand.html"><code>MentionCommand</code></a>.</p>
 <p>You can insert a mention element by executing the following code:</p>
-<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;mention&apos;</span>, { <span class="hljs-attr">marker</span>: <span class="hljs-string">&apos;@&apos;</span>, <span class="hljs-attr">mention</span>: <span class="hljs-string">&apos;John&apos;</span> } );
+<pre class="highlight"><code class="js">editor.execute( &apos;mention&apos;, { marker: &apos;@&apos;, mention: &apos;John&apos; } );
 </code></pre>
 </li>
 </ul>

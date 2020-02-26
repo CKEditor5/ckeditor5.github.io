@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../snippets/features/build-remove-format-source/snippet.css" type="text/css">
     <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
@@ -35,16 +35,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -86,7 +86,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -214,11 +214,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-remove-format/blob/master/docs/features/remove-format.md" title="Contribute to this guide"><img src="../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-remove-format/blob/master/docs/features/remove-format.md" title="Contribute to this guide"><img src="../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../assets/1.2.1/img/book.svg" alt="guide">Remove formatting
+          <h1 class="main__content-title"><img src="../../../assets/1.2.2/img/book.svg" alt="guide">Remove formatting
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#configuring-the-remove-format-feature">Configuring the remove format feature</a></li><li><a href="#a-short-note-about-content-types-in-the-editor">A short note about content types in the editor</a></li><li><a href="#integrating-with-editor-features">Integrating with editor features</a></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 <p>The <a href="../api/module_remove-format_removeformat-RemoveFormat.html"><code>Remove format</code></a> feature allows you to quickly remove any text formatting applied using inline HTML elements and CSS styles, like <a href="basic-styles.html">basic text styles</a> (bold, italic, etc.), <a href="font.html">font family, size, and color</a> and similar.</p>
 <p>Note that block-level formatting (<a href="headings.html">headings</a>, <a href="image.html">images</a>) and semantic data (<a href="link.html">links</a>) will not be removed by this feature.</p>
@@ -256,25 +256,25 @@
 <h2 id="integrating-with-editor-features"><a class="headerlink" href="#integrating-with-editor-features">#</a> Integrating with editor features</h2>
 <p>To make it possible for the remove formatting feature to work with your custom content, you must first mark it in the <a href="../framework/guides/architecture/editing-engine.html#schema">schema</a>. All you need to do is set the <code>isFormatting</code> property on your custom <a href="../framework/guides/architecture/editing-engine.html#text-attributes">text attribute</a>.</p>
 <p>For instance, if you want the feature to remove <a href="link.html">links</a> as well (not supported by default), you need to create a <a href="../builds/guides/integration/configuration.html#adding-simple-standalone-features">simple plugin</a> that will extend the schema and tell the editor that the <code>linkHref</code> text attribute produced by the link feature is a formatting attribute:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// A simple plugin that extends the remove format feature to consider links.</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">RemoveFormatLinks</span>(<span class="hljs-params"> editor </span>) </span>{
-    <span class="hljs-comment">// Extend the editor schema and mark the &quot;linkHref&quot; model attribute as formatting.</span>
-    editor.model.schema.setAttributeProperties( <span class="hljs-string">&apos;linkHref&apos;</span>, {
-        <span class="hljs-attr">isFormatting</span>: <span class="hljs-literal">true</span>
+<pre class="highlight"><code class="js">// A simple plugin that extends the remove format feature to consider links.
+function RemoveFormatLinks( editor ) {
+    // Extend the editor schema and mark the &quot;linkHref&quot; model attribute as formatting.
+    editor.model.schema.setAttributeProperties( &apos;linkHref&apos;, {
+        isFormatting: true
     } );
 }
 </code></pre>
 <p>Enable the <code>RemoveFormatLinks</code> plugin in the <a href="../builds/guides/integration/configuration.html#adding-features">configuration</a> and run the editor:</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( ..., {
-        <span class="hljs-attr">plugins</span>: [
+        plugins: [
             RemoveFormat,
             RemoveFormatLinks,
-            <span class="hljs-comment">// ...</span>
+            // ...
         ],
-        <span class="hljs-attr">toolbar</span>: [
-            <span class="hljs-string">&apos;removeFormat&apos;</span>,
-            <span class="hljs-comment">// ...</span>
+        toolbar: [
+            &apos;removeFormat&apos;,
+            // ...
         ]
     } )
 </code></pre>
@@ -284,12 +284,12 @@
 <pre class="highlight"><code class="bash">npm install --save @ckeditor/ckeditor5-remove-format
 </code></pre>
 <p>And add it to your plugin list and the toolbar configuration:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> RemoveFormat <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-remove-format/src/removeformat&apos;</span>;
+<pre class="highlight"><code class="js">import RemoveFormat from &apos;@ckeditor/ckeditor5-remove-format/src/removeformat&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ RemoveFormat, ... ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;removeFormat&apos;</span>, ... ]
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ RemoveFormat, ... ],
+        toolbar: [ &apos;removeFormat&apos;, ... ]
     } )
     .then( ... )
     .catch( ... );
@@ -298,8 +298,8 @@ ClassicEditor
 <h2 id="common-api"><a class="headerlink" href="#common-api">#</a> Common API</h2>
 <p>The <a href="../api/module_remove-format_removeformat-RemoveFormat.html"><code>RemoveFormat</code></a> plugin registers the <code>&apos;removeFormat&apos;</code> UI button component and a command of the same name implemented by <a href="../api/module_remove-format_removeformatcommand-RemoveFormatCommand.html"><code>RemoveFormatCommand</code></a>.</p>
 <p>The command can be executed using the <a href="../api/module_core_editor_editor-Editor.html#function-execute"><code>editor.execute()</code></a> method:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// Removes all the formatting in the selection.</span>
-editor.execute( <span class="hljs-string">&apos;removeFormat&apos;</span> );
+<pre class="highlight"><code class="js">// Removes all the formatting in the selection.
+editor.execute( &apos;removeFormat&apos; );
 </code></pre>
 <div class="info-box notice"><p>We recommend using the official <a href="../framework/guides/development-tools.html#ckeditor-5-inspector">CKEditor 5 inspector</a> for development and debugging. It will give you tons of useful information about the state of the editor such as internal data structures, selection, commands, and many more.</p></div>
 <h2 id="contribute"><a class="headerlink" href="#contribute">#</a> Contribute</h2>

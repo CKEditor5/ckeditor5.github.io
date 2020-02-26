@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../snippets/features/title/snippet.css" type="text/css">
     <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
@@ -35,16 +35,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -86,7 +86,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -214,11 +214,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-heading/blob/master/docs/features/title.md" title="Contribute to this guide"><img src="../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-heading/blob/master/docs/features/title.md" title="Contribute to this guide"><img src="../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../assets/1.2.1/img/book.svg" alt="guide">Document title
+          <h1 class="main__content-title"><img src="../../../assets/1.2.2/img/book.svg" alt="guide">Document title
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#keyboard-navigation">Keyboard navigation</a></li><li><a href="#placeholder-integration">Placeholder integration</a></li><li><a href="#installation">Installation</a></li><li><a href="#html-structure">HTML structure</a><ol><li><a href="#model-representation">Model representation</a></li></ol></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 <p>The <a href="../api/module_heading_title-Title.html"><code>Title</code></a> feature enables support for adding the title field to your document. It helps ensure that there will always be a single title field at the beginning of the document.</p>
 <p>This feature can be used to implement a rich-text editor with a clear division of content into the title and body sections, similar to solutions available in Medium, Grammarly, Slack post editor or some content management systems.</p>
@@ -304,12 +304,12 @@
 <p>The title plugin is integrated with the <a href="editor-placeholder.html">placeholder</a> configuration. If you define it, the placeholder text will be used for the body element.</p>
 <p>To change the title placeholder, use the <a href="../api/module_heading_title-TitleConfig.html#member-placeholder"><code>title.placeholder</code></a> configuration option. For instance:</p>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ Title, ... ],
-        <span class="hljs-attr">title</span>: {
-            <span class="hljs-attr">placeholder</span>: <span class="hljs-string">&apos;My custom placeholder for the title&apos;</span>
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Title, ... ],
+        title: {
+            placeholder: &apos;My custom placeholder for the title&apos;
         },
-        <span class="hljs-attr">placeholder</span>: <span class="hljs-string">&apos;My custom placeholder for the body&apos;</span>
+        placeholder: &apos;My custom placeholder for the body&apos;
     } )
     .then( ... )
     .catch( ... );
@@ -319,11 +319,11 @@
 <pre class="highlight"><code class="plaintext">npm install --save @ckeditor/ckeditor5-heading
 </code></pre>
 <p>Then add the <code>Title</code> plugin to your plugin list:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> Title <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-heading/src/title&apos;</span>;
+<pre class="highlight"><code class="js">import Title from &apos;@ckeditor/ckeditor5-heading/src/title&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ Title, ... ]
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Title, ... ]
     } )
     .then( ... )
     .catch( ... );
@@ -331,15 +331,15 @@ ClassicEditor
 <div class="info-box notice notice__info"><p>Read more about <a href="../builds/guides/integration/installing-plugins.html">installing plugins</a>.</p></div>
 <h2 id="html-structure"><a class="headerlink" href="#html-structure">#</a> HTML structure</h2>
 <p>When you call <a href="../api/module_core_editor_utils_dataapimixin-DataApi.html#function-getData"><code>editor.getData()</code></a>, the document title will be represented as the following HTML:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Feasibility Study<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;h1&gt;Feasibility Study&lt;/h1&gt;
 </code></pre>
 <h3 id="model-representation"><a class="headerlink" href="#model-representation">#</a> Model representation</h3>
 <p>In the CKEditor 5 data model the document title is represented as follows:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">title-content</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;title&gt;
+    &lt;title-content&gt;
         Feasibility Study
-    <span class="hljs-tag">&lt;/<span class="hljs-name">title-content</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    &lt;/title-content&gt;
+&lt;/title&gt;
 </code></pre>
 <div class="info-box notice"><p>We recommend using the official <a href="../framework/guides/development-tools.html#ckeditor-5-inspector">CKEditor 5 inspector</a> for development and debugging. It will give you tons of useful information about the state of the editor such as internal data structures, selection, commands, and many more.</p></div>
 <h2 id="contribute"><a class="headerlink" href="#contribute">#</a> Contribute</h2>

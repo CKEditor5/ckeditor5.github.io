@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../../../../snippets/framework/build-extending-content-source/snippet.css" type="text/css">
     <link rel="stylesheet" href="../../../../assets/snippet-styles.css" type="text/css">
@@ -35,16 +35,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -86,7 +86,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -232,11 +232,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-engine/blob/master/docs/framework/guides/deep-dive/conversion-extending-output.md" title="Contribute to this guide"><img src="../../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-engine/blob/master/docs/framework/guides/deep-dive/conversion-extending-output.md" title="Contribute to this guide"><img src="../../../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../../assets/1.2.1/img/book.svg" alt="guide">Extending the editor output
+          <h1 class="main__content-title"><img src="../../../../../../assets/1.2.2/img/book.svg" alt="guide">Extending the editor output
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#before-starting">Before starting</a><ol><li><a href="#code-architecture">Code architecture</a></li><li><a href="#granular-converters">Granular converters</a></li><li><a href="#ckeditor-5-inspector">CKEditor 5 inspector</a></li></ol></li><li><a href="#adding-a-css-class-to-inline-elements">Adding a CSS class to inline elements</a></li><li><a href="#adding-an-html-attribute-to-certain-inline-elements">Adding an HTML attribute to certain inline elements</a></li><li><a href="#adding-a-css-class-to-certain-inline-elements">Adding a CSS class to certain inline elements</a></li><li><a href="#adding-a-css-class-to-block-elements">Adding a CSS class to block elements</a></li><li><a href="#whats-next">What&#x2019;s next?</a></li></ol></nav>
 
 <p>This guide focuses on customization of the one&#x2013;way <a href="../../architecture/editing-engine.html#editing-pipeline">&#x201C;downcast&#x201D;</a> pipeline of CKEditor 5. This pipeline transforms the data from the model to the editing view and the output data. The following examples do not customize the model and do not process the (input) data &#x2014; you can picture them as post&#x2013;processors (filters) applied to the output only.</p>
@@ -249,19 +249,19 @@
 <h3 id="granular-converters"><a class="headerlink" href="#granular-converters">#</a> Granular converters</h3>
 <p>You can create separate converters for the data and editing (downcast) pipelines. The former (<code>dataDowncast</code>) will customize the data in the editor output (e.g. when <a href="../../../../builds/guides/integration/saving-data.html#manually-retrieving-the-data">obtaining the editor data</a>). The latter (<code>editingDowncast</code>) will only work for the content of the editor when editing.</p>
 <p>If you do not want to complicate your conversion, you can just add a single (<code>downcast</code>) converter which will apply both to the data and the editing view. We did that in all examples to keep them simple but keep in mind you have options:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// Adds a conversion dispatcher for the editing downcast pipeline only.</span>
-editor.conversion.for( <span class="hljs-string">&apos;editingDowncast&apos;</span> ).add( <span class="hljs-function"><span class="hljs-params">dispatcher</span> =&gt;</span> {
-    <span class="hljs-comment">// ...</span>
+<pre class="highlight"><code class="js">// Adds a conversion dispatcher for the editing downcast pipeline only.
+editor.conversion.for( &apos;editingDowncast&apos; ).add( dispatcher =&gt; {
+    // ...
 } );
 
-<span class="hljs-comment">// Adds a conversion dispatcher for the data downcast pipeline only.</span>
-editor.conversion.for( <span class="hljs-string">&apos;dataDowncast&apos;</span> ).add( <span class="hljs-function"><span class="hljs-params">dispatcher</span> =&gt;</span> {
-    <span class="hljs-comment">// ...</span>
+// Adds a conversion dispatcher for the data downcast pipeline only.
+editor.conversion.for( &apos;dataDowncast&apos; ).add( dispatcher =&gt; {
+    // ...
 } );
 
-<span class="hljs-comment">// Adds a conversion dispatcher for both the data and the editing downcast pipelines.</span>
-editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).add( <span class="hljs-function"><span class="hljs-params">dispatcher</span> =&gt;</span> {
-    <span class="hljs-comment">// ...</span>
+// Adds a conversion dispatcher for both the data and the editing downcast pipelines.
+editor.conversion.for( &apos;downcast&apos; ).add( dispatcher =&gt; {
+    // ...
 } );
 </code></pre>
 <h3 id="ckeditor-5-inspector"><a class="headerlink" href="#ckeditor-5-inspector">#</a> CKEditor 5 inspector</h3>
@@ -270,13 +270,13 @@ editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).a
 <p>In this example all links (<code>&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;</code>) get the <code>.my-green-link</code> CSS class. This includes all links in the editor output (<code>editor.getData()</code>) and all links in the edited content (existing and future ones).</p>
 <div class="info-box notice"><p>Note that the same behavior can be obtained with <a href="../../../../features/link.html#custom-link-attributes-decorators">link decorators</a>:</p><pre class="highlight"><code class="js">ClassicEditor
     .create( ..., {
-        <span class="hljs-comment">// ...</span>
-        <span class="hljs-attr">link</span>: {
-            <span class="hljs-attr">decorators</span>: {
-                <span class="hljs-attr">addGreenLink</span>: {
-                    <span class="hljs-attr">mode</span>: <span class="hljs-string">&apos;automatic&apos;</span>,
-                    <span class="hljs-attr">attributes</span>: {
-                        <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;my-green-link&apos;</span>
+        // ...
+        link: {
+            decorators: {
+                addGreenLink: {
+                    mode: &apos;automatic&apos;,
+                    attributes: {
+                        class: &apos;my-green-link&apos;
                     }
                 }
             }
@@ -300,61 +300,61 @@ editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).a
 </div>
 </div>
 <p>A custom CSS class is added to all links by a custom converter plugged into the downcast pipeline, following the default converters brought by the <a href="../../../../features/link.html">link</a> feature:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// This plugin brings customization to the downcast pipeline of the editor.</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">AddClassToAllLinks</span>(<span class="hljs-params"> editor </span>) </span>{
-    <span class="hljs-comment">// Both the data and the editing pipelines are affected by this conversion.</span>
-    editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).add( <span class="hljs-function"><span class="hljs-params">dispatcher</span> =&gt;</span> {
-        <span class="hljs-comment">// Links are represented in the model as a &quot;linkHref&quot; attribute.</span>
-        <span class="hljs-comment">// Use the &quot;low&quot; listener priority to apply the changes after the link feature.</span>
-        dispatcher.on( <span class="hljs-string">&apos;attribute:linkHref&apos;</span>, ( evt, data, conversionApi ) =&gt; {
-            <span class="hljs-keyword">const</span> viewWriter = conversionApi.writer;
-            <span class="hljs-keyword">const</span> viewSelection = viewWriter.document.selection;
+<pre class="highlight"><code class="js">// This plugin brings customization to the downcast pipeline of the editor.
+function AddClassToAllLinks( editor ) {
+    // Both the data and the editing pipelines are affected by this conversion.
+    editor.conversion.for( &apos;downcast&apos; ).add( dispatcher =&gt; {
+        // Links are represented in the model as a &quot;linkHref&quot; attribute.
+        // Use the &quot;low&quot; listener priority to apply the changes after the link feature.
+        dispatcher.on( &apos;attribute:linkHref&apos;, ( evt, data, conversionApi ) =&gt; {
+            const viewWriter = conversionApi.writer;
+            const viewSelection = viewWriter.document.selection;
 
-            <span class="hljs-comment">// Adding a new CSS class is done by wrapping all link ranges and selection</span>
-            <span class="hljs-comment">// in a new attribute element with a class.</span>
-            <span class="hljs-keyword">const</span> viewElement = viewWriter.createAttributeElement( <span class="hljs-string">&apos;a&apos;</span>, {
-                    <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;my-green-link&apos;</span>
+            // Adding a new CSS class is done by wrapping all link ranges and selection
+            // in a new attribute element with a class.
+            const viewElement = viewWriter.createAttributeElement( &apos;a&apos;, {
+                    class: &apos;my-green-link&apos;
                 }, {
-                    <span class="hljs-attr">priority</span>: <span class="hljs-number">5</span>
+                    priority: 5
                 } );
 
-            <span class="hljs-keyword">if</span> ( data.item.is( <span class="hljs-string">&apos;selection&apos;</span> ) ) {
+            if ( data.item.is( &apos;selection&apos; ) ) {
                 viewWriter.wrap( viewSelection.getFirstRange(), viewElement );
-            } <span class="hljs-keyword">else</span> {
+            } else {
                 viewWriter.wrap( conversionApi.mapper.toViewRange( data.range ), viewElement );
             }
-        }, { <span class="hljs-attr">priority</span>: <span class="hljs-string">&apos;low&apos;</span> } );
+        }, { priority: &apos;low&apos; } );
     } );
 }
 </code></pre>
 <p>Activate the plugin in the editor:</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( ..., {
-        <span class="hljs-attr">extraPlugins</span>: [ AddClassToAllLinks ],
+        extraPlugins: [ AddClassToAllLinks ],
     } )
-    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
-        <span class="hljs-comment">// ...</span>
+    .then( editor =&gt; {
+        // ...
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error( err.stack );
+    .catch( err =&gt; {
+        console.error( err.stack );
     } );
 </code></pre>
 <p>Add some CSS styles for <code>.my-green-link</code> to see the customization in action:</p>
-<pre class="highlight"><code class="css"><span class="hljs-selector-class">.my-green-link</span> {
-    <span class="hljs-attribute">color</span>: <span class="hljs-number">#209a25</span>;
-    <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#209a25</span>;
-    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">2px</span>;
-    <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span> <span class="hljs-number">3px</span>;
-    <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">1px</span> <span class="hljs-number">1px</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">#209a25</span>;
+<pre class="highlight"><code class="css">.my-green-link {
+    color: #209a25;
+    border: 1px solid #209a25;
+    border-radius: 2px;
+    padding: 0 3px;
+    box-shadow: 1px 1px 0 0 #209a25;
 }
 </code></pre>
 <h2 id="adding-an-html-attribute-to-certain-inline-elements"><a class="headerlink" href="#adding-an-html-attribute-to-certain-inline-elements">#</a> Adding an HTML attribute to certain inline elements</h2>
 <p>In this example all links (<code>&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;</code>) that do not have &#x201C;<a href="http://ckeditor.com" target="_blank" rel="noopener">ckeditor.com</a>&#x201D; in their <code>href=&quot;...&quot;</code> get the <code>target=&quot;_blank&quot;</code> attribute. This includes all links in the editor output (<code>editor.getData()</code>) and all links in the edited content (existing and future ones).</p>
 <div class="info-box notice"><p>Note that similar behavior can be obtained with <a href="../../../../api/module_link_link-LinkConfig.html#member-addTargetToExternalLinks">link decorators</a>:</p><pre class="highlight"><code class="js">ClassicEditor
     .create( ..., {
-        <span class="hljs-comment">// ...</span>
-        <span class="hljs-attr">link</span>: {
-            <span class="hljs-attr">addTargetToExternalLinks</span>: <span class="hljs-literal">true</span>
+        // ...
+        link: {
+            addTargetToExternalLinks: true
         }
     } )
 </code></pre>
@@ -373,66 +373,66 @@ editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).a
 </div>
 </div>
 <p>The <code>target</code> attribute is added to all &#x201C;external&#x201D; links by a custom converter plugged into the downcast pipeline, following the default converters brought by the <a href="../../../../features/link.html">link</a> feature:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// This plugin brings customization to the downcast pipeline of the editor.</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">AddTargetToExternalLinks</span>(<span class="hljs-params"> editor </span>) </span>{
-    <span class="hljs-comment">// Both the data and the editing pipelines are affected by this conversion.</span>
-    editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).add( <span class="hljs-function"><span class="hljs-params">dispatcher</span> =&gt;</span> {
-        <span class="hljs-comment">// Links are represented in the model as a &quot;linkHref&quot; attribute.</span>
-        <span class="hljs-comment">// Use the &quot;low&quot; listener priority to apply the changes after the link feature.</span>
-        dispatcher.on( <span class="hljs-string">&apos;attribute:linkHref&apos;</span>, ( evt, data, conversionApi ) =&gt; {
-            <span class="hljs-keyword">const</span> viewWriter = conversionApi.writer;
-            <span class="hljs-keyword">const</span> viewSelection = viewWriter.document.selection;
+<pre class="highlight"><code class="js">// This plugin brings customization to the downcast pipeline of the editor.
+function AddTargetToExternalLinks( editor ) {
+    // Both the data and the editing pipelines are affected by this conversion.
+    editor.conversion.for( &apos;downcast&apos; ).add( dispatcher =&gt; {
+        // Links are represented in the model as a &quot;linkHref&quot; attribute.
+        // Use the &quot;low&quot; listener priority to apply the changes after the link feature.
+        dispatcher.on( &apos;attribute:linkHref&apos;, ( evt, data, conversionApi ) =&gt; {
+            const viewWriter = conversionApi.writer;
+            const viewSelection = viewWriter.document.selection;
 
-            <span class="hljs-comment">// Adding a new CSS class is done by wrapping all link ranges and selection</span>
-            <span class="hljs-comment">// in a new attribute element with the &quot;target&quot; attribute.</span>
-            <span class="hljs-keyword">const</span> viewElement = viewWriter.createAttributeElement( <span class="hljs-string">&apos;a&apos;</span>, {
-                    <span class="hljs-attr">target</span>: <span class="hljs-string">&apos;_blank&apos;</span>
+            // Adding a new CSS class is done by wrapping all link ranges and selection
+            // in a new attribute element with the &quot;target&quot; attribute.
+            const viewElement = viewWriter.createAttributeElement( &apos;a&apos;, {
+                    target: &apos;_blank&apos;
                 }, {
-                    <span class="hljs-attr">priority</span>: <span class="hljs-number">5</span>
+                    priority: 5
                 } );
 
-            <span class="hljs-keyword">if</span> ( data.attributeNewValue.match( <span class="hljs-regexp">/ckeditor\.com/</span> ) ) {
+            if ( data.attributeNewValue.match( /ckeditor\.com/ ) ) {
                 viewWriter.unwrap( conversionApi.mapper.toViewRange( data.range ), viewElement );
-            } <span class="hljs-keyword">else</span> {
-                <span class="hljs-keyword">if</span> ( data.item.is( <span class="hljs-string">&apos;selection&apos;</span> ) ) {
+            } else {
+                if ( data.item.is( &apos;selection&apos; ) ) {
                     viewWriter.wrap( viewSelection.getFirstRange(), viewElement );
-                } <span class="hljs-keyword">else</span> {
+                } else {
                     viewWriter.wrap( conversionApi.mapper.toViewRange( data.range ), viewElement );
                 }
             }
-        }, { <span class="hljs-attr">priority</span>: <span class="hljs-string">&apos;low&apos;</span> } );
+        }, { priority: &apos;low&apos; } );
     } );
 }
 </code></pre>
 <p>Activate the plugin in the editor:</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( ..., {
-        <span class="hljs-attr">extraPlugins</span>: [ AddTargetToExternalLinks ],
+        extraPlugins: [ AddTargetToExternalLinks ],
     } )
-    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
-        <span class="hljs-comment">// ...</span>
+    .then( editor =&gt; {
+        // ...
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error( err.stack );
+    .catch( err =&gt; {
+        console.error( err.stack );
     } );
 </code></pre>
 <p>Add some CSS styles for links with <code>target=&quot;_blank&quot;</code> to mark them with with the &#x201C;&#x29C9;&#x201D; symbol:</p>
-<pre class="highlight"><code class="css"><span class="hljs-selector-tag">a</span><span class="hljs-selector-attr">[target=<span class="hljs-string">&quot;_blank&quot;</span>]</span><span class="hljs-selector-pseudo">::after</span> {
-    <span class="hljs-attribute">content</span>: <span class="hljs-string">&apos;\29C9&apos;</span>;
+<pre class="highlight"><code class="css">a[target=&quot;_blank&quot;]::after {
+    content: &apos;\29C9&apos;;
 }
 </code></pre>
 <h2 id="adding-a-css-class-to-certain-inline-elements"><a class="headerlink" href="#adding-a-css-class-to-certain-inline-elements">#</a> Adding a CSS class to certain inline elements</h2>
 <p>In this example all links (<code>&lt;a href=&quot;...&quot;&gt;...&lt;/a&gt;</code>) that do not have <code>https://</code> in their <code>href=&quot;...&quot;</code> attribute get the <code>.unsafe-link</code> CSS class. This includes all links in the editor output (<code>editor.getData()</code>) and all links in the edited content (existing and future ones).</p>
 <div class="info-box notice"><p>Note that the same behavior can be obtained with <a href="../../../../features/link.html#custom-link-attributes-decorators">link decorators</a>:</p><pre class="highlight"><code class="js">ClassicEditor
     .create( ..., {
-        <span class="hljs-comment">// ...</span>
-        <span class="hljs-attr">link</span>: {
-            <span class="hljs-attr">decorators</span>: {
-                <span class="hljs-attr">markUnsafeLink</span>: {
-                    <span class="hljs-attr">mode</span>: <span class="hljs-string">&apos;automatic&apos;</span>,
-                    <span class="hljs-attr">callback</span>: <span class="hljs-function"><span class="hljs-params">url</span> =&gt;</span> <span class="hljs-regexp">/^(http:)?\/\//</span>.test( url ),
-                    <span class="hljs-attr">attributes</span>: {
-                        <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;unsafe-link&apos;</span>
+        // ...
+        link: {
+            decorators: {
+                markUnsafeLink: {
+                    mode: &apos;automatic&apos;,
+                    callback: url =&gt; /^(http:)?\/\//.test( url ),
+                    attributes: {
+                        class: &apos;unsafe-link&apos;
                     }
                 }
             }
@@ -455,54 +455,54 @@ editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).a
 </div>
 </div>
 <p>The <code>.unsafe-link</code> CSS class is added to all &#x201C;unsafe&#x201D; links by a custom converter plugged into the downcast pipeline, following the default converters brought by the <a href="../../../../features/link.html">link</a> feature:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// This plugin brings customization to the downcast pipeline of the editor.</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">AddClassToUnsafeLinks</span>(<span class="hljs-params"> editor </span>) </span>{
-    <span class="hljs-comment">// Both the data and the editing pipelines are affected by this conversion.</span>
-    editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).add( <span class="hljs-function"><span class="hljs-params">dispatcher</span> =&gt;</span> {
-        <span class="hljs-comment">// Links are represented in the model as a &quot;linkHref&quot; attribute.</span>
-        <span class="hljs-comment">// Use the &quot;low&quot; listener priority to apply the changes after the link feature.</span>
-        dispatcher.on( <span class="hljs-string">&apos;attribute:linkHref&apos;</span>, ( evt, data, conversionApi ) =&gt; {
-            <span class="hljs-keyword">const</span> viewWriter = conversionApi.writer;
-            <span class="hljs-keyword">const</span> viewSelection = viewWriter.document.selection;
+<pre class="highlight"><code class="js">// This plugin brings customization to the downcast pipeline of the editor.
+function AddClassToUnsafeLinks( editor ) {
+    // Both the data and the editing pipelines are affected by this conversion.
+    editor.conversion.for( &apos;downcast&apos; ).add( dispatcher =&gt; {
+        // Links are represented in the model as a &quot;linkHref&quot; attribute.
+        // Use the &quot;low&quot; listener priority to apply the changes after the link feature.
+        dispatcher.on( &apos;attribute:linkHref&apos;, ( evt, data, conversionApi ) =&gt; {
+            const viewWriter = conversionApi.writer;
+            const viewSelection = viewWriter.document.selection;
 
-            <span class="hljs-comment">// Adding a new CSS class is done by wrapping all link ranges and selection</span>
-            <span class="hljs-comment">// in a new attribute element with the &quot;target&quot; attribute.</span>
-            <span class="hljs-keyword">const</span> viewElement = viewWriter.createAttributeElement( <span class="hljs-string">&apos;a&apos;</span>, {
-                    <span class="hljs-attr">class</span>: <span class="hljs-string">&apos;unsafe-link&apos;</span>
+            // Adding a new CSS class is done by wrapping all link ranges and selection
+            // in a new attribute element with the &quot;target&quot; attribute.
+            const viewElement = viewWriter.createAttributeElement( &apos;a&apos;, {
+                    class: &apos;unsafe-link&apos;
                 }, {
-                    <span class="hljs-attr">priority</span>: <span class="hljs-number">5</span>
+                    priority: 5
                 } );
 
-            <span class="hljs-keyword">if</span> ( data.attributeNewValue.match( <span class="hljs-regexp">/http:\/\//</span> ) ) {
-                <span class="hljs-keyword">if</span> ( data.item.is( <span class="hljs-string">&apos;selection&apos;</span> ) ) {
+            if ( data.attributeNewValue.match( /http:\/\// ) ) {
+                if ( data.item.is( &apos;selection&apos; ) ) {
                     viewWriter.wrap( viewSelection.getFirstRange(), viewElement );
-                } <span class="hljs-keyword">else</span> {
+                } else {
                     viewWriter.wrap( conversionApi.mapper.toViewRange( data.range ), viewElement );
                 }
-            } <span class="hljs-keyword">else</span> {
+            } else {
                 viewWriter.unwrap( conversionApi.mapper.toViewRange( data.range ), viewElement );
             }
-        }, { <span class="hljs-attr">priority</span>: <span class="hljs-string">&apos;low&apos;</span> } );
+        }, { priority: &apos;low&apos; } );
     } );
 }
 </code></pre>
 <p>Activate the plugin in the editor:</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( ..., {
-        <span class="hljs-attr">extraPlugins</span>: [ AddClassToUnsafeLinks ],
+        extraPlugins: [ AddClassToUnsafeLinks ],
     } )
-    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
-        <span class="hljs-comment">// ...</span>
+    .then( editor =&gt; {
+        // ...
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error( err.stack );
+    .catch( err =&gt; {
+        console.error( err.stack );
     } );
 </code></pre>
 <p>Add some CSS styles for &#x201C;unsafe&#x201D; links to make them visible:</p>
-<pre class="highlight"><code class="css"><span class="hljs-selector-class">.unsafe-link</span> {
-    <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span> <span class="hljs-number">2px</span>;
-    <span class="hljs-attribute">outline</span>: <span class="hljs-number">2px</span> dashed red;
-    <span class="hljs-attribute">background</span>: <span class="hljs-number">#ffff00</span>;
+<pre class="highlight"><code class="css">.unsafe-link {
+    padding: 0 2px;
+    outline: 2px dashed red;
+    background: #ffff00;
 }
 </code></pre>
 <h2 id="adding-a-css-class-to-block-elements"><a class="headerlink" href="#adding-a-css-class-to-block-elements">#</a> Adding a CSS class to block elements</h2>
@@ -524,38 +524,38 @@ editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).a
 </div>
 <p>A custom CSS class is added to all <code>&lt;h2&gt;...&lt;/h2&gt;</code> elements by a custom converter plugged into the downcast pipeline, following the default converters brought by the <a href="../../../../features/headings.html">headings</a> feature:</p>
 <div class="info-box notice"><p>The <code>heading1</code> element in the model corresponds to <code>&lt;h2&gt;...&lt;/h2&gt;</code> in the output HTML because in the default <a href="../../../../features/headings.html#configuring-heading-levels">headings feature configuration</a> <code>&lt;h1&gt;...&lt;/h1&gt;</code> is reserved for the top&#x2013;most heading of the webpage.</p></div>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// This plugin brings customization to the downcast pipeline of the editor.</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">AddClassToAllHeading1</span>(<span class="hljs-params"> editor </span>) </span>{
-    <span class="hljs-comment">// Both the data and the editing pipelines are affected by this conversion.</span>
-    editor.conversion.for( <span class="hljs-string">&apos;downcast&apos;</span> ).add( <span class="hljs-function"><span class="hljs-params">dispatcher</span> =&gt;</span> {
-        <span class="hljs-comment">// Headings are represented in the model as a &quot;heading1&quot; element.</span>
-        <span class="hljs-comment">// Use the &quot;low&quot; listener priority to apply the changes after the headings feature.</span>
-        dispatcher.on( <span class="hljs-string">&apos;insert:heading1&apos;</span>, ( evt, data, conversionApi ) =&gt; {
-            <span class="hljs-keyword">const</span> viewWriter = conversionApi.writer;
+<pre class="highlight"><code class="js">// This plugin brings customization to the downcast pipeline of the editor.
+function AddClassToAllHeading1( editor ) {
+    // Both the data and the editing pipelines are affected by this conversion.
+    editor.conversion.for( &apos;downcast&apos; ).add( dispatcher =&gt; {
+        // Headings are represented in the model as a &quot;heading1&quot; element.
+        // Use the &quot;low&quot; listener priority to apply the changes after the headings feature.
+        dispatcher.on( &apos;insert:heading1&apos;, ( evt, data, conversionApi ) =&gt; {
+            const viewWriter = conversionApi.writer;
 
-            viewWriter.addClass( <span class="hljs-string">&apos;my-heading&apos;</span>, conversionApi.mapper.toViewElement( data.item ) );
-        }, { <span class="hljs-attr">priority</span>: <span class="hljs-string">&apos;low&apos;</span> } );
+            viewWriter.addClass( &apos;my-heading&apos;, conversionApi.mapper.toViewElement( data.item ) );
+        }, { priority: &apos;low&apos; } );
     } );
 }
 </code></pre>
 <p>Activate the plugin in the editor:</p>
 <pre class="highlight"><code class="js">ClassicEditor
     .create( ..., {
-        <span class="hljs-attr">extraPlugins</span>: [ AddClassToAllHeading1 ],
+        extraPlugins: [ AddClassToAllHeading1 ],
     } )
-    .then( <span class="hljs-function"><span class="hljs-params">editor</span> =&gt;</span> {
-        <span class="hljs-comment">// ...</span>
+    .then( editor =&gt; {
+        // ...
     } )
-    .catch( <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error( err.stack );
+    .catch( err =&gt; {
+        console.error( err.stack );
     } );
 </code></pre>
 <p>Add some CSS styles for <code>.my-heading</code> to see the customization in action:</p>
-<pre class="highlight"><code class="css"><span class="hljs-selector-class">.my-heading</span> {
-    <span class="hljs-attribute">font-family</span>: Georgia, Times, Times New Roman, serif;
-    <span class="hljs-attribute">border-left</span>: <span class="hljs-number">6px</span> solid <span class="hljs-number">#fd0000</span>;
-    <span class="hljs-attribute">padding-left</span>: .<span class="hljs-number">8em</span>;
-    <span class="hljs-attribute">padding</span>: .<span class="hljs-number">1em</span> .<span class="hljs-number">8em</span>;
+<pre class="highlight"><code class="css">.my-heading {
+    font-family: Georgia, Times, Times New Roman, serif;
+    border-left: 6px solid #fd0000;
+    padding-left: .8em;
+    padding: .1em .8em;
 }
 </code></pre>
 <h2 id="whats-next"><a class="headerlink" href="#whats-next">#</a> What&#x2019;s next?</h2>

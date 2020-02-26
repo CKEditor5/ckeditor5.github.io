@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../snippets/features/build-basic-styles-source/snippet.css" type="text/css">
     <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
@@ -35,16 +35,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -86,7 +86,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -214,11 +214,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-basic-styles/blob/master/docs/features/basic-styles.md" title="Contribute to this guide"><img src="../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-basic-styles/blob/master/docs/features/basic-styles.md" title="Contribute to this guide"><img src="../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../assets/1.2.1/img/book.svg" alt="guide">Basic text styles
+          <h1 class="main__content-title"><img src="../../../assets/1.2.2/img/book.svg" alt="guide">Basic text styles
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#available-text-styles">Available text styles</a><ol><li><a href="#supported-input">Supported input</a></li></ol></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 <p>The <a href="../api/basic-styles.html">basic styles</a> package provides text formatting features such as bold, italic, underline, strikethrough, subscript, superscript, and code.</p>
 <div class="info-box notice notice__info"><p>All basic text styles can be removed with the <a href="remove-format.html">remove format</a> feature.</p></div>
@@ -333,19 +333,19 @@
 <pre class="highlight"><code class>npm install --save @ckeditor/ckeditor5-basic-styles
 </code></pre>
 <p>And add the plugins which you need to your plugin list. Then, simply configure the toolbar items to make the features available in the user interface.</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> Bold <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;</span>;
-<span class="hljs-keyword">import</span> Italic <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;</span>;
-<span class="hljs-keyword">import</span> Underline <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/underline&apos;</span>;
-<span class="hljs-keyword">import</span> Strikethrough <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/strikethrough&apos;</span>;
-<span class="hljs-keyword">import</span> Code <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/code&apos;</span>;
-<span class="hljs-keyword">import</span> Subscript <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/subscript&apos;</span>;
-<span class="hljs-keyword">import</span> Superscript <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/superscript&apos;</span>;
+<pre class="highlight"><code class="js">import Bold from &apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;;
+import Italic from &apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;;
+import Underline from &apos;@ckeditor/ckeditor5-basic-styles/src/underline&apos;;
+import Strikethrough from &apos;@ckeditor/ckeditor5-basic-styles/src/strikethrough&apos;;
+import Code from &apos;@ckeditor/ckeditor5-basic-styles/src/code&apos;;
+import Subscript from &apos;@ckeditor/ckeditor5-basic-styles/src/subscript&apos;;
+import Superscript from &apos;@ckeditor/ckeditor5-basic-styles/src/superscript&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ Bold, Italic, Underline, Strikethrough, Code, Subscript, Superscript ],
-        <span class="hljs-attr">toolbar</span>: {
-            <span class="hljs-attr">items</span>: [ <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-string">&apos;italic&apos;</span>, <span class="hljs-string">&apos;underline&apos;</span>, <span class="hljs-string">&apos;strikethrough&apos;</span>, <span class="hljs-string">&apos;code&apos;</span>,<span class="hljs-string">&apos;subscript&apos;</span>, <span class="hljs-string">&apos;superscript&apos;</span>  ]
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Bold, Italic, Underline, Strikethrough, Code, Subscript, Superscript ],
+        toolbar: {
+            items: [ &apos;bold&apos;, &apos;italic&apos;, &apos;underline&apos;, &apos;strikethrough&apos;, &apos;code&apos;,&apos;subscript&apos;, &apos;superscript&apos;  ]
         }
     } )
     .then( ... )
@@ -354,7 +354,7 @@ ClassicEditor
 <div class="info-box notice notice__info"><p>Read more about <a href="../builds/guides/integration/installing-plugins.html">installing plugins</a>.</p></div>
 <h2 id="common-api"><a class="headerlink" href="#common-api">#</a> Common API</h2>
 <p>Each style feature registers a <a href="#available-text-styles">command</a> which can be executed from code. For example, the following snippet will apply the bold style to the current selection in the editor:</p>
-<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;bold&apos;</span> );
+<pre class="highlight"><code class="js">editor.execute( &apos;bold&apos; );
 </code></pre>
 <div class="info-box notice"><p>We recommend using the official <a href="../framework/guides/development-tools.html#ckeditor-5-inspector">CKEditor 5 inspector</a> for development and debugging. It will give you tons of useful information about the state of the editor such as internal data structures, selection, commands, and many more.</p></div>
 <h2 id="contribute"><a class="headerlink" href="#contribute">#</a> Contribute</h2>

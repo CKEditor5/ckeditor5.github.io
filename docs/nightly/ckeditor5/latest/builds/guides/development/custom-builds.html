@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
     <script>
       ( function() {
@@ -33,16 +33,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -84,7 +84,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -199,11 +199,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/development/custom-builds.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/development/custom-builds.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Builds</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../assets/1.2.1/img/book.svg" alt="guide">Creating custom builds
+          <h1 class="main__content-title"><img src="../../../../../assets/1.2.2/img/book.svg" alt="guide">Creating custom builds
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#requirements">Requirements</a></li><li><a href="#forking-an-existing-build">Forking an existing build</a></li><li><a href="#build-anatomy">Build anatomy</a></li><li><a href="#customizing-a-build">Customizing a build</a><ol><li><a href="#installing-dependencies">Installing dependencies</a></li><li><a href="#updating-build-configuration">Updating build configuration</a></li><li><a href="#rebuilding-the-bundle">Rebuilding the bundle</a></li></ol></li><li><a href="#updating-the-build">Updating the build</a></li><li><a href="#publishing-your-builds">Publishing your builds</a></li></ol></nav>
 <p>A build is a simple <a href="https://www.npmjs.com" target="_blank" rel="noopener">npm</a> package (usually developed in a Git repository) with a predefined set of dependencies. Out of this repository, distribution files can be generated through the build process.</p>
 <p>Some of the reasons for creating custom builds are:</p>
@@ -225,7 +225,7 @@
 </ul>
 <h2 id="forking-an-existing-build"><a class="headerlink" href="#forking-an-existing-build">#</a> Forking an existing build</h2>
 <p>Start with <a href="https://help.github.com/articles/fork-a-repo/" target="_blank" rel="noopener">forking</a> one of the official builds (it will serve as the starting point for your custom one) and then clone your fork:</p>
-<pre class="highlight"><code class="bash">git <span class="hljs-built_in">clone</span> -b stable git@github.com:&lt;your-username&gt;/ckeditor5-build-classic.git
+<pre class="highlight"><code class="bash">git clone -b stable git@github.com:&lt;your-username&gt;/ckeditor5-build-classic.git
 </code></pre>
 <p>To make updating easier you may optionally add the original build repository to your Git remotes:</p>
 <pre class="highlight"><code class="bash">git remote add upstream https://github.com/ckeditor/ckeditor5-build-classic.git
@@ -258,26 +258,26 @@
 <h3 id="updating-build-configuration"><a class="headerlink" href="#updating-build-configuration">#</a> Updating build configuration</h3>
 <p>If you added or removed dependencies, you will also need to modify the <code>src/ckeditor.js</code> file.</p>
 <p>Every plugin that you want to include in the bundle should be added at this stage. You can also change the editor creator and specify the default editor configuration. For instance, your webpack entry file (<code>src/ckeditor.js</code>) may look like this:</p>
-<pre class="highlight"><code class="js"><span class="hljs-meta">&apos;use strict&apos;</span>;
+<pre class="highlight"><code class="js">&apos;use strict&apos;;
 
-<span class="hljs-comment">// The editor creator to use.</span>
-<span class="hljs-keyword">import</span> ClassicEditorBase <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;</span>;
+// The editor creator to use.
+import ClassicEditorBase from &apos;@ckeditor/ckeditor5-editor-classic/src/classiceditor&apos;;
 
-<span class="hljs-keyword">import</span> EssentialsPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;</span>;
-<span class="hljs-keyword">import</span> AutoformatPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-autoformat/src/autoformat&apos;</span>;
-<span class="hljs-keyword">import</span> BoldPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;</span>;
-<span class="hljs-keyword">import</span> ItalicPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;</span>;
-<span class="hljs-keyword">import</span> HeadingPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-heading/src/heading&apos;</span>;
-<span class="hljs-keyword">import</span> LinkPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-link/src/link&apos;</span>;
-<span class="hljs-keyword">import</span> ListPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-list/src/list&apos;</span>;
-<span class="hljs-keyword">import</span> ParagraphPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;</span>;
+import EssentialsPlugin from &apos;@ckeditor/ckeditor5-essentials/src/essentials&apos;;
+import AutoformatPlugin from &apos;@ckeditor/ckeditor5-autoformat/src/autoformat&apos;;
+import BoldPlugin from &apos;@ckeditor/ckeditor5-basic-styles/src/bold&apos;;
+import ItalicPlugin from &apos;@ckeditor/ckeditor5-basic-styles/src/italic&apos;;
+import HeadingPlugin from &apos;@ckeditor/ckeditor5-heading/src/heading&apos;;
+import LinkPlugin from &apos;@ckeditor/ckeditor5-link/src/link&apos;;
+import ListPlugin from &apos;@ckeditor/ckeditor5-list/src/list&apos;;
+import ParagraphPlugin from &apos;@ckeditor/ckeditor5-paragraph/src/paragraph&apos;;
 
-<span class="hljs-keyword">import</span> CustomPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;ckeditor5-custom-package/src/customplugin&apos;</span>;
-<span class="hljs-keyword">import</span> OtherCustomPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;../relative/path/to/some/othercustomplugin&apos;</span>;
+import CustomPlugin from &apos;ckeditor5-custom-package/src/customplugin&apos;;
+import OtherCustomPlugin from &apos;../relative/path/to/some/othercustomplugin&apos;;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ClassicEditor</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ClassicEditorBase</span> </span>{}
+export default class ClassicEditor extends ClassicEditorBase {}
 
-<span class="hljs-comment">// Plugins to include in the build.</span>
+// Plugins to include in the build.
 ClassicEditor.builtinPlugins = [
     EssentialsPlugin,
     AutoformatPlugin,
@@ -293,10 +293,10 @@ ClassicEditor.builtinPlugins = [
 ];
 
 ClassicEditor.defaultConfig = {
-    <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;heading&apos;</span>, <span class="hljs-string">&apos;|&apos;</span>, <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-string">&apos;italic&apos;</span>, <span class="hljs-string">&apos;custombutton&apos;</span> ],
+    toolbar: [ &apos;heading&apos;, &apos;|&apos;, &apos;bold&apos;, &apos;italic&apos;, &apos;custombutton&apos; ],
 
-    <span class="hljs-comment">// This value must be kept in sync with the language defined in webpack.config.js.</span>
-    <span class="hljs-attr">language</span>: <span class="hljs-string">&apos;en&apos;</span>
+    // This value must be kept in sync with the language defined in webpack.config.js.
+    language: &apos;en&apos;
 };
 </code></pre>
 <h3 id="rebuilding-the-bundle"><a class="headerlink" href="#rebuilding-the-bundle">#</a> Rebuilding the bundle</h3>

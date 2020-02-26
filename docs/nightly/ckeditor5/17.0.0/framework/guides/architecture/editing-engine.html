@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
     <script>
       ( function() {
@@ -33,16 +33,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -84,7 +84,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -230,11 +230,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/architecture/editing-engine.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/architecture/editing-engine.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../assets/1.2.1/img/book.svg" alt="guide">Editing engine
+          <h1 class="main__content-title"><img src="../../../../../assets/1.2.2/img/book.svg" alt="guide">Editing engine
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#overview">Overview</a></li><li><a href="#model">Model</a><ol><li><a href="#changing-the-model">Changing the model</a></li><li><a href="#text-attributes">Text attributes</a></li><li><a href="#selection-attributes">Selection attributes</a></li><li><a href="#indexes-and-offsets">Indexes and offsets</a></li><li><a href="#positions-ranges-and-selections">Positions, ranges and selections</a></li><li><a href="#markers">Markers</a></li><li><a href="#schema">Schema</a></li></ol></li><li><a href="#view">View</a><ol><li><a href="#element-types-and-custom-data">Element types and custom data</a><ol><li><a href="#non-semantic-views">Non-semantic views</a></li></ol></li><li><a href="#changing-the-view">Changing the view</a></li><li><a href="#positions">Positions</a></li><li><a href="#observers">Observers</a></li></ol></li><li><a href="#conversion">Conversion</a><ol><li><a href="#data-pipeline">Data pipeline</a></li><li><a href="#editing-pipeline">Editing pipeline</a></li></ol></li><li><a href="#read-next">Read next</a></li></ol></nav>
 <p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-engine</code></a> package is by far the biggest package of all. Therefore, this guide will only scratch the surface here by introducing the main architecture layers and concepts. More detailed guides will follow.</p>
 <div class="info-box notice"><p>We recommend using the official <a href="../development-tools.html#ckeditor-5-inspector">CKEditor 5 inspector</a> for development and debugging. It will give you tons of useful information about the state of the editor such as internal data structures, selection, commands, and many more.</p></div>
@@ -248,60 +248,60 @@
 <p>The model is implemented by a DOM-like tree structure of <a href="../../../api/module_engine_model_element-Element.html">elements</a> and <a href="../../../api/module_engine_model_text-Text.html">text nodes</a>. Unlike in the DOM, in the model, both elements and text nodes can have attributes.</p>
 <p>Like in the DOM, the model structure is contained within a <a href="../../../api/module_engine_model_document-Document.html">document</a> that contains <a href="../../../api/module_engine_model_document-Document.html#member-roots">root elements</a> (the model, as well as the view, may have multiple roots). The document also holds its <a href="../../../api/module_engine_model_documentselection-DocumentSelection.html">selection</a> and the <a href="../../../api/module_engine_model_history-History.html">history of its changes</a>.</p>
 <p>Finally, the document, its <a href="../../../api/module_engine_model_schema-Schema.html">schema</a> and <a href="../../../api/module_engine_model_markercollection-MarkerCollection.html">document markers</a> are properties of the <a href="../../../api/module_engine_model_model-Model.html"><code>Model</code></a>. An instance of the <code>Model</code> class is available in the <a href="../../../api/module_core_editor_editor-Editor.html#member-model"><code>editor.model</code></a> property. The model, besides holding the properties described above, provides the API for changing the document and its markers, too.</p>
-<pre class="highlight"><code class="js">editor.model;                       <span class="hljs-comment">// -&gt; The data model.</span>
-editor.model.document;              <span class="hljs-comment">// -&gt; The document.</span>
-editor.model.document.getRoot();    <span class="hljs-comment">// -&gt; The document&apos;s root.</span>
-editor.model.document.selection;    <span class="hljs-comment">// -&gt; The document&apos;s selection.</span>
-editor.model.schema;                <span class="hljs-comment">// -&gt; The model&apos;s schema.</span>
+<pre class="highlight"><code class="js">editor.model;                       // -&gt; The data model.
+editor.model.document;              // -&gt; The document.
+editor.model.document.getRoot();    // -&gt; The document&apos;s root.
+editor.model.document.selection;    // -&gt; The document&apos;s selection.
+editor.model.schema;                // -&gt; The model&apos;s schema.
 </code></pre>
 <h3 id="changing-the-model"><a class="headerlink" href="#changing-the-model">#</a> Changing the model</h3>
 <p>All changes in the document structure, of the document&#x2019;s selection and even the creation of elements, can only be done by using the <a href="../../../api/module_engine_model_writer-Writer.html">model writer</a>. Its instance is available in <a href="../../../api/module_engine_model_model-Model.html#function-change"><code>change()</code></a> and <a href="../../../api/module_engine_model_model-Model.html#function-enqueueChange"><code>enqueueChange()</code></a> blocks.</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// Inserts text &quot;foo&quot; at the selection position.</span>
-editor.model.change( <span class="hljs-function"><span class="hljs-params">writer</span> =&gt;</span> {
-    writer.insertText( <span class="hljs-string">&apos;foo&apos;</span>, editor.model.document.selection.getFirstPosition() );
+<pre class="highlight"><code class="js">// Inserts text &quot;foo&quot; at the selection position.
+editor.model.change( writer =&gt; {
+    writer.insertText( &apos;foo&apos;, editor.model.document.selection.getFirstPosition() );
 } );
 
-<span class="hljs-comment">// Apply bold to the entire selection.</span>
-editor.model.change( <span class="hljs-function"><span class="hljs-params">writer</span> =&gt;</span> {
-    <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">const</span> range <span class="hljs-keyword">of</span> editor.model.document.selection.getRanges() ) {
-        writer.setAttribute( <span class="hljs-string">&apos;bold&apos;</span>, <span class="hljs-literal">true</span>, range );
+// Apply bold to the entire selection.
+editor.model.change( writer =&gt; {
+    for ( const range of editor.model.document.selection.getRanges() ) {
+        writer.setAttribute( &apos;bold&apos;, true, range );
     }
 } );
 </code></pre>
 <p>All changes done within a single <code>change()</code> block are combined into one undo step (they are added to a single <a href="../../../api/module_engine_model_batch-Batch.html">batch</a>). When nesting <code>change()</code> blocks, all changes are added to the outermost <code>change()</code> block&#x2019;s batch. For example, the code below will create a single undo step:</p>
-<pre class="highlight"><code class="js">editor.model.change( <span class="hljs-function"><span class="hljs-params">writer</span> =&gt;</span> {
-    writer.insertText( <span class="hljs-string">&apos;foo&apos;</span>, paragraph, <span class="hljs-string">&apos;end&apos;</span> ); <span class="hljs-comment">// foo.</span>
+<pre class="highlight"><code class="js">editor.model.change( writer =&gt; {
+    writer.insertText( &apos;foo&apos;, paragraph, &apos;end&apos; ); // foo.
 
-    editor.model.change( <span class="hljs-function"><span class="hljs-params">writer</span> =&gt;</span> {
-        writer.insertText( <span class="hljs-string">&apos;bar&apos;</span>, paragraph, <span class="hljs-string">&apos;end&apos;</span> ); <span class="hljs-comment">// foobar.</span>
+    editor.model.change( writer =&gt; {
+        writer.insertText( &apos;bar&apos;, paragraph, &apos;end&apos; ); // foobar.
     } );
 
-    writer.insertText( <span class="hljs-string">&apos;bom&apos;</span>, paragraph, <span class="hljs-string">&apos;end&apos;</span> ); <span class="hljs-comment">// foobarbom.</span>
+    writer.insertText( &apos;bom&apos;, paragraph, &apos;end&apos; ); // foobarbom.
 } );
 </code></pre>
 <div class="info-box notice"><p>All changes made to the document structure are done by applying <a href="../../../api/module_engine_model_operation_operation-Operation.html">operations</a>. The concept of operations comes from <a href="https://en.wikipedia.org/wiki/Operational_transformation" target="_blank" rel="noopener">Operational Transformation</a> (in short: OT), a technology enabling collaboration functionality. Since OT requires that a system is able to transform every operation by every other one (to figure out the result of concurrently applied operations), the set of operations needs to be small. CKEditor 5 features a non-linear model (normally, OT implementations use flat, array-like models while CKEditor 5 uses a tree structure), hence the set of potential semantic changes is more complex. Operations are grouped in <a href="../../../api/module_engine_model_batch-Batch.html">batches</a>. A batch can be understood as a single undo step.</p></div>
 <h3 id="text-attributes"><a class="headerlink" href="#text-attributes">#</a> Text attributes</h3>
 <p>Text styles such as &#x201C;bold&#x201D; and &#x201C;italic&#x201D; are not kept in the model as elements but as text attributes (think &#x2014; like element attributes). The following DOM structure:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;p&gt;
     &quot;Foo &quot;
-    <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>
+    &lt;strong&gt;
         &quot;bar&quot;
-    <span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    &lt;/strong&gt;
+&lt;/p&gt;
 </code></pre>
 <p>would translate to the following model structure:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;paragraph&gt;
     &quot;Foo &quot;  // text node
     &quot;bar&quot;   // text node with the bold=true attribute
-<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
+&lt;/paragraph&gt;
 </code></pre>
 <p>Such representation of inline text styling allows to significantly reduce the complexity of algorithms operating on the model. For instance, if you have the following DOM structure:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;p&gt;
     &quot;Foo &quot;
-    <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span>
+    &lt;strong&gt;
         &quot;bar&quot;
-    <span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    &lt;/strong&gt;
+&lt;/p&gt;
 </code></pre>
 <p>and you have a selection before the letter <code>&quot;b&quot;</code> (<code>&quot;Foo ^bar&quot;</code>), is this position inside or outside <code>&lt;strong&gt;</code>? If you use <a href="https://developer.mozilla.org/en-US/docs/Web/API/Selection" target="_blank" rel="noopener">native DOM Selection</a>, you may get both positions &#x2014; one anchored in <code>&lt;p&gt;</code> and the other anchored in <code>&lt;strong&gt;</code>. In CKEditor 5 this position translates exactly to <code>&quot;Foo ^bar&quot;</code>.</p>
 <h3 id="selection-attributes"><a class="headerlink" href="#selection-attributes">#</a> Selection attributes</h3>
@@ -311,11 +311,11 @@ editor.model.change( <span class="hljs-function"><span class="hljs-params">write
 <p>However, it has just been said that inside <code>&lt;paragraph&gt;</code> there are two text nodes: <code>&quot;Foo &quot;</code> and <code>&quot;bar&quot;</code>. If you know how <a href="https://developer.mozilla.org/en-US/docs/Web/API/Range" target="_blank" rel="noopener">native DOM Ranges</a> work you might thus ask: &#x201C;But if the selection is at the boundary of two text nodes, is it anchored in the left one, the right one, or in the containing element?&#x201D;</p>
 <p>This is, indeed, another problem with DOM APIs. Not only can positions outside and inside some element be identical visually but also they can be anchored inside or outside a text node (if the position is at a text node boundary). This all creates extreme complications when implementing editing algorithms.</p>
 <p>To avoid such troubles, and to make collaborative editing possible for real, CKEditor 5 uses the concepts of <strong>indexes</strong> and <strong>offsets</strong>. Indexes relate to nodes (elements and text nodes) while offsets relate to positions. For example, in the following structure:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">paragraph</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;paragraph&gt;
     &quot;Foo &quot;
-    <span class="hljs-tag">&lt;<span class="hljs-name">image</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">image</span>&gt;</span>
+    &lt;image&gt;&lt;/image&gt;
     &quot;bar&quot;
-<span class="hljs-tag">&lt;/<span class="hljs-name">paragraph</span>&gt;</span>
+&lt;/paragraph&gt;
 </code></pre>
 <p>The <code>&quot;Foo &quot;</code> text node is at index <code>0</code> in its parent, <code>&lt;image&gt;&lt;/image&gt;</code> is at index <code>1</code> and <code>&quot;bar&quot;</code> is at index <code>2</code>.</p>
 <p>On the other hand, offset <code>x</code> in <code>&lt;paragraph&gt;</code> translates to:</p>
@@ -399,10 +399,10 @@ editor.model.change( <span class="hljs-function"><span class="hljs-params">write
 <li>The views are rendered to the DOM by the <a href="../../../api/module_engine_view_renderer-Renderer.html"><code>Renderer</code></a> which handles all the quirks required to tame the <code>contentEditable</code> used in the editing pipeline.</li>
 </ul>
 <p>The fact that there are two views is visible in the API:</p>
-<pre class="highlight"><code class="js">editor.editing;                 <span class="hljs-comment">// The editing pipeline (EditingController).</span>
-editor.editing.view;            <span class="hljs-comment">// The editing view&apos;s controller.</span>
-editor.editing.view.document;   <span class="hljs-comment">// The editing view&apos;s document.</span>
-editor.data;                    <span class="hljs-comment">// The data pipeline (DataController).</span>
+<pre class="highlight"><code class="js">editor.editing;                 // The editing pipeline (EditingController).
+editor.editing.view;            // The editing view&apos;s controller.
+editor.editing.view.document;   // The editing view&apos;s document.
+editor.data;                    // The data pipeline (DataController).
 </code></pre>
 <div class="info-box notice"><p>Technically, the data pipeline does not have a document and a view controller. It operates on detached view structures, created for the purposes of processing data.</p><p>It is much simpler than the editing pipeline and in the following part of this section we will be talking about the editing view.</p><p>Check out the <a href="../../../api/module_engine_controller_editingcontroller-EditingController.html"><code>EditingController</code></a>&apos;s and <a href="../../../api/module_engine_controller_datacontroller-DataController.html"><code>DataController</code></a>&apos;s API.</p></div>
 <h3 id="element-types-and-custom-data"><a class="headerlink" href="#element-types-and-custom-data">#</a> Element types and custom data</h3>
@@ -429,8 +429,8 @@ editor.data;                    <span class="hljs-comment">// The data pipeline 
 <p>Do not change the view manually, unless you really know what you are doing. If the view needs to be changed, in most cases, it means that the model should be changed first. Then the changes you apply to the model are converted (<a href="#conversion">conversion</a> is covered below) to the view by specific converters.</p>
 <p>The view may need to be changed manually if the cause of such change is not represented in the model. For example, the model does not store information about the focus, which is a <a href="../../../api/module_engine_view_document-Document.html#member-isFocused">property of the view</a>. When the focus changes, and you want to represent that in some element&#x2019;s class, you need to change that class manually.</p>
 <p>For that, just like in the model, you should use the <code>change()</code> block (of the view) in which you will have access to the view downcast writer.</p>
-<pre class="highlight"><code class="js">editor.data.view.change( <span class="hljs-function"><span class="hljs-params">writer</span> =&gt;</span> {
-    writer.insert( position1, writer.createText( <span class="hljs-string">&apos;foo&apos;</span> ) );
+<pre class="highlight"><code class="js">editor.data.view.change( writer =&gt; {
+    writer.insert( position1, writer.createText( &apos;foo&apos; ) );
 } );
 </code></pre>
 <div class="info-box notice"><p>There are two view writers:</p><ul>
@@ -493,7 +493,7 @@ editor.data;                    <span class="hljs-comment">// The data pipeline 
 <li><code>{ parent: fooTextNode, offset: 3 }</code></li>
 </ul>
 <p>Some browsers (Safari, Chrome and Opera) consider them identical, too (when used in a selection) and often normalize the first position (anchored in an element) to a position anchored in a text node (the second position). Do not be surprised that the view selection is not directly where you would like it to be. The good news is that the CKEditor 5 renderer can tell that two positions are identical and avoids re-rendering the DOM selection unnecessarily.</p>
-<div class="info-box notice"><p>Sometimes you may find in the documentation that positions are marked in HTML with the <code>{}</code> and <code>[]</code> characters. The difference between them is that the former indicates positions anchored in text nodes and the latter in elements. So, for example, the following example:</p><pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>{Foo]<span class="hljs-tag">&lt;<span class="hljs-name">b</span>&gt;</span>Bar<span class="hljs-tag">&lt;/<span class="hljs-name">b</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<div class="info-box notice"><p>Sometimes you may find in the documentation that positions are marked in HTML with the <code>{}</code> and <code>[]</code> characters. The difference between them is that the former indicates positions anchored in text nodes and the latter in elements. So, for example, the following example:</p><pre class="highlight"><code class="html">&lt;p&gt;{Foo]&lt;b&gt;Bar&lt;/b&gt;&lt;/p&gt;
 </code></pre><p>describes a range which starts in the text node <code>Foo</code> at offset <code>0</code> and ends in the <code>&lt;p&gt;</code> element at offset <code>1</code>.</p></div>
 <p>The far-from-convenient representation of DOM positions is yet one more reason to think about and work with model positions.</p>
 <h3 id="observers"><a class="headerlink" href="#observers">#</a> Observers</h3>

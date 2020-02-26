@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
     <script>
       ( function() {
@@ -33,16 +33,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -84,7 +84,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -230,69 +230,69 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/architecture/ui-library.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/architecture/ui-library.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../assets/1.2.1/img/book.svg" alt="guide">UI library
+          <h1 class="main__content-title"><img src="../../../../../assets/1.2.2/img/book.svg" alt="guide">UI library
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#views">Views</a><ol><li><a href="#definition">Definition</a></li><li><a href="#interaction">Interaction</a></li><li><a href="#best-practices">Best practices</a></li></ol></li><li><a href="#templates">Templates</a></li><li><a href="#view-collections-and-the-ui-tree">View collections and the UI tree</a></li><li><a href="#using-the-existing-components">Using the existing components</a><ol><li><a href="#dropdowns">Dropdowns</a><ol><li><a href="#setting-label-icon-and-tooltip">Setting label, icon, and tooltip</a></li><li><a href="#adding-a-list-to-a-dropdown">Adding a list to a dropdown</a></li><li><a href="#adding-a-toolbar-to-a-dropdown">Adding a toolbar to a dropdown</a></li></ol></li><li><a href="#best-practices-2">Best practices</a></li></ol></li><li><a href="#keystrokes-and-focus-management">Keystrokes and focus management</a><ol><li><a href="#focus-tracker">Focus tracker</a></li><li><a href="#keystroke-handler">Keystroke handler</a></li></ol></li></ol></nav>
 <p>The standard UI library of CKEditor 5 is <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-ui" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-ui</code></a>. It provides base classes and helpers that allow for building a modular UI that seamlessly integrates with other components of the ecosystem.</p>
 <h2 id="views"><a class="headerlink" href="#views">#</a> Views</h2>
 <p>Views use <a href="#templates">templates</a> to build the UI. They also provide observable interfaces that other features (e.g. <a href="core-editor-architecture.html#plugins">plugins</a>, <a href="core-editor-architecture.html#commands">commands</a>, etc.) can use to change the DOM without any actual interaction with the native API.</p>
 <h3 id="definition"><a class="headerlink" href="#definition">#</a> Definition</h3>
 <p>A simple input view class can be defined as follows:</p>
-<pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SimpleInputView</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">View</span> </span>{
-    <span class="hljs-keyword">constructor</span>( locale ) {
-        <span class="hljs-keyword">super</span>( locale );
+<pre class="highlight"><code class="js">class SimpleInputView extends View {
+    constructor( locale ) {
+        super( locale );
 
-        <span class="hljs-comment">// An entry point to binding observables with DOM attributes,</span>
-        <span class="hljs-comment">// events and text nodes.</span>
-        <span class="hljs-keyword">const</span> bind = <span class="hljs-keyword">this</span>.bindTemplate;
+        // An entry point to binding observables with DOM attributes,
+        // events and text nodes.
+        const bind = this.bindTemplate;
 
-        <span class="hljs-comment">// Views define their interface (state) using observable properties.</span>
-        <span class="hljs-keyword">this</span>.set( {
-            <span class="hljs-attr">isEnabled</span>: <span class="hljs-literal">false</span>,
-            <span class="hljs-attr">placeholder</span>: <span class="hljs-string">&apos;&apos;</span>
+        // Views define their interface (state) using observable properties.
+        this.set( {
+            isEnabled: false,
+            placeholder: &apos;&apos;
         } );
 
-        <span class="hljs-keyword">this</span>.setTemplate( {
-            <span class="hljs-attr">tag</span>: <span class="hljs-string">&apos;input&apos;</span>,
-            <span class="hljs-attr">attributes</span>: {
-                <span class="hljs-attr">class</span>: [
-                    <span class="hljs-string">&apos;foo&apos;</span>,
-                    <span class="hljs-comment">// The value of view#isEnabled will control the presence</span>
-                    <span class="hljs-comment">// of the class.</span>
-                    bind.if( <span class="hljs-string">&apos;isEnabled&apos;</span>, <span class="hljs-string">&apos;ck-enabled&apos;</span> ),
+        this.setTemplate( {
+            tag: &apos;input&apos;,
+            attributes: {
+                class: [
+                    &apos;foo&apos;,
+                    // The value of view#isEnabled will control the presence
+                    // of the class.
+                    bind.if( &apos;isEnabled&apos;, &apos;ck-enabled&apos; ),
                 ],
 
-                <span class="hljs-comment">// The HTML &quot;placeholder&quot; attribute is also controlled by the observable.</span>
-                <span class="hljs-attr">placeholder</span>: bind.to( <span class="hljs-string">&apos;placeholder&apos;</span> ),
-                <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;text&apos;</span>
+                // The HTML &quot;placeholder&quot; attribute is also controlled by the observable.
+                placeholder: bind.to( &apos;placeholder&apos; ),
+                type: &apos;text&apos;
             },
-            <span class="hljs-attr">on</span>: {
-                <span class="hljs-comment">// DOM keydown events will fire the view#input event.</span>
-                <span class="hljs-attr">keydown</span>: bind.to( <span class="hljs-string">&apos;input&apos;</span> )
+            on: {
+                // DOM keydown events will fire the view#input event.
+                keydown: bind.to( &apos;input&apos; )
             }
         } );
     }
 
     setValue( newValue ) {
-        <span class="hljs-keyword">this</span>.element.value = newValue;
+        this.element.value = newValue;
     }
 }
 </code></pre>
 <p>Note that views encapsulate the DOM they render. Because the UI is organized according to the <em>view-per-tree</em> rule, it is clear which view is responsible for which part of the UI so it is unlikely that a collision occurs between two features writing to the same DOM node.</p>
 <p>More often than not, views become children of other views (collections), nodes in the <a href="#view-collections-and-the-ui-tree">UI view tree</a>:</p>
-<pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ParentView</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">View</span> </span>{
-    <span class="hljs-keyword">constructor</span>( locale ) {
-        <span class="hljs-keyword">super</span>( locale );
+<pre class="highlight"><code class="js">class ParentView extends View {
+    constructor( locale ) {
+        super( locale );
 
-        <span class="hljs-keyword">const</span> childA = <span class="hljs-keyword">new</span> SimpleInputView( locale );
-        <span class="hljs-keyword">const</span> childB = <span class="hljs-keyword">new</span> SimpleInputView( locale );
+        const childA = new SimpleInputView( locale );
+        const childB = new SimpleInputView( locale );
 
-        <span class="hljs-keyword">this</span>.setTemplate( {
-            <span class="hljs-attr">tag</span>: <span class="hljs-string">&apos;div&apos;</span>,
-            <span class="hljs-attr">children</span>: [
+        this.setTemplate( {
+            tag: &apos;div&apos;,
+            children: [
                 childA,
                 childB
             ]
@@ -300,77 +300,77 @@
     }
 }
 
-<span class="hljs-keyword">const</span> parent = <span class="hljs-keyword">new</span> ParentView( locale );
+const parent = new ParentView( locale );
 
 parent.render();
 
-<span class="hljs-comment">// Will insert &lt;div&gt;&lt;input .. /&gt;&lt;input .. /&gt;&lt;/div&gt;.</span>
-<span class="hljs-built_in">document</span>.body.appendChild( parent.element );
+// Will insert &lt;div&gt;&lt;input .. /&gt;&lt;input .. /&gt;&lt;/div&gt;.
+document.body.appendChild( parent.element );
 </code></pre>
 <p>It is also possible to create standalone views that do not belong to any collection. They must be <a href="../../../api/module_ui_view-View.html#function-render">rendered</a> before injection into the DOM:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> view = <span class="hljs-keyword">new</span> SimpleInputView( locale );
+<pre class="highlight"><code class="js">const view = new SimpleInputView( locale );
 
 view.render();
 
-<span class="hljs-comment">// Will insert &lt;input class=&quot;foo&quot; type=&quot;text&quot; placeholder=&quot;&quot; /&gt;</span>
-<span class="hljs-built_in">document</span>.body.appendChild( view.element );
+// Will insert &lt;input class=&quot;foo&quot; type=&quot;text&quot; placeholder=&quot;&quot; /&gt;
+document.body.appendChild( view.element );
 </code></pre>
 <h3 id="interaction"><a class="headerlink" href="#interaction">#</a> Interaction</h3>
 <p>Features can interact with the state of the DOM via the observable properties of the view, so the following:</p>
-<pre class="highlight"><code class="js">view.isEnabled = <span class="hljs-literal">true</span>;
-view.placeholder = <span class="hljs-string">&apos;Type some text&apos;</span>;
+<pre class="highlight"><code class="js">view.isEnabled = true;
+view.placeholder = &apos;Type some text&apos;;
 </code></pre>
 <p>will result in:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo ck-enabled&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;Type some text&quot;</span> /&gt;</span>
+<pre class="highlight"><code class="html">&lt;input class=&quot;foo ck-enabled&quot; type=&quot;text&quot; placeholder=&quot;Type some text&quot; /&gt;
 </code></pre>
 <p>Alternatively, they can <a href="core-editor-architecture.html#event-system-and-observables">bind</a> them directly to their own observable properties:</p>
-<pre class="highlight"><code class="js">view.bind( <span class="hljs-string">&apos;placeholder&apos;</span>, <span class="hljs-string">&apos;isEnabled&apos;</span> ).to( observable, <span class="hljs-string">&apos;placeholderText&apos;</span>, <span class="hljs-string">&apos;isEnabled&apos;</span> );
+<pre class="highlight"><code class="js">view.bind( &apos;placeholder&apos;, &apos;isEnabled&apos; ).to( observable, &apos;placeholderText&apos;, &apos;isEnabled&apos; );
 
-<span class="hljs-comment">// The following will be automatically reflected in the view#placeholder and</span>
-<span class="hljs-comment">// view.element#placeholder HTML attribute in the DOM.</span>
-observable.placeholderText = <span class="hljs-string">&apos;Some placeholder&apos;</span>;
+// The following will be automatically reflected in the view#placeholder and
+// view.element#placeholder HTML attribute in the DOM.
+observable.placeholderText = &apos;Some placeholder&apos;;
 </code></pre>
 <p>Also, since views propagate DOM events, features can now react to the user actions:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// Each &quot;keydown&quot; event in the input will execute a command.</span>
-view.on( <span class="hljs-string">&apos;input&apos;</span>, () =&gt; {
-    editor.execute( <span class="hljs-string">&apos;myCommand&apos;</span> );
+<pre class="highlight"><code class="js">// Each &quot;keydown&quot; event in the input will execute a command.
+view.on( &apos;input&apos;, () =&gt; {
+    editor.execute( &apos;myCommand&apos; );
 } );
 </code></pre>
 <h3 id="best-practices"><a class="headerlink" href="#best-practices">#</a> Best practices</h3>
 <p>A complete view should provide an interface for the features, encapsulating DOM nodes and attributes. Features should not touch the DOM of the view using the native API. Any kind of interaction must be handled by the view that owns an <a href="../../../api/module_ui_view-View.html#member-element"><code>element</code></a> to avoid collisions:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// Will change the value of the input.</span>
-view.setValue( <span class="hljs-string">&apos;A new value of the input.&apos;</span> );
+<pre class="highlight"><code class="js">// Will change the value of the input.
+view.setValue( &apos;A new value of the input.&apos; );
 
-<span class="hljs-comment">// WRONG! This is **NOT** the right way to interact with the DOM because it</span>
-<span class="hljs-comment">// collides with an observable binding to the #placeholderText. The value will</span>
-<span class="hljs-comment">// be permanently overridden when the state of the observable changes.</span>
-view.element.placeholder = <span class="hljs-string">&apos;A new placeholder&apos;</span>;
+// WRONG! This is **NOT** the right way to interact with the DOM because it
+// collides with an observable binding to the #placeholderText. The value will
+// be permanently overridden when the state of the observable changes.
+view.element.placeholder = &apos;A new placeholder&apos;;
 </code></pre>
 <h2 id="templates"><a class="headerlink" href="#templates">#</a> Templates</h2>
 <p><a href="../../../api/module_ui_template-Template.html">Templates</a> render DOM elements and text nodes in the UI library. Used primarily by <a href="#views">views</a>, they are the lowest layer of the UI connecting the application to the web page.</p>
 <div class="info-box notice"><p>Check out the <a href="../../../api/module_ui_template-TemplateDefinition.html"><code>TemplateDefinition</code></a> to learn more about the template syntax and other advanced concepts.</p></div>
 <p>Templates support <a href="core-editor-architecture.html#event-system-and-observables">observable properties</a> bindings and handle native DOM events. A very simple template can look like this:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">new</span> Template( {
-    <span class="hljs-attr">tag</span>: <span class="hljs-string">&apos;p&apos;</span>,
-    <span class="hljs-attr">attributes</span>: {
-        <span class="hljs-attr">class</span>: [
-            <span class="hljs-string">&apos;foo&apos;</span>,
-            bind.to( <span class="hljs-string">&apos;class&apos;</span> )
+<pre class="highlight"><code class="js">new Template( {
+    tag: &apos;p&apos;,
+    attributes: {
+        class: [
+            &apos;foo&apos;,
+            bind.to( &apos;class&apos; )
         ],
-        <span class="hljs-attr">style</span>: {
-            <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">&apos;yellow&apos;</span>
+        style: {
+            backgroundColor: &apos;yellow&apos;
         }
     },
-    <span class="hljs-attr">on</span>: {
-        <span class="hljs-attr">click</span>: bind.to( <span class="hljs-string">&apos;clicked&apos;</span> )
+    on: {
+        click: bind.to( &apos;clicked&apos; )
     },
-    <span class="hljs-attr">children</span>: [
-        <span class="hljs-string">&apos;A paragraph.&apos;</span>
+    children: [
+        &apos;A paragraph.&apos;
     ]
 } ).render();
 </code></pre>
 <p>It renders to an HTML element:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;foo bar&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;background-color: yellow;&quot;</span>&gt;</span>A paragraph.<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;p class=&quot;foo bar&quot; style=&quot;background-color: yellow;&quot;&gt;A paragraph.&lt;/p&gt;
 </code></pre>
 <p>where <code>observable#class</code> is <code>&quot;bar&quot;</code>. The <code>observable</code> in the example above can be a <a href="#views">view</a> or any object which is <a href="../../../api/module_utils_observablemixin-Observable.html">observable</a>. When the value of the <code>class</code> attribute changes, the template updates the <code>class</code> attribute in the DOM. From now on the element is permanently bound to the state of the application.</p>
 <p>Similarly, when rendered, the template also takes care of DOM events. A binding to the <code>click</code> event in the definition makes the <code>observable</code> always fire the <code>clicked</code> event upon an action in the DOM. This way the <code>observable</code> provides an event interface of the DOM element and all the communication should pass through it.</p>
@@ -384,10 +384,10 @@ view.element.placeholder = <span class="hljs-string">&apos;A new placeholder&apo
 </ul>
 <p>It also inherits the <a href="../../../api/module_ui_editorui_editoruiview-EditorUIView.html#member-body"><code>body</code></a> collection which resides directly in the <code>&lt;body&gt;</code> of the web page and stores floating elements like <a href="../../../api/module_ui_panel_balloon_balloonpanelview-BalloonPanelView.html">balloon panels</a>.</p>
 <p>Plugins can populate the root view collections with their children. Such child views become a part of the UI tree and will be managed by the editor, e.g. they will be initialized and destroyed along with the editor.</p>
-<pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyPlugin</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
+<pre class="highlight"><code class="js">class MyPlugin extends Plugin {
     init() {
-        <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">this</span>.editor;
-        <span class="hljs-keyword">const</span> view = <span class="hljs-keyword">new</span> MyPluginView();
+        const editor = this.editor;
+        const view = new MyPluginView();
 
         editor.ui.top.add( view );
     }
@@ -418,22 +418,22 @@ view.element.placeholder = <span class="hljs-string">&apos;A new placeholder&apo
 <h2 id="using-the-existing-components"><a class="headerlink" href="#using-the-existing-components">#</a> Using the existing components</h2>
 <p>The framework provides a number of common <a href="../../../api/ui.html">components</a> like <a href="../../../api/module_ui_button_buttonview-ButtonView.html"><code>ButtonView</code></a> or <a href="../../../api/module_ui_toolbar_toolbarview-ToolbarView.html"><code>ToolbarView</code></a> that can be helpful when developing a new user interface.</p>
 <p>For example, to create a toolbar with a few buttons inside, <code>ToolbarView</code> and <code>ButtonView</code> classes need to be imported first:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ToolbarView <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/toolbar/toolbarview&apos;</span>;
-<span class="hljs-keyword">import</span> ButtonView <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/button/buttonview&apos;</span>;
+<pre class="highlight"><code class="js">import ToolbarView from &apos;@ckeditor/ckeditor5-ui/src/toolbar/toolbarview&apos;;
+import ButtonView from &apos;@ckeditor/ckeditor5-ui/src/button/buttonview&apos;;
 </code></pre>
 <p>Create the toolbar and a couple of buttons with labels first. Then append the buttons to the toolbar:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> toolbar = <span class="hljs-keyword">new</span> ToolbarView();
-<span class="hljs-keyword">const</span> buttonFoo = <span class="hljs-keyword">new</span> ButtonView();
-<span class="hljs-keyword">const</span> buttonBar = <span class="hljs-keyword">new</span> ButtonView();
+<pre class="highlight"><code class="js">const toolbar = new ToolbarView();
+const buttonFoo = new ButtonView();
+const buttonBar = new ButtonView();
 
 buttonFoo.set( {
-    <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Foo&apos;</span>,
-    <span class="hljs-attr">withText</span>: <span class="hljs-literal">true</span>
+    label: &apos;Foo&apos;,
+    withText: true
 } );
 
 buttonBar.set( {
-    <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Bar&apos;</span>,
-    <span class="hljs-attr">withText</span>: <span class="hljs-literal">true</span>
+    label: &apos;Bar&apos;,
+    withText: true
 } );
 
 toolbar.items.add( buttonFoo );
@@ -442,16 +442,16 @@ toolbar.items.add( buttonBar );
 <p>The toolbar can now join the <a href="#view-collections-and-the-ui-tree">UI tree</a> or it can be injected straight into the DOM. To keep the example simple, proceed with the latter scenario:</p>
 <pre class="highlight"><code class="js">toolbar.render();
 
-<span class="hljs-built_in">document</span>.body.appendChild( toolbar.element );
+document.body.appendChild( toolbar.element );
 </code></pre>
 <p>The result should look like this:</p>
 <p><img src="../../../assets/img/framework-architecture-toolbar.png" data-lightbox="true" alt="A simple toolbar created using existing components." width="636"></p>
 <p>The toolbar renders correctly but it does not do much. To execute an action when the button is clicked, a listener must be defined. To shorten the code and instead of two listeners define just one, the buttons can <a href="../../../api/module_utils_emittermixin-EmitterMixin.html#function-delegate">delegate</a> the <a href="../../../api/module_ui_button_buttonview-ButtonView.html#event-execute"><code>execute</code></a> event to their parent:</p>
-<pre class="highlight"><code class="js">buttonFoo.delegate( <span class="hljs-string">&apos;execute&apos;</span> ).to( toolbar );
-buttonBar.delegate( <span class="hljs-string">&apos;execute&apos;</span> ).to( toolbar );
+<pre class="highlight"><code class="js">buttonFoo.delegate( &apos;execute&apos; ).to( toolbar );
+buttonBar.delegate( &apos;execute&apos; ).to( toolbar );
 
-toolbar.on( <span class="hljs-string">&apos;execute&apos;</span>, evt =&gt; {
-    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">`The &quot;<span class="hljs-subst">${ evt.source.label }</span>&quot; button was clicked!`</span> );
+toolbar.on( &apos;execute&apos;, evt =&gt; {
+    console.log( `The &quot;${ evt.source.label }&quot; button was clicked!` );
 } );
 </code></pre>
 <h3 id="dropdowns"><a class="headerlink" href="#dropdowns">#</a> Dropdowns</h3>
@@ -468,10 +468,10 @@ toolbar.on( <span class="hljs-string">&apos;execute&apos;</span>, evt =&gt; {
 </ul>
 <p>The framework provides a set of helpers to make the dropdown creation process easier, although it is still possible to compose a custom dropdown from scratch using the base classes.</p>
 <p>The <a href="../../../api/module_ui_dropdown_utils.html#static-function-createDropdown"><code>createDropdown</code></a> helper creates a <a href="../../../api/module_ui_dropdown_dropdownview-DropdownView.html"><code>DropdownView</code></a> with either a <a href="../../../api/module_ui_button_buttonview-ButtonView.html"><code>ButtonView</code></a> or a <a href="../../../api/module_ui_dropdown_button_splitbuttonview-SplitButtonView.html"><code>SplitButtonView</code></a>.</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> { createDropdown } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/dropdown/utils&apos;</span>;
-<span class="hljs-keyword">import</span> SplitButtonView <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/dropdown/button/splitbuttonview&apos;</span>;
+<pre class="highlight"><code class="js">import { createDropdown } from &apos;@ckeditor/ckeditor5-ui/src/dropdown/utils&apos;;
+import SplitButtonView from &apos;@ckeditor/ckeditor5-ui/src/dropdown/button/splitbuttonview&apos;;
 
-<span class="hljs-keyword">const</span> dropdownView = createDropdown( locale, SplitButtonView );
+const dropdownView = createDropdown( locale, SplitButtonView );
 </code></pre>
 <p>This kind of (default) dropdown comes with a set of behaviors:</p>
 <ul>
@@ -483,20 +483,20 @@ toolbar.on( <span class="hljs-string">&apos;execute&apos;</span>, evt =&gt; {
 <p>To customize the button of the dropdown, use the <a href="../../../api/module_ui_dropdown_dropdownview-DropdownView.html#member-buttonView"><code>buttonView</code></a> property. It gives a direct access to the <a href="../../../api/module_ui_button_buttonview-ButtonView.html"><code>ButtonView</code> instance</a> used by your dropdown.</p>
 <div class="info-box notice"><p>If your dropdown has been created using the <a href="../../../api/module_ui_dropdown_button_splitbuttonview-SplitButtonView.html"><code>SplitButtonView</code></a>, use the <a href="../../../api/module_ui_dropdown_button_splitbuttonview-SplitButtonView.html#member-actionView"><code>actionView</code></a> to access its main region, e.g. <code>dropdownView.buttonView.actionView.set( ... )</code>.</p></div>
 <p>To control the label of the dropdown, first make it visible using the <a href="../../../api/module_ui_button_buttonview-ButtonView.html#member-withText"><code>withText</code></a> property and then set the text of the <a href="../../../api/module_ui_button_buttonview-ButtonView.html#member-label"><code>label</code></a>:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">const</span> dropdownView = createDropdown( locale );
+<pre class="highlight"><code class="js">const dropdownView = createDropdown( locale );
 
 dropdownView.buttonView.set( {
-    <span class="hljs-attr">withText</span>: <span class="hljs-literal">true</span>,
-    <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Label of the button&apos;</span>,
+    withText: true,
+    label: &apos;Label of the button&apos;,
 } );
 </code></pre>
 <p>The dropdown button can display an icon too. First, import the SVG file and then pass it to the <a href="../../../api/module_ui_button_buttonview-ButtonView.html#member-icon"><code>icon</code></a> property of the button:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> iconFile <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;path/to/icon.svg&apos;</span>;
+<pre class="highlight"><code class="js">import iconFile from &apos;path/to/icon.svg&apos;;
 
-<span class="hljs-comment">// ...</span>
+// ...
 
 dropdownView.buttonView.set( {
-    <span class="hljs-attr">icon</span>: iconFile
+    icon: iconFile
 } );
 </code></pre>
 <p>Note that <code>withText</code> and <code>icon</code> properties are independent so your dropdown can have:</p>
@@ -508,71 +508,71 @@ dropdownView.buttonView.set( {
 <div class="info-box notice"><p>Keep in mind that even if your dropdown has no visible label (<code>withText</code> is <code>false</code>), we recommend to set the <code>label</code> property anyway because it is essential for assistive technologies like screen readers to work properly with the editor.</p></div>
 <p>Dropdowns can also display tooltips when hovered. Use the <a href="../../../api/module_ui_button_buttonview-ButtonView.html#member-tooltip"><code>tooltip</code></a> property of the button to enable this feature. It is possible to include keystroke information in the tooltip or create custom tooltips. Check out the documentation of the property to learn more.</p>
 <pre class="highlight"><code class="js">dropdownView.buttonView.set( {
-    <span class="hljs-comment">// The tooltip text will repeat the label.</span>
-    <span class="hljs-attr">tooltip</span>: <span class="hljs-literal">true</span>
+    // The tooltip text will repeat the label.
+    tooltip: true
 } );
 </code></pre>
 <h4 id="adding-a-list-to-a-dropdown"><a class="headerlink" href="#adding-a-list-to-a-dropdown">#</a> Adding a list to a dropdown</h4>
 <p>The <a href="../../../api/module_ui_list_listview-ListView.html"><code>ListView</code></a> can be added to a dropdown using the <a href="../../../api/module_ui_dropdown_utils.html#static-function-addListToDropdown"><code>addListToDropdown</code></a> helper.</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> Model <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/model&apos;</span>;
-<span class="hljs-keyword">import</span> Collection <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-utils/src/collection&apos;</span>;
-<span class="hljs-keyword">import</span> { addListToDropdown, createDropdown } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/dropdown/utils&apos;</span>;
+<pre class="highlight"><code class="js">import Model from &apos;@ckeditor/ckeditor5-ui/src/model&apos;;
+import Collection from &apos;@ckeditor/ckeditor5-utils/src/collection&apos;;
+import { addListToDropdown, createDropdown } from &apos;@ckeditor/ckeditor5-ui/src/dropdown/utils&apos;;
 
-<span class="hljs-comment">// The default dropdown.</span>
-<span class="hljs-keyword">const</span> dropdownView = createDropdown( locale );
+// The default dropdown.
+const dropdownView = createDropdown( locale );
 
-<span class="hljs-comment">// The collection of the list items.</span>
-<span class="hljs-keyword">const</span> items = <span class="hljs-keyword">new</span> Collection();
+// The collection of the list items.
+const items = new Collection();
 
 items.add( {
-    <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;button&apos;</span>,
-    <span class="hljs-attr">model</span>: <span class="hljs-keyword">new</span> Model( {
-        <span class="hljs-attr">withText</span>: <span class="hljs-literal">true</span>,
-        <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Foo&apos;</span>
+    type: &apos;button&apos;,
+    model: new Model( {
+        withText: true,
+        label: &apos;Foo&apos;
     } )
 } );
 
 items.add( {
-    <span class="hljs-attr">type</span>: <span class="hljs-string">&apos;button&apos;</span>,
-    <span class="hljs-attr">model</span>: <span class="hljs-keyword">new</span> Model( {
-        <span class="hljs-attr">withText</span>: <span class="hljs-literal">true</span>,
-        <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Bar&apos;</span>
+    type: &apos;button&apos;,
+    model: new Model( {
+        withText: true,
+        label: &apos;Bar&apos;
     } )
 } );
 
-<span class="hljs-comment">// Create a dropdown with a list inside the panel.</span>
+// Create a dropdown with a list inside the panel.
 addListToDropdown( dropdownView, items );
 </code></pre>
 <h4 id="adding-a-toolbar-to-a-dropdown"><a class="headerlink" href="#adding-a-toolbar-to-a-dropdown">#</a> Adding a toolbar to a dropdown</h4>
 <p>A <a href="../../../api/module_ui_toolbar_toolbarview-ToolbarView.html"><code>ToolbarView</code></a> can be added to a dropdown using  the <a href="../../../api/module_ui_dropdown_utils.html#static-function-addToolbarToDropdown"><code>addToolbarToDropdown</code></a> helper.</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ButtonView <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/button/buttonview&apos;</span>;
-<span class="hljs-keyword">import</span> { addToolbarToDropdown, createDropdown } <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/dropdown/utils&apos;</span>;
-<span class="hljs-keyword">import</span> SplitButtonView <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-ui/src/dropdown/button/splitbuttonview&apos;</span>;
+<pre class="highlight"><code class="js">import ButtonView from &apos;@ckeditor/ckeditor5-ui/src/button/buttonview&apos;;
+import { addToolbarToDropdown, createDropdown } from &apos;@ckeditor/ckeditor5-ui/src/dropdown/utils&apos;;
+import SplitButtonView from &apos;@ckeditor/ckeditor5-ui/src/dropdown/button/splitbuttonview&apos;;
 
-<span class="hljs-keyword">const</span> buttons = [];
+const buttons = [];
 
-<span class="hljs-comment">// Add a simple button to the array of toolbar items.</span>
-buttons.push( <span class="hljs-keyword">new</span> ButtonView() );
+// Add a simple button to the array of toolbar items.
+buttons.push( new ButtonView() );
 
-<span class="hljs-comment">// Add another component to the array of toolbar items.</span>
-buttons.push( componentFactory.create( <span class="hljs-string">&apos;componentName&apos;</span> ) );
+// Add another component to the array of toolbar items.
+buttons.push( componentFactory.create( &apos;componentName&apos; ) );
 
-<span class="hljs-keyword">const</span> dropdownView = createDropdown( locale, SplitButtonView );
+const dropdownView = createDropdown( locale, SplitButtonView );
 
-<span class="hljs-comment">// Create a dropdown with a toolbar inside the panel.</span>
+// Create a dropdown with a toolbar inside the panel.
 addToolbarToDropdown( dropdownView, buttons );
 </code></pre>
 <p>A common practice is making the main dropdown button <a href="../../../api/module_ui_dropdown_dropdownview-DropdownView.html#member-isEnabled">enabled</a> when one of the toolbar items is enabled:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// Enable the dropdown&apos;s button when any of the toolbar items is enabled.</span>
-dropdownView.bind( <span class="hljs-string">&apos;isEnabled&apos;</span> ).toMany( buttons, <span class="hljs-string">&apos;isEnabled&apos;</span>,
-    ( ...areEnabled ) =&gt; areEnabled.some( <span class="hljs-function"><span class="hljs-params">isEnabled</span> =&gt;</span> isEnabled )
+<pre class="highlight"><code class="js">// Enable the dropdown&apos;s button when any of the toolbar items is enabled.
+dropdownView.bind( &apos;isEnabled&apos; ).toMany( buttons, &apos;isEnabled&apos;,
+    ( ...areEnabled ) =&gt; areEnabled.some( isEnabled =&gt; isEnabled )
 );
 </code></pre>
 <h3 id="best-practices-2"><a class="headerlink" href="#best-practices-2">#</a> Best practices</h3>
 <p>It is advised that for the best user experience the editing view gets <a href="../../../api/module_engine_view_view-View.html#function-focus">focused</a> upon any user action (e.g. executing a command) to make sure the editor retains focus:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// Execute some action on dropdown#execute event.</span>
-dropdownView.buttonView.on( <span class="hljs-string">&apos;execute&apos;</span>, () =&gt; {
-    editor.execute( <span class="hljs-string">&apos;command&apos;</span>, { <span class="hljs-attr">value</span>: ... } );
+<pre class="highlight"><code class="js">// Execute some action on dropdown#execute event.
+dropdownView.buttonView.on( &apos;execute&apos;, () =&gt; {
+    editor.execute( &apos;command&apos;, { value: ... } );
     editor.editing.view.focus();
 } );
 </code></pre>
@@ -581,59 +581,59 @@ dropdownView.buttonView.on( <span class="hljs-string">&apos;execute&apos;</span>
 <p>The framework offers built&#x2013;in classes that help manage keystrokes and focus in the UI. They are particularly useful when it comes to bringing accessibility features to the application.</p>
 <h3 id="focus-tracker"><a class="headerlink" href="#focus-tracker">#</a> Focus tracker</h3>
 <p>The <a href="../../../api/module_utils_focustracker-FocusTracker.html"><code>FocusTracker</code></a> class can observe a number of HTML elements and determine if one of them is focused either by the user (clicking, typing) or using the <code>HTMLElement.focus()</code> DOM method.</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> FocusTracker <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-utils/src/focustracker&apos;</span>;
+<pre class="highlight"><code class="js">import FocusTracker from &apos;@ckeditor/ckeditor5-utils/src/focustracker&apos;;
 
-<span class="hljs-comment">// ...</span>
+// ...
 
-<span class="hljs-keyword">const</span> focusTracker = <span class="hljs-keyword">new</span> FocusTracker();
+const focusTracker = new FocusTracker();
 </code></pre>
 <p>To register elements in the tracker, use the <a href="../../../api/module_utils_focustracker-FocusTracker.html#function-add"><code>add()</code></a> method:</p>
-<pre class="highlight"><code class="js">focusTracker.add( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;.some-element&apos;</span> ) );
+<pre class="highlight"><code class="js">focusTracker.add( document.querySelector( &apos;.some-element&apos; ) );
 focusTracker.add( viewInstance.element );
 </code></pre>
 <p>Observing focus tracker&#x2019;s <a href="../../../api/module_utils_focustracker-FocusTracker.html#member-isFocused"><code>isFocused</code></a> observable property allows to determine whether one of the registered elements is currently focused:</p>
-<pre class="highlight"><code class="js">focusTracker.on( <span class="hljs-string">&apos;change:isFocused&apos;</span>, ( evt, name, isFocused ) =&gt; {
-    <span class="hljs-keyword">if</span> ( isFocused ) {
-        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;The&apos;</span>, focusTracker.focusedElement, <span class="hljs-string">&apos;is focused now.&apos;</span> );
-    } <span class="hljs-keyword">else</span> {
-        <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;The elements are blurred.&apos;</span> );
+<pre class="highlight"><code class="js">focusTracker.on( &apos;change:isFocused&apos;, ( evt, name, isFocused ) =&gt; {
+    if ( isFocused ) {
+        console.log( &apos;The&apos;, focusTracker.focusedElement, &apos;is focused now.&apos; );
+    } else {
+        console.log( &apos;The elements are blurred.&apos; );
     }
 } );
 </code></pre>
 <p>This information is useful when implementing a certain type of UI whose behavior depends on the focus, for example, contextual panels and floating balloons containing forms should hide when the user decides to abandon them.</p>
 <h3 id="keystroke-handler"><a class="headerlink" href="#keystroke-handler">#</a> Keystroke handler</h3>
 <p>The <a href="../../../api/module_utils_keystrokehandler-KeystrokeHandler.html"><code>KeystrokeHandler</code></a> listens to the keystroke events fired by an HTML element or any of its descendants and executes pre&#x2013;defined actions when the keystroke is pressed. Usually, each <a href="#views">view</a> creates its own keystroke handler instance which takes care of the keystrokes fired by the elements the view has rendered.</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> KeystrokeHandler <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-utils/src/keystrokehandler&apos;</span>;
+<pre class="highlight"><code class="js">import KeystrokeHandler from &apos;@ckeditor/ckeditor5-utils/src/keystrokehandler&apos;;
 
-<span class="hljs-comment">// ...</span>
+// ...
 
-<span class="hljs-keyword">const</span> keystrokeHandler = <span class="hljs-keyword">new</span> KeystrokeHandler();
+const keystrokeHandler = new KeystrokeHandler();
 </code></pre>
 <p>To define the scope of the keystroke handler in the DOM, use the <a href="../../../api/module_utils_keystrokehandler-KeystrokeHandler.html#function-listenTo"><code>listenTo()</code></a> method:</p>
-<pre class="highlight"><code class="js">keystrokeHandler.listenTo( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;.some-element&apos;</span> ) );
+<pre class="highlight"><code class="js">keystrokeHandler.listenTo( document.querySelector( &apos;.some-element&apos; ) );
 keystrokeHandler.listenTo( viewInstance.element );
 </code></pre>
 <div class="info-box notice"><p>Check out the list of <a href="../../../api/module_utils_keyboard.html#static-constant-keyCodes">known key names</a> supported by the keystroke handler.</p></div>
 <p>Keystroke action callbacks are functions. To prevent the default action of the keystroke and stop further propagation, use the <code>cancel()</code> function provided in the callback.</p>
-<pre class="highlight"><code class="js">keystrokeHandler.set( <span class="hljs-string">&apos;Tab&apos;</span>, ( keyEvtData, cancel ) =&gt; {
-    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;Tab was pressed!&apos;</span> );
+<pre class="highlight"><code class="js">keystrokeHandler.set( &apos;Tab&apos;, ( keyEvtData, cancel ) =&gt; {
+    console.log( &apos;Tab was pressed!&apos; );
 
-    <span class="hljs-comment">// This keystroke has been handled and can be canceled.</span>
+    // This keystroke has been handled and can be canceled.
     cancel();
 } );
 </code></pre>
 <div class="info-box notice"><p>There is also an <a href="../../../api/module_core_editingkeystrokehandler-EditingKeystrokeHandler.html"><code>EditingKeystrokeHandler</code></a> class which has the same API as <code>KeystrokeHandler</code> but it offers direct keystroke bindings to editor commands.</p><p>The editor provides such keystroke handler under the <a href="../../../api/module_core_editor_editor-Editor.html#member-keystrokes"><code>editor.keystrokes</code></a> property so any plugin can register keystrokes associated with editor commands. For example, the <a href="../../../api/module_undo_undo-Undo.html">Undo</a> plugin registers <code>editor.keystrokes.set( &apos;Ctrl+Z&apos;, &apos;undo&apos; );</code> to execute its <code>undo</code> command.</p></div>
 <p>When multiple callbacks are assigned to the same keystroke, priorities can be used to decide which one should be handled first and whether other callbacks should be executed at all:</p>
-<pre class="highlight"><code class="js">keystrokeHandler.set( <span class="hljs-string">&apos;Ctrl+A&apos;</span>, ( keyEvtData ) =&gt; {
-    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;A normal priority listener.&apos;</span> );
+<pre class="highlight"><code class="js">keystrokeHandler.set( &apos;Ctrl+A&apos;, ( keyEvtData ) =&gt; {
+    console.log( &apos;A normal priority listener.&apos; );
 } );
 
-keystrokeHandler.set( <span class="hljs-string">&apos;Ctrl+A&apos;</span>, ( keyEvtData ) =&gt; {
-    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;A high priority listener.&apos;</span> );
+keystrokeHandler.set( &apos;Ctrl+A&apos;, ( keyEvtData ) =&gt; {
+    console.log( &apos;A high priority listener.&apos; );
 
-    <span class="hljs-comment">// The normal priority listener will not be executed.</span>
+    // The normal priority listener will not be executed.
     cancel();
-}, { <span class="hljs-attr">priority</span>: <span class="hljs-string">&apos;high&apos;</span> } );
+}, { priority: &apos;high&apos; } );
 </code></pre>
 <p>Pressing <kbd>Ctrl</kbd>+<kbd>A</kbd> will only log:</p>
 <pre class="highlight"><code class>&quot;A high priority listener.&quot;

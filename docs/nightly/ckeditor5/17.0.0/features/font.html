@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../snippets/features/build-font-source/snippet.css" type="text/css">
     <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css">
@@ -35,16 +35,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -86,7 +86,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -214,11 +214,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-font/blob/master/docs/features/font.md" title="Contribute to this guide"><img src="../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5-font/blob/master/docs/features/font.md" title="Contribute to this guide"><img src="../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../assets/1.2.1/img/book.svg" alt="guide">Font
+          <h1 class="main__content-title"><img src="../../../assets/1.2.2/img/book.svg" alt="guide">Font
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#configuring-the-font-family-feature">Configuring the font family feature</a></li><li><a href="#configuring-the-font-size-feature">Configuring the font size feature</a><ol><li><a href="#using-the-predefined-presets">Using the predefined presets</a></li><li><a href="#using-numerical-values">Using numerical values</a></li></ol></li><li><a href="#configuring-the-font-color-and-font-background-color-features">Configuring the font color and font background color features</a><ol><li><a href="#specifying-available-colors">Specifying available colors</a></li><li><a href="#changing-the-geometry-of-the-color-grid">Changing the geometry of the color grid</a></li><li><a href="#documents-colors">Documents colors</a></li></ol></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 <p>The <a href="../api/module_font_font-Font.html"><code>Font</code></a> plugin enables the following features in the rich-text editor:</p>
 <ul>
@@ -264,16 +264,16 @@
 <p>Use the special <code>&apos;default&apos;</code> keyword to use the default font family defined in the web page styles. It removes any custom font family.</p>
 <p>For example, the following editor supports only two font families besides the default one:</p>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">fontFamily</span>: {
-            <span class="hljs-attr">options</span>: [
-                <span class="hljs-string">&apos;default&apos;</span>,
-                <span class="hljs-string">&apos;Ubuntu, Arial, sans-serif&apos;</span>,
-                <span class="hljs-string">&apos;Ubuntu Mono, Courier New, Courier, monospace&apos;</span>
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        fontFamily: {
+            options: [
+                &apos;default&apos;,
+                &apos;Ubuntu, Arial, sans-serif&apos;,
+                &apos;Ubuntu Mono, Courier New, Courier, monospace&apos;
             ]
         },
-        <span class="hljs-attr">toolbar</span>: [
-            <span class="hljs-string">&apos;heading&apos;</span>, <span class="hljs-string">&apos;bulletedList&apos;</span>, <span class="hljs-string">&apos;numberedList&apos;</span>, <span class="hljs-string">&apos;fontFamily&apos;</span>, <span class="hljs-string">&apos;undo&apos;</span>, <span class="hljs-string">&apos;redo&apos;</span>
+        toolbar: [
+            &apos;heading&apos;, &apos;bulletedList&apos;, &apos;numberedList&apos;, &apos;fontFamily&apos;, &apos;undo&apos;, &apos;redo&apos;
         ]
     } )
     .then( ... )
@@ -304,38 +304,38 @@
 <li><code>&apos;huge&apos;</code></li>
 </ul>
 <p>Each size is represented in the view as a <code>&lt;span&gt;</code> element with the <code>text-*</code> class. For example, the <code>&apos;tiny&apos;</code> preset looks as follows in the editor data:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-tiny&quot;</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;span class=&quot;text-tiny&quot;&gt;...&lt;/span&gt;
 </code></pre>
 <p>The CSS definition for the classes (presets) must be included in the web page styles where the edited content is rendered.</p>
 <p>Here is an example of the font size CSS classes:</p>
-<pre class="highlight"><code class="css"><span class="hljs-selector-class">.text-tiny</span> {
-    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">0.7em</span>;
+<pre class="highlight"><code class="css">.text-tiny {
+    font-size: 0.7em;
 }
 
-<span class="hljs-selector-class">.text-small</span> {
-    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">0.85em</span>;
+.text-small {
+    font-size: 0.85em;
 }
 
-<span class="hljs-selector-class">.text-big</span> {
-    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1.4em</span>;
+.text-big {
+    font-size: 1.4em;
 }
 
-<span class="hljs-selector-class">.text-huge</span> {
-    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">1.8em</span>;
+.text-huge {
+    font-size: 1.8em;
 }
 </code></pre>
 <p>An example of the editor that supports only two font sizes:</p>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">fontSize</span>: {
-            <span class="hljs-attr">options</span>: [
-                <span class="hljs-string">&apos;tiny&apos;</span>,
-                <span class="hljs-string">&apos;default&apos;</span>,
-                <span class="hljs-string">&apos;big&apos;</span>
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        fontSize: {
+            options: [
+                &apos;tiny&apos;,
+                &apos;default&apos;,
+                &apos;big&apos;
             ]
         },
-        <span class="hljs-attr">toolbar</span>: [
-            <span class="hljs-string">&apos;heading&apos;</span>, <span class="hljs-string">&apos;bulletedList&apos;</span>, <span class="hljs-string">&apos;numberedList&apos;</span>, <span class="hljs-string">&apos;fontSize&apos;</span>, <span class="hljs-string">&apos;undo&apos;</span>, <span class="hljs-string">&apos;redo&apos;</span>
+        toolbar: [
+            &apos;heading&apos;, &apos;bulletedList&apos;, &apos;numberedList&apos;, &apos;fontSize&apos;, &apos;undo&apos;, &apos;redo&apos;
         ]
     } )
     .then( ... )
@@ -352,24 +352,24 @@
 <h3 id="using-numerical-values"><a class="headerlink" href="#using-numerical-values">#</a> Using numerical values</h3>
 <p>The font size feature also supports numerical values.</p>
 <p>In this case, each size is represented in the view as a <code>&lt;span&gt;</code> element with the <code>font-size</code> style set in <code>px</code>. For example, <code>14</code> will be represented in the editor data as:</p>
-<pre class="highlight"><code class="html"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;font-size: 14px&quot;</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<pre class="highlight"><code class="html">&lt;span style=&quot;font-size: 14px&quot;&gt;...&lt;/span&gt;
 </code></pre>
 <p>Here is an example of the WYSIWYG editor that supports numerical font sizes. Note that <code>&apos;default&apos;</code> is controlled by the default styles of the web page:</p>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">fontSize</span>: {
-            <span class="hljs-attr">options</span>: [
-                <span class="hljs-number">9</span>,
-                <span class="hljs-number">11</span>,
-                <span class="hljs-number">13</span>,
-                <span class="hljs-string">&apos;default&apos;</span>,
-                <span class="hljs-number">17</span>,
-                <span class="hljs-number">19</span>,
-                <span class="hljs-number">21</span>
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        fontSize: {
+            options: [
+                9,
+                11,
+                13,
+                &apos;default&apos;,
+                17,
+                19,
+                21
             ]
         },
-        <span class="hljs-attr">toolbar</span>: [
-            <span class="hljs-string">&apos;heading&apos;</span>, <span class="hljs-string">&apos;bulletedList&apos;</span>, <span class="hljs-string">&apos;numberedList&apos;</span>, <span class="hljs-string">&apos;fontSize&apos;</span>, <span class="hljs-string">&apos;undo&apos;</span>, <span class="hljs-string">&apos;redo&apos;</span>
+        toolbar: [
+            &apos;heading&apos;, &apos;bulletedList&apos;, &apos;numberedList&apos;, &apos;fontSize&apos;, &apos;undo&apos;, &apos;redo&apos;
         ]
     } )
     .then( ... )
@@ -399,62 +399,62 @@
 <h3 id="specifying-available-colors"><a class="headerlink" href="#specifying-available-colors">#</a> Specifying available colors</h3>
 <p>It is possible to configure which colors are available in the color dropdown. Use the <a href="../api/module_font_fontcolor-FontColorConfig.html#member-colors"><code>fontColor.colors</code></a> and <a href="../api/module_font_fontbackgroundcolor-FontBackgroundColorConfig.html#member-colors"><code>fontBackgroundColor.colors</code></a> configuration options to do so.</p>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">fontColor</span>: {
-            <span class="hljs-attr">colors</span>: [
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        fontColor: {
+            colors: [
                 {
-                    <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;hsl(0, 0%, 0%)&apos;</span>,
-                    <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Black&apos;</span>
+                    color: &apos;hsl(0, 0%, 0%)&apos;,
+                    label: &apos;Black&apos;
                 },
                 {
-                    <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;hsl(0, 0%, 30%)&apos;</span>,
-                    <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Dim grey&apos;</span>
+                    color: &apos;hsl(0, 0%, 30%)&apos;,
+                    label: &apos;Dim grey&apos;
                 },
                 {
-                    <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;hsl(0, 0%, 60%)&apos;</span>,
-                    <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Grey&apos;</span>
+                    color: &apos;hsl(0, 0%, 60%)&apos;,
+                    label: &apos;Grey&apos;
                 },
                 {
-                    <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;hsl(0, 0%, 90%)&apos;</span>,
-                    <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Light grey&apos;</span>
+                    color: &apos;hsl(0, 0%, 90%)&apos;,
+                    label: &apos;Light grey&apos;
                 },
                 {
-                    <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;hsl(0, 0%, 100%)&apos;</span>,
-                    <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;White&apos;</span>,
-                    <span class="hljs-attr">hasBorder</span>: <span class="hljs-literal">true</span>
-                },
-
-                <span class="hljs-comment">// ...</span>
-            ]
-        },
-        <span class="hljs-attr">fontBackgroundColor</span>: {
-            <span class="hljs-attr">colors</span>: [
-                {
-                    <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;hsl(0, 75%, 60%)&apos;</span>,
-                    <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Red&apos;</span>
-                },
-                {
-                    <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;hsl(30, 75%, 60%)&apos;</span>,
-                    <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Orange&apos;</span>
-                },
-                {
-                    <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;hsl(60, 75%, 60%)&apos;</span>,
-                    <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Yellow&apos;</span>
-                },
-                {
-                    <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;hsl(90, 75%, 60%)&apos;</span>,
-                    <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Light green&apos;</span>
-                },
-                {
-                    <span class="hljs-attr">color</span>: <span class="hljs-string">&apos;hsl(120, 75%, 60%)&apos;</span>,
-                    <span class="hljs-attr">label</span>: <span class="hljs-string">&apos;Green&apos;</span>
+                    color: &apos;hsl(0, 0%, 100%)&apos;,
+                    label: &apos;White&apos;,
+                    hasBorder: true
                 },
 
-                <span class="hljs-comment">// ...</span>
+                // ...
             ]
         },
-        <span class="hljs-attr">toolbar</span>: [
-            <span class="hljs-string">&apos;heading&apos;</span>, <span class="hljs-string">&apos;bulletedList&apos;</span>, <span class="hljs-string">&apos;numberedList&apos;</span>, <span class="hljs-string">&apos;fontColor&apos;</span>, <span class="hljs-string">&apos;fontBackgroundColor&apos;</span>, <span class="hljs-string">&apos;undo&apos;</span>, <span class="hljs-string">&apos;redo&apos;</span>
+        fontBackgroundColor: {
+            colors: [
+                {
+                    color: &apos;hsl(0, 75%, 60%)&apos;,
+                    label: &apos;Red&apos;
+                },
+                {
+                    color: &apos;hsl(30, 75%, 60%)&apos;,
+                    label: &apos;Orange&apos;
+                },
+                {
+                    color: &apos;hsl(60, 75%, 60%)&apos;,
+                    label: &apos;Yellow&apos;
+                },
+                {
+                    color: &apos;hsl(90, 75%, 60%)&apos;,
+                    label: &apos;Light green&apos;
+                },
+                {
+                    color: &apos;hsl(120, 75%, 60%)&apos;,
+                    label: &apos;Green&apos;
+                },
+
+                // ...
+            ]
+        },
+        toolbar: [
+            &apos;heading&apos;, &apos;bulletedList&apos;, &apos;numberedList&apos;, &apos;fontColor&apos;, &apos;fontBackgroundColor&apos;, &apos;undo&apos;, &apos;redo&apos;
         ]
     } )
     .then( ... )
@@ -464,23 +464,23 @@
 <p>You can configure the number of columns in the color dropdown by setting the <a href="../api/module_font_fontcolor-FontColorConfig.html#member-columns"><code>fontColor.columns</code></a> and <a href="../api/module_font_fontbackgroundcolor-FontBackgroundColorConfig.html#member-columns"><code>fontBackgroundColor.columns</code></a> configuration options.</p>
 <p>Usually, you will want to use this option when changing the number of <a href="#specifying-available-colors">available colors</a>.</p>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">fontColor</span>: {
-            <span class="hljs-attr">colors</span>: [
-                <span class="hljs-comment">// 9 colors defined here...</span>
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        fontColor: {
+            colors: [
+                // 9 colors defined here...
             ]
 
-            <span class="hljs-attr">columns</span>: <span class="hljs-number">3</span>, <span class="hljs-comment">// so, you can display them in 3 columns.</span>
+            columns: 3, // so, you can display them in 3 columns.
 
-            <span class="hljs-comment">// ...</span>
+            // ...
         },
-        <span class="hljs-attr">fontBackgroundColor</span>: {
-            <span class="hljs-attr">columns</span>: <span class="hljs-number">6</span>,
+        fontBackgroundColor: {
+            columns: 6,
 
-            <span class="hljs-comment">// ...</span>
+            // ...
         },
-        <span class="hljs-attr">toolbar</span>: [
-            <span class="hljs-string">&apos;heading&apos;</span>, <span class="hljs-string">&apos;bulletedList&apos;</span>, <span class="hljs-string">&apos;numberedList&apos;</span>, <span class="hljs-string">&apos;fontColor&apos;</span>, <span class="hljs-string">&apos;fontBackgroundColor&apos;</span>, <span class="hljs-string">&apos;undo&apos;</span>, <span class="hljs-string">&apos;redo&apos;</span>
+        toolbar: [
+            &apos;heading&apos;, &apos;bulletedList&apos;, &apos;numberedList&apos;, &apos;fontColor&apos;, &apos;fontBackgroundColor&apos;, &apos;undo&apos;, &apos;redo&apos;
         ]
     } )
     .then( ... )
@@ -490,24 +490,24 @@
 <p>The font and font background color dropdowns contain the &#x201C;Document colors&#x201D; section. It lists the colors already used in the document for the users to be able to easily reuse them (for consistency purposes).</p>
 <p>By default, the number of displayed document colors is limited to one row, but you can adjust it (or remove the whole section) by using the <a href="../api/module_font_fontcolor-FontColorConfig.html#member-documentColors"><code>fontColor.documentColors</code></a> or <a href="../api/module_font_fontbackgroundcolor-FontBackgroundColorConfig.html#member-documentColors"><code>fontBackgroundColor.documentColors</code></a> options.</p>
 <pre class="highlight"><code class="js">ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">fontColor</span>: {
-            <span class="hljs-comment">// Display 6 columns in the color grid.</span>
-            <span class="hljs-attr">columns</span>: <span class="hljs-number">6</span>,
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        fontColor: {
+            // Display 6 columns in the color grid.
+            columns: 6,
 
-            <span class="hljs-comment">// And 12 document colors (2 rows of them).</span>
-            <span class="hljs-attr">documentColors</span>: <span class="hljs-number">12</span>,
+            // And 12 document colors (2 rows of them).
+            documentColors: 12,
 
-            <span class="hljs-comment">// ...</span>
+            // ...
         },
-        <span class="hljs-attr">fontBackgroundColor</span>: {
-            <span class="hljs-comment">// Remove the &quot;Document colors&quot; section.</span>
-            <span class="hljs-attr">documentColors</span>: <span class="hljs-number">0</span>,
+        fontBackgroundColor: {
+            // Remove the &quot;Document colors&quot; section.
+            documentColors: 0,
 
-            <span class="hljs-comment">// ...</span>
+            // ...
         },
-        <span class="hljs-attr">toolbar</span>: [
-            <span class="hljs-string">&apos;heading&apos;</span>, <span class="hljs-string">&apos;bulletedList&apos;</span>, <span class="hljs-string">&apos;numberedList&apos;</span>, <span class="hljs-string">&apos;fontColor&apos;</span>, <span class="hljs-string">&apos;fontBackgroundColor&apos;</span>, <span class="hljs-string">&apos;undo&apos;</span>, <span class="hljs-string">&apos;redo&apos;</span>
+        toolbar: [
+            &apos;heading&apos;, &apos;bulletedList&apos;, &apos;numberedList&apos;, &apos;fontColor&apos;, &apos;fontBackgroundColor&apos;, &apos;undo&apos;, &apos;redo&apos;
         ]
     } )
     .then( ... )
@@ -518,23 +518,23 @@
 <pre class="highlight"><code class="bash">npm install --save @ckeditor/ckeditor5-font
 </code></pre>
 <p>Then add it to your plugin list and the toolbar configuration:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> Font <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-font/src/font&apos;</span>;
+<pre class="highlight"><code class="js">import Font from &apos;@ckeditor/ckeditor5-font/src/font&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ Font, ... ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;fontSize&apos;</span>, <span class="hljs-string">&apos;fontFamily&apos;</span>, <span class="hljs-string">&apos;fontColor&apos;</span>, <span class="hljs-string">&apos;fontBackgroundColor&apos;</span>, ... ]
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Font, ... ],
+        toolbar: [ &apos;fontSize&apos;, &apos;fontFamily&apos;, &apos;fontColor&apos;, &apos;fontBackgroundColor&apos;, ... ]
     } )
     .then( ... )
     .catch( ... );
 </code></pre>
 <p>You can also add just one or a selected few of the font features to your plugin list and the toolbar configuration:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> FontFamily <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-font/src/fontfamily&apos;</span>;
+<pre class="highlight"><code class="js">import FontFamily from &apos;@ckeditor/ckeditor5-font/src/fontfamily&apos;;
 
 ClassicEditor
-    .create( <span class="hljs-built_in">document</span>.querySelector( <span class="hljs-string">&apos;#editor&apos;</span> ), {
-        <span class="hljs-attr">plugins</span>: [ FontFamily, ... ],
-        <span class="hljs-attr">toolbar</span>: [ <span class="hljs-string">&apos;fontFamily&apos;</span>, ... ]
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ FontFamily, ... ],
+        toolbar: [ &apos;fontFamily&apos;, ... ]
     } )
     .then( ... )
     .catch( ... );
@@ -550,19 +550,19 @@ ClassicEditor
 <p>The <a href="../api/module_font_fontfamily_fontfamilycommand-FontFamilyCommand.html"><code>&apos;fontFamily&apos;</code></a> command.</p>
 <p>The number of options and their names correspond to the <a href="../api/module_font_fontfamily-FontFamilyConfig.html#member-options"><code>fontFamily.options</code></a> configuration option.</p>
 <p>You can change the font family of the current selection by executing the command with a desired value:</p>
-<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;fontFamily&apos;</span>, { <span class="hljs-attr">value</span>: <span class="hljs-string">&apos;Arial&apos;</span> } );
+<pre class="highlight"><code class="js">editor.execute( &apos;fontFamily&apos;, { value: &apos;Arial&apos; } );
 </code></pre>
 <p>The <code>value</code> must correspond to the first font name in the configuration string. For the following default configuration:</p>
 <pre class="highlight"><code class="js">fontFamily.options = [
-    <span class="hljs-string">&apos;default&apos;</span>,
-    <span class="hljs-string">&apos;Arial, Helvetica, sans-serif&apos;</span>,
-    <span class="hljs-string">&apos;Courier New, Courier, monospace&apos;</span>,
-    <span class="hljs-string">&apos;Georgia, serif&apos;</span>,
-    <span class="hljs-string">&apos;Lucida Sans Unicode, Lucida Grande, sans-serif&apos;</span>,
-    <span class="hljs-string">&apos;Tahoma, Geneva, sans-serif&apos;</span>,
-    <span class="hljs-string">&apos;Times New Roman, Times, serif&apos;</span>,
-    <span class="hljs-string">&apos;Trebuchet MS, Helvetica, sans-serif&apos;</span>,
-    <span class="hljs-string">&apos;Verdana, Geneva, sans-serif&apos;</span>
+    &apos;default&apos;,
+    &apos;Arial, Helvetica, sans-serif&apos;,
+    &apos;Courier New, Courier, monospace&apos;,
+    &apos;Georgia, serif&apos;,
+    &apos;Lucida Sans Unicode, Lucida Grande, sans-serif&apos;,
+    &apos;Tahoma, Geneva, sans-serif&apos;,
+    &apos;Times New Roman, Times, serif&apos;,
+    &apos;Trebuchet MS, Helvetica, sans-serif&apos;,
+    &apos;Verdana, Geneva, sans-serif&apos;
 ]
 </code></pre>
 <p>the <code>&apos;fontFamily&apos;</code> command will accept the corresponding strings as values:</p>
@@ -577,7 +577,7 @@ ClassicEditor
 <li><code>&apos;Verdana&apos;</code></li>
 </ul>
 <p>Note that passing an empty value will remove the <code>fontFamily</code> attribute from the selection (<code>default</code>):</p>
-<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;fontFamily&apos;</span> );
+<pre class="highlight"><code class="js">editor.execute( &apos;fontFamily&apos; );
 </code></pre>
 </li>
 </ul>
@@ -590,14 +590,14 @@ ClassicEditor
 <p>The <a href="../api/module_font_fontsize_fontsizecommand-FontSizeCommand.html"><code>&apos;fontSize&apos;</code></a> command.</p>
 <p>The number of options and their names correspond to the <a href="../api/module_font_fontsize-FontSizeConfig.html#member-options"><code>fontSize.options</code></a> configuration option.</p>
 <p>You can change the font size of the current selection by executing the command with a desired value:</p>
-<pre class="highlight"><code class="js"><span class="hljs-comment">// For numerical values:</span>
-editor.execute( <span class="hljs-string">&apos;fontSize&apos;</span>, { <span class="hljs-attr">value</span>: <span class="hljs-number">10</span> } );
+<pre class="highlight"><code class="js">// For numerical values:
+editor.execute( &apos;fontSize&apos;, { value: 10 } );
 
-<span class="hljs-comment">// For named presets:</span>
-editor.execute( <span class="hljs-string">&apos;fontSize&apos;</span>, { <span class="hljs-attr">value</span>: <span class="hljs-string">&apos;small&apos;</span> } );
+// For named presets:
+editor.execute( &apos;fontSize&apos;, { value: &apos;small&apos; } );
 </code></pre>
 <p>Passing an empty value will remove any <code>fontSize</code> set:</p>
-<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;fontSize&apos;</span> );
+<pre class="highlight"><code class="js">editor.execute( &apos;fontSize&apos; );
 </code></pre>
 </li>
 </ul>
@@ -609,10 +609,10 @@ editor.execute( <span class="hljs-string">&apos;fontSize&apos;</span>, { <span c
 <li>
 <p>The <a href="../api/module_font_fontcolor_fontcolorcommand-FontColorCommand.html"><code>&apos;fontColor&apos;</code></a> command.</p>
 <p>You can change the font color of the current selection by executing the command with a desired value:</p>
-<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;fontColor&apos;</span>, { <span class="hljs-attr">value</span>: <span class="hljs-string">&apos;rgb(30, 188, 97)&apos;</span> } );
+<pre class="highlight"><code class="js">editor.execute( &apos;fontColor&apos;, { value: &apos;rgb(30, 188, 97)&apos; } );
 </code></pre>
 <p>Passing an empty value will remove the font color from the selection:</p>
-<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;fontColor&apos;</span> );
+<pre class="highlight"><code class="js">editor.execute( &apos;fontColor&apos; );
 </code></pre>
 </li>
 </ul>
@@ -624,10 +624,10 @@ editor.execute( <span class="hljs-string">&apos;fontSize&apos;</span>, { <span c
 <li>
 <p>The <a href="../api/module_font_fontbackgroundcolor_fontbackgroundcolorcommand-FontBackgroundColorCommand.html"><code>&apos;fontBackgroundColor&apos;</code></a> command.</p>
 <p>You can change the font background color of the current selection by executing the command with a desired value:</p>
-<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;fontBackgroundColor&apos;</span>, { <span class="hljs-attr">value</span>: <span class="hljs-string">&apos;rgb(30, 188, 97)&apos;</span> } );
+<pre class="highlight"><code class="js">editor.execute( &apos;fontBackgroundColor&apos;, { value: &apos;rgb(30, 188, 97)&apos; } );
 </code></pre>
 <p>Passing an empty value will remove the font background color from the selection:</p>
-<pre class="highlight"><code class="js">editor.execute( <span class="hljs-string">&apos;fontBackgroundColor&apos;</span> );
+<pre class="highlight"><code class="js">editor.execute( &apos;fontBackgroundColor&apos; );
 </code></pre>
 </li>
 </ul>

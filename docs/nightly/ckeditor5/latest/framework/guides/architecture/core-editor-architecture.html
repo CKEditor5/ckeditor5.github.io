@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/1.2.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../assets/1.2.2/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
     <script>
       ( function() {
@@ -33,16 +33,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../assets/1.2.1/scripts"
+      	window.umberto.relativeAppPath = "../../../../../assets/1.2.2/scripts"
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../assets/1.2.1/scripts/app.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app.js";
       	} else {
-      		el.src = "../../../../../assets/1.2.1/scripts/app-polyfill.js";
+      		el.src = "../../../../../assets/1.2.2/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -84,7 +84,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../assets/1.2.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../assets/1.2.2/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -230,11 +230,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/architecture/core-editor-architecture.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/architecture/core-editor-architecture.md" title="Contribute to this guide"><img src="../../../../../assets/1.2.2/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../assets/1.2.1/img/book.svg" alt="guide">Core editor architecture
+          <h1 class="main__content-title"><img src="../../../../../assets/1.2.2/img/book.svg" alt="guide">Core editor architecture
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#editor-classes">Editor classes</a></li><li><a href="#plugins">Plugins</a></li><li><a href="#commands">Commands</a></li><li><a href="#event-system-and-observables">Event system and observables</a></li><li><a href="#read-next">Read next</a></li></ol></nav>
 <p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-core" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-core</code></a> package is relatively simple. It comes with just a handful of classes. The ones you need to know are presented below.</p>
 <h2 id="editor-classes"><a class="headerlink" href="#editor-classes">#</a> Editor classes</h2>
@@ -269,17 +269,17 @@
 <p>These are the rules based on which the official plugins were implemented. When implementing your own plugins, if you do not plan to publish them, you can reduce this list to the first point.</p>
 <p>After this lengthy introduction (which is aimed at making it easier for you to digest the existing plugins), the plugin API can be explained.</p>
 <p>All plugins need to implement the <a href="../../../api/module_core_plugin-PluginInterface.html"><code>PluginInterface</code></a>. The easiest way to do so is by inheriting from the <a href="../../../api/module_core_plugin-Plugin.html"><code>Plugin</code></a> class. The plugin initialization code should be located in the <a href="../../../api/module_core_plugin-PluginInterface.html#function-init"><code>init()</code></a> method (which can return a promise). If some piece of code needs to be executed after other plugins are initialized, you can put it in the <a href="../../../api/module_core_plugin-PluginInterface.html#function-afterInit"><code>afterInit()</code></a> method. The dependencies between plugins are implemented using the static <a href="../../../api/module_core_plugin-PluginInterface.html#static-member-requires"><code>requires</code></a> property.</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> MyDependency <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;some/other/plugin&apos;</span>;
+<pre class="highlight"><code class="js">import MyDependency from &apos;some/other/plugin&apos;;
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyPlugin</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
-    <span class="hljs-keyword">static</span> <span class="hljs-keyword">get</span> requires() {
-        <span class="hljs-keyword">return</span> [ MyDependency ];
+class MyPlugin extends Plugin {
+    static get requires() {
+        return [ MyDependency ];
     }
 
     init() {
-        <span class="hljs-comment">// Initialize your plugin here.</span>
+        // Initialize your plugin here.
 
-        <span class="hljs-keyword">this</span>.editor; <span class="hljs-comment">// The editor instance which loaded this plugin.</span>
+        this.editor; // The editor instance which loaded this plugin.
     }
 }
 </code></pre>
@@ -289,17 +289,17 @@
 <div class="info-box notice"><p>We recommend using the official <a href="../development-tools.html#ckeditor-5-inspector">CKEditor 5 inspector</a> for development and debugging. It will give you tons of useful information about the state of the editor such as internal data structures, selection, commands, and many more.</p></div>
 <p>All commands need to inherit from the <a href="../../../api/module_core_command-Command.html"><code>Command</code></a> class. Commands need to be added to the editor&#x2019;s <a href="../../../api/module_core_editor_editor-Editor.html#member-commands">command collection</a> so they can be executed by using the <a href="../../../api/module_core_editor_editor-Editor.html#function-execute"><code>Editor#execute()</code></a> method.</p>
 <p>Take this example:</p>
-<pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyCommand</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Command</span> </span>{
+<pre class="highlight"><code class="js">class MyCommand extends Command {
     execute( message ) {
-        <span class="hljs-built_in">console</span>.log( message );
+        console.log( message );
     }
 }
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyPlugin</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
+class MyPlugin extends Plugin {
     init() {
-        <span class="hljs-keyword">const</span> editor = <span class="hljs-keyword">this</span>.editor;
+        const editor = this.editor;
 
-        editor.commands.add( <span class="hljs-string">&apos;myCommand&apos;</span>, <span class="hljs-keyword">new</span> MyCommand( editor ) );
+        editor.commands.add( &apos;myCommand&apos;, new MyCommand( editor ) );
     }
 }
 </code></pre>
@@ -307,11 +307,11 @@
 <p>To see how state management of a typical command like <code>bold</code> is implemented, have a look at some pieces of the <a href="../../../api/module_basic-styles_attributecommand-AttributeCommand.html"><code>AttributeCommand</code></a> class on which <code>bold</code> is based.</p>
 <p>The first thing to notice is the <a href="../../../api/module_core_command-Command.html#function-refresh"><code>refresh()</code></a> method:</p>
 <pre class="highlight"><code class="js">refresh() {
-    <span class="hljs-keyword">const</span> doc = <span class="hljs-keyword">this</span>.editor.document;
+    const doc = this.editor.document;
 
-    <span class="hljs-keyword">this</span>.value = doc.selection.hasAttribute( <span class="hljs-keyword">this</span>.attributeKey );
-    <span class="hljs-keyword">this</span>.isEnabled = doc.schema.checkAttributeInSelection(
-        doc.selection, <span class="hljs-keyword">this</span>.attributeKey
+    this.value = doc.selection.hasAttribute( this.attributeKey );
+    this.isEnabled = doc.schema.checkAttributeInSelection(
+        doc.selection, this.attributeKey
     );
 }
 </code></pre>
@@ -319,106 +319,106 @@
 <p>The important thing about commands is that every change in their state as well as calling the <code>execute()</code> method fire events (e.g. <a href="../../../api/module_core_command-Command.html#event-set:{property}"><code>#set:value</code></a> and <a href="../../../api/module_core_command-Command.html#event-change:{property}"><code>#change:value</code></a> when you change the <code>#value</code> property and <a href="../../../api/module_core_command-Command.html#event-execute"><code>#execute</code></a> when you execute the command).</p>
 <div class="info-box notice"><p>Read more about this mechanism in the <a href="../deep-dive/observables.html">Observables</a> deep dive guide.</p></div>
 <p>These events make it possible to control the command from the outside. For instance, if you want to disable specific commands when some condition is true (for example, according to your application logic, they should be temporarily disabled) and there is no other, cleaner way to do that, you can block the command manually:</p>
-<pre class="highlight"><code class="js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">disableCommand</span>(<span class="hljs-params"> cmd </span>) </span>{
-    cmd.on( <span class="hljs-string">&apos;set:isEnabled&apos;</span>, forceDisable, { <span class="hljs-attr">priority</span>: <span class="hljs-string">&apos;highest&apos;</span> } );
+<pre class="highlight"><code class="js">function disableCommand( cmd ) {
+    cmd.on( &apos;set:isEnabled&apos;, forceDisable, { priority: &apos;highest&apos; } );
 
-    cmd.isEnabled = <span class="hljs-literal">false</span>;
+    cmd.isEnabled = false;
 
-    <span class="hljs-comment">// Make it possible to enable the command again.</span>
-    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-        cmd.off( <span class="hljs-string">&apos;set:isEnabled&apos;</span>, forceDisable );
+    // Make it possible to enable the command again.
+    return () =&gt; {
+        cmd.off( &apos;set:isEnabled&apos;, forceDisable );
         cmd.refresh();
     };
 
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">forceDisable</span>(<span class="hljs-params"> evt </span>) </span>{
-        evt.return = <span class="hljs-literal">false</span>;
+    function forceDisable( evt ) {
+        evt.return = false;
         evt.stop();
     }
 }
 
-<span class="hljs-comment">// Usage:</span>
+// Usage:
 
-<span class="hljs-comment">// Disabling the command.</span>
-<span class="hljs-keyword">const</span> enableBold = disableCommand( editor.commands.get( <span class="hljs-string">&apos;bold&apos;</span> ) );
+// Disabling the command.
+const enableBold = disableCommand( editor.commands.get( &apos;bold&apos; ) );
 
-<span class="hljs-comment">// Enabling the command again.</span>
+// Enabling the command again.
 enableBold();
 </code></pre>
 <p>The command will now be disabled as long as you do not <a href="../../../api/module_utils_emittermixin-EmitterMixin.html#function-off">off</a> this listener, regardless of how many times <code>someCommand.refresh()</code> is called.</p>
 <h2 id="event-system-and-observables"><a class="headerlink" href="#event-system-and-observables">#</a> Event system and observables</h2>
 <p>CKEditor 5 has an event-based architecture so you can find <a href="../../../api/module_utils_emittermixin-EmitterMixin.html"><code>EmitterMixin</code></a> and <a href="../../../api/module_utils_observablemixin-ObservableMixin.html"><code>ObservableMixin</code></a> mixed all over the place. Both mechanisms allow for decoupling the code and make it extensible.</p>
 <p>Most of the classes that have already been mentioned are either emitters or observables (observable is an emitter, too). An emitter can emit (fire) events as well as listen to them.</p>
-<pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyPlugin</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Plugin</span> </span>{
+<pre class="highlight"><code class="js">class MyPlugin extends Plugin {
     init() {
-        <span class="hljs-comment">// Make MyPlugin listen to someCommand#execute.</span>
-        <span class="hljs-keyword">this</span>.listenTo( someCommand, <span class="hljs-string">&apos;execute&apos;</span>, () =&gt; {
-            <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;someCommand was executed&apos;</span> );
+        // Make MyPlugin listen to someCommand#execute.
+        this.listenTo( someCommand, &apos;execute&apos;, () =&gt; {
+            console.log( &apos;someCommand was executed&apos; );
         } );
 
-        <span class="hljs-comment">// Make MyPlugin listen to someOtherCommand#execute and block it.</span>
-        <span class="hljs-comment">// You listen with a high priority to block the event before</span>
-        <span class="hljs-comment">// someOtherCommand&apos;s execute() method is called.</span>
-        <span class="hljs-keyword">this</span>.listenTo( someOtherCommand, <span class="hljs-string">&apos;execute&apos;</span>, evt =&gt; {
+        // Make MyPlugin listen to someOtherCommand#execute and block it.
+        // You listen with a high priority to block the event before
+        // someOtherCommand&apos;s execute() method is called.
+        this.listenTo( someOtherCommand, &apos;execute&apos;, evt =&gt; {
             evt.stop();
-        }, { <span class="hljs-attr">priority</span>: <span class="hljs-string">&apos;high&apos;</span> } );
+        }, { priority: &apos;high&apos; } );
     }
 
-    <span class="hljs-comment">// Inherited from Plugin:</span>
+    // Inherited from Plugin:
     destroy() {
-        <span class="hljs-comment">// Removes all listeners added with this.listenTo();</span>
-        <span class="hljs-keyword">this</span>.stopListening();
+        // Removes all listeners added with this.listenTo();
+        this.stopListening();
     }
 }
 </code></pre>
 <p>The second listener to <code>&apos;execute&apos;</code> shows one of the very common practices in CKEditor 5 code. Basically, the default action of <code>&apos;execute&apos;</code> (which is calling the <code>execute()</code> method) is registered as a listener to that event with a default priority. Thanks to that, by listening to the event using <code>&apos;low&apos;</code> or <code>&apos;high&apos;</code> priorities you can execute some code before or after <code>execute()</code> is really called. If you stop the event, then the <code>execute()</code> method will not be called at all. In this particular case, the <a href="../../../api/module_core_command-Command.html#function-execute"><code>Command#execute()</code></a> method was decorated with the event using the <a href="../../../api/module_utils_observablemixin-ObservableMixin.html#function-decorate"><code>ObservableMixin#decorate()</code></a> function:</p>
-<pre class="highlight"><code class="js"><span class="hljs-keyword">import</span> ObservableMixin <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-utils/src/observablemixin&apos;</span>;
-<span class="hljs-keyword">import</span> mix <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;@ckeditor/ckeditor5-utils/src/mix&apos;</span>;
+<pre class="highlight"><code class="js">import ObservableMixin from &apos;@ckeditor/ckeditor5-utils/src/observablemixin&apos;;
+import mix from &apos;@ckeditor/ckeditor5-utils/src/mix&apos;;
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Command</span> </span>{
-    <span class="hljs-keyword">constructor</span>() {
-        <span class="hljs-keyword">this</span>.decorate( <span class="hljs-string">&apos;execute&apos;</span> );
+class Command {
+    constructor() {
+        this.decorate( &apos;execute&apos; );
     }
 
-    <span class="hljs-comment">// Will now fire the #execute event automatically.</span>
+    // Will now fire the #execute event automatically.
     execute() {}
 }
 
-<span class="hljs-comment">// Mix ObservableMixin into Command.</span>
+// Mix ObservableMixin into Command.
 mix( Command, ObservableMixin );
 </code></pre>
 <div class="info-box notice"><p>Check out the <a href="../deep-dive/observables.html">deep dive into observables</a> guide to learn more about the advanced usage of observables with some additional examples.</p></div>
 <p>Besides decorating methods with events, observables allow to observe their chosen properties. For instance, the <code>Command</code> class makes its <code>#value</code> and <code>#isEnabled</code> observable by calling <a href="../../../api/module_utils_observablemixin-ObservableMixin.html#function-set"><code>set()</code></a>:</p>
-<pre class="highlight"><code class="js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Command</span> </span>{
-    <span class="hljs-keyword">constructor</span>() {
-        <span class="hljs-keyword">this</span>.set( <span class="hljs-string">&apos;value&apos;</span>, <span class="hljs-literal">undefined</span> );
-        <span class="hljs-keyword">this</span>.set( <span class="hljs-string">&apos;isEnabled&apos;</span>, <span class="hljs-literal">undefined</span> );
+<pre class="highlight"><code class="js">class Command {
+    constructor() {
+        this.set( &apos;value&apos;, undefined );
+        this.set( &apos;isEnabled&apos;, undefined );
     }
 }
 
 mix( Command, ObservableMixin );
 
-<span class="hljs-keyword">const</span> command = <span class="hljs-keyword">new</span> Command();
+const command = new Command();
 
-command.on( <span class="hljs-string">&apos;change:value&apos;</span>, ( evt, propertyName, newValue, oldValue ) =&gt; {
-    <span class="hljs-built_in">console</span>.log(
-        <span class="hljs-string">`<span class="hljs-subst">${ propertyName }</span> has changed from <span class="hljs-subst">${ oldValue }</span> to <span class="hljs-subst">${ newValue }</span>`</span>
+command.on( &apos;change:value&apos;, ( evt, propertyName, newValue, oldValue ) =&gt; {
+    console.log(
+        `${ propertyName } has changed from ${ oldValue } to ${ newValue }`
     );
 } )
 
-command.value = <span class="hljs-literal">true</span>; <span class="hljs-comment">// -&gt; &apos;value has changed from undefined to true&apos;</span>
+command.value = true; // -&gt; &apos;value has changed from undefined to true&apos;
 </code></pre>
 <p>Observables have one more feature which is widely used by the editor (especially in the UI library) &#x2014; the ability to bind the value of one object&#x2019;s property to the value of some other property or properties (of one or more objects). This, of course, can also be processed by callbacks.</p>
 <p>Assuming that <code>target</code> and <code>source</code> are observables and that used properties are observable:</p>
-<pre class="highlight"><code class="js">target.bind( <span class="hljs-string">&apos;foo&apos;</span> ).to( source );
+<pre class="highlight"><code class="js">target.bind( &apos;foo&apos; ).to( source );
 
-source.foo = <span class="hljs-number">1</span>;
-target.foo; <span class="hljs-comment">// -&gt; 1</span>
+source.foo = 1;
+target.foo; // -&gt; 1
 
-<span class="hljs-comment">// Or:</span>
-target.bind( <span class="hljs-string">&apos;foo&apos;</span> ).to( source, <span class="hljs-string">&apos;bar&apos;</span> );
+// Or:
+target.bind( &apos;foo&apos; ).to( source, &apos;bar&apos; );
 
-source.bar = <span class="hljs-number">1</span>;
-target.foo; <span class="hljs-comment">// -&gt; 1</span>
+source.bar = 1;
+target.foo; // -&gt; 1
 </code></pre>
 <p>You can also find more about data bindings in the user interface in the <a href="ui-library.html">UI library architecture</a> guide.</p>
 <h2 id="read-next"><a class="headerlink" href="#read-next">#</a> Read next</h2>
