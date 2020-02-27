@@ -204,7 +204,7 @@
           <div class="rwd-breadcrumbs"><a href="../../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">Builds</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../../../assets/1.2.2/img/book.svg" alt="guide">Rich text editor component for Angular
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#quick-start">Quick start</a><ol><li><a href="#using-the-document-editor-build">Using the Document editor build</a></li><li><a href="#using-a-custom-ckeditor-5-build">Using a custom CKEditor 5 build</a></li><li><a href="#using-the-editor-with-collaboration-plugins">Using the editor with collaboration plugins</a></li><li><a href="#strict-mode-project-tips">Strict mode project tips</a></li></ol></li><li><a href="#integration-with-ngmodel">Integration with ngModel</a></li><li><a href="#supported-input-properties">Supported @Input properties</a><ol><li><a href="#editor-required">editor (required)</a></li><li><a href="#config">config</a></li><li><a href="#data">data</a></li><li><a href="#tagname">tagName</a></li><li><a href="#disabled">disabled</a></li></ol></li><li><a href="#supported-output-properties">Supported @Output properties</a><ol><li><a href="#ready">ready</a></li><li><a href="#change">change</a></li><li><a href="#blur">blur</a></li><li><a href="#focus">focus</a></li></ol></li><li><a href="#styling">Styling</a><ol><li><a href="#setting-the-height-via-the-component-stylesheet">Setting the height via the component stylesheet</a></li><li><a href="#setting-the-height-via-a-global-stylesheet">Setting the height via a global stylesheet</a></li><li><a href="#setting-the-placeholder">Setting the placeholder</a></li></ol></li><li><a href="#accessing-the-editor-instance">Accessing the editor instance</a></li><li><a href="#localization">Localization</a><ol><li><a href="#1-loading-translation-files">1. Loading translation files</a></li><li><a href="#2-configuring-the-language">2. Configuring the language</a></li></ol></li><li><a href="#contributing-and-reporting-issues">Contributing and reporting issues</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#quick-start">Quick start</a><ol><li><a href="#using-the-document-editor-build">Using the Document editor build</a></li><li><a href="#using-a-custom-ckeditor-5-build">Using a custom CKEditor 5 build</a></li><li><a href="#using-the-editor-with-collaboration-plugins">Using the editor with collaboration plugins</a></li><li><a href="#strict-mode-project-tips">Strict mode project tips</a></li></ol></li><li><a href="#integration-with-ngmodel">Integration with ngModel</a></li><li><a href="#supported-input-properties">Supported @Input properties</a><ol><li><a href="#editor-required">editor (required)</a></li><li><a href="#config">config</a></li><li><a href="#data">data</a></li><li><a href="#tagname">tagName</a></li><li><a href="#disabled">disabled</a></li><li><a href="#watchdog">watchdog</a></li></ol></li><li><a href="#supported-output-properties">Supported @Output properties</a><ol><li><a href="#ready">ready</a></li><li><a href="#change">change</a></li><li><a href="#blur">blur</a></li><li><a href="#focus">focus</a></li><li><a href="#error">error</a></li></ol></li><li><a href="#styling">Styling</a><ol><li><a href="#setting-the-height-via-the-component-stylesheet">Setting the height via the component stylesheet</a></li><li><a href="#setting-the-height-via-a-global-stylesheet">Setting the height via a global stylesheet</a></li><li><a href="#setting-the-placeholder">Setting the placeholder</a></li></ol></li><li><a href="#accessing-the-editor-instance">Accessing the editor instance</a></li><li><a href="#localization">Localization</a><ol><li><a href="#1-loading-translation-files">1. Loading translation files</a></li><li><a href="#2-configuring-the-language">2. Configuring the language</a></li></ol></li><li><a href="#contributing-and-reporting-issues">Contributing and reporting issues</a></li></ol></nav>
 <p><a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-angular" target="_blank" rel="noopener"><img src="https://badge.fury.io/js/%40ckeditor%2Fckeditor5-angular.svg" alt="npm version"></a></p>
 <p>CKEditor 5 consists of <a href="../../overview.html">ready-to-use editor builds</a> and <a href="../../../../framework/guides/overview.html">CKEditor 5 Framework</a> upon which the builds are based.</p>
 <p>Currently, the CKEditor 5 component for Angular supports integrating CKEditor 5 only via builds. Integrating <a href="../advanced-setup.html#scenario-2-building-from-source">CKEditor 5 built from source</a> is not possible yet due to the lack of ability to <a href="https://github.com/angular/angular-cli/issues/10618" target="_blank" rel="noopener">adjust webpack configuration in <code>angular-cli</code></a>.</p>
@@ -381,11 +381,46 @@ export class MyComponent {
     {{ isDisabled ? &apos;Enable editor&apos; : &apos;Disable editor&apos; }}
 &lt;/button&gt;
 </code></pre>
+<h3 id="watchdog"><a class="headerlink" href="#watchdog">#</a> <code>watchdog</code></h3>
+<p>An instance of the <a href="../../../../api/module_watchdog_contextwatchdog-ContextWatchdog.html"><code>ContextWatchdog</code></a> class that is responsible for providing the same context to multiple editor instances and restarting the whole structure in case of crashes.</p>
+<pre class="highlight"><code class="ts">import CKSource from &apos;path/to/custom/build&apos;;
+
+const Context = CKSource.Context;
+const Editor = CKSource.Editor;
+const ContextWatchdog = CKSource.ContextWatchdog;
+
+@Component( {
+    // ...
+} )
+export class MyComponent {
+    public editor = Editor;
+    public watchdog: any;
+    public ready = false;
+
+    ngOnInit() {
+        const contextConfig = {};
+
+        this.watchdog = new ContextWatchdog( Context );
+
+        this.watchdog.create( contextConfig )
+            .then( () =&gt; {
+                this.ready = true;
+            } );
+    }
+}
+</code></pre>
+<pre class="highlight"><code class="html">&lt;div *ngIf=&quot;ready&quot;&gt;
+    &lt;ckeditor [watchdog]=&quot;watchdog&quot; ...&gt;&lt;/ckeditor&gt;
+    &lt;ckeditor [watchdog]=&quot;watchdog&quot; ...&gt;&lt;/ckeditor&gt;
+    &lt;ckeditor [watchdog]=&quot;watchdog&quot; ...&gt;&lt;/ckeditor&gt;
+&lt;/div&gt;
+</code></pre>
 <h2 id="supported-output-properties"><a class="headerlink" href="#supported-output-properties">#</a> Supported <code>@Output</code> properties</h2>
 <p>The following <code>@Output</code> properties are supported by the CKEditor 5 rich text editor component for Angular:</p>
 <h3 id="ready"><a class="headerlink" href="#ready">#</a> <code>ready</code></h3>
 <p>Fired when the editor is ready. It corresponds with the <a href="https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_editor-Editor.html#event-ready" target="_blank" rel="noopener"><code>editor#ready</code></a> event.<br>
 It is fired with the editor instance.</p>
+<p>Note that this method might be called multiple times. Apart from initialization, it is also called whenever the editor is restarted after a crash. Do not keep the reference to the editor instance internally, because it will change in case of restart. Instead, you should use <code>watchdog.editor</code> property.</p>
 <h3 id="change"><a class="headerlink" href="#change">#</a> <code>change</code></h3>
 <p>Fired when the content of the editor has changed. It corresponds with the <a href="../../../../api/module_engine_model_document-Document.html#event-change:data"><code>editor.model.document#change:data</code></a> event.<br>
 It is fired with an object containing the editor and the CKEditor 5 <code>change:data</code> event object.</p>
@@ -414,6 +449,8 @@ It is fired with an object containing the editor and the CKEditor 5 <code>blur</
 <h3 id="focus"><a class="headerlink" href="#focus">#</a> <code>focus</code></h3>
 <p>Fired when the editing view of the editor is focused. It corresponds with the <a href="../../../../api/module_engine_view_document-Document.html#event-event:focus"><code>editor.editing.view.document#focus</code></a> event.<br>
 It is fired with an object containing the editor and the CKEditor 5 <code>focus</code> event data.</p>
+<h3 id="error"><a class="headerlink" href="#error">#</a> <code>error</code></h3>
+<p>Fired when the editor crashes (except of crashes during the editor initialization). Once the editor is crashed, the internal watchdog mechanism restarts the editor and fires the <a href="#ready">ready</a> event.</p>
 <h2 id="styling"><a class="headerlink" href="#styling">#</a> Styling</h2>
 <p>The CKEditor 5 rich text editor component for Angular can be styled using the component stylesheet or using a global stylesheet. See how to set the CKEditor 5 component&#x2019;s height using these two approaches.</p>
 <h3 id="setting-the-height-via-the-component-stylesheet"><a class="headerlink" href="#setting-the-height-via-the-component-stylesheet">#</a> Setting the height via the component stylesheet</h3>
