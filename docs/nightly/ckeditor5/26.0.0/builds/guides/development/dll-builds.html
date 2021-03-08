@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/1.6.4/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../assets/1.6.5/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
     <script>
       ( function() {
@@ -33,16 +33,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../assets/1.6.4/scripts";
+      	window.umberto.relativeAppPath = "../../../../../assets/1.6.5/scripts";
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../assets/1.6.4/scripts/app.js";
+      		el.src = "../../../../../assets/1.6.5/scripts/app.js";
       	} else {
-      		el.src = "../../../../../assets/1.6.4/scripts/app-polyfill.js";
+      		el.src = "../../../../../assets/1.6.5/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -84,7 +84,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../assets/1.6.4/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../assets/1.6.5/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -206,11 +206,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/development/dll-builds.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../../../assets/1.6.4/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/builds/guides/development/dll-builds.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../../../assets/1.6.5/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Builds</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../assets/1.6.4/img/book.svg" alt="guide">CKEditor 5 DLL builds
+          <h1 class="main__content-title"><img src="../../../../../assets/1.6.5/img/book.svg" alt="guide">CKEditor 5 DLL builds
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#anatomy-of-a-dll-build">Anatomy of a DLL build</a></li><li><a href="#creating-a-dll-build">Creating a DLL build</a></li><li><a href="#using-a-dll-build">Using a DLL build</a></li></ol></nav>
 <p>The purpose of a DLL build is to allow adding plugins to an editor build without having to rebuild (recompile) the build itself.</p>
 <p>So far, the two most common integration methods included:</p>
@@ -222,18 +222,18 @@
 <p>This is where the DLL builds come to the rescue.</p>
 <p>DLL builds are based on the <a href="https://webpack.js.org/plugins/dll-plugin/" target="_blank" rel="noopener">DLL webpack</a> plugin that provides a CKEditor 5 <strong>base DLL</strong> and a set of <strong><a href="https://webpack.js.org/plugins/dll-plugin/#dllreferenceplugin" target="_blank" rel="noopener">DLL consumer plugins</a></strong>.</p>
 <p>Currently, CKEditor 5 does not come with a ready-to-use DLL build. Using this integration method requires creating it on your own, based on the tools available in the <a href="../../../framework/guides/contributing/development-environment.html">CKEditor 5 development environment</a>.</p>
-<p>Follow the <a href="https://github.com/ckeditor/ckeditor5/issues/9145" target="_blank" rel="noopener">Ship CKEditor 5 DLLs</a> issue for updates (and add &#x1F44D;&#xA0;).</p>
+<p>Follow the <a href="https://github.com/ckeditor/ckeditor5/issues/9145" target="_blank" rel="noopener">Ship CKEditor 5 DLLs</a> issue for updates (and add &#x1F44D; if you are interested in this functionality).</p>
 <h2 id="anatomy-of-a-dll-build"><a class="headerlink" href="#anatomy-of-a-dll-build">#</a> Anatomy of a DLL build</h2>
 <p>A DLL build of the editor consists of two parts:</p>
 <ul>
-<li><strong>Base DLL build</strong>. It is a single JavaScript file that combines contents of several core CKEditor 5 packages: utils, core, engine, ui, clipboard, enter, paragraph, select-all, typing, undo, upload, and widget. These packages are either the framework core, or are features used by nearly all editor installations.</li>
-<li><strong>DLL-compatible package builds</strong>. Every package that is not part of the Base DLL build is built into a DLL-compatible JavaScript file.</li>
+<li><strong>Base DLL build</strong>. It is a single JavaScript file that combines the contents of several core CKEditor 5 packages: <code>utils</code>, <code>core</code>, <code>engine</code>, <code>ui</code>, <code>clipboard</code>, <code>enter</code>, <code>paragraph</code>, <code>select-all</code>, <code>typing</code>, <code>undo</code>, <code>upload</code>, and <code>widget</code>. These packages are either the framework core, or are features used by nearly all editor installations.</li>
+<li><strong>DLL-compatible package builds</strong>. Every package that is not part of the base DLL build is built into a DLL-compatible JavaScript file.</li>
 </ul>
-<p>In order to load an editor you need to use the base DLL build plus several DLL-compatible package builds. You will see how to do that later on.</p>
+<p>In order to load an editor, you need to use the base DLL build plus several DLL-compatible package builds. You will see how to do that later on.</p>
 <h2 id="creating-a-dll-build"><a class="headerlink" href="#creating-a-dll-build">#</a> Creating a DLL build</h2>
-<p>In order to create your own base DLL build and DLL-compatible packages builds, all you need to is:</p>
+<p>In order to create your own base DLL build and DLL-compatible packages builds, all you need to do is:</p>
 <ol>
-<li>Setup the <a href="../../../framework/guides/contributing/development-environment.html">CKEditor 5 development environment</a> locally.</li>
+<li>Set up the <a href="../../../framework/guides/contributing/development-environment.html">CKEditor 5 development environment</a> locally.</li>
 <li>Run <code>npm run dll:build</code>.</li>
 </ol>
 <p>The base DLL build can be found in <code>./build/ckeditor5-dll.js</code>.</p>
@@ -241,12 +241,12 @@
 <p>This is it.</p>
 <h2 id="using-a-dll-build"><a class="headerlink" href="#using-a-dll-build">#</a> Using a DLL build</h2>
 <p>The exact way to use a DLL build will depend on your system. Presented in this guide is the simplest method that uses the <code>&lt;script&gt;</code> tags.</p>
-<p>In order to run the editor you need to load the necessary files (base DLL + editor creator + features). These files expose their content in the <code>CKEditor5</code> global, using the following format:</p>
+<p>In order to run the editor, you need to load the necessary files (base DLL + editor creator + features). These files expose their content in the <code>CKEditor5</code> global, using the following format:</p>
 <pre class="highlight"><code class>CKEditor5.packageName.moduleName
 </code></pre>
 <p>For example:</p>
 <pre class="highlight"><code class="html">&lt;!-- Base DLL build. --&gt;
-&lt;!-- Note: it includes ckeditor5-paragraph too. --&gt;
+&lt;!-- Note: It includes ckeditor5-paragraph too. --&gt;
 &lt;script src=&quot;path/to/ckeditor5/build/ckeditor5-dll.js&quot;&gt;&lt;/script&gt;
 
 &lt;!-- DLL-compatible build of ckeditor5-editor-classic. --&gt;
@@ -272,8 +272,6 @@
             CKEditor5.basicStyles.Bold,
             CKEditor5.basicStyles.Italic,
             CKEditor5.autoformat.Autoformat,
-            CKEditor5.basicStyles.Bold,
-            CKEditor5.basicStyles.Italic,
             CKEditor5.blockQuote.BlockQuote,
             CKEditor5.essentials.Essentials,
             CKEditor5.heading.Heading,

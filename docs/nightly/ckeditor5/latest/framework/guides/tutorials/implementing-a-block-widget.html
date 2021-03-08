@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/1.6.4/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../assets/1.6.5/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../../../snippets/framework/tutorials/block-widget/snippet.css" type="text/css" data-cke="true">
     <link rel="stylesheet" href="../../../assets/snippet-styles.css" type="text/css" data-cke="true">
@@ -36,16 +36,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../assets/1.6.4/scripts";
+      	window.umberto.relativeAppPath = "../../../../../assets/1.6.5/scripts";
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../assets/1.6.4/scripts/app.js";
+      		el.src = "../../../../../assets/1.6.5/scripts/app.js";
       	} else {
-      		el.src = "../../../../../assets/1.6.4/scripts/app-polyfill.js";
+      		el.src = "../../../../../assets/1.6.5/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -87,7 +87,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../assets/1.6.4/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../assets/1.6.5/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -241,11 +241,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/tutorials/implementing-a-block-widget.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../../../assets/1.6.4/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/tutorials/implementing-a-block-widget.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../../../assets/1.6.5/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../assets/1.6.4/img/book.svg" alt="guide">Implementing a block widget
+          <h1 class="main__content-title"><img src="../../../../../assets/1.6.5/img/book.svg" alt="guide">Implementing a block widget
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#before-you-start">Before you start</a></li><li><a href="#lets-start">Let&#x2019;s start</a></li><li><a href="#plugin-structure">Plugin structure</a></li><li><a href="#the-model-and-the-view-layers">The model and the view layers</a><ol><li><a href="#defining-the-schema">Defining the schema</a></li><li><a href="#defining-converters">Defining converters</a></li><li><a href="#whats-in-the-model">What&#x2019;s in the model?</a></li><li><a href="#behavior-before-widgetizing-simple-box">Behavior before &#x201C;widgetizing&#x201D; simple box</a></li><li><a href="#making-simple-box-a-widget">Making simple box a widget</a></li><li><a href="#behavior-after-widgetizing-simple-box">Behavior after &#x201C;widgetizing&#x201D; simple box</a></li></ol></li><li><a href="#creating-a-command">Creating a command</a></li><li><a href="#creating-a-button">Creating a button</a></li><li><a href="#demo">Demo</a></li><li><a href="#full-source-code">Full source code</a></li></ol></nav>
 <p>In this tutorial, you will learn how to implement a more complex CKEditor 5 plugin.</p>
 <p>You will build a &#x201C;Simple box&#x201D; feature which will allow the user to insert a custom box with a title and body fields into the document. You will use the widget utilities and work with the model-view conversion in order to properly set up the behavior of this feature. Later on, you will create a UI which will allow for inserting new simple boxes into the document with the toolbar button.</p>

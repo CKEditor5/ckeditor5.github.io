@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/1.6.4/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../assets/1.6.5/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
     <script>
       ( function() {
@@ -33,16 +33,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../assets/1.6.4/scripts";
+      	window.umberto.relativeAppPath = "../../../../../assets/1.6.5/scripts";
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../assets/1.6.4/scripts/app.js";
+      		el.src = "../../../../../assets/1.6.5/scripts/app.js";
       	} else {
-      		el.src = "../../../../../assets/1.6.4/scripts/app-polyfill.js";
+      		el.src = "../../../../../assets/1.6.5/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -84,7 +84,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../assets/1.6.4/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../assets/1.6.5/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -238,11 +238,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/architecture/editing-engine.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../../../assets/1.6.4/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/architecture/editing-engine.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../../../assets/1.6.5/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../assets/1.6.4/img/book.svg" alt="guide">Editing engine
+          <h1 class="main__content-title"><img src="../../../../../assets/1.6.5/img/book.svg" alt="guide">Editing engine
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#overview">Overview</a></li><li><a href="#model">Model</a><ol><li><a href="#changing-the-model">Changing the model</a></li><li><a href="#text-attributes">Text attributes</a></li><li><a href="#selection-attributes">Selection attributes</a></li><li><a href="#indexes-and-offsets">Indexes and offsets</a></li><li><a href="#positions-ranges-and-selections">Positions, ranges and selections</a></li><li><a href="#markers">Markers</a></li><li><a href="#schema">Schema</a></li></ol></li><li><a href="#view">View</a><ol><li><a href="#element-types-and-custom-data">Element types and custom data</a><ol><li><a href="#non-semantic-views">Non-semantic views</a></li></ol></li><li><a href="#changing-the-view">Changing the view</a></li><li><a href="#positions">Positions</a></li><li><a href="#observers">Observers</a></li></ol></li><li><a href="#conversion">Conversion</a><ol><li><a href="#data-pipeline">Data pipeline</a></li><li><a href="#editing-pipeline">Editing pipeline</a></li></ol></li><li><a href="#read-next">Read next</a></li></ol></nav>
 <p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-engine" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-engine</code></a> package is by far the biggest package of all. Therefore, this guide will only scratch the surface here by introducing the main architecture layers and concepts. More detailed guides will follow.</p>
 <div class="info-box notice"><p>We recommend using the official <a href="../development-tools.html#ckeditor-5-inspector">CKEditor 5 inspector</a> for development and debugging. It will give you tons of useful information about the state of the editor such as internal data structures, selection, commands, and many more.</p></div>
@@ -518,6 +518,7 @@ editor.data;                    // The data pipeline (DataController).
 <li><a href="../../../api/module_engine_view_observer_keyobserver-KeyObserver.html"><code>KeyObserver</code></a></li>
 <li><a href="../../../api/module_engine_view_observer_fakeselectionobserver-FakeSelectionObserver.html"><code>FakeSelectionObserver</code></a></li>
 <li><a href="../../../api/module_engine_view_observer_compositionobserver-CompositionObserver.html"><code>CompositionObserver</code></a></li>
+<li><a href="../../../api/module_engine_view_observer_arrowkeysobserver-ArrowKeysObserver.html"><code>ArrowKeysObserver</code></a></li>
 </ul>
 <p>Additionally, some features add their own observers. For instance, the <a href="../../../api/module_clipboard_clipboard-Clipboard.html">clipboard feature</a> adds <a href="../../../api/module_clipboard_clipboardobserver-ClipboardObserver.html"><code>ClipboardObserver</code></a>.</p>
 <div class="info-box notice"><p>For a complete list of events fired by observes check the <a href="../../../api/module_engine_view_document-Document.html"><code>Document</code></a>&apos;s list of events.</p></div>
