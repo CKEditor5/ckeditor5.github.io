@@ -361,8 +361,7 @@ npm run clean-up-svg-icons path/to/icon/icon.svg
 <p>The script reduces the icon size up to 70%, depending on the software used to create it and the general complexity of the image.</p>
 <p><strong>Note</strong>: You may still need to tweak the source code of the SVG files manually after using the script:</p>
 <ul>
-<li>The icons should have the <code>viewBox</code> attribute (instead of <code>width</code> and <code>height</code>). The <code>removeDimensions</code> SVGO plugin will not remove <code>width</code> and <code>height</code> if there is no <code>viewBox</code> attribute so make sure it is present.</li>
-<li>Sometimes SVGO leaves empty (transparent) groups <code>&lt;g&gt;...&lt;/g&gt;</code>. They should be removed from the source.</li>
+<li>Sometimes SVGO leaves empty (transparent) groups <code>&lt;g&gt;...&lt;/g&gt;</code>. They should be removed from the source and running <code>clean-up-svg-icons</code> again usually does that.</li>
 <li>Make sure the number of <code>&lt;path&gt;</code> elements is minimal. Merge paths whenever possible in the image processor before saving the file.</li>
 </ul>
 
