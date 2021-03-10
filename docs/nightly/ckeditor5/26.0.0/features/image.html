@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Images - CKEditor 5 Documentation</title>
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:site" content="@ckeditor">
+    <meta property="og:title" content="Images - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/features/image.html">
+    <meta property="DC.language" content="en">
+    <meta property="DC.publisher" content="CKSource">
+    <meta property="DC.creator" content="CKEditor">
+    <meta property="DC.title" content="Images - CKEditor 5 Documentation">
+    <meta property="DC.format" content="text/html">
+    <meta property="DC.type" content="Text">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/features/image.html">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../assets/1.6.4/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../assets/styles.css" type="text/css">
+    <link rel="stylesheet" href="../snippets/features/build-image-source/snippet.css" type="text/css" data-cke="true">
+    <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css" data-cke="true">
+    <link rel="stylesheet" href="../snippets/assets.css" type="text/css" data-cke="true">
+    <script>
+      ( function() {
+      	'use strict';
+      	// Set up global variables;
+      	if ( !window.umebrto ) {
+      		window.umberto = {};
+      	}
+      	window.umberto.relativeAppPath = "../../../assets/1.6.4/scripts";
+      
+      	// Add app script
+      	var el = document.createElement( 'script' );
+      	el.setAttribute( 'async', 'async' );
+      	el.setAttribute( 'defer', 'defer' );
+      	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
+      		el.src = "../../../assets/1.6.4/scripts/app.js";
+      	} else {
+      		el.src = "../../../assets/1.6.4/scripts/app-polyfill.js";
+      	}
+      	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
+      
+      	// Changing documentation theme enable it via `localStorage.setItem( 'theme', 'theme-dark' )`
+      	if ( localStorage.getItem( 'theme' ) === 'theme-dark' ) {
+      		document.getElementsByTagName( 'html' )[ 0 ].classList.add( 'theme-dark' );
+      	}
+      } )();
+    </script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  <meta name="generator" content="Hexo 4.2.1"></head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="header__main">
+        <div class="header__main-rwd-button"><a href="#"><span></span><span></span><span></span></a></div>
+        <div class="header__main-title"><a class="header__main-title-home" href="../../../index.html">CKEditor Ecosystem Documentation</a></div>
+        <div class="top__search">
+          <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+          <div class="top__search__button"><img src="../../../assets/1.6.4/img/loupe.svg" alt="Search"></div>
+        </div>
+      </div>
+      <div class="header__sub">
+        <ul class="top__menu">
+          <li class="top__menu-project-logo"><a href="../index.html">CKEditor 5</a></li>
+          <li><a href="../builds/index.html">Builds</a></li>
+          <li><a href="../framework/index.html">Framework</a></li>
+          <li><a href="../examples/index.html">Examples</a></li>
+          <li><a class="top__menu__item--active" href="index.html">Features</a></li>
+          <li><a class="top__menu__api" href="../api/index.html">API</a></li>
+          <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li>
+        </ul>
+      </div>
+      <div class="header__menu-rwd">
+        <ul class="header__menu-rwd__projects">
+          <li data-project="ckeditor5"><a href="../../latest/index.html">CKEditor 5</a>
+            <ul class="tree header__menu-rwd__projects-pages">
+              <li data-group="builds"><a href="../builds/index.html">Builds</a>
+              </li>
+              <li data-group="framework"><a href="../framework/index.html">Framework</a>
+              </li>
+              <li data-group="examples"><a href="../examples/index.html">Examples</a>
+              </li>
+              <li data-group="features"><a href="index.html">Features</a>
+                <ul class="header__menu-rwd__projects-subpages">
+                          <li><a href="autoformat.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Autoformatting</span></div></a></li>
+                          <li><a href="text-transformation.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Automatic text transformation</span></div></a></li>
+                          <li><a href="basic-styles.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic text styles</span></div></a></li>
+                          <li><a href="indent.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block indentation</span></div></a></li>
+                          <li><a href="block-quote.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block quote</span></div></a></li>
+                          <li><a href="code-blocks.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Code blocks</span></div></a></li>
+                          <li><a href="title.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document title</span></div></a></li>
+                          <li><a href="editor-placeholder.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor placeholder</span></div></a></li>
+                          <li><a href="font.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Font</span></div></a></li>
+                          <li><a href="headings.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Headings</span></div></a></li>
+                          <li><a href="highlight.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Highlight</span></div></a></li>
+                          <li><a href="horizontal-line.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Horizontal line</span></div></a></li>
+                          <li><a href="html-embed.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">HTML embed</span></div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Image upload</span></div>
+                            <ul class="tree__item-nested-list">
+                                  <li><a href="image-upload/image-upload.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                  <li><a href="image-upload/easy-image.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Easy Image</span></div></a></li>
+                                  <li><a href="image-upload/ckfinder.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">CKFinder file manager</span></div></a></li>
+                                  <li><a href="image-upload/base64-upload-adapter.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Base64 upload adapter</span></div></a></li>
+                                  <li><a href="image-upload/simple-upload-adapter.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Simple upload adapter</span></div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="">
+                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Images</span></div></a></li>
+                          <li><a href="keyboard-support.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Keyboard support</span></div></a></li>
+                          <li><a href="link.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Link</span></div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Lists</span></div>
+                            <ul class="tree__item-nested-list">
+                                  <li><a href="lists/lists.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Ordered and unordered lists</span></div></a></li>
+                                  <li><a href="lists/todo-lists.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">To-do lists</span></div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="markdown.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Markdown output</span></div></a></li>
+                          <li><a href="math-equations.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Math and chemical formulas</span></div></a></li>
+                          <li><a href="media-embed.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Media embed</span></div></a></li>
+                          <li><a href="mentions.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Mentions</span></div></a></li>
+                          <li><a href="page-break.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Page break</span></div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Pasting</span></div>
+                            <ul class="tree__item-nested-list">
+                                  <li><a href="pasting/paste-from-word.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Word</span></div></a></li>
+                                  <li><a href="pasting/paste-from-google-docs.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Google Docs</span></div></a></li>
+                                  <li><a href="pasting/paste-plain-text.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste plain text</span></div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="read-only.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Read-only support</span></div></a></li>
+                          <li><a href="remove-format.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Remove formatting</span></div></a></li>
+                          <li><a href="restricted-editing.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Restricted editing</span></div></a></li>
+                          <li><a href="select-all.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Select all</span></div></a></li>
+                          <li><a href="special-characters.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Special characters</span></div></a></li>
+                          <li><a href="spelling-and-grammar-checking.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Spelling and grammar checking</span></div></a></li>
+                          <li><a href="table.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Tables</span></div></a></li>
+                          <li><a href="text-alignment.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Text alignment</span></div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Toolbar</span></div>
+                            <ul class="tree__item-nested-list">
+                                  <li><a href="toolbar/toolbar.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor toolbar</span></div></a></li>
+                                  <li><a href="toolbar/blocktoolbar.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block toolbar</span></div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="ui-language.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">UI language</span></div></a></li>
+                          <li><a href="watchdog.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Watchdog</span></div></a></li>
+                          <li><a href="word-count.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Word and character count</span></div></a></li>
+                </ul>
+              </li>
+              <li data-group="api-reference"><a href="../api/index.html">API</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/packages/ckeditor5-image/docs/features/image.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../assets/1.6.4/img/edit.svg" alt="Contribute to this guide"></a>
+          </div>
+          <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
+          </div>
+          <h1 class="main__content-title"><img src="../../../assets/1.6.4/img/book.svg" alt="guide">Images
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#base-image-support">Base image support</a></li><li><a href="#image-contextual-toolbar">Image contextual toolbar</a></li><li><a href="#image-captions">Image captions</a></li><li><a href="#image-upload">Image upload</a></li><li><a href="#inserting-images-via-source-url">Inserting images via source URL</a></li><li><a href="#inserting-images-via-pasting-url-into-editor">Inserting images via pasting URL into editor</a></li><li><a href="#responsive-images">Responsive images</a></li><li><a href="#image-styles">Image styles</a><ol><li><a href="#semantical-styles">Semantical styles</a></li><li><a href="#presentational-styles">Presentational styles</a></li><li><a href="#defining-custom-styles">Defining custom styles</a></li></ol></li><li><a href="#resizing-images">Resizing images</a><ol><li><a href="#methods-to-resize-images">Methods to resize images</a><ol><li><a href="#using-resize-handles">Using resize handles</a></li><li><a href="#using-resize-dropdown">Using resize dropdown</a></li><li><a href="#using-standalone-resize-buttons">Using standalone resize buttons</a></li></ol></li><li><a href="#disabling-image-resize-handles">Disabling image resize handles</a></li><li><a href="#enabling-image-resizing">Enabling image resizing</a></li><li><a href="#markup-and-styling">Markup and styling</a></li><li><a href="#using-pixels-instead-of-percentage-width">Using pixels instead of percentage width</a></li></ol></li><li><a href="#linking-images">Linking images</a><ol><li><a href="#enabling-image-linking">Enabling image linking</a></li></ol></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
+<p>The <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-image" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-image</code></a> package contains multiple plugins that implement various image-related features:</p>
+<ul>
+<li><a href="../api/module_image_image-Image.html"><code>Image</code></a> implements <a href="#base-image-support">basic support for images</a>.</li>
+<li><a href="../api/module_image_imagetoolbar-ImageToolbar.html"><code>ImageToolbar</code></a> adds the image feature&#x2019;s <a href="#image-contextual-toolbar">contextual toolbar</a>.</li>
+<li><a href="../api/module_image_imagecaption-ImageCaption.html"><code>ImageCaption</code></a> adds support for <a href="#image-captions">captions</a>.</li>
+<li><a href="../api/module_image_imagestyle-ImageStyle.html"><code>ImageStyle</code></a> adds support for <a href="#image-styles">image styles</a>.</li>
+<li><a href="../api/module_image_imagetextalternative-ImageTextAlternative.html"><code>ImageTextAlternative</code></a> adds support for adding text alternative.</li>
+<li><a href="../api/module_image_imageupload-ImageUpload.html"><code>ImageUpload</code></a> adds support for <a href="image-upload/image-upload.html">uploading dropped or pasted images</a>.</li>
+<li><a href="../api/module_image_imageinsert-ImageInsert.html"><code>ImageInsert</code></a> adds support for <a href="#inserting-images-via-source-url">inserting images via URL</a> and other custom integrations.</li>
+<li><a href="../api/module_image_autoimage-AutoImage.html"><code>AutoImage</code></a> adds support for <a href="#inserting-images-via-pasting-url-into-editor">inserting images via pasting a URL into the editor</a>.</li>
+<li><a href="../api/module_image_imageresize-ImageResize.html"><code>ImageResize</code></a> adds support for <a href="#resizing-images">resizing images</a>.</li>
+<li><a href="../api/module_link_linkimage-LinkImage.html"><code>LinkImage</code></a> adds support for <a href="#linking-images">linking images</a>.</li>
+</ul>
+<div class="info-box notice notice__info"><p>All features listed above except image resizing and image linking are enabled by default in all CKEditor 5 WYSIWYG editor builds.</p><p>Check the documentation of each subfeature to learn more about it.</p></div>
+<h2 id="base-image-support"><a class="headerlink" href="#base-image-support">#</a> Base image support</h2>
+<p>The <a href="../api/module_image_image-Image.html"><code>Image</code></a> feature adds support for plain images with just the <code>alt</code> attribute set. This translates to the following HTML:</p>
+<pre class="highlight"><code class="html">&lt;figure class=&quot;image&quot;&gt;
+    &lt;img src=&quot;...&quot; alt=&quot;...&quot;&gt;
+&lt;/figure&gt;
+</code></pre>
+<div class="info-box notice notice__hint"><p>This feature follows the markup proposed by the <a href="https://ckeditor.github.io/editor-recommendations/features/image.html" target="_blank" rel="noopener">Editor Recommendations</a> project.</p></div>
+<p>You can see the demo of a WYSIWYG editor with the base image feature enabled below:</p>
+<div class="live-snippet"><div id="snippet-image">
+	<p>This is <a href="https://ckeditor.com">CKEditor&nbsp;5</a>.</p>
+
+	<figure class="image">
+		<img src="../assets/img/fields.jpg" alt="Autumn fields">
+	</figure>
+</div>
+</div>
+<div class="info-box notice notice__hint"><p>The base image feature, unlike in CKEditor 4, does not support any user interface for inserting or managing images. Its sole purpose is to lay ground for other plugins (mentioned above) to build the target user experience. This pattern (composition of atomic features) is common for CKEditor 5 and allows the developers to build their own customized experience by implementing specific subfeatures differently.</p></div>
+<h2 id="image-contextual-toolbar"><a class="headerlink" href="#image-contextual-toolbar">#</a> Image contextual toolbar</h2>
+<p>The <a href="../api/module_image_imagetoolbar-ImageToolbar.html"><code>ImageToolbar</code></a> plugin introduces a contextual toolbar for images. The toolbar appears when an image is selected and can be configured to contain any buttons you want. Usually, these will be image-related options such as the text alternative button (a feature introduced by the base image plugin) and <a href="#image-styles">image styles buttons</a>.</p>
+<p>See a demo of a WYSIWYG editor with the contextual toolbar enabled:</p>
+<div class="live-snippet"><div id="snippet-image-toolbar">
+	<p>This is <a href="https://ckeditor.com">CKEditor&nbsp;5 WYSIWYG editor</a>.</p>
+
+	<figure class="image">
+		<img src="../assets/img/fields.jpg" alt="Autumn fields">
+	</figure>
+</div>
+</div>
+<p>The image toolbar is configured to contain the image text alternative button:</p>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        image: {
+            toolbar: [ &apos;imageTextAlternative&apos; ]
+        }
+    } )
+</code></pre>
+<h2 id="image-captions"><a class="headerlink" href="#image-captions">#</a> Image captions</h2>
+<p>The <a href="../api/module_image_imagecaption-ImageCaption.html"><code>ImageCaption</code></a> plugin adds support for image captions:</p>
+<pre class="highlight"><code class="html">&lt;figure class=&quot;image&quot;&gt;
+    &lt;img src=&quot;...&quot; alt=&quot;...&quot;&gt;
+    &lt;figcaption&gt;A caption goes here...&lt;/figcaption&gt;
+&lt;/figure&gt;
+</code></pre>
+<p>By default, if the image caption is empty, the <code>&lt;figcaption&gt;</code> element is not visible to the user. You can click the image to reveal the caption field and write one. See the demo below:</p>
+<div class="info-box notice notice__hint"><p>You can change the placement of the image caption by setting <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/caption-side" target="_blank" rel="noopener"><code>caption-side</code></a> in your <a href="../builds/guides/integration/content-styles.html">content styles</a> for the <code>.ck-content .image &gt; figcaption</code> style. Changing it to <code>caption-side: top</code> will display the caption above the image.</p></div>
+<h2 id="image-upload"><a class="headerlink" href="#image-upload">#</a> Image upload</h2>
+<p>See the <a href="image-upload/image-upload.html">Image upload</a> guide.</p>
+<h2 id="inserting-images-via-source-url"><a class="headerlink" href="#inserting-images-via-source-url">#</a> Inserting images via source URL</h2>
+<p>Besides the ability to insert images by uploading them directly from your disk or via CKFinder, you can also configure CKEditor 5 to allow inserting images via source URL.</p>
+<p>In order to enable this option, install the <code>ImageInsert</code> plugin and add the <code>insertImage</code> button to the toolbar (it replaces the standard <code>uploadImage</code> button).</p>
+<pre class="highlight"><code class="js">import ImageInsert from &apos;@ckeditor/ckeditor5-image/src/imageinsert&apos;;
+
+ClassicEditor
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ ... , ImageInsert ],
+        toolbar: [ ... , &apos;insertImage&apos; ]
+    } )
+</code></pre>
+<p>This will add a new <strong>Insert image</strong> dropdown in the toolbar. To open the panel and add the image URL, click the arrow next to the image button. Check the demo below to insert a new image via URL or update an existing image by selecting it, opening the dropdown panel and pasting a new URL.</p>
+<div class="live-snippet"><div id="snippet-image-insert-via-url">
+	<p>Insert a new image or edit the source URL of the image below:</p>
+
+	<figure class="image">
+		<img src="../assets/img/fields.jpg" alt="Autumn fields">
+	</figure>
+</div>
+</div>
+<h2 id="inserting-images-via-pasting-url-into-editor"><a class="headerlink" href="#inserting-images-via-pasting-url-into-editor">#</a> Inserting images via pasting URL into editor</h2>
+<p>The <a href="../api/module_image_autoimage-AutoImage.html"><code>AutoImage</code></a> plugin recognizes image links in the pasted content and embeds them shortly after they are injected into the document to speed up the editing. Accepted image extensions are: <code>jpg</code>, <code>jpeg</code>, <code>png</code>, <code>gif</code>, <code>ico</code>.</p>
+<div class="info-box notice"><p>The image URL must be the only content pasted to be properly embedded. Multiple links (<code>&quot;http://image.url http://another.image.url&quot;</code>) as well as bigger chunks of content (<code>&quot;This link http://image.url will not be auto&#x2013;embedded when pasted.&quot;</code>) are ignored.</p></div>
+<p>If the automatic embedding was unexpected, for instance when the link was meant to remain in the content as text, simply undo the action (by clicking the &#x201C;Undo&#x201D; button in the toolbar or using the <kbd>Ctrl/&#x2318;</kbd>+<kbd>Z</kbd> keystrokes).</p>
+<p>You can paste the image URL directly into the editor content, and it will be automatically embedded.</p>
+<input class="example-input" type="text" value="https://ckeditor.com/docs/ckeditor5/latest/assets/img/malta.jpg">
+<div class="live-snippet"><div id="snippet-image-insert-via-pasting-url-into-editor">
+	<p>Insert a URL of an image: </p>
+</div>
+</div>
+<h2 id="responsive-images"><a class="headerlink" href="#responsive-images">#</a> Responsive images</h2>
+<p>Support for responsive images in CKEditor 5 is brought by the <a href="image-upload/easy-image.html">Easy Image</a> feature without any additional configuration. Refer to the <a href="image-upload/easy-image.html#responsive-images">Easy Image integration</a> guide to learn how to use the feature in your project.</p>
+<h2 id="image-styles"><a class="headerlink" href="#image-styles">#</a> Image styles</h2>
+<p>In simple integrations it is enough to let the user insert images, set their text alternative and the editor&#x2019;s job is done. An example of such a simple solution are, for example, <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a> comments. The styling of the images (for example, their maximum width and margins) is controlled by GitHub through stylesheets.</p>
+<p>In more advanced scenarios, the user may need to be able to decide about the image&#x2019;s width. Should it take up the whole width (if it is the article&#x2019;s main photo) or should it take up, for example, 50% of the width and be pulled out of the content (so called &#x201C;pulled images&#x201D;)? Various integration scenarios require different types of images to be used.</p>
+<p>Finally, in certain situations, the user should be able to granularly control how an image is presented thanks to the ability to set the size and alignment separately.</p>
+<p>The <a href="../api/module_image_imagestyle-ImageStyle.html"><code>ImageStyle</code></a> feature solves the last two scenarios. The former is handled by so-called <a href="#semantical-styles">&#x201C;semantical styles&#x201D;</a> and the latter by <a href="#presentational-styles">&#x201C;presentational styles&#x201D;</a> in combination with the <a href="#resizing-images">image resize</a> feature.</p>
+<p>The available image styles can be configured using the <a href="../api/module_image_image-ImageConfig.html#member-styles"><code>config.image.styles</code></a> option. Respective buttons should also be added to the image toolbar via <a href="../api/module_image_image-ImageConfig.html#member-toolbar"><code>config.image.toolbar</code></a>.</p>
+<h3 id="semantical-styles"><a class="headerlink" href="#semantical-styles">#</a> Semantical styles</h3>
+<p>A semantical style lets the user choose from predefined &#x201C;types&#x201D; of images. The user is not able to set the image border, alignment, margins, width, etc. separately. Instead, they can pick one of the styles defined by the developer who prepared the WYSIWYG editor integration. This gives the developer control over how the users style their images and makes the user&#x2019;s life easier by setting multiple properties at once.</p>
+<p>A style is applied to the image in form of a class. By default, CKEditor 5 is configured to support two default semantical styles: <strong>&#x201C;full width&#x201D;</strong> (which does not apply any class &#x2014; it is the default style) and <strong>&#x201C;side image&#x201D;</strong> (which applies the <code>image-style-side</code> class).</p>
+<p>A normal (full width) image:</p>
+<pre class="highlight"><code class="html">&lt;figure class=&quot;image&quot;&gt;&lt;img src=&quot;...&quot; alt=&quot;...&quot;&gt;&lt;/figure&gt;
+</code></pre>
+<p>A side image:</p>
+<pre class="highlight"><code class="html">&lt;figure class=&quot;image image-style-side&quot;&gt;&lt;img src=&quot;...&quot; alt=&quot;...&quot;&gt;&lt;/figure&gt;
+</code></pre>
+<div class="info-box notice"><p>The actual styling of the images is the integrator&#x2019;s job. CKEditor 5 WYSIWYG editor comes with some default styles, but they will only be applied to the images inside the editor. The integrator needs to style them appropriately on the target pages.</p><p>You can find the source of the default styles applied by the editor here: <a href="https://github.com/ckeditor/ckeditor5/blob/master/packages/ckeditor5-image/theme/imagestyle.css" target="_blank" rel="noopener"><code>ckeditor5-image/theme/imagestyle.css</code></a>.</p><p>Read more about <a href="../builds/guides/integration/content-styles.html">styling the content of the editor</a>.</p></div>
+<p>Below you can find a demo of the WYSIWYG editor with the semantical image styles. The &#x201C;full&#x201D; and &#x201C;side&#x201D; styles are the default value of <a href="../api/module_image_image-ImageConfig.html#member-styles"><code>config.image.styles</code></a> so you do not need to set it.</p>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Image, ImageToolbar, ImageCaption, ImageStyle ],
+        image: {
+            toolbar: [
+                &apos;imageStyle:full&apos;,
+                &apos;imageStyle:side&apos;,
+                &apos;|&apos;,
+                &apos;imageTextAlternative&apos;
+            ],
+
+            // The default value.
+            styles: [
+                &apos;full&apos;,
+                &apos;side&apos;
+            ]
+        }
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<p>See the result in the WYSIWYG editor below. You can change the style of an image through the image&#x2019;s contextual toolbar.</p>
+<div class="live-snippet"><div id="snippet-image-style">
+	<p>This is a full-width image (default style):</p>
+
+	<figure class="image">
+		<img src="../assets/img/fields.jpg" alt="Autumn fields">
+	</figure>
+
+	<p>This is a side image:</p>
+
+	<figure class="image image-style-side">
+		<img src="../assets/img/fields.jpg" alt="Autumn fields">
+	</figure>
+
+	<p>Lots of text here. Quite a lot of text, indeed. In fact, there is plenty of text beside this image and it forms a whole long paragraph. This whole lot of text is here to help you see the image's alignment in context. It serves no other purpose, though. But we still find it useful and plain like it.</p>
+</div>
+</div>
+<div class="info-box notice notice__hint"><p>Try to understand what use cases the system needs to support and define semantic options accordingly. Defining useful and clear styles is one of the steps towards a good user experience and clear, portable output. For example, the &#x201C;side image&#x201D; style can be displayed as a floated image on wide screens and as a normal image on low resolution screens (e.g. mobile browsers).</p></div>
+<div class="info-box notice notice__warning"><p>While semantical styles can be combined with manual <a href="#resizing-images">image resizing</a>, these features were not designed to be used together.</p><p>If you want to enable image resizing, use <a href="#presentational-styles">presentational image styles</a>.</p></div>
+<h3 id="presentational-styles"><a class="headerlink" href="#presentational-styles">#</a> Presentational styles</h3>
+<p>Presentational styles do not add any special meaning to the content. They directly control the visual aspect of an image.</p>
+<p>Currently, the available presentational styles are &#x201C;align center&#x201D;, &#x201C;align left&#x201D; and &#x201C;align right&#x201D;.</p>
+<div class="info-box notice notice__warning"><p>Presentational image styles should be combined with the optional <a href="#resizing-images">image resize feature</a> as these features were designed to be used together. The image width is then controlled by the image resize feature.</p><p>If you do not enable the image resize feature in your setup using the default presentational styles, your images will always take up 100% of the editor width so the alignment may not be visible.</p><p>If you do not want to enable image resizing, use <a href="#semantical-styles">semantical image styles</a>.</p></div>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        image: {
+            // Configure the available styles.
+            styles: [
+                &apos;alignLeft&apos;, &apos;alignCenter&apos;, &apos;alignRight&apos;
+            ],
+
+            // Configure the available image resize options.
+            resizeOptions: [
+                {
+                    name: &apos;resizeImage:original&apos;,
+                    label: &apos;Original&apos;,
+                    value: null
+                },
+                {
+                    name: &apos;resizeImage:50&apos;,
+                    label: &apos;50%&apos;,
+                    value: &apos;50&apos;
+                },
+                {
+                    name: &apos;resizeImage:75&apos;,
+                    label: &apos;75%&apos;,
+                    value: &apos;75&apos;
+                }
+            ],
+
+            // You need to configure the image toolbar, too, so it shows the new style
+            // buttons as well as the resize buttons.
+            toolbar: [
+                &apos;imageStyle:alignLeft&apos;, &apos;imageStyle:alignCenter&apos;, &apos;imageStyle:alignRight&apos;,
+                &apos;|&apos;,
+                &apos;resizeImage&apos;,
+                &apos;|&apos;,
+                &apos;imageTextAlternative&apos;
+            ]
+        }
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<p>The code sample above uses predefined presentational image styles: <code>&apos;alignLeft&apos;</code>, <code>&apos;alignCenter&apos;</code> and <code>&apos;alignRight&apos;</code>. They apply, respectively, the <code>.image-style-align-left</code>, <code>.image-style-align-center</code> and  <code>.image-style-align-right</code> classes to the <code>&lt;figure&gt;</code> element.</p>
+<p>In addition to that, the sample is configured to use the <a href="#resizing-images">image resize feature</a> with three <a href="../api/module_image_image-ImageConfig.html#member-resizeOptions">resize options</a> available: <code>&apos;resizeImage:original&apos;</code>, <code>&apos;resizeImage:50&apos;</code> and <code>&apos;resizeImage:75&apos;</code>. They allow you to set the image width in the editor to the original image size, 50% and 75%, respectively.</p>
+<p>See the result below:</p>
+<div class="live-snippet"><div id="snippet-image-style-custom">
+	<p>This is a default image (no style):</p>
+
+	<figure class="image">
+		<img src="../assets/img/fields.jpg" alt="Autumn fields">
+	</figure>
+
+	<p>This is a right-aligned image, resized to 50% width:</p>
+
+	<figure class="image image-style-align-right" style="width: 50%;">
+		<img src="../assets/img/fields.jpg" alt="Autumn fields">
+	</figure>
+
+	<p>Yet another sample paragraph and lots of text here, again. Quite a lot of text, just like before. And this huge amount of text forms a whole long paragraph. This whole lot of text is here to help you see the image's alignment in context. It serves no other purpose, though. But we still find it useful and plain like it. And it is even longer than the previous one. Go on an use the image style buttons to make the most out of this pretty text block and the image alignment demo.</p>
+</div>
+</div>
+<h3 id="defining-custom-styles"><a class="headerlink" href="#defining-custom-styles">#</a> Defining custom styles</h3>
+<p>Besides using the <a href="../api/module_image_imagestyle_utils.html#constant-defaultStyles">five predefined styles</a>:</p>
+<ul>
+<li><code>&apos;full&apos;</code>,</li>
+<li><code>&apos;side&apos;</code>,</li>
+<li><code>&apos;alignLeft&apos;</code>,</li>
+<li><code>&apos;alignCenter&apos;</code>,</li>
+<li><code>&apos;alignRight&apos;</code></li>
+</ul>
+<p>you can also define your own styles or modify the existing ones.</p>
+<div class="info-box notice"><p>Reusing (or modifying) predefined styles has the following advantage: CKEditor 5 will use its official translations for the defined button titles.</p></div>
+<p>You can find advanced examples in the <a href="../api/module_image_image-ImageConfig.html#member-styles"><code>config.image.styles</code></a> configuration option documentation.</p>
+<!-- TODO (live example)... not today, yet -->
+<h2 id="resizing-images"><a class="headerlink" href="#resizing-images">#</a> Resizing images</h2>
+<p>The <a href="#image-styles">image styles</a> feature is meant to give the user a choice between a set of styling options provided by the system (i.e. by the developer or administrator who created it). There are also scenarios where the user should be able to freely set the width of an image. And that is where the image resize feature comes into play. It is implemented by the <a href="../api/module_image_imageresize-ImageResize.html"><code>ImageResize</code></a> plugin.</p>
+<h3 id="methods-to-resize-images"><a class="headerlink" href="#methods-to-resize-images">#</a> Methods to resize images</h3>
+<p>The editor offers different ways to resize images either by using &#x201C;resize handles&#x201D; or by using dedicated UI components &#x2014; either a dropdown or standalone buttons.</p>
+<p>The <a href="../api/module_image_imageresize-ImageResize.html"><code>ImageResize</code></a> plugin enables the four resize handles displayed over the selected image. The user can freely resize the image by dragging them. The feature can be configured to use either percentage (default) or pixel values.</p>
+<p>The plugin also gives you an ability to change the size of the image through the on-click image toolbar. You can set an optional static configuration with <a href="../api/module_image_image-ImageConfig.html#member-resizeOptions"><code>resizeOptions</code></a> and choose whether you want to use a dropdown or a set of standalone buttons.</p>
+<h4 id="using-resize-handles"><a class="headerlink" href="#using-resize-handles">#</a> Using resize handles</h4>
+<p>In this case, the user is able to resize images by dragging square handles displayed in each corner of the image. Once <a href="#enabling-image-resizing">image resizing is enabled</a>, this option does not require any additional configuration.</p>
+<div class="live-snippet"><div id="snippet-image-resize">
+	<p>Resize me by using handles!</p>
+
+	<figure class="image">
+		<img src="../assets/img/fields.jpg" alt="Autumn fields">
+		<figcaption>Autumn fields by Aleksander Nowodziński</figcaption>
+	</figure>
+
+	<p>Resized image (width: 75%):</p>
+
+	<figure class="image image_resized" style="width:75%;">
+		<img src="../assets/img/fields.jpg" alt="Autumn fields">
+	</figure>
+</div>
+</div>
+<p>You can configure resizing images by handles in two different ways in the CKEditor 5 WYSIWYG editor:</p>
+<ul>
+<li>Either by installing the <a href="../api/module_image_imageresize-ImageResize.html"><code>ImageResize</code></a> plugin, which contains <strong>all</strong> needed features (<code>ImageResizeEditing</code>, <code>ImageResizeHandles</code>, <code>ImageResizeButtons</code>):</li>
+</ul>
+<pre class="highlight"><code class="js">import Image from &apos;@ckeditor/ckeditor5-image/src/image&apos;;
+import ImageResize from &apos;@ckeditor/ckeditor5-image/src/imageresize&apos;;
+
+ClassicEditor
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Image, ImageResize, ... ],
+        ...
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<ul>
+<li>Or by installing the combination of <a href="../api/module_image_imageresize_imageresizeediting-ImageResizeEditing.html"><code>ImageResizeEditing</code></a> and <a href="../api/module_image_imageresize_imageresizehandles-ImageResizeHandles.html"><code>ImageResizeHandles</code></a> plugins:</li>
+</ul>
+<pre class="highlight"><code class="js">import Image from &apos;@ckeditor/ckeditor5-image/src/image&apos;;
+import ImageResizeEditing from &apos;@ckeditor/ckeditor5-image/src/imageresize/imageresizeediting&apos;;
+import ImageResizeHandles from &apos;@ckeditor/ckeditor5-image/src/imageresize/imageresizehandles&apos;;
+
+ClassicEditor
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Image, ImageResizeEditing, ImageResizeHandles, ... ],
+        ...
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<p>Both ways enable resize handles by default.</p>
+<h4 id="using-resize-dropdown"><a class="headerlink" href="#using-resize-dropdown">#</a> Using resize dropdown</h4>
+<p>In this case, the user is able to choose from a set of predefined options. These options can be displayed in form of a dropdown in the image toolbar available after the user clicks the image.</p>
+<p>To use this option, you need to <a href="#enabling-image-resizing">enable image resizing</a> and configure the available <a href="../api/module_image_image-ImageConfig.html#member-resizeOptions">resize options</a>. Then add the dropdown to the image toolbar configuration.</p>
+<pre class="highlight"><code class="js">const imageConfiguration = {
+    resizeOptions: [
+        {
+            name: &apos;resizeImage:original&apos;,
+            value: null,
+            label: &apos;Original&apos;
+        },
+        {
+            name: &apos;resizeImage:50&apos;,
+            value: &apos;50&apos;,
+            label: &apos;50%&apos;
+        },
+        {
+            name: &apos;resizeImage:75&apos;,
+            value: &apos;75&apos;,
+            label: &apos;75%&apos;
+        }
+    ],
+    toolbar: [ ..., &apos;resizeImage&apos; ]
+}
+</code></pre>
+<p>Try out the live demo of the resize dropdown available in the image toolbar below.</p>
+<div class="live-snippet"><div id="snippet-image-resize-buttons-dropdown">
+	<p>Click me and resize using the contextual toolbar!</p>
+
+	<figure class="image">
+		<img src="../assets/img/fields.jpg" alt="Autumn fields">
+		<figcaption>Autumn fields by Aleksander Nowodziński</figcaption>
+	</figure>
+</div>
+</div>
+<h4 id="using-standalone-resize-buttons"><a class="headerlink" href="#using-standalone-resize-buttons">#</a> Using standalone resize buttons</h4>
+<p>In this case, the resize options are displayed in the form of separate buttons. The benefit of this solution is the smoothest UX as the user needs just one click to resize an image.</p>
+<p>To use this option, you need to <a href="#enabling-image-resizing">enable image resizing</a> and configure the available <a href="../api/module_image_image-ImageConfig.html#member-resizeOptions">resize options</a>. Then add appropriate buttons to the image toolbar configuration.</p>
+<pre class="highlight"><code class="js">const imageConfiguration = {
+    resizeOptions: [
+        {
+            name: &apos;resizeImage:original&apos;,
+            value: null,
+            icon: &apos;original&apos;
+        },
+        {
+            name: &apos;resizeImage:50&apos;,
+            value: &apos;50&apos;,
+            icon: &apos;medium&apos;
+        },
+        {
+            name: &apos;resizeImage:75&apos;,
+            value: &apos;75&apos;,
+            icon: &apos;large&apos;
+        }
+    ],
+    toolbar: [
+        ...,
+        &apos;resizeImage:50&apos;,
+        &apos;resizeImage:75&apos;
+        &apos;resizeImage:original&apos;,
+    ]
+}
+</code></pre>
+<p>Try out the live demo of the individual resize buttons available in the image toolbar below:</p>
+<div class="live-snippet"><div id="snippet-image-resize-buttons">
+	<p>Click me and resize using the image toolbar buttons!</p>
+
+	<figure class="image">
+		<img src="../assets/img/fields.jpg" alt="Autumn fields">
+		<figcaption>Autumn fields by Aleksander Nowodziński</figcaption>
+	</figure>
+</div>
+</div>
+<h3 id="disabling-image-resize-handles"><a class="headerlink" href="#disabling-image-resize-handles">#</a> Disabling image resize handles</h3>
+<p>If, for some reason, you want to configure the editor in such a way that images can be resized only by buttons, you can do so by omitting the <a href="../api/module_image_imageresize_imageresizehandles-ImageResizeHandles.html"><code>ImageResizeHandles</code></a> plugin.</p>
+<p>As a result, your plugin setup should look like this: <code>plugins: [ &apos;ImageResizeEditing&apos;, &apos;ImageResizeButtons&apos;, ... ]</code> as opposed to <code>plugins: [ &apos;ImageResize&apos;, ... ]</code>.</p>
+<p>This will enable the image resize feature only by means of the chosen UI: either a <a href="#using-resize-dropdown">dropdown</a> or <a href="#using-standalone-resize-buttons">standalone buttons</a>) in the image toolbar.</p>
+<pre class="highlight"><code class="js">import Image from &apos;@ckeditor/ckeditor5-image/src/image&apos;;
+import ImageToolbar from &apos;@ckeditor/ckeditor5-image/src/imagetoolbar&apos;;
+import ImageResizeEditing from &apos;@ckeditor/ckeditor5-image/src/imageresize/imageresizeedititing&apos;;
+import ImageResizeButtons from &apos;@ckeditor/ckeditor5-image/src/imageresize/imageresizebuttons&apos;;
+
+ClassicEditor
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Image, ImageResizeEditing, ImageResizeButtons, ImageToolbar, ... ],
+        image: {
+            resizeOptions: [
+            {
+                name: &apos;resizeImage:original&apos;,
+                value: null,
+                icon: &apos;original&apos;
+            },
+            {
+                name: &apos;resizeImage:50&apos;,
+                value: &apos;50&apos;,
+                icon: &apos;medium&apos;
+            },
+            {
+                name: &apos;resizeImage:75&apos;,
+                value: &apos;75&apos;,
+                icon: &apos;large&apos;
+            }
+        ],
+        toolbar: [
+            // ...,
+            &apos;resizeImage:50&apos;,
+            &apos;resizeImage:75&apos;,
+            &apos;resizeImage:original&apos;,
+        ]
+        }
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<h3 id="enabling-image-resizing"><a class="headerlink" href="#enabling-image-resizing">#</a> Enabling image resizing</h3>
+<p>The image resize feature is not enabled by default in any of the editor builds. In order to enable it, you need to load the <a href="../api/module_image_imageresize-ImageResize.html"><code>ImageResize</code></a> plugin. Read more in the <a href="#installation">Installation</a> section.</p>
+<h3 id="markup-and-styling"><a class="headerlink" href="#markup-and-styling">#</a> Markup and styling</h3>
+<p>When you resize an image, the inline <code>width</code> style is used and the <code>&lt;figure&gt;</code> element is assigned the <code>image_resized</code> class:</p>
+<pre class="highlight"><code class="html">&lt;figure class=&quot;image image_resized&quot; style=&quot;width: 75%;&quot;&gt;
+    &lt;img src=&quot;...&quot; alt=&quot;...&quot;&gt;
+&lt;/figure&gt;
+</code></pre>
+<p>The <code>image_resized</code> class is used to disable <code>max-width</code> assigned by the <a href="#image-styles">image styles</a> if one is applied to this image. For instance, the &#x201C;side image&#x201D; style is defined like this:</p>
+<pre class="highlight"><code class="css">.ck-content .image-style-side {
+    max-width: 50%;
+    float: right;
+    margin-left: var(--ck-image-style-spacing);
+}
+</code></pre>
+<p>And the <code>max-width</code> gets overridden by the following rule:</p>
+<pre class="highlight"><code class="css">.ck-content .image.image_resized {
+    max-width: 100%;
+}
+</code></pre>
+<p>Another concern when styling resized images is that by default, CKEditor 5 uses <code>display: table</code> on <code>&lt;figure class=&quot;image&quot;&gt;</code> elements to make it take up the size of the <code>&lt;img&gt;</code> element inside it. Unfortunately, <a href="https://stackoverflow.com/questions/4019604/chrome-safari-ignoring-max-width-in-table/14420691#14420691" target="_blank" rel="noopener">browsers do not yet support using <code>max-width</code> and <code>width</code> on the same element if it is styled with <code>display: table</code></a>. Therefore, <code>display: block</code> needs to be used when the image is resized:</p>
+<pre class="highlight"><code class="css">.ck-content .image.image_resized {
+    display: block;
+    box-sizing: border-box;
+}
+
+.ck-content .image.image_resized img {
+    width: 100%;
+}
+
+.ck-content .image.image_resized &gt; figcaption {
+    display: block;
+}
+</code></pre>
+<h3 id="using-pixels-instead-of-percentage-width"><a class="headerlink" href="#using-pixels-instead-of-percentage-width">#</a> Using pixels instead of percentage width</h3>
+<p>Using percentage widths ensures that the content stays responsive when displayed in places other than the WYSIWYG editor. When the user made an image take up, for example, 60% of the content&#x2019;s width in the editor, if you ever change the width of the target page (where this content is displayed), the image will still take up 60% of that space. The same is true if the page is responsive and adjusts to the viewport&#x2019;s width.</p>
+<p>If you configured the editor to use pixel values, the image could take up, for example, too much space after you introduced a new layout for your website.</p>
+<p>However, there are cases where pixel values may be preferred. You can thus configure the editor to use them by setting the <a href="../api/module_image_image-ImageConfig.html#member-resizeUnit"><code>config.image.resizeUnit</code></a> option:</p>
+<pre class="highlight"><code class="js">ClassicEditor
+    .create( editorElement, {
+        image: {
+            resizeUnit: &apos;px&apos;
+        }
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<p>Check out the difference in the live demo below:</p>
+<div class="live-snippet"><div id="snippet-image-resize-px">
+	<p>Resize me using pixel values!</p>
+
+	<figure class="image">
+		<img src="../assets/img/fields.jpg" alt="Autumn fields">
+		<figcaption>Autumn fields by Aleksander Nowodziński</figcaption>
+	</figure>
+
+	<p>Resized image (width: 400px):</p>
+
+	<figure class="image image_resized" style="width:400px;">
+		<img src="../assets/img/fields.jpg" alt="Autumn fields">
+	</figure>
+</div>
+</div>
+<h2 id="linking-images"><a class="headerlink" href="#linking-images">#</a> Linking images</h2>
+<p>The <a href="../api/module_link_linkimage-LinkImage.html"><code>LinkImage</code></a> plugin adds support for linking images. Some use cases where this could be useful are:</p>
+<ul>
+<li>Linking to a high-resolution version of an image.</li>
+<li>Using images as thumbnails linking to an article or product page.</li>
+<li>Creating banners linking to other pages.</li>
+</ul>
+<p>The image link can be added or edited via the image toolbar. An icon in top right corner of the image indicates the presence of a link.</p>
+<pre class="highlight"><code class="html">&lt;figure class=&quot;image&quot;&gt;
+    &lt;a href=&quot;...&quot;&gt;
+        &lt;img src=&quot;...&quot; alt=&quot;...&quot;&gt;
+    &lt;/a&gt;
+    &lt;figcaption&gt;Image caption&lt;/figcaption&gt;
+&lt;/figure&gt;
+</code></pre>
+<p>Use the link icon in the image toolbar to access the edit options for links on image.</p>
+<div class="live-snippet"><div id="snippet-image-link">
+	<p>Linked image - use the contextual toolbar to edit image link properties:</p>
+
+	<figure class="image">
+		<a href="https://cksource.com/">
+			<img src="../assets/img/fields.jpg" alt="Autumn fields">
+		</a>
+	</figure>
+</div>
+</div>
+<h3 id="enabling-image-linking"><a class="headerlink" href="#enabling-image-linking">#</a> Enabling image linking</h3>
+<p>The image linking feature is not enabled by default in any of the editor builds. In order to enable it, you need to load the <a href="../api/module_link_linkimage-LinkImage.html"><code>LinkImage</code></a> plugin. Read more in the <a href="#installation">Installation</a> section.</p>
+<div class="info-box notice notice__info"><p>The <a href="../api/module_link_linkimage-LinkImage.html"><code>LinkImage</code></a> plugin is available in the <a href="../api/link.html"><code>@ckeditor/ckeditor5-link</code></a> package.</p></div>
+<h2 id="installation"><a class="headerlink" href="#installation">#</a> Installation</h2>
+<p>To add image features to your rich-text editor, install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-image" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-image</code></a> package:</p>
+<pre class="highlight"><code class="plaintext">npm install --save @ckeditor/ckeditor5-image @ckeditor/ckeditor5-link
+</code></pre>
+<p>Next add the plugins that you need to your plugin list. You also need to set the desired image toolbar items.</p>
+<pre class="highlight"><code class="js">import Image from &apos;@ckeditor/ckeditor5-image/src/image&apos;;
+import ImageToolbar from &apos;@ckeditor/ckeditor5-image/src/imagetoolbar&apos;;
+import ImageCaption from &apos;@ckeditor/ckeditor5-image/src/imagecaption&apos;;
+import ImageStyle from &apos;@ckeditor/ckeditor5-image/src/imagestyle&apos;;
+import ImageResize from &apos;@ckeditor/ckeditor5-image/src/imageresize&apos;;
+import LinkImage from &apos;@ckeditor/ckeditor5-link/src/linkimage&apos;;
+
+ClassicEditor
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Image, ImageToolbar, ImageCaption, ImageStyle, ImageResize, LinkImage ],
+        image: {
+            toolbar: [
+                &apos;imageStyle:full&apos;,
+                &apos;imageStyle:side&apos;,
+                &apos;|&apos;,
+                &apos;imageTextAlternative&apos;,
+                &apos;|&apos;,
+                &apos;linkImage&apos;
+            ]
+        }
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<div class="info-box notice notice__info"><p>Read more about <a href="../builds/guides/integration/installing-plugins.html">installing plugins</a>.</p></div>
+<h2 id="common-api"><a class="headerlink" href="#common-api">#</a> Common API</h2>
+<p>The <a href="../api/module_image_image-Image.html"><code>Image</code></a> plugin registers:</p>
+<ul>
+<li>The <code>&apos;imageTextAlternative&apos;</code> button.</li>
+<li>The <a href="../api/module_image_imagetextalternative_imagetextalternativecommand-ImageTextAlternativeCommand.html"><code>&apos;imageTextAlternative&apos;</code> command</a></li>
+<li>The <a href="../api/module_image_image_insertimagecommand-InsertImageCommand.html"><code>&apos;insertImage&apos;</code> command</a> that accepts a source (e.g. a URL) of an image to insert.</li>
+</ul>
+<p>The <a href="../api/module_image_imagestyle-ImageStyle.html"><code>ImageStyle</code></a> plugin registers:</p>
+<ul>
+<li>
+<p>A button for each defined style, for example: <code>&apos;imageStyle:full&apos;</code> and <code>&apos;imageStyle:side&apos;</code>.</p>
+</li>
+<li>
+<p>The <a href="../api/module_image_imagestyle_imagestylecommand-ImageStyleCommand.html"><code>&apos;imageStyle&apos;</code> command</a> that accepts a value based on the <a href="../api/module_image_image-ImageConfig.html#member-styles"><code>image.styles</code></a> configuration option (for example, <code>&apos;full&apos;</code> and <code>&apos;side&apos;</code>):</p>
+<pre class="highlight"><code class="js">editor.execute( &apos;imageStyle&apos;, { value: &apos;side&apos; } );
+</code></pre>
+</li>
+</ul>
+<p>The <a href="../api/module_image_imageupload-ImageUpload.html"><code>ImageUpload</code></a> plugin registers:</p>
+<ul>
+<li>The <code>&apos;uploadImage&apos;</code> button that opens the native file browser to let you upload a file directly from your disk.</li>
+<li>The <a href="../api/module_image_imageupload_uploadimagecommand-UploadImageCommand.html"><code>&apos;uploadImage&apos;</code> command</a> that accepts the file to upload.</li>
+</ul>
+<p>The <a href="../api/module_image_imageresize-ImageResize.html"><code>ImageResize</code></a> plugin registers:</p>
+<ul>
+<li>The <a href="../api/module_image_imageresize_resizeimagecommand-ResizeImageCommand.html"><code>&apos;resizeImage&apos;</code> command</a> that accepts the target width.</li>
+</ul>
+<div class="info-box notice"><p>We recommend using the official <a href="../framework/guides/development-tools.html#ckeditor-5-inspector">CKEditor 5 inspector</a> for development and debugging. It will give you tons of useful information about the state of the editor such as internal data structures, selection, commands, and many more.</p></div>
+<h2 id="contribute"><a class="headerlink" href="#contribute">#</a> Contribute</h2>
+<p>The source code of the feature is available on GitHub in <a href="https://github.com/ckeditor/ckeditor5/tree/master/packages/ckeditor5-image" target="_blank" rel="noopener">https://github.com/ckeditor/ckeditor5/tree/master/packages/ckeditor5-image</a>.</p>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li><a href="autoformat.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Autoformatting</span></div></a></li>
+                          <li><a href="text-transformation.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Automatic text transformation</span></div></a></li>
+                          <li><a href="basic-styles.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic text styles</span></div></a></li>
+                          <li><a href="indent.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block indentation</span></div></a></li>
+                          <li><a href="block-quote.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block quote</span></div></a></li>
+                          <li><a href="code-blocks.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Code blocks</span></div></a></li>
+                          <li><a href="title.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document title</span></div></a></li>
+                          <li><a href="editor-placeholder.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor placeholder</span></div></a></li>
+                          <li><a href="font.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Font</span></div></a></li>
+                          <li><a href="headings.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Headings</span></div></a></li>
+                          <li><a href="highlight.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Highlight</span></div></a></li>
+                          <li><a href="horizontal-line.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Horizontal line</span></div></a></li>
+                          <li><a href="html-embed.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">HTML embed</span></div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Image upload</span></div>
+                            <ul class="tree__item-nested-list">
+                                    <li><a href="image-upload/image-upload.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="image-upload/easy-image.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Easy Image</span></div></a></li>
+                                    <li><a href="image-upload/ckfinder.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">CKFinder file manager</span></div></a></li>
+                                    <li><a href="image-upload/base64-upload-adapter.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Base64 upload adapter</span></div></a></li>
+                                    <li><a href="image-upload/simple-upload-adapter.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Simple upload adapter</span></div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="">
+                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Images</span></div></a></li>
+                          <li><a href="keyboard-support.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Keyboard support</span></div></a></li>
+                          <li><a href="link.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Link</span></div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Lists</span></div>
+                            <ul class="tree__item-nested-list">
+                                    <li><a href="lists/lists.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Ordered and unordered lists</span></div></a></li>
+                                    <li><a href="lists/todo-lists.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">To-do lists</span></div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="markdown.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Markdown output</span></div></a></li>
+                          <li><a href="math-equations.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Math and chemical formulas</span></div></a></li>
+                          <li><a href="media-embed.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Media embed</span></div></a></li>
+                          <li><a href="mentions.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Mentions</span></div></a></li>
+                          <li><a href="page-break.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Page break</span></div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Pasting</span></div>
+                            <ul class="tree__item-nested-list">
+                                    <li><a href="pasting/paste-from-word.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Word</span></div></a></li>
+                                    <li><a href="pasting/paste-from-google-docs.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Google Docs</span></div></a></li>
+                                    <li><a href="pasting/paste-plain-text.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste plain text</span></div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="read-only.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Read-only support</span></div></a></li>
+                          <li><a href="remove-format.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Remove formatting</span></div></a></li>
+                          <li><a href="restricted-editing.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Restricted editing</span></div></a></li>
+                          <li><a href="select-all.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Select all</span></div></a></li>
+                          <li><a href="special-characters.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Special characters</span></div></a></li>
+                          <li><a href="spelling-and-grammar-checking.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Spelling and grammar checking</span></div></a></li>
+                          <li><a href="table.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Tables</span></div></a></li>
+                          <li><a href="text-alignment.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Text alignment</span></div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Toolbar</span></div>
+                            <ul class="tree__item-nested-list">
+                                    <li><a href="toolbar/toolbar.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor toolbar</span></div></a></li>
+                                    <li><a href="toolbar/blocktoolbar.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block toolbar</span></div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="ui-language.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">UI language</span></div></a></li>
+                          <li><a href="watchdog.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Watchdog</span></div></a></li>
+                          <li><a href="word-count.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Word and character count</span></div></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2003-2021 <a href="http://cksource.com" target="_blank" rel="noopener">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'features' ] = hits.filter( function( h ) {return h.tags.includes( 'features' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'features' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'features' ] );tags.forEach( function( tag ) {if ( tag !== 'features' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+    <script src="../assets/snippet.js"></script>
+    <script src="../snippets/assets.js"></script>
+    <script src="../snippets/features/build-image-source/snippet.js"></script>
+    <script src="../snippets/features/image/snippet.js"></script>
+    <script src="../snippets/features/image-toolbar/snippet.js"></script>
+    <script src="../snippets/features/image-insert-via-url/snippet.js"></script>
+    <script src="../snippets/features/image-insert-via-pasting-url-into-editor/snippet.js"></script>
+    <script src="../snippets/features/image-style/snippet.js"></script>
+    <script src="../snippets/features/image-style-presentational/snippet.js"></script>
+    <script src="../snippets/features/image-resize/snippet.js"></script>
+    <script src="../snippets/features/image-resize-buttons-dropdown/snippet.js"></script>
+    <script src="../snippets/features/image-resize-buttons/snippet.js"></script>
+    <script src="../snippets/features/image-resize-px/snippet.js"></script>
+    <script src="../snippets/features/image-link/snippet.js"></script>
+  </body>
+</html>
