@@ -257,7 +257,7 @@
 <ol>
 <li><a href="../../../api/module_clipboard_clipboardobserver-ClipboardObserver.html"><code>ClipboardObserver</code></a> turns that event into a synthetic <a href="../../../api/module_engine_view_document-Document.html#event-event:paste"><code>view.Document#paste</code></a> or <a href="../../../api/module_engine_view_document-Document.html#event-event:drop"><code>view.Document#drop</code></a>.</li>
 <li>Since the content to be inserted by both actions (paste and drop) should usually be processed in the same way and both actions have a very simillar effect, both events are turned into a single <a href="../../../api/module_engine_view_document-Document.html#event-event:clipboardInput"><code>view.Document#clipboardInput</code></a> event for easier handling.</li>
-<li>Next, the clipboard feature listens to the <code>view.Document#clipboardInput</code> event, retrieves and pre-processes the <code>text/html</code> or <code>text/plain</code> content which it finds in the <a href="../../../api/module_clipboard_datatransfer-DataTransfer.html">event&#x2019;s <code>dataTransfer</code></a> and fires the <a href="../../../api/module_clipboard_clipboard-Clipboard.html#event-event:inputTransformation"><code>Clipboard#inputTransformation</code></a> event with the retrieved content.</li>
+<li>Next, the clipboard feature listens to the <code>view.Document#clipboardInput</code> event, retrieves and pre-processes the <code>text/html</code> or <code>text/plain</code> content which it finds in the <a href="../../../api/module_clipboard_datatransfer-DataTransfer.html">event&#x2019;s <code>dataTransfer</code></a> and fires the <a href="../../../api/module_clipboard_clipboardpipeline-ClipboardPipeline.html#event-event:inputTransformation"><code>ClipboardPipeline#inputTransformation</code></a> event with the retrieved content.</li>
 <li>Finally, the clipboard feature listens to the <code>Clipboard#inputTransformation</code> event, takes the processed content and <a href="../../../api/module_engine_model_model-Model.html#function-insertContent">inserts</a> it into the editor.</li>
 </ol>
 <p>The clipboard feature listens to the <code>view.Document#clipboardInput</code> and <code>Clipboard#inputTransformation</code> events using low priority listeners. This means that adding a normal listener and calling <code>evt.stop()</code> allows overriding the behavior implemented by the clipboard feature. It is a similar mechanism to DOM&#x2019;s <code>evt.preventDefault()</code> that lets you override the default browser behavior.</p>
@@ -294,12 +294,12 @@
 </li>
 </ul>
 <h3 id="processing-input-content"><a class="headerlink" href="#processing-input-content">#</a> Processing input content</h3>
-<p>The <a href="../../../api/module_clipboard_clipboard-Clipboard.html#event-event:inputTransformation"><code>view.Document#inputTransformation</code></a> event lets you process the content which is going to be inserted into the editor.</p>
+<p>The <a href="../../../api/module_clipboard_clipboardpipeline-ClipboardPipeline.html#event-event:inputTransformation"><code>view.Document#inputTransformation</code></a> event lets you process the content which is going to be inserted into the editor.</p>
 <p>The default action is to <a href="../../../api/module_engine_model_model-Model.html#function-insertContent">insert</a> the content (<code>data.content</code>, represented by a <a href="../../../api/module_engine_view_documentfragment-DocumentFragment.html"><code>DocumentFragment</code></a>) to the editor if the data is not empty.</p>
 <p>At this stage the pasted content can be processed by the features. For example, a feature that wants to transform the pasted text into a link can be implemented in this way:</p>
 <pre class="highlight"><code class="js">const writer = new UpcastWriter( editor.editing.view.document );
 
-editor.plugins.get( &apos;Clipboard&apos; ).on( &apos;inputTransformation&apos;, ( evt, data ) =&gt; {
+editor.plugins.get( &apos;ClipboardPipeline&apos; ).on( &apos;inputTransformation&apos;, ( evt, data ) =&gt; {
     if ( data.content.childCount == 1 &amp;&amp; isUrlText( data.content.getChild( 0 ) ) ) {
         const linkUrl = data.content.getChild( 0 ).data;
 
@@ -314,7 +314,7 @@ editor.plugins.get( &apos;Clipboard&apos; ).on( &apos;inputTransformation&apos;,
 } );
 </code></pre>
 <p>The default action (inserting the content into the editor) is performed by a low priority listener, so it can be overridden by a normal one. With the <code>lowest</code> priority you can also execute actions after the content was already inserted.</p>
-<pre class="highlight"><code class="js">editor.plugins.get( &apos;Clipboard&apos; ).on( &apos;inputTransformation&apos;, ( evt, data ) =&gt; {
+<pre class="highlight"><code class="js">editor.plugins.get( &apos;ClipboardPipeline&apos; ).on( &apos;inputTransformation&apos;, ( evt, data ) =&gt; {
     console.log( &apos;Content was inserted.&apos; );
 }, { priority: &apos;lowest&apos; } );
 </code></pre>
@@ -349,7 +349,7 @@ class PastePlainText extends Plugin {
         editor.commands.add( &apos;pastePlainText&apos;, new PastePlainTextCommand( editor ) );
 
         // Logic responsible for converting HTML to plain text.
-        const clipboardPlugin = editor.plugins.get( &apos;Clipboard&apos; );
+        const clipboardPlugin = editor.plugins.get( &apos;ClipboardPipeline&apos; );
         const command = editor.commands.get( &apos;pastePlainText&apos; );
         const editingView = editor.editing.view;
 

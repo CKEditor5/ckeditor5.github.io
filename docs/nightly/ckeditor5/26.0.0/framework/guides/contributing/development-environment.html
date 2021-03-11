@@ -243,7 +243,7 @@
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../../assets/1.6.5/img/book.svg" alt="guide">Development environment
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#requirements">Requirements</a></li><li><a href="#setting-up-the-ckeditor-development-environment">Setting up the CKEditor development environment</a></li><li><a href="#running-tests">Running tests</a></li><li><a href="#generating-documentation">Generating documentation</a><ol><li><a href="#verifying-documentation">Verifying documentation</a></li></ol></li><li><a href="#generating-content-styles">Generating content styles</a></li><li><a href="#additional-information-for-contributors">Additional information for contributors</a><ol><li><a href="#svg-icons">SVG icons</a></li></ol></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#requirements">Requirements</a></li><li><a href="#setting-up-the-ckeditor-development-environment">Setting up the CKEditor development environment</a></li><li><a href="#running-tests">Running tests</a></li><li><a href="#generating-documentation">Generating documentation</a><ol><li><a href="#verifying-documentation">Verifying documentation</a><ol><li><a href="#defining-exclusions-for-web-crawler">Defining exclusions for web crawler</a></li></ol></li></ol></li><li><a href="#generating-content-styles">Generating content styles</a></li><li><a href="#additional-information-for-contributors">Additional information for contributors</a><ol><li><a href="#svg-icons">SVG icons</a></li></ol></li></ol></nav>
 <p>The CKEditor 5 codebase is divided into multiple <a href="http://npmjs.com/" target="_blank" rel="noopener">npm</a> packages. The main package is <a href="https://github.com/ckeditor/ckeditor5" target="_blank" rel="noopener"><code>ckeditor5</code></a> which installs all project dependencies and various development-related resources such as:</p>
 <ul>
 <li>the testing environment setup,</li>
@@ -333,13 +333,94 @@ cd ckeditor5
 <pre class="highlight"><code class>yarn run docs:verify
 </code></pre>
 <div class="info-box notice"><p>By default, the crawler scans <code>http://fake.ckeditor.com:8080</code>, so you need to adjust your hosts file first.</p></div>
-<p>This script collects and opens all links from the documentation, except the API and assets.</p>
-<p>The web crawler accepts the following arguments:</p>
+<p>The crawler collects and opens all links from the documentation, except the API and assets.</p>
+<p>The crawler accepts the following arguments:</p>
 <ul>
-<li><code>--url</code>, <code>-u</code> &#x2013; The URL to start crawling. This argument is required. Thanks to it you can verify e.g. a deployed documentation.</li>
-<li><code>--depth</code>, <code>-d</code> &#x2013; Defines how many nested page levels should be examined. Infinity by default.</li>
-<li><code>--exclude</code>, <code>-e</code> &#x2013; A comma-separated string with URL exclusions &#x2013; links that match the excluded part are skipped. Nothing is excluded by default.</li>
+<li><code>--url</code> (alias <code>-u</code>) &#x2013; The URL to start crawling. This argument is required. Thanks to it you can verify e.g. a deployed documentation.</li>
+<li><code>--depth</code> (alias <code>-d</code>) &#x2013; A number that defines how many nested page levels should be examined. Infinity by default.</li>
+<li><code>--exclude</code> (alias <code>-e</code>) &#x2013; A string with URL exclusion &#x2013; links that match the excluded part are skipped. You can define multiple exclusions by providing multiple <code>--exclude</code> (or <code>-e</code>) arguments. Not specifying a value removes default exclusions, if any. Nothing is excluded by default, but the <code>docs:verify</code> script has some predefined ones.</li>
+<li><code>--concurrency</code> (alias <code>-c</code>) &#x2013; Number of concurrent pages (browser tabs) to be used during the scan. By default all links are opened one by one, sequentially (concurrency is 1).</li>
+<li><code>--quit</code> (alias <code>-q</code>) &#x2013; A boolean argument that specifies, whether the scan should be terminated as soon as the first error is found. Disabled by default, so all found links are scanned regardless of whether they have errors or not.</li>
 </ul>
+<p>For example, to check the documentation without the default exclusions (the API and assets links), using only 2 concurrent pages and terminate the scan as soon as first error is found, run this command:</p>
+<pre class="highlight"><code class>yarn run docs:verify -e -c 2 -q
+</code></pre>
+<h4 id="defining-exclusions-for-web-crawler"><a class="headerlink" href="#defining-exclusions-for-web-crawler">#</a> Defining exclusions for web crawler</h4>
+<p>The crawler supports exclusions provided as text patterns, which are then searched for in the error messages as substrings. This pattern is just a plain text, not a regular expression. When a pattern (substring) is found, such an error is ignored - it is not listed after the finished scan and it does not mark the entire scan as failed. Only non-ignored errors are logged at the end of the scan.</p>
+<p>The pattern for ignoring an error must be defined in <code>&lt;meta&gt;</code> tag on a page, where an error occurs. This <code>&lt;meta&gt;</code> tag must have <code>x-cke-crawler-ignore-patterns</code> name and <code>content</code> value provided as JSON object, where:</p>
+<ul>
+<li>Each key is the error type, that can be detected by the crawler.</li>
+<li>Each value is the text or an array of texts, that are used for finding a match in error messages. The special wildcard value <code>*</code> can be used to ignore all errors for given error type.</li>
+</ul>
+<p>The following error types are supported: <code>uncaught-exception</code>, <code>request-failure</code>, <code>response-failure</code>, <code>console-error</code>, <code>navigation-error</code> and <code>page-crash</code>:</p>
+<ul>
+<li><code>uncaught-exception</code> &#x2013; As the name suggests, these are uncaught exceptions from the page.</li>
+<li><code>request-failure</code> &#x2013; This error occurs, when the request has not been sent (e.g. it was blocked by the browser) or has not received any response (e.g. due to a timeout or in case the remote server is unreachable). HTTP error responses, such as 404 or 500, are considered as successful ones from HTTP standpoint, so such requests will not be logged as request failures, but as response failures.</li>
+<li><code>response-failure</code> &#x2013; Each HTTP response with status code equal or greater than 400 is treated as failed one.</li>
+<li><code>console-error</code> &#x2013; All <code>console.error()</code> calls are treated as an error.</li>
+<li><code>navigation-error</code> &#x2013; The navigation error may happen, when:
+<ul>
+<li>there&#x2019;s an SSL error (e.g. in case of self-signed certificate or expired one),</li>
+<li>target URL is invalid,</li>
+<li>the timeout is exceeded during navigation to a page, so the <code>load</code> event is not emmited (e.g. due to an infinite loop in the JavaScript code).</li>
+</ul>
+</li>
+<li><code>page-crash</code> &#x2013; The general page malfunction, that does not fit to other categories (e.g. running out of a RAM).</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Error&#xA0;type</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>uncaught-exception</code></td>
+<td><code>&quot;uncaught-exception&quot;: &quot;ckeditor-duplicated-modules&quot;</code><br> This pattern ignores only the <code>ckeditor-duplicated-modules</code> exception.</td>
+</tr>
+<tr>
+<td><code>request-failure</code></td>
+<td><code>&quot;request-failure&quot;: &quot;missing-file.jpg&quot;</code><br> All requests containing the <code>missing-file.jpg</code> in the URL are ignored.</td>
+</tr>
+<tr>
+<td><code>response-failure</code></td>
+<td><code>&quot;response-failure&quot;: &quot;HTTP response status code: 401&quot;</code><br> All requests requiring authorization are ignored.</td>
+</tr>
+<tr>
+<td><code>console-error</code></td>
+<td><code>&quot;console-error&quot;: &quot;Example error message&quot;</code><br> All console errors containing &#x201C;Example error message&#x201D; substring are ignored.</td>
+</tr>
+<tr>
+<td><code>navigation-error</code></td>
+<td><code>&quot;navigation-error&quot;: &quot;Navigation timeout of 15000 ms exceeded&quot;</code><br> Links, which are not completely loaded, are ignored.</td>
+</tr>
+<tr>
+<td><code>page-crash</code></td>
+<td><code>&quot;page-crash&quot;: &quot;Error: Page crashed!&quot;</code><br> This general text pattern ignores all page crashes.</td>
+</tr>
+</tbody>
+</table>
+<p>These patterns are simply added as keys and values in a JSON object to the <code>&lt;meta&gt;</code> tag on a page, where they should be active:</p>
+<pre class="highlight"><code class="html">&lt;meta name=&quot;x-cke-crawler-ignore-patterns&quot; content=&apos;{
+    &quot;page-crash&quot;: &quot;Error: Page crashed!&quot;,
+    &quot;uncaught-exception&quot;: &quot;ckeditor-duplicated-modules&quot;,
+    &quot;console-error&quot;: &quot;Example error message&quot;
+}&apos;&gt;
+</code></pre>
+<p>Please note that the pattern (regardless of the type of error) does not have to be a string, but can also be defined as an array of strings (patterns) to ignore many different errors:</p>
+<pre class="highlight"><code class="html">&lt;meta name=&quot;x-cke-crawler-ignore-patterns&quot; content=&apos;{
+    &quot;console-error&quot;: [ &quot;Error 1&quot;, &quot;Error 2&quot;, &quot;Error 3&quot; ]
+}&apos;&gt;
+</code></pre>
+<p>To ignore all errors, use the special wildcard value <code>*</code>:</p>
+<pre class="highlight"><code class="html">&lt;meta name=&quot;x-cke-crawler-ignore-patterns&quot; content=&apos;{
+    &quot;console-error&quot;: &quot;*&quot;
+}&apos;&gt;
+</code></pre>
+<p>In addition to the possibility of defining exclusions in the <code>&lt;meta&gt;</code> tag, it is also possible to specify that the link cannot be visited by the crawler by adding a <code>data-cke-crawler-skip</code> attribute:</p>
+<pre class="highlight"><code class="html">&lt;a href=&quot;path/to/page&quot; data-cke-crawler-skip&gt;No entry for crawler, sorry&lt;/a&gt;
+</code></pre>
 <h2 id="generating-content-styles"><a class="headerlink" href="#generating-content-styles">#</a> Generating content styles</h2>
 <p>It is possible to generate a stylesheet containing content styles brought by all CKEditor 5 features. In order to do that, execute:</p>
 <pre class="highlight"><code class>yarn docs:content-styles
