@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/1.6.5/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../assets/1.6.6/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../../../snippets/framework/tutorials/using-react-in-widget/snippet.css" type="text/css" data-cke="true">
     <link rel="stylesheet" href="../../../assets/snippet-styles.css" type="text/css" data-cke="true">
@@ -36,16 +36,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../assets/1.6.5/scripts";
+      	window.umberto.relativeAppPath = "../../../../../assets/1.6.6/scripts";
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../assets/1.6.5/scripts/app.js";
+      		el.src = "../../../../../assets/1.6.6/scripts/app.js";
       	} else {
-      		el.src = "../../../../../assets/1.6.5/scripts/app-polyfill.js";
+      		el.src = "../../../../../assets/1.6.6/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -87,7 +87,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../assets/1.6.5/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../assets/1.6.6/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -241,11 +241,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/tutorials/using-react-in-a-widget.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../../../assets/1.6.5/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/framework/guides/tutorials/using-react-in-a-widget.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../../../assets/1.6.6/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../assets/1.6.5/img/book.svg" alt="guide">Using a React component in a block widget
+          <h1 class="main__content-title"><img src="../../../../../assets/1.6.6/img/book.svg" alt="guide">Using a React component in a block widget
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#before-you-start">Before you start</a></li><li><a href="#lets-start">Let&#x2019;s start</a></li><li><a href="#application-structure">Application structure</a></li><li><a href="#ckeditor-classes">CKEditor classes</a><ol><li><a href="#editing-plugin">Editing plugin</a></li><li><a href="#command">Command</a></li></ol></li><li><a href="#react-components">React components</a><ol><li><a href="#product-list">Product list</a></li><li><a href="#product-preview">Product preview</a></li><li><a href="#main-application-component">Main application component</a></li></ol></li><li><a href="#styles-and-assets">Styles and assets</a></li><li><a href="#demo">Demo</a></li><li><a href="#full-source-code">Full source code</a><ol><li><a href="#appjs">app.js</a></li><li><a href="#productprevieweditingjs">productpreviewediting.js</a></li><li><a href="#insertproductpreviewcommandjs">insertproductpreviewcommand.js</a></li><li><a href="#productlistjs">productlist.js</a></li><li><a href="#productpreviewjs">productpreview.js</a></li><li><a href="#indexhtml">index.html</a></li></ol></li></ol></nav>
 <p>In this tutorial, you will learn how to implement an editor plugin that uses the power of the <a href="https://reactjs.org/" target="_blank" rel="noopener">React</a> library inside the CKEditor 5 widget ecosystem. You will build a &#x201C;Product preview&#x201D; feature which renders an actual React component inside the editor to display some useful information about the product.</p>
 <p>Later on, you will use the &#x201C;Product preview&#x201D; feature to build a simple React application that displays an editor next to the list of available products, allowing the user to insert the product into the editor content by clicking it on the list.</p>
