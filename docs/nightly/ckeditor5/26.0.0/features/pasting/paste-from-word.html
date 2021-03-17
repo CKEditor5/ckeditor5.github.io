@@ -240,7 +240,7 @@
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Features</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../assets/1.6.6/img/book.svg" alt="guide">Pasting content from Microsoft Word
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#related-features">Related features</a></li><li><a href="#automatic-content-filtering">Automatic content filtering</a></li><li><a href="#installation">Installation</a></li><li><a href="#support-for-other-applications">Support for other applications</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#related-features">Related features</a></li><li><a href="#automatic-content-filtering">Automatic content filtering</a></li><li><a href="#installation">Installation</a></li><li><a href="#support-for-other-applications">Support for other applications</a></li><li><a href="#known-issues">Known issues</a></li></ol></nav>
 
 <p>The Paste from Word feature is provided through the <a href="../../api/module_paste-from-office_pastefromoffice-PasteFromOffice.html"><code>PasteFromOffice</code></a> plugin.</p>
 <p>This feature allows you to paste content from Microsoft Word and maintain the original structure and formatting. After creating a document in Microsoft Word you can simply copy it to CKEditor 5 and retain basic text styling, heading levels, links, lists, tables and images.</p>
@@ -279,13 +279,17 @@ ClassicEditor
 <p>At the current stage, the focus of the <code>@ckeditor/ckeditor5-paste-from-office</code> package is on supporting content that comes from Microsoft Word and <a href="paste-from-google-docs.html">Google Docs</a>. However, it does not mean that pasting from other similar applications (such as Microsoft Excel) is not supported.</p>
 <p>By default, CKEditor 5 will support pasting rich-text content from these applications, however, some styles and formatting may be lost, depending on the source application. Also, other minor bugs may appear.</p>
 <p>You can find more information regarding compatibility with other applications in <a href="https://github.com/ckeditor/ckeditor5/issues/1184#issuecomment-409828069" target="_blank" rel="noopener">this ticket</a>.</p>
-<p>If you think that support for any of the applications needs improvements, please add &#x1F44D; and comments in the following issues:</p>
+<p>If you think that support for any of the applications needs improvements, please add &#x1F44D;&#xA0; and comments in the following issues:</p>
 <ul>
 <li><a href="https://github.com/ckeditor/ckeditor5/issues/2513" target="_blank" rel="noopener">Support pasting from Excel</a>.</li>
 <li><a href="https://github.com/ckeditor/ckeditor5/issues/2520" target="_blank" rel="noopener">Support pasting from Libre Office</a>.</li>
 <li><a href="https://github.com/ckeditor/ckeditor5/issues/2527" target="_blank" rel="noopener">Support pasting from Pages</a>.</li>
 </ul>
 <p>Feel free to open a <a href="https://github.com/ckeditor/ckeditor5/issues/new/choose" target="_blank" rel="noopener">new feature request</a> for other similar applications, too!</p>
+<h2 id="known-issues"><a class="headerlink" href="#known-issues">#</a> Known issues</h2>
+<p>If the pasted document contains both images and styled text (e.g. headings), it may happen that the images are not pasted properly. Unfortunately, for some operating system, browser and Word versions the image data is not available in the clipboard in this case.</p>
+<p>It is advised to try and paste the image separately from the body of the text if this error occurs.</p>
+<p>If the image is represented in the Word content by the VML syntax (like this one: <code>&lt;v:shape&gt;&lt;v:imagedata src=&quot;....&quot;/&gt;&lt;/v:shape&gt;</code>), it will not be pasted either as this notation is not supported by CKEditor 5. If you&#x2019;d like to see this feature implemented, add a &#x1F44D;&#xA0; reaction to <a href="https://github.com/ckeditor/ckeditor5/issues/9245" target="_blank" rel="noopener">this GitHub issue</a>.</p>
 
         </div>
       </section>

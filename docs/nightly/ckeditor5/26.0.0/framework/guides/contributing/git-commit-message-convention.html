@@ -243,7 +243,7 @@
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../../assets/1.6.6/img/book.svg" alt="guide">Git commit message convention
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#convention">Convention</a><ol><li><a href="#commit-types">Commit types</a></li><li><a href="#package-name">Package name</a></li><li><a href="#example-commits">Example commits</a></li></ol></li><li><a href="#handling-pull-requests">Handling pull requests</a><ol><li><a href="#giving-credit">Giving credit</a></li></ol></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#convention">Convention</a><ol><li><a href="#commit-types">Commit types</a></li><li><a href="#package-name">Package name</a></li><li><a href="#order-of-entries">Order of entries</a></li><li><a href="#examples-of-correct-and-incorrect-message-formatting">Examples of correct and incorrect message formatting</a></li><li><a href="#example-commits">Example commits</a></li></ol></li><li><a href="#handling-pull-requests">Handling pull requests</a><ol><li><a href="#giving-credit">Giving credit</a></li></ol></li></ol></nav>
 <p>Every commit made <em>directly</em> to the <code>master</code> branch must follow the convention below. Based on commits in the <code>master</code> branch CKEditor 5 release tools will generate changelog entries for the current release.</p>
 <div class="info-box notice"><p>Commits in the ticket branches are not analyzed for the changelog and do not have to follow any specific convention (other than finishing sentences with periods). In case of ticket branches, <strong>only merge commits are analyzed</strong>.</p><p>Therefore, this guide is mainly targeted at core team members. However, it may help you understand how to write a suggested commit message when creating a pull request for CKEditor 5.</p></div>
 <h2 id="convention"><a class="headerlink" href="#convention">#</a> Convention</h2>
@@ -254,8 +254,8 @@ Type (another-package-name): If the change affects more than one package, it&apo
 
 Optional description.
 
-BREAKING CHANGE (package-name): If any breaking changes were done, they need to be listed here.
-BREAKING CHANGE (package-name): Another breaking change if needed. Closes #ZZZ.
+MAJOR BREAKING CHANGE (package-name): If any breaking changes were done, they need to be listed here.
+MINOR BREAKING CHANGE (package-name): Another breaking change if needed. Closes #ZZZ.
 </code></pre>
 <h3 id="commit-types"><a class="headerlink" href="#commit-types">#</a> Commit types</h3>
 <table>
@@ -320,17 +320,47 @@ BREAKING CHANGE (package-name): Another breaking change if needed. Closes #ZZZ.
 </table>
 <p>Each commit can contain additional notes that will be inserted into the changelog:</p>
 <ul>
-<li><code>MAJOR BREAKING CHANGE</code> (alias: <code>BREAKING CHANGE</code>),</li>
+<li><code>MAJOR BREAKING CHANGE</code>,</li>
 <li><code>MINOR BREAKING CHANGE</code>.</li>
 </ul>
-<p>If any change contains the <code>MAJOR BREAKING CHANGE</code> note, the next release will be marked as <code>major</code> automatically.</p>
+<p>If any change contains the <code>MAJOR BREAKING CHANGE</code> note, the next release will automatically be marked as <code>major</code>.</p>
 <p>For reference on how to identify minor or major breaking change see the <a href="../support/versioning-policy.html">versioning policy guide</a>.</p>
-<p>Each <code>BREAKING CHANGE</code> note must be followed by the package name.</p>
+<p>Each <code>MAJOR BREAKING CHANGE</code> or <code>MINOR BREAKING CHANGE</code> note must be followed by the package name.</p>
+<div class="info-box notice"><p>Remember to always specify whether the breaking change is major or minor. If you fail to do so, the system will assume all unspecified breaking changes are major.</p></div>
 <h3 id="package-name"><a class="headerlink" href="#package-name">#</a> Package name</h3>
 <p>Most commits are related to one or more packages. Each affected package should be listed in parenthesis following the commit type. A package that was the most impacted by the change should be listed first.</p>
 <p>It is, however, possible to skip this part if many packages are affected. This usually indicates a generic change. In this case having all the packages listed would reduce the changelog readability.</p>
-<p>The package name is based on the npm package name, however, it has the <code>@ckeditor/ckeditor(5)-</code> prefix stripped.</p>
+<p>The package name is based on the npm package name, however, it has the <code>@ckeditor/ckeditor5-</code> prefix stripped.</p>
 <p>If your change is related to the main package only, use <code>ckeditor5</code> as the package name.</p>
+<div class="info-box notice"><p>If the commit introduces a breaking change across the entire project (a generic change), the package name does not have to be specified.</p></div>
+<h3 id="order-of-entries"><a class="headerlink" href="#order-of-entries">#</a> Order of entries</h3>
+<p>The proper order of sections for a commit message is as follows:</p>
+<ul>
+<li>Entries that should be added to the changelog.</li>
+<li>Entries that will not be added to the changelog.</li>
+<li>Breaking change notes.</li>
+</ul>
+<p>All entries must be separated with a blank line, otherwise the lines will not be treated as separate entries.</p>
+<h3 id="examples-of-correct-and-incorrect-message-formatting"><a class="headerlink" href="#examples-of-correct-and-incorrect-message-formatting">#</a> Examples of correct and incorrect message formatting</h3>
+<p>Example of a proper commit message:</p>
+<pre class="highlight"><code class>Feature (package-name-1): Message 1.
+
+Fix (package-name-2): Message 2.
+
+Tests: A change across the entire project.
+</code></pre>
+<p>An example of an invalid commit message with incorrectly separated lines (the second line will just be treated as a part of the first line):</p>
+<pre class="highlight"><code class>Feature (package-name-1): Message 1.
+Fix (package-name-2): Message 2.
+Tests: Message 3.
+</code></pre>
+<p>An example of an invalid commit message with an incorrect section order (the &#x201C;internal&#x201D; message will be treated as a part of the breaking change message):</p>
+<pre class="highlight"><code class>Feature (package-name): Message 1.
+
+MINOR BREAKING CHANGE (package-name): A description.
+
+Internal: Message 2.
+</code></pre>
 <h3 id="example-commits"><a class="headerlink" href="#example-commits">#</a> Example commits</h3>
 <p>A new feature without any breaking changes.</p>
 <pre class="highlight"><code class>Feature (ui): Added support for RTL languages. Closes #1.
