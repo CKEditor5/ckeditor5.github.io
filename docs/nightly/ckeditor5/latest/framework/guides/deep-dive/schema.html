@@ -586,7 +586,7 @@ schema.register( &apos;$text&apos;, {
 <h2 id="defining-advanced-rules-in-checkchild-callbacks"><a class="headerlink" href="#defining-advanced-rules-in-checkchild-callbacks">#</a> Defining advanced rules in <code>checkChild()</code> callbacks</h2>
 <p>The <a href="../../../api/module_engine_model_schema-Schema.html#function-checkChild"><code>Schema#checkChild()</code></a> method which is the a base method used to check whether some element is allowed in a given structure is <a href="../../../api/module_utils_observablemixin-ObservableMixin.html#function-decorate">a decorated method</a>. It means that you can add listeners to implement your specific rules which are not limited by the <a href="../../../api/module_engine_model_schema-SchemaItemDefinition.html">declarative <code>SchemaItemDefinition</code> API</a>.</p>
 <p>These listeners can be added either by listening directly to the <a href="../../../api/module_engine_model_schema-Schema.html#event-checkChild"><code>event:checkChild</code></a> event or by using the handy <a href="../../../api/module_engine_model_schema-Schema.html#function-addChildCheck"><code>Schema#addChildCheck()</code></a> method.</p>
-<p>For instance, the block quote feature defines such a listener to disallow nested <code>&lt;blockQuote&gt;</code> structures:</p>
+<p>For instance, to disallow nested <code>&lt;blockQuote&gt;</code> structures, you can define such a listener:</p>
 <pre class="highlight"><code class="js">schema.addChildCheck( ( context, childDefinition ) =&gt; {
     // Note that the context is automatically normalized to a SchemaContext instance and
     // the child to its definition (SchemaCompiledItemDefinition).

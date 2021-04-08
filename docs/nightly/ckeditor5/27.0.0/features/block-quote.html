@@ -242,7 +242,7 @@
           <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
           </div>
           <h1 class="main__content-title"><img src="../../../assets/1.6.6/img/book.svg" alt="guide">Block quote
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#related-features">Related features</a></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#related-features">Related features</a></li><li><a href="#installation">Installation</a></li><li><a href="#disallowing-nesting-block-quotes">Disallowing nesting block quotes</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 <p>The <a href="../api/module_block-quote_blockquote-BlockQuote.html"><code>BlockQuote</code></a> feature allows you to easily include block quotations or pull quotes in the rich-text content. This provides an attractive way to draw the readers&#x2019; attention to selected parts of text. It also helps organize the content in a structured, elegant way and to manage the flow better.</p>
 <h2 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h2>
 <p>Use the editor below to see the block quote plugin in action. You can also precede the quotation with the <code>&gt;</code> inline code (followed by a space) to format it on the go thanks to the <a href="autoformat.html">autoformatting</a> feature.</p>
@@ -298,6 +298,28 @@ ClassicEditor
     .catch( ... );
 </code></pre>
 <div class="info-box notice notice__info"><p>Read more about <a href="../builds/guides/integration/installing-plugins.html">installing plugins</a>.</p></div>
+<h2 id="disallowing-nesting-block-quotes"><a class="headerlink" href="#disallowing-nesting-block-quotes">#</a> Disallowing nesting block quotes</h2>
+<p>By default, the editor supports a block quote inserted into another block quote.</p>
+<p>In order to disallow nesting block quotes you need to register an additional schema rule. It needs to be added before the data gets loaded into the editor, hence it is best to implement it as a plugin:</p>
+<pre class="highlight"><code class="js">function DisallowNestingBlockQuotes( editor ) {
+    editor.model.schema.addChildCheck( ( context, childDefinition ) =&gt; {
+        if ( context.endsWith( &apos;blockQuote&apos; ) &amp;&amp; childDefinition.name == &apos;blockQuote&apos; ) {
+            return false;
+        }
+    } );
+}
+
+// Pass it via config.extraPlugins or config.plugins:
+
+ClassicEditor
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        extraPlugins: [ DisallowNestingBlockQuotes ],
+
+        // The rest of the config.
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
 <h2 id="common-api"><a class="headerlink" href="#common-api">#</a> Common API</h2>
 <p>The <a href="../api/module_block-quote_blockquote-BlockQuote.html"><code>BlockQuote</code></a> plugin registers:</p>
 <ul>
