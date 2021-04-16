@@ -252,7 +252,7 @@
 <p>Schema rules can be defined by using the <a href="../../../api/module_engine_model_schema-Schema.html#function-register"><code>Schema#register()</code></a> or the <a href="../../../api/module_engine_model_schema-Schema.html#function-extend"><code>Schema#extend()</code></a> methods. The former can be used only once for a given item name which ensures that only a single editing feature can introduce this item. Similarly, <code>extend()</code> can only be used for defined items.</p>
 <p>Elements and attributes are checked by features separately by using the <a href="../../../api/module_engine_model_schema-Schema.html#function-checkChild"><code>Schema#checkChild()</code></a> and the <a href="../../../api/module_engine_model_schema-Schema.html#function-checkAttribute"><code>Schema#checkAttribute()</code></a> methods.</p>
 <h2 id="defining-allowed-structures"><a class="headerlink" href="#defining-allowed-structures">#</a> Defining allowed structures</h2>
-<p>When a feature introduces a model element, it should register it in the schema. Besides defining that such an element may exist in the model, the feature also needs to define where this element can be placed:</p>
+<p>When a feature introduces a model element, it should register it in the schema. Besides defining that such an element may exist in the model, the feature also needs to define where this element can be placed. This information is provided by the <a href="../../../api/module_engine_model_schema-SchemaItemDefinition.html#member-allowIn"><code>allowIn</code></a> property of the <a href="../../../api/module_engine_model_schema-SchemaItemDefinition.html"><code>SchemaItemDefinition</code></a>:</p>
 <pre class="highlight"><code class="js">schema.register( &apos;myElement&apos;, {
     allowIn: &apos;$root&apos;
 } );
@@ -264,12 +264,27 @@
 &lt;/$root&gt;
 </code></pre>
 <p>While this would be incorrect:</p>
-<pre class="highlight"><code class="js">&lt;$root&gt;
+<pre class="highlight"><code class="xml html">&lt;$root&gt;
     &lt;foo&gt;
         &lt;myElement&gt;&lt;/myElement&gt;
     &lt;/foo&gt;
 &lt;/$root&gt;
 </code></pre>
+<p>To declare which nodes could be inside the registered element, the <a href="../../../api/module_engine_model_schema-SchemaItemDefinition.html#member-allowChildren"><code>allowChildren</code></a> property could be used:</p>
+<pre class="highlight"><code class="js">schema.register( &apos;myElement&apos;, {
+    allowIn: &apos;$root&apos;,
+    allowChildren: &apos;$text&apos;
+} );
+</code></pre>
+<p>To allow the following structure:</p>
+<pre class="highlight"><code class="xml">&lt;$root&gt;
+    &lt;myElement&gt;
+        foobar
+    &lt;/myElement&gt;
+&lt;/$root&gt;
+</code></pre>
+<p>Both the <code><a href="../../../api/module_engine_model_schema-SchemaItemDefinition.html#member-allowIn"><code>allowIn</code></a></code> and <code><a href="../../../api/module_engine_model_schema-SchemaItemDefinition.html#member-allowChildren"><code>allowChildren</code></a></code> properties can be also inherited from other <code>SchemaItemDefinition</code> items.</p>
+<div class="info-box notice"><p>You can read more about the format of the item definition in <a href="../../../api/module_engine_model_schema-SchemaItemDefinition.html"><code>SchemaItemDefinition</code></a>.</p></div>
 <h2 id="defining-additional-semantics"><a class="headerlink" href="#defining-additional-semantics">#</a> Defining additional semantics</h2>
 <p>In addition to setting allowed structures, the schema can also define additional traits of model elements. By using the <code>is*</code> properties, a feature author may declare how a certain element should be treated by other features and by the engine.</p>
 <p>Here is a table listing various model elements and their properties registered in the schema:</p>
