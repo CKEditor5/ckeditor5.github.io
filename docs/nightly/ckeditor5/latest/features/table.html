@@ -242,7 +242,7 @@
           <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
           </div>
           <h1 class="main__content-title"><img src="../../../assets/1.6.6/img/book.svg" alt="guide">Tables
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demos">Demos</a><ol><li><a href="#basic-table-features">Basic table features</a></li><li><a href="#table-and-cell-styling-tools">Table and cell styling tools</a></li><li><a href="#nesting-tables">Nesting tables</a></li></ol></li><li><a href="#table-selection">Table selection</a></li><li><a href="#installation">Installation</a><ol><li><a href="#basic-table-features-2">Basic table features</a></li><li><a href="#table-and-cell-styling-tools-2">Table and cell styling tools</a></li></ol></li><li><a href="#configuring-styling-tools">Configuring styling tools</a><ol><li><a href="#customizing-color-palettes">Customizing color palettes</a></li><li><a href="#default-table-styles">Default table styles</a></li></ol></li><li><a href="#block-vs-inline-content-in-table-cells">Block vs inline content in table cells</a><ol><li><a href="#inline-content">Inline content</a></li><li><a href="#block-content">Block content</a></li></ol></li><li><a href="#disallow-nesting-tables">Disallow nesting tables</a></li><li><a href="#common-api">Common API</a><ol><li><a href="#ui-components">UI components</a><ol><li><a href="#toolbars">Toolbars</a></li></ol></li><li><a href="#editor-commands">Editor commands</a></li></ol></li><li><a href="#known-issues">Known issues</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demos">Demos</a><ol><li><a href="#basic-table-features">Basic table features</a></li><li><a href="#table-and-cell-styling-tools">Table and cell styling tools</a></li><li><a href="#nesting-tables">Nesting tables</a></li></ol></li><li><a href="#table-selection">Table selection</a></li><li><a href="#installation">Installation</a><ol><li><a href="#basic-table-features-2">Basic table features</a></li><li><a href="#table-and-cell-styling-tools-2">Table and cell styling tools</a></li></ol></li><li><a href="#configuring-styling-tools">Configuring styling tools</a><ol><li><a href="#customizing-color-palettes">Customizing color palettes</a></li><li><a href="#default-table-and-table-cell-styles">Default table and table cell styles</a></li></ol></li><li><a href="#block-vs-inline-content-in-table-cells">Block vs inline content in table cells</a><ol><li><a href="#inline-content">Inline content</a></li><li><a href="#block-content">Block content</a></li></ol></li><li><a href="#disallow-nesting-tables">Disallow nesting tables</a></li><li><a href="#common-api">Common API</a><ol><li><a href="#ui-components">UI components</a><ol><li><a href="#toolbars">Toolbars</a></li></ol></li><li><a href="#editor-commands">Editor commands</a></li></ol></li><li><a href="#known-issues">Known issues</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 <p>The <a href="../api/module_table_table-Table.html"><code>Table</code></a> feature offers table creation and editing tools that help content authors bring tabular data into their documents. Tables help organize the content in a distinct, visual way that stands out from the text and is more easily readable for certain types of information. They are perfect for listing, grouping, and otherwise organizing data sets or for providing information in a clear, efficient way.</p>
 <p>Tables are great for schedules, timetables, price lists or menus; for listing terms and conditions or providing troubleshooting solutions. They also visually break and and provide relief from large body texts.</p>
 <p>CKEditor 5 offers all necessary functionality to produce advanced, visually appealing and highly efficient tables.</p>
@@ -636,9 +636,9 @@ ClassicEditor
     .then( ... )
     .catch( ... );
 </code></pre>
-<h3 id="default-table-styles"><a class="headerlink" href="#default-table-styles">#</a> Default table styles</h3>
+<h3 id="default-table-and-table-cell-styles"><a class="headerlink" href="#default-table-and-table-cell-styles">#</a> Default table and table cell styles</h3>
 <p>The table styles feature allows for configuring the default look of the tables in the editor. The configuration object should be synchronized with the <a href="../builds/guides/integration/content-styles.html">editor content styles</a>.</p>
-<p>The <strong>&#x201C;Table properties&#x201D;</strong> button in the toolbar will show the table properties applied to the table.</p>
+<p>The <strong>&#x201C;Table properties&#x201D;</strong>, and <strong>&#x201C;Table cell properties&#x201D;</strong> buttons in the toolbar will show the table and table cell properties applied to the table or table cells.</p>
 <p>The stylesheet for the editor displayed below looks as follows:</p>
 <pre class="highlight"><code class="css">.ck-content .table {
     float: right;
@@ -651,8 +651,18 @@ ClassicEditor
     border-color: &apos;hsl(90, 75%, 60%)&apos;;
     border-width: 3px;
 }
+
+.ck-content .table table td {
+    text-align: center;
+    vertical-align: bottom;
+    padding: 10px
+}
 </code></pre>
-<p>The same values must be passed to the editor configuration as the <a href="../api/module_table_tableproperties-TablePropertiesOptions.html"><code>table.tableProperties.defaultProperties</code></a> object:</p>
+<p>The same values must be passed to the editor configuration as:</p>
+<ul>
+<li>the <a href="../api/module_table_tableproperties-TablePropertiesOptions.html"><code>table.tableProperties.defaultProperties</code></a> object for the table properties,</li>
+<li>the <a href="../api/module_table_tablecellproperties-TableCellPropertiesOptions.html"><code>table.tableCellProperties.defaultProperties</code></a> object for the table cell properties.</li>
+</ul>
 <pre class="highlight"><code class="js">const tableConfig = {
     table: {
         tableProperties: {
@@ -664,23 +674,39 @@ ClassicEditor
                 alignment: &apos;right&apos;,
                 width: &apos;500px&apos;,
                 height: &apos;250px&apos;
+            },
+            // The default styles for table cells in the editor. They should be synchronized with the content styles.
+            tableCellProperties: {
+                defaultProperties: {
+                    horizontalAlignment: &apos;center&apos;,
+                    verticalAlignment: &apos;bottom&apos;,
+                    padding: &apos;10px&apos;
+                }
             }
         }
     }
 };
 </code></pre>
-<p>The table element should be aligned to the <code>right</code> side by default. Its size should be <code>500x250px</code>. Border style should be <code>dashed</code>, <code>3px</code> of its width, and the color specified as <code>&#x201C;Light green&#x201D;</code>. The same will be applied for new tables if they will be inserted into the editor</p>
+<p>The table element should be aligned to the <code>right</code> side by default. Its size should be <code>500x250px</code>. Border style should be <code>dashed</code>, <code>3px</code> of its width, and the color specified as <code>&#x201C;Light green&#x201D;</code>.</p>
+<p>The content should be away about <code>10px</code> from the cell&#x2019;s edges (<code>padding</code>), vertically aligned to <code>bottom</code> and horizontally to <code>center</code>.</p>
+<p>The same will be applied for new tables and cells if they will be inserted into the editor.</p>
 <div class="live-snippet"><style id="table-default-properties-styles">
-    .table-default-properties-container .ck-content .table {
+    .live-snippet .table-default-properties-container .ck.ck-content .table {
         float: right;
         width: 500px;
         height: 250px;
     }
 
-    .table-default-properties-container .ck-content .table table {
+    .live-snippet .table-default-properties-container .ck.ck-content .table table {
         border-style: dashed;
         border-color: hsl(90, 75%, 60%);
         border-width: 3px;
+    }
+
+    .live-snippet .table-default-properties-container .ck.ck-content .table table td {
+        text-align: center;
+        vertical-align: bottom;
+        padding: 10px
     }
 </style>
 
@@ -701,8 +727,8 @@ ClassicEditor
     </div>
 </div>
 </div>
-<p>Read more about <a href="../api/module_table_tableproperties-TablePropertiesOptions.html">all supported styles</a> for the table default properties feature.</p>
-<div class="info-box notice"><p>The default table styles <strong>do</strong> impact the <a href="../builds/guides/integration/basic-api.html#setting-the-editor-data">data loaded into the editor</a>. Default properties will not be kept in the editor model.</p></div>
+<p>Read more about all supported properties for the <a href="../api/module_table_tableproperties-TablePropertiesOptions.html">table</a>, and <a href="../api/module_table_tablecellproperties-TableCellPropertiesOptions.html">table cells</a> features.</p>
+<div class="info-box notice"><p>The default table, and table cell styles <strong>do</strong> impact the <a href="../builds/guides/integration/basic-api.html#setting-the-editor-data">data loaded into the editor</a>. Default properties will not be kept in the editor model.</p></div>
 <h2 id="block-vs-inline-content-in-table-cells"><a class="headerlink" href="#block-vs-inline-content-in-table-cells">#</a> Block vs inline content in table cells</h2>
 <p>The table feature allows for creating block content (like paragraphs, lists, headings, etc.) inside table cells. However, if a table cell contains just one paragraph and this paragraph has no special attributes (like text alignment), the cell content is considered &#x201C;inline&#x201D; and the paragraph is not rendered.</p>
 <p>This means that a table cell can have two states: with inline content or with block content. The reason for this differentiation is that most tables contain only inline content (e.g. in the <a href="#demos">demo</a> above) and it is common for &#x201C;data tables&#x201D; to not contain any block content. In such a scenario, printing out <code>&lt;p&gt;</code> elements would be semantically incorrect and also unnecessary. There are, however, scenarios where the user wants to create, for example, a list inside a table cell and then the support for block content is necessary.</p>
