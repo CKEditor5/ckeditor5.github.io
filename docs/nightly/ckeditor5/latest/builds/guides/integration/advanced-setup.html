@@ -591,7 +591,8 @@ module.exports = {
 <pre class="highlight"><code class="js">module: {
     rules: [
         {
-            test: /ckeditor5-[^\/\\]+[\/\\].+\.js$/,
+            // Match files from the `ckeditor5` package but also `ckeditor5-*` packages.
+            test: /(ckeditor5(?:-[^\/\\]+)?)[\/\\].+\.js$/,
             use: [
                 {
                     loader: &apos;babel-loader&apos;,
