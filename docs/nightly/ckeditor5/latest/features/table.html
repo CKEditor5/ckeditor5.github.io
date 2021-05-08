@@ -242,13 +242,13 @@
           <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
           </div>
           <h1 class="main__content-title"><img src="../../../assets/1.6.6/img/book.svg" alt="guide">Tables
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demos">Demos</a><ol><li><a href="#basic-table-features">Basic table features</a></li><li><a href="#table-and-cell-styling-tools">Table and cell styling tools</a></li><li><a href="#nesting-tables">Nesting tables</a></li></ol></li><li><a href="#table-selection">Table selection</a></li><li><a href="#installation">Installation</a><ol><li><a href="#basic-table-features-2">Basic table features</a></li><li><a href="#table-and-cell-styling-tools-2">Table and cell styling tools</a></li></ol></li><li><a href="#configuring-styling-tools">Configuring styling tools</a><ol><li><a href="#customizing-color-palettes">Customizing color palettes</a></li><li><a href="#default-table-and-table-cell-styles">Default table and table cell styles</a></li></ol></li><li><a href="#block-vs-inline-content-in-table-cells">Block vs inline content in table cells</a><ol><li><a href="#inline-content">Inline content</a></li><li><a href="#block-content">Block content</a></li></ol></li><li><a href="#disallow-nesting-tables">Disallow nesting tables</a></li><li><a href="#common-api">Common API</a><ol><li><a href="#ui-components">UI components</a><ol><li><a href="#toolbars">Toolbars</a></li></ol></li><li><a href="#editor-commands">Editor commands</a></li></ol></li><li><a href="#known-issues">Known issues</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demos">Demos</a><ol><li><a href="#basic-table-features">Basic table features</a></li><li><a href="#table-and-cell-styling-tools">Table and cell styling tools</a></li><li><a href="#table-caption">Table caption</a></li><li><a href="#nesting-tables">Nesting tables</a></li></ol></li><li><a href="#table-selection">Table selection</a></li><li><a href="#installation">Installation</a><ol><li><a href="#basic-table-features-2">Basic table features</a></li><li><a href="#table-and-cell-styling-tools-2">Table and cell styling tools</a></li><li><a href="#table-caption-2">Table caption</a></li></ol></li><li><a href="#configuring-styling-tools">Configuring styling tools</a><ol><li><a href="#customizing-color-palettes">Customizing color palettes</a></li><li><a href="#default-table-and-table-cell-styles">Default table and table cell styles</a></li></ol></li><li><a href="#block-vs-inline-content-in-table-cells">Block vs inline content in table cells</a><ol><li><a href="#inline-content">Inline content</a></li><li><a href="#block-content">Block content</a></li></ol></li><li><a href="#disallow-nesting-tables">Disallow nesting tables</a></li><li><a href="#common-api">Common API</a><ol><li><a href="#ui-components">UI components</a><ol><li><a href="#toolbars">Toolbars</a></li></ol></li><li><a href="#editor-commands">Editor commands</a></li></ol></li><li><a href="#known-issues">Known issues</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 <p>The <a href="../api/module_table_table-Table.html"><code>Table</code></a> feature offers table creation and editing tools that help content authors bring tabular data into their documents. Tables help organize the content in a distinct, visual way that stands out from the text and is more easily readable for certain types of information. They are perfect for listing, grouping, and otherwise organizing data sets or for providing information in a clear, efficient way.</p>
 <p>Tables are great for schedules, timetables, price lists or menus; for listing terms and conditions or providing troubleshooting solutions. They also visually break and and provide relief from large body texts.</p>
 <p>CKEditor 5 offers all necessary functionality to produce advanced, visually appealing and highly efficient tables.</p>
 <h2 id="demos"><a class="headerlink" href="#demos">#</a> Demos</h2>
 <h3 id="basic-table-features"><a class="headerlink" href="#basic-table-features">#</a> Basic table features</h3>
-<p>The editor bellow shows the basic set of table features focusing on the <strong>structure and semantics</strong>. These features allow users to insert new tables into the content, add or remove columns and rows, define headers, and merge multiple cells. It is also worth noting that you will find them out&#x2013;of&#x2013;the&#x2013;box in all <a href="../builds/guides/overview.html">ready&#x2013;to&#x2013;use editor builds</a>.</p>
+<p>The editor bellow shows the basic set of table features focusing on the <strong>structure and semantics</strong>. These features allow users to insert new tables into the content, add or remove columns and rows, define headers, add caption, and merge multiple cells. It is also worth noting that you will find them out&#x2013;of&#x2013;the&#x2013;box in all <a href="../builds/guides/overview.html">ready&#x2013;to&#x2013;use editor builds</a>.</p>
 <div class="live-snippet"><div id="snippet-table">
 	<h3 style="text-align:center">The ultimate table of <a href="https://en.wikipedia.org/wiki/List_of_coffee_drinks">coffee drinks</a>:</h3>
 	<table>
@@ -381,6 +381,115 @@
 <p>Put the caret anywhere inside the table and click the <strong>&#x201C;Table properties&#x201D;</strong> button in the toolbar to open a pop&#x2013;up with multiple options that will allow you to shape the look of the entire table. If you click the <strong>&#x201C;Cell properties&#x201D;</strong> button, a similar interface will appear with styling options for individual table cells.</p>
 <p><a href="#configuring-styling-tools">Learn more</a> about configuring color palettes in the table styling pop&#x2013;up interfaces.</p>
 <div class="info-box notice"><p>By default, table styling tools are not included in the <a href="../builds/guides/overview.html">ready&#x2013;to&#x2013;use editor builds</a> and must be installed separately. See the <a href="#table-and-cell-styling-tools-2">installation</a> section to learn how to enable them in your editor.</p></div>
+<h3 id="table-caption"><a class="headerlink" href="#table-caption">#</a> Table caption</h3>
+<p>The <a href="../api/module_table_tablecaption-TableCaption.html"><code>TableCaption</code></a> plugin adds support for table captions.</p>
+<div class="live-snippet"><div id="snippet-table-caption">
+	<figure class="table">
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Mass (10<sup>24</sup>kg)</th>
+					<th>Diameter (km)</th>
+					<th>Gravity (m/s<sup>2</sup>)</th>
+					<th>Length of day (hours)</th>
+					<th>Distance from Sun (10<sup>6</sup>km)</th>
+					<th>Mean temperature (°C)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>Mercury</th>
+					<td>0.330</td>
+					<td>4,879</td>
+					<td>3.7</td>
+					<td>4222.6</td>
+					<td>57.9</td>
+					<td>167</td>
+				</tr>
+				<tr>
+					<th>Venus</th>
+					<td>4.87</td>
+					<td>12,104</td>
+					<td>8.9</td>
+					<td>2802.0</td>
+					<td>108.2</td>
+					<td>464</td>
+				</tr>
+				<tr>
+					<th>Earth</th>
+					<td>5.97</td>
+					<td>12,756</td>
+					<td>9.8</td>
+					<td>24.0</td>
+					<td>149.6</td>
+					<td>15</td>
+				</tr>
+				<tr>
+					<th>Mars</th>
+					<td>0.642</td>
+					<td>6,792</td>
+					<td>3.7</td>
+					<td>24.7</td>
+					<td>227.9</td>
+					<td>-65</td>
+				</tr>
+				<tr>
+					<th>Jupiter</th>
+					<td>1898</td>
+					<td>142,984</td>
+					<td>23.1</td>
+					<td>9.9</td>
+					<td>778.6</td>
+					<td>-110</td>
+				</tr>
+				<tr>
+					<th>Saturn</th>
+					<td>568</td>
+					<td>120,536</td>
+					<td>9.0</td>
+					<td>10.7</td>
+					<td>1433.5</td>
+					<td>-140</td>
+				</tr>
+				<tr>
+					<th>Uranus</th>
+					<td>86.8</td>
+					<td>51,118</td>
+					<td>8.7</td>
+					<td>17.2</td>
+					<td>2872.5</td>
+					<td>-195</td>
+				</tr>
+				<tr>
+					<th>Neptune</th>
+					<td>102</td>
+					<td>49,528</td>
+					<td>11.0</td>
+					<td>16.1</td>
+					<td>4495.1</td>
+					<td>-200</td>
+				</tr>
+				<tr>
+					<th>Pluto</th>
+					<td>0.0146</td>
+					<td>2,370</td>
+					<td>0.7</td>
+					<td>153.3</td>
+					<td>5906.4</td>
+					<td>-225</td>
+				</tr>
+			</tbody>
+		</table>
+		<figcaption>
+			Data about the planets of our solar system (Planetary facts taken from
+			<a href="http://nssdc.gsfc.nasa.gov/planetary/factsheet/">Nasa's Planetary Fact Sheet - Metric</a>).
+		</figcaption>
+	</figure>
+</div>
+</div>
+<div class="info-box notice"><p>By default, table caption feature is not included in the <a href="../builds/guides/overview.html">ready&#x2013;to&#x2013;use editor builds</a> and must be installed separately. See the <a href="#table-caption-2">installation</a> section to learn how to enable it in your editor.</p></div>
+<div class="info-box notice notice__hint"><p>By default, the table caption is placed above the table. You can change the placement by setting <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/caption-side" target="_blank" rel="noopener"><code>caption-side</code></a> in your <a href="../builds/guides/integration/content-styles.html">content styles</a> for the <code>.ck-content .table &gt; figcaption</code> style. Changing it to <code>caption-side: bottom</code> will display the caption below the table.</p></div>
 <h3 id="nesting-tables"><a class="headerlink" href="#nesting-tables">#</a> Nesting tables</h3>
 <p>Starting from version 27.1.0 CKEditor 5 allows nesting tables inside other table&#x2019;s cells. This may be used for creating advanced charts or layouts based on tables. The nested table can be formatted just like a regular one.</p>
 <p>You can test this feature in the demo below by adding a table in the <em>&#x201C;abandoned&#x201D;</em> section that was left blank at the bottom of the main table. To nest a table, simply click in the selected cell and use the <strong>&#x201C;Insert table&#x201D;</strong> button in the toolbar to insert a new, nested table into an existing one.</p>
@@ -525,6 +634,29 @@ ClassicEditor
     .catch( ... );
 </code></pre>
 <div class="info-box notice notice__info"><p>Learn more about <a href="#configuring-styling-tools">configuring color palettes</a> in the table and table cell property pop&#x2013;ups.</p></div>
+<div class="info-box notice notice__info"><p>Read more about <a href="../builds/guides/integration/installing-plugins.html">installing plugins</a>.</p></div>
+<h3 id="table-caption-2"><a class="headerlink" href="#table-caption-2">#</a> Table caption</h3>
+<p>To enable table caption feature in your editor, install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-table" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-table</code></a> package:</p>
+<pre class="highlight"><code class>npm install --save @ckeditor/ckeditor5-table
+</code></pre>
+<p>Then add the <code>Table</code>, <code>TableToolbar</code>, and <strong><code>TableCaption</code></strong> plugins to your plugin list and configure the table toolbar:</p>
+<pre class="highlight"><code class="js">import Table from &apos;@ckeditor/ckeditor5-table/src/table&apos;;
+import TableToolbar from &apos;@ckeditor/ckeditor5-table/src/tabletoolbar&apos;;
+import TableCaption from &apos;@ckeditor/ckeditor5-table/src/tablecaption&apos;;
+
+ClassicEditor
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ Table, TableToolbar, TableCaption, Bold, ... ],
+        toolbar: [ &apos;insertTable&apos;, ... ],
+        table: {
+            contentToolbar: [
+                &apos;toggleTableCaption&apos;
+            ]
+        }
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
 <div class="info-box notice notice__info"><p>Read more about <a href="../builds/guides/integration/installing-plugins.html">installing plugins</a>.</p></div>
 <h2 id="configuring-styling-tools"><a class="headerlink" href="#configuring-styling-tools">#</a> Configuring styling tools</h2>
 <div class="info-box notice"><p>By default, table styling tools are not included in <a href="../builds/guides/overview.html">ready&#x2013;to&#x2013;use editor builds</a> and must be installed separately. See the <a href="#table-and-cell-styling-tools-2">installation</a> section to learn how to enable them in your editor.</p></div>
@@ -859,6 +991,10 @@ ClassicEditor
 			<td><a href="../api/module_table_tableproperties-TableProperties.html"><code>TableProperties</code></a></td>
 		</tr>
 		<tr>
+			<td>The <code>&apos;toggleTableCaption&apos;</code> button</td>
+			<td><a href="../api/module_table_tablecaption-TableCaption.html"><code>TableCaption</code></a></td>
+		</tr>
+		<tr>
 			<td>The <code>&apos;tableCellProperties&apos;</code> button</td>
 			<td><a href="../api/module_table_tablecellproperties-TableCellProperties.html"><code>TableCellProperties</code></a></td>
 		</tr>
@@ -883,7 +1019,7 @@ ClassicEditor
 		<tr>
 			<td><code>&apos;insertTable&apos;</code></td>
 			<td><a href="../api/module_table_commands_inserttablecommand-InsertTableCommand.html"><code>InsertTableCommand</code></a></td>
-			<td rowspan="15"><a href="../api/module_table_table-Table.html"><code>Table</code></a></td>
+			<td rowspan="17"><a href="../api/module_table_table-Table.html"><code>Table</code></a></td>
 		</tr>
 		<tr>
 			<td><code>&apos;insertTableColumnLeft&apos;</code></td>
@@ -948,6 +1084,11 @@ ClassicEditor
 		<tr>
 			<td><code>&apos;splitTableCellHorizontally&apos;</code></td>
 			<td><a href="../api/module_table_commands_splitcellcommand-SplitCellCommand.html"><code>SplitCellCommand</code></a></td>
+		</tr>
+		<tr>
+			<td><code>&apos;toggleTableCaption&apos;</code></td>
+			<td><a href="../api/module_table_tablecaption_toggletablecaptioncommand-ToggleTableCaptionCommand.html"><code>ToggleTableCaptionCommand</code></a></td>
+			<td><a href="../api/module_table_tablecaption-TableCaption.html"><code>TableCaption</code></a></td>
 		</tr>
 		<tr>
 			<td><code>&apos;tableBorderColor&apos;</code></td>
@@ -1164,6 +1305,7 @@ transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_rank
     <script src="../snippets/features/build-table-source/snippet.js"></script>
     <script src="../snippets/features/table/snippet.js"></script>
     <script src="../snippets/features/table-styling/snippet.js"></script>
+    <script src="../snippets/features/table-caption/snippet.js"></script>
     <script src="../snippets/features/table-nesting/snippet.js"></script>
     <script src="../snippets/features/table-styling-colors/snippet.js"></script>
     <script src="../snippets/features/table-default-properties/snippet.js"></script>
