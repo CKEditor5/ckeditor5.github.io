@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../../assets/1.6.6/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../../assets/1.7.1/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../../assets/styles.css" type="text/css">
     <script>
       ( function() {
@@ -33,16 +33,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../../assets/1.6.6/scripts";
+      	window.umberto.relativeAppPath = "../../../../../assets/1.7.1/scripts";
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../../assets/1.6.6/scripts/app.js";
+      		el.src = "../../../../../assets/1.7.1/scripts/app.js";
       	} else {
-      		el.src = "../../../../../assets/1.6.6/scripts/app-polyfill.js";
+      		el.src = "../../../../../assets/1.7.1/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -84,7 +84,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../../assets/1.6.6/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../../assets/1.7.1/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -240,11 +240,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/packages/ckeditor5-engine/docs/framework/guides/deep-dive/event-system.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../../../assets/1.6.6/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/packages/ckeditor5-engine/docs/framework/guides/deep-dive/event-system.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../../../assets/1.7.1/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">Framework</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../../assets/1.6.6/img/book.svg" alt="guide">Event system
+          <h1 class="main__content-title"><img src="../../../../../assets/1.7.1/img/book.svg" alt="guide">Event system
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#listening-to-events">Listening to events</a><ol><li><a href="#listener-priorities">Listener priorities</a></li><li><a href="#stopping-events-and-returned-value">Stopping events and returned value</a></li><li><a href="#listening-on-namespaced-events">Listening on namespaced events</a></li></ol></li><li><a href="#firing-events">Firing events</a><ol><li><a href="#stopped-events">Stopped events</a></li><li><a href="#event-return-value">Event return value</a></li></ol></li><li><a href="#delegating-events">Delegating events</a><ol><li><a href="#setting-events-delegation">Setting events delegation</a></li><li><a href="#stopping-delegation">Stopping delegation</a></li><li><a href="#delegated-event-info">Delegated event info</a></li></ol></li><li><a href="#view-events-bubbling">View events bubbling</a><ol><li><a href="#listening-to-bubbling-events">Listening to bubbling events</a></li><li><a href="#bubbling-events-flow">Bubbling events flow</a></li><li><a href="#examples">Examples</a></li><li><a href="#bubblingeventinfo">BubblingEventInfo</a></li></ol></li></ol></nav>
 <p><a href="../../../api/module_utils_emittermixin-Emitter.html">Emitters</a> are objects that can fire events. They also provide means to listen to other emitters&#x2019; events.</p>
 <p>Emitters are heavily used throughout the entire editor architecture. They are the building blocks for mechanisms such as the <a href="observables.html">observables</a>, <a href="../architecture/editing-engine.html#observers">engine&#x2019;s view observers</a>, and <a href="../architecture/editing-engine.html#conversion">conversion</a>.</p>
