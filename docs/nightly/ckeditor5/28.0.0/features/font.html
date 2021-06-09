@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../assets/1.7.2/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../assets/1.8.0/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../snippets/features/build-font-source/snippet.css" type="text/css" data-cke="true">
     <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css" data-cke="true">
@@ -36,16 +36,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../assets/1.7.2/scripts";
+      	window.umberto.relativeAppPath = "../../../assets/1.8.0/scripts";
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../assets/1.7.2/scripts/app.js";
+      		el.src = "../../../assets/1.8.0/scripts/app.js";
       	} else {
-      		el.src = "../../../assets/1.7.2/scripts/app-polyfill.js";
+      		el.src = "../../../assets/1.8.0/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -87,7 +87,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../assets/1.7.2/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../assets/1.8.0/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -219,12 +219,14 @@
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Restricted editing</span></div></a></li>
                           <li><a href="select-all.html">
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Select all</span></div></a></li>
+                          <li><a href="source-editing.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Source editing 🆕</span></div></a></li>
                           <li><a href="special-characters.html">
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Special characters</span></div></a></li>
                           <li><a href="spelling-and-grammar-checking.html">
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Spelling and grammar checking 🆕</span></div></a></li>
                           <li><a href="table.html">
-                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Tables</span></div></a></li>
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Tables 🆕</span></div></a></li>
                           <li><a href="text-alignment.html">
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Text alignment</span></div></a></li>
                           <li><a href="language.html">
@@ -256,11 +258,11 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/packages/ckeditor5-font/docs/features/font.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../assets/1.7.2/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/packages/ckeditor5-font/docs/features/font.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../assets/1.8.0/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../assets/1.7.2/img/book.svg" alt="guide">Font
+          <h1 class="main__content-title"><img src="../../../assets/1.8.0/img/book.svg" alt="guide">Font
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#related-features">Related features</a></li><li><a href="#configuring-the-font-family-feature">Configuring the font family feature</a><ol><li><a href="#accepting-all-font-names">Accepting all font names</a></li></ol></li><li><a href="#configuring-the-font-size-feature">Configuring the font size feature</a><ol><li><a href="#using-the-predefined-presets">Using the predefined presets</a></li><li><a href="#using-numerical-values">Using numerical values</a></li><li><a href="#accepting-all-font-sizes">Accepting all font sizes</a></li></ol></li><li><a href="#configuring-the-font-color-and-font-background-color-features">Configuring the font color and font background color features</a><ol><li><a href="#specifying-available-colors">Specifying available colors</a></li><li><a href="#changing-the-geometry-of-the-color-grid">Changing the geometry of the color grid</a></li><li><a href="#documents-colors">Documents colors</a></li></ol></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#content-compatibility">Content compatibility</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 <p>The <a href="../api/module_font_font-Font.html"><code>Font</code></a> plugin provides extended text formatting options for the document content. It enables the following features in the rich-text editor:</p>
 <ul>
@@ -833,12 +835,14 @@ editor.execute( &apos;fontSize&apos;, { value: &apos;small&apos; } );
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Restricted editing</span></div></a></li>
                           <li><a href="select-all.html">
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Select all</span></div></a></li>
+                          <li><a href="source-editing.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Source editing 🆕</span></div></a></li>
                           <li><a href="special-characters.html">
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Special characters</span></div></a></li>
                           <li><a href="spelling-and-grammar-checking.html">
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Spelling and grammar checking 🆕</span></div></a></li>
                           <li><a href="table.html">
-                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Tables</span></div></a></li>
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Tables 🆕</span></div></a></li>
                           <li><a href="text-alignment.html">
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Text alignment</span></div></a></li>
                           <li><a href="language.html">
