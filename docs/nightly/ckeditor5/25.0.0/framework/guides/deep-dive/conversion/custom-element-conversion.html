@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Custom element conversion - CKEditor 5 Documentation</title>
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:site" content="@ckeditor">
+    <meta property="og:title" content="Custom element conversion - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/framework/guides/deep-dive/conversion/custom-element-conversion.html">
+    <meta property="DC.language" content="en">
+    <meta property="DC.publisher" content="CKSource">
+    <meta property="DC.creator" content="CKEditor">
+    <meta property="DC.title" content="Custom element conversion - CKEditor 5 Documentation">
+    <meta property="DC.format" content="text/html">
+    <meta property="DC.type" content="Text">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/guides/deep-dive/conversion/custom-element-conversion.html">
+    <link rel="icon" type="image/png" href="../../../../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../../../../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../../../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../../../../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../../../assets/1.6.4/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../assets/styles.css" type="text/css">
+    <link rel="stylesheet" href="../../../../snippets/framework/build-custom-element-converter-source/snippet.css" type="text/css" data-cke="true">
+    <link rel="stylesheet" href="../../../../assets/snippet-styles.css" type="text/css" data-cke="true">
+    <link rel="stylesheet" href="../../../../snippets/assets.css" type="text/css" data-cke="true">
+    <script>
+      ( function() {
+      	'use strict';
+      	// Set up global variables;
+      	if ( !window.umebrto ) {
+      		window.umberto = {};
+      	}
+      	window.umberto.relativeAppPath = "../../../../../../assets/1.6.4/scripts";
+      
+      	// Add app script
+      	var el = document.createElement( 'script' );
+      	el.setAttribute( 'async', 'async' );
+      	el.setAttribute( 'defer', 'defer' );
+      	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
+      		el.src = "../../../../../../assets/1.6.4/scripts/app.js";
+      	} else {
+      		el.src = "../../../../../../assets/1.6.4/scripts/app-polyfill.js";
+      	}
+      	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
+      
+      	// Changing documentation theme enable it via `localStorage.setItem( 'theme', 'theme-dark' )`
+      	if ( localStorage.getItem( 'theme' ) === 'theme-dark' ) {
+      		document.getElementsByTagName( 'html' )[ 0 ].classList.add( 'theme-dark' );
+      	}
+      } )();
+    </script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  <meta name="generator" content="Hexo 4.2.1"></head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="header__main">
+        <div class="header__main-rwd-button"><a href="#"><span></span><span></span><span></span></a></div>
+        <div class="header__main-title"><a class="header__main-title-home" href="../../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
+        <div class="top__search">
+          <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+          <div class="top__search__button"><img src="../../../../../../assets/1.6.4/img/loupe.svg" alt="Search"></div>
+        </div>
+      </div>
+      <div class="header__sub">
+        <ul class="top__menu">
+          <li class="top__menu-project-logo"><a href="../../../../index.html">CKEditor 5</a></li>
+          <li><a href="../../../../builds/index.html">Builds</a></li>
+          <li><a class="top__menu__item--active" href="../../../index.html">Framework</a></li>
+          <li><a href="../../../../examples/index.html">Examples</a></li>
+          <li><a href="../../../../features/index.html">Features</a></li>
+          <li><a class="top__menu__api" href="../../../../api/index.html">API</a></li>
+          <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li>
+        </ul>
+      </div>
+      <div class="header__menu-rwd">
+        <ul class="header__menu-rwd__projects">
+          <li data-project="ckeditor5"><a href="../../../../../latest/index.html">CKEditor 5</a>
+            <ul class="tree header__menu-rwd__projects-pages">
+              <li data-group="builds"><a href="../../../../builds/index.html">Builds</a>
+              </li>
+              <li data-group="framework"><a href="../../../index.html">Framework</a>
+                <ul class="header__menu-rwd__projects-subpages">
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Guides</span></div>
+                            <ul class="tree__item-nested-list">
+                                  <li><a href="../../overview.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                  <li><a href="../../quick-start.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span></div></a></li>
+                                  <li><a href="../../creating-simple-plugin.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating a simple plugin</span></div></a></li>
+                                  <li><a href="../../development-tools.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development tools</span></div></a></li>
+                                  <li>
+                                    <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Architecture</span></div>
+                                    <ul class="tree__item-nested-list">
+                                          <li><a href="../../architecture/intro.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Introduction</span></div></a></li>
+                                          <li><a href="../../architecture/core-editor-architecture.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Core editor architecture</span></div></a></li>
+                                          <li><a href="../../architecture/editing-engine.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editing engine</span></div></a></li>
+                                          <li><a href="../../architecture/ui-library.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">UI library</span></div></a></li>
+                                    </ul>
+                                  </li>
+                                  <li>
+                                    <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Tutorials</span></div>
+                                    <ul class="tree__item-nested-list">
+                                          <li><a href="../../tutorials/implementing-a-block-widget.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing a block widget</span></div></a></li>
+                                          <li><a href="../../tutorials/implementing-an-inline-widget.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing an inline widget</span></div></a></li>
+                                          <li><a href="../../tutorials/using-react-in-a-widget.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Using a React component in a widget</span></div></a></li>
+                                    </ul>
+                                  </li>
+                                  <li>
+                                    <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Deep dive</span></div>
+                                    <ul class="tree__item-nested-list">
+                                          <li><a href="../clipboard.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Clipboard</span></div></a></li>
+                                          <li><a href="../upload-adapter.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom upload adapter</span></div></a></li>
+                                          <li><a href="../observables.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Observables</span></div></a></li>
+                                          <li><a href="../schema.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Schema</span></div></a></li>
+                                          <li>
+                                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Conversion</span></div>
+                                            <ul class="tree__item-nested-list">
+                                                  <li><a href="conversion-introduction.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Advanced concepts</span></div></a></li>
+                                                  <li><a href="conversion-extending-output.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Extending editor output</span></div></a></li>
+                                                  <li><a href="conversion-preserving-custom-content.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Preserving custom content</span></div></a></li>
+                                                  <li><a href="">
+                                                      <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Custom element conversion</span></div></a></li>
+                                                  <li><a href="element-reconversion.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Element reconversion</span></div></a></li>
+                                            </ul>
+                                          </li>
+                                          <li>
+                                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">User interface</span></div>
+                                            <ul class="tree__item-nested-list">
+                                                  <li><a href="../ui/focus-tracking.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Focus tracking</span></div></a></li>
+                                                  <li><a href="../ui/widget-internals.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Widget internals</span></div></a></li>
+                                                  <li><a href="../ui/theme-customization.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Theme customization</span></div></a></li>
+                                                  <li><a href="../ui/external-ui.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Third–party UI</span></div></a></li>
+                                                  <li><a href="../ui/document-editor.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document editor</span></div></a></li>
+                                                  <li><a href="../ui/custom-editor-creator.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating custom editor</span></div></a></li>
+                                                  <li><a href="../ui/localization.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Localization</span></div></a></li>
+                                            </ul>
+                                          </li>
+                                    </ul>
+                                  </li>
+                                  <li>
+                                    <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Contributing</span></div>
+                                    <ul class="tree__item-nested-list">
+                                          <li><a href="../../contributing/contributing.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Contributing</span></div></a></li>
+                                          <li><a href="../../contributing/development-environment.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development environment</span></div></a></li>
+                                          <li><a href="../../contributing/testing-environment.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Testing environment</span></div></a></li>
+                                          <li><a href="../../contributing/code-style.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Code style</span></div></a></li>
+                                          <li><a href="../../contributing/git-commit-message-convention.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Git commit message convention</span></div></a></li>
+                                    </ul>
+                                  </li>
+                                  <li>
+                                    <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Support</span></div>
+                                    <ul class="tree__item-nested-list">
+                                          <li><a href="../../support/browser-compatibility.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Browser compatibility</span></div></a></li>
+                                          <li><a href="../../support/license-and-legal.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span></div></a></li>
+                                          <li><a href="../../support/getting-support.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting support</span></div></a></li>
+                                          <li><a href="../../support/reporting-issues.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span></div></a></li>
+                                          <li><a href="../../support/versioning-policy.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Versioning policy</span></div></a></li>
+                                          <li><a href="../../support/error-codes.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Error codes</span></div></a></li>
+                                    </ul>
+                                  </li>
+                            </ul>
+                          </li>
+                </ul>
+              </li>
+              <li data-group="examples"><a href="../../../../examples/index.html">Examples</a>
+              </li>
+              <li data-group="features"><a href="../../../../features/index.html">Features</a>
+              </li>
+              <li data-group="api-reference"><a href="../../../../api/index.html">API</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/packages/ckeditor5-engine/docs/framework/guides/deep-dive/custom-element-conversion.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../../../../assets/1.6.4/img/edit.svg" alt="Contribute to this guide"></a>
+          </div>
+          <div class="rwd-breadcrumbs"><a href="../../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">Framework</a>
+          </div>
+          <h1 class="main__content-title"><img src="../../../../../../assets/1.6.4/img/book.svg" alt="guide">Custom element conversion
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#introduction">Introduction</a></li><li><a href="#migrating-to-an-event-based-converter">Migrating to an event-based converter</a><ol><li><a href="#demo">Demo</a></li><li><a href="#schema">Schema</a></li><li><a href="#event-based-upcast-converter">Event-based upcast converter</a></li><li><a href="#event-based-downcast-converter">Event-based downcast converter</a></li><li><a href="#updated-plugin-code">Updated plugin code</a></li></ol></li></ol></nav>
+<p>There are three levels on which elements can be converted:</p>
+<ul>
+<li>By using the two-way converter: <a href="../../../../api/module_engine_conversion_conversion-Conversion.html#function-elementToElement"><code>conversion.elementToElement()</code></a>.<br>
+This is a fully declarative API. It is the least powerful option but it is the easiest one to use.</li>
+<li>By using one-way converters: for example <a href="../../../../api/module_engine_conversion_downcasthelpers-DowncastHelpers.html#function-elementToElement"><code>conversion.for( &apos;downcast&apos; ).elementToElement()</code></a> and <a href="../../../../api/module_engine_conversion_upcasthelpers-UpcastHelpers.html#function-elementToElement"><code>conversion.for( &apos;upcast&apos; ).elementToElement()</code></a>.<br>
+In this case, you need to define at least two converters (for upcast and downcast), but the &#x201C;how&#x201D; part becomes a callback, and hence you gain more control over it.</li>
+<li>Finally, by using event-based converters.<br>
+In this case, you need to listen to events fired by <a href="../../../../api/module_engine_conversion_downcastdispatcher-DowncastDispatcher.html"><code>DowncastDispatcher</code></a> and <a href="../../../../api/module_engine_conversion_upcastdispatcher-UpcastDispatcher.html"><code>UpcastDispatcher</code></a>. This method has full access to every bit of logic that a converter needs to implement and therefore it can be used to write the most complex conversion methods.</li>
+</ul>
+<p>This guide explains how to migrate from a simple two-way converter to an event-based converter as the requirements regarding the feature get more complex.</p>
+<h2 id="introduction"><a class="headerlink" href="#introduction">#</a> Introduction</h2>
+<p>Let us assume that the content in your application contains &#x201C;info boxes&#x201D;. As for now, it was only required to wrap a part of the content in a <code>&lt;div&gt;</code> element that would look like this in the data and editing views:</p>
+<pre class="highlight"><code class="html">&lt;div class=&quot;info-box&quot;&gt;
+    &lt;!-- Any editable content. --&gt;
+    &lt;p&gt;This is &lt;strong&gt;important!&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<p>The data is represented in the model as the following structure:</p>
+<pre class="highlight"><code class="html">&lt;infoBox&gt;
+    &lt;!-- Any $block content. --&gt;
+    &lt;paragraph&gt;&lt;$text&gt;This is &lt;/$text&gt;&lt;$text bold=&quot;true&quot;&gt;important!&lt;/$text&gt;&lt;/paragraph&gt;
+&lt;/infoBox&gt;
+</code></pre>
+<p>This can be easily done with the below schema and converters in a simple <code>InfoBox</code> plugin:</p>
+<pre class="highlight"><code class="js">class InfoBox {
+    constructor( editor ) {
+        // 1. Define infoBox as an object that can contain any other content.
+        editor.model.schema.register( &apos;infoBox&apos;, {
+            allowWhere: &apos;$block&apos;,
+            allowContentOf: &apos;$root&apos;,
+            isObject: true
+        } );
+
+        // 2. The conversion is straightforward:
+        editor.conversion.elementToElement( {
+            model: &apos;infoBox&apos;,
+            view: {
+                name: &apos;div&apos;,
+                classes: &apos;info-box&apos;
+            }
+        } );
+    }
+}
+</code></pre>
+<h2 id="migrating-to-an-event-based-converter"><a class="headerlink" href="#migrating-to-an-event-based-converter">#</a> Migrating to an event-based converter</h2>
+<p>Let us now assume that the requirements have changed and there is a need for adding an additional element in the data and editing views that will display the type of the info box (warning, error, info, etc.).</p>
+<p>The new info box structure:</p>
+<pre class="highlight"><code class="html">&lt;div class=&quot;info-box info-box-warning&quot;&gt;
+    &lt;div class=&quot;info-box-title&quot;&gt;Warning&lt;/div&gt;
+    &lt;div class=&quot;info-box-content&quot;&gt;
+        &lt;!-- Any editable content. --&gt;
+        &lt;p&gt;This is &lt;strong&gt;important!&lt;/strong&gt;&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>The &#x201C;Warning&#x201D; part should not be editable. It defines the type of the info box so you can store this bit of information as an attribute of the <code>&lt;infoBox&gt;</code> element:</p>
+<pre class="highlight"><code class="html">&lt;infoBox infoBoxType=&quot;warning&quot;&gt;
+    &lt;!-- Any $block content. --&gt;
+    &lt;paragraph&gt;&lt;$text&gt;This is &lt;/$text&gt;&lt;$text bold=&quot;true&quot;&gt;important!&lt;/$text&gt;&lt;/paragraph&gt;
+&lt;/infoBox&gt;
+</code></pre>
+<p>Let us see how to update the basic implementation to cover these requirements.</p>
+<h3 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h3>
+<p>Below is a demo of the editor with a sample info box.</p>
+<div class="live-snippet"><style>
+	.ck-content .info-box {
+		background: hsl(0, 0%, 45%);
+		border: 1px solid hsl(0, 0%, 80%);
+		padding: 1em;
+		border-radius: 8px;
+	}
+
+	.ck-content .info-box-title {
+		margin-bottom: 0.5em;
+		font-size: 1.4em;
+		font-weight: bold;
+		color: inherit;
+	}
+
+	.ck-content .info-box-warning {
+		background: hsl(48, 100%, 87%);
+		border: 1px solid hsl(47, 100%, 62%);
+	}
+
+	.ck-content .info-box-warning .info-box-title  {
+		color: hsl(47, 100%, 32%)
+	}
+
+	.ck-content .info-box-info {
+		background: hsl(205, 100%, 95%);
+		border: 1px solid hsl(205, 91%, 82%);
+	}
+
+	.ck-content .info-box-info .info-box-title  {
+		color: hsl(204, 79%, 41%)
+	}
+
+	.ck-content .info-box-content {
+		padding: 8px 10px;
+		background: hsl(0, 0%, 100%);
+		border-radius: 6px;
+	}
+
+	.ck-content .info-box-content p:only-child,
+	.ck-content .info-box-content p:last-child {
+		margin-bottom: 0;
+	}
+</style>
+
+<div id="editor-custom-element-converter">
+	<p>Info:</p>
+	<div class="info-box info-box-info">
+		<div class="info-box-title">Info</div>
+		<div class="info-box-content">
+			<p>Editable content of the <strong>info box</strong>.</p>
+		</div>
+	</div>
+	<p>Warning:</p>
+	<div class="info-box info-box-warning">
+		<div class="info-box-title">Warning</div>
+		<div class="info-box-content">
+			<p>Editable content of the <strong>info box</strong>.</p>
+		</div>
+	</div>
+</div>
+</div>
+<h3 id="schema"><a class="headerlink" href="#schema">#</a> Schema</h3>
+<p>The type of the box is defined by an additional class on the main <code>&lt;div&gt;</code> but it is also represented as text in <code>&lt;div class=&quot;info-box-title&quot;&gt;</code>. All the info box content must now be placed inside <code>&lt;div class=&quot;info-box-content&quot;&gt;</code> instead of the main wrapper.</p>
+<p>For the above requirements you can see that the model structure of the <code>infoBox</code> does not need to change much. You can still use a single element in the model. The only addition to the model is an attribute that will store information about the info box type:</p>
+<pre class="highlight"><code class="js">editor.model.schema.register( &apos;infoBox&apos;, {
+    allowWhere: &apos;$block&apos;,
+    allowContentOf: &apos;$root&apos;,
+    isObject: true,
+    allowAttributes: [ &apos;infoBoxType&apos; ] // Added.
+} );
+</code></pre>
+<h3 id="event-based-upcast-converter"><a class="headerlink" href="#event-based-upcast-converter">#</a> Event-based upcast converter</h3>
+<p>The conversion of the type of the box itself can be achieved by using <a href="../../../../api/module_engine_conversion_conversion-Conversion.html#function-attributeToAttribute"><code>attributeToAttribute()</code></a> (<code>info-box-*</code> CSS classes to the <code>infoBoxType</code> model attribute). However, two more changes were made to the data format that you need to handle:</p>
+<ul>
+<li>There is a new <code>&lt;div class=&quot;info-box-title&quot;&gt;</code> element that should be ignored during the upcast conversion as it duplicates the information conveyed by the main element&#x2019;s CSS class.</li>
+<li>The content of the info box is now located inside another element. Previously it was located directly in the main wrapper.</li>
+</ul>
+<p>Neither two-way nor one-way converters can handle such conversion. Therefore, you need to use an event-based converter with the following behavior:</p>
+<ol>
+<li>Create a model <code>&lt;infoBox&gt;</code> element with the <code>infoBoxType</code> attribute.</li>
+<li>Skip the conversion of <code>&lt;div class=&quot;info-box-title&quot;&gt;</code> as the information about type can be obtained from the wrapper&#x2019;s CSS classes.</li>
+<li>Convert the children of <code>&lt;div class=&quot;info-box-content&quot;&gt;</code> and insert them directly into <code>&lt;infoBox&gt;</code>.</li>
+</ol>
+<pre class="highlight"><code class="js">function upcastConverter( event, data, conversionApi ) {
+    const viewInfoBox = data.viewItem;
+
+    // Check whether the view element is an info box &lt;div&gt;.
+    // Otherwise, it should be handled by another converter.
+    if ( !viewInfoBox.hasClass( &apos;info-box&apos; ) ) {
+        return;
+    }
+
+    // Create the model structure.
+    const modelElement = conversionApi.writer.createElement( &apos;infoBox&apos;, {
+        infoBoxType: getTypeFromViewElement( viewInfoBox )
+    } );
+
+    // Try to safely insert the element into the model structure.
+    // If `safeInsert()` returns `false`, the element cannot be safely inserted
+    // into the content and the conversion process must stop.
+    // This may happen if the data that you are converting has an incorrect structure
+    // (e.g. it was copied from an external website).
+    if ( !conversionApi.safeInsert( modelElement, data.modelCursor ) ) {
+        return;
+    }
+
+    // Mark the info box &lt;div&gt; as handled by this converter.
+    conversionApi.consumable.consume( viewInfoBox, { name: true } );
+
+    // Let us assume that the HTML structure is always the same.
+    // Note: For full bulletproofing this converter, you should also check
+    // whether these elements are the right ones.
+    const viewInfoBoxTitle = viewInfoBox.getChild( 0 );
+    const viewInfoBoxContent = viewInfoBox.getChild( 1 );
+
+    // Mark info box inner elements (title and content &lt;div&gt;s) as handled by this converter.
+    conversionApi.consumable.consume( viewInfoBoxTitle, { name: true } );
+    conversionApi.consumable.consume( viewInfoBoxContent, { name: true } );
+
+    // Let the editor handle the children of &lt;div class=&quot;info-box-content&quot;&gt;.
+    conversionApi.convertChildren( viewInfoBoxContent, modelElement );
+
+    // Finally, update the conversion&apos;s modelRange and modelCursor.
+    conversionApi.updateConversionResult( modelElement, data );
+}
+
+// A helper function to read the type from the view classes.
+function getTypeFromViewElement( viewElement ) {
+    if ( viewElement.hasClass( &apos;info-box-info&apos; ) ) {
+        return &apos;Info&apos;;
+    }
+
+    if ( viewElement.hasClass( &apos;info-box-warning&apos; ) ) {
+        return &apos;Warning&apos;;
+    }
+
+    return &apos;None&apos;;
+}
+</code></pre>
+<p>This upcast converter callback can now be plugged by adding a listener to the <a href="../../../../api/module_engine_conversion_upcastdispatcher-UpcastDispatcher.html#event-element"><code>UpcastDispatcher#element</code> event</a>. You will listen to <code>element:div</code> to ensure that the callback is called only for <code>&lt;div&gt;</code> elements.</p>
+<pre class="highlight"><code class="js">editor.conversion.for( &apos;upcast&apos; )
+    .add( dispatcher =&gt; dispatcher.on( &apos;element:div&apos;, upcastConverter ) );
+</code></pre>
+<h3 id="event-based-downcast-converter"><a class="headerlink" href="#event-based-downcast-converter">#</a> Event-based downcast converter</h3>
+<p>The missing bits are the downcast converters for the editing and data pipelines.</p>
+<p>You will want to use the widget system to make the info box behave like an &#x201C;object&#x201D;. Another aspect that you need to take care of is the fact that the view structure has more elements than the model structure. In this case, you could actually use one-way converters. However, this tutorial will showcase how an event-based converter would look.</p>
+<div class="info-box notice"><p>See the <a href="../../tutorials/implementing-a-block-widget.html">Implementing a block widget</a> guide to learn about the widget system.</p></div>
+<p>The remaining downcast converters:</p>
+<pre class="highlight"><code class="js">function editingDowncastConverter( event, data, conversionApi ) {
+    let { infoBox, infoBoxContent, infoBoxTitle } = createViewElements( data, conversionApi );
+
+    // Decorate view items as a widget and widget editable area.
+    infoBox = toWidget( infoBox, conversionApi.writer, { label: &apos;info box widget&apos; } );
+    infoBoxContent = toWidgetEditable( infoBoxContent, conversionApi.writer );
+
+    insertViewElements( data, conversionApi, infoBox, infoBoxTitle, infoBoxContent );
+}
+
+function dataDowncastConverter( event, data, conversionApi ) {
+    const { infoBox, infoBoxContent, infoBoxTitle } = createViewElements( data, conversionApi );
+
+    insertViewElements( data, conversionApi, infoBox, infoBoxTitle, infoBoxContent );
+}
+
+function createViewElements( data, conversionApi ) {
+    const type = data.item.getAttribute( &apos;infoBoxType&apos; );
+
+    const infoBox = conversionApi.writer.createContainerElement( &apos;div&apos;, {
+        class: `info-box info-box-${ type.toLowerCase() }`
+    } );
+    const infoBoxContent = conversionApi.writer.createEditableElement( &apos;div&apos;, {
+        class: &apos;info-box-content&apos;
+    } );
+
+    const infoBoxTitle = conversionApi.writer.createUIElement( &apos;div&apos;,
+        { class: &apos;info-box-title&apos; },
+        function( domDocument ) {
+            const domElement = this.toDomElement( domDocument );
+
+            domElement.innerText = type;
+
+            return domElement;
+        } );
+
+    return { infoBox, infoBoxContent, infoBoxTitle };
+}
+
+function insertViewElements( data, conversionApi, infoBox, infoBoxTitle, infoBoxContent ) {
+    conversionApi.consumable.consume( data.item, &apos;insert&apos; );
+
+    conversionApi.writer.insert(
+        conversionApi.writer.createPositionAt( infoBox, 0 ),
+        infoBoxTitle
+    );
+    conversionApi.writer.insert(
+        conversionApi.writer.createPositionAt( infoBox, 1 ),
+        infoBoxContent
+    );
+
+    // The default mapping between the model &lt;infoBox&gt; and its view representation.
+    conversionApi.mapper.bindElements( data.item, infoBox );
+    // However, since the model &lt;infoBox&gt; content needs to end up in the inner
+    // &lt;div class=&quot;info-box-content&quot;&gt;, you need to bind one with another overriding
+    // a part of the default binding.
+    conversionApi.mapper.bindElements( data.item, infoBoxContent );
+
+    conversionApi.writer.insert(
+        conversionApi.mapper.toViewPosition( data.range.start ),
+        infoBox
+    );
+}
+</code></pre>
+<p>These two converters need to be plugged as listeners to the <a href="../../../../api/module_engine_conversion_downcastdispatcher-DowncastDispatcher.html#event-insert"><code>DowncastDispatcher#insert</code> event</a>:</p>
+<pre class="highlight"><code class="js">editor.conversion.for( &apos;editingDowncast&apos; )
+    .add( dispatcher =&gt; dispatcher.on( &apos;insert:infoBox&apos;, editingDowncastConverter ) );
+editor.conversion.for( &apos;dataDowncast&apos; )
+    .add( dispatcher =&gt; dispatcher.on( &apos;insert:infoBox&apos;, dataDowncastConverter ) );
+</code></pre>
+<h3 id="updated-plugin-code"><a class="headerlink" href="#updated-plugin-code">#</a> Updated plugin code</h3>
+<p>The updated <code>InfoBox</code> plugin that glues the event-based converters together:</p>
+<pre class="highlight"><code class="js">class InfoBox {
+    constructor( editor ) {
+        // Schema definition.
+        editor.model.schema.register( &apos;infoBox&apos;, {
+            allowWhere: &apos;$block&apos;,
+            allowContentOf: &apos;$root&apos;,
+            isObject: true,
+            allowAttributes: [ &apos;infoBoxType&apos; ]
+        } );
+
+        // Upcast converter.
+        editor.conversion.for( &apos;upcast&apos; )
+            .add( dispatcher =&gt; dispatcher.on( &apos;element:div&apos;, upcastConverter ) );
+
+        // The downcast conversion must be split as you need a widget in the editing pipeline.
+        editor.conversion.for( &apos;editingDowncast&apos; )
+            .add( dispatcher =&gt; dispatcher.on( &apos;insert:infoBox&apos;, editingDowncastConverter ) );
+        editor.conversion.for( &apos;dataDowncast&apos; )
+            .add( dispatcher =&gt; dispatcher.on( &apos;insert:infoBox&apos;, dataDowncastConverter ) );
+    }
+}
+
+function upcastConverter() {
+    // ...
+}
+
+function editingDowncastConverter() {
+    // ...
+}
+
+function dataDowncastConverter() {
+    // ...
+}
+</code></pre>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Guides</span></div>
+                            <ul class="tree__item-nested-list">
+                                    <li><a href="../../overview.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="../../quick-start.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span></div></a></li>
+                                    <li><a href="../../creating-simple-plugin.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating a simple plugin</span></div></a></li>
+                                    <li><a href="../../development-tools.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development tools</span></div></a></li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Architecture</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../../architecture/intro.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Introduction</span></div></a></li>
+                                              <li><a href="../../architecture/core-editor-architecture.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Core editor architecture</span></div></a></li>
+                                              <li><a href="../../architecture/editing-engine.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editing engine</span></div></a></li>
+                                              <li><a href="../../architecture/ui-library.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">UI library</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Tutorials</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../../tutorials/implementing-a-block-widget.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing a block widget</span></div></a></li>
+                                              <li><a href="../../tutorials/implementing-an-inline-widget.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing an inline widget</span></div></a></li>
+                                              <li><a href="../../tutorials/using-react-in-a-widget.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Using a React component in a widget</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Deep dive</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../clipboard.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Clipboard</span></div></a></li>
+                                              <li><a href="../upload-adapter.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom upload adapter</span></div></a></li>
+                                              <li><a href="../observables.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Observables</span></div></a></li>
+                                              <li><a href="../schema.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Schema</span></div></a></li>
+                                              <li>
+                                                <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Conversion</span></div>
+                                                <ul class="tree__item-nested-list">
+                                                        <li><a href="conversion-introduction.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Advanced concepts</span></div></a></li>
+                                                        <li><a href="conversion-extending-output.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Extending editor output</span></div></a></li>
+                                                        <li><a href="conversion-preserving-custom-content.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Preserving custom content</span></div></a></li>
+                                                        <li><a href="">
+                                                            <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Custom element conversion</span></div></a></li>
+                                                        <li><a href="element-reconversion.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Element reconversion</span></div></a></li>
+                                                </ul>
+                                              </li>
+                                              <li>
+                                                <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">User interface</span></div>
+                                                <ul class="tree__item-nested-list">
+                                                        <li><a href="../ui/focus-tracking.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Focus tracking</span></div></a></li>
+                                                        <li><a href="../ui/widget-internals.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Widget internals</span></div></a></li>
+                                                        <li><a href="../ui/theme-customization.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Theme customization</span></div></a></li>
+                                                        <li><a href="../ui/external-ui.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Third–party UI</span></div></a></li>
+                                                        <li><a href="../ui/document-editor.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document editor</span></div></a></li>
+                                                        <li><a href="../ui/custom-editor-creator.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating custom editor</span></div></a></li>
+                                                        <li><a href="../ui/localization.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Localization</span></div></a></li>
+                                                </ul>
+                                              </li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Contributing</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../../contributing/contributing.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Contributing</span></div></a></li>
+                                              <li><a href="../../contributing/development-environment.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development environment</span></div></a></li>
+                                              <li><a href="../../contributing/testing-environment.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Testing environment</span></div></a></li>
+                                              <li><a href="../../contributing/code-style.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Code style</span></div></a></li>
+                                              <li><a href="../../contributing/git-commit-message-convention.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Git commit message convention</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Support</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../../support/browser-compatibility.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Browser compatibility</span></div></a></li>
+                                              <li><a href="../../support/license-and-legal.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span></div></a></li>
+                                              <li><a href="../../support/getting-support.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting support</span></div></a></li>
+                                              <li><a href="../../support/reporting-issues.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span></div></a></li>
+                                              <li><a href="../../support/versioning-policy.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Versioning policy</span></div></a></li>
+                                              <li><a href="../../support/error-codes.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Error codes</span></div></a></li>
+                                      </ul>
+                                    </li>
+                            </ul>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2003-2021 <a href="http://cksource.com" target="_blank" rel="noopener">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'framework' ] = hits.filter( function( h ) {return h.tags.includes( 'framework' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'framework' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'framework' ] );tags.forEach( function( tag ) {if ( tag !== 'framework' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+    <script src="../../../../assets/snippet.js"></script>
+    <script src="../../../../snippets/assets.js"></script>
+    <script src="../../../../snippets/framework/build-custom-element-converter-source/snippet.js"></script>
+    <script src="../../../../snippets/framework/extending-content-custom-element-converter/snippet.js"></script>
+  </body>
+</html>
