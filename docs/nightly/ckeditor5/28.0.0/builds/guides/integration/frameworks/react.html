@@ -223,7 +223,7 @@
           <div class="rwd-breadcrumbs"><a href="../../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">Builds</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../../../assets/1.8.1/img/book.svg" alt="guide">Rich text editor component for React
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#quick-start">Quick start</a></li><li><a href="#component-properties">Component properties</a></li><li><a href="#context-feature">Context feature</a><ol><li><a href="#context-feature-properties">Context feature properties</a></li></ol></li><li><a href="#customizing-the-builds">Customizing the builds</a><ol><li><a href="#using-the-document-editor-build">Using the document editor build</a></li><li><a href="#using-the-editor-with-collaboration-plugins">Using the editor with collaboration plugins</a></li></ol></li><li><a href="#integrating-a-build-from-the-online-builder">Integrating a build from the online builder</a></li><li><a href="#integrating-ckeditor-5-built-from-source">Integrating CKEditor 5 built from source</a><ol><li><a href="#using-create-react-app3">Using create-react-app@3+</a><ol><li><a href="#installing-missing-dependencies">Installing missing dependencies</a></li><li><a href="#modifying-the-webpack-configuration">Modifying the webpack configuration</a></li><li><a href="#using-ckeditor-5-source">Using CKEditor 5 source</a></li></ol></li></ol></li><li><a href="#localization">Localization</a><ol><li><a href="#ready-to-use-builds">Ready-to-use builds</a></li><li><a href="#ckeditor-5-built-from-source">CKEditor 5 built from source</a></li></ol></li><li><a href="#contributing-and-reporting-issues">Contributing and reporting issues</a></li></ol></nav>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#quick-start">Quick start</a></li><li><a href="#component-properties">Component properties</a></li><li><a href="#context-feature">Context feature</a><ol><li><a href="#context-feature-properties">Context feature properties</a></li></ol></li><li><a href="#customizing-the-builds">Customizing the builds</a><ol><li><a href="#using-the-document-editor-build">Using the document editor build</a></li><li><a href="#using-the-editor-with-collaboration-plugins">Using the editor with collaboration plugins</a></li></ol></li><li><a href="#integrating-a-build-from-the-online-builder">Integrating a build from the online builder</a><ol><li><a href="#the-javascript-heap-out-of-memory-error">The JavaScript heap out of memory error</a></li></ol></li><li><a href="#integrating-ckeditor-5-built-from-source">Integrating CKEditor 5 built from source</a><ol><li><a href="#using-create-react-app3">Using create-react-app@3+</a><ol><li><a href="#installing-missing-dependencies">Installing missing dependencies</a></li><li><a href="#modifying-the-webpack-configuration">Modifying the webpack configuration</a></li><li><a href="#using-ckeditor-5-source">Using CKEditor 5 source</a></li></ol></li></ol></li><li><a href="#localization">Localization</a><ol><li><a href="#ready-to-use-builds">Ready-to-use builds</a></li><li><a href="#ckeditor-5-built-from-source">CKEditor 5 built from source</a></li></ol></li><li><a href="#contributing-and-reporting-issues">Contributing and reporting issues</a></li></ol></nav>
 
 <p>
 	<a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-react" target="_blank" rel="noopener">
@@ -497,6 +497,31 @@ class App extends Component {
 }
 
 export default App;
+</code></pre>
+<h3 id="the-javascript-heap-out-of-memory-error"><a class="headerlink" href="#the-javascript-heap-out-of-memory-error">#</a> The <code>JavaScript heap out of memory</code> error</h3>
+<p>When building the application for the production using the <code>yarn build</code> command, it may produce an error related to the memory available on the build machine:</p>
+<pre class="highlight"><code class>&lt;--- Last few GCs ---&gt;
+
+[32550:0x110008000]    42721 ms: Scavenge (reduce) 4061.0 (4069.6) -&gt; 4060.5 (4070.8) MB, 4.3 / 0.0 ms  (average mu = 0.358, current mu = 0.374) allocation failure
+[32550:0x110008000]    42726 ms: Scavenge (reduce) 4061.2 (4069.8) -&gt; 4060.6 (4071.3) MB, 4.0 / 0.0 ms  (average mu = 0.358, current mu = 0.374) allocation failure
+[32550:0x110008000]    42730 ms: Scavenge (reduce) 4061.4 (4073.3) -&gt; 4060.9 (4073.3) MB, 3.7 / 0.0 ms  (average mu = 0.358, current mu = 0.374) allocation failure
+
+&lt;--- JS stacktrace ---&gt;
+
+FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory
+ 1: 0x1012e4da5 node::Abort() (.cold.1) [/usr/local/bin/node]
+</code></pre>
+<p>This issue has not been fixed yet, however, there is a workaround for this. Increasing the available memory for Node.js using the <code>--max_old_space_size</code> modifier should resolve the problem.</p>
+<pre class="highlight"><code class="bash">node --max_old_space_size=4096 node_modules/.bin/react-scripts build
+</code></pre>
+<p>The memory limit can be set globally as well:</p>
+<pre class="highlight"><code class="bash"># Save it in the `.bash_profile` file to avoid typing it after rebooting the machine.
+export NODE_OPTIONS=&quot;--max-old-space-size=4096&quot;
+
+yarn build
+</code></pre>
+<p>It can also be set on-demand, per command call:</p>
+<pre class="highlight"><code class="bash">NODE_OPTIONS=&quot;--max-old-space-size=4096&quot; yarn build
 </code></pre>
 <h2 id="integrating-ckeditor-5-built-from-source"><a class="headerlink" href="#integrating-ckeditor-5-built-from-source">#</a> Integrating CKEditor 5 built from source</h2>
 <p>Integrating the rich text editor from source allows you to use the full power of the <a href="../../../../framework/guides/overview.html">CKEditor 5 Framework</a>.</p>
