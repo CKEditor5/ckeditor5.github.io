@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lists - CKEditor 5 Documentation</title>
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:site" content="@ckeditor">
+    <meta property="og:title" content="Lists - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/features/lists.html">
+    <meta property="DC.language" content="en">
+    <meta property="DC.publisher" content="CKSource">
+    <meta property="DC.creator" content="CKEditor">
+    <meta property="DC.title" content="Lists - CKEditor 5 Documentation">
+    <meta property="DC.format" content="text/html">
+    <meta property="DC.type" content="Text">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/features/lists.html">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../assets/1.5.4/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../assets/styles.css" type="text/css">
+    <link rel="stylesheet" href="../snippets/features/lists-source/snippet.css" type="text/css" data-cke="true">
+    <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css" data-cke="true">
+    <script>
+      ( function() {
+      	'use strict';
+      	// Set up global variables;
+      	if ( !window.umebrto ) {
+      		window.umberto = {};
+      	}
+      	window.umberto.relativeAppPath = "../../../assets/1.5.4/scripts"
+      
+      	// Add app script
+      	var el = document.createElement( 'script' );
+      	el.setAttribute( 'async', 'async' );
+      	el.setAttribute( 'defer', 'defer' );
+      	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
+      		el.src = "../../../assets/1.5.4/scripts/app.js";
+      	} else {
+      		el.src = "../../../assets/1.5.4/scripts/app-polyfill.js";
+      	}
+      	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
+      
+      	// Changing documentation theme enable it via `localStorage.setItem( 'theme', 'theme-dark' )`
+      	if ( localStorage.getItem( 'theme' ) === 'theme-dark' ) {
+      		document.getElementsByTagName( 'html' )[ 0 ].classList.add( 'theme-dark' );
+      	}
+      } )();
+    </script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  <meta name="generator" content="Hexo 4.2.1"></head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="header__main">
+        <div class="header__main-rwd-button"><a href="#"><span></span><span></span><span></span></a></div>
+        <div class="header__main-title"><a class="header__main-title-home" href="../../../index.html">CKEditor Ecosystem Documentation</a></div>
+        <div class="top__search">
+          <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+          <div class="top__search__button"><img src="../../../assets/1.5.4/img/loupe.svg" alt="Search"></div>
+        </div>
+      </div>
+      <div class="header__sub">
+        <ul class="top__menu">
+          <li class="top__menu-project-logo"><a href="../index.html">CKEditor 5</a></li>
+          <li><a href="../builds/index.html">Builds</a></li>
+          <li><a href="../framework/index.html">Framework</a></li>
+          <li><a href="../examples/index.html">Examples</a></li>
+          <li><a class="top__menu__item--active" href="index.html">Features</a></li>
+          <li><a class="top__menu__api" href="../api/index.html">API</a></li>
+          <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li>
+        </ul>
+      </div>
+      <div class="header__menu-rwd">
+        <ul class="header__menu-rwd__projects">
+          <li data-project="ckeditor5"><a href="../../latest/index.html">CKEditor 5</a>
+            <ul class="tree header__menu-rwd__projects-pages">
+              <li data-group="builds"><a href="../builds/index.html">Builds</a>
+              </li>
+              <li data-group="framework"><a href="../framework/index.html">Framework</a>
+              </li>
+              <li data-group="examples"><a href="../examples/index.html">Examples</a>
+              </li>
+              <li data-group="features"><a href="index.html">Features</a>
+                <ul class="header__menu-rwd__projects-subpages">
+                          <li><a href="autoformat.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Autoformatting</span></div></a></li>
+                          <li><a href="text-transformation.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Automatic text transformation</span></div></a></li>
+                          <li><a href="basic-styles.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic text styles</span></div></a></li>
+                          <li><a href="indent.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block indentation</span></div></a></li>
+                          <li><a href="blocktoolbar.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block toolbar</span></div></a></li>
+                          <li><a href="code-blocks.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Code blocks</span></div></a></li>
+                          <li><a href="title.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document title</span></div></a></li>
+                          <li><a href="editor-placeholder.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor placeholder</span></div></a></li>
+                          <li><a href="font.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Font</span></div></a></li>
+                          <li><a href="headings.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Headings</span></div></a></li>
+                          <li><a href="highlight.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Highlight</span></div></a></li>
+                          <li><a href="horizontal-line.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Horizontal line</span></div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Image upload</span></div>
+                            <ul class="tree__item-nested-list">
+                                  <li><a href="image-upload/image-upload.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                  <li><a href="image-upload/easy-image.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Easy Image</span></div></a></li>
+                                  <li><a href="image-upload/ckfinder.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">CKFinder file manager</span></div></a></li>
+                                  <li><a href="image-upload/base64-upload-adapter.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Base64 upload adapter</span></div></a></li>
+                                  <li><a href="image-upload/simple-upload-adapter.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Simple upload adapter</span></div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="image.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Images</span></div></a></li>
+                          <li><a href="keyboard-support.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Keyboard support</span></div></a></li>
+                          <li><a href="link.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Link</span></div></a></li>
+                          <li><a href="">
+                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Lists</span></div></a></li>
+                          <li><a href="markdown.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Markdown output</span></div></a></li>
+                          <li><a href="math-equations.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Math and chemical formulas</span></div></a></li>
+                          <li><a href="media-embed.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Media embed</span></div></a></li>
+                          <li><a href="mentions.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Mentions</span></div></a></li>
+                          <li><a href="page-break.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Page break</span></div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Pasting</span></div>
+                            <ul class="tree__item-nested-list">
+                                  <li><a href="pasting/paste-from-word.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Word</span></div></a></li>
+                                  <li><a href="pasting/paste-from-google-docs.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Google Docs</span></div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="read-only.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Read-only support</span></div></a></li>
+                          <li><a href="remove-format.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Remove formatting</span></div></a></li>
+                          <li><a href="restricted-editing.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Restricted editing</span></div></a></li>
+                          <li><a href="select-all.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Select all</span></div></a></li>
+                          <li><a href="special-characters.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Special characters</span></div></a></li>
+                          <li><a href="spelling-and-grammar-checking.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Spelling and grammar checking</span></div></a></li>
+                          <li><a href="table.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Tables</span></div></a></li>
+                          <li><a href="text-alignment.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Text alignment</span></div></a></li>
+                          <li><a href="todo-lists.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">To-do lists</span></div></a></li>
+                          <li><a href="ui-language.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">UI language</span></div></a></li>
+                          <li><a href="watchdog.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Watchdog</span></div></a></li>
+                          <li><a href="word-count.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Word and character count</span></div></a></li>
+                </ul>
+              </li>
+              <li data-group="api-reference"><a href="../api/index.html">API</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/packages/ckeditor5-list/docs/features/lists.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../assets/1.5.4/img/edit.svg" alt="Contribute to this guide"></a>
+          </div>
+          <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
+          </div>
+          <h1 class="main__content-title"><img src="../../../assets/1.5.4/img/book.svg" alt="guide">Lists
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#ordered-and-unordered-lists">Ordered and unordered lists</a><ol><li><a href="#demo">Demo</a></li></ol></li><li><a href="#list-styles">List styles</a><ol><li><a href="#demo-2">Demo</a></li><li><a href="#installation">Installation</a></li></ol></li><li><a href="#to-do-list">To-do list</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
+<p>The <a href="../api/module_list_list-List.html">list</a> feature allows creating ordered and unordered lists in the editor.</p>
+<div class="info-box notice notice__info"><p>The feature is enabled by default in all CKEditor 5 WYSIWYG editor builds.</p></div>
+
+<h2 id="ordered-and-unordered-lists"><a class="headerlink" href="#ordered-and-unordered-lists">#</a> Ordered and unordered lists</h2>
+<p>Use the editor below to see the list feature plugin in action.</p>
+<h3 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h3>
+<div class="live-snippet"><div id="snippet-lists-basic">
+    <h2>Unordered list</h2>
+    <p>Such a list can represent items where the order is not important, e.g. a list of ingredients required for preparing a dish or a drink.</p>
+    <p>Ingredients required for making a coffee:</p>
+    <ul>
+        <li>15g coffee ground</li>
+        <li>a cup</li>
+        <li>water</li>
+    </ul>
+    <h2>Ordered list</h2>
+    <p>The ordered list can be used if the order of the items matters, e.g. when describing an instruction. The order of steps that must be done is important.</p>
+    <p>How to prepare the coffee?</p>
+    <ol>
+        <li>Gather the ingredients</li>
+        <li>Put 15g of the coffee ground into the cup</li>
+        <li>Boil 200ml of water</li>
+        <li>Pour water into a cup</li>
+        <li>Optional: add milk as you wish</li>
+    </ol>
+</div>
+</div>
+<h2 id="list-styles"><a class="headerlink" href="#list-styles">#</a> List styles</h2>
+<p>The <a href="../api/module_list_liststyle-ListStyle.html">list styles</a> feature allows customizing the list&#x2019;s marker.</p>
+<h3 id="demo-2"><a class="headerlink" href="#demo-2">#</a> Demo</h3>
+<p>Use the editor below to see the list styles feature plugin in action.</p>
+<div class="live-snippet"><div id="snippet-lists-styles">
+    <p>Let's use the coffee recipe from the demo in section <a href="#demo">Ordered and unordered lists</a> and use the list styles feature.</p>
+    <p>Ingredients required for making a coffee:</p>
+    <ul style="list-style-type:circle;">
+        <li>15g coffee ground</li>
+        <li>a cup</li>
+        <li>water</li>
+    </ul>
+    <p>How to prepare the coffee?</p>
+    <ol style="list-style-type:decimal-leading-zero;">
+        <li>Gather the ingredients</li>
+        <li>Put 15g of the coffee ground into the cup</li>
+        <li>Boil 200ml of water</li>
+        <li>Pour water into a cup</li>
+        <li>Optional: add milk as you wish</li>
+    </ol>
+</div>
+</div>
+<h3 id="installation"><a class="headerlink" href="#installation">#</a> Installation</h3>
+<p>To add this feature to your editor, install the <a href="https://www.npmjs.com/package/@ckeditor/ckeditor5-list" target="_blank" rel="noopener"><code>@ckeditor/ckeditor5-list</code></a> package:</p>
+<pre class="highlight"><code class="bash">npm install --save @ckeditor/ckeditor5-list
+</code></pre>
+<p>Then add the <code>ListStyle</code> plugin to your plugin list and the toolbar configuration:</p>
+<pre class="highlight"><code class="js">import ListStyle from &apos;@ckeditor/ckeditor5-list/src/liststyle&apos;;
+
+ClassicEditor
+    .create( document.querySelector( &apos;#editor&apos; ), {
+        plugins: [ ListStyle, ... ],
+        toolbar: [ &apos;bulletedList&apos;, &apos;numberedList&apos;, ... ],
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<div class="info-box notice notice__info"><p>Read more about <a href="../builds/guides/integration/installing-plugins.html">installing plugins</a>.</p></div>
+<div class="info-box notice notice__warning"><p>The <a href="../api/module_list_liststyle-ListStyle.html"><code>ListStyle</code></a> feature overrides UI button implementations from the <a href="../api/module_list_listui-ListUI.html"><code>ListUI</code></a>.</p></div>
+<h2 id="to-do-list"><a class="headerlink" href="#to-do-list">#</a> To-do list</h2>
+<p>You can read more about the feature in the <a href="todo-lists.html">To-do lists</a> feature guide.</p>
+<h2 id="common-api"><a class="headerlink" href="#common-api">#</a> Common API</h2>
+<p>The <a href="../api/module_list_list-List.html"><code>List</code></a> plugin registers:</p>
+<ul>
+<li>The <a href="../api/module_list_listcommand-ListCommand.html"><code>&apos;numberedList&apos;</code></a> command.</li>
+<li>The <a href="../api/module_list_listcommand-ListCommand.html"><code>&apos;bulletedList&apos;</code></a> command.</li>
+<li>The <a href="../api/module_list_indentcommand-IndentCommand.html"><code>&apos;indentList&apos;</code></a> command.</li>
+<li>The <a href="../api/module_list_indentcommand-IndentCommand.html"><code>&apos;outdentList&apos;</code></a> command.</li>
+<li>The <code>&apos;numberedList&apos;</code> ui button.</li>
+<li>The <code>&apos;bulletedList&apos;</code> ui button.</li>
+</ul>
+<p>The <a href="../api/module_list_liststyle-ListStyle.html"><code>ListStyle</code></a> plugin registers:</p>
+<ul>
+<li>
+<p>The <a href="../api/module_list_liststylecommand-ListStyleCommand.html"><code>&apos;listStyle&apos;</code></a> command that accepts a <code>type</code> of a list style to set.</p>
+<pre class="highlight"><code class="js">editor.execute( &apos;listStyle&apos;, { type: &apos;decimal&apos; } );
+</code></pre>
+<p>The available types are:</p>
+<ul>
+<li>For bulleted lists: <code>&apos;disc&apos;</code>, <code>&apos;circle&apos;</code>, and <code>&apos;square&apos;</code>.</li>
+<li>For numbered lists: <code>&apos;decimal&apos;</code>, <code>&apos;decimal-leading-zero&apos;</code>, <code>&apos;lower-roman&apos;</code>, <code>&apos;upper-roman&apos;</code>, <code>&apos;lower-latin&apos;</code>, and <code>&apos;upper-latin&apos;</code>.</li>
+</ul>
+</li>
+<li>
+<p>The <code>&apos;numberedList&apos;</code> ui split button (it overrides UI button registered by the <code>List</code> plguin.</p>
+</li>
+<li>
+<p>The <code>&apos;bulletedList&apos;</code> ui split button (it overrides UI button registered by the <code>List</code> plguin.</p>
+</li>
+</ul>
+<h2 id="contribute"><a class="headerlink" href="#contribute">#</a> Contribute</h2>
+<p>The source code of the feature is available on GitHub in <a href="https://github.com/ckeditor/ckeditor5/tree/master/packages/ckeditor5-list" target="_blank" rel="noopener">https://github.com/ckeditor/ckeditor5/tree/master/packages/ckeditor5-list</a>.</p>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li><a href="autoformat.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Autoformatting</span></div></a></li>
+                          <li><a href="text-transformation.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Automatic text transformation</span></div></a></li>
+                          <li><a href="basic-styles.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic text styles</span></div></a></li>
+                          <li><a href="indent.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block indentation</span></div></a></li>
+                          <li><a href="blocktoolbar.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block toolbar</span></div></a></li>
+                          <li><a href="code-blocks.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Code blocks</span></div></a></li>
+                          <li><a href="title.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document title</span></div></a></li>
+                          <li><a href="editor-placeholder.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor placeholder</span></div></a></li>
+                          <li><a href="font.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Font</span></div></a></li>
+                          <li><a href="headings.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Headings</span></div></a></li>
+                          <li><a href="highlight.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Highlight</span></div></a></li>
+                          <li><a href="horizontal-line.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Horizontal line</span></div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Image upload</span></div>
+                            <ul class="tree__item-nested-list">
+                                    <li><a href="image-upload/image-upload.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="image-upload/easy-image.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Easy Image</span></div></a></li>
+                                    <li><a href="image-upload/ckfinder.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">CKFinder file manager</span></div></a></li>
+                                    <li><a href="image-upload/base64-upload-adapter.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Base64 upload adapter</span></div></a></li>
+                                    <li><a href="image-upload/simple-upload-adapter.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Simple upload adapter</span></div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="image.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Images</span></div></a></li>
+                          <li><a href="keyboard-support.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Keyboard support</span></div></a></li>
+                          <li><a href="link.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Link</span></div></a></li>
+                          <li><a href="">
+                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Lists</span></div></a></li>
+                          <li><a href="markdown.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Markdown output</span></div></a></li>
+                          <li><a href="math-equations.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Math and chemical formulas</span></div></a></li>
+                          <li><a href="media-embed.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Media embed</span></div></a></li>
+                          <li><a href="mentions.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Mentions</span></div></a></li>
+                          <li><a href="page-break.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Page break</span></div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Pasting</span></div>
+                            <ul class="tree__item-nested-list">
+                                    <li><a href="pasting/paste-from-word.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Word</span></div></a></li>
+                                    <li><a href="pasting/paste-from-google-docs.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Google Docs</span></div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="read-only.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Read-only support</span></div></a></li>
+                          <li><a href="remove-format.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Remove formatting</span></div></a></li>
+                          <li><a href="restricted-editing.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Restricted editing</span></div></a></li>
+                          <li><a href="select-all.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Select all</span></div></a></li>
+                          <li><a href="special-characters.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Special characters</span></div></a></li>
+                          <li><a href="spelling-and-grammar-checking.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Spelling and grammar checking</span></div></a></li>
+                          <li><a href="table.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Tables</span></div></a></li>
+                          <li><a href="text-alignment.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Text alignment</span></div></a></li>
+                          <li><a href="todo-lists.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">To-do lists</span></div></a></li>
+                          <li><a href="ui-language.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">UI language</span></div></a></li>
+                          <li><a href="watchdog.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Watchdog</span></div></a></li>
+                          <li><a href="word-count.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Word and character count</span></div></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2003-2020 <a href="http://cksource.com" target="_blank" rel="noopener">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'features' ] = hits.filter( function( h ) {return h.tags.includes( 'features' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'features' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'features' ] );tags.forEach( function( tag ) {if ( tag !== 'features' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+    <script src="../assets/snippet.js"></script>
+    <script src="../snippets/features/lists-source/snippet.js"></script>
+    <script src="../snippets/features/lists-basic/snippet.js"></script>
+    <script src="../snippets/features/lists-style/snippet.js"></script>
+  </body>
+</html>

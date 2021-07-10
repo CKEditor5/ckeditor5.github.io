@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Element reconversion - CKEditor 5 Documentation</title>
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:site" content="@ckeditor">
+    <meta property="og:title" content="Element reconversion - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/framework/guides/deep-dive/conversion/element-reconversion.html">
+    <meta property="DC.language" content="en">
+    <meta property="DC.publisher" content="CKSource">
+    <meta property="DC.creator" content="CKEditor">
+    <meta property="DC.title" content="Element reconversion - CKEditor 5 Documentation">
+    <meta property="DC.format" content="text/html">
+    <meta property="DC.type" content="Text">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/framework/guides/deep-dive/conversion/element-reconversion.html">
+    <link rel="icon" type="image/png" href="../../../../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../../../../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../../../../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../../../../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../../../../assets/1.6.3/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../assets/styles.css" type="text/css">
+    <link rel="stylesheet" href="../../../../snippets/framework/build-element-reconversion-source/snippet.css" type="text/css" data-cke="true">
+    <link rel="stylesheet" href="../../../../assets/snippet-styles.css" type="text/css" data-cke="true">
+    <script>
+      ( function() {
+      	'use strict';
+      	// Set up global variables;
+      	if ( !window.umebrto ) {
+      		window.umberto = {};
+      	}
+      	window.umberto.relativeAppPath = "../../../../../../assets/1.6.3/scripts";
+      
+      	// Add app script
+      	var el = document.createElement( 'script' );
+      	el.setAttribute( 'async', 'async' );
+      	el.setAttribute( 'defer', 'defer' );
+      	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
+      		el.src = "../../../../../../assets/1.6.3/scripts/app.js";
+      	} else {
+      		el.src = "../../../../../../assets/1.6.3/scripts/app-polyfill.js";
+      	}
+      	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
+      
+      	// Changing documentation theme enable it via `localStorage.setItem( 'theme', 'theme-dark' )`
+      	if ( localStorage.getItem( 'theme' ) === 'theme-dark' ) {
+      		document.getElementsByTagName( 'html' )[ 0 ].classList.add( 'theme-dark' );
+      	}
+      } )();
+    </script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  <meta name="generator" content="Hexo 4.2.1"></head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="header__main">
+        <div class="header__main-rwd-button"><a href="#"><span></span><span></span><span></span></a></div>
+        <div class="header__main-title"><a class="header__main-title-home" href="../../../../../../index.html">CKEditor Ecosystem Documentation</a></div>
+        <div class="top__search">
+          <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+          <div class="top__search__button"><img src="../../../../../../assets/1.6.3/img/loupe.svg" alt="Search"></div>
+        </div>
+      </div>
+      <div class="header__sub">
+        <ul class="top__menu">
+          <li class="top__menu-project-logo"><a href="../../../../index.html">CKEditor 5</a></li>
+          <li><a href="../../../../builds/index.html">Builds</a></li>
+          <li><a class="top__menu__item--active" href="../../../index.html">Framework</a></li>
+          <li><a href="../../../../examples/index.html">Examples</a></li>
+          <li><a href="../../../../features/index.html">Features</a></li>
+          <li><a class="top__menu__api" href="../../../../api/index.html">API</a></li>
+          <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li>
+        </ul>
+      </div>
+      <div class="header__menu-rwd">
+        <ul class="header__menu-rwd__projects">
+          <li data-project="ckeditor5"><a href="../../../../../latest/index.html">CKEditor 5</a>
+            <ul class="tree header__menu-rwd__projects-pages">
+              <li data-group="builds"><a href="../../../../builds/index.html">Builds</a>
+              </li>
+              <li data-group="framework"><a href="../../../index.html">Framework</a>
+                <ul class="header__menu-rwd__projects-subpages">
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Guides</span></div>
+                            <ul class="tree__item-nested-list">
+                                  <li><a href="../../overview.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                  <li><a href="../../quick-start.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span></div></a></li>
+                                  <li><a href="../../creating-simple-plugin.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating a simple plugin</span></div></a></li>
+                                  <li><a href="../../development-tools.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development tools</span></div></a></li>
+                                  <li>
+                                    <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Architecture</span></div>
+                                    <ul class="tree__item-nested-list">
+                                          <li><a href="../../architecture/intro.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Introduction</span></div></a></li>
+                                          <li><a href="../../architecture/core-editor-architecture.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Core editor architecture</span></div></a></li>
+                                          <li><a href="../../architecture/editing-engine.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editing engine</span></div></a></li>
+                                          <li><a href="../../architecture/ui-library.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">UI library</span></div></a></li>
+                                    </ul>
+                                  </li>
+                                  <li>
+                                    <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Tutorials</span></div>
+                                    <ul class="tree__item-nested-list">
+                                          <li><a href="../../tutorials/implementing-a-block-widget.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing a block widget</span></div></a></li>
+                                          <li><a href="../../tutorials/implementing-an-inline-widget.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing an inline widget</span></div></a></li>
+                                          <li><a href="../../tutorials/using-react-in-a-widget.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Using a React component in a widget</span></div></a></li>
+                                    </ul>
+                                  </li>
+                                  <li>
+                                    <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Deep dive</span></div>
+                                    <ul class="tree__item-nested-list">
+                                          <li><a href="../clipboard.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Clipboard</span></div></a></li>
+                                          <li><a href="../upload-adapter.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom upload adapter</span></div></a></li>
+                                          <li><a href="../observables.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Observables</span></div></a></li>
+                                          <li><a href="../schema.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Schema</span></div></a></li>
+                                          <li>
+                                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Conversion</span></div>
+                                            <ul class="tree__item-nested-list">
+                                                  <li><a href="conversion-introduction.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Advanced concepts</span></div></a></li>
+                                                  <li><a href="conversion-extending-output.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Extending editor output</span></div></a></li>
+                                                  <li><a href="conversion-preserving-custom-content.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Preserving custom content</span></div></a></li>
+                                                  <li><a href="custom-element-conversion.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom element conversion</span></div></a></li>
+                                                  <li><a href="">
+                                                      <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Element reconversion</span></div></a></li>
+                                            </ul>
+                                          </li>
+                                          <li>
+                                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">User interface</span></div>
+                                            <ul class="tree__item-nested-list">
+                                                  <li><a href="../ui/focus-tracking.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Focus tracking</span></div></a></li>
+                                                  <li><a href="../ui/widget-internals.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Widget internals</span></div></a></li>
+                                                  <li><a href="../ui/theme-customization.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Theme customization</span></div></a></li>
+                                                  <li><a href="../ui/external-ui.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Third–party UI</span></div></a></li>
+                                                  <li><a href="../ui/document-editor.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document editor</span></div></a></li>
+                                                  <li><a href="../ui/custom-editor-creator.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating custom editor</span></div></a></li>
+                                                  <li><a href="../ui/localization.html">
+                                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Localization</span></div></a></li>
+                                            </ul>
+                                          </li>
+                                    </ul>
+                                  </li>
+                                  <li>
+                                    <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Contributing</span></div>
+                                    <ul class="tree__item-nested-list">
+                                          <li><a href="../../contributing/contributing.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Contributing</span></div></a></li>
+                                          <li><a href="../../contributing/development-environment.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development environment</span></div></a></li>
+                                          <li><a href="../../contributing/testing-environment.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Testing environment</span></div></a></li>
+                                          <li><a href="../../contributing/code-style.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Code style</span></div></a></li>
+                                          <li><a href="../../contributing/git-commit-message-convention.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Git commit message convention</span></div></a></li>
+                                    </ul>
+                                  </li>
+                                  <li>
+                                    <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Support</span></div>
+                                    <ul class="tree__item-nested-list">
+                                          <li><a href="../../support/browser-compatibility.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Browser compatibility</span></div></a></li>
+                                          <li><a href="../../support/license-and-legal.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span></div></a></li>
+                                          <li><a href="../../support/getting-support.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting support</span></div></a></li>
+                                          <li><a href="../../support/reporting-issues.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span></div></a></li>
+                                          <li><a href="../../support/versioning-policy.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Versioning policy</span></div></a></li>
+                                          <li><a href="../../support/error-codes.html">
+                                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Error codes</span></div></a></li>
+                                    </ul>
+                                  </li>
+                            </ul>
+                          </li>
+                </ul>
+              </li>
+              <li data-group="examples"><a href="../../../../examples/index.html">Examples</a>
+              </li>
+              <li data-group="features"><a href="../../../../features/index.html">Features</a>
+              </li>
+              <li data-group="api-reference"><a href="../../../../api/index.html">API</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/packages/ckeditor5-engine/docs/framework/guides/deep-dive/element-reconversion.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../../../../assets/1.6.3/img/edit.svg" alt="Contribute to this guide"></a>
+          </div>
+          <div class="rwd-breadcrumbs"><a href="../../../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../../index.html">Framework</a>
+          </div>
+          <h1 class="main__content-title"><img src="../../../../../../assets/1.6.3/img/book.svg" alt="guide">Element reconversion
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#prerequisites">Prerequisites</a></li><li><a href="#atomic-converters-vs-element-reconversion">Atomic converters vs element reconversion</a></li><li><a href="#enabling-element-reconversion">Enabling element reconversion</a></li><li><a href="#example-implementation">Example implementation</a><ol><li><a href="#demo">Demo</a></li><li><a href="#model-and-view-structure">Model and view structure</a></li><li><a href="#schema">Schema</a></li><li><a href="#reconversion-definition">Reconversion definition</a></li><li><a href="#downcast-converter-details">Downcast converter details</a></li><li><a href="#upcast-conversion">Upcast conversion</a></li><li><a href="#full-source-code">Full source code</a></li></ol></li></ol></nav>
+
+<div class="info-box notice notice__warning"><p>Element reconversion is currently in beta version. The API will be extended to support more cases and will be changing with time.</p></div>
+<p>This guide introduces the concept of the <em>reconversion of model elements</em> during the downcast (model-to-view) <a href="../../architecture/editing-engine.html#conversion">conversion</a>.</p>
+<p>Reconversion allows simplifying downcast converters for model elements by merging multiple separate converters into a single converter that reacts to more types of model changes.</p>
+<h2 id="prerequisites"><a class="headerlink" href="#prerequisites">#</a> Prerequisites</h2>
+<p>To better understand the concepts used in this guide, it is recommended to familiarize yourself with other conversion guides, too:</p>
+<ul>
+<li><a href="../../tutorials/implementing-a-block-widget.html">Implementing a block widget</a></li>
+<li><a href="custom-element-conversion.html">Custom element conversion</a></li>
+</ul>
+<h2 id="atomic-converters-vs-element-reconversion"><a class="headerlink" href="#atomic-converters-vs-element-reconversion">#</a> Atomic converters vs element reconversion</h2>
+<p>In order to convert a model element to its view representation, you often write the following converters:</p>
+<ul>
+<li>An <code>elementToElement()</code> converter. This converter reacts to the insertion of a model element specified in the <code>model</code> field.</li>
+<li>If the model element has attributes and these attributes may change with time, you need to add the <code>attributeToAttribute()</code> converters for each attribute. These converters react to changes in the model element attributes and update the view accordingly.</li>
+</ul>
+<p>This granular approach to conversion is used by many editor features as it ensures extensibility of the base features and provides a separation of concerns. For example, the <a href="../../../../features/image.html#base-image-support">base image feature</a> provides conversion for a simple <code>&lt;image src=&quot;...&quot;&gt;</code> model element, while the <a href="../../../../features/image.html#resizing-images">image resize feature</a> adds support for the <code>width</code> and <code>height</code> attributes, the <a href="../../../../features/image.html#image-captions">image caption feature</a> for the <code>&lt;figcaption&gt;</code> HTML element, and so on.</p>
+<p>Apart from the extensibility aspect, the above approach ensures that a change of a model attribute or structure requires minimal changes in the view.</p>
+<p>However, in some cases where granularity is not necessary this approach may be an overkill. Consider a case in which you need to create a multi-layer view structure for one model element, or a case in which the view structure depends on a value of a model attribute. In such cases, writing a separate converter for a model element and separate converters for each attribute becomes cumbersome.</p>
+<p>Thankfully, element reconversion allows merging these converters into a single converter that reacts to multiple types of model changes (element insertion, its attribute changes and changes in its direct children). This approach can be considered more &#x201C;functional&#x201D; as the <code>view</code> callback executed on any of these changes should produce the entire view structure (down to a certain level) without taking into account what state changes have just happened.</p>
+<p>An additional perk of using element reconversion is that the parts of the model tree that have not been changed, like paragraphs and text inside your feature element, will not be reconverted. In other words, their view elements are kept in memory and re-used inside the changed parent.</p>
+<p>To sum up, element reconversion comes in handy for cases where you need to convert a relatively simple model to a complex view structure. And also, writing a single functional converter is easier to grasp in your project.</p>
+<h2 id="enabling-element-reconversion"><a class="headerlink" href="#enabling-element-reconversion">#</a> Enabling element reconversion</h2>
+<p>Element reconversion is enabled by setting the reconversion trigger configuration (<code>triggerBy</code>) for the <a href="../../../../api/module_engine_conversion_downcasthelpers-DowncastHelpers.html#function-elementToElement"><code>elementToElement()</code></a> downcast helper.</p>
+<p>The model element can be reconverted when:</p>
+<ul>
+<li>one or many attributes change (using <code>triggerBy.attributes</code>) or</li>
+<li>a child is inserted or removed (using <code>triggerBy.children</code>)</li>
+</ul>
+<div class="info-box notice"><p>Note that when using the <code>children</code> configuration option, the current implementation assumes that the downcast converter will either:</p><ul>
+<li>handle an element and its children conversion at once,</li>
+<li>have a &#x201C;flat&#x201D; structure.</li>
+</ul>
+</div>
+<p>A simple example of an element reconversion configuration is demonstrated below:</p>
+<pre class="highlight"><code class="js">editor.conversion.for( &apos;downcast&apos; ).elementToElement( {
+    model: &apos;myElement&apos;,
+    view: ( modelElement, { writer } ) =&gt; {
+        return writer.createContainerElement( &apos;div&apos;, {
+            &apos;data-owner-id&apos;: modelElement.getAttribute( &apos;ownerId&apos; ),
+            class: `my-element my-element-${ modelElement.getAttribute( &apos;type&apos; ) }`
+        } );
+    },
+    triggerBy: {
+        attributes: [ &apos;ownerId&apos;, &apos;type&apos; ]
+    }
+} )
+</code></pre>
+<p>In this example:</p>
+<ul>
+<li>The downcast converter for <code>myElement</code> creates a <code>&lt;div&gt;</code> with a <code>data-owner-id</code> attribute and a set of CSS classes.</li>
+<li>The value of <code>data-owner-id</code> is set from the <code>ownerId</code> model element&#x2019;s attribute.</li>
+<li>The second CSS class is constructed off the <code>type</code> model element&#x2019;s attribute.</li>
+<li>The <code>triggerBy.attributes</code> configuration defines that the element will be converted upon changes of the <code>onwerId</code> or <code>type</code> attributes.</li>
+</ul>
+<p>Before CKEditor version <code>23.1.0</code> you would have to define a set of atomic converters for the element and for each attribute:</p>
+<pre class="highlight"><code class="js">editor.conversion.for( &apos;downcast&apos; )
+        .elementToElement( {
+            model: &apos;myElement&apos;,
+            view: &apos;div&apos;
+        } )
+        .attributeToAttribute( {
+            model: &apos;owner-id&apos;,
+            view: &apos;data-owner-id&apos;
+        } )
+        .attributeToAttribute( {
+            model: &apos;type&apos;,
+            view: modelAttributeValue =&gt; ( {
+                key: &apos;class&apos;,
+                value: `my-element my-element-${ modelAttributeValue }`
+            } )
+        } );
+</code></pre>
+<h2 id="example-implementation"><a class="headerlink" href="#example-implementation">#</a> Example implementation</h2>
+<p>In this example implementation you will implement a &#x201C;card&#x201D; box which is displayed beside the main article content. The card will contain a text-only title, one to four content sections and an optional URL. Additionally, the user can choose the type of the card.</p>
+<h3 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h3>
+<div class="live-snippet"><style>
+	.ck-content .side-card {
+		padding: 0.5em;
+		border-radius: 8px;
+		width: 300px;
+		margin: 1em auto 1em 1.5em;
+		font-size: 0.9em;
+		float: right;
+	}
+
+	.ck-content .side-card.ck-widget.ck-widget_with-selection-handle .ck-widget__selection-handle {
+		transform: translateY(calc(-100% - 7px));
+		left: calc(0px - var(--ck-widget-outline-thickness) - 1px)
+	}
+
+	.ck-content .side-card-title {
+		margin-bottom: 0.5em;
+		font-size: 1.2em;
+		color: inherit;
+		border-bottom-color: inherit;
+		border-bottom-style: solid;
+		border-bottom-width: 1px;
+	}
+
+	.ck-content .side-card-alternate {
+		background: hsl(48, 100%, 93%);
+		border: 1px solid hsl(47, 100%, 75%);
+	}
+
+	.ck-content .side-card-alternate .side-card-title {
+		color: hsl(47, 100%, 32%)
+	}
+
+	.ck-content .side-card-default {
+		background: hsl(205, 100%, 95%);
+		border: 1px solid hsl(205, 91%, 82%);
+	}
+
+	.ck-content .side-card-default .side-card-title {
+		color: hsl(204, 79%, 41%)
+	}
+
+	.ck-content .side-card-section {
+		padding: 4px;
+		background: hsl(0, 0%, 100%);
+		border-radius: 6px;
+		margin-top: 0.5em;
+	}
+
+	.ck-content .side-card-section p:only-child,
+	.ck-content .side-card-section p:last-child {
+		margin-bottom: 0;
+	}
+
+	.ck-content .side-card-url {
+		margin: 0.5em 0;
+		font-style: italic;
+		font-size: 0.8em;
+		color: hsl(0, 0%, 20%);
+	}
+
+	.ck-content .side-card-actions {
+		margin: 0.5em 0;
+	}
+
+	.ck-content .side-card-actions button {
+		font-size: 0.8em;
+		border: 1px solid hsl(0, 0%, 80%);
+		padding: 2px 4px;
+		margin-right: 0.5em;
+	}
+</style>
+
+<div id="editor-element-reconversion">
+	<p>With the break of dawn came the stranger. A gunslinger, little doubt did he leave about it, sporting a rather big iron on his hip. He came from the southside and rode the street slowly, speaking none. The people of Agua Caliente had little liking for such visitors but there was no-one to ask the rider what his business was, as he progressed, eyeing the buildings and those few townfolks he could spot.</p>
+	<p>- Aye, let me tell ya, that&rsquo;s some right hangdog - commented the undertaker.</p>
+	<p>- Sure as my name he&rsquo;s on the run - whispered Laughing Jessie, the saloon owner. - And I am damned if he ain&rsquo;t got some business here!</p>
+
+	<aside class="side-card side-card-default">
+		<div class="side-card-title">Gunslinger</div>
+		<div class="side-card-section">
+			<p>Used to denote someone who is quick on the draw with a pistol.</p>
+		</div>
+		<div class="side-card-section">
+			<p>A word dated to 1920s.</p>
+		</div>
+		<div class="side-card-url">https://www.dictionary.com/browse/gunslinger</div>
+	</aside>
+
+	<p>The rider strode closer to the talking duo. He tipped his hat, but he didn&rsquo;t dismount.</p>
+	<p>- Looking for Kansas Ted - he spoke slowly, in a firm, sound voice. - Any chance you know where he&rsquo;s at?</p>
+	<p>- And who&rsquo;s that asking? - Jessie wanted to know. - Kansas Ted is no fun character to meet.</p>
+	<p>- This I know - spoke the stranger. - I&rsquo;m a mounted trooper from New Mexico and I am after him for killing twenty people. And I will take him back with me, be him alive or dead, that makes me no difference whatsoever.</p>
+	<p>And the handsome New Mexico trooper rested his hand firmly on the big iron on his hip, leaving no place for doubt about what his business with Ted might be.</p>
+	<p>A word of mouth rounded the town of Agua Caliente and soon Kansas himself knew there was a shooting planned for the day. He was neither worried nor afraid as he was used to people trying to gun him down. He was only 24, but there were already twenty notches on his pistol as all those men that tried to take him have failed. He went on with his usual life all morning, and it was twenty past eleven when he finally walked out to the street. The handsome trooper was there. And the townfolks were there, looking from the windows.</p>
+
+	<aside class="side-card side-card-alternate">
+		<div class="side-card-title">Gunman</div>
+		<div class="side-card-section">
+			<p>Was a hired gun who made a living with his weapons in the Old West.</p>
+		</div>
+		<div class="side-card-section">
+			<p>Used mostly pre-20th century.</p>
+		</div>
+		<div class="side-card-url">https://www.dictionary.com/browse/gunman</div>
+	</aside>
+
+	<p>Kansas Ted stood there smiling, relaxed. A vicious man convinced that the stranger from New Mexico was facing defeat. So thought the people of Agua Caliente, watching this show with ghoulish delight. And then a bullet ripped and there was a look of surprise on the face of the young killer as he didn&rsquo;t even clear the leather. He met his death from the hands of the New Mexico trooper, who put the big iron back to his hip.</p>
+	<p>Folks gathered around the body, as it was lying lifelessly in the dust. Kansas Ted made his one final mistake when he tried to match a superior gunslinger. Nobody spoke as the trooper rode out of town, taking the fallen gunman with him.</p>
+
+</div>
+</div>
+<h3 id="model-and-view-structure"><a class="headerlink" href="#model-and-view-structure">#</a> Model and view structure</h3>
+<p>A simplified model markup for the side card looks as follows:</p>
+<pre class="highlight"><code class="html">&lt;sideCardSection cardType=&quot;info&quot; cardURL=&quot;https://ckeditor.com/&quot;&gt;
+    &lt;sideCardTitle&gt;The title&lt;/sideCardTitle&gt;
+    &lt;sideCardSection&gt;
+        &lt;paragraph&gt;The content&lt;/paragraph&gt;
+    &lt;/sideCardSection&gt;
+&lt;/sideCard&gt;
+</code></pre>
+<p>This will be converted to the below view structure:</p>
+<pre class="highlight"><code class="html">&lt;aside class=&quot;side-card side-card-default&quot;&gt;
+    &lt;div class=&quot;side-card-title&quot;&gt;Hey! Did you know?&lt;/div&gt;
+    &lt;div class=&quot;side-card-section&quot;&gt;
+        &lt;p&gt;Editable content of the &lt;strong&gt;side card&lt;/strong&gt;.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;side-card-section&quot;&gt;
+        &lt;p&gt;Another content box.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;side-card-actions&quot;&gt;
+        &lt;!-- Simple form elements for the editing view. --&gt;
+    &lt;/div&gt;
+&lt;/aside&gt;
+</code></pre>
+<p>In the above example you can observe that the <code>&apos;cardURL&apos;</code> model attribute is converted as a view element inside the main view container while the type attribute is translated to a CSS class. Additionally, the UI controls are injected to the view after all other child views of the main container. Describing it using atomic converters would introduce a convoluted complexity.</p>
+<h3 id="schema"><a class="headerlink" href="#schema">#</a> Schema</h3>
+<p>The side card model structure is represented in the editor&#x2019;s <a href="../schema.html">schema</a> as follows:</p>
+<pre class="highlight"><code class="js">// The main element with attributes for type and URL:
+schema.register( &apos;sideCard&apos;, {
+    allowWhere: &apos;$block&apos;,
+    isObject: true,
+    allowAttributes: [ &apos;cardType&apos;, &apos;cardURL&apos; ]
+} );
+// Disallow side card nesting.
+schema.addChildCheck( ( context, childDefinition ) =&gt; {
+    if ( [ ...context.getNames() ].includes( &apos;sideCard&apos; ) &amp;&amp; childDefinition.name === &apos;sideCard&apos; ) {
+        return false;
+    }
+} );
+
+// A text-only title.
+schema.register( &apos;sideCardTitle&apos;, {
+    isLimit: true,
+    allowIn: &apos;sideCard&apos;
+} );
+// Allow text in title...
+schema.extend( &apos;$text&apos;, { allowIn: &apos;sideCardTitle&apos; } );
+// ...but disallow any text attribute inside.
+schema.addAttributeCheck( context =&gt; {
+    if ( context.endsWith( &apos;sideCardTitle $text&apos; ) ) {
+        return false;
+    }
+} );
+
+// A content block which can have any content allowed in $root.
+schema.register( &apos;sideCardSection&apos;, {
+    isLimit: true,
+    allowIn: &apos;sideCard&apos;,
+    allowContentOf: &apos;$root&apos;
+} );
+</code></pre>
+<h3 id="reconversion-definition"><a class="headerlink" href="#reconversion-definition">#</a> Reconversion definition</h3>
+<p>To enable element reconversion, define for which attribute and children modifications the main element will be converted:</p>
+<pre class="highlight"><code class="js">conversion.for( &apos;editingDowncast&apos; ).elementToElement( {
+    model: &apos;sideCard&apos;,
+    view: downcastSideCard( editor, { asWidget: true } ),
+    triggerBy: {
+        attributes: [ &apos;cardType&apos;, &apos;cardURL&apos; ],
+        children: [ &apos;sideCardSection&apos; ]
+    }
+} );
+</code></pre>
+<p>The above definition will use the <code>downcastSideCard()</code> function to re-create the view when:</p>
+<ul>
+<li>The <code>sideCard</code> element is inserted into the model.</li>
+<li>One of <code>cardType</code> or <code>cardURL</code> has changed.</li>
+<li>A child <code>sideCardSection</code> is added or removed from the parent <code>sideCard</code>.</li>
+</ul>
+<h3 id="downcast-converter-details"><a class="headerlink" href="#downcast-converter-details">#</a> Downcast converter details</h3>
+<p>The function that creates a complete view for the model element:</p>
+<pre class="highlight"><code class="js">const downcastSideCard = ( editor, { asWidget } ) =&gt; {
+    return ( modelElement, { writer, consumable, mapper } ) =&gt; {
+        const type = modelElement.getAttribute( &apos;cardType&apos; ) || &apos;default&apos;;
+
+        // The main view element for the side card.
+        const sideCardView = writer.createContainerElement( &apos;aside&apos;, {
+            class: `side-card side-card-${ type }`
+        } );
+
+        // Create inner views from the side card children.
+        for ( const child of modelElement.getChildren() ) {
+            const childView = writer.createEditableElement( &apos;div&apos; );
+
+            // Child is either a &quot;title&quot; or &quot;section&quot;.
+            if ( child.is( &apos;element&apos;, &apos;sideCardTitle&apos; ) ) {
+                writer.addClass( &apos;side-card-title&apos;, childView );
+            } else {
+                writer.addClass( &apos;side-card-section&apos;, childView );
+            }
+
+            // It is important to consume and bind converted elements.
+            consumable.consume( child, &apos;insert&apos; );
+            mapper.bindElements( child, childView );
+
+            // Make it an editable part of the widget.
+            if ( asWidget ) {
+                toWidgetEditable( childView, writer );
+            }
+
+            writer.insert( writer.createPositionAt( sideCardView, &apos;end&apos; ), childView );
+        }
+
+        const urlAttribute = modelElement.getAttribute( &apos;cardURL&apos; );
+
+        // Do not render an empty URL field
+        if ( urlAttribute ) {
+            const urlBox = writer.createRawElement( &apos;div&apos;, {
+                class: &apos;side-card-url&apos;
+            }, function( domElement ) {
+                domElement.innerText = `URL: &quot;${ urlAttribute }&quot;`;
+            } );
+
+            writer.insert( writer.createPositionAt( sideCardView, &apos;end&apos; ), urlBox );
+        }
+
+        // Inner element used to render a simple UI that allows to change the side card&apos;s attributes.
+        // It will only be needed in the editing view inside the widgetized element.
+        // The data output should not contain this section.
+        if ( asWidget ) {
+            const actionsView = writer.createRawElement( &apos;div&apos;, {
+                class: &apos;side-card-actions&apos;,
+                contenteditable: &apos;false&apos;, 			// Prevents editing of the element.
+                &apos;data-cke-ignore-events&apos;: &apos;true&apos;	// Allows using custom UI elements inside the editing view.
+            }, createActionsView( editor, modelElement ) ); // See the full code for details.
+
+            writer.insert( writer.createPositionAt( sideCardView, &apos;end&apos; ), actionsView );
+
+            toWidget( sideCardView, writer, { widgetLabel: &apos;Side card&apos;, hasSelectionHandle: true  } );
+        }
+
+        return sideCardView;
+    };
+};
+</code></pre>
+<p>By using <code>mapper.bindElements( child, childView )</code> for <code>&lt;sideCardTitle&gt;</code> and <code>&lt;sideCardSection&gt;</code> you define which view elements correspond to which model elements. This allows the editor&#x2019;s conversion to re-use the existing view elements for the title and section children, so they will not be re-converted without a need.</p>
+<h3 id="upcast-conversion"><a class="headerlink" href="#upcast-conversion">#</a> Upcast conversion</h3>
+<p>The upcast conversion uses standard element-to-element converters for the box and title, and a custom converter for the side card to extract metadata from the data.</p>
+<pre class="highlight"><code class="js">editor.conversion.for( &apos;upcast&apos; )
+    .elementToElement( {
+        view: { name: &apos;aside&apos;, classes: [ &apos;side-card&apos; ] },
+        model: upcastCard // Details in the full source code.
+    } )
+    .elementToElement( {
+        view: { name: &apos;div&apos;, classes: [ &apos;side-card-title&apos; ] },
+        model: &apos;sideCardTitle&apos;
+    } )
+    .elementToElement( {
+        view: { name: &apos;div&apos;, classes: [ &apos;side-card-section&apos; ] },
+        model: &apos;sideCardSection&apos;
+    } );
+</code></pre>
+<p>You can see the details of the upcast converter function (<code>upcastCard()</code>) in the full source code at the end of this guide.</p>
+<h3 id="full-source-code"><a class="headerlink" href="#full-source-code">#</a> Full source code</h3>
+<pre class="highlight"><code class="js">import Plugin from &apos;@ckeditor/ckeditor5-core/src/plugin&apos;;
+import ButtonView from &apos;@ckeditor/ckeditor5-ui/src/button/buttonview&apos;;
+import Command from &apos;@ckeditor/ckeditor5-core/src/command&apos;;
+import { toWidget, toWidgetEditable, findOptimalInsertionPosition } from &apos;@ckeditor/ckeditor5-widget/src/utils&apos;;
+import createElement from &apos;@ckeditor/ckeditor5-utils/src/dom/createelement&apos;;
+
+/**
+ * Helper for extracting the side card type from a view element based on its CSS class.
+ */
+const getTypeFromViewElement = viewElement =&gt; {
+    for ( const type of [ &apos;default&apos;, &apos;alternate&apos; ] ) {
+        if ( viewElement.hasClass( `side-card-${ type }` ) ) {
+            return type;
+        }
+    }
+
+    return &apos;default&apos;;
+};
+
+/**
+ * Single upcast converter to the &lt;sideCard/&gt; element with all its attributes.
+ */
+const upcastCard = ( viewElement, { writer } ) =&gt; {
+    const sideCard = writer.createElement( &apos;sideCard&apos; );
+
+    const type = getTypeFromViewElement( viewElement );
+    writer.setAttribute( &apos;cardType&apos;, type, sideCard );
+
+    const urlWrapper = [ ...viewElement.getChildren() ].find( child =&gt; {
+        return child.is( &apos;element&apos;, &apos;div&apos; ) &amp;&amp; child.hasClass( &apos;side-card-url&apos; );
+    } );
+
+    if ( urlWrapper ) {
+        writer.setAttribute( &apos;cardURL&apos;, urlWrapper.getChild( 0 ).data, sideCard );
+    }
+
+    return sideCard;
+};
+
+/**
+ * Helper for creating a DOM button with an editor callback.
+ */
+const addActionButton = ( text, callback, domElement, editor ) =&gt; {
+    const domDocument = domElement.ownerDocument;
+
+    const button = createElement( domDocument, &apos;button&apos;, {}, [ text ] );
+
+    button.addEventListener( &apos;click&apos;, () =&gt; {
+        editor.model.change( callback );
+    } );
+
+    domElement.appendChild( button );
+
+    return button;
+};
+
+/**
+ * Helper function that creates the card editing UI inside the card.
+ */
+const createActionsView = ( editor, modelElement ) =&gt; function( domElement ) {
+    //
+    // Set the URL action button.
+    //
+    addActionButton( &apos;Set URL&apos;, writer =&gt; {
+        // eslint-disable-next-line no-alert
+        const newURL = prompt( &apos;Set URL&apos;, modelElement.getAttribute( &apos;cardURL&apos; ) || &apos;&apos; );
+
+        writer.setAttribute( &apos;cardURL&apos;, newURL, modelElement );
+    }, domElement, editor );
+
+    const currentType = modelElement.getAttribute( &apos;cardType&apos; );
+    const newType = currentType === &apos;default&apos; ? &apos;alternate&apos; : &apos;default&apos;;
+
+    //
+    // Change the card action button.
+    //
+    addActionButton( &apos;Change type&apos;, writer =&gt; {
+        writer.setAttribute( &apos;cardType&apos;, newType, modelElement );
+    }, domElement, editor );
+
+    const childCount = modelElement.childCount;
+
+    //
+    // Add the content section to the card action button.
+    //
+    const addButton = addActionButton( &apos;Add section&apos;, writer =&gt; {
+        writer.insertElement( &apos;sideCardSection&apos;, modelElement, &apos;end&apos; );
+    }, domElement, editor );
+
+    // Disable the button so only 1-3 content boxes are in the card (there will always be a title).
+    if ( childCount &gt; 4 ) {
+        addButton.setAttribute( &apos;disabled&apos;, &apos;disabled&apos; );
+    }
+
+    //
+    // Remove the content section from the card action button.
+    //
+    const removeButton = addActionButton( &apos;Remove section&apos;, writer =&gt; {
+        writer.remove( modelElement.getChild( childCount - 1 ) );
+    }, domElement, editor );
+
+    // Disable the button so only 1-3 content boxes are in the card (there will always be a title).
+    if ( childCount &lt; 3 ) {
+        removeButton.setAttribute( &apos;disabled&apos;, &apos;disabled&apos; );
+    }
+};
+
+/**
+ * The downcast converter for the &lt;sideCard/&gt; element.
+ *
+ * It returns the full view structure based on the current state of the model element.
+ */
+const downcastSideCard = ( editor, { asWidget } ) =&gt; {
+    return ( modelElement, { writer, consumable, mapper } ) =&gt; {
+        const type = modelElement.getAttribute( &apos;cardType&apos; ) || &apos;default&apos;;
+
+        // The main view element for the side card.
+        const sideCardView = writer.createContainerElement( &apos;aside&apos;, {
+            class: `side-card side-card-${ type }`
+        } );
+
+        // Create inner views from the side card children.
+        for ( const child of modelElement.getChildren() ) {
+            const childView = writer.createEditableElement( &apos;div&apos; );
+
+            // Child is either a &quot;title&quot; or &quot;section&quot;.
+            if ( child.is( &apos;element&apos;, &apos;sideCardTitle&apos; ) ) {
+                writer.addClass( &apos;side-card-title&apos;, childView );
+            } else {
+                writer.addClass( &apos;side-card-section&apos;, childView );
+            }
+
+            // It is important to consume and bind converted elements.
+            consumable.consume( child, &apos;insert&apos; );
+            mapper.bindElements( child, childView );
+
+            // Make it an editable part of the widget.
+            if ( asWidget ) {
+                toWidgetEditable( childView, writer );
+            }
+
+            writer.insert( writer.createPositionAt( sideCardView, &apos;end&apos; ), childView );
+        }
+
+        const urlAttribute = modelElement.getAttribute( &apos;cardURL&apos; );
+
+        // Do not render an empty URL field.
+        if ( urlAttribute ) {
+            const urlBox = writer.createRawElement( &apos;div&apos;, {
+                class: &apos;side-card-url&apos;
+            }, function( domElement ) {
+                domElement.innerText = `URL: &quot;${ urlAttribute }&quot;`;
+            } );
+
+            writer.insert( writer.createPositionAt( sideCardView, &apos;end&apos; ), urlBox );
+        }
+
+        // Inner element used to render a simple UI that allows to change the side card&apos;s attributes.
+        // It will only be needed in the editing view inside the widgetized element.
+        // The data output should not contain this section.
+        if ( asWidget ) {
+            const actionsView = writer.createRawElement( &apos;div&apos;, {
+                class: &apos;side-card-actions&apos;,
+                contenteditable: &apos;false&apos;, 			// Prevents editing of the element.
+                &apos;data-cke-ignore-events&apos;: &apos;true&apos;	// Allows using custom UI elements inside the editing view.
+            }, createActionsView( editor, modelElement ) ); // See the full code for details.
+
+            writer.insert( writer.createPositionAt( sideCardView, &apos;end&apos; ), actionsView );
+
+            toWidget( sideCardView, writer, { widgetLabel: &apos;Side card&apos; } );
+        }
+
+        return sideCardView;
+    };
+};
+
+class InsertCardCommand extends Command {
+    /**
+     * Refresh used schema definition to check if a side card can be inserted in the current selection.
+     */
+    refresh() {
+        const model = this.editor.model;
+        const validParent = findOptimalInsertionPosition( model.document.selection, model );
+
+        this.isEnabled = model.schema.checkChild( validParent, &apos;sideCard&apos; );
+    }
+
+    /**
+     * Creates a full side card element with all required children and attributes.
+     */
+    execute() {
+        const model = this.editor.model;
+        const selection = model.document.selection;
+
+        const insertPosition = findOptimalInsertionPosition( selection, model );
+
+        model.change( writer =&gt; {
+            const sideCard = writer.createElement( &apos;sideCard&apos;, { cardType: &apos;default&apos; } );
+            const title = writer.createElement( &apos;sideCardTitle&apos; );
+            const section = writer.createElement( &apos;sideCardSection&apos; );
+            const paragraph = writer.createElement( &apos;paragraph&apos; );
+
+            writer.insert( title, sideCard, 0 );
+            writer.insert( section, sideCard, 1 );
+            writer.insert( paragraph, section, 0 );
+
+            model.insertContent( sideCard, insertPosition );
+
+            writer.setSelection( writer.createPositionAt( title, 0 ) );
+        } );
+    }
+}
+
+class ComplexBox extends Plugin {
+    constructor( editor ) {
+        super( editor );
+
+        this._defineSchema();
+        this._defineConversion();
+
+        editor.commands.add( &apos;insertCard&apos;, new InsertCardCommand( editor ) );
+
+        this._defineUI();
+    }
+
+    _defineConversion() {
+        const editor = this.editor;
+        const conversion = editor.conversion;
+
+        conversion.for( &apos;upcast&apos; )
+            .elementToElement( {
+                view: { name: &apos;aside&apos;, classes: [ &apos;side-card&apos; ] },
+                model: upcastCard
+            } )
+            .elementToElement( {
+                view: { name: &apos;div&apos;, classes: [ &apos;side-card-title&apos; ] },
+                model: &apos;sideCardTitle&apos;
+            } )
+            .elementToElement( {
+                view: { name: &apos;div&apos;, classes: [ &apos;side-card-section&apos; ] },
+                model: &apos;sideCardSection&apos;
+            } );
+
+        // The downcast conversion must be split as you need a widget in the editing pipeline.
+        conversion.for( &apos;editingDowncast&apos; ).elementToElement( {
+            model: &apos;sideCard&apos;,
+            view: downcastSideCard( editor, { asWidget: true } ),
+            triggerBy: {
+                attributes: [ &apos;cardType&apos;, &apos;cardURL&apos; ],
+                children: [ &apos;sideCardSection&apos; ]
+            }
+        } );
+        // The data downcast is always executed from the current model stat, so `triggerBy` will take no effect.
+        conversion.for( &apos;dataDowncast&apos; ).elementToElement( {
+            model: &apos;sideCard&apos;,
+            view: downcastSideCard( editor, { asWidget: false } )
+        } );
+    }
+
+    _defineSchema() {
+        const schema = this.editor.model.schema;
+
+        // The main element with attributes for type and URL:
+        schema.register( &apos;sideCard&apos;, {
+            allowWhere: &apos;$block&apos;,
+            isObject: true,
+            allowAttributes: [ &apos;cardType&apos;, &apos;cardURL&apos; ]
+        } );
+        // Disallow side card nesting.
+        schema.addChildCheck( ( context, childDefinition ) =&gt; {
+            if ( [ ...context.getNames() ].includes( &apos;sideCard&apos; ) &amp;&amp; childDefinition.name === &apos;sideCard&apos; ) {
+                return false;
+            }
+        } );
+
+        // A text-only title.
+        schema.register( &apos;sideCardTitle&apos;, {
+            isLimit: true,
+            allowIn: &apos;sideCard&apos;
+        } );
+        // Allow text in title...
+        schema.extend( &apos;$text&apos;, { allowIn: &apos;sideCardTitle&apos; } );
+        // ...but disallow any text attribute inside.
+        schema.addAttributeCheck( context =&gt; {
+            if ( context.endsWith( &apos;sideCardTitle $text&apos; ) ) {
+                return false;
+            }
+        } );
+
+        // A content block which can have any content allowed in $root.
+        schema.register( &apos;sideCardSection&apos;, {
+            isLimit: true,
+            allowIn: &apos;sideCard&apos;,
+            allowContentOf: &apos;$root&apos;
+        } );
+    }
+
+    _defineUI() {
+        const editor = this.editor;
+
+        // Defines a simple text button.
+        editor.ui.componentFactory.add( &apos;insertCard&apos;, locale =&gt; {
+            const button = new ButtonView( locale );
+
+            const command = editor.commands.get( &apos;insertCard&apos; );
+
+            button.set( {
+                withText: true,
+                icon: false,
+                label: &apos;Insert card&apos;
+            } );
+
+            button.bind( &apos;isEnabled&apos; ).to( command );
+
+            button.on( &apos;execute&apos;, () =&gt; {
+                editor.execute( &apos;insertCard&apos; );
+                editor.editing.view.focus();
+            } );
+
+            return button;
+        } );
+    }
+}
+</code></pre>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Guides</span></div>
+                            <ul class="tree__item-nested-list">
+                                    <li><a href="../../overview.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="../../quick-start.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Quick start</span></div></a></li>
+                                    <li><a href="../../creating-simple-plugin.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating a simple plugin</span></div></a></li>
+                                    <li><a href="../../development-tools.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development tools</span></div></a></li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Architecture</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../../architecture/intro.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Introduction</span></div></a></li>
+                                              <li><a href="../../architecture/core-editor-architecture.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Core editor architecture</span></div></a></li>
+                                              <li><a href="../../architecture/editing-engine.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editing engine</span></div></a></li>
+                                              <li><a href="../../architecture/ui-library.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">UI library</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Tutorials</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../../tutorials/implementing-a-block-widget.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing a block widget</span></div></a></li>
+                                              <li><a href="../../tutorials/implementing-an-inline-widget.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Implementing an inline widget</span></div></a></li>
+                                              <li><a href="../../tutorials/using-react-in-a-widget.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Using a React component in a widget</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Deep dive</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../clipboard.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Clipboard</span></div></a></li>
+                                              <li><a href="../upload-adapter.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom upload adapter</span></div></a></li>
+                                              <li><a href="../observables.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Observables</span></div></a></li>
+                                              <li><a href="../schema.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Schema</span></div></a></li>
+                                              <li>
+                                                <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Conversion</span></div>
+                                                <ul class="tree__item-nested-list">
+                                                        <li><a href="conversion-introduction.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Advanced concepts</span></div></a></li>
+                                                        <li><a href="conversion-extending-output.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Extending editor output</span></div></a></li>
+                                                        <li><a href="conversion-preserving-custom-content.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Preserving custom content</span></div></a></li>
+                                                        <li><a href="custom-element-conversion.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Custom element conversion</span></div></a></li>
+                                                        <li><a href="">
+                                                            <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Element reconversion</span></div></a></li>
+                                                </ul>
+                                              </li>
+                                              <li>
+                                                <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">User interface</span></div>
+                                                <ul class="tree__item-nested-list">
+                                                        <li><a href="../ui/focus-tracking.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Focus tracking</span></div></a></li>
+                                                        <li><a href="../ui/widget-internals.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Widget internals</span></div></a></li>
+                                                        <li><a href="../ui/theme-customization.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Theme customization</span></div></a></li>
+                                                        <li><a href="../ui/external-ui.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Third–party UI</span></div></a></li>
+                                                        <li><a href="../ui/document-editor.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document editor</span></div></a></li>
+                                                        <li><a href="../ui/custom-editor-creator.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Creating custom editor</span></div></a></li>
+                                                        <li><a href="../ui/localization.html">
+                                                            <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Localization</span></div></a></li>
+                                                </ul>
+                                              </li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Contributing</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../../contributing/contributing.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Contributing</span></div></a></li>
+                                              <li><a href="../../contributing/development-environment.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Development environment</span></div></a></li>
+                                              <li><a href="../../contributing/testing-environment.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Testing environment</span></div></a></li>
+                                              <li><a href="../../contributing/code-style.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Code style</span></div></a></li>
+                                              <li><a href="../../contributing/git-commit-message-convention.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Git commit message convention</span></div></a></li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Support</span></div>
+                                      <ul class="tree__item-nested-list">
+                                              <li><a href="../../support/browser-compatibility.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Browser compatibility</span></div></a></li>
+                                              <li><a href="../../support/license-and-legal.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">License and legal</span></div></a></li>
+                                              <li><a href="../../support/getting-support.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Getting support</span></div></a></li>
+                                              <li><a href="../../support/reporting-issues.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Reporting issues</span></div></a></li>
+                                              <li><a href="../../support/versioning-policy.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Versioning policy</span></div></a></li>
+                                              <li><a href="../../support/error-codes.html">
+                                                  <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Error codes</span></div></a></li>
+                                      </ul>
+                                    </li>
+                            </ul>
+                          </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2003-2020 <a href="http://cksource.com" target="_blank" rel="noopener">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'framework' ] = hits.filter( function( h ) {return h.tags.includes( 'framework' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'framework' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'framework' ] );tags.forEach( function( tag ) {if ( tag !== 'framework' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+    <script src="../../../../assets/snippet.js"></script>
+    <script src="../../../../snippets/framework/build-element-reconversion-source/snippet.js"></script>
+    <script src="../../../../snippets/framework/element-reconversion-demo/snippet.js"></script>
+  </body>
+</html>

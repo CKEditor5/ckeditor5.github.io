@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Spelling and grammar checking - CKEditor 5 Documentation</title>
+    <meta name="description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:card" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta name="twitter:site" content="@ckeditor">
+    <meta property="og:title" content="Spelling and grammar checking - CKEditor 5 Documentation">
+    <meta property="og:description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ckeditor.com/docs/ckeditor5/latest/features/spelling-and-grammar-checking.html">
+    <meta property="DC.language" content="en">
+    <meta property="DC.publisher" content="CKSource">
+    <meta property="DC.creator" content="CKEditor">
+    <meta property="DC.title" content="Spelling and grammar checking - CKEditor 5 Documentation">
+    <meta property="DC.format" content="text/html">
+    <meta property="DC.type" content="Text">
+    <meta property="DC.description" content="Learn how to install, integrate and configure CKEditor 5 Builds and how to work with CKEditor 5 Framework, customize it, create your own plugins and custom editors, change the UI or even bring your own UI to the editor. API reference and examples included.">
+    <link rel="canonical" href="https://ckeditor.com/docs/ckeditor5/latest/features/spelling-and-grammar-checking.html">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../assets/img/favicons/96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" type="image/png" href="../assets/img/favicons/200x200.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+    <link rel="stylesheet" href="../../../assets/1.6.6/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../assets/styles.css" type="text/css">
+    <link rel="stylesheet" href="../snippets/features/wproofreader/snippet.css" type="text/css" data-cke="true">
+    <link rel="stylesheet" href="../assets/snippet-styles.css" type="text/css" data-cke="true">
+    <link rel="stylesheet" href="../snippets/assets.css" type="text/css" data-cke="true">
+    <script>
+      ( function() {
+      	'use strict';
+      	// Set up global variables;
+      	if ( !window.umebrto ) {
+      		window.umberto = {};
+      	}
+      	window.umberto.relativeAppPath = "../../../assets/1.6.6/scripts";
+      
+      	// Add app script
+      	var el = document.createElement( 'script' );
+      	el.setAttribute( 'async', 'async' );
+      	el.setAttribute( 'defer', 'defer' );
+      	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
+      		el.src = "../../../assets/1.6.6/scripts/app.js";
+      	} else {
+      		el.src = "../../../assets/1.6.6/scripts/app-polyfill.js";
+      	}
+      	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
+      
+      	// Changing documentation theme enable it via `localStorage.setItem( 'theme', 'theme-dark' )`
+      	if ( localStorage.getItem( 'theme' ) === 'theme-dark' ) {
+      		document.getElementsByTagName( 'html' )[ 0 ].classList.add( 'theme-dark' );
+      	}
+      } )();
+    </script>
+    <script>if ( ["ckeditor5.github.io"].indexOf( location.hostname ) !== -1 ) {
+      	function pageView() {
+      		ga( 'send', 'pageview', location.pathname + location.search + location.hash );
+      	}
+      
+      	(function( i, s, o, g, r, a, m ) {
+      		i[ 'GoogleAnalyticsObject' ] = r;
+      		i[ r ] = i[ r ] || function() {
+      				(i[ r ].q = i[ r ].q || []).push( arguments )
+      			}, i[ r ].l = 1 * new Date();
+      		a = s.createElement( o ),
+      			m = s.getElementsByTagName( o )[ 0 ];
+      		a.async = 1;
+      		a.src = g;
+      		m.parentNode.insertBefore( a, m )
+      	})( window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga' );
+      
+      	ga( 'create', {"trackingId":"UA-271067-19","cookieDomain":"ckeditor5.github.io"} );
+      
+      	pageView();
+      
+      	window.addEventListener( 'hashchange', pageView );
+      }
+    </script>
+  <meta name="generator" content="Hexo 4.2.1"></head>
+  <body>
+    <header class="top" data-project="ckeditor5">
+      <div class="header__main">
+        <div class="header__main-rwd-button"><a href="#"><span></span><span></span><span></span></a></div>
+        <div class="header__main-title"><a class="header__main-title-home" href="../../../index.html">CKEditor Ecosystem Documentation</a></div>
+        <div class="top__search">
+          <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
+          <div class="top__search__button"><img src="../../../assets/1.6.6/img/loupe.svg" alt="Search"></div>
+        </div>
+      </div>
+      <div class="header__sub">
+        <ul class="top__menu">
+          <li class="top__menu-project-logo"><a href="../index.html">CKEditor 5</a></li>
+          <li><a href="../builds/index.html">Builds</a></li>
+          <li><a href="../framework/index.html">Framework</a></li>
+          <li><a href="../examples/index.html">Examples</a></li>
+          <li><a class="top__menu__item--active" href="index.html">Features</a></li>
+          <li><a class="top__menu__api" href="../api/index.html">API</a></li>
+          <li><a class="top__menu-github-link" href="https://github.com/ckeditor/ckeditor5" target="_blank" title="CKEditor 5 on GitHub."><svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li>
+        </ul>
+      </div>
+      <div class="header__menu-rwd">
+        <ul class="header__menu-rwd__projects">
+          <li data-project="ckeditor5"><a href="../../latest/index.html">CKEditor 5</a>
+            <ul class="tree header__menu-rwd__projects-pages">
+              <li data-group="builds"><a href="../builds/index.html">Builds</a>
+              </li>
+              <li data-group="framework"><a href="../framework/index.html">Framework</a>
+              </li>
+              <li data-group="examples"><a href="../examples/index.html">Examples</a>
+              </li>
+              <li data-group="features"><a href="index.html">Features</a>
+                <ul class="header__menu-rwd__projects-subpages">
+                          <li><a href="autoformat.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Autoformatting</span></div></a></li>
+                          <li><a href="text-transformation.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Automatic text transformation</span></div></a></li>
+                          <li><a href="basic-styles.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic text styles</span></div></a></li>
+                          <li><a href="indent.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block indentation</span></div></a></li>
+                          <li><a href="block-quote.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block quote</span></div></a></li>
+                          <li><a href="code-blocks.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Code blocks</span></div></a></li>
+                          <li><a href="title.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document title</span></div></a></li>
+                          <li><a href="editor-placeholder.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor placeholder</span></div></a></li>
+                          <li><a href="font.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Font</span></div></a></li>
+                          <li><a href="headings.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Headings</span></div></a></li>
+                          <li><a href="highlight.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Highlight</span></div></a></li>
+                          <li><a href="horizontal-line.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Horizontal line</span></div></a></li>
+                          <li><a href="html-embed.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">HTML embed</span></div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Image upload</span></div>
+                            <ul class="tree__item-nested-list">
+                                  <li><a href="image-upload/image-upload.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                  <li><a href="image-upload/easy-image.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Easy Image</span></div></a></li>
+                                  <li><a href="image-upload/ckfinder.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">CKFinder file manager</span></div></a></li>
+                                  <li><a href="image-upload/base64-upload-adapter.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Base64 upload adapter</span></div></a></li>
+                                  <li><a href="image-upload/simple-upload-adapter.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Simple upload adapter</span></div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="image.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Images</span></div></a></li>
+                          <li><a href="keyboard-support.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Keyboard support</span></div></a></li>
+                          <li><a href="link.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Link</span></div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Lists</span></div>
+                            <ul class="tree__item-nested-list">
+                                  <li><a href="lists/lists.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Ordered and unordered lists</span></div></a></li>
+                                  <li><a href="lists/todo-lists.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">To-do lists</span></div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="markdown.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Markdown output</span></div></a></li>
+                          <li><a href="math-equations.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Math and chemical formulas</span></div></a></li>
+                          <li><a href="media-embed.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Media embed</span></div></a></li>
+                          <li><a href="mentions.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Mentions</span></div></a></li>
+                          <li><a href="page-break.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Page break</span></div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Pasting</span></div>
+                            <ul class="tree__item-nested-list">
+                                  <li><a href="pasting/paste-from-word.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Word</span></div></a></li>
+                                  <li><a href="pasting/paste-from-google-docs.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Google Docs</span></div></a></li>
+                                  <li><a href="pasting/paste-plain-text.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste plain text</span></div></a></li>
+                                  <li><a href="pasting/drag-drop.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Drag and drop</span></div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="read-only.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Read-only support</span></div></a></li>
+                          <li><a href="remove-format.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Remove formatting</span></div></a></li>
+                          <li><a href="restricted-editing.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Restricted editing</span></div></a></li>
+                          <li><a href="select-all.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Select all</span></div></a></li>
+                          <li><a href="special-characters.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Special characters</span></div></a></li>
+                          <li><a href="">
+                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Spelling and grammar checking</span></div></a></li>
+                          <li><a href="table.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Tables</span></div></a></li>
+                          <li><a href="text-alignment.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Text alignment</span></div></a></li>
+                          <li><a href="language.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Text part language</span></div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Toolbar</span></div>
+                            <ul class="tree__item-nested-list">
+                                  <li><a href="toolbar/toolbar.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor toolbar</span></div></a></li>
+                                  <li><a href="toolbar/blocktoolbar.html">
+                                      <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block toolbar</span></div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="ui-language.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">UI language</span></div></a></li>
+                          <li><a href="watchdog.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Watchdog</span></div></a></li>
+                          <li><a href="word-count.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Word and character count</span></div></a></li>
+                </ul>
+              </li>
+              <li data-group="api-reference"><a href="../api/index.html">API</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <main class="main">
+      <section class="main__content formatted">
+        <div class="main__content-inner">
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/docs/features/spelling-and-grammar-checking.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../assets/1.6.6/img/edit.svg" alt="Contribute to this guide"></a>
+          </div>
+          <div class="rwd-breadcrumbs"><a href="../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="index.html">Features</a>
+          </div>
+          <h1 class="main__content-title"><img src="../../../assets/1.6.6/img/book.svg" alt="guide">Proofreading, spelling and grammar checking
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#demo">Demo</a></li><li><a href="#multi-language-support">Multi-language support</a></li><li><a href="#supported-languages">Supported languages</a></li><li><a href="#installation">Installation</a><ol><li><a href="#wproofreader-cloud">WProofreader Cloud</a></li><li><a href="#wproofreader-server">WProofreader Server</a></li></ol></li><li><a href="#configuration">Configuration</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
+<div class="info-box notice"><p>The spell checker for CKEditor 5 is a commercial solution provided by our partner, <a href="https://webspellchecker.com/" target="_blank" rel="noopener">WebSpellChecker</a>. You can report any issues in its <a href="https://github.com/WebSpellChecker/wproofreader" target="_blank" rel="noopener">GitHub repository</a>. The license can be purchased <a href="https://ckeditor.com/contact/">here</a>.</p></div>
+<p><a href="https://webspellchecker.com/wsc-proofreader" target="_blank" rel="noopener">WProofreader</a> is an innovative, multi-language proofreading tool that combines the functionality of &#x201C;spell check as you type&#x201D; and &#x201C;spell check in a dialog&#x201D; in a modern, distraction-free UI. Spelling and grammar suggestions are available on hover with no clicking needed or as a convenient dialog, both with additional in-place replacement suggestions.</p>
+<p>You can fine-tune the spell checking rules via the dedicated settings menu. You can choose from a set of predefined languages (more may be added as language packs) and manage additional dictionaries. Words can be added to the user dictionary directly from the suggestion card, too.</p>
+<p>If needed, the spell checker can be easily disabled and enabled again with a click.</p>
+<h2 id="demo"><a class="headerlink" href="#demo">#</a> Demo</h2>
+<p>See the spelling and grammar checking in the editor below.</p>
+<p>The proofreader badge in the bottom-right corner shows you the number of mistakes detected. Hover an underlined word to display the proofreader suggestions for any of the spelling and grammar mistakes found. If you want to see an overview of all mistakes, click the &#x201C;Proofread in dialog&#x201D; option in the toolbar dropdown. You can access the proofreader settings from the toolbar, too.</p>
+<div class="info-box notice"><p>The toolbar button has been introduced in version 2.x of the WProofreader. Read more about configuring UI items in the <a href="toolbar/toolbar.html">toolbar guide</a>. If you are still using version 1.x, the available settings and dialog options can be accessed through the bottom-right badge.</p></div>
+<div class="live-snippet"><div id="snippet-wproofreader">
+	<p>Warsaw is the capital adn largest city of Poland. The metropolis stands on the Vistula River in east-central Poland and its population is officially estimatd at 1.8 million residents within a greater metropolitan area of 3.1 million residents, which makes Warsaw the 7th most-populous capital city in the European Union. Warsaw is an alpha-global city, a major international tourist destination, and a significaant cultural, political, and economic hub. Its historical Old Town was designated a UNESCO World Heritage Site.</p>
+
+	<p>Warschau ist seit 1596 die Hauptstadt Polens und die fl&auml;chenm&auml;&szlig;ig gr&ouml;&szlig;te sowie mit &uuml;ber 1,75 Mio. Einwonern bev&ouml;lkerungsreichste Staddt des Landes. Als eines der wichtigsten Verkehrs-, Wirtschafts- und Handelszentren Mittel- und Osteeuropas genie&szlig;t Warschau gro&szlig;e politische und kulturelle Bedetung. In der Stadt befinden sich zahlreiche Institutionen, Universit&auml;ten, Theater, Museen und Baudenkm&auml;ler.</p>
+
+	<p>Варша́ва является столицей и крупнейшим по населению, и территории городом Польшй. Город стал фактической столицей в 1596 году, коггда после пожара в Вавельском замке в Кракове король Сигизмунд III перёнёс свою резиденцию суда, при этом столичный статус города был подтверждён только в Конституции 1791 года. Через город протекает река Висла, разделяющая город приблизительно поровну.</p>
+</div>
+</div>
+<h2 id="multi-language-support"><a class="headerlink" href="#multi-language-support">#</a> Multi-language support</h2>
+<p>As seen in the demo, the spell checking and grammar feature can support multilingual content. If the proofreader language is set to Auto Detect (or the <code>auto</code> language is set in the configuration), the feature will automatically recognize the text language and suggest error corrections and grammar specifically for that language.</p>
+<p><img src="../assets/img/spellcheck-dictionary.png" data-lightbox="true" alt="Setting the spell checker dictionary to auto." width="800"></p>
+<h2 id="supported-languages"><a class="headerlink" href="#supported-languages">#</a> Supported languages</h2>
+<p>By default the spell checker supports 18 languages: AI-based English (default), American English, Brazilian Portuguese, British English, Canadian English, Canadian French, Danish, Dutch, Finnish, French, German, Greek, Italian, Norwegian Bokm&#xE5;l, Portuguese, Spanish, Swedish and Ukrainian. Grammar checking is available for 16 of them &#x2014; there is no grammar checking for Finnish and Norwegian.</p>
+<p>There are also over 150 additional languages and specialized dictionaries such as medical and legal available for an additional fee. You can check the full list <a href="https://webspellchecker.com/additional-dictionaries/" target="_blank" rel="noopener">here</a>.</p>
+<h2 id="installation"><a class="headerlink" href="#installation">#</a> Installation</h2>
+<p>WProofreader is delivered as a CKEditor 5 plugin, so it can be combined into an editor build as other features. To add this feature to your rich-text editor, install the <a href="https://www.npmjs.com/package/@webspellchecker/wproofreader-ckeditor5" target="_blank" rel="noopener"><code>@webspellchecker/wproofreader-ckeditor5</code></a> package:</p>
+<pre class="highlight"><code class>npm install --save @webspellchecker/wproofreader-ckeditor5
+</code></pre>
+<p>Then, add it to your plugin list and the toolbar configuration:</p>
+<pre class="highlight"><code class="js">import WProofreader from &apos;@webspellchecker/wproofreader-ckeditor5/src/wproofreader&apos;;
+
+ClassicEditor
+    .create( editorElement, {
+        plugins: [ ..., WProofreader ],
+        toolbar: [ ..., &apos;wproofreader&apos; ]
+    } )
+    .then( ... )
+    .catch( ... );
+</code></pre>
+<div class="info-box notice notice__info"><p>Read more about <a href="../builds/guides/integration/installing-plugins.html">installing plugins</a>.</p></div>
+<p>At this step, it is required to provide a proper configuration. The proofreader can be used either as a <a href="#wproofreader-cloud">cloud solution</a> or <a href="#wproofreader-server">hosted on your own server</a>.</p>
+<h3 id="wproofreader-cloud"><a class="headerlink" href="#wproofreader-cloud">#</a> WProofreader Cloud</h3>
+<p>After signing up for a <a href="https://ckeditor.com/contact/">trial or paid version</a>, you will receive your service ID which is used to activate the service.</p>
+<p>Add the following configuration to your editor:</p>
+<pre class="highlight"><code class="js">import WProofreader from &apos;@webspellchecker/wproofreader-ckeditor5/src/wproofreader&apos;;
+
+ClassicEditor
+    .create( editorElement, {
+        plugins: [ ..., WProofreader ],
+        toolbar: [ ..., &apos;wproofreader&apos; ]
+        wproofreader: {
+            serviceId: &apos;your-service-ID&apos;,
+            srcUrl: &apos;https://svc.webspellchecker.net/spellcheck31/wscbundle/wscbundle.js&apos;
+        }
+    } )
+</code></pre>
+<p>Refer to the <a href="https://github.com/WebSpellChecker/wproofreader-ckeditor5#install-instructions" target="_blank" rel="noopener">official documentation</a> for more details about the cloud setup and available configuration options.</p>
+<h3 id="wproofreader-server"><a class="headerlink" href="#wproofreader-server">#</a> WProofreader Server</h3>
+<p>After signing up for a <a href="https://ckeditor.com/contact/">trial or paid version</a>, you will receive access to the WebSpellChecker Server package to install on your own server.</p>
+<p>You will need to add the following configuration to your editor:</p>
+<pre class="highlight"><code class="js">import WProofreader from &apos;@webspellchecker/wproofreader-ckeditor5/src/wproofreader&apos;;
+
+ClassicEditor
+    .create( editorElement, {
+        plugins: [ ..., WProofreader ],
+        toolbar: [ ..., &apos;wproofreader&apos; ]
+        wproofreader: {
+            serviceProtocol: &apos;https&apos;,
+            serviceHost: &apos;localhost&apos;,
+            servicePort: &apos;2880&apos;,
+            servicePath: &apos;/&apos;,
+            srcUrl: &apos;https://host_name/virtual_directory/wscbundle/wscbundle.js&apos;
+        }
+    } )
+</code></pre>
+<p>Refer to the <a href="https://github.com/WebSpellChecker/wproofreader-ckeditor5#install-instructions" target="_blank" rel="noopener">official documentation</a> for more details about the server setup and available configuration options.</p>
+<h2 id="configuration"><a class="headerlink" href="#configuration">#</a> Configuration</h2>
+<p>WProofreader configuration is set inside the CKEditor 5 configuration in the <code>wproofreader</code> object. Refer to the <a href="https://webspellchecker.com/docs/api/wscbundle/Options.html" target="_blank" rel="noopener">WProofreader API</a> for further information.</p>
+<h2 id="contribute"><a class="headerlink" href="#contribute">#</a> Contribute</h2>
+<p>You can report issues and request features in the <a href="https://github.com/WebSpellChecker/wproofreader-ckeditor5/issues" target="_blank" rel="noopener">official WProofreader for CKEditor 5 repository</a>.</p>
+
+        </div>
+      </section>
+      <div class="side-navigation">
+        <div class="side-navigation__wrapper">
+          <nav class="side-navigation__inner">
+            <ul class="tree guide-tree">
+                          <li><a href="autoformat.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Autoformatting</span></div></a></li>
+                          <li><a href="text-transformation.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Automatic text transformation</span></div></a></li>
+                          <li><a href="basic-styles.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Basic text styles</span></div></a></li>
+                          <li><a href="indent.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block indentation</span></div></a></li>
+                          <li><a href="block-quote.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block quote</span></div></a></li>
+                          <li><a href="code-blocks.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Code blocks</span></div></a></li>
+                          <li><a href="title.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document title</span></div></a></li>
+                          <li><a href="editor-placeholder.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor placeholder</span></div></a></li>
+                          <li><a href="font.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Font</span></div></a></li>
+                          <li><a href="headings.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Headings</span></div></a></li>
+                          <li><a href="highlight.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Highlight</span></div></a></li>
+                          <li><a href="horizontal-line.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Horizontal line</span></div></a></li>
+                          <li><a href="html-embed.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">HTML embed</span></div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Image upload</span></div>
+                            <ul class="tree__item-nested-list">
+                                    <li><a href="image-upload/image-upload.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Overview</span></div></a></li>
+                                    <li><a href="image-upload/easy-image.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Easy Image</span></div></a></li>
+                                    <li><a href="image-upload/ckfinder.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">CKFinder file manager</span></div></a></li>
+                                    <li><a href="image-upload/base64-upload-adapter.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Base64 upload adapter</span></div></a></li>
+                                    <li><a href="image-upload/simple-upload-adapter.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Simple upload adapter</span></div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="image.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Images</span></div></a></li>
+                          <li><a href="keyboard-support.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Keyboard support</span></div></a></li>
+                          <li><a href="link.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Link</span></div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Lists</span></div>
+                            <ul class="tree__item-nested-list">
+                                    <li><a href="lists/lists.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Ordered and unordered lists</span></div></a></li>
+                                    <li><a href="lists/todo-lists.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">To-do lists</span></div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="markdown.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Markdown output</span></div></a></li>
+                          <li><a href="math-equations.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Math and chemical formulas</span></div></a></li>
+                          <li><a href="media-embed.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Media embed</span></div></a></li>
+                          <li><a href="mentions.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Mentions</span></div></a></li>
+                          <li><a href="page-break.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Page break</span></div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Pasting</span></div>
+                            <ul class="tree__item-nested-list">
+                                    <li><a href="pasting/paste-from-word.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Word</span></div></a></li>
+                                    <li><a href="pasting/paste-from-google-docs.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste from Google Docs</span></div></a></li>
+                                    <li><a href="pasting/paste-plain-text.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Paste plain text</span></div></a></li>
+                                    <li><a href="pasting/drag-drop.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Drag and drop</span></div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="read-only.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Read-only support</span></div></a></li>
+                          <li><a href="remove-format.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Remove formatting</span></div></a></li>
+                          <li><a href="restricted-editing.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Restricted editing</span></div></a></li>
+                          <li><a href="select-all.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Select all</span></div></a></li>
+                          <li><a href="special-characters.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Special characters</span></div></a></li>
+                          <li><a href="">
+                              <div class="tree__item__wrapper tree__item__wrapper--active"><span class="tree__item--guide tree__item__text">Spelling and grammar checking</span></div></a></li>
+                          <li><a href="table.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Tables</span></div></a></li>
+                          <li><a href="text-alignment.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Text alignment</span></div></a></li>
+                          <li><a href="language.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Text part language</span></div></a></li>
+                          <li>
+                            <div class="tree__item__wrapper"><span class="tree__item--folder tree__item__text">Toolbar</span></div>
+                            <ul class="tree__item-nested-list">
+                                    <li><a href="toolbar/toolbar.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Editor toolbar</span></div></a></li>
+                                    <li><a href="toolbar/blocktoolbar.html">
+                                        <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block toolbar</span></div></a></li>
+                            </ul>
+                          </li>
+                          <li><a href="ui-language.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">UI language</span></div></a></li>
+                          <li><a href="watchdog.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Watchdog</span></div></a></li>
+                          <li><a href="word-count.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Word and character count</span></div></a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </main>
+    <footer class="footer footer--bordered">
+      <p>&copy; 2003-2021 <a href="http://cksource.com" target="_blank" rel="noopener">CKSource</a>. All rights reserved.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script><script type="text/javascript">
+docsearch({
+apiKey:'fc463c26455365ad403d5ec51796cd73',indexName:'ckeditor_nightly',inputSelector:'#docsearch_input',algoliaOptions:{hitsPerPage:250,attributesToRetrieve:'*',facetFilters:['tags: ckeditor5']},
+transformData: function( hits ) {var sortingFn = function( a, b ) {a.custom_ranking = a.custom_ranking || 0;b.custom_ranking = b.custom_ranking || 0;if ( a.custom_ranking === b.custom_ranking ) return a.index - b.index;if ( a.custom_ranking > b.custom_ranking ) return -1;if ( a.custom_ranking < b.custom_ranking ) return 1;};var result = [];var tags = [ 'builds', 'framework', 'examples', 'features', 'api' ];var hitsGrouped = { api: [] };hitsGrouped[ 'features' ] = hits.filter( function( h ) {return h.tags.includes( 'features' );} ).slice( 0, 7 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn );tags.forEach( function( tag ) {if ( tag !== 'features' ) {hitsGrouped[ tag ] = hits.filter( function( h ) {return h.tags.includes( tag );} ).slice( 0, 10 ).map( function( item, idx ) {item.index = idx;return item;} ).sort( sortingFn ).slice( 0, 3 );}} );var apiSearchHits = [];if ( window.apiSearch ) apiSearchHits = window.apiSearch();hitsGrouped.api = hitsGrouped.api.filter( function( h ) {var isDuplicated = false;for ( var i = 0; i < apiSearchHits.length; i++ ) {if ( h.url.includes( apiSearchHits[ i ].urlShort ) ) {isDuplicated = true;break;}}return !isDuplicated;} );hitsGrouped.api = ( apiSearchHits || [] ).concat( hitsGrouped.api );result = result.concat( hitsGrouped[ 'features' ] );tags.forEach( function( tag ) {if ( tag !== 'features' ) result = result.concat( hitsGrouped[ tag ].slice( 0, 4 ) );} );return result;}
+});
+</script>
+    <script src="../assets/snippet.js"></script>
+    <script src="../snippets/assets.js"></script>
+    <script src="../snippets/features/wproofreader/snippet.js"></script>
+  </body>
+</html>
