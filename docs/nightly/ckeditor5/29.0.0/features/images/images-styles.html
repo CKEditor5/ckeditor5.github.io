@@ -125,6 +125,8 @@
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block quote</span></div></a></li>
                           <li><a href="../code-blocks.html">
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Code blocks</span></div></a></li>
+                          <li><a href="../minimap.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Content minimap</span></div></a></li>
                           <li><a href="../title.html">
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document title</span></div></a></li>
                           <li><a href="../editor-placeholder.html">
@@ -267,18 +269,7 @@
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Features</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../assets/1.9.1/img/book.svg" alt="guide">Image styles
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#overview">Overview</a><ol><li><a href="#image-classes">Image classes</a></li><li><a href="#inline-and-block-images">Inline and block images</a></li></ol></li><li><a href="#ui">UI</a></li><li><a href="#approaches-to-styling-images">Approaches to styling images</a><ol><li><a href="#semantical-styles">Semantical styles</a></li><li><a href="#presentational-styles">Presentational styles</a></li></ol></li><li><a href="#configuring-the-styles">Configuring the styles</a><ol><li><a href="#demo">Demo</a></li><li><a href="#ready-to-use-styles">Ready-to-use styles</a></li></ol></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav><div class="live-snippet"><style>
-	.inline-icon {
-		max-height: 24px;
-		width: 24px;
-		margin-right: 4px;
-		vertical-align: middle;
-		background-color: #eff0f0;
-		padding: 3px;
-		border-radius: 2px;
-	}
-</style>
-</div>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#overview">Overview</a><ol><li><a href="#image-classes">Image classes</a></li><li><a href="#inline-and-block-images">Inline and block images</a></li></ol></li><li><a href="#ui">UI</a></li><li><a href="#approaches-to-styling-images">Approaches to styling images</a><ol><li><a href="#semantical-styles">Semantical styles</a></li><li><a href="#presentational-styles">Presentational styles</a></li></ol></li><li><a href="#configuring-the-styles">Configuring the styles</a><ol><li><a href="#demo">Demo</a></li><li><a href="#ready-to-use-styles">Ready-to-use styles</a></li></ol></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 
 <h2 id="overview"><a class="headerlink" href="#overview">#</a> Overview</h2>
 <p>This package allows for adjusting the image appearance by:</p>
@@ -330,9 +321,9 @@
 <p>As the most of the predefined editor builds support editing a structured content which requires passing the control over the possible image appearances to the developer, they introduce a UI containing a set of buttons applying the semantical styles (taken from the <a href="#styles-table">default styles</a> listed below).</p>
 <p>The example below presents an editor with such a basic configuration. There are three types of the images:</p>
 <ul>
-<li>a block image - a representation of a block image with no style-related CSS class,</li>
-<li>an inline image - a representation of an inline image with no style-related CSS class,</li>
-<li>a side image - a semantical style applying the <code>image-style-side</code> CSS class to it.</li>
+<li><strong>a block image</strong> <span class="editor-icon"><img src="../../assets/icons/71fa7657d4.svg" class="editor-icon__image" alt="Block image"></span> - a representation of a block image with no style-related CSS class,</li>
+<li><strong>an inline image</strong> <span class="editor-icon"><img src="../../assets/icons/264ad2cd45.svg" class="editor-icon__image" alt="Inline image"></span> - a representation of an inline image with no style-related CSS class,</li>
+<li><strong>a side image</strong> <span class="editor-icon"><img src="../../assets/icons/0c150e6ba8.svg" class="editor-icon__image" alt="Side image"></span> - a semantical style applying the <code>image-style-side</code> CSS class to it.</li>
 </ul>
 <p>You can change the style of an individual image using the contextual toolbar invoked after an image is clicked.</p>
 <div id="semantical-example">
@@ -394,18 +385,18 @@ ClassicEditor
 <div class="info-box notice notice__hint"><p>Presentational image styles should be combined with the optional <a href="images-resizing.html">image resizing feature</a> as these features were designed to be used together. The image width is then controlled by the image resize feature, while the alignment is controlled by the image style feature.</p><p>If you do not enable the image resize feature in your setup while using the default presentational styles, your images will always retain their original sizes (up to 100% of the editor width) so the alignment may not be visible.</p><p>If you do not want to enable image resizing, you can use <a href="#semantical-styles">semantical styles</a> to set the image dimensions.</p></div>
 <p>The sample editor below uses predefined presentational image styles represented by buttons grouped in the drop-downs by the way the image is displayed in the document:</p>
 <ul>
-<li><img class="inline-icon" src="../../assets/img/icons/object-inline.svg"><strong>Inline images</strong> - displayed inside a line of text. It is a default style for the inline images and it does not apply any CSS class to the image.</li>
-<li><img class="inline-icon" src="../../assets/img/icons/object-inline-left.svg"><strong>Images wrapped with text</strong> - these are the images with the CSS <code>float</code> property. They can be either in the inline or block mode, but to keep the valid HTML output, the block images (wrapped with the <code>&lt;figure&gt;</code> tags) can only be placed before or after paragraphs, not in the middle of one. It contains the following image styles:
+<li><strong>Inline images</strong> <span class="editor-icon"><img src="../../assets/icons/264ad2cd45.svg" class="editor-icon__image" alt="Inline images"></span> - displayed inside a line of text. It is a default style for the inline images and it does not apply any CSS class to the image.</li>
+<li><strong>Images wrapped with text</strong> <span class="editor-icon"><img src="../../assets/icons/fc79305984.svg" class="editor-icon__image" alt="Inline image aligned to the left"></span> - these are the images with the CSS <code>float</code> property. They can be either in the inline or block mode, but to keep the valid HTML output, the block images (wrapped with the <code>&lt;figure&gt;</code> tags) can only be placed before or after paragraphs, not in the middle of one. It contains the following image styles:
 <ul>
-<li><code>&apos;align-left&apos;</code>,</li>
-<li><code>&apos;align-right&apos;</code>.</li>
+<li><code>&apos;align-left&apos;</code> <span class="editor-icon"><img src="../../assets/icons/fc79305984.svg" class="editor-icon__image" alt="Image aligned to the left"></span>,</li>
+<li><code>&apos;align-right&apos;</code> <span class="editor-icon"><img src="../../assets/icons/0c150e6ba8.svg" class="editor-icon__image" alt="Image aligned to the right"></span>.</li>
 </ul>
 </li>
-<li><img class="inline-icon" src="../../assets/img/icons/object-center.svg"><strong>Images placed between the paragraphs</strong> - block images without the CSS <code>float</code> property. It contains following image styles:
+<li><strong>Images placed between the paragraphs</strong> <span class="editor-icon"><img src="../../assets/icons/71fa7657d4.svg" class="editor-icon__image" alt="Centered image"></span> - block images without the CSS <code>float</code> property. It contains following image styles:
 <ul>
-<li><code>&apos;align-block-left&apos;</code>,</li>
-<li><code>&apos;align-block-right&apos;</code>,</li>
-<li><code>&apos;block&apos;</code> - this style is the default one for block images and it does not apply any CSS class to the image.</li>
+<li><code>&apos;align-block-left&apos;</code> <span class="editor-icon"><img src="../../assets/icons/2af17e06bb.svg" class="editor-icon__image" alt="Block image aligned to the left"></span>,</li>
+<li><code>&apos;align-block-right&apos;</code> <span class="editor-icon"><img src="../../assets/icons/b04a057584.svg" class="editor-icon__image" alt="Block image aligned to the right"></span>,</li>
+<li><code>&apos;block&apos;</code> <span class="editor-icon"><img src="../../assets/icons/71fa7657d4.svg" class="editor-icon__image" alt="Centered block image"></span> - this style is the default one for block images and it does not apply any CSS class to the image.</li>
 </ul>
 </li>
 </ul>
@@ -997,6 +988,8 @@ placed on the editor margins. */
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block quote</span></div></a></li>
                           <li><a href="../code-blocks.html">
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Code blocks</span></div></a></li>
+                          <li><a href="../minimap.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Content minimap</span></div></a></li>
                           <li><a href="../title.html">
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document title</span></div></a></li>
                           <li><a href="../editor-placeholder.html">

@@ -125,6 +125,8 @@
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block quote</span></div></a></li>
                           <li><a href="../code-blocks.html">
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Code blocks</span></div></a></li>
+                          <li><a href="../minimap.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Content minimap</span></div></a></li>
                           <li><a href="../title.html">
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document title</span></div></a></li>
                           <li><a href="../editor-placeholder.html">
@@ -267,18 +269,7 @@
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Features</a>
           </div>
           <h1 class="main__content-title"><img src="../../../../assets/1.9.1/img/book.svg" alt="guide">Resizing images
-          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#enabling-image-resizing">Enabling image resizing</a></li><li><a href="#methods-to-resize-images">Methods to resize images</a><ol><li><a href="#using-resize-handles">Using resize handles</a></li><li><a href="#using-resize-dropdown">Using resize dropdown</a></li><li><a href="#using-standalone-resize-buttons">Using standalone resize buttons</a></li></ol></li><li><a href="#disabling-image-resize-handles">Disabling image resize handles</a></li><li><a href="#markup-and-styling">Markup and styling</a></li><li><a href="#using-pixels-instead-of-percentage-width">Using pixels instead of percentage width</a></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav><div class="live-snippet"><style>
-	.inline-icon {
-		max-height: 24px;
-		width: 24px;
-		margin-right: 4px;
-		vertical-align: middle;
-		background-color: #eff0f0;
-		padding: 3px;
-		border-radius: 2px;
-	}
-</style>
-</div>
+          </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#enabling-image-resizing">Enabling image resizing</a></li><li><a href="#methods-to-resize-images">Methods to resize images</a><ol><li><a href="#using-resize-handles">Using resize handles</a></li><li><a href="#using-resize-dropdown">Using resize dropdown</a></li><li><a href="#using-standalone-resize-buttons">Using standalone resize buttons</a></li></ol></li><li><a href="#disabling-image-resize-handles">Disabling image resize handles</a></li><li><a href="#markup-and-styling">Markup and styling</a></li><li><a href="#using-pixels-instead-of-percentage-width">Using pixels instead of percentage width</a></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 
 <p>The <a href="images-styles.html">image styles</a> feature is meant to give the user a choice between a set of styling options provided by the system (i.e. by the developer or administrator who created it). There are also scenarios where the user should be able to freely set the width of an image. And that is where the image resize feature comes into play. It is implemented by the <a href="../../api/module_image_imageresize-ImageResize.html"><code>ImageResize</code></a> plugin.</p>
 <h2 id="enabling-image-resizing"><a class="headerlink" href="#enabling-image-resizing">#</a> Enabling image resizing</h2>
@@ -289,8 +280,8 @@
 <p>The plugin also gives you an ability to change the size of the image through the on-click image toolbar. You can set an optional static configuration with <a href="../../api/module_image_image-ImageConfig.html#member-resizeOptions"><code>resizeOptions</code></a> and choose whether you want to use a dropdown or a set of standalone buttons.</p>
 <h3 id="using-resize-handles"><a class="headerlink" href="#using-resize-handles">#</a> Using resize handles</h3>
 <p>In this case, the user is able to resize images by dragging square handles displayed in each corner of the image. Once image resizing is enabled, this option does not require any additional configuration.</p>
-<p>Use the corner handles to resize the image and adjust it to the text as needed. Yu can also use the alignment options from the image toolbar to achieve the desired effect.</p>
-<p>Images can also be pre-resized using styling, as observed below (the bottom image is hard-set to 60%).</p>
+<p>Use the corner handles to resize the image and adjust it to the text as needed. You can also use the alignment options from the image toolbar <span class="editor-icon"><img src="../../assets/icons/71fa7657d4.svg" class="editor-icon__image" alt="Image align"></span> to achieve the desired effect.</p>
+<p>Images can also be pre-resized using styling, as observed below (the last three images are hard-set to 28% for the visual consistency of the article).</p>
 <div class="live-snippet"><style>
 	#snippet-image-resize + .ck .ck-content {
 		text-align: justify;
@@ -371,7 +362,7 @@ ClassicEditor
     toolbar: [ ..., &apos;resizeImage&apos; ]
 }
 </code></pre>
-<p>Try out the live demo of the resize dropdown available in the image toolbar below.</p>
+<p>Try out the live demo of the resize dropdown <span class="editor-icon"><img src="../../assets/icons/6946ebb622.svg" class="editor-icon__image" alt="Image resize"></span> available in the image toolbar below.</p>
 <div class="live-snippet"><style>
 	#snippet-image-resize-buttons-dropdown + .ck .ck-content .image {
 		margin: none !important;
@@ -437,7 +428,7 @@ ClassicEditor
     ]
 }
 </code></pre>
-<p>Try out the live demo of the individual resize buttons available in the image toolbar below:</p>
+<p>Try out the live demo of the individual resize buttons available in the image toolbar below <span class="editor-icon"><img src="../../assets/icons/a2511b6622.svg" class="editor-icon__image" alt="Image resize"></span>:</p>
 <div class="live-snippet"><style>
 	#snippet-image-resize-buttons + .ck .ck-content .image {
 		margin: none !important;
@@ -709,6 +700,8 @@ ClassicEditor
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Block quote</span></div></a></li>
                           <li><a href="../code-blocks.html">
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Code blocks</span></div></a></li>
+                          <li><a href="../minimap.html">
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Content minimap</span></div></a></li>
                           <li><a href="../title.html">
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document title</span></div></a></li>
                           <li><a href="../editor-placeholder.html">
