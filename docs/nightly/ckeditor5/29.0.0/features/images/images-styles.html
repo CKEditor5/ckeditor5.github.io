@@ -24,7 +24,7 @@
     <link rel="icon" type="image/png" href="../../assets/img/favicons/96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" type="image/png" href="../../assets/img/favicons/200x200.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
-    <link rel="stylesheet" href="../../../../assets/1.9.1/css/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../../../../assets/1.10.1/css/styles.css" type="text/css" media="all">
     <link rel="stylesheet" href="../../assets/styles.css" type="text/css">
     <link rel="stylesheet" href="../../snippets/features/build-image-source/snippet.css" type="text/css" data-cke="true">
     <link rel="stylesheet" href="../../assets/snippet-styles.css" type="text/css" data-cke="true">
@@ -36,16 +36,16 @@
       	if ( !window.umebrto ) {
       		window.umberto = {};
       	}
-      	window.umberto.relativeAppPath = "../../../../assets/1.9.1/scripts";
+      	window.umberto.relativeAppPath = "../../../../assets/1.10.1/scripts";
       
       	// Add app script
       	var el = document.createElement( 'script' );
       	el.setAttribute( 'async', 'async' );
       	el.setAttribute( 'defer', 'defer' );
       	if ( typeof Symbol === 'function' && typeof Symbol() === 'symbol' ) {
-      		el.src = "../../../../assets/1.9.1/scripts/app.js";
+      		el.src = "../../../../assets/1.10.1/scripts/app.js";
       	} else {
-      		el.src = "../../../../assets/1.9.1/scripts/app-polyfill.js";
+      		el.src = "../../../../assets/1.10.1/scripts/app-polyfill.js";
       	}
       	document.getElementsByTagName( 'head' )[ 0 ].appendChild( el );
       
@@ -87,7 +87,7 @@
         <div class="header__main-title"><a class="header__main-title-home" href="../../../../index.html">CKEditor Ecosystem Documentation</a></div>
         <div class="top__search">
           <input class="top__search__box" type="text" id="docsearch_input" placeholder="Search in CKEditor 5">
-          <div class="top__search__button"><img src="../../../../assets/1.9.1/img/loupe.svg" alt="Search"></div>
+          <div class="top__search__button"><img src="../../../../assets/1.10.1/img/loupe.svg" alt="Search"></div>
         </div>
       </div>
       <div class="header__sub">
@@ -126,7 +126,7 @@
                           <li><a href="../code-blocks.html">
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Code blocks</span></div></a></li>
                           <li><a href="../minimap.html">
-                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Content minimap</span></div></a></li>
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Content minimap 🆕</span></div></a></li>
                           <li><a href="../title.html">
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document title</span></div></a></li>
                           <li><a href="../editor-placeholder.html">
@@ -264,18 +264,18 @@
     <main class="main">
       <section class="main__content formatted">
         <div class="main__content-inner">
-          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/packages/ckeditor5-image/docs/features/images-styles.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../../assets/1.9.1/img/edit.svg" alt="Contribute to this guide"></a>
+          <div class="github-contrib"><a href="https://github.com/ckeditor/ckeditor5/blob/master/packages/ckeditor5-image/docs/features/images-styles.md" target="_blank" rel="noopener" title="Contribute to this guide"><img src="../../../../assets/1.10.1/img/edit.svg" alt="Contribute to this guide"></a>
           </div>
           <div class="rwd-breadcrumbs"><a href="../../../../index.html">Home</a><span class="rwd-breadcrumbs__separator">/</span><a href="../../index.html">CKEditor 5</a><span class="rwd-breadcrumbs__separator">/</span><a href="../index.html">Features</a>
           </div>
-          <h1 class="main__content-title"><img src="../../../../assets/1.9.1/img/book.svg" alt="guide">Image styles
+          <h1 class="main__content-title"><img src="../../../../assets/1.10.1/img/book.svg" alt="guide">Image styles
           </h1><nav class="secondary-navigation"><h3>Table of contents</h3><ol><li><a href="#overview">Overview</a><ol><li><a href="#image-classes">Image classes</a></li><li><a href="#inline-and-block-images">Inline and block images</a></li></ol></li><li><a href="#ui">UI</a></li><li><a href="#approaches-to-styling-images">Approaches to styling images</a><ol><li><a href="#semantical-styles">Semantical styles</a></li><li><a href="#presentational-styles">Presentational styles</a></li></ol></li><li><a href="#configuring-the-styles">Configuring the styles</a><ol><li><a href="#demo">Demo</a></li><li><a href="#ready-to-use-styles">Ready-to-use styles</a></li></ol></li><li><a href="#installation">Installation</a></li><li><a href="#common-api">Common API</a></li><li><a href="#contribute">Contribute</a></li></ol></nav>
 
 <h2 id="overview"><a class="headerlink" href="#overview">#</a> Overview</h2>
 <p>This package allows for adjusting the image appearance by:</p>
 <ul>
 <li><strong>Applying CSS classes</strong> - adding a particular <a href="#ready-to-use-styles">predefined</a> or <a href="#configuring-the-styles">custom</a> CSS class or removing any style-related CSS class,</li>
-<li><strong>Managing the HTML representation</strong> by changing the image type from inline to block and vice versa. The type conversion occurs if the newly applied style doesn&#x2019;t support the current image type.</li>
+<li><strong>Managing the HTML representation</strong> by changing the image type from inline to block and vice versa. Applying a style may change the type of the image, depending on the configuration of the style.</li>
 </ul>
 <div class="info-box notice"><p>The actual styling of the images is the integrator&#x2019;s job. CKEditor 5 WYSIWYG editor comes with some default styles, but they will only be applied to the images inside the editor. The integrator needs to style them appropriately on the target pages.</p><p>You can find the source of the default styles applied by the editor here: <a href="https://github.com/ckeditor/ckeditor5/blob/master/packages/ckeditor5-image/theme/imagestyle.css" target="_blank" rel="noopener"><code>ckeditor5-image/theme/imagestyle.css</code></a>.</p><p>Read more about <a href="../../builds/guides/integration/content-styles.html">styling the content of the editor</a>.</p></div>
 <h3 id="image-classes"><a class="headerlink" href="#image-classes">#</a> Image classes</h3>
@@ -296,7 +296,7 @@
 <ul>
 <li><code>&lt;figure class=&#x201D;image image-style-class&#x201D;&gt;&lt;img&gt;&lt;/img&gt;&lt;/figure&gt;</code>.</li>
 </ul>
-<p><strong>Switching between these two types of images can be executed by applying/removing a style from the image</strong>: Each of the defined style options provides a list of the image types which it can be applied to. The inline &lt;-&gt; block conversion occurs if the newly applied style does not support the current image type.</p>
+<p><strong>Switching between these two types of images can be executed by applying/removing a style from the image</strong>: Each of the defined style options provides a list of the image types which it can be applied to. Applying a style may change the type of the image, depending on the configuration of the style.</p>
 <p>When a new image is inserted, the editor will, by default, choose the optimal image type based on the context of the insertion (e.g. the current selection/position and <a href="images-installation.html#inline-and-block-images">availability of plugins</a>). The default type of the newly inserted image can be controlled using the <a href="../../api/module_image_imageinsert-ImageInsertConfig.html#member-type"><code>image.insert.type</code> configuration</a>.</p>
 <div class="info-box notice notice__hint"><p>All of the default editor builds support both block and inline images, but it is also possible to <a href="images-installation.html#inline-and-block-images">disable one of these types</a>.</p><!-- TODO: describe this case in the inline and block images installation guide. --></div>
 <h2 id="ui"><a class="headerlink" href="#ui">#</a> UI</h2>
@@ -989,7 +989,7 @@ placed on the editor margins. */
                           <li><a href="../code-blocks.html">
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Code blocks</span></div></a></li>
                           <li><a href="../minimap.html">
-                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Content minimap</span></div></a></li>
+                              <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Content minimap 🆕</span></div></a></li>
                           <li><a href="../title.html">
                               <div class="tree__item__wrapper"><span class="tree__item--guide tree__item__text">Document title</span></div></a></li>
                           <li><a href="../editor-placeholder.html">
